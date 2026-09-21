@@ -46,8 +46,8 @@ theorem map_path_prefix
     (n : ℕ) :
     (μ.map Q.pathMap).map (Preorder.frestrictLe n) =
       (μ.map (Preorder.frestrictLe n)).map (Q.prefixMap n) := by
-  rw [Measure.map_map (measurable_frestrictLe n) Q.pathMap_measurable,
-      Measure.map_map (Q.prefixMap_measurable n) (measurable_frestrictLe n)]
+  rw [Measure.map_map (Preorder.measurable_frestrictLe n) Q.pathMap_measurable,
+      Measure.map_map (Q.prefixMap_measurable n) (Preorder.measurable_frestrictLe n)]
   apply Measure.map_congr
   filter_upwards [] with w
   exact (Q.prefixMap_frestrictLe n w).symm
@@ -90,10 +90,6 @@ theorem compProd_comap_map_first
       Measure.compProd_apply ((hf.prodMap measurable_id) hs),
       lintegral_map (Kernel.measurable_kernel_prodMk_left hs) hf]
   congr with a
-  rw [Kernel.comap_apply']
-  congr 1
-  ext b
-  simp [Prod.map]
 
 /-- Push both coordinates of a transition-pair law through an intertwining
 square. -/
@@ -123,8 +119,6 @@ theorem compProd_map_both_of_intertwines
             (measurable_id.prodMap hg)]
     _ = (μ ⊗ₘ K).map (Prod.map f g) := by
           congr 1
-          funext z
-          rfl
 
 namespace StrategicWorldModel
 
@@ -158,18 +152,33 @@ theorem map_pathLaw_has_transition_pair
     HasTransitionPair
       ((M.pathLaw μ0).map Q.pathMap)
       Mbar.inducedKernel := by
+  letI : IsMarkovKernel M.inducedKernel := inducedKernel_isMarkov M
+  letI : IsMarkovKernel Mbar.inducedKernel := inducedKernel_isMarkov Mbar
   intro n
   rw [Q.map_path_prefix (M.pathLaw μ0) n]
   have hLift := stationaryHistoryKernel_intertwines
     Q M.inducedKernel Mbar.inducedKernel hK n
-  rw [compProd_map_both_of_intertwines
-    ((M.pathLaw μ0).map (Preorder.frestrictLe n))
-    (stationaryHistoryKernel M.inducedKernel n)
-    (stationaryHistoryKernel Mbar.inducedKernel n)
-    (Q.prefixMap n) Q.stateMap
-    (Q.prefixMap_measurable n) Q.stateMap_measurable hLift]
-  rw [pathLaw_has_transition_pair M μ0 n]
-  exact (Q.map_path_transitionPair (M.pathLaw μ0) n).symm
+  calc
+    ((M.pathLaw μ0).map (Preorder.frestrictLe n)).map (Q.prefixMap n) ⊗ₘ
+        stationaryHistoryKernel Mbar.inducedKernel n =
+      (((M.pathLaw μ0).map (Preorder.frestrictLe n)) ⊗ₘ
+        stationaryHistoryKernel M.inducedKernel n).map
+          (Prod.map (Q.prefixMap n) Q.stateMap) := by
+            exact compProd_map_both_of_intertwines
+              ((M.pathLaw μ0).map (Preorder.frestrictLe n))
+              (stationaryHistoryKernel M.inducedKernel n)
+              (stationaryHistoryKernel Mbar.inducedKernel n)
+              (Q.prefixMap n) Q.stateMap
+              (Q.prefixMap_measurable n) Q.stateMap_measurable hLift
+    _ = ((M.pathLaw μ0).map
+          (fun w : ℕ → JointState S X =>
+            (Preorder.frestrictLe n w, w (n + 1)))).map
+          (Prod.map (Q.prefixMap n) Q.stateMap) := by
+            rw [pathLaw_has_transition_pair M μ0 n]
+    _ = ((M.pathLaw μ0).map Q.pathMap).map
+          (fun w : ℕ → JointState Sbar Xbar =>
+            (Preorder.frestrictLe n w, w (n + 1))) := by
+            exact (Q.map_path_transitionPair (M.pathLaw μ0) n).symm
 
 /-- Initial-prefix compatibility of the pushed path law. -/
 theorem map_pathLaw_prefix_zero
@@ -194,7 +203,7 @@ theorem map_pathLaw_prefix_zero
   apply Measure.map_congr
   filter_upwards [] with y
   funext i
-  exact Subsingleton.elim _ _
+  rfl
 
 /-- The coordinatewise pushforward of the canonical path law is the canonical
 path law of the compressed model whenever the induced kernels intertwine. -/
@@ -243,11 +252,10 @@ theorem pathProbability_push_eq_of_kernelIntertwines
     Q.pushPath (pathProbability M μ0) =
       pathProbability Mbar (Q.pushInitial μ0) := by
   apply ProbabilityMeasure.toMeasure_injective
-  simpa [TypeRespectingStateCompression.pushPath,
-    TypeRespectingStateCompression.pushInitial,
-    pathProbability] using
-      StrategicWorldModel.pathLaw_map_eq_of_kernelIntertwines
-        Q M Mbar hK μ0.toMeasure
+  change (M.pathLaw μ0.toMeasure).map Q.pathMap =
+    Mbar.pathLaw (μ0.toMeasure.map Q.stateMap)
+  exact StrategicWorldModel.pathLaw_map_eq_of_kernelIntertwines
+    Q M Mbar hK μ0.toMeasure
 
 end RegimeSpecification
 
