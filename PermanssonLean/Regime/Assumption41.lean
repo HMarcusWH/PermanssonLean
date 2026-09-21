@@ -72,13 +72,16 @@ theorem two_states_implies_basinPathLawNontrivial
       μ.map (Preorder.frestrictLe 0)) hpaths
   rw [StrategicWorldModel.pathLaw_prefix_zero M (Measure.dirac y₁),
       StrategicWorldModel.pathLaw_prefix_zero M (Measure.dirac y₂)] at hpref
-  let e := MeasurableEquiv.piUnique (fun _ : Set.Iic (0 : ℕ) => JointState S X)
-  have hdirac :
-      Measure.dirac (e.symm y₁) = Measure.dirac (e.symm y₂) := by
-    simpa [e, Measure.map_dirac' (MeasurableEquiv.measurable _)] using hpref
-  have heq : e.symm y₁ = e.symm y₂ :=
-    MeasureTheory.dirac_eq_dirac_iff.mp hdirac
-  exact hne (e.symm.injective heq)
+  letI : Unique (Set.Iic (0 : ℕ)) where
+    default := ⟨0, by simp⟩
+    uniq i := by
+      apply Subtype.ext
+      exact Nat.eq_zero_of_le_zero (Set.mem_Iic.mp i.2)
+  let e := MeasurableEquiv.piUnique
+    (fun _ : Set.Iic (0 : ℕ) => JointState S X)
+  have hdirac : Measure.dirac y₁ = Measure.dirac y₂ :=
+    e.symm.measurableEmbedding.map_injective hpref
+  exact hne (MeasureTheory.dirac_eq_dirac_iff.mp hdirac)
 
 theorem basinHasTwoStates_iff_pathLawNontrivial
     [MeasurableSpace.SeparatesPoints (JointState S X)]
