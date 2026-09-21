@@ -19,7 +19,7 @@ namespace RegimeSpecification
 def prefixSurvivalSet
     (spec : RegimeSpecification (JointState S X) H)
     (n : ℕ) :
-    Set ((i : Set.Iic n) → JointState S X) :=
+    Set ((i : Finset.Iic n) → JointState S X) :=
   {h | ∀ i, h i ∈ spec.region}
 
 theorem measurableSet_prefixSurvivalSet
@@ -28,8 +28,8 @@ theorem measurableSet_prefixSurvivalSet
     MeasurableSet (prefixSurvivalSet spec n) := by
   have hEq :
       prefixSurvivalSet spec n =
-        ⋂ i : Set.Iic n,
-          (fun h : (j : Set.Iic n) → JointState S X => h i) ⁻¹' spec.region := by
+        ⋂ i : Finset.Iic n,
+          (fun h : (j : Finset.Iic n) → JointState S X => h i) ⁻¹' spec.region := by
     ext h
     simp [prefixSurvivalSet]
   rw [hEq]
@@ -45,9 +45,9 @@ theorem survivesThroughSet_eq_preimage_prefix
   constructor
   · intro hw
     intro i
-    exact hw i.1 (Set.mem_Iic.mp i.2)
+    exact hw i.1 (Finset.mem_Iic.mp i.2)
   · intro hw t ht
-    exact hw ⟨t, Set.mem_Iic.mpr ht⟩
+    exact hw ⟨t, Finset.mem_Iic.mpr ht⟩
 
 theorem survivesThroughSet_zero
     (spec : RegimeSpecification (JointState S X) H) :
@@ -134,10 +134,10 @@ theorem survivingEndpointMeasure_succ
   let P := M.pathLaw (Measure.dirac y)
   let K := M.inducedKernel
   let pairFn : (ℕ → JointState S X) →
-      (((i : Set.Iic n) → JointState S X) × JointState S X) :=
+      (((i : Finset.Iic n) → JointState S X) × JointState S X) :=
     fun w => (Preorder.frestrictLe n w, w (n + 1))
-  let last : ((i : Set.Iic n) → JointState S X) → JointState S X :=
-    fun h => h ⟨n, Set.mem_Iic.mpr le_rfl⟩
+  let last : ((i : Finset.Iic n) → JointState S X) → JointState S X :=
+    fun h => h ⟨n, Finset.mem_Iic.mpr le_rfl⟩
   ext C hC
   have hpair :
       (P.map (Preorder.frestrictLe n)) ⊗ₘ
@@ -147,7 +147,7 @@ theorem survivingEndpointMeasure_succ
   have hprefix := measurableSet_prefixSurvivalSet spec n
   have hCB : MeasurableSet (C ∩ spec.region) := hC.inter spec.region_measurable
   have hlast : Measurable last := by
-    exact measurable_pi_apply ⟨n, Set.mem_Iic.mpr le_rfl⟩
+    exact measurable_pi_apply ⟨n, Finset.mem_Iic.mpr le_rfl⟩
   have hkernel :
       Measurable (fun z : JointState S X => K z (C ∩ spec.region)) :=
     Kernel.measurable_coe K hCB
