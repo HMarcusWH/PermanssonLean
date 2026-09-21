@@ -46,4 +46,4 @@ lake update
 lake build
 ```
 
-The current proved spine reaches through exact persistence, killed-kernel survival calculus, typed interventions, and generalized Permansson constitution. The next dependency boundary is quantitative constitutive margins and robustness.
+The current proved spine reaches through exact persistence, killed-kernel survival calculus, typed interventions, generalized Permansson constitution, and quantitative constitutive robustness. The next main dependency boundary is intervention-family equivalence; Proposition 5.4's finite-horizon kernel-to-path TV envelope remains an explicit open support layer.

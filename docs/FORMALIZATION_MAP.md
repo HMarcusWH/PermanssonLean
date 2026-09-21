@@ -41,7 +41,8 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 5 | Killed-kernel finite persistence | `survivalProbability_eq_killedSurvivalMass`, `finitePersistence_iff_killed`, `oneStepRetention_pow_lowerBound`, `expectedExitTime_eq_greenSeries` | PROVED |
 | 6 | Typed interventions | `InterventionReplacement`, `InterventionFamily`, `TypedIntervention`, `applyReplacement` | PROVED |
 | 7 | PR constitution | `RegimePropertyMap`, `ConstitutiveComparisonSet`, `IsStrategicallyConstitutive`, `IsGeneralizedPermanssonRegime` | PROVED |
-| 8 | Uniform constitutive margin | robustness module | OPEN |
+| 8 | Uniform constitutive margin / perturbation robustness | `constitutiveEffect`, `constitutiveMargin`, `IsUniformlyStrategicallyConstitutive`, `constitutiveMargin_perturbation_abs_le`, `robustUniformConstitution` | PROVED |
+| 8b | Finite-horizon kernel-to-path TV envelope (Prop. 5.4) | path-perturbation theorem layer | OPEN |
 | 9 | Intervention-family signatures | equivalence module | OPEN |
 | 10 | Quotient preservation theorem | quotient module | OPEN |
 | 11 | EGR → GR embedding | compatibility module | OPEN |
@@ -200,7 +201,40 @@ criterion and Definition 5.1 without strengthening the basic hypothesis surface:
 The diagnostic intervened model is not required to remain a GR or to satisfy an
 equilibrium condition.
 
-The next dependency boundary is the quantitative constitution layer: metric-valued
-property change, uniform constitutive margins, and robustness under perturbation.
-Intervention signatures, quotients, EGR compatibility, grounded confirmatory
-refinements, and QSDs remain later layers.
+## Seventh proof milestone — quantitative constitution and robustness
+
+The Section-5.4.1 quantitative layer is now formalized on top of the pointwise
+constitution semantics without changing the GR/PR definitions themselves:
+
+- `constitutiveEffect` is the metric-valued pointwise gap Δ_{ψ,J}(y);
+- `constitutiveMargin` is the infimum κ_{ψ,J}(B₁) over the frozen comparison set;
+- `strategicallyConstitutive_iff_effect_pos` identifies pointwise constitution with
+  strictly positive pointwise effects;
+- `IsUniformlyStrategicallyConstitutive` and
+  `uniformlyConstitutive_iff_margin_pos` implement the positive uniform-margin
+  strengthening from equation (16);
+- `uniformlyConstitutive_implies_constitutive` proves the quantitative subclass
+  implies the generalized pointwise notion, without asserting the converse;
+- `constitutiveEffect_perturbation_abs_le` and
+  `constitutiveMargin_perturbation_abs_le` formalize the two-sided perturbation
+  bounds of Proposition 5.2;
+- `perturbedConstitutiveMargin_ge` exposes the lower-bound form
+  κ̃ ≥ κ - ε₀ - εJ;
+- `robustUniformConstitution` formalizes Corollary 5.3: if the true margin dominates
+  the total output-error envelope, the perturbed margin remains positive;
+- `IsUniformGeneralizedPermanssonRegime` is the quantitative PR subclass, and
+  `uniformGeneralizedPR_implies_generalizedPR` certifies its inclusion in the
+  generalized PR class;
+- `robustUniformPRCertificate` preserves the baseline Exact-GR certificate together
+  with positivity of the perturbed constitutive margin, while deliberately not
+  claiming that the approximate profile itself is a new GR.
+
+Proposition 5.4's finite-horizon kernel-to-path total-variation envelope remains OPEN.
+That result should be formalized as a later probability-theory layer supplying concrete
+error bounds to Proposition 5.2 rather than being conflated with the abstract
+output-perturbation theorem.
+
+The next main dependency boundary remains intervention-family signatures/equivalence;
+the finite-horizon TV envelope can be developed as a parallel quantitative support layer.
+Quotients, EGR compatibility, grounded confirmatory refinements, and QSDs remain later
+layers.
