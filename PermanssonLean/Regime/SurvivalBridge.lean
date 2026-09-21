@@ -180,6 +180,12 @@ theorem survivingEndpointMeasure_succ
           rfl
     _ = ∫⁻ w in survivesThroughSet spec n,
           K (w n) (C ∩ spec.region) ∂P := by
+          change
+            (∫⁻ h in prefixSurvivalSet spec n,
+              ((fun z : JointState S X => K z (C ∩ spec.region)) ∘ last) h
+                ∂(P.map (Preorder.frestrictLe n))) =
+              ∫⁻ w in survivesThroughSet spec n,
+                K (w n) (C ∩ spec.region) ∂P
           rw [setLIntegral_map hprefix
             (hkernel.comp hlast) (Preorder.measurable_frestrictLe n)]
           rw [← survivesThroughSet_eq_preimage_prefix spec n]
