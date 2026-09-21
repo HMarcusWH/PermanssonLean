@@ -221,9 +221,13 @@ theorem pathLaw_map_eq_of_kernelIntertwines
     · exact map_pathLaw_has_transition_pair Q M Mbar hK μ0
   rcases pathLaw_existsUnique Mbar (μ0.map Q.stateMap) with
     ⟨canonical, hcanonical, hunique⟩
-  have heq : ν = Mbar.pathLaw (μ0.map Q.stateMap) := by
-    exact hunique ν hν
-  exact heq
+  have hνeq : ν = canonical := hunique ν hν
+  have hcanonicalPath :
+      Mbar.pathLaw (μ0.map Q.stateMap) = canonical :=
+    hunique
+      (Mbar.pathLaw (μ0.map Q.stateMap))
+      (pathLaw_spec Mbar (μ0.map Q.stateMap))
+  exact hνeq.trans hcanonicalPath.symm
 
 end StrategicWorldModel
 
