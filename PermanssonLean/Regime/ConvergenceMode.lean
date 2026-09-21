@@ -3,6 +3,7 @@ import Mathlib.MeasureTheory.Measure.Basic
 import Mathlib.Topology.Basic
 
 open Filter MeasureTheory
+open scoped Topology
 
 namespace PermanssonLean
 
