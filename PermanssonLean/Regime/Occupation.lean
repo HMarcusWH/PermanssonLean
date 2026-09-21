@@ -46,27 +46,27 @@ noncomputable def empiricalOccupation
 /-- Bundle the canonical infinite path law as a probability measure. -/
 noncomputable def pathProbability
     (M : StrategicWorldModel S X A)
-    (λ : ProbabilityMeasure (JointState S X)) :
+    (initLaw : ProbabilityMeasure (JointState S X)) :
     ProbabilityMeasure (ℕ → JointState S X) :=
-  ⟨M.pathLaw λ.toMeasure, inferInstance⟩
+  ⟨M.pathLaw initLaw.toMeasure, inferInstance⟩
 
 /-- Descriptor law at a fixed time under a declared initial probability law. -/
 noncomputable def descriptorLaw
     (M : StrategicWorldModel S X A)
     (spec : RegimeSpecification (JointState S X) H)
-    (λ : ProbabilityMeasure (JointState S X))
+    (initLaw : ProbabilityMeasure (JointState S X))
     (t : ℕ) :
     ProbabilityMeasure H :=
-  (pathProbability M λ).map (fun w => spec.descriptor (w t))
+  (pathProbability M initLaw).map (fun w => spec.descriptor (w t))
 
 /-- The target law is a limiting occupation law for a particular initial
 probability law under the frozen convergence semantics. -/
 def IsLimitingOccupationLaw
     (M : StrategicWorldModel S X A)
     (spec : RegimeSpecification (JointState S X) H)
-    (λ : ProbabilityMeasure (JointState S X)) : Prop :=
+    (initLaw : ProbabilityMeasure (JointState S X)) : Prop :=
   spec.convergenceMode.holds
-    (M.pathLaw λ.toMeasure)
+    (M.pathLaw initLaw.toMeasure)
     (empiricalOccupation spec)
     spec.target
 
