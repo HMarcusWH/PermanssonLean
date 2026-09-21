@@ -29,6 +29,22 @@ theorem unitModel_induced_apply
   simp [unitModel, equilibriumKernel,
     Kernel.comap_apply', Kernel.deterministic_apply,
     Kernel.lintegral_deterministic']
+  have hinner (a : A) :
+      (∫⁻ x' : X,
+        {s' : Unit | x' ∈ D}.indicator 1 () ∂M.world (x, a)) =
+        M.world (x, a) D := by
+    calc
+      (∫⁻ x' : X,
+        {s' : Unit | x' ∈ D}.indicator 1 () ∂M.world (x, a)) =
+          ∫⁻ x' : X, D.indicator 1 x' ∂M.world (x, a) := by
+            apply lintegral_congr
+            filter_upwards [] with x'
+            simp [Set.indicator_apply]
+      _ = M.world (x, a) D := lintegral_indicator_one hD
+  simp_rw [hinner]
+  rw [lintegral_dirac' _]
+  exact (Kernel.measurable_coe M.world hD).comp
+    (measurable_const.prodMk measurable_id)
 
 /-- Type-respecting projection that forgets the Paper-II recording state while
 leaving the Paper-I world coordinate unchanged. -/
@@ -76,8 +92,10 @@ theorem embedded_unit_kernelIntertwines
     unitModel, recordingCompression, TypeRespectingStateCompression.stateMap,
     embeddedActionMap, embeddedWorldInputMap, recordingUpdateMap,
     equilibriumKernel, Kernel.comap_apply',
-    Kernel.deterministic_apply, Kernel.lintegral_deterministic',
-    Set.indicator_apply]
+    Kernel.deterministic_apply, Kernel.lintegral_deterministic']
+  congr with a
+  congr with x'
+  simp [Set.indicator_apply]
 
 /-- Baseline canonical path laws commute with the recording projection. -/
 theorem embedded_pathProbability_push_unit
@@ -123,15 +141,21 @@ theorem embedded_worldPathLaw_eq_paperI
     apply Measure.map_congr
     filter_upwards [] with y
     rfl
+  have pathLaw_congr_initial
+      {μ ν : Measure (JointState Unit X)}
+      [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
+      (hμν : μ = ν) :
+      M.unitModel.pathLaw μ = M.unitModel.pathLaw ν := by
+    subst ν
+    rfl
   have hpathInit :
       M.unitModel.pathLaw
           (μ0.toMeasure.map
             (recordingCompression (X := X) (A := A)).stateMap) =
         M.unitModel.pathLaw
           ((μ0.map Prod.snd).toMeasure.map
-            (unitEmbedding (X := X))) := by
-    cases hinit
-    rfl
+            (unitEmbedding (X := X))) :=
+    pathLaw_congr_initial hinit
   unfold pathLaw
   calc
     (M.embeddedModel.pathLaw μ0.toMeasure).map
