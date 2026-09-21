@@ -2,7 +2,7 @@ import PermanssonLean.Intervention.Apply
 
 namespace PermanssonLean
 
-universe uS uX uA uK uL
+universe uS uX uA uK uL uK₁ uK₂ uL₁ uL₂
 
 variable {S : Type uS} {X : Type uX} {A : Type uA}
 variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
@@ -23,8 +23,8 @@ structure FrozenStrategicInterventionFamily
 fixed ex ante and must preserve the declared intervention target. -/
 structure FrozenFamilyMatching
     {M₁ M₂ : StrategicWorldModel S X A}
-    {Component₁ : Type uK} {Component₂ : Type uK}
-    {Label₁ : Type uL} {Label₂ : Type uL}
+    {Component₁ : Type uK₁} {Component₂ : Type uK₂}
+    {Label₁ : Type uL₁} {Label₂ : Type uL₂}
     (F₁ : InterventionFamily M₁ Component₁)
     (F₂ : InterventionFamily M₂ Component₂)
     (J₁ : FrozenStrategicInterventionFamily F₁ Label₁)
