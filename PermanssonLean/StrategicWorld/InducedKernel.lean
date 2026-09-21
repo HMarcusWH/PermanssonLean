@@ -113,6 +113,7 @@ theorem inducedKernel_apply
   letI : IsMarkovKernel M.world := M.world_isMarkov
   letI : IsMarkovKernel M.generator.update := M.generator.update_isMarkov
   letI : IsMarkovKernel M.reassociatedUpdate := reassociatedUpdate_isMarkov M
+  letI : IsMarkovKernel M.actionWorldKernel := actionWorldKernel_isMarkov M
   have hProject :
       Measurable (fun z : (A × X) × S => (z.2, z.1.2)) := by
     fun_prop
