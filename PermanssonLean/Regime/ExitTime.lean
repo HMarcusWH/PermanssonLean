@@ -1,4 +1,5 @@
 import PermanssonLean.Regime.KilledKernel
+import PermanssonLean.StrategicWorld.PathLaw
 import Mathlib.Data.ENat.Basic
 import Mathlib.Data.Nat.Find
 import Mathlib.MeasureTheory.Measure.DiracProba
@@ -77,8 +78,9 @@ It is infinity exactly when the trajectory never leaves B.
 -/
 noncomputable def exitTime
     (spec : RegimeSpecification (JointState S X) H)
-    (w : ℕ → JointState S X) : ℕ∞ :=
-  if h : ∃ t : ℕ, w t ∉ spec.region
+    (w : ℕ → JointState S X) : ℕ∞ := by
+  classical
+  exact if h : ∃ t : ℕ, w t ∉ spec.region
     then (Nat.find h : ℕ∞)
     else ⊤
 
