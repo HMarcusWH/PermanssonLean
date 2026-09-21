@@ -151,7 +151,8 @@ theorem StrategicWorldModel.pathLaw_eval_zero
     default := ⟨0, by simp⟩
     uniq := fun i => by
       apply Subtype.ext
-      exact Nat.eq_zero_of_le_zero (Set.mem_Iic.mp i.2)
+      apply Nat.eq_zero_of_le_zero
+      simpa using i.property
   }
   let e := MeasurableEquiv.piUnique
     (fun _ : Finset.Iic (0 : ℕ) => JointState S X)
@@ -159,9 +160,17 @@ theorem StrategicWorldModel.pathLaw_eval_zero
   change
     (M.pathLaw mu0).map (Preorder.frestrictLe 0) =
       mu0.map e.symm at h
-  have hm := congrArg
-    (fun μ : Measure ((i : Finset.Iic (0 : ℕ)) → JointState S X) => μ.map e) h
-  simpa [e, Measure.map_map, Function.comp_def] using hm
+  calc
+    (M.pathLaw mu0).map (fun w : ℕ → JointState S X => w 0) =
+        ((M.pathLaw mu0).map (Preorder.frestrictLe 0)).map e := by
+      rw [Measure.map_map e.measurable (by fun_prop)]
+      congr 1
+      funext w
+      rfl
+    _ = (mu0.map e.symm).map e := by rw [h]
+    _ = mu0 := by
+      rw [Measure.map_map e.measurable e.symm.measurable]
+      simpa using (Measure.map_id mu0)
 
 /-- Point-initialized finite-horizon survival probability. -/
 noncomputable def survivalProbability
