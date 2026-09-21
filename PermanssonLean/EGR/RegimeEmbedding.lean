@@ -35,13 +35,21 @@ theorem paperI_exactInvariant_iff_embedded
     have hinter := kernelIntertwines_apply_preimage
       Q M.embeddedModel.inducedKernel M.unitModel.inducedKernel
       M.embedded_unit_kernelIntertwines y C hC
+    have hset :
+        Q.stateMap ⁻¹' C =
+          (embeddedSpec (A := A) spec).region := by
+      ext z
+      simp [Q, C, embeddedSpec, recordingCompression,
+        TypeRespectingStateCompression.stateMap,
+        unitWorldProjection]
+    rw [hset] at hinter
     have hunit :=
       M.unitModel_induced_apply y.2 spec.region_measurable
     have hbase := h y.2 hx
-    simpa [Q, C, embeddedSpec, recordingCompression,
+    have hchain := hinter.trans (hunit.trans hbase)
+    simpa [Q, C, recordingCompression,
       TypeRespectingStateCompression.stateMap,
-      unitWorldProjection] using
-        hinter.trans (hunit.trans hbase)
+      unitWorldProjection] using hchain
   · intro h x hx
     let y : JointState (PaperIStrategicState A) X :=
       (initialStrategicState (A := A), x)
@@ -57,15 +65,24 @@ theorem paperI_exactInvariant_iff_embedded
     have hinter := kernelIntertwines_apply_preimage
       Q M.embeddedModel.inducedKernel M.unitModel.inducedKernel
       M.embedded_unit_kernelIntertwines y C hC
+    have hset :
+        Q.stateMap ⁻¹' C =
+          (embeddedSpec (A := A) spec).region := by
+      ext z
+      simp [Q, C, embeddedSpec, recordingCompression,
+        TypeRespectingStateCompression.stateMap,
+        unitWorldProjection]
+    rw [hset] at hinter
     have hunit :=
       M.unitModel_induced_apply x spec.region_measurable
     have hEq :
         M.equilibriumKernel x spec.region =
           M.embeddedModel.inducedKernel y
             (embeddedSpec (A := A) spec).region := by
-      simpa [Q, C, y, embeddedSpec, recordingCompression,
+      have hchain := (hinter.trans hunit).symm
+      simpa [Q, C, y, recordingCompression,
         TypeRespectingStateCompression.stateMap,
-        unitWorldProjection] using (hinter.trans hunit).symm
+        unitWorldProjection] using hchain
     exact hEq.trans hemb
 
 /-- The transported convergence semantics on the enlarged model are exactly
@@ -79,9 +96,17 @@ theorem paperI_limiting_iff_embedded_worldMarginal
         M.embeddedModel (embeddedSpec (A := A) spec) μ ↔
       M.IsLimitingOccupationLaw spec (worldMarginal (A := A) μ) := by
   unfold RegimeSpecification.IsLimitingOccupationLaw
-    IsLimitingOccupationLaw embeddedSpec embeddedConvergenceMode
+    IsLimitingOccupationLaw
+  change
+    spec.convergenceMode.holds
+        ((M.embeddedModel.pathLaw μ.toMeasure).map
+          (worldPathProjection
+            (X := X) (S := PaperIStrategicState A)))
+        (empiricalOccupation spec) spec.target ↔
+      spec.convergenceMode.holds
+        (M.pathLaw (worldMarginal (A := A) μ).toMeasure)
+        (empiricalOccupation spec) spec.target
   rw [M.embedded_worldPathLaw_eq_paperI μ]
-  rfl
 
 /-- Paper-I ex-ante nontriviality transports exactly to Assumption 4.1 on
 the canonical recording representation when the lifted reference measure is
@@ -164,9 +189,15 @@ theorem paperI_nontriviality_iff_embedded_assumption41
       refine ⟨y₁.2, hy₁.2, y₂.2, hy₂.2, ?_⟩
       intro hx
       apply hne
-      rcases hy₁.1 with rfl
-      rcases hy₂.1 with rfl
-      exact Prod.ext rfl hx
+      apply Prod.ext
+      · have hs₁ :
+            y₁.1 = initialStrategicState (A := A) :=
+          Set.mem_singleton_iff.mp hy₁.1
+        have hs₂ :
+            y₂.1 = initialStrategicState (A := A) :=
+          Set.mem_singleton_iff.mp hy₂.1
+        exact hs₁.trans hs₂.symm
+      · exact hx
 
 /-- Theorem 6.1, semantic core: the selected Paper-I object is an EGR iff
 its canonical clock/action-recording embedding is an Exact GR. -/
