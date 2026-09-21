@@ -46,4 +46,4 @@ lake update
 lake build
 ```
 
-The first proof milestone is the canonical induced Markov kernel on `S × X`.
+The current proved spine reaches through exact persistence, killed-kernel survival calculus, and the typed intervention grammar. The next dependency boundary is generalized Permansson constitution.

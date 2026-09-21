@@ -14,3 +14,6 @@ import PermanssonLean.Regime.Persistence
 import PermanssonLean.Regime.Occupation
 import PermanssonLean.Regime.GeneratedRegime
 import PermanssonLean.Intervention.Target
+import PermanssonLean.Intervention.Replacement
+import PermanssonLean.Intervention.Family
+import PermanssonLean.Intervention.Apply
