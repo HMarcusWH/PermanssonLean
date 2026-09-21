@@ -12,6 +12,22 @@ namespace PaperISelectedModel
 variable {X : Type uX} {A : Type uA}
 variable [MeasurableSpace X] [MeasurableSpace A]
 
+
+/-- The Unit wrapper's one-step law on a world-cylinder is exactly the
+Paper-I equilibrium-induced kernel. -/
+theorem unitModel_induced_apply
+    (M : PaperISelectedModel X A)
+    (x : X)
+    {D : Set X} (hD : MeasurableSet D) :
+    M.unitModel.inducedKernel ((), x)
+      (unitWorldProjection ⁻¹' D) =
+      M.equilibriumKernel x D := by
+  rw [StrategicWorldModel.inducedKernel_apply
+    M.unitModel ((), x) (hD.preimage measurable_snd)]
+  simp [unitModel, equilibriumKernel,
+    Kernel.comap_apply', Kernel.deterministic_apply,
+    Kernel.lintegral_deterministic']
+
 /-- Type-respecting projection that forgets the Paper-II recording state while
 leaving the Paper-I world coordinate unchanged. -/
 def recordingCompression :
@@ -73,6 +89,39 @@ theorem embedded_pathProbability_push_unit
     (recordingCompression (X := X) (A := A))
     M.embeddedModel M.unitModel
     M.embedded_unit_kernelIntertwines μ0
+
+
+/-- For an arbitrary enlarged initial law, the world-path marginal of the
+recording embedding is exactly the Paper-I path law started from the enlarged
+law's world marginal. -/
+theorem embedded_worldPathLaw_eq_paperI
+    (M : PaperISelectedModel X A)
+    (μ0 : ProbabilityMeasure
+      (JointState (PaperIStrategicState A) X)) :
+    (M.embeddedModel.pathLaw μ0.toMeasure).map
+        (worldPathProjection
+          (X := X) (S := PaperIStrategicState A)) =
+      M.pathLaw
+        ((μ0.toMeasure.map measurable_snd).map
+          (unitWorldProjection (X := X))) := by
+  have hpush :=
+    StrategicWorldModel.pathLaw_map_eq_of_kernelIntertwines
+      (recordingCompression (X := X) (A := A))
+      M.embeddedModel M.unitModel
+      M.embedded_unit_kernelIntertwines
+      μ0.toMeasure
+  unfold pathLaw
+  rw [← hpush]
+  rw [Measure.map_map
+    (worldPathProjection_measurable (X := X) (S := Unit))
+    (recordingCompression (X := X) (A := A)).pathMap_measurable]
+  rw [Measure.map_map
+    (recordingCompression (X := X) (A := A)).stateMap_measurable
+    measurable_snd]
+  rw [Measure.map_map
+    (unitEmbedding_measurable (X := X))
+    measurable_snd]
+  congr 1 <;> funext z <;> rfl
 
 end PaperISelectedModel
 
