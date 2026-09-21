@@ -28,3 +28,9 @@ import PermanssonLean.Intervention.Family
 import PermanssonLean.Intervention.Apply
 import PermanssonLean.Intervention.FrozenFamily
 import PermanssonLean.Intervention.Signature
+import PermanssonLean.Quotient.Compression
+import PermanssonLean.Quotient.KernelIntertwining
+import PermanssonLean.Quotient.PathLaw
+import PermanssonLean.Quotient.RegimeSemantics
+import PermanssonLean.Quotient.Constitution
+import PermanssonLean.Quotient.Preservation
