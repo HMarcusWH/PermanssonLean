@@ -29,7 +29,7 @@ def appendPrefix (n : ℕ)
 
 theorem measurable_appendPrefix (n : ℕ) :
     Measurable (appendPrefix (S := S) (X := X) n) := by
-  refine measurable_pi_lambda _ fun i => ?_
+  refine Measurable.of_eval fun i => ?_
   by_cases h : i.1 ≤ n
   · simp only [appendPrefix, dif_pos h]
     exact (measurable_pi_apply (⟨i.1, mem_Iic.mpr h⟩ : Iic n)).comp measurable_fst
