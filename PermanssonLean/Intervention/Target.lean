@@ -3,9 +3,10 @@ namespace PermanssonLean
 /--
 Typed intervention target.
 
-The formalization intentionally keeps strategic and structural interventions distinct.
-A later intervention grammar will carry target-specific replacement data, so an
-action-selection intervention cannot be silently reinterpreted as a world or update intervention.
+Strategic interventions alter the strategic generator while structural interventions
+alter the world-transition kernel. The distinction is frozen at the type boundary so
+later constitution theorems cannot silently reinterpret one intervention class as the
+other.
 -/
 inductive InterventionTarget where
   | actionSelection
@@ -13,5 +14,22 @@ inductive InterventionTarget where
   | worldTransition
   | jointStrategic
 deriving DecidableEq, Repr
+
+namespace InterventionTarget
+
+/-- Strategic-generator targets are exactly action selection, strategic update,
+and their joint replacement. World-transition interventions are structural. -/
+def IsStrategic : InterventionTarget → Prop
+  | .actionSelection => True
+  | .strategicUpdate => True
+  | .jointStrategic => True
+  | .worldTransition => False
+
+@[simp] theorem isStrategic_actionSelection : IsStrategic .actionSelection := trivial
+@[simp] theorem isStrategic_strategicUpdate : IsStrategic .strategicUpdate := trivial
+@[simp] theorem isStrategic_jointStrategic : IsStrategic .jointStrategic := trivial
+@[simp] theorem not_isStrategic_worldTransition : ¬ IsStrategic .worldTransition := id
+
+end InterventionTarget
 
 end PermanssonLean
