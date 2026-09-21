@@ -19,7 +19,12 @@ import PermanssonLean.Regime.Permansson
 import PermanssonLean.Regime.ConstitutiveMargin
 import PermanssonLean.Regime.Perturbation
 import PermanssonLean.Regime.UniformPermansson
+import PermanssonLean.Regime.RepresentationEquivalence
+import PermanssonLean.Regime.InterventionEquivalence
+import PermanssonLean.Regime.FamilyEquivalence
 import PermanssonLean.Intervention.Target
 import PermanssonLean.Intervention.Replacement
 import PermanssonLean.Intervention.Family
 import PermanssonLean.Intervention.Apply
+import PermanssonLean.Intervention.FrozenFamily
+import PermanssonLean.Intervention.Signature
