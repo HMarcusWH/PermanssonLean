@@ -146,6 +146,96 @@ theorem survivesForeverSet_eq_iInter
   ext w
   simp [survivesForeverSet, SurvivesForever, survivesThroughSet, SurvivesThrough]
 
+
+theorem survivesForeverSet_subset_survivesThroughSet
+    (spec : RegimeSpecification (JointState S X) H)
+    (n : ℕ) :
+    survivesForeverSet spec ⊆ survivesThroughSet spec n := by
+  intro w hw t ht
+  exact hw t
+
+theorem exactInvariant_survivalProbability_eq_one
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (hInv : IsExactlyInvariant M spec)
+    (n : ℕ) {y : JointState S X}
+    (hy : y ∈ spec.region) :
+    survivalProbability M spec y n = 1 := by
+  rw [survivalProbability_eq_killedSurvivalMass M spec n hy]
+  apply le_antisymm
+  · unfold killedSurvivalMass
+    have hbridge := survivalProbability_eq_killedSurvivalMass M spec n hy
+    rw [← hbridge]
+    unfold survivalProbability
+    exact prob_le_one
+  · simpa using
+      (oneStepRetention_pow_lowerBound M spec (1 : ℝ≥0∞)
+        (fun z hz => by simpa [hInv z hz]) n hy)
+
+/-- Exact invariance implies almost-sure indefinite retention. -/
+theorem exactInvariant_survivalForever
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (hInv : IsExactlyInvariant M spec)
+    {y : JointState S X}
+    (hy : y ∈ spec.region) :
+    survivalForeverProbability M spec y = 1 := by
+  let P := M.pathLaw (Measure.dirac y)
+  have hEach : ∀ n : ℕ, ∀ᵐ w ∂P, w ∈ survivesThroughSet spec n := by
+    intro n
+    apply (ae_mem_iff_measure_eq
+      (measurableSet_survivesThroughSet spec n).nullMeasurableSet).2
+    have hprob := exactInvariant_survivalProbability_eq_one M spec hInv n hy
+    simpa [P, survivalProbability] using hprob
+  have hAll : ∀ᵐ w ∂P, ∀ n : ℕ, w ∈ survivesThroughSet spec n :=
+    MeasureTheory.ae_all_iff.2 hEach
+  have hForever : ∀ᵐ w ∂P, w ∈ survivesForeverSet spec := by
+    filter_upwards [hAll] with w hw
+    rw [survivesForeverSet_eq_iInter]
+    exact Set.mem_iInter.2 hw
+  have hmeasure :
+      P (survivesForeverSet spec) = P Set.univ :=
+    (ae_mem_iff_measure_eq
+      (measurableSet_survivesForeverSet spec).nullMeasurableSet).1 hForever
+  simpa [survivalForeverProbability, P] using hmeasure
+
+/-- Proposition 4.2: almost-sure indefinite retention implies exact one-step
+invariance. -/
+theorem survivalForever_implies_exactInvariant
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (hForever :
+      ∀ y ∈ spec.region, survivalForeverProbability M spec y = 1) :
+    IsExactlyInvariant M spec := by
+  intro y hy
+  let P := M.pathLaw (Measure.dirac y)
+  have hsubset :
+      survivesForeverSet spec ⊆ survivesThroughSet spec 1 :=
+    survivesForeverSet_subset_survivesThroughSet spec 1
+  have hmono :
+      P (survivesForeverSet spec) ≤ P (survivesThroughSet spec 1) :=
+    measure_mono hsubset
+  have hfin : survivalProbability M spec y 1 = 1 := by
+    apply le_antisymm
+    · unfold survivalProbability
+      exact prob_le_one
+    · have hforever := hForever y hy
+      simpa [P, survivalForeverProbability, survivalProbability, hforever] using hmono
+  rw [survivalProbability_eq_killedSurvivalMass M spec 1 hy,
+    killedSurvivalMass_one] at hfin
+  exact hfin
+
+/-- Proposition 4.2 in iff form. -/
+theorem exactInvariant_iff_survivalForever
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H) :
+    IsExactlyInvariant M spec ↔
+      ∀ y ∈ spec.region, survivalForeverProbability M spec y = 1 := by
+  constructor
+  · intro hInv y hy
+    exact exactInvariant_survivalForever M spec hInv hy
+  · exact survivalForever_implies_exactInvariant M spec
+
 end RegimeSpecification
 
 end PermanssonLean
