@@ -80,8 +80,12 @@ theorem two_states_implies_basinPathLawNontrivial
   }
   let e := MeasurableEquiv.piUnique
     (fun _ : Set.Iic (0 : ℕ) => JointState S X)
+  have hpref' :
+      (Measure.dirac y₁).map e.symm =
+        (Measure.dirac y₂).map e.symm := by
+    simpa [e] using hpref
   have hdirac : Measure.dirac y₁ = Measure.dirac y₂ :=
-    e.symm.measurableEmbedding.map_injective hpref
+    e.symm.measurableEmbedding.map_injective hpref'
   exact hne (MeasureTheory.dirac_eq_dirac_iff.mp hdirac)
 
 theorem basinHasTwoStates_iff_pathLawNontrivial
