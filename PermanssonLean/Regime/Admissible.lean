@@ -14,16 +14,16 @@ variable [MeasurableSpace Y] [MeasurableSpace H]
 placing unit mass on the frozen basin. -/
 def IsAdmissibleInitialLaw
     (spec : RegimeSpecification Y H)
-    (λ : ProbabilityMeasure Y) : Prop :=
-  λ.toMeasure spec.basin = 1
+    (initLaw : ProbabilityMeasure Y) : Prop :=
+  initLaw.toMeasure spec.basin = 1
 
 theorem admissible_mass_region
     (spec : RegimeSpecification Y H)
-    (λ : ProbabilityMeasure Y)
-    (hλ : IsAdmissibleInitialLaw spec λ) :
-    λ.toMeasure spec.region = 1 := by
+    (initLaw : ProbabilityMeasure Y)
+    (hinitLaw : IsAdmissibleInitialLaw spec initLaw) :
+    initLaw.toMeasure spec.region = 1 := by
   apply le_antisymm (prob_le_one) ?_
-  rw [← hλ]
+  rw [← hinitLaw]
   exact measure_mono spec.basin_subset_region
 
 theorem dirac_admissible_iff
