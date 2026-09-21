@@ -37,9 +37,8 @@ def stateMap
 
 theorem stateMap_measurable
     (Q : TypeRespectingStateCompression S X Sbar Xbar) :
-    Measurable Q.stateMap :=
-  Q.strategic_measurable.comp measurable_fst |>.prod_mk
-    (Q.world_measurable.comp measurable_snd)
+    Measurable Q.stateMap := by
+  fun_prop
 
 theorem stateMap_surjective
     (Q : TypeRespectingStateCompression S X Sbar Xbar) :
