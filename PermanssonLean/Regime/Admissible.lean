@@ -13,23 +13,23 @@ variable [MeasurableSpace Y] [MeasurableSpace H]
 /-- The admissible initial-law class \(\mathcal D(B_0)\): probability laws
 placing unit mass on the frozen basin. -/
 def IsAdmissibleInitialLaw
-    (Σ : RegimeSpecification Y H)
+    (spec : RegimeSpecification Y H)
     (λ : ProbabilityMeasure Y) : Prop :=
-  λ.toMeasure Σ.basin = 1
+  λ.toMeasure spec.basin = 1
 
 theorem admissible_mass_region
-    (Σ : RegimeSpecification Y H)
+    (spec : RegimeSpecification Y H)
     (λ : ProbabilityMeasure Y)
-    (hλ : IsAdmissibleInitialLaw Σ λ) :
-    λ.toMeasure Σ.region = 1 := by
+    (hλ : IsAdmissibleInitialLaw spec λ) :
+    λ.toMeasure spec.region = 1 := by
   apply le_antisymm (prob_le_one) ?_
   rw [← hλ]
-  exact measure_mono Σ.basin_subset_region
+  exact measure_mono spec.basin_subset_region
 
 theorem dirac_admissible_iff
     [MeasurableSingletonClass Y]
-    (Σ : RegimeSpecification Y H) (y : Y) :
-    IsAdmissibleInitialLaw Σ (diracProba y) ↔ y ∈ Σ.basin := by
-  simp [IsAdmissibleInitialLaw, diracProba, Σ.basin_measurable]
+    (spec : RegimeSpecification Y H) (y : Y) :
+    IsAdmissibleInitialLaw spec (diracProba y) ↔ y ∈ spec.basin := by
+  simp [IsAdmissibleInitialLaw, diracProba, spec.basin_measurable]
 
 end PermanssonLean
