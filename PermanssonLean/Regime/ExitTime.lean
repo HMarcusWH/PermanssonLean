@@ -137,6 +137,27 @@ theorem exitTime_gt_event
   ext w
   exact exitTime_gt_nat_iff spec w n
 
+
+/-- The time-zero marginal of the canonical path law is exactly the declared
+initial law. This is a convenient projection form of `pathLaw_prefix_zero`. -/
+theorem StrategicWorldModel.pathLaw_eval_zero
+    (M : StrategicWorldModel S X A)
+    (mu0 : Measure (JointState S X))
+    [IsProbabilityMeasure mu0] :
+    (M.pathLaw mu0).map (fun w : ℕ → JointState S X => w 0) = mu0 := by
+  letI : Unique (Set.Iic (0 : ℕ)) := {
+    default := ⟨0, by simp⟩
+    uniq := fun i => by
+      apply Subtype.ext
+      exact Nat.eq_zero_of_le_zero (Set.mem_Iic.mp i.2)
+  }
+  let e := MeasurableEquiv.piUnique
+    (fun _ : Set.Iic (0 : ℕ) => JointState S X)
+  have h := StrategicWorldModel.pathLaw_prefix_zero M mu0
+  have hm := congrArg (fun μ : Measure ((i : Set.Iic (0 : ℕ)) → JointState S X) =>
+    μ.map e) h
+  simpa [e, Measure.map_map, Function.comp_def] using hm
+
 /-- Point-initialized finite-horizon survival probability. -/
 noncomputable def survivalProbability
     (M : StrategicWorldModel S X A)
