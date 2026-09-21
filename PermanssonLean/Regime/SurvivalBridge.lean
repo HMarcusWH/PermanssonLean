@@ -77,7 +77,7 @@ theorem survivingEndpointMeasure_zero
   rw [survivingEndpointMeasure, survivesThroughSet_zero]
   rw [← Measure.restrict_map (measurable_pi_apply 0) spec.region_measurable]
   rw [StrategicWorldModel.pathLaw_eval_zero M (Measure.dirac y)]
-  rw [Measure.restrict_dirac' spec.region_measurable]
+  rw [restrict_dirac' spec.region_measurable]
   simp [hy]
 
 /-- A one-step path decomposition: survival through n+1 is survival through n
@@ -120,8 +120,12 @@ theorem pair_preimage_prefixSurvival_prod
   · rintro ⟨hC, hs⟩
     rw [survivesThroughSet_succ] at hs
     refine ⟨?_, hC, hs.2⟩
-    rw [← survivesThroughSet_eq_preimage_prefix spec n]
-    exact hs.1
+    change Preorder.frestrictLe n w ∈ prefixSurvivalSet spec n
+    have hp :
+        w ∈ Preorder.frestrictLe n ⁻¹' prefixSurvivalSet spec n := by
+      rw [← survivesThroughSet_eq_preimage_prefix spec n]
+      exact hs.1
+    exact hp
 
 /-- Surviving endpoint laws evolve by the killed kernel. -/
 theorem survivingEndpointMeasure_succ
@@ -133,6 +137,7 @@ theorem survivingEndpointMeasure_succ
       killedKernel M spec ∘ₘ survivingEndpointMeasure M spec y n := by
   let P := M.pathLaw (Measure.dirac y)
   let K := M.inducedKernel
+  letI : IsMarkovKernel K := StrategicWorldModel.inducedKernel_isMarkov M
   let pairFn : (ℕ → JointState S X) →
       (((i : Finset.Iic n) → JointState S X) × JointState S X) :=
     fun w => (Preorder.frestrictLe n w, w (n + 1))
@@ -147,7 +152,8 @@ theorem survivingEndpointMeasure_succ
   have hprefix := measurableSet_prefixSurvivalSet spec n
   have hCB : MeasurableSet (C ∩ spec.region) := hC.inter spec.region_measurable
   have hlast : Measurable last := by
-    exact measurable_pi_apply ⟨n, Finset.mem_Iic.mpr le_rfl⟩
+    dsimp [last]
+    fun_prop
   have hkernel :
       Measurable (fun z : JointState S X => K z (C ∩ spec.region)) :=
     Kernel.measurable_coe K hCB
@@ -158,9 +164,7 @@ theorem survivingEndpointMeasure_succ
         = P (((fun w : ℕ → JointState S X => w (n + 1)) ⁻¹' C) ∩
             survivesThroughSet spec (n + 1)) := by
           rw [survivingEndpointMeasure, Measure.map_apply (measurable_pi_apply (n + 1)) hC,
-            Measure.restrict_apply]
-          · rfl
-          · exact hC.preimage (measurable_pi_apply (n + 1))
+            Measure.restrict_apply (hC.preimage (measurable_pi_apply (n + 1)))]
     _ = (P.map pairFn)
           (prefixSurvivalSet spec n ×ˢ (C ∩ spec.region)) := by
           rw [Measure.map_apply hpairFn (hprefix.prod hCB)]
@@ -176,15 +180,13 @@ theorem survivingEndpointMeasure_succ
           rfl
     _ = ∫⁻ w in survivesThroughSet spec n,
           K (w n) (C ∩ spec.region) ∂P := by
-          rw [Measure.setLIntegral_map hprefix
+          rw [setLIntegral_map hprefix
             (hkernel.comp hlast) (measurable_frestrictLe n)]
-          congr 1
-          · rw [← survivesThroughSet_eq_preimage_prefix spec n]
-          · funext w
-            rfl
+          rw [← survivesThroughSet_eq_preimage_prefix spec n]
+          rfl
     _ = ∫⁻ z, K z (C ∩ spec.region)
           ∂survivingEndpointMeasure M spec y n := by
-          rw [survivingEndpointMeasure, Measure.lintegral_map hkernel
+          rw [survivingEndpointMeasure, lintegral_map hkernel
             (measurable_pi_apply n)]
           rfl
     _ = (killedKernel M spec ∘ₘ survivingEndpointMeasure M spec y n) C := by
@@ -203,7 +205,7 @@ theorem survivingEndpointMeasure_eq_killedPow
       ((killedKernel M spec) ^ n) y := by
   induction n with
   | zero =>
-      simpa using survivingEndpointMeasure_zero M spec hy
+      rw [survivingEndpointMeasure_zero M spec hy, pow_zero, Kernel.id_apply]
   | succ n ih =>
       rw [survivingEndpointMeasure_succ M spec y n, ih]
       ext C hC
@@ -221,10 +223,21 @@ theorem survivalProbability_eq_killedSurvivalMass
     survivalProbability M spec y n =
       killedSurvivalMass M spec n y := by
   have hmeasure := survivingEndpointMeasure_eq_killedPow M spec n hy
-  have htotal := congrArg (fun μ : Measure (JointState S X) => μ Set.univ) hmeasure
-  rw [survivingEndpointMeasure, Measure.map_apply (measurable_pi_apply n) MeasurableSet.univ,
-    Set.preimage_univ, Measure.restrict_apply MeasurableSet.univ] at htotal
-  simpa [survivalProbability, killedSurvivalMass] using htotal
+  have hregion :=
+    congrArg (fun μ : Measure (JointState S X) => μ spec.region) hmeasure
+  rw [survivingEndpointMeasure,
+    Measure.map_apply (measurable_pi_apply n) spec.region_measurable,
+    Measure.restrict_apply
+      (spec.region_measurable.preimage (measurable_pi_apply n))] at hregion
+  have hinter :
+      ((fun w : ℕ → JointState S X => w n) ⁻¹' spec.region) ∩
+          survivesThroughSet spec n =
+        survivesThroughSet spec n := by
+    apply inter_eq_right.mpr
+    intro w hw
+    exact hw n le_rfl
+  rw [hinter] at hregion
+  simpa [survivalProbability, killedSurvivalMass] using hregion
 
 end RegimeSpecification
 
