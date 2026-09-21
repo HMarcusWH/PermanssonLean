@@ -101,27 +101,34 @@ theorem embedded_worldPathLaw_eq_paperI
     (M.embeddedModel.pathLaw μ0.toMeasure).map
         (worldPathProjection
           (X := X) (S := PaperIStrategicState A)) =
-      M.pathLaw
-        ((μ0.toMeasure.map measurable_snd).map
-          (unitWorldProjection (X := X))) := by
+      M.pathLaw (μ0.map Prod.snd).toMeasure := by
   have hpush :=
     StrategicWorldModel.pathLaw_map_eq_of_kernelIntertwines
       (recordingCompression (X := X) (A := A))
       M.embeddedModel M.unitModel
       M.embedded_unit_kernelIntertwines
       μ0.toMeasure
+  have hinit :
+      μ0.toMeasure.map
+          (recordingCompression (X := X) (A := A)).stateMap =
+        (μ0.map Prod.snd).toMeasure.map
+          (unitEmbedding (X := X)) := by
+    rw [ProbabilityMeasure.toMeasure_map]
+    rw [Measure.map_map
+      (unitEmbedding_measurable (X := X))
+      measurable_snd]
+    apply Measure.map_congr
+    filter_upwards [] with y
+    rfl
   unfold pathLaw
+  rw [← hinit]
   rw [← hpush]
   rw [Measure.map_map
     (worldPathProjection_measurable (X := X) (S := Unit))
     (recordingCompression (X := X) (A := A)).pathMap_measurable]
-  rw [Measure.map_map
-    (recordingCompression (X := X) (A := A)).stateMap_measurable
-    measurable_snd]
-  rw [Measure.map_map
-    (unitEmbedding_measurable (X := X))
-    measurable_snd]
-  congr 1 <;> funext z <;> rfl
+  apply Measure.map_congr
+  filter_upwards [] with w
+  rfl
 
 end PaperISelectedModel
 
