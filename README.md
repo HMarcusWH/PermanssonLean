@@ -46,4 +46,4 @@ lake update
 lake build
 ```
 
-The current proved spine reaches through exact persistence, killed-kernel survival calculus, and the typed intervention grammar. The next dependency boundary is generalized Permansson constitution.
+The current proved spine reaches through exact persistence, killed-kernel survival calculus, typed interventions, and generalized Permansson constitution. The next dependency boundary is quantitative constitutive margins and robustness.
