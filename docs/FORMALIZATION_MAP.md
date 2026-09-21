@@ -43,7 +43,7 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 7 | PR constitution | `RegimePropertyMap`, `ConstitutiveComparisonSet`, `IsStrategicallyConstitutive`, `IsGeneralizedPermanssonRegime` | PROVED |
 | 8 | Uniform constitutive margin / perturbation robustness | `constitutiveEffect`, `constitutiveMargin`, `IsUniformlyStrategicallyConstitutive`, `constitutiveMargin_perturbation_abs_le`, `robustUniformConstitution` | PROVED |
 | 8b | Finite-horizon kernel-to-path TV envelope (Prop. 5.4) | path-perturbation theorem layer | OPEN |
-| 9 | Intervention-family signatures | equivalence module | OPEN |
+| 9 | Intervention-family signatures / representation equivalence | `FrozenStrategicInterventionFamily`, `InterventionKernelSignature`, `exactGR_iff_of_inducedKernel_eq`, `frozenFamilyPR_iff_of_signature_match` | PROVED |
 | 10 | Quotient preservation theorem | quotient module | OPEN |
 | 11 | EGR → GR embedding | compatibility module | OPEN |
 | 12 | QSD subclass | optional QSD module | OPEN |
@@ -234,7 +234,45 @@ That result should be formalized as a later probability-theory layer supplying c
 error bounds to Proposition 5.2 rather than being conflated with the abstract
 output-perturbation theorem.
 
-The next main dependency boundary remains intervention-family signatures/equivalence;
-the finite-horizon TV envelope can be developed as a parallel quantitative support layer.
-Quotients, EGR compatibility, grounded confirmatory refinements, and QSDs remain later
-layers.
+## Eighth proof milestone — intervention-family signatures and representation equivalence
+
+The Section-7 representation layer now freezes a concrete declared intervention family
+on top of the typed admissibility grammar and formalizes intervention-compatible
+equivalence without widening the claim beyond that family:
+
+- `FrozenStrategicInterventionFamily` stores an explicit nonempty, label-indexed family
+  of admissible strategic interventions;
+- `FrozenFamilyMatching` fixes a cross-model label equivalence and requires preservation
+  of the declared intervention target;
+- `InterventionKernelSignature` implements equation (18a): the baseline induced kernel
+  together with all post-intervention induced kernels in the frozen family;
+- `InterventionCompatibleFamilyEquivalence` bundles target-preserving matching with
+  equality of those signatures;
+- `pathLaw_eq_of_inducedKernel_eq`, `pathProbability_eq_of_inducedKernel_eq`, and
+  `exactGR_iff_of_inducedKernel_eq` formalize the baseline representation-invariance
+  bridge, including Proposition 7.1 for Exact-GR status;
+- `ConstitutiveComparisonSet.transport` carries the same frozen B₁ state set across
+  equal induced kernels while transporting only its baseline path-law certificate;
+- `strategicallyConstitutive_iff_of_kernel_eq`,
+  `constitutiveEffect_eq_of_kernel_eq`,
+  `constitutiveMargin_eq_of_kernel_eq`, and
+  `uniformlyConstitutive_iff_of_kernel_eq` formalize matched-intervention preservation
+  of pointwise and quantitative constitution;
+- `HasConstitutiveWitnessInFrozenFamily` and
+  `NoConstitutiveWitnessInFrozenFamily` give positive and protocol-scoped negative
+  family classifications without making claims about omitted admissible interventions;
+- `hasConstitutiveWitness_iff_of_familyEquivalence`,
+  `noConstitutiveWitness_iff_of_familyEquivalence`, and
+  `frozenFamilyPR_iff_of_signature_match` lift the matched-intervention result to the
+  whole frozen family, corresponding to Proposition 7.4a;
+- the uniform-margin family analogues are also preserved under signature matching.
+
+Grounded relevance-map preservation remains OPEN because the repository has not yet
+formalized the frozen g-grounded confirmatory layer.  Likewise, this milestone does not
+identify frozen-family equivalence with equivalence over every admissible intervention
+in `InterventionFamily`.
+
+The next dependency boundary is the type-respecting quotient preservation theorem
+(Theorem 7.4b). Proposition 5.4's finite-horizon TV envelope remains an independent
+open quantitative-support lane, with EGR compatibility, grounded confirmatory
+refinements, and QSDs still later.
