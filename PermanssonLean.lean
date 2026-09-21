@@ -34,3 +34,9 @@ import PermanssonLean.Quotient.PathLaw
 import PermanssonLean.Quotient.RegimeSemantics
 import PermanssonLean.Quotient.Constitution
 import PermanssonLean.Quotient.Preservation
+import PermanssonLean.EGR.Model
+import PermanssonLean.EGR.Embedding
+import PermanssonLean.EGR.Projection
+import PermanssonLean.EGR.Specification
+import PermanssonLean.EGR.RegimeEmbedding
+import PermanssonLean.EGR.PermanssonTransport
