@@ -17,15 +17,15 @@ namespace RegimeSpecification
 canonical induced strategic-world kernel. -/
 def IsExactlyInvariant
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H) : Prop :=
-  ∀ y ∈ Σ.region, M.inducedKernel y Σ.region = 1
+    (spec : RegimeSpecification (JointState S X) H) : Prop :=
+  ∀ y ∈ spec.region, M.inducedKernel y spec.region = 1
 
 theorem exactInvariant_at
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H)
-    (h : IsExactlyInvariant M Σ)
-    {y : JointState S X} (hy : y ∈ Σ.region) :
-    M.inducedKernel y Σ.region = 1 :=
+    (spec : RegimeSpecification (JointState S X) H)
+    (h : IsExactlyInvariant M spec)
+    {y : JointState S X} (hy : y ∈ spec.region) :
+    M.inducedKernel y spec.region = 1 :=
   h y hy
 
 end RegimeSpecification
