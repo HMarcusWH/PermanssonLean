@@ -19,15 +19,15 @@ probability law.  This is a named model-level gate so Definition 4.3 can
 mirror the paper literally instead of silently dropping clause (i). -/
 def CanonicalProcessWellPosed
     (M : StrategicWorldModel S X A) : Prop :=
-  ∀ λ : ProbabilityMeasure (JointState S X),
+  ∀ initLaw : ProbabilityMeasure (JointState S X),
     ∃! μ : Measure (ℕ → JointState S X),
-      StrategicWorldModel.MarkovPathLawSpec M λ.toMeasure μ
+      StrategicWorldModel.MarkovPathLawSpec M initLaw.toMeasure μ
 
 theorem canonicalProcessWellPosed
     (M : StrategicWorldModel S X A) :
     CanonicalProcessWellPosed M := by
-  intro λ
-  exact StrategicWorldModel.pathLaw_existsUnique M λ.toMeasure
+  intro initLaw
+  exact StrategicWorldModel.pathLaw_existsUnique M initLaw.toMeasure
 
 /-- Definition 4.3: Exact Generated Regime.
 
@@ -42,9 +42,9 @@ def IsExactGeneratedRegime
   CanonicalProcessWellPosed M ∧
   Assumption41 M spec m ∧
   IsExactlyInvariant M spec ∧
-  ∀ λ : ProbabilityMeasure (JointState S X),
-    IsAdmissibleInitialLaw spec λ →
-      IsLimitingOccupationLaw M spec λ
+  ∀ initLaw : ProbabilityMeasure (JointState S X),
+    IsAdmissibleInitialLaw spec initLaw →
+      IsLimitingOccupationLaw M spec initLaw
 
 /-- Confirmatory GR certificate used in the paper: Exact GR plus
 basin-reachable descriptor nondegeneracy.  Forward descriptor richness is
@@ -85,10 +85,10 @@ theorem exactGR_limitingOccupation
     (spec : RegimeSpecification (JointState S X) H)
     (m : Measure (JointState S X))
     (h : IsExactGeneratedRegime M spec m)
-    (λ : ProbabilityMeasure (JointState S X))
-    (hλ : IsAdmissibleInitialLaw spec λ) :
-    IsLimitingOccupationLaw M spec λ :=
-  h.2.2.2 λ hλ
+    (initLaw : ProbabilityMeasure (JointState S X))
+    (hinitLaw : IsAdmissibleInitialLaw spec initLaw) :
+    IsLimitingOccupationLaw M spec initLaw :=
+  h.2.2.2 initLaw hinitLaw
 
 theorem confirmatoryGR_exact
     (M : StrategicWorldModel S X A)
