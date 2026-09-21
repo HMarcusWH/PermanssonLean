@@ -27,13 +27,14 @@ theorem enat_toENNReal_eq_tsum_lt (m : ℕ∞) :
       rw [ENat.toENNReal_coe]
       rw [tsum_eq_sum (s := Finset.range k)]
       · calc
-          (∑ n ∈ Finset.range k,
-              if (n : ℕ∞) < (k : ℕ∞) then (1 : ℝ≥0∞) else 0) =
-              ∑ _n ∈ Finset.range k, (1 : ℝ≥0∞) := by
+          (k : ℝ≥0∞) =
+              ∑ _n ∈ Finset.range k, (1 : ℝ≥0∞) := by simp
+          _ = ∑ n ∈ Finset.range k,
+              if (n : ℕ∞) < (k : ℕ∞) then (1 : ℝ≥0∞) else 0 := by
                 apply Finset.sum_congr rfl
                 intro n hn
-                simp [Finset.mem_range.mp hn]
-          _ = k := by simp
+                have hnk : n < k := Finset.mem_range.mp hn
+                simp [ENat.natCast_lt_natCast, hnk]
       · intro n hn
         simp only [Finset.mem_range, not_lt] at hn
         simp [not_lt.mpr hn]
@@ -52,8 +53,14 @@ theorem exitTailIndicator_eq_setIndicator
       (survivesThroughSet spec n).indicator
         (fun _ : ℕ → JointState S X => (1 : ℝ≥0∞)) := by
   funext w
-  simp [exitTailIndicator, Set.indicator, survivesThroughSet,
-    (exitTime_gt_nat_iff spec w n)]
+  by_cases hs : SurvivesThrough spec n w
+  · have hlt : (n : ℕ∞) < exitTime spec w :=
+      (exitTime_gt_nat_iff spec w n).2 hs
+    simp [exitTailIndicator, Set.indicator, survivesThroughSet, hs, hlt]
+  · have hnotlt : ¬ (n : ℕ∞) < exitTime spec w := by
+      intro hlt
+      exact hs ((exitTime_gt_nat_iff spec w n).1 hlt)
+    simp [exitTailIndicator, Set.indicator, survivesThroughSet, hs, hnotlt]
 
 theorem measurable_exitTailIndicator
     (spec : RegimeSpecification (JointState S X) H)
