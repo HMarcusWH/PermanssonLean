@@ -7,6 +7,8 @@ import PermanssonLean.Regime.Specification
 import PermanssonLean.Regime.Admissible
 import PermanssonLean.Regime.Assumption41
 import PermanssonLean.Regime.Invariance
+import PermanssonLean.Regime.KilledKernel
+import PermanssonLean.Regime.ExitTime
 import PermanssonLean.Regime.Occupation
 import PermanssonLean.Regime.GeneratedRegime
 import PermanssonLean.Intervention.Target
