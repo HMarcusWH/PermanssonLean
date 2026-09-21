@@ -115,19 +115,13 @@ theorem constitutiveMargin_eq_of_kernel_eq
       constitutiveMargin M₂ spec F₂ ψ
         (B₁.transport M₁ M₂ hK spec) J₂ := by
   unfold constitutiveMargin
-  congr 1
-  ext r
-  constructor
-  · rintro ⟨y, hy, rfl⟩
-    refine ⟨y, ?_, ?_⟩
-    · simpa using hy
-    · exact constitutiveEffect_eq_of_kernel_eq
-        M₁ M₂ hK ψ J₁ J₂ hJ y
-  · rintro ⟨y, hy, rfl⟩
-    refine ⟨y, ?_, ?_⟩
-    · simpa using hy
-    · exact (constitutiveEffect_eq_of_kernel_eq
-        M₁ M₂ hK ψ J₁ J₂ hJ y).symm
+  apply congrArg sInf
+  change
+    constitutiveEffect M₁ ψ J₁ '' B₁.states =
+      constitutiveEffect M₂ ψ J₂ '' B₁.states
+  apply Set.image_congr
+  intro y hy
+  exact constitutiveEffect_eq_of_kernel_eq M₁ M₂ hK ψ J₁ J₂ hJ y
 
 theorem uniformlyConstitutive_iff_of_kernel_eq
     (M₁ M₂ : StrategicWorldModel S X A)
