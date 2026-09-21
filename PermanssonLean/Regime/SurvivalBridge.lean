@@ -181,14 +181,13 @@ theorem survivingEndpointMeasure_succ
     _ = ∫⁻ w in survivesThroughSet spec n,
           K (w n) (C ∩ spec.region) ∂P := by
           rw [setLIntegral_map hprefix
-            (hkernel.comp hlast) (measurable_frestrictLe n)]
+            (hkernel.comp hlast) (Preorder.measurable_frestrictLe n)]
           rw [← survivesThroughSet_eq_preimage_prefix spec n]
           rfl
     _ = ∫⁻ z, K z (C ∩ spec.region)
           ∂survivingEndpointMeasure M spec y n := by
           rw [survivingEndpointMeasure, lintegral_map hkernel
             (measurable_pi_apply n)]
-          rfl
     _ = (killedKernel M spec ∘ₘ survivingEndpointMeasure M spec y n) C := by
           rw [Measure.bind_apply hC (Kernel.aemeasurable _)]
           congr with z
@@ -205,7 +204,9 @@ theorem survivingEndpointMeasure_eq_killedPow
       ((killedKernel M spec) ^ n) y := by
   induction n with
   | zero =>
-      rw [survivingEndpointMeasure_zero M spec hy, pow_zero, Kernel.id_apply]
+      rw [survivingEndpointMeasure_zero M spec hy, pow_zero]
+      change Measure.dirac y = Kernel.id y
+      exact (Kernel.id_apply y).symm
   | succ n ih =>
       rw [survivingEndpointMeasure_succ M spec y n, ih]
       ext C hC
