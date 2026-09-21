@@ -25,16 +25,19 @@ theorem killedKernel_pow_succ_restrict
   induction n with
   | zero =>
       ext y C hC
-      simp [killedKernel, Kernel.restrict_apply' _ spec.region_measurable _ hC,
-        Measure.restrict_apply hC, Set.inter_assoc]
+      rw [pow_one]
+      rw [Kernel.restrict_apply]
+      unfold killedKernel
+      rw [Kernel.restrict_apply]
+      rw [Measure.restrict_apply hC]
+      rw [Measure.restrict_apply (hC.inter spec.region_measurable)]
+      congr 1
+      ext z
+      simp [and_assoc]
   | succ n ih =>
       rw [pow_succ]
-      have hpow :
-          (killedKernel M spec) ^ (n + 1) =
-            ((killedKernel M spec) ^ (n + 1)).restrict spec.region_measurable := ih.symm
-      rw [hpow]
-      symm
-      exact Kernel.comp_restrict spec.region_measurable
+      rw [← Kernel.comp_restrict spec.region_measurable]
+      rw [ih]
 
 /-- Starting in B, every killed-kernel power is supported in B almost everywhere. -/
 theorem killedKernel_pow_ae_mem_region
@@ -45,8 +48,8 @@ theorem killedKernel_pow_ae_mem_region
     ∀ᵐ z ∂(((killedKernel M spec) ^ n) y), z ∈ spec.region := by
   cases n with
   | zero =>
-      simp only [pow_zero, Kernel.id_apply]
-      simpa [MeasureTheory.ae_dirac_iff] using hy
+      rw [pow_zero, Kernel.id_apply]
+      exact (mem_ae_dirac_iff spec.region_measurable).2 hy
   | succ n =>
       have hres := congrArg
         (fun κ : Kernel (JointState S X) (JointState S X) => κ y)
@@ -85,14 +88,18 @@ theorem oneStepRetention_pow_lowerBound
         exact (ae_mem_iff_measure_eq
           spec.region_measurable.nullMeasurableSet).mp
             (killedKernel_pow_ae_mem_region M spec n hy) |>.symm
+      letI : IsFiniteKernel ((killedKernel M spec) ^ n) := by infer_instance
+      letI : IsFiniteMeasure (((killedKernel M spec) ^ n) y) := by infer_instance
       rw [MeasureTheory.lintegral_const, hmass] at hint
       dsimp [killedSurvivalMass] at ih ⊢
       calc
-        q * q ^ n ≤ q * (((killedKernel M spec) ^ n) y spec.region) := by
-          gcongr
+        q ^ n * q ≤ (((killedKernel M spec) ^ n) y spec.region) * q := by
+          exact mul_le_mul_right' ih q
+        _ = q * (((killedKernel M spec) ^ n) y spec.region) := by
+          rw [mul_comm]
         _ ≤ ∫⁻ z, M.inducedKernel z spec.region
               ∂(((killedKernel M spec) ^ n) y) := by
-          simpa [mul_comm] using hint
+          simpa using hint
 
 /-- Exact finite-horizon persistence, stated on path probabilities as in (11). -/
 def IsFinitePersistent
@@ -144,7 +151,12 @@ theorem survivesForeverSet_eq_iInter
     (spec : RegimeSpecification (JointState S X) H) :
     survivesForeverSet spec = ⋂ n : ℕ, survivesThroughSet spec n := by
   ext w
-  simp [survivesForeverSet, SurvivesForever, survivesThroughSet, SurvivesThrough]
+  change SurvivesForever spec w ↔ ∀ n : ℕ, SurvivesThrough spec n w
+  constructor
+  · intro h n t ht
+    exact h t
+  · intro h t
+    exact h t t le_rfl
 
 
 theorem survivesForeverSet_subset_survivesThroughSet
@@ -163,9 +175,7 @@ theorem exactInvariant_survivalProbability_eq_one
     survivalProbability M spec y n = 1 := by
   rw [survivalProbability_eq_killedSurvivalMass M spec n hy]
   apply le_antisymm
-  · unfold killedSurvivalMass
-    have hbridge := survivalProbability_eq_killedSurvivalMass M spec n hy
-    rw [← hbridge]
+  · rw [← survivalProbability_eq_killedSurvivalMass M spec n hy]
     unfold survivalProbability
     exact prob_le_one
   · simpa using
@@ -215,12 +225,15 @@ theorem survivalForever_implies_exactInvariant
   have hmono :
       P (survivesForeverSet spec) ≤ P (survivesThroughSet spec 1) :=
     measure_mono hsubset
+  have hforeverP : P (survivesForeverSet spec) = 1 := by
+    simpa [P, survivalForeverProbability] using hForever y hy
+  have hfinLower : 1 ≤ P (survivesThroughSet spec 1) := by
+    simpa [hforeverP] using hmono
   have hfin : survivalProbability M spec y 1 = 1 := by
     apply le_antisymm
     · unfold survivalProbability
       exact prob_le_one
-    · have hforever := hForever y hy
-      simpa [P, survivalForeverProbability, survivalProbability, hforever] using hmono
+    · simpa [P, survivalProbability] using hfinLower
   rw [survivalProbability_eq_killedSurvivalMass M spec 1 hy,
     killedSurvivalMass_one] at hfin
   exact hfin
