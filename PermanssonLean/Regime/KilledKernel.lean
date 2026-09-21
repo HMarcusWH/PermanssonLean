@@ -103,6 +103,16 @@ theorem killedSurvivalMass_zero
   rw [Measure.dirac_apply' _ spec.region_measurable]
   simp [hy]
 
+theorem killedSurvivalMass_one
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (y : JointState S X) :
+    killedSurvivalMass M spec 1 y =
+      M.inducedKernel y spec.region := by
+  change killedKernel M spec y spec.region =
+    M.inducedKernel y spec.region
+  exact killedKernel_apply_region M spec y
+
 theorem killedSurvivalMass_succ
     (M : StrategicWorldModel S X A)
     (spec : RegimeSpecification (JointState S X) H)
