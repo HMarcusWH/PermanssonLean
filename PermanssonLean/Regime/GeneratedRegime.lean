@@ -12,7 +12,7 @@ universe uS uX uA uH
 variable {S : Type uS} {X : Type uX} {A : Type uA} {H : Type uH}
 variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
 variable [MeasurableSpace H]
-variable [TopologicalSpace (JointState S X)]
+variable [TopologicalSpace S] [TopologicalSpace X]
 
 namespace RegimeSpecification
 
