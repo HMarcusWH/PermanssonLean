@@ -24,7 +24,9 @@ def updateInputReassoc :
 
 theorem measurable_updateInputReassoc :
     Measurable (updateInputReassoc (S := S) (X := X) (A := A)) := by
-  fun_prop
+  exact
+    (measurable_fst.prodMk (measurable_fst.comp measurable_snd)).prodMk
+      (measurable_snd.comp measurable_snd)
 
 /-- The update kernel `U`, reindexed to consume the history shape produced after
 sampling an action and the next world state. -/
@@ -110,6 +112,7 @@ theorem inducedKernel_apply
   letI : IsMarkovKernel M.generator.action := M.generator.action_isMarkov
   letI : IsMarkovKernel M.world := M.world_isMarkov
   letI : IsMarkovKernel M.generator.update := M.generator.update_isMarkov
+  letI : IsMarkovKernel M.reassociatedUpdate := reassociatedUpdate_isMarkov M
   have hProject :
       Measurable (fun z : (A × X) × S => (z.2, z.1.2)) := by
     fun_prop
@@ -135,6 +138,7 @@ theorem inducedKernel_apply_indicator
   congr with a
   congr with x'
   rw [lintegral_indicator_const_comp (by fun_prop) hE (1 : ℝ≥0∞), one_mul]
+  rfl
 
 end StrategicWorldModel
 
