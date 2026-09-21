@@ -110,12 +110,14 @@ theorem inducedKernel_apply
   letI : IsMarkovKernel M.generator.action := M.generator.action_isMarkov
   letI : IsMarkovKernel M.world := M.world_isMarkov
   letI : IsMarkovKernel M.generator.update := M.generator.update_isMarkov
-  rw [inducedKernel, Kernel.map_apply' _ (by fun_prop) _ hE]
-  rw [oneStepHistoryKernel, Kernel.compProd_apply]
+  have hProject :
+      Measurable (fun z : (A × X) × S => (z.2, z.1.2)) := by
+    fun_prop
+  rw [inducedKernel, Kernel.map_apply' _ hProject _ hE]
+  rw [oneStepHistoryKernel, Kernel.compProd_apply (hE.preimage hProject)]
   rw [actionWorldKernel, Kernel.lintegral_compProd]
   · rfl
-  · fun_prop
-  · exact hE.preimage (by fun_prop)
+  · exact Kernel.measurable_kernel_prodMk_left' (hE.preimage hProject) y
 
 /-- Indicator-integral form of `inducedKernel_apply`, matching the displayed
 triple-integral definition used in the paper. -/
@@ -132,9 +134,7 @@ theorem inducedKernel_apply_indicator
   rw [inducedKernel_apply M y hE]
   congr with a
   congr with x'
-  rw [lintegral_indicator_const]
-  · simp
-  · exact hE.preimage (by fun_prop)
+  rw [lintegral_indicator_const_comp (by fun_prop) hE (1 : ℝ≥0∞), one_mul]
 
 end StrategicWorldModel
 
