@@ -107,6 +107,7 @@ theorem paperI_limiting_iff_embedded_worldMarginal
         (M.pathLaw (worldMarginal (A := A) μ).toMeasure)
         (empiricalOccupation spec) spec.target
   rw [M.embedded_worldPathLaw_eq_paperI μ]
+  simp [worldMarginal]
 
 /-- Paper-I ex-ante nontriviality transports exactly to Assumption 4.1 on
 the canonical recording representation when the lifted reference measure is
