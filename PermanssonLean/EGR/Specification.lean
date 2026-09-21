@@ -42,9 +42,19 @@ noncomputable def embeddedSpec
   region_measurable :=
     MeasurableSet.univ.prod spec.region_measurable
   basin := {initialStrategicState (A := A)} ×ˢ spec.basin
-  basin_measurable :=
-    (measurableSet_singleton
-      (initialStrategicState (A := A))).prod spec.basin_measurable
+  basin_measurable := by
+    have ht : MeasurableSet ({0} : Set ℕ) :=
+      measurableSet_singleton 0
+    have ha :
+        MeasurableSet
+          ({Sum.inl ()} : Set (PaperIActionRecord A)) :=
+      measurableSet_singleton (Sum.inl ())
+    have hs :
+        MeasurableSet
+          ({initialStrategicState (A := A)} :
+            Set (PaperIStrategicState A)) := by
+      simpa [initialStrategicState] using ht.prod ha
+    exact hs.prod spec.basin_measurable
   basin_subset_region := by
     rintro ⟨s, x⟩ ⟨hs, hx⟩
     exact ⟨Set.mem_univ s, spec.basin_subset_region hx⟩
@@ -116,19 +126,28 @@ theorem embeddedInitialLaw_admissible_iff
       ((initialEmbedding (X := X) (A := A)) ⁻¹'
         ({initialStrategicState (A := A)} ×ˢ spec.basin)) = 1 ↔
     μ.toMeasure spec.basin = 1
-  congr 2
-  ext x
-  simp [initialEmbedding, initialStrategicState]
+  have hpre :
+      (initialEmbedding (X := X) (A := A)) ⁻¹'
+          ({initialStrategicState (A := A)} ×ˢ spec.basin) =
+        spec.basin := by
+    ext x
+    simp [initialEmbedding, initialStrategicState]
+  rw [hpre]
 
 @[simp]
 theorem worldMarginal_embeddedInitialLaw
     (μ : ProbabilityMeasure X) :
     worldMarginal (A := A) (embeddedInitialLaw (A := A) μ) = μ := by
   apply ProbabilityMeasure.toMeasure_injective
-  simp [worldMarginal, embeddedInitialLaw,
-    ProbabilityMeasure.toMeasure_map,
-    Measure.map_map,
-    initialEmbedding, Function.comp_def]
+  change
+    Measure.map Prod.snd
+        (Measure.map
+          (initialEmbedding (X := X) (A := A)) μ.toMeasure) =
+      μ.toMeasure
+  rw [Measure.map_map
+    measurable_snd
+    (initialEmbedding_measurable (X := X) (A := A))]
+  simp [Function.comp_def, initialEmbedding]
 
 theorem worldMarginal_admissible_of_embedded
     [MeasurableSingletonClass A]
@@ -139,7 +158,8 @@ theorem worldMarginal_admissible_of_embedded
       IsAdmissibleInitialLaw
         (embeddedSpec (A := A) spec) μ) :
     IsAdmissibleInitialLaw spec (worldMarginal (A := A) μ) := by
-  unfold IsAdmissibleInitialLaw worldMarginal at hμ ⊢
+  unfold IsAdmissibleInitialLaw at hμ ⊢
+  unfold worldMarginal
   rw [ProbabilityMeasure.toMeasure_map,
       Measure.map_apply measurable_snd spec.basin_measurable]
   have hsub :
