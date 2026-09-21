@@ -95,7 +95,7 @@ theorem exitTime_eq_top_iff
     · intro htop
       exact (ENat.coe_ne_top (Nat.find h) htop).elim
     · intro hforever
-      exact (h ⟨Nat.find h, Nat.find_spec h⟩).elim
+      exact (Nat.find_spec h) (hforever (Nat.find h))
   · rw [exitTime, dif_neg h]
     constructor
     · intro _
@@ -121,7 +121,7 @@ theorem exitTime_gt_nat_iff
     · intro hsurv
       by_contra hnotlt
       have hle : Nat.find h ≤ n := Nat.le_of_not_gt hnotlt
-      exact (hsurv (Nat.find h) hle) (Nat.find_spec h)
+      exact (Nat.find_spec h) (hsurv (Nat.find h) hle)
   · rw [exitTime, dif_neg h]
     constructor
     · intro _
@@ -156,8 +156,11 @@ theorem StrategicWorldModel.pathLaw_eval_zero
   let e := MeasurableEquiv.piUnique
     (fun _ : Set.Iic (0 : ℕ) => JointState S X)
   have h := StrategicWorldModel.pathLaw_prefix_zero M mu0
-  have hm := congrArg (fun μ : Measure ((i : Set.Iic (0 : ℕ)) → JointState S X) =>
-    μ.map e) h
+  change
+    (M.pathLaw mu0).map (Preorder.frestrictLe 0) =
+      mu0.map e.symm at h
+  have hm := congrArg
+    (fun μ : Measure ((i : Set.Iic (0 : ℕ)) → JointState S X) => μ.map e) h
   simpa [e, Measure.map_map, Function.comp_def] using hm
 
 /-- Point-initialized finite-horizon survival probability. -/
