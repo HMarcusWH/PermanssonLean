@@ -145,28 +145,39 @@ noncomputable def embedded
     exact ⟨hs, B₁.states_subset_basin hx⟩
   pathLawNontrivial := by
     rcases B₁.two_states with ⟨x₁, hx₁, x₂, hx₂, hne⟩
-    have htwo :
-        RegimeSpecification.BasinHasTwoStates
-          (M.embeddedSpec (A := A) spec) := by
-      refine ⟨(M.initialStrategicState (A := A), x₁),
-        ⟨rfl, B₁.states_subset_basin hx₁⟩,
-        (M.initialStrategicState (A := A), x₂),
-        ⟨rfl, B₁.states_subset_basin hx₂⟩, ?_⟩
+    let y₁ : JointState (PaperIStrategicState A) X :=
+      (M.initialStrategicState (A := A), x₁)
+    let y₂ : JointState (PaperIStrategicState A) X :=
+      (M.initialStrategicState (A := A), x₂)
+    have hyne : y₁ ≠ y₂ := by
       intro hp
       exact hne (congrArg Prod.snd hp)
-    have hpaths :=
-      RegimeSpecification.two_states_implies_basinPathLawNontrivial
-        M.embeddedModel
-        (M.embeddedSpec (A := A) spec)
-        htwo
-    rcases hpaths with ⟨y₁, hy₁, y₂, hy₂, hneq⟩
-    rcases hy₁.1 with rfl
-    rcases hy₂.1 with rfl
-    exact ⟨(M.initialStrategicState (A := A), y₁.2),
-      by simpa using hx₁,
-      (M.initialStrategicState (A := A), y₂.2),
-      by simpa using hx₂,
-      hneq⟩
+    have hpath :
+        M.embeddedModel.pathLaw (Measure.dirac y₁) ≠
+          M.embeddedModel.pathLaw (Measure.dirac y₂) := by
+      intro hpaths
+      have hpref := congrArg
+        (fun μ : Measure
+          (ℕ → JointState (PaperIStrategicState A) X) =>
+          μ.map (Preorder.frestrictLe 0)) hpaths
+      rw [
+        StrategicWorldModel.pathLaw_prefix_zero
+          M.embeddedModel (Measure.dirac y₁),
+        StrategicWorldModel.pathLaw_prefix_zero
+          M.embeddedModel (Measure.dirac y₂)
+      ] at hpref
+      let e := MeasurableEquiv.piUnique
+        (fun _ : ↥(Finset.Iic (0 : ℕ)) =>
+          JointState (PaperIStrategicState A) X)
+      have hpref' :
+          (Measure.dirac y₁).map e.symm =
+            (Measure.dirac y₂).map e.symm := by
+        simpa [e] using hpref
+      have hdirac : Measure.dirac y₁ = Measure.dirac y₂ :=
+        e.symm.measurableEmbedding.map_injective hpref'
+      exact hyne (MeasureTheory.dirac_eq_dirac_iff.mp hdirac)
+    exact ⟨y₁, by exact ⟨rfl, hx₁⟩,
+      y₂, by exact ⟨rfl, hx₂⟩, hpath⟩
 
 end PaperIComparisonSet
 
