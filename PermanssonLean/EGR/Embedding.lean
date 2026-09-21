@@ -30,8 +30,8 @@ def initialEmbedding :
   fun x => (initialStrategicState, x)
 
 theorem initialEmbedding_measurable :
-    Measurable (initialEmbedding (X := X) (A := A)) := by
-  fun_prop
+    Measurable (initialEmbedding (X := X) (A := A)) :=
+  measurable_const.prodMk measurable_id
 
 /-- Deterministic selected-policy action map on the enlarged state. -/
 def embeddedActionMap
@@ -52,7 +52,25 @@ def recordingUpdateMap :
 
 theorem recordingUpdateMap_measurable :
     Measurable (recordingUpdateMap (X := X) (A := A)) := by
-  fun_prop
+  have ht :
+      Measurable
+        (fun z : UpdateInput (PaperIStrategicState A) X A =>
+          z.1.1.1.1) :=
+    measurable_fst.comp
+      (measurable_fst.comp
+        (measurable_fst.comp measurable_fst))
+  have hsucc :
+      Measurable
+        (fun z : UpdateInput (PaperIStrategicState A) X A =>
+          z.1.1.1.1 + 1) :=
+    (measurable_add_const 1).comp ht
+  have ha :
+      Measurable
+        (fun z : UpdateInput (PaperIStrategicState A) X A =>
+          Sum.inr z.1.2 : UpdateInput (PaperIStrategicState A) X A →
+            PaperIActionRecord A) :=
+    measurable_inr.comp (measurable_snd.comp measurable_fst)
+  exact hsucc.prodMk ha
 
 /-- Forget the bookkeeping coordinate before applying the original Paper-I
 world kernel. -/
@@ -62,7 +80,7 @@ def embeddedWorldInputMap :
 
 theorem embeddedWorldInputMap_measurable :
     Measurable (embeddedWorldInputMap (X := X) (A := A)) := by
-  fun_prop
+  exact (measurable_snd.comp measurable_fst).prodMk measurable_snd
 
 /-- Canonical strategic generator (α^{π*},U^{rec}). -/
 noncomputable def embeddedGenerator
