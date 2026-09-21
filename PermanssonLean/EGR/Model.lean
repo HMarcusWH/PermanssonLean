@@ -71,8 +71,8 @@ def unitEmbedding : X → JointState Unit X :=
   fun x => ((), x)
 
 theorem unitEmbedding_measurable :
-    Measurable (unitEmbedding (X := X)) := by
-  fun_prop
+    Measurable (unitEmbedding (X := X)) :=
+  measurable_const.prodMk measurable_id
 
 /-- World-path projection from any strategic-world path. -/
 def worldPathProjection {S : Type*} :
