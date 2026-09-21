@@ -22,7 +22,8 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 1 | Action-selection kernel α | `StrategicGenerator.action` | SCAFFOLDED |
 | 1 | Strategic-update kernel U | `StrategicGenerator.update` | SCAFFOLDED |
 | 1 | World-transition kernel P | `StrategicWorldModel.world` | SCAFFOLDED |
-| 2 | Induced joint kernel K_{G,P} | `StrategicWorld.inducedKernel` | OPEN |
+| 2 | Induced joint kernel K_{G,P} | `StrategicWorldModel.inducedKernel`, `inducedKernel_isMarkov` | PROVED |
+| 2 | Paper-level setwise / indicator semantics | `inducedKernel_apply`, `inducedKernel_apply_indicator` | PROVED |
 | 3 | Path law / Ionescu–Tulcea | path-law module | OPEN |
 | 4 | GR specification and exact persistence | regime modules | OPEN |
 | 5 | Killed-kernel finite persistence | persistence module | OPEN |
@@ -35,20 +36,33 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 12 | QSD subclass | optional QSD module | OPEN |
 | X | Scalar-defect / finite-detection / first-bad / singular lane | research modules | OPEN |
 
-## First proof milestone
+## First proof milestone — induced joint kernel
 
-Construct the induced kernel
+The induced kernel
 
-[
+\[
 K_{\mathfrak G,P}(E\mid s,x)
 =
 \int_A\int_X\int_S
-\mathbf 1_E(s',x'),
-U(ds'\mid s,x,a,x'),
-P(dx'\mid s,x,a),
-\alpha(da\mid s,x),
-]
+\mathbf 1_E(s',x')\,
+U(ds'\mid s,x,a,x')\,
+P(dx'\mid s,x,a)\,
+\alpha(da\mid s,x)
+\]
 
-and prove that it is a Markov kernel on `S × X`.
+is implemented by `StrategicWorldModel.inducedKernel`.
 
-This is the semantic spine. No GR/PR theorem should be formalized before this layer is stable.
+The formalization explicitly preserves the dependency order
+`α → P → U`: it uses `Kernel.compProd` rather than an independent product,
+reassociates the retained history before applying `U`, and drops the realized
+action only after the strategic update has consumed it.
+
+The following are checked on the pinned Lean/mathlib toolchain:
+
+- `inducedKernel_isMarkov`: the construction is a Markov kernel on `S × X`;
+- `inducedKernel_apply`: the setwise law expands in the exact `α → P → U` order;
+- `inducedKernel_apply_indicator`: the construction agrees with the paper's
+  displayed triple-indicator integral.
+
+The next dependency boundary is the trajectory/path-law construction from this
+stationary one-step kernel.
