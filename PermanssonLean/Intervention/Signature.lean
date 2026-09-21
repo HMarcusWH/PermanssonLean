@@ -1,8 +1,10 @@
 import PermanssonLean.Intervention.FrozenFamily
 
+open ProbabilityTheory
+
 namespace PermanssonLean
 
-universe uS uX uA uK uL₁ uL₂
+universe uS uX uA uK₁ uK₂ uL₁ uL₂
 
 variable {S : Type uS} {X : Type uX} {A : Type uA}
 variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
@@ -70,7 +72,7 @@ target-preserving label matching plus equality of the complete kernel
 signatures under that matching. -/
 structure InterventionCompatibleFamilyEquivalence
     {M₁ M₂ : StrategicWorldModel S X A}
-    {Component₁ : Type uK} {Component₂ : Type uK}
+    {Component₁ : Type uK₁} {Component₂ : Type uK₂}
     {Label₁ : Type uL₁} {Label₂ : Type uL₂}
     (F₁ : InterventionFamily M₁ Component₁)
     (F₂ : InterventionFamily M₂ Component₂)
