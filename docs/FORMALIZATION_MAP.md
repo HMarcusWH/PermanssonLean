@@ -37,9 +37,9 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 4 | Paper ambient Exact GR boundary | `IsPaperExactGeneratedRegime`, `IsPaperConfirmatoryGeneratedRegime` | PROVED wrapper requiring nonempty Polish/Borel S,X,H and standard-Borel A |
 | 4 | Confirmatory descriptor-nondegenerate GR | `IsConfirmatoryGeneratedRegime`, `IsDescriptorNondegenerate` | PROVED |
 | 4a | Polish descriptor-space generality / BL metrization proposition | theorem layer | OPEN |
-| 4b | Exact invariance ↔ survival forever (Prop. 4.2) | persistence theorem layer | OPEN |
-| 5 | Killed-kernel finite persistence | persistence module | OPEN |
-| 6 | Typed interventions | intervention grammar | OPEN |
+| 4b | Exact invariance ↔ survival forever (Prop. 4.2) | `exactInvariant_iff_survivalForever` | PROVED |
+| 5 | Killed-kernel finite persistence | `survivalProbability_eq_killedSurvivalMass`, `finitePersistence_iff_killed`, `oneStepRetention_pow_lowerBound`, `expectedExitTime_eq_greenSeries` | PROVED |
+| 6 | Typed interventions | `InterventionReplacement`, `InterventionFamily`, `TypedIntervention`, `applyReplacement` | PROVED |
 | 7 | PR constitution | constitution module | OPEN |
 | 8 | Uniform constitutive margin | robustness module | OPEN |
 | 9 | Intervention-family signatures | equivalence module | OPEN |
@@ -141,11 +141,43 @@ Section-4 objects are checked on the pinned toolchain:
 - `IsConfirmatoryGeneratedRegime`: Exact GR plus basin-reachable descriptor-law
   nondegeneracy, kept distinct from forward descriptor richness.
 
-Two boundaries remain deliberately unpromoted: Proposition 4.1a's Polish/BL
-metrization theorem has not yet been rebuilt in Lean, and Proposition 4.2's
-equivalence between exact invariance and almost-sure survival forever belongs to the
-next persistence theorem layer.
+Proposition 4.1a's Polish/BL metrization theorem remains deliberately unpromoted.
+The persistence layer is now machine-checked: finite-horizon path survival is identified
+with killed-kernel mass, exact invariance is equivalent to almost-sure indefinite
+retention, the one-step retention floor yields the paper's q^L bound, and the extended
+expected first-exit time equals the killed-kernel Green/tail series.
 
-The next dependency boundary is therefore the killed-kernel and finite-persistence
-calculus: first-exit events, exact survival probabilities, Green/tail-sum identity,
-and the separation between Exact GR and finite-horizon quasi-regimes.
+## Fourth proof milestone — persistence calculus
+
+The Section-4.2 persistence layer is checked through the following declarations:
+
+- `killedKernel`: restriction of the induced kernel to the frozen regime region;
+- `survivalProbability_eq_killedSurvivalMass`: exact path/killed-kernel bridge;
+- `finitePersistence_iff_killed`: equivalence of the finite path and killed-kernel gates;
+- `oneStepRetention_pow_lowerBound`: the uniform one-step retention q^L lower bound;
+- `exactInvariant_iff_survivalForever`: Proposition 4.2 in iff form;
+- `expectedExitTime_eq_greenSeries`: the extended Green/tail-sum identity.
+
+## Fifth proof milestone — typed intervention grammar
+
+The intervention layer freezes both the component target and the admissible replacement
+family before any constitutive claim is made:
+
+- `InterventionTarget.IsStrategic` separates strategic-generator interventions from
+  structural world-transition interventions;
+- `InterventionReplacement` is target-indexed, so a replacement kernel for one target
+  cannot inhabit another target's payload type;
+- `InterventionFamily.targetOf` freezes the target of each predeclared component;
+- `InterventionFamily.admissible` keeps application-specific feasibility explicit
+  rather than silently treating every Markov replacement as admissible;
+- `applyReplacement` rebuilds the strategic-world model while copying all untargeted
+  primitives from the baseline model;
+- `applyReplacement_world_eq_of_strategic` proves that every strategic intervention
+  holds the world-transition kernel P fixed;
+- `TypedIntervention.intervenedKernel_isMarkov` proves that every well-typed
+  intervention still induces a Markov kernel.
+
+The next dependency boundary is PR constitution: formalizing constitutive components
+and generalized Permansson Regimes over admissible strategic interventions. Uniform
+constitutive margins, intervention signatures, quotients, EGR compatibility, and QSDs
+remain later layers.
