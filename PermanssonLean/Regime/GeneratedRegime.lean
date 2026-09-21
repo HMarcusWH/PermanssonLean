@@ -32,78 +32,78 @@ theorem canonicalProcessWellPosed
 /-- Definition 4.3: Exact Generated Regime.
 
 The reference measure is an explicit frozen input for Assumption 4.1(ii).
-The convergence-mode field is part of Σ and may encode any precisely
+The convergence-mode field is part of spec and may encode any precisely
 declared ex-ante mode meaningful for every admissible initial law.
 -/
 def IsExactGeneratedRegime
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H)
+    (spec : RegimeSpecification (JointState S X) H)
     (m : Measure (JointState S X)) : Prop :=
   CanonicalProcessWellPosed M ∧
-  Assumption41 M Σ m ∧
-  IsExactlyInvariant M Σ ∧
+  Assumption41 M spec m ∧
+  IsExactlyInvariant M spec ∧
   ∀ λ : ProbabilityMeasure (JointState S X),
-    IsAdmissibleInitialLaw Σ λ →
-      IsLimitingOccupationLaw M Σ λ
+    IsAdmissibleInitialLaw spec λ →
+      IsLimitingOccupationLaw M spec λ
 
 /-- Confirmatory GR certificate used in the paper: Exact GR plus
 basin-reachable descriptor nondegeneracy.  Forward descriptor richness is
 intentionally not made a universal gate. -/
 def IsConfirmatoryGeneratedRegime
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H)
+    (spec : RegimeSpecification (JointState S X) H)
     (m : Measure (JointState S X)) : Prop :=
-  IsExactGeneratedRegime M Σ m ∧
-  IsDescriptorNondegenerate M Σ
+  IsExactGeneratedRegime M spec m ∧
+  IsDescriptorNondegenerate M spec
 
 theorem exactGR_wellPosed
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H)
+    (spec : RegimeSpecification (JointState S X) H)
     (m : Measure (JointState S X))
-    (h : IsExactGeneratedRegime M Σ m) :
+    (h : IsExactGeneratedRegime M spec m) :
     CanonicalProcessWellPosed M :=
   h.1
 
 theorem exactGR_assumption41
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H)
+    (spec : RegimeSpecification (JointState S X) H)
     (m : Measure (JointState S X))
-    (h : IsExactGeneratedRegime M Σ m) :
-    Assumption41 M Σ m :=
+    (h : IsExactGeneratedRegime M spec m) :
+    Assumption41 M spec m :=
   h.2.1
 
 theorem exactGR_exactlyInvariant
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H)
+    (spec : RegimeSpecification (JointState S X) H)
     (m : Measure (JointState S X))
-    (h : IsExactGeneratedRegime M Σ m) :
-    IsExactlyInvariant M Σ :=
+    (h : IsExactGeneratedRegime M spec m) :
+    IsExactlyInvariant M spec :=
   h.2.2.1
 
 theorem exactGR_limitingOccupation
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H)
+    (spec : RegimeSpecification (JointState S X) H)
     (m : Measure (JointState S X))
-    (h : IsExactGeneratedRegime M Σ m)
+    (h : IsExactGeneratedRegime M spec m)
     (λ : ProbabilityMeasure (JointState S X))
-    (hλ : IsAdmissibleInitialLaw Σ λ) :
-    IsLimitingOccupationLaw M Σ λ :=
+    (hλ : IsAdmissibleInitialLaw spec λ) :
+    IsLimitingOccupationLaw M spec λ :=
   h.2.2.2 λ hλ
 
 theorem confirmatoryGR_exact
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H)
+    (spec : RegimeSpecification (JointState S X) H)
     (m : Measure (JointState S X))
-    (h : IsConfirmatoryGeneratedRegime M Σ m) :
-    IsExactGeneratedRegime M Σ m :=
+    (h : IsConfirmatoryGeneratedRegime M spec m) :
+    IsExactGeneratedRegime M spec m :=
   h.1
 
 theorem confirmatoryGR_descriptorNondegenerate
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H)
+    (spec : RegimeSpecification (JointState S X) H)
     (m : Measure (JointState S X))
-    (h : IsConfirmatoryGeneratedRegime M Σ m) :
-    IsDescriptorNondegenerate M Σ :=
+    (h : IsConfirmatoryGeneratedRegime M spec m) :
+    IsDescriptorNondegenerate M spec :=
   h.2
 
 end RegimeSpecification
