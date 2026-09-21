@@ -44,7 +44,7 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 8 | Uniform constitutive margin / perturbation robustness | `constitutiveEffect`, `constitutiveMargin`, `IsUniformlyStrategicallyConstitutive`, `constitutiveMargin_perturbation_abs_le`, `robustUniformConstitution` | PROVED |
 | 8b | Finite-horizon kernel-to-path TV envelope (Prop. 5.4) | path-perturbation theorem layer | OPEN |
 | 9 | Intervention-family signatures / representation equivalence | `FrozenStrategicInterventionFamily`, `InterventionKernelSignature`, `exactGR_iff_of_inducedKernel_eq`, `frozenFamilyPR_iff_of_signature_match` | PROVED |
-| 10 | Quotient preservation theorem | quotient module | OPEN |
+| 10 | Type-respecting intervention-compatible quotient preservation | `TypeRespectingStateCompression`, `KernelIntertwines`, `pathLaw_map_eq_of_kernelIntertwines`, `exactGR_iff_of_quotient`, `quotient_frozenFamilyPR_iff` | PROVED |
 | 11 | EGR → GR embedding | compatibility module | OPEN |
 | 12 | QSD subclass | optional QSD module | OPEN |
 | X | Scalar-defect / finite-detection / first-bad / singular lane | research modules | OPEN |
@@ -276,3 +276,47 @@ The next dependency boundary is the type-respecting quotient preservation theore
 (Theorem 7.4b). Proposition 5.4's finite-horizon TV envelope remains an independent
 open quantitative-support lane, with EGR compatibility, grounded confirmatory
 refinements, and QSDs still later.
+
+
+## Ninth proof milestone — type-respecting intervention-compatible quotients
+
+The quotient layer formalizes the general/uniform core of Theorem 7.4b with the
+strategic/world type split preserved explicitly.
+
+- `TypeRespectingStateCompression` stores separate measurable surjections
+  (q_S:S\to\bar S) and (q_X:X\to\bar X), inducing the joint-state map
+  (q(s,x)=(q_S(s),q_X(x)));
+- `KernelIntertwines` is the exact commuting-square condition
+  `K.map q = Kbar.comap q`, with a setwise preimage theorem matching the paper;
+- `InterventionCompatibleKernelQuotient` requires that the baseline kernel and every
+  frozen strategic intervention kernel commute with the same state compression;
+- `pathLaw_map_eq_of_kernelIntertwines` proves that coordinatewise path pushforward
+  of the canonical Ionescu--Tulcea law equals the canonical compressed path law;
+- `QuotientCompatibleRegimeSpecifications` freezes region/basin preimages,
+  descriptor factorization, and target-law equality;
+- `ConvergenceModesCompatibleUnderCompression` makes convergence-mode naturality
+  explicit. This is necessary because the repository permits arbitrary custom
+  convergence predicates, which cannot be assumed quotient invariant automatically;
+- `HasAdmissibleInitialLifts` records the paper's lift condition for compressed
+  admissible initial laws;
+- `exactGR_iff_of_quotient` preserves Exact-GR status while taking Assumption 4.1
+  independently on both representations, matching the paper's nontriviality caveat;
+- `PropertyFactorsThroughCompression` and
+  `QuotientCompatibleComparisonSets` encode the frozen property/comparison-set
+  compatibility needed for constitutive transport;
+- `strategicallyConstitutive_iff_under_quotient`,
+  `constitutiveEffect_eq_under_quotient`,
+  `constitutiveMargin_eq_under_quotient`, and
+  `uniformlyConstitutive_iff_under_quotient` prove exact preservation of the
+  pointwise and quantitative constitutive tests;
+- `InterventionCompatibleStateQuotient` bundles the full semantic certificate;
+- `quotient_frozenFamilyPR_iff` and `quotient_frozenFamilyUniformPR_iff`
+  provide the family-level generalized and uniform PR preservation results.
+
+The theorem remains deliberately scoped to the explicitly frozen intervention family.
+Grounded (g)-relative confirmatory preservation remains OPEN because the grounded
+relevance-map layer has not yet been formalized. Proposition 5.4's finite-horizon
+kernel-to-path TV envelope also remains an independent open quantitative-support lane.
+
+The next main dependency boundary is the EGR-to-GR embedding/compatibility layer,
+unless the grounded confirmatory or finite-horizon TV support lanes are prioritized first.
