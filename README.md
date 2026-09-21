@@ -46,4 +46,4 @@ lake update
 lake build
 ```
 
-The current proved spine reaches through exact persistence, killed-kernel survival calculus, typed interventions, generalized Permansson constitution, quantitative constitutive robustness, and frozen intervention-family equivalence. The next main dependency boundary is the type-respecting quotient preservation theorem; Proposition 5.4's finite-horizon kernel-to-path TV envelope remains an explicit open support layer.
+The current proved spine reaches through exact persistence, killed-kernel survival calculus, typed interventions, generalized Permansson constitution, quantitative constitutive robustness, frozen intervention-family equivalence, and type-respecting intervention-compatible quotient preservation. The next main dependency boundary is EGR-to-GR compatibility; Proposition 5.4's finite-horizon kernel-to-path TV envelope and the grounded confirmatory layer remain explicit open support lanes.
