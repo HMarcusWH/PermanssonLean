@@ -38,7 +38,7 @@ theorem unitModel_induced_apply
         {s' : Unit | x' ∈ D}.indicator 1 () ∂M.world (x, a)) =
           ∫⁻ x' : X, D.indicator 1 x' ∂M.world (x, a) := by
             apply lintegral_congr
-            filter_upwards [] with x'
+            intro x'
             simp [Set.indicator_apply]
       _ = M.world (x, a) D := lintegral_indicator_one hD
   simp_rw [hinner]
@@ -94,8 +94,6 @@ theorem embedded_unit_kernelIntertwines
     equilibriumKernel, Kernel.comap_apply',
     Kernel.deterministic_apply, Kernel.lintegral_deterministic']
   congr with a
-  congr with x'
-  simp [Set.indicator_apply]
 
 /-- Baseline canonical path laws commute with the recording projection. -/
 theorem embedded_pathProbability_push_unit
