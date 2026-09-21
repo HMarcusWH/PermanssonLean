@@ -1,6 +1,7 @@
-import PermanssonLean.Regime.ConvergenceMode
 import PermanssonLean.Regime.Admissible
-import Mathlib.Probability.Kernel.IonescuTulcea.Traj
+import PermanssonLean.StrategicWorld.PathLaw
+import Mathlib.Probability.Kernel.Deterministic
+import Mathlib.Probability.UniformOn
 import Mathlib.MeasureTheory.Measure.DiracProba
 
 open Finset Filter MeasureTheory ProbabilityTheory Set
@@ -11,9 +12,9 @@ namespace PermanssonLean
 universe uX uA uH
 
 /-- Paper-I process after a measurable pure stationary equilibrium selection
-has already been fixed.  Equilibrium certification itself is an upstream
-game-theoretic input; this structure stores exactly the selected policy and
-the original world-transition kernel needed by the EGR semantics. -/
+has already been fixed. Equilibrium certification itself is an upstream
+game-theoretic input; this structure stores the selected policy and original
+world-transition kernel needed by the EGR semantics. -/
 structure PaperISelectedModel
     (X : Type uX) (A : Type uA)
     [MeasurableSpace X] [MeasurableSpace A] where
@@ -42,34 +43,64 @@ theorem equilibriumKernel_isMarkov
   unfold equilibriumKernel
   infer_instance
 
-/-- Lift a stationary Paper-I world kernel to finite histories. -/
-noncomputable def stationaryHistoryKernel
-    (K : Kernel X X) (n : ℕ) :
-    Kernel ((i : Iic n) → X) X :=
-  K.comap (fun h => h ⟨n, mem_Iic.mpr le_rfl⟩) (by fun_prop)
+/-- Canonical no-memory strategic wrapper of the selected Paper-I process.
+The Unit coordinate is semantically inert and exists only to reuse the already
+formalized strategic-world path-law machinery. -/
+noncomputable def unitModel
+    (M : PaperISelectedModel X A) :
+    StrategicWorldModel Unit X A where
+  generator := {
+    action := Kernel.deterministic
+      (fun y : JointState Unit X => M.policy y.2)
+      (M.policy_measurable.comp measurable_snd)
+    update := Kernel.deterministic
+      (fun _ : UpdateInput Unit X A => ())
+      (by fun_prop)
+    action_isMarkov := by infer_instance
+    update_isMarkov := by infer_instance
+  }
+  world := M.world.comap
+    (fun z : WorldInput Unit X A => (z.1.2, z.2))
+    (by fun_prop)
+  world_isMarkov := by
+    letI : IsMarkovKernel M.world := M.world_isMarkov
+    infer_instance
 
-instance stationaryHistoryKernel_isMarkov
-    (K : Kernel X X) [IsMarkovKernel K] (n : ℕ) :
-    IsMarkovKernel (stationaryHistoryKernel K n) := by
-  unfold stationaryHistoryKernel
-  infer_instance
+/-- Canonical embedding of a Paper-I world state into the Unit wrapper. -/
+def unitEmbedding : X → JointState Unit X :=
+  fun x => ((), x)
 
-/-- Canonical Paper-I world-state trajectory law. -/
+theorem unitEmbedding_measurable :
+    Measurable (unitEmbedding (X := X)) := by
+  fun_prop
+
+/-- World-path projection from any strategic-world path. -/
+def worldPathProjection {S : Type*} :
+    (ℕ → JointState S X) → (ℕ → X) :=
+  fun w n => (w n).2
+
+theorem worldPathProjection_measurable {S : Type*}
+    [MeasurableSpace S] :
+    Measurable (worldPathProjection (X := X) (S := S)) := by
+  refine Measurable.of_eval fun n => ?_
+  exact measurable_snd.comp (measurable_pi_apply n)
+
+/-- Canonical Paper-I world-state trajectory law, defined as the world
+projection of the semantically inert Unit strategic wrapper. -/
 noncomputable def pathLaw
     (M : PaperISelectedModel X A)
     (μ0 : Measure X)
     [IsProbabilityMeasure μ0] :
-    Measure (ℕ → X) := by
-  letI : IsMarkovKernel M.equilibriumKernel := M.equilibriumKernel_isMarkov
-  exact Kernel.trajMeasure μ0
-    (fun n => stationaryHistoryKernel M.equilibriumKernel n)
+    Measure (ℕ → X) :=
+  (M.unitModel.pathLaw
+    (μ0.map (unitEmbedding (X := X)))).map
+      (worldPathProjection (X := X) (S := Unit))
 
 instance pathLaw_isProbability
     (M : PaperISelectedModel X A)
     (μ0 : Measure X)
     [IsProbabilityMeasure μ0] :
     IsProbabilityMeasure (M.pathLaw μ0) := by
-  letI : IsMarkovKernel M.equilibriumKernel := M.equilibriumKernel_isMarkov
   unfold pathLaw
   infer_instance
 
@@ -111,8 +142,8 @@ def IsLimitingOccupationLaw
 end PaperISelectedModel
 
 /-- Paper-I ex-ante nontriviality gate, stated directly on the original
-world-state process.  The descriptor is the frozen global extension used for
-transport into Paper II. -/
+world-state process. The descriptor is the frozen global Borel extension used
+for transport into Paper II. -/
 structure PaperINontriviality
     {X : Type uX} {A : Type uA} {H : Type uH}
     [MeasurableSpace X] [MeasurableSpace A] [MeasurableSpace H]
