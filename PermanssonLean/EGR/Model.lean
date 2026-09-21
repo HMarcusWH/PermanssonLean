@@ -74,6 +74,14 @@ theorem unitEmbedding_measurable :
     Measurable (unitEmbedding (X := X)) :=
   measurable_const.prodMk measurable_id
 
+/-- World projection from the semantically inert Unit wrapper. -/
+def unitWorldProjection : JointState Unit X → X :=
+  Prod.snd
+
+theorem unitWorldProjection_measurable :
+    Measurable (unitWorldProjection (X := X)) :=
+  measurable_snd
+
 /-- World-path projection from any strategic-world path. -/
 def worldPathProjection {S : Type*} :
     (ℕ → JointState S X) → (ℕ → X) :=
