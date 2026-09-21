@@ -12,7 +12,7 @@ universe uS uX uA uH
 variable {S : Type uS} {X : Type uX} {A : Type uA} {H : Type uH}
 variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
 variable [MeasurableSpace H]
-variable [TopologicalSpace (JointState S X)]
+variable [TopologicalSpace S] [TopologicalSpace X]
 
 namespace RegimeSpecification
 
@@ -54,6 +54,39 @@ theorem basinPathLawNontrivial_implies_two_states
   apply hneq
   subst y₂
   rfl
+
+/-- Under the paper's point-separating Borel state space, two distinct basin
+states induce distinct baseline path laws. This proves the equivalence noted
+immediately after Assumption 4.1(iv), rather than leaving it as prose. -/
+theorem two_states_implies_basinPathLawNontrivial
+    [MeasurableSpace.SeparatesPoints (JointState S X)]
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (h : BasinHasTwoStates spec) :
+    BasinPathLawNontrivial M spec := by
+  rcases h with ⟨y₁, hy₁, y₂, hy₂, hne⟩
+  refine ⟨y₁, hy₁, y₂, hy₂, ?_⟩
+  intro hpaths
+  have hpref := congrArg
+    (fun μ : Measure (ℕ → JointState S X) =>
+      μ.map (Preorder.frestrictLe 0)) hpaths
+  rw [StrategicWorldModel.pathLaw_prefix_zero M (Measure.dirac y₁),
+      StrategicWorldModel.pathLaw_prefix_zero M (Measure.dirac y₂)] at hpref
+  let e := MeasurableEquiv.piUnique (fun _ : Set.Iic (0 : ℕ) => JointState S X)
+  have hdirac :
+      Measure.dirac (e.symm y₁) = Measure.dirac (e.symm y₂) := by
+    simpa [e, Measure.map_dirac' (MeasurableEquiv.measurable _)] using hpref
+  have heq : e.symm y₁ = e.symm y₂ :=
+    MeasureTheory.dirac_eq_dirac_iff.mp hdirac
+  exact hne (e.symm.injective heq)
+
+theorem basinHasTwoStates_iff_pathLawNontrivial
+    [MeasurableSpace.SeparatesPoints (JointState S X)]
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H) :
+    BasinHasTwoStates spec ↔ BasinPathLawNontrivial M spec :=
+  ⟨two_states_implies_basinPathLawNontrivial M spec,
+    basinPathLawNontrivial_implies_two_states M spec⟩
 
 /-- Ex-ante non-triviality gate from Assumption 4.1.
 
