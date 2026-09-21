@@ -16,6 +16,9 @@ import PermanssonLean.Regime.GeneratedRegime
 import PermanssonLean.Regime.Property
 import PermanssonLean.Regime.Constitution
 import PermanssonLean.Regime.Permansson
+import PermanssonLean.Regime.ConstitutiveMargin
+import PermanssonLean.Regime.Perturbation
+import PermanssonLean.Regime.UniformPermansson
 import PermanssonLean.Intervention.Target
 import PermanssonLean.Intervention.Replacement
 import PermanssonLean.Intervention.Family
