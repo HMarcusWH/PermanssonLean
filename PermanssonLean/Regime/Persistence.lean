@@ -24,20 +24,17 @@ theorem killedKernel_pow_succ_restrict
       (killedKernel M spec) ^ (n + 1) := by
   induction n with
   | zero =>
-      ext y C hC
       rw [pow_one]
-      rw [Kernel.restrict_apply]
-      unfold killedKernel
-      rw [Kernel.restrict_apply]
-      rw [Measure.restrict_apply hC]
-      rw [Measure.restrict_apply (hC.inter spec.region_measurable)]
-      congr 1
-      ext z
-      simp [and_assoc]
+      ext y
+      rw [Kernel.restrict_apply, killedKernel, Kernel.restrict_apply]
+      exact Measure.restrict_restrict_of_subset Set.Subset.rfl
   | succ n ih =>
       rw [pow_succ]
-      rw [← Kernel.comp_restrict spec.region_measurable]
-      rw [ih]
+      change
+        (((killedKernel M spec) ^ (n + 1) ∘ₖ killedKernel M spec).restrict
+            spec.region_measurable) =
+          ((killedKernel M spec) ^ (n + 1) ∘ₖ killedKernel M spec)
+      rw [← Kernel.comp_restrict spec.region_measurable, ih]
 
 /-- Starting in B, every killed-kernel power is supported in B almost everywhere. -/
 theorem killedKernel_pow_ae_mem_region
@@ -48,7 +45,8 @@ theorem killedKernel_pow_ae_mem_region
     ∀ᵐ z ∂(((killedKernel M spec) ^ n) y), z ∈ spec.region := by
   cases n with
   | zero =>
-      rw [pow_zero, Kernel.id_apply]
+      rw [pow_zero]
+      change ∀ᵐ z ∂Measure.dirac y, z ∈ spec.region
       exact (mem_ae_dirac_iff spec.region_measurable).2 hy
   | succ n =>
       have hres := congrArg
@@ -57,6 +55,21 @@ theorem killedKernel_pow_ae_mem_region
       rw [Kernel.restrict_apply] at hres
       rw [← hres]
       exact ae_restrict_mem spec.region_measurable
+
+/-- Every finite power of the killed kernel is a finite kernel. -/
+instance killedKernel_pow_isFinite
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (n : ℕ) :
+    IsFiniteKernel ((killedKernel M spec) ^ n) := by
+  induction n with
+  | zero =>
+      rw [pow_zero]
+      infer_instance
+  | succ n ih =>
+      rw [pow_succ]
+      letI : IsFiniteKernel ((killedKernel M spec) ^ n) := ih
+      infer_instance
 
 /-- Under a uniform one-step retention floor q on B, surviving mass obeys the
 paper's q^L lower bound. -/
@@ -88,13 +101,11 @@ theorem oneStepRetention_pow_lowerBound
         exact (ae_mem_iff_measure_eq
           spec.region_measurable.nullMeasurableSet).mp
             (killedKernel_pow_ae_mem_region M spec n hy) |>.symm
-      letI : IsFiniteKernel ((killedKernel M spec) ^ n) := by infer_instance
-      letI : IsFiniteMeasure (((killedKernel M spec) ^ n) y) := by infer_instance
       rw [MeasureTheory.lintegral_const, hmass] at hint
       dsimp [killedSurvivalMass] at ih ⊢
       calc
         q ^ n * q ≤ (((killedKernel M spec) ^ n) y spec.region) * q := by
-          exact mul_le_mul_right' ih q
+          gcongr
         _ = q * (((killedKernel M spec) ^ n) y spec.region) := by
           rw [mul_comm]
         _ ≤ ∫⁻ z, M.inducedKernel z spec.region
@@ -151,7 +162,7 @@ theorem survivesForeverSet_eq_iInter
     (spec : RegimeSpecification (JointState S X) H) :
     survivesForeverSet spec = ⋂ n : ℕ, survivesThroughSet spec n := by
   ext w
-  change SurvivesForever spec w ↔ ∀ n : ℕ, SurvivesThrough spec n w
+  simp only [survivesForeverSet, survivesThroughSet, Set.mem_setOf_eq, Set.mem_iInter]
   constructor
   · intro h n t ht
     exact h t
