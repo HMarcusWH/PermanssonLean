@@ -2,5 +2,11 @@ import PermanssonLean.StrategicWorld.Model
 import PermanssonLean.StrategicWorld.InducedKernel
 import PermanssonLean.StrategicWorld.PathLaw
 import PermanssonLean.StrategicWorld.WellPosedness
+import PermanssonLean.Regime.ConvergenceMode
 import PermanssonLean.Regime.Specification
+import PermanssonLean.Regime.Admissible
+import PermanssonLean.Regime.Assumption41
+import PermanssonLean.Regime.Invariance
+import PermanssonLean.Regime.Occupation
+import PermanssonLean.Regime.GeneratedRegime
 import PermanssonLean.Intervention.Target
