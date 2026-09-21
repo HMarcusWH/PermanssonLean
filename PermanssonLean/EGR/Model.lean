@@ -157,10 +157,9 @@ structure PaperINontriviality
   descriptor_two_values :
     ∃ x₁ ∈ spec.region, ∃ x₂ ∈ spec.region,
       spec.descriptor x₁ ≠ spec.descriptor x₂
-  basin_path_nontrivial :
+  basin_two_states :
     ∃ x₁ ∈ spec.basin, ∃ x₂ ∈ spec.basin,
-      M.pathLaw (Measure.dirac x₁) ≠
-        M.pathLaw (Measure.dirac x₂)
+      x₁ ≠ x₂
 
 /-- Paper-I EGR semantic kernel after the selected measurable pure stationary
 MPE has been supplied. -/
