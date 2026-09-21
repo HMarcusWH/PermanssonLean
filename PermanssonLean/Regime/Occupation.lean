@@ -33,7 +33,7 @@ of the uniform probability law on `Fin T`, so unit mass is enforced by
 the return type rather than proved downstream each time.
 -/
 noncomputable def empiricalOccupation
-    (Σ : RegimeSpecification (JointState S X) H)
+    (spec : RegimeSpecification (JointState S X) H)
     (w : ℕ → JointState S X)
     (T : ℕ) (hT : 0 < T) :
     ProbabilityMeasure H := by
@@ -41,7 +41,7 @@ noncomputable def empiricalOccupation
   letI : Nonempty (Fin T) := ⟨⟨0, hT⟩⟩
   let u : ProbabilityMeasure (Fin T) :=
     ⟨uniformOn Set.univ, inferInstance⟩
-  exact u.map (fun i => Σ.descriptor (w (i : ℕ)))
+  exact u.map (fun i => spec.descriptor (w (i : ℕ)))
 
 /-- Bundle the canonical infinite path law as a probability measure. -/
 noncomputable def pathProbability
@@ -53,33 +53,33 @@ noncomputable def pathProbability
 /-- Descriptor law at a fixed time under a declared initial probability law. -/
 noncomputable def descriptorLaw
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H)
+    (spec : RegimeSpecification (JointState S X) H)
     (λ : ProbabilityMeasure (JointState S X))
     (t : ℕ) :
     ProbabilityMeasure H :=
-  (pathProbability M λ).map (fun w => Σ.descriptor (w t))
+  (pathProbability M λ).map (fun w => spec.descriptor (w t))
 
 /-- The target law is a limiting occupation law for a particular initial
 probability law under the frozen convergence semantics. -/
 def IsLimitingOccupationLaw
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H)
+    (spec : RegimeSpecification (JointState S X) H)
     (λ : ProbabilityMeasure (JointState S X)) : Prop :=
-  Σ.convergenceMode.holds
+  spec.convergenceMode.holds
     (M.pathLaw λ.toMeasure)
-    (empiricalOccupation Σ)
-    Σ.target
+    (empiricalOccupation spec)
+    spec.target
 
 /-- Basin-reachable descriptor nondegeneracy:
 the family of descriptor laws reachable from point initializations in B₀
 at finite times contains at least two distinct probability measures. -/
 def IsDescriptorNondegenerate
     (M : StrategicWorldModel S X A)
-    (Σ : RegimeSpecification (JointState S X) H) : Prop :=
-  ∃ y₁ ∈ Σ.basin, ∃ t₁ : ℕ,
-    ∃ y₂ ∈ Σ.basin, ∃ t₂ : ℕ,
-      descriptorLaw M Σ (diracProba y₁) t₁ ≠
-        descriptorLaw M Σ (diracProba y₂) t₂
+    (spec : RegimeSpecification (JointState S X) H) : Prop :=
+  ∃ y₁ ∈ spec.basin, ∃ t₁ : ℕ,
+    ∃ y₂ ∈ spec.basin, ∃ t₂ : ℕ,
+      descriptorLaw M spec (diracProba y₁) t₁ ≠
+        descriptorLaw M spec (diracProba y₂) t₂
 
 end RegimeSpecification
 
