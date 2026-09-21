@@ -30,6 +30,8 @@ theorem dirac_admissible_iff
     [MeasurableSingletonClass Y]
     (spec : RegimeSpecification Y H) (y : Y) :
     IsAdmissibleInitialLaw spec (diracProba y) ↔ y ∈ spec.basin := by
-  simp [IsAdmissibleInitialLaw, diracProba, spec.basin_measurable]
+  unfold IsAdmissibleInitialLaw
+  rw [diracProba_toMeasure_apply' y spec.basin_measurable]
+  by_cases hy : y ∈ spec.basin <;> simp [hy]
 
 end PermanssonLean
