@@ -109,8 +109,7 @@ theorem killedSurvivalMass_one
     (y : JointState S X) :
     killedSurvivalMass M spec 1 y =
       M.inducedKernel y spec.region := by
-  change killedKernel M spec y spec.region =
-    M.inducedKernel y spec.region
+  rw [killedSurvivalMass, pow_one]
   exact killedKernel_apply_region M spec y
 
 theorem killedSurvivalMass_succ
