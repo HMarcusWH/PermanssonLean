@@ -1,5 +1,4 @@
 import PermanssonLean.EGR.Embedding
-import PermanssonLean.EGR.UnitEncoding
 import PermanssonLean.Quotient.PathLaw
 
 open MeasureTheory ProbabilityTheory
