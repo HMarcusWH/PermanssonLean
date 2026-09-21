@@ -20,11 +20,13 @@ jobs:
           lint: false
           use-mathlib-cache: true
           use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonLean
       - name: Build
         run: lake build
       - name: Reject placeholders and extra axioms
         run: |
-          if grep -R -n -E '\bsorry\b|^[[:space:]]*axiom[[:space:]]' PermanssonLean --include='*.lean'; then
+          if grep -R -n -E '\b(sorry|admit)\b|^[[:space:]]*axiom[[:space:]]' PermanssonLean --include='*.lean'; then
             echo 'Forbidden placeholder or axiom detected'
             exit 1
           fi
