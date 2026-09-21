@@ -1,5 +1,7 @@
 import PermanssonLean.Regime.Invariance
 import PermanssonLean.Regime.Occupation
+import Mathlib.Topology.MetricSpace.Polish
+import Mathlib.MeasureTheory.Constructions.Polish.Basic
 
 open MeasureTheory
 
@@ -105,6 +107,35 @@ theorem confirmatoryGR_descriptorNondegenerate
     (h : IsConfirmatoryGeneratedRegime M spec m) :
     IsDescriptorNondegenerate M spec :=
   h.2
+
+/-- Paper-level Exact GR, exposing the ambient assumptions from Assumption 3.1
+and Section 4.1 at the type boundary while reusing the more general semantic
+kernel above.
+
+The action correspondence itself is represented upstream by the typed Markov
+action-selection kernel; admissibility of actions is therefore part of the model
+construction boundary rather than re-encoded here.
+-/
+def IsPaperExactGeneratedRegime
+    [TopologicalSpace S] [PolishSpace S] [BorelSpace S] [Nonempty S]
+    [TopologicalSpace X] [PolishSpace X] [BorelSpace X] [Nonempty X]
+    [StandardBorelSpace A]
+    [TopologicalSpace H] [PolishSpace H] [BorelSpace H]
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (m : Measure (JointState S X)) : Prop :=
+  IsExactGeneratedRegime M spec m
+
+/-- Paper-level confirmatory subclass under the same ambient assumptions. -/
+def IsPaperConfirmatoryGeneratedRegime
+    [TopologicalSpace S] [PolishSpace S] [BorelSpace S] [Nonempty S]
+    [TopologicalSpace X] [PolishSpace X] [BorelSpace X] [Nonempty X]
+    [StandardBorelSpace A]
+    [TopologicalSpace H] [PolishSpace H] [BorelSpace H]
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (m : Measure (JointState S X)) : Prop :=
+  IsConfirmatoryGeneratedRegime M spec m
 
 end RegimeSpecification
 
