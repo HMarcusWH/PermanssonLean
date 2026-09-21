@@ -40,7 +40,7 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 4b | Exact invariance ↔ survival forever (Prop. 4.2) | `exactInvariant_iff_survivalForever` | PROVED |
 | 5 | Killed-kernel finite persistence | `survivalProbability_eq_killedSurvivalMass`, `finitePersistence_iff_killed`, `oneStepRetention_pow_lowerBound`, `expectedExitTime_eq_greenSeries` | PROVED |
 | 6 | Typed interventions | `InterventionReplacement`, `InterventionFamily`, `TypedIntervention`, `applyReplacement` | PROVED |
-| 7 | PR constitution | constitution module | OPEN |
+| 7 | PR constitution | `RegimePropertyMap`, `ConstitutiveComparisonSet`, `IsStrategicallyConstitutive`, `IsGeneralizedPermanssonRegime` | PROVED |
 | 8 | Uniform constitutive margin | robustness module | OPEN |
 | 9 | Intervention-family signatures | equivalence module | OPEN |
 | 10 | Quotient preservation theorem | quotient module | OPEN |
@@ -177,7 +177,30 @@ family before any constitutive claim is made:
 - `TypedIntervention.intervenedKernel_isMarkov` proves that every well-typed
   intervention still induces a Markov kernel.
 
-The next dependency boundary is PR constitution: formalizing constitutive components
-and generalized Permansson Regimes over admissible strategic interventions. Uniform
-constitutive margins, intervention signatures, quotients, EGR compatibility, and QSDs
-remain later layers.
+## Sixth proof milestone — generalized Permansson constitution
+
+The constitution layer now formalizes the paper's pointwise strategic-constitution
+criterion and Definition 5.1 without strengthening the basic hypothesis surface:
+
+- `RegimePropertyMap` evaluates the complete point-initialized path probability law
+  and deliberately imposes no measurability requirement for the pointwise criterion;
+- `ConstitutiveComparisonSet` freezes the Borel comparison set B₁, its inclusion
+  B₁ ⊆ B₀, and distinct baseline path laws on B₁;
+- `IsStrategicallyConstitutive` requires the declared property to change at every
+  comparison state under an admissible strategic intervention;
+- `constitutiveIntervention_world_eq` exposes the already-proved hold-P-fixed
+  guarantee at the constitution layer;
+- `IsGeneralizedPermanssonRegimeRelative` records Exact GR plus constitution under
+  one frozen constitutive protocol;
+- `IsGeneralizedPermanssonRegime` is the family form: Exact GR plus existence of at
+  least one admissible predeclared strategic intervention that is constitutive;
+- `generalizedPR_world_fixed_witness` extracts a constitutive witness together with
+  the theorem that its world-transition kernel equals the baseline P.
+
+The diagnostic intervened model is not required to remain a GR or to satisfy an
+equilibrium condition.
+
+The next dependency boundary is the quantitative constitution layer: metric-valued
+property change, uniform constitutive margins, and robustness under perturbation.
+Intervention signatures, quotients, EGR compatibility, grounded confirmatory
+refinements, and QSDs remain later layers.
