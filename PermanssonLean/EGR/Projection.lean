@@ -39,7 +39,7 @@ theorem unitModel_induced_apply
           ∫⁻ x' : X, D.indicator 1 x' ∂M.world (x, a) := by
             apply lintegral_congr
             intro x'
-            simp [Set.indicator_apply]
+            rfl
       _ = M.world (x, a) D := lintegral_indicator_one hD
   simp_rw [hinner]
   rw [lintegral_dirac' _]
