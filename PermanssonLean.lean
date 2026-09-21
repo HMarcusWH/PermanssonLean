@@ -1,4 +1,6 @@
 import PermanssonLean.StrategicWorld.Model
 import PermanssonLean.StrategicWorld.InducedKernel
+import PermanssonLean.StrategicWorld.PathLaw
+import PermanssonLean.StrategicWorld.WellPosedness
 import PermanssonLean.Regime.Specification
 import PermanssonLean.Intervention.Target
