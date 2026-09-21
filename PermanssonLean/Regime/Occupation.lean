@@ -18,9 +18,15 @@ namespace RegimeSpecification
 noncomputable def uniformFinProbability
     (T : ℕ) (hT : 0 < T) :
     ProbabilityMeasure (Fin T) := by
-  letI : MeasurableSpace (Fin T) := ⊤
   letI : Nonempty (Fin T) := ⟨⟨0, hT⟩⟩
   exact ⟨uniformOn Set.univ, inferInstance⟩
+
+theorem measurable_empiricalDescriptor
+    (spec : RegimeSpecification (JointState S X) H)
+    (w : ℕ → JointState S X)
+    (T : ℕ) :
+    Measurable (fun i : Fin T => spec.descriptor (w (i : ℕ))) := by
+  exact measurable_of_finite _
 
 /-- Pathwise empirical descriptor occupation law
 
@@ -37,7 +43,6 @@ noncomputable def empiricalOccupation
     (w : ℕ → JointState S X)
     (T : ℕ) (hT : 0 < T) :
     ProbabilityMeasure H := by
-  letI : MeasurableSpace (Fin T) := ⊤
   letI : Nonempty (Fin T) := ⟨⟨0, hT⟩⟩
   let u : ProbabilityMeasure (Fin T) :=
     ⟨uniformOn Set.univ, inferInstance⟩
@@ -49,6 +54,12 @@ noncomputable def pathProbability
     (initLaw : ProbabilityMeasure (JointState S X)) :
     ProbabilityMeasure (ℕ → JointState S X) :=
   ⟨M.pathLaw initLaw.toMeasure, inferInstance⟩
+
+theorem measurable_descriptorAt
+    (spec : RegimeSpecification (JointState S X) H)
+    (t : ℕ) :
+    Measurable (fun w : ℕ → JointState S X => spec.descriptor (w t)) := by
+  exact spec.descriptor_measurable.comp (measurable_pi_apply t)
 
 /-- Descriptor law at a fixed time under a declared initial probability law. -/
 noncomputable def descriptorLaw
