@@ -22,6 +22,8 @@ theorem unitModel_induced_apply
     M.unitModel.inducedKernel ((), x)
       (unitWorldProjection ⁻¹' D) =
       M.equilibriumKernel x D := by
+  change M.unitModel.inducedKernel ((), x) (Prod.snd ⁻¹' D) =
+    M.equilibriumKernel x D
   rw [StrategicWorldModel.inducedKernel_apply
     M.unitModel ((), x) (hD.preimage measurable_snd)]
   simp [unitModel, equilibriumKernel,
@@ -74,7 +76,8 @@ theorem embedded_unit_kernelIntertwines
     unitModel, recordingCompression, TypeRespectingStateCompression.stateMap,
     embeddedActionMap, embeddedWorldInputMap, recordingUpdateMap,
     equilibriumKernel, Kernel.comap_apply',
-    Kernel.deterministic_apply, Kernel.lintegral_deterministic']
+    Kernel.deterministic_apply, Kernel.lintegral_deterministic',
+    Set.indicator_apply]
 
 /-- Baseline canonical path laws commute with the recording projection. -/
 theorem embedded_pathProbability_push_unit
@@ -120,15 +123,39 @@ theorem embedded_worldPathLaw_eq_paperI
     apply Measure.map_congr
     filter_upwards [] with y
     rfl
+  have hpathInit :
+      M.unitModel.pathLaw
+          (μ0.toMeasure.map
+            (recordingCompression (X := X) (A := A)).stateMap) =
+        M.unitModel.pathLaw
+          ((μ0.map Prod.snd).toMeasure.map
+            (unitEmbedding (X := X))) := by
+    cases hinit
+    rfl
   unfold pathLaw
-  rw [← hinit]
-  rw [← hpush]
-  rw [Measure.map_map
-    (worldPathProjection_measurable (X := X) (S := Unit))
-    (recordingCompression (X := X) (A := A)).pathMap_measurable]
-  apply Measure.map_congr
-  filter_upwards [] with w
-  rfl
+  calc
+    (M.embeddedModel.pathLaw μ0.toMeasure).map
+        (worldPathProjection
+          (X := X) (S := PaperIStrategicState A)) =
+      ((M.embeddedModel.pathLaw μ0.toMeasure).map
+        (recordingCompression (X := X) (A := A)).pathMap).map
+          (worldPathProjection (X := X) (S := Unit)) := by
+        rw [Measure.map_map
+          (worldPathProjection_measurable (X := X) (S := Unit))
+          (recordingCompression (X := X) (A := A)).pathMap_measurable]
+        apply Measure.map_congr
+        filter_upwards [] with w
+        rfl
+    _ = (M.unitModel.pathLaw
+          (μ0.toMeasure.map
+            (recordingCompression (X := X) (A := A)).stateMap)).map
+          (worldPathProjection (X := X) (S := Unit)) := by
+        rw [hpush]
+    _ = (M.unitModel.pathLaw
+          ((μ0.map Prod.snd).toMeasure.map
+            (unitEmbedding (X := X)))).map
+          (worldPathProjection (X := X) (S := Unit)) := by
+        rw [hpathInit]
 
 end PaperISelectedModel
 
