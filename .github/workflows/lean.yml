@@ -12,19 +12,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install Lean
-        uses: leanprover/lean-action@v1
+      - uses: leanprover/lean-action@v1
         with:
           auto-config: false
           build: false
           test: false
           lint: false
-          use-mathlib-cache: false
+          use-mathlib-cache: true
           use-github-cache: false
-
-      - name: Resolve dependencies
-        run: lake update
-
       - name: Build
         run: lake build
+      - name: Reject placeholders and extra axioms
+        run: |
+          if grep -R -n -E '\bsorry\b|^[[:space:]]*axiom[[:space:]]' PermanssonLean --include='*.lean'; then
+            echo 'Forbidden placeholder or axiom detected'
+            exit 1
+          fi
