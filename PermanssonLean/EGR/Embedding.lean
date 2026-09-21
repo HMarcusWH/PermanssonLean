@@ -67,8 +67,7 @@ theorem recordingUpdateMap_measurable :
   have ha :
       Measurable
         (fun z : UpdateInput (PaperIStrategicState A) X A =>
-          Sum.inr z.1.2 : UpdateInput (PaperIStrategicState A) X A →
-            PaperIActionRecord A) :=
+          (Sum.inr z.1.2 : PaperIActionRecord A)) :=
     measurable_inr.comp (measurable_snd.comp measurable_fst)
   exact hsucc.prodMk ha
 
