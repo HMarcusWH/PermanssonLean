@@ -94,7 +94,7 @@ theorem exactInvariant_iff_of_kernelIntertwines
       Q M.inducedKernel Mbar.inducedKernel hK
       y specbar.region specbar.region_measurable
     rw [← C.region_preimage] at hinter
-    simpa [hy] using hbase.trans hinter
+    simpa [hy] using hinter.symm.trans hbase
   · intro h y hy
     have hybar : Q.stateMap y ∈ specbar.region := by
       rw [C.region_preimage] at hy
