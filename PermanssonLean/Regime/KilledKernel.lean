@@ -2,6 +2,7 @@ import PermanssonLean.Regime.Invariance
 import Mathlib.Probability.Kernel.Composition.Comp
 
 open MeasureTheory ProbabilityTheory
+open scoped ENNReal ProbabilityTheory
 
 namespace PermanssonLean
 
