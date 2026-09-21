@@ -44,8 +44,9 @@ theorem pushInitial_dirac
     (y : JointState S X) :
     Q.pushInitial (diracProba y) = diracProba (Q.stateMap y) := by
   apply ProbabilityMeasure.toMeasure_injective
-  simp [pushInitial, ProbabilityMeasure.toMeasure_map,
-    Measure.map_dirac' Q.stateMap_measurable]
+  change (Measure.dirac y).map Q.stateMap =
+    Measure.dirac (Q.stateMap y)
+  exact Measure.map_dirac' Q.stateMap_measurable y
 
 end TypeRespectingStateCompression
 
@@ -143,7 +144,7 @@ theorem strategicallyConstitutive_iff_under_quotient
         (Jbar.intervention (KQ.matching.labelEquiv l)) := by
   constructor
   · intro h ybar hybar
-    rcases CB.comparison_surjective hybar with ⟨y, hy, hqy⟩
+    rcases QuotientCompatibleComparisonSets.comparison_surjective Q CB hybar with ⟨y, hy, hqy⟩
     have hbase := baselinePropertyValue_eq_under_quotient
       Q M Mbar KQ.baseline_intertwines ψ ψbar hψ y
     have hinter := intervenedPropertyValue_eq_under_quotient
@@ -222,10 +223,10 @@ theorem constitutiveMargin_eq_under_quotient
     refine ⟨Q.stateMap y, ?_, ?_⟩
     · rw [CB.states_preimage] at hy
       exact hy
-    · exact constitutiveEffect_eq_under_quotient
-        Q F Fbar J Jbar KQ ψ ψbar hψ l y
+    · exact (constitutiveEffect_eq_under_quotient
+        Q F Fbar J Jbar KQ ψ ψbar hψ l y).symm
   · rintro ⟨ybar, hybar, hr⟩
-    rcases CB.comparison_surjective hybar with ⟨y, hy, hqy⟩
+    rcases QuotientCompatibleComparisonSets.comparison_surjective Q CB hybar with ⟨y, hy, hqy⟩
     refine ⟨y, hy, ?_⟩
     rw [constitutiveEffect_eq_under_quotient
       Q F Fbar J Jbar KQ ψ ψbar hψ l y, hqy]
