@@ -55,6 +55,21 @@ structure InterventionCompatibleStateQuotient
 
 namespace RegimeSpecification
 
+private theorem exists_iff_exists_over_equiv
+    {α β : Type*}
+    (e : α ≃ β)
+    (P : α → Prop)
+    (Q : β → Prop)
+    (h : ∀ a, P a ↔ Q (e a)) :
+    (∃ a, P a) ↔ ∃ b, Q b := by
+  constructor
+  · rintro ⟨a, ha⟩
+    exact ⟨e a, (h a).1 ha⟩
+  · rintro ⟨b, hb⟩
+    refine ⟨e.symm b, ?_⟩
+    apply (h (e.symm b)).2
+    simpa only [Equiv.apply_symm_apply] using hb
+
 theorem quotient_exactGR_iff
     (Q : TypeRespectingStateCompression S X Sbar Xbar)
     (M : StrategicWorldModel S X A)
@@ -132,20 +147,18 @@ theorem quotient_hasConstitutiveWitness_iff
       Q M Mbar spec specbar m mbar F Fbar J Jbar ψ ψbar B₁ Bbar₁) :
     HasConstitutiveWitnessInFrozenFamily M spec F J ψ B₁ ↔
       HasConstitutiveWitnessInFrozenFamily Mbar specbar Fbar Jbar ψbar Bbar₁ := by
-  let φ := C.kernel.matching.labelEquiv
-  constructor
-  · rintro ⟨l, hl⟩
-    refine ⟨φ l, ?_⟩
-    exact (quotient_constitutive_iff_each_label
-      Q M Mbar spec specbar m mbar F Fbar J Jbar ψ ψbar
-      B₁ Bbar₁ C l).1 hl
-  · rintro ⟨lbar, hlbar⟩
-    let l : Label := φ.symm lbar
-    refine ⟨l, ?_⟩
-    have hiff := quotient_constitutive_iff_each_label
-      Q M Mbar spec specbar m mbar F Fbar J Jbar ψ ψbar
-      B₁ Bbar₁ C l
-    simpa [l, φ] using hiff.mpr hlbar
+  unfold HasConstitutiveWitnessInFrozenFamily
+  refine exists_iff_exists_over_equiv
+    C.kernel.matching.labelEquiv
+    (fun l =>
+      IsStrategicallyConstitutive M spec F ψ B₁ (J.intervention l))
+    (fun lbar =>
+      IsStrategicallyConstitutive Mbar specbar Fbar ψbar Bbar₁
+        (Jbar.intervention lbar)) ?_
+  intro l
+  exact quotient_constitutive_iff_each_label
+    Q M Mbar spec specbar m mbar F Fbar J Jbar ψ ψbar
+    B₁ Bbar₁ C l
 
 /-- Theorem 7.4b, generalized-PR family form: Exact-GR status and existence
 of a constitutive witness in the frozen family are jointly preserved. -/
@@ -291,20 +304,19 @@ theorem quotient_hasUniformConstitutiveWitness_iff
     HasUniformConstitutiveWitnessInFrozenFamily M spec F J ψ B₁ ↔
       HasUniformConstitutiveWitnessInFrozenFamily
         Mbar specbar Fbar Jbar ψbar Bbar₁ := by
-  let φ := C.kernel.matching.labelEquiv
-  constructor
-  · rintro ⟨l, hl⟩
-    refine ⟨φ l, ?_⟩
-    exact (quotient_uniformConstitutive_iff_each_label
-      Q M Mbar spec specbar m mbar F Fbar J Jbar ψ ψbar
-      B₁ Bbar₁ C l).1 hl
-  · rintro ⟨lbar, hlbar⟩
-    let l : Label := φ.symm lbar
-    refine ⟨l, ?_⟩
-    have hiff := quotient_uniformConstitutive_iff_each_label
-      Q M Mbar spec specbar m mbar F Fbar J Jbar ψ ψbar
-      B₁ Bbar₁ C l
-    simpa [l, φ] using hiff.mpr hlbar
+  unfold HasUniformConstitutiveWitnessInFrozenFamily
+  refine exists_iff_exists_over_equiv
+    C.kernel.matching.labelEquiv
+    (fun l =>
+      IsUniformlyStrategicallyConstitutive
+        M spec F ψ B₁ (J.intervention l))
+    (fun lbar =>
+      IsUniformlyStrategicallyConstitutive
+        Mbar specbar Fbar ψbar Bbar₁ (Jbar.intervention lbar)) ?_
+  intro l
+  exact quotient_uniformConstitutive_iff_each_label
+    Q M Mbar spec specbar m mbar F Fbar J Jbar ψ ψbar
+    B₁ Bbar₁ C l
 
 /-- Uniform-margin family form of Theorem 7.4b. -/
 theorem quotient_frozenFamilyUniformPR_iff
