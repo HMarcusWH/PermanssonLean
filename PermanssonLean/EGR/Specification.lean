@@ -45,10 +45,14 @@ noncomputable def embeddedSpec
   basin_measurable := by
     have ht : MeasurableSet ({0} : Set ℕ) :=
       measurableSet_singleton 0
+    have ha_range :
+        MeasurableSet
+          (Set.range (Sum.inl : Unit → PaperIActionRecord A)) :=
+      measurableSet_range_inl
     have ha :
         MeasurableSet
-          ({Sum.inl ()} : Set (PaperIActionRecord A)) :=
-      measurableSet_singleton (Sum.inl ())
+          ({Sum.inl ()} : Set (PaperIActionRecord A)) := by
+      simpa [Set.range_unique] using ha_range
     have hs :
         MeasurableSet
           ({initialStrategicState (A := A)} :
@@ -168,7 +172,11 @@ theorem worldMarginal_admissible_of_embedded
         ⊆ Prod.snd ⁻¹' spec.basin := by
     rintro ⟨s, x⟩ ⟨hs, hx⟩
     exact hx
-  have hle := measure_mono hsub
+  have hle :
+      μ.toMeasure
+          ({initialStrategicState (A := A)} ×ˢ spec.basin) ≤
+        μ.toMeasure (Prod.snd ⁻¹' spec.basin) :=
+    measure_mono hsub
   have hmass :
       μ.toMeasure
         ({initialStrategicState (A := A)} ×ˢ spec.basin) = 1 := by
