@@ -25,15 +25,16 @@ theorem killedKernel_pow_succ_restrict
   induction n with
   | zero =>
       rw [pow_one]
-      ext y
+      apply Kernel.ext
+      intro y
       rw [Kernel.restrict_apply, killedKernel, Kernel.restrict_apply]
       exact Measure.restrict_restrict_of_subset Set.Subset.rfl
   | succ n ih =>
       rw [pow_succ]
       change
-        (((killedKernel M spec) ^ (n + 1) ∘ₖ killedKernel M spec).restrict
+        ((((killedKernel M spec) ^ (n + 1)) ∘ₖ killedKernel M spec).restrict
             spec.region_measurable) =
-          ((killedKernel M spec) ^ (n + 1) ∘ₖ killedKernel M spec)
+          (((killedKernel M spec) ^ (n + 1)) ∘ₖ killedKernel M spec)
       rw [← Kernel.comp_restrict spec.region_measurable, ih]
 
 /-- Starting in B, every killed-kernel power is supported in B almost everywhere. -/
@@ -65,9 +66,16 @@ instance killedKernel_pow_isFinite
   induction n with
   | zero =>
       rw [pow_zero]
-      infer_instance
+      change IsFiniteKernel (Kernel.id : Kernel (JointState S X) (JointState S X))
+      refine ⟨1, ENNReal.one_lt_top, ?_⟩
+      intro y
+      rw [Kernel.id_apply]
+      simp
   | succ n ih =>
       rw [pow_succ]
+      change
+        IsFiniteKernel
+          (((killedKernel M spec) ^ n) ∘ₖ killedKernel M spec)
       letI : IsFiniteKernel ((killedKernel M spec) ^ n) := ih
       infer_instance
 
