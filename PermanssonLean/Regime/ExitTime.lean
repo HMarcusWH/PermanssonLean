@@ -151,8 +151,7 @@ theorem StrategicWorldModel.pathLaw_eval_zero
     default := ⟨0, by simp⟩
     uniq := fun i => by
       apply Subtype.ext
-      apply Nat.eq_zero_of_le_zero
-      simpa using i.property
+      exact Nat.eq_zero_of_le_zero (Finset.mem_Iic.mp i.property)
   }
   let e := MeasurableEquiv.piUnique
     (fun _ : Finset.Iic (0 : ℕ) => JointState S X)
@@ -165,8 +164,6 @@ theorem StrategicWorldModel.pathLaw_eval_zero
         ((M.pathLaw mu0).map (Preorder.frestrictLe 0)).map e := by
       rw [Measure.map_map e.measurable (by fun_prop)]
       congr 1
-      funext w
-      rfl
     _ = (mu0.map e.symm).map e := by rw [h]
     _ = mu0 := by
       rw [Measure.map_map e.measurable e.symm.measurable]
