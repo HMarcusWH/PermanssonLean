@@ -1,4 +1,4 @@
-import PermanssonLean.Regime.ExitTime
+import PermanssonLean.Regime.SurvivalBridge
 import Mathlib.MeasureTheory.Measure.Continuity
 import Mathlib.MeasureTheory.Measure.Restrict
 
@@ -99,6 +99,7 @@ def IsFinitePersistent
     (M : StrategicWorldModel S X A)
     (spec : RegimeSpecification (JointState S X) H)
     (L : ℕ) (eta : ℝ≥0∞) : Prop :=
+  eta ≤ 1 ∧
   ∀ y ∈ spec.region, 1 - eta ≤ survivalProbability M spec y L
 
 /-- Killed-kernel form of the same finite-horizon gate. -/
@@ -106,7 +107,29 @@ def IsKilledFinitePersistent
     (M : StrategicWorldModel S X A)
     (spec : RegimeSpecification (JointState S X) H)
     (L : ℕ) (eta : ℝ≥0∞) : Prop :=
+  eta ≤ 1 ∧
   ∀ y ∈ spec.region, 1 - eta ≤ killedSurvivalMass M spec L y
+
+/-- Corollary 4.2b: the path-probability finite-persistence gate is
+equivalent to the killed-kernel gate. The infimum notation in the paper is
+represented by the equivalent pointwise lower-bound form. -/
+theorem finitePersistence_iff_killed
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (L : ℕ) (eta : ℝ≥0∞) :
+    IsFinitePersistent M spec L eta ↔
+      IsKilledFinitePersistent M spec L eta := by
+  constructor
+  · rintro ⟨heta, h⟩
+    refine ⟨heta, ?_⟩
+    intro y hy
+    rw [← survivalProbability_eq_killedSurvivalMass M spec L hy]
+    exact h y hy
+  · rintro ⟨heta, h⟩
+    refine ⟨heta, ?_⟩
+    intro y hy
+    rw [survivalProbability_eq_killedSurvivalMass M spec L hy]
+    exact h y hy
 
 /-- The finite-horizon survival sets are decreasing in the horizon. -/
 theorem survivesThroughSet_antitone
