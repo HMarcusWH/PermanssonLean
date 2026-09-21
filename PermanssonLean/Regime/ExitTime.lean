@@ -95,7 +95,7 @@ theorem exitTime_eq_top_iff
     · intro htop
       exact (ENat.coe_ne_top (Nat.find h) htop).elim
     · intro hforever
-      exact (Nat.find_spec h) (hforever (Nat.find h))
+      exact False.elim ((Nat.find_spec h) (hforever (Nat.find h)))
   · rw [exitTime, dif_neg h]
     constructor
     · intro _
@@ -147,20 +147,20 @@ theorem StrategicWorldModel.pathLaw_eval_zero
     (mu0 : Measure (JointState S X))
     [IsProbabilityMeasure mu0] :
     (M.pathLaw mu0).map (fun w : ℕ → JointState S X => w 0) = mu0 := by
-  letI : Unique (Set.Iic (0 : ℕ)) := {
+  letI : Unique (Finset.Iic (0 : ℕ)) := {
     default := ⟨0, by simp⟩
     uniq := fun i => by
       apply Subtype.ext
       exact Nat.eq_zero_of_le_zero (Set.mem_Iic.mp i.2)
   }
   let e := MeasurableEquiv.piUnique
-    (fun _ : Set.Iic (0 : ℕ) => JointState S X)
+    (fun _ : Finset.Iic (0 : ℕ) => JointState S X)
   have h := StrategicWorldModel.pathLaw_prefix_zero M mu0
   change
     (M.pathLaw mu0).map (Preorder.frestrictLe 0) =
       mu0.map e.symm at h
   have hm := congrArg
-    (fun μ : Measure ((i : Set.Iic (0 : ℕ)) → JointState S X) => μ.map e) h
+    (fun μ : Measure ((i : Finset.Iic (0 : ℕ)) → JointState S X) => μ.map e) h
   simpa [e, Measure.map_map, Function.comp_def] using hm
 
 /-- Point-initialized finite-horizon survival probability. -/
