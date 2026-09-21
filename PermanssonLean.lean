@@ -13,6 +13,9 @@ import PermanssonLean.Regime.ExitTimeExpectation
 import PermanssonLean.Regime.Persistence
 import PermanssonLean.Regime.Occupation
 import PermanssonLean.Regime.GeneratedRegime
+import PermanssonLean.Regime.Property
+import PermanssonLean.Regime.Constitution
+import PermanssonLean.Regime.Permansson
 import PermanssonLean.Intervention.Target
 import PermanssonLean.Intervention.Replacement
 import PermanssonLean.Intervention.Family
