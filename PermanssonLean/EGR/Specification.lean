@@ -120,6 +120,16 @@ theorem embeddedInitialLaw_admissible_iff
   ext x
   simp [initialEmbedding, initialStrategicState]
 
+@[simp]
+theorem worldMarginal_embeddedInitialLaw
+    (μ : ProbabilityMeasure X) :
+    worldMarginal (A := A) (embeddedInitialLaw (A := A) μ) = μ := by
+  apply ProbabilityMeasure.toMeasure_injective
+  simp [worldMarginal, embeddedInitialLaw,
+    ProbabilityMeasure.toMeasure_map,
+    Measure.map_map,
+    initialEmbedding, Function.comp_def]
+
 theorem worldMarginal_admissible_of_embedded
     [MeasurableSingletonClass A]
     (spec : RegimeSpecification X H)
