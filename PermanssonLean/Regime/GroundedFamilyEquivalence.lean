@@ -18,28 +18,25 @@ namespace RegimeSpecification
 /-- One frozen grounded property semantics shared across an entire declared
 intervention family.  This prevents choosing a different ψ_G after seeing
 which intervention label is being evaluated. -/
-structure GroundedFrozenFamilyProperty
+def GroundedFrozenFamilyProperty
     (M : StrategicWorldModel S X A)
     (spec : RegimeSpecification (JointState S X) H)
     {Component : Type uK} {Label : Type uL₁}
     (F : InterventionFamily M Component)
     (J : FrozenStrategicInterventionFamily F Label)
     (ψ : RegimePropertyMap (JointState S X) Z)
-    (g : GroundedRelevanceMap spec G) : Prop where
-  groundedProperty : RegimePropertyMap G Z
-  baseline_eq :
-    ∀ μ : ProbabilityMeasure (JointState S X),
+    (g : GroundedRelevanceMap spec G) : Prop :=
+  ∃ ψG : RegimePropertyMap G Z,
+    (∀ μ : ProbabilityMeasure (JointState S X),
       IsAdmissibleInitialLaw spec μ →
         ψ (pathProbability M μ) =
-          groundedProperty (g.pushPath (pathProbability M μ))
-  intervention_eq :
-    ∀ l : Label,
+          ψG (g.pushPath (pathProbability M μ))) ∧
+    (∀ l : Label,
       ∀ μ : ProbabilityMeasure (JointState S X),
         IsAdmissibleInitialLaw spec μ →
           ψ (pathProbability (J.intervention l).intervention.apply μ) =
-            groundedProperty
-              (g.pushPath
-                (pathProbability (J.intervention l).intervention.apply μ))
+            ψG (g.pushPath
+              (pathProbability (J.intervention l).intervention.apply μ)))
 
 theorem GroundedFrozenFamilyProperty.relative
     (M : StrategicWorldModel S X A)
@@ -51,10 +48,9 @@ theorem GroundedFrozenFamilyProperty.relative
     (g : GroundedRelevanceMap spec G)
     (h : GroundedFrozenFamilyProperty M spec F J ψ g)
     (l : Label) :
-    IsGroundedPropertyRelative M spec F ψ g (J.intervention l) where
-  groundedProperty := h.groundedProperty
-  baseline_eq := h.baseline_eq
-  intervention_eq := h.intervention_eq l
+    IsGroundedPropertyRelative M spec F ψ g (J.intervention l) := by
+  rcases h with ⟨ψG, hbase, hinter⟩
+  exact ⟨ψG, hbase, hinter l⟩
 
 /-- Confirmatory grounded PR classification scoped to one frozen family. -/
 def IsGroundedFrozenFamilyPermanssonRegime
