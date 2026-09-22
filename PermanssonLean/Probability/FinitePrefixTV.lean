@@ -114,7 +114,8 @@ instance commonFinitePrefixLaw_isFinite
 
 /-- Kernel composition is monotone simultaneously in both arguments. -/
 theorem kernelComp_mono
-    {κ κ' : Kernel Y Z} {η η' : Kernel Z Y}
+    {X : Type*} [MeasurableSpace X]
+    {κ κ' : Kernel Y Z} {η η' : Kernel Z X}
     [IsSFiniteKernel κ] [IsSFiniteKernel κ']
     [IsSFiniteKernel η] [IsSFiniteKernel η']
     (hκ : κ ≤ κ') (hη : η ≤ η') :
