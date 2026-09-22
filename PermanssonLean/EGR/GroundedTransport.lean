@@ -207,13 +207,14 @@ theorem paperIGroundedPermansson_iff_embeddedGroundedConfirmatoryPR
       (M.paperIConfirmatoryEGR_iff_embeddedConfirmatoryGR spec m).1 h.1,
       (M.paperIConstitutive_iff_embedded spec ψI J B₁).1 h.2,
       ?_⟩
-    exact (M.transportProperty_globallyGrounded spec ψI).relative
+    exact RegimeSpecification.GloballyFactorsThroughRelevanceMap.relative
       M.embeddedModel
       (embeddedSpec (A := A) spec)
       (PaperIPolicyIntervention.transportedFamily M)
       (transportProperty (A := A) ψI)
       (worldRelevanceMap (A := A) spec)
       (J.transportedIntervention M)
+      (M.transportProperty_globallyGrounded spec ψI)
   · intro h
     exact ⟨
       (M.paperIConfirmatoryEGR_iff_embeddedConfirmatoryGR spec m).2 h.1,
@@ -257,13 +258,14 @@ theorem paperIGroundedUniformPermansson_iff_embeddedGroundedUniformPR
       (M.paperIConfirmatoryEGR_iff_embeddedConfirmatoryGR spec m).1 h.1,
       (M.paperIUniformlyConstitutive_iff_embedded spec ψI J B₁).1 h.2,
       ?_⟩
-    exact (M.transportProperty_globallyGrounded spec ψI).relative
+    exact RegimeSpecification.GloballyFactorsThroughRelevanceMap.relative
       M.embeddedModel
       (embeddedSpec (A := A) spec)
       (PaperIPolicyIntervention.transportedFamily M)
       (transportProperty (A := A) ψI)
       (worldRelevanceMap (A := A) spec)
       (J.transportedIntervention M)
+      (M.transportProperty_globallyGrounded spec ψI)
   · intro h
     exact ⟨
       (M.paperIConfirmatoryEGR_iff_embeddedConfirmatoryGR spec m).2 h.1,
