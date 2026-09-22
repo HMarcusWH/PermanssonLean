@@ -232,5 +232,73 @@ theorem commonPartKernel_univ_eq
       rw [commonPartKernel_apply_dominanceSlice,
         commonPartKernel_apply_compl_dominanceSlice]
 
+
+/-- On the RN dominance slice the right probability mass is no larger than the
+left probability mass. -/
+theorem right_le_left_on_dominanceSlice
+    (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde]
+    (y : Y) :
+    Ktilde y (dominanceSlice K Ktilde y) ≤
+      K y (dominanceSlice K Ktilde y) := by
+  rw [← commonPartKernel_apply_dominanceSlice K Ktilde y]
+  exact (commonPartKernel_le_left K Ktilde y)
+    (dominanceSlice K Ktilde y)
+
+/-- Real-valued form of the common-mass decomposition for Markov kernels. -/
+theorem commonPartKernel_real_univ_eq
+    (K Ktilde : Kernel Y Ω) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    (y : Y) :
+    (commonPartKernel K Ktilde y).real Set.univ =
+      (Ktilde y).real (dominanceSlice K Ktilde y) +
+        (K y).real (dominanceSlice K Ktilde y)ᶜ := by
+  have h := congrArg ENNReal.toReal (commonPartKernel_univ_eq K Ktilde y)
+  simpa [Measure.real, ENNReal.toReal_add] using h
+
+/-- The missing mass of the measurable common subkernel is bounded by the
+paper's event-supremum total variation.  This is the one-step bridge needed
+for the finite-prefix propagation proof of Proposition 5.4. -/
+theorem one_sub_commonPartKernel_real_univ_le_eventTotalVariation
+    (K Ktilde : Kernel Y Ω) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    (y : Y) :
+    1 - (commonPartKernel K Ktilde y).real Set.univ ≤
+      eventTotalVariation (K y) (Ktilde y) := by
+  let A := dominanceSlice K Ktilde y
+  have hA : MeasurableSet A := measurableSet_dominanceSlice K Ktilde y
+  have hQ :
+      (commonPartKernel K Ktilde y).real Set.univ =
+        (Ktilde y).real A + (K y).real Aᶜ := by
+    simpa [A] using commonPartKernel_real_univ_eq K Ktilde y
+  have hK :
+      (K y).real A + (K y).real Aᶜ = 1 :=
+    probReal_add_probReal_compl hA
+  have hdomENN :
+      Ktilde y A ≤ K y A := by
+    simpa [A] using right_le_left_on_dominanceSlice K Ktilde y
+  have hdom :
+      (Ktilde y).real A ≤ (K y).real A :=
+    ENNReal.toReal_mono (by finiteness) hdomENN
+  have hdiff : 0 ≤ (K y).real A - (Ktilde y).real A :=
+    sub_nonneg.mpr hdom
+  have hchosen :=
+    abs_measureReal_sub_le_eventTotalVariation
+      (K y) (Ktilde y) hA
+  calc
+    1 - (commonPartKernel K Ktilde y).real Set.univ =
+        (K y).real A - (Ktilde y).real A := by linarith
+    _ = |(K y).real A - (Ktilde y).real A| := by
+      rw [abs_of_nonneg hdiff]
+    _ ≤ eventTotalVariation (K y) (Ktilde y) := hchosen
+
+/-- A uniform one-step TV bound leaves at least `1 - ε` common mass at every
+state. -/
+theorem one_sub_le_commonPartKernel_real_univ_of_uniformTV
+    (K Ktilde : Kernel Y Ω) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hTV : HasUniformEventTVBound K Ktilde ε) (y : Y) :
+    1 - ε ≤ (commonPartKernel K Ktilde y).real Set.univ := by
+  have hmiss :=
+    one_sub_commonPartKernel_real_univ_le_eventTotalVariation K Ktilde y
+  have hstep := hTV y
+  linarith
+
 end ProbabilitySupport
 end PermanssonLean
