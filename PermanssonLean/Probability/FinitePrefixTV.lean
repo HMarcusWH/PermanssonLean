@@ -194,10 +194,11 @@ theorem partialTraj_stationary_mono
           Kernel.partialTraj_succ_of_le
             (X := fun _ : ℕ => Y)
             (κ := fun n => stationaryPrefixKernel K' n) (Nat.zero_le T)]
-      apply kernelMap_mono
+      apply kernelMap_mono (hf := measurable_IicProdIoc)
       apply kernelComp_mono ih
       apply kernelProd_mono le_rfl
       apply kernelMap_mono
+        (hf := (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T).measurable)
       exact stationaryPrefixKernel_mono hK T
 
 /-- Point-started finite-prefix laws inherit pointwise kernel domination. -/
@@ -338,7 +339,7 @@ propagates to the sharp finite-prefix geometric envelope. -/
 theorem finitePrefix_eventTotalVariation_le_geometric
     [MeasurableSpace.CountableOrCountablyGenerated Y Y]
     (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
-    {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
+    {ε : ℝ} (_hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (hTV : HasUniformEventTVBound K Ktilde ε)
     (y : Y) (T : ℕ) :
     eventTotalVariation (finitePrefixLaw K y T) (finitePrefixLaw Ktilde y T)
