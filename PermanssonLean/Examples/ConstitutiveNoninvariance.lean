@@ -183,6 +183,188 @@ theorem exactGR_modelB :
       modelA modelB baseline_inducedKernel_eq regimeSpec referenceMeasure).1
       exactGR_modelA
 
+
+/-- Both model-specific frozen families expose one action-selection component. -/
+def familyA : InterventionFamily modelA Unit where
+  targetOf _ := .actionSelection
+  admissible _ _ := True
+
+def familyB : InterventionFamily modelB Unit where
+  targetOf _ := .actionSelection
+  admissible _ _ := True
+
+/-- The matched diagnostic replacement used in both representations. -/
+def falseReplacement :
+    InterventionReplacement Bool Bool Bool .actionSelection :=
+  ⟨actionFalse, by
+    unfold actionFalse
+    infer_instance⟩
+
+def typedInterventionA : TypedIntervention familyA where
+  component := ()
+  replacement := falseReplacement
+
+def typedInterventionB : TypedIntervention familyB where
+  component := ()
+  replacement := falseReplacement
+
+def interventionA : AdmissibleStrategicIntervention familyA where
+  intervention := typedInterventionA
+  accepted := by trivial
+  strategic := by
+    simp [TypedIntervention.IsStrategic, typedInterventionA, familyA]
+
+def interventionB : AdmissibleStrategicIntervention familyB where
+  intervention := typedInterventionB
+  accepted := by trivial
+  strategic := by
+    simp [TypedIntervention.IsStrategic, typedInterventionB, familyB]
+
+/-- The two model-specific interventions really do install the same action
+kernel at the same typed target. -/
+theorem matched_replacement_kernel :
+    interventionA.intervention.replacement.kernel =
+      interventionB.intervention.replacement.kernel := by
+  rfl
+
+/-- Frozen comparison set: both strategic-memory values with x=false. -/
+def comparisonA :
+    RegimeSpecification.ConstitutiveComparisonSet modelA regimeSpec where
+  states := regimeSpec.basin
+  states_measurable := regimeSpec.basin_measurable
+  states_subset_basin := Set.Subset.rfl
+  pathLawNontrivial := assumption41_modelA.2.2.2
+
+/-- Transport exactly the same comparison-state set across the equal baseline
+induced kernels. -/
+def comparisonB :
+    RegimeSpecification.ConstitutiveComparisonSet modelB regimeSpec :=
+  RegimeSpecification.ConstitutiveComparisonSet.transport
+    modelA modelB baseline_inducedKernel_eq regimeSpec comparisonA
+
+/-- One-step survival in x=false, expressed as a real-valued path-law property. -/
+noncomputable def survivalProperty :
+    RegimePropertyMap (JointState Bool Bool) ℝ :=
+  fun μ => (μ.toMeasure
+    (RegimeSpecification.survivesThroughSet stayFalseSpec 1)).toReal
+
+theorem modelA_oneStep_retention
+    {y : JointState Bool Bool}
+    (hy : y ∈ stayFalseSpec.region) :
+    modelA.inducedKernel y stayFalseSpec.region = 1 := by
+  rw [StrategicWorldModel.inducedKernel_apply
+    modelA y stayFalseSpec.region_measurable]
+  rcases y with ⟨s, x⟩
+  simp [stayFalseSpec] at hy
+  subst x
+  cases s <;>
+    simp [modelA, generatorA, actionFalse, updatePreserve, worldA,
+      stayFalseSpec, Kernel.deterministic_apply]
+
+theorem modelB_oneStep_retention
+    {y : JointState Bool Bool}
+    (hy : y ∈ stayFalseSpec.region) :
+    modelB.inducedKernel y stayFalseSpec.region = 1 := by
+  rw [← baseline_inducedKernel_eq]
+  exact modelA_oneStep_retention hy
+
+theorem interventionA_apply_eq_modelA :
+    interventionA.intervention.apply = modelA := by
+  simp [interventionA, typedInterventionA, falseReplacement,
+    familyA, TypedIntervention.apply, applyReplacement,
+    modelA, generatorA]
+
+theorem interventionB_oneStep_exit
+    {y : JointState Bool Bool}
+    (hy : y ∈ stayFalseSpec.region) :
+    interventionB.intervention.apply.inducedKernel y stayFalseSpec.region = 0 := by
+  rw [StrategicWorldModel.inducedKernel_apply
+    interventionB.intervention.apply y stayFalseSpec.region_measurable]
+  rcases y with ⟨s, x⟩
+  simp [stayFalseSpec] at hy
+  subst x
+  cases s <;>
+    simp [interventionB, typedInterventionB, falseReplacement, familyB,
+      TypedIntervention.apply, applyReplacement,
+      modelB, generatorB, actionFalse, actionTrue, updatePreserve, worldB,
+      stayFalseSpec, Kernel.deterministic_apply]
+
+theorem modelA_survival_one
+    {y : JointState Bool Bool}
+    (hy : y ∈ stayFalseSpec.region) :
+    RegimeSpecification.survivalProbability modelA stayFalseSpec y 1 = 1 := by
+  rw [RegimeSpecification.survivalProbability_eq_killedSurvivalMass
+      modelA stayFalseSpec 1 hy,
+    RegimeSpecification.killedSurvivalMass_one]
+  exact modelA_oneStep_retention hy
+
+theorem modelB_survival_one
+    {y : JointState Bool Bool}
+    (hy : y ∈ stayFalseSpec.region) :
+    RegimeSpecification.survivalProbability modelB stayFalseSpec y 1 = 1 := by
+  rw [RegimeSpecification.survivalProbability_eq_killedSurvivalMass
+      modelB stayFalseSpec 1 hy,
+    RegimeSpecification.killedSurvivalMass_one]
+  exact modelB_oneStep_retention hy
+
+theorem interventionA_survival_one
+    {y : JointState Bool Bool}
+    (hy : y ∈ stayFalseSpec.region) :
+    RegimeSpecification.survivalProbability
+      interventionA.intervention.apply stayFalseSpec y 1 = 1 := by
+  rw [interventionA_apply_eq_modelA]
+  exact modelA_survival_one hy
+
+theorem interventionB_survival_zero
+    {y : JointState Bool Bool}
+    (hy : y ∈ stayFalseSpec.region) :
+    RegimeSpecification.survivalProbability
+      interventionB.intervention.apply stayFalseSpec y 1 = 0 := by
+  rw [RegimeSpecification.survivalProbability_eq_killedSurvivalMass
+      interventionB.intervention.apply stayFalseSpec 1 hy,
+    RegimeSpecification.killedSurvivalMass_one]
+  exact interventionB_oneStep_exit hy
+
+theorem baselinePropertyValue_modelA_eq_one
+    {y : JointState Bool Bool}
+    (hy : y ∈ stayFalseSpec.region) :
+    RegimeSpecification.baselinePropertyValue survivalProperty modelA y = 1 := by
+  change
+    (RegimeSpecification.survivalProbability modelA stayFalseSpec y 1).toReal = 1
+  rw [modelA_survival_one hy]
+  simp
+
+theorem baselinePropertyValue_modelB_eq_one
+    {y : JointState Bool Bool}
+    (hy : y ∈ stayFalseSpec.region) :
+    RegimeSpecification.baselinePropertyValue survivalProperty modelB y = 1 := by
+  change
+    (RegimeSpecification.survivalProbability modelB stayFalseSpec y 1).toReal = 1
+  rw [modelB_survival_one hy]
+  simp
+
+theorem intervenedPropertyValue_modelA_eq_one
+    {y : JointState Bool Bool}
+    (hy : y ∈ stayFalseSpec.region) :
+    RegimeSpecification.intervenedPropertyValue
+      survivalProperty interventionA.intervention y = 1 := by
+  change
+    (RegimeSpecification.survivalProbability
+      interventionA.intervention.apply stayFalseSpec y 1).toReal = 1
+  rw [interventionA_survival_one hy]
+  simp
+
+theorem intervenedPropertyValue_modelB_eq_zero
+    {y : JointState Bool Bool}
+    (hy : y ∈ stayFalseSpec.region) :
+    RegimeSpecification.intervenedPropertyValue
+      survivalProperty interventionB.intervention y = 0 := by
+  change
+    (RegimeSpecification.survivalProbability
+      interventionB.intervention.apply stayFalseSpec y 1).toReal = 0
+  rw [interventionB_survival_zero hy]
+  simp
+
 end
 
 end Section7ConstitutiveNoninvariance
