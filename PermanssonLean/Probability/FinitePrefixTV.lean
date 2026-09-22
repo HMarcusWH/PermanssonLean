@@ -72,6 +72,12 @@ instance stationaryPrefixKernel_isMarkov
   unfold stationaryPrefixKernel
   infer_instance
 
+instance stationaryPrefixKernel_isSFinite
+    (K : Kernel Y Y) [IsSFiniteKernel K] (n : ℕ) :
+    IsSFiniteKernel (stationaryPrefixKernel K n) := by
+  unfold stationaryPrefixKernel
+  infer_instance
+
 instance stationaryPrefixKernel_isFinite
     (K : Kernel Y Y) [IsFiniteKernel K] (n : ℕ) :
     IsFiniteKernel (stationaryPrefixKernel K n) := by
@@ -114,7 +120,8 @@ instance commonFinitePrefixLaw_isFinite
 
 /-- Kernel composition is monotone simultaneously in both arguments. -/
 theorem kernelComp_mono
-    {κ κ' : Kernel Y Z} {η η' : Kernel Z Y}
+    {X : Type*} [MeasurableSpace X]
+    {κ κ' : Kernel Y Z} {η η' : Kernel Z X}
     [IsSFiniteKernel κ] [IsSFiniteKernel κ']
     [IsSFiniteKernel η] [IsSFiniteKernel η']
     (hκ : κ ≤ κ') (hη : η ≤ η') :
@@ -133,6 +140,291 @@ theorem measureMap_mono
     {f : Y → Z} (hf : Measurable f) :
     μ.map f ≤ ν.map f :=
   Measure.map_mono_of_aemeasurable hμν hf.aemeasurable
+
+
+universe uW
+
+variable {W : Type uW} [MeasurableSpace W]
+
+/-- Measurable pushforward is monotone in the source kernel. -/
+theorem kernelMap_mono
+    {κ κ' : Kernel Y Z}
+    [IsSFiniteKernel κ] [IsSFiniteKernel κ']
+    (hκ : κ ≤ κ') {f : Z → W} (hf : Measurable f) :
+    κ.map f ≤ κ'.map f := by
+  intro y
+  rw [Kernel.map_apply _ hf, Kernel.map_apply _ hf]
+  exact Measure.map_mono_of_aemeasurable (hκ y) hf.aemeasurable
+
+/-- Product of s-finite kernels is monotone in both factors. -/
+theorem kernelProd_mono
+    {κ κ' : Kernel Y Z} {η η' : Kernel Y W}
+    [IsSFiniteKernel κ] [IsSFiniteKernel κ']
+    [IsSFiniteKernel η] [IsSFiniteKernel η']
+    (hκ : κ ≤ κ') (hη : η ≤ η') :
+    κ ×ₖ η ≤ κ' ×ₖ η' := by
+  intro y
+  rw [Kernel.prod_apply κ η y, Kernel.prod_apply κ' η' y]
+  exact Measure.prod_mono (hκ y) (hη y)
+
+/-- Lifting a stationary kernel to history space preserves pointwise domination. -/
+theorem stationaryPrefixKernel_mono
+    {K K' : Kernel Y Y} (hK : K ≤ K') (n : ℕ) :
+    stationaryPrefixKernel K n ≤ stationaryPrefixKernel K' n := by
+  intro h
+  exact hK _
+
+/-- Finite stationary trajectory kernels preserve pointwise kernel domination. -/
+theorem partialTraj_stationary_mono
+    {K K' : Kernel Y Y}
+    [IsSFiniteKernel K] [IsSFiniteKernel K']
+    (hK : K ≤ K') (T : ℕ) :
+    Kernel.partialTraj (X := fun _ : ℕ => Y)
+        (fun n => stationaryPrefixKernel K n) 0 T
+      ≤
+    Kernel.partialTraj (X := fun _ : ℕ => Y)
+        (fun n => stationaryPrefixKernel K' n) 0 T := by
+  induction T with
+  | zero =>
+      simp
+  | succ T ih =>
+      rw [Kernel.partialTraj_succ_of_le
+            (X := fun _ : ℕ => Y)
+            (κ := fun n => stationaryPrefixKernel K n) (Nat.zero_le T),
+          Kernel.partialTraj_succ_of_le
+            (X := fun _ : ℕ => Y)
+            (κ := fun n => stationaryPrefixKernel K' n) (Nat.zero_le T)]
+      apply kernelMap_mono (hf := measurable_IicProdIoc)
+      apply kernelComp_mono ih
+      apply kernelProd_mono le_rfl
+      apply kernelMap_mono
+        (hf := (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T).measurable)
+      exact stationaryPrefixKernel_mono hK T
+
+/-- Point-started finite-prefix laws inherit pointwise kernel domination. -/
+theorem finitePrefixLaw_mono
+    {K K' : Kernel Y Y}
+    [IsSFiniteKernel K] [IsSFiniteKernel K']
+    (hK : K ≤ K') (y : Y) (T : ℕ) :
+    finitePrefixLaw K y T ≤ finitePrefixLaw K' y T := by
+  exact partialTraj_stationary_mono hK T (singletonPrefix y)
+
+/-- The common finite-prefix law is a submeasure of the left prefix law. -/
+theorem commonFinitePrefixLaw_le_left
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    (y : Y) (T : ℕ) :
+    commonFinitePrefixLaw K Ktilde y T ≤ finitePrefixLaw K y T := by
+  unfold commonFinitePrefixLaw
+  exact finitePrefixLaw_mono (commonPartKernel_le_left K Ktilde) y T
+
+/-- The common finite-prefix law is a submeasure of the right prefix law. -/
+theorem commonFinitePrefixLaw_le_right
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    (y : Y) (T : ℕ) :
+    commonFinitePrefixLaw K Ktilde y T ≤ finitePrefixLaw Ktilde y T := by
+  unfold commonFinitePrefixLaw
+  exact finitePrefixLaw_mono (commonPartKernel_le_right K Ktilde) y T
+
+
+/-- Mapping a s-finite kernel does not change its total mass. -/
+theorem kernelMap_apply_univ
+    {κ : Kernel Y Z} [IsSFiniteKernel κ]
+    {f : Z → W} (hf : Measurable f) (y : Y) :
+    (κ.map f) y Set.univ = κ y Set.univ := by
+  rw [Kernel.map_apply _ hf, Measure.map_apply hf MeasurableSet.univ, preimage_univ]
+
+/-- A single stationary finite-history extension has exactly the total mass of
+the underlying one-step kernel at the latest state. -/
+theorem partialTraj_stationary_succ_univ
+    (Q : Kernel Y Y) [IsSFiniteKernel Q]
+    (T : ℕ) (h : (i : Finset.Iic T) → Y) :
+    Kernel.partialTraj (X := fun _ : ℕ => Y)
+        (fun n => stationaryPrefixKernel Q n) T (T + 1) h Set.univ
+      =
+    Q (h ⟨T, Finset.mem_Iic.mpr le_rfl⟩) Set.univ := by
+  rw [Kernel.partialTraj_succ_self, Kernel.map_apply, Kernel.prod_apply, Kernel.map_apply]
+  · change
+      (Measure.map (IicProdIoc (X := fun _ : ℕ => Y) T (T + 1))
+        ((Kernel.id h).prod
+          (Measure.map
+            (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T)
+            ((stationaryPrefixKernel Q T) h)))) Set.univ
+        =
+      Q (h ⟨T, Finset.mem_Iic.mpr le_rfl⟩) Set.univ
+    rw [Measure.map_apply
+          (measurable_IicProdIoc (X := fun _ : ℕ => Y))
+          MeasurableSet.univ, preimage_univ]
+    rw [← Set.univ_prod_univ, Measure.prod_prod]
+    rw [Measure.map_apply
+          (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T).measurable
+          MeasurableSet.univ, preimage_univ]
+    simp [Kernel.id_apply, stationaryPrefixKernel]
+  all_goals
+    try exact measurable_IicProdIoc
+    try exact (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T).measurable
+
+/-- If every one-step kernel retains at least mass `q`, each finite-prefix
+extension retains at least a factor `q` of the preceding prefix mass. -/
+theorem finitePrefixLaw_univ_succ_lower
+    (Q : Kernel Y Y) [IsFiniteKernel Q]
+    {q : ℝ≥0∞} (hq : ∀ z, q ≤ Q z Set.univ)
+    (y : Y) (T : ℕ) :
+    q * finitePrefixLaw Q y T Set.univ ≤
+      finitePrefixLaw Q y (T + 1) Set.univ := by
+  unfold finitePrefixLaw
+  rw [Kernel.partialTraj_succ_eq_comp
+        (X := fun _ : ℕ => Y)
+        (κ := fun n => stationaryPrefixKernel Q n) (Nat.zero_le T)]
+  rw [Kernel.comp_apply' _ _ _ MeasurableSet.univ]
+  rw [← MeasureTheory.lintegral_const q]
+  apply lintegral_mono
+  intro h
+  change q ≤
+    Kernel.partialTraj (X := fun _ : ℕ => Y)
+      (fun n => stationaryPrefixKernel Q n) T (T + 1) h Set.univ
+  rw [partialTraj_stationary_succ_univ]
+  exact hq _
+
+/-- Uniform one-step retained mass propagates multiplicatively over `T`
+transitions. -/
+theorem finitePrefixLaw_univ_ge_pow
+    (Q : Kernel Y Y) [IsFiniteKernel Q]
+    {q : ℝ≥0∞} (hq : ∀ z, q ≤ Q z Set.univ)
+    (y : Y) (T : ℕ) :
+    q ^ T ≤ finitePrefixLaw Q y T Set.univ := by
+  induction T with
+  | zero =>
+      simp [finitePrefixLaw]
+  | succ T ih =>
+      calc
+        q ^ (T + 1) = q * q ^ T := by rw [pow_succ']
+        _ ≤ q * finitePrefixLaw Q y T Set.univ := by gcongr
+        _ ≤ finitePrefixLaw Q y (T + 1) Set.univ :=
+          finitePrefixLaw_univ_succ_lower Q hq y T
+
+
+/-- Uniform one-step event-TV control yields an `ℝ≥0∞` lower bound on the
+common-part mass. -/
+theorem commonPartKernel_univ_ge_of_uniformTV
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hTV : HasUniformEventTVBound K Ktilde ε) (z : Y) :
+    ENNReal.ofReal (1 - ε) ≤ commonPartKernel K Ktilde z Set.univ := by
+  rw [ENNReal.ofReal_le_iff_le_toReal (by finiteness)]
+  simpa [Measure.real] using
+    one_sub_le_commonPartKernel_real_univ_of_uniformTV K Ktilde hTV z
+
+/-- The common finite-prefix submeasure retains at least the geometric product
+of the one-step common-mass lower bound. -/
+theorem commonFinitePrefixLaw_univ_ge_pow
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) (T : ℕ) :
+    ENNReal.ofReal (1 - ε) ^ T ≤
+      commonFinitePrefixLaw K Ktilde y T Set.univ := by
+  unfold commonFinitePrefixLaw
+  apply finitePrefixLaw_univ_ge_pow
+  intro z
+  exact commonPartKernel_univ_ge_of_uniformTV K Ktilde hTV z
+
+/-- Real-valued retained-mass form of the geometric common-prefix estimate. -/
+theorem commonFinitePrefixLaw_real_univ_ge_pow
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hε1 : ε ≤ 1) (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) (T : ℕ) :
+    (1 - ε) ^ T ≤
+      (commonFinitePrefixLaw K Ktilde y T).real Set.univ := by
+  have hbase : 0 ≤ 1 - ε := by linarith
+  have hmass :=
+    commonFinitePrefixLaw_univ_ge_pow K Ktilde hTV y T
+  have hmass' :
+      ENNReal.ofReal ((1 - ε) ^ T) ≤
+        commonFinitePrefixLaw K Ktilde y T Set.univ := by
+    simpa [ENNReal.ofReal_pow hbase T] using hmass
+  rw [ENNReal.ofReal_le_iff_le_toReal (by finiteness)] at hmass'
+  simpa [Measure.real] using hmass'
+
+/-- First inequality of Proposition 5.4: a uniform one-step event-TV bound
+propagates to the sharp finite-prefix geometric envelope. -/
+theorem finitePrefix_eventTotalVariation_le_geometric
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (_hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
+    (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) (T : ℕ) :
+    eventTotalVariation (finitePrefixLaw K y T) (finitePrefixLaw Ktilde y T)
+      ≤ geometricTVEnvelope ε T := by
+  have hcommon :=
+    eventTotalVariation_le_one_sub_commonMass
+      (μ := finitePrefixLaw K y T)
+      (ν := finitePrefixLaw Ktilde y T)
+      (ξ := commonFinitePrefixLaw K Ktilde y T)
+      (commonFinitePrefixLaw_le_left K Ktilde y T)
+      (commonFinitePrefixLaw_le_right K Ktilde y T)
+  have hmass :=
+    commonFinitePrefixLaw_real_univ_ge_pow K Ktilde hε1 hTV y T
+  unfold geometricTVEnvelope
+  linarith
+
+/-- Linear corollary of the geometric finite-prefix bound. -/
+theorem finitePrefix_eventTotalVariation_le_linear
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
+    (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) (T : ℕ) :
+    eventTotalVariation (finitePrefixLaw K y T) (finitePrefixLaw Ktilde y T)
+      ≤ (T : ℝ) * ε := by
+  exact (finitePrefix_eventTotalVariation_le_geometric
+    K Ktilde hε0 hε1 hTV y T).trans
+      (geometricTVEnvelope_le_linear hε0 hε1 T)
+
+/-- Proposition 5.4 in the paper's event-supremum TV convention, for the same
+point initial state and `T` transitions. -/
+theorem proposition_5_4
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
+    (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) (T : ℕ) :
+    eventTotalVariation (finitePrefixLaw K y T) (finitePrefixLaw Ktilde y T)
+        ≤ geometricTVEnvelope ε T
+      ∧ geometricTVEnvelope ε T ≤ (T : ℝ) * ε := by
+  exact ⟨finitePrefix_eventTotalVariation_le_geometric
+      K Ktilde hε0 hε1 hTV y T,
+    geometricTVEnvelope_le_linear hε0 hε1 T⟩
+
+/-- At horizon zero both point-started prefix laws are the same Dirac law. -/
+theorem finitePrefixLaw_zero_eq
+    (K Ktilde : Kernel Y Y) (y : Y) :
+    finitePrefixLaw K y 0 = finitePrefixLaw Ktilde y 0 := by
+  simp [finitePrefixLaw]
+
+/-- Off-by-one regression check: zero transitions have zero TV distance. -/
+@[simp] theorem finitePrefix_eventTotalVariation_zero
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    (y : Y) :
+    eventTotalVariation (finitePrefixLaw K y 0) (finitePrefixLaw Ktilde y 0) = 0 := by
+  rw [finitePrefixLaw_zero_eq K Ktilde y]
+  exact eventTotalVariation_self _
+
+/-- Off-by-one regression check: one transition costs at most the one-step
+uniform TV budget. -/
+theorem finitePrefix_eventTotalVariation_one_le
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
+    (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) :
+    eventTotalVariation (finitePrefixLaw K y 1) (finitePrefixLaw Ktilde y 1)
+      ≤ ε := by
+  simpa using
+    finitePrefix_eventTotalVariation_le_geometric
+      K Ktilde hε0 hε1 hTV y 1
 
 end ProbabilitySupport
 end PermanssonLean

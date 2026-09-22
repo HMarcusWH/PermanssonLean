@@ -42,7 +42,7 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 6 | Typed interventions | `InterventionReplacement`, `InterventionFamily`, `TypedIntervention`, `applyReplacement` | PROVED |
 | 7 | PR constitution | `RegimePropertyMap`, `ConstitutiveComparisonSet`, `IsStrategicallyConstitutive`, `IsGeneralizedPermanssonRegime` | PROVED |
 | 8 | Uniform constitutive margin / perturbation robustness | `constitutiveEffect`, `constitutiveMargin`, `IsUniformlyStrategicallyConstitutive`, `constitutiveMargin_perturbation_abs_le`, `robustUniformConstitution` | PROVED |
-| 8b | Finite-horizon kernel-to-path TV envelope (Prop. 5.4) | `eventTotalVariation`, `HasUniformEventTVBound`, `geometricTVEnvelope`; path-propagation theorem pending | SCAFFOLDED |
+| 8b | Finite-horizon kernel-to-path TV envelope (Prop. 5.4) | `eventTotalVariation`, `HasUniformEventTVBound`, `finitePrefixLaw`, `commonFinitePrefixLaw`, `finitePrefix_eventTotalVariation_le_geometric`, `finitePrefix_eventTotalVariation_le_linear`, `proposition_5_4` | PROVED |
 | 9 | Intervention-family signatures / representation equivalence | `FrozenStrategicInterventionFamily`, `InterventionKernelSignature`, `exactGR_iff_of_inducedKernel_eq`, `frozenFamilyPR_iff_of_signature_match` | PROVED |
 | 9a | Factorization non-identification (Thm. 7.2) | `factorization_nonidentification` | PROVED |
 | 9b | Constitutive non-invariance under baseline equivalence (Thm. 7.3) | `constitutive_noninvariance_under_baseline_equivalence`, `interventionB_constitutiveMargin_eq_one` | PROVED |
@@ -234,13 +234,18 @@ constitution semantics without changing the GR/PR definitions themselves:
   with positivity of the perturbed constitutive margin, while deliberately not
   claiming that the approximate profile itself is a new GR.
 
-Proposition 5.4 is now SCAFFOLDED at the probability-support layer.
+Proposition 5.4 is now PROVED at the probability-support layer.
 `eventTotalVariation` freezes the paper's event-supremum convention
 `sup_A |μ(A)-ν(A)|`, `HasUniformEventTVBound` freezes the uniform one-step
-kernel hypothesis, and `geometricTVEnvelope_le_linear` proves the arithmetic half
-`1-(1-ε)^T ≤ Tε`.  The substantive kernel-to-finite-prefix propagation inequality
-`TV(P_y^{0:T}, Ptilde_y^{0:T}) ≤ 1-(1-ε)^T` remains OPEN and must be supplied by a
-later measurable-coupling/path-perturbation theorem.
+kernel hypothesis, and `finitePrefixLaw` gives the point-started law through
+`T` transitions.  The measurable common-part kernel is propagated through finite
+prefixes, its retained mass is bounded below by `(1-ε)^T`, and
+`finitePrefix_eventTotalVariation_le_geometric` proves
+`TV(P_y^{0:T}, Ptilde_y^{0:T}) ≤ 1-(1-ε)^T`.
+`finitePrefix_eventTotalVariation_le_linear` and `proposition_5_4` close the
+paper's full chain `TV ≤ 1-(1-ε)^T ≤ Tε`, with explicit horizon-zero and
+horizon-one regression checks.  The theorem exposes the countably-generated
+measurability assumption used by the Radon--Nikodym common-part construction.
 
 ## Eighth proof milestone — intervention-family signatures and representation equivalence
 
@@ -297,9 +302,7 @@ formalized later in Layer 11b.  This milestone still does not identify frozen-fa
 equivalence with equivalence over every admissible intervention in `InterventionFamily`.
 
 The next dependency boundary is the type-respecting quotient preservation theorem
-(Theorem 7.4b). Proposition 5.4's finite-horizon TV envelope remains an independent
-open quantitative-support lane, with EGR compatibility, grounded confirmatory
-refinements, and QSDs still later.
+(Theorem 7.4b). Proposition 5.4's finite-horizon TV envelope is now closed in Layer 8b; EGR compatibility, grounded confirmatory refinements, and QSDs were tracked separately.
 
 
 ## Ninth proof milestone — type-respecting intervention-compatible quotients
@@ -339,11 +342,9 @@ strategic/world type split preserved explicitly.
 
 The theorem remains deliberately scoped to the explicitly frozen intervention family.
 Grounded (g)-relative confirmatory preservation is now formalized later in Layer 11b.
-Proposition 5.4's finite-horizon kernel-to-path TV envelope remains an independent open
-quantitative-support lane.
+Proposition 5.4's finite-horizon kernel-to-path TV envelope is now closed in Layer 8b.
 
-The next main dependency boundary is the EGR-to-GR embedding/compatibility layer,
-unless the grounded confirmatory or finite-horizon TV support lanes are prioritized first.
+The next main dependency boundary at this point in the historical build was the EGR-to-GR embedding/compatibility layer.
 
 
 ## Tenth proof milestone — Paper-I EGR embedding and conservative recovery
@@ -392,12 +393,9 @@ as an upstream certificate. It does not claim a new MPE existence theorem.
 Two Section-6 refinements remain separate rather than silently folded into Layer 11:
 the explicit recorded-action decode branch for Paper-I properties that depend on
 realized actions, and grounded (g)-relative confirmatory transport. Those are tracked
-as Layer 11b. Proposition 5.4's finite-horizon TV envelope, BL metrization, and QSD
-support also remain open independent lanes.
+as Layer 11b. Proposition 5.4's finite-horizon TV envelope is now closed in Layer 8b; BL metrization and QSD support remain independent lanes.
 
-The grounded confirmatory layer is formalized in the next milestone.  The remaining
-Section-6 refinement is explicit recorded-action decoding; Layer 8b and Layer 4a
-remain independent quantitative/topological support work.
+The grounded confirmatory layer is formalized in the next milestone.  The remaining Section-6 refinement was explicit recorded-action decoding; Layer 8b is now closed, while Layer 4a remains independent topological support work.
 
 
 ## Eleventh proof milestone — grounded confirmatory semantics and preservation
@@ -448,7 +446,7 @@ The grounded layer remains intentionally separate from the broad
 `IsGeneralizedPermanssonRegime`; no relevance restriction has been retrofitted
 onto the general class.
 
-The explicit recorded-action decode branch is formalized in the next milestone. Proposition 5.4's finite-horizon kernel-to-path TV envelope, Proposition 4.1a's Polish/BL metrization result, and the optional QSD subclass remain independent open lanes.
+The explicit recorded-action decode branch is formalized in the next milestone. Proposition 5.4's finite-horizon kernel-to-path TV envelope is now closed in Layer 8b; Proposition 4.1a's Polish/BL metrization result and the optional QSD subclass remain independent open lanes.
 
 
 ## Twelfth proof milestone — recorded-action decoding and action-sensitive Paper-I recovery
@@ -506,6 +504,4 @@ separate theorem identifying malformed/off-support decoded action paths with an
 independently reconstructed policy-action process.
 
 With both the world-only and recorded-action branches checked, the Section-6
-conservative transport architecture is closed.  The remaining main paper-support lanes
-are Proposition 5.4's finite-horizon TV envelope, Proposition 4.1a's Polish/BL
-metrization theorem, and the optional QSD subclass.
+conservative transport architecture is closed. Proposition 5.4's finite-horizon TV envelope is also now closed. The remaining main paper-support lanes are Proposition 4.1a's Polish/BL metrization theorem and the optional QSD subclass.
