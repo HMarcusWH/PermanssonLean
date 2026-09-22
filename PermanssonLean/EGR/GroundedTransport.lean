@@ -129,11 +129,27 @@ theorem embedded_descriptorLaw_eq_paperI
         (M.embeddedModel.pathLaw
           (diracProba (initialEmbedding (X := X) (A := A) x)).toMeasure).map
           (fun w => spec.descriptor ((w t).2)) := by
-    rw [Measure.map_map
-      (spec.descriptor_measurable.comp (measurable_pi_apply t))
-      (worldPathProjection_measurable
-        (X := X) (S := PaperIStrategicState A))]
-    rfl
+    calc
+      ((M.embeddedModel.pathLaw
+        (diracProba (initialEmbedding (X := X) (A := A) x)).toMeasure).map
+          (worldPathProjection
+            (X := X) (S := PaperIStrategicState A))).map
+          (fun w => spec.descriptor (w t)) =
+        (M.embeddedModel.pathLaw
+          (diracProba (initialEmbedding (X := X) (A := A) x)).toMeasure).map
+          ((fun w => spec.descriptor (w t)) ∘
+            worldPathProjection
+              (X := X) (S := PaperIStrategicState A)) := by
+            exact Measure.map_map
+              (spec.descriptor_measurable.comp (measurable_pi_apply t))
+              (worldPathProjection_measurable
+                (X := X) (S := PaperIStrategicState A))
+      _ = (M.embeddedModel.pathLaw
+          (diracProba (initialEmbedding (X := X) (A := A) x)).toMeasure).map
+          (fun w => spec.descriptor ((w t).2)) := by
+            apply Measure.map_congr
+            filter_upwards [] with w
+            rfl
   exact hcomp.symm.trans hprojMap
 
 theorem paperIDescriptorNondegenerate_iff_embedded
