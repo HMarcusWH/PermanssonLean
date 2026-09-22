@@ -404,8 +404,7 @@ theorem survivingEndpointMeasureFromLaw_univ
     survivingEndpointMeasureFromLaw M spec initLaw n Set.univ =
       survivalProbabilityFromLaw M spec initLaw n := by
   rw [survivingEndpointMeasureFromLaw, survivalProbabilityFromLaw,
-    Measure.map_apply (measurable_pi_apply n) MeasurableSet.univ,
-    Measure.restrict_apply MeasurableSet.univ]
+    Measure.map_apply (measurable_pi_apply n) MeasurableSet.univ]
   simp
 
 
