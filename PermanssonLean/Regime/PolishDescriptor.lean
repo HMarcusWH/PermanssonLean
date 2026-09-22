@@ -20,7 +20,8 @@ variable {H : Type uH}
 
 /-- A compatible metric can always be truncated at one without changing the
 underlying topology. This is the metric-level content used in Proposition 4.1a. -/
-@[instance_reducible]\nnoncomputable def boundedCompatibleMetric
+@[instance_reducible]
+noncomputable def boundedCompatibleMetric
     (H : Type uH) [TopologicalSpace H] [TopologicalSpace.MetrizableSpace H] :
     MetricSpace H := by
   letI : MetricSpace H := TopologicalSpace.metrizableSpaceMetric H
