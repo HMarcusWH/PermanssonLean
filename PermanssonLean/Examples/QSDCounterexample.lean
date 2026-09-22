@@ -109,7 +109,8 @@ theorem qsdLaw_eigen :
   ext E hE
   rw [Measure.bind_apply hE (Kernel.aemeasurable _), lintegral_dirac]
   rw [killedKernel_apply model spec ((), (0 : X)) hE, zero_transition]
-  simp [zero_mem_region, hE, Measure.smul_apply]
+  by_cases hmem : ((), (0 : X)) ∈ E <;>
+    simp [hmem, zero_mem_region]
 
 theorem qsd_exists :
     IsQuasiStationaryDistribution model spec qsdLaw 1 := by
