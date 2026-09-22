@@ -205,6 +205,75 @@ theorem pathLaw_dirac_eq_dirac_orbit (y : Y) :
   exact (StrategicWorldModel.pathLaw_existsUnique model (Measure.dirac y)).unique
     (Measure.dirac (orbit y)) (diracOrbit_pathSpec y)
 
+
+theorem measurable_orbit : Measurable orbit :=
+  Measurable.of_discrete _
+
+theorem stationaryHistoryKernel_eq_deterministic (n : ℕ) :
+    StrategicWorldModel.stationaryHistoryKernel model.inducedKernel n =
+      Kernel.deterministic
+        (fun h : (i : Finset.Iic n) → Y =>
+          step (h ⟨n, Finset.mem_Iic.mpr le_rfl⟩))
+        (by fun_prop) := by
+  ext h E hE
+  rw [StrategicWorldModel.stationaryHistoryKernel, Kernel.comap_apply]
+  rw [inducedKernel_eq_dirac_step]
+  rw [Kernel.deterministic_apply]
+  rfl
+
+/-- For an arbitrary initial probability law, deterministic dynamics push the
+initial law forward along the measurable alternating-orbit map. -/
+noncomputable def orbitLaw (initLaw : ProbabilityMeasure Y) :
+    Measure (ℕ → Y) :=
+  initLaw.toMeasure.map orbit
+
+instance orbitLaw_isProbability (initLaw : ProbabilityMeasure Y) :
+    IsProbabilityMeasure (orbitLaw initLaw) := by
+  unfold orbitLaw
+  infer_instance
+
+theorem orbitLaw_initialPrefix (initLaw : ProbabilityMeasure Y) :
+    (orbitLaw initLaw).map (Preorder.frestrictLe 0) =
+      initLaw.toMeasure.map
+        (MeasurableEquiv.piUnique (fun _ : Finset.Iic 0 => Y)).symm := by
+  unfold orbitLaw
+  rw [Measure.map_map (by fun_prop) measurable_orbit]
+  apply Measure.map_congr
+  filter_upwards [] with y
+  funext i
+  have hi : i.1 = 0 := by
+    exact Nat.eq_zero_of_le_zero (Finset.mem_Iic.mp i.2)
+  subst i
+  rfl
+
+theorem orbitLaw_hasTransitionPair (initLaw : ProbabilityMeasure Y) :
+    StrategicWorldModel.HasTransitionPair
+      (orbitLaw initLaw) model.inducedKernel := by
+  intro n
+  rw [stationaryHistoryKernel_eq_deterministic n]
+  rw [Measure.compProd_deterministic]
+  unfold orbitLaw
+  rw [Measure.map_map (by fun_prop) measurable_orbit]
+  rw [Measure.map_map (by fun_prop) measurable_orbit]
+  rw [Measure.map_map (by fun_prop) (by fun_prop)]
+  apply Measure.map_congr
+  filter_upwards [] with y
+  simp only [Function.comp_apply]
+  congr
+  exact orbit_succ y n
+
+theorem orbitLaw_pathSpec (initLaw : ProbabilityMeasure Y) :
+    StrategicWorldModel.MarkovPathLawSpec model initLaw.toMeasure
+      (orbitLaw initLaw) := by
+  exact ⟨inferInstance, orbitLaw_initialPrefix initLaw,
+    orbitLaw_hasTransitionPair initLaw⟩
+
+theorem pathLaw_eq_orbitLaw (initLaw : ProbabilityMeasure Y) :
+    model.pathLaw initLaw.toMeasure = orbitLaw initLaw := by
+  exact
+    (StrategicWorldModel.pathLaw_existsUnique model initLaw.toMeasure).unique
+      (orbitLaw initLaw) (orbitLaw_pathSpec initLaw)
+
 end
 
 end PeriodicExactGR
