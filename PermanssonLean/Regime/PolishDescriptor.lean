@@ -190,5 +190,77 @@ theorem natDiracProba_no_weak_limit :
   apply natDirac_not_tight
   simpa [diracProba] using htight
 
+
+/-- Sequence-level bounded-Lipschitz criterion used by the paper's occupation
+laws.  We formulate the metrization content extensionally: the weak topology is
+metrizable, and convergence in that topology is exactly characterized by
+bounded Lipschitz test-function integrals. -/
+def HasBoundedLipschitzWeakCriterion
+    (H : Type uH) [TopologicalSpace H] [PolishSpace H]
+    [MeasurableSpace H] [BorelSpace H] : Prop :=
+  letI : MetricSpace H := boundedCompatibleMetric H
+  ∀ {μs : ℕ → ProbabilityMeasure H} {μ : ProbabilityMeasure H},
+    Tendsto μs atTop (𝓝 μ) ↔
+      ∀ f : H → ℝ,
+        (∃ C : ℝ, ∀ x y, dist (f x) (f y) ≤ C) →
+        (∃ L, LipschitzWith L f) →
+        Tendsto
+          (fun n => ∫ x, f x ∂(μs n))
+          atTop
+          (𝓝 (∫ x, f x ∂μ))
+
+theorem hasBoundedLipschitzWeakCriterion
+    (H : Type uH) [TopologicalSpace H] [PolishSpace H]
+    [MeasurableSpace H] [BorelSpace H] :
+    HasBoundedLipschitzWeakCriterion H := by
+  unfold HasBoundedLipschitzWeakCriterion
+  intro μs μ
+  exact
+    weakConvergence_iff_boundedLipschitzIntegrals
+      (I := ℕ) (F := atTop) (μs := μs) (μ := μ)
+
+/-- Machine-checkable certificate collecting the mathematical content of
+Proposition 4.1a.  The standard Fortet--Mourier sup formula is not reified as a
+separate distance object; instead the metrization claim is represented by a
+compatible metric on probability measures together with the exact
+bounded-Lipschitz convergence criterion above. -/
+structure Proposition41aCertificate
+    (H : Type uH) [TopologicalSpace H] [PolishSpace H]
+    [MeasurableSpace H] [BorelSpace H] : Prop where
+  boundedDescriptorMetric :
+    ∀ x y : H, @dist H (boundedCompatibleMetric H).toDist x y ≤ 1
+  weakProbabilityMetrizable :
+    TopologicalSpace.MetrizableSpace (ProbabilityMeasure H)
+  boundedLipschitzCriterion :
+    HasBoundedLipschitzWeakCriterion H
+  occupationModeAvailable :
+    Nonempty (ConvergenceMode PUnit H)
+  arbitrarySequenceNeedNotBeTight :
+    ¬ IsTightMeasureSet (Set.range (fun n : ℕ => Measure.dirac n))
+  limitingLawNeedNotExist :
+    ¬ ∃ μ : ProbabilityMeasure ℕ,
+      Tendsto (fun n : ℕ => diracProba n) atTop (𝓝 μ)
+
+/-- Proposition 4.1a: Polish descriptor spaces admit bounded compatible
+metrization and weak probability-law metrization; the occupation convergence
+semantics remain available without compactness; and Polishness alone guarantees
+neither uniform tightness of arbitrary law sequences nor existence of a limit. -/
+theorem proposition_4_1a
+    (H : Type uH) [TopologicalSpace H] [PolishSpace H]
+    [MeasurableSpace H] [BorelSpace H] :
+    Proposition41aCertificate H where
+  boundedDescriptorMetric :=
+    boundedCompatibleMetric_dist_le_one H
+  weakProbabilityMetrizable :=
+    probabilityMeasure_weak_metrizable_of_polish H
+  boundedLipschitzCriterion :=
+    hasBoundedLipschitzWeakCriterion H
+  occupationModeAvailable :=
+    ⟨polishAlmostSureWeak PUnit H⟩
+  arbitrarySequenceNeedNotBeTight :=
+    natDirac_not_tight
+  limitingLawNeedNotExist :=
+    natDiracProba_no_weak_limit
+
 end DescriptorTopology
 end PermanssonLean
