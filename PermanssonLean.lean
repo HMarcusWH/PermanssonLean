@@ -58,3 +58,5 @@ import PermanssonLean.Regime.NuisancePadding
 import PermanssonLean.Examples.ConstitutiveNoninvariance
 
 import PermanssonLean.Probability.TotalVariation
+
+import PermanssonLean.Probability.CommonPartKernel
