@@ -56,15 +56,17 @@ theorem measurable_commonDensity (K Ktilde : Kernel Y Ω) :
 theorem withDensity_leftWeight_eq
     (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
     Kernel.withDensity (K + Ktilde) (leftWeight K Ktilde) = K := by
-  simpa only [leftWeight] using
-    (Kernel.withDensity_rnDerivAux K Ktilde)
+  change Kernel.withDensity (K + Ktilde)
+    (fun a x => (↑((Kernel.rnDerivAux K (K + Ktilde) a x).toNNReal) : ℝ≥0∞)) = K
+  exact Kernel.withDensity_rnDerivAux K Ktilde
 
 /-- Mathlib's complementary RN decomposition, restated using the local right weight. -/
 theorem withDensity_rightWeight_eq
     (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
     Kernel.withDensity (K + Ktilde) (rightWeight K Ktilde) = Ktilde := by
-  simpa only [rightWeight] using
-    (Kernel.withDensity_one_sub_rnDerivAux K Ktilde)
+  change Kernel.withDensity (K + Ktilde)
+    (fun a x => (↑((1 - Kernel.rnDerivAux K (K + Ktilde) a x).toNNReal) : ℝ≥0∞)) = Ktilde
+  exact Kernel.withDensity_one_sub_rnDerivAux K Ktilde
 
 /-- A measurable finite kernel carrying the pointwise density shared by `K`
 and `Ktilde` relative to the common dominating kernel `K + Ktilde`. -/
@@ -148,7 +150,7 @@ theorem commonDensity_eq_right_of_mem_dominanceSlice
     (K Ktilde : Kernel Y Ω) (y : Y) {x : Ω}
     (hx : x ∈ dominanceSlice K Ktilde y) :
     commonDensity K Ktilde y x = rightWeight K Ktilde y x := by
-  change (1 / 2 : ℝ) ≤ leftDensity K Ktilde y x at hx
+  change (1 / 2 : ℝ) ≤ Kernel.rnDerivAux K (K + Ktilde) y x at hx
   unfold commonDensity
   rw [min_eq_right]
   unfold leftWeight rightWeight
@@ -158,8 +160,8 @@ theorem commonDensity_eq_left_of_not_mem_dominanceSlice
     (K Ktilde : Kernel Y Ω) (y : Y) {x : Ω}
     (hx : x ∉ dominanceSlice K Ktilde y) :
     commonDensity K Ktilde y x = leftWeight K Ktilde y x := by
-  have hx' : leftDensity K Ktilde y x < (1 / 2 : ℝ) := by
-    change ¬ (1 / 2 : ℝ) ≤ leftDensity K Ktilde y x at hx
+  have hx' : Kernel.rnDerivAux K (K + Ktilde) y x < (1 / 2 : ℝ) := by
+    change ¬ (1 / 2 : ℝ) ≤ Kernel.rnDerivAux K (K + Ktilde) y x at hx
     exact lt_of_not_ge hx
   unfold commonDensity
   rw [min_eq_left]
