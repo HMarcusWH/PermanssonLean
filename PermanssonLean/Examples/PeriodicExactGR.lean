@@ -538,6 +538,67 @@ theorem pathLaw_eq_orbitLaw (initLaw : ProbabilityMeasure Y) :
     (StrategicWorldModel.pathLaw_existsUnique model initLaw.toMeasure).unique
       (orbitLaw initLaw) (orbitLaw_pathSpec initLaw)
 
+
+def periodicPaths : Set (ℕ → Y) :=
+  {orbit p0, orbit p1}
+
+theorem periodicPaths_measurable : MeasurableSet periodicPaths := by
+  simp [periodicPaths]
+
+theorem orbit_mem_periodicPaths_of_region
+    {y : Y} (hy : y ∈ region) :
+    orbit y ∈ periodicPaths := by
+  rcases region_cases hy with rfl | rfl <;>
+    simp [periodicPaths]
+
+theorem orbitLaw_ae_periodic
+    (initLaw : ProbabilityMeasure Y)
+    (hinit : IsAdmissibleInitialLaw spec initLaw) :
+    ∀ᵐ w ∂orbitLaw initLaw, w ∈ periodicPaths := by
+  have hmass : initLaw.toMeasure spec.region = 1 :=
+    admissible_mass_region spec initLaw hinit
+  have hregion : ∀ᵐ y ∂initLaw.toMeasure, y ∈ region := by
+    apply
+      (ae_mem_iff_measure_eq
+        spec.region_measurable.nullMeasurableSet).2
+    simpa [spec] using hmass
+  unfold orbitLaw
+  rw [ae_map_iff measurable_orbit.aemeasurable periodicPaths_measurable]
+  filter_upwards [hregion] with y hy
+  exact orbit_mem_periodicPaths_of_region hy
+
+theorem limitingOccupation
+    (initLaw : ProbabilityMeasure Y)
+    (hinit : IsAdmissibleInitialLaw spec initLaw) :
+    IsLimitingOccupationLaw model spec initLaw := by
+  unfold IsLimitingOccupationLaw
+  change
+    ∀ᵐ w ∂model.pathLaw initLaw.toMeasure,
+      Tendsto
+        (fun n : ℕ => RegimeSpecification.empiricalOccupation
+          spec w (n + 1) (Nat.succ_pos n))
+        atTop (𝓝 target)
+  rw [pathLaw_eq_orbitLaw]
+  filter_upwards [orbitLaw_ae_periodic initLaw hinit] with w hw
+  rcases hw with hw | hw
+  · rw [hw]
+    exact empiricalOccupation_orbit_p0_tendsto
+  · rw [hw]
+    exact empiricalOccupation_orbit_p1_tendsto
+
+/-- Proposition 8.1 core certificate: the literal two-cycle is an Exact
+Generated Regime under almost-sure weak occupation convergence. -/
+theorem periodic_isExactGeneratedRegime :
+    IsExactGeneratedRegime model spec referenceMeasure := by
+  refine ⟨canonicalProcessWellPosed model, assumption41, exactlyInvariant, ?_⟩
+  intro initLaw hinit
+  exact limitingOccupation initLaw hinit
+
+/-- Proposition 8.1 in the paper-level ambient wrapper. -/
+theorem proposition_8_1 :
+    IsPaperExactGeneratedRegime model spec referenceMeasure :=
+  periodic_isExactGeneratedRegime
+
 end
 
 end PeriodicExactGR
