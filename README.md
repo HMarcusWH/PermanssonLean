@@ -29,7 +29,8 @@ We build by dependency, not by paper page order:
 12. grounded confirmatory semantics and preservation;
 13. recorded-action decoding and action-sensitive Paper-I recovery;
 14. Section-7 representation counterexamples and nuisance-padding safety;
-15. remaining Polish/BL, finite-horizon TV, optional QSD, and original-math lanes.
+15. Proposition 5.4 total-variation support and finite-horizon propagation;
+16. remaining Polish/BL, optional QSD, and original-math lanes.
 
 See [docs/FORMALIZATION_MAP.md](docs/FORMALIZATION_MAP.md) for the theorem ledger and status firewall.
 
@@ -49,4 +50,4 @@ lake update
 lake build
 ```
 
-The current proved spine reaches through exact persistence, killed-kernel survival calculus, typed interventions, generalized and grounded-confirmatory Permansson constitution, quantitative constitutive robustness, frozen intervention-family equivalence, type-respecting intervention-compatible quotient preservation, and canonical Paper-I EGR recovery for both world-only and recorded-action property protocols, including pointwise, uniform-margin, and grounded-confirmatory transport. The Section-7 representation-safety surface now also includes machine-checked factorization non-identification (Theorem 7.2), constitutive non-invariance under baseline equivalence (Theorem 7.3), and nuisance-padding exclusion (Proposition 7.5). The Section-6 semantic transport spine and the main Section-7 conceptual theorem surface are therefore closed. Remaining explicit lanes are Proposition 5.4's finite-horizon kernel-to-path TV envelope, Proposition 4.1a's Polish/BL metrization result, and the optional QSD layer.
+The current proved spine reaches through exact persistence, killed-kernel survival calculus, typed interventions, generalized and grounded-confirmatory Permansson constitution, quantitative constitutive robustness, frozen intervention-family equivalence, type-respecting intervention-compatible quotient preservation, and canonical Paper-I EGR recovery for both world-only and recorded-action property protocols, including pointwise, uniform-margin, and grounded-confirmatory transport. The Section-7 representation-safety surface now also includes machine-checked factorization non-identification (Theorem 7.2), constitutive non-invariance under baseline equivalence (Theorem 7.3), and nuisance-padding exclusion (Proposition 7.5). The Section-6 semantic transport spine and the main Section-7 conceptual theorem surface are therefore closed. Proposition 5.4 now has its source-faithful event-TV convention, uniform kernel hypothesis, and geometric-envelope arithmetic formalized; the actual kernel-to-finite-prefix propagation inequality remains open. The other explicit lanes are Proposition 4.1a's Polish/BL metrization result and the optional QSD layer.
