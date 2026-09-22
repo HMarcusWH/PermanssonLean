@@ -239,6 +239,18 @@ def comparisonB :
   RegimeSpecification.ConstitutiveComparisonSet.transport
     modelA modelB baseline_inducedKernel_eq regimeSpec comparisonA
 
+@[simp] theorem mem_comparisonA_iff (y : JointState Bool Bool) :
+    y ∈ comparisonA.states ↔ y.2 = false := by
+  rfl
+
+@[simp] theorem mem_comparisonB_iff (y : JointState Bool Bool) :
+    y ∈ comparisonB.states ↔ y.2 = false := by
+  rfl
+
+@[simp] theorem mem_stayFalseRegion_iff (y : JointState Bool Bool) :
+    y ∈ stayFalseSpec.region ↔ y.2 = false := by
+  rfl
+
 /-- One-step survival in x=false, expressed as a real-valued path-law property. -/
 noncomputable def survivalProperty :
     RegimePropertyMap (JointState Bool Bool) ℝ :=
@@ -361,6 +373,115 @@ theorem intervenedPropertyValue_modelB_eq_zero
       interventionB.intervention.apply stayFalseSpec y 1).toReal = 0
   rw [interventionB_survival_zero hy]
   simp
+
+/-- In representation A the diagnostic action-selection replacement is not
+constitutive: the world kernel ignores the action, so the frozen path property
+is unchanged. -/
+theorem interventionA_not_constitutive :
+    ¬ RegimeSpecification.IsStrategicallyConstitutive
+      modelA regimeSpec familyA survivalProperty comparisonA interventionA := by
+  intro h
+  have hyComp : (false, false) ∈ comparisonA.states :=
+    (mem_comparisonA_iff _).2 rfl
+  have hneq := h (false, false) hyComp
+  have hyStay : (false, false) ∈ stayFalseSpec.region :=
+    (mem_stayFalseRegion_iff _).2 rfl
+  rw [baselinePropertyValue_modelA_eq_one hyStay,
+    intervenedPropertyValue_modelA_eq_one hyStay] at hneq
+  exact hneq rfl
+
+/-- In representation B the same typed action-selection replacement changes
+the frozen path property at every comparison state. -/
+theorem interventionB_constitutive :
+    RegimeSpecification.IsStrategicallyConstitutive
+      modelB regimeSpec familyB survivalProperty comparisonB interventionB := by
+  intro y hy
+  have hyStay : y ∈ stayFalseSpec.region :=
+    (mem_stayFalseRegion_iff y).2 ((mem_comparisonB_iff y).1 hy)
+  rw [baselinePropertyValue_modelB_eq_one hyStay,
+    intervenedPropertyValue_modelB_eq_zero hyStay]
+  norm_num
+
+/-- The pointwise constitutive effect in representation B is exactly one on
+the complete frozen comparison set.  The manuscript's Bernoulli illustration
+has gap 1/2; this finite deterministic witness proves the same existential
+Theorem 7.3 with a cleaner exact gap. -/
+theorem interventionB_constitutiveEffect_eq_one
+    {y : JointState Bool Bool}
+    (hy : y ∈ comparisonB.states) :
+    RegimeSpecification.constitutiveEffect
+      modelB survivalProperty interventionB y = 1 := by
+  have hyStay : y ∈ stayFalseSpec.region := by
+    simpa [comparisonB, comparisonA, regimeSpec, stayFalseSpec] using hy
+  unfold RegimeSpecification.constitutiveEffect
+  rw [baselinePropertyValue_modelB_eq_one hyStay,
+    intervenedPropertyValue_modelB_eq_zero hyStay]
+  norm_num
+
+/-- The uniform constitutive margin of the finite Theorem-7.3 witness is
+exactly one. -/
+theorem interventionB_constitutiveMargin_eq_one :
+    RegimeSpecification.constitutiveMargin
+      modelB regimeSpec familyB survivalProperty comparisonB interventionB = 1 := by
+  apply le_antisymm
+  · have hy : (false, false) ∈ comparisonB.states := by
+      simp [comparisonB, comparisonA, regimeSpec]
+    have hle :=
+      RegimeSpecification.constitutiveMargin_le_effect
+        modelB regimeSpec familyB survivalProperty comparisonB interventionB hy
+    rw [interventionB_constitutiveEffect_eq_one hy] at hle
+    exact hle
+  · unfold RegimeSpecification.constitutiveMargin
+    refine le_csInf ?_ ?_
+    · have hy : (false, false) ∈ comparisonB.states :=
+        (mem_comparisonB_iff _).2 rfl
+      exact ⟨1, ⟨(false, false), hy,
+        interventionB_constitutiveEffect_eq_one hy⟩⟩
+    · intro r hr
+      rcases hr with ⟨y, hy, rfl⟩
+      rw [interventionB_constitutiveEffect_eq_one hy]
+
+/-- Representation B satisfies the quantitative uniform strengthening, not
+merely the pointwise constitutive predicate. -/
+theorem interventionB_uniformlyConstitutive :
+    RegimeSpecification.IsUniformlyStrategicallyConstitutive
+      modelB regimeSpec familyB survivalProperty comparisonB interventionB := by
+  rw [RegimeSpecification.uniformlyConstitutive_iff_margin_pos]
+  rw [interventionB_constitutiveMargin_eq_one]
+  norm_num
+
+theorem modelA_not_relativePR :
+    ¬ RegimeSpecification.IsGeneralizedPermanssonRegimeRelative
+      modelA regimeSpec referenceMeasure
+      familyA survivalProperty comparisonA interventionA := by
+  intro h
+  exact interventionA_not_constitutive h.2
+
+theorem modelB_relativePR :
+    RegimeSpecification.IsGeneralizedPermanssonRegimeRelative
+      modelB regimeSpec referenceMeasure
+      familyB survivalProperty comparisonB interventionB := by
+  exact ⟨exactGR_modelB, interventionB_constitutive⟩
+
+/-- Theorem 7.3, packaged at the predicate level: baseline dynamical
+equivalence and common Exact-GR status do not determine constitutive status.
+The same typed action-selection replacement is non-constitutive in one
+factorization and uniformly constitutive in the other. -/
+theorem constitutive_noninvariance_under_baseline_equivalence :
+    modelA.inducedKernel = modelB.inducedKernel ∧
+    RegimeSpecification.IsExactGeneratedRegime
+      modelA regimeSpec referenceMeasure ∧
+    RegimeSpecification.IsExactGeneratedRegime
+      modelB regimeSpec referenceMeasure ∧
+    (¬ RegimeSpecification.IsStrategicallyConstitutive
+      modelA regimeSpec familyA survivalProperty comparisonA interventionA) ∧
+    RegimeSpecification.IsUniformlyStrategicallyConstitutive
+      modelB regimeSpec familyB survivalProperty comparisonB interventionB ∧
+    RegimeSpecification.constitutiveMargin
+      modelB regimeSpec familyB survivalProperty comparisonB interventionB = 1 := by
+  exact ⟨baseline_inducedKernel_eq, exactGR_modelA, exactGR_modelB,
+    interventionA_not_constitutive, interventionB_uniformlyConstitutive,
+    interventionB_constitutiveMargin_eq_one⟩
 
 end
 

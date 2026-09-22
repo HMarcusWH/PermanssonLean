@@ -44,6 +44,9 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 8 | Uniform constitutive margin / perturbation robustness | `constitutiveEffect`, `constitutiveMargin`, `IsUniformlyStrategicallyConstitutive`, `constitutiveMargin_perturbation_abs_le`, `robustUniformConstitution` | PROVED |
 | 8b | Finite-horizon kernel-to-path TV envelope (Prop. 5.4) | path-perturbation theorem layer | OPEN |
 | 9 | Intervention-family signatures / representation equivalence | `FrozenStrategicInterventionFamily`, `InterventionKernelSignature`, `exactGR_iff_of_inducedKernel_eq`, `frozenFamilyPR_iff_of_signature_match` | PROVED |
+| 9a | Factorization non-identification (Thm. 7.2) | `factorization_nonidentification` | PROVED |
+| 9b | Constitutive non-invariance under baseline equivalence (Thm. 7.3) | `constitutive_noninvariance_under_baseline_equivalence`, `interventionB_constitutiveMargin_eq_one` | PROVED |
+| 9c | Nuisance-padding exclusion (Prop. 7.5) | `nuisancePadding_grounded_gap_eq`, `nuisancePadding_cannot_create_grounded_change` | PROVED |
 | 10 | Type-respecting intervention-compatible quotient preservation | `TypeRespectingStateCompression`, `KernelIntertwines`, `pathLaw_map_eq_of_kernelIntertwines`, `exactGR_iff_of_quotient`, `quotient_frozenFamilyPR_iff` | PROVED |
 | 11 | Paper-I EGR → GR embedding / conservative PR recovery | `PaperISelectedModel`, `embeddedModel`, `embedded_unit_kernelIntertwines`, `paperIEGR_iff_embeddedExactGR`, `paperIPermansson_iff_embeddedRelativePR`, `paperIUniformPermansson_iff_embeddedRelativePR` | PROVED |
 | 11b | Grounded confirmatory PR / representation / quotient / world-path EGR transport | `GroundedRelevanceMap`, `IsGroundedPropertyRelative`, `IsGroundedConfirmatoryPermanssonRegimeRelative`, `groundedFrozenFamilyPR_iff_of_signature_match`, `quotient_groundedFrozenFamilyPR_iff`, `paperIGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
@@ -269,10 +272,26 @@ equivalence without widening the claim beyond that family:
   whole frozen family, corresponding to Proposition 7.4a;
 - the uniform-margin family analogues are also preserved under signature matching.
 
-Grounded relevance-map preservation remains OPEN because the repository has not yet
-formalized the frozen g-grounded confirmatory layer.  Likewise, this milestone does not
-identify frozen-family equivalence with equivalence over every admissible intervention
-in `InterventionFamily`.
+The Section-7 negative and representation-safety claims are also machine-checked:
+
+- `factorization_nonidentification` formalizes Theorem 7.2 by an explicit finite typed
+  witness with equal baseline induced kernels but distinct strategic generators and
+  world-transition kernels;
+- `constitutive_noninvariance_under_baseline_equivalence` formalizes Theorem 7.3 at
+  the predicate level: the witness models share the same baseline kernel and Exact-GR
+  status, yet the same typed action-selection replacement is non-constitutive in one
+  representation and uniformly constitutive in the other;
+- `interventionB_constitutiveMargin_eq_one` computes the deterministic witness's exact
+  uniform constitutive margin as 1.  This is an equivalent existential witness to the
+  manuscript's Bernoulli illustration, not a claim that the manuscript's 1/2 gap was
+  rederived from the same finite construction;
+- `nuisancePadding_grounded_gap_eq` and
+  `nuisancePadding_cannot_create_grounded_change` formalize Proposition 7.5's
+  relevance-grounded nuisance-padding exclusion.
+
+Grounded relevance-map preservation was not part of this milestone itself, but is now
+formalized later in Layer 11b.  This milestone still does not identify frozen-family
+equivalence with equivalence over every admissible intervention in `InterventionFamily`.
 
 The next dependency boundary is the type-respecting quotient preservation theorem
 (Theorem 7.4b). Proposition 5.4's finite-horizon TV envelope remains an independent
@@ -316,9 +335,9 @@ strategic/world type split preserved explicitly.
   provide the family-level generalized and uniform PR preservation results.
 
 The theorem remains deliberately scoped to the explicitly frozen intervention family.
-Grounded (g)-relative confirmatory preservation remains OPEN because the grounded
-relevance-map layer has not yet been formalized. Proposition 5.4's finite-horizon
-kernel-to-path TV envelope also remains an independent open quantitative-support lane.
+Grounded (g)-relative confirmatory preservation is now formalized later in Layer 11b.
+Proposition 5.4's finite-horizon kernel-to-path TV envelope remains an independent open
+quantitative-support lane.
 
 The next main dependency boundary is the EGR-to-GR embedding/compatibility layer,
 unless the grounded confirmatory or finite-horizon TV support lanes are prioritized first.
