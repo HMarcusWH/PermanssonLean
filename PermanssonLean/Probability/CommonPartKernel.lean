@@ -23,12 +23,12 @@ noncomputable def leftDensity
 /-- The left density in the `ℝ≥0∞` codomain expected by `withDensity`. -/
 noncomputable def leftWeight
     (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) : ℝ≥0∞ :=
-  ((Real.toNNReal (leftDensity K Ktilde y x) : ℝ≥0) : ℝ≥0∞)
+  ↑(Real.toNNReal (leftDensity K Ktilde y x))
 
 /-- The complementary/right density in the same common dominating measure. -/
 noncomputable def rightWeight
     (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) : ℝ≥0∞ :=
-  ((Real.toNNReal (1 - leftDensity K Ktilde y x) : ℝ≥0) : ℝ≥0∞)
+  ↑(Real.toNNReal (1 - leftDensity K Ktilde y x))
 
 /-- Pointwise overlap density relative to `K + Ktilde`. -/
 noncomputable def commonDensity
