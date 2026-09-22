@@ -129,7 +129,9 @@ theorem weakConvergence_iff_boundedLipschitzIntegrals
           (fun i => ∫ x, f x ∂(μs i))
           F
           (𝓝 (∫ x, f x ∂μ)) := by
-  exact tendsto_iff_forall_lipschitz_integral_tendsto
+  exact
+    (tendsto_iff_forall_lipschitz_integral_tendsto
+      (γ := I) (Ω := H) (F := F) (μs := μs) (μ := μ))
 
 /-- Proposition 4.1a does not need compactness to make the canonical almost-sure
 weak convergence mode meaningful. -/
