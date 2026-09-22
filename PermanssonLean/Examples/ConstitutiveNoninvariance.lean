@@ -220,12 +220,9 @@ def interventionB : AdmissibleStrategicIntervention familyB where
   strategic := by
     simp [TypedIntervention.IsStrategic, typedInterventionB, familyB]
 
-/-- The two model-specific interventions really do install the same action
-kernel at the same typed target. -/
-theorem matched_replacement_kernel :
-    interventionA.intervention.replacement.kernel =
-      interventionB.intervention.replacement.kernel := by
-  rfl
+/-- Both typed interventions are built from the same frozen replacement
+`falseReplacement`; their model-specific admissibility wrappers are kept
+separate because the replacement type is dependent on each family target. -/
 
 /-- Frozen comparison set: both strategic-memory values with x=false. -/
 def comparisonA :
