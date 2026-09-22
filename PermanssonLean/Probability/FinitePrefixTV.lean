@@ -183,8 +183,10 @@ theorem partialTraj_stationary_mono
       simp
   | succ T ih =>
       rw [Kernel.partialTraj_succ_of_le
+            (X := fun _ : ℕ => Y)
             (κ := fun n => stationaryPrefixKernel K n) (Nat.zero_le T),
           Kernel.partialTraj_succ_of_le
+            (X := fun _ : ℕ => Y)
             (κ := fun n => stationaryPrefixKernel K' n) (Nat.zero_le T)]
       apply kernelMap_mono
       apply kernelComp_mono ih
