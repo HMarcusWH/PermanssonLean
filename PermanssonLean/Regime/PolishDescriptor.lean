@@ -275,7 +275,7 @@ structure Proposition41aCertificate
   boundedLipschitzCriterion :
     HasBoundedLipschitzWeakCriterion H
   occupationModeAvailable :
-    Nonempty (ConvergenceMode PUnit H)
+    Nonempty (ConvergenceMode Unit H)
   arbitrarySequenceNeedNotBeTight :
     ¬ IsTightMeasureSet
       {((μ : ProbabilityMeasure ℕ) : Measure ℕ) |
@@ -299,7 +299,7 @@ theorem proposition_4_1a
   boundedLipschitzCriterion :=
     hasBoundedLipschitzWeakCriterion H
   occupationModeAvailable :=
-    ⟨polishAlmostSureWeak PUnit H⟩
+    ⟨polishAlmostSureWeak Unit H⟩
   arbitrarySequenceNeedNotBeTight :=
     natDiracProba_not_tight
   limitingLawNeedNotExist :=
