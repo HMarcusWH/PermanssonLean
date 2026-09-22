@@ -42,7 +42,7 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 6 | Typed interventions | `InterventionReplacement`, `InterventionFamily`, `TypedIntervention`, `applyReplacement` | PROVED |
 | 7 | PR constitution | `RegimePropertyMap`, `ConstitutiveComparisonSet`, `IsStrategicallyConstitutive`, `IsGeneralizedPermanssonRegime` | PROVED |
 | 8 | Uniform constitutive margin / perturbation robustness | `constitutiveEffect`, `constitutiveMargin`, `IsUniformlyStrategicallyConstitutive`, `constitutiveMargin_perturbation_abs_le`, `robustUniformConstitution` | PROVED |
-| 8b | Finite-horizon kernel-to-path TV envelope (Prop. 5.4) | path-perturbation theorem layer | OPEN |
+| 8b | Finite-horizon kernel-to-path TV envelope (Prop. 5.4) | `eventTotalVariation`, `HasUniformEventTVBound`, `geometricTVEnvelope`; path-propagation theorem pending | SCAFFOLDED |
 | 9 | Intervention-family signatures / representation equivalence | `FrozenStrategicInterventionFamily`, `InterventionKernelSignature`, `exactGR_iff_of_inducedKernel_eq`, `frozenFamilyPR_iff_of_signature_match` | PROVED |
 | 9a | Factorization non-identification (Thm. 7.2) | `factorization_nonidentification` | PROVED |
 | 9b | Constitutive non-invariance under baseline equivalence (Thm. 7.3) | `constitutive_noninvariance_under_baseline_equivalence`, `interventionB_constitutiveMargin_eq_one` | PROVED |
@@ -234,10 +234,13 @@ constitution semantics without changing the GR/PR definitions themselves:
   with positivity of the perturbed constitutive margin, while deliberately not
   claiming that the approximate profile itself is a new GR.
 
-Proposition 5.4's finite-horizon kernel-to-path total-variation envelope remains OPEN.
-That result should be formalized as a later probability-theory layer supplying concrete
-error bounds to Proposition 5.2 rather than being conflated with the abstract
-output-perturbation theorem.
+Proposition 5.4 is now SCAFFOLDED at the probability-support layer.
+`eventTotalVariation` freezes the paper's event-supremum convention
+`sup_A |μ(A)-ν(A)|`, `HasUniformEventTVBound` freezes the uniform one-step
+kernel hypothesis, and `geometricTVEnvelope_le_linear` proves the arithmetic half
+`1-(1-ε)^T ≤ Tε`.  The substantive kernel-to-finite-prefix propagation inequality
+`TV(P_y^{0:T}, Ptilde_y^{0:T}) ≤ 1-(1-ε)^T` remains OPEN and must be supplied by a
+later measurable-coupling/path-perturbation theorem.
 
 ## Eighth proof milestone — intervention-family signatures and representation equivalence
 
