@@ -14,6 +14,7 @@ import PermanssonLean.Regime.Persistence
 import PermanssonLean.Regime.Occupation
 import PermanssonLean.Regime.GeneratedRegime
 import PermanssonLean.Regime.PolishDescriptor
+import PermanssonLean.Regime.QuasiStationary
 import PermanssonLean.Regime.Property
 import PermanssonLean.Regime.Constitution
 import PermanssonLean.Regime.Permansson
