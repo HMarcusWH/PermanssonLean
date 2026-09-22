@@ -19,7 +19,7 @@ variable {H : Type uH}
 
 /-- A compatible metric can always be truncated at one without changing the
 underlying topology. This is the metric-level content used in Proposition 4.1a. -/
-noncomputable def boundedCompatibleMetric
+@[instance_reducible]\nnoncomputable def boundedCompatibleMetric
     (H : Type uH) [TopologicalSpace H] [TopologicalSpace.MetrizableSpace H] :
     MetricSpace H := by
   letI : MetricSpace H := TopologicalSpace.metrizableSpaceMetric H
@@ -62,8 +62,10 @@ noncomputable def boundedCompatibleMetric
       have hdist_one : dist x y < 1 := by
         by_contra hnot
         have hge : 1 ≤ dist x y := le_of_not_gt hnot
+        change min 1 (dist x y) < min ε (1 / 2 : ℝ) at hy
         rw [min_eq_left hge] at hy
         linarith
+      change min 1 (dist x y) < min ε (1 / 2 : ℝ) at hy
       rw [min_eq_right hdist_one.le] at hy
       apply hball
       simp only [Metric.mem_ball]
@@ -145,7 +147,8 @@ theorem natDirac_not_tight :
     ¬ IsTightMeasureSet (Set.range (fun n : ℕ => Measure.dirac n)) := by
   intro htight
   rw [isTightMeasureSet_iff_exists_isCompact_measure_compl_le] at htight
-  obtain ⟨K, hKcompact, hKbound⟩ := htight (1 / 2 : ℝ≥0∞) (by norm_num)
+  obtain ⟨K, hKcompact, hKbound⟩ :=
+    htight ((2 : ℝ≥0∞)⁻¹) (by positivity)
   have hKfinite : K.Finite := hKcompact.finite_of_discrete
   have hKne : K ≠ Set.univ := by
     intro hKuniv
