@@ -45,24 +45,36 @@ def worldB : Kernel (WorldInput Unit Bool Bool) Bool :=
 def generatorA : StrategicGenerator Unit Bool Bool where
   action := actionA
   update := updateUnit
-  action_isMarkov := by infer_instance
-  update_isMarkov := by infer_instance
+  action_isMarkov := by
+    unfold actionA
+    infer_instance
+  update_isMarkov := by
+    unfold updateUnit
+    infer_instance
 
 def generatorB : StrategicGenerator Unit Bool Bool where
   action := actionB
   update := updateUnit
-  action_isMarkov := by infer_instance
-  update_isMarkov := by infer_instance
+  action_isMarkov := by
+    unfold actionB
+    infer_instance
+  update_isMarkov := by
+    unfold updateUnit
+    infer_instance
 
 def factorizationA : StrategicWorldModel Unit Bool Bool where
   generator := generatorA
   world := worldA
-  world_isMarkov := by infer_instance
+  world_isMarkov := by
+    unfold worldA
+    infer_instance
 
 def factorizationB : StrategicWorldModel Unit Bool Bool where
   generator := generatorB
   world := worldB
-  world_isMarkov := by infer_instance
+  world_isMarkov := by
+    unfold worldB
+    infer_instance
 
 /-- The two finite factorizations induce exactly the same baseline joint kernel. -/
 theorem inducedKernel_eq :
