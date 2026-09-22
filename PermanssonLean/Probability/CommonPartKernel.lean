@@ -86,9 +86,8 @@ theorem commonPartKernel_le_right
 /-- The common part is finite whenever both source kernels are finite. -/
 instance commonPartKernel_isFinite
     (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
-    IsFiniteKernel (commonPartKernel K Ktilde) := by
-  apply IsFiniteKernel.mono (commonPartKernel_le_left K Ktilde)
-  infer_instance
+    IsFiniteKernel (commonPartKernel K Ktilde) :=
+  Kernel.isFiniteKernel_of_le (commonPartKernel_le_left K Ktilde)
 
 /-- Measurable Hahn-style slice on which the left RN density is at least one half. -/
 def dominanceSlice
