@@ -296,7 +296,7 @@ structure Proposition41aCertificate
     ¬ ∃ μ : ProbabilityMeasure ℕ,
       Tendsto (fun n : ℕ => diracProba n) atTop (𝓝 μ)
 
-/-- Proposition 4.1a: Polish descriptor spaces admit bounded compatible
+/-- Proposition 4.1a: Polish descriptor spaces support bounded compatible
 metrization and weak probability-law metrization; the occupation convergence
 semantics remain available without compactness; and Polishness alone guarantees
 neither uniform tightness of arbitrary law sequences nor existence of a limit. -/
