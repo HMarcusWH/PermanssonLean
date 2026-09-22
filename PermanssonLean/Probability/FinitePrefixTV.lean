@@ -285,5 +285,127 @@ theorem finitePrefixLaw_univ_ge_pow
         _ ≤ finitePrefixLaw Q y (T + 1) Set.univ :=
           finitePrefixLaw_univ_succ_lower Q hq y T
 
+
+/-- Uniform one-step event-TV control yields an `ℝ≥0∞` lower bound on the
+common-part mass. -/
+theorem commonPartKernel_univ_ge_of_uniformTV
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hTV : HasUniformEventTVBound K Ktilde ε) (z : Y) :
+    ENNReal.ofReal (1 - ε) ≤ commonPartKernel K Ktilde z Set.univ := by
+  rw [ENNReal.ofReal_le_iff_le_toReal (by finiteness)]
+  simpa [Measure.real] using
+    one_sub_le_commonPartKernel_real_univ_of_uniformTV K Ktilde hTV z
+
+/-- The common finite-prefix submeasure retains at least the geometric product
+of the one-step common-mass lower bound. -/
+theorem commonFinitePrefixLaw_univ_ge_pow
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) (T : ℕ) :
+    ENNReal.ofReal (1 - ε) ^ T ≤
+      commonFinitePrefixLaw K Ktilde y T Set.univ := by
+  unfold commonFinitePrefixLaw
+  apply finitePrefixLaw_univ_ge_pow
+  intro z
+  exact commonPartKernel_univ_ge_of_uniformTV K Ktilde hTV z
+
+/-- Real-valued retained-mass form of the geometric common-prefix estimate. -/
+theorem commonFinitePrefixLaw_real_univ_ge_pow
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hε1 : ε ≤ 1) (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) (T : ℕ) :
+    (1 - ε) ^ T ≤
+      (commonFinitePrefixLaw K Ktilde y T).real Set.univ := by
+  have hbase : 0 ≤ 1 - ε := by linarith
+  have hmass :=
+    commonFinitePrefixLaw_univ_ge_pow K Ktilde hTV y T
+  have hmass' :
+      ENNReal.ofReal ((1 - ε) ^ T) ≤
+        commonFinitePrefixLaw K Ktilde y T Set.univ := by
+    simpa [ENNReal.ofReal_pow hbase T] using hmass
+  rw [ENNReal.ofReal_le_iff_le_toReal (by finiteness)] at hmass'
+  simpa [Measure.real] using hmass'
+
+/-- First inequality of Proposition 5.4: a uniform one-step event-TV bound
+propagates to the sharp finite-prefix geometric envelope. -/
+theorem finitePrefix_eventTotalVariation_le_geometric
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
+    (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) (T : ℕ) :
+    eventTotalVariation (finitePrefixLaw K y T) (finitePrefixLaw Ktilde y T)
+      ≤ geometricTVEnvelope ε T := by
+  have hcommon :=
+    eventTotalVariation_le_one_sub_commonMass
+      (μ := finitePrefixLaw K y T)
+      (ν := finitePrefixLaw Ktilde y T)
+      (ξ := commonFinitePrefixLaw K Ktilde y T)
+      (commonFinitePrefixLaw_le_left K Ktilde y T)
+      (commonFinitePrefixLaw_le_right K Ktilde y T)
+  have hmass :=
+    commonFinitePrefixLaw_real_univ_ge_pow K Ktilde hε1 hTV y T
+  unfold geometricTVEnvelope
+  linarith
+
+/-- Linear corollary of the geometric finite-prefix bound. -/
+theorem finitePrefix_eventTotalVariation_le_linear
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
+    (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) (T : ℕ) :
+    eventTotalVariation (finitePrefixLaw K y T) (finitePrefixLaw Ktilde y T)
+      ≤ (T : ℝ) * ε := by
+  exact (finitePrefix_eventTotalVariation_le_geometric
+    K Ktilde hε0 hε1 hTV y T).trans
+      (geometricTVEnvelope_le_linear hε0 hε1 T)
+
+/-- Proposition 5.4 in the paper's event-supremum TV convention, for the same
+point initial state and `T` transitions. -/
+theorem proposition_5_4
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
+    (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) (T : ℕ) :
+    eventTotalVariation (finitePrefixLaw K y T) (finitePrefixLaw Ktilde y T)
+        ≤ geometricTVEnvelope ε T
+      ∧ geometricTVEnvelope ε T ≤ (T : ℝ) * ε := by
+  exact ⟨finitePrefix_eventTotalVariation_le_geometric
+      K Ktilde hε0 hε1 hTV y T,
+    geometricTVEnvelope_le_linear hε0 hε1 T⟩
+
+/-- At horizon zero both point-started prefix laws are the same Dirac law. -/
+theorem finitePrefixLaw_zero_eq
+    (K Ktilde : Kernel Y Y) (y : Y) :
+    finitePrefixLaw K y 0 = finitePrefixLaw Ktilde y 0 := by
+  simp [finitePrefixLaw]
+
+/-- Off-by-one regression check: zero transitions have zero TV distance. -/
+@[simp] theorem finitePrefix_eventTotalVariation_zero
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    (y : Y) :
+    eventTotalVariation (finitePrefixLaw K y 0) (finitePrefixLaw Ktilde y 0) = 0 := by
+  rw [finitePrefixLaw_zero_eq K Ktilde y]
+  exact eventTotalVariation_self _
+
+/-- Off-by-one regression check: one transition costs at most the one-step
+uniform TV budget. -/
+theorem finitePrefix_eventTotalVariation_one_le
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
+    (hTV : HasUniformEventTVBound K Ktilde ε)
+    (y : Y) :
+    eventTotalVariation (finitePrefixLaw K y 1) (finitePrefixLaw Ktilde y 1)
+      ≤ ε := by
+  simpa using
+    finitePrefix_eventTotalVariation_le_geometric
+      K Ktilde hε0 hε1 hTV y 1
+
 end ProbabilitySupport
 end PermanssonLean
