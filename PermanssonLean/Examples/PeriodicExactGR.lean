@@ -69,8 +69,7 @@ theorem inducedKernel_eq_dirac_step (y : Y) :
   ext E hE
   rw [StrategicWorldModel.inducedKernel_apply model y hE]
   simp [model, generator, actionKernel, worldKernel, updateKernel, step,
-    flipBit, Kernel.deterministic_apply]
-  by_cases hmem : step y ∈ E <;> simp [hmem, step, flipBit]
+    flipBit, Kernel.deterministic_apply, Measure.dirac_apply]
 
 def region : Set Y := {p0, p1}
 
@@ -80,23 +79,11 @@ def phase : Fin 2 → Y
   | ⟨0, _⟩ => p0
   | ⟨1, _⟩ => p1
 
-/-- Equation (20): the equally weighted occupation law on the two-cycle. -/
-noncomputable def targetMeasure : Measure Y :=
-  (1 / 2 : ℝ≥0∞) • Measure.dirac p0 +
-    (1 / 2 : ℝ≥0∞) • Measure.dirac p1
-
-instance targetMeasure_isProbability :
-    IsProbabilityMeasure targetMeasure := by
-  refine ⟨?_⟩
-  simp [targetMeasure]
-  norm_num
-
+/-- Equation (20): the equally weighted occupation law on the two-cycle.
+The construction as a push-forward of the uniform law on Fin 2 enforces unit
+mass by type; below we prove its half-Dirac integral formula explicitly. -/
 noncomputable def target : ProbabilityMeasure Y :=
-  targetMeasure.toProbabilityMeasure
-
-@[simp] theorem target_toMeasure :
-    target.toMeasure = targetMeasure := by
-  rfl
+  (RegimeSpecification.uniformFinProbability 2 (by norm_num)).map phase
 
 noncomputable def spec : RegimeSpecification Y Y where
   region := region
@@ -146,9 +133,9 @@ theorem assumption41 :
     Assumption41 model spec referenceMeasure := by
   refine ⟨?_, ?_, ?_, ?_⟩
   · exact ⟨p0, by simp [spec, basin, region]⟩
-  · left
-    refine ⟨p0, ?_⟩
-    simp [spec, region]
+  · right
+    change 0 < referenceMeasure region
+    simp [referenceMeasure, region]
   · refine ⟨p0, by simp [spec, region], p1, by simp [spec, region], ?_⟩
     decide
   · exact two_states_implies_basinPathLawNontrivial model spec basinHasTwoStates
@@ -168,10 +155,11 @@ def orbit (y : Y) : ℕ → Y
   induction n with
   | zero => rfl
   | succ n ih =>
-      rw [Nat.mul_succ, Nat.mul_one, Nat.add_assoc]
-      simp only [Nat.add_comm 2 (2 * n)]
-      rw [show 2 * n + 2 = (2 * n + 1) + 1 by omega]
-      simp [orbit_succ, ih]
+      rw [show 2 * (n + 1) = (2 * n + 1) + 1 by omega]
+      rw [orbit_succ]
+      rw [show 2 * n + 1 = (2 * n) + 1 by omega]
+      rw [orbit_succ, ih]
+      rfl
 
 
 @[simp] theorem orbit_p0_odd (n : ℕ) :
@@ -185,7 +173,9 @@ def orbit (y : Y) : ℕ → Y
   | zero => rfl
   | succ n ih =>
       rw [show 2 * (n + 1) = (2 * n + 1) + 1 by omega]
-      rw [orbit_succ, orbit_succ, ih]
+      rw [orbit_succ]
+      rw [show 2 * n + 1 = (2 * n) + 1 by omega]
+      rw [orbit_succ, ih]
       rfl
 
 @[simp] theorem orbit_p1_odd (n : ℕ) :
@@ -244,23 +234,28 @@ theorem uniformFinProbability_toMeasure
 theorem integral_empiricalOccupation_eq_average
     (w : ℕ → Y) (T : ℕ) (hT : 0 < T) (f : Y → ℝ) :
     ∫ y, f y ∂(RegimeSpecification.empiricalOccupation spec w T hT) =
-      ((T : ℝ)⁻¹) * ∑ i : Fin T, f (w i) := by
+      ((T : ℝ)⁻¹) * ∑ i ∈ Finset.range T, f (w i) := by
   change
-    ∫ y, f y ∂
-      ((RegimeSpecification.uniformFinProbability T hT).map
-        (fun i : Fin T => spec.descriptor (w (i : ℕ)))) =
-      ((T : ℝ)⁻¹) * ∑ i : Fin T, f (w i)
+    ∫ y, f y ∂Measure.map
+      (fun i : Fin T => spec.descriptor (w (i : ℕ)))
+      (RegimeSpecification.uniformFinProbability T hT).toMeasure =
+      ((T : ℝ)⁻¹) * ∑ i ∈ Finset.range T, f (w i)
   rw [integral_map (by fun_prop) (by fun_prop)]
   rw [uniformFinProbability_toMeasure T hT]
   rw [integral_smul_measure, integral_count]
+  rw [Fin.sum_univ_eq_sum_range]
   simp [spec, ENNReal.toReal_inv, smul_eq_mul]
 
 theorem integral_target_eq_half_sum (f : Y → ℝ) :
     ∫ y, f y ∂target = (f p0 + f p1) / 2 := by
-  change ∫ y, f y ∂targetMeasure = _
-  simp [targetMeasure, div_eq_mul_inv]
-  ring
-
+  change
+    ∫ y, f y ∂Measure.map phase
+      (RegimeSpecification.uniformFinProbability 2 (by norm_num)).toMeasure =
+      (f p0 + f p1) / 2
+  rw [integral_map (by fun_prop) (by fun_prop)]
+  rw [uniformFinProbability_toMeasure 2 (by norm_num)]
+  rw [integral_smul_measure, integral_count]
+  norm_num [phase, ENNReal.toReal_inv]
 
 /-- A sequence converges if its even and odd subsequences have the same limit. -/
 theorem tendsto_of_even_odd
@@ -272,6 +267,9 @@ theorem tendsto_of_even_odd
   intro s hs
   have hes := he s hs
   have hos := ho s hs
+  change ∀ᶠ n in atTop, u (2 * n) ∈ s at hes
+  change ∀ᶠ n in atTop, u (2 * n + 1) ∈ s at hos
+  change ∀ᶠ n in atTop, u n ∈ s
   rw [eventually_atTop] at hes hos ⊢
   obtain ⟨Ne, hNe⟩ := hes
   obtain ⟨No, hNo⟩ := hos
@@ -302,6 +300,7 @@ theorem odd_average_p0_identity (a b : ℝ) (n : ℕ) :
       (a + b) / 2 +
         ((a - b) / 2) * (1 / ((2 * n + 1 : ℕ) : ℝ)) := by
   have hden : (((2 * n + 1 : ℕ) : ℝ)) ≠ 0 := by positivity
+  push_cast
   field_simp [hden]
   ring
 
@@ -331,8 +330,10 @@ theorem tendsto_odd_average_p0 (a b : ℝ) :
           (fun n : ℕ => ((a - b) / 2) *
             (1 / ((2 * n + 1 : ℕ) : ℝ)))
           atTop (𝓝 (((a - b) / 2) * 0)))
-  have h :=
-    tendsto_const_nhds.add hzero
+  have hconst :
+      Tendsto (fun _ : ℕ => (a + b) / 2) atTop (𝓝 ((a + b) / 2)) :=
+    tendsto_const_nhds
+  have h := hconst.add hzero
   apply h.congr'
   filter_upwards with n
   exact (odd_average_p0_identity a b n).symm
@@ -374,14 +375,12 @@ theorem empiricalIntegral_orbit_p0_tendsto (f : Y → ℝ) :
     apply h.congr'
     filter_upwards with n
     rw [integral_empiricalOccupation_eq_average]
-    rw [Fin.sum_univ_eq_sum_range]
     rw [sum_orbit_p0_odd]
     simp only [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]
     rfl
   · apply tendsto_const_nhds.congr'
     filter_upwards with n
     rw [integral_empiricalOccupation_eq_average]
-    rw [Fin.sum_univ_eq_sum_range]
     have hhor : 2 * n + 1 + 1 = 2 * (n + 1) := by omega
     rw [hhor, sum_orbit_p0_even]
     simp only [Nat.cast_mul, Nat.cast_add, Nat.cast_one, Nat.cast_ofNat]
@@ -402,14 +401,12 @@ theorem empiricalIntegral_orbit_p1_tendsto (f : Y → ℝ) :
     apply h.congr'
     filter_upwards with n
     rw [integral_empiricalOccupation_eq_average]
-    rw [Fin.sum_univ_eq_sum_range]
     rw [sum_orbit_p1_odd]
     simp only [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]
     rfl
   · apply tendsto_const_nhds.congr'
     filter_upwards with n
     rw [integral_empiricalOccupation_eq_average]
-    rw [Fin.sum_univ_eq_sum_range]
     have hhor : 2 * n + 1 + 1 = 2 * (n + 1) := by omega
     rw [hhor, sum_orbit_p1_even]
     simp only [Nat.cast_mul, Nat.cast_add, Nat.cast_one, Nat.cast_ofNat]
@@ -436,42 +433,10 @@ theorem empiricalOccupation_orbit_p1_tendsto :
   simpa using empiricalIntegral_orbit_p1_tendsto (fun y => f y)
 
 
-theorem stationaryHistoryKernel_orbit (y : Y) (n : ℕ) :
-    StrategicWorldModel.stationaryHistoryKernel model.inducedKernel n
-        (Preorder.frestrictLe n (orbit y)) =
-      Measure.dirac (orbit y (n + 1)) := by
-  rw [StrategicWorldModel.stationaryHistoryKernel, Kernel.comap_apply]
-  rw [inducedKernel_eq_dirac_step]
-  rfl
-
-theorem diracOrbit_hasTransitionPair (y : Y) :
-    StrategicWorldModel.HasTransitionPair
-      (Measure.dirac (orbit y)) model.inducedKernel := by
+theorem measurable_orbit : Measurable orbit := by
+  rw [measurable_pi_iff]
   intro n
-  ext E hE
-  rw [Measure.map_dirac' (by fun_prop)]
-  rw [MeasureTheory.dirac_compProd_apply hE]
-  rw [stationaryHistoryKernel_orbit]
-  rw [Measure.map_dirac' (by fun_prop)]
-  rw [Measure.dirac_apply' _ (hE.preimage (by fun_prop))]
-  rw [Measure.dirac_apply' _ hE]
-  rfl
-
-theorem diracOrbit_pathSpec (y : Y) :
-    StrategicWorldModel.MarkovPathLawSpec model (Measure.dirac y)
-      (Measure.dirac (orbit y)) := by
-  refine ⟨inferInstance, ?_, diracOrbit_hasTransitionPair y⟩
-  rw [Measure.map_dirac' (by fun_prop), Measure.map_dirac' (by fun_prop)]
-  rfl
-
-theorem pathLaw_dirac_eq_dirac_orbit (y : Y) :
-    model.pathLaw (Measure.dirac y) = Measure.dirac (orbit y) := by
-  exact (StrategicWorldModel.pathLaw_existsUnique model (Measure.dirac y)).unique
-    (Measure.dirac (orbit y)) (diracOrbit_pathSpec y)
-
-
-theorem measurable_orbit : Measurable orbit :=
-  Measurable.of_discrete _
+  exact Measurable.of_discrete
 
 theorem stationaryHistoryKernel_eq_deterministic (n : ℕ) :
     StrategicWorldModel.stationaryHistoryKernel model.inducedKernel n =
@@ -483,7 +448,6 @@ theorem stationaryHistoryKernel_eq_deterministic (n : ℕ) :
   rw [StrategicWorldModel.stationaryHistoryKernel, Kernel.comap_apply]
   rw [inducedKernel_eq_dirac_step]
   rw [Kernel.deterministic_apply]
-  rfl
 
 /-- For an arbitrary initial probability law, deterministic dynamics push the
 initial law forward along the measurable alternating-orbit map. -/
@@ -505,10 +469,10 @@ theorem orbitLaw_initialPrefix (initLaw : ProbabilityMeasure Y) :
   apply Measure.map_congr
   filter_upwards [] with y
   funext i
-  have hi : i.1 = 0 := by
-    exact Nat.eq_zero_of_le_zero (Finset.mem_Iic.mp i.2)
-  subst i
-  rfl
+  have hi : (i : ℕ) = 0 :=
+    Nat.eq_zero_of_le_zero (Finset.mem_Iic.mp i.2)
+  change orbit y (i : ℕ) = y
+  rw [hi, orbit_zero]
 
 theorem orbitLaw_hasTransitionPair (initLaw : ProbabilityMeasure Y) :
     StrategicWorldModel.HasTransitionPair
@@ -522,9 +486,7 @@ theorem orbitLaw_hasTransitionPair (initLaw : ProbabilityMeasure Y) :
   rw [Measure.map_map (by fun_prop) (by fun_prop)]
   apply Measure.map_congr
   filter_upwards [] with y
-  simp only [Function.comp_apply]
-  congr
-  exact orbit_succ y n
+  simp [Function.comp_apply, orbit_succ]
 
 theorem orbitLaw_pathSpec (initLaw : ProbabilityMeasure Y) :
     StrategicWorldModel.MarkovPathLawSpec model initLaw.toMeasure
@@ -536,7 +498,8 @@ theorem pathLaw_eq_orbitLaw (initLaw : ProbabilityMeasure Y) :
     model.pathLaw initLaw.toMeasure = orbitLaw initLaw := by
   exact
     (StrategicWorldModel.pathLaw_existsUnique model initLaw.toMeasure).unique
-      (orbitLaw initLaw) (orbitLaw_pathSpec initLaw)
+      (StrategicWorldModel.pathLaw_spec model initLaw.toMeasure)
+      (orbitLaw_pathSpec initLaw)
 
 
 def periodicPaths : Set (ℕ → Y) :=
@@ -557,14 +520,15 @@ theorem orbitLaw_ae_periodic
     ∀ᵐ w ∂orbitLaw initLaw, w ∈ periodicPaths := by
   have hmass : initLaw.toMeasure spec.region = 1 :=
     admissible_mass_region spec initLaw hinit
-  have hregion : ∀ᵐ y ∂initLaw.toMeasure, y ∈ region := by
-    apply
-      (ae_mem_iff_measure_eq
-        spec.region_measurable.nullMeasurableSet).2
-    simpa [spec] using hmass
   unfold orbitLaw
-  rw [ae_map_iff measurable_orbit.aemeasurable periodicPaths_measurable]
-  filter_upwards [hregion] with y hy
+  apply
+    (ae_mem_iff_measure_eq
+      periodicPaths_measurable.nullMeasurableSet).2
+  rw [Measure.map_apply measurable_orbit periodicPaths_measurable]
+  apply le_antisymm prob_le_one
+  rw [← hmass]
+  apply measure_mono
+  intro y hy
   exact orbit_mem_periodicPaths_of_region hy
 
 theorem limitingOccupation
