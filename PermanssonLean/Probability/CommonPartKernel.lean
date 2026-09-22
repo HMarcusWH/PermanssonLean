@@ -23,12 +23,12 @@ noncomputable def leftDensity
 /-- The left density in the `ℝ≥0∞` codomain expected by `withDensity`. -/
 noncomputable def leftWeight
     (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) : ℝ≥0∞ :=
-  ENNReal.ofReal (leftDensity K Ktilde y x)
+  ((Real.toNNReal (leftDensity K Ktilde y x) : ℝ≥0) : ℝ≥0∞)
 
 /-- The complementary/right density in the same common dominating measure. -/
 noncomputable def rightWeight
     (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) : ℝ≥0∞ :=
-  ENNReal.ofReal (1 - leftDensity K Ktilde y x)
+  ((Real.toNNReal (1 - leftDensity K Ktilde y x) : ℝ≥0) : ℝ≥0∞)
 
 /-- Pointwise overlap density relative to `K + Ktilde`. -/
 noncomputable def commonDensity
@@ -38,13 +38,13 @@ noncomputable def commonDensity
 theorem measurable_leftWeight (K Ktilde : Kernel Y Ω) :
     Measurable (Function.uncurry (leftWeight K Ktilde)) := by
   unfold leftWeight leftDensity
-  exact (Kernel.measurable_rnDerivAux K (K + Ktilde)).ennreal_ofReal
+  exact ((Kernel.measurable_rnDerivAux K (K + Ktilde)).real_toNNReal).coe_nnreal_ennreal
 
 theorem measurable_rightWeight (K Ktilde : Kernel Y Ω) :
     Measurable (Function.uncurry (rightWeight K Ktilde)) := by
   unfold rightWeight leftDensity
-  exact (measurable_const.sub
-    (Kernel.measurable_rnDerivAux K (K + Ktilde))).ennreal_ofReal
+  exact ((measurable_const.sub
+    (Kernel.measurable_rnDerivAux K (K + Ktilde))).real_toNNReal).coe_nnreal_ennreal
 
 theorem measurable_commonDensity (K Ktilde : Kernel Y Ω) :
     Measurable (Function.uncurry (commonDensity K Ktilde)) := by
@@ -56,14 +56,14 @@ theorem measurable_commonDensity (K Ktilde : Kernel Y Ω) :
 theorem withDensity_leftWeight_eq
     (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
     Kernel.withDensity (K + Ktilde) (leftWeight K Ktilde) = K := by
-  simpa [leftWeight, leftDensity, ENNReal.ofReal] using
+  simpa [leftWeight, leftDensity] using
     (Kernel.withDensity_rnDerivAux K Ktilde)
 
 /-- Mathlib's complementary RN decomposition, restated using the local right weight. -/
 theorem withDensity_rightWeight_eq
     (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
     Kernel.withDensity (K + Ktilde) (rightWeight K Ktilde) = Ktilde := by
-  simpa [rightWeight, leftDensity, ENNReal.ofReal] using
+  simpa [rightWeight, leftDensity] using
     (Kernel.withDensity_one_sub_rnDerivAux K Ktilde)
 
 /-- A measurable finite kernel carrying the pointwise density shared by `K`
@@ -152,8 +152,7 @@ theorem commonDensity_eq_right_of_mem_dominanceSlice
   unfold commonDensity
   rw [min_eq_right]
   unfold leftWeight rightWeight
-  apply ENNReal.ofReal_le_ofReal
-  linarith
+  exact ENNReal.coe_le_coe.mpr (Real.toNNReal_mono (by linarith))
 
 theorem commonDensity_eq_left_of_not_mem_dominanceSlice
     (K Ktilde : Kernel Y Ω) (y : Y) {x : Ω}
@@ -165,8 +164,7 @@ theorem commonDensity_eq_left_of_not_mem_dominanceSlice
   unfold commonDensity
   rw [min_eq_left]
   unfold leftWeight rightWeight
-  apply ENNReal.ofReal_le_ofReal
-  linarith
+  exact ENNReal.coe_le_coe.mpr (Real.toNNReal_mono (by linarith))
 
 /-- On the dominance slice the common part agrees with the right kernel. -/
 theorem commonPartKernel_apply_dominanceSlice
