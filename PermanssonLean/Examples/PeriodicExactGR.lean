@@ -69,7 +69,8 @@ theorem inducedKernel_eq_dirac_step (y : Y) :
   ext E hE
   rw [StrategicWorldModel.inducedKernel_apply model y hE]
   simp [model, generator, actionKernel, worldKernel, updateKernel, step,
-    flipBit, Kernel.deterministic_apply, Measure.dirac_apply]
+    flipBit, Kernel.deterministic_apply, Measure.dirac_apply,
+    Set.indicator_apply]
 
 def region : Set Y := {p0, p1}
 
@@ -135,7 +136,11 @@ theorem assumption41 :
   · exact ⟨p0, by simp [spec, basin, region]⟩
   · right
     change 0 < referenceMeasure region
-    simp [referenceMeasure, region]
+    calc
+      0 < Measure.count ({p0} : Set Y) := by simp
+      _ ≤ referenceMeasure region := by
+        unfold referenceMeasure
+        exact measure_mono (by simp [region])
   · refine ⟨p0, by simp [spec, region], p1, by simp [spec, region], ?_⟩
     decide
   · exact two_states_implies_basinPathLawNontrivial model spec basinHasTwoStates
@@ -243,8 +248,9 @@ theorem integral_empiricalOccupation_eq_average
   rw [integral_map (by fun_prop) (by fun_prop)]
   rw [uniformFinProbability_toMeasure T hT]
   rw [integral_smul_measure, integral_count]
-  rw [Fin.sum_univ_eq_sum_range]
-  simp [spec, ENNReal.toReal_inv, smul_eq_mul]
+  simp only [spec, id_eq]
+  rw [Fin.sum_univ_eq_sum_range (fun i : ℕ => f (w i))]
+  simp [ENNReal.toReal_inv, smul_eq_mul]
 
 theorem integral_target_eq_half_sum (f : Y → ℝ) :
     ∫ y, f y ∂target = (f p0 + f p1) / 2 := by
@@ -256,6 +262,7 @@ theorem integral_target_eq_half_sum (f : Y → ℝ) :
   rw [uniformFinProbability_toMeasure 2 (by norm_num)]
   rw [integral_smul_measure, integral_count]
   norm_num [phase, ENNReal.toReal_inv]
+  ring
 
 /-- A sequence converges if its even and odd subsequences have the same limit. -/
 theorem tendsto_of_even_odd
@@ -335,7 +342,13 @@ theorem tendsto_odd_average_p0 (a b : ℝ) :
       Tendsto (fun _ : ℕ => (a + b) / 2) atTop (𝓝 ((a + b) / 2)) :=
     tendsto_const_nhds
   have h := hconst.add hzero
-  apply h.congr'
+  have h' :
+      Tendsto
+        (fun n : ℕ => (a + b) / 2 +
+          ((a - b) / 2) * (1 / ((2 * n + 1 : ℕ) : ℝ)))
+        atTop (𝓝 ((a + b) / 2)) := by
+    simpa using h
+  apply h'.congr'
   filter_upwards with n
   exact (odd_average_p0_identity a b n).symm
 
@@ -360,7 +373,13 @@ theorem tendsto_odd_average_p1 (a b : ℝ) :
       Tendsto (fun _ : ℕ => (a + b) / 2) atTop (𝓝 ((a + b) / 2)) :=
     tendsto_const_nhds
   have h := hconst.add hzero
-  apply h.congr'
+  have h' :
+      Tendsto
+        (fun n : ℕ => (a + b) / 2 +
+          ((b - a) / 2) * (1 / ((2 * n + 1 : ℕ) : ℝ)))
+        atTop (𝓝 ((a + b) / 2)) := by
+    simpa using h
+  apply h'.congr'
   filter_upwards with n
   exact (odd_average_p1_identity a b n).symm
 
@@ -377,19 +396,12 @@ theorem empiricalIntegral_orbit_p0_tendsto (f : Y → ℝ) :
   · have h := tendsto_odd_average_p0 (f p0) (f p1)
     apply h.congr'
     filter_upwards with n
-    rw [integral_empiricalOccupation_eq_average]
-    rw [sum_orbit_p0_odd]
-    simp only [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]
-    rfl
+    rw [integral_empiricalOccupation_eq_average, sum_orbit_p0_odd]
   · apply tendsto_const_nhds.congr'
     filter_upwards with n
     rw [integral_empiricalOccupation_eq_average]
     have hhor : 2 * n + 1 + 1 = 2 * (n + 1) := by omega
     rw [hhor, sum_orbit_p0_even]
-    simp only [Nat.cast_mul, Nat.cast_add, Nat.cast_one, Nat.cast_ofNat]
-    have hn : ((n : ℝ) + 1) ≠ 0 := by positivity
-    field_simp [hn]
-    ring
 
 theorem empiricalIntegral_orbit_p1_tendsto (f : Y → ℝ) :
     Tendsto
@@ -403,19 +415,12 @@ theorem empiricalIntegral_orbit_p1_tendsto (f : Y → ℝ) :
   · have h := tendsto_odd_average_p1 (f p0) (f p1)
     apply h.congr'
     filter_upwards with n
-    rw [integral_empiricalOccupation_eq_average]
-    rw [sum_orbit_p1_odd]
-    simp only [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]
-    rfl
+    rw [integral_empiricalOccupation_eq_average, sum_orbit_p1_odd]
   · apply tendsto_const_nhds.congr'
     filter_upwards with n
     rw [integral_empiricalOccupation_eq_average]
     have hhor : 2 * n + 1 + 1 = 2 * (n + 1) := by omega
     rw [hhor, sum_orbit_p1_even]
-    simp only [Nat.cast_mul, Nat.cast_add, Nat.cast_one, Nat.cast_ofNat]
-    have hn : ((n : ℝ) + 1) ≠ 0 := by positivity
-    field_simp [hn]
-    ring
 
 theorem empiricalOccupation_orbit_p0_tendsto :
     Tendsto
@@ -528,6 +533,9 @@ theorem orbitLaw_ae_periodic
     (ae_mem_iff_measure_eq
       periodicPaths_measurable.nullMeasurableSet).2
   rw [Measure.map_apply measurable_orbit periodicPaths_measurable]
+  haveI : IsProbabilityMeasure (Measure.map orbit initLaw.toMeasure) := by
+    infer_instance
+  rw [measure_univ]
   apply le_antisymm prob_le_one
   rw [← hmass]
   apply measure_mono
