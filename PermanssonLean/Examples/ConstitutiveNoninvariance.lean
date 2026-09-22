@@ -220,7 +220,7 @@ def interventionB : AdmissibleStrategicIntervention familyB where
   strategic := by
     simp [TypedIntervention.IsStrategic, typedInterventionB, familyB]
 
-/-- Both typed interventions are built from the same frozen replacement
+/- Both typed interventions are built from the same frozen replacement
 `falseReplacement`; their model-specific admissibility wrappers are kept
 separate because the replacement type is dependent on each family target. -/
 
