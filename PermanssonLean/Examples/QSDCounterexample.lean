@@ -60,8 +60,11 @@ def spec : RegimeSpecification (JointState Unit X) Unit where
   basin_measurable := MeasurableSet.of_discrete
   basin_subset_region := by
     intro y hy
-    simp only [Set.mem_setOf_eq] at hy ⊢
-    omega
+    change y.2 ≠ (2 : X)
+    change y.2 = (0 : X) at hy
+    intro h2
+    have h02 : (0 : X) = (2 : X) := hy.symm.trans h2
+    norm_num at h02
   descriptor := fun _ => ()
   descriptor_measurable := measurable_const
   target := ⟨Measure.dirac (), inferInstance⟩
