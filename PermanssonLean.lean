@@ -40,3 +40,11 @@ import PermanssonLean.EGR.Projection
 import PermanssonLean.EGR.Specification
 import PermanssonLean.EGR.RegimeEmbedding
 import PermanssonLean.EGR.PermanssonTransport
+import PermanssonLean.Regime.Relevance
+import PermanssonLean.Regime.GroundedProperty
+import PermanssonLean.Regime.GroundedPermansson
+import PermanssonLean.Regime.GroundedUniformPermansson
+import PermanssonLean.Regime.GroundedRepresentationEquivalence
+import PermanssonLean.Regime.GroundedFamilyEquivalence
+import PermanssonLean.Quotient.GroundedPreservation
+import PermanssonLean.EGR.GroundedTransport
