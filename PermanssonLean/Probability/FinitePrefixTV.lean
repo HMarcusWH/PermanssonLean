@@ -72,6 +72,12 @@ instance stationaryPrefixKernel_isMarkov
   unfold stationaryPrefixKernel
   infer_instance
 
+instance stationaryPrefixKernel_isSFinite
+    (K : Kernel Y Y) [IsSFiniteKernel K] (n : ℕ) :
+    IsSFiniteKernel (stationaryPrefixKernel K n) := by
+  unfold stationaryPrefixKernel
+  infer_instance
+
 instance stationaryPrefixKernel_isFinite
     (K : Kernel Y Y) [IsFiniteKernel K] (n : ℕ) :
     IsFiniteKernel (stationaryPrefixKernel K n) := by
