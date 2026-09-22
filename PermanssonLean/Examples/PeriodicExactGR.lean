@@ -580,10 +580,12 @@ theorem limitingOccupation
         atTop (𝓝 target)
   rw [pathLaw_eq_orbitLaw]
   filter_upwards [orbitLaw_ae_periodic initLaw hinit] with w hw
-  rcases hw with hw | hw
-  · rw [hw]
+  have hw' : w = orbit p0 ∨ w = orbit p1 := by
+    simpa [periodicPaths] using hw
+  rcases hw' with hw0 | hw1
+  · rw [hw0]
     exact empiricalOccupation_orbit_p0_tendsto
-  · rw [hw]
+  · rw [hw1]
     exact empiricalOccupation_orbit_p1_tendsto
 
 /-- Proposition 8.1 core certificate: the literal two-cycle is an Exact
