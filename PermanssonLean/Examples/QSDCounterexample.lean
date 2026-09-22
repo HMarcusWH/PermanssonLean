@@ -73,6 +73,10 @@ def spec : RegimeSpecification (JointState Unit X) Unit where
 def qsdLaw : ProbabilityMeasure (JointState Unit X) :=
   diracProba ((), (0 : X))
 
+@[simp] theorem qsdLaw_toMeasure :
+    qsdLaw.toMeasure = Measure.dirac ((), (0 : X)) := by
+  rfl
+
 theorem zero_mem_region : ((), (0 : X)) ∈ spec.region := by
   simp [spec]
 
@@ -101,9 +105,9 @@ theorem qsdLaw_supported :
 theorem qsdLaw_eigen :
     killedKernel model spec ∘ₘ qsdLaw.toMeasure =
       (1 : ℝ≥0∞) • qsdLaw.toMeasure := by
+  rw [qsdLaw_toMeasure]
   ext E hE
-  rw [Measure.bind_apply hE (Kernel.aemeasurable _)]
-  simp only [qsdLaw, diracProba, lintegral_dirac]
+  rw [Measure.bind_apply hE (Kernel.aemeasurable _), lintegral_dirac]
   rw [killedKernel_apply model spec ((), (0 : X)) hE, zero_transition]
   simp [zero_mem_region, hE, Measure.smul_apply]
 
