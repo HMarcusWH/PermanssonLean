@@ -171,6 +171,40 @@ def orbit (y : Y) : ℕ → Y
       rw [show 2 * n + 2 = (2 * n + 1) + 1 by omega]
       simp [orbit_succ, ih]
 
+
+theorem stationaryHistoryKernel_orbit (y : Y) (n : ℕ) :
+    StrategicWorldModel.stationaryHistoryKernel model.inducedKernel n
+        (Preorder.frestrictLe n (orbit y)) =
+      Measure.dirac (orbit y (n + 1)) := by
+  rw [StrategicWorldModel.stationaryHistoryKernel, Kernel.comap_apply]
+  rw [inducedKernel_eq_dirac_step]
+  rfl
+
+theorem diracOrbit_hasTransitionPair (y : Y) :
+    StrategicWorldModel.HasTransitionPair
+      (Measure.dirac (orbit y)) model.inducedKernel := by
+  intro n
+  ext E hE
+  rw [Measure.map_dirac' (by fun_prop)]
+  rw [MeasureTheory.dirac_compProd_apply hE]
+  rw [stationaryHistoryKernel_orbit]
+  rw [Measure.map_dirac' (by fun_prop)]
+  rw [Measure.dirac_apply' _ (hE.preimage (by fun_prop))]
+  rw [Measure.dirac_apply' _ hE]
+  rfl
+
+theorem diracOrbit_pathSpec (y : Y) :
+    StrategicWorldModel.MarkovPathLawSpec model (Measure.dirac y)
+      (Measure.dirac (orbit y)) := by
+  refine ⟨inferInstance, ?_, diracOrbit_hasTransitionPair y⟩
+  rw [Measure.map_dirac' (by fun_prop), Measure.map_dirac' (by fun_prop)]
+  rfl
+
+theorem pathLaw_dirac_eq_dirac_orbit (y : Y) :
+    model.pathLaw (Measure.dirac y) = Measure.dirac (orbit y) := by
+  exact (StrategicWorldModel.pathLaw_existsUnique model (Measure.dirac y)).unique
+    (Measure.dirac (orbit y)) (diracOrbit_pathSpec y)
+
 end
 
 end PeriodicExactGR
