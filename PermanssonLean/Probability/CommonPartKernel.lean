@@ -23,12 +23,12 @@ noncomputable def leftDensity
 /-- The left density in the `ℝ≥0∞` codomain expected by `withDensity`. -/
 noncomputable def leftWeight
     (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) : ℝ≥0∞ :=
-  ↑(Real.toNNReal (leftDensity K Ktilde y x))
+  (↑((Kernel.rnDerivAux K (K + Ktilde) y x).toNNReal) : ℝ≥0∞)
 
 /-- The complementary/right density in the same common dominating measure. -/
 noncomputable def rightWeight
     (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) : ℝ≥0∞ :=
-  ↑(Real.toNNReal (1 - leftDensity K Ktilde y x))
+  (↑((1 - Kernel.rnDerivAux K (K + Ktilde) y x).toNNReal) : ℝ≥0∞)
 
 /-- Pointwise overlap density relative to `K + Ktilde`. -/
 noncomputable def commonDensity
@@ -37,12 +37,12 @@ noncomputable def commonDensity
 
 theorem measurable_leftWeight (K Ktilde : Kernel Y Ω) :
     Measurable (Function.uncurry (leftWeight K Ktilde)) := by
-  unfold leftWeight leftDensity
+  unfold leftWeight
   exact ((Kernel.measurable_rnDerivAux K (K + Ktilde)).real_toNNReal).coe_nnreal_ennreal
 
 theorem measurable_rightWeight (K Ktilde : Kernel Y Ω) :
     Measurable (Function.uncurry (rightWeight K Ktilde)) := by
-  unfold rightWeight leftDensity
+  unfold rightWeight
   exact ((measurable_const.sub
     (Kernel.measurable_rnDerivAux K (K + Ktilde))).real_toNNReal).coe_nnreal_ennreal
 
@@ -56,14 +56,14 @@ theorem measurable_commonDensity (K Ktilde : Kernel Y Ω) :
 theorem withDensity_leftWeight_eq
     (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
     Kernel.withDensity (K + Ktilde) (leftWeight K Ktilde) = K := by
-  simpa [leftWeight, leftDensity] using
+  simpa only [leftWeight] using
     (Kernel.withDensity_rnDerivAux K Ktilde)
 
 /-- Mathlib's complementary RN decomposition, restated using the local right weight. -/
 theorem withDensity_rightWeight_eq
     (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
     Kernel.withDensity (K + Ktilde) (rightWeight K Ktilde) = Ktilde := by
-  simpa [rightWeight, leftDensity] using
+  simpa only [rightWeight] using
     (Kernel.withDensity_one_sub_rnDerivAux K Ktilde)
 
 /-- A measurable finite kernel carrying the pointwise density shared by `K`
