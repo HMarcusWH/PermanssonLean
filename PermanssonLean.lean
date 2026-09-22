@@ -58,6 +58,7 @@ import PermanssonLean.Examples.FactorizationCounterexample
 import PermanssonLean.Regime.NuisancePadding
 
 import PermanssonLean.Examples.ConstitutiveNoninvariance
+import PermanssonLean.Examples.QSDCounterexample
 
 import PermanssonLean.Probability.TotalVariation
 
