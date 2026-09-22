@@ -50,12 +50,20 @@ def decodeRelevantPath :
 
 theorem decodeRelevantPath_measurable :
     Measurable (decodeRelevantPath (X := X) (A := A)) := by
-  refine ?hworld.prodMk ?haction
-  · refine Measurable.of_eval fun t => ?_
+  have hworld :
+      Measurable
+        (fun w : ℕ → X × PaperIActionRecord A =>
+          fun t => (w t).1) := by
+    refine Measurable.of_eval fun t => ?_
     exact measurable_fst.comp (measurable_pi_apply t)
-  · refine Measurable.of_eval fun t => ?_
+  have haction :
+      Measurable
+        (fun w : ℕ → X × PaperIActionRecord A =>
+          fun t => decodeActionRecord ((w (t + 1)).2)) := by
+    refine Measurable.of_eval fun t => ?_
     exact decodeActionRecord_measurable.comp
       (measurable_snd.comp (measurable_pi_apply (t + 1)))
+  exact hworld.prodMk haction
 
 theorem recordedDecode_factor_relevancePath
     (spec : RegimeSpecification X H)
