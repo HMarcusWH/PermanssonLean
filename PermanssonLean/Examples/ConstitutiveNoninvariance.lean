@@ -239,6 +239,18 @@ def comparisonB :
   RegimeSpecification.ConstitutiveComparisonSet.transport
     modelA modelB baseline_inducedKernel_eq regimeSpec comparisonA
 
+@[simp] theorem mem_comparisonA_iff (y : JointState Bool Bool) :
+    y ∈ comparisonA.states ↔ y.2 = false := by
+  rfl
+
+@[simp] theorem mem_comparisonB_iff (y : JointState Bool Bool) :
+    y ∈ comparisonB.states ↔ y.2 = false := by
+  rfl
+
+@[simp] theorem mem_stayFalseRegion_iff (y : JointState Bool Bool) :
+    y ∈ stayFalseSpec.region ↔ y.2 = false := by
+  rfl
+
 /-- One-step survival in x=false, expressed as a real-valued path-law property. -/
 noncomputable def survivalProperty :
     RegimePropertyMap (JointState Bool Bool) ℝ :=
@@ -369,11 +381,11 @@ theorem interventionA_not_constitutive :
     ¬ RegimeSpecification.IsStrategicallyConstitutive
       modelA regimeSpec familyA survivalProperty comparisonA interventionA := by
   intro h
-  have hyComp : (false, false) ∈ comparisonA.states := by
-    simp [comparisonA, regimeSpec]
+  have hyComp : (false, false) ∈ comparisonA.states :=
+    (mem_comparisonA_iff _).2 rfl
   have hneq := h (false, false) hyComp
-  have hyStay : (false, false) ∈ stayFalseSpec.region := by
-    simp [stayFalseSpec]
+  have hyStay : (false, false) ∈ stayFalseSpec.region :=
+    (mem_stayFalseRegion_iff _).2 rfl
   rw [baselinePropertyValue_modelA_eq_one hyStay,
     intervenedPropertyValue_modelA_eq_one hyStay] at hneq
   exact hneq rfl
@@ -384,8 +396,8 @@ theorem interventionB_constitutive :
     RegimeSpecification.IsStrategicallyConstitutive
       modelB regimeSpec familyB survivalProperty comparisonB interventionB := by
   intro y hy
-  have hyStay : y ∈ stayFalseSpec.region := by
-    simpa [comparisonB, comparisonA, regimeSpec, stayFalseSpec] using hy
+  have hyStay : y ∈ stayFalseSpec.region :=
+    (mem_stayFalseRegion_iff y).2 ((mem_comparisonB_iff y).1 hy)
   rw [baselinePropertyValue_modelB_eq_one hyStay,
     intervenedPropertyValue_modelB_eq_zero hyStay]
   norm_num
@@ -421,10 +433,10 @@ theorem interventionB_constitutiveMargin_eq_one :
     exact hle
   · unfold RegimeSpecification.constitutiveMargin
     refine le_csInf ?_ ?_
-    · exact ⟨1, ⟨(false, false), by
-        simp [comparisonB, comparisonA, regimeSpec], by
-        rw [interventionB_constitutiveEffect_eq_one]
-        simp [comparisonB, comparisonA, regimeSpec]⟩⟩
+    · have hy : (false, false) ∈ comparisonB.states :=
+        (mem_comparisonB_iff _).2 rfl
+      exact ⟨1, ⟨(false, false), hy,
+        interventionB_constitutiveEffect_eq_one hy⟩⟩
     · intro r hr
       rcases hr with ⟨y, hy, rfl⟩
       rw [interventionB_constitutiveEffect_eq_one hy]
