@@ -24,6 +24,7 @@ variable [Inhabited A]
 
 /-- Transport an action-sensitive Paper-I property by the Section-6.2 decoder D. -/
 noncomputable def transportRecordedProperty
+    (M : PaperISelectedModel X A)
     (ψI : PaperIRecordedPropertyMap X A Z) :
     RegimePropertyMap
       (JointState (PaperIStrategicState A) X) Z :=
