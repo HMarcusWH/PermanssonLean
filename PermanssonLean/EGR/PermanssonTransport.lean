@@ -80,7 +80,12 @@ theorem transportedIntervention_update_eq
     (J : PaperIPolicyIntervention X A) :
     (J.transportedIntervention M).intervention.apply.generator.update =
       M.embeddedModel.generator.update := by
-  rfl
+  change
+    (applyReplacement M.embeddedModel .actionSelection
+      J.transportedReplacement).generator.update =
+      M.embeddedModel.generator.update
+  exact applyReplacement_actionSelection_update
+    M.embeddedModel J.transportedReplacement
 
 @[simp]
 theorem transportedIntervention_action
@@ -90,6 +95,12 @@ theorem transportedIntervention_action
       Kernel.deterministic
         J.transportedActionMap
         J.transportedActionMap_measurable := by
+  change
+    (applyReplacement M.embeddedModel .actionSelection
+      J.transportedReplacement).generator.action =
+      Kernel.deterministic
+        J.transportedActionMap
+        J.transportedActionMap_measurable
   rfl
 
 /-- Paper-I counterfactual world-path law represented by the canonical
@@ -102,7 +113,7 @@ noncomputable def counterfactualPathProbability
     ProbabilityMeasure (ℕ → X) :=
   (RegimeSpecification.pathProbability
     (J.transportedIntervention M).intervention.apply
-    (diracProba (M.initialEmbedding x))).map
+    (diracProba (initialEmbedding (X := X) (A := A) x))).map
       (PaperISelectedModel.worldPathProjection
         (X := X) (S := PaperIStrategicState A))
 
@@ -134,21 +145,21 @@ noncomputable def embedded
     (spec : RegimeSpecification X H)
     (B₁ : PaperIComparisonSet spec) :
     RegimeSpecification.ConstitutiveComparisonSet
-      M.embeddedModel (M.embeddedSpec (A := A) spec) where
+      M.embeddedModel (embeddedSpec (A := A) spec) where
   states :=
-    {M.initialStrategicState (A := A)} ×ˢ B₁.states
+    {initialStrategicState (A := A)} ×ˢ B₁.states
   states_measurable :=
     (measurableSet_singleton
-      (M.initialStrategicState (A := A))).prod B₁.states_measurable
+      (initialStrategicState (A := A))).prod B₁.states_measurable
   states_subset_basin := by
     rintro ⟨s, x⟩ ⟨hs, hx⟩
     exact ⟨hs, B₁.states_subset_basin hx⟩
   pathLawNontrivial := by
     rcases B₁.two_states with ⟨x₁, hx₁, x₂, hx₂, hne⟩
     let y₁ : JointState (PaperIStrategicState A) X :=
-      (M.initialStrategicState (A := A), x₁)
+      (initialStrategicState (A := A), x₁)
     let y₂ : JointState (PaperIStrategicState A) X :=
-      (M.initialStrategicState (A := A), x₂)
+      (initialStrategicState (A := A), x₂)
     have hyne : y₁ ≠ y₂ := by
       intro hp
       exact hne (congrArg Prod.snd hp)
@@ -221,8 +232,8 @@ theorem transported_baselinePropertyValue_eq
     (ψI : RegimePropertyMap X Z)
     (x : X) :
     RegimeSpecification.baselinePropertyValue
-        (M.transportProperty ψI) M.embeddedModel
-        (M.initialEmbedding x) =
+        (transportProperty (A := A) ψI) M.embeddedModel
+        (initialEmbedding (X := X) (A := A) x) =
       M.paperIBaselinePropertyValue ψI x := by
   unfold RegimeSpecification.baselinePropertyValue
     transportProperty paperIBaselinePropertyValue
@@ -230,13 +241,13 @@ theorem transported_baselinePropertyValue_eq
   apply ProbabilityMeasure.toMeasure_injective
   change
     (M.embeddedModel.pathLaw
-      (diracProba (M.initialEmbedding x)).toMeasure).map
+      (diracProba (initialEmbedding (X := X) (A := A) x)).toMeasure).map
         (worldPathProjection
           (X := X) (S := PaperIStrategicState A)) =
       M.pathLaw (diracProba x).toMeasure
   simpa [PaperISelectedModel.worldMarginal] using
     M.embedded_worldPathLaw_eq_paperI
-      (diracProba (M.initialEmbedding x))
+      (diracProba (initialEmbedding (X := X) (A := A) x))
 
 theorem transported_intervenedPropertyValue_eq
     (M : PaperISelectedModel X A)
@@ -244,9 +255,9 @@ theorem transported_intervenedPropertyValue_eq
     (J : PaperIPolicyIntervention X A)
     (x : X) :
     RegimeSpecification.intervenedPropertyValue
-        (M.transportProperty ψI)
+        (transportProperty (A := A) ψI)
         (J.transportedIntervention M).intervention
-        (M.initialEmbedding x) =
+        (initialEmbedding (X := X) (A := A) x) =
       M.paperIIntervenedPropertyValue ψI J x := by
   rfl
 
@@ -271,10 +282,10 @@ theorem paperIConstitutive_iff_embedded
     IsPaperIConstitutive M spec ψI J B₁ ↔
       RegimeSpecification.IsStrategicallyConstitutive
         M.embeddedModel
-        (M.embeddedSpec (A := A) spec)
+        (embeddedSpec (A := A) spec)
         (PaperIPolicyIntervention.transportedFamily M)
-        (M.transportProperty ψI)
-        (B₁.embedded M spec)
+        (transportProperty (A := A) ψI)
+        (PaperIComparisonSet.embedded M spec B₁)
         (J.transportedIntervention M) := by
   constructor
   · intro h y hy
@@ -286,9 +297,9 @@ theorem paperIConstitutive_iff_embedded
       ] using h y.2 hy.2
   · intro h x hx
     have hy :
-        (M.initialEmbedding x) ∈ (B₁.embedded M spec).states :=
+        (initialEmbedding (X := X) (A := A) x) ∈ (PaperIComparisonSet.embedded M spec B₁).states :=
       ⟨rfl, hx⟩
-    have hh := h (M.initialEmbedding x) hy
+    have hh := h (initialEmbedding (X := X) (A := A) x) hy
     simpa [
       M.transported_baselinePropertyValue_eq ψI x,
       M.transported_intervenedPropertyValue_eq ψI J x
@@ -316,11 +327,11 @@ theorem paperIPermansson_iff_embeddedRelativePR
     IsPaperIPermanssonRegimeRelative M spec m ψI J B₁ ↔
       RegimeSpecification.IsGeneralizedPermanssonRegimeRelative
         M.embeddedModel
-        (M.embeddedSpec (A := A) spec)
-        (M.embeddedReferenceMeasure (A := A) m)
+        (embeddedSpec (A := A) spec)
+        (embeddedReferenceMeasure (A := A) m)
         (PaperIPolicyIntervention.transportedFamily M)
-        (M.transportProperty ψI)
-        (B₁.embedded M spec)
+        (transportProperty (A := A) ψI)
+        (PaperIComparisonSet.embedded M spec B₁)
         (J.transportedIntervention M) := by
   unfold IsPaperIPermanssonRegimeRelative
     RegimeSpecification.IsGeneralizedPermanssonRegimeRelative
@@ -368,9 +379,9 @@ theorem transported_constitutiveEffect_eq
     M.paperIConstitutiveEffect ψI J x =
       RegimeSpecification.constitutiveEffect
         M.embeddedModel
-        (M.transportProperty ψI)
+        (transportProperty (A := A) ψI)
         (J.transportedIntervention M)
-        (M.initialEmbedding x) := by
+        (initialEmbedding (X := X) (A := A) x) := by
   unfold paperIConstitutiveEffect
     RegimeSpecification.constitutiveEffect
   rw [M.transported_baselinePropertyValue_eq ψI x,
@@ -385,17 +396,17 @@ theorem paperIConstitutiveMargin_eq_embedded
     M.paperIConstitutiveMargin spec ψI J B₁ =
       RegimeSpecification.constitutiveMargin
         M.embeddedModel
-        (M.embeddedSpec (A := A) spec)
+        (embeddedSpec (A := A) spec)
         (PaperIPolicyIntervention.transportedFamily M)
-        (M.transportProperty ψI)
-        (B₁.embedded M spec)
+        (transportProperty (A := A) ψI)
+        (PaperIComparisonSet.embedded M spec B₁)
         (J.transportedIntervention M) := by
   unfold paperIConstitutiveMargin RegimeSpecification.constitutiveMargin
   apply congrArg sInf
   ext r
   constructor
   · rintro ⟨x, hx, rfl⟩
-    refine ⟨M.initialEmbedding x, ⟨rfl, hx⟩, ?_⟩
+    refine ⟨initialEmbedding (X := X) (A := A) x, ⟨rfl, hx⟩, ?_⟩
     exact M.transported_constitutiveEffect_eq spec ψI J B₁ x
   · rintro ⟨y, hy, rfl⟩
     rcases hy.1 with rfl
@@ -412,10 +423,10 @@ theorem paperIUniformlyConstitutive_iff_embedded
     IsPaperIUniformlyConstitutive M spec ψI J B₁ ↔
       RegimeSpecification.IsUniformlyStrategicallyConstitutive
         M.embeddedModel
-        (M.embeddedSpec (A := A) spec)
+        (embeddedSpec (A := A) spec)
         (PaperIPolicyIntervention.transportedFamily M)
-        (M.transportProperty ψI)
-        (B₁.embedded M spec)
+        (transportProperty (A := A) ψI)
+        (PaperIComparisonSet.embedded M spec B₁)
         (J.transportedIntervention M) := by
   unfold IsPaperIUniformlyConstitutive
   rw [RegimeSpecification.uniformlyConstitutive_iff_margin_pos,
@@ -442,11 +453,11 @@ theorem paperIUniformPermansson_iff_embeddedRelativePR
         M spec m ψI J B₁ ↔
       RegimeSpecification.IsUniformGeneralizedPermanssonRegimeRelative
         M.embeddedModel
-        (M.embeddedSpec (A := A) spec)
-        (M.embeddedReferenceMeasure (A := A) m)
+        (embeddedSpec (A := A) spec)
+        (embeddedReferenceMeasure (A := A) m)
         (PaperIPolicyIntervention.transportedFamily M)
-        (M.transportProperty ψI)
-        (B₁.embedded M spec)
+        (transportProperty (A := A) ψI)
+        (PaperIComparisonSet.embedded M spec B₁)
         (J.transportedIntervention M) := by
   unfold IsPaperIUniformPermanssonRegimeRelative
     RegimeSpecification.IsUniformGeneralizedPermanssonRegimeRelative
