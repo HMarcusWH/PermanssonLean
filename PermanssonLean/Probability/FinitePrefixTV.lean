@@ -134,5 +134,88 @@ theorem measureMap_mono
     μ.map f ≤ ν.map f :=
   Measure.map_mono_of_aemeasurable hμν hf.aemeasurable
 
+
+universe uW
+
+variable {W : Type uW} [MeasurableSpace W]
+
+/-- Measurable pushforward is monotone in the source kernel. -/
+theorem kernelMap_mono
+    {κ κ' : Kernel Y Z}
+    [IsSFiniteKernel κ] [IsSFiniteKernel κ']
+    (hκ : κ ≤ κ') {f : Z → W} (hf : Measurable f) :
+    κ.map f ≤ κ'.map f := by
+  intro y
+  rw [Kernel.map_apply _ hf, Kernel.map_apply _ hf]
+  exact Measure.map_mono_of_aemeasurable (hκ y) hf.aemeasurable
+
+/-- Product of s-finite kernels is monotone in both factors. -/
+theorem kernelProd_mono
+    {κ κ' : Kernel Y Z} {η η' : Kernel Y W}
+    [IsSFiniteKernel κ] [IsSFiniteKernel κ']
+    [IsSFiniteKernel η] [IsSFiniteKernel η']
+    (hκ : κ ≤ κ') (hη : η ≤ η') :
+    κ ×ₖ η ≤ κ' ×ₖ η' := by
+  intro y
+  rw [Kernel.prod_apply κ η y, Kernel.prod_apply κ' η' y]
+  exact Measure.prod_mono (hκ y) (hη y)
+
+/-- Lifting a stationary kernel to history space preserves pointwise domination. -/
+theorem stationaryPrefixKernel_mono
+    {K K' : Kernel Y Y} (hK : K ≤ K') (n : ℕ) :
+    stationaryPrefixKernel K n ≤ stationaryPrefixKernel K' n := by
+  intro h
+  exact hK _
+
+/-- Finite stationary trajectory kernels preserve pointwise kernel domination. -/
+theorem partialTraj_stationary_mono
+    {K K' : Kernel Y Y}
+    [IsSFiniteKernel K] [IsSFiniteKernel K']
+    (hK : K ≤ K') (T : ℕ) :
+    Kernel.partialTraj (X := fun _ : ℕ => Y)
+        (fun n => stationaryPrefixKernel K n) 0 T
+      ≤
+    Kernel.partialTraj (X := fun _ : ℕ => Y)
+        (fun n => stationaryPrefixKernel K' n) 0 T := by
+  induction T with
+  | zero =>
+      simp
+  | succ T ih =>
+      rw [Kernel.partialTraj_succ_of_le
+            (κ := fun n => stationaryPrefixKernel K n) (Nat.zero_le T),
+          Kernel.partialTraj_succ_of_le
+            (κ := fun n => stationaryPrefixKernel K' n) (Nat.zero_le T)]
+      apply kernelMap_mono
+      apply kernelComp_mono ih
+      apply kernelProd_mono le_rfl
+      apply kernelMap_mono
+      exact stationaryPrefixKernel_mono hK T
+
+/-- Point-started finite-prefix laws inherit pointwise kernel domination. -/
+theorem finitePrefixLaw_mono
+    {K K' : Kernel Y Y}
+    [IsSFiniteKernel K] [IsSFiniteKernel K']
+    (hK : K ≤ K') (y : Y) (T : ℕ) :
+    finitePrefixLaw K y T ≤ finitePrefixLaw K' y T := by
+  exact partialTraj_stationary_mono hK T (singletonPrefix y)
+
+/-- The common finite-prefix law is a submeasure of the left prefix law. -/
+theorem commonFinitePrefixLaw_le_left
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    (y : Y) (T : ℕ) :
+    commonFinitePrefixLaw K Ktilde y T ≤ finitePrefixLaw K y T := by
+  unfold commonFinitePrefixLaw
+  exact finitePrefixLaw_mono (commonPartKernel_le_left K Ktilde) y T
+
+/-- The common finite-prefix law is a submeasure of the right prefix law. -/
+theorem commonFinitePrefixLaw_le_right
+    [MeasurableSpace.CountableOrCountablyGenerated Y Y]
+    (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
+    (y : Y) (T : ℕ) :
+    commonFinitePrefixLaw K Ktilde y T ≤ finitePrefixLaw Ktilde y T := by
+  unfold commonFinitePrefixLaw
+  exact finitePrefixLaw_mono (commonPartKernel_le_right K Ktilde) y T
+
 end ProbabilitySupport
 end PermanssonLean
