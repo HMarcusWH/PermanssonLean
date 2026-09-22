@@ -61,7 +61,7 @@ theorem pushPath_eq
   rw [Measure.map_map gbar.pathMap_measurable Q.pathMap_measurable]
   apply Measure.map_congr
   filter_upwards [] with w
-  exact C.pathMap_factor Q g gbar w
+  exact RelevanceMapFactorsThroughCompression.pathMap_factor Q g gbar C w
 
 end RelevanceMapFactorsThroughCompression
 
@@ -208,7 +208,7 @@ theorem groundedFrozenFamilyProperty_iff_under_quotient
         pathProbability_push_eq_of_kernelIntertwines
           Q M Mbar C.kernel.baseline_intertwines μ
       have hψ := C.property (pathProbability M μ)
-      have hgpush := Rg.pushPath_eq Q g gbar (pathProbability M μ)
+      have hgpush := RelevanceMapFactorsThroughCompression.pushPath_eq Q g gbar Rg (pathProbability M μ)
       have hground := hbase μ hμ
       rw [hpush] at hpath
       rw [← hpath]
@@ -227,7 +227,7 @@ theorem groundedFrozenFamilyProperty_iff_under_quotient
           (Jbar.intervention lbar).intervention.apply hK μ
       have hψ := C.property
         (pathProbability (J.intervention l).intervention.apply μ)
-      have hgpush := Rg.pushPath_eq Q g gbar
+      have hgpush := RelevanceMapFactorsThroughCompression.pushPath_eq Q g gbar Rg
         (pathProbability (J.intervention l).intervention.apply μ)
       have hground := hinter l μ hμ
       rw [hpush] at hpath
@@ -242,7 +242,7 @@ theorem groundedFrozenFamilyProperty_iff_under_quotient
         pathProbability_push_eq_of_kernelIntertwines
           Q M Mbar C.kernel.baseline_intertwines μ
       have hψ := C.property (pathProbability M μ)
-      have hgpush := Rg.pushPath_eq Q g gbar (pathProbability M μ)
+      have hgpush := RelevanceMapFactorsThroughCompression.pushPath_eq Q g gbar Rg (pathProbability M μ)
       have hground := hbase (Q.pushInitial μ) hμbar
       rw [← hpath] at hground
       rw [← hgpush] at hground
@@ -257,7 +257,7 @@ theorem groundedFrozenFamilyProperty_iff_under_quotient
           (Jbar.intervention (φ l)).intervention.apply hK μ
       have hψ := C.property
         (pathProbability (J.intervention l).intervention.apply μ)
-      have hgpush := Rg.pushPath_eq Q g gbar
+      have hgpush := RelevanceMapFactorsThroughCompression.pushPath_eq Q g gbar Rg
         (pathProbability (J.intervention l).intervention.apply μ)
       have hground := hinter (φ l) (Q.pushInitial μ) hμbar
       rw [← hpath] at hground
