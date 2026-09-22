@@ -8,7 +8,8 @@ universe uX uA uH uZ
 
 /-- Action-sensitive Paper-I property map on decoded execution laws. -/
 abbrev PaperIRecordedPropertyMap
-    (X : Type uX) (A : Type uA) (Z : Type uZ) :=
+    (X : Type uX) (A : Type uA) (Z : Type uZ)
+    [MeasurableSpace X] [MeasurableSpace A] :=
   ProbabilityMeasure (PaperIDecodedPath X A) → Z
 
 namespace PaperISelectedModel
@@ -100,6 +101,15 @@ theorem paperIRecordedConstitutive_iff_embedded
         s = initialStrategicState (A := A) :=
       Set.mem_singleton_iff.mp hy.1
     subst s
+    change
+      RegimeSpecification.baselinePropertyValue
+          (M.transportRecordedProperty ψI)
+          M.embeddedModel
+          (initialEmbedding (X := X) (A := A) x) ≠
+        RegimeSpecification.intervenedPropertyValue
+          (M.transportRecordedProperty ψI)
+          (J.transportedIntervention M).intervention
+          (initialEmbedding (X := X) (A := A) x)
     rw [
       M.transported_recorded_baselinePropertyValue_eq ψI x,
       M.transported_recorded_intervenedPropertyValue_eq ψI J x
@@ -111,6 +121,15 @@ theorem paperIRecordedConstitutive_iff_embedded
           (PaperIComparisonSet.embedded M spec B₁).states :=
       ⟨Set.mem_singleton _, hx⟩
     have hh := h (initialEmbedding (X := X) (A := A) x) hy
+    change
+      RegimeSpecification.baselinePropertyValue
+          (M.transportRecordedProperty ψI)
+          M.embeddedModel
+          (initialEmbedding (X := X) (A := A) x) ≠
+        RegimeSpecification.intervenedPropertyValue
+          (M.transportRecordedProperty ψI)
+          (J.transportedIntervention M).intervention
+          (initialEmbedding (X := X) (A := A) x) at hh
     rw [
       M.transported_recorded_baselinePropertyValue_eq ψI x,
       M.transported_recorded_intervenedPropertyValue_eq ψI J x
