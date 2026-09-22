@@ -87,7 +87,8 @@ started from the point state `y`.  The codomain records times `0,...,T`. -/
 noncomputable def finitePrefixLaw
     (K : Kernel Y Y) (y : Y) (T : ℕ) :
     Measure ((i : Finset.Iic T) → Y) :=
-  Kernel.partialTraj (fun n => stationaryPrefixKernel K n) 0 T (singletonPrefix y)
+  Kernel.partialTraj (X := fun _ : ℕ => Y)
+    (fun n => stationaryPrefixKernel K n) 0 T (singletonPrefix y)
 
 instance finitePrefixLaw_isProbability
     (K : Kernel Y Y) [IsMarkovKernel K] (y : Y) (T : ℕ) :
