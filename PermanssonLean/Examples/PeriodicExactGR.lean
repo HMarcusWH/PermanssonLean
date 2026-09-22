@@ -1,6 +1,8 @@
 import PermanssonLean.Regime.PolishDescriptor
 import Mathlib.Probability.Kernel.Deterministic
 import Mathlib.MeasureTheory.Measure.Count
+import Mathlib.MeasureTheory.Integral.Bochner.SumMeasure
+import Mathlib.Analysis.SpecificLimits.Basic
 
 open Filter MeasureTheory ProbabilityTheory Set
 open scoped ENNReal ProbabilityTheory Topology
@@ -170,6 +172,62 @@ def orbit (y : Y) : ℕ → Y
       simp only [Nat.add_comm 2 (2 * n)]
       rw [show 2 * n + 2 = (2 * n + 1) + 1 by omega]
       simp [orbit_succ, ih]
+
+
+@[simp] theorem orbit_p0_odd (n : ℕ) :
+    orbit p0 (2 * n + 1) = p1 := by
+  rw [orbit_succ, orbit_p0_even]
+  rfl
+
+@[simp] theorem orbit_p1_even (n : ℕ) :
+    orbit p1 (2 * n) = p1 := by
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+      rw [show 2 * (n + 1) = (2 * n + 1) + 1 by omega]
+      rw [orbit_succ, orbit_succ, ih]
+      rfl
+
+@[simp] theorem orbit_p1_odd (n : ℕ) :
+    orbit p1 (2 * n + 1) = p0 := by
+  rw [orbit_succ, orbit_p1_even]
+  rfl
+
+theorem sum_orbit_p0_even (f : Y → ℝ) (n : ℕ) :
+    ∑ i ∈ Finset.range (2 * n), f (orbit p0 i) =
+      n * (f p0 + f p1) := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+      rw [show 2 * (n + 1) = 2 * n + 2 by omega]
+      rw [show 2 * n + 2 = (2 * n + 1) + 1 by omega]
+      rw [Finset.sum_range_succ, Finset.sum_range_succ, ih]
+      simp [orbit_p0_even, orbit_p0_odd]
+      ring
+
+theorem sum_orbit_p0_odd (f : Y → ℝ) (n : ℕ) :
+    ∑ i ∈ Finset.range (2 * n + 1), f (orbit p0 i) =
+      n * (f p0 + f p1) + f p0 := by
+  rw [Finset.sum_range_succ, sum_orbit_p0_even]
+  simp
+
+theorem sum_orbit_p1_even (f : Y → ℝ) (n : ℕ) :
+    ∑ i ∈ Finset.range (2 * n), f (orbit p1 i) =
+      n * (f p0 + f p1) := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+      rw [show 2 * (n + 1) = 2 * n + 2 by omega]
+      rw [show 2 * n + 2 = (2 * n + 1) + 1 by omega]
+      rw [Finset.sum_range_succ, Finset.sum_range_succ, ih]
+      simp [orbit_p1_even, orbit_p1_odd]
+      ring
+
+theorem sum_orbit_p1_odd (f : Y → ℝ) (n : ℕ) :
+    ∑ i ∈ Finset.range (2 * n + 1), f (orbit p1 i) =
+      n * (f p0 + f p1) + f p1 := by
+  rw [Finset.sum_range_succ, sum_orbit_p1_even]
+  simp
 
 
 theorem stationaryHistoryKernel_orbit (y : Y) (n : ℕ) :
