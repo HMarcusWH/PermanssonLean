@@ -3,6 +3,7 @@ import Mathlib.Probability.Kernel.Deterministic
 
 open MeasureTheory ProbabilityTheory
 open scoped ENNReal ProbabilityTheory
+open RegimeSpecification
 
 namespace PermanssonLean
 
@@ -53,12 +54,13 @@ def model : StrategicWorldModel Unit X Unit where
 
 def spec : RegimeSpecification (JointState Unit X) Unit where
   region := {y | y.2 ≠ (2 : X)}
-  region_measurable := MeasurableSet.of_discrete _
+  region_measurable := MeasurableSet.of_discrete
   basin := {y | y.2 = (0 : X)}
-  basin_measurable := MeasurableSet.of_discrete _
+  basin_measurable := MeasurableSet.of_discrete
   basin_subset_region := by
     intro y hy
-    simp [hy]
+    simp only [Set.mem_setOf_eq] at hy ⊢
+    omega
   descriptor := fun _ => ()
   descriptor_measurable := measurable_const
   target := ⟨Measure.dirac (), inferInstance⟩
@@ -79,6 +81,7 @@ theorem zero_transition :
   rw [StrategicWorldModel.inducedKernel_apply model ((), (0 : X)) hE]
   simp [model, generator, actionUnit, updateUnit, world,
     Kernel.deterministic_apply]
+  by_cases hmem : ((), (0 : X)) ∈ E <;> simp [hmem]
 
 theorem one_exits :
     model.inducedKernel ((), (1 : X)) spec.region = 0 := by
