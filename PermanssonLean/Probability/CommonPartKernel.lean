@@ -130,7 +130,7 @@ theorem commonPartKernel_le_right
 instance commonPartKernel_isFinite
     (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
     IsFiniteKernel (commonPartKernel K Ktilde) :=
-  Kernel.isFiniteKernel_of_le (commonPartKernel_le_left K Ktilde)
+  isFiniteKernel_of_le (commonPartKernel_le_left K Ktilde)
 
 /-- Measurable Hahn-style slice on which the left RN density is at least one half. -/
 def dominanceSlice
