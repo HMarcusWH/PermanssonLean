@@ -262,6 +262,105 @@ theorem integral_target_eq_half_sum (f : Y → ℝ) :
   ring
 
 
+/-- A sequence converges if its even and odd subsequences have the same limit. -/
+theorem tendsto_of_even_odd
+    {Z : Type*} [TopologicalSpace Z] {u : ℕ → Z} {z : Z}
+    (he : Tendsto (fun n => u (2 * n)) atTop (𝓝 z))
+    (ho : Tendsto (fun n => u (2 * n + 1)) atTop (𝓝 z)) :
+    Tendsto u atTop (𝓝 z) := by
+  rw [tendsto_def] at he ho ⊢
+  intro s hs
+  have hes := he s hs
+  have hos := ho s hs
+  rw [eventually_atTop] at hes hos ⊢
+  obtain ⟨Ne, hNe⟩ := hes
+  obtain ⟨No, hNo⟩ := hos
+  refine ⟨2 * max Ne No + 1, ?_⟩
+  intro n hn
+  rcases Nat.even_or_odd n with hEven | hOdd
+  · rcases hEven with ⟨k, hk⟩
+    have hkN : Ne ≤ k := by omega
+    simpa [hk, two_mul] using hNe k hkN
+  · rcases hOdd with ⟨k, hk⟩
+    have hkN : No ≤ k := by omega
+    simpa [hk] using hNo k hkN
+
+theorem tendsto_inv_odd_nat :
+    Tendsto
+      (fun n : ℕ => (1 : ℝ) / ((2 * n + 1 : ℕ) : ℝ))
+      atTop (𝓝 0) := by
+  have hidx : Tendsto (fun n : ℕ => 2 * n + 1) atTop atTop := by
+    apply tendsto_atTop.2
+    intro N
+    filter_upwards [eventually_ge_atTop N] with n hn
+    omega
+  exact tendsto_one_div_atTop_nhds_zero_nat.comp hidx
+
+theorem odd_average_p0_identity (a b : ℝ) (n : ℕ) :
+    (((2 * n + 1 : ℕ) : ℝ)⁻¹) *
+        ((n : ℝ) * (a + b) + a) =
+      (a + b) / 2 +
+        ((a - b) / 2) * (1 / ((2 * n + 1 : ℕ) : ℝ)) := by
+  have hden : (((2 * n + 1 : ℕ) : ℝ)) ≠ 0 := by positivity
+  field_simp [hden]
+  ring
+
+theorem odd_average_p1_identity (a b : ℝ) (n : ℕ) :
+    (((2 * n + 1 : ℕ) : ℝ)⁻¹) *
+        ((n : ℝ) * (a + b) + b) =
+      (a + b) / 2 +
+        ((b - a) / 2) * (1 / ((2 * n + 1 : ℕ) : ℝ)) := by
+  have hden : (((2 * n + 1 : ℕ) : ℝ)) ≠ 0 := by positivity
+  field_simp [hden]
+  ring
+
+theorem tendsto_odd_average_p0 (a b : ℝ) :
+    Tendsto
+      (fun n : ℕ =>
+        (((2 * n + 1 : ℕ) : ℝ)⁻¹) *
+          ((n : ℝ) * (a + b) + a))
+      atTop (𝓝 ((a + b) / 2)) := by
+  have hzero :
+      Tendsto
+        (fun n : ℕ => ((a - b) / 2) *
+          (1 / ((2 * n + 1 : ℕ) : ℝ)))
+        atTop (𝓝 0) := by
+    simpa using
+      (tendsto_const_nhds.mul tendsto_inv_odd_nat :
+        Tendsto
+          (fun n : ℕ => ((a - b) / 2) *
+            (1 / ((2 * n + 1 : ℕ) : ℝ)))
+          atTop (𝓝 (((a - b) / 2) * 0)))
+  have h :=
+    tendsto_const_nhds.add hzero
+  apply h.congr'
+  filter_upwards with n
+  exact (odd_average_p0_identity a b n).symm
+
+theorem tendsto_odd_average_p1 (a b : ℝ) :
+    Tendsto
+      (fun n : ℕ =>
+        (((2 * n + 1 : ℕ) : ℝ)⁻¹) *
+          ((n : ℝ) * (a + b) + b))
+      atTop (𝓝 ((a + b) / 2)) := by
+  have hzero :
+      Tendsto
+        (fun n : ℕ => ((b - a) / 2) *
+          (1 / ((2 * n + 1 : ℕ) : ℝ)))
+        atTop (𝓝 0) := by
+    simpa using
+      (tendsto_const_nhds.mul tendsto_inv_odd_nat :
+        Tendsto
+          (fun n : ℕ => ((b - a) / 2) *
+            (1 / ((2 * n + 1 : ℕ) : ℝ)))
+          atTop (𝓝 (((b - a) / 2) * 0)))
+  have h :=
+    tendsto_const_nhds.add hzero
+  apply h.congr'
+  filter_upwards with n
+  exact (odd_average_p1_identity a b n).symm
+
+
 theorem stationaryHistoryKernel_orbit (y : Y) (n : ℕ) :
     StrategicWorldModel.stationaryHistoryKernel model.inducedKernel n
         (Preorder.frestrictLe n (orbit y)) =
