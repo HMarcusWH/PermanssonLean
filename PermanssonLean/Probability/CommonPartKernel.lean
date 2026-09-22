@@ -14,29 +14,60 @@ variable {Y : Type uY} {Ω : Type uΩ}
 variable [MeasurableSpace Y] [MeasurableSpace Ω]
 variable [MeasurableSpace.CountableOrCountablyGenerated Y Ω]
 
-/-- The Radon--Nikodym density of `K` relative to the common dominating kernel
-`K + Ktilde`, in the real-valued auxiliary representation supplied by mathlib. -/
+/-- The real-valued Radon--Nikodym auxiliary density of `K` relative to
+the common dominating kernel `K + Ktilde`. -/
 noncomputable def leftDensity
     (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) : ℝ :=
   Kernel.rnDerivAux K (K + Ktilde) y x
 
+/-- The left density in the `ℝ≥0∞` codomain expected by `withDensity`. -/
+noncomputable def leftWeight
+    (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) : ℝ≥0∞ :=
+  ENNReal.ofReal (leftDensity K Ktilde y x)
+
+/-- The complementary/right density in the same common dominating measure. -/
+noncomputable def rightWeight
+    (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) : ℝ≥0∞ :=
+  ENNReal.ofReal (1 - leftDensity K Ktilde y x)
+
 /-- Pointwise overlap density relative to `K + Ktilde`. -/
 noncomputable def commonDensity
     (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) : ℝ≥0∞ :=
-  min
-    (ENNReal.ofReal (leftDensity K Ktilde y x))
-    (ENNReal.ofReal (1 - leftDensity K Ktilde y x))
+  min (leftWeight K Ktilde y x) (rightWeight K Ktilde y x)
+
+theorem measurable_leftWeight (K Ktilde : Kernel Y Ω) :
+    Measurable (Function.uncurry (leftWeight K Ktilde)) := by
+  unfold leftWeight leftDensity
+  exact (Kernel.measurable_rnDerivAux K (K + Ktilde)).ennreal_ofReal
+
+theorem measurable_rightWeight (K Ktilde : Kernel Y Ω) :
+    Measurable (Function.uncurry (rightWeight K Ktilde)) := by
+  unfold rightWeight leftDensity
+  exact (measurable_const.sub
+    (Kernel.measurable_rnDerivAux K (K + Ktilde))).ennreal_ofReal
 
 theorem measurable_commonDensity (K Ktilde : Kernel Y Ω) :
     Measurable (Function.uncurry (commonDensity K Ktilde)) := by
-  unfold commonDensity leftDensity
-  apply Measurable.min
-  · exact (Kernel.measurable_rnDerivAux K (K + Ktilde)).ennreal_ofReal
-  · exact (measurable_const.sub
-      (Kernel.measurable_rnDerivAux K (K + Ktilde))).ennreal_ofReal
+  unfold commonDensity
+  exact Measurable.min (measurable_leftWeight K Ktilde)
+    (measurable_rightWeight K Ktilde)
 
-/-- A measurable finite kernel carrying exactly the pointwise density shared by
-`K` and `Ktilde` relative to the common dominating kernel `K + Ktilde`. -/
+/-- Mathlib's RN auxiliary decomposition, restated using the local left weight. -/
+theorem withDensity_leftWeight_eq
+    (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
+    Kernel.withDensity (K + Ktilde) (leftWeight K Ktilde) = K := by
+  simpa [leftWeight, leftDensity, ENNReal.ofReal] using
+    (Kernel.withDensity_rnDerivAux K Ktilde)
+
+/-- Mathlib's complementary RN decomposition, restated using the local right weight. -/
+theorem withDensity_rightWeight_eq
+    (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
+    Kernel.withDensity (K + Ktilde) (rightWeight K Ktilde) = Ktilde := by
+  simpa [rightWeight, leftDensity, ENNReal.ofReal] using
+    (Kernel.withDensity_one_sub_rnDerivAux K Ktilde)
+
+/-- A measurable finite kernel carrying the pointwise density shared by `K`
+and `Ktilde` relative to the common dominating kernel `K + Ktilde`. -/
 noncomputable def commonPartKernel
     (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
     Kernel Y Ω :=
@@ -52,36 +83,48 @@ theorem commonPartKernel_apply
 /-- The overlap density is pointwise dominated by the left RN density. -/
 theorem commonDensity_le_left
     (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) :
-    commonDensity K Ktilde y x ≤
-      ENNReal.ofReal (leftDensity K Ktilde y x) := by
-  exact min_le_left _ _
+    commonDensity K Ktilde y x ≤ leftWeight K Ktilde y x :=
+  min_le_left _ _
 
 /-- The overlap density is pointwise dominated by the complementary/right RN density. -/
 theorem commonDensity_le_right
     (K Ktilde : Kernel Y Ω) (y : Y) (x : Ω) :
-    commonDensity K Ktilde y x ≤
-      ENNReal.ofReal (1 - leftDensity K Ktilde y x) := by
-  exact min_le_right _ _
+    commonDensity K Ktilde y x ≤ rightWeight K Ktilde y x :=
+  min_le_right _ _
 
 /-- The common-part kernel is a subkernel of `K`. -/
 theorem commonPartKernel_le_left
     (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
     commonPartKernel K Ktilde ≤ K := by
-  rw [← Kernel.withDensity_rnDerivAux K Ktilde]
   intro y
   rw [commonPartKernel_apply]
-  apply MeasureTheory.withDensity_mono
-  exact ae_of_all _ (commonDensity_le_left K Ktilde y)
+  calc
+    ((K + Ktilde) y).withDensity (commonDensity K Ktilde y) ≤
+        ((K + Ktilde) y).withDensity (leftWeight K Ktilde y) :=
+      MeasureTheory.withDensity_mono
+        (ae_of_all _ (commonDensity_le_left K Ktilde y))
+    _ = (Kernel.withDensity (K + Ktilde) (leftWeight K Ktilde)) y := by
+      rw [Kernel.withDensity_apply _ (measurable_leftWeight K Ktilde)]
+    _ = K y := by
+      exact congrArg (fun κ : Kernel Y Ω => κ y)
+        (withDensity_leftWeight_eq K Ktilde)
 
 /-- The common-part kernel is a subkernel of `Ktilde`. -/
 theorem commonPartKernel_le_right
     (K Ktilde : Kernel Y Ω) [IsFiniteKernel K] [IsFiniteKernel Ktilde] :
     commonPartKernel K Ktilde ≤ Ktilde := by
-  rw [← Kernel.withDensity_one_sub_rnDerivAux K Ktilde]
   intro y
   rw [commonPartKernel_apply]
-  apply MeasureTheory.withDensity_mono
-  exact ae_of_all _ (commonDensity_le_right K Ktilde y)
+  calc
+    ((K + Ktilde) y).withDensity (commonDensity K Ktilde y) ≤
+        ((K + Ktilde) y).withDensity (rightWeight K Ktilde y) :=
+      MeasureTheory.withDensity_mono
+        (ae_of_all _ (commonDensity_le_right K Ktilde y))
+    _ = (Kernel.withDensity (K + Ktilde) (rightWeight K Ktilde)) y := by
+      rw [Kernel.withDensity_apply _ (measurable_rightWeight K Ktilde)]
+    _ = Ktilde y := by
+      exact congrArg (fun κ : Kernel Y Ω => κ y)
+        (withDensity_rightWeight_eq K Ktilde)
 
 /-- The common part is finite whenever both source kernels are finite. -/
 instance commonPartKernel_isFinite
@@ -104,24 +147,24 @@ theorem measurableSet_dominanceSlice
 theorem commonDensity_eq_right_of_mem_dominanceSlice
     (K Ktilde : Kernel Y Ω) (y : Y) {x : Ω}
     (hx : x ∈ dominanceSlice K Ktilde y) :
-    commonDensity K Ktilde y x =
-      ENNReal.ofReal (1 - leftDensity K Ktilde y x) := by
-  unfold dominanceSlice at hx
+    commonDensity K Ktilde y x = rightWeight K Ktilde y x := by
+  change (1 / 2 : ℝ) ≤ leftDensity K Ktilde y x at hx
   unfold commonDensity
   rw [min_eq_right]
+  unfold leftWeight rightWeight
   apply ENNReal.ofReal_le_ofReal
   linarith
 
 theorem commonDensity_eq_left_of_not_mem_dominanceSlice
     (K Ktilde : Kernel Y Ω) (y : Y) {x : Ω}
     (hx : x ∉ dominanceSlice K Ktilde y) :
-    commonDensity K Ktilde y x =
-      ENNReal.ofReal (leftDensity K Ktilde y x) := by
-  unfold dominanceSlice at hx
+    commonDensity K Ktilde y x = leftWeight K Ktilde y x := by
   have hx' : leftDensity K Ktilde y x < (1 / 2 : ℝ) := by
-    simpa using hx
+    change ¬ (1 / 2 : ℝ) ≤ leftDensity K Ktilde y x at hx
+    exact lt_of_not_ge hx
   unfold commonDensity
   rw [min_eq_left]
+  unfold leftWeight rightWeight
   apply ENNReal.ofReal_le_ofReal
   linarith
 
@@ -133,15 +176,20 @@ theorem commonPartKernel_apply_dominanceSlice
       Ktilde y (dominanceSlice K Ktilde y) := by
   let A := dominanceSlice K Ktilde y
   have hA : MeasurableSet A := measurableSet_dominanceSlice K Ktilde y
-  rw [commonPartKernel, Kernel.withDensity_apply'
-      _ (measurable_commonDensity K Ktilde) y A]
-  rw [← Kernel.withDensity_one_sub_rnDerivAux K Ktilde]
-  rw [Kernel.withDensity_apply']
-  · apply setLIntegral_congr_fun hA
-    intro x hx
-    exact commonDensity_eq_right_of_mem_dominanceSlice K Ktilde y hx
-  · exact (measurable_const.sub
-      (Kernel.measurable_rnDerivAux K (K + Ktilde))).ennreal_ofReal
+  calc
+    commonPartKernel K Ktilde y A =
+        ∫⁻ x in A, commonDensity K Ktilde y x ∂(K + Ktilde) y := by
+      rw [commonPartKernel, Kernel.withDensity_apply'
+        _ (measurable_commonDensity K Ktilde) y A]
+    _ = ∫⁻ x in A, rightWeight K Ktilde y x ∂(K + Ktilde) y := by
+      apply setLIntegral_congr_fun hA
+      intro x hx
+      exact commonDensity_eq_right_of_mem_dominanceSlice K Ktilde y hx
+    _ = Kernel.withDensity (K + Ktilde) (rightWeight K Ktilde) y A := by
+      rw [Kernel.withDensity_apply'
+        _ (measurable_rightWeight K Ktilde) y A]
+    _ = Ktilde y A := by
+      rw [withDensity_rightWeight_eq K Ktilde]
 
 /-- Off the dominance slice the common part agrees with the left kernel. -/
 theorem commonPartKernel_apply_compl_dominanceSlice
@@ -151,14 +199,20 @@ theorem commonPartKernel_apply_compl_dominanceSlice
       K y (dominanceSlice K Ktilde y)ᶜ := by
   let A := dominanceSlice K Ktilde y
   have hA : MeasurableSet A := measurableSet_dominanceSlice K Ktilde y
-  rw [commonPartKernel, Kernel.withDensity_apply'
-      _ (measurable_commonDensity K Ktilde) y Aᶜ]
-  rw [← Kernel.withDensity_rnDerivAux K Ktilde]
-  rw [Kernel.withDensity_apply']
-  · apply setLIntegral_congr_fun hA.compl
-    intro x hx
-    exact commonDensity_eq_left_of_not_mem_dominanceSlice K Ktilde y hx
-  · exact (Kernel.measurable_rnDerivAux K (K + Ktilde)).ennreal_ofReal
+  calc
+    commonPartKernel K Ktilde y Aᶜ =
+        ∫⁻ x in Aᶜ, commonDensity K Ktilde y x ∂(K + Ktilde) y := by
+      rw [commonPartKernel, Kernel.withDensity_apply'
+        _ (measurable_commonDensity K Ktilde) y Aᶜ]
+    _ = ∫⁻ x in Aᶜ, leftWeight K Ktilde y x ∂(K + Ktilde) y := by
+      apply setLIntegral_congr_fun hA.compl
+      intro x hx
+      exact commonDensity_eq_left_of_not_mem_dominanceSlice K Ktilde y hx
+    _ = Kernel.withDensity (K + Ktilde) (leftWeight K Ktilde) y Aᶜ := by
+      rw [Kernel.withDensity_apply'
+        _ (measurable_leftWeight K Ktilde) y Aᶜ]
+    _ = K y Aᶜ := by
+      rw [withDensity_leftWeight_eq K Ktilde]
 
 /-- The total common mass splits into the right mass on the dominance slice and
 the left mass on its complement. -/
@@ -168,11 +222,17 @@ theorem commonPartKernel_univ_eq
     commonPartKernel K Ktilde y Set.univ =
       Ktilde y (dominanceSlice K Ktilde y) +
         K y (dominanceSlice K Ktilde y)ᶜ := by
-  have hA := measurableSet_dominanceSlice K Ktilde y
-  rw [← union_compl_self (dominanceSlice K Ktilde y)]
-  rw [measure_union hA hA.compl disjoint_compl_right]
-  rw [commonPartKernel_apply_dominanceSlice,
-      commonPartKernel_apply_compl_dominanceSlice]
+  let A := dominanceSlice K Ktilde y
+  have hA : MeasurableSet A := measurableSet_dominanceSlice K Ktilde y
+  calc
+    commonPartKernel K Ktilde y Set.univ =
+        commonPartKernel K Ktilde y (A ∪ Aᶜ) := by simp [A]
+    _ = commonPartKernel K Ktilde y A +
+        commonPartKernel K Ktilde y Aᶜ := by
+      rw [measure_union disjoint_compl_right hA.compl]
+    _ = Ktilde y A + K y Aᶜ := by
+      rw [commonPartKernel_apply_dominanceSlice,
+        commonPartKernel_apply_compl_dominanceSlice]
 
 end ProbabilitySupport
 end PermanssonLean
