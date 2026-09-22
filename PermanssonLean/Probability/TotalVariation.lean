@@ -1,5 +1,6 @@
 import Mathlib.MeasureTheory.Measure.Real
 import Mathlib.MeasureTheory.Measure.Typeclasses.Probability
+import Mathlib.Probability.Kernel.Basic
 import Mathlib.Algebra.Order.Ring.Pow
 
 open MeasureTheory ProbabilityTheory Set
