@@ -230,6 +230,38 @@ theorem sum_orbit_p1_odd (f : Y → ℝ) (n : ℕ) :
   simp
 
 
+theorem uniformFinProbability_toMeasure
+    (T : ℕ) (hT : 0 < T) :
+    (RegimeSpecification.uniformFinProbability T hT).toMeasure =
+      ((T : ℝ≥0∞)⁻¹) • Measure.count := by
+  ext E hE
+  change ProbabilityTheory.uniformOn (Set.univ : Set (Fin T)) E =
+    (((T : ℝ≥0∞)⁻¹) • Measure.count) E
+  rw [ProbabilityTheory.uniformOn_univ, Measure.smul_apply]
+  simp [ENNReal.div_eq_inv_mul, mul_comm]
+
+/-- Empirical occupation integrals are ordinary finite arithmetic means. -/
+theorem integral_empiricalOccupation_eq_average
+    (w : ℕ → Y) (T : ℕ) (hT : 0 < T) (f : Y → ℝ) :
+    ∫ y, f y ∂(RegimeSpecification.empiricalOccupation spec w T hT) =
+      ((T : ℝ)⁻¹) * ∑ i : Fin T, f (w i) := by
+  change
+    ∫ y, f y ∂
+      ((RegimeSpecification.uniformFinProbability T hT).map
+        (fun i : Fin T => spec.descriptor (w (i : ℕ)))) =
+      ((T : ℝ)⁻¹) * ∑ i : Fin T, f (w i)
+  rw [integral_map (by fun_prop) (by fun_prop)]
+  rw [uniformFinProbability_toMeasure T hT]
+  rw [integral_smul_measure, integral_count]
+  simp [spec, ENNReal.toReal_inv, smul_eq_mul]
+
+theorem integral_target_eq_half_sum (f : Y → ℝ) :
+    ∫ y, f y ∂target = (f p0 + f p1) / 2 := by
+  change ∫ y, f y ∂targetMeasure = _
+  simp [targetMeasure, div_eq_mul_inv]
+  ring
+
+
 theorem stationaryHistoryKernel_orbit (y : Y) (n : ℕ) :
     StrategicWorldModel.stationaryHistoryKernel model.inducedKernel n
         (Preorder.frestrictLe n (orbit y)) =
