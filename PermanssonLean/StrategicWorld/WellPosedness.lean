@@ -179,6 +179,14 @@ theorem joint_process_well_posed
         MarkovPathLawSpec M mu0 mu := by
   exact ⟨inducedKernel_isMarkov M, pathLaw_existsUnique M mu0⟩
 
+
+/-- Proposition 3.2 (enlarged-state reduction): every canonical strategic-world
+model induces an ordinary Markov process on the joint state space `S × X`. -/
+theorem enlarged_state_reduction
+    (M : StrategicWorldModel S X A) :
+    IsMarkovKernel M.inducedKernel :=
+  inducedKernel_isMarkov M
+
 end StrategicWorldModel
 
 end PermanssonLean

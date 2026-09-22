@@ -246,6 +246,168 @@ theorem survivalProbability_eq_killedSurvivalMass
   rw [hinter] at hregion
   simpa [survivalProbability, killedSurvivalMass] using hregion
 
+
+/-! ## Arbitrary-initial-law survival bridge
+
+The point-initialized bridge above is sufficient for finite-persistence
+statements.  Quasi-stationarity, however, starts from an initial probability
+law on the regime region.  The following definitions and theorems lift the
+same path/killed-kernel identity to that law-valued setting.
+-/
+
+/-- Endpoint law at horizon `n` among paths started from `initLaw` that
+survive in the regime through `n`.  Missing mass is the exit probability. -/
+noncomputable def survivingEndpointMeasureFromLaw
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (initLaw : ProbabilityMeasure (JointState S X))
+    (n : ℕ) :
+    Measure (JointState S X) :=
+  ((M.pathLaw initLaw.toMeasure).restrict (survivesThroughSet spec n)).map
+    (fun w : ℕ → JointState S X => w n)
+
+/-- Path probability of surviving in the regime through horizon `n` from an
+arbitrary initial probability law. -/
+noncomputable def survivalProbabilityFromLaw
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (initLaw : ProbabilityMeasure (JointState S X))
+    (n : ℕ) : ℝ≥0∞ :=
+  M.pathLaw initLaw.toMeasure (survivesThroughSet spec n)
+
+/-- Iteration of the killed transition operator on an arbitrary measure. -/
+noncomputable def killedMeasureIterate
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (μ : Measure (JointState S X)) :
+    ℕ → Measure (JointState S X)
+  | 0 => μ
+  | n + 1 => killedKernel M spec ∘ₘ killedMeasureIterate M spec μ n
+
+theorem survivingEndpointMeasureFromLaw_zero
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (initLaw : ProbabilityMeasure (JointState S X))
+    (hSupport : initLaw.toMeasure spec.region = 1) :
+    survivingEndpointMeasureFromLaw M spec initLaw 0 = initLaw.toMeasure := by
+  rw [survivingEndpointMeasureFromLaw, survivesThroughSet_zero]
+  rw [← Measure.restrict_map (measurable_pi_apply 0) spec.region_measurable]
+  rw [StrategicWorldModel.pathLaw_eval_zero M initLaw.toMeasure]
+  have hae : ∀ᵐ y ∂initLaw.toMeasure, y ∈ spec.region := by
+    apply (ae_mem_iff_measure_eq spec.region_measurable.nullMeasurableSet).2
+    simpa using hSupport
+  exact Measure.restrict_eq_self_of_ae_mem hae
+
+/-- The arbitrary-initial-law surviving endpoint measure evolves by the same
+killed kernel as the point-initialized endpoint measure. -/
+theorem survivingEndpointMeasureFromLaw_succ
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (initLaw : ProbabilityMeasure (JointState S X))
+    (n : ℕ) :
+    survivingEndpointMeasureFromLaw M spec initLaw (n + 1) =
+      killedKernel M spec ∘ₘ
+        survivingEndpointMeasureFromLaw M spec initLaw n := by
+  let P := M.pathLaw initLaw.toMeasure
+  let K := M.inducedKernel
+  letI : IsMarkovKernel K := StrategicWorldModel.inducedKernel_isMarkov M
+  let pairFn : (ℕ → JointState S X) →
+      (((i : Finset.Iic n) → JointState S X) × JointState S X) :=
+    fun w => (Preorder.frestrictLe n w, w (n + 1))
+  let last : ((i : Finset.Iic n) → JointState S X) → JointState S X :=
+    fun h => h ⟨n, Finset.mem_Iic.mpr le_rfl⟩
+  ext C hC
+  have hpair :
+      (P.map (Preorder.frestrictLe n)) ⊗ₘ
+          StrategicWorldModel.stationaryHistoryKernel K n =
+        P.map pairFn := by
+    exact StrategicWorldModel.pathLaw_has_transition_pair M initLaw.toMeasure n
+  have hprefix := measurableSet_prefixSurvivalSet spec n
+  have hCB : MeasurableSet (C ∩ spec.region) := hC.inter spec.region_measurable
+  have hlast : Measurable last := by
+    dsimp [last]
+    fun_prop
+  have hkernel :
+      Measurable (fun z : JointState S X => K z (C ∩ spec.region)) :=
+    Kernel.measurable_coe K hCB
+  have hpairFn : Measurable pairFn := by
+    fun_prop
+  calc
+    survivingEndpointMeasureFromLaw M spec initLaw (n + 1) C
+        = P (((fun w : ℕ → JointState S X => w (n + 1)) ⁻¹' C) ∩
+            survivesThroughSet spec (n + 1)) := by
+          rw [survivingEndpointMeasureFromLaw,
+            Measure.map_apply (measurable_pi_apply (n + 1)) hC,
+            Measure.restrict_apply (hC.preimage (measurable_pi_apply (n + 1)))]
+    _ = (P.map pairFn)
+          (prefixSurvivalSet spec n ×ˢ (C ∩ spec.region)) := by
+          rw [Measure.map_apply hpairFn (hprefix.prod hCB)]
+          rw [pair_preimage_prefixSurvival_prod spec n]
+    _ = ((P.map (Preorder.frestrictLe n)) ⊗ₘ
+          StrategicWorldModel.stationaryHistoryKernel K n)
+          (prefixSurvivalSet spec n ×ˢ (C ∩ spec.region)) := by
+          rw [hpair]
+    _ = ∫⁻ h in prefixSurvivalSet spec n,
+          K (last h) (C ∩ spec.region)
+          ∂(P.map (Preorder.frestrictLe n)) := by
+          rw [Measure.compProd_apply_prod hprefix hCB]
+          rfl
+    _ = ∫⁻ w in survivesThroughSet spec n,
+          K (w n) (C ∩ spec.region) ∂P := by
+          change
+            (∫⁻ h in prefixSurvivalSet spec n,
+              ((fun z : JointState S X => K z (C ∩ spec.region)) ∘ last) h
+                ∂(P.map (Preorder.frestrictLe n))) =
+              ∫⁻ w in survivesThroughSet spec n,
+                K (w n) (C ∩ spec.region) ∂P
+          rw [setLIntegral_map hprefix
+            (hkernel.comp hlast) (Preorder.measurable_frestrictLe n)]
+          rw [← survivesThroughSet_eq_preimage_prefix spec n]
+          rfl
+    _ = ∫⁻ z, K z (C ∩ spec.region)
+          ∂survivingEndpointMeasureFromLaw M spec initLaw n := by
+          rw [survivingEndpointMeasureFromLaw,
+            lintegral_map hkernel (measurable_pi_apply n)]
+    _ = (killedKernel M spec ∘ₘ
+          survivingEndpointMeasureFromLaw M spec initLaw n) C := by
+          rw [Measure.bind_apply hC (Kernel.aemeasurable _)]
+          congr with z
+          exact (killedKernel_apply M spec z hC).symm
+
+/-- Strong arbitrary-law bridge: when the initial law is supported on `B`,
+the surviving endpoint measure is exactly the recursively iterated killed
+measure. -/
+theorem survivingEndpointMeasureFromLaw_eq_killedMeasureIterate
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (initLaw : ProbabilityMeasure (JointState S X))
+    (hSupport : initLaw.toMeasure spec.region = 1) :
+    ∀ n : ℕ,
+      survivingEndpointMeasureFromLaw M spec initLaw n =
+        killedMeasureIterate M spec initLaw.toMeasure n := by
+  intro n
+  induction n with
+  | zero =>
+      simpa [killedMeasureIterate] using
+        survivingEndpointMeasureFromLaw_zero M spec initLaw hSupport
+  | succ n ih =>
+      rw [survivingEndpointMeasureFromLaw_succ, ih]
+      rfl
+
+/-- The total mass of the surviving endpoint measure is exactly the path
+survival probability from the same initial law. -/
+theorem survivingEndpointMeasureFromLaw_univ
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) H)
+    (initLaw : ProbabilityMeasure (JointState S X))
+    (n : ℕ) :
+    survivingEndpointMeasureFromLaw M spec initLaw n Set.univ =
+      survivalProbabilityFromLaw M spec initLaw n := by
+  rw [survivingEndpointMeasureFromLaw, survivalProbabilityFromLaw,
+    Measure.map_apply (measurable_pi_apply n) MeasurableSet.univ]
+  simp
+
+
 end RegimeSpecification
 
 end PermanssonLean
