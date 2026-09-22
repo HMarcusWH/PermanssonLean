@@ -245,7 +245,17 @@ theorem partialTraj_stationary_succ_univ
       =
     Q (h ⟨T, Finset.mem_Iic.mpr le_rfl⟩) Set.univ := by
   rw [Kernel.partialTraj_succ_self, Kernel.map_apply, Kernel.prod_apply, Kernel.map_apply]
-  · rw [Measure.map_apply measurable_IicProdIoc MeasurableSet.univ, preimage_univ]
+  · change
+      (Measure.map (IicProdIoc (X := fun _ : ℕ => Y) T (T + 1))
+        ((Kernel.id h).prod
+          (Measure.map
+            (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T)
+            ((stationaryPrefixKernel Q T) h)))) Set.univ
+        =
+      Q (h ⟨T, Finset.mem_Iic.mpr le_rfl⟩) Set.univ
+    rw [Measure.map_apply
+          (measurable_IicProdIoc (X := fun _ : ℕ => Y))
+          MeasurableSet.univ, preimage_univ]
     rw [← Set.univ_prod_univ, Measure.prod_prod]
     rw [Measure.map_apply
           (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T).measurable
