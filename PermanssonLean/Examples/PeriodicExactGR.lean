@@ -78,8 +78,23 @@ def phase : Fin 2 → Y
   | ⟨0, _⟩ => p0
   | ⟨1, _⟩ => p1
 
+/-- Equation (20): the equally weighted occupation law on the two-cycle. -/
+noncomputable def targetMeasure : Measure Y :=
+  (1 / 2 : ℝ≥0∞) • Measure.dirac p0 +
+    (1 / 2 : ℝ≥0∞) • Measure.dirac p1
+
+instance targetMeasure_isProbability :
+    IsProbabilityMeasure targetMeasure := by
+  refine ⟨?_⟩
+  simp [targetMeasure]
+  norm_num
+
 noncomputable def target : ProbabilityMeasure Y :=
-  (RegimeSpecification.uniformFinProbability 2 (by norm_num)).map phase
+  targetMeasure.toProbabilityMeasure
+
+@[simp] theorem target_toMeasure :
+    target.toMeasure = targetMeasure := by
+  rfl
 
 noncomputable def spec : RegimeSpecification Y Y where
   region := region
