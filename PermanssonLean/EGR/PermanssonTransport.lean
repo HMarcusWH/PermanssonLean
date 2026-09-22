@@ -308,17 +308,22 @@ theorem paperIConstitutive_iff_embedded
         (J.transportedIntervention M) := by
   constructor
   · intro h y hy
-    rcases hy.1 with rfl
-    exact by
-      simpa [
-        M.transported_baselinePropertyValue_eq ψI y.2,
-        M.transported_intervenedPropertyValue_eq ψI J y.2
-      ] using h y.2 hy.2
+    rcases y with ⟨s, x⟩
+    have hs :
+        s = PaperISelectedModel.initialStrategicState (A := A) :=
+      Set.mem_singleton_iff.mp hy.1
+    subst s
+    simpa [
+      M.transported_baselinePropertyValue_eq ψI x,
+      M.transported_intervenedPropertyValue_eq ψI J x
+    ] using h x hy.2
   · intro h x hx
     have hy :
-        (PaperISelectedModel.initialEmbedding (X := X) (A := A) x) ∈ (PaperIComparisonSet.embedded M spec B₁).states :=
-      ⟨rfl, hx⟩
-    have hh := h (PaperISelectedModel.initialEmbedding (X := X) (A := A) x) hy
+        (PaperISelectedModel.initialEmbedding (X := X) (A := A) x) ∈
+          (PaperIComparisonSet.embedded M spec B₁).states :=
+      ⟨Set.mem_singleton _, hx⟩
+    have hh := h
+      (PaperISelectedModel.initialEmbedding (X := X) (A := A) x) hy
     simpa [
       M.transported_baselinePropertyValue_eq ψI x,
       M.transported_intervenedPropertyValue_eq ψI J x
@@ -425,13 +430,18 @@ theorem paperIConstitutiveMargin_eq_embedded
   ext r
   constructor
   · rintro ⟨x, hx, rfl⟩
-    refine ⟨PaperISelectedModel.initialEmbedding (X := X) (A := A) x, ⟨rfl, hx⟩, ?_⟩
+    refine ⟨PaperISelectedModel.initialEmbedding
+      (X := X) (A := A) x, ⟨Set.mem_singleton _, hx⟩, ?_⟩
     exact M.transported_constitutiveEffect_eq spec ψI J B₁ x
   · rintro ⟨y, hy, rfl⟩
-    rcases hy.1 with rfl
-    refine ⟨y.2, hy.2, ?_⟩
+    rcases y with ⟨s, x⟩
+    have hs :
+        s = PaperISelectedModel.initialStrategicState (A := A) :=
+      Set.mem_singleton_iff.mp hy.1
+    subst s
+    refine ⟨x, hy.2, ?_⟩
     exact (M.transported_constitutiveEffect_eq
-      spec ψI J B₁ y.2).symm
+      spec ψI J B₁ x).symm
 
 theorem paperIUniformlyConstitutive_iff_embedded
     (M : PaperISelectedModel X A)
