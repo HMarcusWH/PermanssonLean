@@ -136,6 +136,7 @@ namespace PaperIComparisonSet
 variable {X : Type uX} {A : Type uA} {H : Type uH}
 variable [MeasurableSpace X] [MeasurableSpace A] [MeasurableSpace H]
 variable [MeasurableSingletonClass A]
+variable [MeasurableSingletonClass (PaperIStrategicState A)]
 variable [MeasurableSpace.SeparatesPoints
   (JointState (PaperIStrategicState A) X)]
 
@@ -198,6 +199,7 @@ variable {X : Type uX} {A : Type uA} {H : Type uH} {Z : Type uZ}
 variable [MeasurableSpace X] [MeasurableSpace A] [MeasurableSpace H]
 variable [TopologicalSpace X] [TopologicalSpace A]
 variable [MeasurableSingletonClass A]
+variable [MeasurableSingletonClass (PaperIStrategicState A)]
 variable [MeasurableSpace.SeparatesPoints
   (JointState (PaperIStrategicState A) X)]
 
@@ -250,9 +252,8 @@ theorem transported_baselinePropertyValue_eq
       (diracProba (PaperISelectedModel.initialEmbedding
         (X := X) (A := A) x))
   have hwm :
-      PaperISelectedModel.worldMarginal (A := A)
-          (diracProba (PaperISelectedModel.initialEmbedding
-            (X := X) (A := A) x)) =
+      (diracProba (PaperISelectedModel.initialEmbedding
+        (X := X) (A := A) x)).map Prod.snd =
         diracProba x := by
     apply ProbabilityMeasure.toMeasure_injective
     change
@@ -313,10 +314,20 @@ theorem paperIConstitutive_iff_embedded
         s = PaperISelectedModel.initialStrategicState (A := A) :=
       Set.mem_singleton_iff.mp hy.1
     subst s
-    simpa [
+    change
+      RegimeSpecification.baselinePropertyValue
+          (PaperISelectedModel.transportProperty (A := A) ψI)
+          M.embeddedModel
+          (PaperISelectedModel.initialEmbedding (X := X) (A := A) x) ≠
+        RegimeSpecification.intervenedPropertyValue
+          (PaperISelectedModel.transportProperty (A := A) ψI)
+          (J.transportedIntervention M).intervention
+          (PaperISelectedModel.initialEmbedding (X := X) (A := A) x)
+    rw [
       M.transported_baselinePropertyValue_eq ψI x,
       M.transported_intervenedPropertyValue_eq ψI J x
-    ] using h x hy.2
+    ]
+    exact h x hy.2
   · intro h x hx
     have hy :
         (PaperISelectedModel.initialEmbedding (X := X) (A := A) x) ∈
@@ -324,10 +335,11 @@ theorem paperIConstitutive_iff_embedded
       ⟨Set.mem_singleton _, hx⟩
     have hh := h
       (PaperISelectedModel.initialEmbedding (X := X) (A := A) x) hy
-    simpa [
+    rw [
       M.transported_baselinePropertyValue_eq ψI x,
       M.transported_intervenedPropertyValue_eq ψI J x
-    ] using hh
+    ] at hh
+    exact hh
 
 /-- Paper-I Permansson status relative to one transported policy protocol. -/
 def IsPaperIPermanssonRegimeRelative
@@ -432,7 +444,7 @@ theorem paperIConstitutiveMargin_eq_embedded
   · rintro ⟨x, hx, rfl⟩
     refine ⟨PaperISelectedModel.initialEmbedding
       (X := X) (A := A) x, ⟨Set.mem_singleton _, hx⟩, ?_⟩
-    exact M.transported_constitutiveEffect_eq spec ψI J B₁ x
+    exact (M.transported_constitutiveEffect_eq spec ψI J B₁ x).symm
   · rintro ⟨y, hy, rfl⟩
     rcases y with ⟨s, x⟩
     have hs :
@@ -440,8 +452,8 @@ theorem paperIConstitutiveMargin_eq_embedded
       Set.mem_singleton_iff.mp hy.1
     subst s
     refine ⟨x, hy.2, ?_⟩
-    exact (M.transported_constitutiveEffect_eq
-      spec ψI J B₁ x).symm
+    exact M.transported_constitutiveEffect_eq
+      spec ψI J B₁ x
 
 theorem paperIUniformlyConstitutive_iff_embedded
     (M : PaperISelectedModel X A)
