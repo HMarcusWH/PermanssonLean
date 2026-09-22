@@ -148,7 +148,7 @@ theorem geometricTVEnvelope_nonneg
   have hbase1 : 1 - ε ≤ 1 := by linarith
   have hp0 : 0 ≤ (1 - ε) ^ T := pow_nonneg hbase0 _
   have hp1 : (1 - ε) ^ T ≤ 1 := by
-    simpa using pow_le_one₀ hbase0 hbase1 T
+    simpa using (pow_le_one₀ (n := T) hbase0 hbase1)
   unfold geometricTVEnvelope
   linarith
 
