@@ -245,14 +245,12 @@ theorem partialTraj_stationary_succ_univ
       =
     Q (h ⟨T, Finset.mem_Iic.mpr le_rfl⟩) Set.univ := by
   rw [Kernel.partialTraj_succ_self]
-  rw [Kernel.map_apply _ measurable_IicProdIoc,
-      Measure.map_apply measurable_IicProdIoc MeasurableSet.univ, preimage_univ]
+  rw [Kernel.map_apply' _ measurable_IicProdIoc _ MeasurableSet.univ, preimage_univ]
   rw [← Set.univ_prod_univ, Kernel.prod_apply_prod]
   let hpi :
       Measurable (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T) :=
     (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T).measurable
-  rw [Kernel.map_apply _ hpi,
-      Measure.map_apply hpi MeasurableSet.univ, preimage_univ]
+  rw [Kernel.map_apply' _ hpi _ MeasurableSet.univ, preimage_univ]
   simp [Kernel.id_apply, stationaryPrefixKernel]
 
 /-- If every one-step kernel retains at least mass `q`, each finite-prefix
