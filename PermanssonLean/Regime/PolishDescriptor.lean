@@ -162,7 +162,7 @@ theorem natDirac_not_tight :
   intro htight
   rw [isTightMeasureSet_iff_exists_isCompact_measure_compl_le] at htight
   obtain ⟨K, hKcompact, hKbound⟩ :=
-    htight ((2 : ℝ≥0∞)⁻¹) (by positivity)
+    htight (1 / 2 : ENNReal) (by norm_num)
   have hKfinite : K.Finite := hKcompact.finite_of_discrete
   have hKne : K ≠ Set.univ := by
     intro hKuniv
@@ -184,7 +184,7 @@ theorem natDiracProba_not_tight :
   intro htight
   rw [isTightMeasureSet_iff_exists_isCompact_measure_compl_le] at htight
   obtain ⟨K, hKcompact, hKbound⟩ :=
-    htight ((2 : ℝ≥0∞)⁻¹) (by positivity)
+    htight (1 / 2 : ENNReal) (by norm_num)
   have hKfinite : K.Finite := hKcompact.finite_of_discrete
   have hKne : K ≠ Set.univ := by
     intro hKuniv
