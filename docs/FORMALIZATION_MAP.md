@@ -45,7 +45,8 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 8b | Finite-horizon kernel-to-path TV envelope (Prop. 5.4) | path-perturbation theorem layer | OPEN |
 | 9 | Intervention-family signatures / representation equivalence | `FrozenStrategicInterventionFamily`, `InterventionKernelSignature`, `exactGR_iff_of_inducedKernel_eq`, `frozenFamilyPR_iff_of_signature_match` | PROVED |
 | 10 | Type-respecting intervention-compatible quotient preservation | `TypeRespectingStateCompression`, `KernelIntertwines`, `pathLaw_map_eq_of_kernelIntertwines`, `exactGR_iff_of_quotient`, `quotient_frozenFamilyPR_iff` | PROVED |
-| 11 | EGR → GR embedding | compatibility module | OPEN |
+| 11 | Paper-I EGR → GR embedding / conservative PR recovery | `PaperISelectedModel`, `embeddedModel`, `embedded_unit_kernelIntertwines`, `paperIEGR_iff_embeddedExactGR`, `paperIPermansson_iff_embeddedRelativePR`, `paperIUniformPermansson_iff_embeddedRelativePR` | PROVED |
+| 11b | Recorded-action decode / grounded confirmatory EGR transport | refinement module | OPEN |
 | 12 | QSD subclass | optional QSD module | OPEN |
 | X | Scalar-defect / finite-detection / first-bad / singular lane | research modules | OPEN |
 
@@ -320,3 +321,56 @@ kernel-to-path TV envelope also remains an independent open quantitative-support
 
 The next main dependency boundary is the EGR-to-GR embedding/compatibility layer,
 unless the grounded confirmatory or finite-horizon TV support lanes are prioritized first.
+
+
+## Tenth proof milestone — Paper-I EGR embedding and conservative recovery
+
+Layer 11 is now machine-checked for the semantic core of Section 6.
+
+- `PaperISelectedModel` freezes the selected measurable pure stationary Paper-I policy
+  and the original world-transition kernel after upstream equilibrium certification;
+- `equilibriumKernel` is the Paper-I post-equilibrium kernel
+  (P^{\pi^*}(D\mid x)=P(D\mid x,\pi^*(x)));
+- `PaperIStrategicState A = \mathbb N \times (\mathbf 1 \sqcup A)` implements the
+  canonical clock/action-record state (S_E=\mathbb N_0\times(A\cup\{\bot\}));
+- `embeddedModel` implements the deterministic selected-policy action kernel,
+  recording update, and world kernel that ignores the bookkeeping coordinate;
+- `recordingCompression` and `embedded_unit_kernelIntertwines` prove the one-step
+  projection identity behind equation (18);
+- `embedded_pathProbability_push_unit` and
+  `embedded_worldPathLaw_eq_paperI` lift that identity to canonical path laws;
+- `embeddedSpec` transports the region, initial basin, descriptor, target,
+  convergence semantics, reference measure, and admissible initial laws;
+- `paperI_exactInvariant_iff_embedded`,
+  `paperI_limiting_iff_embedded_worldMarginal`, and
+  `paperI_nontriviality_iff_embedded_assumption41` prove preservation of the
+  three substantive Exact-GR clauses;
+- `paperIEGR_iff_embeddedExactGR` is the machine-checked semantic core of
+  Theorem 6.1;
+- `PaperIPolicyIntervention` transports a measurable date/state rule
+  \(\rho_t^J(x)\) into a typed action-selection intervention while holding both
+  the recording update and world-transition kernel fixed;
+- `transported_baselinePropertyValue_eq` and
+  `transported_intervenedPropertyValue_eq` preserve Paper-I world-path property
+  values at every comparison state;
+- `paperIConstitutive_iff_embedded` and
+  `paperIPermansson_iff_embeddedRelativePR` give the pointwise conservative
+  Theorem-6.2 core;
+- `transported_constitutiveEffect_eq`,
+  `paperIConstitutiveMargin_eq_embedded`,
+  `paperIUniformlyConstitutive_iff_embedded`, and
+  `paperIUniformPermansson_iff_embeddedRelativePR` prove exact preservation of
+  constitutive effects and the uniform-margin subclass.
+
+The Layer-11 claim is deliberately scoped to the world-path protocol branch of
+Theorem 6.2 and to a selected measurable pure stationary Paper-I equilibrium supplied
+as an upstream certificate. It does not claim a new MPE existence theorem.
+
+Two Section-6 refinements remain separate rather than silently folded into Layer 11:
+the explicit recorded-action decode branch for Paper-I properties that depend on
+realized actions, and grounded (g)-relative confirmatory transport. Those are tracked
+as Layer 11b. Proposition 5.4's finite-horizon TV envelope, BL metrization, and QSD
+support also remain open independent lanes.
+
+The next unresolved main semantic boundary is therefore the grounded confirmatory
+layer, while Layer 8b and Layer 4a remain quantitative/topological support work.
