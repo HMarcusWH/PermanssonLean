@@ -361,6 +361,81 @@ theorem tendsto_odd_average_p1 (a b : ℝ) :
   exact (odd_average_p1_identity a b n).symm
 
 
+theorem empiricalIntegral_orbit_p0_tendsto (f : Y → ℝ) :
+    Tendsto
+      (fun n : ℕ =>
+        ∫ y, f y ∂(RegimeSpecification.empiricalOccupation
+          spec (orbit p0) (n + 1) (Nat.succ_pos n)))
+      atTop
+      (𝓝 (∫ y, f y ∂target)) := by
+  rw [integral_target_eq_half_sum]
+  apply tendsto_of_even_odd
+  · have h := tendsto_odd_average_p0 (f p0) (f p1)
+    apply h.congr'
+    filter_upwards with n
+    rw [integral_empiricalOccupation_eq_average]
+    rw [Fin.sum_univ_eq_sum_range]
+    rw [sum_orbit_p0_odd]
+    simp only [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]
+    rfl
+  · apply tendsto_const_nhds.congr'
+    filter_upwards with n
+    rw [integral_empiricalOccupation_eq_average]
+    rw [Fin.sum_univ_eq_sum_range]
+    have hhor : 2 * n + 1 + 1 = 2 * (n + 1) := by omega
+    rw [hhor, sum_orbit_p0_even]
+    simp only [Nat.cast_mul, Nat.cast_add, Nat.cast_one, Nat.cast_ofNat]
+    have hn : ((n : ℝ) + 1) ≠ 0 := by positivity
+    field_simp [hn]
+    ring
+
+theorem empiricalIntegral_orbit_p1_tendsto (f : Y → ℝ) :
+    Tendsto
+      (fun n : ℕ =>
+        ∫ y, f y ∂(RegimeSpecification.empiricalOccupation
+          spec (orbit p1) (n + 1) (Nat.succ_pos n)))
+      atTop
+      (𝓝 (∫ y, f y ∂target)) := by
+  rw [integral_target_eq_half_sum]
+  apply tendsto_of_even_odd
+  · have h := tendsto_odd_average_p1 (f p0) (f p1)
+    apply h.congr'
+    filter_upwards with n
+    rw [integral_empiricalOccupation_eq_average]
+    rw [Fin.sum_univ_eq_sum_range]
+    rw [sum_orbit_p1_odd]
+    simp only [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]
+    rfl
+  · apply tendsto_const_nhds.congr'
+    filter_upwards with n
+    rw [integral_empiricalOccupation_eq_average]
+    rw [Fin.sum_univ_eq_sum_range]
+    have hhor : 2 * n + 1 + 1 = 2 * (n + 1) := by omega
+    rw [hhor, sum_orbit_p1_even]
+    simp only [Nat.cast_mul, Nat.cast_add, Nat.cast_one, Nat.cast_ofNat]
+    have hn : ((n : ℝ) + 1) ≠ 0 := by positivity
+    field_simp [hn]
+    ring
+
+theorem empiricalOccupation_orbit_p0_tendsto :
+    Tendsto
+      (fun n : ℕ => RegimeSpecification.empiricalOccupation
+        spec (orbit p0) (n + 1) (Nat.succ_pos n))
+      atTop (𝓝 target) := by
+  apply ProbabilityMeasure.tendsto_iff_forall_integral_tendsto.mpr
+  intro f
+  simpa using empiricalIntegral_orbit_p0_tendsto (fun y => f y)
+
+theorem empiricalOccupation_orbit_p1_tendsto :
+    Tendsto
+      (fun n : ℕ => RegimeSpecification.empiricalOccupation
+        spec (orbit p1) (n + 1) (Nat.succ_pos n))
+      atTop (𝓝 target) := by
+  apply ProbabilityMeasure.tendsto_iff_forall_integral_tendsto.mpr
+  intro f
+  simpa using empiricalIntegral_orbit_p1_tendsto (fun y => f y)
+
+
 theorem stationaryHistoryKernel_orbit (y : Y) (n : ℕ) :
     StrategicWorldModel.stationaryHistoryKernel model.inducedKernel n
         (Preorder.frestrictLe n (orbit y)) =
