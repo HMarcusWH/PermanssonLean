@@ -310,6 +310,7 @@ theorem odd_average_p1_identity (a b : ℝ) (n : ℕ) :
       (a + b) / 2 +
         ((b - a) / 2) * (1 / ((2 * n + 1 : ℕ) : ℝ)) := by
   have hden : (((2 * n + 1 : ℕ) : ℝ)) ≠ 0 := by positivity
+  push_cast
   field_simp [hden]
   ring
 
@@ -355,8 +356,10 @@ theorem tendsto_odd_average_p1 (a b : ℝ) :
           (fun n : ℕ => ((b - a) / 2) *
             (1 / ((2 * n + 1 : ℕ) : ℝ)))
           atTop (𝓝 (((b - a) / 2) * 0)))
-  have h :=
-    tendsto_const_nhds.add hzero
+  have hconst :
+      Tendsto (fun _ : ℕ => (a + b) / 2) atTop (𝓝 ((a + b) / 2)) :=
+    tendsto_const_nhds
+  have h := hconst.add hzero
   apply h.congr'
   filter_upwards with n
   exact (odd_average_p1_identity a b n).symm
