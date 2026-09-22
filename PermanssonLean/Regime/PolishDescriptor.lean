@@ -166,9 +166,15 @@ theorem natDirac_not_tight :
   have hKfinite : K.Finite := hKcompact.finite_of_discrete
   have hKne : K ≠ Set.univ := by
     intro hKuniv
-    have hfinNat : Finite ℕ := Set.finite_univ_iff.mp (hKuniv ▸ hKfinite)
-    exact not_finite ℕ hfinNat
-  obtain ⟨n, hn⟩ := Set.ne_univ_iff_exists_not_mem.mp hKne
+    exact Set.infinite_univ.not_finite (hKuniv ▸ hKfinite)
+  have hex : ∃ n : ℕ, n ∉ K := by
+    by_contra h
+    apply hKne
+    apply Set.eq_univ_of_forall
+    intro n
+    by_contra hn
+    exact h ⟨n, hn⟩
+  obtain ⟨n, hn⟩ := hex
   have hbound := hKbound (Measure.dirac n) ⟨n, rfl⟩
   have hncompl : n ∈ Kᶜ := hn
   rw [Measure.dirac_apply_of_mem hncompl] at hbound
@@ -188,9 +194,15 @@ theorem natDiracProba_not_tight :
   have hKfinite : K.Finite := hKcompact.finite_of_discrete
   have hKne : K ≠ Set.univ := by
     intro hKuniv
-    have hfinNat : Finite ℕ := Set.finite_univ_iff.mp (hKuniv ▸ hKfinite)
-    exact not_finite ℕ hfinNat
-  obtain ⟨n, hn⟩ := Set.ne_univ_iff_exists_not_mem.mp hKne
+    exact Set.infinite_univ.not_finite (hKuniv ▸ hKfinite)
+  have hex : ∃ n : ℕ, n ∉ K := by
+    by_contra h
+    apply hKne
+    apply Set.eq_univ_of_forall
+    intro n
+    by_contra hn
+    exact h ⟨n, hn⟩
+  obtain ⟨n, hn⟩ := hex
   have hmem :
       ((diracProba n : ProbabilityMeasure ℕ) : Measure ℕ) ∈
         {((μ : ProbabilityMeasure ℕ) : Measure ℕ) |
