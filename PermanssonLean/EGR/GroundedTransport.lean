@@ -65,7 +65,7 @@ noncomputable def worldRelevanceMap
 
 /-- The transported world-path property globally factors through the natural
 world-coordinate relevance map, with the original Paper-I property as ψ_G. -/
-theorem transportProperty_globallyGrounded
+def transportProperty_globallyGrounded
     (M : PaperISelectedModel X A)
     (spec : RegimeSpecification X H)
     (ψI : RegimePropertyMap X Z) :
@@ -120,11 +120,21 @@ theorem embedded_descriptorLaw_eq_paperI
   have hprojMap := congrArg
     (fun μ : Measure (ℕ → X) =>
       μ.map (fun w => spec.descriptor (w t))) hproj
-  rw [Measure.map_map
-    (spec.descriptor_measurable.comp (measurable_pi_apply t))
-    (worldPathProjection_measurable
-      (X := X) (S := PaperIStrategicState A))] at hprojMap
-  simpa [worldPathProjection, Function.comp_def] using hprojMap
+  have hcomp :
+      ((M.embeddedModel.pathLaw
+        (diracProba (initialEmbedding (X := X) (A := A) x)).toMeasure).map
+          (worldPathProjection
+            (X := X) (S := PaperIStrategicState A))).map
+          (fun w => spec.descriptor (w t)) =
+        (M.embeddedModel.pathLaw
+          (diracProba (initialEmbedding (X := X) (A := A) x)).toMeasure).map
+          (fun w => spec.descriptor ((w t).2)) := by
+    rw [Measure.map_map
+      (spec.descriptor_measurable.comp (measurable_pi_apply t))
+      (worldPathProjection_measurable
+        (X := X) (S := PaperIStrategicState A))]
+    rfl
+  exact hcomp.symm.trans hprojMap
 
 theorem paperIDescriptorNondegenerate_iff_embedded
     (M : PaperISelectedModel X A)
@@ -152,10 +162,18 @@ theorem paperIDescriptorNondegenerate_iff_embedded
     subst s₁
     subst s₂
     refine ⟨x₁, hy₁.2, t₁, x₂, hy₂.2, t₂, ?_⟩
-    simpa [
+    change
+      RegimeSpecification.descriptorLaw
+          M.embeddedModel (embeddedSpec (A := A) spec)
+          (diracProba (initialEmbedding (X := X) (A := A) x₁)) t₁ ≠
+        RegimeSpecification.descriptorLaw
+          M.embeddedModel (embeddedSpec (A := A) spec)
+          (diracProba (initialEmbedding (X := X) (A := A) x₂)) t₂ at hne
+    rw [
       M.embedded_descriptorLaw_eq_paperI spec x₁ t₁,
       M.embedded_descriptorLaw_eq_paperI spec x₂ t₂
-    ] using hne
+    ] at hne
+    exact hne
 
 theorem paperIConfirmatoryEGR_iff_embeddedConfirmatoryGR
     (M : PaperISelectedModel X A)
