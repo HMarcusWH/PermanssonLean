@@ -2,6 +2,7 @@ import PermanssonLean.Regime.GeneratedRegime
 import Mathlib.MeasureTheory.Measure.Portmanteau
 import Mathlib.MeasureTheory.Measure.LevyProkhorovMetric
 import Mathlib.MeasureTheory.Measure.Tight
+import Mathlib.MeasureTheory.Measure.Prokhorov
 import Mathlib.MeasureTheory.Measure.DiracProba
 import Mathlib.Topology.Compactness.Compact
 import Mathlib.Topology.Metrizable.Uniformity
@@ -161,6 +162,33 @@ theorem natDirac_not_tight :
   have hncompl : n ∈ Kᶜ := hn
   rw [Measure.dirac_apply_of_mem hncompl] at hbound
   norm_num at hbound
+
+
+/-- On the noncompact Polish space `ℕ`, the escaping Dirac sequence has no
+weak limit.  This witnesses the final caveat of Proposition 4.1a: Polishness
+does not manufacture a limiting occupation law. -/
+theorem natDiracProba_no_weak_limit :
+    ¬ ∃ μ : ProbabilityMeasure ℕ,
+      Tendsto (fun n : ℕ => diracProba n) atTop (𝓝 μ) := by
+  rintro ⟨μ, hμ⟩
+  have hcofinite :
+      Tendsto (fun n : ℕ => diracProba n) cofinite (𝓝 μ) := by
+    rw [Nat.cofinite_eq_atTop]
+    exact hμ
+  have hinsert :
+      IsCompact (insert μ (Set.range fun n : ℕ => diracProba n)) :=
+    hcofinite.isCompact_insert_range_of_cofinite
+  have hclosure :
+      IsCompact (closure (Set.range fun n : ℕ => diracProba n)) := by
+    apply IsCompact.of_isClosed_subset hinsert isClosed_closure
+    apply closure_minimal
+    · exact subset_insert _ _
+    · exact hinsert.isClosed
+  have htight :=
+    isTightMeasureSet_of_isCompact_closure
+      (S := Set.range fun n : ℕ => diracProba n) hclosure
+  apply natDirac_not_tight
+  simpa [diracProba] using htight
 
 end DescriptorTopology
 end PermanssonLean
