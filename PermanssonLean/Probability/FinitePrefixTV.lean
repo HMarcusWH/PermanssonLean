@@ -244,9 +244,10 @@ theorem partialTraj_stationary_succ_univ
       =
     Q (h ⟨T, Finset.mem_Iic.mpr le_rfl⟩) Set.univ := by
   rw [Kernel.partialTraj_succ_self]
-  rw [kernelMap_apply_univ]
+  rw [kernelMap_apply_univ (hf := measurable_IicProdIoc)]
   rw [← Set.univ_prod_univ, Kernel.prod_apply_prod]
-  rw [kernelMap_apply_univ]
+  rw [kernelMap_apply_univ
+        (hf := (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T).measurable)]
   simp [Kernel.id_apply, stationaryPrefixKernel]
 
 /-- If every one-step kernel retains at least mass `q`, each finite-prefix
@@ -265,6 +266,9 @@ theorem finitePrefixLaw_univ_succ_lower
   rw [← MeasureTheory.lintegral_const q]
   apply lintegral_mono
   intro h
+  change q ≤
+    Kernel.partialTraj (X := fun _ : ℕ => Y)
+      (fun n => stationaryPrefixKernel Q n) T (T + 1) h Set.univ
   rw [partialTraj_stationary_succ_univ]
   exact hq _
 
@@ -281,7 +285,7 @@ theorem finitePrefixLaw_univ_ge_pow
   | succ T ih =>
       calc
         q ^ (T + 1) = q * q ^ T := by rw [pow_succ']
-        _ ≤ q * finitePrefixLaw Q y T Set.univ := mul_le_mul_left' ih q
+        _ ≤ q * finitePrefixLaw Q y T Set.univ := by gcongr
         _ ≤ finitePrefixLaw Q y (T + 1) Set.univ :=
           finitePrefixLaw_univ_succ_lower Q hq y T
 
