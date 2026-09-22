@@ -118,6 +118,7 @@ theorem weakConvergence_iff_boundedLipschitzIntegrals
     [TopologicalSpace H] [PolishSpace H]
     [MeasurableSpace H] [BorelSpace H]
     {μs : I → ProbabilityMeasure H} {μ : ProbabilityMeasure H} :
+    letI : MetricSpace H := boundedCompatibleMetric H
     Tendsto μs F (𝓝 μ) ↔
       ∀ f : H → ℝ,
         (∃ C : ℝ, ∀ x y, dist (f x) (f y) ≤ C) →
@@ -126,7 +127,6 @@ theorem weakConvergence_iff_boundedLipschitzIntegrals
           (fun i => ∫ x, f x ∂(μs i))
           F
           (𝓝 (∫ x, f x ∂μ)) := by
-  letI := TopologicalSpace.upgradeIsCompletelyMetrizable H
   exact tendsto_iff_forall_lipschitz_integral_tendsto
 
 /-- Proposition 4.1a does not need compactness to make the canonical almost-sure
