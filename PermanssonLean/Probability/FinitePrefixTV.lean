@@ -244,14 +244,9 @@ theorem partialTraj_stationary_succ_univ
         (fun n => stationaryPrefixKernel Q n) T (T + 1) h Set.univ
       =
     Q (h ⟨T, Finset.mem_Iic.mpr le_rfl⟩) Set.univ := by
-  rw [Kernel.partialTraj_succ_self]
-  rw [Kernel.map_apply' _ measurable_IicProdIoc _ MeasurableSet.univ, preimage_univ]
-  rw [← Set.univ_prod_univ, Kernel.prod_apply_prod]
-  let hpi :
-      Measurable (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T) :=
-    (MeasurableEquiv.piSingleton (X := fun _ : ℕ => Y) T).measurable
-  rw [Kernel.map_apply' _ hpi _ MeasurableSet.univ, preimage_univ]
-  simp [Kernel.id_apply, stationaryPrefixKernel]
+  rw [Kernel.partialTraj_succ_self, Kernel.map_apply, Kernel.prod_apply, Kernel.map_apply]
+  · simp [Measure.map_apply, Kernel.id_apply, stationaryPrefixKernel, Measure.prod_apply]
+  all_goals fun_prop
 
 /-- If every one-step kernel retains at least mass `q`, each finite-prefix
 extension retains at least a factor `q` of the preceding prefix mass. -/
