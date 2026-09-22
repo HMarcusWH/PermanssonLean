@@ -131,6 +131,16 @@ theorem weakConvergence_iff_boundedLipschitzIntegrals
           (fun i => ∫ x, f x ∂(μs i))
           F
           (𝓝 (∫ x, f x ∂μ)) := by
+  letI : MetricSpace H := boundedCompatibleMetric H
+  change
+    Tendsto μs F (𝓝 μ) ↔
+      ∀ f : H → ℝ,
+        (∃ C : ℝ, ∀ x y, dist (f x) (f y) ≤ C) →
+        (∃ L, LipschitzWith L f) →
+        Tendsto
+          (fun i => ∫ x, f x ∂(μs i))
+          F
+          (𝓝 (∫ x, f x ∂μ))
   exact
     (tendsto_iff_forall_lipschitz_integral_tendsto
       (γ := I) (Ω := H) (F := F) (μs := μs) (μ := μ))
@@ -165,6 +175,37 @@ theorem natDirac_not_tight :
   norm_num at hbound
 
 
+/-- The same escaping-Dirac witness, expressed in the probability-measure
+coercion shape used by Prokhorov's theorem. -/
+theorem natDiracProba_not_tight :
+    ¬ IsTightMeasureSet
+      {((μ : ProbabilityMeasure ℕ) : Measure ℕ) |
+        μ ∈ Set.range (fun n : ℕ => diracProba n)} := by
+  intro htight
+  rw [isTightMeasureSet_iff_exists_isCompact_measure_compl_le] at htight
+  obtain ⟨K, hKcompact, hKbound⟩ :=
+    htight ((2 : ℝ≥0∞)⁻¹) (by positivity)
+  have hKfinite : K.Finite := hKcompact.finite_of_discrete
+  have hKne : K ≠ Set.univ := by
+    intro hKuniv
+    have hfinNat : Finite ℕ := Set.finite_univ_iff.mp (hKuniv ▸ hKfinite)
+    exact not_finite ℕ hfinNat
+  obtain ⟨n, hn⟩ := Set.ne_univ_iff_exists_not_mem.mp hKne
+  have hmem :
+      ((diracProba n : ProbabilityMeasure ℕ) : Measure ℕ) ∈
+        {((μ : ProbabilityMeasure ℕ) : Measure ℕ) |
+          μ ∈ Set.range (fun k : ℕ => diracProba k)} := by
+    exact ⟨diracProba n, ⟨n, rfl⟩, rfl⟩
+  have hbound := hKbound
+    ((diracProba n : ProbabilityMeasure ℕ) : Measure ℕ) hmem
+  have hncompl : n ∈ Kᶜ := hn
+  have hdirac :
+      ((diracProba n : ProbabilityMeasure ℕ) : Measure ℕ) Kᶜ = 1 := by
+    simpa [diracProba] using Measure.dirac_apply_of_mem hncompl
+  rw [hdirac] at hbound
+  norm_num at hbound
+
+
 /-- On the noncompact Polish space `ℕ`, the escaping Dirac sequence has no
 weak limit.  This witnesses the final caveat of Proposition 4.1a: Polishness
 does not manufacture a limiting occupation law. -/
@@ -188,8 +229,7 @@ theorem natDiracProba_no_weak_limit :
   have htight :=
     isTightMeasureSet_of_isCompact_closure
       (S := Set.range fun n : ℕ => diracProba n) hclosure
-  apply natDirac_not_tight
-  simpa [diracProba] using htight
+  exact natDiracProba_not_tight htight
 
 
 /-- Sequence-level bounded-Lipschitz criterion used by the paper's occupation
@@ -237,7 +277,9 @@ structure Proposition41aCertificate
   occupationModeAvailable :
     Nonempty (ConvergenceMode PUnit H)
   arbitrarySequenceNeedNotBeTight :
-    ¬ IsTightMeasureSet (Set.range (fun n : ℕ => Measure.dirac n))
+    ¬ IsTightMeasureSet
+      {((μ : ProbabilityMeasure ℕ) : Measure ℕ) |
+        μ ∈ Set.range (fun n : ℕ => diracProba n)}
   limitingLawNeedNotExist :
     ¬ ∃ μ : ProbabilityMeasure ℕ,
       Tendsto (fun n : ℕ => diracProba n) atTop (𝓝 μ)
@@ -259,7 +301,7 @@ theorem proposition_4_1a
   occupationModeAvailable :=
     ⟨polishAlmostSureWeak PUnit H⟩
   arbitrarySequenceNeedNotBeTight :=
-    natDirac_not_tight
+    natDiracProba_not_tight
   limitingLawNeedNotExist :=
     natDiracProba_no_weak_limit
 
