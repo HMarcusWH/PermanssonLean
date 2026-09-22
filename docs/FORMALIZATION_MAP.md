@@ -46,7 +46,8 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 9 | Intervention-family signatures / representation equivalence | `FrozenStrategicInterventionFamily`, `InterventionKernelSignature`, `exactGR_iff_of_inducedKernel_eq`, `frozenFamilyPR_iff_of_signature_match` | PROVED |
 | 10 | Type-respecting intervention-compatible quotient preservation | `TypeRespectingStateCompression`, `KernelIntertwines`, `pathLaw_map_eq_of_kernelIntertwines`, `exactGR_iff_of_quotient`, `quotient_frozenFamilyPR_iff` | PROVED |
 | 11 | Paper-I EGR → GR embedding / conservative PR recovery | `PaperISelectedModel`, `embeddedModel`, `embedded_unit_kernelIntertwines`, `paperIEGR_iff_embeddedExactGR`, `paperIPermansson_iff_embeddedRelativePR`, `paperIUniformPermansson_iff_embeddedRelativePR` | PROVED |
-| 11b | Recorded-action decode / grounded confirmatory EGR transport | refinement module | OPEN |
+| 11b | Grounded confirmatory PR / representation / quotient / world-path EGR transport | `GroundedRelevanceMap`, `IsGroundedPropertyRelative`, `IsGroundedConfirmatoryPermanssonRegimeRelative`, `groundedFrozenFamilyPR_iff_of_signature_match`, `quotient_groundedFrozenFamilyPR_iff`, `paperIGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
+| 11c | Recorded-action grounded EGR decode | refinement module | OPEN |
 | 12 | QSD subclass | optional QSD module | OPEN |
 | X | Scalar-defect / finite-detection / first-bad / singular lane | research modules | OPEN |
 
@@ -372,5 +373,60 @@ realized actions, and grounded (g)-relative confirmatory transport. Those are tr
 as Layer 11b. Proposition 5.4's finite-horizon TV envelope, BL metrization, and QSD
 support also remain open independent lanes.
 
-The next unresolved main semantic boundary is therefore the grounded confirmatory
-layer, while Layer 8b and Layer 4a remain quantitative/topological support work.
+The grounded confirmatory layer is formalized in the next milestone.  The remaining
+Section-6 refinement is explicit recorded-action decoding; Layer 8b and Layer 4a
+remain independent quantitative/topological support work.
+
+
+## Eleventh proof milestone — grounded confirmatory semantics and preservation
+
+The grounded confirmatory subclass from Sections 5.2, 5.4, 6, and 7 is now
+machine-checked without strengthening the broad generalized-PR definition.
+
+- `GroundedRelevanceMap` freezes a measurable observation map (g:Y\to G), a
+  measurable regime region (B_G\subseteq G), and a measurable descriptor
+  (h_G:G\to H), with exact factorization
+  (B=g^{-1}(B_G)) and (h=h_G\circ g);
+- `GroundedRelevanceMap.pathMap` and `pushPath` implement the coordinatewise
+  path observation (g^\infty) and its push-forward on path probability laws;
+- `IsGroundedPropertyRelative` is source-faithful: a single frozen
+  `ψ_G` must represent `ψ` on every admissible baseline and intervened law
+  relevant to the declared protocol, rather than on every abstract path law;
+- `GloballyFactorsThroughRelevanceMap` is exposed only as a sufficient stronger
+  constructor, and `grounded_propertyValues` recovers the same `ψ_G` for both
+  point-initialized baseline and intervention values on (B_1);
+- `IsGroundedConfirmatoryPermanssonRegimeRelative` formalizes the confirmatory
+  (\mathrm{PR}_g) subclass as confirmatory GR + strategic constitution +
+  grounded property semantics, while `IsGroundedPermanssonRegimeRelative`
+  keeps the broader grounded/non-confirmatory notion separate;
+- `IsGroundedConfirmatoryUniformPermanssonRegimeRelative` reuses the existing
+  constitutive-margin machinery rather than defining another quantitative object;
+- `descriptorNondegenerate_iff_of_inducedKernel_eq`,
+  `confirmatoryGR_iff_of_inducedKernel_eq`,
+  `groundedPropertyRelative_iff_of_kernel_eq`, and the grounded relative-PR
+  equivalence theorems close the grounded part of representation invariance;
+- `GroundedFrozenFamilyProperty` requires one predeclared `ψ_G` across the
+  complete frozen intervention family; `groundedFrozenFamilyPR_iff_of_signature_match`
+  and its uniform analogue preserve the grounded family classification under
+  intervention-signature equivalence;
+- `RelevanceMapFactorsThroughCompression` formalizes the quotient condition
+  (g=\bar g\circ q); its path/push-forward lemmas combine with kernel
+  intertwining to prove descriptor-nondegeneracy, confirmatory-GR, grounded-family,
+  and grounded-uniform-family preservation under the type-respecting quotient;
+- `worldRelevanceMap` is the canonical relevance map for the world-path branch
+  of the Paper-I embedding, and `transportProperty_globallyGrounded` proves that
+  the transported property factors through it with the original Paper-I property
+  as `ψ_G`;
+- `paperIConfirmatoryEGR_iff_embeddedConfirmatoryGR`,
+  `paperIGroundedPermansson_iff_embeddedGroundedConfirmatoryPR`, and
+  `paperIGroundedUniformPermansson_iff_embeddedGroundedUniformPR` close the
+  grounded world-path branch of conservative Paper-I recovery.
+
+The grounded layer remains intentionally separate from the broad
+`IsGeneralizedPermanssonRegime`; no relevance restriction has been retrofitted
+onto the general class.
+
+The explicit recorded-action decode branch for Paper-I properties that depend on
+realized actions remains OPEN as Layer 11c.  Proposition 5.4's finite-horizon
+kernel-to-path TV envelope, Proposition 4.1a's Polish/BL metrization result, and the
+optional QSD subclass remain independent open lanes.
