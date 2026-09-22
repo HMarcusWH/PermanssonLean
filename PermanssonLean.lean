@@ -60,3 +60,5 @@ import PermanssonLean.Examples.ConstitutiveNoninvariance
 import PermanssonLean.Probability.TotalVariation
 
 import PermanssonLean.Probability.CommonPartKernel
+
+import PermanssonLean.Probability.FinitePrefixTV
