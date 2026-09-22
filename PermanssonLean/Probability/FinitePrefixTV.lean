@@ -220,5 +220,64 @@ theorem commonFinitePrefixLaw_le_right
   unfold commonFinitePrefixLaw
   exact finitePrefixLaw_mono (commonPartKernel_le_right K Ktilde) y T
 
+
+/-- Mapping a s-finite kernel does not change its total mass. -/
+theorem kernelMap_apply_univ
+    {κ : Kernel Y Z} [IsSFiniteKernel κ]
+    {f : Z → W} (hf : Measurable f) (y : Y) :
+    (κ.map f) y Set.univ = κ y Set.univ := by
+  rw [Kernel.map_apply _ hf, Measure.map_apply hf MeasurableSet.univ, preimage_univ]
+
+/-- A single stationary finite-history extension has exactly the total mass of
+the underlying one-step kernel at the latest state. -/
+theorem partialTraj_stationary_succ_univ
+    (Q : Kernel Y Y) [IsSFiniteKernel Q]
+    (T : ℕ) (h : (i : Finset.Iic T) → Y) :
+    Kernel.partialTraj (X := fun _ : ℕ => Y)
+        (fun n => stationaryPrefixKernel Q n) T (T + 1) h Set.univ
+      =
+    Q (h ⟨T, Finset.mem_Iic.mpr le_rfl⟩) Set.univ := by
+  rw [Kernel.partialTraj_succ_self]
+  rw [kernelMap_apply_univ]
+  rw [← Set.univ_prod_univ, Kernel.prod_apply_prod]
+  rw [kernelMap_apply_univ]
+  simp [Kernel.id_apply, stationaryPrefixKernel]
+
+/-- If every one-step kernel retains at least mass `q`, each finite-prefix
+extension retains at least a factor `q` of the preceding prefix mass. -/
+theorem finitePrefixLaw_univ_succ_lower
+    (Q : Kernel Y Y) [IsFiniteKernel Q]
+    {q : ℝ≥0∞} (hq : ∀ z, q ≤ Q z Set.univ)
+    (y : Y) (T : ℕ) :
+    q * finitePrefixLaw Q y T Set.univ ≤
+      finitePrefixLaw Q y (T + 1) Set.univ := by
+  unfold finitePrefixLaw
+  rw [Kernel.partialTraj_succ_eq_comp
+        (X := fun _ : ℕ => Y)
+        (κ := fun n => stationaryPrefixKernel Q n) (Nat.zero_le T)]
+  rw [Kernel.comp_apply' _ _ _ MeasurableSet.univ]
+  rw [← MeasureTheory.lintegral_const q]
+  apply lintegral_mono
+  intro h
+  rw [partialTraj_stationary_succ_univ]
+  exact hq _
+
+/-- Uniform one-step retained mass propagates multiplicatively over `T`
+transitions. -/
+theorem finitePrefixLaw_univ_ge_pow
+    (Q : Kernel Y Y) [IsFiniteKernel Q]
+    {q : ℝ≥0∞} (hq : ∀ z, q ≤ Q z Set.univ)
+    (y : Y) (T : ℕ) :
+    q ^ T ≤ finitePrefixLaw Q y T Set.univ := by
+  induction T with
+  | zero =>
+      simp [finitePrefixLaw]
+  | succ T ih =>
+      calc
+        q ^ (T + 1) = q * q ^ T := by rw [pow_succ']
+        _ ≤ q * finitePrefixLaw Q y T Set.univ := mul_le_mul_left' ih q
+        _ ≤ finitePrefixLaw Q y (T + 1) Set.univ :=
+          finitePrefixLaw_univ_succ_lower Q hq y T
+
 end ProbabilitySupport
 end PermanssonLean
