@@ -3,9 +3,10 @@ import Mathlib.Probability.Kernel.Deterministic
 
 open MeasureTheory ProbabilityTheory
 open scoped ENNReal ProbabilityTheory
-open RegimeSpecification
 
 namespace PermanssonLean
+
+open RegimeSpecification
 
 /-!
 # QSD does not imply uniform finite persistence
