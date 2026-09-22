@@ -48,3 +48,6 @@ import PermanssonLean.Regime.GroundedRepresentationEquivalence
 import PermanssonLean.Regime.GroundedFamilyEquivalence
 import PermanssonLean.Quotient.GroundedPreservation
 import PermanssonLean.EGR.GroundedTransport
+import PermanssonLean.EGR.ActionDecode
+import PermanssonLean.EGR.RecordedPropertyTransport
+import PermanssonLean.EGR.RecordedGroundedTransport

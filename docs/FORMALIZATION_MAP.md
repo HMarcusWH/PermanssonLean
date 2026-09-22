@@ -47,7 +47,7 @@ Green CI means only that the checked Lean declarations compile. It does not upgr
 | 10 | Type-respecting intervention-compatible quotient preservation | `TypeRespectingStateCompression`, `KernelIntertwines`, `pathLaw_map_eq_of_kernelIntertwines`, `exactGR_iff_of_quotient`, `quotient_frozenFamilyPR_iff` | PROVED |
 | 11 | Paper-I EGR → GR embedding / conservative PR recovery | `PaperISelectedModel`, `embeddedModel`, `embedded_unit_kernelIntertwines`, `paperIEGR_iff_embeddedExactGR`, `paperIPermansson_iff_embeddedRelativePR`, `paperIUniformPermansson_iff_embeddedRelativePR` | PROVED |
 | 11b | Grounded confirmatory PR / representation / quotient / world-path EGR transport | `GroundedRelevanceMap`, `IsGroundedPropertyRelative`, `IsGroundedConfirmatoryPermanssonRegimeRelative`, `groundedFrozenFamilyPR_iff_of_signature_match`, `quotient_groundedFrozenFamilyPR_iff`, `paperIGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
-| 11c | Recorded-action grounded EGR decode | refinement module | OPEN |
+| 11c | Recorded-action decode / action-sensitive conservative PR recovery | `PaperIDecodedPath`, `recordedDecode`, `recordedPathProbability`, `transportRecordedProperty`, `paperIRecordedPermansson_iff_embeddedRelativePR`, `worldActionRecordRelevanceMap`, `paperIRecordedGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
 | 12 | QSD subclass | optional QSD module | OPEN |
 | X | Scalar-defect / finite-detection / first-bad / singular lane | research modules | OPEN |
 
@@ -426,7 +426,64 @@ The grounded layer remains intentionally separate from the broad
 `IsGeneralizedPermanssonRegime`; no relevance restriction has been retrofitted
 onto the general class.
 
-The explicit recorded-action decode branch for Paper-I properties that depend on
-realized actions remains OPEN as Layer 11c.  Proposition 5.4's finite-horizon
-kernel-to-path TV envelope, Proposition 4.1a's Polish/BL metrization result, and the
-optional QSD subclass remain independent open lanes.
+The explicit recorded-action decode branch is formalized in the next milestone. Proposition 5.4's finite-horizon kernel-to-path TV envelope, Proposition 4.1a's Polish/BL metrization result, and the optional QSD subclass remain independent open lanes.
+
+
+## Twelfth proof milestone — recorded-action decoding and action-sensitive Paper-I recovery
+
+The remaining Section-6 action-sensitive transport branch is now machine-checked on
+top of the canonical recording embedding.
+
+- `PaperIDecodedPath X A = (ℕ → X) × (ℕ → A)` is the decoded execution space;
+- `decodeActionRecord` supplies the arbitrary total extension allowed by Section 6.2
+  on the bottom/off-support action-record branch, while `decodeActionRecord_inr`
+  recovers every actually recorded action value exactly;
+- `recordedActionPath` implements (a_t=\bar a_{t+1}), and
+  `recordedDecode` is the measurable decoding map (D) from embedded state paths
+  to world/action execution paths;
+- `recordingUpdateMap_records_action` and
+  `recordingUpdateMap_advances_clock` expose the deterministic structural
+  identities of (U^{\mathrm{rec}});
+- `recordedPathProbability` and
+  `recordedCounterfactualPathProbability` are the baseline and transported-policy
+  (D_\#)-execution laws;
+- `recordedPathProbability_worldMarginal` and
+  `recordedCounterfactualPathProbability_worldMarginal` prove that their first
+  marginals recover the already-verified Paper-I baseline and counterfactual world
+  laws;
+- `PaperIRecordedPropertyMap` and `transportRecordedProperty` implement the
+  action-sensitive branch of Theorem 6.2, where the transported property is evaluated
+  on (D_\#\mu);
+- `transported_recorded_baselinePropertyValue_eq`,
+  `transported_recorded_intervenedPropertyValue_eq`, and
+  `paperIRecordedConstitutive_iff_embedded` preserve the pointwise constitutive
+  protocol on every state in the frozen comparison set;
+- `paperIRecordedPermansson_iff_embeddedRelativePR` gives generalized-PR recovery
+  for action-sensitive Paper-I protocols;
+- `transported_recorded_constitutiveEffect_eq`,
+  `paperIRecordedConstitutiveMargin_eq_embedded`,
+  `paperIRecordedUniformlyConstitutive_iff_embedded`, and
+  `paperIRecordedUniformPermansson_iff_embeddedRelativePR` preserve the exact
+  metric gap and uniform-margin subclass;
+- `worldActionRecordRelevanceMap` freezes the sufficient grounded record
+  (g_A((t,\bar a),x)=(x,\bar a));
+- `decodeRelevantPath` and `recordedDecode_factor_relevancePath` prove that the
+  action-sensitive decoder factors through (g_A^\infty) on every path, including
+  the total off-support extension;
+- `transportRecordedProperty_globallyGrounded` therefore proves global
+  (g_A)-grounding of every transported recorded-action property;
+- `paperIRecordedGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` and
+  `paperIRecordedGroundedUniformPermansson_iff_embeddedGroundedUniformPR` close
+  the grounded pointwise and uniform branches.
+
+The decoder deliberately uses a chosen fallback action on the bottom/off-support branch.
+Section 6.2 permits an arbitrary extension there, so this is a totalization convention,
+not an additional behavioral hypothesis.  The proved transport claims concern the
+canonical (D_\#)-property protocol and its exact world marginal; they do not add a
+separate theorem identifying malformed/off-support decoded action paths with an
+independently reconstructed policy-action process.
+
+With both the world-only and recorded-action branches checked, the Section-6
+conservative transport architecture is closed.  The remaining main paper-support lanes
+are Proposition 5.4's finite-horizon TV envelope, Proposition 4.1a's Polish/BL
+metrization theorem, and the optional QSD subclass.
