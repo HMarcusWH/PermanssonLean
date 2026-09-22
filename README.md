@@ -27,7 +27,8 @@ We build by dependency, not by paper page order:
 10. quotient preservation;
 11. EGR embedding;
 12. grounded confirmatory semantics and preservation;
-13. optional QSD and original-math research lanes.
+13. recorded-action decoding and action-sensitive Paper-I recovery;
+14. optional QSD and original-math research lanes.
 
 See [docs/FORMALIZATION_MAP.md](docs/FORMALIZATION_MAP.md) for the theorem ledger and status firewall.
 
@@ -47,4 +48,4 @@ lake update
 lake build
 ```
 
-The current proved spine reaches through exact persistence, killed-kernel survival calculus, typed interventions, generalized and grounded-confirmatory Permansson constitution, quantitative constitutive robustness, frozen intervention-family equivalence, type-respecting intervention-compatible quotient preservation, and canonical Paper-I EGR recovery including the grounded pointwise/uniform world-path branch. The main semantic spine is therefore closed for the world-path protocol. Remaining explicit lanes are recorded-action grounded decoding, Proposition 5.4's finite-horizon kernel-to-path TV envelope, Polish/BL metrization, and the optional QSD layer.
+The current proved spine reaches through exact persistence, killed-kernel survival calculus, typed interventions, generalized and grounded-confirmatory Permansson constitution, quantitative constitutive robustness, frozen intervention-family equivalence, type-respecting intervention-compatible quotient preservation, and canonical Paper-I EGR recovery for both world-only and recorded-action property protocols, including pointwise, uniform-margin, and grounded-confirmatory transport. The Section-6 semantic transport spine is therefore closed. Remaining explicit lanes are Proposition 5.4's finite-horizon kernel-to-path TV envelope, Polish/BL metrization, and the optional QSD layer.
