@@ -63,8 +63,8 @@ latest coordinate.  This is the generic version of the construction used by
 `StrategicWorldModel.pathLaw`. -/
 noncomputable def stationaryPrefixKernel
     (K : Kernel Y Y) (n : ℕ) :
-    Kernel ((i : Set.Iic n) → Y) Y :=
-  K.comap (fun h => h ⟨n, mem_Iic.mpr le_rfl⟩) (by fun_prop)
+    Kernel ((i : Finset.Iic n) → Y) Y :=
+  K.comap (fun h => h ⟨n, Finset.mem_Iic.mpr le_rfl⟩) (by fun_prop)
 
 instance stationaryPrefixKernel_isMarkov
     (K : Kernel Y Y) [IsMarkovKernel K] (n : ℕ) :
@@ -79,14 +79,14 @@ instance stationaryPrefixKernel_isFinite
   infer_instance
 
 /-- The unique length-zero history concentrated at `y`. -/
-def singletonPrefix (y : Y) : (i : Set.Iic 0) → Y :=
+def singletonPrefix (y : Y) : (i : Finset.Iic 0) → Y :=
   fun _ => y
 
 /-- Finite prefix law through `T` transitions for a stationary kernel,
 started from the point state `y`.  The codomain records times `0,...,T`. -/
 noncomputable def finitePrefixLaw
     (K : Kernel Y Y) (y : Y) (T : ℕ) :
-    Measure ((i : Set.Iic T) → Y) :=
+    Measure ((i : Finset.Iic T) → Y) :=
   Kernel.partialTraj (fun n => stationaryPrefixKernel K n) 0 T (singletonPrefix y)
 
 instance finitePrefixLaw_isProbability
@@ -100,7 +100,7 @@ noncomputable def commonFinitePrefixLaw
     [MeasurableSpace.CountableOrCountablyGenerated Y Y]
     (K Ktilde : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel Ktilde]
     (y : Y) (T : ℕ) :
-    Measure ((i : Set.Iic T) → Y) :=
+    Measure ((i : Finset.Iic T) → Y) :=
   finitePrefixLaw (commonPartKernel K Ktilde) y T
 
 instance commonFinitePrefixLaw_isFinite
