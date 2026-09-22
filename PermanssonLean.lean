@@ -54,3 +54,5 @@ import PermanssonLean.EGR.RecordedGroundedTransport
 
 import PermanssonLean.Examples.FactorizationCounterexample
 import PermanssonLean.Regime.NuisancePadding
+
+import PermanssonLean.Examples.ConstitutiveNoninvariance
