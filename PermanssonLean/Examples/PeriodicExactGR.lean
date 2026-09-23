@@ -308,7 +308,6 @@ theorem even_average_identity (a b : ℝ) (n : ℕ) :
   have hn : (((n + 1 : ℕ) : ℝ)) ≠ 0 := by positivity
   push_cast
   field_simp [hn]
-  ring
 
 theorem odd_average_p0_identity (a b : ℝ) (n : ℕ) :
     (((2 * n + 1 : ℕ) : ℝ)⁻¹) *
