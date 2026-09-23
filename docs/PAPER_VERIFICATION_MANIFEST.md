@@ -5,8 +5,8 @@
 - Paper: **Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium**
 - Version: **v0.1.8**
 - Date: **23 September 2026**
-- PDF SHA-256: `0fc957f19ac95bd1e3cced5558dc696930cf898714c5cd6dbbc9b928c69663f5`
-- TeX SHA-256: `a181b5aa1236376134f562a76abbbe090f378d521aa8f33df69f746e5adba71c`
+- PDF SHA-256: `e71f0c46499fc9e72fdd5f048e2293e29986b573ecc4cf8e0b297afd455f690c`
+- TeX SHA-256: `a0f6e7e3809f246ff1357e94947f343d08a91ebe5c90e7c7fee5db4eb7b306e0`
 - Frozen v0.1.7 post-proofread test archive SHA-256: `7ab578c928a2918e09846b9f1c425f5a6c07b5b5dd0a0c8728662eebcb69a15a`
 
 ## Formalization snapshot
@@ -24,7 +24,7 @@ The cited commit is the formal-code snapshot used by the paper. This provenance 
 
 The frozen executable archive records 85/85 historical executions, 16/16 baseline compatibility checks, and 3240/3240 checks in Runs 17-30. Runs 17-30 were rerun again during the v0.1.8 boarding audit and all 14 numbered runs returned zero.
 
-The original v0.1.8 release gate (Run 31) passed 42/42 checks. After final illustration review, Figure 1 was corrected to match the actual typed dependency graph and Figure 3 was tightened to state the exact finite-persistence gate and QSD certification relation. A follow-up figure-correction gate (Run 32) passed 45/45 checks, including the new artifact hashes, exact figure-source semantics, cold TeX compilation, PDF text identity, equation-number continuity, and preservation of the Section 11.5 non-promotion boundary.
+The original v0.1.8 release gate (Run 31) passed 42/42 checks. Figure 1 was then corrected to match the actual typed dependency graph and Figure 3 was tightened to state the exact finite-persistence gate and QSD certification relation; Run 32 passed 45/45 checks. A final Figure 3 layout freeze removed the duplicated internal title, raised and spread the boxes, moved the implication labels clear of the arrows, and changed the left label to "for every finite L" without changing theorem content. Run 33 passed 50/50 checks, including artifact hashes, exact figure-source semantics, cold TeX compilation, PDF text identity, equation-number continuity, and preservation of the Section 11.5 non-promotion boundary.
 
 ## Claim boundary
 
