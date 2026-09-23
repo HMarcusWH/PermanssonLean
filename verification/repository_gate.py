@@ -164,7 +164,9 @@ add("verification_readme_package_gate_boundary",
     and "includes the final PDF" in verify_readme
     and "does not duplicate the frozen ZIP release artifacts" in verify_readme)
 add("paper_readme_release_boundary",
-    EXPECTED_PDF in paper_readme and "do **not** modify the release-package hashes" in paper_readme)
+    EXPECTED_PDF in paper_readme
+    and "## Release-lineage boundary" in paper_readme
+    and "does **not** modify the release-package hashes" in paper_readme)
 add("supporting_readmes_current",
     "Expected upload" not in foundational_readme
     and "Expected upload" not in specialized_readme
