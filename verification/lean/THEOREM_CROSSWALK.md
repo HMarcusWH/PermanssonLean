@@ -1,4 +1,6 @@
-# Paper-to-Lean crosswalk
+# Selected paper-to-Lean release crosswalk
+
+This 17-entry table is the release-audit crosswalk used to pin representative theorem/definition closures to exact source locations. It is **not** the complete paper ledger; the full theorem/definition map is maintained in `docs/FORMALIZATION_MAP.md`.
 
 Formalization snapshot: `c018f79ea4ce46f4f679ad5bca254509778fc53c`. All declarations below were rechecked against that commit.
 
