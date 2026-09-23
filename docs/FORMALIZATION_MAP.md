@@ -1,6 +1,6 @@
 # PermanssonLean formalization map
 
-This repository formalizes the discrete mathematical core of **Permansson Regimes v0.1.8** in Lean 4.
+This repository formalizes the discrete mathematical core of **Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium v0.1.8** in Lean 4.
 
 ## Claim firewall
 
@@ -8,12 +8,12 @@ Status labels are used strictly:
 
 - **PROVED** — accepted by Lean on the pinned toolchain.
 - **DEFINED** — the paper object is represented as data/structure; no separate theorem obligation is implied merely by its existence.
-- **SCAFFOLDED** — a partial interface exists but a promoted theorem obligation remains incomplete.
-- **OPEN** — a promoted formal claim has not yet been represented in Lean.
+- **SCAFFOLDED** — a partial interface exists but a formal-core theorem obligation remains incomplete.
+- **OPEN** — a formal-core claim has not yet been represented in Lean.
 - **NON-CORE / OUTSIDE FORMALIZED CORE** — outside the universal GR/PR theorem set unless and until a direct paper theorem and natural Permansson interface are supplied.
 - **EMPIRICAL / OUT OF SCOPE** — depends on data, scientific identification, provenance, statistical validity, or literature priority rather than pure formal derivation.
 
-Green CI means that the checked Lean declarations compile and pass the repository's axiom/placeholder firewall. It does not upgrade empirical claims, causal identification, novelty, or non-promoted research programmes.
+Green CI means that the checked Lean declarations compile and pass the repository's axiom/placeholder firewall. It does not upgrade empirical claims, causal identification, novelty, or material outside the formalized theorem scope.
 
 ## Completion boundary
 
@@ -545,7 +545,7 @@ With both the world-only and recorded-action branches checked, the Section-6
 conservative transport architecture is closed. Proposition 5.4's finite-horizon TV envelope is also closed. Subsequent PRs closed Proposition 4.1a, the optional QSD-certified quasi-regime layer, and Proposition 8.1.
 
 
-## Final v0.1.7 support milestone — Polish, QSD, and periodic-example closure
+## Final core-support milestone — Polish, QSD, and periodic-example closure
 
 The final support PRs close the paper-level lanes that were still described as open in earlier versions of this map:
 
