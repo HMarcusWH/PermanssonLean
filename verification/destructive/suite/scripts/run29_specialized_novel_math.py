@@ -22,7 +22,7 @@ ck(checks,'zero_first_order_nonzero_second_order',abs(deriv)<1e-10 and second>1.
 def D(n,m): return n==m
 for m in [1,2,10,100]:
     ck(checks,f'pointwise_detector_exists_m{m}',any(D(n,m) for n in range(1,m+2)))
-    ck(checks,f'no_tail_completenesses_m{m}',not all(D(n,m) for n in range(m, m+5)))
+    ck(checks,f'no_tail_completeness_m{m}',not all(D(n,m) for n in range(m, m+5)))
 A0=np.array([[2.,1.],[1.,4.]]); c0=7.; vals,V=np.linalg.eigh(A0); vals2,V2=np.linalg.eigh(A0+c0*np.eye(2))
 ck(checks,'scalar_identity_shift_eigenvalues',np.allclose(vals2,vals+c0))
 ck(checks,'scalar_identity_shift_eigenvectors',np.allclose(np.abs(V),np.abs(V2)))
