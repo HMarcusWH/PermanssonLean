@@ -5,7 +5,7 @@ Formalization snapshot: `c018f79ea4ce46f4f679ad5bca254509778fc53c`. All declarat
 | Paper item | Lean declaration | Source |
 |---|---|---|
 | Thm. 3.1 | `joint_process_well_posed` | `PermanssonLean/StrategicWorld/WellPosedness.lean:173` |
-| Prop. 3.2 | `enlarged_state_reduction` | `PermanssonLean/Strategime/WellPosedness.lean:185` |
+| Prop. 3.2 | `enlarged_state_reduction` | `PermanssonLean/StrategicWorld/WellPosedness.lean:185` |
 | Prop. 4.1a | `proposition_4_1a` | `PermanssonLean/Regime/PolishDescriptor.lean:303` |
 | Prop. 4.2 | `exactInvariant_iff_survivalForever` | `PermanssonLean/Regime/Persistence.lean:261` |
 | Thm. 4.2a | `survivalProbability_eq_killedSurvivalMass` | `PermanssonLean/Regime/SurvivalBridge.lean:225` |
