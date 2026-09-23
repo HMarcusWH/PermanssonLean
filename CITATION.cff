@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite the paper and this repository."
+title: "PermanssonLean: formalization companion to Permansson Regimes"
+type: software
+authors:
+  - family-names: Hermansson
+    given-names: Marcus
+version: "0.1.8"
+date-released: 2026-09-23
+repository-code: "https://github.com/HMarcusWH/PermanssonLean"
+url: "https://github.com/HMarcusWH/PermanssonLean"
+preferred-citation:
+  type: article
+  title: "Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium"
+  authors:
+    - family-names: Hermansson
+      given-names: Marcus
+  year: 2026
+  version: "0.1.8"
