@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import py_compile
+import re
 import sys
 from pathlib import Path
 
@@ -128,6 +129,13 @@ add("readme_exact_paper_title",
 add("formal_map_no_stale_promotion_language",
     "promoted theorem obligation" not in formal_map and "promoted formal claim" not in formal_map and "non-promoted" not in formal_map)
 add("formal_map_appendix_e_boundary", "Appendix E specialized finite-certificate / rigidity extensions" in formal_map)
+paper_refs = set()
+for abbr, word in [("Thm", "Theorem"), ("Prop", "Proposition"), ("Cor", "Corollary"), ("Def", "Definition")]:
+    for match in re.finditer(rf"{word}\s+([0-9]+(?:\.[0-9]+[a-z]?)+)", tex):
+        paper_refs.add(f"{abbr}. {match.group(1)}")
+missing_ledger_refs = sorted(ref for ref in paper_refs if f"| {ref} |" not in formal_map)
+add("formal_map_covers_all_numbered_paper_refs", len(paper_refs) == 24 and not missing_ledger_refs,
+    f"paper refs={len(paper_refs)}; missing={missing_ledger_refs}")
 add("verification_readme_no_missing_baseline_dir", "`baseline/`" not in verify_readme)
 add("verification_readme_package_gate_boundary",
     "package-level" in verify_readme and "does not duplicate those binary release artifacts" in verify_readme)
