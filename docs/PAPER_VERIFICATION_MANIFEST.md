@@ -37,6 +37,8 @@ The frozen v0.1.7 post-proofread lineage records:
 
 The inspectable Python source for Runs 17–30 is now kept under `verification/destructive/suite/` in this repository. The exact frozen evidentiary ZIP remains identified by the SHA-256 above.
 
+Repository CI reruns this layer on **CPython 3.13** with **NumPy 2.5.3** pinned in `verification/destructive/suite/requirements.txt`.
+
 ### 2. Deductive Lean layer
 
 The companion Lean development machine-checks the discrete GR/PR mathematical core through Proposition 8.1. The paper-to-Lean declaration crosswalk and exact CI evidence are under `verification/lean/`.
