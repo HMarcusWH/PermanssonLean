@@ -1,0 +1,17 @@
+# Lean build artifacts
+.lake/
+
+# Python cache and generated destructive-suite outputs
+__pycache__/
+*.pyc
+verification/destructive/suite/logs/
+verification/destructive/suite/results/run_*.json
+verification/destructive/suite/results/run_*.txt
+verification/destructive/suite/results/v17_run_summary.json
+
+# TeX build products
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
