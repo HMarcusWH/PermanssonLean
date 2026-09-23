@@ -1,6 +1,6 @@
 # PermanssonLean formalization map
 
-This repository formalizes the mathematical core of **Permansson Regimes v0.1.7** in Lean 4.
+This repository formalizes the discrete mathematical core of **Permansson Regimes v0.1.8** in Lean 4.
 
 ## Claim firewall
 
@@ -10,14 +10,14 @@ Status labels are used strictly:
 - **DEFINED** — the paper object is represented as data/structure; no separate theorem obligation is implied merely by its existence.
 - **SCAFFOLDED** — a partial interface exists but a promoted theorem obligation remains incomplete.
 - **OPEN** — a promoted formal claim has not yet been represented in Lean.
-- **NON-CORE / NOT PROMOTED** — explicitly outside the universal v0.1.7 GR/PR core unless and until a paper theorem and natural Permansson interface are supplied.
+- **NON-CORE / OUTSIDE FORMALIZED CORE** — outside the universal GR/PR theorem set unless and until a direct paper theorem and natural Permansson interface are supplied.
 - **EMPIRICAL / OUT OF SCOPE** — depends on data, scientific identification, provenance, statistical validity, or literature priority rather than pure formal derivation.
 
 Green CI means that the checked Lean declarations compile and pass the repository's axiom/placeholder firewall. It does not upgrade empirical claims, causal identification, novelty, or non-promoted research programmes.
 
 ## Completion boundary
 
-The numbered theorem/proposition/corollary/definition obligations in the intended **v0.1.7 discrete formal core through Proposition 8.1** have corresponding Lean closure. This completion statement is deliberately narrower than “the whole paper is proved”: Section 11.5 is explicitly a non-core research programme; continuous-time, set-valued, nonautonomous, and application-specific extensions remain outside the discrete core; and empirical/provenance/identification/statistical disciplines are not theorem obligations.
+The numbered theorem/proposition/corollary/definition obligations in the **v0.1.8 discrete formal core through Proposition 8.1** have corresponding Lean closure. This completion statement is deliberately narrower than “the whole paper is proved”: the specialized finite-certificate/rigidity material in Appendix E is outside the universal formalized core; continuous-time, set-valued, nonautonomous, and application-specific extensions remain outside the discrete core; and empirical/provenance/identification/statistical disciplines are not theorem obligations.
 
 ## Dependency DAG
 
@@ -61,7 +61,7 @@ The numbered theorem/proposition/corollary/definition obligations in the intende
 | 11b | Grounded confirmatory PR / representation / quotient / world-path EGR transport | `GroundedRelevanceMap`, `paperIConfirmatoryEGR_iff_embeddedConfirmatoryGR`, `paperIGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
 | 11c | Recorded-action decode / action-sensitive conservative PR recovery | `PaperIDecodedPath`, `recordedDecode`, `paperIRecordedPermansson_iff_embeddedRelativePR`, `paperIRecordedGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
 | 12 | Periodic Exact GR witness (Prop. 8.1) | `PeriodicExactGR.proposition_8_1` | PROVED |
-| X | Section 11.5 scalar-defect / finite-detection / first-bad / singular-compatibility programme | no promoted GR/PR theorem interface | NON-CORE / NOT PROMOTED |
+| X | Appendix E specialized finite-certificate / rigidity extensions | no universal GR/PR theorem interface | NON-CORE / OUTSIDE FORMALIZED CORE |
 
 ## Source-to-Lean theorem and definition ledger
 
@@ -185,7 +185,7 @@ Section-4 objects are checked on the pinned toolchain:
 - `IsConfirmatoryGeneratedRegime`: Exact GR plus basin-reachable descriptor-law
   nondegeneracy, kept distinct from forward descriptor richness.
 
-Proposition 4.1a is now closed by `proposition_4_1a`; the separate Section 11.5 rigidity programme remains non-core and not promoted.
+Proposition 4.1a is closed by `proposition_4_1a`; the specialized Appendix E rigidity material remains outside the universal formalized core.
 The persistence layer is now machine-checked: finite-horizon path survival is identified
 with killed-kernel mass, exact invariance is equivalent to almost-sure indefinite
 retention, the one-step retention floor yields the paper's q^L bound, and the extended
@@ -555,4 +555,4 @@ The final support PRs close the paper-level lanes that were still described as o
 - `QSDCounterexample.qsd_does_not_imply_uniform_finitePersistence` machine-checks the paper's warning that a QSD eigenmeasure alone does not imply the uniform statewise finite-persistence gate;
 - `PeriodicExactGR.proposition_8_1` formalizes the literal Section-8.1 binary period-two model under the actual `ConvergenceMode.almostSureWeak`, including all-admissible-initial-law path semantics and convergence to the half-half occupation law.
 
-At this point the promoted discrete v0.1.7 theorem/definition ledger through Proposition 8.1 is closed. The Section 11.5 finite-certificate and rigidity programme remains explicitly **NON-CORE / NOT PROMOTED**, and empirical/application certification remains **EMPIRICAL / OUT OF SCOPE**.
+At this point the discrete theorem/definition ledger through Proposition 8.1 is closed. The specialized finite-certificate and rigidity material now collected in Appendix E remains explicitly **NON-CORE / OUTSIDE FORMALIZED CORE**, and empirical/application certification remains **EMPIRICAL / OUT OF SCOPE**.

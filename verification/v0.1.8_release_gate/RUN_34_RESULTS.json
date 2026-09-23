@@ -1,0 +1,9 @@
+{
+  "run": 34,
+  "name": "v0.1.8 editorial-final release gate",
+  "passed": 58,
+  "total": 58,
+  "result": "PASS",
+  "artifact": "Permansson_v0.1.8_SUBMISSION_FINAL_RELEASE_PACKAGE_2026-09-23_EDITORIAL_CLEAN_WINDOWS_SAFE.zip",
+  "artifact_sha256": "66a13d3d4ea6854d38a6a32fe8b7946cbc290c62484b654dc02e0317039faf25"
+}

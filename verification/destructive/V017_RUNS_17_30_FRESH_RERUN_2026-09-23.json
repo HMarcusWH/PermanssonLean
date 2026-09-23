@@ -1,0 +1,16 @@
+[
+{"run":17,"script":"run17_killed_kernel_persistence.py","rc":0,"seconds":0.694},
+{"run":18,"script":"run18_qsd_pathologies.py","rc":0,"seconds":0.607},
+{"run":19,"script":"run19_polish_descriptor_space.py","rc":0,"seconds":0.627},
+{"run":20,"script":"run20_finite_horizon_perturbation.py","rc":0,"seconds":0.682},
+{"run":21,"script":"run21_infinite_horizon_failure_modes.py","rc":0,"seconds":0.676},
+{"run":22,"script":"run22_margin_preservation.py","rc":0,"seconds":0.633},
+{"run":23,"script":"run23_intervention_family_signatures.py","rc":0,"seconds":0.666},
+{"run":24,"script":"run24_intervention_quotient.py","rc":0,"seconds":0.615},
+{"run":25,"script":"run25_scalar_defect.py","rc":0,"seconds":0.696},
+{"run":26,"script":"run26_finite_detection.py","rc":0,"seconds":0.596},
+{"run":27,"script":"run27_first_bad_schur.py","rc":0,"seconds":0.583},
+{"run":28,"script":"run28_singular_compatibility.py","rc":0,"seconds":0.627},
+{"run":29,"script":"run29_specialized_novel_math.py","rc":0,"seconds":0.605},
+{"run":30,"script":"run30_integrated_gate.py","rc":0,"seconds":0.596}
+]

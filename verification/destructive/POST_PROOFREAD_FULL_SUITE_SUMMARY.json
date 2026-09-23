@@ -1,0 +1,29 @@
+{
+  "suite": "Permansson v0.1.7 post-proofread full rerun",
+  "date": "2026-09-21",
+  "v016_historical_script_executions": {"passed":85,"total":85,"failed":0},
+  "v016_baseline_validation": {"status":"PASS","passed":16,"total":16},
+  "v017_runs_17_30": {
+    "passed_checks":3240,"total_checks":3240,"failed_checks":0,
+    "runs":[
+      {"run":17,"title":"Killed-kernel exact persistence","checks":29,"passed":29,"failed":0},
+      {"run":18,"title":"QSD existence/uniqueness/pathology guards + finite-persistence gate","checks":21,"passed":21,"failed":0},
+      {"run":19,"title":"Polish descriptor-space weakening; individual tightness vs uniform tightness","checks":15,"passed":15,"failed":0},
+      {"run":20,"title":"Finite-horizon kernel perturbation accumulation + TV convention boundaries","checks":263,"passed":263,"failed":0},
+      {"run":21,"title":"Infinite-horizon robustness failure modes","checks":13,"passed":13,"failed":0},
+      {"run":22,"title":"Constitutive margin-preservation theorem","checks":2004,"passed":2004,"failed":0},
+      {"run":23,"title":"Indexed typed intervention-family signature equivalence and omissions","checks":9,"passed":9,"failed":0},
+      {"run":24,"title":"Intervention-compatible typed quotient/lumpability theorem attacks","checks":77,"passed":77,"failed":0},
+      {"run":25,"title":"Scalar-defect architecture and necessity attacks","checks":221,"passed":221,"failed":0},
+      {"run":26,"title":"Persistent finite-detection architecture","checks":11,"passed":11,"failed":0},
+      {"run":27,"title":"First-bad quotient and Schur reduction","checks":153,"passed":153,"failed":0},
+      {"run":28,"title":"Singular kernel/range compatibility","checks":59,"passed":59,"failed":0},
+      {"run":29,"title":"Specialized novel-math theorem architectures","checks":313,"passed":313,"failed":0},
+      {"run":30,"title":"Integrated post-proofread v1.7 mutation/source gate and fresh v1.6 controls","checks":52,"passed":52,"failed":0}
+    ]
+  },
+  "all_numbered_runs_01_30_green": true,
+  "previous_v017_check_count":3183,
+  "strengthened_v017_check_count":3240,
+  "added_checks_after_proofread":57
+}

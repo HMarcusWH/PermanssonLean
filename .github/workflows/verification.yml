@@ -1,0 +1,37 @@
+name: Executable verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  executable-verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: verification/destructive/suite/requirements.txt
+
+      - name: Install Python dependencies
+        run: python -m pip install -r verification/destructive/suite/requirements.txt
+
+      - name: Run destructive/regression suite (Runs 17-30)
+        run: python verification/destructive/suite/run_all.py
+
+      - name: Repository synchronization gate
+        run: python verification/repository_gate.py
+
+      - name: Syntax-check preserved release gates
+        run: |
+          python -m py_compile verification/v0.1.8_release_gate/run34_editorial_final_release_gate.py
+          python -m py_compile verification/v0.1.8_release_gate/prior_gates_31_33/run31_release_gate.py
+          python -m py_compile verification/v0.1.8_release_gate/prior_gates_31_33/run32_figure_correction_gate.py
+          python -m py_compile verification/v0.1.8_release_gate/prior_gates_31_33/run33_final_figure3_layout_gate.py
