@@ -1,0 +1,1000 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=19mm,top=17mm,bottom=18mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{amsmath,mathtools}
+\usepackage{amssymb}
+\usepackage{booktabs,longtable,tabularx,array,calc}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,shapes.geometric}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{needspace}
+\usepackage{etoolbox}
+
+\definecolor{heading}{HTML}{111111}
+\hypersetup{pdftitle={Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium},pdfauthor={Marcus Hermansson},pdfsubject={Generated regimes; Permansson regimes; strategic dynamics; intervention-relative constitution}}
+\urlstyle{same}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4.2pt plus .6pt minus .3pt}
+\setlist[itemize]{leftmargin=1.45em,itemsep=1.4pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=1.5pt,topsep=2pt}
+\captionsetup{font=small,labelfont=bf,justification=centering}
+\renewcommand{\arraystretch}{1.08}
+\newcommand{\push}{\mathord{\#}}
+\newcommand{\status}[1]{\mbox{\texttt{\scriptsize\detokenize{#1}}}}
+\newcommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcommand{\PaperVersion}{v0.1.8}
+\newcommand{\PaperDate}{23 September 2026}
+\newcommand{\LeanRepository}{HMarcusWH/PermanssonLean}
+\newcommand{\LeanSnapshotCommit}{c018f79ea4ce46f4f679ad5bca254509778fc53c}
+\newcommand{\LeanCIRun}{35808810682}
+\emergencystretch=2em
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\raggedbottom
+
+\titleformat{\section}{\needspace{4\baselineskip}\large\bfseries\color{heading}}{}{0pt}{}
+\titleformat{\subsection}{\needspace{3\baselineskip}\normalsize\bfseries\color{heading}}{}{0pt}{}
+\titleformat{\subsubsection}{\needspace{2.5\baselineskip}\small\bfseries\color{heading}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{10pt plus 2pt minus 1pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt plus 1pt minus 1pt}{2pt}
+\titlespacing*{\subsubsection}{0pt}{6pt plus 1pt minus 1pt}{1.5pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\itshape Permansson Regimes: Strategic Dynamics Beyond Equilibrium}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\setlength{\headheight}{13pt}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Permansson Regimes: A General Framework for\\[2pt] Strategic Dynamics Beyond Equilibrium\par}
+\vspace{8pt}
+{\large Marcus Hermansson\par}
+{\small Independent researcher\\Correspondence: \url{https://hmwh.se/}\par}
+\vspace{4pt}
+{\small Working Paper \PaperVersion{} -- revised \PaperDate\par}
+\end{center}
+\vspace{3pt}
+\section*{Abstract}\label{abstract}
+
+Game-theoretic and learning models often produce a behavioral process whose long-run consequences are then analyzed with tools from dynamical systems, stochastic approximation, occupation measures, or viability theory. The earlier Equilibrium-Generated Regime (EGR) framework formalized a narrower post-equilibrium object: a certified equilibrium policy together with an ex ante regime region, basin, persistence requirement, descriptor, limiting occupation law, convergence mode, and intervention-relative constitutive test. This paper removes equilibrium as a primitive of the regime layer while preserving the strategic semantics that motivated EGR. A canonical strategic-world process separates an action-selection kernel, a world-transition kernel, and a strategic-update kernel; their composition induces an ordinary Markov process on the enlarged state space. Generated Regimes (GRs) are ex ante classifications of that induced process, while generalized Permansson Regimes (PRs) are GRs with at least one strategically constitutive generator component under a fixed admissible intervention. The paper proves well-posedness, exact EGR embedding, conservative recovery of the original Permansson definition, baseline representation invariance, factorization non-identification, and constitutive non-invariance under baseline-equivalent factorizations.
+
+The framework further develops a quantitative and representation-theoretic layer. Descriptor spaces may be Polish; finite persistence and expected exit time admit an exact killed-kernel calculus; finite-horizon quasi-regimes may carry an additional quasi-stationary-distribution (QSD) certificate subject to separate existence and uniqueness conditions; constitutive effects admit a uniform margin and a perturbation-robustness criterion; intervention-compatible invariance extends to frozen intervention families; and a sufficient quotient theorem gives conditions under which GR/PR classification survives type-respecting state compression. These results are modular and apply only under their stated hypotheses. Formal verification and reproducibility materials are documented in Appendix D.
+
+Keywords: generated regimes; Permansson regimes; dynamic games; learning in games; constitutive intervention; killed Markov kernel; quasi-stationary distribution; perturbation robustness; regime equivalence; probabilistic bisimulation.
+
+JEL codes: C72, C73, D02, D74.
+
+\section{1. Introduction}\label{introduction}
+
+\subsection{1.1 The analytical question}\label{the-analytical-question}
+
+A strategic model may identify an equilibrium, a learning rule, an
+evolutionary revision protocol, a bounded-rational adjustment process,
+or a fixed policy. Once such a process is specified, a second question
+remains: what persistent or structurally meaningful world does repeated
+strategic behavior generate? In static game theory the natural endpoint
+is a solution concept. In dynamic game theory the strategic solution is
+coupled to a state process. In evolutionary and learning models the
+behavior itself may remain in motion. Across these settings, the world
+altered by behavior can in turn reshape future incentives, information,
+feasible actions, or strategic updates.
+
+The earlier Equilibrium-Generated Regime framework was built for the
+special case in which the strategic behavior was already certified by an
+independently established dynamic equilibrium. It deliberately did not
+introduce a new equilibrium concept. Instead, it attached a
+post-equilibrium classification object to the equilibrium-induced
+process: a selected equilibrium policy, an ex ante region and initial
+basin, exact persistence, a descriptor, a limiting occupation law, a
+convergence mode, and an intervention-relative test for whether a
+component of equilibrium behavior was constitutive of a defining regime
+property (Hermansson, 2026a).
+
+The present paper asks whether equilibrium was ever logically necessary
+to that regime-classification layer. The answer developed here is no,
+but only in a specific and conservative sense. The mathematics of
+non-equilibrium dynamics is not new: dynamical systems theory classifies
+invariant sets, attractors, recurrence, chain recurrence, and related
+asymptotic objects; stochastic approximation connects learning
+algorithms to differential equations or inclusions; controlled Markov
+process theory uses occupation measures; viability theory studies
+controlled persistence; evolutionary game theory separates games from
+revision protocols; and feedback-evolving games explicitly couple
+strategic behavior to environmental states. The proposed contribution is
+therefore not a new theory of dynamics. It is a typed, game-facing
+regime semantics that preserves the distinction between how strategic
+behavior is generated, how that behavior changes the world, and which
+typed components are constitutive of a declared regime property.
+
+\subsection{1.2 Main contribution}\label{main-contribution}
+
+The paper introduces a canonical discrete-time strategic-world process
+with three kernels. An action-selection kernel \(\alpha\) generates
+behavior from the current strategic and world states. A world-transition
+kernel P maps current state and behavior into the next world state. A
+strategic-update kernel U maps the resulting observation back into the
+next strategic state. The pair \(\mathfrak G\) = \((\alpha,U)\) is
+called the strategic generator. Their composition induces an ordinary
+Markov kernel \(K_{\mathfrak G,P}\) on the joint state Y = S
+\(\times{}\) X.
+
+\begin{equation}
+Y_t=(S_t,X_t)\xrightarrow{\alpha}A_t\xrightarrow{P}X_{t+1}\xrightarrow{U}S_{t+1}.
+\tag{1}\label{eq:1}
+\end{equation}
+
+A Generated Regime (GR) is then an ex ante regime specification
+satisfied by the induced joint process. A generalized Permansson Regime
+(PR) is a GR for which at least one predeclared component of the
+strategic generator is constitutive of a defining regime property under
+a fixed admissible strategic-generator intervention. Structural
+constitution of the world-transition mechanism is defined separately.
+For confirmatory use, the framework additionally requires a
+nondegenerate baseline specification and a grounded constitutive
+property tied to a frozen relevance map; these guardrails exclude
+descriptor variation that exists only on unreachable decorative states
+and PR claims driven only by undeclared auxiliary bookkeeping
+coordinates. This preserves the logic of the earlier EGR paper, in which
+a Permansson regime was narrower than an EGR rather than synonymous with
+it.
+
+
+The quantitative and representation-theoretic layer sharpens this architecture in five directions. First, it weakens the descriptor-space assumption from compact metrizable to Polish while preserving the weak-convergence formulation. Second, it replaces the one-step finite-survival diagnostic by an exact killed-kernel calculus, so finite persistence and expected exit time become operator identities rather than only lower bounds. Third, it separates constitutive status from a quantitative constitutive margin and proves a metric perturbation theorem showing exactly when that margin survives model or numerical error. Fourth, it generalizes single-intervention representation invariance to a frozen, indexed intervention-family signature. Fifth, it gives a sufficient quotient theorem: type-respecting state compression preserves GR/PR classification only when both models retain the canonical typed structure, the baseline kernel and every frozen typed intervention kernel intertwine, and the regime/constitutive semantics descend together. None of these results makes perturbation robustness, QSD structure, or quotientability automatic; each applies only under explicit hypotheses.
+
+Formal verification scope and reproducibility provenance are documented in Appendix D.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  >=Latex,
+  box/.style={draw=black!75, rounded corners=2pt, fill=white, align=center, minimum height=12mm, inner sep=2.7pt, font=\footnotesize},
+  proc/.style={box, fill=black!3},
+  arr/.style={->, line width=.72pt, draw=black!78},
+  dep/.style={->, line width=.58pt, draw=black!66}
+]
+\node[font=\small\bfseries] at (7.0,2.55) {Typed strategic-world process};
+\node[box, text width=22mm] (yt) at (0,1.1) {Joint state\\$Y_t=(S_t,X_t)$};
+\node[proc, text width=26mm] (al) at (2.9,1.1) {Action selection\\$\alpha(\cdot\mid S_t,X_t)$};
+\node[box, text width=20mm] (at) at (5.6,1.1) {Realized action\\$A_t$};
+\node[proc, text width=32mm] (pw) at (8.6,1.1) {World transition\\$P(\cdot\mid S_t,X_t,A_t)$};
+\node[box, text width=20mm] (xp) at (11.6,1.1) {World state\\$X_{t+1}$};
+
+\node[proc, text width=39mm] (up) at (7.3,-1.35) {Strategic update\\$U(\cdot\mid S_t,X_t,A_t,X_{t+1})$};
+\node[box, text width=22mm] (sp) at (11.0,-1.35) {Strategic state\\$S_{t+1}$};
+\node[box, text width=31mm] (yp) at (14.2,-1.35) {Joint state\\$Y_{t+1}=(S_{t+1},X_{t+1})$};
+
+\draw[arr] (yt.east)--(al.west);
+\draw[arr] (al.east)--(at.west);
+\draw[arr] (at.east)--(pw.west);
+\draw[arr] (pw.east)--(xp.west);
+
+% Additional declared dependencies of P and U.
+\draw[dep] (yt.north) -- ++(0,7mm) -| (pw.north);
+\draw[dep] (yt.south) -- ++(0,-7mm) -| ([yshift=2.2mm]up.west);
+\draw[dep] (at.south) -- ++(0,-5mm) -| ([xshift=-8mm]up.north);
+\draw[dep] (xp.south) -- ++(0,-5mm) -| ([yshift=2.2mm]up.east);
+
+\draw[arr] (up.east)--(sp.west);
+\draw[arr] (sp.east)--(yp.west);
+\draw[dep] (xp.south) -- ++(0,-4mm) -| (yp.north);
+\draw[arr] (yp.south) -- ++(0,-7mm) -| (yt.south);
+\node[font=\scriptsize, fill=white, inner sep=1pt] at (6.8,-2.95) {next period};
+
+\node[font=\footnotesize] at (7.0,-3.55) {The induced joint kernel $K_{\mathfrak G,P}$ lives on $Y=S\times X$.};
+\end{tikzpicture}
+\caption{Canonical typed strategic-world process. The joint state $Y_t=(S_t,X_t)$ feeds the action-selection kernel; both the joint state and realized action enter the world transition; and $Y_t$, $A_t$, and $X_{t+1}$ enter the strategic update before $S_{t+1}$ and $X_{t+1}$ recombine as $Y_{t+1}$. The enlarged joint process is ordinary Markov dynamics; the added structure is the declared strategic/world factorization and the intervention semantics.}
+\label{fig:typed-process}
+\end{figure}
+
+\subsection{1.3 Conservative extension of
+EGR}\label{conservative-extension-of-egr}
+
+The set-theoretic relationship requires the intervention grammar to be
+typed as well as the baseline object. Let \(\mathrm{PR}_{\iota}\) denote
+generalized PR status relative to the transported Paper-I protocol class
+introduced in Section 6.3. Recovery of Paper-I objects is assessed on
+the embedded EGR class \(\iota(\mathrm{EGR})\). Then:
+
+\begin{equation}
+\iota(\mathrm{EGR})\subseteq\mathrm{GR},\qquad \mathrm{PR}_{\mathrm{general}}\subseteq\mathrm{GR},\qquad \mathrm{PR}_{\iota}\subseteq\mathrm{PR}_{\mathrm{general}},\qquad \iota(\mathrm{PR}_{\mathrm{old}})=\iota(\mathrm{EGR})\cap\mathrm{PR}_{\iota}.
+\tag{2}\label{eq:2}
+\end{equation}
+
+Here \(\iota\) denotes the canonical embedding defined in Section 6. The
+restriction to \(\mathrm{PR}_{\iota}\) is essential. The unrestricted
+overlap \(\iota(\mathrm{EGR})\cap{}\mathrm{PR}_{\mathrm{general}}\) can
+be larger because the generalized theory permits constitutive
+interventions on strategic-update or auxiliary-state components that
+have no Paper-I policy counterpart. Thus Paper II conservatively
+recovers Paper I under transported Paper-I protocols without claiming
+that every generalized constitutive property of an embedded
+representation existed in Paper I. The framework retains the distinction
+between the broad \(\mathrm{PR}_{\mathrm{general}}\) class and grounded
+confirmatory PR status: an auxiliary coordinate can support a
+confirmatory constitutive claim only when a predeclared relevance map
+explicitly includes it. The confirmatory GR layer retains
+basin-reachable descriptor nondegeneracy and separately reports whether
+descriptor richness remains forward-active after time zero. Conversely,
+a non-equilibrium learning process can be a generalized PR if a
+component of its strategic generator is constitutive of the declared
+regime property. The application-certificate layer leaves these set-theoretic
+relations unchanged: empirical provenance, identification, support, or
+sampling uncertainty may downgrade an application certificate without
+changing the underlying formal GR/PR class.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[every node/.style={font=\small}]
+  \draw[line width=.85pt] (0,0) ellipse (5.35cm and 3.55cm);
+  \draw[line width=.75pt] (-1.45,0) ellipse (3.05cm and 2.45cm);
+  \draw[line width=.75pt] (1.45,0) ellipse (3.05cm and 2.45cm);
+  \draw[dashed,line width=.8pt] (0,-.15) ellipse (1.35cm and 1.55cm);
+
+  \node[fill=white,inner sep=3pt,font=\large] at (0,3.05) {Generated Regimes ($\mathrm{GR}$)};
+  \node[fill=white,inner sep=4pt,font=\large] at (-2.45,.15) {$\iota(\mathrm{EGR})$};
+  \node[fill=white,inner sep=4pt,font=\large] at (2.45,.15) {$\mathrm{PR}_{\mathrm{general}}$};
+  \node[fill=white,rounded corners=2pt,inner sep=4pt,align=center] at (0,-.15) {$\iota(\mathrm{PR}_{\mathrm{old}})$\\[-1pt]{\scriptsize transported Paper-I protocols}};
+
+  \node[fill=white,inner sep=2pt,font=\footnotesize,align=center] at (0,-4.25) {$\iota(\mathrm{PR}_{\mathrm{old}})=\iota(\mathrm{EGR})\cap\mathrm{PR}_{\iota}$\\$\mathrm{PR}_{\iota}\subseteq\mathrm{PR}_{\mathrm{general}}\subseteq\mathrm{GR}$};
+\end{tikzpicture}
+\caption{Class hierarchy. Transported Paper-I protocol status is denoted $\mathrm{PR}_{\iota}$; exact recovery of Paper-I Permansson regimes is the dashed intersection $\iota(\mathrm{PR}_{\mathrm{old}})$. The unrestricted $\iota(\mathrm{EGR})/\mathrm{PR}_{\mathrm{general}}$ overlap may be larger. The grounded confirmatory subclass $\mathrm{PR}_g\subseteq\mathrm{PR}_{\mathrm{general}}$ is omitted for readability.}
+\label{fig:class-hierarchy}
+\end{figure}
+
+\subsection{1.4 Scoped novelty claim and
+nonclaims}\label{scoped-novelty-claim-and-nonclaims}
+
+The novelty claim is organizational, diagnostic, and semantic rather
+than a priority claim over the underlying mathematics. Benaïm and Hirsch
+(1996) provide a unified topological framework for limit sets of
+asymptotic pseudotrajectories, including fictitious play. Benaïm,
+Hofbauer, and Sorin (2005) extend this approach to differential
+inclusions. Sandholm (2015) explicitly separates population games from
+revision protocols and studies the induced evolutionary dynamics. Weitz
+et al. (2016), Tilman, Plotkin, and Akçay (2020), and Ito and Yamamichi
+(2024) couple strategic behavior to environmental states and classify
+fixed points, bistability, cycles, and related outcomes. Mertikopoulos,
+Hsieh, and Cevher (2024) develop a common stochastic-approximation
+template for many learning algorithms. Akin (2009), Kloeden and
+Rasmussen (2011), and the broader dynamical-systems literature already
+supply general asymptotic languages. Aubin (1990) supplies viability and
+controlled-invariance machinery. Bhatt and Borkar (1996) characterize
+occupation measures in controlled Markov processes.
+
+Accordingly, this paper does not claim: (i) new mathematics of
+attractors, recurrence, invariant measures, chain recurrence, or
+viability; (ii) a new equilibrium solution concept; (iii) that
+strategic/world factorizations are identified from trajectories alone;
+(iv) that every persistent trajectory is a GR; (v) that finite-horizon
+persistence is equivalent to exact persistence; or (vi) that a signed
+feedback diagram by itself provides causal identification. The specific
+proposed object is a portable typed regime layer with ex ante
+classification and intervention-relative constitutive semantics.
+
+\section{2. Related Literature and the Remaining
+Distinction}\label{related-literature-and-the-remaining-distinction}
+
+\subsection{2.1 Population and evolutionary
+games}\label{population-and-evolutionary-games}
+
+Population-game theory already contains one of the most important
+abstractions for the present paper. Sandholm (2015) models large
+populations using revision protocols that generate stochastic
+evolutionary processes and deterministic mean dynamics. Fixing a
+revision protocol yields a map from population games to differential
+equations, and different revision principles can induce qualitatively
+different dynamics. This is a direct predecessor of the
+strategic-generator idea. The distinction retained here is that the
+generated behavior is subsequently composed with an explicitly typed
+world-transition mechanism and then classified by a regime specification
+that remains unchanged across admissible generator classes.
+
+Arcak and Martins (2021) offer another close architectural analogue by
+separating a payoff dynamics model from an evolutionary dynamics model
+and studying stability compositionally. Their target is convergence to
+Nash-like rest points under dissipativity conditions. The present
+framework instead treats convergence, cycles, invariant occupation laws,
+or other declared regime forms as possible outputs, and it preserves a
+separate constitutive intervention grammar.
+
+\subsection{2.2 Learning and stochastic
+approximation}\label{learning-and-stochastic-approximation}
+
+Learning in games provides a large family of non-equilibrium generators.
+Mertikopoulos, Hsieh, and Cevher (2024) develop a unified
+stochastic-approximation template spanning gradient methods,
+multiplicative weights, optimistic methods, bandit methods, and related
+algorithms. Benaïm and Hirsch (1996) and Benaïm, Hofbauer, and Sorin
+(2005) show how broad adaptive processes can be analyzed through
+internally chain-recurrent or internally chain-transitive limit sets.
+Galla and Farmer (2013) show that reinforcement-learning dynamics in
+complicated games can exhibit fixed points, multiplicity, limit cycles,
+and high-dimensional chaos. Milionis et al. (2023) prove an
+impossibility result showing that Nash convergence cannot be a universal
+requirement for game dynamics.
+
+These results strongly motivate separating generator type from regime
+type. A learning generator may produce a fixed point, cycle, chaotic
+attractor, or invariant distribution depending on the model.
+``Non-equilibrium'' is therefore not itself a regime classification. It
+is a statement about the generator or the absence of a particular
+solution certificate.
+
+\subsection{2.3 Strategy-environment
+feedback}\label{strategy-environment-feedback}
+
+Feedback-evolving games are the closest substantive game-facing
+neighbor. Weitz et al. (2016) explicitly model accumulated strategic
+behavior as changing the commons and thereby changing subsequent
+payoffs. Tilman, Plotkin, and Akçay (2020) generalize the framework by
+separating intrinsic environmental dynamics, strategic impact on the
+environment, and strategy-update dynamics. Ito and Yamamichi (2024)
+provide a broad qualitative classification for feedback-evolving games,
+including stable equilibria, bistability, transient changes in game
+structure, and persistent oscillation.
+
+These models already establish the conceptual legitimacy of strategic
+behavior \(\leftrightarrow\) world feedback and of regime-like
+qualitative classification. The remaining distinction is portability:
+the canonical feedback-evolving model is usually tied to a specific
+evolutionary update equation or family. The present paper instead treats
+the strategic generator as a typed replaceable input while keeping the
+regime specification and constitutive semantics fixed.
+
+\subsection{2.4 Dynamical systems and the enlarged-state
+objection}\label{dynamical-systems-and-the-enlarged-state-objection}
+
+The strongest reduction argument against the present framework is
+mathematically correct: set \(Y_t=(S_t,X_t)\), forget the interpretation
+of the factors, and analyze the induced process with ordinary
+dynamical-systems or Markov-process tools. Akin's survey develops
+invariant sets, attractors, chain recurrence, Lyapunov functions,
+minimality, and recurrence. Benaïm and Hirsch characterize limit sets of
+broad nonautonomous pseudotrajectories. Kloeden and Rasmussen develop
+nonautonomous processes, pullback attractors, switching systems, and
+random dynamical systems. Conley-theoretic reasoning also enters modern
+game dynamics, as emphasized by Milionis et al. (2023).
+
+This paper accepts that reduction at the level of baseline dynamics. Its
+claim is that the reduction loses information required for constitutive
+questions. If two different strategic/world factorizations induce the
+same K, they are dynamically indistinguishable at baseline. Yet an
+intervention on the strategic generator may leave one K unchanged and
+alter the other. The factorization is therefore irrelevant to baseline
+dynamical classification but relevant to typed counterfactual
+constitution. Sections 6 and 7 formalize this distinction.
+
+\subsection{2.5 Viability, controlled Markov processes, and
+institutions}\label{viability-controlled-markov-processes-and-institutions}
+
+Viability theory provides mature mathematics for remaining inside
+declared sets under control and for computing viability kernels and
+capture basins (Aubin, 1990). Controlled Markov process theory similarly
+provides policy-induced occupation measures and long-run state-action
+structure (Bhatt and Borkar, 1996). These are important mathematical
+substrates for particular GR descriptors and persistence criteria rather
+than competing vocabularies that must be replaced.
+
+Institutional theory supplies a conceptual analogue at a different
+level. Greif and Laitin (2004) ask how self-enforcing institutions
+persist in changing environments and how processes unleashed by
+institutions can reinforce or undermine them. Their quasi-parameter and
+self-reinforcement concepts are closely related to the idea that
+behavior changes a world state that feeds back into future strategic
+conditions. The present framework aims to provide a more abstract
+process-and-intervention language that can host such mechanisms without
+identifying institutions with equilibrium by definition.
+
+\subsection{2.6 Causal abstraction and causal games}\label{causal-abstraction-and-causal-games}
+
+Causal abstraction provides the closest existing formal language for the
+intervention-sensitive equivalence problem underlying Sections 7.2--7.4.
+Rubenstein et al. (2017) introduce exact transformations between structural
+equation models and explicitly require agreement about the effects of mapped
+interventions across levels of description. Beckers and Halpern (2019) refine
+this idea through increasingly restrictive notions of causal abstraction;
+Otsuka and Saigo (2022) give a category-theoretic equivalence criterion under
+which intervention calculi translate consistently; and Geiger et al. (2025)
+generalize causal abstraction from mechanism replacement to broader mechanism
+transformations. These results already establish that representation-level or
+baseline agreement is not by itself the relevant notion of equivalence when
+interventions matter.
+
+Causal games bring that same issue directly into strategic settings. Hammond
+et al. (2023) define structural causal games with mechanised representations of
+decision rules and provide prediction, intervention, and counterfactual
+semantics. Mishra, Fox, and Wooldridge (2024) further characterize primitive
+interventions in causal games, including distinctions that determine whether
+agents may adapt their policies after an intervention. These literatures
+therefore substantially anticipate the general intervention-sensitive
+principle used here. What remains distinct is not intervention semantics
+itself, but the Generated-Regime object: a reusable ex ante persistent-regime
+specification that can be applied across heterogeneous strategic generators,
+together with the Permansson subclass whose membership is defined by
+constitutive strategic intervention response. The present framework should
+therefore be read as a regime-classification layer compatible with causal
+abstraction and causal-game machinery, not as a replacement for either.
+
+
+\subsection{2.7 Labelled Markov processes, killed processes, and perturbation theory}\label{labelled-killed-perturbation}
+
+Labelled Markov-process theory is the closest process-theoretic prior art for the intervention-family layer. Desharnais et al. (2004) construct behavioral metrics whose zero set is bisimilarity, while Danos et al. (2006) formulate event bisimulation through sub-$\sigma$-algebras on general measurable spaces. These results already establish that families of transition kernels indexed by labels admit exact and approximate behavioral equivalence notions. The contribution here is therefore not the generic idea of a label-indexed kernel family; it is the sufficient bridge from a frozen family of typed strategic interventions to GR/PR regime and constitution statements.
+
+Killed-process theory supplies the exact finite-survival and quasi-stationary machinery used in Section 4. Bena\"im, Cloez, and Panloup (2018) analyze quasi-stationary distributions for killed Markov processes on compact spaces, while Coolen-Schrijner and van Doorn (2006) and van Doorn and Pollett (2009) demonstrate why QSD existence, uniqueness, and limiting conditional behavior require separate hypotheses. The present paper uses only the elementary sub-Markov identities universally; QSD claims are optional certified subclasses.
+
+Finally, the quantitative layer draws on established perturbation theory rather than presenting a universal new sensitivity theorem. Mitrophanov (2005) derives perturbation bounds for uniformly ergodic Markov chains, and Rudolf and Wang (2025) quantify stability of quasi-stationary laws for killed processes under generator perturbations. Such results enter only as subclass inputs; the general theorem here is the metric margin bridge from bounded property-output error to preserved constitutive classification.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{Closest neighboring literatures. The framework deliberately uses established mathematical objects where possible; the proposed addition is the typed regime and intervention layer.}
+\label{tab:literature-neighbors}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{.18\textwidth}>{\raggedright\arraybackslash}p{.22\textwidth}>{\raggedright\arraybackslash}p{.25\textwidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Literature} & \textbf{Generator / process} & \textbf{Persistent object} & \textbf{What remains distinct here}\\
+\midrule
+Population games & Revision protocols & Rest points, convergence, cycles, stochastic stability & Separate world kernel and portable regime/intervention semantics\\
+Learning in games & Broad learning algorithms & Attractors, limit sets, invariant measures & Same GR definition across generator classes\\
+Feedback-evolving games & Usually replicator / evolutionary updates & Fixed points, bistability, cycles & Generator replacement plus typed constitution\\
+Dynamical systems & Arbitrary law on enlarged state & Invariant sets, recurrence, attractors & Strategic/world semantics and intervention type\\
+Causal abstraction / causal games & Structural mechanisms, decision rules, typed interventions & Intervention-preserving equivalence; causal/counterfactual predictions & Portable persistent-regime object and PR membership rule\\
+Labelled Markov / bisimulation & Label-indexed transition kernels & Behavioral equivalence and metrics & Typed intervention-family signature plus GR/PR semantic preservation\\
+Killed / quasi-stationary processes & Sub-Markov kernels and absorption & Survival, exit laws, QSDs & Exact finite-persistence calculus with optional QSD certification of quasi-regimes\\
+Markov perturbation theory & Baseline/perturbed kernels & Sensitivity of finite or long-run laws under hypotheses & Property-output error bridge to constitutive classification\\
+Controlled Markov / viability & Policies or controls & Occupation measures, viable sets, capture basins & Game-facing regime property and constitutive decomposition\\
+Endogenous institutions & Case-specific repeated-game mechanisms & Persistence, reinforcement, endogenous change & Portable process-level formalization\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{3. Canonical Strategic-World
+Environment}\label{canonical-strategic-world-environment}
+
+\subsection{3.1 Measurable spaces and
+states}\label{measurable-spaces-and-states}
+
+The canonical paper uses discrete time t \(\in{}\) \(\mathbb N_0\) and a
+Markovian representation. Continuous-time, differential-inclusion, and
+nonautonomous extensions are discussed later. Let (S, B(S)) and (X,
+B(X)) be nonempty Polish spaces representing the strategic state and the
+world state. Let \(Y=S\times{}X\) with the product Borel
+\(\sigma\)-algebra. Where a measure-based non-triviality test is used,
+fix a nonzero Borel reference measure m on Y as part of the model before
+any regime region is declared. The strategic state may include policies,
+learning weights, beliefs, memory variables, population strategy
+frequencies, internal organizational rules, or other variables required
+to generate future behavior. The world state contains the material,
+institutional, environmental, network, informational, or other state
+altered through behavior.
+
+The decomposition is analytical rather than ontological. If a variable
+is required to make the mechanism Markovian, it must be included in S or
+X. If a distinction cannot be empirically identified, the model may
+still declare it structurally, but Section 7 shows that the
+factorization is not generally identified from the induced joint
+process.
+
+\subsection{3.2 Actions and feasibility}\label{actions-and-feasibility}
+
+Let \(I=\{1,\ldots,n\}\) be a finite player set when a multi-player
+interpretation is available. For each player i, let \(A_i\) be a
+nonempty standard Borel action space and let \(A_i(y)\subseteq{}A_i\) be
+a nonempty feasible-action correspondence with measurable graph. Let
+\(A=\prod_i\) \(A_i\) and \(A(y)=\prod_i\) \(A_i(y)\). For a
+single-agent, population-level, or exogenous formulation, take A
+directly to be any nonempty standard Borel behavioral-output space with
+a nonempty measurable feasible correspondence A(y).
+
+\subsection{3.3 The strategic generator}\label{the-strategic-generator}
+
+The strategic generator is the ordered pair
+
+\begin{equation}
+\mathfrak G=(\alpha,U).
+\tag{3}\label{eq:3}
+\end{equation}
+
+The action-selection kernel \(\alpha(da\mid s,x)\) is a Markov kernel
+from \(Y\) to \(A\) satisfying feasibility:
+
+\begin{equation}
+\alpha\!\left(A(s,x)\mid s,x\right)=1\qquad\text{for every }(s,x)\in Y.
+\tag{4}\label{eq:4}
+\end{equation}
+
+The strategic-update kernel \(U(ds'\mid s,x,a,x')\) is a Markov kernel
+from \(S\times{}X\times{}A\times{}X\) to \(S\). It updates the internal
+strategic state after the action and the realized next world state are
+available. This ordering is intentionally more general than a single
+kernel \(\Gamma(da,ds'\mid s,x)\): learning rules often update beliefs,
+propensities, or policies only after observing consequences, rewards, or
+public signals. Any additional observation can be included explicitly or
+encoded in the augmented next state.
+
+\subsection{3.4 World transition}\label{world-transition}
+
+Let \(P(dx'\mid s,x,a)\) be a Markov kernel from \(Y\times{}A\) to X.
+Only its values on feasible state-action pairs matter because \(\alpha\)
+is supported on A(s,x). If an application initially specifies a kernel
+only on the Borel feasible graph, fix a measurable extension off that
+graph before applying the canonical formulas; because X is nonempty, a
+fixed probability law on X can be used off the feasible graph. P
+contains both intrinsic world dynamics and action-dependent
+consequences. In a game-environment model, for example, P may encode
+resource renewal together with depletion caused by current behavior. In
+an institutional model it may encode how actions alter operative rules,
+status, capacity, or other continuation-relevant state.
+
+\subsection{3.5 Induced joint kernel}\label{induced-joint-kernel}
+
+For a measurable rectangle \(C\times{}D\subseteq{}S\times{}X\) define
+
+\begin{equation}
+K_{\mathfrak G,P}(C\times D\mid s,x)=\int_A\!\int_D U(C\mid s,x,a,x')\,P(dx'\mid s,x,a)\,\alpha(da\mid s,x).
+\tag{5}\label{eq:5}
+\end{equation}
+
+Equivalently, for any \(E\in{}B(Y)\),
+
+\begin{equation}
+K_{\mathfrak G,P}(E\mid s,x)=\int_A\!\int_X\!\int_S \mathbf 1_E(s',x')\,U(ds'\mid s,x,a,x')\,P(dx'\mid s,x,a)\,\alpha(da\mid s,x).
+\tag{6}\label{eq:6}
+\end{equation}
+
+\textbf{Theorem 3.1 (Joint-process well-posedness).} Under the
+measurability and feasibility assumptions above, \(K_{\mathfrak G,P}\)
+is a Markov kernel on \(Y\). For every initial law
+\(\lambda_0\in{}\Delta(Y)\), there exists a unique probability law
+\(P^{\mathfrak G,P}_{\lambda_0}\) on \(\Omega=Y^{\mathbb N_0}\) whose
+canonical coordinate process has initial law \(\lambda_0\) and
+transition kernel \(K_{\mathfrak G,P}\).
+
+\emph{Proof.} Kernel measurability follows from standard composition of
+measurable kernels: first integrate the bounded measurable indicator
+\(\mathbf 1_E(s',x')\) against U, then P, then \(\alpha\). The resulting
+map \(y\mapsto{}K(E\mid y)\) is measurable for every Borel E, and
+\(K(Y\mid y)=1\). Since S and X are Polish, \(Y=S\times{}X\) is Polish
+and hence standard Borel. Ionescu-Tulcea then yields a unique
+probability measure on the countable product path space with the stated
+initial law and transition kernel. \hfill\textsc{q.e.d.}
+
+\textbf{Proposition 3.2 (Enlarged-state reduction).} Every canonical
+strategic-world model is an ordinary Markov process on the enlarged
+state \(Y=S\times{}X\). Consequently, every baseline property that
+depends only on the induced path law can, in principle, be studied
+without retaining the strategic/world factorization.
+
+\emph{Proof.} Immediate from Theorem 3.1. The proposition is a
+reduction, not a novelty claim. Its importance is diagnostic: any
+claimed contribution of the typed factorization must concern semantics
+or interventions not recoverable from K alone. \hfill\textsc{q.e.d.}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Core notation.}
+\label{tab:notation}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{.28\textwidth}X@{}}
+\toprule
+\textbf{Symbol} & \textbf{Meaning}\\
+\midrule
+$S_t$ & Strategic state\\
+$X_t$ & World state\\
+$Y_t=(S_t,X_t)$ & Joint state\\
+$A_t$ & Realized strategic behavior\\
+$\alpha$ & Action-selection kernel\\
+$U$ & Strategic-update kernel\\
+$\mathfrak G=(\alpha,U)$ & Strategic generator\\
+$P$ & World-transition kernel\\
+$K_{\mathfrak G,P}$ & Induced joint kernel on $Y$\\
+$P_{\lambda}^{\mathfrak G,P}$ & Induced path law from initial law $\lambda$\\
+$\Delta(E)$ & Borel probability measures on measurable space $E$\\
+$f_{\push}\mu$ & Pushforward of $\mu$ under measurable map $f$\\
+$\delta_y$ & Dirac probability law at $y$\\
+$B$ & Predeclared regime region\\
+$B_0$ & Predeclared initial basin\\
+$B_1$ & Predeclared constitutive comparison set\\
+$h$ & Regime descriptor\\
+$\nu$ & Limiting occupation law\\
+$\mathfrak c$ & Declared convergence mode\\
+$g$ & Frozen relevance map for grounded confirmatory use\\
+$\psi$ & Defining regime-property map\\
+$d_\psi$ & Metric on the property space $Z_\psi$\\
+$J$ & Typed admissible intervention\\
+$m$ & Reference measure for non-triviality test\\
+$K_B$ & Killed/sub-Markov kernel obtained by restricting $K$ to transitions remaining in $B$\\
+$\Delta_{\psi,J}(y)$ & Pointwise constitutive effect distance under intervention $J$\\
+$\kappa_{\psi,J}(B_1)$ & Uniform constitutive margin: infimum of $\Delta_{\psi,J}$ over $B_1$\\
+$\operatorname{Sig}_{\mathcal J}(M)$ & Frozen indexed baseline-plus-intervention kernel signature for family $\mathcal J$\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{4. Generated Regimes}\label{generated-regimes}
+
+\subsection{4.1 Ex ante regime
+specification}\label{ex-ante-regime-specification}
+
+Let H be a Polish descriptor space. Fix a bounded compatible metric
+\(d_H\) on H---for example, replace any compatible complete metric \(\rho\) by
+\(\min\{1,\rho\}\)---and let \(d_{\mathrm{BL}}\) be the corresponding
+bounded-Lipschitz/Fortet--Mourier metric on \ensuremath{\Delta(H)}. On a Polish space,
+\(d_{\mathrm{BL}}\) metrizes weak convergence of probability measures (Dudley, 2002). A
+regime specification is
+
+\begin{equation}
+\Sigma=(B,B_0,h,\nu,\mathfrak c).
+\tag{7}\label{eq:7}
+\end{equation}
+
+where \(B_0\subseteq{}B\subseteq{}Y\) are Borel sets, \(h:Y\to{}H\) is
+Borel measurable, \(\nu\in{}\Delta(H)\), and \(\mathfrak c\) records the
+declared convergence mode. The descriptor is defined on all of Y rather
+than only on B so that the same map remains evaluable under
+interventions that may force exit from the baseline region.
+
+\textbf{Proposition 4.1a (Polish descriptor-space generality).} Replacing compact metrizability of H by Polishness leaves every definition in Sections 4--7 well posed. In particular, a bounded compatible metric exists, \(\Delta(H)\) is metrizable by \(d_{\mathrm{BL}}\) for weak convergence, and the occupation-law conditions below remain meaningful. Polishness alone does not imply uniform tightness of an arbitrary sequence of occupation laws and does not imply existence of a limiting law.
+
+\emph{Proof.} Let \(\rho\) be any compatible complete separable metric on H and set \(d_H=\min\{1,\rho\}\). This bounded metric generates the same topology. The associated bounded-Lipschitz metric metrizes weak convergence on probability measures over a Polish space. The remaining definitions use only Borel measurability of h, probability laws on H, and the declared convergence mode. No compactness step is invoked. A sequence of probability measures on a noncompact Polish space need not be uniformly tight, so existence of \(\nu\) remains an Exact-GR requirement rather than a consequence of the ambient topology. \hfill\textsc{q.e.d.}
+
+Define the admissible initial-law class
+
+\begin{equation}
+\mathcal D(B_0)=\{\lambda\in\Delta(Y):\lambda(B_0)=1\}.
+\tag{8}\label{eq:8}
+\end{equation}
+
+The specification is analyst-relative and is not uniquely determined by
+the process. To block post hoc regime drawing, the following ex ante
+non-triviality conditions are imposed. For confirmatory certification, a
+stronger process-relevant descriptor check is added immediately
+afterward.
+
+Assumption 4.1 (Ex ante non-triviality). (i) \(B_0\) and B are Borel
+with nonempty \(B_0\subseteq{}B\). (ii) The regime region B has nonempty
+interior or positive measure under the reference measure m fixed with
+the model before B is declared. (iii) h(B) contains at least two points.
+(iv) \(B_0\) contains at least two states that induce distinct baseline
+path laws. (v) B, \(B_0\), h, \(\nu\), and \(\mathfrak c\) are declared
+before the evaluated trajectory is classified. The same h is used in
+baseline and intervention comparisons.
+
+Because a point-initialized path law on $\Omega=Y^{\mathbb N_0}$ includes the deterministic coordinate $Y_0=y$, condition (iv) is literally equivalent to requiring at least two distinct initial states; it blocks singleton basins but does not by itself guarantee different continuation dynamics. Shifted continuation-law diversity $P_y\circ\theta^{-1}\ne P_{y'}\circ\theta^{-1}$, where $\theta(y_0,y_1,\ldots)=(y_1,y_2,\ldots)$, remains a useful strengthening diagnostic. For grounded confirmatory work, an additional optional response-profile diagnostic may compare the $g$-projected baseline and frozen-intervention path laws: two states can be substantively distinguishable if their grounded law differs at baseline or under the declared intervention. Neither baseline grounded diversity nor shifted-law diversity is a universal theorem precondition, because latent types, beliefs, or learning states may pool at baseline while responding differently to the counterfactual, and contraction-to-attractor regimes may lose forward diversity immediately. Condition (v) does not prohibit exploratory model development, but exploratory regions must be frozen and evaluated on held-out simulations, data, or cases before confirmatory classification. For confirmatory certification, define the basin-reachable descriptor-law family
+\[
+\mathcal M_h(B_0)=\bigl\{h_{\push}(\delta_y K_{\mathfrak G,P}^{t}):y\in B_0,\ t\in\mathbb N_0\bigr\}.
+\]
+A specification is called descriptor-nondegenerate when $\mathcal M_h(B_0)$ contains at least two distinct probability measures. This blocks an unreachable decorative state from supplying all descriptor variation. A stronger diagnostic is forward descriptor richness: let $R_h^+(B_0)$ be the closure in $H$ of the union of $\operatorname{supp}(h_{\push}(\delta_y K_{\mathfrak G,P}^{t}))$ over $y\in B_0$ and integers $t\ge1$; the specification is forward-descriptor-rich when $R_h^+(B_0)$ contains at least two points. Forward richness is not a universal certification gate. A one-step contraction from a nontrivial basin to a common fixed point can be a perfectly legitimate Exact GR. Confirmatory reports should therefore state whether nondegeneracy is forward-active or basin-only; basin-only status is not a failure, but it should not be described as persistent descriptor variation.
+
+\subsection{4.2 Exact and finite-horizon
+persistence}\label{exact-and-finite-horizon-persistence}
+
+Define the first exit time
+
+\begin{equation}
+\tau_B=\inf\{t\ge 0:Y_t\notin B\}.
+\tag{9}\label{eq:9}
+\end{equation}
+
+The regime region is exactly invariant under \(K_{\mathfrak G,P}\) when
+
+\begin{equation}
+K_{\mathfrak G,P}(B\mid y)=1\qquad\text{for every }y\in B.
+\tag{10}\label{eq:10}
+\end{equation}
+
+\textbf{Proposition 4.2 (Equivalent forms of exact invariance).} For a
+Markov process with kernel \(K_{\mathfrak G,P}\), condition (10) is
+equivalent to \(P^{\mathfrak G,P}_y(\tau_B=\infty)=1\) for every
+\(y\in{}B\).
+
+\emph{Proof.} If $K(B\mid y)=1$ on $B$, induction gives $P_y(Y_t\in B\text{ for all }t\le T)=1$ for every finite $T$. Countable intersection over $T$ yields indefinite retention almost surely. Conversely, if indefinite retention holds from every $y\in B$, then in particular $P_y(Y_1\in B)=K(B\mid y)=1$. \hfill\textsc{q.e.d.}
+
+For \(L\in\mathbb N\) and \(\eta\in{}[0,1]\), define \((L,\eta)\)-persistence
+by
+
+\begin{equation}
+\inf_{y\in B} P_y^{\mathfrak G,P}(\tau_B>L)\ge 1-\eta.
+\tag{11}\label{eq:11}
+\end{equation}
+
+For measurable B define the killed (sub-Markov) kernel on B by
+
+\begin{equation}
+K_B(y,C)=K_{\mathfrak G,P}(C\cap B\mid y),\qquad y\in B,\ C\in\mathcal B(Y).
+\tag{11a}\label{eq:11a}
+\end{equation}
+
+The killed kernel records exactly the mass that remains in B after each transition; missing mass is the probability already absorbed at the cemetery state.
+
+\textbf{Theorem 4.2a (Exact killed-kernel persistence calculus).} For every \(y\in B\) and integer \(n\ge0\),
+
+\begin{equation}
+P_y^{\mathfrak G,P}(\tau_B>n)=\bigl(K_B^n\mathbf 1_B\bigr)(y).
+\tag{11b}\label{eq:11b}
+\end{equation}
+
+Moreover, with values in \([0,\infty]\),
+
+\begin{equation}
+E_y^{\mathfrak G,P}[\tau_B]=\sum_{n=0}^{\infty}\bigl(K_B^n\mathbf 1_B\bigr)(y).
+\tag{11c}\label{eq:11c}
+\end{equation}
+
+\emph{Proof.} Because \(y\in B\), the event \(\{\tau_B>n\}\) is exactly \(\{Y_1\in B,\ldots,Y_n\in B\}\). For \(n=0\) both sides equal one. If the identity holds at n, the Markov property gives
+\[
+P_y(\tau_B>n+1)=\int_B P_z(\tau_B>n)\,K_{\mathfrak G,P}(dz\mid y)=\bigl(K_B^{n+1}\mathbf 1_B\bigr)(y),
+\]
+proving (11b) by induction. Equation (11c) is the tail-sum identity for a nonnegative integer-valued random variable, with monotone convergence allowing the value \(+\infty\). \hfill\textsc{q.e.d.}
+
+\textbf{Corollary 4.2b (Exact finite-persistence characterization).} Condition (11) is equivalent to
+
+\begin{equation}
+\inf_{y\in B}\bigl(K_B^L\mathbf 1_B\bigr)(y)\ge 1-\eta.
+\tag{11d}\label{eq:11d}
+\end{equation}
+
+\textbf{Corollary 4.2c (One-step lower bound).} If \(K_{\mathfrak G,P}(B\mid y)\ge q\) for every \(y\in B\), then \((K_B^L\mathbf 1_B)(y)\ge q^L\) for every \(y\in B\). This is a lower bound on the exact quantity (11d), not a replacement for it, and when \(q<1\) it supplies no positive lower bound on indefinite survival.
+
+Finite-horizon survival remains strictly weaker than exact persistence. Equations (11b)--(11d) identify the exact finite-horizon object; Proposition 4.2 continues to characterize the separate exact-invariance boundary. The labels exact GR, quasi-regime, and metastable extension are therefore kept distinct.
+
+\subsection{4.3 Descriptors and limiting occupation
+laws}\label{descriptors-and-limiting-occupation-laws}
+
+For the descriptor process \(h(Y_t)\), define the empirical occupation
+measure
+
+\begin{equation}
+\widehat\nu_T^{\,h}=\frac{1}{T}\sum_{t=0}^{T-1}\delta_{h(Y_t)}.
+\tag{12}\label{eq:12}
+\end{equation}
+
+The canonical convergence modes are:
+
+\begin{itemize}
+\item
+  Almost sure weak convergence:
+  \(d_{\mathrm{BL}}(\widehat\nu_T^h,\nu)\to{}0\) almost surely for every
+  \(\lambda_0\in{}\mathcal D(B_0)\).
+\item
+  Convergence in probability under \(d_{\mathrm{BL}}\): for every
+  \(\varepsilon>0\),
+  \(P(d_{\mathrm{BL}}(\widehat\nu_T^h,\nu)>\varepsilon)\to{}0\) for
+  every admissible \(\lambda_0\).
+\item
+  Mean bounded-Lipschitz convergence:
+  \(E[d_{\mathrm{BL}}(\widehat\nu_T^h,\nu)]\to{}0\) for every admissible
+  \(\lambda_0\).
+\item
+  Convergence in distribution of the random occupation measure:
+  \(\widehat\nu_T^h\) \(\Rightarrow{}\) \(\nu\) as random elements of
+  \ensuremath{\Delta(H)}, equivalently \(\mathcal L(\widehat\nu_T^h)\Rightarrow\delta_\nu\).
+  Because the target \(\nu\) is deterministic and \ensuremath{\Delta(H)} is metrizable,
+  this mode is equivalent to convergence in probability to \(\nu\); it
+  is listed explicitly to preserve the Paper-I convergence vocabulary.
+\item
+  These modes are canonical rather than exhaustive: \(\mathfrak c\) may
+  specify another precisely defined convergence mode, provided the mode
+  is fixed ex ante and is meaningful for every admissible initial law.
+\end{itemize}
+
+A limiting occupation law is not automatically an invariant law of a
+Markov factor. Call h a Markov factor for \(K_{\mathfrak G,P}\) on B if
+there exists a Markov kernel \(K_h\) on H such that
+\(K_{\mathfrak G,P}(h^{-1}(C)\mid y)=K_h(C\mid h(y))\) for every
+\(y\in{}B\) and every Borel \(C\subseteq{}H\). Only when such a factor
+kernel is available and \(\nu{}K_h=\nu\) is \(\nu\) called invariant on
+the factor space; otherwise \(\nu\) remains an occupation-law descriptor
+of the full process.
+
+Definition 4.3 (Exact Generated Regime). An Exact Generated Regime is a
+tuple \(R=(\mathfrak G,P,B,B_0,h,\nu,\mathfrak c)\) such that: (i) the
+canonical process is well posed; (ii) Assumption 4.1 holds; (iii) B is
+exactly invariant under \(K_{\mathfrak G,P}\); and (iv) \(\nu\) is a
+limiting occupation law for every \(\lambda_0\in{}\mathcal D(B_0)\) under the
+declared convergence mode \(\mathfrak c\). An Exact GR is called
+descriptor-nondegenerate when, in addition, the basin-reachable
+descriptor-law family \(\mathcal M_h(B_0)\) defined above contains at least two
+distinct measures. Confirmatory GR certification in this paper uses the
+descriptor-nondegenerate subclass; the broader Exact-GR definition is
+retained for exact backward compatibility with Paper I. Forward-descriptor-rich
+status is a separately reported stronger diagnostic, not an additional
+universal gate.
+
+Common admissible descriptors include fixed-point or periodic factor
+dynamics, recurrence classes, occupation shares, balanced growth after
+normalization, contraction, approach to a target set, or a finite
+symbolic regime code. Labels such as ``stable,'' ``chaotic,''
+``self-reinforcing,'' or ``transitioning'' must be tied to explicit
+topological, probabilistic, or intervention-relative conditions rather
+than used as free interpretive adjectives.
+
+\subsection{4.4 Quasi-regimes and metastable
+extensions}\label{quasi-regimes-and-metastable-extensions}
+
+An \((L,\eta)\)-quasi-regime freezes the same ex ante
+region/basin/descriptor specification and satisfies the finite-horizon
+survival bound (11), but it is not an Exact GR and need not possess a
+limiting occupation law unless that is established separately. A
+metastable GR extension additionally declares a disturbance or
+approximation family \(\{K_\varepsilon\}_{\varepsilon>0}\), a region B,
+a basin \(B_0\), and an integer-valued exit-time scale
+\(r:(0,\varepsilon_0]\to{}N\) with \(r(\varepsilon)\to{}\infty\) as
+\(\varepsilon\downarrow0\). A minimal metastability requirement is
+
+\begin{equation}
+\lim_{\varepsilon\downarrow 0}\;\inf_{y\in B_0}P_y^{K_\varepsilon}\!\left(\tau_B>r(\varepsilon)\right)=1.
+\tag{13}\label{eq:13}
+\end{equation}
+
+This definition is intentionally weak and is not presented as a universal metastability concept. An optional stronger subclass based on killed-process theory is defined next, while remaining separate from Exact GR.
+
+\textbf{Definition 4.4a (QSD-certified quasi-regime).} An \((L,\eta)\)-quasi-regime is QSD-certified by a pair \((\mu_B,\theta_B)\) if, in addition to satisfying the finite-persistence gate (11), its killed kernel \(K_B\) admits a probability measure \(\mu_B\) on B and a survival factor \(\theta_B\in(0,1]\) such that
+
+\begin{equation}
+\mu_B K_B=\theta_B\mu_B.
+\tag{13a}\label{eq:13a}
+\end{equation}
+
+The eigenmeasure relation (13a) is an additional certificate for the killed dynamics; by itself it does not imply the uniform statewise finite-persistence requirement in (11).
+
+\textbf{Proposition 4.4b (QSD survival and conditional stationarity).} If (13a) holds, then for every \(n\ge0\),
+
+\begin{equation}
+P_{\mu_B}(\tau_B>n)=\theta_B^n,\qquad \mathcal L(Y_n\mid\tau_B>n)=\mu_B.
+\tag{13b}\label{eq:13b}
+\end{equation}
+
+\emph{Proof.} Iterating (13a) gives \(\mu_BK_B^n=\theta_B^n\mu_B\). Evaluating on B yields survival probability \(\theta_B^n\) by Theorem 4.2a. Normalizing the subprobability \(\mu_BK_B^n\) by that survival mass returns \(\mu_B\), proving conditional stationarity. \hfill\textsc{q.e.d.}
+
+Existence and uniqueness are additional hypotheses, not consequences of the GR definition. Discrete-time killed chains can have zero, one, or infinitely many QSDs when killing occurs from infinitely many states (Coolen-Schrijner and van Doorn, 2006), and reducible finite-state chains require explicit conditions for uniqueness and for identification of the limiting conditional law (van Doorn and Pollett, 2009). A QSD need not coincide with a Yaglom limit or a quasi-ergodic law. Accordingly, the phrase QSD-certified quasi-regime is used only when both the finite-persistence gate and the particular QSD claim have been separately established. Stronger spectral, exponential-exit, or metastability conditions remain application-specific. The eigenmeasure formulation is standard quasi-stationary-distribution structure (Bena\"im, Cloez, and Panloup, 2018).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Latex,
+  box/.style={draw=black!75,rounded corners=2pt,fill=white,align=center,minimum height=13mm,inner sep=4pt,font=\small},
+  arr/.style={->,line width=.72pt,draw=black!78}]
+\node[box, text width=45mm] (exact) at (0,1.55) {Exact GR\\$K(B\mid y)=1$ on $B$};
+\node[box, text width=58mm] (finite) at (-4.15,-1.15) {Finite-horizon persistence gate\\$\displaystyle \inf_{y\in B}(K_B^L\mathbf 1_B)(y)\ge 1-\eta$};
+\node[box, text width=61mm] (qsd) at (4.35,-1.15) {QSD-certified quasi-regime\\$(L,\eta)$-quasi $+\ \mu_BK_B=\theta_B\mu_B$};
+\draw[arr] (exact.south west) -- (finite.north east);
+\node[font=\scriptsize,align=center] at (-3.3,0.35) {implies $(L,0)$-persistence\\for every finite $L$};
+\draw[arr] (qsd.west) -- (finite.east);
+\node[font=\scriptsize,align=center,fill=white,inner sep=1.2pt] at (0.25,-0.63) {includes finite-\\persistence gate};
+\node[font=\footnotesize,align=center] at (0,-2.65) {The QSD equation alone does not imply the uniform finite-persistence gate.};
+\end{tikzpicture}
+\caption{Persistence implications and QSD certification. Exact GR implies $(L,0)$-persistence at every finite horizon. A QSD-certified quasi-regime separately includes the finite-persistence gate and an eigenmeasure certificate; the QSD equation alone does not establish the uniform gate.}
+\label{fig:persistence-hierarchy}
+\end{figure}
+
+\subsection{4.5 Regime locus}\label{regime-locus}
+
+Because Y is typed, a GR can be classified by locus without changing the
+underlying mathematics. A world-locus regime has \(B=S\times{}B_X\) and
+a descriptor \(h=h_X\circ{}\operatorname{pr}_X\). A strategic-locus
+regime has \(B=B_S\times{}X\) and \(h=h_S\circ{}\operatorname{pr}_S\). A
+coupled regime uses a genuinely joint region or descriptor. This typing
+is semantic information that is discarded by the enlarged-state
+reduction but can matter for interpretation and interventions. The framework retains that semantic declaration operational in confirmatory PR
+analysis through the relevance map introduced next: a world-locus claim
+will normally project away representation-only strategic coordinates,
+whereas a strategic or coupled claim may explicitly retain them.
+
+\section{5. Permansson Regimes and Typed
+Constitution}\label{permansson-regimes-and-typed-constitution}
+
+\subsection{5.1 Why constitution is separate from
+persistence}\label{why-constitution-is-separate-from-persistence}
+
+A process can satisfy a GR specification for reasons that are exogenous
+to the strategic generator. A favorable resource trend, an absorbing
+world state, or a structural transition mechanism may create the
+declared regime even if strategic behavior is irrelevant. Permansson
+classification therefore adds an intervention-relative test: a strategic
+component is constitutive only if a fixed admissible intervention on
+that component changes a predeclared defining regime property while the
+declared non-intervened primitives are held fixed.
+
+\subsection{5.2 Regime-property maps}\label{regime-property-maps}
+
+Fix a GR specification \(\Sigma\). Let \(Z_\psi\) be a metric space with
+metric \(d_\psi\), and let
+
+\begin{equation}
+\psi:\Delta(\Omega)\longrightarrow Z_\psi.
+\tag{14}\label{eq:14}
+\end{equation}
+
+be a predeclared regime-property map on admissible state-path laws. No
+measurability assumption on \(\psi\) is needed for the pointwise
+constitutive definitions (15)-(16); when an application treats estimated
+or random path laws as random elements and then integrates, optimizes,
+or otherwise randomizes \(\psi\), the corresponding measurability or
+regularity must be imposed explicitly. The dependence of \(\psi\) on the
+frozen descriptor and specification may be suppressed in notation.
+Examples include exact persistence status, long-run growth class,
+limiting composition, occupation mass on a target subset, strategic-mode
+preservation, or a vector of such properties. For confirmatory PR
+analysis, also freeze a Borel relevance map \(g:Y\to{}G\) into a
+declared standard-Borel regime-observation space G. The map must be rich
+enough to represent the baseline regime observables: \(B=g^{-1}(B_G)\)
+for some Borel \(B_G\subseteq{}G\) and \(h=h_G\circ{}g\) for some Borel
+\(h_G:G\to{}H\). Writing \(g^\infty\) for the coordinatewise path map,
+\(\psi\) is g-grounded when there exists a predeclared map \(\psi_G\) on
+path laws over G such that \(\psi(\mu)=\psi_G((g^\infty)_{\push}\mu)\)
+for every admissible baseline or intervened path law. Thus the
+constitutive comparison may use only state information explicitly
+declared by g. If a claimed property depends on realized actions, a
+sufficient action-mode record must be included in S and in g before the
+specification is frozen. For a confirmatory PR claim, the semantic
+counterfactual pipeline is frozen jointly before the counterfactual
+outcome is evaluated, even though the GR gate may be checked first. The
+frozen pipeline includes g, \(\psi\), \(B_1\), the component grammar,
+the intervention protocol J, and any hard structural target/transport
+conventions used to define that intervention. If the pipeline is
+selected from data rather than predeclared, confirmatory use requires a
+valid held-out or selection-adjusted procedure that covers the search.
+The broad \(\mathrm{PR}_{\mathrm{general}}\) class remains
+mathematically available without this extra relevance restriction;
+grounded status is the confirmatory subclass used to exclude undeclared
+representation padding.
+
+Confirmatory applications should also conduct a relevance-map audit. The
+audit should justify the substantive information retained by g; verify
+that B, h, and \(\psi\) factor through g as claimed; search strict
+coarsenings when feasible; report non-uniqueness when several
+incomparable sufficient relevance maps exist; and rerun the
+classification under defensible alternatives when the semantic choice is
+not unique. A coordinate is not substantively relevant merely because
+retaining it increases \(B_1\) diversity or predictive fit. The
+framework does not assume that one uniquely minimal or canonical
+relevance map always exists.
+
+\subsection{5.3 Admissible typed
+interventions}\label{admissible-typed-interventions}
+
+Interventions are typed by the object they modify.
+
+Formally, fix the ambient canonical environment
+\((S,X,A,A(\cdot{}),\alpha,P,U)\). An admissible typed intervention J is
+a predeclared map that returns replacement kernel(s) on the same
+declared measurable spaces, satisfies the relevant measurability and
+feasibility conditions, and states which elements of the environment are
+held fixed. The label k or \(\ell\) identifies the predeclared target
+component; constitution is always relative to this intervention protocol
+rather than to an intrinsic decomposition of a kernel into unnamed
+parts.
+
+\begin{itemize}
+\item
+  Action-selection intervention \(J_k^\alpha\): replaces a predeclared
+  component k of \(\alpha\) with a feasible measurable rule \(\alpha'\)
+  while holding U, P, the feasible-action correspondence, and all other
+  declared primitives fixed.
+\item
+  Strategic-update intervention \(J_k^U\): replaces a predeclared
+  component k of U with a measurable update kernel \(U'\) while holding
+  \(\alpha\) and P fixed.
+\item
+  Strategic-generator intervention \(J_k^{\mathfrak G}\): changes a
+  declared component of \(\alpha\), U, or both, with all unaffected
+  components listed explicitly.
+\item
+  World-transition intervention \(J_\ell^P\): replaces a declared
+  component of P while holding \(\mathfrak G\) fixed.
+\item
+  Institutional or structural intervention: changes feasibility,
+  information, admission rules, or other model primitives. If the
+  original generator becomes infeasible, the protocol must declare a
