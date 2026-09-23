@@ -69,8 +69,8 @@ theorem inducedKernel_eq_dirac_step (y : Y) :
   ext E hE
   rw [StrategicWorldModel.inducedKernel_apply model y hE]
   simp [model, generator, actionKernel, worldKernel, updateKernel, step,
-    flipBit, Kernel.deterministic_apply, Measure.dirac_apply,
-    Set.indicator_apply]
+    flipBit, Kernel.deterministic_apply, Measure.dirac_apply]
+  by_cases hmem : (!y.1, !y.1) ∈ E <;> simp [hmem]
 
 def region : Set Y := {p0, p1}
 
@@ -301,6 +301,15 @@ theorem tendsto_inv_odd_nat :
     omega
   exact tendsto_one_div_atTop_nhds_zero_nat.comp hidx
 
+theorem even_average_identity (a b : ℝ) (n : ℕ) :
+    (a + b) / 2 =
+      (((2 * (n + 1) : ℕ) : ℝ)⁻¹) *
+        (((n + 1 : ℕ) : ℝ) * (a + b)) := by
+  have hn : (((n + 1 : ℕ) : ℝ)) ≠ 0 := by positivity
+  push_cast
+  field_simp [hn]
+  ring
+
 theorem odd_average_p0_identity (a b : ℝ) (n : ℕ) :
     (((2 * n + 1 : ℕ) : ℝ)⁻¹) *
         ((n : ℝ) * (a + b) + a) =
@@ -402,6 +411,7 @@ theorem empiricalIntegral_orbit_p0_tendsto (f : Y → ℝ) :
     rw [integral_empiricalOccupation_eq_average]
     have hhor : 2 * n + 1 + 1 = 2 * (n + 1) := by omega
     rw [hhor, sum_orbit_p0_even]
+    exact even_average_identity (f p0) (f p1) n
 
 theorem empiricalIntegral_orbit_p1_tendsto (f : Y → ℝ) :
     Tendsto
@@ -421,6 +431,7 @@ theorem empiricalIntegral_orbit_p1_tendsto (f : Y → ℝ) :
     rw [integral_empiricalOccupation_eq_average]
     have hhor : 2 * n + 1 + 1 = 2 * (n + 1) := by omega
     rw [hhor, sum_orbit_p1_even]
+    exact even_average_identity (f p0) (f p1) n
 
 theorem empiricalOccupation_orbit_p0_tendsto :
     Tendsto
