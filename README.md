@@ -1,8 +1,8 @@
 # PermanssonLean
 
-Formal verification project for **Permansson Regimes: Strategic Dynamics Beyond Equilibrium**.
+Formal verification project for **Permansson Regimes: Strategic Dynamics Beyond Equilibrium v0.1.7**.
 
-The target paper is Permansson Regimes v0.1.7. The repository is intended to machine-check the semantic kernel of the framework in Lean 4 rather than merely replay finite tests.
+The repository machine-checks the paper's discrete-time GR/PR mathematical core in Lean 4. It is a theorem-level companion to the paper, not a substitute for its empirical, identification, provenance, or literature-priority disciplines.
 
 ## Toolchain
 
@@ -13,35 +13,51 @@ Both are pinned.
 
 ## Formalization strategy
 
-We build by dependency, not by paper page order:
+The build follows mathematical dependency rather than paper page order:
 
-1. typed strategic-world kernels `α`, `P`, `U`;
+1. typed strategic-world kernels `α`, `P`, and `U`;
 2. induced joint kernel `K_{𝔊,P}`;
-3. path law and well-posedness;
-4. Generated Regime definitions and exact persistence;
-5. killed-kernel finite persistence;
+3. canonical path law, well-posedness, and enlarged-state reduction;
+4. Generated Regime semantics, Polish descriptor support, exact persistence, and killed-kernel calculus;
+5. finite-persistence and QSD-certified quasi-regime machinery;
 6. typed intervention grammar;
-7. Permansson constitution;
-8. constitutive margins and robustness;
-9. intervention-family equivalence;
-10. quotient preservation;
-11. EGR embedding;
-12. grounded confirmatory semantics and preservation;
+7. generalized Permansson constitution;
+8. constitutive margins, perturbation robustness, and the finite-horizon TV envelope;
+9. intervention-family and representation equivalence;
+10. type-respecting intervention-compatible quotient preservation;
+11. Paper-I EGR embedding and conservative PR recovery;
+12. grounded confirmatory semantics;
 13. recorded-action decoding and action-sensitive Paper-I recovery;
-14. Section-7 representation counterexamples and nuisance-padding safety;
-15. Proposition 5.4 total-variation support and finite-horizon propagation;
-16. remaining Polish/BL, optional QSD, and original-math lanes.
+14. Section-7 non-identification, constitutive non-invariance, and nuisance-padding witnesses;
+15. Proposition 8.1's explicit period-two Exact GR under almost-sure weak occupation convergence.
 
-See [docs/FORMALIZATION_MAP.md](docs/FORMALIZATION_MAP.md) for the theorem ledger and status firewall.
+See [docs/FORMALIZATION_MAP.md](docs/FORMALIZATION_MAP.md) for the source-to-Lean theorem ledger and claim firewall.
 
 ## Status discipline
 
-- **PROVED** means checked by Lean on the pinned toolchain.
-- **SCAFFOLDED** means the type/definition exists but the theorem is not yet formalized.
-- **OPEN** means no Lean formalization yet.
-- **EMPIRICAL / OUT OF SCOPE** covers scientific identification, input-data validity, and literature-priority claims.
+- **PROVED** — accepted by Lean on the pinned toolchain.
+- **DEFINED** — a paper object is represented as data/structure and has no separate theorem obligation merely for existing.
+- **SCAFFOLDED** — a partial interface exists but a stated theorem obligation remains incomplete.
+- **OPEN** — a promoted formal claim has not yet been represented in Lean.
+- **NON-CORE / NOT PROMOTED** — explicitly outside the v0.1.7 universal GR/PR core, such as the Section 11.5 rigidity programme.
+- **EMPIRICAL / OUT OF SCOPE** — depends on data, scientific identification, provenance, statistics, or literature priority rather than pure formal derivation.
 
-A green build is not a proof of anything marked OPEN.
+A green build certifies the Lean declarations that are actually present. It does not validate empirical inputs, causal identification, novelty, or any non-promoted research programme.
+
+## Current coverage
+
+The numbered theorem/proposition/corollary/definition obligations in the intended **v0.1.7 discrete formal core through Proposition 8.1** now have corresponding Lean closure. The checked surface includes:
+
+- joint-process construction and uniqueness plus Proposition 3.2 enlarged-state reduction;
+- Proposition 4.1a Polish descriptor-space / bounded-Lipschitz weak-convergence support;
+- exact invariance, killed-kernel survival, finite persistence, exit-time/Green identities, and the `q^L` lower bound;
+- Definition 4.3 Exact GR and Definition 4.4a / Proposition 4.4b QSD certification;
+- generalized PR constitution, uniform margins, Proposition 5.2 / Corollary 5.3 robustness, and Proposition 5.4's finite-horizon TV envelope;
+- Theorems 6.1–6.2 conservative Paper-I recovery for world-only, recorded-action, uniform-margin, and grounded-confirmatory protocols;
+- Proposition 7.1, Theorems 7.2–7.3, Propositions 7.4/7.4a, Theorem 7.4b, and Proposition 7.5;
+- Proposition 8.1's literal two-state periodic Exact GR under `ConvergenceMode.almostSureWeak`.
+
+The Section 11.5 scalar-defect / finite-detection / first-bad / singular-compatibility programme remains deliberately **NON-CORE / NOT PROMOTED** until a natural Permansson interface and paper theorem are supplied. Continuous-time, set-valued, nonautonomous, and application-specific extensions remain outside the discrete core completion claim.
 
 ## Build
 
@@ -50,4 +66,4 @@ lake update
 lake build
 ```
 
-The current proved spine reaches through exact persistence, killed-kernel survival calculus, typed interventions, generalized and grounded-confirmatory Permansson constitution, quantitative constitutive robustness, frozen intervention-family equivalence, type-respecting intervention-compatible quotient preservation, and canonical Paper-I EGR recovery for both world-only and recorded-action property protocols, including pointwise, uniform-margin, and grounded-confirmatory transport. The Section-7 representation-safety surface also includes machine-checked factorization non-identification (Theorem 7.2), constitutive non-invariance under baseline equivalence (Theorem 7.3), and nuisance-padding exclusion (Proposition 7.5). Proposition 5.4 is now machine-checked end to end in the paper's event-supremum TV convention: under a uniform one-step bound ε, the same-point finite-prefix laws satisfy `TV(P_y^{0:T}, Ptilde_y^{0:T}) ≤ 1-(1-ε)^T ≤ Tε`. The remaining explicit paper-support lanes are Proposition 4.1a's Polish/BL metrization result and the optional QSD layer.
+CI additionally audits the root import graph and rejects `sorry`, `admit`, and source-level custom `axiom` declarations.
