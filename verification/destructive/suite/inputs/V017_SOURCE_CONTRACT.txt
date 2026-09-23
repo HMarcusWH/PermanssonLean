@@ -1,0 +1,16 @@
+SOURCE_SHA256=8f9b839e293d352cba8f019c1c52cf34008848c46ec3bad2c66c5b2440a3cde6
+in addition to satisfying the finite-persistence gate (11)
+QSD equation alone does not imply the uniform finite-persistence gate
+\operatorname{Sig}_{\mathcal J}(M)=\left(K_M,(K_M^J)_{J\in\mathcal J}\right)
+target/type-grammar-preserving bijection
+q=q_S\times q_X
+type-respecting product map
+independently satisfy the comparison-set admissibility/non-triviality requirement
+same metric property space
+for every \(J\in\{0\}\cup\mathcal J\)
+\|\mu-\nu\|_{\mathrm{TV}}:=\sup_A|\mu(A)-\nu(A)|
+hypertexnames=false
+\tag{18a}\label{eq:18a}
+\tag{19}\label{eq:19}
+Hermansson, 2026a
+2026a). Equilibrium-Generated Regimes
