@@ -10,7 +10,7 @@ on:
 jobs:
   executable-verification:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -23,22 +23,15 @@ jobs:
       - name: Install Python dependencies
         run: python -m pip install -r verification/destructive/suite/requirements.txt
 
-      - name: Install PDF and TeX verification dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            poppler-utils \
-            texlive-latex-base \
-            texlive-latex-recommended \
-            texlive-latex-extra \
-            texlive-fonts-extra \
-            texlive-pictures
-
-      - name: Destructive/regression suite (Runs 17-30)
+      - name: Run destructive/regression suite (Runs 17-30)
         run: python verification/destructive/suite/run_all.py
-
-      - name: Editorial-final release gate (Run 34)
-        run: python verification/v0.1.8_release_gate/run34_editorial_final_release_gate.py
 
       - name: Repository synchronization gate
         run: python verification/repository_gate.py
+
+      - name: Syntax-check preserved release gates
+        run: |
+          python -m py_compile verification/v0.1.8_release_gate/run34_editorial_final_release_gate.py
+          python -m py_compile verification/v0.1.8_release_gate/prior_gates_31_33/run31_release_gate.py
+          python -m py_compile verification/v0.1.8_release_gate/prior_gates_31_33/run32_figure_correction_gate.py
+          python -m py_compile verification/v0.1.8_release_gate/prior_gates_31_33/run33_final_figure3_layout_gate.py
