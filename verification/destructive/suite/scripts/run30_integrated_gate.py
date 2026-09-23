@@ -45,7 +45,7 @@ if tex_path.exists():
     pos19=t.find(r'\tag{19}\label{eq:19}')
     ck(checks,'source_equation_18a_before_19',pos18a>=0 and pos19>pos18a,f'pos18a={pos18a}, pos19={pos19}')
     ck(checks,'source_hermansson_2026a_present','Hermansson, 2026a' in t and '2026a). Equilibrium-Generated Regimes' in t)
-legacy=ROOT/'results'/'v016_legacy_python_rerun_postproofread.json'
+legacy=ROOT/'results'/'v016_legacy_pass_ledger_compact.json'
 if legacy.exists():
     xs=json.loads(legacy.read_text())
     ck(checks,'legacy_rerun_ledger_green',all(x['status']=='PASS' for x in xs) and len(xs)==85,f'{sum(x["status"]=="PASS" for x in xs)}/{len(xs)}')
