@@ -1,12 +1,13 @@
 {
   "release": "Permansson v0.1.8",
   "date": "2026-09-23",
+  "status": "editorial-clean submission final",
   "paper": {
     "title": "Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium",
-    "pdf": "Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_2026-09-23.pdf",
-    "pdf_sha256": "e71f0c46499fc9e72fdd5f048e2293e29986b573ecc4cf8e0b297afd455f690c",
-    "tex": "Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_2026-09-23.tex",
-    "tex_sha256": "a0f6e7e3809f246ff1357e94947f343d08a91ebe5c90e7c7fee5db4eb7b306e0"
+    "pdf": "Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_EDITORIAL_CLEAN_2026-09-23.pdf",
+    "pdf_sha256": "24f7dd43c8996b6fc8bedf708704969ba2124e159783bbd2ded45db61525df54",
+    "tex": "Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_EDITORIAL_CLEAN_2026-09-23.tex",
+    "tex_sha256": "8235f6140bca33e7e3f0e96b4fd3aa2431c476fbdaf7c5d86d6d0b703ea54ed9"
   },
   "destructive_verification": {
     "archive": "Permansson_v0.1.7_POST_PROOFREAD_TEST_SUITE_FROZEN.zip",
@@ -23,11 +24,10 @@
       "passed_checks": 3240,
       "total_checks": 3240
     },
-    "fresh_rerun_2026_09_23": "14/14 runs returned rc=0",
+    "fresh_rerun_2026_09_23": "14/14 numbered runs PASS",
     "windows_safe_archive": "Permansson_TestSuite_v0.1.7_WINDOWS_SAFE.zip",
     "windows_safe_archive_sha256": "864e2fec88b345194b0a9dc4ce9431e6a9a754eb88adea75fb8835b6244f41c3",
-    "windows_safe_archive_max_member_path": 175,
-    "windows_safe_rerun_2026_09_23": "14/14 runs PASS"
+    "source_in_repository": "verification/destructive/suite/"
   },
   "lean": {
     "repository": "HMarcusWH/PermanssonLean",
@@ -39,16 +39,10 @@
     "ci_conclusion": "success"
   },
   "release_gate": {
-    "run": 33,
-    "passed": 50,
-    "total": 50,
+    "run": 34,
+    "passed": 58,
+    "total": 58,
     "result": "PASS"
-  },
-  "scope": "promoted discrete GR/PR mathematical core through Proposition 8.1",
-  "non_core": "Section 11.5 finite-certificate/rigidity research programme",
-  "figure_correction": {
-    "figure_1": "joint-state dependency graph corrected to Y_t=(S_t,X_t), alpha(.|S_t,X_t), P(.|S_t,X_t,A_t), U(.|S_t,X_t,A_t,X_{t+1}), and Y_{t+1} recombination",
-    "figure_3": "finite-persistence node states inf_{y in B}(K_B^L 1_B)(y) >= 1-eta; Exact GR implies (L,0)-persistence for every finite L; QSD is an additional certificate; final layout removes duplicate internal title and separates labels cleanly from arrows"
   },
   "prior_release_gates": [
     {
@@ -62,19 +56,28 @@
       "passed": 45,
       "total": 45,
       "result": "PASS"
+    },
+    {
+      "run": 33,
+      "passed": 50,
+      "total": 50,
+      "result": "PASS"
     }
   ],
+  "scope": "discrete GR/PR mathematical core through Proposition 8.1",
+  "non_core": "Appendix E specialized finite-certificate and rigidity extensions",
+  "editorial_cleanup": {
+    "mathematical_surface_changed": false,
+    "version_history_moved_out_of_theory_body": true,
+    "verification_lineage_location": "Appendix D",
+    "specialized_extension_location": "Appendix E",
+    "equation_tag_count": 34
+  },
   "distribution_packaging": {
-    "windows_safe_release_archive": "Permansson_v0.1.8_WINDOWS_SAFE.zip",
-    "windows_safe_release_sha256": "ae109fa7718b65023566f0dddf584e0d81d00ca494cc545d3f51268ef2d05cfb",
-    "archive_root": "Permansson_v0.1.8/",
+    "windows_safe_release_archive": "Permansson_v0.1.8_SUBMISSION_FINAL_RELEASE_PACKAGE_2026-09-23_EDITORIAL_CLEAN_WINDOWS_SAFE.zip",
+    "windows_safe_release_sha256": "66a13d3d4ea6854d38a6a32fe8b7946cbc290c62484b654dc02e0317039faf25",
     "max_member_path": 119,
     "zip_entry_metadata": "DOS-compatible",
-    "expanded_destructive_suite_duplicated": false,
-    "reason": "avoid Windows Explorer legacy path-length rejection caused by 306-character members in the prior portability-fixed outer ZIP",
-    "scientific_payload_changed": false,
-    "formalization_snapshot_changed": false,
-    "frozen_destructive_archive_changed": false,
-    "post_repack_run33": "50/50 PASS"
+    "frozen_destructive_archive_changed": false
   }
 }
