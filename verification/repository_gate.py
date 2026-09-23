@@ -24,6 +24,7 @@ ROOT_IMPORT_ACTUAL = ROOT / "PermanssonLean.lean"
 CITATION = ROOT / "CITATION.cff"
 LEAN_TOOLCHAIN = ROOT / "lean-toolchain"
 LAKEFILE = ROOT / "lakefile.toml"
+PY_REQUIREMENTS = ROOT / "verification" / "destructive" / "suite" / "requirements.txt"
 
 EXPECTED_TEX = "8235f6140bca33e7e3f0e96b4fd3aa2431c476fbdaf7c5d86d6d0b703ea54ed9"
 EXPECTED_PDF = "24f7dd43c8996b6fc8bedf708704969ba2124e159783bbd2ded45db61525df54"
@@ -152,6 +153,8 @@ if LEAN_CROSSWALK.is_file():
     add("lean_crosswalk_17_entries",
         cw.get("commit") == LEAN_SNAPSHOT and cw.get("all_found") is True
         and len(cw.get("declarations", [])) == 17
+        and cw.get("selection_count") == 17
+        and "selected" in str(cw.get("scope", "")).lower()
         and all(x.get("found_at_commit") for x in cw.get("declarations", [])),
         str(len(cw.get("declarations", []))))
 else:
@@ -168,6 +171,8 @@ add("citation_v018", 'version: "0.1.8"' in citation and "A General Framework for
 add("lean_toolchain_4_34", LEAN_TOOLCHAIN.is_file() and LEAN_TOOLCHAIN.read_text(encoding="utf-8").strip() == "leanprover/lean4:v4.34.0")
 lake = LAKEFILE.read_text(encoding="utf-8") if LAKEFILE.is_file() else ""
 add("mathlib_4_34_pinned", 'rev = "v4.34.0"' in lake)
+requirements = PY_REQUIREMENTS.read_text(encoding="utf-8").strip() if PY_REQUIREMENTS.is_file() else ""
+add("numpy_2_5_3_pinned", requirements == "numpy==2.5.3", requirements)
 
 python_files = sorted((ROOT / "verification").rglob("*.py"))
 syntax_failures: list[str] = []
