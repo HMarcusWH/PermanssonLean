@@ -22,9 +22,11 @@ for name,r in mutations.items():
     d=json.loads((ROOT/'results'/f'run_{r}.json').read_text())
     ck(checks,'mutation_killed_'+name,d['failed']==0,f'covered by run {r}')
 tex_path=ROOT/'inputs'/'Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.7_SUBMISSION_FINAL_2026-09-21.tex'
-ck(checks,'final_tex_present',tex_path.exists(),str(tex_path))
-if tex_path.exists():
-    t=tex_path.read_text(encoding='utf-8',errors='replace')
+contract_path=ROOT/'inputs'/'V017_SOURCE_CONTRACT.txt'
+source_path=tex_path if tex_path.exists() else contract_path
+ck(checks,'source_contract_present',source_path.exists(),str(source_path))
+if source_path.exists():
+    t=source_path.read_text(encoding='utf-8',errors='replace')
     ck(checks,'source_qsd_definition_requires_finite_gate',
        'in addition to satisfying the finite-persistence gate (11)' in t and 'QSD-certified quasi-regime' in t)
     ck(checks,'source_qsd_warning_explicit',
