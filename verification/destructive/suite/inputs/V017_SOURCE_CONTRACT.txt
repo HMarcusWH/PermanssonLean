@@ -1,4 +1,5 @@
 SOURCE_SHA256=8f9b839e293d352cba8f019c1c52cf34008848c46ec3bad2c66c5b2440a3cde6
+QSD-certified quasi-regime
 in addition to satisfying the finite-persistence gate (11)
 QSD equation alone does not imply the uniform finite-persistence gate
 \operatorname{Sig}_{\mathcal J}(M)=\left(K_M,(K_M^J)_{J\in\mathcal J}\right)
