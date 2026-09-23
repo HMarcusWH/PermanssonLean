@@ -48,7 +48,7 @@ The repository does not duplicate those binary release artifacts, so Run 34 is p
 
 ## Historical release gates
 
-Runs 31–33 target the pre-editorial 31-page v0.1.8 artifacts and are preserved under `v0.1.8_release_gate/prior_gates_31_33/` together with their PASS records. They are historical evidence, not current-release gates. See that directory's README for the artifact prerequisites.
+Runs 31–33 target the pre-editorial 31-page v0.1.8 artifacts and are preserved under `v0.1.8_release_gate/prior_gates_31_33/` together with their PASS records. They are historical evidence, not current-release gates. The relocated copies are inspection/syntax-preservation artifacts rather than in-place rerun entry points; see that directory's README for the original-layout requirement.
 
 ## Historical source boundary
 
