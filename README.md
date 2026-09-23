@@ -9,7 +9,7 @@ The repository machine-checks the paper's discrete-time GR/PR mathematical core 
 - Lean 4.34.0
 - mathlib 4.34.0
 
-Both are pinned.
+Both are pinned. The `lakefile.toml` package version remains `0.1.0` because it is part of the immutable formalization snapshot; the scholarly/release version of this companion is **v0.1.8** as recorded in `CITATION.cff` and the release metadata.
 
 ## Formalization strategy
 
