@@ -15,6 +15,8 @@ The Python tests provide executable falsification and regression evidence. They 
 
 ## Reproduce the current destructive suite
 
+Repository CI uses **CPython 3.13** with **NumPy 2.5.3** pinned in `requirements.txt`.
+
 ```bash
 python -m pip install -r verification/destructive/suite/requirements.txt
 python verification/destructive/suite/run_all.py
