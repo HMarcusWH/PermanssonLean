@@ -59,6 +59,7 @@ import PermanssonLean.Regime.NuisancePadding
 
 import PermanssonLean.Examples.ConstitutiveNoninvariance
 import PermanssonLean.Examples.QSDCounterexample
+import PermanssonLean.Examples.PeriodicExactGR
 
 import PermanssonLean.Probability.TotalVariation
 
