@@ -38,11 +38,11 @@ See [docs/FORMALIZATION_MAP.md](docs/FORMALIZATION_MAP.md) for the source-to-Lea
 - **PROVED** — accepted by Lean on the pinned toolchain.
 - **DEFINED** — a paper object is represented as data/structure and has no separate theorem obligation merely for existing.
 - **SCAFFOLDED** — a partial interface exists but a stated theorem obligation remains incomplete.
-- **OPEN** — a promoted formal claim has not yet been represented in Lean.
+- **OPEN** — a formal-core claim has not yet been represented in Lean.
 - **NON-CORE / OUTSIDE FORMALIZED CORE** — explicitly outside the universal GR/PR theorem set, such as the specialized finite-certificate/rigidity material collected in Appendix E.
 - **EMPIRICAL / OUT OF SCOPE** — depends on data, scientific identification, provenance, statistics, or literature priority rather than pure formal derivation.
 
-A green build certifies the Lean declarations that are actually present. It does not validate empirical inputs, causal identification, novelty, or any non-promoted research programme.
+A green build certifies the Lean declarations that are actually present. It does not validate empirical inputs, causal identification, novelty, or material outside the formalized theorem scope.
 
 ## Current coverage
 
