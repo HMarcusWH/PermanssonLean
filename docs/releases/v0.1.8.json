@@ -79,5 +79,13 @@
     "max_member_path": 119,
     "zip_entry_metadata": "DOS-compatible",
     "frozen_destructive_archive_changed": false
+  },
+  "repository_verification": {
+    "python": "3.13",
+    "numpy": "2.5.3",
+    "workflow": ".github/workflows/verification.yml",
+    "destructive_runner": "verification/destructive/suite/run_all.py",
+    "repository_gate": "verification/repository_gate.py",
+    "current_expected_result": "Runs 17-30 = 14/14 PASS; repository synchronization gate = PASS"
   }
 }
