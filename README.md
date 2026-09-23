@@ -1,6 +1,6 @@
 # PermanssonLean
 
-Formal verification and executable-validation companion for **Permansson Regimes: Strategic Dynamics Beyond Equilibrium v0.1.8**.
+Formal verification and executable-validation companion for **Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium v0.1.8**.
 
 The repository machine-checks the paper's discrete-time GR/PR mathematical core in Lean 4. It is a theorem-level companion to the paper, not a substitute for its empirical, identification, provenance, or literature-priority disciplines.
 
