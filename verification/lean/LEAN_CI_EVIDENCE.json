@@ -1,0 +1,21 @@
+{
+  "repository": "HMarcusWH/PermanssonLean",
+  "formalization_commit": "c018f79ea4ce46f4f679ad5bca254509778fc53c",
+  "workflow_run_id": 35808810682,
+  "workflow_job_id": 107015473604,
+  "workflow_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/35808810682",
+  "run_conclusion": "success",
+  "job_conclusion": "success",
+  "steps": [
+    {"name":"Run leanprover/lean-action@v1","conclusion":"success"},
+    {"name":"Build","conclusion":"success"},
+    {"name":"Reject placeholders and extra axioms","conclusion":"success"}
+  ],
+  "lean": "4.34.0",
+  "mathlib": "v4.34.0",
+  "workflow_guards": [
+    "axiom-audit root: PermanssonLean",
+    "lake build",
+    "reject sorry/admit/source-level axiom in PermanssonLean/**/*.lean"
+  ]
+}
