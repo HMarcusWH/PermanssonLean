@@ -5,8 +5,7 @@ This directory is the executable verification companion to the Lean formalizatio
 The layers are intentionally separate:
 
 - `destructive/suite/` — unpacked Python source for the destructive/regression suite used by numbered Runs 17–30.
-- `destructive/Permansson_v0.1.7_POST_PROOFREAD_TEST_SUITE_FROZEN.zip` — byte-identical evidentiary archive retained from the v0.1.7 post-proofread release.
-- `destructive/Permansson_TestSuite_v0.1.7_WINDOWS_SAFE.zip` — portable runnable derivative with the exact v0.1.7 control TeX and short Windows-safe archive paths.
+- The byte-identical frozen v0.1.7 evidentiary ZIP and the Windows-safe runnable ZIP remain release artifacts rather than duplicated Git blobs. Their exact SHA-256 identifiers are recorded under `provenance/v0.1.8/`, while the runnable source is unpacked here for inspection and CI.
 - `baseline/` — earlier available Python validators and compatibility controls that fed the historical regression layer.
 - `v0.1.8_release_gate/` — Runs 31–34. Runs 31–33 are historical release gates; Run 34 is the editorial-final v0.1.8 gate.
 - `lean/` — paper-to-Lean crosswalk and immutable formalization provenance.
