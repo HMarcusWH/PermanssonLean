@@ -4,9 +4,9 @@
   "paper": {
     "title": "Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium",
     "pdf": "Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_2026-09-23.pdf",
-    "pdf_sha256": "2dcf953ac6a7bbf0166195b177c32b604b5cadb055aadd3b11d1c10d277cb1d3",
+    "pdf_sha256": "0fc957f19ac95bd1e3cced5558dc696930cf898714c5cd6dbbc9b928c69663f5",
     "tex": "Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_2026-09-23.tex",
-    "tex_sha256": "414d9cdae92beae0d0ed945315f262c2028deeaae454bfdb10d40a7983395717"
+    "tex_sha256": "a181b5aa1236376134f562a76abbbe090f378d521aa8f33df69f746e5adba71c"
   },
   "destructive_verification": {
     "archive": "Permansson_v0.1.7_POST_PROOFREAD_TEST_SUITE_FROZEN.zip",
@@ -35,11 +35,21 @@
     "ci_conclusion": "success"
   },
   "release_gate": {
+    "run": 32,
+    "passed": 45,
+    "total": 45,
+    "result": "PASS"
+  },
+  "scope": "promoted discrete GR/PR mathematical core through Proposition 8.1",
+  "non_core": "Section 11.5 finite-certificate/rigidity research programme",
+  "prior_release_gate": {
     "run": 31,
     "passed": 42,
     "total": 42,
     "result": "PASS"
   },
-  "scope": "promoted discrete GR/PR mathematical core through Proposition 8.1",
-  "non_core": "Section 11.5 finite-certificate/rigidity research programme"
+  "figure_correction": {
+    "figure_1": "joint-state dependency graph corrected to Y_t=(S_t,X_t), alpha(.|S_t,X_t), P(.|S_t,X_t,A_t), U(.|S_t,X_t,A_t,X_{t+1}), and Y_{t+1} recombination",
+    "figure_3": "finite-persistence node now states inf_{y in B}(K_B^L 1_B)(y) >= 1-eta; Exact GR implies (L,0)-persistence for every L; QSD relation framed as certification, not strict hierarchy"
+  }
 }
