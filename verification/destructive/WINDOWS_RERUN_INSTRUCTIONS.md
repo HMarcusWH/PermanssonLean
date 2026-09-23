@@ -1,10 +1,10 @@
 # Windows-safe destructive-suite rerun
 
-The byte-identical evidentiary archive remains:
+The byte-identical evidentiary archive remains a **release artifact** rather than a duplicated Git blob:
 
 `Permansson_v0.1.7_POST_PROOFREAD_TEST_SUITE_FROZEN.zip`
 
-For an executable rerun on Windows, macOS, or Linux use:
+For an executable rerun on Windows, macOS, or Linux use the companion **release artifact**:
 
 `Permansson_TestSuite_v0.1.7_WINDOWS_SAFE.zip`
 
@@ -20,3 +20,5 @@ Recommended workflow:
 Expected result: Runs 17-30 return **14/14 PASS**.
 
 No theorem, test threshold, mutation case, expected claim, paper file, Lean source, or frozen evidentiary archive was changed by this packaging repair.
+
+The unpacked runnable source is committed in this repository under `verification/destructive/suite/`; use the ZIP only when reproducing the packaged Windows-safe distribution.
