@@ -1,0 +1,24 @@
+{
+  "control_v016": {
+    "stress_scripts_runs01_15_expected": 83,
+    "legacy_python_scripts_rerun_total": 85,
+    "legacy_python_scripts_passed": 85,
+    "baseline_backward_compatibility_total": 16,
+    "baseline_backward_compatibility_passed": 16,
+    "run16_source_audit": "28/28 PASS",
+    "run16_source_mutations": "15/15 killed"
+  },
+  "v017_sketch": {
+    "runs": "17-30",
+    "runs_passed": 14,
+    "runs_total": 14,
+    "checks_passed": 3183,
+    "checks_total": 3183,
+    "checks_failed": 0
+  },
+  "formal_verification_note": {
+    "lean_rerun": false,
+    "reason": "Historical suite snapshot; current repository Lean CI is separate.",
+    "archived_status": "Historical status only. Current Lean source status is governed by repository CI and the immutable v0.1.8 formalization snapshot."
+  }
+}
