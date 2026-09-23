@@ -23,7 +23,11 @@
       "passed_checks": 3240,
       "total_checks": 3240
     },
-    "fresh_rerun_2026_09_23": "14/14 runs returned rc=0"
+    "fresh_rerun_2026_09_23": "14/14 runs returned rc=0",
+    "windows_safe_archive": "Permansson_TestSuite_v0.1.7_WINDOWS_SAFE.zip",
+    "windows_safe_archive_sha256": "864e2fec88b345194b0a9dc4ce9431e6a9a754eb88adea75fb8835b6244f41c3",
+    "windows_safe_archive_max_member_path": 175,
+    "windows_safe_rerun_2026_09_23": "14/14 runs PASS"
   },
   "lean": {
     "repository": "HMarcusWH/PermanssonLean",
@@ -59,5 +63,18 @@
       "total": 45,
       "result": "PASS"
     }
-  ]
+  ],
+  "distribution_packaging": {
+    "windows_safe_release_archive": "Permansson_v0.1.8_WINDOWS_SAFE.zip",
+    "windows_safe_release_sha256": "ae109fa7718b65023566f0dddf584e0d81d00ca494cc545d3f51268ef2d05cfb",
+    "archive_root": "Permansson_v0.1.8/",
+    "max_member_path": 119,
+    "zip_entry_metadata": "DOS-compatible",
+    "expanded_destructive_suite_duplicated": false,
+    "reason": "avoid Windows Explorer legacy path-length rejection caused by 306-character members in the prior portability-fixed outer ZIP",
+    "scientific_payload_changed": false,
+    "formalization_snapshot_changed": false,
+    "frozen_destructive_archive_changed": false,
+    "post_repack_run33": "50/50 PASS"
+  }
 }
