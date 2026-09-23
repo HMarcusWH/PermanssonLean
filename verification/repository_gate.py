@@ -184,6 +184,7 @@ add("citation_v018", 'version: "0.1.8"' in citation and "A General Framework for
 add("lean_toolchain_4_34", LEAN_TOOLCHAIN.is_file() and LEAN_TOOLCHAIN.read_text(encoding="utf-8").strip() == "leanprover/lean4:v4.34.0")
 lake = LAKEFILE.read_text(encoding="utf-8") if LAKEFILE.is_file() else ""
 add("mathlib_4_34_pinned", 'rev = "v4.34.0"' in lake)
+add("lean_package_version_snapshot_preserved", 'version = "0.1.0"' in lake and "package version remains `0.1.0`" in readme)
 requirements = PY_REQUIREMENTS.read_text(encoding="utf-8").strip() if PY_REQUIREMENTS.is_file() else ""
 add("numpy_2_5_3_pinned", requirements == "numpy==2.5.3", requirements)
 
