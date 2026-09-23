@@ -61,7 +61,7 @@ The numbered theorem/proposition/corollary/definition obligations in the **v0.1.
 | 11b | Grounded confirmatory PR / representation / quotient / world-path EGR transport | `GroundedRelevanceMap`, `paperIConfirmatoryEGR_iff_embeddedConfirmatoryGR`, `paperIGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
 | 11c | Recorded-action decode / action-sensitive conservative PR recovery | `PaperIDecodedPath`, `recordedDecode`, `paperIRecordedPermansson_iff_embeddedRelativePR`, `paperIRecordedGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
 | 12 | Periodic Exact GR witness (Prop. 8.1) | `PeriodicExactGR.proposition_8_1` | PROVED |
-| X | Appendix E specialized finite-certificate / rigidity extensions | no universal GR/PR theorem interface | NON-CORE / OUTSIDE FORMALIZED CORE |
+| X | [Appendix E specialized finite-certificate / rigidity extensions](../paper/supporting/specialized_theory/README.md) | no universal GR/PR theorem interface | NON-CORE / OUTSIDE FORMALIZED CORE |
 
 ## Source-to-Lean theorem and definition ledger
 
