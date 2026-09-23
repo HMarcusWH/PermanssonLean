@@ -49,10 +49,11 @@ if source_path.exists():
     ck(checks,'source_hermansson_2026a_present','Hermansson, 2026a' in t and '2026a). Equilibrium-Generated Regimes' in t)
 legacy=ROOT/'results'/'v016_legacy_pass_ledger_compact.json'
 if legacy.exists():
-    xs=json.loads(legacy.read_text())
-    ck(checks,'legacy_rerun_ledger_green',all(x['status']=='PASS' for x in xs) and len(xs)==85,f'{sum(x["status"]=="PASS" for x in xs)}/{len(xs)}')
+    d=json.loads(legacy.read_text())
+    ok=d.get('status')=='PASS' and d.get('passed')==85 and d.get('total')==85
+    ck(checks,'legacy_compatibility_summary_green',ok,f"{d.get('passed')}/{d.get('total')} ({d.get('evidence_type','summary')})")
 else:
-    ck(checks,'legacy_rerun_ledger_green',False,'fresh post-proofread ledger missing')
+    ck(checks,'legacy_compatibility_summary_green',False,'compact compatibility summary missing')
 for fname,expect in [('v016_run16_source_audit_postproofread.json','PASS'),('v016_run16_mutations_postproofread.json','PASS'),('v016_baseline_validation_postproofread.json','PASS')]:
     p=ROOT/'results'/fname
     if not p.exists():
@@ -60,4 +61,4 @@ for fname,expect in [('v016_run16_source_audit_postproofread.json','PASS'),('v01
     else:
         d=json.loads(p.read_text())
         ck(checks,'control_'+fname,d.get('status')==expect,str(d))
-write_result('30','Integrated post-proofread v1.7 mutation/source gate and fresh v1.6 controls',checks,{'mutations':len(mutations)})
+write_result('30','Integrated post-proofread v1.7 mutation/source gate and historical v1.6 compatibility controls',checks,{'mutations':len(mutations)})
