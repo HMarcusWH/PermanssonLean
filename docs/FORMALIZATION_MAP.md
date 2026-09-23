@@ -7,52 +7,90 @@ This repository formalizes the mathematical core of **Permansson Regimes v0.1.7*
 Status labels are used strictly:
 
 - **PROVED** — accepted by Lean on the pinned toolchain.
-- **SCAFFOLDED** — definitions/types exist, theorem not yet formalized.
-- **OPEN** — not yet represented in Lean.
-- **EMPIRICAL / OUT OF SCOPE** — depends on data, scientific identification, or literature priority rather than pure formal derivation.
+- **DEFINED** — the paper object is represented as data/structure; no separate theorem obligation is implied merely by its existence.
+- **SCAFFOLDED** — a partial interface exists but a promoted theorem obligation remains incomplete.
+- **OPEN** — a promoted formal claim has not yet been represented in Lean.
+- **NON-CORE / NOT PROMOTED** — explicitly outside the universal v0.1.7 GR/PR core unless and until a paper theorem and natural Permansson interface are supplied.
+- **EMPIRICAL / OUT OF SCOPE** — depends on data, scientific identification, provenance, statistical validity, or literature priority rather than pure formal derivation.
 
-Green CI means only that the checked Lean declarations compile. It does not upgrade OPEN or empirical claims.
+Green CI means that the checked Lean declarations compile and pass the repository's axiom/placeholder firewall. It does not upgrade empirical claims, causal identification, novelty, or non-promoted research programmes.
+
+## Completion boundary
+
+The numbered theorem/proposition/corollary/definition obligations in the intended **v0.1.7 discrete formal core through Proposition 8.1** have corresponding Lean closure. This completion statement is deliberately narrower than “the whole paper is proved”: Section 11.5 is explicitly a non-core research programme; continuous-time, set-valued, nonautonomous, and application-specific extensions remain outside the discrete core; and empirical/provenance/identification/statistical disciplines are not theorem obligations.
 
 ## Dependency DAG
 
 | Layer | Paper object | Lean target | Status |
 |---|---|---|---|
 | 0 | Measurable spaces / kernels | mathlib | PROVED upstream |
-| 1 | Joint state Y = S × X | `JointState` | SCAFFOLDED |
-| 1 | Action-selection kernel α | `StrategicGenerator.action` | SCAFFOLDED |
-| 1 | Strategic-update kernel U | `StrategicGenerator.update` | SCAFFOLDED |
-| 1 | World-transition kernel P | `StrategicWorldModel.world` | SCAFFOLDED |
+| 1 | Joint state Y = S × X | `JointState` | DEFINED |
+| 1 | Action-selection kernel α | `StrategicGenerator.action` | DEFINED |
+| 1 | Strategic-update kernel U | `StrategicGenerator.update` | DEFINED |
+| 1 | World-transition kernel P | `StrategicWorldModel.world` | DEFINED |
 | 2 | Induced joint kernel K_{G,P} | `StrategicWorldModel.inducedKernel`, `inducedKernel_isMarkov` | PROVED |
 | 2 | Paper-level setwise / indicator semantics | `inducedKernel_apply`, `inducedKernel_apply_indicator` | PROVED |
 | 3 | Canonical Ionescu–Tulcea path law | `StrategicWorldModel.pathLaw`, `pathLaw_isProbability` | PROVED |
 | 3 | Initial and finite-history transition identities | `pathLaw_prefix_zero`, `pathLaw_has_transition_pair` | PROVED |
 | 3 | RCD Markov transition statement | `pathLaw_has_transition` | PROVED under explicit standard-Borel / nonempty hypotheses |
-| 3 | Full path-law existence and uniqueness | `pathLaw_existsUnique`, `joint_process_well_posed` | PROVED |
-| 4 | Frozen regime specification Σ=(B,B₀,h,ν,c) | `RegimeSpecification` | PROVED |
+| 3 | Full path-law existence and uniqueness (Thm. 3.1) | `pathLaw_existsUnique`, `joint_process_well_posed` | PROVED |
+| 3a | Enlarged-state reduction (Prop. 3.2) | `enlarged_state_reduction` | PROVED |
+| 4 | Frozen regime specification Σ=(B,B₀,h,ν,c) | `RegimeSpecification` | DEFINED |
 | 4 | Admissible initial-law class D(B₀) | `IsAdmissibleInitialLaw`, `dirac_admissible_iff` | PROVED |
 | 4 | Assumption 4.1 ex-ante non-triviality | `Assumption41`, `basinHasTwoStates_iff_pathLawNontrivial` | PROVED as formal gate; chronology represented by immutable input boundary |
 | 4 | Empirical descriptor occupation law | `empiricalOccupation`, `measurable_empiricalDescriptor` | PROVED as probability-valued construction with measurable descriptor map |
 | 4 | Frozen occupation convergence semantics | `ConvergenceMode`, `IsLimitingOccupationLaw` | PROVED interface; almost-sure weak constructor formalized |
-| 4 | Exact Generated Regime semantic kernel | `IsExactGeneratedRegime` | PROVED definition with well-posedness, Assumption 4.1, exact invariance, and all-admissible-law occupation convergence |
+| 4 | Exact Generated Regime semantic kernel (Def. 4.3) | `IsExactGeneratedRegime` | PROVED definition with well-posedness, Assumption 4.1, exact invariance, and all-admissible-law occupation convergence |
 | 4 | Paper ambient Exact GR boundary | `IsPaperExactGeneratedRegime`, `IsPaperConfirmatoryGeneratedRegime` | PROVED wrapper requiring nonempty Polish/Borel S,X,H and standard-Borel A |
 | 4 | Confirmatory descriptor-nondegenerate GR | `IsConfirmatoryGeneratedRegime`, `IsDescriptorNondegenerate` | PROVED |
-| 4a | Polish descriptor-space generality / BL metrization proposition | theorem layer | OPEN |
+| 4a | Polish descriptor-space generality / BL metrization (Prop. 4.1a) | `proposition_4_1a` | PROVED |
 | 4b | Exact invariance ↔ survival forever (Prop. 4.2) | `exactInvariant_iff_survivalForever` | PROVED |
-| 5 | Killed-kernel finite persistence | `survivalProbability_eq_killedSurvivalMass`, `finitePersistence_iff_killed`, `oneStepRetention_pow_lowerBound`, `expectedExitTime_eq_greenSeries` | PROVED |
+| 5 | Killed-kernel persistence (Thm. 4.2a / Cor. 4.2b / Cor. 4.2c) | `survivalProbability_eq_killedSurvivalMass`, `finitePersistence_iff_killed`, `oneStepRetention_pow_lowerBound`, `expectedExitTime_eq_greenSeries` | PROVED |
+| 5a | QSD-certified quasi-regime (Def. 4.4a / Prop. 4.4b) | `IsQSDCertifiedQuasiRegime`, `proposition_4_4b`, `qsd_does_not_imply_uniform_finitePersistence` | PROVED |
 | 6 | Typed interventions | `InterventionReplacement`, `InterventionFamily`, `TypedIntervention`, `applyReplacement` | PROVED |
-| 7 | PR constitution | `RegimePropertyMap`, `ConstitutiveComparisonSet`, `IsStrategicallyConstitutive`, `IsGeneralizedPermanssonRegime` | PROVED |
-| 8 | Uniform constitutive margin / perturbation robustness | `constitutiveEffect`, `constitutiveMargin`, `IsUniformlyStrategicallyConstitutive`, `constitutiveMargin_perturbation_abs_le`, `robustUniformConstitution` | PROVED |
+| 7 | Generalized PR constitution (Def. 5.1) | `RegimePropertyMap`, `ConstitutiveComparisonSet`, `IsStrategicallyConstitutive`, `IsGeneralizedPermanssonRegime` | PROVED |
+| 8 | Uniform constitutive margin / perturbation robustness (Prop. 5.2 / Cor. 5.3) | `constitutiveEffect`, `constitutiveMargin`, `IsUniformlyStrategicallyConstitutive`, `constitutiveMargin_perturbation_abs_le`, `robustUniformConstitution` | PROVED |
 | 8b | Finite-horizon kernel-to-path TV envelope (Prop. 5.4) | `eventTotalVariation`, `HasUniformEventTVBound`, `finitePrefixLaw`, `commonFinitePrefixLaw`, `finitePrefix_eventTotalVariation_le_geometric`, `finitePrefix_eventTotalVariation_le_linear`, `proposition_5_4` | PROVED |
-| 9 | Intervention-family signatures / representation equivalence | `FrozenStrategicInterventionFamily`, `InterventionKernelSignature`, `exactGR_iff_of_inducedKernel_eq`, `frozenFamilyPR_iff_of_signature_match` | PROVED |
+| 9 | Baseline/intervention representation equivalence (Prop. 7.1 / Prop. 7.4) | `exactGR_iff_of_inducedKernel_eq`, `strategicallyConstitutive_iff_of_kernel_eq`, `constitutiveMargin_eq_of_kernel_eq` | PROVED |
 | 9a | Factorization non-identification (Thm. 7.2) | `factorization_nonidentification` | PROVED |
 | 9b | Constitutive non-invariance under baseline equivalence (Thm. 7.3) | `constitutive_noninvariance_under_baseline_equivalence`, `interventionB_constitutiveMargin_eq_one` | PROVED |
-| 9c | Nuisance-padding exclusion (Prop. 7.5) | `nuisancePadding_grounded_gap_eq`, `nuisancePadding_cannot_create_grounded_change` | PROVED |
-| 10 | Type-respecting intervention-compatible quotient preservation | `TypeRespectingStateCompression`, `KernelIntertwines`, `pathLaw_map_eq_of_kernelIntertwines`, `exactGR_iff_of_quotient`, `quotient_frozenFamilyPR_iff` | PROVED |
-| 11 | Paper-I EGR → GR embedding / conservative PR recovery | `PaperISelectedModel`, `embeddedModel`, `embedded_unit_kernelIntertwines`, `paperIEGR_iff_embeddedExactGR`, `paperIPermansson_iff_embeddedRelativePR`, `paperIUniformPermansson_iff_embeddedRelativePR` | PROVED |
-| 11b | Grounded confirmatory PR / representation / quotient / world-path EGR transport | `GroundedRelevanceMap`, `IsGroundedPropertyRelative`, `IsGroundedConfirmatoryPermanssonRegimeRelative`, `groundedFrozenFamilyPR_iff_of_signature_match`, `quotient_groundedFrozenFamilyPR_iff`, `paperIGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
-| 11c | Recorded-action decode / action-sensitive conservative PR recovery | `PaperIDecodedPath`, `recordedDecode`, `recordedPathProbability`, `transportRecordedProperty`, `paperIRecordedPermansson_iff_embeddedRelativePR`, `worldActionRecordRelevanceMap`, `paperIRecordedGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
-| 12 | QSD subclass | optional QSD module | OPEN |
-| X | Scalar-defect / finite-detection / first-bad / singular lane | research modules | OPEN |
+| 9c | Intervention-family invariance (Prop. 7.4a) | `frozenFamilyPR_iff_of_signature_match`, `frozenFamilyUniformPR_iff_of_signature_match` | PROVED |
+| 9d | Nuisance-padding exclusion (Prop. 7.5) | `nuisancePadding_grounded_gap_eq`, `nuisancePadding_cannot_create_grounded_change` | PROVED |
+| 10 | Type-respecting intervention-compatible quotient preservation (Thm. 7.4b) | `TypeRespectingStateCompression`, `KernelIntertwines`, `pathLaw_map_eq_of_kernelIntertwines`, `quotient_frozenFamilyPR_iff`, grounded/uniform analogues | PROVED |
+| 11 | Paper-I EGR → GR embedding / conservative PR recovery (Thm. 6.1 / Thm. 6.2) | `paperIEGR_iff_embeddedExactGR`, `paperIPermansson_iff_embeddedRelativePR`, `paperIUniformPermansson_iff_embeddedRelativePR` | PROVED |
+| 11b | Grounded confirmatory PR / representation / quotient / world-path EGR transport | `GroundedRelevanceMap`, `paperIConfirmatoryEGR_iff_embeddedConfirmatoryGR`, `paperIGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
+| 11c | Recorded-action decode / action-sensitive conservative PR recovery | `PaperIDecodedPath`, `recordedDecode`, `paperIRecordedPermansson_iff_embeddedRelativePR`, `paperIRecordedGroundedPermansson_iff_embeddedGroundedConfirmatoryPR` | PROVED |
+| 12 | Periodic Exact GR witness (Prop. 8.1) | `PeriodicExactGR.proposition_8_1` | PROVED |
+| X | Section 11.5 scalar-defect / finite-detection / first-bad / singular-compatibility programme | no promoted GR/PR theorem interface | NON-CORE / NOT PROMOTED |
+
+## Source-to-Lean theorem and definition ledger
+
+| Paper reference | Paper object | Primary Lean closure |
+|---|---|---|
+| Thm. 3.1 | Joint-process well-posedness | `joint_process_well_posed` |
+| Prop. 3.2 | Enlarged-state reduction | `enlarged_state_reduction` |
+| Prop. 4.1a | Polish descriptor-space generality | `proposition_4_1a` |
+| Prop. 4.2 | Exact invariance equivalent forms | `exactInvariant_iff_survivalForever` |
+| Thm. 4.2a | Exact killed-kernel persistence calculus | `survivalProbability_eq_killedSurvivalMass`, `survivingEndpointMeasure_eq_killedPow`, `expectedExitTime_eq_greenSeries` |
+| Cor. 4.2b | Exact finite-persistence characterization | `finitePersistence_iff_killed` |
+| Cor. 4.2c | One-step `q^L` lower bound | `oneStepRetention_pow_lowerBound` |
+| Def. 4.3 | Exact Generated Regime | `IsExactGeneratedRegime` |
+| Def. 4.4a | QSD-certified quasi-regime | `IsQSDCertifiedQuasiRegime` |
+| Prop. 4.4b | QSD survival and conditional stationarity | `proposition_4_4b` |
+| Def. 5.1 | Generalized Permansson Regime | `IsGeneralizedPermanssonRegimeRelative`, `IsGeneralizedPermanssonRegime` |
+| Prop. 5.2 | Two-sided constitutive-margin perturbation bound | `constitutiveEffect_perturbation_abs_le`, `constitutiveMargin_perturbation_abs_le` |
+| Cor. 5.3 | Robust PR certificate | `robustUniformConstitution`, `robustUniformPRCertificate` |
+| Prop. 5.4 | Finite-horizon kernel-to-path envelope | `proposition_5_4` |
+| Thm. 6.1 | EGR embedding | `paperIEGR_iff_embeddedExactGR` |
+| Thm. 6.2 | Conservative Permansson extension | `paperIPermansson_iff_embeddedRelativePR`, recorded-action and grounded transport analogues |
+| Prop. 7.1 | Baseline representation invariance | `exactGR_iff_of_inducedKernel_eq` |
+| Thm. 7.2 | Factorization non-identification | `factorization_nonidentification` |
+| Thm. 7.3 | Constitutive non-invariance under baseline equivalence | `constitutive_noninvariance_under_baseline_equivalence` |
+| Prop. 7.4 | Intervention-compatible invariance | `strategicallyConstitutive_iff_of_kernel_eq`, margin/uniform analogues |
+| Prop. 7.4a | Intervention-family invariance | `frozenFamilyPR_iff_of_signature_match`, uniform analogue |
+| Thm. 7.4b | Intervention-compatible quotient preservation | `quotient_frozenFamilyPR_iff`, grounded/uniform analogues |
+| Prop. 7.5 | Nuisance-padding exclusion | `nuisancePadding_grounded_gap_eq`, `nuisancePadding_cannot_create_grounded_change` |
+| Prop. 8.1 | Periodic Exact GR | `PeriodicExactGR.proposition_8_1` |
 
 ## First proof milestone — induced joint kernel
 
@@ -147,7 +185,7 @@ Section-4 objects are checked on the pinned toolchain:
 - `IsConfirmatoryGeneratedRegime`: Exact GR plus basin-reachable descriptor-law
   nondegeneracy, kept distinct from forward descriptor richness.
 
-Proposition 4.1a's Polish/BL metrization theorem remains deliberately unpromoted.
+Proposition 4.1a is now closed by `proposition_4_1a`; the separate Section 11.5 rigidity programme remains non-core and not promoted.
 The persistence layer is now machine-checked: finite-horizon path survival is identified
 with killed-kernel mass, exact invariance is equivalent to almost-sure indefinite
 retention, the one-step retention floor yields the paper's q^L bound, and the extended
@@ -302,7 +340,7 @@ formalized later in Layer 11b.  This milestone still does not identify frozen-fa
 equivalence with equivalence over every admissible intervention in `InterventionFamily`.
 
 The next dependency boundary is the type-respecting quotient preservation theorem
-(Theorem 7.4b). Proposition 5.4's finite-horizon TV envelope is now closed in Layer 8b; EGR compatibility, grounded confirmatory refinements, and QSDs were tracked separately.
+(Theorem 7.4b). Proposition 5.4's finite-horizon TV envelope is closed in Layer 8b. Subsequent milestones also closed EGR compatibility, grounded confirmatory refinements, Polish/BL support, QSD certification, and Proposition 8.1.
 
 
 ## Ninth proof milestone — type-respecting intervention-compatible quotients
@@ -393,9 +431,9 @@ as an upstream certificate. It does not claim a new MPE existence theorem.
 Two Section-6 refinements remain separate rather than silently folded into Layer 11:
 the explicit recorded-action decode branch for Paper-I properties that depend on
 realized actions, and grounded (g)-relative confirmatory transport. Those are tracked
-as Layer 11b. Proposition 5.4's finite-horizon TV envelope is now closed in Layer 8b; BL metrization and QSD support remain independent lanes.
+as Layer 11b. Proposition 5.4's finite-horizon TV envelope is closed in Layer 8b; Polish/BL metrization and QSD support were subsequently closed in Layers 4a and 12.
 
-The grounded confirmatory layer is formalized in the next milestone.  The remaining Section-6 refinement was explicit recorded-action decoding; Layer 8b is now closed, while Layer 4a remains independent topological support work.
+The grounded confirmatory layer is formalized in the next milestone. The remaining Section-6 refinement was explicit recorded-action decoding; subsequent work also closed the independent Layer-4a topological support theorem.
 
 
 ## Eleventh proof milestone — grounded confirmatory semantics and preservation
@@ -446,7 +484,7 @@ The grounded layer remains intentionally separate from the broad
 `IsGeneralizedPermanssonRegime`; no relevance restriction has been retrofitted
 onto the general class.
 
-The explicit recorded-action decode branch is formalized in the next milestone. Proposition 5.4's finite-horizon kernel-to-path TV envelope is now closed in Layer 8b; Proposition 4.1a's Polish/BL metrization result and the optional QSD subclass remain independent open lanes.
+The explicit recorded-action decode branch is formalized in the next milestone. Proposition 5.4's finite-horizon kernel-to-path TV envelope is closed in Layer 8b; Proposition 4.1a and the QSD subclass were subsequently formalized.
 
 
 ## Twelfth proof milestone — recorded-action decoding and action-sensitive Paper-I recovery
@@ -504,4 +542,17 @@ separate theorem identifying malformed/off-support decoded action paths with an
 independently reconstructed policy-action process.
 
 With both the world-only and recorded-action branches checked, the Section-6
-conservative transport architecture is closed. Proposition 5.4's finite-horizon TV envelope is also now closed. The remaining main paper-support lanes are Proposition 4.1a's Polish/BL metrization theorem and the optional QSD subclass.
+conservative transport architecture is closed. Proposition 5.4's finite-horizon TV envelope is also closed. Subsequent PRs closed Proposition 4.1a, the optional QSD-certified quasi-regime layer, and Proposition 8.1.
+
+
+## Final v0.1.7 support milestone — Polish, QSD, and periodic-example closure
+
+The final support PRs close the paper-level lanes that were still described as open in earlier versions of this map:
+
+- `proposition_4_1a` constructs the bounded compatible metric / weak-metrization certificate used by the Polish descriptor-space generality claim and separately records that Polishness alone does not force arbitrary tightness or existence of a weak limit;
+- the arbitrary-initial-law survival bridge lifts the killed-process endpoint identity from point starts to probability-law starts;
+- `IsQSDCertifiedQuasiRegime` and `proposition_4_4b` formalize the optional QSD certificate and its exact survival / conditional-stationarity consequences;
+- `QSDCounterexample.qsd_does_not_imply_uniform_finitePersistence` machine-checks the paper's warning that a QSD eigenmeasure alone does not imply the uniform statewise finite-persistence gate;
+- `PeriodicExactGR.proposition_8_1` formalizes the literal Section-8.1 binary period-two model under the actual `ConvergenceMode.almostSureWeak`, including all-admissible-initial-law path semantics and convergence to the half-half occupation law.
+
+At this point the promoted discrete v0.1.7 theorem/definition ledger through Proposition 8.1 is closed. The Section 11.5 finite-certificate and rigidity programme remains explicitly **NON-CORE / NOT PROMOTED**, and empirical/application certification remains **EMPIRICAL / OUT OF SCOPE**.
