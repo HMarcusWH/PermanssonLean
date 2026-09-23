@@ -24,7 +24,7 @@ The cited commit is the formal-code snapshot used by the paper. This provenance 
 
 The frozen executable archive records 85/85 historical executions, 16/16 baseline compatibility checks, and 3240/3240 checks in Runs 17-30. Runs 17-30 were rerun again during the v0.1.8 boarding audit and all 14 numbered runs returned zero.
 
-A separate v0.1.8 release gate (Run 31) passed 39/39 checks, including artifact hashes, ZIP integrity, equation-number continuity, the corrected (18a)/(19) source/PDF sequence, paper-to-Lean declaration existence, root-import reachability, CI evidence, PDF structure, and the Section 11.5 non-promotion boundary.
+A separate v0.1.8 release gate (Run 31) passed 42/42 checks, including artifact hashes, ZIP integrity, equation-number continuity, the corrected (18a)/(19) source/PDF sequence, paper-to-Lean declaration existence, root-import reachability, CI evidence, PDF structure, and the Section 11.5 non-promotion boundary.
 
 ## Claim boundary
 
