@@ -97,6 +97,9 @@ if RELEASE_META.is_file():
     distribution = meta.get("distribution_packaging", {})
     add("release_meta_outer_zip_hash", distribution.get("windows_safe_release_sha256") == EXPECTED_RELEASE,
         str(distribution.get("windows_safe_release_sha256")))
+    repo_ver = meta.get("repository_verification", {})
+    add("release_meta_python_pin", repo_ver.get("python") == "3.13" and repo_ver.get("numpy") == "2.5.3",
+        json.dumps(repo_ver, sort_keys=True))
 else:
     add("release_metadata_present", False, str(RELEASE_META))
 
@@ -109,6 +112,8 @@ for name, needle in [
     ("manifest_release_hash", EXPECTED_RELEASE),
     ("manifest_run34", "58/58"),
     ("manifest_lean_snapshot", LEAN_SNAPSHOT),
+    ("manifest_python_pin", "CPython 3.13"),
+    ("manifest_numpy_pin", "NumPy 2.5.3"),
 ]:
     add(name, needle in manifest, needle)
 
