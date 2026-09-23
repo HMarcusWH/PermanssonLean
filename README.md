@@ -1,6 +1,6 @@
 # PermanssonLean
 
-Formal verification and executable-validation companion for **Permansson Regimes: Strategic Dynamics Beyond Equilibrium v0.1.8**.
+Formal verification and executable-validation companion for **Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium v0.1.8**.
 
 The repository machine-checks the paper's discrete-time GR/PR mathematical core in Lean 4. It is a theorem-level companion to the paper, not a substitute for its empirical, identification, provenance, or literature-priority disciplines.
 
@@ -9,7 +9,7 @@ The repository machine-checks the paper's discrete-time GR/PR mathematical core 
 - Lean 4.34.0
 - mathlib 4.34.0
 
-Both are pinned.
+Both are pinned. The `lakefile.toml` package version remains `0.1.0` because it is part of the immutable formalization snapshot; the scholarly/release version of this companion is **v0.1.8** as recorded in `CITATION.cff` and the release metadata.
 
 ## Formalization strategy
 

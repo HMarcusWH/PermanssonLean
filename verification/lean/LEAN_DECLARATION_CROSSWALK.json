@@ -1,25 +1,129 @@
 {
-  "repository":"HMarcusWH/PermanssonLean",
-  "commit":"c018f79ea4ce46f4f679ad5bca254509778fc53c",
-  "all_found":true,
-  "source":"GitHub connector audit on 2026-09-23",
-  "declarations":[
-    {"paper":"Thm. 3.1","declaration":"joint_process_well_posed","path":"PermanssonLean/StrategicWorld/WellPosedness.lean","line":173,"found_at_commit":true},
-    {"paper":"Prop. 3.2","declaration":"enlarged_state_reduction","path":"PermanssonLean/StrategicWorld/WellPosedness.lean","line":185,"found_at_commit":true},
-    {"paper":"Prop. 4.1a","declaration":"proposition_4_1a","path":"PermanssonLean/Regime/PolishDescriptor.lean","line":303,"found_at_commit":true},
-    {"paper":"Prop. 4.2","declaration":"exactInvariant_iff_survivalForever","path":"PermanssonLean/Regime/Persistence.lean","line":261,"found_at_commit":true},
-    {"paper":"Thm. 4.2a","declaration":"survivalProbability_eq_killedSurvivalMass","path":"PermanssonLean/Regime/SurvivalBridge.lean","line":225,"found_at_commit":true},
-    {"paper":"Def. 4.4a","declaration":"IsQSDCertifiedQuasiRegime","path":"PermanssonLean/Regime/QuasiStationary.lean","line":49,"found_at_commit":true},
-    {"paper":"Prop. 4.4b","declaration":"proposition_4_4b","path":"PermanssonLean/Regime/QuasiStationary.lean","line":193,"found_at_commit":true},
-    {"paper":"Prop. 5.2","declaration":"constitutiveMargin_perturbation_abs_le","path":"PermanssonLean/Regime/Perturbation.lean","line":199,"found_at_commit":true},
-    {"paper":"Cor. 5.3","declaration":"robustUniformPRCertificate","path":"PermanssonLean/Regime/UniformPermansson.lean","line":119,"found_at_commit":true},
-    {"paper":"Prop. 5.4","declaration":"proposition_5_4","path":"PermanssonLean/Probability/FinitePrefixTV.lean","line":388,"found_at_commit":true},
-    {"paper":"Thm. 6.1","declaration":"paperIEGR_iff_embeddedExactGR","path":"PermanssonLean/EGR/RegimeEmbedding.lean","line":205,"found_at_commit":true},
-    {"paper":"Thm. 6.2","declaration":"paperIPermansson_iff_embeddedRelativePR","path":"PermanssonLean/EGR/PermanssonTransport.lean","line":356,"found_at_commit":true},
-    {"paper":"Prop. 7.1","declaration":"exactGR_iff_of_inducedKernel_eq","path":"PermanssonLean/Regime/RepresentationEquivalence.lean","line":102,"found_at_commit":true},
-    {"paper":"Prop. 7.4a","declaration":"frozenFamilyPR_iff_of_signature_match","path":"PermanssonLean/Regime/FamilyEquivalence.lean","line":161,"found_at_commit":true},
-    {"paper":"Thm. 7.4b","declaration":"quotient_frozenFamilyPR_iff","path":"PermanssonLean/Quotient/Preservation.lean","line":165,"found_at_commit":true},
-    {"paper":"Prop. 7.5","declaration":"nuisancePadding_cannot_create_grounded_change","path":"PermanssonLean/Regime/NuisancePadding.lean","line":137,"found_at_commit":true},
-    {"paper":"Prop. 8.1","declaration":"proposition_8_1","path":"PermanssonLean/Examples/PeriodicExactGR.lean","line":585,"found_at_commit":true}
-  ]
+  "repository": "HMarcusWH/PermanssonLean",
+  "commit": "c018f79ea4ce46f4f679ad5bca254509778fc53c",
+  "all_found": true,
+  "source": "GitHub connector audit on 2026-09-23",
+  "declarations": [
+    {
+      "paper": "Thm. 3.1",
+      "declaration": "joint_process_well_posed",
+      "path": "PermanssonLean/StrategicWorld/WellPosedness.lean",
+      "line": 173,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Prop. 3.2",
+      "declaration": "enlarged_state_reduction",
+      "path": "PermanssonLean/StrategicWorld/WellPosedness.lean",
+      "line": 185,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Prop. 4.1a",
+      "declaration": "proposition_4_1a",
+      "path": "PermanssonLean/Regime/PolishDescriptor.lean",
+      "line": 303,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Prop. 4.2",
+      "declaration": "exactInvariant_iff_survivalForever",
+      "path": "PermanssonLean/Regime/Persistence.lean",
+      "line": 261,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Thm. 4.2a",
+      "declaration": "survivalProbability_eq_killedSurvivalMass",
+      "path": "PermanssonLean/Regime/SurvivalBridge.lean",
+      "line": 225,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Def. 4.4a",
+      "declaration": "IsQSDCertifiedQuasiRegime",
+      "path": "PermanssonLean/Regime/QuasiStationary.lean",
+      "line": 49,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Prop. 4.4b",
+      "declaration": "proposition_4_4b",
+      "path": "PermanssonLean/Regime/QuasiStationary.lean",
+      "line": 193,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Prop. 5.2",
+      "declaration": "constitutiveMargin_perturbation_abs_le",
+      "path": "PermanssonLean/Regime/Perturbation.lean",
+      "line": 199,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Cor. 5.3",
+      "declaration": "robustUniformPRCertificate",
+      "path": "PermanssonLean/Regime/UniformPermansson.lean",
+      "line": 119,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Prop. 5.4",
+      "declaration": "proposition_5_4",
+      "path": "PermanssonLean/Probability/FinitePrefixTV.lean",
+      "line": 388,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Thm. 6.1",
+      "declaration": "paperIEGR_iff_embeddedExactGR",
+      "path": "PermanssonLean/EGR/RegimeEmbedding.lean",
+      "line": 205,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Thm. 6.2",
+      "declaration": "paperIPermansson_iff_embeddedRelativePR",
+      "path": "PermanssonLean/EGR/PermanssonTransport.lean",
+      "line": 356,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Prop. 7.1",
+      "declaration": "exactGR_iff_of_inducedKernel_eq",
+      "path": "PermanssonLean/Regime/RepresentationEquivalence.lean",
+      "line": 102,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Prop. 7.4a",
+      "declaration": "frozenFamilyPR_iff_of_signature_match",
+      "path": "PermanssonLean/Regime/FamilyEquivalence.lean",
+      "line": 161,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Thm. 7.4b",
+      "declaration": "quotient_frozenFamilyPR_iff",
+      "path": "PermanssonLean/Quotient/Preservation.lean",
+      "line": 165,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Prop. 7.5",
+      "declaration": "nuisancePadding_cannot_create_grounded_change",
+      "path": "PermanssonLean/Regime/NuisancePadding.lean",
+      "line": 137,
+      "found_at_commit": true
+    },
+    {
+      "paper": "Prop. 8.1",
+      "declaration": "proposition_8_1",
+      "path": "PermanssonLean/Examples/PeriodicExactGR.lean",
+      "line": 585,
+      "found_at_commit": true
+    }
+  ],
+  "scope": "selected 17-entry release-audit crosswalk; complete theorem/definition ledger is docs/FORMALIZATION_MAP.md",
+  "selection_count": 17
 }

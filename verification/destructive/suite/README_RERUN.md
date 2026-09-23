@@ -1,16 +1,20 @@
-# Portable rerun instructions
+# Runs 17–30 rerun instructions
 
-This archive is a portability-fixed derivative of the frozen v0.1.7 post-proofread destructive suite.
-The original frozen evidence archive is preserved separately in the v0.1.8 release package.
+This directory is the repository mirror of the portable v0.1.7 post-proofread destructive suite.
 
-## What was fixed
+The byte-identical frozen evidence archive and the Windows-safe runnable ZIP are release artifacts identified by SHA-256 under `provenance/v0.1.8/`.
 
-- `scripts/common.py` now derives the suite root from its own location instead of requiring `/mnt/data/Permansson_v0.1.7_POST_PROOFREAD_TEST_SUITE`.
-- Run 30 reads the exact v0.1.7 control TeX bundled under `inputs/` instead of requiring `/mnt/data/_v017_build/...`.
-- The exact control TeX was copied byte-for-byte from the v0.1.8 release package provenance folder.
-- `run_all.py` provides a one-command entry point.
+## Repository adaptation
 
-No mathematical test logic, numerical thresholds, mutation cases, or expected claims were changed.
+The release-package portable ZIP bundles the exact v0.1.7 control TeX used by historical Run 30. To keep the Git repository source-oriented, that historical full TeX is not duplicated here. Instead:
+
+- `scripts/common.py` derives the suite root from its own location;
+- `run_all.py` provides a one-command entry point;
+- Run 30 uses the exact full v0.1.7 TeX when it is present under `inputs/`;
+- otherwise Run 30 falls back to `inputs/V017_SOURCE_CONTRACT.txt`, which freezes only the exact source strings consumed by the historical Run 30 assertions;
+- the frozen archive remains the authoritative evidentiary record for the historical full-source audit.
+
+The mathematical tests, numerical thresholds, mutation cases, and expected claim boundaries in Runs 17–29 are unchanged. The repository adaptation to Run 30 changes only how historical source/control evidence is supplied to CI.
 
 ## Requirements
 
@@ -21,6 +25,6 @@ python -m pip install -r requirements.txt
 python run_all.py
 ```
 
-Expected result: Runs 17 through 30 all return PASS (14/14 numbered runs; 3240/3240 checks in the frozen post-proofread suite).
+Expected result: Runs 17 through 30 all return **PASS** (14/14 numbered runs). The strengthened post-proofread suite records **3240/3240 passing checks**.
 
-The legacy `rerun_legacy_*.py` utilities are archival helpers for rebuilding the older v0.1.6 source executions and still require the historical source workpack that generated those records. They are not invoked by `run_all.py`; the required v0.1.6 control ledgers are already included in `results/`.
+The legacy `rerun_legacy_*.py` utilities are archival helpers for rebuilding older v0.1.6 source executions and still require the historical source workpack. They are not invoked by `run_all.py`.

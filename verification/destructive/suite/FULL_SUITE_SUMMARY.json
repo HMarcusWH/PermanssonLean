@@ -1,4 +1,5 @@
 {
+  "suite": "Permansson v0.1.7 post-proofread destructive/regression suite",
   "control_v016": {
     "stress_scripts_runs01_15_expected": 83,
     "legacy_python_scripts_rerun_total": 85,
@@ -8,17 +9,25 @@
     "run16_source_audit": "28/28 PASS",
     "run16_source_mutations": "15/15 killed"
   },
-  "v017_sketch": {
+  "runs_17_30": {
     "runs": "17-30",
     "runs_passed": 14,
     "runs_total": 14,
-    "checks_passed": 3183,
-    "checks_total": 3183,
-    "checks_failed": 0
+    "checks_passed": 3240,
+    "checks_total": 3240,
+    "checks_failed": 0,
+    "previous_preproofread_check_count": 3183,
+    "added_after_proofread": 57
+  },
+  "repository_mode": {
+    "current_ci": "Runs 17-30 execute from unpacked source",
+    "run30_source_mode": "exact historical v0.1.7 TeX when present; otherwise compact source-contract fixture",
+    "historical_full_source_audit": "authoritative evidence remains in the frozen release archive"
   },
   "formal_verification_note": {
     "lean_rerun": false,
-    "reason": "Historical suite snapshot; current repository Lean CI is separate.",
-    "archived_status": "Historical status only. Current Lean source status is governed by repository CI and the immutable v0.1.8 formalization snapshot."
+    "reason": "Lean verification is a separate CI layer.",
+    "immutable_formalization_snapshot": "c018f79ea4ce46f4f679ad5bca254509778fc53c",
+    "current_status": "Governed by repository Lean CI and the immutable v0.1.8 formalization snapshot."
   }
 }
