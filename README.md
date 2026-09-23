@@ -70,4 +70,4 @@ CI additionally audits the root import graph and rejects `sorry`, `admit`, and s
 
 ## Paper release provenance
 
-The v0.1.8 manuscript is tied to the immutable formal-code snapshot `c018f79ea4ce46f4f679ad5bca254509778fc53c` and green CI run `35808810682`. Exact PDF/TeX/test-archive hashes and the release claim boundary are recorded in [docs/PAPER_VERIFICATION_MANIFEST.md](docs/PAPER_VERIFICATION_MANIFEST.md); machine-readable release metadata is in [docs/releases/v0.1.8.json](docs/releases/v0.1.8.json).
+The v0.1.8 manuscript is tied to the immutable formal-code snapshot `c018f79ea4ce46f4f679ad5bca254509778fc53c` and green CI run `35808810682`. Exact PDF/TeX/test-archive hashes and the release claim boundary are recorded in [docs/PAPER_VERIFICATION_MANIFEST.md](docs/PAPER_VERIFICATION_MANIFEST.md); machine-readable release metadata is in [docs/releases/v0.1.8.json](docs/releases/v0.1.8.json). The distribution metadata also records the Windows-safe release repack; it changes archive layout only and does not change the manuscript, Lean snapshot, frozen destructive archive, or theorem claims.
