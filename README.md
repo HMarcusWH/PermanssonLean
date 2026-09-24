@@ -4,6 +4,18 @@ Formal verification and executable-validation companion for **Permansson Regimes
 
 The repository machine-checks the paper's discrete-time GR/PR mathematical core in Lean 4. It is a theorem-level companion to the paper, not a substitute for its empirical, identification, provenance, or literature-priority disciplines.
 
+## Paper and supporting theory
+
+The repository now includes the final editorial-clean paper together with the internal papers cited as part of its theoretical lineage:
+
+- [v0.1.8 editorial-clean PDF](paper/Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_EDITORIAL_CLEAN_2026-09-23.pdf)
+- [v0.1.8 TeX source](paper/Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_2026-09-23.tex)
+- [paper directory and dependency guide](paper/README.md)
+- [foundational EGR paper](paper/supporting/foundational/README.md) — the direct Paper-I predecessor cited as Hermansson (2026a)
+- [specialized Appendix E theory](paper/supporting/specialized_theory/README.md) — the five Hermansson (2026b–f) working papers used as specialized theorem-transfer architectures
+
+The supporting PDFs are repository-hosted copies of papers cited by v0.1.8. They were added after the frozen v0.1.8 release-package lineage and do not alter the immutable release hashes or the Lean snapshot.
+
 ## Toolchain
 
 - Lean 4.34.0

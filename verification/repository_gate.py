@@ -10,6 +10,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TEX = ROOT / "paper" / "Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_2026-09-23.tex"
+PDF = ROOT / "paper" / "Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_EDITORIAL_CLEAN_2026-09-23.pdf"
+PAPER_README = ROOT / "paper" / "README.md"
+FOUNDATIONAL_README = ROOT / "paper" / "supporting" / "foundational" / "README.md"
+FOUNDATIONAL_PAPER = ROOT / "paper" / "supporting" / "foundational" / "EGR_Core_Paper.pdf"
+SPECIALIZED_README = ROOT / "paper" / "supporting" / "specialized_theory" / "README.md"
+SPECIALIZED_PAPERS = [
+    ROOT / "paper" / "supporting" / "specialized_theory" / "Scalar_Defect_Reduction_Finite_Weil_CCM_Dictionaries_2026-08-30_v0_1_PROOFREAD.pdf",
+    ROOT / "paper" / "supporting" / "specialized_theory" / "Persistent_Finite_Detection_Off_Critical_Zeros_Weil_CCM_2026-09-03_v0_2.pdf",
+    ROOT / "paper" / "supporting" / "specialized_theory" / "First_Bad_Cubic_Rigidity_Weil_CCM_2026-09-08_v0_2.pdf",
+    ROOT / "paper" / "supporting" / "specialized_theory" / "Zero_Shift_Source_Rigidity_Weil_CCM_2026-09-10_v0_3.pdf",
+    ROOT / "paper" / "supporting" / "specialized_theory" / "Explicit_Gram_Witnesses_Off_Critical_Pair_Blocks_2026-08-25_v1_2_PROOFREAD.pdf",
+]
 RELEASE_META = ROOT / "docs" / "releases" / "v0.1.8.json"
 MANIFEST = ROOT / "docs" / "PAPER_VERIFICATION_MANIFEST.md"
 README = ROOT / "README.md"
@@ -50,6 +62,13 @@ def sha256(path: Path) -> str:
 add("paper_tex_present", TEX.is_file(), str(TEX))
 add("paper_tex_sha256", TEX.is_file() and sha256(TEX) == EXPECTED_TEX,
     sha256(TEX) if TEX.is_file() else "missing")
+add("paper_pdf_present", PDF.is_file(), str(PDF))
+add("paper_pdf_sha256", PDF.is_file() and sha256(PDF) == EXPECTED_PDF,
+    sha256(PDF) if PDF.is_file() else "missing")
+add("paper_readme_present", PAPER_README.is_file(), str(PAPER_README))
+add("foundational_support_present", FOUNDATIONAL_PAPER.is_file(), str(FOUNDATIONAL_PAPER))
+missing_specialized = [str(path.relative_to(ROOT)) for path in SPECIALIZED_PAPERS if not path.is_file()]
+add("specialized_support_present", not missing_specialized, ", ".join(missing_specialized))
 
 tex = TEX.read_text(encoding="utf-8", errors="replace") if TEX.is_file() else ""
 add("appendix_d_present", "Appendix D - Formal Verification and Reproducibility" in tex)
@@ -122,6 +141,9 @@ for name, needle in [
 readme = README.read_text(encoding="utf-8") if README.is_file() else ""
 formal_map = FORMAL_MAP.read_text(encoding="utf-8") if FORMAL_MAP.is_file() else ""
 verify_readme = VERIFY_README.read_text(encoding="utf-8") if VERIFY_README.is_file() else ""
+paper_readme = PAPER_README.read_text(encoding="utf-8") if PAPER_README.is_file() else ""
+foundational_readme = FOUNDATIONAL_README.read_text(encoding="utf-8") if FOUNDATIONAL_README.is_file() else ""
+specialized_readme = SPECIALIZED_README.read_text(encoding="utf-8") if SPECIALIZED_README.is_file() else ""
 suite_readme = SUITE_README.read_text(encoding="utf-8") if SUITE_README.is_file() else ""
 citation = CITATION.read_text(encoding="utf-8") if CITATION.is_file() else ""
 add("readme_exact_paper_title",
@@ -138,7 +160,18 @@ add("formal_map_covers_all_numbered_paper_refs", len(paper_refs) == 24 and not m
     f"paper refs={len(paper_refs)}; missing={missing_ledger_refs}")
 add("verification_readme_no_missing_baseline_dir", "`baseline/`" not in verify_readme)
 add("verification_readme_package_gate_boundary",
-    "package-level" in verify_readme and "does not duplicate those binary release artifacts" in verify_readme)
+    "package-level" in verify_readme
+    and "includes the final PDF" in verify_readme
+    and "does not duplicate the frozen ZIP release artifacts" in verify_readme)
+add("paper_readme_release_boundary",
+    EXPECTED_PDF in paper_readme
+    and "## Release-lineage boundary" in paper_readme
+    and "does **not** modify the release-package hashes" in paper_readme)
+add("supporting_readmes_current",
+    "Expected upload" not in foundational_readme
+    and "Expected upload" not in specialized_readme
+    and "Hermansson (2026a)" in foundational_readme
+    and all(f"Hermansson (2026{key})" in specialized_readme for key in "bcdef"))
 add("suite_readme_source_contract_boundary",
     "V017_SOURCE_CONTRACT.txt" in suite_readme and "authoritative evidentiary record" in suite_readme)
 add("historical_gate_readme_present", HISTORICAL_GATES_README.is_file(), str(HISTORICAL_GATES_README))

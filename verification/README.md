@@ -2,6 +2,8 @@
 
 This directory is the executable verification companion to the Lean formalization and the v0.1.8 paper.
 
+The final v0.1.8 editorial-clean PDF is committed under `paper/` and is checked by the repository synchronization gate against its frozen SHA-256. The frozen destructive-suite ZIPs and final release ZIP remain external release artifacts identified by the provenance records rather than duplicated Git blobs.
+
 The layers are intentionally separate:
 
 - `destructive/suite/` — unpacked Python source for the destructive/regression suite used by numbered Runs 17–30.
@@ -44,7 +46,7 @@ python verification/v0.1.8_release_gate/run34_editorial_final_release_gate.py
 
 Expected result: **58/58 PASS**.
 
-The repository does not duplicate those binary release artifacts, so Run 34 is preserved here for inspection and package reproduction rather than executed by normal repository CI. Repository CI instead runs Runs 17–30 plus `repository_gate.py`.
+The repository includes the final PDF but does not duplicate the frozen ZIP release artifacts, so Run 34 is preserved here for inspection and package reproduction rather than executed by normal repository CI. Repository CI instead runs Runs 17–30 plus `repository_gate.py`.
 
 ## Historical release gates
 

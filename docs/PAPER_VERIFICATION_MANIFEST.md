@@ -11,6 +11,17 @@
 - Windows-safe runnable destructive suite SHA-256: `864e2fec88b345194b0a9dc4ce9431e6a9a754eb88adea75fb8835b6244f41c3`
 - Final Windows-safe release ZIP SHA-256: `66a13d3d4ea6854d38a6a32fe8b7946cbc290c62484b654dc02e0317039faf25`
 
+## Repository-hosted paper stack
+
+The repository now hosts the final editorial-clean PDF under `paper/` together with the checked-in TeX source and the author's internal papers cited by v0.1.8:
+
+- `paper/Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_EDITORIAL_CLEAN_2026-09-23.pdf`
+- `paper/Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_2026-09-23.tex`
+- `paper/supporting/foundational/` — Hermansson (2026a), the Paper-I / EGR predecessor.
+- `paper/supporting/specialized_theory/` — Hermansson (2026b–f), the five specialized Appendix E supporting papers.
+
+The checked-in TeX filename is shorter than the release-package artifact name recorded in `docs/releases/v0.1.8.json`, but `verification/repository_gate.py` hashes the checked-in source against the frozen final-TeX SHA-256 above. The supporting-paper PDFs were added after the release package was frozen and are repository-hosted citation aids; they do not alter any frozen release hash, test archive, or the immutable Lean snapshot.
+
 ## Formalization snapshot
 
 - Immutable mathematical snapshot: `c018f79ea4ce46f4f679ad5bca254509778fc53c`
