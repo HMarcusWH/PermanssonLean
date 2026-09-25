@@ -14,7 +14,8 @@ REQUIRED = (
     "application/README.md", "application/APPLICATION_STANDARD.md",
     "application/VERSION.json", "application/requirements.txt",
     "application/validator/validate_application.py", "application/validator/README.md",
-    "application/tests/test_application.py", "application/examples/build_examples.py",
+    "application/tests/test_application.py", "application/tests/test_codex_regressions.py",
+    "application/examples/build_examples.py",
     "application/examples/expectations.json", "application/examples/README.md",
     "docs/APPLICATION_BOUNDARY.md", "docs/FUTURE_THEORY_ROADMAP.md",
     ".github/workflows/application.yml", ".gitattributes",
@@ -56,8 +57,10 @@ def main() -> int:
             failures.append(f"{name}: expected {expectations.get(name)}, got {codes}")
         if result["scientific_claims_verified"] is not False:
             failures.append(f"{name}: contract validator improperly promotes scientific truth")
-    if "application/** text eol=lf" not in (ROOT / ".gitattributes").read_text(encoding="utf-8"):
-        failures.append("Application evidence LF-byte preservation rule missing")
+    attribute_rules = [line.split() for line in (ROOT / ".gitattributes").read_text(encoding="utf-8").splitlines()
+                       if line.strip() and not line.lstrip().startswith("#")]
+    if ["application/**", "-text"] not in attribute_rules:
+        failures.append("Application evidence raw-byte preservation rule missing")
     for filename in ("README.md", "verification/README.md"):
         path = ROOT / filename
         if not path.is_file() or "application/" not in path.read_text(encoding="utf-8"):

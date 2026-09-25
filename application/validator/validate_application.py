@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 from collections import deque
 from datetime import datetime
+from decimal import Decimal
 from fractions import Fraction
 from functools import lru_cache
 import hashlib
@@ -62,17 +63,28 @@ def load_json(path: Path) -> Any:
                       parse_constant=_bad_constant, parse_float=_float)
 
 
-def _timestamp(value: str) -> datetime:
-    # A deliberately restricted RFC3339 profile; no optional format dependencies.
-    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})", value):
+def _timestamp(value: str) -> tuple[datetime, Decimal]:
+    """Return an exactly ordered instant without truncating fractional seconds.
+
+    datetime handles the calendar and numeric offset at whole-second precision.
+    Decimal is constructed directly from the fractional digits, without arithmetic
+    or context rounding. Tuple comparison therefore preserves every supplied digit.
+    """
+    match = re.fullmatch(
+        r"(?P<whole>[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2})"
+        r"(?:\.(?P<fraction>[0-9]+))?(?P<offset>Z|[+-][0-9]{2}:[0-9]{2})",
+        value,
+    )
+    if match is None:
         raise ValueError("A timezone-qualified RFC3339 timestamp is required")
-    if value[-6:-5] in {"+", "-"}:
-        if int(value[-5:-3]) > 23 or int(value[-2:]) > 59 or value.endswith("-00:00"):
+    offset = match["offset"]
+    if offset != "Z":
+        if int(offset[1:3]) > 23 or int(offset[4:6]) > 59 or offset == "-00:00":
             raise ValueError("Invalid or unknown timezone offset")
-    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    parsed = datetime.fromisoformat(match["whole"] + offset.replace("Z", "+00:00"))
     if parsed.utcoffset() is None:
         raise ValueError("Timezone required")
-    return parsed
+    return parsed, Decimal("0." + (match["fraction"] or "0"))
 
 
 FORMATS = FormatChecker()
@@ -378,7 +390,9 @@ def main(argv: list[str] | None = None) -> int:
         document = load_json(args.bundle)
         result = validate_document(document, args.bundle.parent)
         if args.digest:
-            other = [e for e in result["errors"] if e["code"] not in {"PIPELINE_DIGEST", "CERTIFICATE_PIPELINE"}]
+            # Bootstrap permits matching placeholder/stale IDs, not a broken
+            # certificate-to-pipeline link. Every other error remains fatal.
+            other = [e for e in result["errors"] if e["code"] != "PIPELINE_DIGEST"]
             if not other:
                 print(pipeline_digest(document))
                 return 0
