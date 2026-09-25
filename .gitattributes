@@ -1,0 +1,2 @@
+# Keep application evidence bytes stable on Windows and Unix checkouts.
+application/** text eol=lf

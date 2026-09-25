@@ -1,0 +1,167 @@
+{
+  "standard_version": "0.1.0",
+  "compatible_theory": "0.1.8",
+  "application_id": "unresolved_identification",
+  "artifacts": [
+    {
+      "id": "spec",
+      "path": "specification.md",
+      "sha256": "55bc61bfff5ab419910ed8bc8b666f8dcca4dd84f4f9245eeabf78ca05e94f20"
+    },
+    {
+      "id": "argument",
+      "path": "argument.md",
+      "sha256": "66e359aa98a5764051cda527525cc6b0ae6a111fe1a5881cb4927996cbe826ee"
+    }
+  ],
+  "regime": {
+    "class": "CANDIDATE",
+    "exactness_basis": "NOT_ESTABLISHED",
+    "descriptor_nondegenerate": null,
+    "grounded": false,
+    "forward_richness": "NOT_ASSESSED",
+    "horizon": null,
+    "eta": null,
+    "qsd_claim_id": null,
+    "claim_refs": []
+  },
+  "semantic_pipeline": {
+    "pipeline_id": "sha256:87acb73d7ad839d7ce3270863ed11832deb28391a90b959827a17ab7888fa05f",
+    "bindings": {
+      "typed_state": "spec",
+      "state_sufficiency": "spec",
+      "action_selection": "spec",
+      "world_transition": "spec",
+      "strategic_update": "spec",
+      "feasible_actions": "spec",
+      "regime_region": "spec",
+      "initial_basin": "spec",
+      "descriptor": "spec",
+      "limiting_law": null,
+      "convergence_mode": null,
+      "relevance_map": "spec",
+      "property_map": "spec",
+      "comparison_set": "spec",
+      "component_grammar": "spec",
+      "hard_structural_relations": "spec",
+      "semantic_transport_rules": "spec",
+      "model_set_rule": "spec",
+      "inference_procedure": "spec",
+      "clock_state": null
+    },
+    "components": [
+      {
+        "id": "alpha",
+        "kind": "ACTION_SELECTION"
+      },
+      {
+        "id": "P",
+        "kind": "WORLD_TRANSITION"
+      },
+      {
+        "id": "U",
+        "kind": "STRATEGIC_UPDATE"
+      },
+      {
+        "id": "feasibility",
+        "kind": "FEASIBILITY"
+      }
+    ],
+    "selection_status": "POST_HOC_EXPLORATORY",
+    "frozen_at": "2026-09-01T00:00:00Z",
+    "evaluation_started_at": "2026-09-02T00:00:00Z",
+    "registration_ref": null,
+    "selection_adjustment_ref": null
+  },
+  "interventions": [
+    {
+      "id": "J0",
+      "type": "ACTION_SELECTION",
+      "target_form": "ATOMIC",
+      "target_components": [
+        "alpha"
+      ],
+      "effective_target_components": [
+        "alpha"
+      ],
+      "held_fixed_components": [
+        "P",
+        "U",
+        "feasibility"
+      ],
+      "replacement_ref": "spec",
+      "hard_target_closure_ref": "spec",
+      "schedule": "STATIONARY",
+      "formal_admissibility": "ADMISSIBLE",
+      "reachable_support": "UNRESOLVED",
+      "causal_modularity": "UNRESOLVED"
+    }
+  ],
+  "provenance_graph": {
+    "nodes": [
+      {
+        "id": "primitives",
+        "kind": "DECLARED_IDENTITY_OR_AXIOM",
+        "artifact_ref": "spec",
+        "depends_on": [],
+        "description": "Declared synthetic model primitives; no empirical warrant."
+      },
+      {
+        "id": "regime",
+        "kind": "CLAIM",
+        "artifact_ref": "argument",
+        "depends_on": [
+          "primitives"
+        ],
+        "description": "Analytic regime argument, independently readable in the artifact."
+      },
+      {
+        "id": "effect",
+        "kind": "CLAIM",
+        "artifact_ref": "argument",
+        "depends_on": [
+          "primitives"
+        ],
+        "description": "Analytic effect argument; not machine-proved by this validator."
+      }
+    ]
+  },
+  "identified_set": {
+    "id": "M",
+    "kind": "STRUCTURALLY_UNRESOLVED",
+    "nonempty": true,
+    "rule_ref": "spec",
+    "inference_procedure_ref": "spec",
+    "comparison_set_ref": "spec",
+    "quantification": "INCOMPLETE",
+    "sampling_applicable": true,
+    "coverage": "UNRESOLVED",
+    "zero_effect": "POSSIBLE",
+    "direction": "DIRECTION_AMBIGUOUS",
+    "uniform_gap": {
+      "status": "UNRESOLVED",
+      "lower_bound": null,
+      "claim_refs": []
+    },
+    "claim_refs": [
+      "effect"
+    ]
+  },
+  "certificate": {
+    "validity": "VALID",
+    "epistemic_mode": "EMPIRICAL_EXPLORATORY",
+    "selection_status": "POST_HOC_EXPLORATORY",
+    "identification_status": "STRUCTURALLY_UNRESOLVED",
+    "statistical_status": "STATISTICALLY_UNRESOLVED",
+    "provenance_status": "INSUFFICIENT",
+    "substantive_pr_status": "PR_STATUS_AMBIGUOUS",
+    "direction_status": "DIRECTION_AMBIGUOUS",
+    "uniform_gap_status": "UNRESOLVED",
+    "pipeline_id": "sha256:87acb73d7ad839d7ce3270863ed11832deb28391a90b959827a17ab7888fa05f",
+    "scope": "FROZEN_PROTOCOL",
+    "intervention_id": "J0",
+    "claim_refs": [
+      "effect"
+    ]
+  }
+}

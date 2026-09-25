@@ -55,3 +55,27 @@ Runs 31–33 target the pre-editorial 31-page v0.1.8 artifacts and are preserved
 ## Historical source boundary
 
 The exact frozen v0.1.7 archive records the historical v0.1.6/earlier execution ledgers and logs. The repository does not reconstruct unavailable historical Python source from logs; compact compatibility summaries are explicitly labeled as summaries and the frozen archive remains the evidentiary record for those executions.
+
+## Application contract layer (separate from frozen verification)
+
+The [Application Standard](../application/README.md), draft 0.1.0 for theory v0.1.8,
+adds a fourth, structural verification concern. It preserves the nine orthogonal
+certificate dimensions and checks declared schemas, artifact hashes, semantic
+pipeline identity, typed target partitions, provenance graphs and reporting scope.
+It does not establish mathematical proof, empirical truth, authentic registration,
+causal identification, support or statistical coverage.
+
+```bash
+python -m pip install -r application/requirements.txt
+python -m unittest discover -s application/tests -v
+python application/examples/build_examples.py
+python verification/application_gate.py
+```
+
+The independent `Application contract` workflow runs these checks on Linux and
+Windows. An expected-invalid fixture is tested against its exact error-code set;
+unresolved applications and records declaring INVALID remain representable.
+`application_gate.py` is the additive synchronization gate for this new layer.
+The existing `repository_gate.py`, Lean workflow, destructive/release workflows,
+frozen run records and release hashes are unchanged. See
+[APPLICATION_BOUNDARY.md](../docs/APPLICATION_BOUNDARY.md) for the scope crosswalk.

@@ -1,0 +1,133 @@
+{
+  "standard_version": "0.1.0",
+  "compatible_theory": "0.1.8",
+  "application_id": "exact_gr_minimal",
+  "artifacts": [
+    {
+      "id": "spec",
+      "path": "specification.md",
+      "sha256": "55bc61bfff5ab419910ed8bc8b666f8dcca4dd84f4f9245eeabf78ca05e94f20"
+    },
+    {
+      "id": "argument",
+      "path": "argument.md",
+      "sha256": "4888c5ce31771c241fc44a4fd031afb710a456d54a0b42d033cacc1a65d8208d"
+    }
+  ],
+  "regime": {
+    "class": "EXACT_GR",
+    "exactness_basis": "ANALYTIC",
+    "descriptor_nondegenerate": true,
+    "grounded": true,
+    "forward_richness": "FORWARD_ACTIVE",
+    "horizon": null,
+    "eta": null,
+    "qsd_claim_id": null,
+    "claim_refs": [
+      "regime"
+    ]
+  },
+  "semantic_pipeline": {
+    "pipeline_id": "sha256:9aca28c7efaa30b25d22d7d8657830dc6160bb1526dec6081a5d76c4e2e10a28",
+    "bindings": {
+      "typed_state": "spec",
+      "state_sufficiency": "spec",
+      "action_selection": "spec",
+      "world_transition": "spec",
+      "strategic_update": "spec",
+      "feasible_actions": "spec",
+      "regime_region": "spec",
+      "initial_basin": "spec",
+      "descriptor": "spec",
+      "limiting_law": "spec",
+      "convergence_mode": "spec",
+      "relevance_map": "spec",
+      "property_map": null,
+      "comparison_set": null,
+      "component_grammar": "spec",
+      "hard_structural_relations": "spec",
+      "semantic_transport_rules": "spec",
+      "model_set_rule": "spec",
+      "inference_procedure": "spec",
+      "clock_state": null
+    },
+    "components": [
+      {
+        "id": "alpha",
+        "kind": "ACTION_SELECTION"
+      },
+      {
+        "id": "P",
+        "kind": "WORLD_TRANSITION"
+      },
+      {
+        "id": "U",
+        "kind": "STRATEGIC_UPDATE"
+      },
+      {
+        "id": "feasibility",
+        "kind": "FEASIBILITY"
+      }
+    ],
+    "selection_status": "FROZEN_REGISTERED",
+    "frozen_at": "2026-09-01T00:00:00Z",
+    "evaluation_started_at": "2026-09-02T00:00:00Z",
+    "registration_ref": null,
+    "selection_adjustment_ref": null
+  },
+  "interventions": [],
+  "provenance_graph": {
+    "nodes": [
+      {
+        "id": "primitives",
+        "kind": "DECLARED_IDENTITY_OR_AXIOM",
+        "artifact_ref": "spec",
+        "depends_on": [],
+        "description": "Declared synthetic model primitives; no empirical warrant."
+      },
+      {
+        "id": "regime",
+        "kind": "CLAIM",
+        "artifact_ref": "argument",
+        "depends_on": [
+          "primitives"
+        ],
+        "description": "Analytic regime argument, independently readable in the artifact."
+      }
+    ]
+  },
+  "identified_set": {
+    "id": "M",
+    "kind": "POINT_IDENTIFIED",
+    "nonempty": true,
+    "rule_ref": "spec",
+    "inference_procedure_ref": "spec",
+    "comparison_set_ref": null,
+    "quantification": "NOT_EVALUATED",
+    "sampling_applicable": false,
+    "coverage": "NOT_APPLICABLE",
+    "zero_effect": "NOT_ASSESSED",
+    "direction": "NOT_APPLICABLE",
+    "uniform_gap": {
+      "status": "NOT_APPLICABLE",
+      "lower_bound": null,
+      "claim_refs": []
+    },
+    "claim_refs": []
+  },
+  "certificate": {
+    "validity": "VALID",
+    "epistemic_mode": "FORMAL_THEORETICAL",
+    "selection_status": "FROZEN_REGISTERED",
+    "identification_status": "POINT_IDENTIFIED",
+    "statistical_status": "NOT_APPLICABLE",
+    "provenance_status": "NOT_APPLICABLE",
+    "substantive_pr_status": "NOT_EVALUATED",
+    "direction_status": "NOT_APPLICABLE",
+    "uniform_gap_status": "NOT_APPLICABLE",
+    "pipeline_id": "sha256:9aca28c7efaa30b25d22d7d8657830dc6160bb1526dec6081a5d76c4e2e10a28",
+    "scope": "FROZEN_PROTOCOL",
+    "intervention_id": null,
+    "claim_refs": []
+  }
+}

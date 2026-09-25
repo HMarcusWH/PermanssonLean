@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hmwh.se/schemas/permansson/application/0.1.0/application_certificate.schema.json",
+  "title": "Application Certificate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "validity",
+    "epistemic_mode",
+    "selection_status",
+    "identification_status",
+    "statistical_status",
+    "provenance_status",
+    "substantive_pr_status",
+    "direction_status",
+    "uniform_gap_status",
+    "pipeline_id",
+    "scope",
+    "intervention_id",
+    "claim_refs"
+  ],
+  "properties": {
+    "validity": {
+      "enum": [
+        "VALID",
+        "INVALID"
+      ]
+    },
+    "epistemic_mode": {
+      "enum": [
+        "FORMAL_THEORETICAL",
+        "EMPIRICAL_CONFIRMATORY",
+        "EMPIRICAL_EXPLORATORY",
+        "ASSUMPTION_CONDITIONAL"
+      ]
+    },
+    "selection_status": {
+      "enum": [
+        "FROZEN_REGISTERED",
+        "HELD_OUT_OR_SELECTION_ADJUSTED",
+        "POST_HOC_EXPLORATORY"
+      ]
+    },
+    "identification_status": {
+      "enum": [
+        "POINT_IDENTIFIED",
+        "SET_IDENTIFIED",
+        "STRUCTURALLY_UNRESOLVED"
+      ]
+    },
+    "statistical_status": {
+      "enum": [
+        "NOT_APPLICABLE",
+        "RESOLVED_AT_DECLARED_COVERAGE",
+        "STATISTICALLY_UNRESOLVED"
+      ]
+    },
+    "provenance_status": {
+      "enum": [
+        "SUPPORTED",
+        "INSUFFICIENT",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "substantive_pr_status": {
+      "enum": [
+        "ROBUST_PR",
+        "ROBUST_NONCONSTITUTIVE_UNDER_FROZEN_PROTOCOL",
+        "PR_STATUS_AMBIGUOUS",
+        "NOT_EVALUATED"
+      ]
+    },
+    "direction_status": {
+      "enum": [
+        "POSITIVE",
+        "NEGATIVE",
+        "DIRECTION_AMBIGUOUS",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "uniform_gap_status": {
+      "enum": [
+        "ESTABLISHED",
+        "UNRESOLVED",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "pipeline_id": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "scope": {
+      "const": "FROZEN_PROTOCOL"
+    },
+    "intervention_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "claim_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+      },
+      "minItems": 0,
+      "maxItems": 256,
+      "uniqueItems": true
+    }
+  }
+}

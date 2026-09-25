@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hmwh.se/schemas/permansson/application/0.1.0/semantic_pipeline.schema.json",
+  "title": "Semantic Pipeline",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pipeline_id",
+    "bindings",
+    "components",
+    "selection_status",
+    "frozen_at",
+    "evaluation_started_at",
+    "registration_ref",
+    "selection_adjustment_ref"
+  ],
+  "properties": {
+    "pipeline_id": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "typed_state",
+        "state_sufficiency",
+        "action_selection",
+        "world_transition",
+        "strategic_update",
+        "feasible_actions",
+        "regime_region",
+        "initial_basin",
+        "component_grammar",
+        "hard_structural_relations",
+        "semantic_transport_rules",
+        "model_set_rule",
+        "inference_procedure",
+        "descriptor",
+        "limiting_law",
+        "convergence_mode",
+        "relevance_map",
+        "property_map",
+        "comparison_set",
+        "clock_state"
+      ],
+      "properties": {
+        "typed_state": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "state_sufficiency": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "action_selection": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "world_transition": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "strategic_update": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "feasible_actions": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "regime_region": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "initial_basin": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "component_grammar": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "hard_structural_relations": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "semantic_transport_rules": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "model_set_rule": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "inference_procedure": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "descriptor": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "limiting_law": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "convergence_mode": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "relevance_map": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "property_map": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "comparison_set": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "clock_state": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "$ref": "https://hmwh.se/schemas/permansson/application/0.1.0/common.schema.json#/$defs/component"
+      },
+      "minItems": 1,
+      "maxItems": 256,
+      "uniqueItems": true
+    },
+    "selection_status": {
+      "enum": [
+        "FROZEN_REGISTERED",
+        "HELD_OUT_OR_SELECTION_ADJUSTED",
+        "POST_HOC_EXPLORATORY"
+      ]
+    },
+    "frozen_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "evaluation_started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "registration_ref": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "selection_adjustment_ref": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

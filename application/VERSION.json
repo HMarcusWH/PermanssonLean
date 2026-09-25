@@ -1,0 +1,9 @@
+{
+  "standard": "Permansson Application Standard",
+  "version": "0.1.0",
+  "compatible_theory": "0.1.8",
+  "status": "DRAFT",
+  "scope": "APPLICATION_CONTRACT_NOT_THEOREM_EXTENSION",
+  "schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+  "digest_profile": "PERMANSSON_PIPELINE_V1"
+}
