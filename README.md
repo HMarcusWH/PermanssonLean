@@ -2,134 +2,123 @@
 
 Formal verification and executable-validation companion for **Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium v0.1.8**.
 
-The repository machine-checks the paper's discrete-time GR/PR mathematical core in Lean 4. It is a theorem-level companion to the paper, not a substitute for its empirical, identification, provenance, or literature-priority disciplines.
+Permansson separates two questions: what persistent regime a strategic process
+generates, and whether a declared strategic component is constitutive of a regime
+property under a specified intervention. This repository collects the paper, Lean
+proofs, executable tests, and an application-reporting standard. It is not an
+automatic regime-discovery, prediction, or causal-estimation service.
 
-## Paper and supporting theory
+## Start here
 
-The repository now includes the final editorial-clean paper together with the internal papers cited as part of its theoretical lineage:
+| Your goal | First stop | Software needed |
+|---|---|---|
+| Understand the theory | [Paper and reading order](paper/README.md) | None to read the PDF |
+| Try the application format | [Setup and first example](docs/GETTING_STARTED.md) | Git and Python 3.13 |
+| Check the mathematical claims | [Formalization map](docs/FORMALIZATION_MAP.md#source-to-lean-theorem-and-definition-ledger) and [Lean setup](docs/GETTING_STARTED.md#build-the-lean-proofs) | Lean/elan and Git |
+| Reproduce verification | [Verification guide](verification/README.md) | Depends on the selected check |
+| Make a change | [Contribution guide](CONTRIBUTING.md) | Depends on the change |
 
-- [v0.1.8 editorial-clean PDF](paper/Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_EDITORIAL_CLEAN_2026-09-23.pdf)
-- [v0.1.8 TeX source](paper/Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_2026-09-23.tex)
-- [paper directory and dependency guide](paper/README.md)
-- [foundational EGR paper](paper/supporting/foundational/README.md) — the direct Paper-I predecessor cited as Hermansson (2026a)
-- [specialized Appendix E theory](paper/supporting/specialized_theory/README.md) — the five Hermansson (2026b–f) working papers used as specialized theorem-transfer architectures
-
-The supporting PDFs are repository-hosted copies of papers cited by v0.1.8. They were added after the frozen v0.1.8 release-package lineage and do not alter the immutable release hashes or the Lean snapshot.
-
-## Toolchain
-
-- Lean 4.34.0
-- mathlib 4.34.0
-
-Both are pinned. The `lakefile.toml` package version remains `0.1.0` because it is part of the immutable formalization snapshot; the scholarly/release version of this companion is **v0.1.8** as recorded in `CITATION.cff` and the release metadata.
-
-## Formalization strategy
-
-The build follows mathematical dependency rather than paper page order:
-
-1. typed strategic-world kernels `α`, `P`, and `U`;
-2. induced joint kernel `K_{𝔊,P}`;
-3. canonical path law, well-posedness, and enlarged-state reduction;
-4. Generated Regime semantics, Polish descriptor support, exact persistence, and killed-kernel calculus;
-5. finite-persistence and QSD-certified quasi-regime machinery;
-6. typed intervention grammar;
-7. generalized Permansson constitution;
-8. constitutive margins, perturbation robustness, and the finite-horizon TV envelope;
-9. intervention-family and representation equivalence;
-10. type-respecting intervention-compatible quotient preservation;
-11. Paper-I EGR embedding and conservative PR recovery;
-12. grounded confirmatory semantics;
-13. recorded-action decoding and action-sensitive Paper-I recovery;
-14. Section-7 non-identification, constitutive non-invariance, and nuisance-padding witnesses;
-15. Proposition 8.1's explicit period-two Exact GR under almost-sure weak occupation convergence.
-
-See [docs/FORMALIZATION_MAP.md](docs/FORMALIZATION_MAP.md) for the source-to-Lean theorem ledger and claim firewall.
-
-## Status discipline
-
-- **PROVED** — accepted by Lean on the pinned toolchain.
-- **DEFINED** — a paper object is represented as data/structure and has no separate theorem obligation merely for existing.
-- **SCAFFOLDED** — a partial interface exists but a stated theorem obligation remains incomplete.
-- **OPEN** — a formal-core claim has not yet been represented in Lean.
-- **NON-CORE / OUTSIDE FORMALIZED CORE** — explicitly outside the universal GR/PR theorem set, such as the specialized finite-certificate/rigidity material collected in Appendix E.
-- **EMPIRICAL / OUT OF SCOPE** — depends on data, scientific identification, provenance, statistics, or literature priority rather than pure formal derivation.
-
-A green build certifies the Lean declarations that are actually present. It does not validate empirical inputs, causal identification, novelty, or material outside the formalized theorem scope.
-
-## Current coverage
-
-The numbered theorem/proposition/corollary/definition obligations in the **v0.1.8 discrete formal core through Proposition 8.1** have corresponding Lean closure. The checked surface includes:
-
-- joint-process construction and uniqueness plus Proposition 3.2 enlarged-state reduction;
-- Proposition 4.1a Polish descriptor-space / bounded-Lipschitz weak-convergence support;
-- exact invariance, killed-kernel survival, finite persistence, exit-time/Green identities, and the `q^L` lower bound;
-- Definition 4.3 Exact GR and Definition 4.4a / Proposition 4.4b QSD certification;
-- generalized PR constitution, uniform margins, Proposition 5.2 / Corollary 5.3 robustness, and Proposition 5.4's finite-horizon TV envelope;
-- Theorems 6.1–6.2 conservative Paper-I recovery for world-only, recorded-action, uniform-margin, and grounded-confirmatory protocols;
-- Proposition 7.1, Theorems 7.2–7.3, Propositions 7.4/7.4a, Theorem 7.4b, and Proposition 7.5;
-- Proposition 8.1's literal two-state periodic Exact GR under `ConvergenceMode.almostSureWeak`.
-
-The specialized scalar-defect / finite-detection / first-bad / singular-compatibility material in Appendix E remains deliberately **NON-CORE / OUTSIDE FORMALIZED CORE** unless and until a natural Permansson interface and direct theorem are supplied. Continuous-time, set-valued, nonautonomous, and application-specific extensions remain outside the discrete core completion claim.
-
-## Build
-
-```bash
-lake update
-lake build
-```
-
-CI additionally audits the root import graph and rejects `sorry`, `admit`, and source-level custom `axiom` declarations.
-
-## Executable verification
-
-The repository now carries the inspectable Python verification source in addition to Lean:
-
-- `verification/destructive/suite/` — destructive/regression Runs 17–30;
-- `verification/v0.1.8_release_gate/` — release gates 31–34, with Runs 31–33 retained as historical gates and Run 34 as the editorial-final package gate;
-- `verification/lean/` — exact paper-to-Lean crosswalk and CI provenance;
-- `verification/repository_gate.py` — repository-level source/provenance synchronization check.
-
-GitHub Actions runs the Lean build independently from the executable Python verification workflow. This preserves the epistemic distinction between theorem checking and destructive/regression testing.
-
-See [verification/README.md](verification/README.md) for rerun instructions.
-
-## Paper release provenance
-
-The final editorial-clean v0.1.8 manuscript is tied to immutable formal-code snapshot `c018f79ea4ce46f4f679ad5bca254509778fc53c` and green CI run `35808810682`.
-
-Final artifact identifiers:
-
-- PDF SHA-256: `24f7dd43c8996b6fc8bedf708704969ba2124e159783bbd2ded45db61525df54`
-- TeX SHA-256: `8235f6140bca33e7e3f0e96b4fd3aa2431c476fbdaf7c5d86d6d0b703ea54ed9`
-- frozen destructive archive SHA-256: `7ab578c928a2918e09846b9f1c425f5a6c07b5b5dd0a0c8728662eebcb69a15a`
-- Windows-safe destructive suite SHA-256: `864e2fec88b345194b0a9dc4ce9431e6a9a754eb88adea75fb8835b6244f41c3`
-- final Windows-safe release ZIP SHA-256: `66a13d3d4ea6854d38a6a32fe8b7946cbc290c62484b654dc02e0317039faf25`
-- final release gate: Run 34, **58/58 PASS**
-
-Exact release metadata and claim boundaries are recorded in [docs/PAPER_VERIFICATION_MANIFEST.md](docs/PAPER_VERIFICATION_MANIFEST.md) and [docs/releases/v0.1.8.json](docs/releases/v0.1.8.json).
+New to the terminology? See the [glossary](docs/GLOSSARY.md).
+The [documentation index](docs/README.md) links the detailed references and archives.
 
 ## Using Permansson in applications
 
-The [Permansson Application Standard](application/README.md) is a separately
-versioned **draft 0.1.0**, compatible with theory v0.1.8. It adds schemas for the
-nine-dimensional application certificate, a content-addressed semantic pipeline,
-typed intervention protocols, rooted provenance and identified-set declarations,
-plus an offline validator and positive/negative worked fixtures.
+The [Application Standard](application/README.md) is **draft 0.1.0**, compatible
+with theory v0.1.8. It serializes the nine independent certificate dimensions,
+frozen semantic choices, typed interventions, provenance, and identified sets.
+You do not need Lean or LaTeX to use its Python validator.
+
+After [setting up Python and entering the repository root](docs/GETTING_STARTED.md#setup):
 
 ```bash
 python -m pip install -r application/requirements.txt
 python application/validator/validate_application.py application/examples/grounded_pr_minimal/application.json --json
-python -m unittest discover -s application/tests -v
-python verification/application_gate.py
 ```
 
-`CONTRACT PASS` means structural consistency only, not proof, empirical validity,
-causal identification, statistical coverage or authentic preregistration. Invalid
-and unresolved applications can be represented without being silently promoted.
-See the [application/formalization boundary](docs/APPLICATION_BOUNDARY.md).
+Expect exit 0, `contract_valid=true`, and `scientific_claims_verified=false`.
+This synthetic example demonstrates a well-formed record, not empirical evidence.
+`CONTRACT PASS` checks structural consistency, not proof, causal identification,
+statistical coverage, or authentic preregistration. In particular, a well-formed
+record can truthfully describe an invalid or unresolved application.
 
-The independent `Application contract` workflow tests Linux and Windows without
-changing the Lean or existing destructive/release verification workflows. The
-[future theory roadmap](docs/FUTURE_THEORY_ROADMAP.md) records constitutive
-quasi-regimes, grammar-robust constitution and multi-limit semantics as
-**RESEARCH / NOT PART OF v0.1.8**; none is added to the completed Lean core here.
+Continue with the [worked examples](application/examples/README.md),
+[CLI reference](application/validator/README.md), or
+[application/formalization boundary](docs/APPLICATION_BOUNDARY.md).
+**Digest generation is not validation:** `--digest` can exit 0 for matching stale
+IDs. Use ordinary validation, without `--digest`, as the contract gate.
+
+## Paper and supporting theory
+
+Read the [editorial-clean v0.1.8 PDF](paper/Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_EDITORIAL_CLEAN_2026-09-23.pdf).
+The [paper guide](paper/README.md) links its TeX source, the foundational EGR paper,
+and the specialized Appendix E papers. Those supporting copies do not change the
+frozen release hashes or the formalization snapshot.
+
+## Build
+
+Install Lean through elan using the [Lean setup guide](docs/GETTING_STARTED.md#build-the-lean-proofs),
+then run from the repository root:
+
+```bash
+lake exe cache get
+lake build
+```
+
+Use the checked-in dependency manifest; a routine build does not require
+`lake update`. The [Lean workflow](.github/workflows/lean.yml) additionally runs
+an axiom audit and rejects placeholders and source-level custom axioms.
+
+## Current coverage
+
+The completion claim covers the **v0.1.8 discrete formal core through Proposition
+8.1**, not every statement in the paper. The full
+[theorem/definition ledger](docs/FORMALIZATION_MAP.md#source-to-lean-theorem-and-definition-ledger)
+records the checked declarations and their boundaries.
+
+### Formalization strategy
+
+The [dependency map](docs/FORMALIZATION_MAP.md#dependency-dag) follows typed kernels,
+path laws, regime/persistence semantics, constitution, representation and quotient
+preservation, Paper-I recovery, and the periodic example. Its later milestone
+sections retain the historical build sequence, not a list of remaining tasks.
+
+### Status discipline
+
+[Status definitions](docs/FORMALIZATION_MAP.md#claim-firewall) distinguish PROVED,
+DEFINED, SCAFFOLDED, OPEN, NON-CORE, and EMPIRICAL material. A green Lean build checks
+the encoded declarations; it does not certify empirical premises or literature priority.
+Appendix E and the [future theory roadmap](docs/FUTURE_THEORY_ROADMAP.md) remain
+outside the completed discrete core.
+
+## Executable verification
+
+The [verification guide](verification/README.md) separates Lean proof checking,
+Runs 17–30, repository/release integrity, and application-contract validation.
+It gives commands, expected outcomes, and the distinction between a normal clone
+and the historical release packages. Their PASS results are not interchangeable.
+
+## Toolchain
+
+| Component | Version authority |
+|---|---|
+| Theory and scholarly companion | v0.1.8 — [CITATION.cff](CITATION.cff) |
+| Lean / mathlib | 4.34.0 / v4.34.0 — [lean-toolchain](lean-toolchain), [lakefile.toml](lakefile.toml) |
+| Application format | Draft 0.1.0 — [application/VERSION.json](application/VERSION.json) |
+| Python verification | CPython 3.13; separate [application](application/requirements.txt) and [destructive-suite](verification/destructive/suite/requirements.txt) dependencies |
+
+The Lean package version remains `0.1.0` because its package metadata belongs to
+the immutable formalization snapshot. It is not the paper's release version or
+the independently versioned application standard.
+
+## Paper release provenance
+
+The manuscript identifies mathematical snapshot
+`c018f79ea4ce46f4f679ad5bca254509778fc53c` and
+[its recorded green CI run](https://github.com/HMarcusWH/PermanssonLean/actions/runs/35808810682).
+For exact artifact hashes and filename mappings, use the
+[paper verification manifest](docs/PAPER_VERIFICATION_MANIFEST.md),
+[machine-readable release metadata](docs/releases/v0.1.8.json), and
+[provenance guide](provenance/README.md).
+
+Use [CITATION.cff](CITATION.cff) for the scholarly companion and record the exact
+commit when referring to a later repository or application implementation.
