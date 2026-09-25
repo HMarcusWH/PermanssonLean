@@ -389,24 +389,32 @@ def main(argv: list[str] | None = None) -> int:
     try:
         document = load_json(args.bundle)
         result = validate_document(document, args.bundle.parent)
+        proposed_digest = None
         if args.digest:
             # Bootstrap permits matching placeholder/stale IDs, not a broken
             # certificate-to-pipeline link. Every other error remains fatal.
             other = [e for e in result["errors"] if e["code"] != "PIPELINE_DIGEST"]
             if not other:
-                print(pipeline_digest(document))
-                return 0
+                proposed_digest = pipeline_digest(document)
+            # Generation success is separate from validation of the input IDs.
+            # Preserve PIPELINE_DIGEST and contract_valid=False during bootstrap.
+            result["digest_generated"] = proposed_digest is not None
+            result["proposed_pipeline_id"] = proposed_digest
         if args.json:
             print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
+        elif proposed_digest is not None:
+            print(proposed_digest)
         else:
             print("CONTRACT PASS" if result["contract_valid"] else "CONTRACT FAIL")
             for error in result["errors"]:
                 print(f"{error['code']}: {error['message']}")
             print(NOTICE)
-        return 0 if result["contract_valid"] else 1
+        return 0 if proposed_digest is not None or result["contract_valid"] else 1
     except (OSError, ValueError, KeyError, RecursionError) as exc:
         result = {"contract_valid": False, "scientific_claims_verified": False,
                   "errors": [{"code": "INPUT_OR_CONFIGURATION", "message": str(exc)}], "notice": NOTICE}
+        if args.digest:
+            result.update(digest_generated=False, proposed_pipeline_id=None)
         print(json.dumps(result, sort_keys=True) if args.json else f"INPUT ERROR: {exc}")
         return 2
 

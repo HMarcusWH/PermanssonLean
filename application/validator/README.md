@@ -35,6 +35,35 @@ the pipeline's declared ID. A mismatch remains `CERTIFICATE_PIPELINE` and exits 
 even when the pipeline already has its correct digest. Artifact/hash, chronology,
 schema and all other errors remain failures; no input is rewritten.
 
+## Machine-readable digest proposals
+
+Combine the options in either order:
+
+```bash
+python application/validator/validate_application.py path/to/application.json --digest --json
+```
+
+The command emits one JSON object, never a bare hash or mixed JSON/text. It retains
+`contract_valid`, `errors`, `notice`, and `scientific_claims_verified=false`, and
+adds these command-result fields on both success and failure:
+
+| Field | Meaning |
+|---|---|
+| `digest_generated` | Whether the digest operation produced a proposal. |
+| `proposed_pipeline_id` | The proposed `sha256:...` identifier, or `null` on failure. |
+
+Exit 0 in digest mode means a proposal was generated; it does **not** necessarily
+mean the input bundle already conforms. Matching placeholder/stale IDs produce a
+proposal while retaining `contract_valid=false` and the `PIPELINE_DIGEST` error.
+After deliberate updates to both IDs, rerun validation without `--digest`.
+
+Certificate mismatches and other contract violations exit 1 with no proposal.
+Input/configuration errors exit 2 with no proposal. Both failure paths retain the
+same JSON field set. These are CLI-result fields, not new application-certificate
+or semantic-pipeline fields. No input, artifact, or scientific status is changed.
+Plain `--digest` still prints only the proposed identifier on success; ordinary
+`--json` validation without `--digest` retains its existing result shape.
+
 ## Timestamp precision
 
 Freeze/evaluation comparisons retain every accepted fractional-second digit. The
