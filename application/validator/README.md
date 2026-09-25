@@ -23,9 +23,12 @@ semantic-pipeline identifier; review and record it explicitly in the manifest an
 certificate before external registration. It is not an auto-repair switch.
 
 Exit codes and the digest algorithm are specified in
-[APPLICATION_STANDARD.md](../APPLICATION_STANDARD.md). Input/configuration errors
-exit 2; contract violations exit 1; a conforming record exits 0. `validity=INVALID`
-is a possible value *inside* a conforming record and is not the CLI exit status.
+[APPLICATION_STANDARD.md](../APPLICATION_STANDARD.md#mode-specific-exit-codes).
+Without `--digest`, exit 0 means the input contract conforms, exit 1 means contract
+violations, and exit 2 means argument-parsing, input or configuration errors.
+With `--digest`, exit 0 means a proposal was generated, not necessarily that the
+input conforms; see below. `validity=INVALID` is a possible value *inside* a
+conforming record and is not the CLI exit status.
 
 ## Digest proposals and certificate links
 
@@ -63,6 +66,22 @@ same JSON field set. These are CLI-result fields, not new application-certificat
 or semantic-pipeline fields. No input, artifact, or scientific status is changed.
 Plain `--digest` still prints only the proposed identifier on success; ordinary
 `--json` validation without `--digest` retains its existing result shape.
+
+## Argument errors and help
+
+Missing bundle arguments, unknown options and attached values on boolean flags
+are argument-parsing errors. With a JSON request they return exit 2 and one JSON
+object on stdout using the same `INPUT_OR_CONFIGURATION` error shape as file
+input failures. It includes `contract_valid=false`, `scientific_claims_verified=false`
+and, when digest mode is requested, `digest_generated=false` and
+`proposed_pipeline_id=null`. No usage text is mixed into stdout or written to stderr.
+No bundle or artifact is read on this path.
+
+Output-mode detection respects `--`: later tokens are positional values, not
+flags. Existing unambiguous abbreviations such as `--j` remain supported.
+Without a JSON request, argument errors keep usage/error text on stderr and exit 2.
+Explicit `--help`/`-h` still prints human-readable help and exits 0, even with
+`--json`; it does not validate input or generate a digest.
 
 ## Timestamp precision
 

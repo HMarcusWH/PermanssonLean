@@ -380,12 +380,53 @@ def validate_document(document: Any, root: Path) -> dict[str, Any]:
     return report()
 
 
+class _ArgumentParser(argparse.ArgumentParser):
+    def error(self, message: str) -> None:
+        # Let main choose JSON or the conventional stderr usage diagnostic.
+        # Do not override exit(): explicit help must retain its normal behavior.
+        raise argparse.ArgumentError(None, message)
+
+
+def _output_flag_requested(argv: list[str], flag: str) -> bool:
+    """Find an output request even if parsing fails before reaching that flag.
+
+    All current options take no values and their long names have unique prefixes.
+    Preserve argparse's existing unambiguous abbreviations and stop at '--'.
+    An attached value is still an error, but its output request remains readable.
+    """
+    for token in argv:
+        if token == "--":
+            break
+        name = token.partition("=")[0]
+        if name.startswith("--") and len(name) > 2 and flag.startswith(name):
+            return True
+    return False
+
+
+def _input_error_result(message: str, digest: bool) -> dict[str, Any]:
+    result = {"contract_valid": False, "scientific_claims_verified": False,
+              "errors": [{"code": "INPUT_OR_CONFIGURATION", "message": message}], "notice": NOTICE}
+    if digest:
+        result.update(digest_generated=False, proposed_pipeline_id=None)
+    return result
+
+
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
+    argv = list(sys.argv[1:] if argv is None else argv)
+    parser = _ArgumentParser(description=__doc__)
     parser.add_argument("bundle", type=Path, help="Path to application.json")
     parser.add_argument("--json", action="store_true", help="Emit machine-readable validation result")
     parser.add_argument("--digest", action="store_true", help="Print the proposed digest; never modifies files")
-    args = parser.parse_args(argv)
+    try:
+        args = parser.parse_args(argv)
+    except argparse.ArgumentError as exc:
+        if _output_flag_requested(argv, "--json"):
+            result = _input_error_result(str(exc), _output_flag_requested(argv, "--digest"))
+            print(json.dumps(result, sort_keys=True, allow_nan=False))
+        else:
+            parser.print_usage(sys.stderr)
+            print(f"{parser.prog}: error: {exc}", file=sys.stderr)
+        return 2
     try:
         document = load_json(args.bundle)
         result = validate_document(document, args.bundle.parent)
@@ -411,11 +452,8 @@ def main(argv: list[str] | None = None) -> int:
             print(NOTICE)
         return 0 if proposed_digest is not None or result["contract_valid"] else 1
     except (OSError, ValueError, KeyError, RecursionError) as exc:
-        result = {"contract_valid": False, "scientific_claims_verified": False,
-                  "errors": [{"code": "INPUT_OR_CONFIGURATION", "message": str(exc)}], "notice": NOTICE}
-        if args.digest:
-            result.update(digest_generated=False, proposed_pipeline_id=None)
-        print(json.dumps(result, sort_keys=True) if args.json else f"INPUT ERROR: {exc}")
+        result = _input_error_result(str(exc), args.digest)
+        print(json.dumps(result, sort_keys=True, allow_nan=False) if args.json else f"INPUT ERROR: {exc}")
         return 2
 
 

@@ -115,9 +115,12 @@ appended without rewriting frozen choices; model-set and inference *rules* remai
 bound through semantic artifacts. Changed model rules or intervention semantics
 require a new pipeline ID and a new freeze/selection account.
 
-`--digest` prints a proposed ID for an otherwise conforming record; it does not
-rewrite files, forgive changed artifact bytes, or constitute registration.
-Validation never repairs stale hashes automatically.
+`--digest` prints a proposed ID when validation has no errors other than
+`PIPELINE_DIGEST`. This permits matching placeholder or stale IDs; a certificate
+whose ID differs from the pipeline's declared ID still fails. The command does
+not rewrite files, forgive changed artifact bytes, or constitute registration.
+Digest-generation success is not input-contract validity; see Section 7 for
+mode-specific exits and JSON output. Validation never repairs stale hashes automatically.
 
 **A hash is not an authentic timestamp.** Rehashing edited input with a backdated
 self-declared timestamp can fool a consistency checker. Supply an independently
@@ -185,9 +188,39 @@ external sources should be represented by bounded, inspectable evidence snapshot
 Paths must be relative POSIX paths without traversal, symlinks, non-regular files,
 Windows reserved names or case collisions. The CLI does not execute or fetch input.
 
-Exit 0: contract passes. Exit 1: schema/consistency violations. Exit 2: input or
-configuration error. `--json` always reports `scientific_claims_verified=false`.
+### Mode-specific exit codes
+
+| Operation | Exit 0 | Exit 1 | Exit 2 |
+|---|---|---|---|
+| Validation (without `--digest`) | The input contract conforms. | Schema/consistency violations. | Argument-parsing, input or configuration error. |
+| Digest proposal (`--digest`, with or without `--json`) | A proposal was generated; the input need not conform yet. | A violation other than `PIPELINE_DIGEST` prevents a proposal. | Argument-parsing, input or configuration error; no proposal. |
+
+Matching placeholder/stale IDs can produce a digest with exit 0 while retaining
+`contract_valid=false` and the `PIPELINE_DIGEST` error. Never use digest-mode exit 0
+as a contract-validation gate. After deliberately updating both IDs, rerun
+validation without `--digest`; inspect `contract_valid` in machine-readable results.
 A raw schema check is not a substitute for cross-file validation.
+
+### Machine-readable results and argument errors
+
+For validation and digest operations, `--json` emits one JSON object on stdout and
+includes `contract_valid`, `errors`, `notice` and `scientific_claims_verified=false`.
+With `--digest`, it additionally includes `digest_generated` and
+`proposed_pipeline_id`; these describe the operation, not scientific validity.
+On a successful proposal they are `true` and the proposed ID, without removing
+any input-validation errors. On failure they are `false` and `null`.
+
+This JSON contract includes argument-parsing errors such as a missing bundle,
+unknown option or an attached value on a boolean flag. They return exit 2 with
+`INPUT_OR_CONFIGURATION`, `contract_valid=false`, and no proposal; usage text is
+not mixed into JSON stdout or emitted on stderr. Without a JSON request, parser
+errors retain the conventional usage/error text on stderr and exit 2.
+
+Output flags must occur before the end-of-options marker `--`; tokens after it
+are positional arguments, even when named `--json` or `--digest`. Existing
+unambiguous option abbreviations remain accepted, though full names are preferred.
+An explicit `--help` or `-h` request retains human-readable help and exit 0. Help
+is not a validation/digest result and performs neither operation, even with `--json`.
 
 ## 8. Review and versioning
 
