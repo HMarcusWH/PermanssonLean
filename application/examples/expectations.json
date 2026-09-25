@@ -1,0 +1,11 @@
+{
+  "exact_gr_minimal": [],
+  "grounded_pr_minimal": [],
+  "quasi_regime_minimal": [],
+  "unresolved_identification": [],
+  "invalid_posthoc_specification": [
+    "POSTHOC_CONFIRMATORY"
+  ],
+  "valid_posthoc_exploratory": [],
+  "invalid_application_record": []
+}

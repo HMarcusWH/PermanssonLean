@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hmwh.se/schemas/permansson/application/0.1.0/identified_set.schema.json",
+  "title": "Identified Set",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "rule_ref",
+    "inference_procedure_ref",
+    "comparison_set_ref",
+    "quantification",
+    "sampling_applicable",
+    "coverage",
+    "zero_effect",
+    "direction",
+    "uniform_gap",
+    "claim_refs",
+    "nonempty"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+    },
+    "kind": {
+      "enum": [
+        "POINT_IDENTIFIED",
+        "SET_IDENTIFIED",
+        "STRUCTURALLY_UNRESOLVED"
+      ]
+    },
+    "rule_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+    },
+    "inference_procedure_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+    },
+    "comparison_set_ref": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "quantification": {
+      "enum": [
+        "ALL_MODELS_ALL_COMPARISON_STATES",
+        "INCOMPLETE",
+        "NOT_EVALUATED"
+      ]
+    },
+    "sampling_applicable": {
+      "type": "boolean"
+    },
+    "coverage": {
+      "enum": [
+        "JUSTIFIED",
+        "UNRESOLVED",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "zero_effect": {
+      "enum": [
+        "EXCLUDED",
+        "ALL_ZERO",
+        "POSSIBLE",
+        "NOT_ASSESSED"
+      ]
+    },
+    "direction": {
+      "enum": [
+        "POSITIVE",
+        "NEGATIVE",
+        "DIRECTION_AMBIGUOUS",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "uniform_gap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "lower_bound",
+        "claim_refs"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "ESTABLISHED",
+            "UNRESOLVED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "lower_bound": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{1,80}(/[1-9][0-9]{0,79})?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "claim_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+          },
+          "minItems": 0,
+          "maxItems": 256,
+          "uniqueItems": true
+        }
+      }
+    },
+    "claim_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+      },
+      "minItems": 0,
+      "maxItems": 256,
+      "uniqueItems": true
+    },
+    "nonempty": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  }
+}

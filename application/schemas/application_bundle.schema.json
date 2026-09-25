@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hmwh.se/schemas/permansson/application/0.1.0/application_bundle.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "standard_version",
+    "compatible_theory",
+    "application_id",
+    "artifacts",
+    "regime",
+    "semantic_pipeline",
+    "interventions",
+    "provenance_graph",
+    "identified_set",
+    "certificate"
+  ],
+  "properties": {
+    "standard_version": {
+      "const": "0.1.0"
+    },
+    "compatible_theory": {
+      "const": "0.1.8"
+    },
+    "application_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "https://hmwh.se/schemas/permansson/application/0.1.0/common.schema.json#/$defs/artifact"
+      },
+      "minItems": 1,
+      "maxItems": 128,
+      "uniqueItems": true
+    },
+    "regime": {
+      "$ref": "https://hmwh.se/schemas/permansson/application/0.1.0/common.schema.json#/$defs/regime"
+    },
+    "semantic_pipeline": {
+      "$ref": "https://hmwh.se/schemas/permansson/application/0.1.0/semantic_pipeline.schema.json"
+    },
+    "interventions": {
+      "type": "array",
+      "items": {
+        "$ref": "https://hmwh.se/schemas/permansson/application/0.1.0/intervention_protocol.schema.json"
+      },
+      "minItems": 0,
+      "maxItems": 256,
+      "uniqueItems": true
+    },
+    "provenance_graph": {
+      "$ref": "https://hmwh.se/schemas/permansson/application/0.1.0/provenance_graph.schema.json"
+    },
+    "identified_set": {
+      "$ref": "https://hmwh.se/schemas/permansson/application/0.1.0/identified_set.schema.json"
+    },
+    "certificate": {
+      "$ref": "https://hmwh.se/schemas/permansson/application/0.1.0/application_certificate.schema.json"
+    }
+  }
+}

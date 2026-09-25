@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hmwh.se/schemas/permansson/application/0.1.0/common.schema.json",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "pattern": "\\S"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "selection": {
+      "enum": [
+        "FROZEN_REGISTERED",
+        "HELD_OUT_OR_SELECTION_ADJUSTED",
+        "POST_HOC_EXPLORATORY"
+      ]
+    },
+    "artifact_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+    },
+    "claim_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+      },
+      "minItems": 0,
+      "maxItems": 256,
+      "uniqueItems": true
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000,
+          "pattern": "\\S"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+        },
+        "kind": {
+          "enum": [
+            "ACTION_SELECTION",
+            "STRATEGIC_UPDATE",
+            "WORLD_TRANSITION",
+            "FEASIBILITY",
+            "INFORMATION",
+            "OTHER_PRIMITIVE"
+          ]
+        }
+      }
+    },
+    "regime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class",
+        "exactness_basis",
+        "descriptor_nondegenerate",
+        "grounded",
+        "forward_richness",
+        "horizon",
+        "eta",
+        "claim_refs",
+        "qsd_claim_id"
+      ],
+      "properties": {
+        "class": {
+          "enum": [
+            "EXACT_GR",
+            "QUASI_REGIME",
+            "QSD_CERTIFIED_QUASI_REGIME",
+            "CANDIDATE"
+          ]
+        },
+        "exactness_basis": {
+          "enum": [
+            "ANALYTIC",
+            "LEAN_PROOF",
+            "RATIONAL_CERTIFICATE",
+            "CERTIFIED_INTERVAL",
+            "NOT_ESTABLISHED"
+          ]
+        },
+        "descriptor_nondegenerate": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "grounded": {
+          "type": "boolean"
+        },
+        "forward_richness": {
+          "enum": [
+            "FORWARD_ACTIVE",
+            "BASIN_ONLY",
+            "NOT_ASSESSED"
+          ]
+        },
+        "horizon": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "eta": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "claim_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+          },
+          "minItems": 0,
+          "maxItems": 256,
+          "uniqueItems": true
+        },
+        "qsd_claim_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

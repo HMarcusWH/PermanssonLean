@@ -1,0 +1,15 @@
+# Content-addressed evidence keeps its original bytes, regardless of extension.
+application/** -text
+
+# Normalize only authored application sources, not arbitrary bundle payloads.
+application/*.py text eol=lf
+application/*.md text eol=lf
+application/*.json text eol=lf
+application/requirements.txt text eol=lf
+application/schemas/*.json text eol=lf
+application/validator/*.py text eol=lf
+application/validator/*.md text eol=lf
+application/tests/*.py text eol=lf
+application/examples/*.py text eol=lf
+application/examples/*.md text eol=lf
+application/examples/*.json text eol=lf

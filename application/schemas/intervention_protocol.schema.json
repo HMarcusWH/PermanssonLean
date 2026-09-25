@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hmwh.se/schemas/permansson/application/0.1.0/intervention_protocol.schema.json",
+  "title": "Intervention Protocol",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "target_form",
+    "target_components",
+    "effective_target_components",
+    "held_fixed_components",
+    "replacement_ref",
+    "hard_target_closure_ref",
+    "schedule",
+    "formal_admissibility",
+    "reachable_support",
+    "causal_modularity"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+    },
+    "type": {
+      "enum": [
+        "ACTION_SELECTION",
+        "STRATEGIC_UPDATE",
+        "STRATEGIC_GENERATOR",
+        "WORLD_TRANSITION",
+        "INSTITUTIONAL_STRUCTURAL"
+      ]
+    },
+    "target_form": {
+      "enum": [
+        "ATOMIC",
+        "COMPOUND",
+        "JOINT"
+      ]
+    },
+    "target_components": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+      },
+      "minItems": 1,
+      "maxItems": 256,
+      "uniqueItems": true
+    },
+    "effective_target_components": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+      },
+      "minItems": 1,
+      "maxItems": 256,
+      "uniqueItems": true
+    },
+    "held_fixed_components": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+      },
+      "minItems": 0,
+      "maxItems": 256,
+      "uniqueItems": true
+    },
+    "replacement_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+    },
+    "hard_target_closure_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,79}$"
+    },
+    "schedule": {
+      "enum": [
+        "STATIONARY",
+        "CLOCK_AUGMENTED"
+      ]
+    },
+    "formal_admissibility": {
+      "enum": [
+        "ADMISSIBLE",
+        "INADMISSIBLE",
+        "UNRESOLVED"
+      ]
+    },
+    "reachable_support": {
+      "enum": [
+        "SUPPORTED",
+        "UNRESOLVED",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "causal_modularity": {
+      "enum": [
+        "SUPPORTED",
+        "UNRESOLVED",
+        "NOT_APPLICABLE"
+      ]
+    }
+  }
+}

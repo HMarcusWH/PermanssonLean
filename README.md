@@ -107,3 +107,29 @@ Final artifact identifiers:
 - final release gate: Run 34, **58/58 PASS**
 
 Exact release metadata and claim boundaries are recorded in [docs/PAPER_VERIFICATION_MANIFEST.md](docs/PAPER_VERIFICATION_MANIFEST.md) and [docs/releases/v0.1.8.json](docs/releases/v0.1.8.json).
+
+## Using Permansson in applications
+
+The [Permansson Application Standard](application/README.md) is a separately
+versioned **draft 0.1.0**, compatible with theory v0.1.8. It adds schemas for the
+nine-dimensional application certificate, a content-addressed semantic pipeline,
+typed intervention protocols, rooted provenance and identified-set declarations,
+plus an offline validator and positive/negative worked fixtures.
+
+```bash
+python -m pip install -r application/requirements.txt
+python application/validator/validate_application.py application/examples/grounded_pr_minimal/application.json --json
+python -m unittest discover -s application/tests -v
+python verification/application_gate.py
+```
+
+`CONTRACT PASS` means structural consistency only, not proof, empirical validity,
+causal identification, statistical coverage or authentic preregistration. Invalid
+and unresolved applications can be represented without being silently promoted.
+See the [application/formalization boundary](docs/APPLICATION_BOUNDARY.md).
+
+The independent `Application contract` workflow tests Linux and Windows without
+changing the Lean or existing destructive/release verification workflows. The
+[future theory roadmap](docs/FUTURE_THEORY_ROADMAP.md) records constitutive
+quasi-regimes, grammar-robust constitution and multi-limit semantics as
+**RESEARCH / NOT PART OF v0.1.8**; none is added to the completed Lean core here.
