@@ -59,7 +59,7 @@ jobs:
           PY
       - name: Reject proof placeholders and custom axiom declarations
         run: |
-          if grep -R -n --include='*.lean' -E '(^|[^[:alnum:]_])(sorry|admit)([^[:alnum:]_]|$)|^[[:space:]]*axiom[[:space:]]' PermanssonResearch; then
+          if grep -R -n --include='*.lean' -E '(^|[^[:alnum:]_])(sorry|admit)([^[:alnum:]_]|$)|^[[:space:]]*((private|protected|noncomputable|unsafe)[[:space:]]+)*axiom[[:space:]]' PermanssonResearch PermanssonResearch.lean; then
             echo 'Forbidden proof placeholder or custom axiom in research library'
             exit 1
           fi
