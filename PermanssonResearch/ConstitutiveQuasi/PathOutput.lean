@@ -20,6 +20,9 @@ universe uS uX uA
 variable {S : Type uS} {X : Type uX} {A : Type uA}
 variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
 
+-- An established core theorem used as a file-local typeclass instance.
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
+
 /-- For a point start, the first L+1 coordinates of the canonical infinite
 joint path have exactly the core's finite-prefix law through L transitions. -/
 theorem pathLaw_finitePrefix_eq
