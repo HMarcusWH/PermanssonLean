@@ -21,6 +21,7 @@ import PermanssonResearch.ReverseSolver.MenuExamples
 import PermanssonResearch.ReverseSolver.RationalKernel
 import PermanssonResearch.ReverseSolver.CertifiedSelection
 import PermanssonResearch.ReverseSolver.ValueCorrespondence
+import PermanssonResearch.ReverseSolver.FiniteEvaluation
 
 /-!
 # PermanssonResearch
