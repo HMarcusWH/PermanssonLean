@@ -9,6 +9,7 @@ import PermanssonResearch.ConstitutiveQuasi.SurvivalRobustness
 import PermanssonResearch.ConstitutiveQuasi.Certificate
 import PermanssonResearch.ConstitutiveQuasi.PropertyErrors
 import PermanssonResearch.ConstitutiveQuasi.Robustness
+import PermanssonResearch.ConstitutiveQuasi.CertificateExamples
 
 /-!
 # PermanssonResearch
