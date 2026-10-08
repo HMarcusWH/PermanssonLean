@@ -1,17 +1,16 @@
+import PermanssonResearch.ConstitutiveQuasi.TrajectoryHelpers
 import PermanssonResearch.ConstitutiveQuasi.Definition
-import PermanssonLean.Regime.Occupation
 import PermanssonLean.Regime.Property
-import PermanssonLean.StrategicWorld.WellPosedness
 
 /-!
 # CQ-1: canonical path laws and finite-prefix evaluation
 
-The first theorem is the main compatibility bridge between the canonical
-infinite Ionescu--Tulcea law and the existing finite-prefix law.
+The trajectory/Dirac reduction lives in a generic lemma so no proof needs
+to unfold the Ionescu--Tulcea kernel inside a strategic-world equality.
 -/
 
 open Finset MeasureTheory ProbabilityTheory
-open scoped ENNReal ProbabilityTheory
+open scoped ProbabilityTheory
 
 namespace PermanssonResearch
 namespace ConstitutiveQuasi
@@ -20,8 +19,7 @@ universe uS uX uA uY
 
 variable {Y : Type uY} [MeasurableSpace Y]
 
-/-- View a finite-prefix score as an ordinary whole-path RegimePropertyMap.
-This does not change the frozen definition or introduce a new causal claim. -/
+/-- Lift a finite-prefix score to the original whole-path property interface. -/
 noncomputable def FinitePathProperty.toRegimeProperty
     (L : ℕ) (f : FinitePathProperty Y L) :
     PermanssonLean.RegimePropertyMap Y ℝ :=
@@ -30,14 +28,10 @@ noncomputable def FinitePathProperty.toRegimeProperty
 variable {S : Type uS} {X : Type uX} {A : Type uA}
 variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
 
--- An established core theorem used as a file-local typeclass instance.
 attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 
--- The kernel/prefix bridge is proof-engineering intensive on Lean 4.34.0.
-set_option maxHeartbeats 800000
-
-/-- For a point start, the first L+1 coordinates of the canonical infinite
-joint path have exactly the core's finite-prefix law through L transitions. -/
+/-- The canonical infinite point-started path has exactly the core finite-prefix law.
+L transitions record coordinates 0 through L. -/
 theorem pathLaw_finitePrefix_eq
     (M : PermanssonLean.StrategicWorldModel S X A)
     (y : PermanssonLean.JointState S X) (L : ℕ) :
@@ -48,54 +42,40 @@ theorem pathLaw_finitePrefix_eq
         (PermanssonLean.JointState S X) :=
     fun n => PermanssonLean.StrategicWorldModel.stationaryHistoryKernel
       M.inducedKernel n
-  have hstart :
-      (Measure.dirac y).map
-          (MeasurableEquiv.piUnique (fun _ : Finset.Iic 0 =>
-            PermanssonLean.JointState S X)).symm =
-        Measure.dirac (PermanssonLean.ProbabilitySupport.singletonPrefix y) := by
-    rw [Measure.map_dirac' (by fun_prop)]
-    rfl
-  have hk :
+  have hkernel :
       (fun n : ℕ =>
         PermanssonLean.ProbabilitySupport.stationaryPrefixKernel M.inducedKernel n) =
         κ := by
     funext n
     rfl
-  have hpath :
+  have hsource :
       M.pathLaw (Measure.dirac y) =
-        (Kernel.traj κ 0)
-          (PermanssonLean.ProbabilitySupport.singletonPrefix y) := by
-    change (Kernel.trajMeasure (X := fun _ : ℕ =>
-      PermanssonLean.JointState S X) (Measure.dirac y) κ) = _
-    rw [Kernel.trajMeasure, hstart]
-    exact Measure.dirac_bind (Kernel.measurable (Kernel.traj κ 0))
-      (PermanssonLean.ProbabilitySupport.singletonPrefix y)
-  have hprefix :
+        Kernel.trajMeasure (Measure.dirac y) κ := by
+    rfl
+  have hfinite :
       Kernel.partialTraj κ 0 L
-        (PermanssonLean.ProbabilitySupport.singletonPrefix y) =
-      PermanssonLean.ProbabilitySupport.finitePrefixLaw M.inducedKernel y L := by
+          (PermanssonLean.ProbabilitySupport.singletonPrefix y) =
+        PermanssonLean.ProbabilitySupport.finitePrefixLaw
+          M.inducedKernel y L := by
     change Kernel.partialTraj κ 0 L
         (PermanssonLean.ProbabilitySupport.singletonPrefix y) =
       Kernel.partialTraj
         (fun n => PermanssonLean.ProbabilitySupport.stationaryPrefixKernel
           M.inducedKernel n) 0 L
         (PermanssonLean.ProbabilitySupport.singletonPrefix y)
-    exact congrArg
-      (fun f => Kernel.partialTraj f 0 L
-        (PermanssonLean.ProbabilitySupport.singletonPrefix y)) hk.symm
+    rw [hkernel]
   calc
     (M.pathLaw (Measure.dirac y)).map (Preorder.frestrictLe L) =
-        ((Kernel.traj κ 0)
-          (PermanssonLean.ProbabilitySupport.singletonPrefix y)).map
-            (Preorder.frestrictLe L) := congrArg _ hpath
+        (Kernel.trajMeasure (Measure.dirac y) κ).map
+          (Preorder.frestrictLe L) :=
+      congrArg (fun μ : Measure (ℕ → PermanssonLean.JointState S X) =>
+        μ.map (Preorder.frestrictLe L)) hsource
     _ = Kernel.partialTraj κ 0 L
-          (PermanssonLean.ProbabilitySupport.singletonPrefix y) :=
-        Kernel.traj_map_frestrictLe_apply
-          (κ := κ) 0 L (PermanssonLean.ProbabilitySupport.singletonPrefix y)
-    _ = _ := hprefix
+        (PermanssonLean.ProbabilitySupport.singletonPrefix y) :=
+      trajMeasure_dirac_prefix κ y L
+    _ = _ := hfinite
 
-/-- A bounded property evaluated through the infinite canonical path law is
-identical to its evaluation through the corresponding finite prefix law. -/
+/-- Finite-horizon evaluation agrees between the canonical path and prefix law. -/
 theorem finitePathExpectation_eq_pathLaw
     (M : PermanssonLean.StrategicWorldModel S X A)
     (y : PermanssonLean.JointState S X) (L : ℕ)
@@ -106,8 +86,7 @@ theorem finitePathExpectation_eq_pathLaw
   rw [pathLaw_finitePrefix_eq]
   rfl
 
-/-- Finite-prefix expectations are the baseline values of an existing
-RegimePropertyMap, so future CQ-1 constitution uses the frozen property API. -/
+/-- The finite-prefix expectation is the frozen regime-property baseline value. -/
 theorem finitePathExpectation_eq_baselineProperty
     (M : PermanssonLean.StrategicWorldModel S X A)
     (y : PermanssonLean.JointState S X) (L : ℕ)
