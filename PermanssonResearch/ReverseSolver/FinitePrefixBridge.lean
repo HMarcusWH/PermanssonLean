@@ -30,7 +30,8 @@ theorem rationalFiniteKernel_prefix_one_endpoint {n : ℕ}
   let κ : (k : ℕ) → Kernel ((i : Finset.Iic k) → Fin n) (Fin n) :=
     fun k => PermanssonLean.ProbabilitySupport.stationaryPrefixKernel
       (rationalFiniteKernel M) k
-  have h := Kernel.map_partialTraj_succ_self (κ := κ) 0
+  have h := Kernel.map_partialTraj_succ_self
+    (X := fun _ : ℕ => Fin n) (κ := κ) 0
   have hy := congrArg
       (fun Q : Kernel ((i : Finset.Iic 0) → Fin n) (Fin n) =>
         Q (PermanssonLean.ProbabilitySupport.singletonPrefix y)) h
