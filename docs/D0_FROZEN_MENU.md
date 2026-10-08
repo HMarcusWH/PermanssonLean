@@ -78,8 +78,30 @@ selection theorem over a fixed nonempty candidate list. This is a statement
 about the **explicit exact rational matrices**. It is not, by itself, a proof
 that any supplied matrix is a permitted intervention's induced kernel.
 
-An independent mathematical forward-path equality and a finite-kernel-to-
-canonical-trajectory bridge are required before promoting the exact arithmetic
-result to a proof of a `FrozenMenu` model-value optimum. The strict Python
+The rational weighted-suffix forward enumeration now has a Lean theorem
+proving equality with the rational backward hitting recursion. A distinct
+finite-matrix-to-**canonical `finitePrefixLaw`** theorem and typed kernel
+factorization are still required before promoting this to an unconditional
+`FrozenMenu` model-value optimum. The strict Python
 validator rejects floating-point, Boolean, string, NaN and infinity entries;
 integers and `Fraction` entries are permitted as exact rationals.
+
+## D0-B theorem inventory (PR #40)
+
+Research-only, conditional on passing CI for the PR's exact head:
+
+| Lean file | Mathematical role |
+| --- | --- |
+| `RationalKernel.lean` | Certified nonnegative rational transition rows summing to one; finite hitting recursion and `[0,1]` value bounds |
+| `FiniteEvaluation.lean` | Finite successor-word enumeration with path-product weights; proof total mass is one; proof enumeration equals recursion for any finite rational matrix |
+| `CertifiedSelection.lean` | Computable ordered-list argmax, membership, dominance and zero-optimum property, for a frozen complete list |
+| `ValueCorrespondence.lean` | Conditional transfer of the computable index to `FrozenMenu`: full two-way coverage and **exact_values** field required; preserves original world primitive P |
+| `CertificationExamples.lean` | Small rational one-step exact winner and arithmetic properties in Lean |
+
+The theorem about a genuine typed strategic-world menu is **conditional on**
+the explicit equality-of-values field. This field is not automatically derived
+from rational entries or the separate `finitePrefixLaw`; treating it as an
+unconditional formal bridge would overstate this PR. The Python report
+rechecker independently re-enumerates exact paths, but is not verified as
+software by Lean. The kernel realization/canonical law and eventual executable
+checker should remain separate research work until proved.
