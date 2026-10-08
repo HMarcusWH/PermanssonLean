@@ -41,6 +41,7 @@ change; neither Python tests nor schema validation substitutes for a Lean proof.
 | [Future theory roadmap](FUTURE_THEORY_ROADMAP.md) | Which directions are research, not v0.1.8 results? |
 | [Next-generation research architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md) | How are lanes A/B/C/D specified, wired, proved and independently tested? |
 | [Research library build guide](RESEARCH_BUILD.md) | How do I build and audit the separate research Lean target? |
+| [CQ-1 finite-path bridge](CQ1_FINITE_PATH_BRIDGE.md) | Which new bounded finite-horizon property and TV results are proposed and what are their boundaries? |
 
 ## Archives are not onboarding instructions
 
