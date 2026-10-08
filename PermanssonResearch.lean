@@ -14,6 +14,7 @@ import PermanssonResearch.ConstitutiveQuasi.ComparisonTransport
 import PermanssonResearch.ConstitutiveQuasi.PersistencePromotion
 import PermanssonResearch.ConstitutiveQuasi.CertificateTransport
 import PermanssonResearch.ConstitutiveQuasi.AdversarialExamples
+import PermanssonResearch.ConstitutiveQuasi.NonzeroErrorExample
 
 /-!
 # PermanssonResearch
