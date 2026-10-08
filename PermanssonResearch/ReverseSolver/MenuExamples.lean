@@ -60,8 +60,8 @@ theorem selected_in_twoChoiceMenu (y : JointState Bool Bool) (T : ℕ) :
   optimalMember_mem twoChoiceMenu reachTrue y T
 
 theorem selected_preserves_original_world (y : JointState Bool Bool) (T : ℕ) :
-    (twoChoiceMenu.choice (optimalMember twoChoiceMenu reachTrue y T))
-      .intervention.apply.world = modelB.world :=
+    (twoChoiceMenu.choice (optimalMember twoChoiceMenu reachTrue y T)).intervention.apply.world =
+      modelB.world :=
   optimalMember_world_eq twoChoiceMenu reachTrue y T
 
 end
