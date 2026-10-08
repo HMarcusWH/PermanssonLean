@@ -3,7 +3,8 @@
 **RESEARCH / NOT PART OF v0.1.8. No theorem-completion claim is made here.**
 
 These are proposed next research directions, not missing proofs in the frozen
-core. The [formalization map](FORMALIZATION_MAP.md), v0.1.8 paper, immutable Lean
+core. The detailed build contract, theorem scopes, dependency graph and adversarial
+tests are documented in the [next-generation research architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md). The [formalization map](FORMALIZATION_MAP.md), v0.1.8 paper, immutable Lean
 snapshot and Appendix E non-core boundary retain their existing scope.
 
 ## A. Constitutive quasi-regimes
@@ -55,6 +56,26 @@ not a substantive classification.
 Acceptance tests: multistability, mixtures of recurrent classes, nonconvergent
 occupation sequences and overbroad limit sets; then a direct GR/PR transfer result
 and a versioned application contract. Do not silently replace nu in v0.1.8.
+
+## D. Reverse Regime Solver
+
+Starting point: typed strategic interventions and induced Markov kernels are already
+formalized, but backward reachability, control-policy synthesis and policy-value
+certification are new theory. See the [master architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md#7-lane-d--reverse-regime-solver-synthesis-plus-verification).
+
+Work to do: first evaluate a finite frozen menu of existing admissible strategic
+interventions (D0). Then define a separate finite, fully observed controlled
+process for state-dependent action-selection policies, with the world primitive
+and strategic update held fixed (D1). Prove backward Bellman values, extract an
+admissible maximizing policy, and verify its forward path law. Later extend only
+under explicit assumptions to reach-and-stay, risk constraints, robust model sets,
+block interventions and multiple-limit targets.
+
+Acceptance tests: impossible targets, sampling false negatives, adaptive-vs-fixed
+policy differences, forbidden-region precedence, held-world violations, horizon
+boundaries and uncertainty-quantifier counterexamples. A numerical NOT_FOUND is
+not a theorem of impossibility, and a mathematical optimum is only for the
+specified model and policy class.
 
 ## Promotion rule
 
