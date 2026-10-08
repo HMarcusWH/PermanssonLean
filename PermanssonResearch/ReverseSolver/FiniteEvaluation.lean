@@ -55,7 +55,7 @@ private theorem sum_map_flatMap {α β : Type*}
 
 private theorem sum_map_finRange (n : ℕ) (g : Fin n → ℚ) :
     ((List.finRange n).map g).sum = ∑ z : Fin n, g z := by
-  rw [List.sum_toFinset g (List.nodup_finRange n)]
+  rw [← List.sum_toFinset g (List.nodup_finRange n)]
   simp
 
 /-- For each initial state and horizon the complete list of successor
@@ -75,13 +75,36 @@ theorem successorWordMass_total {n : ℕ} (K : RationalMarkovMatrix n) :
           ((List.finRange n).map (fun z =>
               ((finiteSuccessorWords n T).map
                 (fun xs => K.entry y z * successorWordMass K z xs)).sum)).sum := by
-            simp [finiteSuccessorWords, sum_map_flatMap, List.map_map, successorWordMass]
+            simp [finiteSuccessorWords, sum_map_flatMap, List.map_map,
+              Function.comp_def, successorWordMass]
         _ = ((List.finRange n).map (fun z => K.entry y z)).sum := by
-            congr 1
-            funext z
-            rw [List.sum_map_mul_left, ih]
-            ring
+            simp [List.sum_map_mul_left, ih]
         _ = 1 := by rw [sum_map_finRange, K.row_sum_one]
+
+private theorem finiteSuccessorWords_succ_nonempty {n : ℕ} (T : ℕ)
+    {xs : List (Fin n)} (h : xs ∈ finiteSuccessorWords n (T+1)) :
+    xs ≠ [] := by
+  intro he
+  subst xs
+  simp [finiteSuccessorWords] at h
+
+private theorem successorWordWins_initialGoal {n : ℕ}
+    (target : RationalHittingTarget n) (T : ℕ) (y : Fin n)
+    (hy : y ∈ target.goal)
+    {xs : List (Fin n)} (hx : xs ∈ finiteSuccessorWords n (T+1)) :
+    successorWordWins target y xs = true := by
+  cases xs with
+  | nil => exact (finiteSuccessorWords_succ_nonempty T hx rfl).elim
+  | cons z zs => simp [successorWordWins, hy]
+
+private theorem successorWordWins_initialForbidden {n : ℕ}
+    (target : RationalHittingTarget n) (T : ℕ) (y : Fin n)
+    (hy : y ∉ target.goal) (hd : y ∈ target.forbidden)
+    {xs : List (Fin n)} (hx : xs ∈ finiteSuccessorWords n (T+1)) :
+    successorWordWins target y xs = false := by
+  cases xs with
+  | nil => exact (finiteSuccessorWords_succ_nonempty T hx rfl).elim
+  | cons z zs => simp [successorWordWins, hy, hd]
 
 /-- Independent full-path enumeration satisfies the same recursion as the
 backwards solver; the proof does not assume or unfold rationalHittingValue. -/
@@ -93,17 +116,48 @@ theorem rationalForwardEnumeration_succ {n : ℕ} (K : RationalMarkovMatrix n)
       else ∑ z : Fin n, K.entry y z *
         rationalForwardEnumeration K target T z := by
   by_cases hg : y ∈ target.goal
-  · simp only [if_pos hg]
+  · rw [if_pos hg]
     have hmass := successorWordMass_total K (T+1) y
-    simpa [rationalForwardEnumeration, finiteSuccessorWords,
-      successorWordWins, hg] using hmass
-  · by_cases hd : y ∈ target.forbidden
-    · simp [rationalForwardEnumeration, finiteSuccessorWords,
-        successorWordWins, hg, hd]
-    · simp [rationalForwardEnumeration, finiteSuccessorWords,
-        sum_map_flatMap, List.map_map, successorWordMass,
-        successorWordWins, hg, hd, List.sum_map_mul_left,
-        sum_map_finRange]
+    have h :
+        rationalForwardEnumeration K target (T+1) y =
+          ((finiteSuccessorWords n (T+1)).map (successorWordMass K y)).sum := by
+      unfold rationalForwardEnumeration
+      congr 1
+      apply List.map_congr_left
+      intro xs hx
+      simp [successorWordWins_initialGoal target T y hg hx]
+    exact h.trans hmass
+  · rw [if_neg hg]
+    by_cases hd : y ∈ target.forbidden
+    · rw [if_pos hd]
+      unfold rationalForwardEnumeration
+      have h :
+          ((finiteSuccessorWords n (T+1)).map
+            (fun xs => successorWordMass K y xs *
+              (if successorWordWins target y xs then (1 : ℚ) else 0))).sum =
+              ((finiteSuccessorWords n (T+1)).map (fun _ => (0 : ℚ))).sum := by
+        congr 1
+        apply List.map_congr_left
+        intro xs hx
+        simp [successorWordWins_initialForbidden target T y hg hd hx]
+      rw [h]
+      simp
+    · rw [if_neg hd]
+      unfold rationalForwardEnumeration
+      simp only [finiteSuccessorWords, sum_map_flatMap]
+      rw [sum_map_finRange]
+      apply Finset.sum_congr rfl
+      intro z hz
+      simp only [List.map_map]
+      have hfactor : ∀ xs : List (Fin n),
+          successorWordMass K y (z :: xs) *
+            (if successorWordWins target y (z :: xs) then (1 : ℚ) else 0) =
+          K.entry y z * (successorWordMass K z xs *
+            (if successorWordWins target z xs then (1 : ℚ) else 0)) := by
+        intro xs
+        simp [successorWordMass, successorWordWins, hg, hd, mul_assoc]
+      simp only [Function.comp_def, hfactor, List.sum_map_mul_left]
+      rfl
 
 /-- Independent weighted enumeration and the backward recurrence agree
 for every certified rational matrix, starting state and finite horizon. -/
