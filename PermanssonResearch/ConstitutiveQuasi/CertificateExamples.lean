@@ -69,7 +69,7 @@ theorem baselineScore_one (y : JointState Bool Bool)
     (hy : y ∈ comparisonStay.states) :
     baselinePropertyValue (finiteSurvivalScore.toRegimeProperty 1) modelB y = 1 := by
   have hregion : y ∈ stayFalseSpec.region :=
-    comparisonStay.states_subset_region hy
+    (ConstitutiveComparisonSet.states_subset_region modelB stayFalseSpec comparisonStay) hy
   rw [← finitePathExpectation_eq_baselineProperty modelB y 1 finiteSurvivalScore,
     finiteSurvivalScore_eq_survival, modelB_survival_one hregion]
   simp
@@ -81,7 +81,7 @@ theorem interventionScore_zero (y : JointState Bool Bool)
     intervenedPropertyValue (finiteSurvivalScore.toRegimeProperty 1)
       interventionB.intervention y = 0 := by
   have hregion : y ∈ stayFalseSpec.region :=
-    comparisonStay.states_subset_region hy
+    (ConstitutiveComparisonSet.states_subset_region modelB stayFalseSpec comparisonStay) hy
   rw [← finitePathExpectation_eq_intervenedProperty interventionB y 1 finiteSurvivalScore,
     finiteSurvivalScore_eq_survival, interventionB_survival_zero hregion]
   simp
@@ -147,14 +147,14 @@ theorem exactZeroErrors :
   · intro y
     change ProbabilitySupport.eventTotalVariation
       (modelB.inducedKernel y) (modelB.inducedKernel y) ≤ 0
-    simpa using ProbabilitySupport.eventTotalVariation_self
-      (modelB.inducedKernel y)
+    exact le_of_eq (ProbabilitySupport.eventTotalVariation_self
+      (modelB.inducedKernel y))
   · intro y
     change ProbabilitySupport.eventTotalVariation
       (interventionB.intervention.apply.inducedKernel y)
       (interventionB.intervention.apply.inducedKernel y) ≤ 0
-    simpa using ProbabilitySupport.eventTotalVariation_self
-      (interventionB.intervention.apply.inducedKernel y)
+    exact le_of_eq (ProbabilitySupport.eventTotalVariation_self
+      (interventionB.intervention.apply.inducedKernel y))
   · intro y hy
     change dist (finiteSurvivalScore.fromKernel 1 modelB.inducedKernel y)
       (finiteSurvivalScore.fromKernel 1 modelB.inducedKernel y) ≤ 0
