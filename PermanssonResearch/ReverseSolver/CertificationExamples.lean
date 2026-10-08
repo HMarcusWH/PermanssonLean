@@ -46,13 +46,24 @@ def twoRationalChoices : RationalMatrixMenu Bool 2 where
   matrix := fun c => if c then sureGoalMatrix else halfGoalMatrix
 
 theorem half_one_step :
-    rationalMemberValue twoRationalChoices goalOne 0 1 false = 1/2 := by decide
+    rationalMemberValue twoRationalChoices goalOne 0 1 false = 1/2 := by
+  norm_num [rationalMemberValue, rationalHittingValue,
+    twoRationalChoices, halfGoalMatrix, goalOne, Fin.sum_univ_two]
 
 theorem sure_one_step :
-    rationalMemberValue twoRationalChoices goalOne 0 1 true = 1 := by decide
+    rationalMemberValue twoRationalChoices goalOne 0 1 true = 1 := by
+  norm_num [rationalMemberValue, rationalHittingValue,
+    twoRationalChoices, sureGoalMatrix, goalOne, Fin.sum_univ_two]
 
 theorem selected_sure_one_step :
-    selectRationalMember twoRationalChoices goalOne 0 1 = true := by decide
+    selectRationalMember twoRationalChoices goalOne 0 1 = true := by
+  cases hs : selectRationalMember twoRationalChoices goalOne 0 1 with
+  | false =>
+      have hbest := selectRationalMember_dominates
+        twoRationalChoices goalOne 0 1 true (by simp [twoRationalChoices])
+      rw [hs, sure_one_step, half_one_step] at hbest
+      norm_num at hbest
+  | true => rfl
 
 theorem selected_has_maximum_one_step :
     ∀ i ∈ twoRationalChoices.items,
