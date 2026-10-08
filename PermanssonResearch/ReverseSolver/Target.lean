@@ -32,8 +32,10 @@ before the first entrance into D. In particular, the initial state counts. -/
 def successPrefixEvent (target : FrozenHittingTarget Y) (T : ℕ) :
     Set ((i : Finset.Iic T) → Y) :=
   ⋃ t : Finset.Iic T,
-    {w | w t ∈ target.goal} ∩
-      ⋂ u : Finset.Iic T, {w | (u : ℕ) < (t : ℕ) → w u ∉ target.forbidden}
+    {w : ((i : Finset.Iic T) → Y) | w t ∈ target.goal} ∩
+      ⋂ u : Finset.Iic T,
+        {w : ((i : Finset.Iic T) → Y) |
+          (u : ℕ) < (t : ℕ) → w u ∉ target.forbidden}
 
 /-- This is an actual measurable finite-prefix event, not an outer-measure
 substitute for a nonmeasurable stopping-time condition. -/
