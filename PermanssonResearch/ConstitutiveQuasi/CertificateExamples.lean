@@ -121,6 +121,66 @@ theorem zeroHorizon_no_kernel_effect
       f.fromKernel 0 interventionB.intervention.apply.inducedKernel y :=
   expected_zero_independent_of_kernel _ _ y f
 
+/-- The exact pair is the same typed strategic model and intervention on
+both sides; both share the same world primitive P. -/
+noncomputable def exactPair :
+    StrategicApproximationPair modelB familyB interventionB where
+  approx := modelB
+  approxFamily := familyB
+  approxIntervention := interventionB
+  approx_world_eq := rfl
+
+/-- Explicit approximation profile evaluated on the actual model kernels. -/
+noncomputable def exactProfile :
+    PerturbedPropertyProfile (JointState Bool Bool) ℝ where
+  baseline := fun y => finiteSurvivalScore.fromKernel 1 modelB.inducedKernel y
+  intervention := fun y =>
+    finiteSurvivalScore.fromKernel 1 interventionB.intervention.apply.inducedKernel y
+
+/-- The paired exact models have zero kernel TV and zero numerical error.
+This is a typed witness for the *entire* finite model/output error record. -/
+theorem exactZeroErrors :
+    FinitePathModelErrors modelB stayFalseSpec familyB comparisonStay
+      interventionB exactPair 1 finiteSurvivalScore exactProfile 0 0 0 0 := by
+  refine ⟨by norm_num, by norm_num, by norm_num, by norm_num,
+    by norm_num, by norm_num, ?_, ?_, ?_, ?_⟩
+  · intro y
+    change ProbabilitySupport.eventTotalVariation
+      (modelB.inducedKernel y) (modelB.inducedKernel y) ≤ 0
+    simpa using ProbabilitySupport.eventTotalVariation_self
+      (modelB.inducedKernel y)
+  · intro y
+    change ProbabilitySupport.eventTotalVariation
+      (interventionB.intervention.apply.inducedKernel y)
+      (interventionB.intervention.apply.inducedKernel y) ≤ 0
+    simpa using ProbabilitySupport.eventTotalVariation_self
+      (interventionB.intervention.apply.inducedKernel y)
+  · intro y hy
+    change dist (finiteSurvivalScore.fromKernel 1 modelB.inducedKernel y)
+      (finiteSurvivalScore.fromKernel 1 modelB.inducedKernel y) ≤ 0
+    simp
+  · intro y hy
+    change dist
+      (finiteSurvivalScore.fromKernel 1
+        interventionB.intervention.apply.inducedKernel y)
+      (finiteSurvivalScore.fromKernel 1
+        interventionB.intervention.apply.inducedKernel y) ≤ 0
+    simp
+
+/-- Exact zero-error inputs yield the combined survival/margin robustness
+conclusion without claiming Exact PR or a QSD. -/
+theorem exactPair_robustFiniteCertificate :
+    (∀ y ∈ stayFalseSpec.region,
+      (1 - (0 : ℝ≥0∞)).toReal -
+        ProbabilitySupport.geometricTVEnvelope (0 : ℝ) 1 ≤
+      (survivalProbability exactPair.approx stayFalseSpec y 1).toReal) ∧
+    ((1 : ℝ) -
+      (ProbabilitySupport.geometricTVEnvelope (0 : ℝ) 1 + 0 +
+        (ProbabilitySupport.geometricTVEnvelope (0 : ℝ) 1 + 0)) ≤
+      perturbedConstitutiveMargin modelB stayFalseSpec comparisonStay exactProfile) :=
+  finiteConstitutiveCertificate_robust positiveFiniteCertificate exactZeroErrors
+
+
 end CertificateExamples
 end ConstitutiveQuasi
 end PermanssonResearch
