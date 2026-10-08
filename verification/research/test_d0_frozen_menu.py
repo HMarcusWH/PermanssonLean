@@ -1,12 +1,13 @@
 """Adversarial D0 frozen-menu solver tests with exact rational probabilities."""
 import itertools
 import math
+from dataclasses import replace
 import unittest
 from fractions import Fraction as Q
 
 from d0_finite_solver import (
     prefix_law, value_by_enumeration, value_by_recursion, solve_frozen_menu,
-    validate_kernel,
+    validate_kernel, verify_frozen_menu_result,
 )
 
 # 0 = starting state, 1 = goal, 2 = forbidden.
@@ -137,6 +138,27 @@ class D0FixedMenuTests(unittest.TestCase):
                         value_by_recursion(matrix, start, G, D, horizon),
                         value_by_enumeration(matrix, start, G, D, horizon),
                     )
+
+
+    def test_independent_exact_report_rechecker(self):
+        menu = [("A", A), ("B", B), ("C", C)]
+        for T in range(4):
+            result = solve_frozen_menu(menu, 0, G, D, T)
+            self.assertTrue(verify_frozen_menu_result(menu, 0, G, D, T, result))
+            self.assertFalse(verify_frozen_menu_result(menu, 0, G, D, T,
+                replace(result, value=result.value + Q(1, 7))))
+            self.assertFalse(verify_frozen_menu_result(menu, 0, G, D, T,
+                replace(result, selected="unlisted")))
+            self.assertFalse(verify_frozen_menu_result(menu, 0, G, D, T,
+                replace(result, values=result.values[:-1])))
+            self.assertFalse(verify_frozen_menu_result(menu, 0, G, D, T,
+                replace(result, value=float(result.value))))
+        tied = [("first", B), ("second", B)]
+        result = solve_frozen_menu(tied, 0, G, D, 2)
+        self.assertTrue(verify_frozen_menu_result(tied, 0, G, D, 2, result))
+        self.assertFalse(verify_frozen_menu_result(tied, 0, G, D, 2,
+            replace(result, selected="second")))
+
 
 
 if __name__ == "__main__":

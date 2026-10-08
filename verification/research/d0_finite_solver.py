@@ -116,3 +116,24 @@ def solve_frozen_menu(menu, initial, goal, forbidden, horizon):
     chosen = max(vals, key=lambda pair: pair[1])
     assert type(chosen[1]) is Fraction and all(type(v) is Fraction for _, v in vals)
     return FixedMenuResult(chosen[0], chosen[1], tuple(vals))
+
+
+def verify_frozen_menu_result(menu, initial, goal, forbidden, horizon, reported):
+    """Independently re-evaluate a candidate report by exhaustive path sums.
+
+    This is a second exact Python computation, NOT a Lean-verified software
+    certificate and NOT a proof that arbitrary matrices are typed interventions.
+    """
+    if not isinstance(reported, FixedMenuResult) or type(reported.value) is not Q:
+        return False
+    items = tuple(menu)
+    if not items or len({name for name, _ in items}) != len(items):
+        raise ValueError("invalid frozen menu")
+    expected = tuple((name, value_by_enumeration(rows, initial, goal, forbidden, horizon))
+                     for name, rows in items)
+    if tuple(reported.values) != expected or any(type(v) is not Q for _, v in reported.values):
+        return False
+    best = max(expected, key=lambda pair: pair[1])
+    return reported.selected == best[0] and reported.value == best[1]
+
+
