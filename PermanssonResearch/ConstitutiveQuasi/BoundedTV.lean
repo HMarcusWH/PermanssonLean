@@ -92,6 +92,9 @@ theorem finitePathExpectation_abs_le_geometric
     (PermanssonLean.ProbabilitySupport.commonFinitePrefixLaw_le_left K Ktilde y L)
     (PermanssonLean.ProbabilitySupport.commonFinitePrefixLaw_le_right K Ktilde y L)
     f.score f.measurable_score f.score_nonneg f.score_le_one
+  have hbudgetNonneg :
+      0 ≤ PermanssonLean.ProbabilitySupport.geometricTVEnvelope δ L :=
+    PermanssonLean.ProbabilitySupport.geometricTVEnvelope_nonneg hδ0 hδ1 L
   have hmass :=
     PermanssonLean.ProbabilitySupport.commonFinitePrefixLaw_real_univ_ge_pow
       K Ktilde hδ1 hTV y L
