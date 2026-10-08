@@ -19,8 +19,9 @@ The formalization map's later numbered milestones describe historical constructi
 read its completion boundary for current coverage.
 
 **Future-theory researcher:** read the [next-generation mathematical architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md)
-for the proposed A/B/C/D theorem contracts, countermodels and PR gates; these
-are not part of the proved v0.1.8 core.
+for proposed A/B/C/D theorem contracts, then the [research build guide](RESEARCH_BUILD.md)
+for the separate Lean library, CI gates and implementation handoff. These
+extensions are not part of the proved v0.1.8 core.
 
 **Reproducer or contributor:** use the [verification guide](../verification/README.md)
 and [contribution guide](../CONTRIBUTING.md). Select the check corresponding to your
@@ -39,6 +40,7 @@ change; neither Python tests nor schema validation substitutes for a Lean proof.
 | [Release metadata](releases/v0.1.8.json) | What are the machine-readable release identifiers? |
 | [Future theory roadmap](FUTURE_THEORY_ROADMAP.md) | Which directions are research, not v0.1.8 results? |
 | [Next-generation research architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md) | How are lanes A/B/C/D specified, wired, proved and independently tested? |
+| [Research library build guide](RESEARCH_BUILD.md) | How do I build and audit the separate research Lean target? |
 
 ## Archives are not onboarding instructions
 
