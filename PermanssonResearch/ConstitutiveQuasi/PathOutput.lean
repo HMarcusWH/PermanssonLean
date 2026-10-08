@@ -41,9 +41,7 @@ theorem pathLaw_finitePrefix_eq
             PermanssonLean.JointState S X)).symm =
         Measure.dirac (PermanssonLean.ProbabilitySupport.singletonPrefix y) := by
     rw [Measure.map_dirac' (by fun_prop)]
-    congr 1
-    funext i
-    simp [PermanssonLean.ProbabilitySupport.singletonPrefix]
+    rfl
   calc
     (M.pathLaw (Measure.dirac y)).map (Preorder.frestrictLe L) =
         ((Kernel.traj κ 0)
@@ -53,16 +51,14 @@ theorem pathLaw_finitePrefix_eq
         PermanssonLean.JointState S X) (Measure.dirac y) κ).map
           (Preorder.frestrictLe L) = _
       rw [Kernel.trajMeasure, hstart]
-      change (Measure.bind
-        (Measure.dirac (PermanssonLean.ProbabilitySupport.singletonPrefix y))
-        (Kernel.traj κ 0)).map (Preorder.frestrictLe L) = _
-      rw [Measure.dirac_bind (Kernel.measurable _) _]
     _ = PermanssonLean.ProbabilitySupport.finitePrefixLaw M.inducedKernel y L := by
-      simpa [PermanssonLean.ProbabilitySupport.finitePrefixLaw,
-        PermanssonLean.ProbabilitySupport.stationaryPrefixKernel,
-        κ, PermanssonLean.StrategicWorldModel.stationaryHistoryKernel] using
-        (Kernel.traj_map_frestrictLe_apply
-          (κ := κ) 0 L (PermanssonLean.ProbabilitySupport.singletonPrefix y))
+      change ((Kernel.traj κ 0)
+          (PermanssonLean.ProbabilitySupport.singletonPrefix y)).map
+          (Preorder.frestrictLe L) =
+        Kernel.partialTraj κ 0 L
+          (PermanssonLean.ProbabilitySupport.singletonPrefix y)
+      exact Kernel.traj_map_frestrictLe_apply
+        (κ := κ) 0 L (PermanssonLean.ProbabilitySupport.singletonPrefix y)
 
 /-- A bounded property evaluated through the infinite canonical path law is
 identical to its evaluation through the corresponding finite prefix law. -/
@@ -73,9 +69,8 @@ theorem finitePathExpectation_eq_pathLaw
     f.fromKernel L M.inducedKernel y =
       f.expected L
         ((M.pathLaw (Measure.dirac y)).map (Preorder.frestrictLe L)) := by
-  letI : IsMarkovKernel M.inducedKernel :=
-    PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov M
   rw [pathLaw_finitePrefix_eq]
+  rfl
 
 end ConstitutiveQuasi
 end PermanssonResearch
