@@ -30,7 +30,8 @@ theorem rationalFiniteKernel_singleton {n : ℕ}
     (M : RationalMarkovMatrix n) (y z : Fin n) :
     rationalFiniteKernel M y {z} = ENNReal.ofReal (M.entry y z : ℝ) := by
   classical
-  simp [rationalFiniteKernel, Measure.finsetSum_apply, Measure.smul_apply]
+  simp [rationalFiniteKernel, Measure.finsetSum_apply, Measure.smul_apply,
+    Pi.single_apply]
 
 /-- The canonical kernel is Markov because each certified row sums to one. -/
 instance rationalFiniteKernel_isMarkov {n : ℕ}
@@ -46,7 +47,7 @@ instance rationalFiniteKernel_isMarkov {n : ℕ}
     Measure.dirac z) Set.univ = 1
   simp only [Measure.finsetSum_apply, Measure.smul_apply]
   simp only [Measure.dirac_apply' _ MeasurableSet.univ,
-    Set.indicator_of_mem (Set.mem_univ _), mul_one]
+    Set.indicator_of_mem (Set.mem_univ _), Pi.one_apply, smul_eq_mul, mul_one]
   rw [← ENNReal.ofReal_sum_of_nonneg (fun z _ => hnonneg z (Finset.mem_univ z))]
   rw [hreal]
   simp
