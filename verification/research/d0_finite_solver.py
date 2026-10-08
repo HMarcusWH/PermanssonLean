@@ -42,9 +42,10 @@ def validate_target(n, goal, forbidden, initial, horizon):
     if type(horizon) is not int or horizon < 0:
         raise ValueError("negative or nonintegral horizon")
     universe = set(range(n))
-    g, d = frozenset(goal), frozenset(forbidden)
-    if any(type(s) is not int for s in g | d):
+    goal_items, forbidden_items = tuple(goal), tuple(forbidden)
+    if any(type(s) is not int for s in goal_items + forbidden_items):
         raise ValueError("target/forbidden indices must be integers")
+    g, d = frozenset(goal_items), frozenset(forbidden_items)
     if not g <= universe or not d <= universe:
         raise ValueError("target/forbidden outside state space")
     if g & d:
