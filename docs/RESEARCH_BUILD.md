@@ -5,9 +5,10 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
-**Status:** infrastructure/compatibility scaffold only. No CQ-1, grammar-robust,
-multiple-limit or reverse-solver theorem has been implemented. This library is
-not part of the immutable v0.1.8 mathematical snapshot.
+**Status:** Research library with CQ-1 Part 1 proofs merged in PR #36; CQ-1
+Part 2 finite constitutive certificate is an independently reviewed draft.
+Grammar-robust, multiple-limit and reverse-solver lanes remain proposed.
+Nothing here changes the immutable v0.1.8 mathematical snapshot.
 
 ## Why there are now two libraries
 
@@ -118,10 +119,10 @@ The first CQ-1 mathematical slice is documented in the
 finite-horizon observables to the original canonical path and property interfaces;
 it does **not** complete the quasi-regime certificate.
 
-The next intended theorem lane was **CQ-1 finite path property and TV bridge**,
-not arbitrary reverse-policy optimization or a new Exact GR definition.
-The D0 fixed-intervention-menu solver follows after its separately scoped
-finite-horizon interface review.
+The CQ-1 finite-path property and TV bridge is implemented in merged PR #36.
+The next research increment is the **CQ-1 Part 2 finite constitutive certificate**:
+[CQ-1 Part 2](CQ1_FINITE_CONSTITUTIVE_CERTIFICATE.md). The D0 fixed-intervention-
+menu solver follows after its separately scoped finite-horizon interface review.
 
 ## Pass/fail acceptance checklist
 

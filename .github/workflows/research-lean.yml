@@ -27,6 +27,8 @@ jobs:
           use-github-cache: false
           axiom-audit: true
           axiom-audit-root: PermanssonResearch
+      - name: Run research-only CQ-1 finite rational regressions
+        run: python3 -m unittest discover -s verification/research -p 'test_*.py' -v
       - name: Verify original default target still builds
         run: lake build
       - name: Ensure every research module is imported by the research root
