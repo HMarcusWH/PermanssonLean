@@ -9,6 +9,7 @@ not an automatically certified comparison set for the approximate baseline.
 -/
 
 open MeasureTheory ProbabilityTheory
+open scoped ENNReal
 
 namespace PermanssonResearch
 namespace ConstitutiveQuasi

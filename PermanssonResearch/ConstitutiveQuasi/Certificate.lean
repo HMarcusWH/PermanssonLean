@@ -12,6 +12,7 @@ path-law-nontrivial comparison set. It does not assert Exact GR, Exact PR, or QS
 -/
 
 open MeasureTheory ProbabilityTheory
+open scoped ENNReal
 
 namespace PermanssonResearch
 namespace ConstitutiveQuasi
