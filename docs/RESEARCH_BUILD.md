@@ -143,3 +143,8 @@ The follow-on research work is the conditional certificate-transport theorem:
 
 If CI fails, report the specific job, log, committed head SHA and correction.
 Do not assert that all gates passed because an earlier commit was green.
+
+D0-B finite exact-matrix and selection proofs are scoped separately from
+the D0-A frozen typed-intervention menu; consult [D0 frozen menu](D0_FROZEN_MENU.md)
+for the scope boundary. No executable output is certified as an induced
+strategic-world optimum without the missing representation bridge.

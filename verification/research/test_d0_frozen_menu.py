@@ -1,5 +1,6 @@
 """Adversarial D0 frozen-menu solver tests with exact rational probabilities."""
 import itertools
+import math
 import unittest
 from fractions import Fraction as Q
 
@@ -100,6 +101,42 @@ class D0FixedMenuTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             solve_frozen_menu([("A", A), ("A", B)], 0, G, D, 1)
         self.assertEqual(validate_kernel(A), 3)
+
+
+    def test_exact_input_firewall(self):
+        """Untrusted floats must not be mislabeled exact-rational results."""
+        bad_entries = (0.5, float("nan"), float("inf"), True, "1/2", 0.0)
+        for p in bad_entries:
+            with self.subTest(p=repr(p)):
+                rows = ((p, Q(1)), (Q(0), Q(1)))
+                with self.assertRaises(ValueError):
+                    validate_kernel(rows)
+        self.assertEqual(validate_kernel(((1, 0), (Q(1, 3), Q(2, 3)))), 2)
+        self.assertEqual(type(value_by_recursion(A, 0, G, D, 4)), Q)
+        for h in (-1, 1.0, True):
+            with self.assertRaises(ValueError):
+                value_by_recursion(A, 0, G, D, h)
+        for s in (False, 0.0, Q(0)):
+            with self.assertRaises(ValueError):
+                value_by_recursion(A, s, G, D, 1)
+        with self.assertRaises(ValueError):
+            value_by_recursion(A, 0, {True}, D, 1)
+
+    def test_exact_forward_backward_exhaustive_three_state_tables(self):
+        """Exhaustively sample every 3x3 row built from halves and integers."""
+        row_options = []
+        for a in (Q(0), Q(1, 2), Q(1)):
+            for b in (Q(0), Q(1, 2), Q(1)):
+                c = Q(1) - a - b
+                if c in (Q(0), Q(1, 2), Q(1)):
+                    row_options.append((a, b, c))
+        for matrix in itertools.product(row_options, repeat=3):
+            for start in range(3):
+                for horizon in range(4):
+                    self.assertEqual(
+                        value_by_recursion(matrix, start, G, D, horizon),
+                        value_by_enumeration(matrix, start, G, D, horizon),
+                    )
 
 
 if __name__ == "__main__":

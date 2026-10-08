@@ -1,7 +1,8 @@
 # D0 — finite frozen-menu reverse-regime objective and optimizer
 
-**Status:** PR #39 research candidate. Formal declarations are not certified
-until the exact head commit passes Research Lean and the transitive axiom audit.
+**Status:** D0-A merged as PR #39, with research build and transitive axiom audit
+passing. D0-B is a separate research PR; its additional claims must pass
+independent Lean CI.
 Not part of frozen v0.1.8 Exact GR/PR or any application certification.
 
 ## Scientific contract
@@ -68,3 +69,17 @@ All Lean files live beneath `PermanssonResearch/ReverseSolver/` and
 are direct imports of `PermanssonResearch.lean`. The original core,
 locked Lean/mathlib toolchain, frozen paper, application schemas,
 claims and historical verification records must remain unchanged.
+
+## D0-B implementation boundary (PR #40)
+
+The new finite rational matrix evaluator has proof-carrying stochastic rows,
+a computable Lean backwards hitting recursion, and a deterministic List.argmax
+selection theorem over a fixed nonempty candidate list. This is a statement
+about the **explicit exact rational matrices**. It is not, by itself, a proof
+that any supplied matrix is a permitted intervention's induced kernel.
+
+An independent mathematical forward-path equality and a finite-kernel-to-
+canonical-trajectory bridge are required before promoting the exact arithmetic
+result to a proof of a `FrozenMenu` model-value optimum. The strict Python
+validator rejects floating-point, Boolean, string, NaN and infinity entries;
+integers and `Fraction` entries are permitted as exact rationals.
