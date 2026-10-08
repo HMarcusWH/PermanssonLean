@@ -1,0 +1,66 @@
+name: Research Lean
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build research library and audit its transitive axioms
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Verify original default target still builds
+        run: lake build
+      - name: Ensure every research module is imported by the research root
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          root = Path("PermanssonResearch.lean")
+          if not root.is_file():
+              raise SystemExit("Missing research root module")
+          imports = set()
+          for line in root.read_text(encoding="utf-8").splitlines():
+              line = line.strip()
+              if line.startswith("import "):
+                  imports.update(line[7:].split())
+          modules = sorted(Path("PermanssonResearch").rglob("*.lean"))
+          if not modules:
+              raise SystemExit("No research modules discovered")
+          missing = [
+              ".".join(p.with_suffix("").parts)
+              for p in modules
+              if ".".join(p.with_suffix("").parts) not in imports
+          ]
+          if missing:
+              raise SystemExit(
+                  "Research modules must be imported directly by the root: "
+                  + ", ".join(missing)
+              )
+          print(f"Research import coverage PASS ({len(modules)} modules)")
+          PY
+      - name: Reject proof placeholders and custom axiom declarations
+        run: |
+          if grep -R -n --include='*.lean' -E '(^|[^[:alnum:]_])(sorry|admit)([^[:alnum:]_]|$)|^[[:space:]]*((private|protected|noncomputable|unsafe)[[:space:]]+)*axiom[[:space:]]' PermanssonResearch PermanssonResearch.lean; then
+            echo 'Forbidden proof placeholder or custom axiom in research library'
+            exit 1
+          fi
+          echo 'Research source firewall PASS'

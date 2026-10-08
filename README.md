@@ -17,6 +17,7 @@ automatic regime-discovery, prediction, or causal-estimation service.
 | Check the mathematical claims | [Formalization map](docs/FORMALIZATION_MAP.md#source-to-lean-theorem-and-definition-ledger) and [Lean setup](docs/GETTING_STARTED.md#build-the-lean-proofs) | Lean/elan and Git |
 | Reproduce verification | [Verification guide](verification/README.md) | Depends on the selected check |
 | Make a change | [Contribution guide](CONTRIBUTING.md) | Depends on the change |
+| Develop future Permansson theory | [Research build guide](docs/RESEARCH_BUILD.md) and [architecture](docs/PERMANSSON_RESEARCH_ARCHITECTURE.md) | Pinned Lean/elan and Git |
 
 New to the terminology? See the [glossary](docs/GLOSSARY.md).
 The [documentation index](docs/README.md) links the detailed references and archives.

@@ -9,3 +9,8 @@ rev = "v4.34.0"
 
 [[lean_lib]]
 name = "PermanssonLean"
+
+# Research proofs are a distinct, explicitly built library. The default target
+# remains the original PermanssonLean formal core.
+[[lean_lib]]
+name = "PermanssonResearch"
