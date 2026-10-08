@@ -23,6 +23,7 @@ import PermanssonResearch.ReverseSolver.CertifiedSelection
 import PermanssonResearch.ReverseSolver.ValueCorrespondence
 import PermanssonResearch.ReverseSolver.FiniteEvaluation
 import PermanssonResearch.ReverseSolver.CertificationExamples
+import PermanssonResearch.ReverseSolver.CanonicalFiniteKernel
 
 /-!
 # PermanssonResearch
