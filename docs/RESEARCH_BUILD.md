@@ -113,7 +113,12 @@ Before writing code:
    the application schema and historical release/verification artifacts unless
    a separately reviewed release migration explicitly authorizes changes.
 
-The next intended theorem lane is **CQ-1 finite path property and TV bridge**,
+The first CQ-1 mathematical slice is documented in the
+[CQ-1 finite-path bridge](CQ1_FINITE_PATH_BRIDGE.md). It connects bounded
+finite-horizon observables to the original canonical path and property interfaces;
+it does **not** complete the quasi-regime certificate.
+
+The next intended theorem lane was **CQ-1 finite path property and TV bridge**,
 not arbitrary reverse-policy optimization or a new Exact GR definition.
 The D0 fixed-intervention-menu solver follows after its separately scoped
 finite-horizon interface review.
