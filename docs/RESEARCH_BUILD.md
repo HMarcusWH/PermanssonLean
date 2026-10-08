@@ -124,8 +124,8 @@ The CQ-1 finite-path property and TV bridge is implemented in merged PR #36.
 The CQ-1 finite constitutive certificate is implemented in merged PR #37:
 [CQ-1 Part 2](CQ1_FINITE_CONSTITUTIVE_CERTIFICATE.md).
 The follow-on research work is the conditional certificate-transport theorem:
-[CQ-1 Part 3](CQ1_CERTIFICATE_TRANSPORT.md). The D0 fixed-intervention-menu
-solver remains a separate lane.
+[CQ-1 Part 3](CQ1_CERTIFICATE_TRANSPORT.md). The D0 frozen fixed-intervention-menu solver is scoped in
+[D0 frozen menu](D0_FROZEN_MENU.md) as an independent research lane.
 
 ## Pass/fail acceptance checklist
 

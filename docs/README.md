@@ -61,3 +61,5 @@ README-inward usability review without changing scientific or historical evidenc
 - [CQ-1 Part 2 finite constitutive certificate (research candidate)](CQ1_FINITE_CONSTITUTIVE_CERTIFICATE.md)
 
 - [CQ-1 Part 3 certificate transport (research candidate)](CQ1_CERTIFICATE_TRANSPORT.md)
+
+- [D0 frozen-menu reverse solver (research)](D0_FROZEN_MENU.md)
