@@ -139,8 +139,9 @@ theorem transportFiniteConstitutiveCertificate
     apply finitePersistence_of_real_error pair.approx spec L eta
       certificate.finitePersistent.1 e₀ he₀
     exact finiteCertificate_survival_robust certificate hδ₀ hδ₀1 hTV₀
-  have herr := modelExactOutputProfile_errors pair L f
-    hδ₀ hδ₀1 hδJ hδJ1 hTV₀ hTVJ
+  have herr := modelExactOutputProfile_errors
+    (M := M) (spec := spec) (F := F) (B₁ := B₁) (J := J)
+    pair L f hδ₀ hδ₀1 hδJ hδJ1 hTV₀ hTVJ
   have hgap := finiteConstitutiveMargin_lowerBound certificate herr
   rw [modelExactOutputProfile_margin_eq] at hgap
   have hmargin :
