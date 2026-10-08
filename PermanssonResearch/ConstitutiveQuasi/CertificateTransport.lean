@@ -152,7 +152,7 @@ theorem transportFiniteConstitutiveCertificate
         pair.approxIntervention := by
     dsimp [e₀, eJ]
     convert hgap using 1 <;> ring
-  exact ⟨hsurvival, by dsimp [e₀, eJ]; linarith, hmargin⟩
+  exact ⟨hsurvival, by linarith, hmargin⟩
 
 end ConstitutiveQuasi
 end PermanssonResearch
