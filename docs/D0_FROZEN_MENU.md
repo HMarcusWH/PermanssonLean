@@ -1,8 +1,8 @@
 # D0 — finite frozen-menu reverse-regime objective and optimizer
 
-**Status:** D0-A merged as PR #39, with research build and transitive axiom audit
-passing. D0-B is a separate research PR; its additional claims must pass
-independent Lean CI.
+**Status:** D0-A (#39) and D0-B (#40) merged with recorded green Research Lean CI.
+D0-C (#41) is an in-progress research draft; its canonical finite-prefix
+correspondence is **not certified** until the exact PR head passes independent Lean CI.
 Not part of frozen v0.1.8 Exact GR/PR or any application certification.
 
 ## Scientific contract
@@ -57,9 +57,11 @@ separately proves existence/dominance of an exact mathematical argmax of
 model-defined probabilities; it is noncomputable, not executable policy
 extraction.
 
-The D0-B follow-up should formalize a finite hitting recursion and its
-forward-law equality, then prove executable selection for exact rational
-models and a typed matrix-factorization bridge where needed. D1 later
+PR #40 formalized the finite hitting recursion, independent rational forward
+enumeration, their equality, and computable selection of an exact rational
+fixed-menu winner. PR #41 separately targets canonical finite-prefix
+correspondence. A further typed strategic-world matrix-factorization bridge
+remains necessary before the rational results certify strategic interventions. D1 later
 extends to adaptive state-feedback policies using the correct P/U/α order.
 This PR does not introduce any such adaptive-policy semantics.
 
@@ -105,3 +107,25 @@ unconditional formal bridge would overstate this PR. The Python report
 rechecker independently re-enumerates exact paths, but is not verified as
 software by Lean. The kernel realization/canonical law and eventual executable
 checker should remain separate research work until proved.
+
+
+## D0-C implementation and representation boundary (PR #41 draft)
+
+The rational finite-state path evaluation and the canonical measure-theoretic
+`ProbabilitySupport.finitePrefixLaw` are not definitional equals. A proof
+must explicitly identify histories indexed by `Finset.Iic T` with the
+initial state plus `T` successor states, and identify their event semantics
+and exact path weights. The construction of a row-stochastic matrix as a
+discrete Markov kernel is a separate first obligation.
+
+The Python fixed-menu implementation must additionally enforce one shared
+state dimension, normalize finite target/forbidden iterables once per public
+call, and reject forged result scope labels. No string such as
+`PROVED_OPTIMUM` may be accepted by the independent report rechecker.
+
+Even if D0-C proves finite rational/canonical correspondence, the claim is
+about `K_M`, the kernel represented by the matrix `M`. It does **not**
+by itself prove `K_M=K_(G,P)` for any original typed strategic-world
+intervention. That requires a separately checked finite encoding,
+kernel equality/intertwining and target/start transport. Do not promote
+application status or claim proof of the Python implementation.
