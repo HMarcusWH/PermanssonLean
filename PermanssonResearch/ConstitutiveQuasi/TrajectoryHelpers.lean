@@ -19,47 +19,49 @@ universe uα uβ uY
 variable {α : Type uα} {β : Type uβ}
 variable [MeasurableSpace α] [MeasurableSpace β]
 
-/-- A general measurable kernel composed with a point mass evaluates at that point. -/
+/-- A measurable kernel composed with a Dirac measure evaluates at its point. -/
 theorem kernel_comp_dirac (η : Kernel α β) (a : α) :
     η ∘ₘ Measure.dirac a = η a := by
   exact Measure.dirac_bind (Kernel.measurable η) a
 
 variable {Y : Type uY} [MeasurableSpace Y]
 
-/-- The finite-prefix marginal of a point-started infinite trajectory
-coincides with the associated partial trajectory kernel. -/
+/-- Projecting a point-started infinite trajectory to times 0..L gives
+the finite trajectory through L transitions, for a constant state space. -/
 theorem trajMeasure_dirac_prefix
     (κ : (n : ℕ) → Kernel ((i : Finset.Iic n) → Y) Y)
     [∀ n, IsMarkovKernel (κ n)]
     (y : Y) (L : ℕ) :
-    (Kernel.trajMeasure (Measure.dirac y) κ).map
+    (Kernel.trajMeasure (X := fun _ : ℕ => Y) (Measure.dirac y) κ).map
       (Preorder.frestrictLe L) =
-      Kernel.partialTraj κ 0 L (fun _ : Finset.Iic 0 => y) := by
+      Kernel.partialTraj (X := fun _ : ℕ => Y) κ 0 L
+        (fun _ : Finset.Iic 0 => y) := by
+  let w₀ : ((i : Finset.Iic 0) → Y) := fun _ => y
   have hstart :
       (Measure.dirac y).map
         (MeasurableEquiv.piUnique (fun _ : Finset.Iic 0 => Y)).symm =
-        Measure.dirac (fun _ : Finset.Iic 0 => y) := by
+        Measure.dirac w₀ := by
     rw [Measure.map_dirac' (by fun_prop)]
     rfl
   have heval :
-      (Kernel.traj κ 0) ∘ₘ
-          Measure.dirac (fun _ : Finset.Iic 0 => y) =
-        (Kernel.traj κ 0) (fun _ : Finset.Iic 0 => y) :=
-    kernel_comp_dirac (Kernel.traj κ 0) (fun _ => y)
+      (Kernel.traj (X := fun _ : ℕ => Y) κ 0) ∘ₘ Measure.dirac w₀ =
+        (Kernel.traj (X := fun _ : ℕ => Y) κ 0) w₀ :=
+    kernel_comp_dirac (Kernel.traj (X := fun _ : ℕ => Y) κ 0) w₀
+  change (Kernel.trajMeasure (X := fun _ : ℕ => Y) (Measure.dirac y) κ).map
+    (Preorder.frestrictLe L) =
+    Kernel.partialTraj (X := fun _ : ℕ => Y) κ 0 L w₀
   calc
-    (Kernel.trajMeasure (Measure.dirac y) κ).map
+    (Kernel.trajMeasure (X := fun _ : ℕ => Y) (Measure.dirac y) κ).map
         (Preorder.frestrictLe L) =
-        ((Kernel.traj κ 0) ∘ₘ
+        ((Kernel.traj (X := fun _ : ℕ => Y) κ 0) ∘ₘ
           ((Measure.dirac y).map
             (MeasurableEquiv.piUnique (fun _ : Finset.Iic 0 => Y)).symm)).map
           (Preorder.frestrictLe L) := rfl
-    _ = ((Kernel.traj κ 0)
-          (fun _ : Finset.Iic 0 => y)).map
+    _ = ((Kernel.traj (X := fun _ : ℕ => Y) κ 0) w₀).map
           (Preorder.frestrictLe L) := by
       rw [hstart, heval]
-    _ = Kernel.partialTraj κ 0 L
-        (fun _ : Finset.Iic 0 => y) :=
-      Kernel.traj_map_frestrictLe_apply κ 0 L (fun _ => y)
+    _ = Kernel.partialTraj (X := fun _ : ℕ => Y) κ 0 L w₀ :=
+      Kernel.traj_map_frestrictLe_apply (κ := κ) 0 L w₀
 
 end ConstitutiveQuasi
 end PermanssonResearch
