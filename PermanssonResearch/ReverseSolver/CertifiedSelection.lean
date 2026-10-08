@@ -79,7 +79,7 @@ theorem all_rational_menu_values_zero {I : Type uI} {n : ℕ}
   have hle := selectRationalMember_dominates menu target y T j hj
   have hnonneg :=
     (rationalHittingValue_mem_Icc (menu.matrix j) target T y).1
-  dsimp [rationalMemberValue] at hnonneg
+  change 0 ≤ rationalMemberValue menu target y T j at hnonneg
   exact le_antisymm (by simpa [hz] using hle) hnonneg
 
 end ReverseSolver
