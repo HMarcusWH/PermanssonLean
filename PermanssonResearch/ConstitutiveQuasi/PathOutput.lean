@@ -33,9 +33,11 @@ variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
 -- An established core theorem used as a file-local typeclass instance.
 attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 
+-- The kernel/prefix bridge is proof-engineering intensive on Lean 4.34.0.
+set_option maxHeartbeats 800000
+
 /-- For a point start, the first L+1 coordinates of the canonical infinite
 joint path have exactly the core's finite-prefix law through L transitions. -/
-set_option maxHeartbeats 800000 in
 theorem pathLaw_finitePrefix_eq
     (M : PermanssonLean.StrategicWorldModel S X A)
     (y : PermanssonLean.JointState S X) (L : ℕ) :
@@ -66,11 +68,31 @@ theorem pathLaw_finitePrefix_eq
     change (Kernel.trajMeasure (X := fun _ : ℕ =>
       PermanssonLean.JointState S X) (Measure.dirac y) κ) = _
     rw [Kernel.trajMeasure, hstart]
-  rw [hpath]
-  unfold PermanssonLean.ProbabilitySupport.finitePrefixLaw
-  rw [hk]
-  exact Kernel.traj_map_frestrictLe_apply
-    (κ := κ) 0 L (PermanssonLean.ProbabilitySupport.singletonPrefix y)
+    exact Measure.dirac_bind (Kernel.measurable (Kernel.traj κ 0))
+      (PermanssonLean.ProbabilitySupport.singletonPrefix y)
+  have hprefix :
+      Kernel.partialTraj κ 0 L
+        (PermanssonLean.ProbabilitySupport.singletonPrefix y) =
+      PermanssonLean.ProbabilitySupport.finitePrefixLaw M.inducedKernel y L := by
+    change Kernel.partialTraj κ 0 L
+        (PermanssonLean.ProbabilitySupport.singletonPrefix y) =
+      Kernel.partialTraj
+        (fun n => PermanssonLean.ProbabilitySupport.stationaryPrefixKernel
+          M.inducedKernel n) 0 L
+        (PermanssonLean.ProbabilitySupport.singletonPrefix y)
+    exact congrArg
+      (fun f => Kernel.partialTraj f 0 L
+        (PermanssonLean.ProbabilitySupport.singletonPrefix y)) hk.symm
+  calc
+    (M.pathLaw (Measure.dirac y)).map (Preorder.frestrictLe L) =
+        ((Kernel.traj κ 0)
+          (PermanssonLean.ProbabilitySupport.singletonPrefix y)).map
+            (Preorder.frestrictLe L) := congrArg _ hpath
+    _ = Kernel.partialTraj κ 0 L
+          (PermanssonLean.ProbabilitySupport.singletonPrefix y) :=
+        Kernel.traj_map_frestrictLe_apply
+          (κ := κ) 0 L (PermanssonLean.ProbabilitySupport.singletonPrefix y)
+    _ = _ := hprefix
 
 /-- A bounded property evaluated through the infinite canonical path law is
 identical to its evaluation through the corresponding finite prefix law. -/
