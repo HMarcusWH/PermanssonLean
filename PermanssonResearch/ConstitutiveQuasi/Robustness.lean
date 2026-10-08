@@ -103,7 +103,9 @@ theorem finiteCertificate_survival_robust
       (1 - eta).toReal ≤
         (PermanssonLean.RegimeSpecification.survivalProbability M spec y L).toReal := by
     intro y hy
-    exact ENNReal.toReal_mono (by finiteness)
+    exact ENNReal.toReal_mono
+      (MeasureTheory.measure_ne_top (M.pathLaw (Measure.dirac y))
+        (PermanssonLean.RegimeSpecification.survivesThroughSet spec L))
       (certificate.finitePersistent.2 y hy)
   exact finiteSurvival_lower_of_prefixTV M pair.approx spec L
     (1 - eta).toReal hfloor hδ₀ hδ₀1 hTV
