@@ -52,5 +52,15 @@ instance rationalFiniteKernel_isMarkov {n : ℕ}
   rw [hreal]
   simp
 
+/-- The canonical finite-prefix law has the correct Dirac initial state
+at zero transitions (no fictitious first transition). -/
+theorem rationalFiniteKernel_prefix_zero {n : ℕ}
+    (M : RationalMarkovMatrix n) (y : Fin n) :
+    PermanssonLean.ProbabilitySupport.finitePrefixLaw
+        (rationalFiniteKernel M) y 0 =
+      Measure.dirac (PermanssonLean.ProbabilitySupport.singletonPrefix y) := by
+  unfold PermanssonLean.ProbabilitySupport.finitePrefixLaw
+  rw [Kernel.partialTraj_self, Kernel.id_apply]
+
 end ReverseSolver
 end PermanssonResearch
