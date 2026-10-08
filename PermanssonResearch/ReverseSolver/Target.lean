@@ -48,8 +48,14 @@ theorem measurableSet_successPrefixEvent
   refine (target.goal_measurable.preimage (measurable_pi_apply t)).inter ?_
   refine MeasurableSet.iInter (fun u => ?_)
   by_cases h : (u : ℕ) < (t : ℕ)
-  · simpa [h] using
-      (target.forbidden_measurable.compl.preimage (measurable_pi_apply u))
+  · have hproj :
+        Measurable (fun w : ((i : Finset.Iic T) → Y) => w u) :=
+        measurable_pi_apply u
+    have hbad :
+        MeasurableSet
+          {w : ((i : Finset.Iic T) → Y) | w u ∉ target.forbidden} :=
+      target.forbidden_measurable.compl.preimage hproj
+    simpa [h] using hbad
   · simp [h]
 
 /-- Success at an initial target point is certain pathwise, independently
