@@ -18,6 +18,11 @@ import PermanssonResearch.ConstitutiveQuasi.NonzeroErrorExample
 import PermanssonResearch.ReverseSolver.Target
 import PermanssonResearch.ReverseSolver.FrozenMenu
 import PermanssonResearch.ReverseSolver.MenuExamples
+import PermanssonResearch.ReverseSolver.RationalKernel
+import PermanssonResearch.ReverseSolver.CertifiedSelection
+import PermanssonResearch.ReverseSolver.ValueCorrespondence
+import PermanssonResearch.ReverseSolver.FiniteEvaluation
+import PermanssonResearch.ReverseSolver.CertificationExamples
 
 /-!
 # PermanssonResearch

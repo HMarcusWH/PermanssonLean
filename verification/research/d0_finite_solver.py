@@ -13,26 +13,38 @@ from dataclasses import dataclass
 Q = Fraction
 
 
+def _exact_rational(value):
+    """Permit only Fraction and genuine int; never silently coerce float/bool."""
+    if type(value) not in (int, Fraction):
+        raise ValueError("transition entries must be exact int/Fraction values")
+    return Fraction(value)
+
+
 def validate_kernel(rows):
     """Check a nonempty finite row-stochastic kernel with exact rational rows."""
     n = len(rows)
     if not n:
         raise ValueError("empty state space")
-    if any(len(row) != n or any(p < 0 for p in row)
-           or sum(row, Q(0)) != 1 for row in rows):
-        raise ValueError("invalid stochastic kernel")
+    for row in rows:
+        if len(row) != n:
+            raise ValueError("non-square stochastic matrix")
+        weights = tuple(_exact_rational(p) for p in row)
+        if any(p < 0 for p in weights) or sum(weights, Q(0)) != 1:
+            raise ValueError("invalid stochastic row")
     return n
 
 
 def validate_target(n, goal, forbidden, initial, horizon):
-    if not isinstance(horizon, int) or horizon < 0:
+    if type(horizon) is not int or horizon < 0:
         raise ValueError("negative or nonintegral horizon")
     universe = set(range(n))
+    if any(type(s) is not int for s in goal) or any(type(s) is not int for s in forbidden):
+        raise ValueError("target/forbidden indices must be integers")
     if not set(goal) <= universe or not set(forbidden) <= universe:
         raise ValueError("target/forbidden outside state space")
     if set(goal) & set(forbidden):
         raise ValueError("target and forbidden must be disjoint")
-    if initial not in universe:
+    if type(initial) is not int or initial not in universe:
         raise ValueError("initial outside state space")
 
 
@@ -47,7 +59,7 @@ def success(path, goal, forbidden):
 def prefix_law(rows, initial, horizon):
     """Exact finite paths under the same stationary row kernel at each time."""
     n = validate_kernel(rows)
-    if initial not in range(n) or horizon < 0:
+    if type(initial) is not int or initial not in range(n) or type(horizon) is not int or horizon < 0:
         raise ValueError("invalid initial/horizon")
     law = {(initial,): Q(1)}
     for _ in range(horizon):
@@ -102,4 +114,26 @@ def solve_frozen_menu(menu, initial, goal, forbidden, horizon):
         v = value_by_recursion(rows, initial, goal, forbidden, horizon)
         vals.append((name, v))
     chosen = max(vals, key=lambda pair: pair[1])
+    assert type(chosen[1]) is Fraction and all(type(v) is Fraction for _, v in vals)
     return FixedMenuResult(chosen[0], chosen[1], tuple(vals))
+
+
+def verify_frozen_menu_result(menu, initial, goal, forbidden, horizon, reported):
+    """Independently re-evaluate a candidate report by exhaustive path sums.
+
+    This is a second exact Python computation, NOT a Lean-verified software
+    certificate and NOT a proof that arbitrary matrices are typed interventions.
+    """
+    if not isinstance(reported, FixedMenuResult) or type(reported.value) is not Q:
+        return False
+    items = tuple(menu)
+    if not items or len({name for name, _ in items}) != len(items):
+        raise ValueError("invalid frozen menu")
+    expected = tuple((name, value_by_enumeration(rows, initial, goal, forbidden, horizon))
+                     for name, rows in items)
+    if tuple(reported.values) != expected or any(type(v) is not Q for _, v in reported.values):
+        return False
+    best = max(expected, key=lambda pair: pair[1])
+    return reported.selected == best[0] and reported.value == best[1]
+
+
