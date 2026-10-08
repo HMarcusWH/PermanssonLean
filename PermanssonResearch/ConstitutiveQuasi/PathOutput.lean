@@ -1,5 +1,6 @@
 import PermanssonResearch.ConstitutiveQuasi.Definition
 import PermanssonLean.Regime.Occupation
+import PermanssonLean.Regime.Property
 import PermanssonLean.StrategicWorld.WellPosedness
 
 /-!
@@ -15,7 +16,16 @@ open scoped ENNReal ProbabilityTheory
 namespace PermanssonResearch
 namespace ConstitutiveQuasi
 
-universe uS uX uA
+universe uS uX uA uY
+
+variable {Y : Type uY} [MeasurableSpace Y]
+
+/-- View a finite-prefix score as an ordinary whole-path RegimePropertyMap.
+This does not change the frozen definition or introduce a new causal claim. -/
+noncomputable def FinitePathProperty.toRegimeProperty
+    (L : ℕ) (f : FinitePathProperty Y L) :
+    PermanssonLean.RegimePropertyMap Y ℝ :=
+  fun law => ∫ w, f.score (Preorder.frestrictLe L w) ∂law.toMeasure
 
 variable {S : Type uS} {X : Type uX} {A : Type uA}
 variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
@@ -73,6 +83,23 @@ theorem finitePathExpectation_eq_pathLaw
         ((M.pathLaw (Measure.dirac y)).map (Preorder.frestrictLe L)) := by
   rw [pathLaw_finitePrefix_eq]
   rfl
+
+/-- Finite-prefix expectations are the baseline values of an existing
+RegimePropertyMap, so future CQ-1 constitution uses the frozen property API. -/
+theorem finitePathExpectation_eq_baselineProperty
+    (M : PermanssonLean.StrategicWorldModel S X A)
+    (y : PermanssonLean.JointState S X) (L : ℕ)
+    (f : FinitePathProperty (PermanssonLean.JointState S X) L) :
+    f.fromKernel L M.inducedKernel y =
+      PermanssonLean.RegimeSpecification.baselinePropertyValue
+        (f.toRegimeProperty L) M y := by
+  calc
+    f.fromKernel L M.inducedKernel y =
+        ∫ z, f.score z ∂(M.pathLaw (Measure.dirac y)).map
+          (Preorder.frestrictLe L) := finitePathExpectation_eq_pathLaw M y L f
+    _ = ∫ w, f.score (Preorder.frestrictLe L w) ∂M.pathLaw (Measure.dirac y) := by
+      exact integral_map (by fun_prop) f.measurable_score.aestronglyMeasurable
+    _ = _ := rfl
 
 end ConstitutiveQuasi
 end PermanssonResearch
