@@ -15,6 +15,8 @@ import PermanssonResearch.ConstitutiveQuasi.PersistencePromotion
 import PermanssonResearch.ConstitutiveQuasi.CertificateTransport
 import PermanssonResearch.ConstitutiveQuasi.AdversarialExamples
 import PermanssonResearch.ConstitutiveQuasi.NonzeroErrorExample
+import PermanssonResearch.ReverseSolver.Target
+import PermanssonResearch.ReverseSolver.FrozenMenu
 
 /-!
 # PermanssonResearch
