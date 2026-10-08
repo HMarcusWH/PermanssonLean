@@ -157,7 +157,6 @@ theorem rationalForwardEnumeration_succ {n : ℕ} (K : RationalMarkovMatrix n)
         intro xs
         simp [successorWordMass, successorWordWins, hg, hd, mul_assoc]
       simp only [Function.comp_def, hfactor, List.sum_map_mul_left]
-      rfl
 
 /-- Independent weighted enumeration and the backward recurrence agree
 for every certified rational matrix, starting state and finite horizon. -/
