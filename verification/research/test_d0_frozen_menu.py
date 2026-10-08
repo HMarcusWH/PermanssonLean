@@ -161,5 +161,53 @@ class D0FixedMenuTests(unittest.TestCase):
 
 
 
+    def test_shared_state_space_menu(self):
+        two = ((Q(0), Q(1)), (Q(0), Q(1)))
+        for menu in ([("three", A), ("two", two)],
+                     [("two", two), ("three", A)]):
+            with self.assertRaisesRegex(ValueError, "share one state space"):
+                solve_frozen_menu(menu, 0, {1}, set(), 1)
+            with self.assertRaisesRegex(ValueError, "share one state space"):
+                verify_frozen_menu_result(menu, 0, {1}, set(), 1,
+                    solve_frozen_menu([("three", A)], 0, {1}, set(), 1))
+
+    def test_single_use_target_iterables(self):
+        g = lambda: (x for x in [1])
+        d = lambda: (x for x in [2])
+        self.assertEqual(value_by_recursion(A, 0, g(), d(), 1), Q(1, 2))
+        self.assertEqual(value_by_enumeration(A, 0, g(), d(), 1), Q(1, 2))
+        menu = [("A", A), ("B", B)]
+        reported = solve_frozen_menu(menu, 0, g(), d(), 1)
+        self.assertEqual(reported.selected, "B")
+        self.assertEqual(reported.value, Q(3, 4))
+        self.assertTrue(verify_frozen_menu_result(menu, 0, g(), d(), 1, reported))
+        with self.assertRaisesRegex(ValueError, "disjoint"):
+            solve_frozen_menu(menu, 0, (x for x in [1]), (x for x in [1]), 1)
+        # Discarding duplicates must not erase malformed Boolean indices.
+        with self.assertRaisesRegex(ValueError, "indices must be integers"):
+            value_by_recursion(A, 0, (x for x in [1, True]), d(), 1)
+
+    def test_report_scope_is_part_of_integrity_contract(self):
+        out = solve_frozen_menu([("A", A), ("B", B)], 0, G, D, 2)
+        self.assertTrue(verify_frozen_menu_result([("A", A), ("B", B)], 0, G, D, 2, out))
+        for forged in ("PROVED_OPTIMUM", "EXACT_PR", "", None):
+            with self.subTest(scope=forged):
+                self.assertFalse(verify_frozen_menu_result(
+                    [("A", A), ("B", B)], 0, G, D, 2,
+                    replace(out, scope=forged)))
+
+    def test_disjoint_target_forbidden_partitions(self):
+        # Every state is goal, forbidden or neither; each pair is disjoint.
+        # Keep the exhaustive matrix search in the separate fixed-target test.
+        for classification in itertools.product(range(3), repeat=3):
+            goal = {i for i, label in enumerate(classification) if label == 1}
+            forbidden = {i for i, label in enumerate(classification) if label == 2}
+            for kernel, start, horizon in itertools.product(
+                    (A, B, C, STAY, DANGER), range(3), range(4)):
+                self.assertEqual(
+                    value_by_recursion(kernel, start, goal, forbidden, horizon),
+                    value_by_enumeration(kernel, start, goal, forbidden, horizon))
+
+
 if __name__ == "__main__":
     unittest.main()
