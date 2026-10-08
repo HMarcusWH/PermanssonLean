@@ -6,7 +6,7 @@
 [Research CI](../.github/workflows/research-lean.yml)
 
 **Status:** Research library with CQ-1 Part 1 proofs merged in PR #36; CQ-1
-Part 2 finite constitutive certificate is an independently reviewed draft.
+Part 2 finite constitutive certificate is a separately verified research PR.
 Grammar-robust, multiple-limit and reverse-solver lanes remain proposed.
 Nothing here changes the immutable v0.1.8 mathematical snapshot.
 

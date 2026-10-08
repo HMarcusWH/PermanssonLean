@@ -58,4 +58,4 @@ or the current [research roadmap](FUTURE_THEORY_ROADMAP.md).
 [Documentation review scope and findings](DOCUMENTATION_REVIEW.md) records the
 README-inward usability review without changing scientific or historical evidence.
 
-- [CQ-1 Part 2 finite constitutive certificate (research draft)](CQ1_FINITE_CONSTITUTIVE_CERTIFICATE.md)
+- [CQ-1 Part 2 finite constitutive certificate (research candidate)](CQ1_FINITE_CONSTITUTIVE_CERTIFICATE.md)

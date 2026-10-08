@@ -1,8 +1,8 @@
 # CQ-1 / Part 2 — typed finite constitutive certificate (research)
 
-**Status:** Draft PR #37. New proof statements are provisional until the
-committed research target, transitive axiom audit and executable fixtures pass.
-No promotion to the frozen v0.1.8 GR/PR definitions or application statuses.
+**Status:** CQ-1 Part 2 research candidate (PR #37). Proof status is tied to
+the exact committed research-library CI and transitive axiom audit, not to this
+guide alone. No promotion to frozen v0.1.8 GR/PR definitions or application statuses.
 
 Part 1 (merged PR #36) already provides measurable bounded finite-prefix
 properties, exact agreement with the canonical path law, and the factor-one
