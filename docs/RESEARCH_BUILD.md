@@ -88,7 +88,7 @@ An import-checking rule requires every research `.lean` file to be imported
 **directly** by `PermanssonResearch.lean`, even when submodule imports also
 would reach it transitively. This is deliberately stronger than ordinary
 compilation and prevents future untracked modules from escaping the research
-build. When adding `Research/Foo.lean`, add its `import PermanssonResearch.Foo`
+build. When adding `PermanssonResearch/Foo.lean`, add its `import PermanssonResearch.Foo`
 to the research root in the same PR.
 
 The new workflow does not change the original `Lean` check or its evidence.
