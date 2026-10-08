@@ -77,14 +77,15 @@ axiom audit, direct-root-import check and placeholder/custom-axiom firewall.
 The original Lean and other established CI workflows must remain green.
 The frozen `PermanssonLean/` tree and `PermanssonLean.lean` are not edited.
 
-## What remains for the complete CQ-1 certificate
+## Connection to the merged CQ-1 finite certificate
 
-Part 1 is **not** a finite quasi-regime certificate. A subsequent PR must
-freeze a nontrivial comparison set `B₁`, prove finite survival over the
-correct regime-wide domain `B`, apply an existing typed admissible
-strategic intervention with world kernel `P` held fixed, and combine
-baseline/intervention property gaps with explicit one-step and numerical
-output error budgets.
+Part 1 alone was **not** a finite quasi-regime certificate. Merged PR #37
+now freezes a nontrivial comparison set `B₁`, proves finite survival over
+the regime-wide domain `B`, applies an admissible strategic intervention with
+world kernel `P` held fixed, and combines baseline/intervention property gaps
+with separate one-step and numerical output error budgets. Part 3 is an
+independent research extension for transporting the certificate to another
+model, conditional on explicit assumptions.
 
 Crucially, `IsFinitePersistent` quantifies over **all** `y∈B`; a
 `B₁`-only result must carry a distinct diagnostic label. The intervened

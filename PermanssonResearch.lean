@@ -10,6 +10,11 @@ import PermanssonResearch.ConstitutiveQuasi.Certificate
 import PermanssonResearch.ConstitutiveQuasi.PropertyErrors
 import PermanssonResearch.ConstitutiveQuasi.Robustness
 import PermanssonResearch.ConstitutiveQuasi.CertificateExamples
+import PermanssonResearch.ConstitutiveQuasi.ComparisonTransport
+import PermanssonResearch.ConstitutiveQuasi.PersistencePromotion
+import PermanssonResearch.ConstitutiveQuasi.CertificateTransport
+import PermanssonResearch.ConstitutiveQuasi.AdversarialExamples
+import PermanssonResearch.ConstitutiveQuasi.NonzeroErrorExample
 
 /-!
 # PermanssonResearch
