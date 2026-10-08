@@ -35,9 +35,9 @@ theorem rationalFiniteKernel_prefix_one_endpoint {n : ℕ}
   have hy := congrArg
       (fun Q : Kernel ((i : Finset.Iic 0) → Fin n) (Fin n) =>
         Q (PermanssonLean.ProbabilitySupport.singletonPrefix y)) h
+  rw [Kernel.map_apply _ (by fun_prop)] at hy
   simpa [PermanssonLean.ProbabilitySupport.finitePrefixLaw,
-    PermanssonLean.ProbabilitySupport.stationaryPrefixKernel,
-    κ, Kernel.map_apply] using hy
+    PermanssonLean.ProbabilitySupport.stationaryPrefixKernel, κ] using hy
 
 /-- Every one-step singleton endpoint probability matches its rational entry. -/
 theorem rationalFiniteKernel_prefix_one_singleton {n : ℕ}
