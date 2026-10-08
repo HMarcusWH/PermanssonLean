@@ -24,6 +24,7 @@ import PermanssonResearch.ReverseSolver.ValueCorrespondence
 import PermanssonResearch.ReverseSolver.FiniteEvaluation
 import PermanssonResearch.ReverseSolver.CertificationExamples
 import PermanssonResearch.ReverseSolver.CanonicalFiniteKernel
+import PermanssonResearch.ReverseSolver.FinitePrefixBridge
 
 /-!
 # PermanssonResearch
