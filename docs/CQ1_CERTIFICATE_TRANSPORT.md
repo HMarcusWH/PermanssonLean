@@ -1,8 +1,8 @@
 # CQ-1 Part 3 — certificate transport and adversarial validation
 
-**Status:** Research PR #38 under construction. Only an exact head commit with
-passing Research Lean and transitive axiom audit is formally verified. This is
-not part of the immutable v0.1.8 theory or its application statuses.
+**Status:** PR #38 research candidate, not merged. Exact head-commit Research
+Lean and transitive axiom-audit results determine proof status, not this guide.
+This is not part of the immutable v0.1.8 theory or its application statuses.
 
 ## Key distinction
 
@@ -48,8 +48,12 @@ true constitutive-margin definition.
 - Prove adversarial zero-horizon and changed-world exclusion in Lean, and
   show error-budget exhaustion has no positive margin guarantee.
 
-The rational script is **not** a proof of a typed strategic factorization;
-only the Lean declarations establish such claims. A sampled finite grid
+The rational script is **not** a proof of a typed strategic factorization.
+`NonzeroErrorExample.lean` constructs a randomized action-selection model
+and an admissible strategic intervention sharing the same `P`; the exact
+numerical TV and margin of that randomized model have not yet been separately
+proved as Lean equalities. Only the generic conditional certificate transport
+and the typed structural pair are formal Lean statements. A sampled finite grid
 cannot establish the infinite-domain positive-pointwise / zero-infimum
 phenomenon. If this counterexample is later added, it must be a genuine
 all-states analytic Lean theorem or an explicitly specified infinite model.

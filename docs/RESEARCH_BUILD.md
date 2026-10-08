@@ -6,7 +6,8 @@
 [Research CI](../.github/workflows/research-lean.yml)
 
 **Status:** Research library with CQ-1 Part 1 proofs merged in PR #36; CQ-1
-Part 2 finite constitutive certificate is a separately verified research PR.
+Part 2 finite constitutive certificate merged in PR #37. CQ-1 Part 3
+certificate transport remains a separate research candidate until CI passes.
 Grammar-robust, multiple-limit and reverse-solver lanes remain proposed.
 Nothing here changes the immutable v0.1.8 mathematical snapshot.
 
@@ -120,9 +121,11 @@ finite-horizon observables to the original canonical path and property interface
 it does **not** complete the quasi-regime certificate.
 
 The CQ-1 finite-path property and TV bridge is implemented in merged PR #36.
-The next research increment is the **CQ-1 Part 2 finite constitutive certificate**:
-[CQ-1 Part 2](CQ1_FINITE_CONSTITUTIVE_CERTIFICATE.md). The D0 fixed-intervention-
-menu solver follows after its separately scoped finite-horizon interface review.
+The CQ-1 finite constitutive certificate is implemented in merged PR #37:
+[CQ-1 Part 2](CQ1_FINITE_CONSTITUTIVE_CERTIFICATE.md).
+The follow-on research work is the conditional certificate-transport theorem:
+[CQ-1 Part 3](CQ1_CERTIFICATE_TRANSPORT.md). The D0 fixed-intervention-menu
+solver remains a separate lane.
 
 ## Pass/fail acceptance checklist
 

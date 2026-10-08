@@ -59,3 +59,5 @@ or the current [research roadmap](FUTURE_THEORY_ROADMAP.md).
 README-inward usability review without changing scientific or historical evidence.
 
 - [CQ-1 Part 2 finite constitutive certificate (research candidate)](CQ1_FINITE_CONSTITUTIVE_CERTIFICATE.md)
+
+- [CQ-1 Part 3 certificate transport (research candidate)](CQ1_CERTIFICATE_TRANSPORT.md)
