@@ -63,10 +63,7 @@ theorem trajMeasure_dirac_prefix
     _ = Kernel.partialTraj (X := fun _ : ℕ => Y) κ 0 L w₀ := by
       rw [← Kernel.map_apply (Kernel.traj (X := fun _ : ℕ => Y) κ 0)
         (Preorder.measurable_frestrictLe L) w₀]
-      exact congrArg
-        (fun η : Kernel ((i : Finset.Iic 0) → Y) ((i : Finset.Iic L) → Y) =>
-          η w₀)
-        (Kernel.traj_map_frestrictLe (κ := κ) 0 L)
+      rw [Kernel.traj_map_frestrictLe]
 
 end ConstitutiveQuasi
 end PermanssonResearch
