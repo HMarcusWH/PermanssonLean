@@ -7,6 +7,8 @@ import PermanssonResearch.ConstitutiveQuasi.Counterexamples
 import PermanssonResearch.ConstitutiveQuasi.InterventionPair
 import PermanssonResearch.ConstitutiveQuasi.SurvivalRobustness
 import PermanssonResearch.ConstitutiveQuasi.Certificate
+import PermanssonResearch.ConstitutiveQuasi.PropertyErrors
+import PermanssonResearch.ConstitutiveQuasi.Robustness
 
 /-!
 # PermanssonResearch
