@@ -50,27 +50,27 @@ theorem pathLaw_finitePrefix_eq
     rfl
   have hsource :
       M.pathLaw (Measure.dirac y) =
-        Kernel.trajMeasure (Measure.dirac y) κ := by
+        Kernel.trajMeasure (X := fun _ : ℕ => PermanssonLean.JointState S X) (Measure.dirac y) κ := by
     rfl
   have hfinite :
-      Kernel.partialTraj κ 0 L
+      Kernel.partialTraj (X := fun _ : ℕ => PermanssonLean.JointState S X) κ 0 L
           (PermanssonLean.ProbabilitySupport.singletonPrefix y) =
         PermanssonLean.ProbabilitySupport.finitePrefixLaw
           M.inducedKernel y L := by
-    change Kernel.partialTraj κ 0 L
+    change Kernel.partialTraj (X := fun _ : ℕ => PermanssonLean.JointState S X) κ 0 L
         (PermanssonLean.ProbabilitySupport.singletonPrefix y) =
-      Kernel.partialTraj
+      Kernel.partialTraj (X := fun _ : ℕ => PermanssonLean.JointState S X)
         (fun n => PermanssonLean.ProbabilitySupport.stationaryPrefixKernel
           M.inducedKernel n) 0 L
         (PermanssonLean.ProbabilitySupport.singletonPrefix y)
     rw [hkernel]
   calc
     (M.pathLaw (Measure.dirac y)).map (Preorder.frestrictLe L) =
-        (Kernel.trajMeasure (Measure.dirac y) κ).map
+        (Kernel.trajMeasure (X := fun _ : ℕ => PermanssonLean.JointState S X) (Measure.dirac y) κ).map
           (Preorder.frestrictLe L) :=
       congrArg (fun μ : Measure (ℕ → PermanssonLean.JointState S X) =>
         μ.map (Preorder.frestrictLe L)) hsource
-    _ = Kernel.partialTraj κ 0 L
+    _ = Kernel.partialTraj (X := fun _ : ℕ => PermanssonLean.JointState S X) κ 0 L
         (PermanssonLean.ProbabilitySupport.singletonPrefix y) :=
       trajMeasure_dirac_prefix κ y L
     _ = _ := hfinite
