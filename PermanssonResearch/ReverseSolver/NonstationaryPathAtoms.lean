@@ -249,11 +249,13 @@ theorem prefix_atom_product {C : Type uC} [DecidableEq C] {n : ℕ}
       by_cases hx :
           w ⟨0, Finset.mem_Iic.mpr (Nat.zero_le (t+1))⟩ = x
       · simp only [if_pos hx]
-        rw [ENNReal.ofReal_mul (by exact_mod_cast
-          rationalPathWeight_nonneg sys π D t
-            (Preorder.frestrictLe₂ (π := fun _ : ℕ => Fin n) t.le_succ w))]
-        rfl
-      · simp [hx]
+        have hmass : 0 ≤ ((rationalPathWeight sys π D t
+            (Preorder.frestrictLe₂ (π := fun _ : ℕ => Fin n) t.le_succ w) : ℚ) : ℝ) := by
+          exact_mod_cast rationalPathWeight_nonneg sys π D t
+            (Preorder.frestrictLe₂ (π := fun _ : ℕ => Fin n) t.le_succ w)
+        rw [← ENNReal.ofReal_mul hmass]
+        norm_cast
+      · simp only [if_neg hx, zero_mul]
 
 end Nonstationary
 end ReverseSolver
