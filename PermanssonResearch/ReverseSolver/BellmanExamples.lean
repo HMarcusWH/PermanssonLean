@@ -25,6 +25,8 @@ open Bellman
 open ControlledKernel
 open ControlledKernelExamples
 
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
+
 /-- Probe: from 0 go to goal 1 with chance 1/4, otherwise stay at 0. -/
 def probeMatrix : RationalMarkovMatrix 3 where
   entry := fun y z =>
@@ -163,12 +165,15 @@ theorem unreachable_goal_zero :
       norm_num [bellmanValue_zero, unreachableTarget]
   | succ t ih =>
       rw [bellmanValue_succ]
-      simp only [show (0 : Fin 2) ∉ unreachableTarget.goal by
-        simp [unreachableTarget], if_neg]
-      simp only [show (0 : Fin 2) ∉ unreachableTarget.forbidden by
-        simp [unreachableTarget], if_neg]
-      simp [actionScore, unreachableSystem, deterministicMatrix,
-        Fin.sum_univ_two, ih]
+      have hg : (0 : Fin 2) ∉ unreachableTarget.goal := by
+        simp [unreachableTarget]
+      have hd : (0 : Fin 2) ∉ unreachableTarget.forbidden := by
+        simp [unreachableTarget]
+      simp only [if_neg hg, if_neg hd]
+      change (∑ z : Fin 2,
+        (if z = (0 : Fin 2) then (1 : ℚ) else 0) *
+          bellmanValue unreachableSystem unreachableTarget t z) = 0
+      simpa [Fin.sum_univ_two] using ih
 
 end BellmanExamples
 end ReverseSolver
