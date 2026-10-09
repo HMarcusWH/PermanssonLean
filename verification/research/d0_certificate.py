@@ -224,8 +224,20 @@ def parse_json_strict(raw):
         raise CertificateError("nonfinite JSON number: " + value)
     def bad_float(value):
         raise CertificateError("floating point JSON numbers forbidden")
+    def bounded_json_int(token):
+        # Check *before* int(): CPython rejects >4300 decimal digits by
+        # default, which otherwise appears as INVALID rather than a budget
+        # violation. Integers representable within MAX_VALUE_BITS have
+        # fewer than 2500 decimal digits.
+        if len(token.lstrip("-")) > 2500:
+            raise CertificateResourceLimit("JSON integer digit limit")
+        try:
+            return int(token)
+        except ValueError as exc:
+            raise CertificateResourceLimit("JSON integer conversion limit") from exc
     try:
         obj = json.loads(raw.decode("utf-8"), object_pairs_hook=object_pairs,
+                         parse_int=bounded_json_int,
                          parse_float=bad_float, parse_constant=bad_constant)
     except (UnicodeDecodeError, json.JSONDecodeError, RecursionError) as exc:
         raise CertificateError("invalid JSON encoding") from exc
