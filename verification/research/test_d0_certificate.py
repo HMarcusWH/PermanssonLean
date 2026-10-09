@@ -211,6 +211,28 @@ class D0CertificateTests(unittest.TestCase):
         self.assertEqual(record["calculation"]["value"], [0, 1])
         self.assertEqual(check_certificate(raw).status, LIMIT)
 
+    def test_backward_generation_bounds_intermediate_rationals(self):
+        """Codex P2 regression: generator stops before 252-bit row powers explode."""
+        denominator = 1 << 252
+        slow = ((Q(denominator - 1, denominator), Q(1, denominator)),
+                (Q(0), Q(1)))
+        with self.assertRaises(CertificateResourceLimit):
+            make_certificate([("slow_goal", slow)], slow, 0, [1], [], 60)
+        # Without a resource limit the same mathematical recursion is defined.
+        self.assertEqual(value_by_recursion(slow, 1, [1], [], 0), Q(1))
+
+    def test_oversized_declared_problem_bounds_are_resource_limits(self):
+        """Codex P2 regression: distinguish bounds from malformed inputs."""
+        source = parse_json_strict(fixture_two())
+        for name, value in (("dimension", 13), ("horizon", 129)):
+            changed = json.loads(json.dumps(source))
+            changed["problem"][name] = value
+            self.assertEqual(check_certificate(canonical_bytes(changed)).status, LIMIT)
+        for name, value in (("dimension", 0), ("horizon", -1)):
+            changed = json.loads(json.dumps(source))
+            changed["problem"][name] = value
+            self.assertEqual(check_certificate(canonical_bytes(changed)).status, BAD)
+
     def test_resource_limit_is_distinct_from_invalid(self):
         self.assertEqual(check_certificate(b" " * (MAX_BYTES + 1)).status, LIMIT)
         with self.assertRaises(CertificateResourceLimit):
