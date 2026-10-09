@@ -11,7 +11,7 @@ as the sum of its path atoms for every horizon.
 -/
 
 open MeasureTheory ProbabilityTheory
-open scoped ENNReal
+open scoped ENNReal Classical
 
 namespace PermanssonResearch
 namespace ReverseSolver
