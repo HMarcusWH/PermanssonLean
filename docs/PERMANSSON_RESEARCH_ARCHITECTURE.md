@@ -274,6 +274,15 @@ schedules**, with a maximizing schedule attaining the bound. The theorem is
 NOT YET a nonstationary canonical finite-prefix probability-law equality;
 that bridge remains D1-C, followed by separate history-dependent reduction.
 
+**D1-C1 research PR #47 (verification pending):** The rational nonstationary
+controlled-path proof is separate from the typed alpha/P/U transport. See
+[D1_NONSTATIONARY_RATIONAL.md](D1_NONSTATIONARY_RATIONAL.md). The initial
+deadline T is fixed for each partial-trajectory family; the step-i kernel
+uses pi(T-i), and projectivity is proved only within that original T.
+Proving the actual first-hit probability equals D1-B policyValue is the
+D1-C1 acceptance theorem. A complete typed strategic-world finite-path
+pushforward equality is independently required in D1-C2 (PR #48).
+
 D1 is **new controlled-process theory**; do not pass a sequence of changing kernels off as one existing `AdmissibleStrategicIntervention`. First implementation constraints: finite nonempty `Y=S×X`, finite `A`, finite nonempty control menu `C(y)` at each state; controls select among *action-selection replacements* `α_c`. Hold `P` and `U` fixed. The selected control is chosen at the *current joint state*, before choosing action `a`; after `x'`, update `s'` exactly as in the canonical model.
 
 For `c∈C(y)`, define `K_c(y,z)` by the original α/P/U integration order with `α_c` selected at `y`. Explicitly prove nonnegativity, stochastic row sum, and equality to the canonical induced kernel of the corresponding replacement when that replacement is frozen. For a feedback policy `π_t:Y→C` with `π_t(y)∈C(y)`, define its finite-horizon nonstationary law directly (or prove it equals a stationary clock-augmented kernel). The controller may use exactly the information allowed by the information contract; initial D1 assumes full observation of `Y`.
