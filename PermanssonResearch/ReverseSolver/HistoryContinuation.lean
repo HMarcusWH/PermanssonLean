@@ -62,7 +62,8 @@ def appendHistory {n i : ℕ} (h : History n i) (z : Fin n) :
 @[simp] theorem appendHistory_old {n i : ℕ}
     (h : History n i) (z : Fin n) (j : Finset.Iic i) :
     appendHistory h z
-      ⟨j.val, Finset.mem_Iic.mpr (by omega)⟩ = h j := by
+      ⟨j.val, Finset.mem_Iic.mpr
+        (Nat.le_trans (Finset.mem_Iic.mp j.property) (Nat.le_succ i))⟩ = h j := by
   simp [appendHistory, Finset.mem_Iic.mp j.property]
 
 /-- Exact rational probability of a future successor list, using complete
@@ -151,7 +152,9 @@ theorem forwardValue_succ {C : Type uC} [DecidableEq C] {n : ℕ}
           (if xs.foldl (advanceStatus target) (advanceStatus target s z) = .won
             then (1 : ℚ) else 0)) := by
     intro xs
-    simp [completionMass, List.foldl_cons, mul_assoc]
+    by_cases hw : xs.foldl (advanceStatus target) (advanceStatus target s z) = .won
+    · simp [completionMass, List.foldl_cons, hw, mul_assoc]
+    · simp [completionMass, List.foldl_cons, hw]
   simp only [Function.comp_def, hfactor, List.sum_map_mul_left]
 
 theorem foldl_status_won {n : ℕ} (target : RationalHittingTarget n) :
@@ -179,8 +182,7 @@ theorem forwardValue_won {C : Type uC} [DecidableEq C] {n : ℕ}
     (h : History n i) :
     forwardValue sys σ target D i h .won r = 1 := by
   unfold forwardValue
-  simp only [foldl_status_won, if_pos rfl, mul_one]
-  exact completionMass_total sys σ D r i h
+  simpa [foldl_status_won] using completionMass_total sys σ D r i h
 
 /-- Once lost, no later goal entry can revive a failed first-hit event. -/
 theorem forwardValue_lost {C : Type uC} [DecidableEq C] {n : ℕ}
