@@ -259,6 +259,14 @@ Suggested `ReverseSolver/Target.lean` and `FrozenMenu.lean`; prove finite hittin
 
 ### 7.3 D1 — finite fully observed adaptive controller
 
+**Implementation note (research PR #45, D1-A):** The first scoped Lean
+module constructs a finite *stationary state-feedback* policy over the
+existing Unit × Fin n typed rational realization, with state-dependent
+nonempty permitted controls, full canonical one-step equality and
+all-horizon path/value transport. See [D1_CONTROLLED_KERNEL.md](D1_CONTROLLED_KERNEL.md).
+It is **not** the full D1 Bellman or general typed-world theorem below.
+Those remain subsequent proof obligations.
+
 D1 is **new controlled-process theory**; do not pass a sequence of changing kernels off as one existing `AdmissibleStrategicIntervention`. First implementation constraints: finite nonempty `Y=S×X`, finite `A`, finite nonempty control menu `C(y)` at each state; controls select among *action-selection replacements* `α_c`. Hold `P` and `U` fixed. The selected control is chosen at the *current joint state*, before choosing action `a`; after `x'`, update `s'` exactly as in the canonical model.
 
 For `c∈C(y)`, define `K_c(y,z)` by the original α/P/U integration order with `α_c` selected at `y`. Explicitly prove nonnegativity, stochastic row sum, and equality to the canonical induced kernel of the corresponding replacement when that replacement is frozen. For a feedback policy `π_t:Y→C` with `π_t(y)∈C(y)`, define its finite-horizon nonstationary law directly (or prove it equals a stationary clock-augmented kernel). The controller may use exactly the information allowed by the information contract; initial D1 assumes full observation of `Y`.

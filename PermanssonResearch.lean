@@ -49,6 +49,9 @@ import PermanssonResearch.ReverseSolver.FiniteStrategicPathBridge
 import PermanssonResearch.ReverseSolver.TypedMenuCertification
 import PermanssonResearch.ReverseSolver.TypedMenuCertificationExamples
 import PermanssonResearch.ReverseSolver.EndToEndCertificate
+import PermanssonResearch.ReverseSolver.ControlledKernel
+import PermanssonResearch.ReverseSolver.ControlledKernelCorrespondence
+import PermanssonResearch.ReverseSolver.ControlledKernelExamples
 
 /-!
 # PermanssonResearch
