@@ -28,6 +28,7 @@ theorem rationalFiniteKernel_prefix_projective {n : ℕ}
       (rationalFiniteKernel M) y t := by
   unfold PermanssonLean.ProbabilitySupport.finitePrefixLaw
   exact Kernel.partialTraj_map_frestrictLe₂_apply
+    (X := fun _ : ℕ => Fin n)
     (κ := fun k => PermanssonLean.ProbabilitySupport.stationaryPrefixKernel
       (rationalFiniteKernel M) k)
     (x₀ := PermanssonLean.ProbabilitySupport.singletonPrefix y) ht
