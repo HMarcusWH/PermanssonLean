@@ -34,6 +34,7 @@ import PermanssonResearch.ReverseSolver.CanonicalHistoryAtoms
 import PermanssonResearch.ReverseSolver.CanonicalWordEncoding
 import PermanssonResearch.ReverseSolver.AnchoredHistoryEquiv
 import PermanssonResearch.ReverseSolver.RationalHistoryProduct
+import PermanssonResearch.ReverseSolver.WordEnumerationBridge
 
 /-!
 # PermanssonResearch
