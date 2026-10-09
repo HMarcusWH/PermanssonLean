@@ -27,8 +27,8 @@ theorem rationalFiniteKernel_transition_pair {n : ℕ}
         (rationalFiniteKernel M) T) =
     (PermanssonLean.ProbabilitySupport.finitePrefixLaw
         (rationalFiniteKernel M) y (T+1)).map
-      (fun w =>
-        (Preorder.frestrictLe₂ T.le_succ w,
+      (fun (w : (i : Finset.Iic (T+1)) → Fin n) =>
+        (Preorder.frestrictLe₂ (π := fun _ : ℕ => Fin n) T.le_succ w,
          w ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩)) := by
   let κ : (k : ℕ) → Kernel ((i : Finset.Iic k) → Fin n) (Fin n) :=
     fun k => PermanssonLean.ProbabilitySupport.stationaryPrefixKernel
@@ -54,7 +54,7 @@ theorem rationalFiniteKernel_transition_pair {n : ℕ}
             κ, x₀] using hpair
     _ = (PermanssonLean.ProbabilitySupport.finitePrefixLaw
         (rationalFiniteKernel M) y (T+1)).map
-      (fun w => (Preorder.frestrictLe₂ T.le_succ w,
+      (fun w => (Preorder.frestrictLe₂ (π := fun _ : ℕ => Fin n) T.le_succ w,
           w ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩)) := by
           rw [← hprefix]
           rw [Measure.map_map (by fun_prop) (by fun_prop)]
