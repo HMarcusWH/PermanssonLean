@@ -115,7 +115,9 @@ theorem selectedMatrix_next {C : Type uC} [DecidableEq C] {n : ℕ}
     (sys : FiniteControlSystem C n) (π : MarkovSchedule sys)
     (T i : ℕ) (hi : i < T) :
     selectedMatrix sys π T (i+1) =
-      feedbackMatrix sys (π (T-i-1)) := rfl
+      feedbackMatrix sys (π (T-i-1)) := by
+  have heq : T - (i+1) = T-i-1 := by omega
+  simp only [selectedMatrix, heq]
 
 end Nonstationary
 end ReverseSolver
