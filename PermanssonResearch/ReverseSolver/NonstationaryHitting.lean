@@ -35,10 +35,11 @@ noncomputable def successProbability {C : Type uC} [DecidableEq C] {n : ℕ}
 
 /-- Exact rational finite sum of ALL successful paths, with initial
 coordinate constrained to the actual initial point (no phantom start). -/
-def successfulPathSum {C : Type uC} [DecidableEq C] {n : ℕ}
+noncomputable def successfulPathSum {C : Type uC} [DecidableEq C] {n : ℕ}
     (sys : FiniteControlSystem C n) (π : MarkovSchedule sys)
-    (target : RationalHittingTarget n) (T : ℕ) (x : Fin n) : ℚ :=
-  ∑ w : ((i : Finset.Iic T) → Fin n),
+    (target : RationalHittingTarget n) (T : ℕ) (x : Fin n) : ℚ := by
+  classical
+  exact ∑ w : ((i : Finset.Iic T) → Fin n),
     if w ⟨0, Finset.mem_Iic.mpr (Nat.zero_le T)⟩ = x ∧
        w ∈ successPrefixEvent (rationalTargetAsFrozen target) T then
       rationalPathWeight sys π T T w
@@ -48,6 +49,7 @@ theorem successfulPathSum_nonneg {C : Type uC} [DecidableEq C] {n : ℕ}
     (sys : FiniteControlSystem C n) (π : MarkovSchedule sys)
     (target : RationalHittingTarget n) (T : ℕ) (x : Fin n) :
     0 ≤ successfulPathSum sys π target T x := by
+  classical
   unfold successfulPathSum
   apply Finset.sum_nonneg
   intro w hw
