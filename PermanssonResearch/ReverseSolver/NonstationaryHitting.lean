@@ -105,7 +105,8 @@ theorem successProbability_eq_rationalPathSum
               · norm_num
           rw [← ENNReal.ofReal_sum_of_nonneg hnonneg]
           unfold successfulPathSum
-          rfl
+          congr 1
+          norm_cast
 
 end Nonstationary
 end ReverseSolver
