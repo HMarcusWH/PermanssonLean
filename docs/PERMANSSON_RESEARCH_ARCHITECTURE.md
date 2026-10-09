@@ -267,6 +267,13 @@ all-horizon path/value transport. See [D1_CONTROLLED_KERNEL.md](D1_CONTROLLED_KE
 It is **not** the full D1 Bellman or general typed-world theorem below.
 Those remain subsequent proof obligations.
 
+**D1-B incremental milestone (PR #46):** See [D1_BELLMAN.md](D1_BELLMAN.md).
+D1-B introduces the exact rational Bellman recursion and proves optimal
+recursive values over all admissible deterministic **remaining-horizon Markov
+schedules**, with a maximizing schedule attaining the bound. The theorem is
+NOT YET a nonstationary canonical finite-prefix probability-law equality;
+that bridge remains D1-C, followed by separate history-dependent reduction.
+
 D1 is **new controlled-process theory**; do not pass a sequence of changing kernels off as one existing `AdmissibleStrategicIntervention`. First implementation constraints: finite nonempty `Y=S×X`, finite `A`, finite nonempty control menu `C(y)` at each state; controls select among *action-selection replacements* `α_c`. Hold `P` and `U` fixed. The selected control is chosen at the *current joint state*, before choosing action `a`; after `x'`, update `s'` exactly as in the canonical model.
 
 For `c∈C(y)`, define `K_c(y,z)` by the original α/P/U integration order with `α_c` selected at `y`. Explicitly prove nonnegativity, stochastic row sum, and equality to the canonical induced kernel of the corresponding replacement when that replacement is frozen. For a feedback policy `π_t:Y→C` with `π_t(y)∈C(y)`, define its finite-horizon nonstationary law directly (or prove it equals a stationary clock-augmented kernel). The controller may use exactly the information allowed by the information contract; initial D1 assumes full observation of `Y`.
