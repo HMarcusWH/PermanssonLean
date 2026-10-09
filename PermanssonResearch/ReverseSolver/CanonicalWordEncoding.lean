@@ -22,7 +22,7 @@ def historyTimeEquiv (T : ℕ) : Finset.Iic T ≃ Fin (T+1) where
 /-- History with the frozen initial state and the given T successors. -/
 def historyFromSteps {n : ℕ} (T : ℕ) (y : Fin n)
     (steps : Fin T → Fin n) : (i : Finset.Iic T) → Fin n :=
-  fun i => Fin.cons y steps (historyTimeEquiv T i)
+  fun i => (Fin.cons y steps : Fin (T+1) → Fin n) (historyTimeEquiv T i)
 
 /-- Extract the T successors at times 1 through T. -/
 def stepsFromHistory {n : ℕ} (T : ℕ)
