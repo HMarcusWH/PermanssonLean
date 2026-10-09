@@ -233,6 +233,14 @@ class D0CertificateTests(unittest.TestCase):
             changed["problem"][name] = value
             self.assertEqual(check_certificate(canonical_bytes(changed)).status, BAD)
 
+    def test_oversized_json_integer_is_resource_limit(self):
+        """Codex P2: classify >CPython-int-limit tokens before int conversion."""
+        raw = fixture_two()
+        needle = b'"value":[1,2]'
+        self.assertIn(needle, raw)
+        huge = raw.replace(needle, b'"value":[' + b'9' * 5000 + b',1]', 1)
+        self.assertEqual(check_certificate(huge).status, LIMIT)
+
     def test_resource_limit_is_distinct_from_invalid(self):
         self.assertEqual(check_certificate(b" " * (MAX_BYTES + 1)).status, LIMIT)
         with self.assertRaises(CertificateResourceLimit):
