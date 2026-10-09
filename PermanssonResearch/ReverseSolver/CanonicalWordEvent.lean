@@ -34,7 +34,7 @@ theorem finiteVectorSuccess_iff_successorWordWins {n : ℕ}
         · intro hy
           refine ⟨0, by simpa only [Fin.cons_zero] using hy, ?_⟩
           intro u hu
-          exact (not_lt_zero' u hu).elim
+          exact (not_lt_zero' hu).elim
       simpa [List.ofFn_zero, successorWordWins] using he
   | succ T ih =>
       intro y steps
