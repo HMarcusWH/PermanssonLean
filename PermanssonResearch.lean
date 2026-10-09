@@ -62,6 +62,12 @@ import PermanssonResearch.ReverseSolver.NonstationaryHitting
 import PermanssonResearch.ReverseSolver.NonstationaryForward
 import PermanssonResearch.ReverseSolver.NonstationaryOptimality
 import PermanssonResearch.ReverseSolver.NonstationaryExamples
+import PermanssonResearch.ReverseSolver.NonstationaryTypedKernel
+import PermanssonResearch.ReverseSolver.NonstationaryTypedPrefix
+import PermanssonResearch.ReverseSolver.NonstationaryTypedAtoms
+import PermanssonResearch.ReverseSolver.NonstationaryTypedTransport
+import PermanssonResearch.ReverseSolver.NonstationaryTypedHitting
+import PermanssonResearch.ReverseSolver.NonstationaryTypedExamples
 
 /-!
 # PermanssonResearch
