@@ -60,7 +60,6 @@ theorem finiteSuccessorWords_sum_eq_vectorSum (n : ℕ) :
               f (p.1 :: List.ofFn p.2) := by
                 rw [Fintype.sum_prod_type]
         _ = ∑ v : Fin (T+1) → Fin n, f (List.ofFn v) := by
-                symm
                 apply Fintype.sum_equiv
                   (Fin.consEquiv (fun _ : Fin (T+1) => Fin n))
                 intro v
