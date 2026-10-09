@@ -241,6 +241,32 @@ theorem forwardValue_unresolved_le_bellman
                 (bestControl_dominates sys (bellmanValue sys target r)
                   (last h) (σ.choose D i h) (σ.permitted D i h))
 
+/-- Every history-dependent policy's INDEPENDENT exact rational forward
+evaluation from the original initial state is Bellman-bounded. This is not
+yet the statement about the genuine trajectory event measure; connecting
+the forward evaluator to that measure is the remaining D1-D1 bridge. -/
+theorem forwardValue_initial_le_bellman
+    {C : Type uC} [DecidableEq C] {n : ℕ}
+    (sys : FiniteControlSystem C n) (σ : HistoryPolicy sys)
+    (target : RationalHittingTarget n) (D : ℕ) (x : Fin n) :
+    forwardValue sys σ target D 0 (singletonPrefix x)
+      (initialStatus target x) D ≤ bellmanValue sys target D x := by
+  by_cases hg : x ∈ target.goal
+  · have hs : initialStatus target x = .won := by
+      simp [initialStatus, advanceStatus, hg]
+    rw [hs, forwardValue_won, bellmanValue_goal sys target D x hg]
+  · by_cases hf : x ∈ target.forbidden
+    · have hs : initialStatus target x = .lost := by
+        simp [initialStatus, advanceStatus, hg, hf]
+      rw [hs, forwardValue_lost, bellmanValue_forbidden sys target D x hf]
+    · have hs : initialStatus target x = .unresolved := by
+        simp [initialStatus, advanceStatus, hg, hf]
+      rw [hs]
+      simpa [last, singletonPrefix] using
+        (forwardValue_unresolved_le_bellman sys σ target D D 0
+          (singletonPrefix x) (by simpa [last, singletonPrefix] using hg)
+          (by simpa [last, singletonPrefix] using hf))
+
 end HistoryDependent
 end ReverseSolver
 end PermanssonResearch
