@@ -39,6 +39,7 @@ import PermanssonResearch.ReverseSolver.CanonicalVectorSuccess
 import PermanssonResearch.ReverseSolver.CanonicalEventVectorEquiv
 import PermanssonResearch.ReverseSolver.CanonicalWordEvent
 import PermanssonResearch.ReverseSolver.CanonicalWordMass
+import PermanssonResearch.ReverseSolver.CanonicalFiniteEventSum
 
 /-!
 # PermanssonResearch
