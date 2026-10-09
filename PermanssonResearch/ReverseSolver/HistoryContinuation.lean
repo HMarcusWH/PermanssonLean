@@ -20,6 +20,7 @@ namespace HistoryDependent
 
 open ControlledKernel
 open Bellman
+open PermanssonLean.ProbabilitySupport
 
 universe uC
 
