@@ -106,9 +106,9 @@ theorem inducedKernel_worldCylinder {n : ℕ}
     rationalFiniteKernel K x D
   rw [StrategicWorldModel.inducedKernel_apply
     (realizedModel K) ((), x) (hD.preimage measurable_snd)]
-  simp only [realizedModel, realizedGenerator, liftedRationalAction,
+  simp [realizedModel, realizedGenerator, liftedRationalAction,
     copiedActionWorld, trivialStrategicUpdate,
-    Kernel.deterministic_apply, Kernel.comap_apply']
+    Kernel.deterministic_apply]
   change (∫⁻ z : Fin n, D.indicator (fun _ => (1 : ℝ≥0∞)) z
     ∂rationalFiniteKernel K x) = (rationalFiniteKernel K) x D
   exact lintegral_indicator_one hD
