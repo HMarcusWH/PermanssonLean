@@ -40,6 +40,7 @@ import PermanssonResearch.ReverseSolver.CanonicalEventVectorEquiv
 import PermanssonResearch.ReverseSolver.CanonicalWordEvent
 import PermanssonResearch.ReverseSolver.CanonicalWordMass
 import PermanssonResearch.ReverseSolver.CanonicalFiniteEventSum
+import PermanssonResearch.ReverseSolver.CanonicalAllHorizonCorrespondence
 
 /-!
 # PermanssonResearch
