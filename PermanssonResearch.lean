@@ -27,6 +27,7 @@ import PermanssonResearch.ReverseSolver.CanonicalFiniteKernel
 import PermanssonResearch.ReverseSolver.FinitePrefixBridge
 import PermanssonResearch.ReverseSolver.CanonicalProjectivity
 import PermanssonResearch.ReverseSolver.CanonicalTransitionPair
+import PermanssonResearch.ReverseSolver.CanonicalAtomMass
 
 /-!
 # PermanssonResearch
