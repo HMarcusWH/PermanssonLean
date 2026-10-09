@@ -48,6 +48,7 @@ def rightMatrix : RationalMarkovMatrix 3 := deterministicMatrix rightStep
 
 /-- Both controls permitted everywhere, with nonempty eligible menu. -/
 def toySystem : FiniteControlSystem Bool 3 where
+  states_nonempty := by decide
   baseline := leftMatrix
   options := fun _ => {false, true}
   options_nonempty := by
