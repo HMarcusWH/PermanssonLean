@@ -80,7 +80,10 @@ def _integer_signed(value, name):
 
 
 def _dimension(n):
-    return _integer(n, "dimension", low=1, high=MAX_STATES)
+    _integer(n, "dimension", low=1)
+    if n > MAX_STATES:
+        raise CertificateResourceLimit("state dimension limit")
+    return n
 
 
 def normalize_matrix(rows, n=None):
@@ -115,8 +118,10 @@ def _normalize_states(states, n, label):
 
 
 def _check_budget(n, horizon, candidates):
-    _integer(horizon, "horizon", low=0, high=MAX_HORIZON)
-    _integer(candidates, "candidate count", low=1, high=MAX_CANDIDATES)
+    _integer(horizon, "horizon", low=0)
+    _integer(candidates, "candidate count", low=1)
+    if horizon > MAX_HORIZON or candidates > MAX_CANDIDATES:
+        raise CertificateResourceLimit("finite menu/horizon limit")
     if n * n * max(horizon, 1) * candidates > MAX_TRANSITIONS:
         raise CertificateResourceLimit("finite transition work limit")
 
