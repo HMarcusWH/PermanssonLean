@@ -52,6 +52,10 @@ import PermanssonResearch.ReverseSolver.EndToEndCertificate
 import PermanssonResearch.ReverseSolver.ControlledKernel
 import PermanssonResearch.ReverseSolver.ControlledKernelCorrespondence
 import PermanssonResearch.ReverseSolver.ControlledKernelExamples
+import PermanssonResearch.ReverseSolver.Bellman
+import PermanssonResearch.ReverseSolver.BellmanPolicyValue
+import PermanssonResearch.ReverseSolver.BellmanOptimality
+import PermanssonResearch.ReverseSolver.BellmanExamples
 
 /-!
 # PermanssonResearch
