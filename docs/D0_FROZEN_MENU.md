@@ -1,11 +1,15 @@
 # D0 — finite frozen-menu reverse-regime objective and optimizer
 
-**Status:** D0-A (#39) and D0-B (#40) merged with recorded green Research Lean CI.
-D0-C (#41) proves the finite-rational-matrix to canonical `finitePrefixLaw`
-hitting-value correspondence at **every finite horizon**. Its research build,
-transitive axiom audit and all four CI workflows passed on commit `22525678`.
-The research result remains separate from frozen v0.1.8 Exact GR/PR and
-does **not** certify any strategic-world intervention or Python implementation.
+**Status:** D0-A (#39), D0-B (#40), and D0-C (#41) are merged and
+certified for finite rational matrices, with D0-C proving all-horizon
+canonical `finitePrefixLaw` hitting-value equality. D0-D (#42) is merged:
+it constructs an explicit typed strategic-world factorization for **every
+certified finite rational matrix** in a deliberately chosen research family,
+with unchanged P and U across its action-selection interventions.
+D0-E (#43) develops the all-horizon transported typed-menu optimality theorem,
+subject to final-head Lean/CI proof gates. Neither construction validates an
+arbitrary supplied strategic-world model, the separate Python implementation,
+or frozen v0.1.8 Exact GR/PR assertions.
 
 ## Scientific contract
 
@@ -63,11 +67,13 @@ extraction.
 
 PR #40 formalized the finite hitting recursion, independent rational forward
 enumeration, their equality, and computable selection of an exact rational
-fixed-menu winner. PR #41 proves the canonical finite-prefix
-correspondence for every certified rational matrix and finite horizon. A further
-typed strategic-world matrix-factorization bridge remains necessary before the rational results certify strategic interventions. D1 later
-extends to adaptive state-feedback policies using the correct P/U/α order.
-This PR does not introduce any such adaptive-policy semantics.
+fixed-menu winner. PR #41 proves canonical finite-prefix correspondence for
+every certified rational matrix and horizon. PR #42 supplies the distinct
+**constructed finite strategic-world factorization**, not an identification
+theorem for arbitrary typed models. PR #43 seeks to prove and apply the
+all-horizon value transport for a complete frozen menu **in that constructed
+family**, rather than injecting a pre-assumed `exact_values` field.
+D1's adaptive state-feedback policies remain separate new theory.
 
 ## Release and proof firewall
 
@@ -86,10 +92,10 @@ that any supplied matrix is a permitted intervention's induced kernel.
 
 The rational weighted-suffix forward enumeration now has a Lean theorem
 proving equality with the rational backward hitting recursion. D0-C supplies the distinct
-finite-matrix-to-**canonical `finitePrefixLaw`** theorem. Typed
-strategic-world kernel factorization and exact menu-value transfer are **still
-required** before promoting this to an unconditional `FrozenMenu`
-model-value optimum. The strict Python
+finite-matrix-to-**canonical `finitePrefixLaw`** theorem. PR #42 supplies a concrete typed strategic-world factorization in a
+special research family; PR #43 adds the corresponding exact all-horizon
+menu-value transfer. A **general** factorization or value bridge for arbitrary
+already supplied `FrozenMenu` objects is not established by either result. The strict Python
 validator rejects floating-point, Boolean, string, NaN and infinity entries;
 integers and `Fraction` entries are permitted as exact rationals.
 
@@ -162,3 +168,62 @@ by itself prove `K_M=K_(G,P)` for any original typed strategic-world
 intervention. That requires a separately checked finite encoding,
 kernel equality/intertwining and target/start transport. Do not promote
 application status or claim proof of the Python implementation.
+
+
+## D0-D typed finite strategic-world realization (PR #42)
+
+PR #42, merged as `26934070f1d0498a5d77b5ca88504ef8eb7033f3`, formalizes
+a concrete research family with
+`S = Unit`, `X = Fin n`, and `A = Fin n`. The stochastic action
+kernel chooses a rationally weighted next-world candidate, the fixed world
+kernel P copies that action into X, and the fixed strategic update U
+preserves trivial Unit memory. Every row-stochastic rational finite
+matrix therefore has a **constructed** canonical typed factorization.
+
+`FiniteStrategicRealization.inducedKernel_worldCylinder` and
+`intervenedKernel_worldCylinder` identify the actual alpha → P → U
+induced next-state distribution on **all measurable encoded world
+events**, not merely one test atom. The action-selection intervention
+`rationalStrategicIntervention` preserves exactly the baseline P and U.
+The two-state witness gives distinct one-step goal probabilities 1/2 and 1.
+
+The constructed `researchActionFamily` explicitly has permissive
+research-only admissibility. These proofs do not infer admissibility for
+external strategic games or reconstruct unknown structural P or U from
+observations. One-step correspondence alone is insufficient to claim
+equal full finite-prefix hitting values; that is D0-E's separate obligation.
+
+## D0-E certified typed-menu optimality (PR #43)
+
+**Mathematical implementation, gated on final-head CI verification.**
+The new research-only modules are:
+
+| Lean file | Purpose |
+| --- | --- |
+| `GenericFinitePrefixAtoms.lean` | Generic transition-pair and one-step atom recurrence for mathlib's real `finitePrefixLaw` |
+| `FiniteStrategicPathBridge.lean` | Exact all-horizon atomic law/pushforward equality under the proven `Unit × Fin n ≃ Fin n` state encoding; goal/forbidden event transport; `typedHittingValue_eq_rational_all_horizons` |
+| `TypedMenuCertification.lean` | Construct the finite typed menu with precisely the rational candidate-list membership and discharge `ExactMenuValueCorrespondence.exact_values` by proof |
+| `TypedMenuCertificationExamples.lean` | Certify a nontrivial listed two-choice winner and genuine typed path-law values and fixed world/update |
+
+The intended theorem `certifiedSelected_dominatesTyped` maximizes
+the **actual canonical typed-model hitting probability**, for all
+horizons, initial points and **members of the explicitly frozen finite
+menu**. It is paired with `certifiedSelected_mem`,
+`certifiedSelected_exactValue`, and world/update preservation.
+List-order tie-breaking belongs to the original D0-B `List.argmax`
+policy, and duplicate list indices do not enlarge the set of eligible
+typed interventions. The original model baseline is present only if
+listed. The original target/forbidden order includes time zero and does
+not modify the underlying Markov transition kernel to be absorbing.
+
+The construction does **not** establish optimality against all
+conceivable admissible strategic interventions, arbitrary externally
+furnished `StrategicWorldModel` instances, or D1 state-feedback
+policies. Nor does a typed Lean certificate certify independently
+executed Python code or empirical transition probabilities. Do not
+promote application status beyond its original schema or claim that
+an outcome conditional on a constructed kernel predicts the world.
+
+No proofs in #43 may use `sorry`, `admit`, custom axioms or an
+input `exact_values` hypothesis in place of the genuine path-law
+transport. The frozen v0.1.8 kernel and mathlib toolchain are unchanged.
