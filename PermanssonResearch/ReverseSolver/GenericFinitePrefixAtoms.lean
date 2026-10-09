@@ -58,13 +58,20 @@ theorem prefix_transition_pair {Y : Type*} [MeasurableSpace Y]
                     T.le_succ w,
                    w ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩))
             rw [← hprefix]
+            have hleft : Measurable
+                (Preorder.frestrictLe₂
+                  (π := fun _ : ℕ => Y) T.le_succ) :=
+              Preorder.measurable_frestrictLe₂ T.le_succ
+            have hright : Measurable
+                (fun w : ((i : Finset.Iic (T+1)) → Y) =>
+                  w ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩) :=
+              measurable_pi_apply _
             have hmPair :
                 Measurable (fun w : ((i : Finset.Iic (T+1)) → Y) =>
                   (Preorder.frestrictLe₂ (π := fun _ : ℕ => Y)
                     T.le_succ w,
                     w ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩)) :=
-              (Preorder.measurable_frestrictLe₂ T.le_succ).prodMk
-                (measurable_pi_apply _)
+              hleft.prodMk hright
             rw [Measure.map_map hmPair (Preorder.measurable_frestrictLe (T+1))]
             rfl
 
@@ -127,9 +134,17 @@ theorem finitePrefixLaw_singleton_succ {Y : Type*} [MeasurableSpace Y]
       ({(pre,z)} : Set (((i : Finset.Iic T) → Y) × Y)) := by
     rw [← hprod]
     exact hpoint.prod hlast
-  have hmPair : Measurable (prefixPair (Y := Y) T) :=
-    (Preorder.measurable_frestrictLe₂ T.le_succ).prodMk
-      (measurable_pi_apply _)
+  have hleft : Measurable
+      (Preorder.frestrictLe₂
+        (π := fun _ : ℕ => Y) T.le_succ) :=
+    Preorder.measurable_frestrictLe₂ T.le_succ
+  have hright : Measurable
+      (fun u : ((i : Finset.Iic (T+1)) → Y) =>
+        u ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩) :=
+    measurable_pi_apply _
+  have hmPair : Measurable (prefixPair (Y := Y) T) := by
+    unfold prefixPair
+    exact hleft.prodMk hright
   rw [Measure.map_apply hmPair hpairsingleton, hpre] at hpair
   rw [← hprod, Measure.compProd_apply_prod hpoint hlast] at hpair
   rw [lintegral_singleton' (Kernel.measurable_coe κ hlast) pre] at hpair
