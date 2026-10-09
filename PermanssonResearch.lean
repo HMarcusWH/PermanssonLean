@@ -68,6 +68,8 @@ import PermanssonResearch.ReverseSolver.NonstationaryTypedAtoms
 import PermanssonResearch.ReverseSolver.NonstationaryTypedTransport
 import PermanssonResearch.ReverseSolver.NonstationaryTypedHitting
 import PermanssonResearch.ReverseSolver.NonstationaryTypedExamples
+import PermanssonResearch.ReverseSolver.HistoryPolicy
+import PermanssonResearch.ReverseSolver.HistoryPrefixKernel
 
 /-!
 # PermanssonResearch
