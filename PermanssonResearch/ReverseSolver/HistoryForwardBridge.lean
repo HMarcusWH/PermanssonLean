@@ -116,6 +116,7 @@ theorem packed_fold_eq_rationalPathWeight
       have hrec : appendHistory pre (w ⟨t+1, Finset.mem_Iic.mpr le_rfl⟩) = w :=
         appendHistory_reconstruct w
       simp [packedStep, pre, hrec]
+      rfl
 
 /-- Independent forward successor-word weight equals genuine path atom. -/
 theorem completionMass_eq_rationalPathWeight
