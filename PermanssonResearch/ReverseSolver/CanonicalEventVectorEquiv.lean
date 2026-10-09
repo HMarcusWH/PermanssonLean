@@ -31,7 +31,7 @@ theorem successPrefixEvent_iff_vectorSuccess {n : ℕ}
     · intro u hu
       have hlt :
           (((historyTimeEquiv T).symm u : Finset.Iic T) : ℕ) < (t : ℕ) := by
-        simpa [historyTimeEquiv] using hu
+        simpa [historyTimeEquiv, Fin.lt_def] using hu
       have hnot := (Set.mem_iInter.mp hd) ((historyTimeEquiv T).symm u)
       simpa [rationalTargetAsFrozen] using hnot hlt
   · rintro ⟨t, hg, hd⟩
@@ -44,7 +44,7 @@ theorem successPrefixEvent_iff_vectorSuccess {n : ℕ}
         w u ∉ (rationalTargetAsFrozen target).forbidden
       intro hu
       have hlt : historyTimeEquiv T u < t := by
-        simpa [historyTimeEquiv] using hu
+        simpa [historyTimeEquiv, Fin.lt_def] using hu
       simpa [rationalTargetAsFrozen] using hd (historyTimeEquiv T u) hlt
 
 /-- Under the fixed-start encoding the canonical event is the same
