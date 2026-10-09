@@ -41,6 +41,7 @@ import PermanssonResearch.ReverseSolver.CanonicalWordEvent
 import PermanssonResearch.ReverseSolver.CanonicalWordMass
 import PermanssonResearch.ReverseSolver.CanonicalFiniteEventSum
 import PermanssonResearch.ReverseSolver.CanonicalAllHorizonCorrespondence
+import PermanssonResearch.ReverseSolver.CanonicalCertificationExamples
 
 /-!
 # PermanssonResearch
