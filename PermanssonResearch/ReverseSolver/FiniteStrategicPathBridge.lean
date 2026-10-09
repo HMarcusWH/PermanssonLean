@@ -139,6 +139,9 @@ theorem realized_prefix_atom {n : ℕ} (K : RationalMarkovMatrix n)
         (realizedModel K).inducedKernel (decode x) T
         (prefixDecode (T+1) v) hpoint hlast hwhole]
       rw [rationalFiniteKernel_prefix_singleton_succ K x T v]
+      rw [← rationalFiniteKernel_singleton K
+        (v ⟨T, Finset.mem_Iic.mpr T.le_succ⟩)
+        (v ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩)]
       have hstep :
           (realizedModel K).inducedKernel
             (decode (v ⟨T, Finset.mem_Iic.mpr T.le_succ⟩))
