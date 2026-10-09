@@ -20,7 +20,7 @@ namespace ReverseSolver
 private def prefixPair {n : ℕ} (T : ℕ) :
     ((i : Finset.Iic (T+1)) → Fin n) →
       (((i : Finset.Iic T) → Fin n) × Fin n) :=
-  fun w => (Preorder.frestrictLe₂ T.le_succ w,
+  fun w => (Preorder.frestrictLe₂ (π := fun _ : ℕ => Fin n) T.le_succ w,
     w ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩)
 
 private theorem prefixPair_injective {n : ℕ} (T : ℕ) :
@@ -46,12 +46,12 @@ theorem rationalFiniteKernel_prefix_singleton_succ {n : ℕ}
       (rationalFiniteKernel M) y (T+1) {w} =
     PermanssonLean.ProbabilitySupport.finitePrefixLaw
       (rationalFiniteKernel M) y T
-      {Preorder.frestrictLe₂ T.le_succ w} *
+      {Preorder.frestrictLe₂ (π := fun _ : ℕ => Fin n) T.le_succ w} *
     ENNReal.ofReal (M.entry
       (w ⟨T, Finset.mem_Iic.mpr T.le_succ⟩)
       (w ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩) : ℝ) := by
   classical
-  let pre := Preorder.frestrictLe₂ T.le_succ w
+  let pre := Preorder.frestrictLe₂ (π := fun _ : ℕ => Fin n) T.le_succ w
   let z := w ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩
   let μ := PermanssonLean.ProbabilitySupport.finitePrefixLaw
     (rationalFiniteKernel M) y T
