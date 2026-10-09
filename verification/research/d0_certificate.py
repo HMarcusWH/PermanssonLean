@@ -12,7 +12,7 @@ import json
 import math
 import re
 
-from d0_finite_solver import solve_frozen_menu
+from d0_finite_solver import RationalBitBudgetExceeded, solve_frozen_menu
 
 SCHEMA = "permannsson.d0.finite-menu.v1"
 SCOPE = "EXACT_FINITE_MENU_CALCULATION"
@@ -189,8 +189,12 @@ def make_certificate(menu, baseline, initial, goal, forbidden, horizon):
     """Produce canonical bytes using D0's existing exact BACKWARD recursion."""
     problem = normalize_problem(menu, baseline, initial, goal, forbidden, horizon)
     normalized = _decode_problem_for_solver(problem)
-    result = solve_frozen_menu(normalized, initial, problem["goal"],
-                               problem["forbidden"], horizon)
+    try:
+        result = solve_frozen_menu(normalized, initial, problem["goal"],
+                                   problem["forbidden"], horizon,
+                                   max_rational_bits=MAX_VALUE_BITS)
+    except RationalBitBudgetExceeded as exc:
+        raise CertificateResourceLimit(str(exc)) from exc
     record = {
         "schema": SCHEMA,
         "scope": SCOPE,
