@@ -45,7 +45,7 @@ theorem finiteVectorSuccess_cons {n : ℕ}
   · rintro (hy | ⟨hnot, ⟨t, ht, hbefore⟩⟩)
     · refine ⟨0, by simpa only [Fin.cons_zero] using hy, ?_⟩
       intro u hu
-      exact (not_lt_zero' u hu).elim
+      exact (not_lt_zero' hu).elim
     · refine ⟨Fin.succ t, by simpa only [Fin.cons_succ] using ht, ?_⟩
       intro u hu
       cases u using Fin.cases with
