@@ -20,8 +20,8 @@ private theorem historyFromSteps_shift {n : ℕ}
       ⟨i.val+1, Finset.mem_Iic.mpr (Nat.succ_le_of_lt i.isLt)⟩ =
     historyFromSteps T (v 0) (Fin.tail v)
       ⟨i.val, Finset.mem_Iic.mpr (Nat.le_of_lt_succ i.isLt)⟩ := by
-  change Fin.cons y v (Fin.succ i) =
-    Fin.cons (v 0) (Fin.tail v) i
+  change (Fin.cons y v : Fin (T+2) → Fin n) (Fin.succ i) =
+    (Fin.cons (v 0) (Fin.tail v) : Fin (T+1) → Fin n) i
   rw [Fin.cons_succ, Fin.cons_self_tail]
 
 /-- Factor the chronological rational weight at its *first* transition.
@@ -37,13 +37,12 @@ theorem rationalHistoryWeight_head {n : ℕ}
   unfold rationalHistoryWeight
   rw [Fin.prod_univ_succ]
   congr 1
-  · simp [historyFromSteps, historyTimeEquiv, Fin.cons_zero, Fin.cons_succ]
-  · apply Finset.prod_congr rfl
-    intro i _
-    have h1 := historyFromSteps_shift T y v (Fin.castSucc i)
-    have h2 := historyFromSteps_shift T y v (Fin.succ i)
-    simpa [Fin.val_castSucc, Fin.val_succ] using
-      congrArg₂ M.entry h1 h2
+  apply Finset.prod_congr rfl
+  intro i _
+  have h1 := historyFromSteps_shift T y v (Fin.castSucc i)
+  have h2 := historyFromSteps_shift T y v (Fin.succ i)
+  simpa [Fin.val_castSucc, Fin.val_succ] using
+    congrArg₂ M.entry h1 h2
 
 /-- The exact D0-B word-mass recursion agrees with the rational product
 along its canonical fixed-initial-state history for every finite horizon. -/
