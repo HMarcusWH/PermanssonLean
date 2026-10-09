@@ -47,7 +47,7 @@ theorem rationalFiniteKernel_success_event_atom_sum {n : ℕ}
     μ E = μ (↑(Finset.univ.filter (fun w : ((i : Finset.Iic T) → Fin n) =>
       w ∈ E)) : Set ((i : Finset.Iic T) → Fin n)) := by rw [hfilter]
     _ = ∑ w ∈ Finset.univ.filter (fun w : ((i : Finset.Iic T) → Fin n) =>
-        w ∈ E), μ {w} := by rw [Measure.sum_measure_singleton]
+        w ∈ E), μ {w} := by rw [sum_measure_singleton]
     _ = ∑ w : ((i : Finset.Iic T) → Fin n),
       if w ∈ E then μ {w} else 0 := by
         simp [Finset.sum_filter]
