@@ -44,10 +44,9 @@ theorem rationalFiniteKernel_success_eq_vector_weight_sum {n : ℕ}
         if historyFromSteps T p.1 p.2 ∈ E then
           μ {historyFromSteps T p.1 p.2} else 0 := by
           symm
-          have h := Equiv.sum_comp (fullHistoryEquiv (n := n) T)
-            (fun w : ((i : Finset.Iic T) → Fin n) =>
-              if w ∈ E then μ {w} else 0)
-          simpa [fullHistoryEquiv] using h
+          apply Fintype.sum_equiv (fullHistoryEquiv (n := n) T)
+          intro p
+          rfl
     _ = ∑ v : Fin T → Fin n,
         if historyFromSteps T y v ∈ E then
           canonicalHistoryWeight M T (historyFromSteps T y v)
