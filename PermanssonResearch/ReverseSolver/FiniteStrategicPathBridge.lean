@@ -22,6 +22,8 @@ open FiniteStrategicRealization
 open PermanssonLean
 open PermanssonLean.ProbabilitySupport
 
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
+
 noncomputable section
 
 def prefixEncode {n : ℕ} (T : ℕ) :
@@ -96,7 +98,11 @@ theorem realized_prefix_atom {n : ℕ} (K : RationalMarkovMatrix n)
         constructor
         · intro h
           have hp := congrArg (prefixEncode 0) h
-          simpa [prefixEncode, prefixDecode, singletonPrefix] using hp
+          have hconst : prefixEncode 0 (singletonPrefix (decode x)) =
+              singletonPrefix x := by
+            funext i
+            rfl
+          simpa only [prefixEncode_prefixDecode, hconst] using hp
         · intro h
           subst v
           funext i
@@ -105,12 +111,12 @@ theorem realized_prefix_atom {n : ℕ} (K : RationalMarkovMatrix n)
       · have ht : singletonPrefix (decode x) =
             prefixDecode 0 v := by
           exact (hinit.mpr h).symm
-        simp [h, ht, hinit]
+        simp [h, ht]
       · have ht : singletonPrefix (decode x) ≠
             prefixDecode 0 v := by
           intro hh
           exact h (hinit.mp hh.symm)
-        simp [h, ht, hinit]
+        simp [h, ht]
   | succ T ih =>
       intro v
       let vpre := Preorder.frestrictLe₂
@@ -203,7 +209,14 @@ theorem realized_prefixLaw_map {n : ℕ} (K : RationalMarkovMatrix n)
             intro w _
             exact hmass w
     _ = ν E := by
-          rw [← hfilter, sum_measure_singleton]
+          have hsum : ν (↑(Finset.univ.filter
+              (fun w : ((i : Finset.Iic T) → Fin n) => w ∈ E)) :
+                Set ((i : Finset.Iic T) → Fin n)) =
+              ∑ w ∈ Finset.univ.filter
+                (fun w : ((i : Finset.Iic T) → Fin n) => w ∈ E),
+                ν {w} := by
+            rw [sum_measure_singleton]
+          exact hsum.symm.trans (congrArg ν hfilter)
 
 def typedTarget {n : ℕ} (rt : RationalHittingTarget n) :
     FrozenHittingTarget (JointState Unit (Fin n)) where
@@ -224,7 +237,7 @@ theorem prefixEncode_success_preimage {n : ℕ}
       successPrefixEvent (rationalTargetAsFrozen rt) T =
       successPrefixEvent (typedTarget rt) T := by
   ext w
-  rfl
+  simp [successPrefixEvent, typedTarget, prefixEncode]
 
 /-- The missing substantive bridge: exact hitting values in the *genuine*
 typed alpha/P/U model are exactly the rationals, for all n, T, x, targets. -/
