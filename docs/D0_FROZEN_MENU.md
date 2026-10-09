@@ -6,10 +6,12 @@ canonical `finitePrefixLaw` hitting-value equality. D0-D (#42) is merged:
 it constructs an explicit typed strategic-world factorization for **every
 certified finite rational matrix** in a deliberately chosen research family,
 with unchanged P and U across its action-selection interventions.
-D0-E (#43) develops the all-horizon transported typed-menu optimality theorem,
-subject to final-head Lean/CI proof gates. Neither construction validates an
-arbitrary supplied strategic-world model, the separate Python implementation,
-or frozen v0.1.8 Exact GR/PR assertions.
+D0-E (#43) merged green at `748c2734c37f585a4e5178f4b66f3744759c13c1`:
+the all-horizon typed-menu optimality theorem is Lean-checked for the
+constructed finite research family. D0-F (#44) adds a reproducible
+calculation and separate independent Python verification contract, **not**
+a Lean proof of arbitrary serialized input, an external strategic world,
+or any frozen v0.1.8 Exact GR/PR assertion.
 
 ## Scientific contract
 
@@ -70,9 +72,9 @@ enumeration, their equality, and computable selection of an exact rational
 fixed-menu winner. PR #41 proves canonical finite-prefix correspondence for
 every certified rational matrix and horizon. PR #42 supplies the distinct
 **constructed finite strategic-world factorization**, not an identification
-theorem for arbitrary typed models. PR #43 seeks to prove and apply the
+theorem for arbitrary typed models. PR #43 proves and applies the
 all-horizon value transport for a complete frozen menu **in that constructed
-family**, rather than injecting a pre-assumed `exact_values` field.
+family**, without injecting a pre-assumed `exact_values` field.
 D1's adaptive state-feedback policies remain separate new theory.
 
 ## Release and proof firewall
@@ -195,7 +197,8 @@ equal full finite-prefix hitting values; that is D0-E's separate obligation.
 
 ## D0-E certified typed-menu optimality (PR #43)
 
-**Mathematical implementation, gated on final-head CI verification.**
+**Merged and verified with green Research Lean, original Lean, executable
+verification, application contract and transitive axiom audit.**
 The new research-only modules are:
 
 | Lean file | Purpose |
@@ -205,7 +208,7 @@ The new research-only modules are:
 | `TypedMenuCertification.lean` | Construct the finite typed menu with precisely the rational candidate-list membership and discharge `ExactMenuValueCorrespondence.exact_values` by proof |
 | `TypedMenuCertificationExamples.lean` | Certify a nontrivial listed two-choice winner and genuine typed path-law values and fixed world/update |
 
-The intended theorem `certifiedSelected_dominatesTyped` maximizes
+The proved theorem `certifiedSelected_dominatesTyped` maximizes
 the **actual canonical typed-model hitting probability**, for all
 horizons, initial points and **members of the explicitly frozen finite
 menu**. It is paired with `certifiedSelected_mem`,
@@ -227,3 +230,52 @@ an outcome conditional on a constructed kernel predicts the world.
 No proofs in #43 may use `sorry`, `admit`, custom axioms or an
 input `exact_values` hypothesis in place of the genuine path-law
 transport. The frozen v0.1.8 kernel and mathlib toolchain are unchanged.
+
+
+## D0-F: reproducible research calculation and independent verifier (PR #44)
+
+`EndToEndCertificate.selected_end_to_end` bundles PR #43's already established
+Lean facts: selected-index eligibility, all-horizon canonical typed-menu
+dominance, exact rational/typed value equality, and preserved P/U. It **does
+not** construct a Lean proof term from externally supplied JSON.
+
+`verification/research/d0_certificate.py` generates the research-only
+`permannsson.d0.finite-menu.v1` report. The report includes its exact
+baseline matrix separately from the ordered, explicitly listed candidate
+matrices. Its goal/forbidden sets, start state, transition horizon, and
+complete values are canonicalized into an exact, deterministic JSON record.
+The baseline is NOT an eligible intervention unless separately listed.
+Output is strictly `EXACT_FINITE_MENU_CALCULATION`; there is no
+`PROVED_OPTIMUM` field or self-certifying Lean proof status.
+
+`verification/research/d0_recheck_certificate.py` independently recomputes
+all values by exact forward propagation of probability mass among states
+outside goal and forbidden sets. It is distinct from the generator's
+exact backward hitting recursion. Explicit finite limits return
+`RESOURCE_LIMIT`, not a false counterexample or a successful check.
+Bounded exhaustive path enumeration remains available in adversarial
+regression tests as a third mathematical implementation.
+
+`problem_sha256` identifies the canonical finite problem *within* the
+report, but is not an authentication signature. Internal verification only
+tests consistency with the included problem. Testing identity against a
+separately trusted problem requires passing an independently supplied
+`--expected-problem-sha256`; an adversary who replaces both problem and
+self-declared digest can still produce another internally valid report.
+
+Reproduce the golden calculation-and-verification fixtures from repo root:
+
+```bash
+python3 -m unittest discover -s verification/research -p 'test_*.py' -v
+python3 verification/research/d0_golden.py /tmp/permannsson-d0-finite
+python3 verification/research/d0_recheck_certificate.py /tmp/permannsson-d0-finite/lean_two_state.json
+```
+
+The Lean two-state mathematical witness has values `1/2` and `1`;
+the separate Python three-state example has values `1/2`, `3/4`,
+and `1/4` at T=1. Matching a shared example and independently
+recomputing all finite input results are reproducibility evidence, **not**
+a proof of Python implementation correctness by Lean, real-world input
+provenance, or generalized adaptive-policy optimality. D1 remains separate.
+Research CI uses Python 3.13 and uploads ephemeral computation records;
+historical frozen release artifacts and the original theory are untouched.
