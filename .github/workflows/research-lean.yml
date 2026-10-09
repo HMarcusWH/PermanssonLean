@@ -27,8 +27,20 @@ jobs:
           use-github-cache: false
           axiom-audit: true
           axiom-audit-root: PermanssonResearch
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
       - name: Run research-only exact rational regressions (CQ-1 and D0)
         run: python3 -m unittest discover -s verification/research -p 'test_*.py' -v
+      - name: Generate and independently recheck D0-F golden reports
+        run: python3 verification/research/d0_golden.py "$RUNNER_TEMP/d0-finite-certificates"
+      - name: Upload ephemeral D0-F calculation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: d0-finite-calculation-evidence
+          path: ${{ runner.temp }}/d0-finite-certificates/
+          retention-days: 7
+          if-no-files-found: error
       - name: Verify original default target still builds
         run: lake build
       - name: Ensure every research module is imported by the research root
