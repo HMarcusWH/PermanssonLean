@@ -14,8 +14,8 @@ from pathlib import Path
 
 from d0_certificate import (
     CertificateError, CertificateResourceLimit, FAMILY, MAX_VALUE_BITS,
-    SCHEMA, SCOPE, _check_budget, _decode_problem_for_solver,
-    _integer, canonical_bytes, fraction_pair, normalize_problem, parse_json_strict,
+    SCHEMA, SCOPE, _check_budget, _dimension,
+    _integer, canonical_bytes, normalize_problem, parse_json_strict,
     problem_digest, read_pair,
 )
 
@@ -41,9 +41,9 @@ def _validate_problem(problem):
                     "initial", "goal", "forbidden", "horizon"))
     if problem["family"] != FAMILY:
         raise CertificateError("unexpected research family")
-    n = _integer(problem["dimension"], "dimension", 1, 12)
+    n = _dimension(problem["dimension"])
     _integer(problem["initial"], "initial", 0, n-1)
-    _integer(problem["horizon"], "horizon", 0, 128)
+    _integer(problem["horizon"], "horizon", 0)
     if type(problem["menu"]) is not list:
         raise CertificateError("invalid menu shape")
     _check_budget(n, problem["horizon"], len(problem["menu"]))
