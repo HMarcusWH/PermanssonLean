@@ -47,6 +47,7 @@ import PermanssonResearch.ReverseSolver.FiniteStrategicRealizationExamples
 import PermanssonResearch.ReverseSolver.GenericFinitePrefixAtoms
 import PermanssonResearch.ReverseSolver.FiniteStrategicPathBridge
 import PermanssonResearch.ReverseSolver.TypedMenuCertification
+import PermanssonResearch.ReverseSolver.TypedMenuCertificationExamples
 
 /-!
 # PermanssonResearch
