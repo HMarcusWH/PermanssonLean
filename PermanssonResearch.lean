@@ -42,6 +42,8 @@ import PermanssonResearch.ReverseSolver.CanonicalWordMass
 import PermanssonResearch.ReverseSolver.CanonicalFiniteEventSum
 import PermanssonResearch.ReverseSolver.CanonicalAllHorizonCorrespondence
 import PermanssonResearch.ReverseSolver.CanonicalCertificationExamples
+import PermanssonResearch.ReverseSolver.FiniteStrategicRealization
+import PermanssonResearch.ReverseSolver.FiniteStrategicRealizationExamples
 
 /-!
 # PermanssonResearch
