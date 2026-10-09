@@ -59,7 +59,7 @@ theorem rationalFiniteKernel_transition_pair {n : ℕ}
           w ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩)) := by
           change (Kernel.traj κ 0 x₀).map
               (fun w : ℕ → Fin n => (Preorder.frestrictLe T w, w (T+1))) =
-            (Kernel.partialTraj κ 0 (T+1) x₀).map
+            (Kernel.partialTraj (X := fun _ : ℕ => Fin n) κ 0 (T+1) x₀).map
               (fun w : ((i : Finset.Iic (T+1)) → Fin n) =>
                 (Preorder.frestrictLe₂ (π := fun _ : ℕ => Fin n) T.le_succ w,
                   w ⟨T+1, Finset.mem_Iic.mpr le_rfl⟩))
