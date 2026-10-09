@@ -33,6 +33,7 @@ import PermanssonResearch.ReverseSolver.CanonicalHistoryWeight
 import PermanssonResearch.ReverseSolver.CanonicalHistoryAtoms
 import PermanssonResearch.ReverseSolver.CanonicalWordEncoding
 import PermanssonResearch.ReverseSolver.AnchoredHistoryEquiv
+import PermanssonResearch.ReverseSolver.RationalHistoryProduct
 
 /-!
 # PermanssonResearch
