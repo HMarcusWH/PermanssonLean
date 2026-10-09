@@ -61,7 +61,23 @@ theorem successfulPathSum_eq_forwardEnumeration
           apply Finset.sum_congr rfl
           intro v hv
           simp only [historyFromSteps_initial]
-          simp
+          calc
+            (∑ a : Fin n,
+                if a = x ∧ historyFromSteps T a v ∈ E then
+                  rationalPathWeight sys π T T (historyFromSteps T a v)
+                else 0) =
+              (∑ a : Fin n,
+                if a = x then
+                  (if historyFromSteps T a v ∈ E then
+                    rationalPathWeight sys π T T (historyFromSteps T a v)
+                  else 0)
+                else 0) := by
+                  apply Finset.sum_congr rfl
+                  intro a ha
+                  by_cases h : a = x <;> simp [h]
+            _ = (if historyFromSteps T x v ∈ E then
+                  rationalPathWeight sys π T T (historyFromSteps T x v)
+                 else 0) := by simp
     _ = ∑ v : Fin T → Fin n,
         if successorWordWins target x (List.ofFn v) then
           rationalPathWeight sys π T T (historyFromSteps T x v)
