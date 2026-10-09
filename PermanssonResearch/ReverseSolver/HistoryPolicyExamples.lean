@@ -120,6 +120,30 @@ theorem reconverge_right_mass :
     reconvergeSystem, reconvergePolicy, rightReturn, reconvergeMatrix,
     Fin.prod_univ_two, last]
 
+
+/-- A clock-dependent Markov schedule may choose Probe/Gamble independently
+at one and two transitions remaining, but NONE can exceed exact 5/8. -/
+theorem every_deadline_schedule_le_five_eighths
+    (π : MarkovSchedule deadlineSystem) :
+    policyValue deadlineSystem deadlineTarget π 2 (0 : Fin 3) ≤ (5/8 : ℚ) := by
+  cases hc2 : ((π 2).choose (0 : Fin 3)) <;>
+  cases hc1 : ((π 1).choose (0 : Fin 3)) <;>
+  norm_num [policyValue, actionScore, deadlineSystem, deadlineTarget,
+    probeMatrix, gambleMatrix, Fin.sum_univ_three, hc2, hc1]
+
+/-- The Bellman OPTIMUM, not just one policy's achieved probability,
+is exactly 5/8 for the existing three-state, two-transition model. -/
+theorem deadline_bellman_optimum_five_eighths :
+    bellmanValue deadlineSystem deadlineTarget 2 (0 : Fin 3) = (5/8 : ℚ) := by
+  apply le_antisymm
+  · calc
+      bellmanValue deadlineSystem deadlineTarget 2 (0 : Fin 3) =
+          policyValue deadlineSystem deadlineTarget
+            (maximizingSchedule deadlineSystem deadlineTarget) 2 (0 : Fin 3) :=
+            (maximizingSchedule_attains deadlineSystem deadlineTarget 2 (0 : Fin 3)).symm
+      _ ≤ (5/8 : ℚ) := every_deadline_schedule_le_five_eighths _
+  · exact deadline_policy_bounded_by_bellman
+
 end HistoryDependentExamples
 end ReverseSolver
 end PermanssonResearch
