@@ -23,7 +23,7 @@ theorem rationalFiniteKernel_prefix_projective {n : ℕ}
     {t T : ℕ} (ht : t ≤ T) :
     (PermanssonLean.ProbabilitySupport.finitePrefixLaw
       (rationalFiniteKernel M) y T).map
-      (Preorder.frestrictLe₂ ht) =
+      (Preorder.frestrictLe₂ (π := fun _ : ℕ => Fin n) ht) =
     PermanssonLean.ProbabilitySupport.finitePrefixLaw
       (rationalFiniteKernel M) y t := by
   unfold PermanssonLean.ProbabilitySupport.finitePrefixLaw
