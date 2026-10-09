@@ -117,8 +117,6 @@ theorem prefixLaw_embedMarkov {C : Type uC} [DecidableEq C] {n : ℕ}
       Nonstationary.prefixLaw sys π D x t := by
   unfold prefixLaw Nonstationary.prefixLaw
   congr 1
-  funext i
-  exact historyStep_embedMarkov sys π D i
 
 end HistoryDependent
 end ReverseSolver
