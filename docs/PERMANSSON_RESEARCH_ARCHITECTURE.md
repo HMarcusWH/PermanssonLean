@@ -274,14 +274,22 @@ schedules**, with a maximizing schedule attaining the bound. The theorem is
 NOT YET a nonstationary canonical finite-prefix probability-law equality;
 that bridge remains D1-C, followed by separate history-dependent reduction.
 
-**D1-C1 research PR #47 (verification pending):** The rational nonstationary
-controlled-path proof is separate from the typed alpha/P/U transport. See
-[D1_NONSTATIONARY_RATIONAL.md](D1_NONSTATIONARY_RATIONAL.md). The initial
-deadline T is fixed for each partial-trajectory family; the step-i kernel
-uses pi(T-i), and projectivity is proved only within that original T.
-Proving the actual first-hit probability equals D1-B policyValue is the
-D1-C1 acceptance theorem. A complete typed strategic-world finite-path
-pushforward equality is independently required in D1-C2 (PR #48).
+**D1-C1 milestone (merged PR #47):** The exact rational nonstationary
+finite-prefix law has been constructed from Mathlib partialTraj and
+certified against D1-B's policyValue. See
+[D1_NONSTATIONARY_RATIONAL.md](D1_NONSTATIONARY_RATIONAL.md). Its original
+deadline D stays fixed across all observed prefix lengths; step i
+uses pi(D-i). Projectivity is within D, not across original deadlines.
+
+**D1-C2 milestone (research PR #48, pending CI):** See
+[D1_TYPED_NONSTATIONARY.md](D1_TYPED_NONSTATIONARY.md). Compose the
+actual alpha -> P -> U induced kernels chronologically at each selected
+remaining-horizon feedback step, holding P and U fixed. Prove exact
+typed/rational finite-prefix measure transport for every original
+deadline and prefix length. Transport the literal D0 first-hit event and
+D1-C1 optimal probability to the typed sequence. This is a constructed
+Unit × Fin n realization, not general externally specified world kernels
+and not a single frozen intervention.
 
 D1 is **new controlled-process theory**; do not pass a sequence of changing kernels off as one existing `AdmissibleStrategicIntervention`. First implementation constraints: finite nonempty `Y=S×X`, finite `A`, finite nonempty control menu `C(y)` at each state; controls select among *action-selection replacements* `α_c`. Hold `P` and `U` fixed. The selected control is chosen at the *current joint state*, before choosing action `a`; after `x'`, update `s'` exactly as in the canonical model.
 
