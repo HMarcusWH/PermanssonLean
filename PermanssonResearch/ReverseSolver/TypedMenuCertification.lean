@@ -19,6 +19,8 @@ open PermanssonLean
 open FiniteStrategicRealization
 open FiniteStrategicPathBridge
 
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
+
 universe uI
 
 noncomputable section
