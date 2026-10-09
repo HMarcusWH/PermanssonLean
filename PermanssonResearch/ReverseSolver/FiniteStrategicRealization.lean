@@ -106,10 +106,12 @@ theorem inducedKernel_worldCylinder {n : ℕ}
     rationalFiniteKernel K x D
   rw [StrategicWorldModel.inducedKernel_apply
     (realizedModel K) ((), x) (hD.preimage measurable_snd)]
-  simp [realizedModel, realizedGenerator, liftedRationalAction,
+  simp only [realizedModel, realizedGenerator, liftedRationalAction,
     copiedActionWorld, trivialStrategicUpdate,
-    Kernel.comap_apply', Kernel.deterministic_apply,
-    Kernel.lintegral_deterministic']
+    Kernel.deterministic_apply, Kernel.comap_apply']
+  change (∫⁻ z : Fin n, D.indicator (fun _ => (1 : ℝ≥0∞)) z
+    ∂rationalFiniteKernel K x) = (rationalFiniteKernel K) x D
+  exact lintegral_indicator_one hD
 
 /-- The original matrix entries themselves are the induced probabilities of
 the encoded one-step atoms, not merely independently computed scores. -/
