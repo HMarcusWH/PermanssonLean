@@ -72,6 +72,7 @@ import PermanssonResearch.ReverseSolver.HistoryPolicy
 import PermanssonResearch.ReverseSolver.HistoryPrefixKernel
 import PermanssonResearch.ReverseSolver.HistoryPathAtoms
 import PermanssonResearch.ReverseSolver.HistoryEventValue
+import PermanssonResearch.ReverseSolver.HistoryContinuation
 import PermanssonResearch.ReverseSolver.HistoryBellmanDominance
 import PermanssonResearch.ReverseSolver.HistoryPolicyExamples
 
