@@ -61,7 +61,9 @@ def toyFeedback : StateFeedback toySystem where
   choose := fun y => if y = 0 then false else true
   permitted := by
     intro y
-    simp [toySystem]
+    by_cases h : y = 0
+    · simp [toySystem, h]
+    · simp [toySystem, h]
 
 def alwaysLeft : StateFeedback toySystem :=
   constantFeedback toySystem false (by intro y; simp [toySystem])
