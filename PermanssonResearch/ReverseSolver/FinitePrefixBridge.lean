@@ -62,7 +62,8 @@ def rationalTargetAsFrozen {n : ℕ} (target : RationalHittingTarget n) :
   goal_measurable := MeasurableSet.of_discrete
   forbidden_measurable := MeasurableSet.of_discrete
   disjoint := by
-    exact Finset.disjoint_left.mp target.disjoint |>.imp (fun _ => id) (fun _ => id)
+    exact Set.disjoint_left.mpr (fun _ ha hb =>
+      (Finset.disjoint_left.mp target.disjoint) ha hb)
 
 /-- The canonical event at zero transitions checks only the starting point.
 This includes targets containing the start and forbids fictitious jumps. -/
