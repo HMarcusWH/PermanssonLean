@@ -29,5 +29,22 @@ def anchoredHistoryEquiv {n : ℕ} (T : ℕ) (y : Fin n) :
     apply Subtype.ext
     exact historyFromSteps_stepsFromHistory T y w.1 w.property
 
+
+/-- Every history, including its time-zero coordinate, is uniquely encoded
+by a pair of initial state and a length-T successor vector. -/
+def fullHistoryEquiv {n : ℕ} (T : ℕ) :
+    (Fin n × (Fin T → Fin n)) ≃ ((i : Finset.Iic T) → Fin n) where
+  toFun p := historyFromSteps T p.1 p.2
+  invFun w := ⟨w ⟨0, Finset.mem_Iic.mpr (Nat.zero_le T)⟩,
+    stepsFromHistory T w⟩
+  left_inv p := by
+    rcases p with ⟨y, steps⟩
+    apply Prod.ext
+    · exact historyFromSteps_initial T y steps
+    · exact stepsFromHistory_historyFromSteps T y steps
+  right_inv w := by
+    exact historyFromSteps_stepsFromHistory T
+      (w ⟨0, Finset.mem_Iic.mpr (Nat.zero_le T)⟩) w rfl
+
 end ReverseSolver
 end PermanssonResearch
