@@ -40,6 +40,34 @@ error codes; it is not skipped. Unresolved applications and records declaring
 INVALID remain representable. This is structural validation, not proof,
 identification, support, source authentication, coverage, or authentic registration.
 
+## Reproduce D0 research certificates
+
+The D0-F research workflow is separate from the frozen v0.1.8 release
+gate and from the general application layer. With CPython 3.13 from
+the repository root, run:
+
+```bash
+python3 -m unittest discover -s verification/research -p 'test_*.py' -v
+python3 verification/research/d0_golden.py /tmp/permannsson-d0-finite
+python3 verification/research/d0_recheck_certificate.py /tmp/permannsson-d0-finite/python_three_state.json
+```
+
+The report schema `permannsson.d0.finite-menu.v1` stores exact rational
+pairs, a separately declared baseline, the ordered candidate menu, full
+inputs/outputs and a canonical SHA-256 problem digest. The independent
+verifier uses forward probability-flow rather than the backward evaluation
+used to generate results. To enforce the identity of an input, supply an
+externally trusted digest via `--expected-problem-sha256`. A hash shipped
+inside the same record does not authenticate it.
+
+Outcomes are `VALID`, `INVALID`, and `RESOURCE_LIMIT`, with limits on
+input size, state dimension, candidate count, horizon and rational size.
+`VALID` means consistency with the explicitly supplied finite problem,
+not a Lean-certified Python execution, authenticated data, or a solution
+outside the frozen menu. The only report scope is
+`EXACT_FINITE_MENU_CALCULATION`. D0-F CI uploads run-specific disposable
+golden records and does not overwrite the historical evidence.
+
 ## Reproduce the current destructive suite
 
 The [executable-verification workflow](../.github/workflows/verification.yml) uses

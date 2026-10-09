@@ -87,15 +87,46 @@ def value_by_enumeration(rows, initial, goal, forbidden, horizon):
                 if success(path, g, d)), Q(0))
 
 
-def value_by_recursion(rows, initial, goal, forbidden, horizon):
-    """Exact D0 backward hitting recursion (numerical, not yet a Lean bridge)."""
+class RationalBitBudgetExceeded(ValueError):
+    """Exact calculation exceeded an optional bit-size resource budget."""
+
+
+def _check_exact_bit_budget(value, max_rational_bits):
+    if max_rational_bits is not None and (
+            max(abs(value.numerator).bit_length(),
+                value.denominator.bit_length()) > max_rational_bits):
+        raise RationalBitBudgetExceeded("backward rational bit limit")
+
+
+def value_by_recursion(rows, initial, goal, forbidden, horizon, *, max_rational_bits=None):
+    """Exact D0 backward recursion; optional intermediate rational-size guard.
+
+    The default remains the original unbounded mathematical evaluator.
+    Report generation supplies a finite budget and checks each product and
+    partial row sum, not merely the final answer (which may simplify to 0).
+    """
     n = validate_kernel(rows)
     g, d = validate_target(n, goal, forbidden, initial, horizon)
+    if max_rational_bits is not None and (
+            type(max_rational_bits) is not int or max_rational_bits <= 0):
+        raise ValueError("invalid rational bit budget")
     v = [Q(int(y in g)) for y in range(n)]
     for _ in range(horizon):
-        v = [Q(1) if y in g else Q(0) if y in d else
-             sum((rows[y][z] * v[z] for z in range(n)), Q(0))
-             for y in range(n)]
+        updated = []
+        for y in range(n):
+            if y in g:
+                total = Q(1)
+            elif y in d:
+                total = Q(0)
+            else:
+                total = Q(0)
+                for z in range(n):
+                    term = rows[y][z] * v[z]
+                    _check_exact_bit_budget(term, max_rational_bits)
+                    total += term
+                    _check_exact_bit_budget(total, max_rational_bits)
+            updated.append(total)
+        v = updated
     return v[initial]
 
 
@@ -107,8 +138,11 @@ class FixedMenuResult:
     scope: str = "EXACT_FINITE_MENU_CALCULATION"
 
 
-def solve_frozen_menu(menu, initial, goal, forbidden, horizon):
-    """Enumerate every named fixed candidate; tie breaks by frozen menu order."""
+def solve_frozen_menu(menu, initial, goal, forbidden, horizon, *, max_rational_bits=None):
+    """Enumerate every named fixed candidate; tie breaks by frozen menu order.
+
+    Optional finite bit budget applies to every backward intermediate value.
+    """
     items = tuple(menu)
     if not items:
         raise ValueError("empty intervention menu")
@@ -121,7 +155,8 @@ def solve_frozen_menu(menu, initial, goal, forbidden, horizon):
     g, d = validate_target(dimensions[0], goal, forbidden, initial, horizon)
     vals = []
     for name, rows in items:
-        v = value_by_recursion(rows, initial, g, d, horizon)
+        v = value_by_recursion(rows, initial, g, d, horizon,
+                               max_rational_bits=max_rational_bits)
         vals.append((name, v))
     chosen = max(vals, key=lambda pair: pair[1])
     assert type(chosen[1]) is Fraction and all(type(v) is Fraction for _, v in vals)
