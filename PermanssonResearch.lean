@@ -38,6 +38,7 @@ import PermanssonResearch.ReverseSolver.WordEnumerationBridge
 import PermanssonResearch.ReverseSolver.CanonicalVectorSuccess
 import PermanssonResearch.ReverseSolver.CanonicalEventVectorEquiv
 import PermanssonResearch.ReverseSolver.CanonicalWordEvent
+import PermanssonResearch.ReverseSolver.CanonicalWordMass
 
 /-!
 # PermanssonResearch
