@@ -56,6 +56,7 @@ import PermanssonResearch.ReverseSolver.Bellman
 import PermanssonResearch.ReverseSolver.BellmanPolicyValue
 import PermanssonResearch.ReverseSolver.BellmanOptimality
 import PermanssonResearch.ReverseSolver.BellmanExamples
+import PermanssonResearch.ReverseSolver.NonstationaryPrefixKernel
 
 /-!
 # PermanssonResearch
