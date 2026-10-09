@@ -27,6 +27,7 @@ universe uC
 index stationary replacement action-selection kernels, but the controller
 may choose a different kernel at each encountered state. -/
 structure FiniteControlSystem (C : Type uC) [DecidableEq C] (n : ℕ) where
+  states_nonempty : 0 < n
   baseline : RationalMarkovMatrix n
   options : Fin n → Finset C
   options_nonempty : ∀ y : Fin n, (options y).Nonempty
