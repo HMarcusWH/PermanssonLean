@@ -35,17 +35,24 @@ def validate_kernel(rows):
 
 
 def validate_target(n, goal, forbidden, initial, horizon):
+    """Validate once and return immutable target sets, including one-shot iterables.
+
+    Never validate a generator and then pass the exhausted generator onward.
+    """
     if type(horizon) is not int or horizon < 0:
         raise ValueError("negative or nonintegral horizon")
     universe = set(range(n))
-    if any(type(s) is not int for s in goal) or any(type(s) is not int for s in forbidden):
+    goal_items, forbidden_items = tuple(goal), tuple(forbidden)
+    if any(type(s) is not int for s in goal_items + forbidden_items):
         raise ValueError("target/forbidden indices must be integers")
-    if not set(goal) <= universe or not set(forbidden) <= universe:
+    g, d = frozenset(goal_items), frozenset(forbidden_items)
+    if not g <= universe or not d <= universe:
         raise ValueError("target/forbidden outside state space")
-    if set(goal) & set(forbidden):
+    if g & d:
         raise ValueError("target and forbidden must be disjoint")
     if type(initial) is not int or initial not in universe:
         raise ValueError("initial outside state space")
+    return g, d
 
 
 def success(path, goal, forbidden):
@@ -75,16 +82,15 @@ def prefix_law(rows, initial, horizon):
 
 def value_by_enumeration(rows, initial, goal, forbidden, horizon):
     n = validate_kernel(rows)
-    validate_target(n, goal, forbidden, initial, horizon)
+    g, d = validate_target(n, goal, forbidden, initial, horizon)
     return sum((mass for path, mass in prefix_law(rows, initial, horizon).items()
-                if success(path, goal, forbidden)), Q(0))
+                if success(path, g, d)), Q(0))
 
 
 def value_by_recursion(rows, initial, goal, forbidden, horizon):
     """Exact D0 backward hitting recursion (numerical, not yet a Lean bridge)."""
     n = validate_kernel(rows)
-    validate_target(n, goal, forbidden, initial, horizon)
-    g, d = set(goal), set(forbidden)
+    g, d = validate_target(n, goal, forbidden, initial, horizon)
     v = [Q(int(y in g)) for y in range(n)]
     for _ in range(horizon):
         v = [Q(1) if y in g else Q(0) if y in d else
@@ -109,9 +115,13 @@ def solve_frozen_menu(menu, initial, goal, forbidden, horizon):
     names = [name for name, _ in items]
     if len(names) != len(set(names)):
         raise ValueError("duplicate menu labels")
+    dimensions = [validate_kernel(rows) for _, rows in items]
+    if len(set(dimensions)) != 1:
+        raise ValueError("menu kernels must share one state space")
+    g, d = validate_target(dimensions[0], goal, forbidden, initial, horizon)
     vals = []
     for name, rows in items:
-        v = value_by_recursion(rows, initial, goal, forbidden, horizon)
+        v = value_by_recursion(rows, initial, g, d, horizon)
         vals.append((name, v))
     chosen = max(vals, key=lambda pair: pair[1])
     assert type(chosen[1]) is Fraction and all(type(v) is Fraction for _, v in vals)
@@ -124,12 +134,18 @@ def verify_frozen_menu_result(menu, initial, goal, forbidden, horizon, reported)
     This is a second exact Python computation, NOT a Lean-verified software
     certificate and NOT a proof that arbitrary matrices are typed interventions.
     """
-    if not isinstance(reported, FixedMenuResult) or type(reported.value) is not Q:
+    if (not isinstance(reported, FixedMenuResult)
+            or reported.scope != "EXACT_FINITE_MENU_CALCULATION"
+            or type(reported.value) is not Q):
         return False
     items = tuple(menu)
     if not items or len({name for name, _ in items}) != len(items):
         raise ValueError("invalid frozen menu")
-    expected = tuple((name, value_by_enumeration(rows, initial, goal, forbidden, horizon))
+    dimensions = [validate_kernel(rows) for _, rows in items]
+    if len(set(dimensions)) != 1:
+        raise ValueError("menu kernels must share one state space")
+    g, d = validate_target(dimensions[0], goal, forbidden, initial, horizon)
+    expected = tuple((name, value_by_enumeration(rows, initial, g, d, horizon))
                      for name, rows in items)
     if tuple(reported.values) != expected or any(type(v) is not Q for _, v in reported.values):
         return False

@@ -5,10 +5,14 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
-**Status:** Research library with CQ-1 Part 1 proofs merged in PR #36; CQ-1
-Part 2 finite constitutive certificate merged in PR #37. CQ-1 Part 3
-certificate transport remains a separate research candidate until CI passes.
-Grammar-robust, multiple-limit and reverse-solver lanes remain proposed.
+**Status:** Research library with CQ-1 Parts 1–3 merged in PRs #36–38;
+D0-A fixed-menu optimizer merged in #39 and D0-B rational recursion,
+enumeration and computable fixed-menu argmax merged in #40. D0-C (#41) proves the finite-rational-matrix-to-canonical
+finite-prefix hitting-value bridge for all finite horizons. Its full
+Research Lean build, axiom audit and other CI checks passed at
+`22525678`. The typed intervention-to-rational-matrix realization
+remains a separate future research obligation. Grammar-robust and
+multiple-limit lanes, and D1 adaptive reverse solving, remain proposed.
 Nothing here changes the immutable v0.1.8 mathematical snapshot.
 
 ## Why there are now two libraries
@@ -123,9 +127,12 @@ it does **not** complete the quasi-regime certificate.
 The CQ-1 finite-path property and TV bridge is implemented in merged PR #36.
 The CQ-1 finite constitutive certificate is implemented in merged PR #37:
 [CQ-1 Part 2](CQ1_FINITE_CONSTITUTIVE_CERTIFICATE.md).
-The follow-on research work is the conditional certificate-transport theorem:
-[CQ-1 Part 3](CQ1_CERTIFICATE_TRANSPORT.md). The D0 frozen fixed-intervention-menu solver is scoped in
-[D0 frozen menu](D0_FROZEN_MENU.md) as an independent research lane.
+The certificate-transport theorem is merged in PR #38:
+[CQ-1 Part 3](CQ1_CERTIFICATE_TRANSPORT.md). D0-A and D0-B are merged in
+PRs #39–40. The fixed-intervention-menu solver, current conditional
+rational-to-typed boundary and D0-C's now-proved
+finite rational/canonical correspondence are scoped in
+[D0 frozen menu](D0_FROZEN_MENU.md).
 
 ## Pass/fail acceptance checklist
 

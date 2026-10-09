@@ -1,9 +1,11 @@
 # D0 — finite frozen-menu reverse-regime objective and optimizer
 
-**Status:** D0-A merged as PR #39, with research build and transitive axiom audit
-passing. D0-B is a separate research PR; its additional claims must pass
-independent Lean CI.
-Not part of frozen v0.1.8 Exact GR/PR or any application certification.
+**Status:** D0-A (#39) and D0-B (#40) merged with recorded green Research Lean CI.
+D0-C (#41) proves the finite-rational-matrix to canonical `finitePrefixLaw`
+hitting-value correspondence at **every finite horizon**. Its research build,
+transitive axiom audit and all four CI workflows passed on commit `22525678`.
+The research result remains separate from frozen v0.1.8 Exact GR/PR and
+does **not** certify any strategic-world intervention or Python implementation.
 
 ## Scientific contract
 
@@ -47,19 +49,23 @@ precedence, initial membership, unreachable frozen menus, tie-breaking,
 horizon-dependent optima, invalid rows and the sampling false-negative
 counterexample.
 
-**IMPORTANT:** The executable solver is not presently accompanied by a
-Lean theorem equating *its recursive implementation* with the abstract
-`finitePrefixLaw` event value or proving that arbitrary provided numeric
-matrices arise from the `AdmissibleStrategicIntervention` interface.
-Consequently, the result is labeled `EXACT_FINITE_MENU_CALCULATION`,
-not `PROVED_OPTIMUM` in the formal application sense. The Lean optimizer
+**IMPORTANT:** D0-C now proves the *mathematical rational hitting recursion*
+equals the canonical `finitePrefixLaw` event value for the genuine discrete
+Markov kernel constructed from a certified rational matrix. This is **not**
+a proof of correctness of the separate Python implementation, and does not
+establish that its input tables are induced by `AdmissibleStrategicIntervention`
+instances. Consequently, executable reports remain labeled
+`EXACT_FINITE_MENU_CALCULATION`, not `PROVED_OPTIMUM` in the typed
+strategic-world application sense. The Lean optimizer
 separately proves existence/dominance of an exact mathematical argmax of
 model-defined probabilities; it is noncomputable, not executable policy
 extraction.
 
-The D0-B follow-up should formalize a finite hitting recursion and its
-forward-law equality, then prove executable selection for exact rational
-models and a typed matrix-factorization bridge where needed. D1 later
+PR #40 formalized the finite hitting recursion, independent rational forward
+enumeration, their equality, and computable selection of an exact rational
+fixed-menu winner. PR #41 proves the canonical finite-prefix
+correspondence for every certified rational matrix and finite horizon. A further
+typed strategic-world matrix-factorization bridge remains necessary before the rational results certify strategic interventions. D1 later
 extends to adaptive state-feedback policies using the correct P/U/α order.
 This PR does not introduce any such adaptive-policy semantics.
 
@@ -79,10 +85,11 @@ about the **explicit exact rational matrices**. It is not, by itself, a proof
 that any supplied matrix is a permitted intervention's induced kernel.
 
 The rational weighted-suffix forward enumeration now has a Lean theorem
-proving equality with the rational backward hitting recursion. A distinct
-finite-matrix-to-**canonical `finitePrefixLaw`** theorem and typed kernel
-factorization are still required before promoting this to an unconditional
-`FrozenMenu` model-value optimum. The strict Python
+proving equality with the rational backward hitting recursion. D0-C supplies the distinct
+finite-matrix-to-**canonical `finitePrefixLaw`** theorem. Typed
+strategic-world kernel factorization and exact menu-value transfer are **still
+required** before promoting this to an unconditional `FrozenMenu`
+model-value optimum. The strict Python
 validator rejects floating-point, Boolean, string, NaN and infinity entries;
 integers and `Fraction` entries are permitted as exact rationals.
 
@@ -105,3 +112,53 @@ unconditional formal bridge would overstate this PR. The Python report
 rechecker independently re-enumerates exact paths, but is not verified as
 software by Lean. The kernel realization/canonical law and eventual executable
 checker should remain separate research work until proved.
+
+
+## D0-C certified mathematical correspondence (PR #41)
+
+The rational finite-state path evaluation and the canonical measure-theoretic
+`ProbabilitySupport.finitePrefixLaw` are not definitionally equal. D0-C
+proves their equality by building a genuine discrete probability kernel from
+certified rational stochastic rows, proving its finite-prefix projectivity,
+single-history transition-product weights, and exact target-before-forbidden
+event semantics; then it bijectively reindexes histories indexed by
+`Finset.Iic T` as their time-zero state plus precisely `T` successor
+states. Histories starting at the wrong state have zero canonical mass.
+
+The proof combines exact path-atom sum decomposition, the original D0-B
+successor-word enumerator, the rational/ENNReal product bridge, and the
+existing forward-enumeration-to-backward-recursion theorem. The unconditional
+research theorem is:
+
+```lean
+rationalHittingValue_eq_canonical_all_horizons
+```
+
+For every `M : RationalMarkovMatrix n`, disjoint `target`, finite
+horizon `T` and starting state `y : Fin n`, its statement is
+
+```text
+(rationalHittingValue M target T y : ℝ) =
+  hittingValue (rationalTargetAsFrozen target)
+    (rationalFiniteKernel M) y T
+```
+
+No `exact_values`, model-intervention or conditional correspondence
+hypothesis is passed to this theorem. CI at `22525678` built the complete
+research root, audited 438 research declarations with only `propext`,
+`Classical.choice` and `Quot.sound` permitted, ran rational regressions,
+and rejected proof placeholders and custom axiom declarations. This is an
+exact *mathematical* theorem over the certified matrix model, not a proof
+that the Python code implements it faithfully.
+
+The Python fixed-menu implementation must additionally enforce one shared
+state dimension, normalize finite target/forbidden iterables once per public
+call, and reject forged result scope labels. No string such as
+`PROVED_OPTIMUM` may be accepted by the independent report rechecker.
+
+Even if D0-C proves finite rational/canonical correspondence, the claim is
+about `K_M`, the kernel represented by the matrix `M`. It does **not**
+by itself prove `K_M=K_(G,P)` for any original typed strategic-world
+intervention. That requires a separately checked finite encoding,
+kernel equality/intertwining and target/start transport. Do not promote
+application status or claim proof of the Python implementation.
