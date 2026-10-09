@@ -44,6 +44,10 @@ import PermanssonResearch.ReverseSolver.CanonicalAllHorizonCorrespondence
 import PermanssonResearch.ReverseSolver.CanonicalCertificationExamples
 import PermanssonResearch.ReverseSolver.FiniteStrategicRealization
 import PermanssonResearch.ReverseSolver.FiniteStrategicRealizationExamples
+import PermanssonResearch.ReverseSolver.GenericFinitePrefixAtoms
+import PermanssonResearch.ReverseSolver.FiniteStrategicPathBridge
+import PermanssonResearch.ReverseSolver.TypedMenuCertification
+import PermanssonResearch.ReverseSolver.TypedMenuCertificationExamples
 
 /-!
 # PermanssonResearch
