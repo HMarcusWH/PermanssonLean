@@ -29,6 +29,7 @@ import PermanssonResearch.ReverseSolver.CanonicalProjectivity
 import PermanssonResearch.ReverseSolver.CanonicalTransitionPair
 import PermanssonResearch.ReverseSolver.CanonicalAtomMass
 import PermanssonResearch.ReverseSolver.CanonicalEventSum
+import PermanssonResearch.ReverseSolver.CanonicalHistoryWeight
 
 /-!
 # PermanssonResearch
