@@ -46,10 +46,6 @@ theorem canonicalHistoryWeight_succ {n : ℕ}
   unfold canonicalHistoryWeight
   rw [Fin.prod_univ_castSucc]
   congr 1
-  · apply Finset.prod_congr rfl
-    intro i hi
-    rfl
-  · rfl
 
 end ReverseSolver
 end PermanssonResearch
