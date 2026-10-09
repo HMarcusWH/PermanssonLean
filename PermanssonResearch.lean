@@ -75,6 +75,7 @@ import PermanssonResearch.ReverseSolver.HistoryEventValue
 import PermanssonResearch.ReverseSolver.HistoryContinuation
 import PermanssonResearch.ReverseSolver.HistoryStatusBridge
 import PermanssonResearch.ReverseSolver.HistoryForwardBridge
+import PermanssonResearch.ReverseSolver.HistoryForwardMeasure
 import PermanssonResearch.ReverseSolver.HistoryBellmanDominance
 import PermanssonResearch.ReverseSolver.HistoryPolicyExamples
 
