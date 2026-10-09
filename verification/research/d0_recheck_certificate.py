@@ -74,6 +74,16 @@ def _raise(reason):
     raise CertificateError(reason)
 
 
+def _bound_forward_mass(value):
+    """Reject oversized exact fractions, including probability still in flight.
+
+    An unreachable goal can leave won=0 while active denominators grow
+    exponentially; the resource guard must cover each intermediate mass.
+    """
+    if max(abs(value.numerator).bit_length(), value.denominator.bit_length()) > MAX_VALUE_BITS:
+        raise CertificateResourceLimit("forward rational bit limit")
+
+
 def forward_first_hit_value(matrix, initial, goal, forbidden, horizon):
     """Independent O(T*n²) exact propagation, including time-zero semantics."""
     n = len(matrix)
@@ -91,13 +101,14 @@ def forward_first_hit_value(matrix, initial, goal, forbidden, horizon):
                 if not q:
                     continue
                 moved = mass * q
+                _bound_forward_mass(moved)
                 if z in goals:
                     won += moved
+                    _bound_forward_mass(won)
                 elif z not in dangers:
                     after[z] += moved
+                    _bound_forward_mass(after[z])
         active = after
-        if max(abs(won.numerator).bit_length(), won.denominator.bit_length()) > MAX_VALUE_BITS:
-            raise CertificateResourceLimit("forward rational bit limit")
         if all(not mass for mass in active):
             break
     return won
