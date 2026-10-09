@@ -18,6 +18,8 @@ namespace Bellman
 open ControlledKernel
 open FiniteStrategicPathBridge
 
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
+
 universe uC
 
 /-- One admissible state-feedback rule for each remaining-horizon index. -/
