@@ -5,8 +5,10 @@ import Mathlib.Tactic
 /-!
 # D1-D1: exact regression of D1-B/C1 benchmark through history embedding
 
-A genuinely history-sensitive reachable-prefix witness and the universal
-history-policy Bellman inequality remain subsequent proof obligations.
+The examples include a genuinely history-sensitive, positive-mass
+reconvergent-prefix witness and the exact deadline-two 5/8 Bellman optimum.
+The universal history-policy Bellman theorem is proved in
+HistoryForwardMeasure, not inferred from these examples.
 -/
 
 namespace PermanssonResearch

@@ -5,10 +5,11 @@ import Mathlib.Tactic
 /-!
 # D1-D1: one-step Bellman dominance and embedded optimizing witness
 
-The remaining proof obligation for universal history-policy optimality is
-to connect the exact path-event sum with the conditional first-successor
-recursion at every supplied history. The one-step inequality below does
-NOT by itself claim full horizon history-dependent dominance.
+This module proves the admissible one-step comparison and attaining
+Markov embedding. The independent continuation-to-measure bridge and
+universal history-policy dominance are proved separately in
+HistoryContinuation and HistoryForwardMeasure; the one-step bound alone
+is not the universal theorem.
 -/
 
 open MeasureTheory ProbabilityTheory
@@ -51,7 +52,8 @@ theorem successProbability_embedMarkov
 
 /-- D1-B's already-certified maximizing policy attains Bellman under the
 GENUINE rational history-dependent trajectory law by exact embedding.
-Universal dominance over all history policies remains a separate goal. -/
+Universal dominance over all history policies is established separately
+in HistoryForwardMeasure. -/
 theorem embedded_maximizingSchedule_attains
     {C : Type uC} [DecidableEq C] {n : ℕ}
     (sys : FiniteControlSystem C n)

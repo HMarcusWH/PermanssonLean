@@ -264,15 +264,16 @@ module constructs a finite *stationary state-feedback* policy over the
 existing Unit × Fin n typed rational realization, with state-dependent
 nonempty permitted controls, full canonical one-step equality and
 all-horizon path/value transport. See [D1_CONTROLLED_KERNEL.md](D1_CONTROLLED_KERNEL.md).
-It is **not** the full D1 Bellman or general typed-world theorem below.
-Those remain subsequent proof obligations.
+This milestone established stationary feedback only. The Bellman,
+nonstationary and history-dependent theorems were developed separately
+in subsequent research PRs.
 
 **D1-B incremental milestone (PR #46):** See [D1_BELLMAN.md](D1_BELLMAN.md).
 D1-B introduces the exact rational Bellman recursion and proves optimal
 recursive values over all admissible deterministic **remaining-horizon Markov
-schedules**, with a maximizing schedule attaining the bound. The theorem is
-NOT YET a nonstationary canonical finite-prefix probability-law equality;
-that bridge remains D1-C, followed by separate history-dependent reduction.
+schedules**, with a maximizing schedule attaining the bound. D1-C1/D1-C2
+subsequently established genuine nonstationary probability-law
+correspondence, with history-dependent sufficiency proved in D1-D1.
 
 **D1-C1 milestone (merged PR #47):** The exact rational nonstationary
 finite-prefix law has been constructed from Mathlib partialTraj and
@@ -281,7 +282,7 @@ certified against D1-B's policyValue. See
 deadline D stays fixed across all observed prefix lengths; step i
 uses pi(D-i). Projectivity is within D, not across original deadlines.
 
-**D1-C2 milestone (research PR #48, pending CI):** See
+**D1-C2 milestone (merged research PR #48):** See
 [D1_TYPED_NONSTATIONARY.md](D1_TYPED_NONSTATIONARY.md). Compose the
 actual alpha -> P -> U induced kernels chronologically at each selected
 remaining-horizon feedback step, holding P and U fixed. Prove exact
@@ -291,11 +292,24 @@ D1-C1 optimal probability to the typed sequence. This is a constructed
 Unit × Fin n realization, not general externally specified world kernels
 and not a single frozen intervention.
 
+**D1-D1 milestone (research PR #49):** See
+[D1_HISTORY_DEPENDENT.md](D1_HISTORY_DEPENDENT.md). For the constructed
+finite fully observed rational control family, policies may observe every
+state in the past through elapsed time i. Real Mathlib partialTraj
+prefix laws and the unchanged D0 first-hit event are connected to an
+independently evaluated exact rational continuation. Lean proves the
+Bellman upper bound over EVERY admissible deterministic history-dependent
+policy, with the embedded D1-B maximizing Markov schedule attaining it.
+The exact two-transition 5/8 optimum and a reachable positive-mass
+reconvergent-history witness are also certified. This is a rational
+history-policy result; **typed history-dependent alpha/P/U transport**
+remains the distinct D1-D2 obligation.
+
 D1 is **new controlled-process theory**; do not pass a sequence of changing kernels off as one existing `AdmissibleStrategicIntervention`. First implementation constraints: finite nonempty `Y=S×X`, finite `A`, finite nonempty control menu `C(y)` at each state; controls select among *action-selection replacements* `α_c`. Hold `P` and `U` fixed. The selected control is chosen at the *current joint state*, before choosing action `a`; after `x'`, update `s'` exactly as in the canonical model.
 
 For `c∈C(y)`, define `K_c(y,z)` by the original α/P/U integration order with `α_c` selected at `y`. Explicitly prove nonnegativity, stochastic row sum, and equality to the canonical induced kernel of the corresponding replacement when that replacement is frozen. For a feedback policy `π_t:Y→C` with `π_t(y)∈C(y)`, define its finite-horizon nonstationary law directly (or prove it equals a stationary clock-augmented kernel). The controller may use exactly the information allowed by the information contract; initial D1 assumes full observation of `Y`.
 
-Target-success event: reach `G` no later than `T` **strictly before** entering `D`. Treat membership in `G` or `D` as terminal *for value evaluation*, not as a claim that the underlying world kernel physically absorbs there. With `V₀(y)=1_G(y)` (and `G∩D=∅`), the proposed finite-horizon Bellman recursion is
+Target-success event: reach `G` no later than `T` **strictly before** entering `D`. Treat membership in `G` or `D` as terminal *for value evaluation*, not as a claim that the underlying world kernel physically absorbs there. With `V₀(y)=1_G(y)` (and `G∩D=∅`), the implemented finite-horizon Bellman recursion is
 
 \[
 V_{t+1}(y)=
@@ -307,9 +321,18 @@ V_{t+1}(y)=
 \end{cases}
 \]
 
-Prove by backward induction: `V_T(y)` equals the supremum of target-before-danger probabilities over all admissible **state-feedback, finite-horizon Markov policies** in the declared class; then construct a maximizing policy and prove its actual finite-path law realizes this value. Explain why broader history-dependent policies cannot improve the finite fully observed Markov problem *if* that reduction is proved, rather than assuming it. Also prove the `T=0`, `G=∅`, `D=∅` and impossible target cases. A policy returned on a finite model is **not automatically** a valid new frozen intervention family member; typed strategy compatibility must be separately established.
-
-Proposed modules: `ReverseSolver/ControlledKernel.lean`, `Bellman.lean`, `PolicySynthesis.lean`, `ForwardVerification.lean`, `Counterexamples.lean`. Preserve the canonical `α→P→U` ordering in all definitions.
+D1-B proves the rational recursion and maximizer for deterministic
+remaining-horizon Markov schedules. D1-C1/C2 connect that maximizer to
+genuine rational and constructed typed nonstationary first-hit laws.
+D1-D1 now proves that **deterministic complete-history controllers
+cannot improve the first-hit optimum** for this fully observed finite
+family. The general theorem also covers time-zero and degenerate
+target cases under the declared disjoint-target hypotheses. A policy
+returned on a finite model is **not automatically** a valid new frozen
+intervention family member; typed strategy compatibility requires its
+own proof. See the linked milestone files for the actual implemented
+module inventory. Preserve the canonical `α→P→U` ordering whenever
+constructing typed models.
 
 ### 7.4 Later solver variants: do not silently implement as D1
 

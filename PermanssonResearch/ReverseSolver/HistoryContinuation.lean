@@ -10,8 +10,9 @@ first-hit status to distinguish success-before-danger, danger-before-success,
 and unresolved histories, including after physical paths leave terminal
 regions. It never conditions on a possibly zero-mass observed prefix.
 
-A separate all-path bridge must show equality of this forward calculation
-with the original D0 event under the genuine partialTraj measure.
+The separately proved HistoryForwardBridge and HistoryForwardMeasure
+theorems identify this independent calculation with the original D0
+first-hit event under the genuine partialTraj measure.
 -/
 
 namespace PermanssonResearch
