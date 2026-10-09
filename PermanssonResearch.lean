@@ -36,6 +36,7 @@ import PermanssonResearch.ReverseSolver.AnchoredHistoryEquiv
 import PermanssonResearch.ReverseSolver.RationalHistoryProduct
 import PermanssonResearch.ReverseSolver.WordEnumerationBridge
 import PermanssonResearch.ReverseSolver.CanonicalVectorSuccess
+import PermanssonResearch.ReverseSolver.CanonicalEventVectorEquiv
 
 /-!
 # PermanssonResearch
