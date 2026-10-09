@@ -38,16 +38,15 @@ theorem half_model_encoded_goal :
     (decode (0 : Fin 2)) (encode ⁻¹' ({1} : Set (Fin 2))) = 1 / 2
   rw [inducedKernel_encodedEntry]
   norm_num [RationalExamples.halfGoalMatrix]
+  rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 2)]
+  norm_num
 
 /-- The ADMISSIBLE strategic replacement has goal probability exactly one.
 The world primitive is identical to the baseline by type. -/
 theorem sure_intervened_encoded_goal :
     sureReplacement.intervention.apply.inducedKernel (decode (0 : Fin 2))
         (encode ⁻¹' ({1} : Set (Fin 2))) = 1 := by
-  change (rationalStrategicIntervention
-      RationalExamples.halfGoalMatrix RationalExamples.sureGoalMatrix)
-    .intervention.apply.inducedKernel
-      (decode (0 : Fin 2)) (encode ⁻¹' ({1} : Set (Fin 2))) = 1
+  unfold sureReplacement
   rw [intervenedKernel_worldCylinder
     RationalExamples.halfGoalMatrix RationalExamples.sureGoalMatrix
     (0 : Fin 2) (measurableSet_singleton (1 : Fin 2))]
