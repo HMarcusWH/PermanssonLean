@@ -201,6 +201,16 @@ class D0CertificateTests(unittest.TestCase):
         with self.assertRaises(CertificateError):
             make_certificate([("A", HALF)], HALF, 0, G, D, True)
 
+    def test_unreachable_goal_still_bounds_active_mass_growth(self):
+        """Codex P1 regression: won stays zero while active denominators grow."""
+        denom = 1 << 252
+        dense = ((Q(denom - 1, denom), Q(1, denom)),
+                 (Q(1, denom), Q(denom - 1, denom)))
+        raw = make_certificate([("unreachable", dense)], dense, 0, [], [], 60)
+        record = parse_json_strict(raw)
+        self.assertEqual(record["calculation"]["value"], [0, 1])
+        self.assertEqual(check_certificate(raw).status, LIMIT)
+
     def test_resource_limit_is_distinct_from_invalid(self):
         self.assertEqual(check_certificate(b" " * (MAX_BYTES + 1)).status, LIMIT)
         with self.assertRaises(CertificateResourceLimit):
