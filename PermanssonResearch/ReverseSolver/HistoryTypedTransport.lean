@@ -1,5 +1,6 @@
 import PermanssonResearch.ReverseSolver.HistoryTypedAtoms
 import PermanssonResearch.ReverseSolver.FiniteStrategicPathBridge
+import PermanssonResearch.ReverseSolver.NonstationaryTypedTransport
 import Mathlib.Tactic
 
 /-!
@@ -146,6 +147,33 @@ theorem typed_prefixLaw_map
                 nu {w} := by
             rw [sum_measure_singleton]
           exact hsum.symm.trans (congrArg nu hfilter)
+
+
+/-- When the history selector ignores past states (a D1-B Markov schedule),
+the new full typed history law agrees with the existing D1-C2 genuine
+typed nonstationary law. This is equality of MEASURES, not definitional
+equality of the auxiliary feedback models at unvisited states. -/
+theorem typedPrefixLaw_embedMarkov
+    {C : Type uC} [DecidableEq C] {n : ℕ}
+    (sys : FiniteControlSystem C n) (pi : MarkovSchedule sys)
+    (D : ℕ) (x : Fin n) (t : ℕ) :
+    typedPrefixLaw sys (HistoryDependent.embedMarkov sys pi) D x t =
+      NonstationaryTyped.typedPrefixLaw sys pi D x t := by
+  have htyped :=
+    typed_prefixLaw_map sys (HistoryDependent.embedMarkov sys pi) D x t
+  rw [HistoryDependent.prefixLaw_embedMarkov] at htyped
+  rw [← NonstationaryTyped.typed_prefixLaw_map sys pi D x t] at htyped
+  have hback := congrArg
+    (fun μ : Measure ((j : Finset.Iic t) → Fin n) =>
+      μ.map (prefixDecode t)) htyped
+  rw [Measure.map_map (measurable_prefixDecode t) (measurable_prefixEncode t),
+    Measure.map_map (measurable_prefixDecode t) (measurable_prefixEncode t)] at hback
+  have hid :
+      (prefixDecode (n := n) t) ∘ (prefixEncode (n := n) t) =
+        (id : TypedHistory n t → TypedHistory n t) := by
+    funext w
+    exact prefixDecode_prefixEncode t w
+  simpa only [hid, Measure.map_id] using hback
 
 end HistoryDependentTyped
 end ReverseSolver
