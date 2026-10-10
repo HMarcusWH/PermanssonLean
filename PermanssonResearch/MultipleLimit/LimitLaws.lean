@@ -33,7 +33,7 @@ theorem randomLimitLaw_apply
       endpointLaw.toMeasure (terminalLaw ⁻¹' E) := by
   change (Measure.map terminalLaw endpointLaw.toMeasure) E =
     endpointLaw.toMeasure (terminalLaw ⁻¹' E)
-  exact Measure.map_apply (by fun_prop) hE
+  exact Measure.map_apply (by exact Measurable.of_discrete) hE
 
 /-- Distinct terminal states produce distinct measure-valued limits,
 so the mapping does not silently average incompatible outcomes. -/
