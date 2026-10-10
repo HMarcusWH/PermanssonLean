@@ -173,6 +173,8 @@ theorem orbitLaw_ae_orbitPaths (μ : ProbabilityMeasure Y) :
     ext y
     simp only [Set.mem_preimage, Set.mem_univ, iff_true]
     exact ⟨y, rfl⟩
+  haveI : IsProbabilityMeasure (Measure.map orbit μ.toMeasure) := by
+    infer_instance
   rw [hpre, measure_univ]
 
 /-- The baseline satisfies the literal canonical almost-sure weak mode for
