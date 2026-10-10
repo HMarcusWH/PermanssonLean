@@ -193,6 +193,7 @@ theorem induced_u_to_a :
         unitInterval.toNNReal (unitInterval.symm twoThirds) =
           (1 / 6 : NNReal) := by
     apply Subtype.ext
+    rw [NNReal.coe_mul]
     norm_num [half, twoThirds, unitInterval.toNNReal, unitInterval.symm]
   rw [hproduct]
   norm_num
