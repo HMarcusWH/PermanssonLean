@@ -120,6 +120,55 @@ theorem same_baseline_different_joint_laws (y : Y) :
   have hne : updateDest ≠ jointDest := by decide
   simpa [Measure.dirac_apply', hne] using he
 
+
+/-- B4 strengthened: the same baseline and original comparison set produce
+*different original canonical path-law constitutive effects* for the same
+joint component block under the two frozen physical banks. The OR event is
+not constitutively changed by the alternative bank because its destination
+retains one true coordinate. -/
+theorem alternative_OR_value (y : Y) :
+    PermanssonLean.RegimeSpecification.intervenedPropertyValue
+      (BooleanOneStepEvents.propertyAtOne BooleanOneStepEvents.orP)
+      (admittedBlockIntervention baseline alternative fine
+        BooleanPersistence.jointBlock).intervention y = 1 := by
+  change BooleanOneStepEvents.propertyAtOne BooleanOneStepEvents.orP
+    (pathProbability
+      (admittedBlockIntervention baseline alternative fine
+        BooleanPersistence.jointBlock).intervention.apply
+      (diracProba y)) = 1
+  rw [admittedBlockIntervention_apply]
+  have h := BooleanOneStepEvents.propertyAtOne_eq_of_constantKernel
+    (blockModel baseline alternative fine joint) updateDest
+    alternate_joint_inducedKernel BooleanOneStepEvents.orP y
+  simpa [BooleanOneStepEvents.orP, updateDest] using h
+
+theorem alternative_OR_effect_zero (y : Y) :
+    blockEffect baseline alternative fine BooleanPersistence.jointBlock
+      (BooleanOneStepEvents.propertyAtOne BooleanOneStepEvents.orP) y = 0 := by
+  unfold blockEffect PermanssonLean.RegimeSpecification.constitutiveEffect
+  have hb := BooleanOneStepEvents.baseline_value BooleanOneStepEvents.orP y
+  have ha := alternative_OR_value y
+  rw [hb, ha]
+  simp [BooleanOneStepEvents.orP, BooleanBaseline.q0]
+
+theorem alternative_OR_margin_zero :
+    blockMargin baseline alternative fine BooleanPersistence.jointBlock spec
+      (BooleanOneStepEvents.propertyAtOne BooleanOneStepEvents.orP)
+      comparison = 0 := by
+  apply blockMargin_eq_of_constant_effect
+  intro y _
+  exact alternative_OR_effect_zero y
+
+theorem B4_distinct_frozen_constitutive_margins :
+    blockMargin baseline bank fine BooleanPersistence.jointBlock spec
+      (BooleanOneStepEvents.propertyAtOne BooleanOneStepEvents.orP)
+      comparison = 1 ∧
+    blockMargin baseline alternative fine BooleanPersistence.jointBlock spec
+      (BooleanOneStepEvents.propertyAtOne BooleanOneStepEvents.orP)
+      comparison = 0 := by
+  exact ⟨BooleanEffects.or_joint_margin_one, alternative_OR_margin_zero⟩
+
+
 end AlternativeBankWitness
 end GrammarRobust
 end PermanssonResearch
