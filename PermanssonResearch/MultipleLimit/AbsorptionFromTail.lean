@@ -12,7 +12,7 @@ It does not derive the bound from the Markov kernel (a separate bridge).
 -/
 
 open Filter MeasureTheory ProbabilityTheory
-open scoped Topology
+open scoped Topology ENNReal
 
 namespace PermanssonResearch
 namespace MultipleLimit
@@ -27,7 +27,10 @@ def NeverHit (A : Finset Y) : Set (ℕ → Y) :=
 
 theorem neverHit_measurable (A : Finset Y) :
     MeasurableSet (NeverHit A) := by
-  change MeasurableSet (⋂ t : ℕ, {w : ℕ → Y | w t ∉ A})
+  have heq : NeverHit A = ⋂ t : ℕ, {w : ℕ → Y | w t ∉ A} := by
+    ext w
+    simp [NeverHit]
+  rw [heq]
   apply measurableSet_iInter
   intro t
   exact (MeasurableSet.of_discrete : MeasurableSet (A : Set Y)).compl.preimage
