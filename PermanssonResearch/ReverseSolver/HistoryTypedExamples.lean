@@ -87,6 +87,8 @@ theorem typed_reconverge_right_loses :
 left reconvergent branch. This is a value test, distinct from the required
 two typed conditional-kernel tests above. The exact finite enumeration is
 in the constructive D1-D1 rational continuation evaluator. -/
+set_option maxRecDepth 10000 in
+set_option maxHeartbeats 2000000 in
 theorem typed_reconverge_success_half :
     typedSuccessProbability reconvergeSystem reconvergePolicy
       reconvergeTarget 3 (0 : Fin 5) =
@@ -98,13 +100,7 @@ theorem typed_reconverge_success_half :
         reconvergeTarget 3 0 (singletonPrefix (0 : Fin 5))
         (HistoryDependent.initialStatus reconvergeTarget (0 : Fin 5)) 3 =
         (1/2 : ℚ) := by
-    norm_num [HistoryDependent.forwardValue,
-      HistoryDependent.completionMass, finiteSuccessorWords,
-      HistoryDependent.advanceStatus, HistoryDependent.initialStatus,
-      HistoryDependent.selectedEntry, HistoryDependent.last,
-      HistoryDependent.appendHistory, reconvergePolicy,
-      reconvergeSystem, reconvergeMatrix, reconvergeTarget,
-      singletonPrefix]
+    decide +kernel
   rw [hforward]
   norm_num
 
