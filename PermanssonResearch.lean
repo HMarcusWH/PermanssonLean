@@ -84,6 +84,7 @@ import PermanssonResearch.ReverseSolver.HistoryTypedPrefix
 import PermanssonResearch.ReverseSolver.HistoryTypedAtoms
 import PermanssonResearch.ReverseSolver.HistoryTypedTransport
 import PermanssonResearch.ReverseSolver.HistoryTypedHitting
+import PermanssonResearch.ReverseSolver.HistoryTypedExamples
 
 /-!
 # PermanssonResearch
