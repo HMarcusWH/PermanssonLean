@@ -44,10 +44,10 @@ theorem exists_minimal_allowed_subblock
   intro F hFallow hFproper hFpositive
   have hFsub : F ⊆ D := (Finset.ssubset_iff_subset_ne.mp hFproper).1.trans hED
   have hFsmall : F.card < n := by
-    rw [← hcard]
-    exact Finset.card_lt_card hFproper
-  have hNo : ¬ Q F.card := Nat.find_min' hex hFsmall
-  exact hNo ⟨F, hFsub, hFallow, hFpositive, rfl⟩
+    exact (Finset.card_lt_card hFproper).trans_eq hcard
+  have hFmin : n ≤ F.card :=
+    Nat.find_min' hex ⟨F, hFsub, hFallow, hFpositive, rfl⟩
+  omega
 
 end GrammarRobust
 end PermanssonResearch
