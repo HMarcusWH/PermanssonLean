@@ -11,7 +11,7 @@ constitution and its quantitative uniform strengthening, not merely a
 numerical surrogate.
 -/
 
-open MeasureTheory ProbabilityTheory
+open MeasureTheory ProbabilityTheory PermanssonLean.RegimeSpecification
 
 namespace PermanssonResearch
 namespace GrammarRobust
@@ -47,7 +47,6 @@ theorem Coarsening.relativePR_lift_iff
     PermanssonLean.RegimeSpecification.IsGeneralizedPermanssonRegimeRelative
       M spec m (blockFamily M bank coarse) ψ B₁
       (admittedBlockIntervention M bank coarse D) := by
-  open PermanssonLean.RegimeSpecification in
   change
     (IsExactGeneratedRegime M spec m ∧
       ∀ y ∈ B₁.states,
@@ -93,7 +92,6 @@ theorem Coarsening.uniformRelativePR_lift_iff
     PermanssonLean.RegimeSpecification.IsUniformGeneralizedPermanssonRegimeRelative
       M spec m (blockFamily M bank coarse) ψ B₁
       (admittedBlockIntervention M bank coarse D) := by
-  open PermanssonLean.RegimeSpecification in
   change
     (IsExactGeneratedRegime M spec m ∧
       IsUniformlyStrategicallyConstitutive M spec
@@ -104,16 +102,22 @@ theorem Coarsening.uniformRelativePR_lift_iff
         (blockFamily M bank coarse) ψ B₁
         (admittedBlockIntervention M bank coarse D))
   apply and_congr Iff.rfl
-  exact
-    (PermanssonLean.RegimeSpecification.uniformlyConstitutive_iff_margin_pos
-      M spec (blockFamily M bank fine) ψ B₁
-      (admittedBlockIntervention M bank fine (ρ.liftAllowed D))).trans
-    ((by simpa only [blockMargin, ρ.blockMargin_lift_eq M bank D spec ψ B₁] using
-      (Iff.rfl :
-        (0 < blockMargin M bank coarse D spec ψ B₁) ↔
-          (0 < blockMargin M bank coarse D spec ψ B₁))).trans
-      (PermanssonLean.RegimeSpecification.uniformlyConstitutive_iff_margin_pos
+  calc
+    IsUniformlyStrategicallyConstitutive M spec
+        (blockFamily M bank fine) ψ B₁
+        (admittedBlockIntervention M bank fine (ρ.liftAllowed D)) ↔
+      0 < blockMargin M bank fine (ρ.liftAllowed D) spec ψ B₁ :=
+        uniformlyConstitutive_iff_margin_pos
+          M spec (blockFamily M bank fine) ψ B₁
+          (admittedBlockIntervention M bank fine (ρ.liftAllowed D))
+    _ ↔ 0 < blockMargin M bank coarse D spec ψ B₁ := by
+      rw [ρ.blockMargin_lift_eq M bank D spec ψ B₁]
+    _ ↔ IsUniformlyStrategicallyConstitutive M spec
+        (blockFamily M bank coarse) ψ B₁
+        (admittedBlockIntervention M bank coarse D) :=
+      (uniformlyConstitutive_iff_margin_pos
         M spec (blockFamily M bank coarse) ψ B₁
-        (admittedBlockIntervention M bank coarse D)).symm)
+        (admittedBlockIntervention M bank coarse D)).symm
+
 end GrammarRobust
 end PermanssonResearch
