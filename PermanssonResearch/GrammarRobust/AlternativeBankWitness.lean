@@ -15,7 +15,7 @@ namespace PermanssonResearch
 namespace GrammarRobust
 namespace AlternativeBankWitness
 
-open PermanssonLean BooleanModel BooleanBaseline BooleanDynamics
+open PermanssonLean PermanssonLean.RegimeSpecification BooleanModel BooleanBaseline BooleanDynamics
 open BooleanMinimalityCases
 
 /-- A distinct post-intervention bank over the very same baseline model.
