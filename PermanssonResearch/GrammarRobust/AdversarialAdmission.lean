@@ -5,7 +5,7 @@ import Mathlib.Tactic
 /-!
 # Lane B — B9/B11 adversarial construction and rejection
 
-The disjoint atomic bank cannot admit two action atoms whose row masks
+The disjoint atomic bank cannot contain two action atoms whose row masks
 are both all of the input space. Separately, a finite frozen grammar can
 reject the syntactically meaningful joint component block; there exists
 no `AllowedBlock` certificate for it even though each singleton is allowed.
