@@ -14,6 +14,7 @@ almost-sure hitting from an N-step kernel bound.
 -/
 
 open Filter
+open scoped Topology
 
 namespace PermanssonResearch
 namespace MultipleLimit
