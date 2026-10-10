@@ -9,6 +9,8 @@ limits. A descriptor may collapse them, so observed plurality must be
 separated from physical-state plurality.
 -/
 
+open MeasureTheory ProbabilityTheory
+
 namespace PermanssonResearch
 namespace MultipleLimit
 
