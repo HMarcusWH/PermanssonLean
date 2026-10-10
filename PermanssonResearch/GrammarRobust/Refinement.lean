@@ -17,7 +17,8 @@ universe uI uJ uF uC
 structure Coarsening
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
-    [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [Fintype IA] [Fintype IU] [DecidableEq IA] [DecidableEq IU]
+    [Fintype Fine] [Fintype Coarse]
     [DecidableEq Coarse]
     (fine : PartitionGrammar IA IU Fine)
     (coarse : PartitionGrammar IA IU Coarse) where
@@ -32,7 +33,8 @@ structure Coarsening
 noncomputable def Coarsening.lift
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
-    [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [Fintype IA] [Fintype IU] [DecidableEq IA] [DecidableEq IU]
+    [Fintype Fine] [Fintype Coarse]
     [DecidableEq Coarse]
     {fine : PartitionGrammar IA IU Fine}
     {coarse : PartitionGrammar IA IU Coarse}
@@ -44,7 +46,8 @@ noncomputable def Coarsening.lift
 theorem Coarsening.expand_lift
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
-    [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [Fintype IA] [Fintype IU] [DecidableEq IA] [DecidableEq IU]
+    [Fintype Fine] [Fintype Coarse]
     [DecidableEq Coarse]
     {fine : PartitionGrammar IA IU Fine}
     {coarse : PartitionGrammar IA IU Coarse}
@@ -74,7 +77,8 @@ theorem Coarsening.expand_lift
 theorem Coarsening.lift_inclusion_iff
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
-    [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [Fintype IA] [Fintype IU] [DecidableEq IA] [DecidableEq IU]
+    [Fintype Fine] [Fintype Coarse]
     [DecidableEq Coarse]
     {fine : PartitionGrammar IA IU Fine}
     {coarse : PartitionGrammar IA IU Coarse}
