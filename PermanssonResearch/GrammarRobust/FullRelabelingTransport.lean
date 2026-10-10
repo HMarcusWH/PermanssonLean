@@ -60,7 +60,7 @@ theorem relabelEquiv_apply (D : Finset (Fin 2)) :
     relabelEquiv D = renameBlock D := by
   classical
   change D.map swapIdx.toEmbedding = D.image swapIdx
-  exact Finset.map_eq_image
+  exact Finset.map_eq_image swapIdx.toEmbedding D
 
 theorem relabelEquiv_is_nonidentity :
     relabelEquiv ({0} : Finset (Fin 2)) ≠ ({0} : Finset (Fin 2)) := by
@@ -79,6 +79,12 @@ theorem relabeled_effect_all (D : Finset (Fin 2))
         (relabeledBlock (relabelEquiv D)) ψ y := by
   unfold blockEffect constitutiveEffect intervenedPropertyValue
   rw [admittedBlockIntervention_apply, admittedBlockIntervention_apply]
+  change
+    dist (baselinePropertyValue ψ baseline y)
+      (ψ (pathProbability (blockModel baseline bank fine D) (diracProba y))) =
+    dist (baselinePropertyValue ψ baseline y)
+      (ψ (pathProbability
+        (blockModel baseline bank relabeled (relabelEquiv D)) (diracProba y)))
   rw [relabelEquiv_apply, relabeled_model_all]
 
 theorem relabeled_margin_all (D : Finset (Fin 2))
