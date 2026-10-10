@@ -81,6 +81,19 @@ noncomputable def model : StrategicWorldModel Bool Bool Bool where
     infer_instance
 
 
+/-- Normalize the piecewise world kernel without unfolding the
+proof-irrelevant measurable-set certificate in subsequent integrals. -/
+theorem world_row (y : Y) (act : Bool) :
+    world (y, act) =
+      if y = u ∧ act = false then
+        bernoulliMeasure true false twoThirds
+      else Measure.dirac (if y = t then true else y.2) := by
+  classical
+  unfold world
+  rw [Kernel.piecewise_apply]
+  simp [branchRegion, branchWorld, otherWorld,
+    Kernel.const_apply, Kernel.deterministic_apply]
+
 /-- Exact Bernoulli integration against the actual finite action/world
 measure, used below to expose the genuine alpha/P/U transition rows. -/
 private theorem bernoulli_bool_lintegral (p : unitInterval)
@@ -98,8 +111,8 @@ theorem induced_t_to_u :
   classical
   rw [StrategicWorldModel.inducedKernel_apply model t
     (measurableSet_singleton u)]
-  simp [model, selection, world, update, updateNext, otherWorld,
-    branchWorld, branchRegion, t, u, Kernel.const_apply,
+  simp [model, selection, update, updateNext, world_row,
+    branchRegion, t, u, Kernel.const_apply,
     Kernel.deterministic_apply, Kernel.piecewise_apply,
     bernoulli_bool_lintegral, half, twoThirds, Measure.dirac_apply]
 
@@ -111,8 +124,8 @@ theorem induced_u_to_a :
   classical
   rw [StrategicWorldModel.inducedKernel_apply model u
     (measurableSet_singleton a)]
-  simp [model, selection, world, update, updateNext, otherWorld,
-    branchWorld, branchRegion, u, a, Kernel.const_apply,
+  simp [model, selection, update, updateNext, world_row,
+    branchRegion, u, a, Kernel.const_apply,
     Kernel.deterministic_apply, Kernel.piecewise_apply,
     bernoulli_bool_lintegral, half, twoThirds, Measure.dirac_apply]
   norm_num
