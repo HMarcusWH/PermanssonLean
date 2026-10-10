@@ -20,6 +20,46 @@ K = {
     "b": {"t": ZERO, "u": ZERO, "a": ZERO, "b": ONE},
 }
 
+# An independent exact reconstruction of the *typed alpha -> P -> U*
+# stochastic semantics declared in TypedStrategicWitness.lean.
+# The Boolean action is true with probability 1/2 everywhere.
+def strategic_action_weights(_state):
+    return {False: Q(1, 2), True: Q(1, 2)}
+
+def world_weights(state, action):
+    if state == "u" and not action:
+        return {False: Q(1, 3), True: Q(2, 3)}
+    old_world = {"t": False, "u": True, "a": False, "b": True}[state]
+    return {False: Q(not (True if state == "t" else old_world)),
+            True: Q(True if state == "t" else old_world)}
+
+def strategic_update(state, action, next_world):
+    old_strategic = state in ABSORBING
+    if state == "t":
+        next_strategic = False
+    elif state == "u" and action:
+        next_strategic = False
+    else:
+        next_strategic = True
+    return {
+        (False, False): "t", (False, True): "u",
+        (True, False): "a", (True, True): "b"
+    }[(next_strategic, next_world)]
+
+def composed_typed_kernel():
+    return {
+        state: {
+            dst: sum(
+                (pa * px
+                 for action, pa in strategic_action_weights(state).items()
+                 for world, px in world_weights(state, action).items()
+                 if strategic_update(state, action, world) == dst),
+                ZERO)
+            for dst in STATES
+        }
+        for state in STATES
+    }
+
 def step_distribution(v):
     return {j: sum((v[i] * K[i][j] for i in STATES), ZERO)
             for j in STATES}
@@ -43,6 +83,11 @@ def abs_occup_error(path, horizon, destination):
     return sum((abs(v[j] - int(j == destination)) for j in STATES), ZERO)
 
 class LaneCExactAbsorptionRegressions(unittest.TestCase):
+    def test_typed_alpha_P_U_composition_matches_exact_four_state_matrix(self):
+        self.assertEqual(composed_typed_kernel(), K)
+        for state in STATES:
+            self.assertEqual(sum(composed_typed_kernel()[state].values(), ZERO), ONE)
+
     def test_row_stochastic_exact(self):
         for i in STATES:
             self.assertEqual(sum(K[i].values(), ZERO), ONE)
