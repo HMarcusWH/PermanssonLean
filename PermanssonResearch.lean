@@ -101,6 +101,8 @@ import PermanssonResearch.GrammarRobust.BooleanModel
 
 import PermanssonResearch.GrammarRobust.Minimality
 
+import PermanssonResearch.GrammarRobust.AtomicLocality
+
 /-!
 # PermanssonResearch
 
