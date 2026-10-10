@@ -86,6 +86,11 @@ import PermanssonResearch.ReverseSolver.HistoryTypedTransport
 import PermanssonResearch.ReverseSolver.HistoryTypedHitting
 import PermanssonResearch.ReverseSolver.HistoryTypedExamples
 
+import PermanssonResearch.GrammarRobust.AtomicBank
+import PermanssonResearch.GrammarRobust.AtomicApply
+import PermanssonResearch.GrammarRobust.PartitionGrammar
+import PermanssonResearch.GrammarRobust.BlockModels
+
 /-!
 # PermanssonResearch
 
