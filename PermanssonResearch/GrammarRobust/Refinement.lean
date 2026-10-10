@@ -18,6 +18,7 @@ structure Coarsening
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
     [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [DecidableEq Coarse]
     (fine : PartitionGrammar IA IU Fine)
     (coarse : PartitionGrammar IA IU Coarse) where
   map : Fine → Coarse
@@ -32,6 +33,7 @@ noncomputable def Coarsening.lift
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
     [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [DecidableEq Coarse]
     {fine : PartitionGrammar IA IU Fine}
     {coarse : PartitionGrammar IA IU Coarse}
     (ρ : Coarsening fine coarse)
@@ -43,6 +45,7 @@ theorem Coarsening.expand_lift
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
     [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [DecidableEq Coarse]
     {fine : PartitionGrammar IA IU Fine}
     {coarse : PartitionGrammar IA IU Coarse}
     (ρ : Coarsening fine coarse)
@@ -57,8 +60,10 @@ theorem Coarsening.expand_lift
       simpa [Coarsening.lift] using hf
     refine ⟨ρ.map f, hD, ?_⟩
     rw [ρ.coarse_atoms]
-    exact Finset.mem_biUnion.mpr
-      ⟨f, by simp, ha⟩
+    have hfilt : f ∈ Finset.univ.filter
+        (fun q : Fine => ρ.map q = ρ.map f) :=
+      Finset.mem_filter.mpr ⟨Finset.mem_univ _, rfl⟩
+    exact Finset.mem_biUnion.mpr ⟨f, hfilt, ha⟩
   · rintro ⟨c, hc, ha⟩
     rw [ρ.coarse_atoms] at ha
     rcases Finset.mem_biUnion.mp ha with ⟨f, hf, hfa⟩
@@ -70,6 +75,7 @@ theorem Coarsening.lift_inclusion_iff
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
     [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [DecidableEq Coarse]
     {fine : PartitionGrammar IA IU Fine}
     {coarse : PartitionGrammar IA IU Coarse}
     (ρ : Coarsening fine coarse)
