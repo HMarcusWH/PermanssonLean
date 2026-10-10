@@ -1,3 +1,4 @@
+import PermanssonResearch.GrammarRobust.ConstantDynamics
 import PermanssonResearch.GrammarRobust.BooleanPersistence
 import PermanssonResearch.GrammarRobust.BooleanDynamics
 import PermanssonResearch.GrammarRobust.ImageMinimality
