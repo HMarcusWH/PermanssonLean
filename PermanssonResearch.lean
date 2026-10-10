@@ -1,3 +1,4 @@
+import PermanssonResearch.GrammarRobust.FullRelabelingTransport
 import PermanssonResearch.GrammarRobust.RelabelingOrderWitness
 import PermanssonResearch.GrammarRobust.InvalidBijectionWitness
 import PermanssonResearch.GrammarRobust.AlternativeBankWitness
