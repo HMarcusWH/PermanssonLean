@@ -16,7 +16,7 @@ namespace RelabelingWitness
 
 open BooleanModel BooleanDynamics
 
-private def swapIdx : Fin 2 ≃ Fin 2 :=
+def swapIdx : Fin 2 ≃ Fin 2 :=
   Equiv.swap (0 : Fin 2) 1
 
 noncomputable def relabeled :
