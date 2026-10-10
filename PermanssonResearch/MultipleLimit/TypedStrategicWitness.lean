@@ -187,15 +187,9 @@ theorem induced_u_to_a :
     branchRegion, t, u, a, Kernel.const_apply,
     Kernel.deterministic_apply, Kernel.piecewise_apply,
     bernoulli_bool_lintegral, Measure.dirac_apply]
-  rw [ENNReal.smul_def, smul_eq_mul, ← ENNReal.coe_mul]
-  have hproduct :
-      unitInterval.toNNReal (unitInterval.symm half) *
-        unitInterval.toNNReal (unitInterval.symm twoThirds) =
-          (1 / 6 : NNReal) := by
-    rw [← NNReal.coe_inj, NNReal.coe_mul]
-    norm_num [half, twoThirds, unitInterval.toNNReal, unitInterval.symm]
-  rw [hproduct]
-  norm_num
+  rw [ENNReal.smul_def, smul_eq_mul]
+  rw [half_symm_cast, twoThirds_symm_cast]
+  simpa only [one_div] using ennreal_half_third
 
 
 /-- Enumeration of the physical Boolean strategic-world states in the
