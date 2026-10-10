@@ -12,6 +12,8 @@ can preserve the complete process while changing its minimal explanatory
 components. No monotonicity or uniqueness is assumed.
 -/
 
+open ProbabilityTheory MeasureTheory
+
 namespace PermanssonResearch
 namespace GrammarRobust
 namespace BooleanMinimalityCases
@@ -19,6 +21,17 @@ namespace BooleanMinimalityCases
 open PermanssonLean PermanssonLean.RegimeSpecification
 open BooleanModel BooleanBaseline BooleanDynamics BooleanPersistence
 open BooleanOneStepEvents BooleanEffects
+
+private theorem allowedBlock_eq_of_components_eq
+    {IA IU C : Type*} [Fintype IA] [Fintype IU] [Fintype C]
+    {Γ : PartitionGrammar IA IU C} (D E : AllowedBlock Γ)
+    (h : D.components = E.components) : D = E := by
+  cases D with
+  | mk d hd =>
+    cases E with
+    | mk e he =>
+      cases h
+      rfl
 
 noncomputable def fineBlock (D : Finset (Fin 2)) : AllowedBlock fine :=
   ⟨D, trivial⟩
@@ -84,7 +97,7 @@ theorem andPos_empty_false : ¬ andPos (∅ : Finset (Fin 2)) := by
   change ¬ (0 < blockMargin baseline bank fine (fineBlock ∅) spec
     (propertyAtOne andP) comparison)
   rw [fine_empty_margin_zero]
-  omega
+  norm_num
 
 /-- B2: two genuinely incomparable minimal *constitutive* blocks. -/
 theorem and_action_minimal :
@@ -112,13 +125,13 @@ theorem orPos_action_false : ¬ orPos ({0} : Finset (Fin 2)) := by
   change ¬ (0 < blockMargin baseline bank fine actionBlock spec
     (propertyAtOne orP) comparison)
   rw [or_singleton_margins_zero.1]
-  omega
+  norm_num
 
 theorem orPos_update_false : ¬ orPos ({1} : Finset (Fin 2)) := by
   change ¬ (0 < blockMargin baseline bank fine updateBlock spec
     (propertyAtOne orP) comparison)
   rw [or_singleton_margins_zero.2]
-  omega
+  norm_num
 
 theorem orPos_joint : orPos ({0,1} : Finset (Fin 2)) := by
   change 0 < blockMargin baseline bank fine jointBlock spec
@@ -130,7 +143,7 @@ theorem orPos_empty_false : ¬ orPos (∅ : Finset (Fin 2)) := by
   change ¬ (0 < blockMargin baseline bank fine (fineBlock ∅) spec
     (propertyAtOne orP) comparison)
   rw [fine_empty_margin_zero]
-  omega
+  norm_num
 
 /-- B1, strengthened: the joint-only positive block is *minimal* in
 the actual finite admissible-subblock partial order. -/
@@ -144,7 +157,7 @@ theorem or_joint_minimal :
     · have heq : E = ({0,1} : Finset (Fin 2)) := by
         ext i
         fin_cases i <;> simp [h0,h1]
-      exact (Finset.ssubset_ne.mp hproper heq).elim
+      exact ((Finset.ssubset_iff_subset_ne.mp hproper).2 heq).elim
     · have heq : E = ({0} : Finset (Fin 2)) := by
         ext i
         fin_cases i <;> simp [h0,h1]
@@ -175,7 +188,7 @@ theorem coarse_margin_eq_fine_joint
   have h := coarsening.blockMargin_lift_eq baseline bank
     (coarseBlock {0}) spec ψ comparison
   have hh : coarsening.liftAllowed (coarseBlock {0}) = jointBlock := by
-    apply AllowedBlock.ext
+    apply allowedBlock_eq_of_components_eq
     exact coarse_lift_joint
   rw [hh] at h
   exact h.symm
@@ -220,7 +233,7 @@ theorem coarseAndPos_empty_false : ¬ coarseAndPos ∅ := by
   change ¬ (0 < blockMargin baseline bank coarse (coarseBlock ∅)
     spec (propertyAtOne andP) comparison)
   rw [coarse_empty_margin_zero]
-  omega
+  norm_num
 
 /-- B7: same actual model is minimal as ONE coarse component, but
 nonminimal as TWO fine components. Minimality is grammar-relative. -/
@@ -245,13 +258,13 @@ theorem coarseXorPos_one_false : ¬ coarseXorPos ({0} : Finset (Fin 1)) := by
   change ¬ (0 < blockMargin baseline bank coarse (coarseBlock {0})
     spec (propertyAtOne xorP) comparison)
   rw [coarse_margin_eq_fine_joint, xor_nonmonotone_margins.2]
-  omega
+  norm_num
 
 theorem coarseXorPos_empty_false : ¬ coarseXorPos ∅ := by
   change ¬ (0 < blockMargin baseline bank coarse (coarseBlock ∅)
     spec (propertyAtOne xorP) comparison)
   rw [coarse_empty_margin_zero]
-  omega
+  norm_num
 
 theorem xorPos_action : xorPos ({0} : Finset (Fin 2)) := by
   change 0 < blockMargin baseline bank fine actionBlock spec
