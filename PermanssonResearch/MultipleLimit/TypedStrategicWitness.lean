@@ -103,6 +103,20 @@ theorem induced_t_to_u :
     Kernel.deterministic_apply, Kernel.piecewise_apply,
     bernoulli_bool_lintegral, half, twoThirds, Measure.dirac_apply]
 
+
+/-- The transient branching state reaches the first absorbing state with
+exactly 1/6 one-step probability, not an assumed rational row. -/
+theorem induced_u_to_a :
+    model.inducedKernel u {a} = (1/6 : ℝ≥0∞) := by
+  classical
+  rw [StrategicWorldModel.inducedKernel_apply model u
+    (measurableSet_singleton a)]
+  simp [model, selection, world, update, updateNext, otherWorld,
+    branchWorld, branchRegion, u, a, Kernel.const_apply,
+    Kernel.deterministic_apply, Kernel.piecewise_apply,
+    bernoulli_bool_lintegral, half, twoThirds, Measure.dirac_apply]
+  norm_num
+
 end TypedStrategicWitness
 end MultipleLimit
 end PermanssonResearch
