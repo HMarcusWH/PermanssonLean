@@ -34,16 +34,18 @@ theorem actionExactlyInvariant :
   intro y hy
   rw [actionOnly_inducedKernel]
   rw [Measure.dirac_apply_of_mem]
-  exact (show actionDest ∈ region by
-    simp [region, actionDest, forbidden])
+  exact (show actionDest ∈ BooleanBaseline.region by
+    change actionDest ≠ BooleanBaseline.forbidden
+    decide)
 
 theorem updateExactlyInvariant :
     IsExactlyInvariant (blockModel baseline bank fine updateOnly) spec := by
   intro y hy
   rw [updateOnly_inducedKernel]
   rw [Measure.dirac_apply_of_mem]
-  exact (show updateDest ∈ region by
-    simp [region, updateDest, forbidden])
+  exact (show updateDest ∈ BooleanBaseline.region by
+    change updateDest ≠ BooleanBaseline.forbidden
+    decide)
 
 theorem actionSurvivesForever {y : Y} (hy : y ∈ region) :
     survivalForeverProbability
@@ -63,7 +65,10 @@ theorem jointSurvivalOne_eq_zero {y : Y} (hy : y ∈ region) :
       (by simpa [spec] using hy), killedSurvivalMass_one]
   rw [joint_inducedKernel]
   rw [Measure.dirac_apply' jointDest spec.region_measurable]
-  simp [spec, region, jointDest, forbidden]
+  have hout : jointDest ∉ BooleanBaseline.region := by
+    change ¬ (jointDest ≠ BooleanBaseline.forbidden)
+    decide
+  simpa [spec] using hout
 
 theorem jointSurvivesForever_eq_zero {y : Y} (hy : y ∈ region) :
     survivalForeverProbability (blockModel baseline bank fine joint) spec y = 0 := by
