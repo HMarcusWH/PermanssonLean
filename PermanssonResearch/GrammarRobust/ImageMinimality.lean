@@ -50,7 +50,8 @@ This is weaker than minimality amongst all admissible fine blocks. -/
 def IsImageMinimal
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
-    [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [Fintype IA] [Fintype IU] [DecidableEq IA] [DecidableEq IU]
+    [Fintype Fine] [Fintype Coarse] [DecidableEq Coarse]
     {fine : PartitionGrammar IA IU Fine}
     {coarse : PartitionGrammar IA IU Coarse}
     (ρ : Coarsening fine coarse)
