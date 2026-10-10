@@ -22,6 +22,7 @@ theorem Coarsening.blockModel_lift_eq
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
     [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [DecidableEq Coarse]
     [LinearOrder IA] [LinearOrder IU]
     (M : PermanssonLean.StrategicWorldModel S X A)
     (bank : AtomicBank M IA IU)
@@ -39,6 +40,7 @@ theorem Coarsening.inducedKernel_lift_eq
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
     [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [DecidableEq Coarse]
     [LinearOrder IA] [LinearOrder IU]
     (M : PermanssonLean.StrategicWorldModel S X A)
     (bank : AtomicBank M IA IU)
@@ -55,6 +57,7 @@ theorem Coarsening.pathLaw_lift_eq
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
     [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [DecidableEq Coarse]
     [LinearOrder IA] [LinearOrder IU]
     (M : PermanssonLean.StrategicWorldModel S X A)
     (bank : AtomicBank M IA IU)
