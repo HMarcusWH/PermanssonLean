@@ -1,3 +1,4 @@
+import PermanssonResearch.GrammarRobust.BooleanEffects
 import PermanssonResearch.GrammarRobust.TwoActionRows
 import PermanssonResearch.GrammarRobust.ConstitutionTransport
 import PermanssonResearch.GrammarRobust.MarginFromEffects
