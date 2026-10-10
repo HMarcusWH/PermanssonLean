@@ -61,7 +61,10 @@ theorem fine_empty_effect_zero
     (ψ (pathProbability
       (admittedBlockIntervention baseline bank fine (fineBlock ∅)).intervention.apply
       (diracProba y))) = 0
-  rw [admittedBlockIntervention_apply, blockModel_empty]
+  rw [admittedBlockIntervention_apply]
+  change dist (ψ (pathProbability baseline (diracProba y)))
+    (ψ (pathProbability (blockModel baseline bank fine ∅) (diracProba y))) = 0
+  rw [blockModel_empty]
   simp
 
 theorem fine_empty_margin_zero (ψ : RegimePropertyMap Y ℝ) :
@@ -200,7 +203,10 @@ theorem coarse_empty_effect_zero (ψ : RegimePropertyMap Y ℝ) (y : Y) :
     (ψ (pathProbability
       (admittedBlockIntervention baseline bank coarse (coarseBlock ∅)).intervention.apply
       (diracProba y))) = 0
-  rw [admittedBlockIntervention_apply, blockModel_empty]
+  rw [admittedBlockIntervention_apply]
+  change dist (ψ (pathProbability baseline (diracProba y)))
+    (ψ (pathProbability (blockModel baseline bank coarse ∅) (diracProba y))) = 0
+  rw [blockModel_empty]
   simp
 
 theorem coarse_empty_margin_zero (ψ : RegimePropertyMap Y ℝ) :
