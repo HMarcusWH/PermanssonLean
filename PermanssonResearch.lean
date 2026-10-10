@@ -1,3 +1,4 @@
+import PermanssonResearch.GrammarRobust.BooleanMinimalityCases
 import PermanssonResearch.GrammarRobust.AdversarialAdmission
 import PermanssonResearch.GrammarRobust.RelabelingWitness
 import PermanssonResearch.GrammarRobust.BooleanEffects
