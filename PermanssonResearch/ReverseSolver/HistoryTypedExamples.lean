@@ -102,6 +102,31 @@ theorem typed_reconverge_success_half :
   rw [hforward]
   norm_num
 
+
+/-- An initial goal is already a win, even though this adversarial
+physical matrix moves goal state 3 to forbidden state 4 next. -/
+theorem typed_goal_before_later_forbidden :
+    typedSuccessProbability reconvergeSystem reconvergePolicy
+      reconvergeTarget 2 (3 : Fin 5) = 1 := by
+  rw [typed_successProbability_eq_rational,
+    HistoryDependent.successProbability_eq_forwardValue]
+  have hs : HistoryDependent.initialStatus reconvergeTarget (3 : Fin 5) =
+      HistoryDependent.HitStatus.won := by decide
+  rw [hs, HistoryDependent.forwardValue_won]
+  norm_num
+
+/-- An initial forbidden visit is a permanent first-hit failure, even
+though the physical matrix subsequently moves to goal state 3. -/
+theorem typed_forbidden_before_later_goal :
+    typedSuccessProbability reconvergeSystem reconvergePolicy
+      reconvergeTarget 2 (4 : Fin 5) = 0 := by
+  rw [typed_successProbability_eq_rational,
+    HistoryDependent.successProbability_eq_forwardValue]
+  have hs : HistoryDependent.initialStatus reconvergeTarget (4 : Fin 5) =
+      HistoryDependent.HitStatus.lost := by decide
+  rw [hs, HistoryDependent.forwardValue_lost]
+  norm_num
+
 end HistoryDependentTypedExamples
 end ReverseSolver
 end PermanssonResearch
