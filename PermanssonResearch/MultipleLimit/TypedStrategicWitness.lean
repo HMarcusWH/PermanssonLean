@@ -1,3 +1,4 @@
+import PermanssonResearch.MultipleLimit.ExactRationalAbsorption
 import PermanssonResearch.MultipleLimit.AbsorbingFamily
 import Mathlib.Probability.Distributions.Bernoulli
 import Mathlib.Probability.Kernel.Basic
@@ -131,6 +132,36 @@ theorem induced_u_to_a :
   rw [ENNReal.smul_def, smul_eq_mul, ← ENNReal.coe_mul]
   norm_num [half, twoThirds, unitInterval.toNNReal,
     unitInterval.symm, Pi.single_apply]
+
+
+/-- Enumeration of the physical Boolean strategic-world states in the
+same frozen order as the independently certified rational reference. -/
+def codeState : Y → Fin 4
+  | (false, false) => 0
+  | (false, true) => 1
+  | (true, false) => 2
+  | (true, true) => 3
+
+/-- Every *actual* alpha/P/U one-step atom agrees with its exact rational
+entry, with no assumed matrix correspondence. -/
+theorem inducedKernel_atom_entry (y z : Y) :
+    model.inducedKernel y {z} =
+      ENNReal.ofReal
+        ((ExactRationalAbsorption.fourStateMatrix.entry (codeState y) (codeState z) : ℚ) : ℝ) := by
+  classical
+  rcases y with ⟨ys, yx⟩
+  rcases z with ⟨zs, zx⟩
+  cases ys <;> cases yx <;> cases zs <;> cases zx
+  all_goals
+    rw [StrategicWorldModel.inducedKernel_apply model _
+      (measurableSet_singleton _)]
+    simp [model, selection, update, updateNext, world_row,
+      t, u, a, b, codeState, ExactRationalAbsorption.fourStateMatrix,
+      Kernel.const_apply, Kernel.deterministic_apply,
+      bernoulli_bool_lintegral, Measure.dirac_apply,
+      ENNReal.smul_def, smul_eq_mul]
+    <;> norm_num [half, twoThirds, unitInterval.toNNReal,
+      unitInterval.symm, ENNReal.smul_def, smul_eq_mul]
 
 end TypedStrategicWitness
 end MultipleLimit
