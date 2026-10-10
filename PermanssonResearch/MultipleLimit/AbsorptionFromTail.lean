@@ -66,7 +66,7 @@ theorem ae_eventually_hits_of_geometric_bounds
       μ (NoHitThrough A (k*N)) ≤ ENNReal.ofReal ((1-ε)^k)) :
     ∀ᵐ w ∂μ, ∃ t : ℕ, w t ∈ A := by
   rw [ae_iff]
-  simpa only [NeverHit, SetOf, not_exists, not_not] using
+  simpa only [NeverHit, not_exists, not_not] using
     neverHit_null_of_geometric_bounds μ A N ε hε0 hε1 hblocks
 
 end MultipleLimit
