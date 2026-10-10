@@ -57,7 +57,7 @@ theorem row_false_selected :
   have h := applyRowPatch_selected (bank.action (0 : Fin 2))
     (⟨baseline.generator.action, baseline.generator.action_isMarkov⟩ :
       MarkovKernelReplacement Y Bool) (false,false) hy
-  simpa [patchedAction] using h
+  simpa [patchedAction, bank] using h
 
 theorem row_true_unchanged :
     (patchedAction baseline bank ({0} : Finset (Fin 2))).kernel
