@@ -97,6 +97,8 @@ import PermanssonResearch.GrammarRobust.Refinement
 import PermanssonResearch.GrammarRobust.BlockConstitution
 import PermanssonResearch.GrammarRobust.RefinementTransport
 
+import PermanssonResearch.GrammarRobust.BooleanModel
+
 /-!
 # PermanssonResearch
 
