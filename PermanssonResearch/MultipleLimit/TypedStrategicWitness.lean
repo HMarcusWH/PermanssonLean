@@ -3,6 +3,7 @@ import PermanssonResearch.MultipleLimit.AbsorbingFamily
 import Mathlib.Probability.Distributions.Bernoulli
 import Mathlib.Probability.Kernel.Basic
 import Mathlib.Probability.Kernel.Deterministic
+import Mathlib.MeasureTheory.Measure.Dirac.Basic
 import Mathlib.Tactic
 
 /-!
@@ -210,6 +211,44 @@ theorem inducedKernel_atom_entry (y z : Y) :
     <;> simp only [half_cast, half_symm_cast,
       twoThirds_cast, twoThirds_symm_cast]
     <;> norm_num [ENNReal.smul_def, smul_eq_mul]
+
+
+/-- Inverse finite encoding of the four actual Boolean joint states. -/
+def decodeState (i : Fin 4) : Y :=
+  if i = 0 then t else if i = 1 then u else if i = 2 then a else b
+
+theorem codeState_decodeState (i : Fin 4) :
+    codeState (decodeState i) = i := by
+  fin_cases i <;> decide
+
+theorem decodeState_codeState (y : Y) :
+    decodeState (codeState y) = y := by
+  rcases y with ⟨ys, yx⟩
+  cases ys <;> cases yx <;> decide
+
+/-- Actual full Markov-kernel correspondence, not merely numerical agreement
+of a separately simulated rational process. This follows from all finite
+atomic probabilities and a proved measurable state bijection. -/
+theorem inducedKernel_eq_rational_transport (y : Y) :
+    model.inducedKernel y =
+      (ReverseSolver.rationalFiniteKernel
+        ExactRationalAbsorption.fourStateMatrix (codeState y)).map decodeState := by
+  apply Measure.ext_of_singleton
+  intro z
+  rw [Measure.map_apply (by exact Measurable.of_discrete)
+    (measurableSet_singleton z)]
+  have hpre : decodeState ⁻¹' {z} = {codeState z} := by
+    ext i
+    change decodeState i = z ↔ i = codeState z
+    constructor
+    · intro hi
+      calc
+        i = codeState (decodeState i) := (codeState_decodeState i).symm
+        _ = codeState z := congrArg codeState hi
+    · intro hi
+      rw [hi, decodeState_codeState]
+  rw [hpre, ReverseSolver.rationalFiniteKernel_singleton]
+  exact inducedKernel_atom_entry y z
 
 end TypedStrategicWitness
 end MultipleLimit
