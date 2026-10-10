@@ -69,5 +69,26 @@ theorem ae_eventually_hits_of_geometric_bounds
   simpa only [NeverHit, not_exists, not_not] using
     neverHit_null_of_geometric_bounds μ A N ε hε0 hε1 hblocks
 
+
+/-- Once the canonical path law also satisfies the fixed-point continuation
+rule after entering the absorbing set, geometric hitting becomes genuine
+almost-sure *eventual constancy*. The continuation premise is independently
+required here and must ultimately follow from the actual Markov transition
+kernel's absorbing-row identity. -/
+theorem ae_absorptionPaths_of_geometric_bounds
+    (F : AbsorbingFamily Y) (μ : Measure (ℕ → Y))
+    (N : ℕ) (ε : ℝ) (hε0 : 0 < ε) (hε1 : ε ≤ 1)
+    (hblocks : ∀ k : ℕ,
+      μ (NoHitThrough F.absorbing (k*N)) ≤ ENNReal.ofReal ((1-ε)^k))
+    (hstay : ∀ᵐ w ∂μ,
+      ∀ t : ℕ, w t ∈ F.absorbing →
+        ∀ n : ℕ, t ≤ n → w n = w t) :
+    HasAlmostSureAbsorption F μ := by
+  unfold HasAlmostSureAbsorption
+  filter_upwards [ae_eventually_hits_of_geometric_bounds μ
+      F.absorbing N ε hε0 hε1 hblocks, hstay] with w hw hs
+  obtain ⟨t, ht⟩ := hw
+  exact ⟨w t, ht, ⟨t, fun n hn => hs t ht n hn⟩⟩
+
 end MultipleLimit
 end PermanssonResearch
