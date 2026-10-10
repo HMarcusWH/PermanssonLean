@@ -25,8 +25,8 @@ def eventAtOne (P : Y → Prop) : Set (ℕ → Y) :=
 
 theorem eventAtOne_measurable (P : Y → Prop) :
     MeasurableSet (eventAtOne P) := by
-  exact MeasurableSet.preimage (measurable_pi_apply 1)
-    (MeasurableSet.of_discrete)
+  change MeasurableSet ((fun w : ℕ → Y => w 1) ⁻¹' {z : Y | P z})
+  exact (MeasurableSet.of_discrete).preimage (measurable_pi_apply 1)
 
 noncomputable def propertyAtOne (P : Y → Prop) : RegimePropertyMap Y ℝ :=
   fun μ => (μ.toMeasure (eventAtOne P)).toReal
@@ -34,7 +34,7 @@ noncomputable def propertyAtOne (P : Y → Prop) : RegimePropertyMap Y ℝ :=
 theorem propertyAtOne_eq_of_constantKernel
     (M : StrategicWorldModel Bool Bool Bool) (q : Y)
     (hK : ∀ y : Y, M.inducedKernel y = Measure.dirac q)
-    (P : Y → Prop) (y : Y) :
+    (P : Y → Prop) [DecidablePred P] (y : Y) :
     propertyAtOne P (pathProbability M (diracProba y)) =
       if P q then (1 : ℝ) else 0 := by
   classical
@@ -42,14 +42,16 @@ theorem propertyAtOne_eq_of_constantKernel
   rw [ConstantDynamics.pathLaw_point_eq_dirac M q hK y]
   rw [Measure.dirac_apply' (ConstantDynamics.orbit q y)
     (eventAtOne_measurable P)]
-  simp [eventAtOne, ConstantDynamics.orbit]
+  by_cases hp : P q
+  · simp [eventAtOne, ConstantDynamics.orbit, hp]
+  · simp [eventAtOne, ConstantDynamics.orbit, hp]
 
-theorem baseline_value (P : Y → Prop) (y : Y) :
+theorem baseline_value (P : Y → Prop) [DecidablePred P] (y : Y) :
     baselinePropertyValue (propertyAtOne P) baseline y =
       if P q0 then (1 : ℝ) else 0 := by
   exact propertyAtOne_eq_of_constantKernel baseline q0 inducedKernel_dirac P y
 
-theorem action_value (P : Y → Prop) (y : Y) :
+theorem action_value (P : Y → Prop) [DecidablePred P] (y : Y) :
     intervenedPropertyValue (propertyAtOne P)
       (admittedBlockIntervention baseline bank fine actionBlock).intervention y =
       if P actionDest then (1 : ℝ) else 0 := by
@@ -61,7 +63,7 @@ theorem action_value (P : Y → Prop) (y : Y) :
     (blockModel baseline bank fine actionOnly) actionDest
     actionOnly_inducedKernel P y
 
-theorem update_value (P : Y → Prop) (y : Y) :
+theorem update_value (P : Y → Prop) [DecidablePred P] (y : Y) :
     intervenedPropertyValue (propertyAtOne P)
       (admittedBlockIntervention baseline bank fine updateBlock).intervention y =
       if P updateDest then (1 : ℝ) else 0 := by
@@ -73,7 +75,7 @@ theorem update_value (P : Y → Prop) (y : Y) :
     (blockModel baseline bank fine updateOnly) updateDest
     updateOnly_inducedKernel P y
 
-theorem joint_value (P : Y → Prop) (y : Y) :
+theorem joint_value (P : Y → Prop) [DecidablePred P] (y : Y) :
     intervenedPropertyValue (propertyAtOne P)
       (admittedBlockIntervention baseline bank fine jointBlock).intervention y =
       if P jointDest then (1 : ℝ) else 0 := by
