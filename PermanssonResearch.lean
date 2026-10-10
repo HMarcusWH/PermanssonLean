@@ -1,3 +1,4 @@
+import PermanssonResearch.GrammarRobust.AtomicSelection
 import PermanssonResearch.Compatibility
 import PermanssonResearch.ConstitutiveQuasi.Definition
 import PermanssonResearch.ConstitutiveQuasi.TrajectoryHelpers
