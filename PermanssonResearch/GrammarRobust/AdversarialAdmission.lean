@@ -38,13 +38,16 @@ noncomputable def restricted :
   cover := fine.cover
   allowed := fun D => D ≠ joint
   allowed_empty := by
-    simp [joint]
+    change (∅ : Finset (Fin 2)) ≠ ({0,1} : Finset (Fin 2))
+    decide
 
 theorem restricted_action_allowed : restricted.allowed actionOnly := by
-  simp [restricted, actionOnly, joint]
+  change ({0} : Finset (Fin 2)) ≠ ({0,1} : Finset (Fin 2))
+  decide
 
 theorem restricted_update_allowed : restricted.allowed updateOnly := by
-  simp [restricted, updateOnly, joint]
+  change ({1} : Finset (Fin 2)) ≠ ({0,1} : Finset (Fin 2))
+  decide
 
 theorem restricted_joint_rejected : ¬ restricted.allowed joint := by
   simp [restricted]
