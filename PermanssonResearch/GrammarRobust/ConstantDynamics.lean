@@ -102,7 +102,13 @@ theorem pathLaw_point_eq_dirac
     (y : Y) :
     M.pathLaw (Measure.dirac y) = Measure.dirac (orbit q y) := by
   have h := pathLaw_eq_orbitLaw M q hK (diracProba y)
-  simpa [orbitLaw, Measure.map_dirac] using h
+  change M.pathLaw (Measure.dirac y) =
+    (Measure.dirac y).map (orbit q) at h
+  calc
+    M.pathLaw (Measure.dirac y) =
+        (Measure.dirac y).map (orbit q) := h
+    _ = Measure.dirac (orbit q y) :=
+      Measure.map_dirac' (measurable_orbit q) y
 
 end
 
