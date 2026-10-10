@@ -1,3 +1,4 @@
+import PermanssonResearch.MultipleLimit.AbsorptionFromTail
 import PermanssonResearch.MultipleLimit.TypedStrategicWitness
 import PermanssonResearch.MultipleLimit.Recovery
 import PermanssonResearch.MultipleLimit.DescriptorTransport
