@@ -137,6 +137,9 @@ theorem alternative_OR_value (y : Y) :
         BooleanPersistence.jointBlock).intervention.apply
       (diracProba y)) = 1
   rw [admittedBlockIntervention_apply]
+  change BooleanOneStepEvents.propertyAtOne BooleanOneStepEvents.orP
+    (pathProbability (blockModel baseline alternative fine joint)
+      (diracProba y)) = 1
   have h := BooleanOneStepEvents.propertyAtOne_eq_of_constantKernel
     (blockModel baseline alternative fine joint) updateDest
     alternate_joint_inducedKernel BooleanOneStepEvents.orP y
