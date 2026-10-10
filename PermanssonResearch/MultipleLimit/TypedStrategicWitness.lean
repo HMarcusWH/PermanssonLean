@@ -87,7 +87,7 @@ private theorem bernoulli_bool_lintegral (p : unitInterval)
     (f : Bool → ℝ≥0∞) :
     (∫⁻ z, f z ∂bernoulliMeasure true false p) =
       (unitInterval.toNNReal p) • f true +
-        (unitInterval.toNNReal (unitInterval.σ p)) • f false := by
+        (unitInterval.toNNReal (unitInterval.symm p)) • f false := by
   simp [bernoulliMeasure_def, lintegral_add_measure, lintegral_smul_measure]
 
 
