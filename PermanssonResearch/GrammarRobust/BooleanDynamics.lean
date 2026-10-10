@@ -164,7 +164,8 @@ theorem actionOnly_inducedKernel (y : Y) :
   rw [StrategicWorldModel.inducedKernel_apply
     (blockModel baseline bank fine actionOnly) y hE]
   rw [actionOnly_action, actionOnly_update]
-  simp [actionFalse, updateTrue, blockModel_world, baseline, worldCopy,
+  rw [blockModel_world]
+  simp [actionFalse, updateTrue, baseline, worldCopy,
     Kernel.deterministic_apply, Measure.dirac_apply, actionDest]
   by_cases hmem : (true, false) ∈ E <;> simp [hmem]
 
@@ -175,7 +176,8 @@ theorem updateOnly_inducedKernel (y : Y) :
   rw [StrategicWorldModel.inducedKernel_apply
     (blockModel baseline bank fine updateOnly) y hE]
   rw [updateOnly_action, updateOnly_update]
-  simp [actionTrue, updateFalse, blockModel_world, baseline, worldCopy,
+  rw [blockModel_world]
+  simp [actionTrue, updateFalse, baseline, worldCopy,
     Kernel.deterministic_apply, Measure.dirac_apply, updateDest]
   by_cases hmem : (false, true) ∈ E <;> simp [hmem]
 
@@ -186,7 +188,8 @@ theorem joint_inducedKernel (y : Y) :
   rw [StrategicWorldModel.inducedKernel_apply
     (blockModel baseline bank fine joint) y hE]
   rw [joint_action, joint_update]
-  simp [actionFalse, updateFalse, blockModel_world, baseline, worldCopy,
+  rw [blockModel_world]
+  simp [actionFalse, updateFalse, baseline, worldCopy,
     Kernel.deterministic_apply, Measure.dirac_apply, jointDest]
   by_cases hmem : (false, false) ∈ E <;> simp [hmem]
 
