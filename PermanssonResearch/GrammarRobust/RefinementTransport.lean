@@ -67,7 +67,8 @@ theorem Coarsening.pathLaw_lift_eq
     {fine : PartitionGrammar IA IU Fine}
     {coarse : PartitionGrammar IA IU Coarse}
     (ρ : Coarsening fine coarse) (D : Finset Coarse)
-    (μ : Measure (PermanssonLean.JointState S X)) :
+    (μ : Measure (PermanssonLean.JointState S X))
+    [IsProbabilityMeasure μ] :
     (blockModel M bank fine (ρ.lift D)).pathLaw μ =
       (blockModel M bank coarse D).pathLaw μ := by
   rw [ρ.blockModel_lift_eq M bank D]
