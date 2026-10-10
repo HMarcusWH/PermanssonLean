@@ -18,7 +18,8 @@ universe uS uX uA uI uJ uF uC uH uZ
 noncomputable def Coarsening.liftAllowed
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
-    [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [Fintype IA] [Fintype IU] [DecidableEq IA] [DecidableEq IU]
+    [Fintype Fine] [Fintype Coarse]
     [DecidableEq Coarse]
     {fine : PartitionGrammar IA IU Fine}
     {coarse : PartitionGrammar IA IU Coarse}
@@ -31,7 +32,8 @@ theorem Coarsening.admitted_apply_lift_eq
     [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
-    [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [Fintype IA] [Fintype IU] [DecidableEq IA] [DecidableEq IU]
+    [Fintype Fine] [Fintype Coarse]
     [LinearOrder IA] [LinearOrder IU] [DecidableEq Coarse]
     (M : PermanssonLean.StrategicWorldModel S X A)
     (bank : AtomicBank M IA IU)
@@ -50,7 +52,8 @@ theorem Coarsening.blockEffect_lift_eq
     [MetricSpace Z]
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
-    [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [Fintype IA] [Fintype IU] [DecidableEq IA] [DecidableEq IU]
+    [Fintype Fine] [Fintype Coarse]
     [LinearOrder IA] [LinearOrder IU] [DecidableEq Coarse]
     (M : PermanssonLean.StrategicWorldModel S X A)
     (bank : AtomicBank M IA IU)
@@ -75,7 +78,8 @@ theorem Coarsening.blockMargin_lift_eq
     [MetricSpace Z]
     {IA : Type uI} {IU : Type uJ}
     {Fine : Type uF} {Coarse : Type uC}
-    [Fintype IA] [Fintype IU] [Fintype Fine] [Fintype Coarse]
+    [Fintype IA] [Fintype IU] [DecidableEq IA] [DecidableEq IU]
+    [Fintype Fine] [Fintype Coarse]
     [LinearOrder IA] [LinearOrder IU] [DecidableEq Coarse]
     (M : PermanssonLean.StrategicWorldModel S X A)
     (bank : AtomicBank M IA IU)
