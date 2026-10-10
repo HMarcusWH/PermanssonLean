@@ -96,8 +96,14 @@ theorem hitting_u_succ (T : ℕ) :
       (1/2 : ℚ) * rationalHittingValue fourStateMatrix absorbingTarget T 1 +
         1/2 := by
   rw [rationalHittingValue_succ]
-  simp [absorbingTarget, fourStateMatrix, Fin.sum_univ_four,
-    hitting_a_all T, hitting_b_all T] <;> ring
+  change (∑ z : Fin 4,
+      fourStateMatrix.entry 1 z *
+        rationalHittingValue fourStateMatrix absorbingTarget T z) =
+      (1/2 : ℚ) * rationalHittingValue fourStateMatrix absorbingTarget T 1 +
+        1/2
+  rw [Fin.sum_univ_four]
+  simp only [hitting_a_all T, hitting_b_all T]
+  norm_num [fourStateMatrix] <;> ring
 
 /-- All-horizon exact survival arithmetic for the reference rational
 four-state Markov chain (separate from typed alpha/P/U correspondence). -/
