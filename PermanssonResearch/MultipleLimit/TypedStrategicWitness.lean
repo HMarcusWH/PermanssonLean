@@ -128,8 +128,9 @@ theorem induced_u_to_a :
     branchRegion, t, u, a, Kernel.const_apply,
     Kernel.deterministic_apply, Kernel.piecewise_apply,
     bernoulli_bool_lintegral, Measure.dirac_apply]
-  norm_num [ENNReal.smul_def, half, twoThirds, unitInterval.toNNReal,
-    unitInterval.symm, smul_eq_mul, Pi.single_apply]
+  rw [ENNReal.smul_def, smul_eq_mul, ← ENNReal.coe_mul]
+  norm_num [half, twoThirds, unitInterval.toNNReal,
+    unitInterval.symm, Pi.single_apply]
 
 end TypedStrategicWitness
 end MultipleLimit
