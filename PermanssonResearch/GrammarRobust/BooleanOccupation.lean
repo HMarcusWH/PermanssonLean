@@ -176,6 +176,7 @@ theorem orbitLaw_ae_orbitPaths (μ : ProbabilityMeasure Y) :
   haveI : IsProbabilityMeasure (Measure.map orbit μ.toMeasure) := by
     infer_instance
   rw [hpre, measure_univ]
+  exact (measure_univ : (Measure.map orbit μ.toMeasure) Set.univ = 1).symm
 
 /-- The baseline satisfies the literal canonical almost-sure weak mode for
 every initial law, hence in particular every law supported on the basin. -/
