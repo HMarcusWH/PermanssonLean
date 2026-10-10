@@ -105,6 +105,47 @@ private theorem bernoulli_bool_lintegral (p : unitInterval)
   simp [bernoulliMeasure_def, lintegral_add_measure, lintegral_smul_measure]
 
 
+
+/-- Exact lifts of the two Bernoulli parameter masses into ENNReal.
+Prove the underlying NNReal equality before applying the coercion: generic
+numeric normalization alone does not reduce subtype representatives. -/
+private theorem half_cast :
+    (↑(unitInterval.toNNReal half) : ℝ≥0∞) = (1/2 : ℝ≥0∞) := by
+  have hh : unitInterval.toNNReal half = (1/2 : ℝ≥0) := by
+    apply Subtype.ext
+    norm_num [half, unitInterval.toNNReal]
+  rw [hh]
+  norm_num
+
+private theorem half_symm_cast :
+    (↑(unitInterval.toNNReal (unitInterval.symm half)) : ℝ≥0∞) =
+      (1/2 : ℝ≥0∞) := by
+  have hh : unitInterval.toNNReal (unitInterval.symm half) =
+      (1/2 : ℝ≥0) := by
+    apply Subtype.ext
+    norm_num [half, unitInterval.toNNReal, unitInterval.symm]
+  rw [hh]
+  norm_num
+
+private theorem twoThirds_cast :
+    (↑(unitInterval.toNNReal twoThirds) : ℝ≥0∞) =
+      (2/3 : ℝ≥0∞) := by
+  have hh : unitInterval.toNNReal twoThirds = (2/3 : ℝ≥0) := by
+    apply Subtype.ext
+    norm_num [twoThirds, unitInterval.toNNReal]
+  rw [hh]
+  norm_num
+
+private theorem twoThirds_symm_cast :
+    (↑(unitInterval.toNNReal (unitInterval.symm twoThirds)) : ℝ≥0∞) =
+      (1/3 : ℝ≥0∞) := by
+  have hh : unitInterval.toNNReal (unitInterval.symm twoThirds) =
+      (1/3 : ℝ≥0) := by
+    apply Subtype.ext
+    norm_num [twoThirds, unitInterval.toNNReal, unitInterval.symm]
+  rw [hh]
+  norm_num
+
 /-- First literal atom of the stochastic typed witness. This tests the
 same induced-kernel integral used by the complete four-row theorem. -/
 theorem induced_t_to_u :
@@ -166,8 +207,9 @@ theorem inducedKernel_atom_entry (y z : Y) :
       Kernel.const_apply, Kernel.deterministic_apply,
       bernoulli_bool_lintegral, Measure.dirac_apply,
       ENNReal.smul_def, smul_eq_mul]
-    <;> norm_num [half, twoThirds, unitInterval.toNNReal,
-      unitInterval.symm, ENNReal.smul_def, smul_eq_mul]
+    <;> simp only [half_cast, half_symm_cast,
+      twoThirds_cast, twoThirds_symm_cast]
+    <;> norm_num [ENNReal.smul_def, smul_eq_mul]
 
 end TypedStrategicWitness
 end MultipleLimit
