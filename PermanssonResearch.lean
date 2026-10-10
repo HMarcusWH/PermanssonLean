@@ -103,6 +103,8 @@ import PermanssonResearch.GrammarRobust.Minimality
 
 import PermanssonResearch.GrammarRobust.AtomicLocality
 
+import PermanssonResearch.GrammarRobust.IsomorphicTransport
+
 /-!
 # PermanssonResearch
 
