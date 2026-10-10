@@ -33,8 +33,8 @@ def u : Y := (false, true)
 def a : Y := (true, false)
 def b : Y := (true, true)
 
-def half : unitInterval := ⟨(1/2 : ℝ), by norm_num⟩
-def twoThirds : unitInterval := ⟨(2/3 : ℝ), by norm_num⟩
+noncomputable def half : unitInterval := ⟨(1/2 : ℝ), by norm_num⟩
+noncomputable def twoThirds : unitInterval := ⟨(2/3 : ℝ), by norm_num⟩
 
 noncomputable def selection : Kernel Y Bool :=
   Kernel.const _ (bernoulliMeasure true false half)
@@ -47,7 +47,7 @@ noncomputable def branchWorld : Kernel (WorldInput Bool Bool Bool) Bool :=
 noncomputable def otherWorld : Kernel (WorldInput Bool Bool Bool) Bool :=
   Kernel.deterministic
     (fun z => if z.1 = t then true else z.1.2)
-    (Measurable.of_discrete _)
+    (by fun_prop)
 
 /-- At u with action false, take the random branch instead of self-loop. -/
 def branchRegion : Set (WorldInput Bool Bool Bool) :=
@@ -65,7 +65,7 @@ def updateNext (z : UpdateInput Bool Bool Bool) : Bool :=
   else true
 
 noncomputable def update : Kernel (UpdateInput Bool Bool Bool) Bool :=
-  Kernel.deterministic updateNext (Measurable.of_discrete _)
+  Kernel.deterministic updateNext (by fun_prop)
 
 /-- Actual typed state/action/world/update Markov model. Its kernels are
 state dependent and both action selection and world branching are random. -/
@@ -77,7 +77,7 @@ noncomputable def model : StrategicWorldModel Bool Bool Bool where
     update_isMarkov := by unfold update; infer_instance }
   world := world
   world_isMarkov := by
-    unfold world
+    unfold world branchWorld otherWorld
     infer_instance
 
 end TypedStrategicWitness
