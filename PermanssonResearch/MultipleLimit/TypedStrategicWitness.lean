@@ -125,10 +125,11 @@ theorem induced_u_to_a :
   rw [StrategicWorldModel.inducedKernel_apply model u
     (measurableSet_singleton a)]
   simp [model, selection, update, updateNext, world_row,
-    branchRegion, u, a, Kernel.const_apply,
+    branchRegion, t, u, a, Kernel.const_apply,
     Kernel.deterministic_apply, Kernel.piecewise_apply,
-    bernoulli_bool_lintegral, half, twoThirds, Measure.dirac_apply]
-  norm_num
+    bernoulli_bool_lintegral, Measure.dirac_apply]
+  norm_num [half, twoThirds, unitInterval.toNNReal,
+    unitInterval.symm, smul_eq_mul, Pi.single_apply]
 
 end TypedStrategicWitness
 end MultipleLimit
