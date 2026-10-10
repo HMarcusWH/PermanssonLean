@@ -42,7 +42,8 @@ theorem typed_history_deadline_optimum_five_eighths :
     (∃ σ : HistoryPolicy deadlineSystem,
       typedSuccessProbability deadlineSystem σ deadlineTarget 2
         (0 : Fin 3) = ENNReal.ofReal (5/8 : ℝ)) := by
-  simpa only [deadline_bellman_optimum_five_eighths] using
+  have hcast : ((5/8 : ℚ) : ℝ) = (5/8 : ℝ) := by norm_num
+  simpa only [deadline_bellman_optimum_five_eighths, hcast] using
     (typed_history_bellman_optimal_and_attained deadlineSystem
       deadlineTarget 2 (0 : Fin 3))
 
