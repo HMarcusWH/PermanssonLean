@@ -107,6 +107,8 @@ import PermanssonResearch.GrammarRobust.IsomorphicTransport
 
 import PermanssonResearch.GrammarRobust.EffectTransport
 
+import PermanssonResearch.GrammarRobust.BooleanBaseline
+
 /-!
 # PermanssonResearch
 
