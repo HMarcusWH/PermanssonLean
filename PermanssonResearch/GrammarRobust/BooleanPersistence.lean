@@ -68,7 +68,8 @@ theorem jointSurvivalOne_eq_zero {y : Y} (hy : y ∈ region) :
   have hout : jointDest ∉ BooleanBaseline.region := by
     change ¬ (jointDest ≠ BooleanBaseline.forbidden)
     decide
-  simpa [spec] using hout
+  have hspec : jointDest ∉ spec.region := hout
+  simp [Set.indicator, hspec]
 
 theorem jointSurvivesForever_eq_zero {y : Y} (hy : y ∈ region) :
     survivalForeverProbability (blockModel baseline bank fine joint) spec y = 0 := by
