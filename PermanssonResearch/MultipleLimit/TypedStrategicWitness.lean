@@ -90,6 +90,19 @@ private theorem bernoulli_bool_lintegral (p : unitInterval)
         (unitInterval.toNNReal (unitInterval.σ p)) • f false := by
   simp [bernoulliMeasure_def, lintegral_add_measure, lintegral_smul_measure]
 
+
+/-- First literal atom of the stochastic typed witness. This tests the
+same induced-kernel integral used by the complete four-row theorem. -/
+theorem induced_t_to_u :
+    model.inducedKernel t {u} = 1 := by
+  classical
+  rw [StrategicWorldModel.inducedKernel_apply model t
+    (measurableSet_singleton u)]
+  simp [model, selection, world, update, updateNext, otherWorld,
+    branchWorld, branchRegion, t, u, Kernel.const_apply,
+    Kernel.deterministic_apply, Kernel.piecewise_apply,
+    bernoulli_bool_lintegral, half, twoThirds, Measure.dirac_apply]
+
 end TypedStrategicWitness
 end MultipleLimit
 end PermanssonResearch
