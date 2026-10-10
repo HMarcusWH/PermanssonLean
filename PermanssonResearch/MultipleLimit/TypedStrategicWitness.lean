@@ -147,6 +147,22 @@ private theorem twoThirds_symm_cast :
   rw [hh]
   norm_num
 
+
+/-- The last two arithmetic cases are identities in ENNReal, not ordinary
+field equalities; prove them using the ENNReal inverse cancellation laws. -/
+private theorem ennreal_half_third :
+    (2 : ℝ≥0∞)⁻¹ * (3 : ℝ≥0∞)⁻¹ = (6 : ℝ≥0∞)⁻¹ := by
+  calc
+    (2 : ℝ≥0∞)⁻¹ * (3 : ℝ≥0∞)⁻¹ =
+        ((2 : ℝ≥0∞) * 3)⁻¹ :=
+      (ENNReal.mul_inv (Or.inl (by norm_num)) (Or.inl (by norm_num))).symm
+    _ = (6 : ℝ≥0∞)⁻¹ := by norm_num
+
+private theorem ennreal_half_twoThirds :
+    (2 : ℝ≥0∞)⁻¹ * (2 / 3 : ℝ≥0∞) = (3 : ℝ≥0∞)⁻¹ := by
+  rw [div_eq_mul_inv, ← mul_assoc,
+    ENNReal.inv_mul_cancel (by norm_num) (by norm_num), one_mul]
+
 /-- First literal atom of the stochastic typed witness. This tests the
 same induced-kernel integral used by the complete four-row theorem. -/
 theorem induced_t_to_u :
@@ -211,6 +227,9 @@ theorem inducedKernel_atom_entry (y z : Y) :
     <;> simp only [half_cast, half_symm_cast,
       twoThirds_cast, twoThirds_symm_cast]
     <;> norm_num [ENNReal.smul_def, smul_eq_mul]
+    <;> first
+      | exact ennreal_half_third
+      | exact ennreal_half_twoThirds
 
 
 /-- Inverse finite encoding of the four actual Boolean joint states. -/
