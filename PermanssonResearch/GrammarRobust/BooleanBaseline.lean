@@ -59,8 +59,7 @@ theorem exactlyInvariant :
   intro y hy
   rw [inducedKernel_dirac]
   rw [Measure.dirac_apply_of_mem]
-  · exact (show q0 ∈ region by simp [region, forbidden, q0])
-  · exact MeasurableSet.of_discrete
+  exact (show q0 ∈ region by simp [region, forbidden, q0])
 
 theorem basinHasTwoStates :
     BasinHasTwoStates spec := by
@@ -91,13 +90,7 @@ noncomputable def comparison : ConstitutiveComparisonSet baseline spec where
   states_measurable := MeasurableSet.of_discrete
   states_subset_basin := by intro y hy; exact hy
   pathLawNontrivial := by
-    obtain ⟨a,ha,b,hb,hab⟩ :=
-      (show BasinHasTwoStates spec from basinHasTwoStates)
-    exact ⟨a,ha,b,hb, by
-      intro heq
-      have h : a = b := by
-        exact (StrategicWorldModel.pathLaw_dirac_injective baseline) heq
-      exact hab h⟩
+    exact assumption41.2.2.2
 
 end BooleanBaseline
 end GrammarRobust
