@@ -54,7 +54,7 @@ theorem patchedAction_unaffected
   unfold patchedAction
   apply foldlRowPatches_unaffected
   intro i hi
-  exact h i (Finset.mem_sort.mp hi)
+  exact h i ((Finset.mem_sort (r := (· ≤ ·))).mp hi)
 
 theorem patchedUpdate_unaffected
     {S X A : Type*}
@@ -70,7 +70,7 @@ theorem patchedUpdate_unaffected
   unfold patchedUpdate
   apply foldlRowPatches_unaffected
   intro i hi
-  exact h i (Finset.mem_sort.mp hi)
+  exact h i ((Finset.mem_sort (r := (· ≤ ·))).mp hi)
 
 end GrammarRobust
 end PermanssonResearch
