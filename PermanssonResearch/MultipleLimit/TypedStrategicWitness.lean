@@ -80,6 +80,16 @@ noncomputable def model : StrategicWorldModel Bool Bool Bool where
     unfold world branchWorld otherWorld
     infer_instance
 
+
+/-- Exact Bernoulli integration against the actual finite action/world
+measure, used below to expose the genuine alpha/P/U transition rows. -/
+private theorem bernoulli_bool_lintegral (p : unitInterval)
+    (f : Bool → ℝ≥0∞) :
+    (∫⁻ z, f z ∂bernoulliMeasure true false p) =
+      (unitInterval.toNNReal p) • f true +
+        (unitInterval.toNNReal (unitInterval.σ p)) • f false := by
+  simp [bernoulliMeasure_def, lintegral_add_measure, lintegral_smul_measure]
+
 end TypedStrategicWitness
 end MultipleLimit
 end PermanssonResearch
