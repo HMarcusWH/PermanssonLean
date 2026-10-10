@@ -5,18 +5,19 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
-**Status:** Separate research library with CQ-1 Parts 1–3
-(PRs #36–38), finite fixed-menu D0 (PRs #39–44), and the finite
-fully observed D1 control program: stationary feedback (#45),
-exact-rational Bellman recursion and deterministic Markov schedules (#46),
-genuine rational nonstationary paths (#47), constructed typed
-nonstationary path transport (#48), and rational history-dependent
-policy dominance (#49, subject to final-head CI/review and merge).
-For D1-D1's actual theorem chain and its exclusions, see
-[D1_HISTORY_DEPENDENT.md](D1_HISTORY_DEPENDENT.md). The grammar-robust
-and multiple-limit lanes and history-dependent **typed** transport
-(D1-D2) are separate future work. Nothing here changes the immutable
-v0.1.8 mathematical snapshot.
+**Status (10 October 2026):** Separate research library with merged CQ-1
+(PRs #36–38), finite D0 fixed-menu certificate (PRs #39–44) and fully
+observed D1 controller certification through typed history-dependent
+transport (PRs #45–50, all merged). Research-only Lane B finite
+partition-grammar constitution is under development and adversarial
+acceptance review in draft [PR #51](https://github.com/HMarcusWH/PermanssonLean/pull/51).
+See [Lane B release and adversarial ledger](LANE_B_PARTITION_GRAMMAR_CONSTITUTION.md).
+Lane C multiple-limit regime families remain future mathematical work.
+
+The complete mathematical v0.1.8 formalization and the original paper stay
+frozen. Green Lean CI for a research PR means its stated theorem obligations
+compiled and its proof dependencies passed the axiom audit; it does **not**
+automatically complete additional release witnesses or independent review.
 
 ## Why there are now two libraries
 
