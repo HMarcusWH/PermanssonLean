@@ -29,7 +29,7 @@ theorem eventuallyAt_event_measurable (a : Y) :
     ext w
     simp [EventuallyAt]
   rw [hunion]
-  apply measurableSet_iUnion
+  apply MeasurableSet.iUnion
   intro N
   have hinter :
       {w : ℕ → Y | ∀ n : ℕ, N ≤ n → w n = a} =
@@ -45,7 +45,7 @@ theorem eventuallyAt_event_measurable (a : Y) :
       have hx := hw n
       simpa [hn] using hx
   rw [hinter]
-  apply measurableSet_iInter
+  apply MeasurableSet.iInter
   intro n
   by_cases hn : N ≤ n
   · simp only [if_pos hn]
@@ -54,8 +54,9 @@ theorem eventuallyAt_event_measurable (a : Y) :
 
 /-- One total measurable endpoint variable, agreeing with the genuine
 terminal absorbing destination on all the permitted good paths. -/
-noncomputable def terminalDestination (w : ℕ → Y) : Y :=
-  if EventuallyAt w absorbingA then absorbingA else absorbingB
+noncomputable def terminalDestination (w : ℕ → Y) : Y := by
+  classical
+  exact if EventuallyAt w absorbingA then absorbingA else absorbingB
 
 theorem measurable_terminalDestination : Measurable terminalDestination := by
   classical
