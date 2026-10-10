@@ -58,9 +58,7 @@ theorem empirical_integral_eventually_at
     filter_upwards [eventually_ge_atTop t] with n hn
     omega
   have havg := hc.comp hidx
-  apply havg.congr'
-  filter_upwards with n
-  rw [empirical_integral_eq_average]
+  simpa only [empirical_integral_eq_average, Function.comp_def] using havg
 
 /-- C1 pathwise theorem: canonical empirical occupation converges weakly to
 the random destination's Dirac law on every eventually fixed path. -/
