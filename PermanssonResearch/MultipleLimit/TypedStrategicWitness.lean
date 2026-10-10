@@ -112,7 +112,7 @@ Prove the underlying NNReal equality before applying the coercion: generic
 numeric normalization alone does not reduce subtype representatives. -/
 private theorem half_cast :
     (↑(unitInterval.toNNReal half) : ℝ≥0∞) = (1/2 : ℝ≥0∞) := by
-  have hh : unitInterval.toNNReal half = (1/2 : ℝ≥0) := by
+  have hh : unitInterval.toNNReal half = (1/2 : NNReal) := by
     apply Subtype.ext
     norm_num [half, unitInterval.toNNReal]
   rw [hh]
@@ -122,7 +122,7 @@ private theorem half_symm_cast :
     (↑(unitInterval.toNNReal (unitInterval.symm half)) : ℝ≥0∞) =
       (1/2 : ℝ≥0∞) := by
   have hh : unitInterval.toNNReal (unitInterval.symm half) =
-      (1/2 : ℝ≥0) := by
+      (1/2 : NNReal) := by
     apply Subtype.ext
     norm_num [half, unitInterval.toNNReal, unitInterval.symm]
   rw [hh]
@@ -131,7 +131,7 @@ private theorem half_symm_cast :
 private theorem twoThirds_cast :
     (↑(unitInterval.toNNReal twoThirds) : ℝ≥0∞) =
       (2/3 : ℝ≥0∞) := by
-  have hh : unitInterval.toNNReal twoThirds = (2/3 : ℝ≥0) := by
+  have hh : unitInterval.toNNReal twoThirds = (2/3 : NNReal) := by
     apply Subtype.ext
     norm_num [twoThirds, unitInterval.toNNReal]
   rw [hh]
@@ -141,7 +141,7 @@ private theorem twoThirds_symm_cast :
     (↑(unitInterval.toNNReal (unitInterval.symm twoThirds)) : ℝ≥0∞) =
       (1/3 : ℝ≥0∞) := by
   have hh : unitInterval.toNNReal (unitInterval.symm twoThirds) =
-      (1/3 : ℝ≥0) := by
+      (1/3 : NNReal) := by
     apply Subtype.ext
     norm_num [twoThirds, unitInterval.toNNReal, unitInterval.symm]
   rw [hh]
@@ -175,7 +175,7 @@ theorem induced_u_to_a :
   have hproduct :
       unitInterval.toNNReal (unitInterval.symm half) *
         unitInterval.toNNReal (unitInterval.symm twoThirds) =
-          (1 / 6 : ℝ≥0) := by
+          (1 / 6 : NNReal) := by
     apply Subtype.ext
     norm_num [half, twoThirds, unitInterval.toNNReal, unitInterval.symm]
   rw [hproduct]
