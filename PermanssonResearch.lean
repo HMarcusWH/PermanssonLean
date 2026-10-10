@@ -99,6 +99,8 @@ import PermanssonResearch.GrammarRobust.RefinementTransport
 
 import PermanssonResearch.GrammarRobust.BooleanModel
 
+import PermanssonResearch.GrammarRobust.Minimality
+
 /-!
 # PermanssonResearch
 
