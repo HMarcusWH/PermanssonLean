@@ -16,9 +16,9 @@ namespace GrammarRobust
 universe uS uX uA uI uJ uC uH uZ
 
 noncomputable def blockEffect
-    {S : Type uS} {X : Type uX} {A : Type uA} {H : Type uH} {Z : Type uZ}
+    {S : Type uS} {X : Type uX} {A : Type uA} {Z : Type uZ}
     [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
-    [MeasurableSpace H] [MetricSpace Z]
+    [MetricSpace Z]
     {IA : Type uI} {IU : Type uJ} {C : Type uC}
     [Fintype IA] [Fintype IU] [Fintype C]
     [LinearOrder IA] [LinearOrder IU]
