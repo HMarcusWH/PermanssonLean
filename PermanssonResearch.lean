@@ -94,6 +94,9 @@ import PermanssonResearch.GrammarRobust.BlockModels
 import PermanssonResearch.GrammarRobust.OriginalInterventionBridge
 import PermanssonResearch.GrammarRobust.Refinement
 
+import PermanssonResearch.GrammarRobust.BlockConstitution
+import PermanssonResearch.GrammarRobust.RefinementTransport
+
 /-!
 # PermanssonResearch
 
