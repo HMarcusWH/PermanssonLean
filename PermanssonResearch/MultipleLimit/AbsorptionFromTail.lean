@@ -31,7 +31,7 @@ theorem neverHit_measurable (A : Finset Y) :
     ext w
     simp [NeverHit]
   rw [heq]
-  apply measurableSet_iInter
+  apply MeasurableSet.iInter
   intro t
   exact (MeasurableSet.of_discrete : MeasurableSet (A : Set Y)).compl.preimage
     (measurable_pi_apply t)
@@ -57,8 +57,8 @@ theorem neverHit_null_of_geometric_bounds
       intro w hw t _
       exact hw t
     exact (measure_mono hsub).trans (hblocks k)
-  apply le_antisymm ?_ (zero_le _)
-  exact le_of_tendsto hlimit (Filter.Eventually.of_forall hle)
+  apply le_antisymm ?_ zero_le
+  exact ge_of_tendsto hlimit (Filter.Eventually.of_forall hle)
 
 /-- Canonical almost-sure finite hitting, conditioned on an actual no-hit
 bound rather than a false assumption of independence of time blocks. -/
