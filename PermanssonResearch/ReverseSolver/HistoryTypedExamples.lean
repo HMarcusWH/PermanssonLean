@@ -21,6 +21,7 @@ namespace HistoryDependentTypedExamples
 open HistoryDependentTyped HistoryDependent HistoryDependentExamples
 open Bellman BellmanExamples ControlledKernel
 open FiniteStrategicRealization FiniteStrategicPathBridge
+open PermanssonLean.ProbabilitySupport
 
 /-- The original clock-dependent 5/8 example transports to the fully
 typed history-controlled law with no change in event semantics. -/
@@ -79,6 +80,26 @@ theorem typed_reconverge_right_loses :
   rw [typedHistoryStep_decode_singleton, prefixEncode_prefixDecode]
   norm_num [HistoryDependent.selectedEntry, reconvergePolicy,
     reconvergeSystem, reconvergeMatrix, rightReturn, HistoryDependent.last]
+
+
+/-- The genuinely history-sensitive controller wins precisely along the
+left reconvergent branch. This is a value test, distinct from the required
+two typed conditional-kernel tests above. The exact finite enumeration is
+in the constructive D1-D1 rational continuation evaluator. -/
+theorem typed_reconverge_success_half :
+    typedSuccessProbability reconvergeSystem reconvergePolicy
+      reconvergeTarget 3 (0 : Fin 5) =
+      ENNReal.ofReal (1/2 : ℝ) := by
+  rw [typed_successProbability_eq_rational,
+    HistoryDependent.successProbability_eq_forwardValue]
+  have hforward :
+      HistoryDependent.forwardValue reconvergeSystem reconvergePolicy
+        reconvergeTarget 3 0 (singletonPrefix (0 : Fin 5))
+        (HistoryDependent.initialStatus reconvergeTarget (0 : Fin 5)) 3 =
+        (1/2 : ℚ) := by
+    decide
+  rw [hforward]
+  norm_num
 
 end HistoryDependentTypedExamples
 end ReverseSolver
