@@ -47,7 +47,7 @@ noncomputable def branchWorld : Kernel (WorldInput Bool Bool Bool) Bool :=
 noncomputable def otherWorld : Kernel (WorldInput Bool Bool Bool) Bool :=
   Kernel.deterministic
     (fun z => if z.1 = t then true else z.1.2)
-    (by fun_prop)
+    (by exact Measurable.of_discrete)
 
 /-- At u with action false, take the random branch instead of self-loop. -/
 def branchRegion : Set (WorldInput Bool Bool Bool) :=
@@ -65,7 +65,7 @@ def updateNext (z : UpdateInput Bool Bool Bool) : Bool :=
   else true
 
 noncomputable def update : Kernel (UpdateInput Bool Bool Bool) Bool :=
-  Kernel.deterministic updateNext (by fun_prop)
+  Kernel.deterministic updateNext (by exact Measurable.of_discrete)
 
 /-- Actual typed state/action/world/update Markov model. Its kernels are
 state dependent and both action selection and world branching are random. -/
