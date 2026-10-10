@@ -97,9 +97,18 @@ def orP (y : Y) : Prop := y.1 = true ∨ y.2 = true
 def andP (y : Y) : Prop := y.1 = true ∧ y.2 = true
 def xorP (y : Y) : Prop := y.1 ≠ y.2
 
-instance : DecidablePred orP := fun _ => inferInstance
-instance : DecidablePred andP := fun _ => inferInstance
-instance : DecidablePred xorP := fun _ => inferInstance
+instance : DecidablePred orP := by
+  intro y
+  unfold orP
+  infer_instance
+instance : DecidablePred andP := by
+  intro y
+  unfold andP
+  infer_instance
+instance : DecidablePred xorP := by
+  intro y
+  unfold xorP
+  infer_instance
 
 theorem or_pathlaw_table (y : Y) :
     baselinePropertyValue (propertyAtOne orP) baseline y = 1 ∧
