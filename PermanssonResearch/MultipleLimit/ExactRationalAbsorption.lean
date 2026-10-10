@@ -74,6 +74,52 @@ theorem canonical_u_two_step_hit :
   rw [← rationalHittingValue_eq_canonical_all_horizons]
   norm_num [u_two_step_hit]
 
+
+/-- A and B satisfy the finite-horizon hitting objective already at time
+zero; absorbing destinations remain hit at every horizon. -/
+theorem hitting_a_all (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget T 2 = 1 := by
+  cases T with
+  | zero => norm_num [rationalHittingValue_zero, absorbingTarget]
+  | succ T => norm_num [rationalHittingValue_succ, absorbingTarget]
+
+theorem hitting_b_all (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget T 3 = 1 := by
+  cases T with
+  | zero => norm_num [rationalHittingValue_zero, absorbingTarget]
+  | succ T => norm_num [rationalHittingValue_succ, absorbingTarget]
+
+/-- The true rational Markov recurrence at the transient u state; its
+survival coefficient is 1/2 and its immediate absorption mass is 1/2. -/
+theorem hitting_u_succ (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget (T+1) 1 =
+      (1/2 : ℚ) * rationalHittingValue fourStateMatrix absorbingTarget T 1 +
+        1/2 := by
+  rw [rationalHittingValue_succ]
+  simp [absorbingTarget, fourStateMatrix, Fin.sum_univ_four,
+    hitting_a_all T, hitting_b_all T] <;> ring
+
+/-- All-horizon exact survival arithmetic for the reference rational
+four-state Markov chain (separate from typed alpha/P/U correspondence). -/
+theorem hitting_u_closed (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget T 1 =
+      1 - (1/2 : ℚ)^T := by
+  induction T with
+  | zero =>
+      norm_num [rationalHittingValue_zero, absorbingTarget]
+  | succ T ih =>
+      rw [hitting_u_succ, ih, pow_succ]
+      ring
+
+/-- Transfer the all-horizon result to the actual Ionescu–Tulcea
+finite-prefix law for the rational kernel, using D0's established bridge. -/
+theorem canonical_u_hitting_all_horizons (T : ℕ) :
+    hittingValue (rationalTargetAsFrozen absorbingTarget)
+      (rationalFiniteKernel fourStateMatrix) 1 T =
+      ((1 - (1/2 : ℚ)^T : ℚ) : ℝ) := by
+  rw [← rationalHittingValue_eq_canonical_all_horizons]
+  exact congrArg (fun q : ℚ => (q : ℝ)) (hitting_u_closed T)
+
 end ExactRationalAbsorption
 end MultipleLimit
 end PermanssonResearch
