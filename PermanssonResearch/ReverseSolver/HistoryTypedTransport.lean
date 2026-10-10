@@ -23,6 +23,7 @@ namespace PermanssonResearch
 namespace ReverseSolver
 namespace HistoryDependentTyped
 
+open HistoryDependent
 open Bellman
 open ControlledKernel
 open FiniteStrategicRealization
