@@ -126,6 +126,36 @@ theorem canonical_u_hitting_all_horizons (T : ℕ) :
   rw [← rationalHittingValue_eq_canonical_all_horizons]
   exact congrArg (fun q : ℚ => (q : ℝ)) (hitting_u_closed T)
 
+
+/-- The transient entry state has a deterministic first step into u; its
+finite-horizon hitting probability is therefore the corresponding u value
+at the preceding horizon. -/
+theorem hitting_t_succ (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget (T + 1) 0 =
+      rationalHittingValue fourStateMatrix absorbingTarget T 1 := by
+  rw [rationalHittingValue_succ]
+  change (∑ z : Fin 4, fourStateMatrix.entry 0 z *
+      rationalHittingValue fourStateMatrix absorbingTarget T z) =
+        rationalHittingValue fourStateMatrix absorbingTarget T 1
+  rw [Fin.sum_univ_four]
+  norm_num [fourStateMatrix]
+
+/-- From t, hitting by time T+1 is exactly one minus the T-step
+survival probability of u. -/
+theorem hitting_t_closed (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget (T + 1) 0 =
+      1 - (1/2 : ℚ)^T := by
+  rw [hitting_t_succ, hitting_u_closed]
+
+/-- The genuine canonical finite-prefix hitting law from t, at every
+positive horizon; no numeric surrogate for the path measure is used. -/
+theorem canonical_t_hitting_all_horizons (T : ℕ) :
+    hittingValue (rationalTargetAsFrozen absorbingTarget)
+      (rationalFiniteKernel fourStateMatrix) 0 (T + 1) =
+        ((1 - (1/2 : ℚ)^T : ℚ) : ℝ) := by
+  rw [← rationalHittingValue_eq_canonical_all_horizons]
+  exact congrArg (fun q : ℚ => (q : ℝ)) (hitting_t_closed T)
+
 end ExactRationalAbsorption
 end MultipleLimit
 end PermanssonResearch
