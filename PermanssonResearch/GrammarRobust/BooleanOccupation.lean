@@ -169,13 +169,11 @@ theorem orbitLaw_ae_orbitPaths (μ : ProbabilityMeasure Y) :
   unfold orbitLaw
   apply (ae_mem_iff_measure_eq orbitPaths_measurable.nullMeasurableSet).2
   rw [Measure.map_apply measurable_orbit orbitPaths_measurable]
-  haveI : IsProbabilityMeasure (Measure.map orbit μ.toMeasure) := by infer_instance
-  rw [measure_univ]
-  apply le_antisymm prob_le_one
-  rw [← measure_univ]
-  apply measure_mono
-  intro y _
-  exact Set.mem_preimage.mpr ⟨y, rfl⟩
+  have hpre : orbit ⁻¹' orbitPaths = (Set.univ : Set Y) := by
+    ext y
+    simp only [Set.mem_preimage, Set.mem_univ, iff_true]
+    exact ⟨y, rfl⟩
+  rw [hpre, measure_univ]
 
 /-- The baseline satisfies the literal canonical almost-sure weak mode for
 every initial law, hence in particular every law supported on the basin. -/
