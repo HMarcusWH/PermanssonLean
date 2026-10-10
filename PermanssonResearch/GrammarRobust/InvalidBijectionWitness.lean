@@ -98,7 +98,7 @@ theorem invalid_swap_does_not_preserve_proper_inclusion :
     decide
   have hf := (h actionLabel compoundLabel).mp hs
   rw [invalid_swap_action, invalid_swap_joint] at hf
-  exact (Finset.ssubset_irrefl actionLabel) (hf.trans hs)
+  exact (lt_irrefl compoundLabel) (hf.trans hs)
 
 end InvalidBijectionWitness
 end GrammarRobust
