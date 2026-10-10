@@ -53,9 +53,11 @@ theorem foldlRowPatches_selected
           (applyRowPatch (patch i) initial) x hrest]
         exact applyRowPatch_selected (patch i) initial x hx
       · have hii : i ∈ rest := by
-          simpa [hji] using hi
+          rcases List.mem_cons.mp hi with h | h
+          · exact False.elim (hji h.symm)
+          · exact h
         simpa only [List.foldl_cons] using
-          ih (applyRowPatch (patch j) initial) hrestnodup hsub i hii x hx
+          ih (applyRowPatch (patch j) initial) hrestnodup hsub hii
 
 /-- A physical patch list has identical output at any selected row, no
 matter which order the physical components were enumerated in. -/
@@ -72,7 +74,8 @@ theorem foldlRowPatches_eq_of_mem_iff
       Disjoint (patch i).region (patch j).region) :
     (rows₁.foldl (fun κ j => applyRowPatch (patch j) κ) initial).kernel =
     (rows₂.foldl (fun κ j => applyRowPatch (patch j) κ) initial).kernel := by
-  funext x
+  apply Kernel.ext
+  intro x
   by_cases hhit : ∃ i ∈ rows₁, x ∈ (patch i).region
   · obtain ⟨i, hi, hx⟩ := hhit
     have hdisj₁ : ∀ i ∈ rows₁, ∀ j ∈ rows₁, i ≠ j →
