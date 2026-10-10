@@ -139,6 +139,82 @@ class LaneBExactRegressions(unittest.TestCase):
         self.assertIn(singleton, minimal_blocks(FINE, pred))
         self.assertNotIn(compound, minimal_blocks(FINE, pred))
 
+    def test_B4_same_baseline_different_frozen_atom_banks(self):
+        def alternative_bank_transition(state, selected):
+            # Exactly the same baseline; only the declared action patch differs.
+            action = True
+            updated = "u" not in selected
+            return (updated, action)
+
+        for state in STATES:
+            self.assertEqual(
+                transition(state, frozenset()),
+                alternative_bank_transition(state, frozenset()))
+            self.assertNotEqual(
+                transition(state, frozenset({"a", "u"})),
+                alternative_bank_transition(state, frozenset({"a", "u"})))
+
+    def test_B5_effect_preserving_block_bijection_reverses_order(self):
+        blocks = all_blocks(FINE)
+        action = frozenset({"action"})
+        joint = frozenset({"action", "update"})
+        def bad_swap(b):
+            if b == action:
+                return joint
+            if b == joint:
+                return action
+            return b
+
+        self.assertEqual(set(map(bad_swap, blocks)), set(blocks))
+        pred = lambda y: y[0] and y[1]
+        for block in blocks:
+            self.assertEqual(
+                effect(expand(FINE, block), pred),
+                effect(expand(FINE, bad_swap(block)), pred))
+        self.assertTrue(action < joint)
+        self.assertFalse(bad_swap(action) < bad_swap(joint))
+        self.assertIn(action, minimal_blocks(FINE, pred))
+        self.assertNotIn(bad_swap(action), minimal_blocks(FINE, pred))
+
+    def test_B7_B8_actual_grammar_decomposition_changes_minimality(self):
+        pred_and = lambda y: y[0] and y[1]
+        pred_xor = lambda y: y[0] != y[1]
+        coarse_joint = frozenset({"combined"})
+        fine_joint = frozenset({"action", "update"})
+        self.assertEqual(expand(COARSE, coarse_joint), expand(FINE, fine_joint))
+        self.assertIn(coarse_joint, minimal_blocks(COARSE, pred_and))
+        self.assertNotIn(fine_joint, minimal_blocks(FINE, pred_and))
+        self.assertFalse(minimal_blocks(COARSE, pred_xor))
+        self.assertEqual(minimal_blocks(FINE, pred_xor),
+                         {frozenset({"action"}), frozenset({"update"})})
+
+    def test_B9_B11_overlap_and_forbidden_admission(self):
+        def row_masks_valid(masks):
+            return all(not (masks[i] & masks[j])
+                       for i in range(len(masks))
+                       for j in range(i + 1, len(masks)))
+        self.assertFalse(row_masks_valid([set(STATES), set(STATES)]))
+        self.assertTrue(row_masks_valid([
+            {(False, False)}, {(True, True)}]))
+        allowed = {
+            frozenset(),
+            frozenset({"action"}),
+            frozenset({"update"})
+        }
+        self.assertIn(frozenset({"action"}), allowed)
+        self.assertIn(frozenset({"update"}), allowed)
+        self.assertNotIn(frozenset({"action", "update"}), allowed)
+
+    def test_B12_nonidentity_component_relabeling_preserves_atom_law(self):
+        relabeled = {"zero": frozenset({"u"}), "one": frozenset({"a"})}
+        self.assertNotEqual(relabeled["zero"], FINE["action"])
+        for block in all_blocks(FINE):
+            renamed = frozenset(
+                "zero" if c == "update" else "one" for c in block)
+            self.assertEqual(expand(FINE, block), expand(relabeled, renamed))
+            self.assertEqual(kernel(expand(FINE, block)),
+                             kernel(expand(relabeled, renamed)))
+
     def test_two_disjoint_action_row_masks(self):
         masks = {"left": {(False, False)}, "right": {(True, True)}}
         self.assertFalse(masks["left"] & masks["right"])
