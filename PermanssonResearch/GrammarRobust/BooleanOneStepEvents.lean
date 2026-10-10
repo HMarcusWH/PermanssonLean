@@ -43,8 +43,14 @@ theorem propertyAtOne_eq_of_constantKernel
   rw [Measure.dirac_apply' (ConstantDynamics.orbit q y)
     (eventAtOne_measurable P)]
   by_cases hp : P q
-  · simp [eventAtOne, ConstantDynamics.orbit, hp]
-  · simp [eventAtOne, ConstantDynamics.orbit, hp]
+  · have hmem : ConstantDynamics.orbit q y ∈ eventAtOne P := by
+      change P ((ConstantDynamics.orbit q y) 1)
+      simpa [ConstantDynamics.orbit] using hp
+    simp [Set.indicator, hmem, hp]
+  · have hnot : ConstantDynamics.orbit q y ∉ eventAtOne P := by
+      change ¬ P ((ConstantDynamics.orbit q y) 1)
+      simpa [ConstantDynamics.orbit] using hp
+    simp [Set.indicator, hnot, hp]
 
 theorem baseline_value (P : Y → Prop) [DecidablePred P] (y : Y) :
     baselinePropertyValue (propertyAtOne P) baseline y =
@@ -90,6 +96,10 @@ theorem joint_value (P : Y → Prop) [DecidablePred P] (y : Y) :
 def orP (y : Y) : Prop := y.1 = true ∨ y.2 = true
 def andP (y : Y) : Prop := y.1 = true ∧ y.2 = true
 def xorP (y : Y) : Prop := y.1 ≠ y.2
+
+instance : DecidablePred orP := fun _ => inferInstance
+instance : DecidablePred andP := fun _ => inferInstance
+instance : DecidablePred xorP := fun _ => inferInstance
 
 theorem or_pathlaw_table (y : Y) :
     baselinePropertyValue (propertyAtOne orP) baseline y = 1 ∧
