@@ -78,6 +78,13 @@ import PermanssonResearch.ReverseSolver.HistoryForwardBridge
 import PermanssonResearch.ReverseSolver.HistoryForwardMeasure
 import PermanssonResearch.ReverseSolver.HistoryBellmanDominance
 import PermanssonResearch.ReverseSolver.HistoryPolicyExamples
+import PermanssonResearch.ReverseSolver.HistoryTypedFeedback
+import PermanssonResearch.ReverseSolver.HistoryTypedKernel
+import PermanssonResearch.ReverseSolver.HistoryTypedPrefix
+import PermanssonResearch.ReverseSolver.HistoryTypedAtoms
+import PermanssonResearch.ReverseSolver.HistoryTypedTransport
+import PermanssonResearch.ReverseSolver.HistoryTypedHitting
+import PermanssonResearch.ReverseSolver.HistoryTypedExamples
 
 /-!
 # PermanssonResearch
