@@ -98,7 +98,13 @@ theorem typed_reconverge_success_half :
         reconvergeTarget 3 0 (singletonPrefix (0 : Fin 5))
         (HistoryDependent.initialStatus reconvergeTarget (0 : Fin 5)) 3 =
         (1/2 : ℚ) := by
-    decide
+    norm_num [HistoryDependent.forwardValue,
+      HistoryDependent.completionMass, finiteSuccessorWords,
+      HistoryDependent.advanceStatus, HistoryDependent.initialStatus,
+      HistoryDependent.selectedEntry, HistoryDependent.last,
+      HistoryDependent.appendHistory, reconvergePolicy,
+      reconvergeSystem, reconvergeMatrix, reconvergeTarget,
+      singletonPrefix]
   rw [hforward]
   norm_num
 
