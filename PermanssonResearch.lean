@@ -105,6 +105,8 @@ import PermanssonResearch.GrammarRobust.AtomicLocality
 
 import PermanssonResearch.GrammarRobust.IsomorphicTransport
 
+import PermanssonResearch.GrammarRobust.EffectTransport
+
 /-!
 # PermanssonResearch
 
