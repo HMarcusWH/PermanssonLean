@@ -5,8 +5,9 @@ component partitions; admissible finite blocks; real canonical α→P→U Markov
 kernels; genuine nonbijective coarse/fine component changes.
 
 **Research PR:** [#51](https://github.com/HMarcusWH/PermanssonLean/pull/51).
-**Status:** draft; additional adversarial certificates on branch; final-head Lean
-CI and independent review must be completed before promotion. The frozen
+**Status:** draft; B1–B13 concrete Lean witnesses have compiled on the
+prior code head. Final-head CI and substantive independent review remain
+gates before promotion. The frozen
 Permansson v0.1.8 mathematical core and application claim schema remain intact.
 
 ## Mathematical implementation
@@ -43,9 +44,9 @@ actual path-law OR/AND/XOR diagnostic values and margins.
 ## B1–B13 independent adversarial acceptance matrix
 
 The matrix below identifies **intended concrete proof sites**. For newly
-added witness modules, the presence of the source alone is not evidence of
-completed formal verification; inspect the exact final-head Research Lean
-run before marking any new row certified.
+added witness modules, check the actual final-head Research Lean build and
+axiom audit before marking the release certified. The concrete proof package
+compiled on the immediate pre-release head.
 
 | Case | Scientific failure being tested | Compiled-proof target / exact fixture |
 |---|---|---|
@@ -63,14 +64,14 @@ run before marking any new row certified.
 | B12 | Real nonidentity order-compatible relabeling, not just identity matching | `RelabelingWitness.relabeled_update_model_eq` and `relabeled_zero_not_original_zero`; generic minimality transport in `IsomorphicTransport` |
 | B13 | Exact GR and typed PR on infinite-path persistence, not an arbitrary time-one proxy | `BooleanOccupation.exactGR`, `BooleanPersistence.genuineRelativePR` |
 
-**B12 scope:** The positive source currently proves the real atom-expansion
-and model equality under a nonidentity relabeling, and the generic
-order-isomorphism theorem proves conditional minimality transport. An
-unconditional concrete minimality instance requires an explicit matching
-admissible-block order and property profile; review this before release.
-**B5 scope:** A bijection that matches *one* pair's AND margin is weaker than
-one preserving the margin for every block. Do not advertise the stronger
-global result without a theorem or exhaustive certified finite proof.
+**B12 scope:** The concrete relabeling witnesses prove nonidentity component
+semantics, exact full-model equality for a matched singleton, preservation and
+reflection of proper-subblock order for **every** finite subset, and an
+original-path-law minimal constitutive AND block. The generic order-isomorphism
+transport theorem remains conditional on the proved matching property profile.
+**B5 scope:** The invalid block-label swap now has a theorem proving that the
+**entire** AND constitutive-margin profile is invariant over every admissible
+fine block, while its proper-subblock order and minimality preservation fail.
 
 The independent exact-rational Python witness regression lives in
 `verification/research/test_lane_b.py`; it never substitutes for the Lean
@@ -78,8 +79,8 @@ theorems listed above.
 
 ## Promotion and safety gates
 
-1. All B1–B13 concrete tests must compile, with the B5/B12 scope resolved in
-   the exact theorem statements and the independent regression results.
+1. All B1–B13 concrete tests must compile on the final-head source, with
+   the B5/B12 scope restricted to the exact demonstrated theorems.
 2. Final-head `lake build` and `lake build PermanssonResearch` succeed.
 3. Research-root import coverage and original application contract pass.
 4. All transitive axioms are in `propext, Classical.choice, Quot.sound`.
