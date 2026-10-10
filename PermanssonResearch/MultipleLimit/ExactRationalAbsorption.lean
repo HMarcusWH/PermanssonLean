@@ -1,4 +1,4 @@
-import PermanssonResearch.ReverseSolver.RationalKernel
+import PermanssonResearch.ReverseSolver.CanonicalAllHorizonCorrespondence
 import Mathlib.Tactic
 
 /-!
@@ -58,6 +58,21 @@ theorem a_initial_hit :
 theorem b_initial_hit :
     rationalHittingValue fourStateMatrix absorbingTarget 0 3 = 1 := by
   norm_num [rationalHittingValue, absorbingTarget]
+
+
+/-- The already-certified D0 correspondence transports the finite arithmetic
+to the REAL canonical finite-prefix Markov path measure. -/
+theorem canonical_t_two_step_hit :
+    hittingValue (rationalTargetAsFrozen absorbingTarget)
+      (rationalFiniteKernel fourStateMatrix) 0 2 = (1/2 : ℝ) := by
+  rw [← rationalHittingValue_eq_canonical_all_horizons]
+  norm_num [t_two_step_hit]
+
+theorem canonical_u_two_step_hit :
+    hittingValue (rationalTargetAsFrozen absorbingTarget)
+      (rationalFiniteKernel fourStateMatrix) 1 2 = (3/4 : ℝ) := by
+  rw [← rationalHittingValue_eq_canonical_all_horizons]
+  norm_num [u_two_step_hit]
 
 end ExactRationalAbsorption
 end MultipleLimit
