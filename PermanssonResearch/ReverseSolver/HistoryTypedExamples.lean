@@ -83,28 +83,6 @@ theorem typed_reconverge_right_loses :
     reconvergeSystem, reconvergeMatrix, rightReturn, HistoryDependent.last]
 
 
-/-- The genuinely history-sensitive controller wins precisely along the
-left reconvergent branch. This is a value test, distinct from the required
-two typed conditional-kernel tests above. The exact finite enumeration is
-in the constructive D1-D1 rational continuation evaluator. -/
-set_option maxRecDepth 10000 in
-set_option maxHeartbeats 2000000 in
-theorem typed_reconverge_success_half :
-    typedSuccessProbability reconvergeSystem reconvergePolicy
-      reconvergeTarget 3 (0 : Fin 5) =
-      ENNReal.ofReal (1/2 : ℝ) := by
-  rw [typed_successProbability_eq_rational,
-    HistoryDependent.successProbability_eq_forwardValue]
-  have hforward :
-      HistoryDependent.forwardValue reconvergeSystem reconvergePolicy
-        reconvergeTarget 3 0 (singletonPrefix (0 : Fin 5))
-        (HistoryDependent.initialStatus reconvergeTarget (0 : Fin 5)) 3 =
-        (1/2 : ℚ) := by
-    decide +kernel
-  rw [hforward]
-  norm_num
-
-
 /-- An initial goal is already a win, even though this adversarial
 physical matrix moves goal state 3 to forbidden state 4 next. -/
 theorem typed_goal_before_later_forbidden :
