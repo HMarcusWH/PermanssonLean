@@ -67,6 +67,29 @@ theorem equal_margin_but_invalid_minimality :
   exact ⟨andPos_action, matched_AND_margins,
     and_action_minimal, and_joint_not_minimal⟩
 
+/-- B5 strengthened: the invalid arbitrary block-label bijection preserves
+the *entire* original AND constitutive-margin profile on all four
+admissible fine blocks. It still fails to preserve minimality because
+it is not an order isomorphism. -/
+theorem AND_margin_invariant_under_invalid_swap
+    (D : Finset (Fin 2)) :
+    blockMargin baseline bank fine (fineBlock D)
+      spec (propertyAtOne andP) comparison =
+    blockMargin baseline bank fine (fineBlock (invalidBlockSwap D))
+      spec (propertyAtOne andP) comparison := by
+  classical
+  by_cases ha : D = actionLabel
+  · subst D
+    rw [invalid_swap_action]
+    exact matched_AND_margins
+  by_cases hj : D = compoundLabel
+  · subst D
+    rw [invalid_swap_joint]
+    exact matched_AND_margins.symm
+  have hfixed : invalidBlockSwap D = D := by
+    exact Equiv.swap_apply_of_ne_of_ne ha hj
+  rw [hfixed]
+
 theorem invalid_swap_does_not_preserve_proper_inclusion :
     ¬ ∀ D E : Finset (Fin 2),
        D ⊂ E ↔ invalidBlockSwap D ⊂ invalidBlockSwap E := by
