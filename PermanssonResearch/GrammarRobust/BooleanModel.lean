@@ -20,19 +20,19 @@ open PermanssonLean
 abbrev Y := JointState Bool Bool
 abbrev PhysicalAtom := Atom (Fin 1) (Fin 1)
 
-def actionTrue : Kernel Y Bool :=
+noncomputable def actionTrue : Kernel Y Bool :=
   Kernel.deterministic (fun _ => true) (by fun_prop)
-def actionFalse : Kernel Y Bool :=
+noncomputable def actionFalse : Kernel Y Bool :=
   Kernel.deterministic (fun _ => false) (by fun_prop)
-def updateTrue : Kernel (UpdateInput Bool Bool Bool) Bool :=
+noncomputable def updateTrue : Kernel (UpdateInput Bool Bool Bool) Bool :=
   Kernel.deterministic (fun _ => true) (by fun_prop)
-def updateFalse : Kernel (UpdateInput Bool Bool Bool) Bool :=
+noncomputable def updateFalse : Kernel (UpdateInput Bool Bool Bool) Bool :=
   Kernel.deterministic (fun _ => false) (by fun_prop)
-def worldCopy : Kernel (WorldInput Bool Bool Bool) Bool :=
+noncomputable def worldCopy : Kernel (WorldInput Bool Bool Bool) Bool :=
   Kernel.deterministic (fun z => z.2) (by fun_prop)
 
 /-- The baseline always moves to (true,true) after one transition. -/
-def baseline : StrategicWorldModel Bool Bool Bool where
+noncomputable def baseline : StrategicWorldModel Bool Bool Bool where
   generator := {
     action := actionTrue
     update := updateTrue
