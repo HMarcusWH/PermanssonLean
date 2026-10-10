@@ -5,15 +5,18 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
-**Status:** Research library with CQ-1 Parts 1–3 merged in PRs #36–38;
-D0-A fixed-menu optimizer merged in #39 and D0-B rational recursion,
-enumeration and computable fixed-menu argmax merged in #40. D0-C (#41) proves the finite-rational-matrix-to-canonical
-finite-prefix hitting-value bridge for all finite horizons. Its full
-Research Lean build, axiom audit and other CI checks passed at
-`22525678`. The typed intervention-to-rational-matrix realization
-remains a separate future research obligation. Grammar-robust and
-multiple-limit lanes, and D1 adaptive reverse solving, remain proposed.
-Nothing here changes the immutable v0.1.8 mathematical snapshot.
+**Status:** Separate research library with CQ-1 Parts 1–3
+(PRs #36–38), finite fixed-menu D0 (PRs #39–44), and the finite
+fully observed D1 control program: stationary feedback (#45),
+exact-rational Bellman recursion and deterministic Markov schedules (#46),
+genuine rational nonstationary paths (#47), constructed typed
+nonstationary path transport (#48), and rational history-dependent
+policy dominance (#49, subject to final-head CI/review and merge).
+For D1-D1's actual theorem chain and its exclusions, see
+[D1_HISTORY_DEPENDENT.md](D1_HISTORY_DEPENDENT.md). The grammar-robust
+and multiple-limit lanes and history-dependent **typed** transport
+(D1-D2) are separate future work. Nothing here changes the immutable
+v0.1.8 mathematical snapshot.
 
 ## Why there are now two libraries
 
@@ -100,7 +103,7 @@ to the research root in the same PR.
 The new workflow does not change the original `Lean` check or its evidence.
 The two workflows should be assessed independently.
 
-## How to add the first mathematical extension
+## How to add a mathematical extension
 
 Before writing code:
 
