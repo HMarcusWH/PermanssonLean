@@ -1,7 +1,6 @@
 import PermanssonResearch.MultipleLimit.FiniteCesaroAlgebra
 import Mathlib.Topology.Sequences
 import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Topology.Instances.Pi
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 import Mathlib.Analysis.SpecificLimits.Basic
 import Mathlib.Tactic
