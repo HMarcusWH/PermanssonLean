@@ -112,10 +112,10 @@ corollary compiled on the final source revision.
 
 **Formal certification:** The whole-measure law, weight
 normalization, and typed geometric kernel-to-path result are formally
-compiled on source HEAD `ea0a75e7abca798a5ffaca26de96b84f6e8936e6`,
+compiled on mathematical-source revision `ea0a75e7abca798a5ffaca26de96b84f6e8936e6`,
 tested by PR synthetic merge
 `8182594bbacdc84ff6938e7780bf72b3b7bd1dad`.
-Four workflows passed on that tested revision. Research Lean built
+Four workflows passed on that tested revision; any subsequent release-documentation-only commit must itself receive fresh PR integration checks before review promotion. Research Lean built
 3,859 jobs; 1,942 transitive declarations passed the allowed-axiom audit;
 86 research regression tests passed; all 159 research modules are directly
 imported; and the proof-placeholder firewall passed. These are formal
@@ -173,7 +173,7 @@ is inferred.
   review, and any unresolved premises. No claim of independent peer
   review without an actual external review.
 - All new theorem modules have compiled on the identified tested
-  revision. The PR may now be marked ready for **external review**.
+  revision. The PR can be marked ready for **external review** once the final documentation revision passes PR integration checks.
   Do not conflate internal theorem-statement audit with submitted external
   peer review, and do not merge without any separately required approval.
 
