@@ -34,6 +34,15 @@ private def A : Set Y := ({a, b} : Finset Y)
 
 private theorem hA : MeasurableSet A := MeasurableSet.of_discrete
 
+private theorem half_ofReal :
+    ENNReal.ofReal (1/2 : ℝ) = (1/2 : ℝ≥0∞) := by
+  rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 2)]
+  norm_num
+
+private theorem half_toNNReal :
+    (↑((1/2 : ℝ).toNNReal) : ℝ≥0∞) = (1/2 : ℝ≥0∞) := by
+  exact half_ofReal
+
 private theorem compl_eq : Aᶜ = ({t, u} : Set Y) := by
   ext z
   rcases z with ⟨s, x⟩
@@ -48,12 +57,13 @@ private theorem one_step_outside (y : Y) :
   have htu : Disjoint ({t} : Set Y) ({u} : Set Y) := by
     simp [t, u]
   have hu : MeasurableSet ({u} : Set Y) := measurableSet_singleton _
-  rw [show ({t, u} : Set Y) = ({t} : Set Y) ∪ {u} by ext z; simp]
+  rw [show ({t, u} : Set Y) = ({t} : Set Y) ∪ {u} by ext z; simp [or_comm]]
   rw [measure_union htu hu]
   rw [inducedKernel_atom_entry y t, inducedKernel_atom_entry y u]
   rcases y with ⟨s, x⟩
   cases s <;> cases x <;>
-    norm_num [fourStateMatrix, codeState, t, u, a, b]
+    norm_num [fourStateMatrix, codeState, t, u, a, b] <;>
+    exact half_ofReal
 
 /-- Exact two-step survival probability for each of the four typed states.
 The sharp transient values are 1/2 from t and 1/4 from u. -/
@@ -72,7 +82,8 @@ theorem two_step_kernel_outside (y : Y) :
   rcases y with ⟨s, x⟩
   cases s <;> cases x <;>
     norm_num [inducedKernel_atom_entry, fourStateMatrix, codeState,
-      t, u, a, b, ENNReal.ofReal]
+      t, u, a, b, ENNReal.ofReal] <;>
+    simp [half_toNNReal]
 
 private theorem two_step_inside (z : Y) (hz : z ∈ A) :
     (model.inducedKernel ^ 2) z Aᶜ = 0 := by
@@ -154,7 +165,8 @@ theorem canonical_geometric_noHit_initial (μ : ProbabilityMeasure Y)
     _ ≤ ∑ y : Y, μ.toMeasure {y} * (1/2 : ℝ≥0∞)^k := by
       apply Finset.sum_le_sum
       intro y _
-      exact mul_le_mul_left (point_geometric_noHit y k) _
+      simpa [mul_comm] using
+        (mul_le_mul_left (point_geometric_noHit y k) (μ.toMeasure {y}))
     _ = (∑ y : Y, μ.toMeasure {y}) * (1/2 : ℝ≥0∞)^k := by
       rw [Finset.sum_mul]
     _ = (1/2 : ℝ≥0∞)^k := by rw [hmass, one_mul]
