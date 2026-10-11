@@ -37,10 +37,13 @@ def transition (i j : Fin 6) : ℚ :=
     if j = 4 then 1/4 else if j = 5 then 3/4 else 0
 
 theorem transition_nonneg : ∀ i j : Fin 6, 0 ≤ transition i j := by
-  decide
+  intro i j
+  unfold transition
+  split_ifs <;> norm_num
 
 theorem transition_row_sum : ∀ i : Fin 6, ∑ j : Fin 6, transition i j = 1 := by
-  decide
+  intro i
+  fin_cases i <;> norm_num [transition, Fin.sum_univ_succ]
 
 def rationalTransition : FiniteCommunication.RationalTransition (Fin 6) where
   entry := transition
@@ -52,11 +55,17 @@ def classB : Set (Fin 6) := {i | i = 4 ∨ i = 5}
 
 theorem classA_closed :
     rationalTransition.ClosedSubset classA := by
-  decide
+  intro i hi j hij
+  fin_cases i <;> fin_cases j <;>
+    norm_num [classA, rationalTransition,
+      FiniteCommunication.RationalTransition.PositiveEdge, transition] at *
 
 theorem classB_closed :
     rationalTransition.ClosedSubset classB := by
-  decide
+  intro i hi j hij
+  fin_cases i <;> fin_cases j <;>
+    norm_num [classB, rationalTransition,
+      FiniteCommunication.RationalTransition.PositiveEdge, transition] at *
 
 theorem classA_disjoint_classB : Disjoint classA classB := by
   apply Set.disjoint_left.mpr
@@ -70,7 +79,7 @@ theorem classA_period_two_rows :
 
 theorem classB_self_loop :
     transition 4 4 = 1/2 ∧ transition 5 5 = 3/4 := by
-  decide
+  norm_num [transition]
 
 def piA (i : Fin 6) : ℚ :=
   if i = 2 ∨ i = 3 then 1/2 else 0
@@ -79,24 +88,28 @@ def piB (i : Fin 6) : ℚ :=
   if i = 4 then 1/3 else if i = 5 then 2/3 else 0
 
 theorem piA_normalized : (∑ i : Fin 6, piA i) = 1 := by
-  decide
+  norm_num [piA, Fin.sum_univ_succ]
 
 theorem piB_normalized : (∑ i : Fin 6, piB i) = 1 := by
-  decide
+  norm_num [piB, Fin.sum_univ_succ]
 
 theorem piA_nonneg : ∀ i : Fin 6, 0 ≤ piA i := by
-  decide
+  intro i
+  fin_cases i <;> norm_num [piA]
 
 theorem piB_nonneg : ∀ i : Fin 6, 0 ≤ piB i := by
-  decide
+  intro i
+  fin_cases i <;> norm_num [piB]
 
 theorem piA_stationary :
     ∀ j : Fin 6, ∑ i : Fin 6, piA i * transition i j = piA j := by
-  decide
+  intro j
+  fin_cases j <;> norm_num [piA, transition, Fin.sum_univ_succ]
 
 theorem piB_stationary :
     ∀ j : Fin 6, ∑ i : Fin 6, piB i * transition i j = piB j := by
-  decide
+  intro j
+  fin_cases j <;> norm_num [piB, transition, Fin.sum_univ_succ]
 
 /-- Candidate eventual A/B weights; harmonicity is the proved finite
 linear identity, *not* yet a canonical probability-of-ever-hitting theorem. -/
@@ -107,27 +120,31 @@ def weightB (i : Fin 6) : ℚ :=
   1 - weightA i
 
 theorem weights_normalized : ∀ i : Fin 6, weightA i + weightB i = 1 := by
-  decide
+  intro i
+  fin_cases i <;> norm_num [weightA, weightB]
 
 theorem weights_nonneg :
     (∀ i : Fin 6, 0 ≤ weightA i) ∧
     (∀ i : Fin 6, 0 ≤ weightB i) := by
-  decide
+  constructor <;> intro i <;> fin_cases i <;>
+    norm_num [weightA, weightB]
 
 theorem weightA_harmonic :
     ∀ i : Fin 6,
       (∑ j : Fin 6, transition i j * weightA j) = weightA i := by
-  decide
+  intro i
+  fin_cases i <;> norm_num [weightA, transition, Fin.sum_univ_succ]
 
 theorem weightB_harmonic :
     ∀ i : Fin 6,
       (∑ j : Fin 6, transition i j * weightB j) = weightB i := by
-  decide
+  intro i
+  fin_cases i <;> norm_num [weightB, weightA, transition, Fin.sum_univ_succ]
 
 theorem transient_weights :
     weightA 0 = 1/3 ∧ weightB 0 = 2/3 ∧
     weightA 1 = 1/3 ∧ weightB 1 = 2/3 := by
-  decide
+  norm_num [weightA, weightB]
 
 def observedRecurrent (i : Fin 6) : Bool :=
   if i = 2 ∨ i = 3 ∨ i = 4 ∨ i = 5 then true else false

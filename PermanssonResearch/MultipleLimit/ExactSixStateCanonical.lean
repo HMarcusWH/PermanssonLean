@@ -35,15 +35,18 @@ def recurrentTarget : RationalHittingTarget 6 where
 
 theorem t_two_step_hit :
     rationalHittingValue sixStateMatrix recurrentTarget 2 0 = 1/2 := by
-  decide
+  norm_num [rationalHittingValue, sixStateMatrix, recurrentTarget,
+    transition, Fin.sum_univ_succ]
 
 theorem u_two_step_hit :
     rationalHittingValue sixStateMatrix recurrentTarget 2 1 = 3/4 := by
-  decide
+  norm_num [rationalHittingValue, sixStateMatrix, recurrentTarget,
+    transition, Fin.sum_univ_succ]
 
 theorem two_step_hit_at_least_half (i : Fin 6) :
     (1/2 : ℚ) ≤ rationalHittingValue sixStateMatrix recurrentTarget 2 i := by
-  fin_cases i <;> decide
+  fin_cases i <;> norm_num [rationalHittingValue, sixStateMatrix,
+    recurrentTarget, transition, Fin.sum_univ_succ]
 
 /-- The actual *canonical* finite-prefix probability of reaching the
 union of both recurrent classes from t within two transitions is 1/2. -/
