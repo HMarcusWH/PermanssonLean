@@ -25,6 +25,7 @@ import PermanssonResearch.MultipleLimit.TypedMarginalPowers
 import PermanssonResearch.MultipleLimit.TypedCanonicalHitting
 import PermanssonResearch.MultipleLimit.TypedEventualHitting
 import PermanssonResearch.MultipleLimit.TypedTwoStepAbsorption
+import PermanssonResearch.MultipleLimit.TypedGeometricAbsorption
 import PermanssonResearch.MultipleLimit.Recovery
 import PermanssonResearch.MultipleLimit.DescriptorTransport
 import PermanssonResearch.MultipleLimit.Counterexamples
