@@ -173,7 +173,7 @@ theorem selectedRepresentative_measurable :
     Measurable (selectedRepresentative K) := by
   classical
   unfold selectedRepresentative
-  exact (hasRecurrentHit_measurable K).ite
+  exact Measurable.ite (hasRecurrentHit_measurable K)
     ((measurable_of_finite (classRepresentative K)).comp
       (firstRecurrentState_measurable K))
     measurable_const
