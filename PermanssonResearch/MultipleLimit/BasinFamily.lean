@@ -104,9 +104,10 @@ theorem reachableRepresentatives_nonempty
     intro i hi
     exact hallzero i hi
   have hsum1 := class_selection_weights_sum_one K (diracProba y)
-  have hcontra : (0 : ℝ≥0∞) = 1 := by
-    simpa only [diracProba_toMeasure] using hsum0.symm.trans hsum1
-  exact zero_ne_one hcontra
+  change (∑ i ∈ recurrentRepresentatives K,
+      canonicalPathLaw K (Measure.dirac y)
+        ((selectedRepresentative K) ⁻¹' {i})) = 1 at hsum1
+  exact (zero_ne_one : (0 : ℝ≥0∞) ≠ 1) (hsum0.symm.trans hsum1)
 
 end BasinFamily
 end MultipleLimit
