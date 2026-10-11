@@ -42,6 +42,7 @@ import PermanssonResearch.MultipleLimit.FiniteClassClosure
 import PermanssonResearch.MultipleLimit.UniformClassEntry
 import PermanssonResearch.MultipleLimit.FiniteCanonicalPath
 import PermanssonResearch.MultipleLimit.CanonicalKernelMarginals
+import PermanssonResearch.MultipleLimit.GenericNoHitNull
 import PermanssonResearch.MultipleLimit.ExactSixState
 import PermanssonResearch.MultipleLimit.ExactSixStateQuotient
 import PermanssonResearch.MultipleLimit.ExactSixStateCanonical
