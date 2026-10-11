@@ -22,6 +22,7 @@ namespace MultipleLimit
 namespace ClassDescriptorSelectionLaw
 
 open FiniteCanonicalPath
+open KernelCommunication
 open CanonicalClassSelector
 open ClassStationarySelectionLaw
 
