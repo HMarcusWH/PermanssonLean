@@ -101,7 +101,7 @@ theorem exists_uniform_positive_recurrent_block [Nonempty Y] :
   have huniv : (Finset.univ : Finset Y).Nonempty := Finset.univ_nonempty
   let ε : ℝ≥0∞ := Finset.univ.inf' huniv v
   refine ⟨N, ε, ?_, ?_⟩
-  · exact (Finset.lt_inf'_iff).2 (fun y hy => hN y)
+  · exact (Finset.lt_inf'_iff huniv).2 (fun y hy => hN y)
   · intro y
     exact Finset.inf'_le v (Finset.mem_univ y)
 
