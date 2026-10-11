@@ -63,7 +63,16 @@ private theorem one_step_outside (y : Y) :
   rcases y with ⟨s, x⟩
   cases s <;> cases x <;>
     norm_num [fourStateMatrix, codeState, t, u, a, b] <;>
-    exact half_ofReal
+    simpa only [one_div, ENNReal.ofReal] using half_ofReal
+
+private theorem inv_two_squared :
+    (2 : ℝ≥0∞)⁻¹ * (2 : ℝ≥0∞)⁻¹ = (4 : ℝ≥0∞)⁻¹ := by
+  calc
+    (2 : ℝ≥0∞)⁻¹ * (2 : ℝ≥0∞)⁻¹ =
+        ((2 : ℝ≥0∞) * 2)⁻¹ :=
+      (ENNReal.mul_inv (Or.inl (by norm_num))
+        (Or.inl (by norm_num))).symm
+    _ = (4 : ℝ≥0∞)⁻¹ := by norm_num
 
 /-- Exact two-step survival probability for each of the four typed states.
 The sharp transient values are 1/2 from t and 1/4 from u. -/
@@ -83,7 +92,8 @@ theorem two_step_kernel_outside (y : Y) :
   cases s <;> cases x <;>
     norm_num [inducedKernel_atom_entry, fourStateMatrix, codeState,
       t, u, a, b, ENNReal.ofReal] <;>
-    norm_num [half_toNNReal]
+    norm_num [half_toNNReal] <;>
+    exact inv_two_squared
 
 private theorem two_step_inside (z : Y) (hz : z ∈ A) :
     (model.inducedKernel ^ 2) z Aᶜ = 0 := by
