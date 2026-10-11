@@ -20,7 +20,6 @@ namespace TypedRandomOccupation
 
 open TypedStrategicWitness TypedAlmostSureAbsorption
 open PermanssonLean.RegimeSpecification
-open PermanssonLean.PeriodicExactGR
 
 /-- The literal alpha/P/U witness has an almost-sure weak limit equal to
 the Dirac probability measure of its random eventual absorbing state. -/
@@ -28,7 +27,7 @@ theorem canonical_random_occupation_limit_unconditional
     (μ : ProbabilityMeasure Y) :
     ∀ᵐ w ∂model.pathLaw μ.toMeasure,
       Tendsto
-        (fun n : ℕ => empiricalOccupation spec w
+        (fun n : ℕ => empiricalOccupation PermanssonLean.PeriodicExactGR.spec w
           (n+1) (Nat.succ_pos n))
         atTop (𝓝 (terminalLaw (terminalDestination w))) := by
   apply canonical_random_occupation_limit model μ
