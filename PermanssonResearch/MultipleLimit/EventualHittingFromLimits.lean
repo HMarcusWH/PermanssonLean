@@ -44,8 +44,10 @@ theorem null_of_success_probability_tendsto_one
   have hreal : μ.real D = 0 :=
     le_antisymm hnonpos measureReal_nonneg
   have hfinite : μ D ≠ ∞ := measure_ne_top μ D
-  have hconvert := ENNReal.ofReal_toReal hfinite
-  simpa [Measure.real, hreal] using hconvert.symm
+  calc
+    μ D = ENNReal.ofReal (μ.real D) :=
+      (ENNReal.ofReal_toReal hfinite).symm
+    _ = 0 := by rw [hreal]; simp
 
 end EventualHittingFromLimits
 end MultipleLimit
