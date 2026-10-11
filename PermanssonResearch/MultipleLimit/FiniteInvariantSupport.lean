@@ -93,10 +93,9 @@ theorem exists_positive_atom_of_positive_set
   push_neg at hn
   have hz : ∀ i ∈ s, π ({i} : Set Y) = 0 := by
     intro i hi
-    have hnot : ¬(0 < π ({i} : Set Y)) := by
-      intro hp
-      exact hn i (by simpa [s] using hi) hp
-    exact le_antisymm (not_lt.mp hnot) bot_le
+    have hle : π ({i} : Set Y) ≤ 0 :=
+      hn i (by simpa [s] using hi)
+    exact le_antisymm hle bot_le
   have hzero : (∑ i ∈ s, π ({i} : Set Y)) = 0 := by
     apply Finset.sum_eq_zero
     intro i hi
