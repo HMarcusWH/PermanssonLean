@@ -117,7 +117,7 @@ theorem invariant_class_full_support
     rw [hπC]
     norm_num
   obtain ⟨i, hi, hpi⟩ :=
-    exists_positive_atom_of_positive_set K π (CommunicatingClass K c)
+    exists_positive_atom_of_positive_set π (CommunicatingClass K c)
       hCpositive
   have hij : Reachable K i j :=
     (communicates_trans K (communicates_symm K hi) hj).1
