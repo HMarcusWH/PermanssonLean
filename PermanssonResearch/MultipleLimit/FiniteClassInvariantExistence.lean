@@ -56,7 +56,9 @@ theorem redirected_nonneg
   by_cases hi : i ∈ C
   · rw [redirected_inside K C c hi j]
     exact hK i j
-  · simp [redirectedMatrix, hi]
+  · dsimp [redirectedMatrix]
+    simp only [dif_neg hi]
+    split_ifs <;> norm_num
 
 theorem redirected_row_sum
     (hrow : ∀ i : Y, ∑ j : Y, K i j = 1)
