@@ -67,7 +67,11 @@ theorem typed_two_step_hit_at_least_half (i : Fin 6) :
       hittingValue (typedTarget recurrentTarget) typedModel.inducedKernel
         (decode i) 2 := by
   rw [typed_hitting_all_horizons i 2]
-  exact_mod_cast two_step_hit_at_least_half i
+  have hreal :
+      ((1/2 : ℚ) : ℝ) ≤
+        (rationalHittingValue sixStateMatrix recurrentTarget 2 i : ℝ) := by
+    exact_mod_cast two_step_hit_at_least_half i
+  simpa using hreal
 
 end ExactSixStateTyped
 end MultipleLimit
