@@ -93,7 +93,7 @@ theorem two_step_kernel_outside (y : Y) :
     norm_num [inducedKernel_atom_entry, fourStateMatrix, codeState,
       t, u, a, b, ENNReal.ofReal] <;>
     norm_num [half_toNNReal] <;>
-    exact inv_two_squared
+    simpa only [one_div, half_toNNReal] using inv_two_squared
 
 private theorem two_step_inside (z : Y) (hz : z ∈ A) :
     (model.inducedKernel ^ 2) z Aᶜ = 0 := by
