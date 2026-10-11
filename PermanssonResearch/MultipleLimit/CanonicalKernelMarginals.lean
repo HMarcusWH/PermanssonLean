@@ -101,8 +101,8 @@ theorem canonical_eval_zero_dirac
         (fun w : ℕ → Y => w 0) =
       ((canonicalPathLaw K (Measure.dirac y)).map
         (Preorder.frestrictLe 0)).map last := by
-        rw [Measure.map_map (measurable_pi_apply _)
-          (Preorder.measurable_frestrictLe 0)]
+        have hlast : Measurable last := measurable_pi_apply _
+        rw [Measure.map_map hlast (Preorder.measurable_frestrictLe 0)]
         rfl
     _ = (PermanssonLean.ProbabilitySupport.finitePrefixLaw K y 0).map last := by
       rw [canonicalPathLaw_prefix_dirac K y 0]
