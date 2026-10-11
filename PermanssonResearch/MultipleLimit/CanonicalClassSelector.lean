@@ -102,6 +102,7 @@ theorem firstRecurrentState_measurable :
 theorem firstRecurrentState_mem (w : ℕ → Y)
     (h : HasRecurrentHit K w) :
     firstRecurrentState K w ∈ RecurrentStates K := by
+  classical
   have hs := Nat.find_spec (entryPredicate_exists K w)
   change EntryPredicate K w (Nat.find (entryPredicate_exists K w)) at hs
   change EntryPredicate K w (firstRecurrentIndex K w) at hs
@@ -121,24 +122,33 @@ theorem fallbackRecurrentState_mem :
   (Classical.choose_spec
     (exists_reachable_recurrent_state K (Classical.choice inferInstance))).1
 
-/-- Canonical equality-class representative: equal communicating
-classes produce definitionally the same chosen class representative
-by proof irrelevance and the equality of the underlying sets. -/
+/-- A total set-based choice function. The same SET gives the same
+representative by congruence; the nonempty-case choice proof is
+irrelevant. Empty sets receive a fixed default from Nonempty Y. -/
+private noncomputable def chooseSet (C : Set Y) : Y := by
+  classical
+  exact if h : C.Nonempty then Classical.choose h else Classical.choice inferInstance
+
+private theorem chooseSet_mem {C : Set Y} (hC : C.Nonempty) :
+    chooseSet (Y := Y) C ∈ C := by
+  classical
+  simp only [chooseSet, dif_pos hC]
+  exact Classical.choose_spec hC
+
+/-- Equal communicating classes have the EXACT same chosen
+representative, independent of which physical state names the class. -/
 noncomputable def classRepresentative (i : Y) : Y :=
-  Classical.choose (show (CommunicatingClass K i).Nonempty from
-    ⟨i, mem_communicatingClass K i⟩)
+  chooseSet (CommunicatingClass K i)
 
 theorem classRepresentative_mem (i : Y) :
     classRepresentative K i ∈ CommunicatingClass K i :=
-  Classical.choose_spec (show (CommunicatingClass K i).Nonempty from
-    ⟨i, mem_communicatingClass K i⟩)
+  chooseSet_mem ⟨i, mem_communicatingClass K i⟩
 
 theorem classRepresentative_eq_of_communicates
     {i j : Y} (hij : Communicates K i j) :
     classRepresentative K i = classRepresentative K j := by
-  have hc := communicatingClass_eq_of_communicates K hij
-  unfold classRepresentative
-  rw [hc]
+  exact congrArg (chooseSet (Y := Y))
+    (communicatingClass_eq_of_communicates K hij)
 
 theorem classRepresentative_idempotent (i : Y) :
     classRepresentative K (classRepresentative K i) =
@@ -153,8 +163,9 @@ theorem classRepresentative_recurrent
 
 /-- The same representative is returned for any finite trajectory
 that enters the same recurrent communication class. -/
-noncomputable def selectedRepresentative (w : ℕ → Y) : Y :=
-  if HasRecurrentHit K w then
+noncomputable def selectedRepresentative (w : ℕ → Y) : Y := by
+  classical
+  exact if HasRecurrentHit K w then
     classRepresentative K (firstRecurrentState K w)
   else classRepresentative K (fallbackRecurrentState K)
 
