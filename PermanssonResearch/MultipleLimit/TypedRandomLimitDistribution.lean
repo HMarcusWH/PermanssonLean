@@ -135,6 +135,19 @@ theorem complete_random_limit_law_closed (μ : ProbabilityMeasure Y) :
           Measure.dirac (terminalLaw b) := by
   rw [complete_random_limit_law, terminal_a_weight_closed, terminal_b_weight_closed]
 
+/-- The full random occupation-limit law has total mass one. This
+extracts normalization of the two exact closed-form terminal weights
+directly from the previously established equality of probability measures. -/
+theorem terminal_weights_closed_normalized (μ : ProbabilityMeasure Y) :
+    (μ.toMeasure {a} +
+      (μ.toMeasure {t} + μ.toMeasure {u}) * (1/3 : ℝ≥0∞)) +
+    (μ.toMeasure {b} +
+      (μ.toMeasure {t} + μ.toMeasure {u}) * (2/3 : ℝ≥0∞)) = 1 := by
+  have h := congrArg
+    (fun ν : Measure (ProbabilityMeasure Y) => ν Set.univ)
+    (complete_random_limit_law_closed μ)
+  simpa [Measure.add_apply, Measure.smul_apply, smul_eq_mul] using h.symm
+
 end
 end TypedRandomLimitDistribution
 end MultipleLimit
