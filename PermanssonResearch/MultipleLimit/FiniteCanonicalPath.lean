@@ -26,6 +26,8 @@ namespace FiniteCanonicalPath
 universe uY uS uX uA
 variable {Y : Type uY} [MeasurableSpace Y]
 
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
+
 /-- Generic canonical homogeneous Markov trajectory for an initial law. -/
 noncomputable def canonicalPathLaw
     (K : Kernel Y Y) [IsMarkovKernel K]
