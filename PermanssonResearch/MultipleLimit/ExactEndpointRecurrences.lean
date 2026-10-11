@@ -40,7 +40,8 @@ theorem hit_a_from_b (T : ℕ) :
       change (∑ z : Fin 4, fourStateMatrix.entry 3 z *
         rationalHittingValue fourStateMatrix aTarget n z) = 0
       rw [Fin.sum_univ_four]
-      norm_num [fourStateMatrix, ih]
+      norm_num [fourStateMatrix]
+      simpa only [fourStateMatrix] using ih
 
 theorem hit_b_from_b (T : ℕ) :
     rationalHittingValue fourStateMatrix bTarget T 3 = 1 := by
@@ -57,7 +58,8 @@ theorem hit_b_from_a (T : ℕ) :
       change (∑ z : Fin 4, fourStateMatrix.entry 2 z *
         rationalHittingValue fourStateMatrix bTarget n z) = 0
       rw [Fin.sum_univ_four]
-      norm_num [fourStateMatrix, ih]
+      norm_num [fourStateMatrix]
+      simpa only [fourStateMatrix] using ih
 
 theorem hit_a_from_u_succ (T : ℕ) :
     rationalHittingValue fourStateMatrix aTarget (T + 1) 1 =
