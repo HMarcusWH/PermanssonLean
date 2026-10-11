@@ -30,8 +30,11 @@ noncomputable def canonicalPathProbability
 absorbing points, even on exceptional paths (where b is a measurable default). -/
 theorem terminalDestination_range (w : ℕ → Y) :
     terminalDestination w = a ∨ terminalDestination w = b := by
-  unfold terminalDestination
-  split_ifs <;> simp
+  by_cases h : EventuallyAt w absorbingA
+  · left
+    simp [terminalDestination, h, absorbingA, TypedStrategicWitness.a]
+  · right
+    simp [terminalDestination, h, absorbingB, TypedStrategicWitness.b]
 
 /-- The two terminal events partition the complete canonical path space.
 This is a statement about the measurable terminal-selector function. -/
@@ -89,7 +92,8 @@ theorem complete_random_limit_law (μ : ProbabilityMeasure Y) :
         ext w
         rcases terminalDestination_range w with hw | hw
         · simp [EA, hw, ha]
-        · simp [EA, hw, hb, a, b]
+        · have hne : b ≠ a := by decide
+          simp [EA, hw, hb, hne]
       rw [hp]
       simp [ha, hb]
   · by_cases hb : terminalLaw b ∈ E
@@ -97,7 +101,8 @@ theorem complete_random_limit_law (μ : ProbabilityMeasure Y) :
           EB := by
         ext w
         rcases terminalDestination_range w with hw | hw
-        · simp [EB, hw, ha, a, b]
+        · have hne : a ≠ b := by decide
+          simp [EB, hw, ha, hne]
         · simp [EB, hw, hb]
       rw [hp]
       simp [ha, hb]
