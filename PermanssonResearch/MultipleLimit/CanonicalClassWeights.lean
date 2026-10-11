@@ -52,10 +52,9 @@ theorem selected_class_eventual_ae (μ : ProbabilityMeasure Y) :
     exact mem_communicatingClass K _
   have hclass :
       CommunicatingClass K (selectedRepresentative K w) = C := by
-    unfold selectedRepresentative
-    rw [dif_pos hh]
-    exact (communicatingClass_eq_of_communicates K
+    have hc := (communicatingClass_eq_of_communicates K
       (classRepresentative_mem K (firstRecurrentState K w))).symm
+    simpa only [selectedRepresentative, if_pos hh] using hc
   refine ⟨firstRecurrentIndex K w, ?_⟩
   intro n hn
   rw [hclass]
@@ -99,7 +98,7 @@ theorem class_selection_weights_sum_one
   calc
     (∑ i ∈ s, P (f ⁻¹' ({i} : Set Y))) =
         P (f ⁻¹' (↑s : Set Y)) := by
-      exact Measure.sum_measure_preimage_singleton s
+      exact sum_measure_preimage_singleton (μ := P) s
         (fun i hi => (measurableSet_singleton i).preimage hf)
     _ = P Set.univ := by rw [hpre]
     _ = 1 := measure_univ
