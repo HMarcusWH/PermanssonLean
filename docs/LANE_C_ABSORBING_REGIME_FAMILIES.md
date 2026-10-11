@@ -1,86 +1,139 @@
 # Lane C1 — finite absorbing-family and random occupation laws
 
-**Research status:** Draft PR #52; proposed finite absorbing subclass of the
-[research architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md#6-lane-c--multiple-limit-and-basin-family-semantics).
-The core v0.1.8 `RegimeSpecification.target` remains a single frozen
-probability measure and is **not modified** here.
+**Scope:** Research-only Lane C1, PR #52. Frozen v0.1.8 core and the one-target
+`RegimeSpecification.target` remain unchanged. This release certifies a
+**specific genuine finite strategic-world witness**, together with conditional
+generic absorbing-kernel lemmas. It is **not** a theorem for every finite
+Markov chain and **not** a new generalized Permansson Regime.
 
-## Mathematical separation
+## Typed stochastic witness and exact process
 
-Let `Y` be finite, `K` a genuine Markov kernel and `A ⊆ Y` a nonempty
-set of absorbing fixed points, i.e. `K(a) = δ_a` for every `a ∈ A`.
-There are four different assertions that must never be conflated:
+The physical joint state is `Y = Bool × Bool`, in order `t,u,a,b`.
+The actual action-selection/world-transition/strategic-update composition
+has kernel
 
-1. **Kernel absorption:** the actual Markov semigroup has a uniform
-   `N ≥ 1`, `0 < ε ≤ 1` with `K^N(y,A) ≥ ε` for every transient `y`.
-2. **Path-space geometric survival:** for canonical path law `P_y`,
-   `P_y(τ_A > kN) ≤ (1-ε)^k`; derive with the conditional Markov property
-   and an actual N-step bridge, not independent-block multiplication.
-3. **Almost-sure trajectory convergence:** conditional on eventual absorption
-   into some `H(w) ∈ A`, the original positive-horizon empirical occupation
-   process converges in the **original weak topology** to `δ_{H(w)}`.
-4. **Law of the limit:** `Law_y(δ_H)`, the pushforward of the random
-   endpoint distribution by `a ↦ δ_a`; its barycenter
-   `∑ P_y(H=a) δ_a` is not generally the pathwise random limit itself.
+```text
+        t    u    a    b
+    t   0    1    0    0
+    u   0   1/2  1/6  1/3
+    a   0    0    1    0
+    b   0    0    0    1
+```
 
-The finite four-state adversarial fixture in
-`verification/research/test_lane_c.py` has states `t,u,a,b` and
-`t→u=1`, `u→u=1/2`, `u→a=1/6`, `u→b=1/3`, and `a,b` fixed.
-It has `N=2`, `ε=1/2` and absorption weights `1/3,2/3`.
-This fixture is independent exact arithmetic and **does not substitute** for
-the corresponding typed strategic model's formally verified induced kernel.
+`TypedStrategicWitness.inducedKernel_atom_entry` proves every atom of the
+**actual** α/P/U induced kernel, and
+`inducedKernel_eq_rational_transport` proves the complete kernel equality.
+`TypedPrefixTransport`, `TypedCanonicalPathBridge` and
+`TypedInitialMixture` establish finite-prefix transport and the infinite
+canonical path-law initial-mixture identity; they do not assume independent
+trajectory segments.
 
-## Current research modules and exact scope
+## Formally established at the last green research checkpoint
 
-| Module | Explicit mathematical obligation | Status |
-|---|---|---|
-| `AbsorbingFamily` | finite typed Markov kernel, nonempty pointwise absorbing states, unique terminal destination | Source committed; Lean gate required |
-| `AbsorptionTail` | geometric survival and limit zero from an **explicit per-block survival recurrence** | Conditional theorem; **missing stochastic-semigroup bridge** |
-| `RandomLimit` | eventual constancy implies canonical weak empirical occupation convergence for the Boolean state space | Proof source committed; Lean gate required |
-| `LimitLaws` | distribution of endpoint Dirac laws is the measurable probability pushforward, exact measurable-event weights | Proof source committed; Lean gate required |
-| `Counterexamples` | no shared state-space Dirac limit for distinct fixed points; observational descriptor collapse | Proof source committed; Lean gate required |
-| `DescriptorTransport` | pushforward terminal Dirac measure through an observed descriptor | Proof source committed; Lean gate required |
-| `TypedStrategicWitness` | real stochastic α/P/U kernels for the branching four-state experiment | Construction only; **induced-kernel equality and a.s. absorption not yet proved** |
-| `Recovery` | conservative original GR recovery given independent original GR gates and an actual path-law a.s. common absorbing target | Conditional original semantics; Lean gate required |
+- `AbsorbingFamily` and `TypedAbsorbingKernel`: two distinct absorbing
+  fixed points, and explicit finite measurable-family requirements.
+- `KernelBlockSurvival.geometric_endpoint_power_of_absorbing_block`:
+  Chapman–Kolmogorov geometric endpoint decay from a **uniform actual
+  N-step kernel bound**, conditional on the stated kernel assumptions.
+- `KernelCanonicalBlockBridge.canonical_geometric_noHit`:
+  canonical no-hit bound from real path-time marginals, conditional on
+  the explicit genuine marginal-power identity.
+- `TypedMarginalPowers.canonical_eval_eq_kernel_pow`: the genuine
+  infinite typed path law satisfies that marginal-power identity for
+  every point start and time index.
+- `TypedCanonicalHitting`, `TypedEndpointHitting`,
+  `TypedEndpointInfiniteWeights`: all-horizon first-hitting results,
+  exact ever-hit destination weights 1/3 and 2/3 from t/u.
+- `TypedEventualHitting`, `TypedAbsorbingContinuation`,
+  `TypedAlmostSureAbsorption`: almost-sure entry followed by
+  absorbing continuation for **every initial probability measure**
+  on Y, without an added hitting or independence hypothesis.
+- `MeasurableDestination`, `TypedRandomOccupation`: a genuinely
+  measurable random terminal destination and almost-sure weak
+  pathwise empirical occupation convergence to its terminal Dirac law.
+- `TypedTerminalEndpointLaw`: exact terminal state weights for t/u
+  and singleton event weights for the measure-valued random limit,
+  with explicit singleton-measurability premises on the latter.
+- `TypedObservedLimit` and `TypedObservedExactGR`: deterministic
+  observed occupation convergence for the nonconstant frozen
+  descriptor `h(y)=y.1`, plus the original `IsExactGeneratedRegime`
+  gate with separate Assumption 4.1 and invariance proofs.
 
-Do not promote PR #52 or describe C1 as end-to-end established until:
-- a theorem derives per-block survival from the actual `K^N` bound with
-  correct zero-time and horizon conventions;
-- a theorem converts its geometric tail into canonical path-law a.s.
-  absorption and a *measurable* random destination;
-- the actual typed strategic witness induced kernel is verified to equal
-  the exact finite transition matrix, not just analogically similar;
-- all descriptor occupation and law-of-random-measure claims hold for the
-  declared finite family and supported initial laws;
-- source statements are checked for hidden circularity, are axiom audited,
-  and the negative examples refute the stated stronger claims.
+## PR #52 completion pass
 
-## Known necessary counterexamples
+`TypedTerminalMixture` implements the point-absorber endpoint results
+from the actual canonical time-zero law plus continuation, then
+arbitrary-initial-law terminal probabilities by the proved infinite-path
+mixture identity. These newest additions require a successful final-head
+Lean build before they are reported as formally established.
 
-- **C1:** Two distinct absorbing states have distinct limiting state Dirac laws.
-- **C2:** For transient `u`, `ν∞ = δ_a` or `δ_b`, with endpoint weights
-  `1/3,2/3`; their weighted mixture is the expectation, not an a.s.
-  trajectory limit.
-- **C3:** The already-proved period-two model has convergent empirical
-  occupation but oscillating time marginals; retain as regression control.
-- **C4:** Infinite nonstationary alternation is outside the finite stationary
-  assumptions; no general almost-sure claim is made.
-- **C5:** A constant observed descriptor maps different absorbing states to
-  the same observed Dirac measure.
-- An overly broad ex-post target set is not an admissible frozen target.
+The intended explicit terminal weights for
+`μ = (μ_t, μ_u, μ_a, μ_b)` are
 
-## Frozen-source and release gates
+```text
+p_a(μ) = μ_a + (μ_t + μ_u) / 3
+p_b(μ) = μ_b + 2(μ_t + μ_u) / 3
+```
 
-1. Use the existing `PermanssonResearch` target, pinned Lean 4.34.0/mathlib.
-2. Preserve frozen `PermanssonLean/`, `PermanssonLean.lean`, `paper/`,
-   `application/`, toolchain, and historical artifacts.
-3. Import every module directly from `PermanssonResearch.lean`.
-4. Pass all four **final-head** CI workflows, independent rational tests,
-   source placeholder scanner and transitive axiom audit.
-5. Resolve the explicit open kernel-to-path-law bridging steps before claiming
-   full C1 scientific completion.
-6. Record substantive mathematical review and only then promote and merge.
+The intended **law on probability measures**, distinct from its
+barycenter, is
 
-**No unrestricted finite irreducible recurrent-class theorem is asserted.**
-Periodicity, nonabsorbing class invariant distributions, empirical class
-ergodicity and the complete Lane C decomposition are reserved for PR #53.
+`Law_μ(ν∞) = p_a(μ) · δ_(δ_a) + p_b(μ) · δ_(δ_b)`.
+
+These closed-form and whole-measure-law statements are not promoted
+until the exact Lean declarations compile and their assumptions have
+been reviewed. The earlier point-start weights and measurable-law
+construction remain separately established.
+
+A complete end-to-end witness-specific `N=2, q=1/2` kernel-derived
+geometric no-hit certificate is a desirable second absorption route;
+the unconditional exact-hitting absorption theorem is **already proved**
+and does not depend on this extra integration.
+
+## Theorem boundaries and negative controls
+
+- **Not all absorbing families absorb almost surely.** Mere existence
+  of an absorbing state does not guarantee hitting: the uniform N-step
+  hypothesis or another hitting proof must be provided.
+- **Random versus expected limit:** individual paths have limits
+  `δ_a` or `δ_b`; their weighted mixture is a barycenter, not
+  almost surely the trajectory's limit.
+- **Multiple physical limits, one observed limit:** the nonconstant
+  frozen descriptor sends both a and b to true while distinguishing
+  the transient states from absorbing states.
+- **Finite vs infinite:** the period-two example provides a separate
+  empirical-occupation convergence regression despite oscillating
+  marginals. Infinite and nonstationary generalizations are excluded.
+- **Formal Exact GR vs confirmatory GR vs PR:** the witness
+  `observedSpec.region=Set.univ` has a tautological invariance gate.
+  Its observed convergence is substantive, but no strategically
+  constitutive intervention is proved. The
+  `IsConfirmatoryGeneratedRegime` descriptor-nondegeneracy condition
+  requires its own named proof before that stronger label can be used.
+- **Research mathematics vs field applications:** none of this proves
+  empirical identification, causation, calibrated forecasts or
+  geopolitically certified PR status.
+
+## Release and CI policy
+
+- Preserve `PermanssonLean/`, `PermanssonLean.lean`, `paper/`,
+  `application/`, original version metadata, pinned Lean 4.34.0,
+  mathlib manifest, and historical release artifacts.
+- Import every new research module from `PermanssonResearch.lean`.
+- Require all four GitHub workflows on the final PR revision.
+  Standard PR workflows evaluate GitHub's **synthetic merge commit**;
+  record both PR branch head and tested merge SHA. If a literal
+  branch-head build is additionally performed, record it separately.
+- Transitive axiom allowlist: `propext`, `Classical.choice`,
+  `Quot.sound`. Reject `sorry`, `admit` and custom research axioms.
+- Record exact-rational regression results, substantive theorem-statement
+  review, and any unresolved premises. No claim of independent peer
+  review without an actual external review.
+- Do not promote, merge or mark the PR ready for review until all
+  advertised **new** theorems compile and the scientific review closes.
+
+## After C1
+
+PR #53 remains responsible for general finite recurrent
+communicating classes, periodic-class empirical ergodicity, arbitrary
+class invariant laws and the full Lane C regime-family decomposition.
