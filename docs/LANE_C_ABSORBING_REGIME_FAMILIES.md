@@ -61,11 +61,19 @@ trajectory segments.
 
 ## PR #52 completion pass
 
-`TypedTerminalMixture` implements the point-absorber endpoint results
-from the actual canonical time-zero law plus continuation, then
-arbitrary-initial-law terminal probabilities by the proved infinite-path
-mixture identity. These newest additions require a successful final-head
-Lean build before they are reported as formally established.
+`TypedTerminalMixture` proves the point-absorber endpoint laws
+from genuine canonical time-zero marginals and absorbing continuation,
+then derives arbitrary-initial-law weights by the actual infinite-path
+mixture identity. All nine of its Lean declarations, including both
+closed-form weights, passed individual module compilation on the
+intermediate PR checkpoint. Final-head verification remains mandatory.
+`TypedTwoStepAbsorption` also compiled: it certifies a uniform two-step
+hitting probability of at least 1/2 on the actual canonical path law.
+`TypedObservedConfirmatory` compiled the reachable
+`IsDescriptorNondegenerate` witness and hence the existing formal
+`IsConfirmatoryGeneratedRegime`. Its two distinct descriptor laws are
+witnessed **at time zero**, not by a claim of persistent temporal
+separation. This is a synthetic formal classifier, not empirical evidence.
 
 The intended explicit terminal weights for
 `μ = (μ_t, μ_u, μ_a, μ_b)` are
@@ -80,15 +88,31 @@ barycenter, is
 
 `Law_μ(ν∞) = p_a(μ) · δ_(δ_a) + p_b(μ) · δ_(δ_b)`.
 
-These closed-form and whole-measure-law statements are not promoted
-until the exact Lean declarations compile and their assumptions have
-been reviewed. The earlier point-start weights and measurable-law
-construction remain separately established.
+`TypedRandomLimitDistribution.complete_random_limit_law_closed`
+targets equality of **entire measures** on the probability-measure space,
+not only two singleton-event weights. The pathwise-limit law is attached
+to the real almost-sure weak occupation limit through
+`TypedRandomOccupation.canonical_random_occupation_limit_unconditional`
+and `MeasurableDestination.pathwiseRandomLimitLaw`. Neither object is
+identified with its barycenter. The complete-law module is new and must
+pass the final Research Lean gate before its theorem is promoted.
 
-A complete end-to-end witness-specific `N=2, q=1/2` kernel-derived
-geometric no-hit certificate is a desirable second absorption route;
-the unconditional exact-hitting absorption theorem is **already proved**
-and does not depend on this extra integration.
+`TypedGeometricAbsorption` is the new concrete integration from
+actual two-step induced-kernel powers through
+`KernelCanonicalBlockBridge.canonical_geometric_noHit` and
+`TypedInitialMixture.typed_pathLaw_event_initial_mixture`.
+It is a **second proof route**; existing unconditional canonical
+absorption is already established independently via exact hitting.
+The sharp two-step survival rows are respectively
+`K²(t,Aᶜ)=1/2`, `K²(u,Aᶜ)=1/4`, and zero for a and b.
+The asserted all-starting-law path-space bound is
+`P_μ(noHitThrough A (2*k)) ≤ (1/2)^k`.
+The implementation is not certified until the new theorem compiles.
+
+**Promotion boundary:** neither the whole-measure law nor the new
+kernel-derived path bound is called verified merely because source
+code is present; final-head compilation, axiom audit and scientific
+statement review are required.
 
 ## Theorem boundaries and negative controls
 
@@ -109,7 +133,9 @@ and does not depend on this extra integration.
   Its observed convergence is substantive, but no strategically
   constitutive intervention is proved. The
   `IsConfirmatoryGeneratedRegime` descriptor-nondegeneracy condition
-  requires its own named proof before that stronger label can be used.
+  now has a named compiled witness in `TypedObservedConfirmatory`, with
+  separation at time zero. It does not imply a constitutive intervention,
+  nontrivial invariant subset or external empirical validation.
 - **Research mathematics vs field applications:** none of this proves
   empirical identification, causation, calibrated forecasts or
   geopolitically certified PR status.
