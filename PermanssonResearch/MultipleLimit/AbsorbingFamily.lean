@@ -53,5 +53,25 @@ def HasAlmostSureAbsorption {Y : Type*} [MeasurableSpace Y] [Fintype Y]
     (F : AbsorbingFamily Y) (μ : Measure (ℕ → Y)) : Prop :=
   ∀ᵐ w ∂μ, w ∈ AbsorptionPaths F
 
+
+/-- Explicit measurability data for generic finite absorbing families.
+
+Finiteness alone does not imply a discrete measurable space. In particular,
+the event of reaching the absorbing set and the event of stabilizing at an
+individual absorbing point need not be measurable without these hypotheses.
+The Boolean witness supplies both properties by discreteness. -/
+structure MeasurableAbsorbingFamily (Y : Type*) [MeasurableSpace Y]
+    [Fintype Y] where
+  family : AbsorbingFamily Y
+  absorbing_measurable : MeasurableSet (family.absorbing : Set Y)
+  singleton_measurable : ∀ y : Y, MeasurableSet ({y} : Set Y)
+
+/-- A generic finite absorbing family may be equipped with explicit
+measurability certificates without altering its stochastic kernel. -/
+def MeasurableAbsorbingFamily.toFamily {Y : Type*} [MeasurableSpace Y]
+    [Fintype Y] (F : MeasurableAbsorbingFamily Y) : AbsorbingFamily Y :=
+  F.family
+
+
 end MultipleLimit
 end PermanssonResearch
