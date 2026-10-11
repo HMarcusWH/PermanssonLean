@@ -21,6 +21,17 @@ A, B = frozenset((2, 3)), frozenset((4, 5))
 PI_A = (Q(0), Q(0), Q(1, 2), Q(1, 2), Q(0), Q(0))
 PI_B = (Q(0), Q(0), Q(0), Q(0), Q(1, 3), Q(2, 3))
 
+
+def quotient(i):
+    return 0 if i == 0 else 1 if i == 1 else 2 if i in A else 3
+
+Q4 = (
+    (Q(0), Q(1), Q(0), Q(0)),
+    (Q(0), Q(1, 2), Q(1, 6), Q(1, 3)),
+    (Q(0), Q(0), Q(1), Q(0)),
+    (Q(0), Q(0), Q(0), Q(1)),
+)
+
 def reachable(start):
     reached, todo = {start}, [start]
     while todo:
@@ -93,6 +104,16 @@ def empirical(path):
     return tuple(Q(path.count(j), len(path)) for j in range(N))
 
 class ExactRecurrentChain(unittest.TestCase):
+    def test_exact_quotient_lumpability(self):
+        for i in range(N):
+            for j in range(4):
+                self.assertEqual(sum(P[i][z] for z in range(N) if quotient(z) == j),
+                                 Q4[quotient(i)][j])
+        for pi, label in ((PI_A, 2), (PI_B, 3)):
+            self.assertEqual(tuple(sum(pi[z] for z in range(N) if quotient(z) == j)
+                                   for j in range(4)),
+                             tuple(Q(j == label) for j in range(4)))
+
     def test_stochastic_and_positive_support(self):
         self.assertTrue(all(p >= 0 for row in P for p in row))
         self.assertEqual(tuple(sum(row) for row in P), (Q(1),) * N)
