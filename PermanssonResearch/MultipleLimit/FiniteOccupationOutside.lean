@@ -49,7 +49,7 @@ theorem empiricalVector_tendsto_zero_of_eventuallyInClass
     tendsto_const_nhds.congr' hzero.symm
   have hcesaro := htends.cesaro
   have hshift := hcesaro.comp (tendsto_add_atTop_nat 1)
-  simpa only [empiricalVector] using hshift
+  simpa only [Function.comp_def, empiricalVector] using hshift
 
 end FiniteOccupationOutside
 end MultipleLimit
