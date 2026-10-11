@@ -171,6 +171,29 @@ theorem canonical_geometric_noHit_initial (μ : ProbabilityMeasure Y)
       rw [Finset.sum_mul]
     _ = (1/2 : ℝ≥0∞)^k := by rw [hmass, one_mul]
 
+/-- The independent kernel-derived geometric tail plus the proved
+absorbing-row continuation yield actual almost-sure absorption of the
+canonical path law, without using the earlier exact-hitting theorem. -/
+theorem canonical_almostSureAbsorption_from_geometric
+    (μ : ProbabilityMeasure Y) :
+    HasAlmostSureAbsorption family (model.pathLaw μ.toMeasure) := by
+  have hpow (k : ℕ) :
+      (1/2 : ℝ≥0∞)^k =
+        ENNReal.ofReal ((1 - (1/2 : ℝ))^k) := by
+    rw [show (1 - (1/2 : ℝ)) = (1/2 : ℝ) by norm_num,
+      ENNReal.ofReal_pow (by norm_num : (0 : ℝ) ≤ 1/2) k,
+      half_ofReal]
+  have hblocks (k : ℕ) :
+      model.pathLaw μ.toMeasure
+        (NoHitThrough family.absorbing (k*2)) ≤
+        ENNReal.ofReal ((1 - (1/2 : ℝ))^k) := by
+    simpa only [family, hpow k] using
+      canonical_geometric_noHit_initial μ k
+  exact ae_absorptionPaths_of_geometric_bounds family
+    (model.pathLaw μ.toMeasure) 2 (1/2 : ℝ)
+    (by norm_num) (by norm_num) hblocks
+    (stays_after_absorbing_ae μ)
+
 end
 end TypedGeometricAbsorption
 end MultipleLimit
