@@ -137,6 +137,81 @@ theorem cesaro_invariance_defect_bound
   apply mul_le_mul_of_nonneg_left ?_ hp
   exact (abs_sub _ _).trans ((add_le_add_right (hbounded (n+1) j) _))
 
+
+/-- Nonnegative stochastic transition matrices keep iterated vectors
+nonnegative, for every (possibly periodic) transition array. -/
+theorem iteratedVector_nonneg
+    (K : Y → Y → ℝ)
+    (hK : ∀ i j, 0 ≤ K i j)
+    (v : Y → ℝ) (hv : ∀ i, 0 ≤ v i) :
+    ∀ n j, 0 ≤ iteratedVector K v n j := by
+  intro n
+  induction n with
+  | zero => exact hv
+  | succ n ih =>
+      intro j
+      exact pushVector_nonneg K hK _ ih j
+
+/-- Every real stochastic transition preserves the TOTAL MASS of all
+iterated vectors, including periodic and reducible kernels. -/
+theorem iteratedVector_mass
+    (K : Y → Y → ℝ)
+    (hrow : ∀ i : Y, ∑ j : Y, K i j = 1)
+    (v : Y → ℝ) :
+    ∀ n, (∑ j : Y, iteratedVector K v n j) = ∑ j : Y, v j := by
+  intro n
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+      exact (pushVector_total K hrow _).trans ih
+
+/-- All iterated masses lie in [0,1] if the input is a genuine
+real-valued probability vector. -/
+theorem iteratedVector_le_one
+    (K : Y → Y → ℝ)
+    (hK : ∀ i j, 0 ≤ K i j)
+    (hrow : ∀ i : Y, ∑ j : Y, K i j = 1)
+    (v : Y → ℝ) (hv : ∀ i, 0 ≤ v i)
+    (hvtotal : (∑ i : Y, v i) = 1)
+    (n : ℕ) (j : Y) :
+    iteratedVector K v n j ≤ 1 := by
+  have hpos := iteratedVector_nonneg K hK v hv n
+  calc
+    iteratedVector K v n j ≤
+        ∑ i : Y, iteratedVector K v n i :=
+      Finset.single_le_sum (fun i hi => hpos i) (Finset.mem_univ j)
+    _ = 1 := (iteratedVector_mass K hrow v n).trans hvtotal
+
+/-- Explicit quantitative stationary defect of finite Cesaro
+averages: at most 2/(n+1) at every coordinate, even when the
+individual one-step marginals oscillate periodically. -/
+theorem cesaro_probability_defect_bound
+    (K : Y → Y → ℝ)
+    (hK : ∀ i j, 0 ≤ K i j)
+    (hrow : ∀ i : Y, ∑ j : Y, K i j = 1)
+    (v : Y → ℝ) (hv : ∀ i, 0 ≤ v i)
+    (hvtotal : (∑ i : Y, v i) = 1)
+    (n : ℕ) (j : Y) :
+    |pushVector K (cesaroVector K v n) j -
+      cesaroVector K v n j| ≤
+        (((n+1 : ℕ) : ℝ)⁻¹) * 2 := by
+  have hnonneg := iteratedVector_nonneg K hK v hv
+  have hbdd : ∀ t i, |iteratedVector K v t i| ≤ (1 : ℝ) := by
+    intro t i
+    rw [abs_of_nonneg (hnonneg t i)]
+    exact iteratedVector_le_one K hK hrow v hv hvtotal t i
+  have h0 : |v j| ≤ (1 : ℝ) := by
+    simpa only [iteratedVector] using hbdd 0 j
+  calc
+    |pushVector K (cesaroVector K v n) j -
+      cesaroVector K v n j| ≤
+        (((n+1 : ℕ) : ℝ)⁻¹) * (1 + |v j|) :=
+      cesaro_invariance_defect_bound K v 1 (by positivity) hbdd n j
+    _ ≤ (((n+1 : ℕ) : ℝ)⁻¹) * 2 := by
+      gcongr
+      linarith
+
+
 end FiniteCesaroAlgebra
 end MultipleLimit
 end PermanssonResearch
