@@ -1,6 +1,7 @@
 import PermanssonLean.StrategicWorld.PathLaw
 import PermanssonLean.Probability.FinitePrefixTV
 import Mathlib.MeasureTheory.Integral.Lebesgue.Countable
+import Mathlib.MeasureTheory.Measure.ProbabilityMeasure
 import Mathlib.Tactic
 
 /-!
@@ -43,6 +44,10 @@ instance canonicalPathLaw_isProbability
   unfold canonicalPathLaw
   infer_instance
 
+section PointStarts
+
+variable [MeasurableSingletonClass Y]
+
 /-- A Dirac-initial infinite trajectory is the canonical trajectory
 kernel at the genuine time-zero singleton history. -/
 theorem canonicalPathLaw_dirac_eq_traj
@@ -69,6 +74,8 @@ theorem canonicalPathLaw_prefix_dirac
     (κ := fun n => PermanssonLean.ProbabilitySupport.stationaryPrefixKernel K n)
     0 T (PermanssonLean.ProbabilitySupport.singletonPrefix y)
   simpa only [PermanssonLean.ProbabilitySupport.finitePrefixLaw] using h
+
+end PointStarts
 
 section FiniteMixture
 

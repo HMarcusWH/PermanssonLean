@@ -65,9 +65,14 @@ theorem communicates_trans {i j k : Y}
     (Communicates K) i k :=
   ⟨reachable_trans K hij.1 hjk.1, reachable_trans K hjk.2 hij.2⟩
 
-theorem communicates_equivalence : Equivalence (Communicates K) :=
-  ⟨communicates_refl K, (fun _ _ => communicates_symm K),
-    (fun _ _ _ => communicates_trans K)⟩
+theorem communicates_equivalence : Equivalence (Communicates K) := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro i
+    exact communicates_refl K i
+  · intro i j hij
+    exact communicates_symm K hij
+  · intro i j k hij hjk
+    exact communicates_trans K hij hjk
 
 theorem mem_communicatingClass (i : Y) :
     i ∈ (CommunicatingClass K) i :=
