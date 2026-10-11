@@ -64,9 +64,8 @@ trajectory segments.
 `TypedTerminalMixture` proves the point-absorber endpoint laws
 from genuine canonical time-zero marginals and absorbing continuation,
 then derives arbitrary-initial-law weights by the actual infinite-path
-mixture identity. All nine of its Lean declarations, including both
-closed-form weights, passed individual module compilation on the
-intermediate PR checkpoint. Final-head verification remains mandatory.
+mixture identity. Its point-start and arbitrary-start theorems, including both
+closed-form weights, passed the final-head Research Lean build.
 `TypedTwoStepAbsorption` also compiled: it certifies a uniform two-step
 hitting probability of at least 1/2 on the actual canonical path law.
 `TypedObservedConfirmatory` compiled the reachable
@@ -94,8 +93,8 @@ not only two singleton-event weights. The pathwise-limit law is attached
 to the real almost-sure weak occupation limit through
 `TypedRandomOccupation.canonical_random_occupation_limit_unconditional`
 and `MeasurableDestination.pathwiseRandomLimitLaw`. Neither object is
-identified with its barycenter. The complete-law module is new and must
-pass the final Research Lean gate before its theorem is promoted.
+identified with its barycenter. The complete-law and weight-normalization theorems both passed
+Research Lean on the final source revision.
 
 `TypedGeometricAbsorption` is the new concrete integration from
 actual two-step induced-kernel powers through
@@ -107,12 +106,30 @@ The sharp two-step survival rows are respectively
 `K²(t,Aᶜ)=1/2`, `K²(u,Aᶜ)=1/4`, and zero for a and b.
 The asserted all-starting-law path-space bound is
 `P_μ(noHitThrough A (2*k)) ≤ (1/2)^k`.
-The implementation is not certified until the new theorem compiles.
+The concrete two-step kernel identities, all-initial-law
+geometric no-hit estimate and independent geometric-tail-to-absorption
+corollary compiled on the final source revision.
 
-**Promotion boundary:** neither the whole-measure law nor the new
-kernel-derived path bound is called verified merely because source
-code is present; final-head compilation, axiom audit and scientific
-statement review are required.
+**Formal certification:** The whole-measure law, weight
+normalization, and typed geometric kernel-to-path result are formally
+compiled on source HEAD `ea0a75e7abca798a5ffaca26de96b84f6e8936e6`,
+tested by PR synthetic merge
+`8182594bbacdc84ff6938e7780bf72b3b7bd1dad`.
+Four workflows passed on that tested revision. Research Lean built
+3,859 jobs; 1,942 transitive declarations passed the allowed-axiom audit;
+86 research regression tests passed; all 159 research modules are directly
+imported; and the proof-placeholder firewall passed. These are formal
+and executable results, **not independent external peer review**.
+
+**Scientific statement audit:** The final C1 claim is a specific genuine
+four-state finite absorbing strategic-world witness and conditional
+generic kernel lemmas. The resulting two-atom law is the distribution
+of the almost-sure empirical-occupation limit, not its barycenter.
+The observed confirmatory-GR certificate witnesses descriptor
+nondegeneracy at time zero, with `region = Set.univ` and hence a
+tautological invariance condition. No constitutive Permansson Regime,
+generic all-finite-chain convergence result, or field identification
+is inferred.
 
 ## Theorem boundaries and negative controls
 
@@ -155,8 +172,10 @@ statement review are required.
 - Record exact-rational regression results, substantive theorem-statement
   review, and any unresolved premises. No claim of independent peer
   review without an actual external review.
-- Do not promote, merge or mark the PR ready for review until all
-  advertised **new** theorems compile and the scientific review closes.
+- All new theorem modules have compiled on the identified tested
+  revision. The PR may now be marked ready for **external review**.
+  Do not conflate internal theorem-statement audit with submitted external
+  peer review, and do not merge without any separately required approval.
 
 ## After C1
 
