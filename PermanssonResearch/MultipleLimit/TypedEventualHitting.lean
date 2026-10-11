@@ -46,7 +46,11 @@ theorem targetGoal_eq_absorbingSet :
     (typedTarget absorbingTarget).goal = (absorbingSet : Set Y) := by
   ext z
   rcases z with ⟨s, x⟩
-  cases s <;> cases x <;> decide
+  cases s <;> cases x <;>
+    simp [TypedCanonicalHitting.typedTarget, ReverseSolver.rationalTargetAsFrozen,
+      ExactRationalAbsorption.absorbingTarget, absorbingSet,
+      TypedStrategicWitness.codeState, TypedStrategicWitness.a,
+      TypedStrategicWitness.b]
 
 theorem neverHit_subset_success_compl (T : ℕ) :
     NeverHit absorbingSet ⊆ (hitEvent T)ᶜ := by
