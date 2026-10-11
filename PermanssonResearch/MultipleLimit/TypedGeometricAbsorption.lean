@@ -40,8 +40,8 @@ private theorem half_ofReal :
   norm_num
 
 private theorem half_toNNReal :
-    (↑((1/2 : ℝ).toNNReal) : ℝ≥0∞) = (1/2 : ℝ≥0∞) := by
-  exact half_ofReal
+    (↑(((2 : ℝ)⁻¹).toNNReal) : ℝ≥0∞) = (2 : ℝ≥0∞)⁻¹ := by
+  simpa only [one_div, ENNReal.ofReal] using half_ofReal
 
 private theorem compl_eq : Aᶜ = ({t, u} : Set Y) := by
   ext z
