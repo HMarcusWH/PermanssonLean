@@ -34,6 +34,8 @@ import PermanssonResearch.MultipleLimit.RandomLimit
 import PermanssonResearch.MultipleLimit.AbsorptionTail
 import PermanssonResearch.MultipleLimit.KernelBlockSurvival
 import PermanssonResearch.MultipleLimit.KernelCanonicalBlockBridge
+import PermanssonResearch.MultipleLimit.FiniteCommunication
+import PermanssonResearch.MultipleLimit.ExactSixState
 import PermanssonResearch.MultipleLimit.AbsorbingFamily
 import PermanssonResearch.GrammarRobust.PRStatusTransport
 import PermanssonResearch.GrammarRobust.FullRelabelingTransport
