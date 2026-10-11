@@ -140,6 +140,29 @@ theorem terminal_b_weight_initial (μ : ProbabilityMeasure Y) :
   intro y _
   rw [terminal_point_b]
 
+/-- Closed-form terminal-a weight for an arbitrary starting probability law
+on the genuine four-state model. -/
+theorem terminal_a_weight_closed (μ : ProbabilityMeasure Y) :
+    model.pathLaw μ.toMeasure
+      {w : ℕ → Y | terminalDestination w = a} =
+    μ.toMeasure {a} +
+      (μ.toMeasure {t} + μ.toMeasure {u}) * (1/3 : ℝ≥0∞) := by
+  rw [terminal_a_weight_initial]
+  simp only [Fintype.sum_prod_type, Fintype.sum_bool]
+  simp [t, u, a, b]
+  ring
+
+/-- Closed-form terminal-b weight for the same arbitrary initial law. -/
+theorem terminal_b_weight_closed (μ : ProbabilityMeasure Y) :
+    model.pathLaw μ.toMeasure
+      {w : ℕ → Y | terminalDestination w = b} =
+    μ.toMeasure {b} +
+      (μ.toMeasure {t} + μ.toMeasure {u}) * (2/3 : ℝ≥0∞) := by
+  rw [terminal_b_weight_initial]
+  simp only [Fintype.sum_prod_type, Fintype.sum_bool]
+  simp [t, u, a, b]
+  ring
+
 end
 end TypedTerminalMixture
 end MultipleLimit
