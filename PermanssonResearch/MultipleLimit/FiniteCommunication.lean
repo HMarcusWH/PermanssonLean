@@ -23,6 +23,8 @@ structure RationalTransition (Y : Type*) [Fintype Y] where
   nonneg : ∀ i j, 0 ≤ entry i j
   row_sum : ∀ i, ∑ j, entry i j = 1
 
+namespace RationalTransition
+
 variable {Y : Type*} [Fintype Y]
 variable (T : RationalTransition Y)
 
@@ -71,6 +73,7 @@ theorem closed_edge
     j ∈ C :=
   hC i hi j hij
 
+end RationalTransition
 end FiniteCommunication
 end MultipleLimit
 end PermanssonResearch
