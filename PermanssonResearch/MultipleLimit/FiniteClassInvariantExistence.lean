@@ -80,7 +80,7 @@ theorem redirected_zero_outside
     exact hclosed i hi j hj
   · have hjc : j ≠ c := by
       intro heq
-      exact hj (heq ▸ hc)
+      exact hj (heq.symm ▸ hc)
     simp [redirectedMatrix, hi, hjc]
 
 /-- Every nonempty graph-closed set supports at least ONE
