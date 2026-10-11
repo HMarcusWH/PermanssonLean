@@ -25,6 +25,7 @@ namespace ClassDescriptorOccupationBridge
 variable {Y H : Type*}
 variable [MeasurableSpace Y] [MeasurableSpace H]
 variable [TopologicalSpace Y] [TopologicalSpace H]
+variable [OpensMeasurableSpace Y] [BorelSpace H]
 
 theorem descriptor_weak_limit_of_physical
     (h : Y → H) (hh : Continuous h)
