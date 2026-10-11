@@ -85,7 +85,7 @@ theorem canonical_eval_eq_kernel_pow (y : Y) :
   intro n
   induction n with
   | zero =>
-      rw [StrategicWorldModel.pathLaw_eval_zero model (Measure.dirac y)]
+      rw [RegimeSpecification.StrategicWorldModel.pathLaw_eval_zero model (Measure.dirac y)]
       simp only [pow_zero, Kernel.id_apply]
   | succ n ih =>
       rw [canonical_eval_succ (Measure.dirac y) n, ih]
