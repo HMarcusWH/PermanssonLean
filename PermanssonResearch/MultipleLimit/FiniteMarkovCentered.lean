@@ -85,6 +85,35 @@ theorem centered_row_mean_zero (y z : Y) :
           realTransition K y z := by rw [hdelta]
     _ = 0 := by rw [realTransition_row_sum K y]; ring
 
+/-- The conditional second moment of the genuine centered singleton
+increment is at most one, uniformly in the current state. This is the
+one-step L² bound required for the future pathwise martingale variance
+calculation; cross-time orthogonality is NOT established by this theorem. -/
+theorem centered_row_second_moment_le_one (y z : Y) :
+    (∑ x : Y, realTransition K y x *
+      (((if x = z then (1 : ℝ) else 0) -
+        realTransition K y z) ^ 2)) ≤ 1 := by
+  classical
+  calc
+    (∑ x : Y, realTransition K y x *
+        (((if x = z then (1 : ℝ) else 0) -
+          realTransition K y z) ^ 2)) ≤
+      (∑ x : Y, realTransition K y x * 1) := by
+        apply Finset.sum_le_sum
+        intro x hx
+        let d : ℝ :=
+          (if x = z then (1 : ℝ) else 0) - realTransition K y z
+        have hab : |d| ≤ 1 := centered_increment_abs_le_one K y x z
+        have hdlo : -1 ≤ d := (abs_le.mp hab).1
+        have hdhi : d ≤ 1 := (abs_le.mp hab).2
+        have hprod :
+            0 ≤ (1 - d) * (1 + d) :=
+          mul_nonneg (by linarith) (by linarith)
+        have hd2 : d ^ 2 ≤ 1 := by nlinarith
+        exact mul_le_mul_of_nonneg_left hd2
+          (realTransition_nonneg K y x)
+    _ = 1 := by simpa only [mul_one] using realTransition_row_sum K y
+
 end FiniteMarkovCentered
 end MultipleLimit
 end PermanssonResearch
