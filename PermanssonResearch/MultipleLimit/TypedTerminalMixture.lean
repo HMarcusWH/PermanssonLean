@@ -101,8 +101,12 @@ theorem terminal_point_b (z : Y) :
       if z = b then 1 else if z = a then 0 else (2/3 : ℝ≥0∞) := by
   rcases z with ⟨zs, zx⟩
   cases zs <;> cases zx
-  · simpa [t, u, a, b] using terminal_b_weight_t
-  · simpa [t, u, a, b] using terminal_b_weight_u
+  · simpa [t, u, a, b] using
+      (terminal_b_weight_t.trans
+        (by norm_num : ENNReal.ofReal (2/3 : ℝ) = (2/3 : ℝ≥0∞)))
+  · simpa [t, u, a, b] using
+      (terminal_b_weight_u.trans
+        (by norm_num : ENNReal.ofReal (2/3 : ℝ) = (2/3 : ℝ≥0∞)))
   · simpa [t, u, a, b] using
       (terminal_point_weight a b (Or.inl rfl))
   · simpa [t, u, a, b] using
@@ -134,11 +138,18 @@ theorem terminal_b_weight_initial (μ : ProbabilityMeasure Y) :
       {w : ℕ → Y | terminalDestination w = b} =
       ∑ y : Y, μ.toMeasure {y} *
         (if y = b then 1 else if y = a then 0 else (2/3 : ℝ≥0∞)) := by
-  rw [typed_pathLaw_event_initial_mixture μ _
-    ((measurableSet_singleton b).preimage measurable_terminalDestination)]
-  apply Finset.sum_congr rfl
-  intro y _
-  rw [terminal_point_b]
+  calc
+    model.pathLaw μ.toMeasure
+        {w : ℕ → Y | terminalDestination w = b} =
+      ∑ y : Y, μ.toMeasure {y} *
+        model.pathLaw (Measure.dirac y)
+          {w : ℕ → Y | terminalDestination w = b} :=
+      typed_pathLaw_event_initial_mixture μ _
+        ((measurableSet_singleton b).preimage measurable_terminalDestination)
+    _ = _ := by
+      apply Finset.sum_congr rfl
+      intro y _
+      rw [terminal_point_b y]
 
 /-- Closed-form terminal-a weight for an arbitrary starting probability law
 on the genuine four-state model. -/
