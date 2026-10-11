@@ -60,7 +60,7 @@ theorem typed_prefix_atom (x : Fin 4) :
         · intro h
           subst v
           funext i
-          exact decodeState_codeState (decodeState x)
+          rfl
       by_cases h : v = singletonPrefix x
       · have ht : singletonPrefix (decodeState x) =
             prefixDecode 0 v := (hinit.mpr h).symm
