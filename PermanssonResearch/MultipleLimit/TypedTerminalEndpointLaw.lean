@@ -132,6 +132,24 @@ theorem random_limit_b_weight_u
   rw [heq]
   exact terminal_b_weight_u
 
+
+/-- The same exact terminal weights hold from the deterministic entry state t. -/
+theorem terminal_a_weight_t :
+    model.pathLaw (Measure.dirac t)
+      {w : ℕ → Y | terminalDestination w = a} =
+      ENNReal.ofReal (1/3 : ℝ) := by
+  have h := terminal_a_eq_ever_hit_ae
+    (⟨Measure.dirac t, inferInstance⟩ : ProbabilityMeasure Y)
+  exact (measure_congr h).trans ever_hit_a_t
+
+theorem terminal_b_weight_t :
+    model.pathLaw (Measure.dirac t)
+      {w : ℕ → Y | terminalDestination w = b} =
+      ENNReal.ofReal (2/3 : ℝ) := by
+  have h := terminal_b_eq_ever_hit_ae
+    (⟨Measure.dirac t, inferInstance⟩ : ProbabilityMeasure Y)
+  exact (measure_congr h).trans ever_hit_b_t
+
 end
 end TypedTerminalEndpointLaw
 end MultipleLimit
