@@ -59,10 +59,9 @@ theorem classB_closed :
   decide
 
 theorem classA_disjoint_classB : Disjoint classA classB := by
-  intro x hx
-  rcases hx with ⟨hA, hB⟩
-  simp [classA, classB] at hA hB
-  omega
+  apply Set.disjoint_left.mpr
+  intro x hxA hxB
+  fin_cases x <;> simp [classA, classB] at *
 
 theorem classA_period_two_rows :
     transition 2 3 = 1 ∧ transition 3 2 = 1 ∧
@@ -130,10 +129,12 @@ theorem transient_weights :
     weightA 1 = 1/3 ∧ weightB 1 = 2/3 := by
   decide
 
-theorem observed_collapse :
-    (2 : Fin 6) ≠ 4 ∧
-    (if (2 : Fin 6) = 2 ∨ (2 : Fin 6) = 3 then true else true) =
-    (if (4 : Fin 6) = 2 ∨ (4 : Fin 6) = 3 then true else true) := by
+def observedRecurrent (i : Fin 6) : Bool :=
+  if i = 2 ∨ i = 3 ∨ i = 4 ∨ i = 5 then true else false
+
+theorem observed_collapse_and_nonconstant :
+    observedRecurrent 2 = observedRecurrent 4 ∧
+    observedRecurrent 0 ≠ observedRecurrent 2 := by
   decide
 
 end ExactSixState

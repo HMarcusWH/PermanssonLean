@@ -96,7 +96,8 @@ class ExactRecurrentChain(unittest.TestCase):
     def test_stochastic_and_positive_support(self):
         self.assertTrue(all(p >= 0 for row in P for p in row))
         self.assertEqual(tuple(sum(row) for row in P), (Q(1),) * N)
-        self.assertNotIn(3, reachable(1))
+        self.assertIn(3, reachable(1))
+        self.assertNotIn(0, reachable(1))
 
     def test_components_and_closed_classes(self):
         closed, all_comps = recurrent_classes()
