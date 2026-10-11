@@ -82,6 +82,7 @@ def measurableFamily : MeasurableAbsorbingFamily Y where
   absorbing_measurable := MeasurableSet.of_discrete
   singleton_measurable := fun z => measurableSet_singleton z
 
+end
 end TypedAbsorbingKernel
 end MultipleLimit
 end PermanssonResearch
