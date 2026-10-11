@@ -24,7 +24,7 @@ namespace FiniteMarkovCentered
 
 open FiniteKernelRealBridge
 
-variable {Y : Type*} [MeasurableSpace Y] [Fintype Y]
+variable {Y : Type*} [MeasurableSpace Y] [Fintype Y] [DecidableEq Y]
 variable [MeasurableSingletonClass Y]
 variable (K : Kernel Y Y) [IsMarkovKernel K]
 
