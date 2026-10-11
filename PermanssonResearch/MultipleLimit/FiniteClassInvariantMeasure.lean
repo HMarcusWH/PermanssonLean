@@ -128,6 +128,7 @@ theorem exists_unique_stationary_probability_on_class
   classical
   obtain ⟨c, hclosed, hclass⟩ := (recurrentClasses_mem_iff K C).mp hC
   subst C
+  letI : Nonempty Y := ⟨c⟩
   let D := CommunicatingClass K c
   have hmem : c ∈ D := mem_communicatingClass K c
   have hrealclosed : IsClosedReal (realTransition K) D :=
