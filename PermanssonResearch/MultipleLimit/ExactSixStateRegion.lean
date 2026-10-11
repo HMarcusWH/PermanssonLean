@@ -26,14 +26,16 @@ def region : Set (Fin 6) := {i | i ≠ 0}
 /-- A nontrivial proper region containing a transient and recurrent states. -/
 theorem region_proper_and_nonempty :
     (1 : Fin 6) ∈ region ∧ (0 : Fin 6) ∉ region := by
-  decide
+  norm_num [region]
 
 /-- No positive one-step transition exits B, proved against the genuine
 six-state row-stochastic rational matrix, not merely inferred from a graph. -/
 theorem region_closed :
     ∀ i j : Fin 6,
       i ∈ region → 0 < transition i j → j ∈ region := by
-  decide
+  intro i j hi hij
+  fin_cases i <;> fin_cases j <;>
+    norm_num [region, transition] at *
 
 /-- Both stationary class candidates live entirely inside the proper
 region; this does not assume any occupation-limit theorem. -/
@@ -49,7 +51,7 @@ theorem recurrent_support_in_region :
 theorem region_descriptor_nondegenerate :
     (1 : Fin 6) ∈ region ∧ (2 : Fin 6) ∈ region ∧
       observedRecurrent 1 ≠ observedRecurrent 2 := by
-  decide
+  norm_num [region, observedRecurrent]
 
 /-- Both physically distinct recurrent classes have the same observed
 descriptor value, but the proper region retains a distinct transient code. -/
