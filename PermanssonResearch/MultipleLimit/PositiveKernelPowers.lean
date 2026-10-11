@@ -39,8 +39,8 @@ theorem positive_kernel_power_of_reachable {a b : Y}
   induction hab with
   | refl =>
       refine ⟨0, ?_⟩
-      simpa [pow_zero, Kernel.id_apply] using
-        (show (0 : ℝ≥0∞) < 1 by norm_num)
+      change 0 < (Kernel.id : Kernel Y Y) a ({a} : Set Y)
+      simp [Kernel.id_apply]
   | @tail z w hprev hedge ih =>
       obtain ⟨n, hpos⟩ := ih
       refine ⟨n+1, ?_⟩
