@@ -64,7 +64,7 @@ theorem complete_random_limit_law (μ : ProbabilityMeasure Y) :
   have hsum : P EA + P EB = 1 := by
     have hc : EB = EAᶜ := terminalEvents_complement
     rw [hc]
-    have hh := measure_union (disjoint_compl_right : Disjoint EA EAᶜ) hEA
+    have hh := measure_union (disjoint_compl_right : Disjoint EA EAᶜ) hEA.compl
     simpa [P, Set.union_compl_self] using hh.symm
   apply Measure.ext
   intro E hE
