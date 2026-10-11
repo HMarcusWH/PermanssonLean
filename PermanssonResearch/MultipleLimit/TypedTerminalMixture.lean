@@ -103,10 +103,14 @@ theorem terminal_point_b (z : Y) :
   cases zs <;> cases zx
   · simpa [t, u, a, b] using
       (terminal_b_weight_t.trans
-        (by norm_num : ENNReal.ofReal (2/3 : ℝ) = (2/3 : ℝ≥0∞)))
+        (by
+          rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 3)]
+          norm_num : ENNReal.ofReal (2/3 : ℝ) = (2/3 : ℝ≥0∞)))
   · simpa [t, u, a, b] using
       (terminal_b_weight_u.trans
-        (by norm_num : ENNReal.ofReal (2/3 : ℝ) = (2/3 : ℝ≥0∞)))
+        (by
+          rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 3)]
+          norm_num : ENNReal.ofReal (2/3 : ℝ) = (2/3 : ℝ≥0∞)))
   · simpa [t, u, a, b] using
       (terminal_point_weight a b (Or.inl rfl))
   · simpa [t, u, a, b] using
