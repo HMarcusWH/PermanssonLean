@@ -1,0 +1,161 @@
+import PermanssonResearch.ReverseSolver.CanonicalAllHorizonCorrespondence
+import Mathlib.Tactic
+
+/-!
+# Lane C1 — exact rational reference matrix and finite hitting certificates
+
+This is an independent certified four-state rational calculation. It does
+NOT by itself prove that TypedStrategicWitness.model induces this matrix:
+that identity is a separate alpha/P/U proof obligation.
+-/
+
+namespace PermanssonResearch
+namespace MultipleLimit
+namespace ExactRationalAbsorption
+
+open ReverseSolver
+
+/-- Rows are in the order t=0, u=1, a=2, b=3. -/
+def fourStateMatrix : RationalMarkovMatrix 4 where
+  entry := fun y z =>
+    if y = 0 then
+      if z = 1 then 1 else 0
+    else if y = 1 then
+      if z = 1 then 1/2 else if z = 2 then 1/6
+      else if z = 3 then 1/3 else 0
+    else if z = y then 1 else 0
+  entry_nonneg := by
+    intro y z
+    split_ifs <;> norm_num
+  row_sum_one := by
+    intro y
+    fin_cases y <;> norm_num [Fin.sum_univ_four]
+
+/-- Both absorbing destinations count as the same *hitting set*, while their
+terminal identities remain different for the random-limit law. -/
+def absorbingTarget : RationalHittingTarget 4 where
+  goal := {2, 3}
+  forbidden := ∅
+  disjoint := by simp
+
+/-- Two transitions from t give absorption probability exactly 1/2. -/
+theorem t_two_step_hit :
+    rationalHittingValue fourStateMatrix absorbingTarget 2 0 = 1/2 := by
+  norm_num [rationalHittingValue, fourStateMatrix,
+    absorbingTarget, Fin.sum_univ_four]
+
+/-- Two transitions from u give absorption probability exactly 3/4. -/
+theorem u_two_step_hit :
+    rationalHittingValue fourStateMatrix absorbingTarget 2 1 = 3/4 := by
+  norm_num [rationalHittingValue, fourStateMatrix,
+    absorbingTarget, Fin.sum_univ_four]
+
+/-- The absorbing starting states have success from time zero. -/
+theorem a_initial_hit :
+    rationalHittingValue fourStateMatrix absorbingTarget 0 2 = 1 := by
+  norm_num [rationalHittingValue, absorbingTarget]
+
+theorem b_initial_hit :
+    rationalHittingValue fourStateMatrix absorbingTarget 0 3 = 1 := by
+  norm_num [rationalHittingValue, absorbingTarget]
+
+
+/-- The already-certified D0 correspondence transports the finite arithmetic
+to the REAL canonical finite-prefix Markov path measure. -/
+theorem canonical_t_two_step_hit :
+    hittingValue (rationalTargetAsFrozen absorbingTarget)
+      (rationalFiniteKernel fourStateMatrix) 0 2 = (1/2 : ℝ) := by
+  rw [← rationalHittingValue_eq_canonical_all_horizons]
+  norm_num [t_two_step_hit]
+
+theorem canonical_u_two_step_hit :
+    hittingValue (rationalTargetAsFrozen absorbingTarget)
+      (rationalFiniteKernel fourStateMatrix) 1 2 = (3/4 : ℝ) := by
+  rw [← rationalHittingValue_eq_canonical_all_horizons]
+  norm_num [u_two_step_hit]
+
+
+/-- A and B satisfy the finite-horizon hitting objective already at time
+zero; absorbing destinations remain hit at every horizon. -/
+theorem hitting_a_all (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget T 2 = 1 := by
+  cases T with
+  | zero => norm_num [rationalHittingValue_zero, absorbingTarget]
+  | succ T => norm_num [rationalHittingValue_succ, absorbingTarget]
+
+theorem hitting_b_all (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget T 3 = 1 := by
+  cases T with
+  | zero => norm_num [rationalHittingValue_zero, absorbingTarget]
+  | succ T => norm_num [rationalHittingValue_succ, absorbingTarget]
+
+/-- The true rational Markov recurrence at the transient u state; its
+survival coefficient is 1/2 and its immediate absorption mass is 1/2. -/
+theorem hitting_u_succ (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget (T+1) 1 =
+      (1/2 : ℚ) * rationalHittingValue fourStateMatrix absorbingTarget T 1 +
+        1/2 := by
+  rw [rationalHittingValue_succ]
+  change (∑ z : Fin 4,
+      fourStateMatrix.entry 1 z *
+        rationalHittingValue fourStateMatrix absorbingTarget T z) =
+      (1/2 : ℚ) * rationalHittingValue fourStateMatrix absorbingTarget T 1 +
+        1/2
+  rw [Fin.sum_univ_four]
+  simp only [hitting_a_all T, hitting_b_all T]
+  norm_num [fourStateMatrix] <;> ring
+
+/-- All-horizon exact survival arithmetic for the reference rational
+four-state Markov chain (separate from typed alpha/P/U correspondence). -/
+theorem hitting_u_closed (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget T 1 =
+      1 - (1/2 : ℚ)^T := by
+  induction T with
+  | zero =>
+      norm_num [rationalHittingValue_zero, absorbingTarget]
+  | succ T ih =>
+      rw [hitting_u_succ, ih, pow_succ]
+      ring
+
+/-- Transfer the all-horizon result to the actual Ionescu–Tulcea
+finite-prefix law for the rational kernel, using D0's established bridge. -/
+theorem canonical_u_hitting_all_horizons (T : ℕ) :
+    hittingValue (rationalTargetAsFrozen absorbingTarget)
+      (rationalFiniteKernel fourStateMatrix) 1 T =
+      ((1 - (1/2 : ℚ)^T : ℚ) : ℝ) := by
+  rw [← rationalHittingValue_eq_canonical_all_horizons]
+  exact congrArg (fun q : ℚ => (q : ℝ)) (hitting_u_closed T)
+
+
+/-- The transient entry state has a deterministic first step into u; its
+finite-horizon hitting probability is therefore the corresponding u value
+at the preceding horizon. -/
+theorem hitting_t_succ (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget (T + 1) 0 =
+      rationalHittingValue fourStateMatrix absorbingTarget T 1 := by
+  rw [rationalHittingValue_succ]
+  change (∑ z : Fin 4, fourStateMatrix.entry 0 z *
+      rationalHittingValue fourStateMatrix absorbingTarget T z) =
+        rationalHittingValue fourStateMatrix absorbingTarget T 1
+  rw [Fin.sum_univ_four]
+  norm_num [fourStateMatrix]
+
+/-- From t, hitting by time T+1 is exactly one minus the T-step
+survival probability of u. -/
+theorem hitting_t_closed (T : ℕ) :
+    rationalHittingValue fourStateMatrix absorbingTarget (T + 1) 0 =
+      1 - (1/2 : ℚ)^T := by
+  rw [hitting_t_succ, hitting_u_closed]
+
+/-- The genuine canonical finite-prefix hitting law from t, at every
+positive horizon; no numeric surrogate for the path measure is used. -/
+theorem canonical_t_hitting_all_horizons (T : ℕ) :
+    hittingValue (rationalTargetAsFrozen absorbingTarget)
+      (rationalFiniteKernel fourStateMatrix) 0 (T + 1) =
+        ((1 - (1/2 : ℚ)^T : ℚ) : ℝ) := by
+  rw [← rationalHittingValue_eq_canonical_all_horizons]
+  exact congrArg (fun q : ℚ => (q : ℝ)) (hitting_t_closed T)
+
+end ExactRationalAbsorption
+end MultipleLimit
+end PermanssonResearch
