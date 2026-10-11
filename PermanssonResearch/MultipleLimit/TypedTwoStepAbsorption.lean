@@ -28,9 +28,10 @@ theorem typed_two_step_hitting_ge_half (y : Y) :
   cases ys <;> cases yx
   · change (1/2 : ℝ) ≤
       (model.pathLaw (Measure.dirac t)).real (hitEvent 2)
-    have h := point_hitting_t_real 1
-    norm_num at h ⊢
-    simpa using h
+    change (1/2 : ℝ) ≤
+      (model.pathLaw (Measure.dirac t)).real (hitEvent (1+1))
+    rw [point_hitting_t_real]
+    norm_num
   · change (1/2 : ℝ) ≤
       (model.pathLaw (Measure.dirac u)).real (hitEvent 2)
     rw [point_hitting_u_real]
