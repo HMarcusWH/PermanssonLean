@@ -144,7 +144,7 @@ theorem classRepresentative_idempotent (i : Y) :
     classRepresentative K (classRepresentative K i) =
       classRepresentative K i := by
   exact classRepresentative_eq_of_communicates K
-    ((classRepresentative_mem K i).symm |> fun h => h)
+    (communicates_symm K (classRepresentative_mem K i))
 
 theorem classRepresentative_recurrent
     {i : Y} (hi : i ∈ RecurrentStates K) :
@@ -235,7 +235,7 @@ theorem selectedRepresentative_transport
   apply Finset.sum_congr rfl
   intro i hi
   rw [Measure.map_smul _ hf.aemeasurable]
-  rw [Measure.map_dirac i]
+  rw [Measure.map_dirac' hf i]
 
 end CanonicalClassSelector
 end MultipleLimit
