@@ -40,11 +40,8 @@ theorem typed_pathLaw_dirac_eq_traj (y : Y) :
   unfold PermanssonLean.StrategicWorldModel.pathLaw
   unfold Kernel.trajMeasure
   rw [Measure.map_dirac y]
-  change (Measure.dirac
-    ((MeasurableEquiv.piUnique (fun _ : Finset.Iic 0 => Y)).symm y)).bind
-      (Kernel.traj
-        (fun n => PermanssonLean.StrategicWorldModel.stationaryHistoryKernel
-          model.inducedKernel n) 0) = _
+  -- Kernel–measure composition is definitionally `Measure.bind`;
+  -- rewrite the Dirac bind directly, without a huge `change` unification.
   rw [Measure.dirac_bind (Kernel.measurable _)]
   rfl
 
