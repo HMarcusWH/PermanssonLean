@@ -43,7 +43,7 @@ def orbitSum (K : Y → Y → ℝ) (v : Y → ℝ) (N : ℕ) (j : Y) : ℝ :=
 
 /-- Positive-horizon Cesaro average; the denominator is n+1,
 with the time-zero state INCLUDED. -/
-def cesaroVector (K : Y → Y → ℝ) (v : Y → ℝ) (n : ℕ) (j : Y) : ℝ :=
+noncomputable def cesaroVector (K : Y → Y → ℝ) (v : Y → ℝ) (n : ℕ) (j : Y) : ℝ :=
   ((n + 1 : ℕ) : ℝ)⁻¹ * orbitSum K v (n+1) j
 
 theorem pushVector_smul
@@ -135,7 +135,11 @@ theorem cesaro_invariance_defect_bound
   have hp : 0 ≤ (((n+1 : ℕ) : ℝ)⁻¹) := by positivity
   rw [abs_of_nonneg hp]
   apply mul_le_mul_of_nonneg_left ?_ hp
-  exact (abs_sub _ _).trans ((add_le_add_right (hbounded (n+1) j) _))
+  have hadd :
+      |iteratedVector K v (n+1) j| + |v j| ≤ C + |v j| := by
+    simpa only [add_comm] using
+      (add_le_add_right (hbounded (n+1) j) (|v j|))
+  exact (abs_sub _ _).trans hadd
 
 
 /-- Nonnegative stochastic transition matrices keep iterated vectors
