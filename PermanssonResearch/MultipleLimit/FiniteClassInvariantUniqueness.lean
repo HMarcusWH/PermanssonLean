@@ -1,4 +1,5 @@
 import PermanssonResearch.MultipleLimit.FiniteInvariantUniqueness
+import PermanssonResearch.MultipleLimit.FiniteClosedSupport
 import Mathlib.Data.Fintype.Lattice
 import Mathlib.Tactic
 
