@@ -90,6 +90,23 @@ theorem eventual_class_unique
   have hmemberD : w (max t u) ∈ D := hu _ (le_max_right _ _)
   exact (Set.disjoint_left.mp hdisj) hmemberC hmemberD
 
+
+/-- The final recurrent communicating class is pathwise UNIQUE on
+the probability-one event of eventual class residence. The statement
+is for the authentic canonical infinite path law and for every
+initial probability measure. This does not identify an invariant
+occupation measure or certify a regime. -/
+theorem canonical_ae_unique_eventual_class
+    (μ : ProbabilityMeasure Y) :
+    ∀ᵐ w ∂canonicalPathLaw K μ.toMeasure,
+      ∃! C : Set Y,
+        C ∈ RecurrentClasses K ∧ EventuallyInClass w C := by
+  filter_upwards [canonical_ae_eventual_recurrent_class K μ] with w hw
+  obtain ⟨C, hC, hE⟩ := hw
+  refine ⟨C, ⟨hC, hE⟩, ?_⟩
+  intro D hD
+  exact (eventual_class_unique K w hC hD.1 hE hD.2).symm
+
 end CanonicalRecurrentResidence
 end MultipleLimit
 end PermanssonResearch
