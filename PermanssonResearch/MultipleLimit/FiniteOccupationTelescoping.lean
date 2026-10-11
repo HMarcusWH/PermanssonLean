@@ -19,7 +19,7 @@ namespace PermanssonResearch
 namespace MultipleLimit
 namespace FiniteOccupationTelescoping
 
-variable {Y : Type*}
+variable {Y : Type*} [DecidableEq Y]
 
 def indicatorAt (w : ℕ → Y) (z : Y) (t : ℕ) : ℝ :=
   if w t = z then 1 else 0
