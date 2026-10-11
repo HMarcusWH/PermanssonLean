@@ -2,6 +2,7 @@ import PermanssonResearch.MultipleLimit.ExactRationalAbsorption
 import PermanssonResearch.MultipleLimit.MeasurableDestination
 import PermanssonResearch.MultipleLimit.AbsorptionFromTail
 import PermanssonResearch.MultipleLimit.TypedStrategicWitness
+import PermanssonResearch.MultipleLimit.TypedPrefixEncoding
 import PermanssonResearch.MultipleLimit.Recovery
 import PermanssonResearch.MultipleLimit.DescriptorTransport
 import PermanssonResearch.MultipleLimit.Counterexamples
