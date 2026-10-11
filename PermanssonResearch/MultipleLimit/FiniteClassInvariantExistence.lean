@@ -96,6 +96,7 @@ theorem exists_stationary_supported
       (∑ j : Y, π j) = 1 ∧
       (∀ j, pushVector K π j = π j) ∧
       IsSupportedReal π C := by
+  letI : Nonempty Y := ⟨c⟩
   obtain ⟨π, hπnonneg, hπmass, hπstat⟩ :=
     exists_stationary_real
       (redirectedMatrix K C c)
@@ -138,6 +139,7 @@ theorem exists_unique_stationary_on_class
       (∑ j : Y, π j) = 1 ∧
       (∀ j, pushVector K π j = π j) ∧
       IsSupportedReal π C := by
+  letI : Nonempty Y := ⟨c⟩
   obtain ⟨π, hnonneg, hmass, hstat, hsupp⟩ :=
     exists_stationary_supported K hK hrow C c hc hclosed
   refine ⟨π, ⟨hnonneg, hmass, hstat, hsupp⟩, ?_⟩

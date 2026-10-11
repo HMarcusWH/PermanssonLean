@@ -101,6 +101,7 @@ theorem invariant_probability_unique_irreducible
     (hμ : Kernel.Invariant K μ.toMeasure)
     (hν : Kernel.Invariant K ν.toMeasure) :
     μ = ν := by
+  haveI : Nonempty Y := μ.nonempty
   have hvec :
       realPointMass μ = realPointMass ν :=
     stationary_probability_unique

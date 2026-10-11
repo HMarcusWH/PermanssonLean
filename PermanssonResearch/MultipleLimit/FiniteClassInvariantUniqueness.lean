@@ -27,13 +27,14 @@ open FiniteCesaroAlgebra
 open FiniteInvariantUniqueness
 open FiniteClosedSupport
 
-variable {Y : Type*} [Fintype Y]
+variable {Y : Type*} [Fintype Y] [Nonempty Y]
 variable (K : Y → Y → ℝ) (hK : ∀ i j, 0 ≤ K i j)
 
 /-- Stationarity and positive total mass force support positivity
 at EVERY vertex of an irreducible class, as soon as the measure
 is supported inside that class. -/
 theorem strictly_positive_on_class
+    (hK : ∀ i j, 0 ≤ K i j)
     (C : Set Y)
     (hcomm : ∀ i ∈ C, ∀ j ∈ C, Reachable K i j)
     (v : Y → ℝ)
@@ -55,6 +56,7 @@ theorem strictly_positive_on_class
 finite irreducible class coincide globally, including zero outside
 the class. No global irreducibility or uniqueness assumption. -/
 theorem stationary_probability_unique_on_class
+    (hK : ∀ i j, 0 ≤ K i j)
     (C : Set Y)
     (hcomm : ∀ i ∈ C, ∀ j ∈ C, Reachable K i j)
     (π σ : Y → ℝ)
@@ -70,6 +72,13 @@ theorem stationary_probability_unique_on_class
   classical
   have hσpos : ∀ i ∈ C, 0 < σ i :=
     strictly_positive_on_class K hK C hcomm σ hσ hσtotal hσstat hσsupp
+  obtain ⟨iPositive, hiPositive⟩ :=
+    exists_positive_of_probability σ hσ hσtotal
+  have hIn : iPositive ∈ C := by
+    by_contra hOutside
+    rw [hσsupp iPositive hOutside] at hiPositive
+    exact (lt_irrefl (0 : ℝ)) hiPositive
+  letI : Nonempty {x : Y // x ∈ C} := ⟨⟨iPositive, hIn⟩⟩
   obtain ⟨i₀, hmin⟩ :=
     Finite.exists_min (fun i : {x : Y // x ∈ C} => π i.1 / σ i.1)
   let t : ℝ := π i₀.1 / σ i₀.1
