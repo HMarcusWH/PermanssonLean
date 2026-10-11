@@ -1,5 +1,6 @@
 import PermanssonResearch.MultipleLimit.ExactRationalAbsorption
 import PermanssonResearch.MultipleLimit.ExactEndpointRecurrences
+import PermanssonResearch.MultipleLimit.TypedEndpointHitting
 import PermanssonResearch.MultipleLimit.MeasurableDestination
 import PermanssonResearch.MultipleLimit.AbsorptionFromTail
 import PermanssonResearch.MultipleLimit.EventualHittingFromLimits
