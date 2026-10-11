@@ -145,7 +145,7 @@ theorem exists_unique_stationary_on_class
   exact (stationary_probability_unique_on_class
     K hK C hcomm σ π
       hσ.1 hnonneg hσ.2.1 hmass
-      hσ.2.2.1 hstat hσ.2.2.2 hsupp).symm
+      hσ.2.2.1 hstat hσ.2.2.2 hsupp)
 
 end FiniteClassInvariantExistence
 end MultipleLimit

@@ -173,7 +173,7 @@ theorem exists_unique_stationary_real
   refine ⟨π, ⟨hπ, hπtotal, hπstat⟩, ?_⟩
   intro σ hσ
   exact (stationary_probability_unique K hK hirr
-    σ π hσ.1 hπ hσ.2.1 hπtotal hσ.2.2 hπstat).symm
+    σ π hσ.1 hπ hσ.2.1 hπtotal hσ.2.2 hπstat)
 
 end FiniteInvariantUniqueness
 end MultipleLimit
