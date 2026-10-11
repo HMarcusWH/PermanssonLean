@@ -39,6 +39,7 @@ import PermanssonResearch.MultipleLimit.KernelCommunication
 import PermanssonResearch.MultipleLimit.PositiveKernelPowers
 import PermanssonResearch.MultipleLimit.RecurrentClassDecomposition
 import PermanssonResearch.MultipleLimit.FiniteClassClosure
+import PermanssonResearch.MultipleLimit.UniformClassEntry
 import PermanssonResearch.MultipleLimit.FiniteCanonicalPath
 import PermanssonResearch.MultipleLimit.ExactSixState
 import PermanssonResearch.MultipleLimit.ExactSixStateQuotient
