@@ -49,6 +49,20 @@ private theorem recurrent_measurable :
     MeasurableSet (RecurrentStates K) :=
   (Set.toFinite (RecurrentStates K)).measurableSet
 
+/-- Markov normalization is stable under each genuine finite kernel power;
+the underlying mathlib monoid does not install this as a general typeclass
+instance for an arbitrary variable exponent. -/
+private theorem markov_power (N : ℕ) : IsMarkovKernel (K ^ N) := by
+  induction N with
+  | zero =>
+      change IsMarkovKernel (Kernel.id : Kernel Y Y)
+      infer_instance
+  | succ n ih =>
+      haveI : IsMarkovKernel (K ^ n) := ih
+      rw [pow_succ]
+      change IsMarkovKernel ((K ^ n) ∘ₖ K)
+      infer_instance
+
 /-- For every fixed finite Markov kernel, the complement of its
 recurrent-class union has a genuine common finite-block survival
 probability q < 1, derived from that kernel's transition powers. -/
@@ -67,19 +81,19 @@ theorem exists_geometric_recurrent_block :
     exact ENNReal.sub_lt_self ENNReal.one_ne_top one_ne_zero hε.ne'
   refine ⟨N, q, hq, ?_, ?_⟩
   · intro z hz
-    letI : IsMarkovKernel (K ^ N) := inferInstance
+    letI : IsMarkovKernel (K ^ N) := markov_power K N
     have hmono := closedKernel_power_mass_monotone K A
       (recurrentStates_closed K) z
     have hzero : (K ^ 0) z A = 1 := by
       change (Kernel.id : Kernel Y Y) z A = 1
-      rw [Kernel.id_apply]
-      simp [Measure.dirac_apply' _ hA, hz]
+      rw [Kernel.id_apply, Measure.dirac_apply' _ hA]
+      simp [Set.indicator_of_mem (show z ∈ A from hz)]
     have hunit : (K ^ N) z A = 1 :=
       le_antisymm (prob_le_one) (hzero ▸ hmono (Nat.zero_le N))
     rw [prob_compl_eq_one_sub hA, hunit]
     simp
   · intro z hz
-    letI : IsMarkovKernel (K ^ N) := inferInstance
+    letI : IsMarkovKernel (K ^ N) := markov_power K N
     exact prob_compl_le_one_sub_of_le_prob (hbound z) hA
 
 /-- The original Ionescu–Tulcea infinite path law, started at ANY
