@@ -32,9 +32,13 @@ theorem terminalDestination_range (w : ℕ → Y) :
     terminalDestination w = a ∨ terminalDestination w = b := by
   by_cases h : EventuallyAt w absorbingA
   · left
-    simp [terminalDestination, h, absorbingA, TypedStrategicWitness.a]
+    change (if EventuallyAt w absorbingA then absorbingA else absorbingB) = a
+    rw [if_pos h]
+    rfl
   · right
-    simp [terminalDestination, h, absorbingB, TypedStrategicWitness.b]
+    change (if EventuallyAt w absorbingA then absorbingA else absorbingB) = b
+    rw [if_neg h]
+    rfl
 
 /-- The two terminal events partition the complete canonical path space.
 This is a statement about the measurable terminal-selector function. -/
@@ -67,8 +71,11 @@ theorem complete_random_limit_law (μ : ProbabilityMeasure Y) :
   have hsum : P EA + P EB = 1 := by
     have hc : EB = EAᶜ := terminalEvents_complement
     rw [hc]
-    have hh := measure_union (disjoint_compl_right : Disjoint EA EAᶜ) hEA.compl
-    simpa [P, Set.union_compl_self] using hh.symm
+    have hh : P (EA ∪ EAᶜ) = P EA + P EAᶜ :=
+      measure_union (disjoint_compl_right : Disjoint EA EAᶜ) hEA.compl
+    calc
+      P EA + P EAᶜ = P (EA ∪ EAᶜ) := hh.symm
+      _ = 1 := by simp [P]
   apply Measure.ext
   intro E hE
   rw [Measure.add_apply, Measure.smul_apply, Measure.smul_apply,
