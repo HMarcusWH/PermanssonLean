@@ -97,3 +97,18 @@ Require research root compilation, full transitive axiom allowlist
 (`propext`, `Classical.choice`, `Quot.sound`), no proof placeholders,
 original Lean default build, application contract and executable regression
 checks on the final tested PR synthetic merge revision.
+
+## PR #53 continued proof dependencies (2026-10-11)
+
+- `CanonicalClassSelector.lean` introduces a measurable, time-first recurrent
+  class representative with a fixed default on canonical-null no-hit paths,
+  canonical finite representatives, the exact whole atomic class-selection law
+  and measurable transport through arbitrary class observables. This is a law
+  of class SELECTION; it is not yet the law of empirical occupation limits.
+- Still missing for full C2: invariant probability existence and uniqueness
+  for each finite irreducible class, periodic-safe a.s. occupation SLLN,
+  class-indexed random LIMIT distribution, descriptor-family semantics,
+  and original Exact GR structural recovery. No substitution of a class
+  selection law for an occupation limit is permitted.
+- Branch remains DRAFT until the general ergodic theorem and recovery are
+  proved in Lean with the frozen axiom allowlist and negative countermodels.
