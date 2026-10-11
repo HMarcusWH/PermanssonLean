@@ -107,12 +107,12 @@ theorem random_limit_a_weight_u
     (pathwiseRandomLimitLaw uPathProbability).toMeasure {terminalLaw a} =
       ENNReal.ofReal (1/3 : ℝ) := by
   rw [pathwiseRandomLimitLaw_apply uPathProbability _ hA]
+  change model.pathLaw (Measure.dirac u)
+    {w : ℕ → Y | terminalLaw (terminalDestination w) = terminalLaw a} = _
   have heq :
-      {w : ℕ → Y | terminalLaw (terminalDestination w) ∈ {terminalLaw a}} =
+      {w : ℕ → Y | terminalLaw (terminalDestination w) = terminalLaw a} =
         {w : ℕ → Y | terminalDestination w = a} := by
     ext w
-    change terminalLaw (terminalDestination w) = terminalLaw a ↔
-      terminalDestination w = a
     exact terminalLaw_injective.eq_iff
   rw [heq]
   exact terminal_a_weight_u
@@ -122,12 +122,12 @@ theorem random_limit_b_weight_u
     (pathwiseRandomLimitLaw uPathProbability).toMeasure {terminalLaw b} =
       ENNReal.ofReal (2/3 : ℝ) := by
   rw [pathwiseRandomLimitLaw_apply uPathProbability _ hB]
+  change model.pathLaw (Measure.dirac u)
+    {w : ℕ → Y | terminalLaw (terminalDestination w) = terminalLaw b} = _
   have heq :
-      {w : ℕ → Y | terminalLaw (terminalDestination w) ∈ {terminalLaw b}} =
+      {w : ℕ → Y | terminalLaw (terminalDestination w) = terminalLaw b} =
         {w : ℕ → Y | terminalDestination w = b} := by
     ext w
-    change terminalLaw (terminalDestination w) = terminalLaw b ↔
-      terminalDestination w = b
     exact terminalLaw_injective.eq_iff
   rw [heq]
   exact terminal_b_weight_u
