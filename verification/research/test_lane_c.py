@@ -105,6 +105,30 @@ class LaneCExactAbsorptionRegressions(unittest.TestCase):
         self.assertEqual(ONE - survival("t", 2), Q(1, 2))
         self.assertEqual(ONE - survival("u", 2), Q(3, 4))
 
+    def test_exact_two_step_kernel_outside_all_states(self):
+        expected = {"t": Q(1, 2), "u": Q(1, 4),
+                    "a": ZERO, "b": ZERO}
+        for state in STATES:
+            self.assertEqual(survival(state, 2), expected[state])
+        self.assertEqual(survival("t", 0), ONE)
+        self.assertEqual(survival("u", 0), ONE)
+        self.assertEqual(survival("a", 0), ZERO)
+        self.assertEqual(survival("b", 0), ZERO)
+
+    def test_arbitrary_initial_law_geometric_survival(self):
+        cases = (
+            {x: Q(1, 4) for x in STATES},
+            {"t": Q(1, 7), "u": Q(2, 7), "a": Q(3, 7), "b": Q(1, 7)},
+            {"t": ONE, "u": ZERO, "a": ZERO, "b": ZERO},
+            {"t": ZERO, "u": ZERO, "a": ZERO, "b": ONE},
+        )
+        for mu in cases:
+            self.assertEqual(sum(mu.values(), ZERO), ONE)
+            for k in range(25):
+                event_probability = sum(
+                    (mu[y] * survival(y, 2 * k) for y in STATES), ZERO)
+                self.assertLessEqual(event_probability, Q(1, 2)**k)
+
     def test_geometric_tail_n_two(self):
         for i in STATES:
             for k in range(25):
