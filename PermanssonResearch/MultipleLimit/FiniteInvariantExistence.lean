@@ -121,7 +121,8 @@ theorem exists_stationary_real
   let v : Y → ℝ := fun j => if j = y0 then 1 else 0
   have hv : ∀ j, 0 ≤ v j := by
     intro j
-    simp [v]
+    dsimp [v]
+    split_ifs <;> norm_num
   have hvtotal : (∑ j : Y, v j) = 1 := by
     simp [v]
   let u : ℕ → (Y → Set.Icc (0 : ℝ) 1) :=
@@ -137,7 +138,9 @@ theorem exists_stationary_real
         atTop (𝓝 (a j)) :=
       (tendsto_pi_nhds.mp hlim) j
     have hj' := (continuous_subtype_val.tendsto (a j)).comp hj
-    simpa only [u, π] using hj'
+    change Tendsto (fun n : ℕ => cesaroVector K v (φ n) j)
+      atTop (𝓝 (π j)) at hj'
+    exact hj'
   have hπnonneg : ∀ j, 0 ≤ π j := by
     intro j
     exact (a j).property.1
