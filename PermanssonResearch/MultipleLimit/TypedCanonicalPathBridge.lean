@@ -35,15 +35,10 @@ theorem typed_pathLaw_dirac_eq_traj (y : Y) :
         (fun n => PermanssonLean.StrategicWorldModel.stationaryHistoryKernel
           model.inducedKernel n)
         0 (singletonPrefix y) := by
-  change
-    (Kernel.traj
-      (fun n => PermanssonLean.StrategicWorldModel.stationaryHistoryKernel
-        model.inducedKernel n) 0) ∘ₘ
-      ((Measure.dirac y).map
-        (MeasurableEquiv.piUnique (fun _ : Finset.Iic 0 => Y)).symm) =
-      Kernel.traj
-        (fun n => PermanssonLean.StrategicWorldModel.stationaryHistoryKernel
-          model.inducedKernel n) 0 (singletonPrefix y)
+  -- Rewrite only the outer trajectory constructors; do not let
+  -- definitional equality recursively unfold the large alpha/P/U kernel.
+  unfold PermanssonLean.StrategicWorldModel.pathLaw
+  unfold Kernel.trajMeasure
   rw [Measure.map_dirac y]
   change (Measure.dirac
     ((MeasurableEquiv.piUnique (fun _ : Finset.Iic 0 => Y)).symm y)).bind
@@ -61,6 +56,7 @@ theorem typed_pathLaw_prefix_dirac (y : Y) (T : ℕ) :
     finitePrefixLaw model.inducedKernel y T := by
   rw [typed_pathLaw_dirac_eq_traj]
   have h := Kernel.traj_map_frestrictLe_apply
+    (X := fun _ : ℕ => Y)
     (κ := fun n => PermanssonLean.StrategicWorldModel.stationaryHistoryKernel
       model.inducedKernel n)
     0 T (singletonPrefix y)
