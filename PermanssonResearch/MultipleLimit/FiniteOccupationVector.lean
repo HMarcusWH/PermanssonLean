@@ -83,8 +83,7 @@ theorem pushVector_empirical
       simp_rw [mul_assoc]
       rw [Finset.mul_sum]
       congr 1
-      apply Finset.sum_congr rfl
-      intro i hi
+      funext i
       rw [Finset.sum_mul]
     _ = (((n+1 : ℕ) : ℝ)⁻¹) *
         (∑ t ∈ Finset.range (n+1), ∑ i : Y,
