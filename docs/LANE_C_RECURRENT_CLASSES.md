@@ -70,23 +70,97 @@ communicating classes. The intended all-chain target is:
   Gaussian solve for stationary distributions and class-entry harmonic values,
   graph SCC discovery, periodicity/descriptor/mixture regressions.
 
-## Explicitly OPEN until machine-checked
+## Verified general foundation — checkpoint 4084188a (11 October 2026)
 
-- Generic rational-to-kernel and canonical finite/infinite path bridges.
-- Complete finite recurrent-class decomposition and genuine a.s. class entry.
-- Measurable recurrent-class selector for the canonical path.
-- Class-supported stationary-law existence *and uniqueness* for arbitrary
-  finite irreducible recurrent classes.
-- Classwise a.s. empirical occupation theorem, including periods > 1.
-- Measurable full measure-valued limit law for every initial distribution.
-- General typed strategic-world integration, descriptor-family and original
-  Exact GR recovery for reachable common class limits.
-- All advertised adversarial Lean countermodels and their proof statements.
+The complete pre-extension source checkpoint
+`4084188a465a620cb725810621ff4b16d5170846` passed **all four**
+workflows, including Research Lean #38178847476 (2,283 transitive
+declarations within the three-axiom allowlist; 108 exact regressions;
+194 direct research imports; no proof placeholders).
 
-**Scientific promotion rule:** Until all those are discharged with a green
-exact-source-head proof audit, this remains a partial Lane C2 draft, even if
-every currently imported theorem compiles. Do not claim completion solely
-from exact-rational regression success or a green CI run.
+- `RecurrentClassDecomposition`, `UniformClassEntry` and
+  `CanonicalRecurrentResidence` prove genuine canonical a.s. entry into and
+  unique eventual residence within one recurrent class, from arbitrary initial
+  probability laws. These proofs do not assume the desired occupation limit.
+- `FiniteInvariantExistence`, `FiniteClassInvariantExistence` and
+  `FiniteClassInvariantMeasure` construct **unique class-supported actual
+  invariant probability measures**, including irrational and periodic
+  transitions; this is no longer an open theorem for the finite subclass.
+- `CanonicalClassSelector`, `CanonicalClassWeights` and
+  `ClassStationarySelectionLaw` establish measurable class representatives,
+  genuine class-entry weights and the **whole law of the selected stationary
+  class measure**. They do not establish that empirical occupation converges
+  to that stationary measure.
+- `FiniteOccupationTelescoping`,
+  `FiniteOccupationLimitFromResidual` and
+  `FiniteCanonicalConditionalStep` already construct the exact
+  deterministic occupation residual and conditional transition identities.
+  The compactness/uniqueness limit theorem has an EXPLICIT residual-
+  convergence hypothesis; it is not the stochastic strong law.
+
+## Post-checkpoint research additions — unpromoted until exact-head CI
+
+The following source is present on the branch, with targeted compilation
+repairs made in subsequent commits. Do not claim this entire group as
+verified merely because an older source checkpoint was green.
+
+- `FiniteOccupationOutside.lean`: after eventual recurrent-class residence,
+  Cesàro empirical mass at each outside state vanishes.
+- `FiniteMarkovCentered.lean`: exact row-centered mean zero,
+  bounded real increments, and a one-step conditional second-moment bound.
+  Neither full pathwise orthogonality nor normalized SLLN is asserted.
+- `FiniteClassOccupation.lean`: genuine classwise vector limit **conditional
+  on almost-sure vanishing stationarity residual**; a canonical a.e. bridge
+  retains that explicit strong-law hypothesis.
+- `ClassDescriptorSelectionLaw.lean`: frozen descriptor pushforward of the
+  selected class stationary probability, full law and equal-observable-atom
+  aggregation. This is a SELECTION law, not yet the occupation-limit law.
+- `ClassDescriptorOccupationBridge.lean`: conditional weak-topology transport
+  from a genuine physical occupation limit through a frozen descriptor;
+  no physical occupation convergence premise is hidden.
+- `BasinFamily.lean`: separately typed nonempty ex-ante basin, closed
+  region and reachable-class family based on positive canonical class
+  selection probability; still missing full regime-family classification.
+- `ExactSixStateRegion.lean`: proper six-state region, row closure, frozen
+  descriptor collapse and nontriviality witness; no Exact GR claim.
+- `test_lane_c_basin_integration.py`: seven new independent exact-Fraction
+  regression cases, locally passing. Software tests do not prove the
+  universal Markov ergodic theorem.
+
+## Still OPEN — strict scientific merge blockers
+
+1. **Canonical finite Markov martingale SLLN:** prove conditional mean-zero
+   for the actual path filtration, cross-time orthogonality, uniform
+   second-moment bound and normalized almost-sure residual convergence;
+   do not assume that residual convergence or independence.
+2. **Unconditional classwise occupation:** combine that SLLN with actual
+   eventual class residence and unique supported invariant probability
+   to obtain a.s. weak convergence for arbitrary initial laws, including
+   periodic classes.
+3. **Actual random occupation limit law:** identify the class stationary
+   selection law with the **proved pathwise empirical limit**, obtaining
+   equality of whole measures on the space of probability measures.
+4. **Descriptor pushforward of the actual limit:** derive full observed
+   random limit distribution and aggregate coincident descriptor limits,
+   without choosing a descriptor post hoc.
+5. **Structural basin-family certificate and original Exact GR recovery:**
+   prove the genuine family gates and the original Assumption 4.1,
+   exact invariance, full initial-law convergence and single-common-target
+   conditions; keep a separate PR intervention witness mandatory.
+6. **Six-state infinite-path realization and adversaries:** prove the
+   exact 1/3–2/3 random limit, periodic-marginal mismatch, proper-region
+   Exact GR, C1 specialization, unreachable-class and nonconvergence
+   boundaries as appropriate Lean theorems.
+7. **Release gate:** every mathematical module above compiled and audited
+   on the final exact source SHA and tested synthetic merge revision,
+   theorem statement/hypothesis review, fresh regressions, source/axiom
+   firewall, frozen-file diff and release documentation.
+
+**Scientific promotion rule:** PR #53 stays DRAFT until the above headline
+theorems are unconditional under their declared finite-chain hypotheses
+and all final-head workflows are green. An axiom audit establishes checked
+Lean declarations, not empirical validity, scholarly priority or the
+truth of assumptions supplied to conditional lemmas.
 
 ## Protected boundaries and CI
 
@@ -98,17 +172,10 @@ Require research root compilation, full transitive axiom allowlist
 original Lean default build, application contract and executable regression
 checks on the final tested PR synthetic merge revision.
 
-## PR #53 continued proof dependencies (2026-10-11)
+## Status handoff
 
-- `CanonicalClassSelector.lean` introduces a measurable, time-first recurrent
-  class representative with a fixed default on canonical-null no-hit paths,
-  canonical finite representatives, the exact whole atomic class-selection law
-  and measurable transport through arbitrary class observables. This is a law
-  of class SELECTION; it is not yet the law of empirical occupation limits.
-- Still missing for full C2: invariant probability existence and uniqueness
-  for each finite irreducible class, periodic-safe a.s. occupation SLLN,
-  class-indexed random LIMIT distribution, descriptor-family semantics,
-  and original Exact GR structural recovery. No substitution of a class
-  selection law for an occupation limit is permitted.
-- Branch remains DRAFT until the general ergodic theorem and recovery are
-  proved in Lean with the frozen axiom allowlist and negative countermodels.
+The earlier initial-implementation checklist has been superseded by the
+verified-foundation and post-checkpoint inventory above. The code currently
+implements the deterministic/Cesàro and stationary-class selection pieces;
+**the unconditional stochastic occupation theorem remains the critical path**.
+No frozen v0.1.8 definitions, paper files or application schemas were changed.
