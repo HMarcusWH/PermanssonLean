@@ -44,7 +44,9 @@ theorem ever_hit_a_u :
   let P := model.pathLaw (Measure.dirac u)
   have hR : Tendsto (fun T : ℕ => P.real (hitA T))
       atTop (𝓝 (1/3 : ℝ)) := by
-    have h := (tendsto_const_nhds.sub half_to_zero).const_mul (1/3 : ℝ)
+    have hOne : Tendsto (fun _ : ℕ => (1 : ℝ))
+        atTop (𝓝 (1 : ℝ)) := tendsto_const_nhds
+    have h := (hOne.sub half_to_zero).const_mul (1/3 : ℝ)
     convert h using 1
     · funext T
       exact cast_hitA_u T
@@ -56,8 +58,10 @@ theorem ever_hit_a_u :
         ENNReal.ofReal (P.real (hitA T)) = P (hitA T) := by
       exact ENNReal.ofReal_toReal (measure_ne_top P (hitA T))
     simpa only [hcon] using h
-  have hcont := tendsto_measure_iUnion_atTop (μ := P) hitA_monotone
-  exact hcont.unique hE
+  have hcont : Tendsto (fun T : ℕ => P (hitA T))
+      atTop (𝓝 (P (⋃ T : ℕ, hitA T))) :=
+    tendsto_measure_iUnion_atTop (μ := P) hitA_monotone
+  exact tendsto_nhds_unique hcont hE
 
 /-- Exact infinite-horizon hitting probability of absorbing state b. -/
 theorem ever_hit_b_u :
@@ -66,7 +70,9 @@ theorem ever_hit_b_u :
   let P := model.pathLaw (Measure.dirac u)
   have hR : Tendsto (fun T : ℕ => P.real (hitB T))
       atTop (𝓝 (2/3 : ℝ)) := by
-    have h := (tendsto_const_nhds.sub half_to_zero).const_mul (2/3 : ℝ)
+    have hOne : Tendsto (fun _ : ℕ => (1 : ℝ))
+        atTop (𝓝 (1 : ℝ)) := tendsto_const_nhds
+    have h := (hOne.sub half_to_zero).const_mul (2/3 : ℝ)
     convert h using 1
     · funext T
       exact cast_hitB_u T
@@ -78,8 +84,10 @@ theorem ever_hit_b_u :
         ENNReal.ofReal (P.real (hitB T)) = P (hitB T) := by
       exact ENNReal.ofReal_toReal (measure_ne_top P (hitB T))
     simpa only [hcon] using h
-  have hcont := tendsto_measure_iUnion_atTop (μ := P) hitB_monotone
-  exact hcont.unique hE
+  have hcont : Tendsto (fun T : ℕ => P (hitB T))
+      atTop (𝓝 (P (⋃ T : ℕ, hitB T))) :=
+    tendsto_measure_iUnion_atTop (μ := P) hitB_monotone
+  exact tendsto_nhds_unique hcont hE
 
 end TypedEndpointInfiniteWeights
 end MultipleLimit
