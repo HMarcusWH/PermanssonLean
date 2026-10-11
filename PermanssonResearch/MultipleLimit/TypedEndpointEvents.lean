@@ -89,7 +89,8 @@ theorem union_hitA :
     (⋃ T : ℕ, hitA T) = {w : ℕ → Y | ∃ n, w n = a} := by
   ext w
   constructor
-  · rintro ⟨T, hT⟩
+  · intro hh
+    obtain ⟨T, hT⟩ := Set.mem_iUnion.mp hh
     obtain ⟨n, _, hn⟩ := (hitA_iff T w).mp hT
     exact ⟨n, hn⟩
   · rintro ⟨n, hn⟩
@@ -100,7 +101,8 @@ theorem union_hitB :
     (⋃ T : ℕ, hitB T) = {w : ℕ → Y | ∃ n, w n = b} := by
   ext w
   constructor
-  · rintro ⟨T, hT⟩
+  · intro hh
+    obtain ⟨T, hT⟩ := Set.mem_iUnion.mp hh
     obtain ⟨n, _, hn⟩ := (hitB_iff T w).mp hT
     exact ⟨n, hn⟩
   · rintro ⟨n, hn⟩
