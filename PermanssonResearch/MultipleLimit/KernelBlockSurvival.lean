@@ -81,6 +81,7 @@ theorem geometric_endpoint_power_of_absorbing_block
   · have hmem : y ∈ Aᶜ := hy
     simpa only [Set.indicator_of_mem hmem] using houtside y hy
 
+end
 end KernelBlockSurvival
 end MultipleLimit
 end PermanssonResearch
