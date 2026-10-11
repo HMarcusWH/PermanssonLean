@@ -30,6 +30,7 @@ noncomputable def canonicalPathProbability
 absorbing points, even on exceptional paths (where b is a measurable default). -/
 theorem terminalDestination_range (w : ℕ → Y) :
     terminalDestination w = a ∨ terminalDestination w = b := by
+  classical
   by_cases h : EventuallyAt w absorbingA
   · left
     change (if EventuallyAt w absorbingA then absorbingA else absorbingB) = a
