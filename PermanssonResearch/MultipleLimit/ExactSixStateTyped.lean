@@ -57,6 +57,16 @@ theorem typed_u_two_step_hit :
   rw [typed_hitting_all_horizons]
   norm_num [u_two_step_hit]
 
+
+/-- Uniform two-transition finite-horizon bound on the ACTUAL typed
+strategic-world process, obtained without a sampling approximation. -/
+theorem typed_two_step_hit_at_least_half (i : Fin 6) :
+    (1/2 : ℝ) ≤
+      hittingValue (typedTarget recurrentTarget) typedModel.inducedKernel
+        (decode i) 2 := by
+  rw [typed_hitting_all_horizons]
+  exact_mod_cast two_step_hit_at_least_half i
+
 end ExactSixStateTyped
 end MultipleLimit
 end PermanssonResearch
