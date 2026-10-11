@@ -58,6 +58,7 @@ communicating classes. The intended all-chain target is:
 - `FiniteCommunication.lean`: typed *rational* stochastic transition object,
   strictly positive edge relation, reflexive-transitive reachability,
   communication equivalence, and closed-subset support primitives.
+- `ExactSixStateTyped.lean`: instantiate previously compiled D0-D/D0-E generic typed α/P/U realization, proving one-step event correspondence and **all-horizon typed finite-prefix class-union hitting equality** (with exact two-step values); no claim of a generic infinite occupation limit.
 - `ExactSixStateCanonical.lean`: reuse the established D0 exact-rational-to-genuine-canonical-finite-prefix theorem for class-union hitting at two transitions (t=1/2, u=3/4); the infinite path and class destination are not yet certified.
 - `ExactSixStateQuotient.lean`: checked rational four-state quotient row lumpability and exact stationary-law pushforwards; no unproved path-level factorization claim.
 - `ExactSixState.lean`: exact six-state witness with transient states t/u,
