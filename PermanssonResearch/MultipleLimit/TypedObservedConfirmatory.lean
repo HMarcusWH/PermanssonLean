@@ -36,8 +36,8 @@ theorem observed_descriptorLaw_zero (y : Y) :
         (model.pathLaw (Measure.dirac y)) =
       Measure.map observedSpec.descriptor
         ((model.pathLaw (Measure.dirac y)).map (fun w : ℕ → Y => w 0)) := by
-          rw [Measure.map_map (measurable_pi_apply 0)
-            observedSpec.descriptor_measurable]
+          rw [Measure.map_map observedSpec.descriptor_measurable
+            (measurable_pi_apply 0)]
           rfl
     _ = Measure.map observedSpec.descriptor (Measure.dirac y) := by
       rw [StrategicWorldModel.pathLaw_eval_zero]
