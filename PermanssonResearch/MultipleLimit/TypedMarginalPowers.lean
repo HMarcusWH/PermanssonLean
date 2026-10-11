@@ -86,7 +86,8 @@ theorem canonical_eval_eq_kernel_pow (y : Y) :
   induction n with
   | zero =>
       rw [RegimeSpecification.StrategicWorldModel.pathLaw_eval_zero model (Measure.dirac y)]
-      simp only [pow_zero, Kernel.id_apply]
+      change Measure.dirac y = Kernel.id y
+      exact (Kernel.id_apply y).symm
   | succ n ih =>
       rw [canonical_eval_succ (Measure.dirac y) n, ih]
       apply Measure.ext
