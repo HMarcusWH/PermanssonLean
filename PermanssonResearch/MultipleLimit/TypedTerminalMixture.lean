@@ -72,7 +72,7 @@ theorem terminal_point_weight (z dest : Y) (hz : z = a ∨ z = b) :
           (Set.univ : Set (ℕ → Y)) := by
       filter_upwards [heq] with w hw
       simp [hw]
-    simpa [h] using (measure_congr hevents).trans (measure_univ)
+    simpa using (measure_congr hevents).trans (measure_univ)
   · have hevents :
         {w : ℕ → Y | terminalDestination w = dest} =ᵐ[model.pathLaw (Measure.dirac z)]
           (∅ : Set (ℕ → Y)) := by
@@ -115,11 +115,18 @@ theorem terminal_a_weight_initial (μ : ProbabilityMeasure Y) :
       {w : ℕ → Y | terminalDestination w = a} =
       ∑ y : Y, μ.toMeasure {y} *
         (if y = a then 1 else if y = b then 0 else (1/3 : ℝ≥0∞)) := by
-  rw [typed_pathLaw_event_initial_mixture μ _
-    ((measurableSet_singleton a).preimage measurable_terminalDestination)]
-  apply Finset.sum_congr rfl
-  intro y _
-  rw [terminal_point_a y]
+  calc
+    model.pathLaw μ.toMeasure
+        {w : ℕ → Y | terminalDestination w = a} =
+      ∑ y : Y, μ.toMeasure {y} *
+        model.pathLaw (Measure.dirac y)
+          {w : ℕ → Y | terminalDestination w = a} :=
+      typed_pathLaw_event_initial_mixture μ _
+        ((measurableSet_singleton a).preimage measurable_terminalDestination)
+    _ = _ := by
+      apply Finset.sum_congr rfl
+      intro y _
+      rw [terminal_point_a y]
 
 /-- Similarly, arbitrary-start terminal-b probability is completely known. -/
 theorem terminal_b_weight_initial (μ : ProbabilityMeasure Y) :
