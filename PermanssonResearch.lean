@@ -11,6 +11,7 @@ import PermanssonResearch.MultipleLimit.TypedCanonicalPathBridge
 import PermanssonResearch.MultipleLimit.TypedInitialMixture
 import PermanssonResearch.MultipleLimit.TypedMarginalPowers
 import PermanssonResearch.MultipleLimit.TypedCanonicalHitting
+import PermanssonResearch.MultipleLimit.TypedEventualHitting
 import PermanssonResearch.MultipleLimit.Recovery
 import PermanssonResearch.MultipleLimit.DescriptorTransport
 import PermanssonResearch.MultipleLimit.Counterexamples
