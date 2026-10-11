@@ -1,4 +1,5 @@
 import PermanssonResearch.MultipleLimit.TypedInitialMixture
+import PermanssonLean.Regime.ExitTime
 import Mathlib.Probability.Kernel.Composition.Comp
 import Mathlib.MeasureTheory.Integral.Lebesgue.Map
 import Mathlib.Tactic
@@ -54,7 +55,9 @@ theorem canonical_eval_succ (μ : Measure Y) [IsProbabilityMeasure μ]
       Measure.map_apply (measurable_pi_apply (n+1)) hC
     _ = (P.map pairFn) (Set.univ ×ˢ C) := by
       rw [Measure.map_apply hpairMeas (MeasurableSet.univ.prod hC)]
-      rfl
+      congr 1
+      ext w
+      simp [pairFn]
     _ = ((P.map (Preorder.frestrictLe n)) ⊗ₘ
         StrategicWorldModel.stationaryHistoryKernel K n)
         (Set.univ ×ˢ C) := by rw [hpair]
@@ -63,13 +66,14 @@ theorem canonical_eval_succ (μ : Measure Y) [IsProbabilityMeasure μ]
       simp only [MeasureTheory.setLIntegral_univ]
       rfl
     _ = ∫⁻ w, K (w n) C ∂P := by
+      change (∫⁻ h, ((fun z : Y => K z C) ∘ last) h
+        ∂(P.map (Preorder.frestrictLe n))) = _
       rw [lintegral_map (hK.comp hlastMeas)
         (Preorder.measurable_frestrictLe n)]
       rfl
     _ = (K ∘ₘ (P.map (fun w : ℕ → Y => w n))) C := by
       rw [Measure.bind_apply hC (Kernel.aemeasurable _)]
       rw [lintegral_map hK (measurable_pi_apply n)]
-      rfl
 
 /-- The genuine typed model's time-n marginal equals the n-step power of
 its real induced kernel, at every finite horizon and physical initial state. -/
