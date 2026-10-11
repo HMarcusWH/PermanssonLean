@@ -83,7 +83,7 @@ theorem two_step_kernel_outside (y : Y) :
   cases s <;> cases x <;>
     norm_num [inducedKernel_atom_entry, fourStateMatrix, codeState,
       t, u, a, b, ENNReal.ofReal] <;>
-    simp [half_toNNReal]
+    norm_num [half_toNNReal]
 
 private theorem two_step_inside (z : Y) (hz : z ∈ A) :
     (model.inducedKernel ^ 2) z Aᶜ = 0 := by
