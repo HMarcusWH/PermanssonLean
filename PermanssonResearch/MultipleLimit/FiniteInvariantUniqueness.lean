@@ -35,6 +35,7 @@ def Reachable (i j : Y) : Prop :=
 /-- A positive coordinate of a nonnegative stationary vector sends
 strict positive mass along each positive-probability outgoing edge. -/
 theorem positive_stationary_of_edge
+    (hK : ∀ i j, 0 ≤ K i j)
     (v : Y → ℝ) (hv : ∀ i, 0 ≤ v i)
     (hstat : ∀ j, pushVector K v j = v j)
     {i j : Y}
@@ -45,9 +46,10 @@ theorem positive_stationary_of_edge
     exact Finset.single_le_sum
       (fun z hz => mul_nonneg (hv z) (hK z j))
       (Finset.mem_univ i)
-  exact (mul_pos hi hij).trans (hsum.trans_eq (hstat j))
+  exact lt_of_lt_of_le (mul_pos hi hij) (hsum.trans_eq (hstat j))
 
 theorem positive_stationary_of_reachable
+    (hK : ∀ i j, 0 ≤ K i j)
     (v : Y → ℝ) (hv : ∀ i, 0 ≤ v i)
     (hstat : ∀ j, pushVector K v j = v j)
     {i j : Y}
@@ -73,6 +75,7 @@ theorem exists_positive_of_probability
   linarith
 
 theorem positive_everywhere_of_irreducible
+    (hK : ∀ i j, 0 ≤ K i j)
     (v : Y → ℝ) (hv : ∀ i, 0 ≤ v i)
     (hvtotal : (∑ i : Y, v i) = 1)
     (hstat : ∀ j, pushVector K v j = v j)
@@ -85,6 +88,7 @@ theorem positive_everywhere_of_irreducible
 MOST ONE invariant probability vector. This is NOT merely uniqueness
 conditional on a supplied ratio/ergodic hypothesis. -/
 theorem stationary_probability_unique
+    (hK : ∀ i j, 0 ≤ K i j)
     (hirr : ∀ i j : Y, Reachable K i j)
     (π σ : Y → ℝ)
     (hπ : ∀ i, 0 ≤ π i)
@@ -125,8 +129,7 @@ theorem stationary_probability_unique
         intro i hi
         ring
       _ = τ j := by
-        rw [hπstat j, hσstat j]
-        rfl
+        simp [τ, hπstat j, hσstat j]
   have hτzero : ∀ j : Y, τ j = 0 := by
     intro j
     by_contra hj
@@ -158,6 +161,7 @@ theorem stationary_probability_unique
 the new irreducible uniqueness proof. This theorem assumes only the
 real stochastic rows and positive-edge graph irreducibility. -/
 theorem exists_unique_stationary_real
+    (hK : ∀ i j, 0 ≤ K i j)
     (hrow : ∀ i, ∑ j : Y, K i j = 1)
     (hirr : ∀ i j : Y, Reachable K i j) :
     ∃! π : Y → ℝ,
