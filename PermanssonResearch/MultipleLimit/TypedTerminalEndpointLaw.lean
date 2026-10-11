@@ -35,6 +35,7 @@ theorem terminal_a_eq_ever_hit_ae (μ : ProbabilityMeasure Y) :
     terminalDestination_correct w
       (by simpa [TypedStrategicWitness.a, TypedStrategicWitness.b,
         absorbingA, absorbingB] using hgood)
+  apply propext
   constructor
   · intro hterminal
     rw [hterminal] at hcorrect
@@ -60,6 +61,7 @@ theorem terminal_b_eq_ever_hit_ae (μ : ProbabilityMeasure Y) :
     terminalDestination_correct w
       (by simpa [TypedStrategicWitness.a, TypedStrategicWitness.b,
         absorbingA, absorbingB] using hgood)
+  apply propext
   constructor
   · intro hterminal
     rw [hterminal] at hcorrect
@@ -109,9 +111,9 @@ theorem random_limit_a_weight_u
       {w : ℕ → Y | terminalLaw (terminalDestination w) ∈ {terminalLaw a}} =
         {w : ℕ → Y | terminalDestination w = a} := by
     ext w
-    simpa using (terminalLaw_injective.eq_iff :
-      terminalLaw (terminalDestination w) = terminalLaw a ↔
-        terminalDestination w = a)
+    change terminalLaw (terminalDestination w) = terminalLaw a ↔
+      terminalDestination w = a
+    exact terminalLaw_injective.eq_iff
   rw [heq]
   exact terminal_a_weight_u
 
@@ -124,9 +126,9 @@ theorem random_limit_b_weight_u
       {w : ℕ → Y | terminalLaw (terminalDestination w) ∈ {terminalLaw b}} =
         {w : ℕ → Y | terminalDestination w = b} := by
     ext w
-    simpa using (terminalLaw_injective.eq_iff :
-      terminalLaw (terminalDestination w) = terminalLaw b ↔
-        terminalDestination w = b)
+    change terminalLaw (terminalDestination w) = terminalLaw b ↔
+      terminalDestination w = b
+    exact terminalLaw_injective.eq_iff
   rw [heq]
   exact terminal_b_weight_u
 
