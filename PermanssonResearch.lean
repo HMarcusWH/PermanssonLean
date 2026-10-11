@@ -72,6 +72,7 @@ import PermanssonResearch.MultipleLimit.ExactSixState
 import PermanssonResearch.MultipleLimit.ExactSixStateQuotient
 import PermanssonResearch.MultipleLimit.ExactSixStateCanonical
 import PermanssonResearch.MultipleLimit.ExactSixStateTyped
+import PermanssonResearch.MultipleLimit.ExactSixStateRegion
 import PermanssonResearch.MultipleLimit.AbsorbingFamily
 import PermanssonResearch.GrammarRobust.PRStatusTransport
 import PermanssonResearch.GrammarRobust.FullRelabelingTransport
