@@ -39,7 +39,7 @@ open FiniteKernelRealBridge
 open FiniteKernelInvariantUniqueness
 open FiniteClassInvariantMeasure
 
-variable {Y : Type*} [MeasurableSpace Y] [Fintype Y]
+variable {Y : Type*} [MeasurableSpace Y] [Fintype Y] [DecidableEq Y]
 variable [MeasurableSingletonClass Y] [Nonempty Y]
 variable (K : Kernel Y Y) [IsMarkovKernel K]
 
