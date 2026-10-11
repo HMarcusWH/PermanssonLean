@@ -1,9 +1,9 @@
 """Independent exact-rational finite absorbing-class regressions.
 
-This numerical/reachability fixture is NOT a formal proof that a Markov
-kernel's uniform N-step hypothesis implies the canonical path-law a.s.
-absorption theorem. That kernel-to-path-law bridge remains a separate Lean
-obligation, not a library assumption disguised as a result.
+These exact-rational regressions independently check the typed witness.
+The generic kernel-power and path-marginal bridge is separately proved in
+Lean; the fixture is not a proof of that universal theorem or a substitute
+for the genuine alpha/P/U canonical path law.
 """
 from __future__ import annotations
 
@@ -128,6 +128,45 @@ class LaneCExactAbsorptionRegressions(unittest.TestCase):
         # From u or t, absorption has weights 1/3 and 2/3.
         self.assertEqual(Q(1, 6)/(ONE-Q(1, 2)), Q(1, 3))
         self.assertEqual(Q(1, 3)/(ONE-Q(1, 2)), Q(2, 3))
+
+
+    def test_initial_mixture_endpoint_closed_forms(self):
+        cases = [
+            {"t": ONE, "u": ZERO, "a": ZERO, "b": ZERO},
+            {"t": ZERO, "u": ONE, "a": ZERO, "b": ZERO},
+            {"t": ZERO, "u": ZERO, "a": ONE, "b": ZERO},
+            {"t": ZERO, "u": ZERO, "a": ZERO, "b": ONE},
+            {x: Q(1, 4) for x in STATES},
+            {"t": Q(1, 7), "u": Q(2, 7), "a": Q(3, 7), "b": Q(1, 7)},
+        ]
+        point_a = {"t": Q(1, 3), "u": Q(1, 3), "a": ONE, "b": ZERO}
+        point_b = {"t": Q(2, 3), "u": Q(2, 3), "a": ZERO, "b": ONE}
+        for mu in cases:
+            self.assertEqual(sum(mu.values(), ZERO), ONE)
+            pa = mu["a"] + (mu["t"] + mu["u"]) / 3
+            pb = mu["b"] + 2 * (mu["t"] + mu["u"]) / 3
+            self.assertEqual(pa, sum((mu[y] * point_a[y] for y in STATES), ZERO))
+            self.assertEqual(pb, sum((mu[y] * point_b[y] for y in STATES), ZERO))
+            self.assertEqual(pa + pb, ONE)
+
+    def test_endpoint_distribution_is_not_state_barycenter(self):
+        # Random terminal occupation takes only two Dirac values; its
+        # probability law is on MEASURES, not on physical states.
+        mu = {x: Q(1, 4) for x in STATES}
+        pa = mu["a"] + (mu["t"] + mu["u"]) / 3
+        pb = mu["b"] + 2 * (mu["t"] + mu["u"]) / 3
+        law_on_measures = {"dirac_a": pa, "dirac_b": pb}
+        self.assertEqual(law_on_measures, {"dirac_a": Q(5, 12), "dirac_b": Q(7, 12)})
+        self.assertEqual(sum(law_on_measures.values(), ZERO), ONE)
+
+    def test_geometric_event_horizon_zero_and_absorbing_start(self):
+        for start in STATES:
+            self.assertLessEqual(survival(start, 0), ONE)
+            for k in range(20):
+                self.assertLessEqual(survival(start, 2 * k), Q(1, 2) ** k)
+        for start in ABSORBING:
+            for k in range(20):
+                self.assertEqual(survival(start, 2 * k), ZERO)
 
     def test_pathwise_limit_not_expected_mixture(self):
         mixture = {"a": Q(1, 3), "b": Q(2, 3)}
