@@ -27,6 +27,8 @@ open ReverseSolver.FiniteStrategicPathBridge
 open ExactSixStateCanonical
 open PermanssonLean
 
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
+
 noncomputable def typedModel :=
   realizedModel sixStateMatrix
 
@@ -48,13 +50,13 @@ theorem typed_hitting_all_horizons (i : Fin 6) (T : ℕ) :
 theorem typed_t_two_step_hit :
     hittingValue (typedTarget recurrentTarget) typedModel.inducedKernel
       (decode (0 : Fin 6)) 2 = (1/2 : ℝ) := by
-  rw [typed_hitting_all_horizons]
+  rw [typed_hitting_all_horizons (0 : Fin 6) 2]
   norm_num [t_two_step_hit]
 
 theorem typed_u_two_step_hit :
     hittingValue (typedTarget recurrentTarget) typedModel.inducedKernel
       (decode (1 : Fin 6)) 2 = (3/4 : ℝ) := by
-  rw [typed_hitting_all_horizons]
+  rw [typed_hitting_all_horizons (1 : Fin 6) 2]
   norm_num [u_two_step_hit]
 
 
@@ -64,7 +66,7 @@ theorem typed_two_step_hit_at_least_half (i : Fin 6) :
     (1/2 : ℝ) ≤
       hittingValue (typedTarget recurrentTarget) typedModel.inducedKernel
         (decode i) 2 := by
-  rw [typed_hitting_all_horizons]
+  rw [typed_hitting_all_horizons i 2]
   exact_mod_cast two_step_hit_at_least_half i
 
 end ExactSixStateTyped
