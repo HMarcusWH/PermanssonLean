@@ -5,6 +5,7 @@ import PermanssonResearch.MultipleLimit.TypedStrategicWitness
 import PermanssonResearch.MultipleLimit.TypedPrefixEncoding
 import PermanssonResearch.MultipleLimit.TypedPrefixTransport
 import PermanssonResearch.MultipleLimit.TypedCanonicalPathBridge
+import PermanssonResearch.MultipleLimit.TypedInitialMixture
 import PermanssonResearch.MultipleLimit.Recovery
 import PermanssonResearch.MultipleLimit.DescriptorTransport
 import PermanssonResearch.MultipleLimit.Counterexamples
