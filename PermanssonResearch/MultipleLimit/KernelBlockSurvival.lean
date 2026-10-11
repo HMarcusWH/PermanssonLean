@@ -58,7 +58,7 @@ theorem geometric_endpoint_power
         _ ≤ ∫⁻ z, B.indicator (fun _ => q) z ∂((K ^ (k*N)) y) :=
           lintegral_mono (fun z => hblock z)
         _ = q * (K ^ (k*N)) y B := lintegral_indicator_const hB q
-        _ ≤ q * q^k := mul_le_mul_left' (ih y) q
+        _ ≤ q * q^k := mul_le_mul_left (ih y) q
         _ = q^(k+1) := by rw [pow_succ]; ac_rfl
 
 /-- Input in the natural absorbing-set form: the genuine N-step kernel
@@ -77,7 +77,6 @@ theorem geometric_endpoint_power_of_absorbing_block
   by_cases hy : y ∈ A
   · have hnot : y ∉ Aᶜ := by simpa using hy
     rw [Set.indicator_of_notMem hnot, hinside y hy]
-    exact le_rfl
   · have hmem : y ∈ Aᶜ := hy
     simpa only [Set.indicator_of_mem hmem] using houtside y hy
 
