@@ -244,6 +244,9 @@ import PermanssonResearch.MultipleLimit.FiniteExactGRCharacterization
 import PermanssonResearch.MultipleLimit.FiniteExactGRObstruction
 import PermanssonResearch.MultipleLimit.ExactSixStateC3Witness
 
+import PermanssonResearch.MultipleLimit.ExactSixStateStationaryCoordinates
+import PermanssonResearch.MultipleLimit.ExactSixStateMarginalOscillation
+
 /-!
 # PermanssonResearch
 
