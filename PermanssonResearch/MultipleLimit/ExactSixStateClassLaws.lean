@@ -117,7 +117,7 @@ theorem classASet_recurrent : classASet ∈ RecurrentClasses K := by
     rw [← classASet_eq_commClass]
     exact classASet_closed
   exact (recurrentClasses_mem_iff K _).mpr
-    ⟨decode (2 : Fin 6), hrec, classASet_eq_commClass⟩
+    ⟨decode (2 : Fin 6), hrec, classASet_eq_commClass.symm⟩
 
 theorem classBSet_recurrent : classBSet ∈ RecurrentClasses K := by
   have hrec : IsRecurrentState K (decode (4 : Fin 6)) := by
@@ -125,7 +125,7 @@ theorem classBSet_recurrent : classBSet ∈ RecurrentClasses K := by
     rw [← classBSet_eq_commClass]
     exact classBSet_closed
   exact (recurrentClasses_mem_iff K _).mpr
-    ⟨decode (4 : Fin 6), hrec, classBSet_eq_commClass⟩
+    ⟨decode (4 : Fin 6), hrec, classBSet_eq_commClass.symm⟩
 
 /-- The true period-two and aperiodic invariant class probabilities,
 constructed by the generic theorem rather than supplied as axioms. -/
