@@ -68,9 +68,9 @@ theorem unreachable_class_mass_zero
     simp
   · have hsubset : ({y} : Set Y) ⊆ F.basinᶜ := by
       intro q hq
-      simpa [Set.mem_singleton_iff] using (show q ∉ F.basin from by
-        simpa only [Set.mem_singleton_iff] using
-          (show q = y → q ∉ F.basin from fun h => h ▸ hby) (by simpa using hq))
+      have hqy : q = y := Set.mem_singleton_iff.mp hq
+      subst q
+      exact hby
     have hzero : μ.toMeasure ({y} : Set Y) = 0 :=
       measure_mono_null hsubset hcomplement
     rw [hzero]
@@ -111,7 +111,9 @@ theorem selected_reachable_family_ae
       (Finset.mem_filter.mp hi).2
     exact unreachable_class_mass_zero K F μ hμ i hii hnot
   rw [ae_iff]
-  simpa only [not_mem_setOf_iff, hset] using hnull
+  change P {w : ℕ → Y | f w ∉ reachableRepresentatives K H F} = 0
+  rw [hset]
+  exact hnull
 
 /-- A frozen common descriptor target assigned to ALL and ONLY
 basin-reachable recurrent classes. This is separate from the original
