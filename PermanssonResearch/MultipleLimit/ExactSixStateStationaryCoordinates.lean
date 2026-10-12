@@ -57,9 +57,11 @@ def realPiA (y : SixY) : ℝ := ((piA (encode y) : ℚ) : ℝ)
 def realPiB (y : SixY) : ℝ := ((piB (encode y) : ℚ) : ℝ)
 
 theorem realPiA_nonneg (y : SixY) : 0 ≤ realPiA y := by
+  change 0 ≤ ((piA (encode y) : ℚ) : ℝ)
   exact_mod_cast piA_nonneg (encode y)
 
 theorem realPiB_nonneg (y : SixY) : 0 ≤ realPiB y := by
+  change 0 ≤ ((piB (encode y) : ℚ) : ℝ)
   exact_mod_cast piB_nonneg (encode y)
 
 theorem realPiA_normalized : (∑ y : SixY, realPiA y) = 1 := by
@@ -86,7 +88,9 @@ theorem realPiB_supported :
     FiniteClosedSupport.IsSupportedReal realPiB classBSet := by
   intro y hy
   have hnot : ¬ (encode y = (4 : Fin 6) ∨ encode y = (5 : Fin 6)) := hy
-  simp [realPiB, piB, hnot]
+  have h4 : encode y ≠ (4 : Fin 6) := fun h => hnot (Or.inl h)
+  have h5 : encode y ≠ (5 : Fin 6) := fun h => hnot (Or.inr h)
+  simp [realPiB, piB, h4, h5]
 
 /-- The exact rational vector satisfies REAL stationarity for the
 ACTUAL typed induced kernel, not merely the reference transition. -/
