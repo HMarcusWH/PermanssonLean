@@ -106,9 +106,9 @@ theorem t_is_not_recurrent :
       (decode (2 : Fin 6)) (decode (0 : Fin 6)) := h2.2
   have hcontr := closed_reachable typedModel.inducedKernel
     recurrentTail_closed
-    (show decode (2 : Fin 6) ∈ recurrentTail by decide)
+    (show decode (2 : Fin 6) ∈ recurrentTail by norm_num [recurrentTail, decode, encode])
     hback
-  exact (show decode (0 : Fin 6) ∉ recurrentTail by decide) hcontr
+  exact (show decode (0 : Fin 6) ∉ recurrentTail by norm_num [recurrentTail, decode, encode]) hcontr
 
 theorem u_is_not_recurrent :
     (decode (1 : Fin 6)) ∉ RecurrentStates typedModel.inducedKernel := by
@@ -121,9 +121,9 @@ theorem u_is_not_recurrent :
       (decode (2 : Fin 6)) (decode (1 : Fin 6)) := h2.2
   have hcontr := closed_reachable typedModel.inducedKernel
     recurrentTail_closed
-    (show decode (2 : Fin 6) ∈ recurrentTail by decide)
+    (show decode (2 : Fin 6) ∈ recurrentTail by norm_num [recurrentTail, decode, encode])
     hback
-  exact (show decode (1 : Fin 6) ∉ recurrentTail by decide) hcontr
+  exact (show decode (1 : Fin 6) ∉ recurrentTail by norm_num [recurrentTail, decode, encode]) hcontr
 
 /-- The ex-ante observation is TRUE on every actual recurrent state,
 including the periodic and the aperiodic class. -/
