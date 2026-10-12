@@ -79,6 +79,20 @@ theorem eventuallyObserved_iff
     w ∈ eventuallyObserved h b ↔
       ∃ N : ℕ, ∀ n ≥ N, h (w n) = b := Iff.rfl
 
+/-- A path cannot be eventually ALWAYS true and eventually ALWAYS
+false for one fixed observed descriptor. This separation is pointwise
+and does not depend on any transition kernel. -/
+theorem eventuallyObserved_true_false_disjoint (h : Y → Bool) :
+    Disjoint (eventuallyObserved h true)
+      (eventuallyObserved h false) := by
+  apply Set.disjoint_left.mpr
+  intro w htrue hfalse
+  obtain ⟨N₁, h₁⟩ := htrue
+  obtain ⟨N₂, h₂⟩ := hfalse
+  have ht := h₁ (max N₁ N₂) (le_max_left _ _)
+  have hf := h₂ (max N₁ N₂) (le_max_right _ _)
+  exact Bool.true_ne_false (ht.symm.trans hf)
+
 /-- A canonical chain whose ALL recurrent states bear one frozen label
 satisfies the corresponding event a.s., for every initial law.
 This reuses C2's proved recurrent entry and continuation, not a new
