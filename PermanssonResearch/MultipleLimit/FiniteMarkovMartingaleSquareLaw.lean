@@ -71,13 +71,13 @@ theorem square_event_probability_bound
     _ = ENNReal.ofReal ((ε^2)⁻¹ * ((squareHorizon n : ℝ)⁻¹)) := by
       congr 1
       field_simp [ne_of_gt hε, ne_of_gt hs]
-      ring
+      try ring
 
 /-- The positive real square-horizon reciprocal series is summable. -/
 theorem square_reciprocal_summable :
     Summable (fun n : ℕ => (squareHorizon n : ℝ)⁻¹) := by
   have h : Summable (fun n : ℕ => ((n : ℝ)^2)⁻¹) :=
-    (summable_nat_pow_inv (p := 2)).mpr (by norm_num)
+    (Real.summable_nat_pow_inv (p := 2)).mpr (by norm_num)
   convert (summable_nat_add_iff 1).mpr h using 1
   ext n
   simp [squareHorizon]
@@ -129,8 +129,10 @@ theorem square_normalized_ae_tendsto_zero
   rw [Metric.tendsto_atTop]
   intro ε hε
   obtain ⟨k,hk⟩ := exists_nat_one_div_lt hε
-  filter_upwards [hw k] with n hn
-  simpa only [Real.dist_eq, sub_zero] using (lt_trans hn hk)
+  obtain ⟨N, hN⟩ := (eventually_atTop.1 (hw k))
+  refine ⟨N, ?_⟩
+  intro n hn
+  simpa only [Real.dist_eq, sub_zero] using (lt_trans (hN n hn) hk)
 
 end FiniteMarkovMartingaleSquareLaw
 end MultipleLimit
