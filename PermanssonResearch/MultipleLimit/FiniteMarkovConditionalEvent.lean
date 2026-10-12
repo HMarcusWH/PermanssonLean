@@ -16,6 +16,8 @@ centered Markov martingale proof, and does not assume independence.
 open MeasureTheory ProbabilityTheory
 open scoped ENNReal ProbabilityTheory
 
+set_option maxHeartbeats 2000000
+
 namespace PermanssonResearch
 namespace MultipleLimit
 namespace FiniteMarkovConditionalEvent
