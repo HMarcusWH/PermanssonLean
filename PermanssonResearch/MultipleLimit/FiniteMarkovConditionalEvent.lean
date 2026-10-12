@@ -16,7 +16,6 @@ centered Markov martingale proof, and does not assume independence.
 open MeasureTheory ProbabilityTheory
 open scoped ENNReal ProbabilityTheory
 
-set_option maxHeartbeats 2000000
 
 namespace PermanssonResearch
 namespace MultipleLimit
@@ -51,12 +50,11 @@ theorem canonical_next_singleton_conditional_probability
   have hkernel :
       (condDistrib Ynext X P) =ᵐ[P.map X]
         PermanssonLean.ProbabilitySupport.stationaryPrefixKernel K t := by
-    simpa only [P, X, Ynext, canonicalPathLaw] using
-      (ProbabilityTheory.Kernel.condDistrib_trajMeasure
-        (μ₀ := μ.toMeasure)
-        (κ := fun n =>
-          PermanssonLean.ProbabilitySupport.stationaryPrefixKernel K n)
-        (a := t))
+    have hpair := CanonicalKernelMarginals.canonical_transition_pair
+      K μ.toMeasure t
+    apply ProbabilityTheory.condDistrib_ae_eq_of_measure_eq_compProd_of_measurable
+      hX hY
+    simpa only [P, X, Ynext] using hpair
   have hkernelPath :
       ∀ᵐ w ∂P,
         condDistrib Ynext X P (X w) =
