@@ -142,19 +142,15 @@ private theorem rB_recurrent : (decode (4 : Fin 6)) ∈ RecurrentStates K := by
 
 theorem rA_representative : rA ∈ recurrentRepresentatives K := by
   classical
-  change classRepresentative K (decode (2 : Fin 6)) ∈
-    (Finset.univ.filter (fun i =>
-      i ∈ RecurrentStates K ∧ classRepresentative K i = i))
-  simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+  simp only [rA, recurrentRepresentatives,
+    Finset.mem_filter, Finset.mem_univ, true_and]
   exact ⟨classRepresentative_recurrent K rA_recurrent,
     classRepresentative_idempotent K (decode (2 : Fin 6))⟩
 
 theorem rB_representative : rB ∈ recurrentRepresentatives K := by
   classical
-  change classRepresentative K (decode (4 : Fin 6)) ∈
-    (Finset.univ.filter (fun i =>
-      i ∈ RecurrentStates K ∧ classRepresentative K i = i))
-  simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+  simp only [rB, recurrentRepresentatives,
+    Finset.mem_filter, Finset.mem_univ, true_and]
   exact ⟨classRepresentative_recurrent K rB_recurrent,
     classRepresentative_idempotent K (decode (4 : Fin 6))⟩
 
@@ -168,19 +164,13 @@ theorem representatives_reachable_from_u
       rB ∈ reachableRepresentatives K H F := by
   classical
   constructor
-  · change rA ∈ (recurrentRepresentatives K).filter
-      (fun i => ∃ y ∈ F.basin,
-        canonicalPathLaw K (Measure.dirac y)
-          ((selectedRepresentative K) ⁻¹' {i}) ≠ 0)
-    apply Finset.mem_filter.mpr
+  · simp only [reachableRepresentatives,
+      Finset.mem_filter, Finset.mem_univ, true_and]
     refine ⟨rA_representative, decode (1 : Fin 6), hu, ?_⟩
     rw [canonical_rA_weight_u]
     norm_num
-  · change rB ∈ (recurrentRepresentatives K).filter
-      (fun i => ∃ y ∈ F.basin,
-        canonicalPathLaw K (Measure.dirac y)
-          ((selectedRepresentative K) ⁻¹' {i}) ≠ 0)
-    apply Finset.mem_filter.mpr
+  · simp only [reachableRepresentatives,
+      Finset.mem_filter, Finset.mem_univ, true_and]
     refine ⟨rB_representative, decode (1 : Fin 6), hu, ?_⟩
     rw [canonical_rB_weight_u]
     norm_num
@@ -222,7 +212,7 @@ theorem identityAssumption41 (ν : ProbabilityMeasure SixY) :
         decode, encode]
     · simp [identitySpec, typedRegion, ExactSixStateRegion.region,
         decode, encode]
-    · decide
+    · norm_num [identitySpec, decode, encode]
   · exact observedAssumption41.2.2.2
 
 theorem identityExactlyInvariant (ν : ProbabilityMeasure SixY) :
@@ -251,7 +241,7 @@ theorem identity_observed_A (ν : ProbabilityMeasure SixY) :
   change πA.map (id : SixY → SixY) = πA
   apply ProbabilityMeasure.toMeasure_injective
   change Measure.map (id : SixY → SixY) πA.toMeasure = πA.toMeasure
-  exact Measure.map_id _
+  exact Measure.map_id
 
 theorem identity_observed_B (ν : ProbabilityMeasure SixY) :
     observedStationaryForClass K (identitySpec ν).descriptor rB = πB := by
@@ -261,7 +251,7 @@ theorem identity_observed_B (ν : ProbabilityMeasure SixY) :
   change πB.map (id : SixY → SixY) = πB
   apply ProbabilityMeasure.toMeasure_injective
   change Measure.map (id : SixY → SixY) πB.toMeasure = πB
-  exact Measure.map_id _
+  exact Measure.map_id
 
 theorem identity_observed_classes_distinct (ν : ProbabilityMeasure SixY) :
     observedStationaryForClass K (identitySpec ν).descriptor rA ≠
