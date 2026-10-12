@@ -16,18 +16,20 @@ C4 was verified on the final PR head and synthetic merge and again on
 the actual main merge commit `68bbb8025c931d0519621e4a827a50250945ddb7`;
 all four post-merge workflows passed (see PR #55).
 
-**Current unmerged research:** Draft
-[C5 PR #56](https://github.com/HMarcusWH/PermanssonLean/pull/56)
-proposes the sharp finite *positive-atom* observed regime-family
-classification: exactly which basin-reachable class stationary descriptor
-laws can occur with nonzero canonical path probability, finite-family
-coverage/no-spurious iff, and the conservative singleton Exact GR bridge.
-C2 already proved almost-sure occupation convergence and the full law;
-C5 must not represent those results as new theorems. The separate
-[C5 research ledger](LANE_C5_SHARP_FAMILY.md) records source types,
-adversarial controls and the exact-head verification gate. The proposal
-is not PROVED until full Research Lean compilation and the other three
-workflow checks are green at its final head.
+**Current research release candidate:** [C5 PR #56](https://github.com/HMarcusWH/PermanssonLean/pull/56)
+proves the sharp finite *positive-atom* observed family:
+positive-probability basin witnesses, exact no-spurious-atom/coverage
+equivalence, class-weight aggregation and the conservative C3 singleton
+Exact GR bridge. Its mathematical source HEAD
+`8ceaf2349620ee20c92ffeb1387ff5c08b0bdd3b` passed all four PR
+workflows, a **2,760-declaration** transitive axiom audit,
+**167** independent research regressions and **240** module imports.
+The review is an assistant-conducted source COMMENT, not independent peer
+review. A documentation-only follow-up must pass fresh final-head
+CI before merge; consult the live PR for release status. C2 already
+proved actual empirical occupation convergence and its random limit law.
+The [C5 verified source ledger](LANE_C5_SHARP_FAMILY.md) records exact
+theorems, evidence and limitations.
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),

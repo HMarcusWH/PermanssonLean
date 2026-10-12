@@ -7,10 +7,13 @@ partition grammars), D0/D1 (finite controlled policy theory), and C1–C4
 (finite absorbing and recurrent classes, their actual random occupation
 laws, original single-target Exact GR characterization, and exact six-state
 stationary/periodic witnesses) have since been implemented in merged
-PRs #36–55. Draft [C5 PR #56](https://github.com/HMarcusWH/PermanssonLean/pull/56)
-separately proposes a sharp nonvacuous finite *positive-atom* observed
-family and original Exact GR singleton recovery. This is new research,
-not a v0.1.8 theorem or an independently certified application.
+PRs #36–55. [C5 PR #56](https://github.com/HMarcusWH/PermanssonLean/pull/56)
+has now compiled and source-reviewed its separate sharp finite
+*positive-atom* observed-family characterization and conservative C3
+single-target Exact GR bridge; all four proof-source PR workflows are
+green. Its later documentation-head CI and merge state belong to the
+live PR, not to this historical roadmap. C5 remains new research,
+not a frozen v0.1.8 theorem or an empirically certified application.
 The unchanged v0.1.8 paper and core retain their own formalization boundary.
 
 

@@ -1,7 +1,7 @@
 # Lane C5 — sharp positive-atom observed-limit families
 
 **Research PR:** [#56](https://github.com/HMarcusWH/PermanssonLean/pull/56).
-**Status:** draft / source implementation undergoing Lean compilation, scientific review and independent regression verification. **Not a new v0.1.8 release.**
+**Status (12 October 2026):** C5's mathematical source is **compiled, transitive-axiom-audited, independently regression-tested and reviewed** at the exact source head and tested synthetic merge in Section 6. This is a research-only proof checkpoint, **not** a new v0.1.8 release or independent scholarly peer review. A later documentation-only commit requires fresh four-workflow verification before merge. Consult [PR #56](https://github.com/HMarcusWH/PermanssonLean/pull/56) for that final-head and merge state.
 **Frozen base:** `main@68bbb8025c931d0519621e4a827a50250945ddb7` (merged C4 PR #55).
 
 ## 1. Actual mathematical novelty
@@ -21,7 +21,7 @@ E_ν := {w : λ(w)=ν}
 
 The finite image `V` deduplicates observationally equal physical classes. Its meaning is **positive-probability canonical atoms**; it is not arbitrary topological support or an executable solver.
 
-Headline candidate theorems in `SharpObservedFamily.lean`:
+Verified theorem declarations in `SharpObservedFamily.lean`:
 
 - `sharpObservedFamily_nonempty`: the predeclared basin produces a nonempty finite observed family.
 - `observedFamilyEvent_measurable` and `observedAtomEvent_measurable`: events `λ(w) ∈ V` and `λ(w)=ν` are measurable through the **finite-valued class selector**, even without globally assuming arbitrary singletons of `ProbabilityMeasure H` are measurable.
@@ -29,11 +29,11 @@ Headline candidate theorems in `SharpObservedFamily.lean`:
 - `mem_sharp_iff_positive_atom`: `ν∈V(K,B0,h)` iff `∃y∈B0, P_y(E_ν) != 0`. No arbitrary minimum probability cutoff.
 - `covers_and_noSpurious_iff_eq_sharp`: coverage and a positive basin witness for *every* claimed candidate member iff the finite candidate equals `V(K,B0,h)` exactly.
 
-The C2 `observedOccupationLimit_ae_correct` connects `λ` to the *actual empirical occupation limits* under the original infinite canonical law. The code must use this existing theorem for interpretation and must not silently replace the observed canonical limit by a one-time marginal.
+C2's existing `observedOccupationLimit_ae_correct` proves that this same canonical `λ` is the almost-sure weak limit of the *actual empirical occupation* under the original infinite path law. C5 reuses that theorem rather than claiming a new ergodic theorem or replacing the limit by a one-time marginal. `observedAtomEvent_mass_eq_class_sum` further proves the exact class-weight grouping at one observable atom by summing genuine canonical class-selector probabilities.
 
 ## 2. Conservative original GR bridge
 
-`SharpFamilyExactGRBridge.exactGR_iff_sharp_singleton` should be a small direct corollary of C3's `exactGR_iff_common_reachable_target`:
+`SharpFamilyExactGRBridge.exactGR_iff_sharp_singleton` is a compiled direct corollary of C3's existing `exactGR_iff_common_reachable_target`:
 
 ```text
 IsExactGeneratedRegime M spec m
@@ -45,7 +45,7 @@ Keep the following gates **unweakened and literal**: `Assumption41 M spec m`, `I
 
 ## 3. Typed six-state witnesses
 
-`ExactSixStateSharpFamily.lean` must reuse the genuine `ExactSixStateTyped.typedModel.inducedKernel`, `ExactSixStateC3Witness.rA/rB` and their previously proven positive class-selection weights. Never substitute `a0/b0` for noncomputable class representatives.
+`ExactSixStateSharpFamily.lean` reuses the genuine `ExactSixStateTyped.typedModel.inducedKernel`, C3's canonical representatives `rA/rB`, and the previously proved positive selection weights. The proof never identifies those noncomputably chosen representatives with specific physical labels `a0/b0`.
 
 For the identity descriptor with the original proper two-point basin `{u,a0}`, the sharp family contains BOTH distinct actual class stationary probability laws
 
@@ -55,7 +55,7 @@ The frozen Boolean descriptor collapses the observed family to `{δ_true}`, desp
 
 ## 4. Independent exact-Fraction adversaries
 
-`verification/research/test_lane_c5_sharp_family.py` independently transcribes the six-state rational transition matrix and solves stationary and class-hitting equations using exact Gauss–Jordan rational arithmetic. It must cover:
+`verification/research/test_lane_c5_sharp_family.py` independently transcribes the six-state rational transition matrix and solves stationary and class-hitting equations using exact Gauss–Jordan rational arithmetic. All 15 tests passed, covering:
 
 1. Six-state rows, real class stationary coordinates and genuine positive class-selection law.
 2. Physical identity descriptor versus observed Boolean collapse.
@@ -81,17 +81,16 @@ Computational regressions are falsification controls, **not proof of general sto
 - Accept the research library's normal transitive allowlist `propext`, `Classical.choice`, `Quot.sound`; disallow `sorry`, `admit` or added custom axioms.
 - An assistant code review or CI success is **not** independent human scholarly peer review.
 
-## 6. Final-source and CI checkpoint
+## 6. Verified mathematical-source checkpoint — 12 October 2026
 
-**PENDING**, not to be called PROVED merely because source files exist.
+- **Last C5 mathematical-source HEAD:** `8ceaf2349620ee20c92ffeb1387ff5c08b0bdd3b` (11 commits in PR before release-record finalization).
+- **Exact GitHub synthetic merge checked out and tested:** `c4dabe71c129c84ad1f2fe9317a39335d7c01390`, merging that source HEAD into frozen `main@68bbb8025c931d0519621e4a827a50250945ddb7`. This checkout is visible in the final Research Lean log.
+- **[Research Lean #38304439645](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38304439645): SUCCESS.** Full root built **3,944 Lean jobs**. The transitive axiom audit checked **2,760** `PermanssonResearch` declarations, all within the only admitted `propext`, `Classical.choice`, `Quot.sound` allowlist. All **167** independent research tests passed (the prior **152** plus **15** C5 exact-`Fraction` adversaries). The **240** research modules were all directly imported; the research placeholder/custom-axiom source firewall passed, as did the original default-target build.
+- **[Original Lean #38304439558](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38304439558): SUCCESS.**
+- **[Executable verification #38304439616](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38304439616): SUCCESS.** Historical frozen-release provenance and destructive verification gates remained valid.
+- **[Application contract #38304439602](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38304439602): SUCCESS**, including **Ubuntu and Windows** jobs. Structural contract PASS is not empirical certification.
+- **Source/hypothesis review: COMPLETED** in [PR review #5495730329](https://github.com/HMarcusWH/PermanssonLean/pull/56#pullrequestreview-5495730329), an **assistant-conducted COMMENT** anchored to the exact source HEAD. No blocking mathematical/source finding or unresolved review threads. This is **not** an independent human `APPROVED` review or external scholarly peer review.
+- **Protected-file audit:** Exactly eight PR files are affected: three new `PermanssonResearch/MultipleLimit/` modules, the direct-import root `PermanssonResearch.lean`, one `verification/research/` regression suite and the C5 research ledger/build-guide/roadmap. Original `PermanssonLean/`, `PermanssonLean.lean`, `paper/`, `application/`, existing C1–C4 proofs, workflow definitions, toolchain, Lake manifest, and historical release metadata are unchanged.
+- **Nonblocking warnings:** existing Lean lint/unused-instance suggestions and GitHub Actions/Node deprecation notices. No additional axiom, unproved new theorem, or failed current-head workflow is reported in this checkpoint.
 
-- C5 theorem source HEAD: **PENDING**.
-- Exact GitHub synthetic-merge SHA: **PENDING**.
-- Research Lean full compilation, transitive axioms, regressions, direct imports and source firewall: **PENDING**.
-- Original Lean: **PENDING**.
-- Executable verification: **PENDING**.
-- Application contract (Ubuntu and Windows): **PENDING**.
-- Actual source/hypothesis review and any unresolved findings: **PENDING**.
-- Reviewed author-controlled merge decision: **PENDING**.
-
-Any additional source or documentation commit after a verified checkpoint **requires fresh four-workflow checks** at the later exact head. The PR remains draft until implementation, review and final-head CI are resolved.
+**Final documentation-head / merge gate:** The evidence above certifies the **immutable mathematical source checkpoint**, not a subsequent documentation-only HEAD. If this ledger, build guide or roadmap is committed after the verified source HEAD, re-run and check all **four workflows at the new final HEAD and exact synthetic merge**, and report their URLs and SHAs in [PR #56](https://github.com/HMarcusWH/PermanssonLean/pull/56). Promote/merge only after those checks pass and the author-controlled merge decision is satisfied. Do not represent CI or an assistant review as external peer review, empirical identification or generalized constitutive PR certification.
