@@ -26,6 +26,8 @@ namespace FiniteOccupationStrongLaw
 
 open FiniteCanonicalPath
 open FiniteKernelRealBridge
+open FiniteCesaroAlgebra
+open FiniteKernelInvariantUniqueness
 open FiniteMarkovMartingaleStep
 open FiniteMarkovMartingaleSLLN
 open FiniteOccupationVector
@@ -72,10 +74,9 @@ theorem canonical_empirical_residual_ae_zero
           transitionResidual (realTransition K) w z (n+1))
         atTop (𝓝 (0 : ℝ)) := by
     convert hmart using 1
-    · ext n
-      rw [partialSum_eq_residual]
-      ring
-    · simp
+    ext n
+    rw [partialSum_eq_residual]
+    ring
   have hbound :
       Tendsto (fun n : ℕ =>
         (pushVector (realTransition K) (empiricalVector w n) z -
