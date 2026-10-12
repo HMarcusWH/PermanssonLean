@@ -115,7 +115,7 @@ theorem marginalMeasure_even_odd (n : ℕ) :
           Measure.dirac a0 := by
         calc
           marginalMeasure (2*(n+1)) =
-              marginalMeasure ((2*n+1)+1) := by omega
+              marginalMeasure ((2*n+1)+1) := by congr 1
           _ = K ∘ₘ marginalMeasure (2*n+1) := marginalMeasure_succ _
           _ = K ∘ₘ Measure.dirac a1 := by rw [ih.2]
           _ = K a1 := kernel_comp_dirac a1
