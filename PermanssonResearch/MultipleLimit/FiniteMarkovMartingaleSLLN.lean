@@ -99,7 +99,6 @@ private theorem relativeSquareGap_le_inverse_root (n : ℕ) :
   have hfield : (2 * (k : ℝ) + 1) / (k : ℝ)^2 =
       2 * ((k : ℝ)⁻¹) + ((k : ℝ)⁻¹)^2 := by
     field_simp [ne_of_gt hk]
-    ring
   change ((T : ℝ) - (k : ℝ)^2) / (T : ℝ) ≤
       2 * ((k : ℝ)⁻¹) + ((k : ℝ)⁻¹)^2
   exact hr.trans_eq hfield
