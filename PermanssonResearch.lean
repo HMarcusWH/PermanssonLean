@@ -255,6 +255,7 @@ import PermanssonResearch.MultipleLimit.FrozenObservedEvent
 import PermanssonResearch.MultipleLimit.ExactSixStateTargetDisruption
 import PermanssonResearch.MultipleLimit.TypedEventResponse
 import PermanssonResearch.MultipleLimit.ExactSixStateConstitution
+import PermanssonResearch.MultipleLimit.SharpFamilyResponseWitness
 
 /-!
 # PermanssonResearch
