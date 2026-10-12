@@ -1,7 +1,7 @@
 # Lane C2 — finite recurrent communicating classes (draft PR #53)
 
-**Status: IMPLEMENTATION IN PROGRESS / NOT MERGE-READY.** This research-only
-workstream follows merged C1 PR #52. The frozen Permansson v0.1.8 core,
+**Status: FORMAL SOURCE + SYNTHETIC MERGE CHECKS GREEN; PR REMAINS DRAFT FOR INDEPENDENT REVIEW.**
+This research-only workstream follows merged C1 PR #52. The frozen Permansson v0.1.8 core,
 `RegimeSpecification.target`, paper, applications, Lean/mathlib pin and
 historical proof records must not change.
 
@@ -156,11 +156,12 @@ verified merely because an older source checkpoint was green.
    theorem statement/hypothesis review, fresh regressions, source/axiom
    firewall, frozen-file diff and release documentation.
 
-**Scientific promotion rule:** PR #53 stays DRAFT until the above headline
-theorems are unconditional under their declared finite-chain hypotheses
-and all final-head workflows are green. An axiom audit establishes checked
-Lean declarations, not empirical validity, scholarly priority or the
-truth of assumptions supplied to conditional lemmas.
+**Scientific promotion rule:** The headline finite-class results now
+compile under their explicit hypotheses, with all four workflows green
+at the verified source and synthetic merge checkpoint recorded below.
+PR #53 remains DRAFT pending independent mathematical/source review and
+user-controlled merge approval. An axiom audit certifies Lean declarations,
+not empirical validity, scholarly priority, or the truth of supplied premises.
 
 ## Protected boundaries and CI
 
@@ -172,22 +173,25 @@ Require research root compilation, full transitive axiom allowlist
 original Lean default build, application contract and executable regression
 checks on the final tested PR synthetic merge revision.
 
-## Status handoff
+## Status handoff — superseded by verified end-to-end C2 chain
 
-The earlier initial-implementation checklist has been superseded by the
-verified-foundation and post-checkpoint inventory above. The code currently
-implements the deterministic/Cesàro and stationary-class selection pieces;
-**the unconditional stochastic occupation theorem remains the critical path**.
-No frozen v0.1.8 definitions, paper files or application schemas were changed.
+The earlier checkpoints and open-obligation list above are preserved as
+historical evidence of the research build sequence. The former critical
+stochastic residual hypothesis has now been **discharged by the compiled
+canonical martingale SLLN**, and the physical probability-measure limit,
+random full law, descriptor transport, nonvacuous basin classification,
+and original Exact GR recovery are imported and formally checked.
+No frozen v0.1.8 definitions, paper files or application schemas changed.
 
 
-## 12 October implementation tranche — proof-source candidates, NOT YET RELEASE CERTIFIED
+## 12 October implementation tranche — checked mathematical source
 
-The source tree now includes the proposed end-to-end C2 chain. **No theorem
-introduced in this tranche may be cited as verified merely because its source
-exists.** Only full Research Lean compilation, its transitive three-axiom
-firewall, the test/review checks and all four workflows at the exact same
-source HEAD promote the claim.
+All modules in this table compiled as part of Research Lean #38202432806 on
+source `1cf6df7ed39f6005c28607bd9517701a83a7c23e` and its tested
+synthetic PR merge. Their advertised claims are scoped to their actual Lean
+theorem statements; conditional GR recovery requires the explicitly stated
+original gates and frozen convergence-mode equality. The independent
+review of scientific interpretation remains distinct from formal checking.
 
 | Stage | Candidate research modules | Required evidence |
 | --- | --- | --- |
@@ -220,9 +224,62 @@ requires equality of the frozen mode with the canonical
 `ConvergenceMode.almostSureWeak`; this is a mathematically essential
 stated hypothesis rather than an implicit redefinition.
 
-**Current release state:** still DRAFT / NOT MERGE-READY. Individual research
-modules have compiled in preceding checks, but the complete newly extended
-root has not yet attained green Research Lean, exact-head axiom audit,
-synthetic-merge check and theorem-statement review. The latest red compiler
-messages are elaboration/proof-tactic failures and must be repaired; they
-must never be silenced by `sorry`, `admit`, or a custom axiom.
+**Current release state:** FORMAL IMPLEMENTATION VERIFIED at the exact
+source and synthetic-merge checkpoint listed below; all four workflows GREEN.
+PR remains DRAFT for independent source/hypothesis review and deliberate
+merge decision. Unrelated empirical identification, causal intervention and
+constitutive PR assertions are not established by this finite-chain proof.
+
+## Verified implementation checkpoint — 12 October 2026
+
+**Proof-source SHA:** `1cf6df7ed39f6005c28607bd9517701a83a7c23e`  
+**Exact GitHub synthetic merge tested:** `e673098daf338cf6c6fa76b3130e8d24c2a16fc8`  
+**Frozen base SHA:** `821d8545ce0ef28466d4aba70c415db6953f5cef`
+
+All four independent PR workflows **SUCCESS** on that source / synthetic
+merge pair:
+
+- [Research Lean #38202432806](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38202432806):
+  full root compiled (3,934 build jobs); axiom-audit examined **2,604
+  transitive research declarations** against exactly `propext`,
+  `Classical.choice`, `Quot.sound` and passed; **126** independent
+  research regressions passed; **230** direct research modules covered by
+  the import test; original source placeholder / custom-axiom firewall PASS.
+- [Original Lean #38202432834](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38202432834):
+  SUCCESS.
+- [Executable verification #38202432813](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38202432813):
+  SUCCESS.
+- [Application contract #38202432841](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38202432841):
+  SUCCESS.
+
+The formal result now includes the genuine arbitrary-initial-law canonical
+martingale strong law (no assumed IID sampling), physical a.s. weak
+occupation limits even for periodic recurrent classes, the full law of
+their random class-supported probability-measure limits, frozen descriptor
+pushforward, and conservative original Exact GR recovery. The six-state
+typed model proves 1/3–2/3 canonical class-selection weights and a full
+two-distinct-atom physical random occupation-limit law under transient
+t/u starts, alongside an exact proper-region observed GR certificate.
+`FiniteC1Specialization` gives the explicit earlier C1 instance of the
+general theorem. `ExactSixStateUnreachable` certifies actual-kernel
+nonreachability across distinct recurrent blocks and unequal periodic
+transition rows. The separate exact-Fraction periodic adversaries test
+alternating time marginals; the unequal-row theorem itself is not being
+misrepresented as a general Lean nonconvergence theorem.
+
+**Protected-file audit:** only `PermanssonResearch/`,
+`PermanssonResearch.lean`, `verification/research/` and this research
+ledger changed. No frozen core, paper, application, toolchain, or prior
+provenance artifact changed.
+
+This is a mathematical/formal finite-chain result. No empirical forecast,
+externally identified causal effect, or constitutive PR intervention
+certificate is inferred. The original `RegimeSpecification.target`
+is unmodified. A final independent mathematical review and explicit
+merge decision remain required; formal CI green alone is not scholarly
+peer review.
+
+Any documentation-only follow-up commit beyond this proven code SHA
+must itself rerun all four PR checks at the new exact final head. The
+most recently verified SHA should always be read from the PR status,
+never inferred from this historical source checkpoint.
