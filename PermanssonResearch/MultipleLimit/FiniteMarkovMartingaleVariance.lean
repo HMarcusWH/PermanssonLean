@@ -46,10 +46,13 @@ theorem partialSum_sq_integrable (μ : ProbabilityMeasure Y)
   exact ae_of_all _ (fun w => by
     have hb := partialSum_abs_le_time K z T w
     have hn : 0 ≤ (T : ℝ) := Nat.cast_nonneg _
+    have hprod : 0 ≤ ((T : ℝ) - |partialSum K z T w|) *
+        (|partialSum K z T w| + (T : ℝ)) := by
+      exact mul_nonneg (sub_nonneg.mpr hb)
+        (add_nonneg (abs_nonneg (partialSum K z T w)) hn)
     have htwo : |partialSum K z T w| ^ 2 ≤ (T : ℝ) ^ 2 := by
-      nlinarith [mul_nonneg (sub_nonneg.mpr hb)
-        (add_nonneg (abs_nonneg _) hn)]
-    simpa [Real.norm_eq_abs, abs_pow, abs_of_nonneg (sq_nonneg _)] using htwo)
+      nlinarith
+    simpa [Real.norm_eq_abs, abs_of_nonneg (sq_nonneg _), sq_abs] using htwo)
 
 theorem partialSum_mul_increment_integrable (μ : ProbabilityMeasure Y)
     (z : Y) (T : ℕ) :
@@ -66,7 +69,7 @@ theorem partialSum_mul_increment_integrable (μ : ProbabilityMeasure Y)
   exact ae_of_all _ (fun w => by
     have hbM := partialSum_abs_le_time K z T w
     have hbD := increment_bounded K z T w
-    rw [Real.norm_eq_abs, abs_mul]
+    simp only [Real.norm_eq_abs, Pi.mul_apply, abs_mul]
     calc
       |partialSum K z T w| * |increment K z T w| ≤
         |partialSum K z T w| * 1 :=
@@ -107,6 +110,11 @@ theorem canonical_martingale_second_moment_le_time
             2 * (∫ w, partialSum K z T w *
               increment K z T w ∂P) +
               (∫ w, (increment K z T w) ^ 2 ∂P) := by
+                change (∫ w,
+                  (((fun w : ℕ → Y => (partialSum K z T w) ^ 2) +
+                    (fun w : ℕ → Y =>
+                      2 * (partialSum K z T w * increment K z T w))) +
+                    (fun w : ℕ → Y => (increment K z T w) ^ 2)) w ∂P) = _
                 rw [integral_add (hSq.add (hCross.const_mul 2)) hD,
                   integral_add hSq (hCross.const_mul 2),
                   integral_const_mul]
