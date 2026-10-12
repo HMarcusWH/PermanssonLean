@@ -22,6 +22,7 @@ namespace ExactSixStateConstitution
 open PermanssonLean
 open PermanssonLean.RegimeSpecification
 open ReverseSolver.FiniteStrategicRealization
+open ExactSixStateCanonical
 open ExactSixStateTyped
 open ExactSixStateObservedGR
 open ExactSixStateTargetDisruption
