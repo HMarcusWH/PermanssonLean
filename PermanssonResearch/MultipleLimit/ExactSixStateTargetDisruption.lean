@@ -150,6 +150,7 @@ theorem disrupted_u_closed : ClosedSubset Kd ({u} : Set SixY) := by
   intro y hy z hpositive
   have hyu : y = u := Set.mem_singleton_iff.mp hy
   subst y
+  change 0 < Kd u ({z} : Set SixY) at hpositive
   rw [disrupted_row_u] at hpositive
   by_contra hnot
   have hzero : (Measure.dirac u) ({z} : Set SixY) = 0 := by
@@ -174,6 +175,7 @@ theorem disrupted_region_closed :
   by_contra hnot
   have hzt : z = t := by simpa [t] using hnot
   subst z
+  change 0 < Kd y ({t} : Set SixY) at hz
   exact (ne_of_gt hz) (disrupted_no_entry_t y)
 
 /-- Under the genuine intervened infinite Markov path law, the state at
