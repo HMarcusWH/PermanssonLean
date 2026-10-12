@@ -1,13 +1,13 @@
 # Lane C3 — finite-state Exact GR characterization
 
 **RESEARCH ONLY — not part of the frozen Permansson v0.1.8 paper.**
-**Status:** C3 implementation under review in [PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54). No merge or formal release is claimed until the exact-head Research Lean, original Lean, executable verification, and application-contract gates all pass.
+**Status:** C3 formal implementation verified on the exact proof-source and synthetic-merge checkpoint listed below, with successful research and original Lean builds, axiom audit, and both executable workflows. These research results do not amend the frozen paper. For the eventual merge state and any subsequent exact-head checks, consult [PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54). GitHub CI and an assistant source review do not constitute external scholarly peer review.
 
 ## The mathematical objective
 
 C2 ([merged PR #53](https://github.com/HMarcusWH/PermanssonLean/pull/53)) proves the unconditional finite homogeneous Markov classwise strong law for the actual Ionescu–Tulcea infinite path, its measure-valued random occupation-limit law, and *sufficient* original Exact GR recovery when every basin-reachable class yields a common descriptor target.
 
-C3 is the **necessary-and-sufficient** statement for the unchanged original original `RegimeSpecification` / `IsExactGeneratedRegime`:
+C3 is the **necessary-and-sufficient** statement for the unchanged original `RegimeSpecification` / `IsExactGeneratedRegime`:
 
 \[
 \mathrm{ExactGR}(M,\Sigma,m)
@@ -55,14 +55,17 @@ The tests are finite computational negative controls, **not** a proof of general
 
 **Merge criteria:** C54-01 through C54-05 compile with their **unweakened statements**; both Lean targets and full transitive axiom audit pass; all research regression tests pass; all four GitHub PR workflows pass on the final source SHA and exact synthetic merge; an independent source/hypothesis review completes; frozen-file audit passes; a deliberate user-controlled merge decision is recorded.
 
-**Checkpoint evidence (to complete after verification):**
+## Verified formal-implementation checkpoint — 12 October 2026
 
-- Base main: `f2bbd96cb3e89dbc73d08bd675cd327b4fd752f2` (merged PR #53)
-- Final proof head: **PENDING**
-- Tested synthetic merge: **PENDING**
-- Research Lean: **PENDING**
-- Original Lean: **PENDING**
-- Executable verification: **PENDING**
-- Application contract: **PENDING**
+- Frozen `main` base: `f2bbd96cb3e89dbc73d08bd675cd327b4fd752f2` (merged PR #53).
+- Verified **proof-source SHA**: `5a058808383e7b9ada20b0f4f88b9f97e9579b54`.
+- Verified **GitHub synthetic merge SHA**: `3bbac9fe2a9e41524f4ef3ffac0e0bb56e448823`.
+- [Research Lean #38273607345](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38273607345): **SUCCESS** — research root built (3,939 jobs); transitive axiom audit passed for **2,668 declarations**, against exactly `propext`, `Classical.choice`, `Quot.sound`; all **140** research tests passed, including 14 C3 cases; root-import coverage **235** modules; source placeholder/custom-axiom firewall PASS; original default target also built.
+- [Original Lean #38273607337](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38273607337): **SUCCESS**.
+- [Executable verification #38273607327](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38273607327): **SUCCESS**.
+- [Application contract #38273607338](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38273607338): **SUCCESS**, including Linux and Windows application jobs.
+- Source-level proof review: the two almost-sure limits are proved for the **same occupation sequence and infinite canonical law**; the necessity theorem uses strictly positive real class-selection probability; target transport does not replace original specification clauses; the typed six-state identity witness proves actual all-target incompatibility.
 
-Do not mark this ledger formally verified ahead of the checks.
+**Documentation-follow-up rule:** This recorded checkpoint describes the precise theorem-source SHA, not a promise about the workflow status of any later documentation-only commit. Before merging, verify all four workflows again on the **actual final PR head and its synthetic merge** and record those links in [PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54). The exact source proof status and subsequent documentation/merge state must not be conflated.
+
+**Scope boundary:** A CI PASS checks encoded formal declarations and tests, not historical ex-ante registration, empirical identification, a new application status, confirmatory GR, constitutive PR or independent external mathematical peer review.
