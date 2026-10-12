@@ -83,7 +83,8 @@ theorem baseline_event_probability_one (y : SixY) :
   have hAE := baseline_eventually_true_ae y
   rw [ae_iff] at hAE
   have hzero : P eventuallyTrueᶜ = 0 := by
-    simpa only [P, Set.compl_setOf] using hAE
+    change (typedModel.pathLaw (Measure.dirac y)) eventuallyTrueᶜ = 0 at hAE
+    exact hAE
   have hsum := measure_add_measure_compl eventuallyTrue_measurable (μ := P)
   rw [hzero] at hsum
   simpa using hsum
