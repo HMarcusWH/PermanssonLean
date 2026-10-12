@@ -54,7 +54,7 @@ theorem canonical_next_singleton_conditional_probability
       K μ.toMeasure t
     apply ProbabilityTheory.condDistrib_ae_eq_of_measure_eq_compProd_of_measurable
       hX hY
-    simpa only [P, X, Ynext] using hpair
+    simpa only [P, X, Ynext] using hpair.symm
   have hkernelPath :
       ∀ᵐ w ∂P,
         condDistrib Ynext X P (X w) =
