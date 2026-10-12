@@ -99,10 +99,23 @@ theorem centered_increment_condExp_zero
   change P[(fun w : ℕ → Y =>
       indicatorAt w z (t+1) - realTransition K (w t) z) | ℱ t] =ᵐ[P]
         (fun _ : ℕ → Y => (0 : ℝ))
-  rw [condExp_sub (next_indicator_integrable K μ z t)
-    (predictable_integrable K μ z t) (ℱ t), hcond]
-  filter_upwards [hnext] with w hw
-  simp [hw]
+  have hsub :
+      P[(fun w : ℕ → Y =>
+        indicatorAt w z (t+1) - realTransition K (w t) z) | ℱ t]
+        =ᵐ[P]
+      (fun w : ℕ → Y =>
+        (P[(fun w : ℕ → Y => indicatorAt w z (t+1)) | ℱ t]) w -
+        (P[(fun w : ℕ → Y => realTransition K (w t) z) | ℱ t]) w) := by
+    simpa only [Pi.sub_apply] using
+      (condExp_sub (next_indicator_integrable K μ z t)
+        (predictable_integrable K μ z t) (ℱ t))
+  filter_upwards [hsub, hnext] with w hs hn
+  calc
+    (P[(fun w : ℕ → Y =>
+        indicatorAt w z (t+1) - realTransition K (w t) z) | ℱ t]) w =
+      (P[(fun w : ℕ → Y => indicatorAt w z (t+1)) | ℱ t]) w -
+      (P[(fun w : ℕ → Y => realTransition K (w t) z) | ℱ t]) w := hs
+    _ = 0 := by rw [hcond, hn]; ring
 
 /-- The centered cumulative innovations are an actual martingale, not
 a surrogate claim about transition matrix rows. -/
@@ -122,7 +135,13 @@ theorem canonical_centered_martingale
     funext w
     rw [partialSum_succ]
     ring
-  simpa only [Pi.sub_apply, partialSum_succ, add_sub_cancel_left] using h
+  change
+    (canonicalPathLaw K μ.toMeasure)
+      [partialSum K z (t+1) - partialSum K z t |
+        pastFiltration (Y := Y) t] =ᵐ[canonicalPathLaw K μ.toMeasure]
+          (fun _ : ℕ → Y => (0 : ℝ))
+  rw [hd]
+  exact h
 
 end FiniteMarkovMartingale
 end MultipleLimit

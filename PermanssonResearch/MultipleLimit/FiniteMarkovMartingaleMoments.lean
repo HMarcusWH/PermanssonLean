@@ -51,10 +51,15 @@ theorem integral_increment_sq_le_one (μ : ProbabilityMeasure Y)
     (z : Y) (t : ℕ) :
     (∫ w, (increment K z t w) ^ 2 ∂canonicalPathLaw K μ.toMeasure) ≤
       1 := by
-  apply integral_mono (increment_sq_integrable K μ z t)
-    (integrable_const (1 : ℝ))
-  intro w
-  exact increment_sq_le_one K z t w
+  calc
+    (∫ w, (increment K z t w) ^ 2
+        ∂canonicalPathLaw K μ.toMeasure) ≤
+      (∫ _w : ℕ → Y, (1 : ℝ)
+        ∂canonicalPathLaw K μ.toMeasure) := by
+          exact integral_mono (increment_sq_integrable K μ z t)
+            (integrable_const (1 : ℝ))
+            (fun w => increment_sq_le_one K z t w)
+    _ = 1 := by simp
 
 end FiniteMarkovMartingaleMoments
 end MultipleLimit
