@@ -1,6 +1,6 @@
 import PermanssonResearch.MultipleLimit.FiniteStateOccupation
 import PermanssonResearch.MultipleLimit.CanonicalRecurrentResidence
-import PermanssonLean.Examples.PeriodicExactGR
+import PermanssonResearch.MultipleLimit.FiniteUniformAverage
 import Mathlib.Analysis.Asymptotics.SpecificAsymptotics
 import Mathlib.Tactic
 
@@ -72,17 +72,19 @@ theorem observedEmpirical_integral_eq_average
     (T : ℕ) (hT : 0 < T) (f : Bool → ℝ) :
     (∫ b, f b ∂observedEmpirical h w T hT) =
       ((T : ℝ)⁻¹) * ∑ t ∈ Finset.range T, f (h (w t)) := by
-  have hh : Measurable h :=
-    Measurable.of_discrete
-  change
-    (∫ b, f b ∂Measure.map (fun i : Fin T => h (w (i : ℕ)))
-      (PermanssonLean.RegimeSpecification.uniformFinProbability T hT).toMeasure) =
-        ((T : ℝ)⁻¹) * ∑ t ∈ Finset.range T, f (h (w t))
+  have hh : Measurable h := Measurable.of_discrete
+  have hmeasure :
+      (observedEmpirical h w T hT).toMeasure =
+        Measure.map (fun i : Fin T => h (w (i : ℕ)))
+          (PermanssonLean.RegimeSpecification.uniformFinProbability T hT).toMeasure := by
+    unfold observedEmpirical FiniteStateOccupation.empiricalOccupation
+    simp only [ProbabilityMeasure.toMeasure_map]
+    rw [Measure.map_map (by fun_prop) (by fun_prop)]
+    rfl
+  rw [hmeasure]
   rw [integral_map (by fun_prop) (by fun_prop)]
-  rw [PermanssonLean.PeriodicExactGR.uniformFinProbability_toMeasure T hT]
-  rw [integral_smul_measure, integral_count]
+  rw [FiniteUniformAverage.integral_uniformFin_eq_average T hT]
   rw [Fin.sum_univ_eq_sum_range (fun i : ℕ => f (h (w i)))]
-  simp [ENNReal.toReal_inv, smul_eq_mul]
 
 /-- A deterministic eventual true observation yields the true
 probability-measure-valued empirical limit δ_true; the transient
