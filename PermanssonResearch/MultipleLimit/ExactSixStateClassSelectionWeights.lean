@@ -244,7 +244,12 @@ theorem selected_in_A_or_B (w : ℕ → SixY) :
     exact u_is_not_recurrent (hz ▸ hrec)
   change (encode z = (2 : Fin 6) ∨ encode z = 3) ∨
     (encode z = 4 ∨ encode z = 5)
-  fin_cases hz : encode z <;> simp_all
+  have hpartition :
+      ∀ i : Fin 6, i ≠ 0 → i ≠ 1 →
+        (i = 2 ∨ i = 3) ∨ (i = 4 ∨ i = 5) := by
+    intro i h0 h1
+    fin_cases i <;> norm_num at *
+  exact hpartition (encode z) hnonzero hnonone
 
 end ExactSixStateClassSelectionWeights
 end MultipleLimit
