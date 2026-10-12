@@ -12,6 +12,7 @@ depend on the PeriodicExactGR example and do not alter the frozen core.
 -/
 
 open MeasureTheory ProbabilityTheory
+open scoped ENNReal
 
 namespace PermanssonResearch
 namespace MultipleLimit
