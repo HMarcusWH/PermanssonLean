@@ -37,7 +37,7 @@ open FiniteOccupationRandomLaw
 attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 
 abbrev SixY := JointState Unit (Fin 6)
-private abbrev K := typedModel.inducedKernel
+private noncomputable abbrev K := typedModel.inducedKernel
 
 theorem A_two_way :
     Communicates K (decode (2 : Fin 6)) (decode (3 : Fin 6)) := by
