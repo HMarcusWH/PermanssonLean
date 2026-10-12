@@ -189,6 +189,16 @@ theorem mem_sharp_iff_positive_atom
       exact hnot
     exact hpos (measure_mono_null hsubset hAE)
 
+/-- The finitely many recurrent class representatives whose frozen
+stationary descriptor law is the selected observed atom. Classical
+equality is confined to this noncomputable finite index definition,
+rather than required as a DecidablePred assumption of public theorems. -/
+noncomputable def matchingRecurrentRepresentatives
+    (ν : ProbabilityMeasure H) : Finset Y := by
+  classical
+  exact (recurrentRepresentatives K).filter
+    (fun i => observedStationaryForClass K F.descriptor i = ν)
+
 /-- Exact grouping of the true canonical class-selection weights for
 one observed atom. Distinct physical recurrent classes with the SAME
 descriptor stationary law contribute to ONE observed atom.
@@ -201,13 +211,11 @@ whole-distribution result. -/
 theorem observedAtomEvent_mass_eq_class_sum
     (μ : ProbabilityMeasure Y) (ν : ProbabilityMeasure H) :
     (canonicalPathLaw K μ.toMeasure) (observedAtomEvent K F ν) =
-      ∑ i ∈ (recurrentRepresentatives K).filter
-          (fun i => observedStationaryForClass K F.descriptor i = ν),
+      ∑ i ∈ matchingRecurrentRepresentatives K F ν,
         (canonicalPathLaw K μ.toMeasure)
           ((selectedRepresentative K) ⁻¹' ({i} : Set Y)) := by
   classical
-  let s : Finset Y := (recurrentRepresentatives K).filter
-    (fun i => observedStationaryForClass K F.descriptor i = ν)
+  let s : Finset Y := matchingRecurrentRepresentatives K F ν
   have hset :
       observedAtomEvent K F ν =
         (selectedRepresentative K) ⁻¹' (↑s : Set Y) := by
@@ -215,7 +223,7 @@ theorem observedAtomEvent_mass_eq_class_sum
     change (observedStationaryForClass K F.descriptor
       (selectedRepresentative K w) = ν) ↔
       selectedRepresentative K w ∈ (↑s : Set Y)
-    simp [s, selectedRepresentative_mem K w]
+    simp [s, matchingRecurrentRepresentatives, selectedRepresentative_mem K w]
   calc
     (canonicalPathLaw K μ.toMeasure) (observedAtomEvent K F ν) =
         (canonicalPathLaw K μ.toMeasure)
