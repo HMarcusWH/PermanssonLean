@@ -140,10 +140,18 @@ theorem recover_original_exactGR_of_common_class_target
       atTop (𝓝 spec.target)
   rw [typed_pathLaw_eq_canonical M μ.toMeasure]
   filter_upwards [hcanon] with w hw
-  convert hw using 1
-  ext n
-  exact original_empirical_eq_physical_map spec w (n+1)
-    (Nat.succ_pos n)
+  have hsequence :
+      (fun n : ℕ =>
+        RegimeSpecification.empiricalOccupation spec w
+          (n+1) (Nat.succ_pos n)) =
+      (fun n : ℕ =>
+        (FiniteStateOccupation.empiricalOccupation w
+          (n+1) (Nat.succ_pos n)).map F.descriptor) := by
+    funext n
+    exact original_empirical_eq_physical_map spec w (n+1)
+      (Nat.succ_pos n)
+  rw [hsequence]
+  exact hw
 
 end FiniteExactGRRecovery
 end MultipleLimit
