@@ -101,9 +101,11 @@ theorem shifted_hitA_union :
     (⋃ T : ℕ, hitA (T+1)) = (⋃ T : ℕ, hitA T) := by
   ext w
   constructor
-  · rintro ⟨T,hT⟩
+  · intro hw
+    obtain ⟨T, hT⟩ := Set.mem_iUnion.mp hw
     exact Set.mem_iUnion.mpr ⟨T+1,hT⟩
-  · rintro ⟨T,hT⟩
+  · intro hw
+    obtain ⟨T, hT⟩ := Set.mem_iUnion.mp hw
     exact Set.mem_iUnion.mpr
       ⟨T,hitA_monotone (Nat.le_succ T) hT⟩
 
@@ -111,9 +113,11 @@ theorem shifted_hitB_union :
     (⋃ T : ℕ, hitB (T+1)) = (⋃ T : ℕ, hitB T) := by
   ext w
   constructor
-  · rintro ⟨T,hT⟩
+  · intro hw
+    obtain ⟨T, hT⟩ := Set.mem_iUnion.mp hw
     exact Set.mem_iUnion.mpr ⟨T+1,hT⟩
-  · rintro ⟨T,hT⟩
+  · intro hw
+    obtain ⟨T, hT⟩ := Set.mem_iUnion.mp hw
     exact Set.mem_iUnion.mpr
       ⟨T,hitB_monotone (Nat.le_succ T) hT⟩
 
