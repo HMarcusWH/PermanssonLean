@@ -67,8 +67,8 @@ private theorem next_indicator_integrable
 sigma algebra of observations up to time t. -/
 theorem centered_increment_condExp_zero
     (μ : ProbabilityMeasure Y) (z : Y) (t : ℕ) :
-    (canonicalPathLaw K μ.toMeasure)
-      [increment K z t | pastFiltration (Y := Y) t]
+    condExp (pastFiltration (Y := Y) t)
+      (canonicalPathLaw K μ.toMeasure) (increment K z t)
         =ᵐ[canonicalPathLaw K μ.toMeasure]
           (fun _ : ℕ → Y => (0 : ℝ)) := by
   let P := canonicalPathLaw K μ.toMeasure
@@ -80,8 +80,8 @@ theorem centered_increment_condExp_zero
       (fun w : ℕ → Y => indicatorAt w z (t+1)) := by
     funext w
     by_cases h : w (t+1) = z <;> simp [indicatorAt, h]
-  change P[((({w : ℕ → Y | w (t+1) = z} : Set (ℕ → Y)).indicator
-        (fun _ : ℕ → Y => (1 : ℝ))) | ℱ t] =ᵐ[P]
+  change P[({w : ℕ → Y | w (t+1) = z} : Set (ℕ → Y)).indicator
+        (fun _ : ℕ → Y => (1 : ℝ)) | ℱ t] =ᵐ[P]
       (fun w : ℕ → Y => realTransition K (w t) z) at hnext
   rw [hevent] at hnext
   have hpred :
@@ -122,14 +122,7 @@ theorem canonical_centered_martingale
     funext w
     rw [partialSum_succ]
     ring
-  change
-    (canonicalPathLaw K μ.toMeasure)
-      [(fun w : ℕ → Y =>
-        partialSum K z (t+1) w - partialSum K z t w) |
-          pastFiltration (Y := Y) t]
-        =ᵐ[canonicalPathLaw K μ.toMeasure] (fun _ => (0 : ℝ))
-  rw [hd]
-  exact h
+  simpa only [Pi.sub_apply, partialSum_succ, add_sub_cancel_left] using h
 
 end FiniteMarkovMartingale
 end MultipleLimit
