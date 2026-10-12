@@ -54,7 +54,10 @@ theorem bounded_past_observable_cross_zero
       P[(f * increment K z t) | ℱ t] =ᵐ[P]
         (fun _ : ℕ → Y => (0 : ℝ)) := by
     filter_upwards [hpull, hcenter] with w hw hz
-    simpa only [Pi.mul_apply, hz, mul_zero, Pi.zero_apply] using hw
+    calc
+      (P[(f * increment K z t) | ℱ t]) w =
+          f w * (P[increment K z t | ℱ t]) w := hw
+      _ = 0 := by rw [hz]; ring
   calc
     (∫ w, f w * increment K z t w ∂P) =
       ∫ w, (P[(f * increment K z t) | ℱ t]) w ∂P := by
