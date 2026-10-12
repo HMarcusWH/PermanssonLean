@@ -44,8 +44,8 @@ attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMa
 
 abbrev SixY := JointState Unit (Fin 6)
 private noncomputable abbrev K := typedModel.inducedKernel
-private def a0 : SixY := decode (2 : Fin 6)
-private def a1 : SixY := decode (3 : Fin 6)
+def a0 : SixY := decode (2 : Fin 6)
+def a1 : SixY := decode (3 : Fin 6)
 
 theorem a0_ne_a1 : a0 ≠ a1 := by
   norm_num [a0, a1, decode]
@@ -242,12 +242,17 @@ theorem a0_initial_ae :
     ∀ᵐ w ∂typedModel.pathLaw (Measure.dirac a0),
       w 0 = a0 := by
   rw [ae_iff]
-  have h := congrArg
-    (fun μ : Measure SixY => μ ({a0}ᶜ : Set SixY))
-    marginalMeasure_zero
-  rw [Measure.map_apply (measurable_pi_apply 0)
-    (measurableSet_singleton a0).compl] at h
-  simpa [marginalMeasure] using h
+  change (typedModel.pathLaw (Measure.dirac a0))
+    {w : ℕ → SixY | w 0 ≠ a0} = 0
+  have hset : {w : ℕ → SixY | w 0 ≠ a0} =
+      (fun w : ℕ → SixY => w 0) ⁻¹' ({a0} : Set SixY)ᶜ := by
+    ext w
+    simp
+  rw [hset, ← Measure.map_apply (measurable_pi_apply 0)
+    (measurableSet_singleton a0).compl]
+  change marginalMeasure 0 ({a0}ᶜ : Set SixY) = 0
+  rw [marginalMeasure_zero]
+  simp
 
 private theorem a0_mem_classA : a0 ∈ classASet := by
   norm_num [a0, classASet, classA, encode, decode]
