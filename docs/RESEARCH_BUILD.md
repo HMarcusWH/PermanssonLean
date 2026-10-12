@@ -8,19 +8,31 @@
 **Status (12 October 2026):** The separate research library has merged
 CQ-1 (PRs #36–38), D0/D1 (PRs #39–50), finite partition-grammar Lane B
 (PR #51), absorbing-class Lane C1 (PR #52), finite recurrent-class
-occupation laws Lane C2 (PR #53), and original finite Exact GR iff
-classification Lane C3 ([merged PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54)).
-[C4 PR #55](https://github.com/HMarcusWH/PermanssonLean/pull/55)
-completes the reviewed mathematical **source** for exact typed six-state
-stationary coordinates, true a0-started periodic marginal nonconvergence,
-and simultaneous almost-sure occupation convergence. Its immutable
-theorem-source checkpoint `47772e8c3f5d2e503f1008ccf1fa9221653b711e`
-passed all four workflows, transitive axiom audit, and 12 new exact-rational
-adversarial families; an assistant source-review COMMENT is recorded.
-The documentation-finalization head requires its own fresh four-workflow
-checks before user-authorized merge. For the final promotion/merge state,
-consult the live PR rather than treating an earlier code SHA as final CI.
-See the [C4 source/CI ledger](LANE_C4_SIX_STATE_PRECISION.md),
+occupation laws Lane C2 (PR #53), original finite Exact GR iff
+classification Lane C3 ([PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54))
+and exact six-state stationary coordinates/periodic marginals Lane C4
+([merged PR #55](https://github.com/HMarcusWH/PermanssonLean/pull/55)).
+C4 was verified on the final PR head and synthetic merge and again on
+the actual main merge commit `68bbb8025c931d0519621e4a827a50250945ddb7`;
+all four post-merge workflows passed (see PR #55).
+
+**Current research release candidate:** [C5 PR #56](https://github.com/HMarcusWH/PermanssonLean/pull/56)
+proves the sharp finite *positive-atom* observed family:
+positive-probability basin witnesses, exact no-spurious-atom/coverage
+equivalence, class-weight aggregation and the conservative C3 singleton
+Exact GR bridge. Its mathematical source HEAD
+`8ceaf2349620ee20c92ffeb1387ff5c08b0bdd3b` passed all four PR
+workflows, a **2,760-declaration** transitive axiom audit,
+**167** independent research regressions (**152** existing plus **15** C5)
+and **240** module imports.
+The review is an assistant-conducted source COMMENT, not independent peer
+review. A documentation-only follow-up must pass fresh final-head
+CI before merge; consult the live PR for release status. C2 already
+proved actual empirical occupation convergence and its random limit law.
+The [C5 verified source ledger](LANE_C5_SHARP_FAMILY.md) records exact
+theorems, evidence and limitations.
+
+See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),
 [C2 ledger](LANE_C_RECURRENT_CLASSES.md), and
 [Lane B ledger](LANE_B_PARTITION_GRAMMAR_CONSTITUTION.md).

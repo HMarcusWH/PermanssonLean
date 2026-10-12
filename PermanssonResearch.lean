@@ -247,6 +247,10 @@ import PermanssonResearch.MultipleLimit.ExactSixStateC3Witness
 import PermanssonResearch.MultipleLimit.ExactSixStateStationaryCoordinates
 import PermanssonResearch.MultipleLimit.ExactSixStateMarginalOscillation
 
+import PermanssonResearch.MultipleLimit.SharpObservedFamily
+import PermanssonResearch.MultipleLimit.SharpFamilyExactGRBridge
+import PermanssonResearch.MultipleLimit.ExactSixStateSharpFamily
+
 /-!
 # PermanssonResearch
 

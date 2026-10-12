@@ -1,14 +1,20 @@
 # Future Permansson theory roadmap
 
 **RESEARCH / NOT PART OF v0.1.8. Historical proposals below are not a statement of current implementation status.**
-**Implementation update — 12 October 2026.** This is a historical proposal
-roadmap. Research-only Lane A (CQ-1), Lane B (finite partition grammars),
-D0/D1 (finite controlled policy theory), and Lane C1/C2 (finite absorbing
-and recurrent-class occupation laws) have since been formally implemented
-in merged PRs #36–53. [PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54)
-is a *draft* C3 necessity/iff and obstruction follow-up; no proof or release
-is claimed until exact-head CI and source review pass. The unchanged v0.1.8
-paper and core retain their own formalization boundary.
+**Implementation update — 12 October 2026.** This section retains the
+historical proposal roadmap. Research-only Lane A (CQ-1), Lane B (finite
+partition grammars), D0/D1 (finite controlled policy theory), and C1–C4
+(finite absorbing and recurrent classes, their actual random occupation
+laws, original single-target Exact GR characterization, and exact six-state
+stationary/periodic witnesses) have since been implemented in merged
+PRs #36–55. [C5 PR #56](https://github.com/HMarcusWH/PermanssonLean/pull/56)
+has now compiled and source-reviewed its separate sharp finite
+*positive-atom* observed-family characterization and conservative C3
+single-target Exact GR bridge; all four proof-source PR workflows are
+green. Its later documentation-head CI and merge state belong to the
+live PR, not to this historical roadmap. C5 remains new research,
+not a frozen v0.1.8 theorem or an empirically certified application.
+The unchanged v0.1.8 paper and core retain their own formalization boundary.
 
 
 These are proposed next research directions, not missing proofs in the frozen
