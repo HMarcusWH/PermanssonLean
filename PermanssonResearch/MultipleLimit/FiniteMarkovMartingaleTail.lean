@@ -99,12 +99,14 @@ theorem partialSum_tail_le_time
     (variance_le_expectation_sq hmem.aestronglyMeasurable).trans
       (canonical_martingale_second_moment_le_time K μ z T)
   have hc := meas_ge_le_variance_div_sq hmem hε
-  have hmean := integral_partialSum_zero K μ z T
+  have hmean : P[partialSum K z T] = (0 : ℝ) := by
+    exact integral_partialSum_zero K μ z T
   calc
     P {w : ℕ → Y | ε ≤ |partialSum K z T w|} =
       P {w : ℕ → Y | ε ≤
         |partialSum K z T w - P[partialSum K z T]|} := by
-          simp only [hmean, sub_zero]
+          rw [hmean]
+          simp only [sub_zero]
     _ ≤ ENNReal.ofReal (variance (partialSum K z T) P / ε ^ 2) := hc
     _ ≤ ENNReal.ofReal ((T : ℝ) / ε ^ 2) :=
       ENNReal.ofReal_le_ofReal
