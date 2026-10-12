@@ -54,14 +54,22 @@ theorem effect_eq_one (y : SixY) (hy : y ∈ comparison.states) :
     constitutiveEffect typedModel fixedProperty intervention y = 1 := by
   obtain hyu | hya := (comparison_states y).mp hy
   · subst y
-    unfold constitutiveEffect
-    rw [baselineProperty_one,
-      intervenedProperty_zero (1 : Fin 6) (Or.inl rfl)]
+    change dist
+      ((typedModel.pathLaw (Measure.dirac (decode (1 : Fin 6))))
+        eventuallyTrue).toReal
+      ((intervention.intervention.apply.pathLaw
+        (Measure.dirac (decode (1 : Fin 6)))) eventuallyTrue).toReal = 1
+    rw [baseline_event_probability_one, intervention_apply,
+      intervened_event_probability_zero (1 : Fin 6) (Or.inl rfl)]
     norm_num
   · subst y
-    unfold constitutiveEffect
-    rw [baselineProperty_one,
-      intervenedProperty_zero (2 : Fin 6) (Or.inr rfl)]
+    change dist
+      ((typedModel.pathLaw (Measure.dirac (decode (2 : Fin 6))))
+        eventuallyTrue).toReal
+      ((intervention.intervention.apply.pathLaw
+        (Measure.dirac (decode (2 : Fin 6)))) eventuallyTrue).toReal = 1
+    rw [baseline_event_probability_one, intervention_apply,
+      intervened_event_probability_zero (2 : Fin 6) (Or.inr rfl)]
     norm_num
 
 /-- Nonvacuous exact uniform margin: inf_{y in B1} |1-0| = 1. -/
