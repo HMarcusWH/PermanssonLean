@@ -5,14 +5,15 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
-**Status (10 October 2026):** Separate research library with merged CQ-1
-(PRs #36–38), finite D0 fixed-menu certificate (PRs #39–44) and fully
-observed D1 controller certification through typed history-dependent
-transport (PRs #45–50, all merged). Research-only Lane B finite
-partition-grammar constitution is under development and adversarial
-acceptance review in draft [PR #51](https://github.com/HMarcusWH/PermanssonLean/pull/51).
-See [Lane B release and adversarial ledger](LANE_B_PARTITION_GRAMMAR_CONSTITUTION.md).
-Lane C multiple-limit regime families remain future mathematical work.
+**Status (12 October 2026):** Separate research library with merged CQ-1
+(PRs #36–38), D0/D1 (PRs #39–50), finite partition-grammar Lane B
+(PR #51), absorbing-class Lane C1 (PR #52), and finite recurrent-class
+Markov occupation Lane C2 (PR #53). Draft [C3 PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54)
+proposes the missing necessity direction for the original Exact GR target
+characterization; it is not considered formally verified until all final-head
+checks and independent theorem review pass. See the [C3 research ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),
+[Lane C2 ledger](LANE_C_RECURRENT_CLASSES.md), and
+[Lane B ledger](LANE_B_PARTITION_GRAMMAR_CONSTITUTION.md).
 
 The complete mathematical v0.1.8 formalization and the original paper stay
 frozen. Green Lean CI for a research PR means its stated theorem obligations

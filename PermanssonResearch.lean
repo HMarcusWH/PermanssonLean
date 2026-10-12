@@ -238,6 +238,12 @@ import PermanssonResearch.GrammarRobust.EffectTransport
 
 import PermanssonResearch.GrammarRobust.BooleanBaseline
 
+import PermanssonResearch.MultipleLimit.FiniteObservedLimitUniqueness
+import PermanssonResearch.MultipleLimit.FiniteClassTargetNecessity
+import PermanssonResearch.MultipleLimit.FiniteExactGRCharacterization
+import PermanssonResearch.MultipleLimit.FiniteExactGRObstruction
+import PermanssonResearch.MultipleLimit.ExactSixStateC3Witness
+
 /-!
 # PermanssonResearch
 

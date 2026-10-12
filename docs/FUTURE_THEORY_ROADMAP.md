@@ -1,6 +1,15 @@
 # Future Permansson theory roadmap
 
-**RESEARCH / NOT PART OF v0.1.8. No theorem-completion claim is made here.**
+**RESEARCH / NOT PART OF v0.1.8. Historical proposals below are not a statement of current implementation status.**
+**Implementation update — 12 October 2026.** This is a historical proposal
+roadmap. Research-only Lane A (CQ-1), Lane B (finite partition grammars),
+D0/D1 (finite controlled policy theory), and Lane C1/C2 (finite absorbing
+and recurrent-class occupation laws) have since been formally implemented
+in merged PRs #36–53. [PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54)
+is a *draft* C3 necessity/iff and obstruction follow-up; no proof or release
+is claimed until exact-head CI and source review pass. The unchanged v0.1.8
+paper and core retain their own formalization boundary.
+
 
 These are proposed next research directions, not missing proofs in the frozen
 core. The detailed build contract, theorem scopes, dependency graph and adversarial
