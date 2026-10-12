@@ -98,7 +98,7 @@ declarations within the three-axiom allowlist; 108 exact regressions;
   The compactness/uniqueness limit theorem has an EXPLICIT residual-
   convergence hypothesis; it is not the stochastic strong law.
 
-## Post-checkpoint research additions — unpromoted until exact-head CI
+## Earlier post-checkpoint research additions — archival checkpoint (not final current status)
 
 The following source is present on the branch, with targeted compilation
 repairs made in subsequent commits. Do not claim this entire group as
@@ -127,7 +127,7 @@ verified merely because an older source checkpoint was green.
   regression cases, locally passing. Software tests do not prove the
   universal Markov ergodic theorem.
 
-## Still OPEN — strict scientific merge blockers
+## Original strict scientific merge blockers — implementation status updated below
 
 1. **Canonical finite Markov martingale SLLN:** prove conditional mean-zero
    for the actual path filtration, cross-time orthogonality, uniform
@@ -179,3 +179,50 @@ verified-foundation and post-checkpoint inventory above. The code currently
 implements the deterministic/Cesàro and stationary-class selection pieces;
 **the unconditional stochastic occupation theorem remains the critical path**.
 No frozen v0.1.8 definitions, paper files or application schemas were changed.
+
+
+## 12 October implementation tranche — proof-source candidates, NOT YET RELEASE CERTIFIED
+
+The source tree now includes the proposed end-to-end C2 chain. **No theorem
+introduced in this tranche may be cited as verified merely because its source
+exists.** Only full Research Lean compilation, its transitive three-axiom
+firewall, the test/review checks and all four workflows at the exact same
+source HEAD promote the claim.
+
+| Stage | Candidate research modules | Required evidence |
+| --- | --- | --- |
+| C2-H | `FiniteMarkovMartingale`, `FiniteMarkovMartingaleOrthogonality`, `FiniteMarkovMartingaleVariance`, `FiniteMarkovMartingaleTail`, `FiniteMarkovMartingaleSquareLaw`, `FiniteMarkovMartingaleSLLN` | Canonical conditional mean zero; L2 variance bound; Borel–Cantelli over square horizons; bounded-increment interpolation; a.s. all-horizon SLLN, **without IID** |
+| C2-I | `FiniteOccupationStrongLaw`, `FiniteOccupationMeasureBridge` | Vanishing empirical stationarity residual; unique class-supported invariant vector; real probability-measure weak convergence on the original horizon convention |
+| C2-J | `FiniteOccupationRandomLaw`, `ClassDescriptorSelectionLaw`, `ClassDescriptorOccupationBridge` | Genuine random *physical* limit distribution, descriptor pushforward, aggregation of observationally equal physical classes, rather than a barycenter |
+| C2-K | `BasinFamily`, `FiniteBasinClassification`, `FiniteExactGRRecovery` | Positive-probability family from a **predeclared** nonempty basin, original `Assumption41` and invariance, single common target **and explicitly matching original a.s.-weak convergence mode** |
+| C2-L | `ExactSixStateRecurrentGeometry`, `ExactSixStateKernelRegion`, `ExactSixStateObservedGR`, `ExactSixStateEndpointRecurrences`, `ExactSixStateEndpointEvents`, `ExactSixStateInfiniteWeights`, `ExactSixStateClassSelectionWeights`, `ExactSixStateClassLaws`, `ExactSixStateFullRandomLaw` | Genuine typed alpha/P/U infinite path; periodic/aperiodic closed classes; exact 1/3–2/3 event law promoted to class-selection law; two physically distinct stationary limit atoms; proper-region original Exact GR, without any PR claim |
+| C2-M | `verification/research/test_lane_c_recurrent.py`, `test_lane_c_basin_integration.py`, all four workflows | Pure-Fraction independent branch/periodicity/mixture controls; root imports; no placeholders/extra axioms; exact final-source and synthetic-merge checks |
+
+The proof route is a bounded martingale SLLN rather than the optional
+finite Poisson-equation route recorded in the initial contract. Both are
+valid proof strategies: the crucial requirement is that canonical
+conditional centering and a.s. residual vanishing be **derived**, never
+reintroduced as assumptions. For a finite chain, the deterministic
+compactness-plus-uniqueness bridge then handles periodicity without requiring
+one-time marginal convergence.
+
+Scientific safeguards remain: pathwise random limit versus barycenter; no
+class selection solely from positive graph paths; no post-hoc observable
+regrouping; no inherited stochastic independence; a genuinely admitted
+finite past; all original Exact GR gates and the original
+`RegimeSpecification.target` unchanged; no generalized PR certification
+without a separate typed constitutive intervention.
+
+An earlier checked compiler failure showed that `FiniteExactGRRecovery`
+cannot assert the specific a.s.-weak convergence event for an **arbitrary**
+custom frozen convergence mode. The recovery theorem now explicitly
+requires equality of the frozen mode with the canonical
+`ConvergenceMode.almostSureWeak`; this is a mathematically essential
+stated hypothesis rather than an implicit redefinition.
+
+**Current release state:** still DRAFT / NOT MERGE-READY. Individual research
+modules have compiled in preceding checks, but the complete newly extended
+root has not yet attained green Research Lean, exact-head axiom audit,
+synthetic-merge check and theorem-statement review. The latest red compiler
+messages are elaboration/proof-tactic failures and must be repaired; they
+must never be silenced by `sorry`, `admit`, or a custom axiom.
