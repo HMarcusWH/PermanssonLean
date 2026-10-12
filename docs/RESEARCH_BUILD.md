@@ -23,7 +23,8 @@ equivalence, class-weight aggregation and the conservative C3 singleton
 Exact GR bridge. Its mathematical source HEAD
 `8ceaf2349620ee20c92ffeb1387ff5c08b0bdd3b` passed all four PR
 workflows, a **2,760-declaration** transitive axiom audit,
-**167** independent research regressions and **240** module imports.
+**167** independent research regressions (**152** existing plus **15** C5)
+and **240** module imports.
 The review is an assistant-conducted source COMMENT, not independent peer
 review. A documentation-only follow-up must pass fresh final-head
 CI before merge; consult the live PR for release status. C2 already
