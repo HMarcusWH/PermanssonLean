@@ -75,6 +75,43 @@ class FrozenBasinIntegration(TestCase):
         self.assertFalse(desc(1))
         self.assertEqual({desc(i) for i in REGION}, {False, True})
 
+    def test_finite_horizon_class_destination_distributions(self):
+        # Starting at u, class probabilities are exact rational and converge
+        # to 1/3 and 2/3. The remaining mass is transient (1/2)^T.
+        for T in range(1, 50):
+            a_hit = F(1, 3) * (1 - F(1, 2) ** T)
+            b_hit = F(2, 3) * (1 - F(1, 2) ** T)
+            residual = F(1, 2) ** T
+            self.assertEqual(a_hit + b_hit + residual, 1)
+            self.assertEqual(a_hit / b_hit, F(1, 2))
+            self.assertLess(F(1, 3) - a_hit, residual)
+            self.assertLess(F(2, 3) - b_hit, residual)
+
+    def test_empirical_limit_not_time_marginal(self):
+        # Point-start A alternates forever. Its time marginals never converge
+        # but the pathwise time averages approach the stationary half/half.
+        for T in (100, 102, 200):
+            sample = [2 if k % 2 == 0 else 3 for k in range(T)]
+            self.assertEqual(
+                (F(sample.count(2), T), F(sample.count(3), T)),
+                (F(1, 2), F(1, 2))
+            )
+            self.assertNotEqual(K[sample[-1]], K[sample[-2]])
+
+    def test_observed_law_collapses_class_weights_not_physical_modes(self):
+        # Different physical limits are mapped to the same observed atom.
+        pi_a = (F(0), F(0), F(1, 2), F(1, 2), F(0), F(0))
+        pi_b = (F(0), F(0), F(0), F(0), F(1, 3), F(2, 3))
+        physical_mean = tuple(F(1, 3) * pi_a[i] + F(2, 3) * pi_b[i]
+                              for i in range(6))
+        self.assertNotEqual(pi_a, pi_b)
+        self.assertNotEqual(physical_mean, pi_a)
+        self.assertNotEqual(physical_mean, pi_b)
+        h = lambda i: i >= 2
+        self.assertEqual(sum(physical_mean[i] for i in range(6) if h(i)), 1)
+        self.assertEqual(sum(pi_a[i] for i in range(6) if h(i)), 1)
+        self.assertEqual(sum(pi_b[i] for i in range(6) if h(i)), 1)
+
     def test_periodic_class_cannot_use_marginal_convergence(self):
         self.assertEqual(K[2][3], 1)
         self.assertEqual(K[3][2], 1)
