@@ -110,7 +110,7 @@ theorem physical_weak_limit_of_vector
       (∫ j, f j ∂π.toMeasure) =
         ∑ j : Y, realPointMass π j * f j := by
     rw [integral_fintype (Integrable.of_finite)]
-    simp only [realPointMass, smul_eq_mul]
+    simp only [realPointMass, Measure.real_def, smul_eq_mul]
   simpa only [hident, htarget] using hsum
 
 /-- THE whole weak-measure occupation statement for the actual infinite
