@@ -134,6 +134,35 @@ theorem partialSum_measurable_at (z : Y) (T : ℕ) :
   exact (increment_measurable_at K z t).mono
     ((pastFiltration (Y := Y)).mono hst) le_rfl
 
+/-- The genuine one-step centered increment is integrable under every
+canonical initial probability. Boundedness follows from the actual
+Markov singleton probabilities and does not require stationarity. -/
+theorem increment_integrable (μ : ProbabilityMeasure Y) (z : Y) (t : ℕ) :
+    Integrable (increment K z t)
+      (canonicalPathLaw K μ.toMeasure) := by
+  have hm : Measurable (increment K z t) :=
+    (increment_measurable_at K z t).mono
+      ((pastFiltration (Y := Y)).le (t+1)) le_rfl
+  apply Integrable.of_bound hm.aestronglyMeasurable 1
+  exact ae_of_all _ (fun w => by
+    simpa only [Real.norm_eq_abs] using increment_bounded K z t w)
+
+/-- The canonical centered sum is integrable for every finite time. -/
+theorem partialSum_integrable (μ : ProbabilityMeasure Y)
+    (z : Y) (T : ℕ) :
+    Integrable (partialSum K z T)
+      (canonicalPathLaw K μ.toMeasure) := by
+  unfold partialSum
+  exact integrable_finset_sum _ (fun t ht =>
+    increment_integrable K μ z t)
+
+/-- The cumulative centered process is adapted to the original natural
+filtration: the T-th partial sum uses no observations after time T. -/
+theorem partialSum_stronglyAdapted (z : Y) :
+    StronglyAdapted (pastFiltration (Y := Y)) (partialSum K z) := by
+  intro T
+  exact (partialSum_measurable_at K z T).stronglyMeasurable
+
 end FiniteMarkovMartingaleStep
 end MultipleLimit
 end PermanssonResearch
