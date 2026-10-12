@@ -60,7 +60,7 @@ theorem typed_row_a0 : K a0 = Measure.dirac a1 := by
   change K (decode (2 : Fin 6)) ({decode j} : Set SixY) =
     Measure.dirac (decode (3 : Fin 6)) {decode j}
   rw [typed_six_state_atom]
-  fin_cases j <;> norm_num [transition]
+  fin_cases j <;> norm_num [transition, Pi.single_apply, decode]
 
 theorem typed_row_a1 : K a1 = Measure.dirac a0 := by
   apply Measure.ext_of_singleton
@@ -70,7 +70,7 @@ theorem typed_row_a1 : K a1 = Measure.dirac a0 := by
   change K (decode (3 : Fin 6)) ({decode j} : Set SixY) =
     Measure.dirac (decode (2 : Fin 6)) {decode j}
   rw [typed_six_state_atom]
-  fin_cases j <;> norm_num [transition]
+  fin_cases j <;> norm_num [transition, Pi.single_apply, decode]
 
 /-- The real typed infinite path law projected to its time-n state,
 before wrapping it as a probability measure. -/
@@ -115,7 +115,7 @@ theorem marginalMeasure_even_odd (n : ℕ) :
           Measure.dirac a0 := by
         calc
           marginalMeasure (2*(n+1)) =
-              marginalMeasure ((2*n+1)+1) := by congr 1; omega
+              marginalMeasure ((2*n+1)+1) := by omega
           _ = K ∘ₘ marginalMeasure (2*n+1) := marginalMeasure_succ _
           _ = K ∘ₘ Measure.dirac a1 := by rw [ih.2]
           _ = K a1 := kernel_comp_dirac a1
@@ -264,6 +264,9 @@ theorem a0_selected_classA_ae :
       selectedRepresentative K w ∈ classASet := by
   have hclosed := selected_in_closed_iff_ever_hit_ae
     classASet classASet_closed (diracProba a0)
+  change ∀ᵐ w ∂canonicalPathLaw K (Measure.dirac a0),
+    (selectedRepresentative K w ∈ classASet ↔
+      ∃ n : ℕ, w n ∈ classASet) at hclosed
   rw [← typed_pathLaw_eq_canonical typedModel (Measure.dirac a0)]
     at hclosed
   filter_upwards [a0_initial_ae, hclosed] with w h0 hclass
@@ -282,6 +285,11 @@ theorem a0_empirical_converges_piA :
             (Nat.succ_pos n))
         atTop (𝓝 ExactSixStateClassLaws.πA) := by
   have hlimit := physicalOccupationLimit_ae_correct K (diracProba a0)
+  change ∀ᵐ w ∂canonicalPathLaw K (Measure.dirac a0),
+    Tendsto (fun n : ℕ =>
+      FiniteStateOccupation.empiricalOccupation w (n+1)
+        (Nat.succ_pos n))
+      atTop (𝓝 (physicalOccupationLimit K w)) at hlimit
   rw [← typed_pathLaw_eq_canonical typedModel (Measure.dirac a0)]
     at hlimit
   filter_upwards [a0_selected_classA_ae, hlimit] with w hclass hw
