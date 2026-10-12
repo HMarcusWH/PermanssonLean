@@ -100,19 +100,29 @@ theorem eventuallyInClass_measurable
     (C : Set Y) (hC : MeasurableSet C) :
     MeasurableSet
       {w : ℕ → Y | EventuallyInClass w C} := by
-  let h : Y → Bool := fun y => decide (y ∈ C)
-  classical
-  have hh : Measurable h := by
-    apply Measurable.of_discrete
   have hset :
       {w : ℕ → Y | EventuallyInClass w C} =
-        eventuallyObserved h true := by
+        ⋃ N : ℕ, ⋂ n : ℕ,
+          {w : ℕ → Y | N ≤ n → w n ∈ C} := by
     ext w
-    simp only [CanonicalRecurrentResidence.EventuallyInClass,
-      eventuallyObserved, Set.mem_setOf_eq]
-    simp [h]
+    simp only [EventuallyInClass, Set.mem_setOf_eq,
+      Set.mem_iUnion, Set.mem_iInter]
   rw [hset]
-  exact eventuallyObserved_measurable h true hh
+  refine MeasurableSet.iUnion fun N => MeasurableSet.iInter fun n => ?_
+  by_cases hn : N ≤ n
+  · have heq :
+        {w : ℕ → Y | N ≤ n → w n ∈ C} =
+          (fun w : ℕ → Y => w n) ⁻¹' C := by
+      ext w
+      simp [hn]
+    rw [heq]
+    exact hC.preimage (measurable_pi_apply n)
+  · have heq :
+        {w : ℕ → Y | N ≤ n → w n ∈ C} = Set.univ := by
+      ext w
+      simp [hn]
+    rw [heq]
+    exact MeasurableSet.univ
 
 end FrozenObservedEvent
 end MultipleLimit
