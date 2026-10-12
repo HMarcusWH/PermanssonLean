@@ -8,19 +8,28 @@
 **Status (12 October 2026):** The separate research library has merged
 CQ-1 (PRs #36–38), D0/D1 (PRs #39–50), finite partition-grammar Lane B
 (PR #51), absorbing-class Lane C1 (PR #52), finite recurrent-class
-occupation laws Lane C2 (PR #53), and original finite Exact GR iff
-classification Lane C3 ([merged PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54)).
-[C4 PR #55](https://github.com/HMarcusWH/PermanssonLean/pull/55)
-completes the reviewed mathematical **source** for exact typed six-state
-stationary coordinates, true a0-started periodic marginal nonconvergence,
-and simultaneous almost-sure occupation convergence. Its immutable
-theorem-source checkpoint `47772e8c3f5d2e503f1008ccf1fa9221653b711e`
-passed all four workflows, transitive axiom audit, and 12 new exact-rational
-adversarial families; an assistant source-review COMMENT is recorded.
-The documentation-finalization head requires its own fresh four-workflow
-checks before user-authorized merge. For the final promotion/merge state,
-consult the live PR rather than treating an earlier code SHA as final CI.
-See the [C4 source/CI ledger](LANE_C4_SIX_STATE_PRECISION.md),
+occupation laws Lane C2 (PR #53), original finite Exact GR iff
+classification Lane C3 ([PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54))
+and exact six-state stationary coordinates/periodic marginals Lane C4
+([merged PR #55](https://github.com/HMarcusWH/PermanssonLean/pull/55)).
+C4 was verified on the final PR head and synthetic merge and again on
+the actual main merge commit `68bbb8025c931d0519621e4a827a50250945ddb7`;
+all four post-merge workflows passed (see PR #55).
+
+**Current unmerged research:** Draft
+[C5 PR #56](https://github.com/HMarcusWH/PermanssonLean/pull/56)
+proposes the sharp finite *positive-atom* observed regime-family
+classification: exactly which basin-reachable class stationary descriptor
+laws can occur with nonzero canonical path probability, finite-family
+coverage/no-spurious iff, and the conservative singleton Exact GR bridge.
+C2 already proved almost-sure occupation convergence and the full law;
+C5 must not represent those results as new theorems. The separate
+[C5 research ledger](LANE_C5_SHARP_FAMILY.md) records source types,
+adversarial controls and the exact-head verification gate. The proposal
+is not PROVED until full Research Lean compilation and the other three
+workflow checks are green at its final head.
+
+See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),
 [C2 ledger](LANE_C_RECURRENT_CLASSES.md), and
 [Lane B ledger](LANE_B_PARTITION_GRAMMAR_CONSTITUTION.md).
