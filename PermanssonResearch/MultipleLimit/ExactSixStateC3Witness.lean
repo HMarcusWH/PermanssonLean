@@ -166,6 +166,7 @@ theorem representatives_reachable_from_u
     (hu : decode (1 : Fin 6) ∈ F.basin) :
     rA ∈ reachableRepresentatives K H F ∧
       rB ∈ reachableRepresentatives K H F := by
+  classical
   constructor
   · change rA ∈ (recurrentRepresentatives K).filter
       (fun i => ∃ y ∈ F.basin,
