@@ -1,6 +1,6 @@
 # Lane C4 — exact six-state coordinates and periodic marginal nonconvergence
 
-**Status:** Research implementation **in review** in [PR #55](https://github.com/HMarcusWH/PermanssonLean/pull/55). Do not infer a successful proof from its creation. All theorem-source and CI evidence must be checked at the exact final head and synthetic merge.
+**Status (12 October 2026):** C4's theorem-source implementation is **compiled, axiom-audited, independently regression-tested, and source/hypothesis-reviewed** at the exact immutable source and synthetic-merge checkpoint recorded in Section 5. This is research-only verification, not independent scholarly peer review. [PR #55](https://github.com/HMarcusWH/PermanssonLean/pull/55) records the subsequent documentation-only final-head CI and author-controlled merge decision; do not mistake the proof-source SHA for a later documentation-head SHA.
 
 **Frozen base:** `main@12cdd6c1e0fab5481f314e1d97b19d0c437d0936` (merged C3 PR #54). This work is a separate research library extension and does not change original v0.1.8 theory, paper, application statuses or historical release artifacts.
 
@@ -59,20 +59,21 @@ These Python checks are independent computational counterexamples and regression
 
 ## 4. Review and trust boundary
 
-**No theorem claim before exact-head CI.** The two new research modules must elaborate with their unweakened theorem statements. Root imports must include both *before* the module-level documentation comment. Research Lean must build the full target, audit transitive declarations only against `propext`, `Classical.choice`, `Quot.sound`, run the new and all previous regression tests, verify all root imports, and reject `sorry`/`admit`/custom axioms. The original Lean, Executable verification and Application contract workflows must independently succeed at the final synthetic merge.
+**Verified theorem-source gate.** Both new research modules elaborate with their unweakened theorem statements. Both have direct root imports *before* the module-level documentation comment. Research Lean built the full root, audited transitive declarations against only `propext`, `Classical.choice`, `Quot.sound`, passed all 152 research regressions, confirmed 237 direct research-root imports, and rejected `sorry`/`admit`/custom axioms. Original Lean, Executable verification, and Application contract (Linux and Windows) independently succeeded on the same source head and synthetic merge. The exact evidence appears in Section 5; any **later documentation-only head must be rechecked** before merge.
 
 **Protected:** `PermanssonLean/`, `PermanssonLean.lean`, `paper/`, `application/`, workflow definitions, Lean toolchain, Lake manifest, v0.1.8 provenance/history and C1/C2/C3 source proofs. No new original-v0.1.8 GR, confirmatory GR, constitutive PR, identification, control, robustness, or external-paper assertion is inferred.
 
-A GitHub/assistant source review does not constitute independent scholarly peer review. The full C4 PR must remain draft until all formal and regression checks pass and a new source-level review is complete; merge needs subsequent explicit user authorization.
+An assistant-conducted GitHub review COMMENT on the exact source head checked the actual induced kernel, class-stationary uniqueness, canonical-path parity and occupation statements, declared hypotheses, tests, and protected-file boundaries. It found no blocking source-level defect; minor lint warnings are nonblocking. This is **not** an independent human APPROVED review or external scholarly peer review. Final promotion additionally requires the refreshed documentation-head four-workflow gate and the author's explicit merge authorization.
 
-## 5. Final source checkpoint (to populate after verification)
+## 5. Reviewed mathematical-source checkpoint — 12 October 2026
 
-- C4 theorem source SHA: **PENDING**.
-- Tested exact GitHub synthetic-merge SHA: **PENDING**.
-- Research Lean (build + axiom audit + regression count + imports): **PENDING**.
-- Original Lean: **PENDING**.
-- Executable verification: **PENDING**.
-- Application contract: **PENDING**.
-- Source review: **PENDING**.
+- **Last C4 theorem-source HEAD:** `47772e8c3f5d2e503f1008ccf1fa9221653b711e`.
+- **Exact GitHub PR synthetic merge tested:** `162e47b8cfd60977e0191e0b6333f0da98ae554d` against frozen `main@12cdd6c1e0fab5481f314e1d97b19d0c437d0936`. Checkout of this synthetic merge is visible in the Research Lean job log.
+- **[Research Lean #38285576069](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38285576069): SUCCESS.** Full research target: **3,941** Lean jobs; **2,728** declarations passed transitive axiom audit with exactly the established `propext`, `Classical.choice`, `Quot.sound` allowlist; **152** exact-rational research regression tests passed, including all 12 C4 adversarial families; **237** directly imported research modules; default original target and source placeholder/custom-axiom firewall both passed.
+- **[Original Lean #38285576023](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38285576023): SUCCESS.**
+- **[Executable verification #38285575998](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38285575998): SUCCESS.**
+- **[Application contract #38285576002](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38285576002): SUCCESS** on both Ubuntu and Windows jobs.
+- **Source/hypothesis review: COMPLETED (assistant COMMENT review ID `5494948329` on the exact theorem-source HEAD).** Reviewed no-model-swap, mathematical quantifiers, weak-limit topology, a0-only start, genuine infinite-path convergence, exact rational controls, and protected-file diff. No blocking defect identified. Not an independent human approval.
+- **Protected-file audit:** the six-file source diff changes only `PermanssonResearch.lean`, two new `PermanssonResearch/MultipleLimit/` modules, one `verification/research/` test and two research documents. No frozen `PermanssonLean/`, paper, application, existing C1–C3 source, toolchain, manifest, workflow or historical release change.
 
-If any additional documentation-only commit follows a verified code head, rerun and audit all four workflows at that **later final head**, distinguishing historical proof-source SHA from new documentation-only commits.
+**Documentation-finalization gate:** This section records the *immutable proof-source checkpoint*, not the later documentation commit. After changing this ledger or the research build guide, rerun all four workflows on the **new PR head and exact synthetic merge**. Record the resulting final-head SHA, tested merge SHA, workflow URLs, and merger decision in [PR #55](https://github.com/HMarcusWH/PermanssonLean/pull/55) without retroactively changing the source checkpoint. No new empirical or constitutive certificate follows from any of these CI results.
