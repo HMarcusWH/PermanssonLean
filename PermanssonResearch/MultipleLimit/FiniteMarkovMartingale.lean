@@ -99,6 +99,9 @@ theorem centered_increment_condExp_zero
   change P[(fun w : ℕ → Y =>
       indicatorAt w z (t+1) - realTransition K (w t) z) | ℱ t] =ᵐ[P]
         (fun _ : ℕ → Y => (0 : ℝ))
+  have hsub0 := condExp_sub
+    (next_indicator_integrable K μ z t)
+    (predictable_integrable K μ z t) (ℱ t)
   have hsub :
       P[(fun w : ℕ → Y =>
         indicatorAt w z (t+1) - realTransition K (w t) z) | ℱ t]
@@ -106,9 +109,7 @@ theorem centered_increment_condExp_zero
       (fun w : ℕ → Y =>
         (P[(fun w : ℕ → Y => indicatorAt w z (t+1)) | ℱ t]) w -
         (P[(fun w : ℕ → Y => realTransition K (w t) z) | ℱ t]) w) := by
-    simpa only [Pi.sub_apply] using
-      (condExp_sub (next_indicator_integrable K μ z t)
-        (predictable_integrable K μ z t) (ℱ t))
+    convert hsub0 using 1 <;> rfl
   filter_upwards [hsub, hnext] with w hs hn
   calc
     (P[(fun w : ℕ → Y =>
@@ -136,9 +137,10 @@ theorem canonical_centered_martingale
     rw [partialSum_succ]
     ring
   change
-    (canonicalPathLaw K μ.toMeasure)
-      [partialSum K z (t+1) - partialSum K z t |
-        pastFiltration (Y := Y) t] =ᵐ[canonicalPathLaw K μ.toMeasure]
+    condExp (pastFiltration (Y := Y) t)
+      (canonicalPathLaw K μ.toMeasure)
+      (fun w : ℕ → Y => partialSum K z (t+1) w -
+        partialSum K z t w) =ᵐ[canonicalPathLaw K μ.toMeasure]
           (fun _ : ℕ → Y => (0 : ℝ))
   rw [hd]
   exact h
