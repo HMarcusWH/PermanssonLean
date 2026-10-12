@@ -5,14 +5,19 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
-**Status (12 October 2026):** Separate research library with merged CQ-1
-(PRs #36–38), D0/D1 (PRs #39–50), finite partition-grammar Lane B
-(PR #51), absorbing-class Lane C1 (PR #52), and finite recurrent-class
-Markov occupation Lane C2 (PR #53). Draft [C3 PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54)
-proposes the missing necessity direction for the original Exact GR target
-characterization; it is not considered formally verified until all final-head
-checks and independent theorem review pass. See the [C3 research ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),
-[Lane C2 ledger](LANE_C_RECURRENT_CLASSES.md), and
+**Status (12 October 2026):** The separate research library has merged
+CQ-1 (PRs #36–38), D0/D1 (PRs #39–50), finite partition-grammar Lane B
+(PR #51), absorbing-class Lane C1 (PR #52), finite recurrent-class
+occupation laws Lane C2 (PR #53), and original finite Exact GR iff
+classification Lane C3 ([merged PR #54](https://github.com/HMarcusWH/PermanssonLean/pull/54)).
+Draft [C4 PR #55](https://github.com/HMarcusWH/PermanssonLean/pull/55)
+targets exact typed six-state stationary coordinates, true a0-started
+periodic marginal nonconvergence and simultaneous almost-sure occupation
+convergence. C4 is not complete merely because code is committed; its
+final theorem signatures and all four workflows need exact-head review.
+See [C4 research ledger](LANE_C4_SIX_STATE_PRECISION.md),
+[C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),
+[C2 ledger](LANE_C_RECURRENT_CLASSES.md), and
 [Lane B ledger](LANE_B_PARTITION_GRAMMAR_CONSTITUTION.md).
 
 The complete mathematical v0.1.8 formalization and the original paper stay
