@@ -111,21 +111,21 @@ theorem marginalMeasure_even_odd (n : ℕ) :
           _ = K a0 := kernel_comp_dirac a0
           _ = Measure.dirac a1 := typed_row_a0
   | succ n ih =>
-      constructor
-      · calc
+      have heven : marginalMeasure (2*(n+1)) =
+          Measure.dirac a0 := by
+        calc
           marginalMeasure (2*(n+1)) =
               marginalMeasure ((2*n+1)+1) := by congr 1; omega
           _ = K ∘ₘ marginalMeasure (2*n+1) := marginalMeasure_succ _
           _ = K ∘ₘ Measure.dirac a1 := by rw [ih.2]
           _ = K a1 := kernel_comp_dirac a1
           _ = Measure.dirac a0 := typed_row_a1
+      constructor
+      · exact heven
       · calc
           marginalMeasure (2*(n+1)+1) =
-              marginalMeasure ((2*(n+1))+1) := rfl
-          _ = K ∘ₘ marginalMeasure (2*(n+1)) := marginalMeasure_succ _
-          _ = K ∘ₘ Measure.dirac a0 := by
-            rw [show marginalMeasure (2*(n+1)) = Measure.dirac a0
-              from (marginalMeasure_even_odd (n+1)).1]
+              K ∘ₘ marginalMeasure (2*(n+1)) := marginalMeasure_succ _
+          _ = K ∘ₘ Measure.dirac a0 := by rw [heven]
           _ = K a0 := kernel_comp_dirac a0
           _ = Measure.dirac a1 := typed_row_a0
 
