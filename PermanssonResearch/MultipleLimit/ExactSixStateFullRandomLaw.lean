@@ -37,7 +37,7 @@ open CanonicalClassSelector
 attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 
 abbrev SixY := JointState Unit (Fin 6)
-private abbrev K := typedModel.inducedKernel
+private noncomputable abbrev K := typedModel.inducedKernel
 
 private def EA : Set (ℕ → SixY) :=
   {w | selectedRepresentative K w ∈ classASet}
