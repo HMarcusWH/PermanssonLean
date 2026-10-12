@@ -25,6 +25,7 @@ namespace MultipleLimit
 namespace FiniteOccupationStrongLaw
 
 open FiniteCanonicalPath
+open KernelCommunication
 open FiniteKernelRealBridge
 open FiniteCesaroAlgebra
 open FiniteKernelInvariantUniqueness
