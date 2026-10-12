@@ -108,8 +108,7 @@ theorem intervened_event_probability_zero (i : Fin 6)
   have hnot :
       ∀ᵐ w ∂P, w ∉ eventuallyTrue := by
     filter_upwards [hAE] with w hw
-    exact Set.disjoint_left.mp eventuallyTrueFalse_disjoint
-      (by intro ht; exact ht) hw
+    exact fun ht => Set.disjoint_left.mp eventuallyTrueFalse_disjoint ht hw
   rw [ae_iff] at hnot
   change P {w : ℕ → SixY | ¬ (w ∉ eventuallyTrue)} = 0 at hnot
   simpa only [not_not, Set.setOf_mem_eq] using hnot
