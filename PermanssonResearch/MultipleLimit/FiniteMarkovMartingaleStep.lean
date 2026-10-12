@@ -47,7 +47,7 @@ theorem past_event_iff_prefix (t : ℕ) (B : Set (ℕ → Y)) :
         MeasurableSet C ∧ Preorder.frestrictLe t ⁻¹' C = B := by
   change MeasurableSet[Filtration.piLE (X := fun _ : ℕ => Y) t] B ↔ _
   rw [Filtration.piLE_eq_comap_frestrictLe]
-  exact measurableSet_comap
+  exact MeasurableSpace.measurableSet_comap
 
 /-- An individual coordinate is measurable in every subsequent past sigma
 algebra; in particular there is no future-information leak. -/
@@ -64,8 +64,11 @@ theorem coordinate_measurable_at
     funext w
     rfl
   rw [hs]
-  exact (measurable_pi_apply ⟨s, Finset.mem_Iic.mpr hst⟩).comp
-    (comap_measurable _)
+  have hEval :
+      Measurable (fun h : ((i : Finset.Iic t) → Y) =>
+        h ⟨s, Finset.mem_Iic.mpr hst⟩) :=
+    measurable_pi_apply (⟨s, Finset.mem_Iic.mpr hst⟩ : Finset.Iic t)
+  exact hEval.comp (comap_measurable _)
 
 /-- True centered next-event increment of the original homogeneous kernel. -/
 noncomputable def increment (z : Y) (t : ℕ)
