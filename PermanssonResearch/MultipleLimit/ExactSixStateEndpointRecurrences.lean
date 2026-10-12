@@ -108,7 +108,6 @@ theorem hitB_from_u_succ (T : ℕ) :
   have ha := hitB_from_A_zero T
   have hb := hitB_from_B T
   norm_num [transition, Fin.sum_univ_succ, ha.1, ha.2, hb.1, hb.2]
-  ring
 
 theorem hitA_from_u_closed (T : ℕ) :
     rationalHittingValue sixStateMatrix targetA T 1 =
