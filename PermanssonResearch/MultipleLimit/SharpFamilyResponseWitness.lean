@@ -213,7 +213,8 @@ theorem sharp_observed_family_changes :
     have hm : (Measure.dirac false : Measure Bool) =
       Measure.dirac true :=
       congrArg (fun ν : ProbabilityMeasure Bool => ν.toMeasure) h
-    exact Bool.false_ne_true (MeasureTheory.dirac_eq_dirac_iff.mp hm)
+    have hneq : (false : Bool) ≠ true := by decide
+    exact hneq (MeasureTheory.dirac_eq_dirac_iff.mp hm)
   exact hneq (Finset.mem_singleton.mp hmem)
 
 /-- Under the unchanged target delta_true, the intervened model fails
@@ -242,7 +243,8 @@ theorem intervened_not_original_exactGR :
     have hm : (Measure.dirac false : Measure Bool) =
       Measure.dirac true :=
       congrArg (fun ν : ProbabilityMeasure Bool => ν.toMeasure) h
-    exact Bool.false_ne_true (MeasureTheory.dirac_eq_dirac_iff.mp hm)
+    have hneq : (false : Bool) ≠ true := by decide
+    exact hneq (MeasureTheory.dirac_eq_dirac_iff.mp hm)
   exact hneq (hfalse.symm.trans htrue)
 
 end
