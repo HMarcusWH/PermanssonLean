@@ -189,6 +189,46 @@ theorem mem_sharp_iff_positive_atom
       exact hnot
     exact hpos (measure_mono_null hsubset hAE)
 
+/-- Exact grouping of the true canonical class-selection weights for
+one observed atom. Distinct physical recurrent classes with the SAME
+descriptor stationary law contribute to ONE observed atom.
+
+This identity concerns the measurable path event itself, so it does
+not require an unproved measurability assumption for the singleton
+{ν} in the ambient ProbabilityMeasure H measurable space. C2's
+already-proved full measure-valued law remains the authoritative
+whole-distribution result. -/
+theorem observedAtomEvent_mass_eq_class_sum
+    (μ : ProbabilityMeasure Y) (ν : ProbabilityMeasure H) :
+    (canonicalPathLaw K μ.toMeasure) (observedAtomEvent K F ν) =
+      ∑ i ∈ (recurrentRepresentatives K).filter
+          (fun i => observedStationaryForClass K F.descriptor i = ν),
+        (canonicalPathLaw K μ.toMeasure)
+          ((selectedRepresentative K) ⁻¹' ({i} : Set Y)) := by
+  classical
+  let s : Finset Y := (recurrentRepresentatives K).filter
+    (fun i => observedStationaryForClass K F.descriptor i = ν)
+  have hset :
+      observedAtomEvent K F ν =
+        (selectedRepresentative K) ⁻¹' (↑s : Set Y) := by
+    ext w
+    change (observedStationaryForClass K F.descriptor
+      (selectedRepresentative K w) = ν) ↔
+      selectedRepresentative K w ∈ (↑s : Set Y)
+    simp [s, selectedRepresentative_mem K w]
+  calc
+    (canonicalPathLaw K μ.toMeasure) (observedAtomEvent K F ν) =
+        (canonicalPathLaw K μ.toMeasure)
+          ((selectedRepresentative K) ⁻¹' (↑s : Set Y)) := by
+            rw [hset]
+    _ = ∑ i ∈ s, (canonicalPathLaw K μ.toMeasure)
+          ((selectedRepresentative K) ⁻¹' ({i} : Set Y)) := by
+      exact (sum_measure_preimage_singleton
+        (μ := canonicalPathLaw K μ.toMeasure) s
+        (fun i _ =>
+          (measurableSet_singleton i).preimage
+            (selectedRepresentative_measurable K))).symm
+
 /-- A finite family is sharp only if each of its own claimed atoms has
 a positive-probability canonical witness from the frozen basin. -/
 def NoSpuriousAtoms (V : Finset (ProbabilityMeasure H)) : Prop :=
