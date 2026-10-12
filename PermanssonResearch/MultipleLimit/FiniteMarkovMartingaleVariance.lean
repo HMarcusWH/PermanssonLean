@@ -52,7 +52,7 @@ theorem partialSum_sq_integrable (μ : ProbabilityMeasure Y)
         (add_nonneg (abs_nonneg (partialSum K z T w)) hn)
     have htwo : |partialSum K z T w| ^ 2 ≤ (T : ℝ) ^ 2 := by
       nlinarith
-    simpa [Real.norm_eq_abs, abs_of_nonneg (sq_nonneg _), sq_abs] using htwo)
+    simpa only [Real.norm_eq_abs, abs_pow] using htwo)
 
 theorem partialSum_mul_increment_integrable (μ : ProbabilityMeasure Y)
     (z : Y) (T : ℕ) :
@@ -110,14 +110,22 @@ theorem canonical_martingale_second_moment_le_time
             2 * (∫ w, partialSum K z T w *
               increment K z T w ∂P) +
               (∫ w, (increment K z T w) ^ 2 ∂P) := by
-                change (∫ w,
-                  (((fun w : ℕ → Y => (partialSum K z T w) ^ 2) +
-                    (fun w : ℕ → Y =>
-                      2 * (partialSum K z T w * increment K z T w))) +
-                    (fun w : ℕ → Y => (increment K z T w) ^ 2)) w ∂P) = _
-                rw [integral_add (hSq.add (hCross.const_mul 2)) hD,
-                  integral_add hSq (hCross.const_mul 2),
-                  integral_const_mul]
+                have hsplit1 :
+                    (∫ w, (partialSum K z T w) ^ 2 +
+                      2 * (partialSum K z T w * increment K z T w) +
+                      (increment K z T w) ^ 2 ∂P) =
+                      (∫ w, (partialSum K z T w) ^ 2 +
+                        2 * (partialSum K z T w * increment K z T w) ∂P) +
+                      (∫ w, (increment K z T w) ^ 2 ∂P) := by
+                  convert integral_add (hSq.add (hCross.const_mul 2)) hD using 1 <;> rfl
+                have hsplit2 :
+                    (∫ w, (partialSum K z T w) ^ 2 +
+                      2 * (partialSum K z T w * increment K z T w) ∂P) =
+                      (∫ w, (partialSum K z T w) ^ 2 ∂P) +
+                      (∫ w, 2 * (partialSum K z T w *
+                        increment K z T w) ∂P) := by
+                  convert integral_add hSq (hCross.const_mul 2) using 1 <;> rfl
+                rw [hsplit1, hsplit2, integral_const_mul]
         _ = (∫ w, (partialSum K z T w) ^ 2 ∂P) +
             (∫ w, (increment K z T w) ^ 2 ∂P) := by
               rw [hCov]
