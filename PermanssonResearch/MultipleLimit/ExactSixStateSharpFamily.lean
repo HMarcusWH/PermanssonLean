@@ -27,6 +27,7 @@ open ExactSixStateTyped
 open ExactSixStateClassLaws
 open ExactSixStateC3Witness
 open ExactSixStateObservedGR
+open FiniteCanonicalPath
 open FiniteExactGRRecovery
 open BasinFamily
 open SharpObservedFamily
