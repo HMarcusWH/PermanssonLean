@@ -109,6 +109,8 @@ theorem recover_original_exactGR_of_common_class_target
     (m : Measure (JointState S X))
     (h41 : Assumption41 M spec m)
     (hinv : IsExactlyInvariant M spec)
+    (hmode : spec.convergenceMode =
+      ConvergenceMode.almostSureWeak (JointState S X) H)
     (hcommon :
       ∀ i ∈ reachableRepresentatives M.inducedKernel H
         (frozenFamilyOfExactSpec M spec m h41 hinv),
@@ -129,6 +131,7 @@ theorem recover_original_exactGR_of_common_class_target
   have hcanon :=
     canonical_family_observed_ae_limit M.inducedKernel F C μ hb
   unfold IsLimitingOccupationLaw
+  rw [hmode]
   change ∀ᵐ w ∂M.pathLaw μ.toMeasure,
     Tendsto
       (fun n : ℕ =>
