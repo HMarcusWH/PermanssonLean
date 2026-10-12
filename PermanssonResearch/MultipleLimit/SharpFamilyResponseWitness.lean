@@ -1,5 +1,7 @@
 import PermanssonResearch.MultipleLimit.ExactSixStateConstitution
 import PermanssonResearch.MultipleLimit.SharpObservedFamily
+import PermanssonResearch.MultipleLimit.ExactSixStateSharpFamily
+import PermanssonResearch.MultipleLimit.FiniteExactGRRecovery
 import PermanssonResearch.MultipleLimit.FiniteObservedLimitUniqueness
 import Mathlib.Tactic
 
