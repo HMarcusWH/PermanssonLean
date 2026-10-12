@@ -116,8 +116,10 @@ theorem selected_A_weight_u :
     change
       _ =ᵐ[canonicalPathLaw typedModel.inducedKernel
         (Measure.dirac (decode (1 : Fin 6)))] _
-    exact selected_in_closed_iff_ever_hit_ae
-      classASet classASet_closed (diracProba (decode (1 : Fin 6)))
+    filter_upwards [selected_in_closed_iff_ever_hit_ae
+      classASet classASet_closed (diracProba (decode (1 : Fin 6)))]
+      with w hw
+    exact propext hw
   have hhit :
       {w : ℕ → SixY | ∃ n : ℕ, w n ∈ classASet} =
         ⋃ T : ℕ, hitA T := by
@@ -143,8 +145,10 @@ theorem selected_B_weight_u :
     change
       _ =ᵐ[canonicalPathLaw typedModel.inducedKernel
         (Measure.dirac (decode (1 : Fin 6)))] _
-    exact selected_in_closed_iff_ever_hit_ae
-      classBSet classBSet_closed (diracProba (decode (1 : Fin 6)))
+    filter_upwards [selected_in_closed_iff_ever_hit_ae
+      classBSet classBSet_closed (diracProba (decode (1 : Fin 6)))]
+      with w hw
+    exact propext hw
   have hhit :
       {w : ℕ → SixY | ∃ n : ℕ, w n ∈ classBSet} =
         ⋃ T : ℕ, hitB T := by
@@ -170,8 +174,10 @@ theorem selected_A_weight_t :
     change
       _ =ᵐ[canonicalPathLaw typedModel.inducedKernel
         (Measure.dirac (decode (0 : Fin 6)))] _
-    exact selected_in_closed_iff_ever_hit_ae
-      classASet classASet_closed (diracProba (decode (0 : Fin 6)))
+    filter_upwards [selected_in_closed_iff_ever_hit_ae
+      classASet classASet_closed (diracProba (decode (0 : Fin 6)))]
+      with w hw
+    exact propext hw
   have hhit :
       {w : ℕ → SixY | ∃ n : ℕ, w n ∈ classASet} =
         ⋃ T : ℕ, hitA T := by
@@ -197,8 +203,10 @@ theorem selected_B_weight_t :
     change
       _ =ᵐ[canonicalPathLaw typedModel.inducedKernel
         (Measure.dirac (decode (0 : Fin 6)))] _
-    exact selected_in_closed_iff_ever_hit_ae
-      classBSet classBSet_closed (diracProba (decode (0 : Fin 6)))
+    filter_upwards [selected_in_closed_iff_ever_hit_ae
+      classBSet classBSet_closed (diracProba (decode (0 : Fin 6)))]
+      with w hw
+    exact propext hw
   have hhit :
       {w : ℕ → SixY | ∃ n : ℕ, w n ∈ classBSet} =
         ⋃ T : ℕ, hitB T := by
@@ -217,13 +225,26 @@ the selector's fallback was chosen recurrent, and t/u are not recurrent. -/
 theorem selected_in_A_or_B (w : ℕ → SixY) :
     selectedRepresentative typedModel.inducedKernel w ∈ classASet ∨
       selectedRepresentative typedModel.inducedKernel w ∈ classBSet := by
-  have hrec := selectedRepresentative_recurrent typedModel.inducedKernel w
-  rcases selectedRepresentative typedModel.inducedKernel w with ⟨u,i⟩
-  cases u
-  fin_cases i
-  · exact (t_is_not_recurrent hrec).elim
-  · exact (u_is_not_recurrent hrec).elim
-  all_goals simp [classASet, classBSet, classA, classB, encode]
+  let z := selectedRepresentative typedModel.inducedKernel w
+  have hrec : z ∈ RecurrentStates typedModel.inducedKernel :=
+    selectedRepresentative_recurrent typedModel.inducedKernel w
+  have hnonzero : encode z ≠ (0 : Fin 6) := by
+    intro h
+    have hz : z = decode (0 : Fin 6) := by
+      calc
+        z = decode (encode z) := (decode_encode z).symm
+        _ = decode 0 := congrArg decode h
+    exact t_is_not_recurrent (hz ▸ hrec)
+  have hnonone : encode z ≠ (1 : Fin 6) := by
+    intro h
+    have hz : z = decode (1 : Fin 6) := by
+      calc
+        z = decode (encode z) := (decode_encode z).symm
+        _ = decode 1 := congrArg decode h
+    exact u_is_not_recurrent (hz ▸ hrec)
+  change (encode z = (2 : Fin 6) ∨ encode z = 3) ∨
+    (encode z = 4 ∨ encode z = 5)
+  fin_cases hz : encode z <;> simp_all
 
 end ExactSixStateClassSelectionWeights
 end MultipleLimit
