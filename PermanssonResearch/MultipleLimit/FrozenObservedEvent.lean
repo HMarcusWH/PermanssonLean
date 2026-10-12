@@ -91,7 +91,8 @@ theorem eventuallyObserved_true_false_disjoint (h : Y → Bool) :
   obtain ⟨N₂, h₂⟩ := hfalse
   have ht := h₁ (max N₁ N₂) (le_max_left _ _)
   have hf := h₂ (max N₁ N₂) (le_max_right _ _)
-  exact Bool.true_ne_false (ht.symm.trans hf)
+  have hneq : (true : Bool) ≠ false := by decide
+  exact hneq (ht.symm.trans hf)
 
 /-- A canonical chain whose ALL recurrent states bear one frozen label
 satisfies the corresponding event a.s., for every initial law.
