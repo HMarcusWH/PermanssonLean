@@ -113,7 +113,8 @@ theorem union_hitA :
         ∃ n : ℕ, encode (w n) ∈ classA} := by
   ext w
   constructor
-  · rintro ⟨T,hT⟩
+  · intro hw
+    obtain ⟨T, hT⟩ := Set.mem_iUnion.mp hw
     obtain ⟨n,_,hn⟩ := (hitA_iff T w).mp hT
     exact ⟨n,hn⟩
   · rintro ⟨n,hn⟩
@@ -126,7 +127,8 @@ theorem union_hitB :
         ∃ n : ℕ, encode (w n) ∈ classB} := by
   ext w
   constructor
-  · rintro ⟨T,hT⟩
+  · intro hw
+    obtain ⟨T, hT⟩ := Set.mem_iUnion.mp hw
     obtain ⟨n,_,hn⟩ := (hitB_iff T w).mp hT
     exact ⟨n,hn⟩
   · rintro ⟨n,hn⟩
@@ -151,7 +153,10 @@ theorem typed_hitA_real (i : Fin 6) (T : ℕ) :
   rw [← Measure.map_apply (Preorder.measurable_frestrictLe T)
     (measurableSet_successPrefixEvent (typedTarget targetA) T)]
   rw [hprefix]
-  exact typed_hitting_all_horizons i T
+  change hittingValue (typedTarget targetA) typedModel.inducedKernel
+    (decode i) T = (rationalHittingValue sixStateMatrix targetA T i : ℝ)
+  exact typedHittingValue_eq_rational_all_horizons
+    sixStateMatrix targetA i T
 
 theorem typed_hitB_real (i : Fin 6) (T : ℕ) :
     (typedModel.pathLaw (Measure.dirac (decode i))).real (hitB T) =
@@ -169,7 +174,10 @@ theorem typed_hitB_real (i : Fin 6) (T : ℕ) :
   rw [← Measure.map_apply (Preorder.measurable_frestrictLe T)
     (measurableSet_successPrefixEvent (typedTarget targetB) T)]
   rw [hprefix]
-  exact typed_hitting_all_horizons i T
+  change hittingValue (typedTarget targetB) typedModel.inducedKernel
+    (decode i) T = (rationalHittingValue sixStateMatrix targetB T i : ℝ)
+  exact typedHittingValue_eq_rational_all_horizons
+    sixStateMatrix targetB i T
 
 end
 end ExactSixStateEndpointEvents
