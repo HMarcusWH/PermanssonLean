@@ -89,6 +89,7 @@ theorem full_random_law_from_class_weights
     P.map (physicalOccupationLimit K) =
       (P EA) • Measure.dirac πA +
       (P EB) • Measure.dirac πB := by
+  classical
   apply Measure.ext
   intro E hE
   rw [Measure.add_apply, Measure.smul_apply, Measure.smul_apply,
@@ -154,7 +155,13 @@ theorem full_random_occupation_law_u :
       ENNReal.ofReal (1/3 : ℝ) • Measure.dirac πA +
       ENNReal.ofReal (2/3 : ℝ) • Measure.dirac πB := by
   rw [full_random_law_from_class_weights]
-  rw [selected_A_weight_u, selected_B_weight_u]
+  have hA :
+      (typedModel.pathLaw (Measure.dirac (decode (1 : Fin 6)))) EA =
+        ENNReal.ofReal (1/3 : ℝ) := selected_A_weight_u
+  have hB :
+      (typedModel.pathLaw (Measure.dirac (decode (1 : Fin 6)))) EB =
+        ENNReal.ofReal (2/3 : ℝ) := selected_B_weight_u
+  rw [hA, hB]
 
 theorem full_random_occupation_law_t :
     (typedModel.pathLaw (Measure.dirac (decode (0 : Fin 6)))).map
@@ -162,7 +169,13 @@ theorem full_random_occupation_law_t :
       ENNReal.ofReal (1/3 : ℝ) • Measure.dirac πA +
       ENNReal.ofReal (2/3 : ℝ) • Measure.dirac πB := by
   rw [full_random_law_from_class_weights]
-  rw [selected_A_weight_t, selected_B_weight_t]
+  have hA :
+      (typedModel.pathLaw (Measure.dirac (decode (0 : Fin 6)))) EA =
+        ENNReal.ofReal (1/3 : ℝ) := selected_A_weight_t
+  have hB :
+      (typedModel.pathLaw (Measure.dirac (decode (0 : Fin 6)))) EB =
+        ENNReal.ofReal (2/3 : ℝ) := selected_B_weight_t
+  rw [hA, hB]
 
 /-- The end-to-end physical limit is genuine almost-sure convergence
 under BOTH transient point starts, with certified distinct outcomes. -/
