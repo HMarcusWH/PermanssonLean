@@ -100,6 +100,7 @@ theorem exactGR_common_target_on_reachable
         (FiniteExactGRRecovery.frozenFamilyOfExactSpec M spec m h41 hinv),
       observedStationaryForClass M.inducedKernel spec.descriptor i =
         spec.target := by
+  classical
   intro i hi
   have hf :
       i ∈ (recurrentRepresentatives M.inducedKernel).filter
