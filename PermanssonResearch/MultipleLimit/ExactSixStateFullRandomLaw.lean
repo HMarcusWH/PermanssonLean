@@ -175,6 +175,17 @@ theorem actual_six_state_physical_occupation_u :
   exact physicalOccupationLimit_ae_correct K
     (diracProba (decode (1 : Fin 6)))
 
+/-- The same a.s. physical occupation convergence also holds under the
+transient t start, independently of which recurrent class is selected. -/
+theorem actual_six_state_physical_occupation_t :
+    ∀ᵐ w ∂typedModel.pathLaw (Measure.dirac (decode (0 : Fin 6))),
+      Tendsto (fun n : ℕ =>
+        FiniteStateOccupation.empiricalOccupation w (n+1)
+          (Nat.succ_pos n))
+        atTop (𝓝 (physicalOccupationLimit K w)) := by
+  exact physicalOccupationLimit_ae_correct K
+    (diracProba (decode (0 : Fin 6)))
+
 end ExactSixStateFullRandomLaw
 end MultipleLimit
 end PermanssonResearch
