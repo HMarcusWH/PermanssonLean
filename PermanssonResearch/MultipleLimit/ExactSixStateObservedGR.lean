@@ -78,21 +78,23 @@ theorem observedAssumption41 :
       intro y hy
       have h : y = decode (1 : Fin 6) := Set.mem_singleton_iff.mp hy
       subst y
-      decide
+      simp [typedRegion, ExactSixStateRegion.region, decode, encode]
     change 0 < observedReference typedRegion
     calc
       0 < Measure.count ({decode (1 : Fin 6)} : Set SixY) := by simp
       _ ≤ observedReference typedRegion := measure_mono hsub
   · refine ⟨decode (1 : Fin 6), ?_,
       decode (2 : Fin 6), ?_, ?_⟩
-    · decide
-    · decide
+    · simp [observedSpec, typedRegion, ExactSixStateRegion.region,
+        decode, encode]
+    · simp [observedSpec, typedRegion, ExactSixStateRegion.region,
+        decode, encode]
     · decide
   · apply two_states_implies_basinPathLawNontrivial typedModel observedSpec
     refine ⟨decode (1 : Fin 6), ?_,
       decode (2 : Fin 6), ?_, ?_⟩
-    · decide
-    · decide
+    · simp [observedSpec, observedBasin]
+    · simp [observedSpec, observedBasin]
     · decide
 
 theorem observedExactlyInvariant :
