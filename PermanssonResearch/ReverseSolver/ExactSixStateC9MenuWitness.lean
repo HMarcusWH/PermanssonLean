@@ -423,7 +423,9 @@ private theorem oneRow_u_closed :
   have hp := (rationalTyped_positiveEdge_iff
     sixStateMatrix oneRowMatrix (1 : Fin 6) j).mp hz
   change 0 < oneRowEntry (1 : Fin 6) j at hp
-  fin_cases j <;> norm_num [oneRowEntry, decode] at hp ⊢
+  fin_cases j <;>
+    (try norm_num [oneRowEntry] at hp) <;>
+    simp [decode]
 
 /-- The genuine one-row intervention has a BAD recurrent singleton. -/
 theorem oneRow_bad_u :
