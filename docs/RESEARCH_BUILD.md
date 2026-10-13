@@ -46,53 +46,40 @@ and **217** independent exact rational regressions, the transitive axioms audit,
 `784aaa2b5a74efa1a827de2fcbf6b81b30d29de4`. The merge preserved the verified C7 commit history;
 post-merge CI results must be reported separately, not presumed.
 
-**C8 mathematical source verified; merge not authorized:**
-[PR #59](https://github.com/HMarcusWH/PermanssonLean/pull/59)
-proves the finite positive-edge support characterization (G1–G7), exact
-opposing-class effect/margin under ORIGINAL baseline Exact GR with literal
-almostSureWeak mode, and qualitative PR invariance for separately admissible
-typed interventions with matching support. Its formal six-state witness
-fixes alpha/P/U model semantics while testing equal-support distinct
-transition weights; **50 new exact-rational adversaries** extend the
-research suite to **267/267**. Source HEAD
-`2775310bc0f15d0953ce730dcd635c9d000fbbea` passed
-[Research Lean #38429455138](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429455138):
-**2,982** transitive declarations in the three-axiom allowlist,
-**260** direct research imports, 267 regression tests, D0 golden checks,
-the original default build and proof-placeholder firewall. The same source
-HEAD and synthetic merge `f061d26b6a3d5a0776d35607c00877df5d2afdc3`
-passed [Original Lean #38429454232](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429454232),
-[Executable verification #38429454684](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429454684)
-and [Application contract #38429454707](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429454707)
-on Ubuntu and Windows. The documentation-only release HEAD must
-independently pass these exact-head checks before C8 is ready for
-author-controlled merge review. See the
-[C8 research ledger](LANE_C8_SUPPORT_GRAPH_CONSTITUTION.md) for exact
-hypotheses and limitations. Formal source verification is **not**
-empirical causal identification or external scholarly peer review.
+**Merged C8:** [PR #59](https://github.com/HMarcusWH/PermanssonLean/pull/59)
+formally proved finite positive-edge support constitution G1–G7, actual
+original-PR opposing-class effect/margin and qualitative typed intervention
+support invariance. Its final source HEAD
+`cf43b79cf01f369ffe3cd548bafbce4f9a9a8082` passed
+[Research Lean #38430883202](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38430883202)
+with **2,982** audited declarations, **267/267** exact regressions, **260**
+research imports, D0 golden checks and source firewall. All four
+exact-head workflows passed, including Original Lean, Executable and
+Application contract Ubuntu+Windows. C8 merged into main at
+`6c5a1c29bb05702eddc4634e51153643445be569`, and all four
+post-merge workflows passed. Formal CI is not empirical identification
+or external mathematical peer review.
 
-**C9 mathematical-source checkpoint verified / final release review pending:**
+**C9 draft / full audited v1.1 witness closure under final review:**
 [PR #60](https://github.com/HMarcusWH/PermanssonLean/pull/60)
-formally combines D0's original typed `FrozenMenu` with C8's original
-PR support/recurrent criterion. It proves exact listed-menu relative PR iff,
-conditional margin positivity, exhaustive **listed-only** negative
-certificates, a global original margin maximizer and a scope-limited
-rational-to-typed edge/path transport. Its genuine typed two- and
-three-candidate six-state menus include the C6 formally proven
-margin-one optimum and independent identity/one-row negative controls.
-Source head `88fc674f25b5767e8bd5d3639abc61549de90de0` passed all
-four workflows and the exact GitHub synthetic merge `2700df89978c710894fe596f5b4864ff304434c1`.
-[Research Lean #38452924510](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38452924510)
-compiled **six C9 modules**, audited **3,062** transitive declarations
-against the three-axiom allowlist, ran **317/317** independent rational
-tests, passed **266** research direct imports, the D0-F golden verifier,
-the default Lean build and source firewall. Original Lean, executable
-verification and both Ubuntu/Windows application-contract jobs passed
-on the same head. The [C9 ledger](LANE_C9_CERTIFIED_MENU_SYNTHESIS.md)
-records the hypotheses and the C10 boundary for full executable
-BSCC/absorption/margin optimization. This documentation-only release
-head still requires its own CI and exact-head review; PR #60 remains
-draft/unmerged and these proofs are not empirical identification.
+reuses D0's original typed `FrozenMenu` and C8's original uniform PR
+support characterization. Its source checkpoint
+`86caac5fc8d49bb2c02421596cdef23a65d99bdb`
+passed [Research Lean #38454297254](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38454297254):
+**3,062** transitive declarations within the 3-axiom allowlist,
+**317/317** exact-rational tests, **266** research root imports,
+D0-F golden checks, original default build and source firewall.
+Original Lean, Executable and Ubuntu/Windows Application contract passed
+on the same real synthetic merge. A v1.1-completeness follow-on commit
+`4e1c5f4622e6c9e5ac1406a7d1382a0f3b0ef60f` adds the formally
+named identity-only menu, one-row **partial** response and all
+constructed-menu P/U witnesses. This follow-on and any later
+documentation-only head **must be independently rechecked** by full
+Research Lean and exact-head CI; consult the PR's latest Actions rather
+than treating the earlier green checkpoint as current proof.
+See [C9 research ledger](LANE_C9_CERTIFIED_MENU_SYNTHESIS.md).
+This remains research, not an executable infinite-horizon margin solver,
+real-world identification, external peer review or a merged release.
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),

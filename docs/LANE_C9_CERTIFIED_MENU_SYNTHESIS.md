@@ -3,7 +3,7 @@
 **PR:** [#60](https://github.com/HMarcusWH/PermanssonLean/pull/60)
 **Specification:** PR60_C9_Certified_Finite_Menu_Strategic_Constitution_Spec_v1.1_AUDITED (2026-10-13)
 **Parent:** merged C8 `main@6c5a1c29bb05702eddc4634e51153643445be569` (all four original post-merge workflows green)
-**STATUS:** Mathematical source VERIFIED at `88fc674f25b5767e8bd5d3639abc61549de90de0` with 4/4 workflows passing on synthetic merge `2700df89978c710894fe596f5b4864ff304434c1`. This documentation-only release follow-on requires its own final-head checks before merge consideration. PR #60 remains draft/unmerged; independent scholarly/empirical validation is not claimed.
+**STATUS:** DRAFT / UNMERGED. The prior C9 checkpoint at `86caac5fc8d49bb2c02421596cdef23a65d99bdb` passed all four workflows on its exact synthetic merge, including 317/317 regressions and the allowed-axiom audit. Audited-v1.1 witness completion at `4e1c5f4622e6c9e5ac1406a7d1382a0f3b0ef60f` added proofs after that checkpoint; the actual final PR head and synthetic merge must again pass all four workflows before merge consideration. Neither CI nor Codex review is independent scholarly/empirical validation.
 
 ## Mathematical object and exact hypotheses
 
@@ -35,7 +35,7 @@ For each i, let `Jᵢ := menu.choice i`, `Lᵢ := Jᵢ.intervention.apply.induce
 3. `.../MenuFeasibilityCertificates.lean`: menu-level existence, scope-limited rejection, one-way original family-level promotion
 4. `.../MenuMarginOptimization.lean`: original actual margin argmax, eligible global maximizer, probability-event upper bound ≤1, equal-support qualitative invariance
 5. `.../RationalTypedSupportBridge.lean`: D0 typed kernel strict-positive-edge and graph-path transport, frozen descriptor and comparison-set representation
-6. `.../ExactSixStateC9MenuWitness.lean`: actual typed three-member menu (C6 full, C8 half, C8 tiny) with formal margin-one maximum; genuine typed identity and one-row negative controls and exhaustive negative menu
+6. `.../ExactSixStateC9MenuWitness.lean`: actual typed two-member (C8 half/tiny) and three-member (C6 full, C8 half, C8 tiny) menus, formal margin-one maximum, separate **identity-only** zero-margin/empty-eligible menu, one-row typed response proven positive from u but not a0, exhaustive listed-only negative identity/one-row menu, and explicitly fixed P/U in the constructed menus
 
 All six must appear as direct imports in the separate `PermanssonResearch.lean` root. Old `PermanssonLean/`, C1–C8 .lean, application standard, paper, compiler, manifest, CI workflows and historical freeze evidence are strictly unchanged.
 
@@ -44,6 +44,35 @@ All six must appear as direct imports in the separate `PermanssonResearch.lean` 
 `verification/research/test_lane_c9_constitutive_menu.py` adds **50** exact-Fraction tests to the inherited **267**, for an intended **317** total. It is independently recomputed from C6's exact rational Markov absorbing-class equations; it does NOT invoke a noncomputable Lean maximizer as executable code. Cases: duplicate vs distinct menu indices, invalid/empty menu, baseline proof absent/refuted/verified, nonliteral mode, all/one/many/no eligible members, incomplete B₁, bad/good periodic classes, transient false labels, tiny exact positive edges, same support/different magnitude, original six-state full margin one, D0 finite one-step hitting vs C9 eventual-event margin ranking reversal, unchanged alpha/P/U construction constraints, and family-level exclusion counterexample.
 
 **The user's v1.1 audit notes that only C6 full disruption's exact margin one was already a Lean theorem.** C8 half/tiny 1/2 and 1/1000 are independent exact-rational test values until separately formalized numerically.
+
+## Audited v1.1 witness-completeness follow-on
+
+A source audit against the attached v1.1 implementation specification
+found that the earlier fully green C9 checkpoint lacked a *separately
+named* single-index identity-only menu and an explicit proof that
+one-row response is positive at frozen u while absent at frozen a0.
+Commit `4e1c5f4622e6c9e5ac1406a7d1382a0f3b0ef60f`
+adds `identityOnlyMenu`, `identityOnlyMenu_margin_zero`,
+`identityOnlyMenu_eligible_empty`,
+`identityOnlyMenu_all_listed_not_PR`,
+`identityOnlyMenu_not_family_obstruction`,
+`oneRow_bad_u`, `oneRow_opposing_from_u`,
+`oneRow_partial_not_uniform`,
+and P/U preservation for the two-member, identity-only and
+two-candidate negative menus. All the theorem statements still use
+the **ORIGINAL** exact GR, Boolean descriptor, original `B₁` and
+untouched PR predicate. They do NOT claim support fixes numerical
+half/tiny margins, or that a negative finite menu refutes family PR.
+Lean elaboration and permitted-axiom checks on the follow-on head
+are separate release gates.
+
+The C9 rational adapter remains a *limited* exact one-step/
+reachability and frozen-protocol representation bridge, not a
+complete executable graph/BSCC/absorption-value solver. In the
+Python reference suite, malformed matrix rejection is not a test
+that arbitrary external models are represented by the constructed
+D0 strategic-world factorization; that limitation is enforced
+by the Lean constructor/theorem types and kept outside C9 execution.
 
 ## Proof and release firewall
 
@@ -68,4 +97,4 @@ All six must appear as direct imports in the separate `PermanssonResearch.lean` 
 
 This evidence certifies the **mathematical source checkpoint only**. This release-ledger edit is itself a new PR head and must pass all four workflows and a fresh exact-head source review before C9 is eligible for the author's merge decision. Do not confuse `BASELINE_UNVERIFIED` with a mathematical `¬ExactGR`.
 
-**Release evidence for the documentation-only final head: PENDING until exact-head/synthetic-merge CI is rechecked.**
+**Final-head release gate:** any commit after the original successful source checkpoint, including the v1.1 witness-closure and documentation commits, must pass the complete *new* exact-head/synthetic-merge workflows, regressions, axiom audit and review; record those runs in the PR discussion. This document alone does not authorize merge.
