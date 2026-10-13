@@ -285,6 +285,8 @@ import PermanssonResearch.ReverseSolver.MenuConstitutionClassification
 
 import PermanssonResearch.ReverseSolver.MenuFeasibilityCertificates
 
+import PermanssonResearch.ReverseSolver.MenuMarginOptimization
+
 /-!
 # PermanssonResearch
 
