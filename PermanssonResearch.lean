@@ -316,6 +316,8 @@ import PermanssonResearch.ReverseSolver.RationalDirichletUniqueness
 
 import PermanssonResearch.ReverseSolver.RationalRecurrentAccess
 
+import PermanssonResearch.ReverseSolver.RationalDirichletDeterminant
+
 /-!
 # PermanssonResearch
 
