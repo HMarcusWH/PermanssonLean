@@ -281,6 +281,8 @@ import PermanssonResearch.MultipleLimit.FiniteSupportCounterexamples
 
 import PermanssonResearch.ReverseSolver.FrozenConstitutiveMenu
 
+import PermanssonResearch.ReverseSolver.MenuConstitutionClassification
+
 /-!
 # PermanssonResearch
 
