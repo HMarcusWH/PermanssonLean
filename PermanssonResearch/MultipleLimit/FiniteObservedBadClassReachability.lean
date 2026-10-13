@@ -109,10 +109,18 @@ theorem eventual_true_complement_positive_iff_reachable_bad
     have hpositive : 0 < canonicalPathLaw K (Measure.dirac y)
         ((selectedRepresentative K) ⁻¹' ({i} : Set Y)) :=
       lt_of_le_of_ne bot_le (Ne.symm hne)
-    exact lt_of_lt_of_le hpositive
-      (Finset.single_le_sum
-        (fun j hj => bot_le)
-        (show i ∈ badRecurrentRepresentatives K h from hi))
+    have hle :
+        (canonicalPathLaw K (Measure.dirac y))
+          ((selectedRepresentative K) ⁻¹' ({i} : Set Y)) ≤
+        ∑ j ∈ badRecurrentRepresentatives K h,
+          (canonicalPathLaw K (Measure.dirac y))
+            ((selectedRepresentative K) ⁻¹' ({j} : Set Y)) := by
+      exact Finset.single_le_sum
+        (fun j hj => (bot_le : (0 : ℝ≥0∞) ≤
+          (canonicalPathLaw K (Measure.dirac y))
+            ((selectedRepresentative K) ⁻¹' ({j} : Set Y))))
+        hi
+    exact lt_of_lt_of_le hpositive hle
 
 /-- G2 in its original probability-below-one form: the complement
 of a genuine probability-one event has positive mass exactly when
