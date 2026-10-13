@@ -71,18 +71,28 @@ author-controlled merge review. See the
 hypotheses and limitations. Formal source verification is **not**
 empirical causal identification or external scholarly peer review.
 
-**C9 implementation draft / not yet formally released:**
+**C9 mathematical-source checkpoint verified / final release review pending:**
 [PR #60](https://github.com/HMarcusWH/PermanssonLean/pull/60)
-constructs the research-only certified finite-menu bridge from D0's
-actual typed `FrozenMenu` to C8's original uniform PR graph criterion.
-It separates classically computed qualitative eligibility, menu-wide
-exhaustive listed-member rejection, and optimization over the ORIGINAL
-real-valued constitutive margin. Genuine six-state typed positive/negative
-witnesses and an exact rational support transport are under compilation.
-The [C9 research ledger](LANE_C9_CERTIFIED_MENU_SYNTHESIS.md)
-records all hypotheses, limited-scope nonclaims and the pending CI gates.
-No C9 status is certified until this PR's exact-head source, all 317
-intended regressions and the transitive axiom audit pass.
+formally combines D0's original typed `FrozenMenu` with C8's original
+PR support/recurrent criterion. It proves exact listed-menu relative PR iff,
+conditional margin positivity, exhaustive **listed-only** negative
+certificates, a global original margin maximizer and a scope-limited
+rational-to-typed edge/path transport. Its genuine typed two- and
+three-candidate six-state menus include the C6 formally proven
+margin-one optimum and independent identity/one-row negative controls.
+Source head `88fc674f25b5767e8bd5d3639abc61549de90de0` passed all
+four workflows and the exact GitHub synthetic merge `2700df89978c710894fe596f5b4864ff304434c1`.
+[Research Lean #38452924510](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38452924510)
+compiled **six C9 modules**, audited **3,062** transitive declarations
+against the three-axiom allowlist, ran **317/317** independent rational
+tests, passed **266** research direct imports, the D0-F golden verifier,
+the default Lean build and source firewall. Original Lean, executable
+verification and both Ubuntu/Windows application-contract jobs passed
+on the same head. The [C9 ledger](LANE_C9_CERTIFIED_MENU_SYNTHESIS.md)
+records the hypotheses and the C10 boundary for full executable
+BSCC/absorption/margin optimization. This documentation-only release
+head still requires its own CI and exact-head review; PR #60 remains
+draft/unmerged and these proofs are not empirical identification.
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),

@@ -3,7 +3,7 @@
 **PR:** [#60](https://github.com/HMarcusWH/PermanssonLean/pull/60)
 **Specification:** PR60_C9_Certified_Finite_Menu_Strategic_Constitution_Spec_v1.1_AUDITED (2026-10-13)
 **Parent:** merged C8 `main@6c5a1c29bb05702eddc4634e51153643445be569` (all four original post-merge workflows green)
-**STATUS:** Draft research implementation / mathematical source and independent tests awaiting final Lean and exact-head CI verification; do not merge.
+**STATUS:** Mathematical source VERIFIED at `88fc674f25b5767e8bd5d3639abc61549de90de0` with 4/4 workflows passing on synthetic merge `2700df89978c710894fe596f5b4864ff304434c1`. This documentation-only release follow-on requires its own final-head checks before merge consideration. PR #60 remains draft/unmerged; independent scholarly/empirical validation is not claimed.
 
 ## Mathematical object and exact hypotheses
 
@@ -55,4 +55,17 @@ All six must appear as direct imports in the separate `PermanssonResearch.lean` 
 - Final head AND exact GitHub synthetic merge: full research Lean, ≥317 exact-rational regressions, root-import coverage, D0 golden check, source firewall, Original Lean, Executable verification and Ubuntu/Windows Application contract all green
 - All Codex source/hypothesis findings resolved, explicit verified release ledger, author-controlled PR merge; no empirical/causal identification or independent scholarly peer review is asserted
 
-**Release evidence:** PENDING. Do not rewrite this draft document to report passing C9 mathematical proofs before the full GitHub Research Lean job and regression/axiom audits have succeeded.
+## Verified mathematical-source checkpoint (pre-documentation HEAD)
+
+- Source commit: `88fc674f25b5767e8bd5d3639abc61549de90de0`; GitHub synthetic merge: `2700df89978c710894fe596f5b4864ff304434c1`
+- [Research Lean #38452924510](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38452924510): compiled all six C9 modules, **3,062 declarations** transitive-axiom audited within `propext`, `Classical.choice`, `Quot.sound`; **317/317** exact-rational regressions, **266** direct imports, default build, independently regenerated D0-F golden values, source placeholder/axiom firewall all passed
+- [Original Lean #38452924501](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38452924501): passed
+- [Executable verification #38452924944](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38452924944): passed
+- [Application contract #38452924728](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38452924728): passed on both Ubuntu and Windows
+- `ExactSixStateC9MenuWitness.lean` now includes separate genuine **two-index** half/tiny menu, original PR and identical support proof; **three-index** full/half/tiny menu with verified full-disruption margin-one global optimum; typed identity/one-row negative menu, and explicit proof that negative listed-menu status coexists with positive family-level PR
+- `MenuMarginOptimization.lean` explicitly transports original qualitative PR status between two menu members with identical support, but NEVER numerical margin equality
+- `RationalTypedSupportBridge.lean` proves exact positive rational-edge iff genuine D0 typed edge, finite graph reachability, descriptor equality and frozen `B₁` quantifier representation. **No complete decidable rational BSCC/absorption algorithm or numerical executable C9 optimizer is proved. That is C10's scope**, as permitted by v1.1's minimum adapter contract
+
+This evidence certifies the **mathematical source checkpoint only**. This release-ledger edit is itself a new PR head and must pass all four workflows and a fresh exact-head source review before C9 is eligible for the author's merge decision. Do not confuse `BASELINE_UNVERIFIED` with a mathematical `¬ExactGR`.
+
+**Release evidence for the documentation-only final head: PENDING until exact-head/synthetic-merge CI is rechecked.**
