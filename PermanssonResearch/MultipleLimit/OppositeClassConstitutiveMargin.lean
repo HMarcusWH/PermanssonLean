@@ -26,7 +26,9 @@ namespace MultipleLimit
 namespace OppositeClassConstitutiveMargin
 
 set_option autoImplicit false
+attribute [local instance] Classical.propDecidable
 
+open KernelCommunication
 open PermanssonLean
 open PermanssonLean.RegimeSpecification
 open FiniteCanonicalPath
