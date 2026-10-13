@@ -2,7 +2,7 @@
 
 **Research PR:** [#59](https://github.com/HMarcusWH/PermanssonLean/pull/59).  
 **Dependency:** [merged C7 PR #58](https://github.com/HMarcusWH/PermanssonLean/pull/58), verified C7 source HEAD `24024033f034a9cf1693e24177a183fe0c29dc9c`, merged to `main` at `784aaa2b5a74efa1a827de2fcbf6b81b30d29de4`.  
-**Status:** DRAFT / mathematical source and independent adversaries committed, **C8 Lean proof audit and final-head CI NOT YET VERIFIED**. This is new research, not the original frozen v0.1.8 paper, not a new application certification and not external scholarly peer review.
+**Status:** mathematical-source proof checks **VERIFIED** at head `2775310bc0f15d0953ce730dcd635c9d000fbbea`; PR #59 remains **DRAFT / unmerged**, and its documentation-only release head requires fresh exact-head CI. The result is separate from the original frozen v0.1.8 paper, not a new application certification, empirical identification or external scholarly peer review.
 
 ## The exact mathematical claim
 
@@ -40,6 +40,17 @@ Here `B₁` is the original nonempty `ConstitutiveComparisonSet`, not a post-hoc
 | Witness | `ExactSixStateC8SupportWitness.lean` | genuine original six-state Exact GR, two distinct admissible alpha-only interventions with identical positive support; original PR both ways |
 
 The six-state witness keeps original region/basin/descriptor and the full alpha→P→U chain. The two new response kernels make original transient `u` absorbing and split the original A start `a0` once between `u` (bad) and `b0` (good), with rational probabilities 1/2 and 1/1000. This makes both interventions qualitatively constitutive while their actual numerical margins are different; the independent exact-`Fraction` tests check these computations. The Lean witness must be compiled separately to claim formal status.
+
+## Audited mathematical-source checkpoint
+
+Source HEAD: `2775310bc0f15d0953ce730dcd635c9d000fbbea`. Its actual GitHub PR synthetic merge into C7-containing `main` was `f061d26b6a3d5a0776d35607c00877df5d2afdc3` (not an independently invented kernel or unstated commit).
+
+- [Research Lean #38429455138](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429455138): full root build, **2,982** audited transitive declarations within `propext`, `Classical.choice`, `Quot.sound`, **267/267** research tests, **260** imported research modules, D0-F golden independent recheck, original default build and source firewall passed
+- [Original Lean #38429454232](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429454232): passed
+- [Executable verification #38429454684](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429454684): passed
+- [Application contract #38429454707](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429454707): Ubuntu and Windows passed
+
+The preceding five Lean compiler diagnostics were repaired without changing the original GR/PR predicates, weakening theorem statements or adding axioms. This is the verified *mathematical source* checkpoint; the documentation-only release commit containing this record still requires its own exact-head/synthetic-merge CI before merge consideration.
 
 ## Independent adverse controls
 

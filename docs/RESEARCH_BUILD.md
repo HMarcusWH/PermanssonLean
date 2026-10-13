@@ -46,15 +46,30 @@ and **217** independent exact rational regressions, the transitive axioms audit,
 `784aaa2b5a74efa1a827de2fcbf6b81b30d29de4`. The merge preserved the verified C7 commit history;
 post-merge CI results must be reported separately, not presumed.
 
-**C8 research draft / mathematical source not yet certified:**
-[PR #59](https://github.com/HMarcusWH/PermanssonLean/pull/59) is the
-research-only support-graph extension of C7, proposing exact positive-edge
-G1–G7 classifications, genuine same-support typed intervention witnesses and
-50 additional exact-rational regression cases. See the
-[C8 support-graph ledger](LANE_C8_SUPPORT_GRAPH_CONSTITUTION.md) for precise
-hypotheses, open proof gates and original v0.1.8 boundary. C8 now follows
-merged C7, but remains independently unverified and draft. Neither formal
-proof certification nor CI constitutes empirical identification.
+**C8 mathematical source verified; merge not authorized:**
+[PR #59](https://github.com/HMarcusWH/PermanssonLean/pull/59)
+proves the finite positive-edge support characterization (G1–G7), exact
+opposing-class effect/margin under ORIGINAL baseline Exact GR with literal
+almostSureWeak mode, and qualitative PR invariance for separately admissible
+typed interventions with matching support. Its formal six-state witness
+fixes alpha/P/U model semantics while testing equal-support distinct
+transition weights; **50 new exact-rational adversaries** extend the
+research suite to **267/267**. Source HEAD
+`2775310bc0f15d0953ce730dcd635c9d000fbbea` passed
+[Research Lean #38429455138](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429455138):
+**2,982** transitive declarations in the three-axiom allowlist,
+**260** direct research imports, 267 regression tests, D0 golden checks,
+the original default build and proof-placeholder firewall. The same source
+HEAD and synthetic merge `f061d26b6a3d5a0776d35607c00877df5d2afdc3`
+passed [Original Lean #38429454232](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429454232),
+[Executable verification #38429454684](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429454684)
+and [Application contract #38429454707](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38429454707)
+on Ubuntu and Windows. The documentation-only release HEAD must
+independently pass these exact-head checks before C8 is ready for
+author-controlled merge review. See the
+[C8 research ledger](LANE_C8_SUPPORT_GRAPH_CONSTITUTION.md) for exact
+hypotheses and limitations. Formal source verification is **not**
+empirical causal identification or external scholarly peer review.
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),
