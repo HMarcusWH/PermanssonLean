@@ -43,6 +43,9 @@ attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMa
 
 noncomputable section
 
+-- Reject misspelled or out-of-scope declarations instead of inventing implicit binders.
+set_option autoImplicit false
+
 abbrev SixY := JointState Unit (Fin 6)
 private noncomputable abbrev Kd := disruptedModel.inducedKernel
 
@@ -143,7 +146,11 @@ theorem disrupted_sharp_subset_false :
         {w : ℕ → SixY |
           observedOccupationLimit Kd observedDescriptor w ≠
             diracProba false} = 0 := by
-    simpa only [not_eq] using hAE
+    change canonicalPathLaw Kd (Measure.dirac (decode i))
+      {w : ℕ → SixY |
+        observedOccupationLimit Kd observedDescriptor w ≠
+          diracProba false} = 0 at hAE
+    exact hAE
   by_contra hnot
   have hne : ν ≠ diracProba false := by
     simpa only [Finset.mem_singleton] using hnot
@@ -153,12 +160,12 @@ theorem disrupted_sharp_subset_false :
           observedOccupationLimit Kd observedDescriptor w ≠
             diracProba false} := by
     intro w hw
-    change observedStationaryForClass Kd observedDescriptor
+    change ClassDescriptorSelectionLaw.observedStationaryForClass Kd observedDescriptor
       (CanonicalClassSelector.selectedRepresentative Kd w) = ν at hw
     change observedOccupationLimit Kd observedDescriptor w ≠
       diracProba false
     rw [show observedOccupationLimit Kd observedDescriptor w =
-        observedStationaryForClass Kd observedDescriptor
+        ClassDescriptorSelectionLaw.observedStationaryForClass Kd observedDescriptor
           (CanonicalClassSelector.selectedRepresentative Kd w) from rfl, hw]
     exact hne
   exact hpositive (measure_mono_null hsubset hnull)
@@ -187,7 +194,7 @@ theorem disrupted_sharp_eq_false :
 /-- C5's previously verified baseline sharp observed family. -/
 theorem baseline_sharp_eq_true :
     sharpObservedFamily typedModel.inducedKernel
-      (frozenFamilyOfExactSpec typedModel observedSpec observedReference
+      (FiniteExactGRRecovery.frozenFamilyOfExactSpec typedModel observedSpec observedReference
         observedAssumption41 observedExactlyInvariant) =
         ({diracProba true} : Finset (ProbabilityMeasure Bool)) :=
   ExactSixStateSharpFamily.booleanSharp_eq_singleton
@@ -198,7 +205,7 @@ equivalent class-A-versus-class-B selection from C5. -/
 theorem sharp_observed_family_changes :
     sharpObservedFamily Kd disruptedFamily ≠
       sharpObservedFamily typedModel.inducedKernel
-        (frozenFamilyOfExactSpec typedModel observedSpec observedReference
+        (FiniteExactGRRecovery.frozenFamilyOfExactSpec typedModel observedSpec observedReference
           observedAssumption41 observedExactlyInvariant) := by
   rw [disrupted_sharp_eq_false, baseline_sharp_eq_true]
   intro heq
@@ -232,7 +239,12 @@ theorem intervened_not_original_exactGR :
   have hlim := exactGR_observedOccupationLimit_ae
     disruptedModel observedSpec observedReference hGR rfl
     (diracProba u) hadmiss
-  have hfalse := point_observed_limit_false (1 : Fin 6) (Or.inl rfl)
+  have hfalse :
+      ∀ᵐ w ∂canonicalPathLaw Kd (Measure.dirac u),
+        observedOccupationLimit Kd observedDescriptor w =
+          diracProba false := by
+    simpa only [u] using
+      (point_observed_limit_false (1 : Fin 6) (Or.inl rfl))
   change ∀ᵐ w ∂canonicalPathLaw Kd (Measure.dirac u),
     observedOccupationLimit Kd observedDescriptor w =
       diracProba true at hlim

@@ -83,7 +83,7 @@ theorem frozen_event_factors :
 
 /-- Global factorization holds for arbitrary probability laws, not only
 the baseline or intervened path law: no process-specific adjustment of ψ. -/
-theorem property_factors_globally :
+noncomputable def property_factors_globally :
     GloballyFactorsThroughRelevanceMap observedSpec fixedProperty relevance := by
   refine ⟨groundedProperty, ?_⟩
   intro μ
