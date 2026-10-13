@@ -314,6 +314,8 @@ import PermanssonResearch.ReverseSolver.RationalBSCCNative
 
 import PermanssonResearch.ReverseSolver.RationalDirichletUniqueness
 
+import PermanssonResearch.ReverseSolver.RationalRecurrentAccess
+
 /-!
 # PermanssonResearch
 
