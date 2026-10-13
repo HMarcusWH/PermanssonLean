@@ -79,7 +79,14 @@ theorem eventual_true_complement_positive_iff_reachable_bad
       (eventuallyObserved h true)ᶜ ↔
       ∃ i ∈ badRecurrentRepresentatives K h, Reachable K y i := by
   classical
-  rw [eventual_true_complement_mass_eq_bad_sum K h (diracProba y)]
+  have hmass := eventual_true_complement_mass_eq_bad_sum
+    K h (diracProba y)
+  change (canonicalPathLaw K (Measure.dirac y))
+      (eventuallyObserved h true)ᶜ =
+    ∑ i ∈ badRecurrentRepresentatives K h,
+      (canonicalPathLaw K (Measure.dirac y))
+        ((selectedRepresentative K) ⁻¹' ({i} : Set Y)) at hmass
+  rw [hmass]
   constructor
   · intro hpos
     by_contra hn
