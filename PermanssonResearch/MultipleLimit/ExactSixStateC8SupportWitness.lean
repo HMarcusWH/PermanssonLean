@@ -200,6 +200,7 @@ private theorem absorbing_u_is_bad
       Measure.dirac (decode (1 : Fin 6))) :
     decode (1 : Fin 6) ∈
       badRecurrentRepresentatives L observedDescriptor := by
+  classical
   let u : SixY := decode (1 : Fin 6)
   have hclosed : ClosedSubset L ({u} : Set SixY) :=
     singleton_u_closed_of_row L hrow
@@ -227,7 +228,7 @@ private theorem absorbing_u_is_bad
     intro hb
     have ht := hb u (mem_communicatingClass L u)
     have hf : observedDescriptor u = false := by
-      simpa only [u] using descriptor_u_false
+      simpa only [u, ExactSixStateTargetDisruption.u] using descriptor_u_false
     rw [hf] at ht
     cases ht
   exact Finset.mem_filter.mpr ⟨hm, hbad⟩
@@ -258,8 +259,8 @@ theorem half_opposing_reachable (y : SixY)
     (hy : y ∈ comparison.states) :
     OpposingClassReachable Kh observedDescriptor
       observedSpec.target y := by
-  change ∃ i ∈ badRecurrentRepresentatives Kh observedDescriptor,
-    Reachable Kh y i
+  have htarget : observedSpec.target = diracProba true := rfl
+  simp only [OpposingClassReachable, if_pos htarget]
   rcases (comparison_states y).mp hy with hyu | hya
   · subst y
     exact ⟨decode (1 : Fin 6), half_bad_u,
@@ -272,8 +273,8 @@ theorem tiny_opposing_reachable (y : SixY)
     (hy : y ∈ comparison.states) :
     OpposingClassReachable Kt observedDescriptor
       observedSpec.target y := by
-  change ∃ i ∈ badRecurrentRepresentatives Kt observedDescriptor,
-    Reachable Kt y i
+  have htarget : observedSpec.target = diracProba true := rfl
+  simp only [OpposingClassReachable, if_pos htarget]
   rcases (comparison_states y).mp hy with hyu | hya
   · subst y
     exact ⟨decode (1 : Fin 6), tiny_bad_u,
