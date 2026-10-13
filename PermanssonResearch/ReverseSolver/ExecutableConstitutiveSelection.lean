@@ -55,9 +55,12 @@ theorem selected_dominates {n menuSize : ℕ}
   | none =>
       have he : candidateIndices raw checked = [] :=
         (List.argmax_eq_none).mp h
-      have hn : (candidateIndices raw checked).Nonempty := by
-        simp [candidateIndices, checked.menuPositive]
-      exact False.elim (hn.ne_nil he)
+      have hmember :
+          (⟨0, checked.menuPositive⟩ : Fin menuSize) ∈
+            candidateIndices raw checked := by
+        simp [candidateIndices]
+      rw [he] at hmember
+      simp at hmember
   | some j =>
       simpa [h] using
         (List.le_of_mem_argmax
