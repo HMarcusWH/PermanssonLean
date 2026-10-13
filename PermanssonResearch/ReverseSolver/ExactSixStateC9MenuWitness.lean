@@ -383,8 +383,9 @@ theorem negativeMenu_eligible_empty :
         have ha : decode (2 : Fin 6) ∈ comparison.states :=
           (comparison_states _).mpr (Or.inr rfl)
         have hbad := he (decode (2 : Fin 6)) ha
-        exact oneRow_not_opposing_from_a0 (by
-          simpa [negativeMenu, menuSupportEligible] using hbad)
+        change OpposingClassReachable Kone observedDescriptor
+          observedSpec.target (decode (2 : Fin 6)) at hbad
+        exact oneRow_not_opposing_from_a0 hbad
       exact (hnot hitem.2).elim
   · intro hempty
     simpa using hempty
