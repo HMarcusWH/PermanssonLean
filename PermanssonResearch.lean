@@ -271,3 +271,4 @@ import tree and require independently reviewed theorem and counterexample gates.
 Importing this library does not strengthen the frozen v0.1.8 core.
 -/
 import PermanssonResearch.MultipleLimit.FiniteObservedSupportReachability
+import PermanssonResearch.MultipleLimit.FiniteObservedBadClassReachability
