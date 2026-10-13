@@ -60,7 +60,7 @@ theorem observed_stationary_trueDirac_iff_allTrue
     by_contra hnot
     have hzFalse : h z = false := by
       cases hzLab : h z with
-      | false => exact hzLab
+      | false => rfl
       | true => exact (hnot hzLab).elim
     have hnull : π.toMeasure (h ⁻¹' ({false} : Set Bool)) = 0 := by
       have hmass := congrArg
@@ -78,7 +78,12 @@ theorem observed_stationary_trueDirac_iff_allTrue
     have hzero : π.toMeasure ({z} : Set Y) = 0 :=
       measure_mono_null hsub hnull
     have hpositive := stationary_point_positive K i z hrec hz
-    exact (ne_of_gt hpositive) (by simpa [π, realPointMass, hzero])
+    have hzeroReal :
+        realPointMass (stationaryForSet K (CommunicatingClass K i)) z = 0 := by
+      change (π.toMeasure ({z} : Set Y)).toReal = 0
+      rw [hzero]
+      rfl
+    exact (ne_of_gt hpositive) hzeroReal
   · intro hgood
     have hsub : C ⊆ h ⁻¹' ({true} : Set Bool) := by
       intro z hz

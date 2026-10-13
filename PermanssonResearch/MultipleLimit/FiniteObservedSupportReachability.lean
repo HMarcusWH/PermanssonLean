@@ -68,8 +68,9 @@ theorem canonical_start_eq_ae (y : Y) :
     simp
   rw [Measure.map_apply (measurable_pi_apply 0)
     (measurableSet_singleton y).compl] at hzero
-  simpa only [Set.mem_preimage, Set.mem_compl_iff,
-    Set.mem_singleton_iff] using hzero
+  change (canonicalPathLaw K (Measure.dirac y))
+    {w : ℕ → Y | w 0 ≠ y} = 0 at hzero
+  exact hzero
 
 /-- Almost every selected recurrent representative is accessible
 from the ACTUAL point start in the same positive-edge graph.
@@ -117,6 +118,7 @@ theorem selected_weight_nonzero_iff_reachable
       intro w hw
       have hsel : selectedRepresentative K w = i := by
         simpa only [Set.mem_preimage, Set.mem_singleton_iff] using hw
+      change ¬Reachable K y (selectedRepresentative K w)
       simpa only [hsel] using hno
     exact hpos (measure_mono_null hsubset hAE)
   · intro hreach
@@ -197,7 +199,14 @@ theorem eventual_true_positive_iff_reachable_good
       (eventuallyObserved h true) ↔
       ∃ i ∈ goodRecurrentRepresentatives K h, Reachable K y i := by
   classical
-  rw [eventuallyObserved_probability_eq_good_sum K h (diracProba y)]
+  have hmass := eventuallyObserved_probability_eq_good_sum
+    K h (diracProba y)
+  change (canonicalPathLaw K (Measure.dirac y))
+      (eventuallyObserved h true) =
+    ∑ i ∈ goodRecurrentRepresentatives K h,
+      (canonicalPathLaw K (Measure.dirac y))
+        ((selectedRepresentative K) ⁻¹' ({i} : Set Y)) at hmass
+  rw [hmass]
   constructor
   · intro hpos
     by_contra hn
