@@ -273,27 +273,6 @@ theorem oneRow_not_opposing_from_a0 :
       (closed_reachable Kone oneRow_phaseA_closed hiA hz.1)
   exact (Finset.mem_filter.mp hiBad).2 hgood
 
-theorem identity_not_support_eligible :
-    ¬ menuSupportEligible typedModel observedSpec
-      (researchActionFamily sixStateMatrix) comparison
-      ({ indices := Finset.univ,
-         nonempty := ⟨(0 : Fin 2), Finset.mem_univ (0 : Fin 2)⟩,
-         choice := fun _ => identityJ } :
-        FrozenMenu typedModel (researchActionFamily sixStateMatrix) (Fin 2))
-      (0 : Fin 2) := by
-  have hGR := observedExactGeneratedRegime
-  have hmode : observedSpec.convergenceMode =
-      ConvergenceMode.almostSureWeak SixY Bool := rfl
-  have hz := identity_actual_margin_zero
-  exact ((margin_eq_zero_iff_not_support_of_exactGR
-    typedModel observedSpec observedReference
-    (researchActionFamily sixStateMatrix) comparison
-    ({ indices := Finset.univ,
-       nonempty := ⟨(0 : Fin 2), Finset.mem_univ (0 : Fin 2)⟩,
-       choice := fun _ => identityJ } :
-      FrozenMenu typedModel (researchActionFamily sixStateMatrix) (Fin 2))
-    hGR hmode (0 : Fin 2)).mp hz)
-
 /-- A frozen TWO-CANDIDATE genuine typed negative menu. -/
 def negativeMenu :
     FrozenMenu typedModel (researchActionFamily sixStateMatrix) (Fin 2) where
@@ -304,27 +283,39 @@ def negativeMenu :
 theorem negativeMenu_eligible_empty :
     supportEligibleIndices typedModel observedSpec
       (researchActionFamily sixStateMatrix) comparison negativeMenu = ∅ := by
-  apply Finset.eq_empty_iff_forall_not_mem.mpr
-  intro i hi
-  have hitem := (supportEligibleIndices_mem_iff
-    typedModel observedSpec (researchActionFamily sixStateMatrix)
-    comparison negativeMenu i).mp hi
-  fin_cases i
-  · have hnot : ¬ menuSupportEligible typedModel observedSpec
-        (researchActionFamily sixStateMatrix) comparison
-        negativeMenu (0 : Fin 2) := by
-      simpa [negativeMenu] using identity_not_support_eligible
-    exact hnot hitem.2
-  · have hnot : ¬ menuSupportEligible typedModel observedSpec
-        (researchActionFamily sixStateMatrix) comparison
-        negativeMenu (1 : Fin 2) := by
-      intro he
-      have ha : decode (2 : Fin 6) ∈ comparison.states :=
-        (comparison_states _).mpr (Or.inr rfl)
-      have hbad := he (decode (2 : Fin 6)) ha
-      exact oneRow_not_opposing_from_a0 (by
-        simpa [negativeMenu, menuSupportEligible] using hbad)
-    exact hnot hitem.2
+  apply Finset.ext
+  intro i
+  constructor
+  · intro hi
+    have hitem := (supportEligibleIndices_mem_iff
+      typedModel observedSpec (researchActionFamily sixStateMatrix)
+      comparison negativeMenu i).mp hi
+    fin_cases i
+    · have hz : menuConstitutiveMargin typedModel observedSpec
+          (researchActionFamily sixStateMatrix)
+          comparison negativeMenu (0 : Fin 2) = 0 := by
+        simpa [menuConstitutiveMargin, negativeMenu] using
+          identity_actual_margin_zero
+      have hnot := (margin_eq_zero_iff_not_support_of_exactGR
+        typedModel observedSpec observedReference
+        (researchActionFamily sixStateMatrix)
+        comparison negativeMenu observedExactGeneratedRegime
+        (show observedSpec.convergenceMode =
+          ConvergenceMode.almostSureWeak SixY Bool from rfl)
+        (0 : Fin 2)).mp hz
+      exact (hnot hitem.2).elim
+    · have hnot : ¬ menuSupportEligible typedModel observedSpec
+          (researchActionFamily sixStateMatrix) comparison
+          negativeMenu (1 : Fin 2) := by
+        intro he
+        have ha : decode (2 : Fin 6) ∈ comparison.states :=
+          (comparison_states _).mpr (Or.inr rfl)
+        have hbad := he (decode (2 : Fin 6)) ha
+        exact oneRow_not_opposing_from_a0 (by
+          simpa [negativeMenu, menuSupportEligible] using hbad)
+      exact (hnot hitem.2).elim
+  · intro hempty
+    simpa using hempty
 
 /-- The original menu is INFEASIBLE over its two listed members
 only; C6's separate unlisted full intervention is still a family PR! -/

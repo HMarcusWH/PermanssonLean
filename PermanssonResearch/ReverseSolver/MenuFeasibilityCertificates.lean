@@ -155,13 +155,17 @@ theorem empty_eligible_iff_all_listed_margin_zero_of_exactGR
         ⟨hi, he⟩
     simpa [hem] using hmem
   · intro hzero
-    apply Finset.eq_empty_iff_forall_not_mem.mpr
-    intro i him
-    obtain ⟨hi, he⟩ :=
-      (supportEligibleIndices_mem_iff M spec F B₁ menu i).mp him
-    have hz := hzero i hi
-    exact ((margin_eq_zero_iff_not_support_of_exactGR
-      M spec m F B₁ menu hGR hmode i).mp hz) he
+    apply Finset.ext
+    intro i
+    constructor
+    · intro him
+      obtain ⟨hi, he⟩ :=
+        (supportEligibleIndices_mem_iff M spec F B₁ menu i).mp him
+      have hz := hzero i hi
+      exact (((margin_eq_zero_iff_not_support_of_exactGR
+        M spec m F B₁ menu hGR hmode i).mp hz) he).elim
+    · intro hnone
+      simpa using hnone
 
 /-- Exhaustively no original relative PR among the supplied indices
 iff the listed support screen is empty, WITH baseline Exact GR. -/
@@ -190,13 +194,17 @@ theorem empty_eligible_iff_no_listed_PR_of_exactGR
         ⟨hi, he⟩
     simpa [hem] using him
   · intro hall
-    apply Finset.eq_empty_iff_forall_not_mem.mpr
-    intro i him
-    obtain ⟨hi, he⟩ :=
-      (supportEligibleIndices_mem_iff M spec F B₁ menu i).mp him
-    exact hall i hi
-      ((listed_uniformPR_iff_exactGR_and_support
-        M spec m F B₁ menu hmode i).mpr ⟨hGR, he⟩)
+    apply Finset.ext
+    intro i
+    constructor
+    · intro him
+      obtain ⟨hi, he⟩ :=
+        (supportEligibleIndices_mem_iff M spec F B₁ menu i).mp him
+      exact (hall i hi
+        ((listed_uniformPR_iff_exactGR_and_support
+          M spec m F B₁ menu hmode i).mpr ⟨hGR, he⟩)).elim
+    · intro hnone
+      simpa using hnone
 
 /-- Explicit menu-exhaustive negative certificate. No statement about
 any other (possibly unlisted) admissible intervention or the entire F. -/
