@@ -287,6 +287,8 @@ import PermanssonResearch.ReverseSolver.MenuFeasibilityCertificates
 
 import PermanssonResearch.ReverseSolver.MenuMarginOptimization
 
+import PermanssonResearch.ReverseSolver.RationalTypedSupportBridge
+
 /-!
 # PermanssonResearch
 
