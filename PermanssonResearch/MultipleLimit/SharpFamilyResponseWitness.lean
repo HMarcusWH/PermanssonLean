@@ -248,7 +248,7 @@ theorem intervened_not_original_exactGR :
   change ∀ᵐ w ∂canonicalPathLaw Kd (Measure.dirac u),
     observedOccupationLimit Kd observedDescriptor w =
       diracProba true at hlim
-  filter_upwards [hlim, hfalse] with w htrue hfalse
+  obtain ⟨w, htrue, hfalse⟩ := (hlim.and hfalse).exists
   have hneq : diracProba false ≠
       (diracProba true : ProbabilityMeasure Bool) := by
     intro h
