@@ -94,6 +94,61 @@ theorem three_tiny_originalPR :
       comparison (threeMemberMenu.choice (2 : Fin 3)) := by
   simpa [threeMemberMenu] using tiny_uniformRelativePR
 
+/-- The separately required TWO-index menu keeps half/tiny distinct
+even though their qualitative positive-edge supports coincide. -/
+def twoMemberMenu :
+    FrozenMenu typedModel (researchActionFamily sixStateMatrix) (Fin 2) where
+  indices := Finset.univ
+  nonempty := ⟨0, Finset.mem_univ 0⟩
+  choice := fun i => if i = 0 then halfJ else tinyJ
+
+theorem two_half_originalPR :
+    IsUniformGeneralizedPermanssonRegimeRelative
+      typedModel observedSpec observedReference
+      (researchActionFamily sixStateMatrix)
+      (eventuallyObservedProperty observedDescriptor true)
+      comparison (twoMemberMenu.choice (0 : Fin 2)) := by
+  simpa [twoMemberMenu] using half_uniformRelativePR
+
+theorem two_tiny_originalPR :
+    IsUniformGeneralizedPermanssonRegimeRelative
+      typedModel observedSpec observedReference
+      (researchActionFamily sixStateMatrix)
+      (eventuallyObservedProperty observedDescriptor true)
+      comparison (twoMemberMenu.choice (1 : Fin 2)) := by
+  simpa [twoMemberMenu] using tiny_uniformRelativePR
+
+theorem two_same_positive_support :
+    PermanssonResearch.MultipleLimit.ObservedSupportInvariance.SamePositiveSupport
+      (twoMemberMenu.choice (0 : Fin 2)).intervention.apply.inducedKernel
+      (twoMemberMenu.choice (1 : Fin 2)).intervention.apply.inducedKernel := by
+  change PermanssonResearch.MultipleLimit.ObservedSupportInvariance.SamePositiveSupport
+    halfJ.intervention.apply.inducedKernel
+    tinyJ.intervention.apply.inducedKernel
+  exact same_intervened_positive_support
+
+theorem two_all_eligible (i : Fin 2) :
+    i ∈ supportEligibleIndices typedModel observedSpec
+      (researchActionFamily sixStateMatrix) comparison twoMemberMenu := by
+  have hmode : observedSpec.convergenceMode =
+      ConvergenceMode.almostSureWeak SixY Bool := rfl
+  have hPR : IsUniformGeneralizedPermanssonRegimeRelative
+      typedModel observedSpec observedReference
+      (researchActionFamily sixStateMatrix)
+      (eventuallyObservedProperty observedDescriptor true)
+      comparison (twoMemberMenu.choice i) := by
+    fin_cases i
+    · exact two_half_originalPR
+    · exact two_tiny_originalPR
+  have he := ((listed_uniformPR_iff_exactGR_and_support
+    typedModel observedSpec observedReference
+    (researchActionFamily sixStateMatrix)
+    comparison twoMemberMenu hmode i).mp hPR).2
+  exact (supportEligibleIndices_mem_iff
+    typedModel observedSpec (researchActionFamily sixStateMatrix)
+    comparison twoMemberMenu i).mpr
+      ⟨by simp [twoMemberMenu], he⟩
+
 /-- All three candidate indices are in the exact structural eligible
 subset of the frozen menu. -/
 theorem three_all_eligible (i : Fin 3) :
