@@ -273,6 +273,8 @@ import PermanssonResearch.MultipleLimit.ObservedSupportInvariance
 
 import PermanssonResearch.MultipleLimit.OppositeClassConstitutiveMargin
 
+import PermanssonResearch.MultipleLimit.TypedObservedSupportInvariance
+
 /-!
 # PermanssonResearch
 
