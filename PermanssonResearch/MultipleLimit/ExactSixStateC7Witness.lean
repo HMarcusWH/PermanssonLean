@@ -34,6 +34,8 @@ open ExactSixStateTargetDisruption
 open ExactSixStateConstitution
 open TypedEventResponse
 open ExactSixStateCanonical
+open ExactSixStateRecurrentGeometry
+open KernelCommunication
 
 attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 
@@ -85,6 +87,38 @@ theorem intervened_good_mass_zero (i : Fin 6)
     (researchActionFamily sixStateMatrix) intervention observedDescriptor
     (decode i)]
   exact intervenedProperty_zero i hi
+
+
+/-- Frozen alternate observation distinguishes the two genuine states
+in the closed period-two A class; a mixed class is not an all-true
+class, even though its empirical occupation converges. This formal
+negative witness is NOT asserted to define a baseline Exact GR. -/
+def mixedDescriptor (y : SixY) : Bool :=
+  if encode y = (3 : Fin 6) then false else observedDescriptor y
+
+/-- Both directions of the period-two communication are proved from
+the ACTUAL induced typed kernel's exact singleton probabilities. -/
+theorem mixed_periodic_A_not_good :
+    ¬ FiniteObservedClassSupport.AllTrueClass
+      typedModel.inducedKernel mixedDescriptor (decode (2 : Fin 6)) := by
+  intro hgood
+  have h23 : PositiveEdge typedModel.inducedKernel
+      (decode (2 : Fin 6)) (decode (3 : Fin 6)) := by
+    unfold PositiveEdge
+    rw [typed_six_state_atom]
+    norm_num [ExactSixState.transition]
+  have h32 : PositiveEdge typedModel.inducedKernel
+      (decode (3 : Fin 6)) (decode (2 : Fin 6)) := by
+    unfold PositiveEdge
+    rw [typed_six_state_atom]
+    norm_num [ExactSixState.transition]
+  have hmember :
+      decode (3 : Fin 6) ∈
+        CommunicatingClass typedModel.inducedKernel (decode (2 : Fin 6)) :=
+    ⟨reachable_single typedModel.inducedKernel h23,
+     reachable_single typedModel.inducedKernel h32⟩
+  have hh := hgood (decode (3 : Fin 6)) hmember
+  simp [mixedDescriptor, encode, decode] at hh
 
 end
 end ExactSixStateC7Witness
