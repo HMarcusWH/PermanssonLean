@@ -55,6 +55,16 @@ def ComponentConditions {n : ℕ}
         ∑ y : Fin n, K.entry x y * cert.weight C y) ∧
     (∀ x : Fin n, 0 ≤ cert.weight C x ∧ cert.weight C x ≤ 1)
 
+/-- The complete row property only quantifies over physically finite
+states, with exact rational comparisons; install its explicit constructive
+decider before asking for a finite universal Boolean check. -/
+private instance componentConditions_decidable {n : ℕ}
+    (K : RationalMarkovMatrix n) (cert : DirichletCertificate n)
+    (i : Fin n) :
+    Decidable (ComponentConditions K cert i) := by
+  unfold ComponentConditions
+  infer_instance
+
 /-- Exact finite checker; the graph contract forces every listed class
 to be the component of at least one physical state. -/
 def checkDirichlet {n : ℕ}
@@ -84,8 +94,8 @@ theorem checkDirichlet_sound {n : ℕ}
     (h : checkDirichlet K cert = true) :
     DirichletConditions K cert := by
   unfold checkDirichlet at h
-  obtain ⟨hAB, hTotal⟩ := Bool.and_eq_true.mp h
-  obtain ⟨hClass, hRows⟩ := Bool.and_eq_true.mp hAB
+  obtain ⟨hAB, hTotal⟩ := (andB_eq_true_iff _ _).mp h
+  obtain ⟨hClass, hRows⟩ := (andB_eq_true_iff _ _).mp hAB
   have hClass' : cert.classes = bottomClasses K :=
     of_decide_eq_true hClass
   have hRows' : ∀ i : Fin n, ComponentConditions K cert i :=

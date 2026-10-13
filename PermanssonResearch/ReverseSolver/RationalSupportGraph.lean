@@ -33,6 +33,12 @@ theorem orB_eq_true_iff (p q : Bool) :
     (p || q) = true ↔ p = true ∨ q = true := by
   cases p <;> cases q <;> decide
 
+
+/-- Constructive Boolean conjunction on exact finite tables. -/
+theorem andB_eq_true_iff (p q : Bool) :
+    (p && q) = true ↔ p = true ∧ q = true := by
+  cases p <;> cases q <;> decide
+
 def reachStep {n : ℕ} (R : Fin n → Fin n → Bool)
     (k : Fin n) (x z : Fin n) : Bool :=
   R x z || (R x k && R k z)

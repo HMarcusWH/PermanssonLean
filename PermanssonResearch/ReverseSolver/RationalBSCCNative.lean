@@ -40,13 +40,13 @@ theorem component_native_iff {n : ℕ}
   change communicatesB L x z = true ↔ Communicates K (decode x) (decode z)
   constructor
   · intro h
-    obtain ⟨ha, hb⟩ := Bool.and_eq_true.mp h
+    obtain ⟨ha, hb⟩ := (andB_eq_true_iff _ _).mp h
     exact ⟨(rationalTyped_reachable_iff baseline L x z).mp
         ((reachesB_iff_rationalReachable L x z).mp ha),
       (rationalTyped_reachable_iff baseline L z x).mp
         ((reachesB_iff_rationalReachable L z x).mp hb)⟩
   · intro h
-    apply Bool.and_eq_true.mpr
+    apply (andB_eq_true_iff _ _).mpr
     exact ⟨(reachesB_iff_rationalReachable L x z).mpr
         ((rationalTyped_reachable_iff baseline L x z).mpr h.1),
       (reachesB_iff_rationalReachable L z x).mpr

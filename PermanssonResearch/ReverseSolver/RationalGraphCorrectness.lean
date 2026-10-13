@@ -47,7 +47,7 @@ private theorem reachStep_sound {n : ℕ}
   unfold reachStep at h
   rcases (orB_eq_true_iff _ _).mp h with hdirect | hvia
   · exact hR x z hdirect
-  · obtain ⟨hxk, hkz⟩ := Bool.and_eq_true.mp hvia
+  · obtain ⟨hxk, hkz⟩ := (andB_eq_true_iff _ _).mp hvia
     exact Relation.ReflTransGen.trans (hR x k hxk) (hR k z hkz)
 
 /-- Soundness survives every intermediate-vertex update in the explicit
