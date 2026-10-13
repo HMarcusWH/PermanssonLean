@@ -99,11 +99,11 @@ theorem eventuallyObserved_probability_eq_good_sum
         ((selectedRepresentative K) ⁻¹' (↑S : Set Y)) := by
     filter_upwards [eventuallyObserved_iff_selectedGood_ae K h μ]
       with w hw
-    change (w ∈ eventuallyObserved h true) ↔
-      selectedRepresentative K w ∈ (↑S : Set Y)
-    simpa only [S, goodRecurrentRepresentatives,
-      Finset.mem_filter, selectedRepresentative_mem K w,
-      true_and] using hw
+    change (w ∈ eventuallyObserved h true) =
+      (selectedRepresentative K w ∈ (↑S : Set Y))
+    apply propext
+    simpa [S, goodRecurrentRepresentatives,
+      selectedRepresentative_mem K w] using hw
   calc
     P (eventuallyObserved h true) =
         P ((selectedRepresentative K) ⁻¹' (↑S : Set Y)) :=
