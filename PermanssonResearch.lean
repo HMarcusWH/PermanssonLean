@@ -322,6 +322,8 @@ import PermanssonResearch.ReverseSolver.CanonicalClosedClassHitting
 
 import PermanssonResearch.ReverseSolver.RationalCertificateUniqueness
 
+import PermanssonResearch.ReverseSolver.RationalCramerEquations
+
 /-!
 # PermanssonResearch
 
