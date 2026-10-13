@@ -35,14 +35,16 @@ family. It merged at `b6e91f9badce1a2292a0ef6f1be8d7922c167cdf`
 after all four final-head CI workflows passed, as did the post-merge workflows.
 This does not amount to independent scholarly peer review.
 
-**C7 research verified / awaiting author-controlled merge:**
+**Merged C7:**
 [PR #58](https://github.com/HMarcusWH/PermanssonLean/pull/58)
 proves the canonical eventual-true event iff good recurrent-class selection
 a.s. and the exact original finite typed PR criterion. Its last mathematical
 head `24024033f034a9cf1693e24177a183fe0c29dc9c` passed all four workflows,
 including [Research Lean #38397469362](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38397469362)
 and **217** independent exact rational regressions, the transitive axioms audit,
-251 direct imports and source firewall. This status does NOT mean it is merged.
+251 direct imports and source firewall. C7 merged into `main` as
+`784aaa2b5a74efa1a827de2fcbf6b81b30d29de4`. The merge preserved the verified C7 commit history;
+post-merge CI results must be reported separately, not presumed.
 
 **C8 research draft / mathematical source not yet certified:**
 [PR #59](https://github.com/HMarcusWH/PermanssonLean/pull/59) is the
@@ -50,8 +52,9 @@ research-only support-graph extension of C7, proposing exact positive-edge
 G1–G7 classifications, genuine same-support typed intervention witnesses and
 50 additional exact-rational regression cases. See the
 [C8 support-graph ledger](LANE_C8_SUPPORT_GRAPH_CONSTITUTION.md) for precise
-hypotheses, open proof gates and original v0.1.8 boundary. C8 shall not be
-merged ahead of C7, and neither may be represented as empirically validated.
+hypotheses, open proof gates and original v0.1.8 boundary. C8 now follows
+merged C7, but remains independently unverified and draft. Neither formal
+proof certification nor CI constitutes empirical identification.
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),

@@ -1,7 +1,7 @@
 # Lane C8 — support-graph characterization of finite observed-event constitution
 
 **Research PR:** [#59](https://github.com/HMarcusWH/PermanssonLean/pull/59).  
-**Dependency:** [C7 PR #58](https://github.com/HMarcusWH/PermanssonLean/pull/58), exact verified C7 source HEAD `24024033f034a9cf1693e24177a183fe0c29dc9c`.  
+**Dependency:** [merged C7 PR #58](https://github.com/HMarcusWH/PermanssonLean/pull/58), verified C7 source HEAD `24024033f034a9cf1693e24177a183fe0c29dc9c`, merged to `main` at `784aaa2b5a74efa1a827de2fcbf6b81b30d29de4`.  
 **Status:** DRAFT / mathematical source and independent adversaries committed, **C8 Lean proof audit and final-head CI NOT YET VERIFIED**. This is new research, not the original frozen v0.1.8 paper, not a new application certification and not external scholarly peer review.
 
 ## The exact mathematical claim
@@ -53,10 +53,10 @@ The six-state witness keeps original region/basin/descriptor and the full alpha�
 - Every new module imported directly by `PermanssonResearch.lean`; use `set_option autoImplicit false`; no `sorry`, `admit`, custom research axioms, or hidden theorem assumptions.
 - Do not change `PermanssonLean/`, `PermanssonLean.lean`, C1–C7 sources, `paper/`, `application/`, Lean toolchain, Lake manifest, workflows or original historical release evidence.
 - Before review-ready/merge, require Research Lean full source elaboration, transitive declaration audit with only `propext`, `Classical.choice`, `Quot.sound`, at least 267 successful research regressions, import/firewall/D0 golden checks, Original Lean, Executable verification, and Application contract Ubuntu+Windows all green on the **final PR head and exact GitHub synthetic merge**; record URLs and SHAs.
-- An assistant/Codex source review does NOT substitute for external scholarly peer review. Keep C7 author merge decision independent. Do NOT merge this C8 draft while C7 remains unmerged.
+- An assistant/Codex source review does NOT substitute for external scholarly peer review. C7 has merged with separate author authorization; C8 requires its OWN completed formal build, review and explicit merge authorization.
 
 ## Branching / review note
 
-Existing workflows trigger `pull_request` only when the PR base is `main`. For CI access before C7 merges, PR #59 currently targets main; its visible diff necessarily contains the unmerged C7 ancestry. **Do not mistake that comparison diff for new C8 mathematical changes.** After C7 merges with explicit approval, retarget to the actual new main commit, revalidate exact final synthetic merge, and confirm the PR contains only C8 changes before asking for C8 merge approval.
+C7 merged by a normal two-parent merge commit (`784aaa2b5a74efa1a827de2fcbf6b81b30d29de4`) with the exact same tree as the already certified C7 head. PR #59 remains based on `main`; GitHub comparison confirmed that its C7 source changes are already present on `main` and its remaining diff contains only C8 research modules, imports, tests and these research documentation updates. To align ancestry without rewriting reviewed C8 commits, the branch incorporates merged `main` via a non-force merge update. This does not waive fresh Research Lean, regression, axiom or exact synthetic-merge gates for C8.
 
 **Scientific limitation:** no inference to nonhomogeneous D1 policies, infinite-state chains, all temporal event properties, empirical causal identification, or claim to priority over classical finite Markov-chain graph results.
