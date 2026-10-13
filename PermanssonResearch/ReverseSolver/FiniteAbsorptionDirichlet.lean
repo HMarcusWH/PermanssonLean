@@ -44,14 +44,35 @@ def DirichletConditions {n : ℕ}
 external helper assumptions). -/
 def checkDirichlet {n : ℕ}
     (K : RationalMarkovMatrix n) (cert : DirichletCertificate n) : Bool :=
-  decide (DirichletConditions K cert)
+  decide (cert.classes = bottomClasses K) &&
+  cert.classes.all (fun C =>
+    (Finset.univ : Finset (Fin n)).all (fun x =>
+      decide (if x ∈ recurrentUnion cert then
+        cert.weight C x = (if x ∈ C then 1 else 0)
+      else cert.weight C x =
+        ∑ y : Fin n, K.entry x y * cert.weight C y))) &&
+  cert.classes.all (fun C =>
+    (Finset.univ : Finset (Fin n)).all (fun x =>
+      decide (0 ≤ cert.weight C x ∧ cert.weight C x ≤ 1))) &&
+  (Finset.univ : Finset (Fin n)).all (fun x =>
+    decide ((∑ C ∈ cert.classes, cert.weight C x) = 1))
 
 /-- True checker output entails every stated exact algebraic obligation. -/
 theorem checkDirichlet_sound {n : ℕ}
     (K : RationalMarkovMatrix n) (cert : DirichletCertificate n)
     (h : checkDirichlet K cert = true) :
     DirichletConditions K cert := by
-  simpa [checkDirichlet] using h
+  unfold checkDirichlet at h
+  simp only [Bool.and_eq_true, Finset.all_eq_true,
+    decide_eq_true_eq, Finset.mem_univ, forall_const] at h
+  rcases h with ⟨hclasses, hboundary, hbounds, hsum⟩
+  refine ⟨hclasses, ?_, ?_, ?_⟩
+  · intro C hC x
+    exact hboundary C hC x
+  · intro C hC x
+    exact hbounds C hC x
+  · intro x
+    exact hsum x
 
 /-- Every checked column stays in [0,1], at every state. -/
 theorem checked_weight_bounds {n : ℕ}
