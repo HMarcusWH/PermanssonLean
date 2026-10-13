@@ -236,6 +236,32 @@ theorem eventConstitutiveMargin_le_one
     (eventuallyObservedProperty spec.descriptor true) B₁ J hy).trans
       (eventConstitutiveEffect_le_one M F spec.descriptor J y)
 
+/-- C8's G7 transfers the ORIGINAL original-PR yes/no status
+across two separately admissible listed members having identical
+positive-edge support. It makes NO numerical margin-equality claim. -/
+theorem same_support_listed_uniformPR_iff
+    (M : StrategicWorldModel S X A)
+    (spec : RegimeSpecification (JointState S X) Bool)
+    (m : Measure (JointState S X))
+    {Component : Type*}
+    (F : InterventionFamily M Component)
+    (B₁ : ConstitutiveComparisonSet M spec)
+    (menu : FrozenMenu M F I)
+    (hmode : spec.convergenceMode =
+      ConvergenceMode.almostSureWeak (JointState S X) Bool)
+    (i j : I)
+    (hs : SamePositiveSupport
+      (menu.choice i).intervention.apply.inducedKernel
+      (menu.choice j).intervention.apply.inducedKernel) :
+    IsUniformGeneralizedPermanssonRegimeRelative M spec m F
+      (eventuallyObservedProperty spec.descriptor true)
+      B₁ (menu.choice i) ↔
+    IsUniformGeneralizedPermanssonRegimeRelative M spec m F
+      (eventuallyObservedProperty spec.descriptor true)
+      B₁ (menu.choice j) :=
+  original_uniformPR_iff_of_same_intervened_support
+    M spec m F B₁ (menu.choice i) (menu.choice j) hmode hs
+
 end MenuMarginOptimization
 end ReverseSolver
 end PermanssonResearch
