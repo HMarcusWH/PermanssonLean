@@ -40,7 +40,14 @@ def ReceiptConditions {n menuSize : ℕ}
 def checkReceipt {n menuSize : ℕ}
     (raw : RawInput n menuSize) (checked : CheckedInput raw)
     (receipt : MarginReceipt n menuSize) : Bool :=
-  decide (ReceiptConditions raw checked receipt)
+  checkMenu raw checked receipt.classTables &&
+    decide (
+      (∀ i : Fin menuSize,
+        receipt.reportedMargin i =
+          numericalMargin raw checked receipt.classTables i) ∧
+      receipt.selectedIndex = selectBest raw checked receipt.classTables ∧
+      receipt.reportedOptimum = bestMargin raw checked receipt.classTables ∧
+      receipt.ties = optimalIndices raw checked receipt.classTables)
 
 /-- The checker is sound for its explicitly stated numerical equations. -/
 theorem checkReceipt_sound {n menuSize : ℕ}
@@ -48,7 +55,10 @@ theorem checkReceipt_sound {n menuSize : ℕ}
     (receipt : MarginReceipt n menuSize)
     (hc : checkReceipt raw checked receipt = true) :
     ReceiptConditions raw checked receipt := by
-  simpa [checkReceipt] using hc
+  unfold checkReceipt at hc
+  obtain ⟨hmenu, hfields⟩ := (andB_eq_true_iff _ _).mp hc
+  exact ⟨checkMenu_sound raw checked receipt.classTables hmenu,
+    of_decide_eq_true hfields⟩
 
 /-- A checked receipt cannot announce a non-maximizing chosen candidate. -/
 theorem checked_receipt_global_max {n menuSize : ℕ}

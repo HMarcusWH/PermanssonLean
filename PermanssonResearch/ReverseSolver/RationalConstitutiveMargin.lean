@@ -31,14 +31,23 @@ def MenuConditions {n menuSize : ℕ}
 def checkMenu {n menuSize : ℕ}
     (raw : RawInput n menuSize) (checked : CheckedInput raw)
     (cert : MenuCertificate n menuSize) : Bool :=
-  decide (MenuConditions raw checked cert)
+  checkDirichlet checked.baseline cert.baseline &&
+    decide (∀ i : Fin menuSize,
+      checkDirichlet (checked.members i) (cert.members i) = true)
 
 theorem checkMenu_sound {n menuSize : ℕ}
     (raw : RawInput n menuSize) (checked : CheckedInput raw)
     (cert : MenuCertificate n menuSize)
     (hc : checkMenu raw checked cert = true) :
     MenuConditions raw checked cert := by
-  simpa [checkMenu] using hc
+  unfold checkMenu at hc
+  obtain ⟨hbaseline, hmembers⟩ := (andB_eq_true_iff _ _).mp hc
+  have hmember : ∀ i : Fin menuSize,
+      checkDirichlet (checked.members i) (cert.members i) = true :=
+    of_decide_eq_true hmembers
+  refine ⟨checkDirichlet_sound _ _ hbaseline, ?_⟩
+  intro i
+  exact checkDirichlet_sound _ _ (hmember i)
 
 /-- Pointwise exact rational effect, comparing both genuine candidate
 numerical tables against the SAME frozen descriptor. -/
