@@ -310,6 +310,8 @@ import PermanssonResearch.ReverseSolver.ExactSixStateC10Execution
 
 import PermanssonResearch.ReverseSolver.RationalGraphCompleteness
 
+import PermanssonResearch.ReverseSolver.RationalBSCCNative
+
 /-!
 # PermanssonResearch
 
