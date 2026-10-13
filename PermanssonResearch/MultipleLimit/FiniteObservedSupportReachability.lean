@@ -229,10 +229,18 @@ theorem eventual_true_positive_iff_reachable_good
     have hpositive : 0 < canonicalPathLaw K (Measure.dirac y)
         ((selectedRepresentative K) ⁻¹' ({i} : Set Y)) :=
       lt_of_le_of_ne bot_le (Ne.symm hne)
-    exact lt_of_lt_of_le hpositive
-      (Finset.single_le_sum
-        (fun j hj => bot_le)
-        (show i ∈ goodRecurrentRepresentatives K h from hi))
+    have hle :
+        (canonicalPathLaw K (Measure.dirac y))
+          ((selectedRepresentative K) ⁻¹' ({i} : Set Y)) ≤
+        ∑ j ∈ goodRecurrentRepresentatives K h,
+          (canonicalPathLaw K (Measure.dirac y))
+            ((selectedRepresentative K) ⁻¹' ({j} : Set Y)) := by
+      exact Finset.single_le_sum
+        (fun j hj => (bot_le : (0 : ℝ≥0∞) ≤
+          (canonicalPathLaw K (Measure.dirac y))
+            ((selectedRepresentative K) ⁻¹' ({j} : Set Y))))
+        hi
+    exact lt_of_lt_of_le hpositive hle
 
 end FiniteObservedSupportReachability
 end MultipleLimit

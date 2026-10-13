@@ -27,6 +27,7 @@ namespace MultipleLimit
 namespace ExactGRObservedEventExtremality
 
 set_option autoImplicit false
+attribute [local instance] Classical.propDecidable
 
 open PermanssonLean
 open PermanssonLean.RegimeSpecification
