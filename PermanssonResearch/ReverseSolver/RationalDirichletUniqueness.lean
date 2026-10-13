@@ -40,7 +40,7 @@ private theorem harmonic_max_edge {n : ℕ}
         simp_rw [mul_sub]
         rw [Finset.sum_sub_distrib]
       _ = m - f x := by
-        rw [Finset.sum_mul, K.row_sum_one x, ← hh]
+        rw [← Finset.sum_mul, K.row_sum_one x, ← hh]
         ring
       _ = 0 := by rw [hx]; ring
   apply le_antisymm (hmax z)
@@ -49,11 +49,13 @@ private theorem harmonic_max_edge {n : ℕ}
   have hterm : 0 < K.entry x z * (m - f z) := mul_pos hedge hgap
   have hle : K.entry x z * (m - f z) ≤
       ∑ y : Fin n, K.entry x y * (m - f y) := by
-    apply Finset.single_le_sum
-    · intro y hy
-      exact mul_nonneg (K.entry_nonneg x y)
-        (sub_nonneg.mpr (hmax y))
-    · exact Finset.mem_univ z
+    simpa only using
+      (Finset.single_le_sum
+        (s := (Finset.univ : Finset (Fin n)))
+        (f := fun y => K.entry x y * (m - f y))
+        (fun y hy => mul_nonneg (K.entry_nonneg x y)
+          (sub_nonneg.mpr (hmax y)))
+        (Finset.mem_univ z))
   rw [hsum] at hle
   exact (not_le_of_gt hterm) hle
 
@@ -133,7 +135,7 @@ theorem harmonic_zero_of_boundary_access {n : ℕ} [NeZero n]
   intro y
   have ha := hupper y
   have hb := hlower y
-  dsimp at hb
+
   linarith
 
 /-- The exact rational boundary-value problem has at most one solution;
@@ -162,7 +164,7 @@ theorem harmonic_solution_unique_of_boundary_access {n : ℕ} [NeZero n]
     (fun y => f y - g y) hdb hdh
   funext y
   have hy := hzero y
-  dsimp at hy
+
   linarith
 
 end C10
