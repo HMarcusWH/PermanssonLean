@@ -6,7 +6,7 @@
 
 ## The exact mathematical claim
 
-Fix a nonempty finite measurable state space `Y`, a genuine homogeneous probability kernel `K`, and a frozen measurable Boolean descriptor `h`. Let `E_h` be the actual infinite-path event that `h(w(n))` is true from some time onward. `Reachable K y i` means *finite reachability by strictly positive singleton transition atoms*, not a zero-weight graph edge or numerical-threshold approximation.
+Fix a nonempty finite state space `Y` equipped with **measurable singleton atoms** (`MeasurableSingletonClass Y`) and the additional finite/discrete measurable and topological instances explicitly stated by each Lean theorem: in particular the G1–G2 canonical event bridge uses decidable finite states and standard-Borel measurability, while G3–G7 on typed joint state additionally use discrete topology and `OpensMeasurableSpace`. Fix a genuine homogeneous probability kernel `K` and a frozen measurable Boolean descriptor `h`. **The theorem package is not asserted for arbitrary finite spaces equipped with a non-discrete σ-algebra whose singleton transition atoms cannot be measured.** Let `E_h` be the actual infinite-path event that `h(w(n))` is true from some time onward. `Reachable K y i` means *finite reachability by strictly positive singleton transition atoms*, not a zero-weight graph edge or numerical-threshold approximation.
 
 **G1 — positive good-class probability.** `P_y^K(E_h)>0` iff some recurrent communicating class on which every state is true-labelled is graph-reachable from `y`.
 
@@ -14,7 +14,7 @@ Fix a nonempty finite measurable state space `Y`, a genuine homogeneous probabil
 
 **G3 — original baseline extremality.** Under actual original `IsExactGeneratedRegime M spec m` **and literal** `spec.convergenceMode = ConvergenceMode.almostSureWeak`, for each `y∈spec.basin`, `P_y(E_h)=1` iff the ORIGINAL `spec.target=δ_true`; otherwise `P_y(E_h)=0`. This DOES NOT assert that all possible Boolean occupation targets are Dirac. The proof uses original C3's same-path limit equality plus strict finite-class stationary support from C7.
 
-**G4–G6 — opposing-class margin and original PR iff.** For an admissible typed alpha/P/U strategic intervention `J`, let `L=J.intervention.apply.inducedKernel`. If the baseline target is `δ_true`, opposing classes of L are BAD; otherwise they are GOOD. Define `r_J(y)` by summing the actual L-canonical class-selection weights of those opposing classes. For every frozen comparison state `y∈B₁`:
+**G4–G6 — opposing-class margin and original PR iff.** The quantitative equalities below are **conditional on an independently proved ORIGINAL baseline `IsExactGeneratedRegime M spec m` certificate, the literal equality `spec.convergenceMode = almostSureWeak`, and the original valid frozen comparison set `B₁`**. For one admissible typed alpha/P/U strategic intervention `J`, let `L=J.intervention.apply.inducedKernel`. If the baseline target is `δ_true`, opposing classes of L are BAD; otherwise they are GOOD. Define `r_J(y)` by summing the actual L-canonical class-selection weights of those opposing classes. For every frozen comparison state `y∈B₁`:
 ```text
 constitutiveEffect(M, ψ_h, J, y) = r_J(y)
 constitutiveMargin(M, spec, F, ψ_h, B₁, J) = min_(y∈B₁) r_J(y)
