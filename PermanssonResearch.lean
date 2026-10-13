@@ -271,6 +271,8 @@ import PermanssonResearch.MultipleLimit.ExactGRObservedEventExtremality
 
 import PermanssonResearch.MultipleLimit.ObservedSupportInvariance
 
+import PermanssonResearch.MultipleLimit.OppositeClassConstitutiveMargin
+
 /-!
 # PermanssonResearch
 
