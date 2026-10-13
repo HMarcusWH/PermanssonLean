@@ -257,6 +257,8 @@ import PermanssonResearch.MultipleLimit.TypedEventResponse
 import PermanssonResearch.MultipleLimit.ExactSixStateConstitution
 import PermanssonResearch.MultipleLimit.SharpFamilyResponseWitness
 import PermanssonResearch.MultipleLimit.GroundedC6Response
+import PermanssonResearch.MultipleLimit.FiniteObservedClassSupport
+import PermanssonResearch.MultipleLimit.FiniteObservedEventMass
 
 /-!
 # PermanssonResearch
