@@ -273,3 +273,4 @@ Importing this library does not strengthen the frozen v0.1.8 core.
 import PermanssonResearch.MultipleLimit.FiniteObservedSupportReachability
 import PermanssonResearch.MultipleLimit.FiniteObservedBadClassReachability
 import PermanssonResearch.MultipleLimit.FiniteObservedClassDirac
+import PermanssonResearch.MultipleLimit.ExactGRObservedEventExtremality
