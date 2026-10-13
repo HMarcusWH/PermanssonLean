@@ -308,6 +308,8 @@ import PermanssonResearch.ReverseSolver.ExactSixStateBOnly
 
 import PermanssonResearch.ReverseSolver.ExactSixStateC10Execution
 
+import PermanssonResearch.ReverseSolver.RationalGraphCompleteness
+
 /-!
 # PermanssonResearch
 
