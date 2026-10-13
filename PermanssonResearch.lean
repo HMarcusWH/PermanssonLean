@@ -312,6 +312,8 @@ import PermanssonResearch.ReverseSolver.RationalGraphCompleteness
 
 import PermanssonResearch.ReverseSolver.RationalBSCCNative
 
+import PermanssonResearch.ReverseSolver.RationalDirichletUniqueness
+
 /-!
 # PermanssonResearch
 
