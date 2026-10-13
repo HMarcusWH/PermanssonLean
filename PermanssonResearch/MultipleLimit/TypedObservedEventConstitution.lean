@@ -108,7 +108,7 @@ theorem effect_eq_abs_goodMass_difference
   unfold constitutiveEffect
   rw [baselineValue_eq_goodMass M h y,
       intervenedValue_eq_goodMass M F J h y]
-  exact Real.dist_eq
+  exact Real.dist_eq _ _
 
 end TypedObservedEventConstitution
 end MultipleLimit
