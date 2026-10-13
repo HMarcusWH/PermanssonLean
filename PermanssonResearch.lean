@@ -263,6 +263,11 @@ import PermanssonResearch.MultipleLimit.TypedObservedEventConstitution
 import PermanssonResearch.MultipleLimit.FiniteObservedUniformMargin
 import PermanssonResearch.MultipleLimit.ExactSixStateC7Witness
 
+import PermanssonResearch.MultipleLimit.FiniteObservedSupportReachability
+import PermanssonResearch.MultipleLimit.FiniteObservedBadClassReachability
+import PermanssonResearch.MultipleLimit.FiniteObservedClassDirac
+import PermanssonResearch.MultipleLimit.ExactGRObservedEventExtremality
+
 /-!
 # PermanssonResearch
 
@@ -270,7 +275,3 @@ Research-only library root. New mathematical extensions belong in this separate
 import tree and require independently reviewed theorem and counterexample gates.
 Importing this library does not strengthen the frozen v0.1.8 core.
 -/
-import PermanssonResearch.MultipleLimit.FiniteObservedSupportReachability
-import PermanssonResearch.MultipleLimit.FiniteObservedBadClassReachability
-import PermanssonResearch.MultipleLimit.FiniteObservedClassDirac
-import PermanssonResearch.MultipleLimit.ExactGRObservedEventExtremality
