@@ -18,6 +18,9 @@ namespace PermanssonResearch
 namespace MultipleLimit
 namespace FiniteObservedUniformMargin
 
+-- A misspelled or unresolved declaration must never become an implicit theorem premise.
+set_option autoImplicit false
+
 open PermanssonLean
 open PermanssonLean.RegimeSpecification
 open FrozenObservedEvent

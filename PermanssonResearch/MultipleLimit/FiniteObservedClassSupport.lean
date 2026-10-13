@@ -20,6 +20,9 @@ namespace PermanssonResearch
 namespace MultipleLimit
 namespace FiniteObservedClassSupport
 
+-- A misspelled or unresolved declaration must never become an implicit theorem premise.
+set_option autoImplicit false
+
 open KernelCommunication
 open RecurrentClassDecomposition
 open CanonicalClassSelector

@@ -21,6 +21,9 @@ namespace PermanssonResearch
 namespace MultipleLimit
 namespace FiniteObservedEventMass
 
+-- A misspelled or unresolved declaration must never become an implicit theorem premise.
+set_option autoImplicit false
+
 open KernelCommunication
 open CanonicalClassSelector
 open CanonicalClassWeights
@@ -30,6 +33,7 @@ open FiniteOccupationStrongLaw
 open FiniteOccupationVector
 open FiniteOccupationOutside
 open FiniteKernelRealBridge
+open FiniteKernelInvariantUniqueness
 open FiniteInvariantMeasureTransport
 open FiniteObservedClassSupport
 open FrozenObservedEvent
