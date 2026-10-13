@@ -5,7 +5,7 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
-**Status (12 October 2026):** The separate research library has merged
+**Status (13 October 2026):** The separate research library has merged
 CQ-1 (PRs #36–38), D0/D1 (PRs #39–50), finite partition-grammar Lane B
 (PR #51), absorbing-class Lane C1 (PR #52), finite recurrent-class
 occupation laws Lane C2 (PR #53), original finite Exact GR iff
@@ -16,21 +16,44 @@ C4 was verified on the final PR head and synthetic merge and again on
 the actual main merge commit `68bbb8025c931d0519621e4a827a50250945ddb7`;
 all four post-merge workflows passed (see PR #55).
 
-**Current research release candidate:** [C5 PR #56](https://github.com/HMarcusWH/PermanssonLean/pull/56)
-proves the sharp finite *positive-atom* observed family:
-positive-probability basin witnesses, exact no-spurious-atom/coverage
-equivalence, class-weight aggregation and the conservative C3 singleton
-Exact GR bridge. Its mathematical source HEAD
-`8ceaf2349620ee20c92ffeb1387ff5c08b0bdd3b` passed all four PR
-workflows, a **2,760-declaration** transitive axiom audit,
-**167** independent research regressions (**152** existing plus **15** C5)
-and **240** module imports.
-The review is an assistant-conducted source COMMENT, not independent peer
-review. A documentation-only follow-up must pass fresh final-head
-CI before merge; consult the live PR for release status. C2 already
-proved actual empirical occupation convergence and its random limit law.
-The [C5 verified source ledger](LANE_C5_SHARP_FAMILY.md) records exact
-theorems, evidence and limitations.
+**Merged C5:** [PR #56](https://github.com/HMarcusWH/PermanssonLean/pull/56)
+formally proved the sharp finite *positive-atom* observed family, exact
+coverage/no-spurious iff, positive basin witnesses, exact class-weight
+aggregation and the conservative C3 singleton Exact GR bridge. Its
+final verified PR head was
+`916520de307694ee90e31b6c5e0ddf8ae3ef34a8`, and it merged to main
+as `ea821bb253cd25d038a4454ee4d833232c8d7b19`. The proof-source
+gate audited **2,760 declarations** with the standard 3-axiom allowlist,
+**167/167 research regressions** and **240** direct imports; all four
+final-head PR and post-merge main workflows passed. The review remains
+assistant-conducted and is not independent scholarly peer review.
+
+**Current UNMERGED research — source verified / final release pending:**
+Draft [C6 PR #57](https://github.com/HMarcusWH/PermanssonLean/pull/57)
+adds a genuine typed alpha-only strategic intervention, holding the
+world/update kernels P/U fixed, and evaluates the SAME frozen Boolean
+descriptor's eventual true path event on the actual baseline and
+intervened infinite path laws. Lean now proves exact event response
+**1→0** from both original basin states, original uniform constitutive
+margin **1**, a fresh intervened sharp observed family change
+**{δ_true}→{δ_false}**, original-target Exact GR obstruction and a
+globally grounded relative PR certificate (not confirmatory `PR_g`).
+
+The mathematical-source HEAD `2f7a756bd1784c855039bd73d7c8c114b5817e36` and synthetic merge
+`5099e7b635efb21baacc9e113f13992a067fb561`
+passed [Research Lean #38328602237](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38328602237):
+**3,953** research build jobs, **2,865** transitive declarations within the
+three-axiom allowlist, **187/187** research regressions (20 new C6),
+**246** direct imports, D0-F golden checks, original default build and
+source firewall. [Executable verification #38328602271](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38328602271)
+and [Application contract #38328602384](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38328602384)
+also passed at that source SHA. The [assistant COMMENT source review](https://github.com/HMarcusWH/PermanssonLean/pull/57#pullrequestreview-5497596039)
+does **not** constitute independent peer review.
+
+This research PR remains **DRAFT**, with a mandatory fresh four-workflow
+gate on the final documentation-only HEAD and synthetic merge before any
+author-controlled merge decision. See the
+[C6 verified mathematical-source ledger](LANE_C6_TYPED_OBSERVED_RESPONSE.md).
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),
