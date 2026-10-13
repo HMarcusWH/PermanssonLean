@@ -121,15 +121,14 @@ theorem selected_weight_nonzero_iff_reachable
     exact hpos (measure_mono_null hsubset hAE)
   · intro hreach
     obtain ⟨n, hn⟩ := positive_kernel_power_of_reachable K hreach
-    have hrec : i ∈ RecurrentStates K := by
-      simpa only [recurrentRepresentatives, Finset.mem_filter,
-        Finset.mem_univ, true_and] using hi.1
-    have hfixed : classRepresentative K i = i := by
-      have hs := Finset.mem_filter.mp
-        (show i ∈ (Finset.univ.filter
-          (fun z => z ∈ RecurrentStates K ∧
-            classRepresentative K z = z)) from hi)
-      exact hs.2.2
+    have hs : i ∈ RecurrentStates K ∧ classRepresentative K i = i := by
+      have hf :
+          i ∈ (Finset.univ.filter
+            (fun z => z ∈ RecurrentStates K ∧
+              classRepresentative K z = z)) := hi
+      exact (Finset.mem_filter.mp hf).2
+    have hrec : i ∈ RecurrentStates K := hs.1
+    have hfixed : classRepresentative K i = i := hs.2
     have hclass :
         CommunicatingClass K i ∈ RecurrentClasses K :=
       (recurrentClasses_mem_iff K _).mpr ⟨i, hrec, rfl⟩
