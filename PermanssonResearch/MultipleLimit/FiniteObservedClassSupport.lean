@@ -28,6 +28,7 @@ open FiniteClassInvariantMeasure
 open FiniteClassInvariantUniqueness
 open FiniteKernelRealBridge
 open FiniteInvariantMeasureTransport
+open FiniteKernelInvariantUniqueness
 
 variable {Y : Type*} [MeasurableSpace Y] [Fintype Y]
 variable [MeasurableSingletonClass Y] [Nonempty Y]
