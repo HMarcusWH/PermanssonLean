@@ -2,7 +2,7 @@
 
 **Research PR:** [#57](https://github.com/HMarcusWH/PermanssonLean/pull/57)
 **Base:** `main@ea821bb253cd25d038a4454ee4d833232c8d7b19` (merged C5 PR #56).
-**Status:** DRAFT / compiler and adversarial verification IN PROGRESS; do not merge or promote before exact final-head four-workflow green and proof-source review.
+**Status (13 October 2026):** The mathematical-source checkpoint is **verified** by Research Lean, transitive axiom audit, 187 exact rational regressions, source firewall and an assistant-conducted source review. PR #57 remains **DRAFT / UNMERGED** until all four final documentation-head CI workflows pass; this is not external scholarly peer review.
 
 ## Mathematical objective
 
@@ -30,16 +30,16 @@ a0 -> u  with probability 1
 
 Every other row is unchanged, including the periodic a1→a0 transition and the physical B recurrent block. It is installed using `ReverseSolver.FiniteStrategicRealization.rationalStrategicIntervention` and `researchActionFamily`, under which alpha-selection changes are admissible by construction; the exact same P (world action-copy kernel) and U (Unit-memory update) are proved unchanged. This permissive constructed family is **not a claim about external intervention eligibility**.
 
-For each original comparison state, expected theorems are:
+For each original comparison state, the now compiled source proves:
 
 | Start | Baseline P(E_h) | Intervened P(E_h) | constitutive effect |
 |---|---:|---:|---:|
 | u | 1 | 0 | 1 |
 | a0 | 1 | 0 | 1 |
 
-Thus the intended positive uniform margin is **1**, and the original `IsUniformGeneralizedPermanssonRegimeRelative` follows only when the baseline original Exact GR and all original typed intervention requirements are proved.
+Thus the **proved** positive uniform margin is **1**; the original `IsUniformGeneralizedPermanssonRegimeRelative` is established using the separately proved original baseline Exact GR and the original typed intervention requirements.
 
-The unchanged frozen Boolean observed sharp family in C5 has one baseline target `{δ_true}`. The changed intervention makes `u` absorbing; `u` is observed `false`. Class B remains a genuine recurrent class but is unreachable from the original comparison basin after intervention. A new independent C2/C5 proof must show the **intervened** sharp observed family is precisely `{δ_false}`. In particular, any attempted baseline-selector substitution is invalid. The intervened process also cannot satisfy the original frozen target `δ_true` and the identical original mode.
+The unchanged frozen Boolean observed sharp family in C5 has one baseline target `{δ_true}`. The changed intervention makes `u` absorbing; `u` is observed `false`. Class B remains a genuine recurrent class but is unreachable from the original comparison basin after intervention. An independently compiled C2/C5 proof establishes that the **intervened** sharp observed family is precisely `{δ_false}`. In particular, any attempted baseline-selector substitution is invalid. The intervened process also cannot satisfy the original frozen target `δ_true` and the identical original mode.
 
 ## Source theorem dependency graph
 
@@ -71,16 +71,16 @@ Computational regressions are independent falsification controls, NOT Lean proof
 - Axiom allowlist: exactly `propext`, `Classical.choice`, `Quot.sound`. No `sorry`, `admit`, or custom axioms. Compiler lint/deprecation warnings are separately audited.
 - A GitHub assistant COMMENT review, if completed, is **not** independent human scholarly peer review.
 
-## Exact-head checkpoint — pending verification
+## 6. Verified mathematical-source checkpoint — 13 October 2026
 
-- Final theorem-source head SHA: **PENDING**.
-- GitHub CI-tested synthetic-merge SHA: **PENDING**.
-- Research Lean: build count, transitive axiom audit, regression count, direct imports, source firewall: **PENDING**.
-- Original Lean: **PENDING**.
-- Executable verification: **PENDING**.
-- Application contract Ubuntu/Windows: **PENDING**.
-- Real source/hypothesis review: **PENDING**.
-- Final documentation-only head and all four rerun links: **PENDING**.
-- User-controlled merge authorization: **PENDING**.
+- **Mathematical-source HEAD:** `2f7a756bd1784c855039bd73d7c8c114b5817e36` (after two focused compiler-proof repair commits, `85c98f8d5107346d85f8603a19be0721953c69be` and `2f7a756bd1784c855039bd73d7c8c114b5817e36`).
+- **GitHub PR synthetic merge actually checked out by Research Lean:** `5099e7b635efb21baacc9e113f13992a067fb561`, merging that source HEAD into `main@ea821bb253cd25d038a4454ee4d833232c8d7b19`. The checkout SHA is present in the Research Lean job log.
+- **[Research Lean #38328602237](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38328602237): SUCCESS.** The complete research root compiled across **3,953** reported build jobs. Transitive axiom audit checked **2,865 declarations** with only `propext`, `Classical.choice`, `Quot.sound`. All **187/187** research regressions passed (167 inherited + **20 C6** independent exact-`Fraction` adversaries). D0-F deterministic golden regeneration and independent rechecks passed. Original default `lake build`, direct-import coverage (**246/246** modules), and the `sorry`/`admit`/custom-axiom source firewall passed.
+- **[Executable verification #38328602271](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38328602271): SUCCESS** at the same mathematical-source head.
+- **[Application contract #38328602384](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38328602384): SUCCESS** for both Ubuntu and Windows at the source head. These are software-contract tests, not empirical model identification.
+- **Original Lean #38328602122** was still awaiting a GitHub-hosted runner at the source-checkpoint review. The original default build also passed within Research Lean; the four-workflow final-head gate below remains mandatory.
+- **Source/hypothesis review:** [assistant-conducted COMMENT review #5497596039](https://github.com/HMarcusWH/PermanssonLean/pull/57#pullrequestreview-5497596039), explicitly anchored to the immutable mathematical-source head. No blocking issue found in the inspected C6 changes. It is **not** independent scholarly peer review or a GitHub APPROVE review.
+- **Changed-file firewall:** The PR changes six C6 research modules, the direct research root, the exact-`Fraction` adversarial suite, this ledger and the research build guide. The original `PermanssonLean/`, `PermanssonLean.lean`, existing C1–C5 proof sources, paper, application, toolchain, manifest, workflows, original historical release records and schemas were not modified.
+- **Nonblocking warnings:** existing Lean style/linter suggestions and GitHub Node deprecations. `SharpFamilyResponseWitness` retains one harmless `haveI` style warning. None weakens a theorem or adds an axiom.
 
-Remain draft until the latest source elaborates with its original intended theorem statements, all four workflows pass at the exact current synthetic merge, and any review issues are resolved. Merge requires separate explicit authorization.
+**Final release-documentation gate: PENDING.** This ledger/build-guide update produces a NEW PR head after the verified mathematical-source commit. All four workflows (Research Lean, Original Lean, Executable verification, Application contract Ubuntu/Windows) must pass on the exact final documentation HEAD and its GitHub synthetic merge. Record those SHA/run links in PR #57, not by silently attributing old runs to a new commit. The PR remains draft and unmerged; merge requires separate explicit author authorization.
