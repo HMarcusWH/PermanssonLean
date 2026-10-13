@@ -250,5 +250,95 @@ class C8SupportGraphTests(unittest.TestCase):
         self.assertEqual(F(1,2)*O+F(1,2)*Z,F(1,2))
 
 
+
+def soft_six(eps):
+    """True D0 alpha-only six-state intervention: u becomes absorbing,
+    a0 selects bad u with eps or true recurrent B with 1-eps."""
+    eps = F(eps)
+    if not (Z <= eps <= O):
+        raise ValueError("invalid intervention probability")
+    rows = [list(r) for r in c6.BASE]
+    rows[1] = list(c6.basis(1))
+    rows[2] = [Z, eps, Z, Z, O-eps, Z]
+    return c6.checked(rows)
+
+
+SIX_HALF = soft_six(F(1, 2))
+SIX_TINY = soft_six(F(1, 1000))
+SIX_EPS35 = soft_six(F(1, 10**35))
+
+
+class C8SixStateTypedAdversaries(unittest.TestCase):
+    def test_36_only_action_rows_u_a0_change(self):
+        for matrix in (SIX_HALF, SIX_TINY):
+            self.assertEqual({i for i in range(6) if matrix[i] != c6.BASE[i]},
+                             {1, 2})
+            for i in (0, 3, 4, 5):
+                self.assertEqual(matrix[i], c6.BASE[i])
+
+    def test_37_both_admissible_controls_have_same_positive_support(self):
+        self.assertEqual(support(SIX_HALF), support(SIX_TINY))
+
+    def test_38_actual_intervention_kernels_are_not_equal(self):
+        self.assertNotEqual(SIX_HALF, SIX_TINY)
+        self.assertEqual(SIX_HALF[2][1], F(1, 2))
+        self.assertEqual(SIX_TINY[2][1], F(1, 1000))
+
+    def test_39_recurrent_blocks_of_both_same(self):
+        cls = (frozenset({1}), frozenset({4, 5}))
+        self.assertEqual(c6.recurrent_classes(SIX_HALF), cls)
+        self.assertEqual(c6.recurrent_classes(SIX_TINY), cls)
+
+    def test_40_original_six_state_exactGR_event_one_on_basin(self):
+        for y in c6.BASIN:
+            self.assertEqual(c6.observed_limit_probability(c6.BASE, c6.basis(y)), O)
+
+    def test_41_half_false_event_from_u_certain(self):
+        self.assertEqual(c6.observed_limit_probability(SIX_HALF, c6.basis(1)), Z)
+        self.assertEqual(c6.absorption_probabilities(SIX_HALF)[frozenset({1})][1], O)
+
+    def test_42_half_true_event_from_a0_one_half(self):
+        self.assertEqual(c6.observed_limit_probability(SIX_HALF, c6.basis(2)), F(1, 2))
+        self.assertEqual(c6.absorption_probabilities(SIX_HALF)[frozenset({1})][2], F(1, 2))
+
+    def test_43_tiny_event_from_a0_999_thousandths(self):
+        self.assertEqual(c6.observed_limit_probability(SIX_TINY, c6.basis(2)), F(999, 1000))
+
+    def test_44_original_uniform_margin_half(self):
+        self.assertEqual(min(abs(O - c6.observed_limit_probability(SIX_HALF, c6.basis(y)))
+                             for y in c6.BASIN), F(1, 2))
+
+    def test_45_original_uniform_margin_tiny(self):
+        self.assertEqual(min(abs(O - c6.observed_limit_probability(SIX_TINY, c6.basis(y)))
+                             for y in c6.BASIN), F(1, 1000))
+
+    def test_46_support_does_not_fix_real_margin(self):
+        self.assertEqual(support(SIX_HALF), support(SIX_TINY))
+        self.assertNotEqual(F(1, 2), F(1, 1000))
+
+    def test_47_both_six_state_pr_certificates_qualitatively_positive(self):
+        self.assertTrue(all(bad_reachable(SIX_HALF, c6.OBS, y) for y in c6.BASIN))
+        self.assertTrue(all(bad_reachable(SIX_TINY, c6.OBS, y) for y in c6.BASIN))
+
+    def test_48_very_small_probability_still_constitutive(self):
+        self.assertTrue(all(bad_reachable(SIX_EPS35, c6.OBS, y) for y in c6.BASIN))
+        self.assertEqual(min(abs(O-c6.observed_limit_probability(SIX_EPS35,c6.basis(y)))
+                             for y in c6.BASIN), F(1, 10**35))
+
+    def test_49_same_world_update_semantics_are_fixed(self):
+        # The actual Lean witness proves both P and U stay fixed for
+        # typed D0 alpha-only interventions. Regression checks precisely
+        # the rows that are allowed to vary.
+        self.assertEqual(SIX_HALF[4:], c6.BASE[4:])
+        self.assertEqual(SIX_TINY[4:], c6.BASE[4:])
+        self.assertEqual(SIX_HALF[0], c6.BASE[0])
+
+    def test_50_mixed_original_initial_law_is_not_a_point_certification(self):
+        mu = tuple(F(2,5)*c6.basis(1)[i] + F(3,5)*c6.basis(2)[i]
+                   for i in range(6))
+        self.assertEqual(c6.observed_limit_probability(SIX_HALF, mu), F(3,10))
+        self.assertEqual(c6.observed_limit_probability(SIX_TINY, mu), F(2997, 5000))
+
+
 if __name__ == "__main__":
     unittest.main()
