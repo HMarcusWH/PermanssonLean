@@ -28,6 +28,7 @@ namespace ExactSixStateC9MenuWitness
 
 set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 
 open PermanssonLean
 open PermanssonLean.RegimeSpecification
@@ -131,7 +132,11 @@ theorem full_actual_margin_one :
       (researchActionFamily sixStateMatrix)
       (eventuallyObservedProperty observedDescriptor true)
       comparison ExactSixStateTargetDisruption.intervention = 1 at h
-  simpa [menuConstitutiveMargin, threeMemberMenu] using h
+  change constitutiveMargin typedModel observedSpec
+    (researchActionFamily sixStateMatrix)
+    (eventuallyObservedProperty observedDescriptor true)
+    comparison (threeMemberMenu.choice (0 : Fin 3)) = 1
+  simpa [threeMemberMenu] using h
 
 /-- A certified named GLOBAL optimizer of actual original margins:
 the C6 full disruption beats or ties every listed candidate since all
@@ -159,7 +164,10 @@ theorem half_tiny_equal_support :
     PermanssonResearch.MultipleLimit.ObservedSupportInvariance.SamePositiveSupport
       (threeMemberMenu.choice (1 : Fin 3)).intervention.apply.inducedKernel
       (threeMemberMenu.choice (2 : Fin 3)).intervention.apply.inducedKernel := by
-  simpa [threeMemberMenu] using same_intervened_positive_support
+  change PermanssonResearch.MultipleLimit.ObservedSupportInvariance.SamePositiveSupport
+    halfJ.intervention.apply.inducedKernel
+    tinyJ.intervention.apply.inducedKernel
+  exact same_intervened_positive_support
 
 theorem three_member_world_fixed (i : Fin 3) :
     (threeMemberMenu.choice i).intervention.apply.world =
@@ -172,10 +180,14 @@ theorem three_member_update_fixed (i : Fin 3) :
     (threeMemberMenu.choice i).intervention.apply.generator.update =
       typedModel.generator.update := by
   fin_cases i
-  · simpa [threeMemberMenu] using
-      ExactSixStateTargetDisruption.intervention_update_fixed
-  · simpa [threeMemberMenu] using half_update_fixed
-  · simpa [threeMemberMenu] using tiny_update_fixed
+  · change ExactSixStateTargetDisruption.intervention.intervention.apply.generator.update =
+        typedModel.generator.update
+    rw [ExactSixStateTargetDisruption.intervention_apply]
+    exact ExactSixStateTargetDisruption.intervention_update_fixed
+  · change halfJ.intervention.apply.generator.update = typedModel.generator.update
+    exact half_update_fixed
+  · change tinyJ.intervention.apply.generator.update = typedModel.generator.update
+    exact tiny_update_fixed
 
 /-- Actual typed identity choice on the ORIGINAL frozen baseline. -/
 def identityJ : AdmissibleStrategicIntervention
@@ -193,9 +205,8 @@ theorem identity_actual_margin_zero :
     comparison identityJ
   rw [hmin, effect_eq_abs_goodMass_difference typedModel
     (researchActionFamily sixStateMatrix) identityJ observedDescriptor y]
-  have hker : identityJ.intervention.apply.inducedKernel =
-      typedModel.inducedKernel := rfl
-  rw [hker]
+  change |(pointGoodMass typedModel.inducedKernel observedDescriptor y).toReal -
+      (pointGoodMass typedModel.inducedKernel observedDescriptor y).toReal| = 0
   simp
 
 /-- One-row-only sparse intervention: u becomes absorbing;
@@ -248,13 +259,15 @@ theorem oneRow_phaseA_closed : ClosedSubset Kone phaseA := by
       sixStateMatrix oneRowMatrix (2 : Fin 6) j).mp hedge
     change 0 < oneRowEntry (2 : Fin 6) j at hp
     fin_cases j <;>
-      norm_num [oneRowEntry, transition, phaseA, decode] at hp ⊢
+      (try norm_num [oneRowEntry, transition] at hp)
+    all_goals simp [phaseA, decode]
   · subst y
     have hp := (rationalTyped_positiveEdge_iff
       sixStateMatrix oneRowMatrix (3 : Fin 6) j).mp hedge
     change 0 < oneRowEntry (3 : Fin 6) j at hp
     fin_cases j <;>
-      norm_num [oneRowEntry, transition, phaseA, decode] at hp ⊢
+      (try norm_num [oneRowEntry, transition] at hp)
+    all_goals simp [phaseA, decode]
 
 /-- From the ORIGINAL second comparison state a0, no BAD recurrent
 class is graph-reachable under this one-row-only typed intervention. -/
@@ -295,8 +308,11 @@ theorem negativeMenu_eligible_empty :
     · have hz : menuConstitutiveMargin typedModel observedSpec
           (researchActionFamily sixStateMatrix)
           comparison negativeMenu (0 : Fin 2) = 0 := by
-        simpa [menuConstitutiveMargin, negativeMenu] using
-          identity_actual_margin_zero
+        change constitutiveMargin typedModel observedSpec
+          (researchActionFamily sixStateMatrix)
+          (eventuallyObservedProperty observedDescriptor true)
+          comparison identityJ = 0
+        exact identity_actual_margin_zero
       have hnot := (margin_eq_zero_iff_not_support_of_exactGR
         typedModel observedSpec observedReference
         (researchActionFamily sixStateMatrix)
