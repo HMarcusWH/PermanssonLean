@@ -291,6 +291,15 @@ import PermanssonResearch.ReverseSolver.RationalTypedSupportBridge
 
 import PermanssonResearch.ReverseSolver.ExactSixStateC9MenuWitness
 
+import PermanssonResearch.ReverseSolver.CheckedRationalInput
+import PermanssonResearch.ReverseSolver.RationalSupportGraph
+import PermanssonResearch.ReverseSolver.RationalBSCC
+import PermanssonResearch.ReverseSolver.FiniteAbsorptionDirichlet
+import PermanssonResearch.ReverseSolver.RationalEventuallyObserved
+import PermanssonResearch.ReverseSolver.RationalConstitutiveMargin
+import PermanssonResearch.ReverseSolver.ExecutableConstitutiveSelection
+import PermanssonResearch.ReverseSolver.ConstitutiveCertificateCheck
+
 /-!
 # PermanssonResearch
 

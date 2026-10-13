@@ -56,7 +56,7 @@ class C10FixedCases(unittest.TestCase):
         self.assertEqual((r['selected'],r['optimum']),('full','1'))
     def test_002_identity_only(self):
         r=receipt_of(inp([('identity',BASE)]));self.assertTrue(verify_receipt(r))
-        self.assertEqual(r['numerical_status'],'LISTED_NO_UNIFORM_PR_BY_ZERO_MARGIN')
+        self.assertEqual(r['numerical_status'],'NUMERIC_ALL_LISTED_MARGINS_ZERO')
     def test_003_one_row(self):
         r=receipt_of(inp([('u',UONLY)]));self.assertTrue(verify_receipt(r))
         self.assertEqual(r['members'][0]['effects'],['1','0'])
@@ -208,11 +208,19 @@ class C10FixedCases(unittest.TestCase):
         r=receipt_of(inp([('id',BASE),('u',UONLY)]));self.assertTrue(verify_receipt(r))
         self.assertEqual(r['optimum'],'0')
     def test_055_complementary_partial_interventions(self):
-        # Both choices help one state only; selection may not depend on x.
-        rev=matrix_with_edits({2:['1','0','0','0','0','0']})
-        # a0->t->u and u baseline -> eventual good; this does not change u.
-        r=receipt_of(inp([('u',UONLY),('other',rev)]));self.assertTrue(verify_receipt(r))
-        self.assertEqual(r['selected'],'u')
+        # Independent p/q starts each have their own partial rescue; neither
+        # fixed intervention changes both at once. max_i min_x = 0 yet
+        # min_x max_i = 1. The selected candidate must be fixed on all B1.
+        base=[['1','0','0'],['0','1','0'],['0','0','1']]
+        p=[['0','0','1'],['0','1','0'],['0','0','1']]
+        q=[['1','0','0'],['0','0','1'],['0','0','1']]
+        r=receipt_of(inp([('p',p),('q',q)],base=base,
+                         descriptor=[True,True,False],comparison=[0,1]))
+        self.assertTrue(verify_receipt(r))
+        self.assertEqual([x['effects'] for x in r['members']],
+                         [['1','0'],['0','1']])
+        self.assertEqual([x['margin'] for x in r['members']],['0','0'])
+        self.assertEqual(r['optimum'],'0')
     def test_056_sorted_baseline_classes(self):
         r=receipt_of(inp([('full',FULL)]));self.assertEqual(r['baseline']['classes'],[[2,3],[4,5]])
     def test_057_3cycle_mixed(self):

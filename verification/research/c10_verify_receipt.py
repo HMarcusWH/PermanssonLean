@@ -102,7 +102,7 @@ def verify_receipt(receipt:Any)->bool:
     ties=[i for (i,_),v in zip(checked.menu,values) if v==optimal]
     require(receipt['optimum']==str(optimal),'wrong maximin optimum')
     require(receipt['ties']==ties and receipt['selected']==ties[0],'incorrect tie set/order/selection')
-    require(receipt['numerical_status']==('LISTED_NO_UNIFORM_PR_BY_ZERO_MARGIN' if optimal==0 else 'NUMERIC_POSITIVE_BASELINE_UNVERIFIED'),'invalid status')
+    require(receipt['numerical_status']==('NUMERIC_ALL_LISTED_MARGINS_ZERO' if optimal==0 else 'NUMERIC_POSITIVE_BASELINE_UNVERIFIED'),'invalid status')
     require(receipt['claim_boundary']=='Exact rational numerical result only; original typed equality and any positive PR certification require separate Lean theorems.', 'invalid claim boundary')
     return True
 

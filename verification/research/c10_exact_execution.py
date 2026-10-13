@@ -82,8 +82,8 @@ def check_input(obj: Any) -> FrozenInput:
         raise InputError("input must be object")
     _check_keys(obj, {"n", "baseline", "descriptor", "comparison", "menu"})
     n = obj["n"]
-    if type(n) is not int or n <= 0 or n > 512:
-        raise InputError("n must be positive integer <=512")
+    if type(n) is not int or n <= 0:
+        raise InputError("n must be positive integer")
     baseline = checked_matrix(obj["baseline"], n)
     descriptor = obj["descriptor"]
     if not isinstance(descriptor, list) or len(descriptor) != n or any(type(b) is not bool for b in descriptor):
@@ -208,7 +208,7 @@ def execute(valid: FrozenInput) -> dict:
                       "worst_start": worst})
     optimum = max(Fraction(x["margin"]) for x in items)
     ties = [x["id"] for x in items if Fraction(x["margin"]) == optimum]
-    status = "LISTED_NO_UNIFORM_PR_BY_ZERO_MARGIN" if optimum == Q0 else "NUMERIC_POSITIVE_BASELINE_UNVERIFIED"
+    status = "NUMERIC_ALL_LISTED_MARGINS_ZERO" if optimum == Q0 else "NUMERIC_POSITIVE_BASELINE_UNVERIFIED"
     return {"format":"Permansson.C10.rational-margin.v1", "normalized_input": normalized,
             "input_sha256":sha256(canonical_bytes(normalized)).hexdigest(),
             "baseline":base,"members":items,"optimum":str(optimum),
