@@ -24,6 +24,7 @@ namespace ReverseSolver
 namespace RationalTypedSupportBridge
 
 set_option autoImplicit false
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 
 open PermanssonLean
 open PermanssonLean.RegimeSpecification
