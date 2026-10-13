@@ -28,32 +28,30 @@ gate audited **2,760 declarations** with the standard 3-axiom allowlist,
 final-head PR and post-merge main workflows passed. The review remains
 assistant-conducted and is not independent scholarly peer review.
 
-**Current UNMERGED research — source verified / final release pending:**
-Draft [C6 PR #57](https://github.com/HMarcusWH/PermanssonLean/pull/57)
-adds a genuine typed alpha-only strategic intervention, holding the
-world/update kernels P/U fixed, and evaluates the SAME frozen Boolean
-descriptor's eventual true path event on the actual baseline and
-intervened infinite path laws. Lean now proves exact event response
-**1→0** from both original basin states, original uniform constitutive
-margin **1**, a fresh intervened sharp observed family change
-**{δ_true}→{δ_false}**, original-target Exact GR obstruction and a
-globally grounded relative PR certificate (not confirmatory `PR_g`).
+**Merged C6:** [PR #57](https://github.com/HMarcusWH/PermanssonLean/pull/57)
+established an actual typed alpha-only observed-event disruption, margin 1 and
+original uniform relative PR, together with the changed sharp observed limit
+family. It merged at `b6e91f9badce1a2292a0ef6f1be8d7922c167cdf`
+after all four final-head CI workflows passed, as did the post-merge workflows.
+This does not amount to independent scholarly peer review.
 
-The mathematical-source HEAD `2f7a756bd1784c855039bd73d7c8c114b5817e36` and synthetic merge
-`5099e7b635efb21baacc9e113f13992a067fb561`
-passed [Research Lean #38328602237](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38328602237):
-**3,953** research build jobs, **2,865** transitive declarations within the
-three-axiom allowlist, **187/187** research regressions (20 new C6),
-**246** direct imports, D0-F golden checks, original default build and
-source firewall. [Executable verification #38328602271](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38328602271)
-and [Application contract #38328602384](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38328602384)
-also passed at that source SHA. The [assistant COMMENT source review](https://github.com/HMarcusWH/PermanssonLean/pull/57#pullrequestreview-5497596039)
-does **not** constitute independent peer review.
+**C7 research verified / awaiting author-controlled merge:**
+[PR #58](https://github.com/HMarcusWH/PermanssonLean/pull/58)
+proves the canonical eventual-true event iff good recurrent-class selection
+a.s. and the exact original finite typed PR criterion. Its last mathematical
+head `24024033f034a9cf1693e24177a183fe0c29dc9c` passed all four workflows,
+including [Research Lean #38397469362](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38397469362)
+and **217** independent exact rational regressions, the transitive axioms audit,
+251 direct imports and source firewall. This status does NOT mean it is merged.
 
-This research PR remains **DRAFT**, with a mandatory fresh four-workflow
-gate on the final documentation-only HEAD and synthetic merge before any
-author-controlled merge decision. See the
-[C6 verified mathematical-source ledger](LANE_C6_TYPED_OBSERVED_RESPONSE.md).
+**C8 research draft / mathematical source not yet certified:**
+[PR #59](https://github.com/HMarcusWH/PermanssonLean/pull/59) is the
+research-only support-graph extension of C7, proposing exact positive-edge
+G1–G7 classifications, genuine same-support typed intervention witnesses and
+50 additional exact-rational regression cases. See the
+[C8 support-graph ledger](LANE_C8_SUPPORT_GRAPH_CONSTITUTION.md) for precise
+hypotheses, open proof gates and original v0.1.8 boundary. C8 shall not be
+merged ahead of C7, and neither may be represented as empirically validated.
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),
