@@ -406,6 +406,25 @@ theorem negativeMenu_all_listed_not_PR :
     comparison negativeMenu observedExactGeneratedRegime hmode).mp
       negativeMenu_eligible_empty
 
+/-- Exhaustive rejection of the declared identity/one-row menu
+coexists with an independently certified ORIGINAL family-level PR,
+witnessed by C6 full disruption which is NOT in negativeMenu. -/
+theorem negativeMenu_not_family_obstruction :
+    (∀ i ∈ negativeMenu.indices,
+      ¬ IsUniformGeneralizedPermanssonRegimeRelative
+        typedModel observedSpec observedReference
+        (researchActionFamily sixStateMatrix)
+        (eventuallyObservedProperty observedDescriptor true)
+        comparison (negativeMenu.choice i)) ∧
+    IsUniformGeneralizedPermanssonRegime
+      typedModel observedSpec observedReference
+      (researchActionFamily sixStateMatrix)
+      (eventuallyObservedProperty observedDescriptor true)
+      comparison := by
+  refine ⟨negativeMenu_all_listed_not_PR, ?_⟩
+  have hpr := three_full_originalPR
+  exact ⟨hpr.1, ⟨threeMemberMenu.choice (0 : Fin 3), hpr.2⟩⟩
+
 end
 end ExactSixStateC9MenuWitness
 end ReverseSolver
