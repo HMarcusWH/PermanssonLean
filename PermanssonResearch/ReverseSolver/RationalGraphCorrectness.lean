@@ -28,7 +28,7 @@ private theorem reachSeed_sound {n : ℕ}
     (h : reachSeed K x z = true) :
     RationalReachable K x z := by
   unfold reachSeed at h
-  rcases Bool.or_eq_true.mp h with hself | hedge
+  rcases (orB_eq_true_iff _ _).mp h with hself | hedge
   · have heq : x = z := of_decide_eq_true hself
     subst z
     exact Relation.ReflTransGen.refl
@@ -45,7 +45,7 @@ private theorem reachStep_sound {n : ℕ}
     (h : reachStep R k x z = true) :
     RationalReachable K x z := by
   unfold reachStep at h
-  rcases Bool.or_eq_true.mp h with hdirect | hvia
+  rcases (orB_eq_true_iff _ _).mp h with hdirect | hvia
   · exact hR x z hdirect
   · obtain ⟨hxk, hkz⟩ := Bool.and_eq_true.mp hvia
     exact Relation.ReflTransGen.trans (hR x k hxk) (hR k z hkz)
@@ -78,8 +78,8 @@ theorem reachesB_sound {n : ℕ}
     (K : RationalMarkovMatrix n) (x z : Fin n)
     (h : reachesB K x z = true) :
     RationalReachable K x z := by
-  exact foldedReach_sound K (reachSeed K)
-    (reachSeed_sound K) (List.finRange n) x z h
+  exact foldedReach_sound K (List.finRange n) (reachSeed K)
+    (reachSeed_sound K) x z h
 
 /-- No numerical support query can fabricate an alpha/P/U path in
 the frozen D0 constructed strategic-world family. -/

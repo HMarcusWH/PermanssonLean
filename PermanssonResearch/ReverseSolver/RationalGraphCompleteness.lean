@@ -25,7 +25,7 @@ private theorem step_iff {n : ℕ}
     (R : Fin n → Fin n → Bool) (k x z : Fin n) :
     reachStep R k x z = true ↔
       R x z = true ∨ (R x k = true ∧ R k z = true) := by
-  simp only [reachStep, Bool.or_eq_true, Bool.and_eq_true]
+  simp only [reachStep, orB_eq_true_iff, Bool.and_eq_true]
 
 private theorem step_keeps {n : ℕ}
     (R : Fin n → Fin n → Bool) (k x z : Fin n)
