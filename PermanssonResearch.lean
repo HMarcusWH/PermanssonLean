@@ -320,6 +320,8 @@ import PermanssonResearch.ReverseSolver.RationalDirichletDeterminant
 
 import PermanssonResearch.ReverseSolver.CanonicalClosedClassHitting
 
+import PermanssonResearch.ReverseSolver.RationalCertificateUniqueness
+
 /-!
 # PermanssonResearch
 
