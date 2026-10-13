@@ -261,6 +261,7 @@ import PermanssonResearch.MultipleLimit.FiniteObservedClassSupport
 import PermanssonResearch.MultipleLimit.FiniteObservedEventMass
 import PermanssonResearch.MultipleLimit.TypedObservedEventConstitution
 import PermanssonResearch.MultipleLimit.FiniteObservedUniformMargin
+import PermanssonResearch.MultipleLimit.ExactSixStateC7Witness
 
 /-!
 # PermanssonResearch
