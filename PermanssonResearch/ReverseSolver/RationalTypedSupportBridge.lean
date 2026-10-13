@@ -8,7 +8,7 @@ import Mathlib.Tactic
 
 The D0 constructive model with memory Unit and world Fin n has *exactly*
 the rational positive one-step support in its genuine induced kernel.
-This is NOT a statement that external strategic-world kernels admit a
+This is NOT a statement that external strategic-world kernels possess a
 rational representation. For a full regime protocol screen we additionally
 require the original frozen descriptor and full B₁-start correspondence.
 
