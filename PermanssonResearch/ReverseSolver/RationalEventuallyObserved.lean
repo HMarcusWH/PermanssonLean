@@ -19,6 +19,15 @@ after an intervention. -/
 def GoodClass {n : ℕ} (h : Fin n → Bool) (C : Finset (Fin n)) : Prop :=
   ∀ x ∈ C, h x = true
 
+
+/-- A constructive decision procedure for the finite Boolean descriptor
+of every state in a proposed recurrent class. -/
+private instance goodClass_decidable {n : ℕ}
+    (h : Fin n → Bool) (C : Finset (Fin n)) :
+    Decidable (GoodClass h C) := by
+  unfold GoodClass
+  infer_instance
+
 /-- Exact rational event value determined by the supplied absorption table. -/
 def eventValue {n : ℕ}
     (cert : DirichletCertificate n) (h : Fin n → Bool) (x : Fin n) : ℚ :=
