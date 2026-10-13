@@ -31,6 +31,7 @@ attribute [local instance] Classical.propDecidable
 
 open PermanssonLean
 open PermanssonLean.RegimeSpecification
+open PermanssonResearch.MultipleLimit
 open PermanssonResearch.MultipleLimit.ExactSixState
 open PermanssonResearch.MultipleLimit.ExactSixStateCanonical
 open PermanssonResearch.MultipleLimit.ExactSixStateTyped

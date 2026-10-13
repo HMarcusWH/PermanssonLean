@@ -26,6 +26,7 @@ set_option autoImplicit false
 
 open PermanssonLean
 open PermanssonLean.RegimeSpecification
+open PermanssonResearch.MultipleLimit.FiniteCanonicalPath
 open PermanssonResearch.MultipleLimit.FrozenObservedEvent
 open PermanssonResearch.MultipleLimit.TypedObservedEventConstitution
 open PermanssonResearch.MultipleLimit.TypedObservedSupportInvariance
