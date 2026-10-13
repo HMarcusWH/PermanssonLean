@@ -24,7 +24,7 @@ open RationalTypedSupportBridge
 /-- A strictly positive row entry propagates any attained global maximum
 of a stochastic harmonic function. The proof uses each nonnegative term
 in the zero sum of weighted gaps; it does not assume irreducibility. -/
-private theorem harmonic_max_edge {n : ℕ}
+theorem harmonic_max_edge {n : ℕ}
     (K : RationalMarkovMatrix n) (f : Fin n → ℚ) (m : ℚ)
     (hmax : ∀ y : Fin n, f y ≤ m)
     (x z : Fin n)

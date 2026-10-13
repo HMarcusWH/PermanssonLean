@@ -324,6 +324,12 @@ import PermanssonResearch.ReverseSolver.RationalCertificateUniqueness
 
 import PermanssonResearch.ReverseSolver.RationalCramerEquations
 
+import PermanssonResearch.ReverseSolver.RationalHarmonicBounds
+import PermanssonResearch.ReverseSolver.RationalBSCCPartition
+import PermanssonResearch.ReverseSolver.RationalCramerBounds
+import PermanssonResearch.ReverseSolver.RationalCramerPartition
+import PermanssonResearch.ReverseSolver.RationalCramerCertification
+
 /-!
 # PermanssonResearch
 
