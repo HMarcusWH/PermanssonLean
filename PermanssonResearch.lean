@@ -283,6 +283,8 @@ import PermanssonResearch.ReverseSolver.FrozenConstitutiveMenu
 
 import PermanssonResearch.ReverseSolver.MenuConstitutionClassification
 
+import PermanssonResearch.ReverseSolver.MenuFeasibilityCertificates
+
 /-!
 # PermanssonResearch
 
