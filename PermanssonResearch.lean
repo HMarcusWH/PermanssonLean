@@ -269,6 +269,8 @@ import PermanssonResearch.MultipleLimit.FiniteObservedClassDirac
 import PermanssonResearch.MultipleLimit.ExactGRObservedEventExtremality
 
 
+import PermanssonResearch.MultipleLimit.ObservedSupportInvariance
+
 /-!
 # PermanssonResearch
 
