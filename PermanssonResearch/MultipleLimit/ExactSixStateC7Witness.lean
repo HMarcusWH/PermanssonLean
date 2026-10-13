@@ -83,10 +83,18 @@ theorem intervened_good_mass_zero (i : Fin 6)
     (hi : i = 1 ∨ i = 2) :
     (pointGoodMass intervention.intervention.apply.inducedKernel
       observedDescriptor (decode i)).toReal = 0 := by
-  rw [← intervenedValue_eq_goodMass typedModel
-    (researchActionFamily sixStateMatrix) intervention observedDescriptor
-    (decode i)]
-  exact intervenedProperty_zero i hi
+  calc
+    (pointGoodMass intervention.intervention.apply.inducedKernel
+      observedDescriptor (decode i)).toReal =
+        intervenedPropertyValue
+          (eventuallyObservedProperty observedDescriptor true)
+          intervention.intervention (decode i) := by
+            exact (intervenedValue_eq_goodMass
+              typedModel (researchActionFamily sixStateMatrix)
+              intervention observedDescriptor (decode i)).symm
+    _ = 0 := by
+      simpa only [TypedEventResponse.fixedProperty] using
+        (intervenedProperty_zero i hi)
 
 
 /-- Frozen alternate observation distinguishes the two genuine states
