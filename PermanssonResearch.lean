@@ -318,6 +318,8 @@ import PermanssonResearch.ReverseSolver.RationalRecurrentAccess
 
 import PermanssonResearch.ReverseSolver.RationalDirichletDeterminant
 
+import PermanssonResearch.ReverseSolver.CanonicalClosedClassHitting
+
 /-!
 # PermanssonResearch
 
