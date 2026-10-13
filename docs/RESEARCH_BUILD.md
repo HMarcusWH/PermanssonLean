@@ -71,6 +71,19 @@ author-controlled merge review. See the
 hypotheses and limitations. Formal source verification is **not**
 empirical causal identification or external scholarly peer review.
 
+**C9 implementation draft / not yet formally released:**
+[PR #60](https://github.com/HMarcusWH/PermanssonLean/pull/60)
+constructs the research-only certified finite-menu bridge from D0's
+actual typed `FrozenMenu` to C8's original uniform PR graph criterion.
+It separates classically computed qualitative eligibility, menu-wide
+exhaustive listed-member rejection, and optimization over the ORIGINAL
+real-valued constitutive margin. Genuine six-state typed positive/negative
+witnesses and an exact rational support transport are under compilation.
+The [C9 research ledger](LANE_C9_CERTIFIED_MENU_SYNTHESIS.md)
+records all hypotheses, limited-scope nonclaims and the pending CI gates.
+No C9 status is certified until this PR's exact-head source, all 317
+intended regressions and the transitive axiom audit pass.
+
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),
 [C2 ledger](LANE_C_RECURRENT_CLASSES.md), and
