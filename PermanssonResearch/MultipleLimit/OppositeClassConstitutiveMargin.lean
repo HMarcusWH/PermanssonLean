@@ -177,7 +177,7 @@ theorem effect_eq_opposingMass
     ne_top_of_le_ne_top ENNReal.one_ne_top hb
   have hbReal : b.toReal ≤ (1 : ℝ) := by
     have hb' := (ENNReal.toReal_le_toReal
-      hfinite ENNReal.one_ne_top).1 hb
+      hfinite ENNReal.one_ne_top).2 hb
     simpa using hb'
   have hb0 : 0 ≤ b.toReal := ENNReal.toReal_nonneg
   rw [effect_eq_abs_goodMass_difference M F J spec.descriptor y]

@@ -112,6 +112,8 @@ theorem recurrentRepresentatives_eq
     (i ∈ Finset.univ.filter
       (fun z => z ∈ RecurrentStates L ∧ classRepresentative L z = z))
   simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+  change (IsRecurrentState K i ∧ classRepresentative K i = i) ↔
+    (IsRecurrentState L i ∧ classRepresentative L i = i)
   rw [recurrentState_iff K L hs i, classRepresentative_eq K L hs i]
 
 theorem allTrueClass_iff (hs : SamePositiveSupport K L)
@@ -163,7 +165,7 @@ theorem goodReachability_iff
     exact ⟨i, by rwa [goodRecurrentRepresentatives_eq K L hs] at hi,
       (reachable_iff K L hs y i).mp hreach⟩
   · rintro ⟨i, hi, hreach⟩
-    exact ⟨i, by rwa [← goodRecurrentRepresentatives_eq K L hs],
+    exact ⟨i, by rwa [goodRecurrentRepresentatives_eq K L hs],
       (reachable_iff K L hs y i).mpr hreach⟩
 
 theorem badReachability_iff
@@ -176,7 +178,7 @@ theorem badReachability_iff
     exact ⟨i, by rwa [badRecurrentRepresentatives_eq K L hs] at hi,
       (reachable_iff K L hs y i).mp hreach⟩
   · rintro ⟨i, hi, hreach⟩
-    exact ⟨i, by rwa [← badRecurrentRepresentatives_eq K L hs],
+    exact ⟨i, by rwa [badRecurrentRepresentatives_eq K L hs],
       (reachable_iff K L hs y i).mpr hreach⟩
 
 end ObservedSupportInvariance
