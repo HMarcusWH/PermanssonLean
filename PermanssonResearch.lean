@@ -289,6 +289,8 @@ import PermanssonResearch.ReverseSolver.MenuMarginOptimization
 
 import PermanssonResearch.ReverseSolver.RationalTypedSupportBridge
 
+import PermanssonResearch.ReverseSolver.ExactSixStateC9MenuWitness
+
 /-!
 # PermanssonResearch
 
