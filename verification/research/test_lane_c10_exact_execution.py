@@ -263,6 +263,15 @@ class C10FixedCases(unittest.TestCase):
     def test_069_wrong_claim_boundary(self):
         r=receipt_of(inp([('full',FULL)]));r['claim_boundary']='Lean proved everything'
         with self.assertRaises(ReceiptError):verify_receipt(r)
+    def test_071_duplicate_json_key_rejected(self):
+        from c10_exact_execution import strict_object
+        with self.assertRaises(InputError):
+            json.loads('{"n": 2, "n": 3}',object_pairs_hook=strict_object)
+    def test_072_json_decimal_rejected(self):
+        from c10_exact_execution import strict_object
+        with self.assertRaises(InputError):
+            json.loads('{"matrix": 0.5}',object_pairs_hook=strict_object,
+                       parse_float=lambda _: (_ for _ in ()).throw(InputError('float')))
     def test_070_zero_edge_vs_tiny_edge(self):
         eps=F(1,10**35)
         a=tuple(tuple(F(x) for x in row) for row in TINY35)

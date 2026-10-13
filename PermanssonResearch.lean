@@ -300,6 +300,11 @@ import PermanssonResearch.ReverseSolver.RationalConstitutiveMargin
 import PermanssonResearch.ReverseSolver.ExecutableConstitutiveSelection
 import PermanssonResearch.ReverseSolver.ConstitutiveCertificateCheck
 
+import PermanssonResearch.ReverseSolver.RationalAbsorptionSolve
+import PermanssonResearch.ReverseSolver.ComputableSixStateFixtures
+import PermanssonResearch.ReverseSolver.ConstitutiveEndToEndCertificate
+import PermanssonResearch.ReverseSolver.ExactSixStateBOnly
+
 /-!
 # PermanssonResearch
 

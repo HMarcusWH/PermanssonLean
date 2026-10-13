@@ -11,7 +11,7 @@ from fractions import Fraction as F
 import hashlib, json
 import argparse
 from typing import Any
-from c10_exact_execution import check_input, exact_fraction, canonical_bytes
+from c10_exact_execution import check_input, exact_fraction, canonical_bytes, strict_object
 
 class ReceiptError(ValueError):
     pass
@@ -112,7 +112,7 @@ def main(argv=None):
     parser.add_argument('receipt')
     args=parser.parse_args(argv)
     with open(args.receipt,encoding='utf-8') as f:
-        receipt=json.load(f, parse_float=lambda _: (_ for _ in ()).throw(ReceiptError('floating JSON number')))
+        receipt=json.load(f, parse_float=lambda _: (_ for _ in ()).throw(ReceiptError('floating JSON number')), object_pairs_hook=strict_object)
     verify_receipt(receipt)
     print('C10 independent exact-Fraction receipt check PASS (Python, not Lean)')
 

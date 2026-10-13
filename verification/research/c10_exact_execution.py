@@ -216,13 +216,23 @@ def execute(valid: FrozenInput) -> dict:
             "claim_boundary":"Exact rational numerical result only; original typed equality and any positive PR certification require separate Lean theorems."}
 
 
+def strict_object(pairs):
+    """Reject duplicate JSON object keys before normalization/proof binding."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise InputError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('input',help='strict rational input JSON')
     parser.add_argument('-o','--output',required=True,help='output receipt JSON')
     args=parser.parse_args(argv)
     with open(args.input,encoding='utf-8') as f:
-        data=json.load(f, parse_float=lambda _: (_ for _ in ()).throw(InputError('floating JSON number')))
+        data=json.load(f, parse_float=lambda _: (_ for _ in ()).throw(InputError('floating JSON number')), object_pairs_hook=strict_object)
     receipt=execute(check_input(data))
     with open(args.output,'w',encoding='utf-8') as f:
         json.dump(receipt,f,sort_keys=True,indent=2,ensure_ascii=False)
