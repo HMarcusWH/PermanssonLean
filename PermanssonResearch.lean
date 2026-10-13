@@ -279,6 +279,18 @@ import PermanssonResearch.MultipleLimit.ExactSixStateC8SupportWitness
 
 import PermanssonResearch.MultipleLimit.FiniteSupportCounterexamples
 
+import PermanssonResearch.ReverseSolver.FrozenConstitutiveMenu
+
+import PermanssonResearch.ReverseSolver.MenuConstitutionClassification
+
+import PermanssonResearch.ReverseSolver.MenuFeasibilityCertificates
+
+import PermanssonResearch.ReverseSolver.MenuMarginOptimization
+
+import PermanssonResearch.ReverseSolver.RationalTypedSupportBridge
+
+import PermanssonResearch.ReverseSolver.ExactSixStateC9MenuWitness
+
 /-!
 # PermanssonResearch
 
