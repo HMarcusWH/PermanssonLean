@@ -277,6 +277,8 @@ import PermanssonResearch.MultipleLimit.TypedObservedSupportInvariance
 
 import PermanssonResearch.MultipleLimit.ExactSixStateC8SupportWitness
 
+import PermanssonResearch.MultipleLimit.FiniteSupportCounterexamples
+
 /-!
 # PermanssonResearch
 
