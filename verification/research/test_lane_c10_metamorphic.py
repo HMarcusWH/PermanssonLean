@@ -131,7 +131,7 @@ class C10MetamorphicTests(unittest.TestCase):
         self.assertEqual(
             {z["id"]: (z["geometry"], z["effects"], z["comparison_effects"], z["margin"], z["worst_start"])
              for z in a["members"]},
-            {z["id"]: (z["geometry"], z["effects"], z["margin"], z["worst_start"])
+            {z["id"]: (z["geometry"], z["effects"], z["comparison_effects"], z["margin"], z["worst_start"])
              for z in b["members"]},
         )
 

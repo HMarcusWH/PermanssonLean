@@ -13,6 +13,7 @@ from c10_golden import create_golden
 from c10_emit_golden_bridge import emit_golden_bridge
 from c10_emit_initial_law_lean import MIXED_LAW, MIXED_PROOFS, emit_mixed_golden
 from c10_eval_initial_law import eval_initial_law
+from c10_verify_receipt import verify_receipt
 from c10_release_evidence import (
     EvidenceError, ROOT, SUMMARY_TEXT, THEOREMS, make_manifest, parse_pr_checkout,
     stable_json, axiom_reports, verify_source_checkout,
