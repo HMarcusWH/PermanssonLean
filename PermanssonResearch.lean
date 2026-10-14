@@ -369,3 +369,4 @@ Importing this library does not strengthen the frozen v0.1.8 core.
 import PermanssonResearch.ReverseSolver.C11ClassStationaryCertificate
 import PermanssonResearch.ReverseSolver.C11StationaryFamily
 import PermanssonResearch.ReverseSolver.C11TypedStationaryBridge
+import PermanssonResearch.ReverseSolver.C11ObservedStationary
