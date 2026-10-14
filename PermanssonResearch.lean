@@ -358,6 +358,11 @@ import PermanssonResearch.ReverseSolver.C10ReleaseCorollaries
 
 import PermanssonResearch.ReverseSolver.C10ReleaseRegimeEquivalences
 import PermanssonResearch.ReverseSolver.C10RationalInitialMixture
+import PermanssonResearch.ReverseSolver.C11ClassStationaryCertificate
+import PermanssonResearch.ReverseSolver.C11StationaryFamily
+import PermanssonResearch.ReverseSolver.C11TypedStationaryBridge
+import PermanssonResearch.ReverseSolver.C11ObservedStationary
+import PermanssonResearch.ReverseSolver.C11SixStateWitness
 
 /-!
 # PermanssonResearch
@@ -366,8 +371,3 @@ Research-only library root. New mathematical extensions belong in this separate
 import tree and require independently reviewed theorem and counterexample gates.
 Importing this library does not strengthen the frozen v0.1.8 core.
 -/
-import PermanssonResearch.ReverseSolver.C11ClassStationaryCertificate
-import PermanssonResearch.ReverseSolver.C11StationaryFamily
-import PermanssonResearch.ReverseSolver.C11TypedStationaryBridge
-import PermanssonResearch.ReverseSolver.C11ObservedStationary
-import PermanssonResearch.ReverseSolver.C11SixStateWitness
