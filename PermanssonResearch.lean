@@ -343,6 +343,9 @@ import PermanssonResearch.ReverseSolver.TypedStoppedClassSelection
 
 import PermanssonResearch.ReverseSolver.TypedObservedCramerCorrespondence
 
+import PermanssonResearch.ReverseSolver.CheckedRationalEventValue
+import PermanssonResearch.ReverseSolver.TypedOriginalMenuMargin
+
 /-!
 # PermanssonResearch
 
