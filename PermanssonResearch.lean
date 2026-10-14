@@ -336,6 +336,9 @@ import PermanssonResearch.ReverseSolver.TypedStoppedClassEvent
 
 import PermanssonResearch.ReverseSolver.TypedStoppedClassLimit
 
+import PermanssonResearch.ReverseSolver.TypedStoppedRecurrentLimit
+import PermanssonResearch.ReverseSolver.TypedStoppedClassAbsorption
+
 /-!
 # PermanssonResearch
 
