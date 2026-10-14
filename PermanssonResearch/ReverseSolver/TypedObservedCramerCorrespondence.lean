@@ -1,4 +1,5 @@
 import PermanssonResearch.ReverseSolver.TypedStoppedClassSelection
+import PermanssonResearch.ReverseSolver.RationalEventuallyObserved
 import PermanssonResearch.MultipleLimit.FiniteObservedEventMass
 import Mathlib.MeasureTheory.Measure.Real
 import Mathlib.Tactic
@@ -51,11 +52,12 @@ theorem selectedRationalClass_mem {n : ℕ} [NeZero n]
     selectedRationalClass L w ∈ bottomClasses L := by
   let K := (realizedModel L).inducedKernel
   let s := selectedRepresentative K w
+  have hs0 : IsRecurrentState K s := by
+    exact selectedRepresentative_recurrent K w
   have hs : IsRecurrentState
       (rationalStrategicIntervention L L).intervention.apply.inducedKernel
       (decode (encode s)) := by
-    simpa [K, s, rationalStrategicIntervention_applied, decode_encode] using
-      (selectedRepresentative_recurrent K w)
+    simpa [K, s, rationalStrategicIntervention_applied, decode_encode] using hs0
   exact (bottom_component_iff_native_recurrent L L (encode s)).mpr hs
 
 /-- Each path has exactly one computed class label: membership in a
@@ -75,7 +77,10 @@ theorem selectedRationalClass_eq_iff_selected_mem {n : ℕ} [NeZero n]
     simpa [decodedClass, encode_decode] using hp
   constructor
   · intro hEq
-    simpa [selectedRationalClass, s, K, hEq] using hsSelf
+    have hComp : component L (encode s) = C := by
+      simpa [selectedRationalClass, s, K] using hEq
+    rw [hComp] at hsSelf
+    simpa only [s, K] using hsSelf
   · intro hsC
     have hNative : decodedClass C ∈ RecurrentClasses K := by
       have h := (bottomClasses_native_iff L L C).mp hC
