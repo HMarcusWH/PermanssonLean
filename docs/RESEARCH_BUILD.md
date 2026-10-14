@@ -74,15 +74,20 @@ was **not** an executable infinite-horizon rational absorption evaluator.
 
 **C10 (draft, PR #61):**
 [exact execution/release ledger](LANE_C10_EXACT_CONSTITUTIVE_EXECUTION.md) ·
+[release-evidence reproduction](C10_RELEASE_EVIDENCE.md) ·
 [audited v1.1 acceptance contract](PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md).
 C10 implements a finite exact rational BSCC/Dirichlet reference, checked
-constitutive margins, deterministic full-menu maximin, and an original
-D0 typed path-law bridge. It additionally includes a full finite receipt,
-six-state exact fractions, and a JSON-to-Lean literal reifier.
-**The branch is not certified by this text:** await completed exact-head
-Research Lean compilation, all numerical and Lean receipt tests, transitive
-axiom audit and the other three CI workflows before release. No arbitrary
-external causal-model identification or independent peer review follows.
+constitutive margins, deterministic full-menu maximin, the genuine
+original D0 typed infinite-path law, and full checked rational receipts.
+The **previous** source head `6601e9f90a01b036a6ba6720ccea257af31148bd`
+passed all four workflows on synthetic merge
+`218d8df33ecb561bdee72c1978d24d644551692a`; Research Lean audited
+3,540 declarations, 306 direct imports, and **489/489** numerical tests,
+including the generated Lean receipt. The new six-state-release provenance
+follow-on must be separately CI-verified on its own final source and
+synthetic merge before approval or merge. No arbitrary external causal
+identification, JSON-parser formal verification, or external peer review
+follows merely from those results.
 
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),

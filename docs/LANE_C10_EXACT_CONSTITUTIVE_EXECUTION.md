@@ -3,7 +3,23 @@
 **PR:** [#61](https://github.com/HMarcusWH/PermanssonLean/pull/61) (draft; do not merge until release gates).
 **Frozen acceptance spec:** [C10 v1.1 audited](PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md), 13 October 2026.
 **Parent:** merged C9 `main@b4989fc4fc633601197cdfa733fbce3f5c9ea2c8`.
-**Status on 14 October:** implementation sources committed; CI still pending final-head full verification. This ledger records source obligations, not a claim of final certification. Every later code/document commit needs a fresh exact-head CI and synthetic-merge audit.
+**Status on 14 October:** the previous fully verified C10 source checkpoint
+`6601e9f90a01b036a6ba6720ccea257af31148bd` passed all four workflows
+on synthetic merge `218d8df33ecb561bdee72c1978d24d644551692a`.
+[Research Lean #38593687268](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38593687268)
+compiled **4,013 jobs**, audited **3,540** transitive declarations within
+`propext`, `Classical.choice`, `Quot.sound`, ran **489/489** exact-rational
+tests, verified **306/306** direct imports and the generated Lean receipt,
+and passed D0-F golden plus source firewall. Original Lean, executable
+verification, Ubuntu and Windows application contracts passed that exact
+synthetic merge as well.
+
+**Current release follow-on:** adds the golden input-to-original-theorem
+kernel bridge, strict source-bound evidence generator/verifier, adversarial
+provenance tests, and a separate ephemeral C10 CI artifact. This follow-on
+is **not certified by the earlier green checkpoint**; its own final head
+and synthetic merge require fresh successful CI and final review. PR #61
+remains draft and unmerged.
 
 ## Frozen object and semantics
 
@@ -39,10 +55,36 @@ These are committed **source statements**. A theorem in a module not yet reached
 - `verification/research/c10_exact_execution.py`: strict canonical rational strings, normalized menu/comparison, exact positive support and separate BSCC/Dirichlet calculations; exact fractions, per-start effects, margins, ties and SHA-256 of normalized input.
 - `verification/research/c10_verify_receipt.py`: separate DFS SCC implementation and exact boundary/harmonic, probability partition, class labels, event, full-menu margin, tie, order and input-fingerprint checks. It does not reuse the producer's inverse or event solver; it is **Python numerical verification**, not a Lean theorem.
 - `verification/research/c10_golden.py`: deterministic full/half/tiny/identity/U-only/B-only six-state output. Expected exact margins: `1`, `1/2`, `1/1000`, `0`, `0`, `0`.
-- `verification/research/c10_emit_lean_receipt.py`: verifies JSON, reifies the full **normalized** input and receipt into Lean literals, invokes the executable `checkFullReceipt` proof, and displays axioms. The source SHA is a provenance identity, not proof of correctness.
-- `verification/research/test_lane_c10_lean_receipt.py`: tampering rejection plus an integration test compiling the actual reified six-state receipt with `lake env lean`, when the toolchain is present.
+- `verification/research/c10_emit_lean_receipt.py`: verifies JSON and reifies the full **normalized** input/receipt into Lean literals; kernel checks `checkFullReceipt`, not Python or cryptographic validity. `c10_emit_golden_bridge.py` appends a **six-state-only** literal-data/true-original-margin equality proof, leaving the generic emitter unchanged.
+- `verification/research/test_lane_c10_lean_receipt.py`: tampering rejection and a generated original-six-state bridge compiled with the Lean kernel and audited for allowed axioms.
 
 **Trust boundary:** the Lean theorem covers the exact decoded/reified numeric values and the D0 typed construction under its real adapter hypotheses. It does NOT prove arbitrary JSON parsing, the Python program, SHA-256 cryptography, real-world parameter estimation, all possible strategic generators, or a prospective predictive claim.
+
+
+## Source-bound release evidence follow-on
+
+[Reproduction guide](C10_RELEASE_EVIDENCE.md) details the new
+`c10_release_evidence.py` and `c10_verify_release_evidence.py` entry
+points. Their separate `Permansson.C10.release-evidence.v1` manifest
+does **not** change the frozen numerical receipt
+`Permansson.C10.rational-margin.v1`.
+
+On a trusted GitHub PR checkout, the generator binds the *actual raw Git
+synthetic merge object* (first parent = independent PR event base, second
+parent = independent PR event head), the unchanged audited v1.1
+specification bytes, original raw input and independently normalized input,
+numerical receipt, the generated six-state Lean source, and compiler
+transcript hashes. The verifier independently repeats the numeric
+certificate, regeneration and actual Lean compilation with the allowed
+axioms. No self-reported SHA or Boolean status can confer original Exact GR.
+
+The PR-only CI step uploads a separate `c10-release-evidence` artifact
+with 30-day retention; D0-F artifact generation and all historical
+workflows remain intact. The artifact's source identifiers are calculated
+after checkout and never baked into their own tracked source commit.
+On `push` and `workflow_dispatch`, the artifact step is intentionally
+skipped because there is no trusted PR synthetic-merge event. See the
+guide for other execution contexts and scope limits.
 
 ## Six-state exact release target
 
@@ -69,7 +111,11 @@ lake env lean /tmp/C10ReifiedGolden.lean
 lake build
 ```
 
-At this checkpoint, the source defines **171** C10 tests: 72 fixed + 64 exact two-state + 27 deterministic three-state + 6 golden + 2 JSON-to-Lean integration tests. The inherited C9 suite counted 317, yielding **488 expected discovered tests**; only the completed CI log may establish an actual passing total.
+The fully green pre-follow-on checkpoint reported **489/489**
+research tests (including 172 C10 tests). The present follow-on adds one
+golden-bridge adversary and 22 release-provenance regressions; **512** is the
+arithmetic expectation, *not a passing result*. Only the completed new
+Research Lean log establishes its actual discovered/passing total.
 
 Release requires a successful Research Lean build, its root transitive axiom audit limited to `propext`, `Classical.choice`, `Quot.sound`, independent complete rational tests and D0-F golden, root direct-import coverage, proof-placeholder and custom-axiom source firewall, frozen original default `lake build`, original Lean, executable verification, and application contracts Ubuntu+Windows. Verify the **same final source head and GitHub synthetic merge**, reconcile docs, obtain final-head code review, and reserve merge for explicit author approval.
 
