@@ -138,13 +138,18 @@ def emit_source(receipt: dict) -> str:
             "i",
             [choice("x", [fraction_expr(x) for x in item["geometry"]["event"]], n)
              for item in receipt["members"]], m),
-        "  pointwiseEffect := fun i x => |" +
-            "(reifiedReceipt.baselineEvent x) - (reifiedReceipt.memberEvent i x)|",
+        "  pointwiseEffect := fun i x => " + choice(
+            "i",
+            [choice("x",
+                    [fraction_expr(str(abs(Fraction(b) - Fraction(v))))
+                     for b, v in zip(receipt["baseline"]["event"],
+                                     item["geometry"]["event"])], n)
+             for item in receipt["members"]], m),
         "  worstState := fun i => " + choice(
             "i", [f"({item['worst_start']} : Fin {n})" for item in receipt["members"]], m),
         "",
         "/-- All claims match the COMPLETE exact reified data and the",
-        "independently proved C10 certificate checker. No native_decide. -/",
+        "independently proved C10 certificate checker. Kernel reduction only. -/",
         "theorem reifiedReceipt_valid :",
         "    checkFullReceipt reifiedRaw reifiedChecked reifiedReceipt = true := by",
         "  decide +kernel",
