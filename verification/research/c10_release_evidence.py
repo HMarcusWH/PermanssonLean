@@ -23,6 +23,9 @@ from c10_verify_receipt import strict_object, verify_receipt
 ROOT = Path(__file__).resolve().parents[2]
 SPEC_PATH = "docs/PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md"
 FORMAT = "Permansson.C10.release-evidence.v2"
+# Immutable specification blob: never silently replace v1.1 while labeling
+# the old or new receipt as complying with this frozen acceptance contract.
+FROZEN_SPEC_BLOB = "242af08011bb103c1672897bc4304bd184bfea4f"
 TYPE_ID = "D0.Unit-Fin-n.actionSelection.six-state"
 THEOREMS = (
     "reifiedReceipt_valid",
@@ -81,6 +84,33 @@ def git_output(root: Path, *args: str) -> str:
     return result.stdout.strip()
 
 
+def verify_source_checkout(root: Path, expected_sha: str | None = None) -> str:
+    """Fail closed unless ALL non-ignored tracked/untracked source matches HEAD.
+
+    Ignored build/cache data stay outside this identity claim; Lean compiles
+    and the kernel verifies proof terms separately. Use -z for exact paths.
+    """
+    root = root.resolve()
+    top = Path(git_output(root, "rev-parse", "--show-toplevel")).resolve()
+    require(root == top, "source root must be the actual repository checkout")
+    actual = git_output(root, "rev-parse", "HEAD")
+    require(re.fullmatch(r"[0-9a-f]{40}", actual) is not None,
+            "invalid checked-out Git HEAD")
+    if expected_sha is not None:
+        require(actual == expected_sha, "source HEAD changed during proof evidence")
+    committed_spec = git_output(root, "rev-parse", f"HEAD:{SPEC_PATH}")
+    require(committed_spec == FROZEN_SPEC_BLOB,
+            "audited v1.1 specification differs from immutable frozen Git blob")
+    result = subprocess.run(
+        ["git", "status", "--porcelain=v1", "-z", "--untracked-files=all"],
+        cwd=root, capture_output=True, check=False, timeout=30,
+    )
+    require(result.returncode == 0, "unable to inspect full source worktree")
+    require(result.stdout == b"",
+            "dirty source checkout (staged, unstaged, deleted or untracked source)")
+    return actual
+
+
 def parse_pr_checkout(event: dict, commit_object: str,
                       checkout_sha: str, repository: str,
                       claimed_ci_sha: str) -> dict:
@@ -119,12 +149,14 @@ def trusted_ci_context(event_path: Path, repository: str,
                        root: Path = ROOT, expected_ci_sha: str | None = None) -> dict:
     # The event path and environment values are CI trust roots, NOT receipt fields.
     event = strict_json(event_path)
-    actual_sha = git_output(root, "rev-parse", "HEAD")
     expected_sha = expected_ci_sha or os.environ.get("GITHUB_SHA", "")
-    return parse_pr_checkout(
+    actual_sha = verify_source_checkout(root, expected_sha)
+    context = parse_pr_checkout(
         event, git_output(root, "cat-file", "-p", "HEAD"),
         actual_sha, repository, expected_sha,
     )
+    verify_source_checkout(root, context["synthetic_merge_sha"])
+    return context
 
 
 def axiom_reports(stdout: str) -> dict[str, list[str]]:
@@ -183,6 +215,7 @@ def make_manifest(directory: Path, source: dict, root: Path = ROOT) -> dict:
 
 def generate_release(directory: Path, context: dict, root: Path = ROOT) -> dict:
     """Run the real Lean compiler; fail closed on every nonzero/unknown result."""
+    verify_source_checkout(root, context["synthetic_merge_sha"])
     directory.mkdir(parents=True, exist_ok=True)
     require(not any(directory.iterdir()), "release output directory must be empty")
     receipt = create_golden(directory)
@@ -204,9 +237,11 @@ def generate_release(directory: Path, context: dict, root: Path = ROOT) -> dict:
             "generated six-state Lean source did not compile:\n" +
             (completed.stdout + completed.stderr)[-5000:])
     axiom_reports(completed.stdout)
+    verify_source_checkout(root, context["synthetic_merge_sha"])
     (directory / "verification_summary.txt").write_text(SUMMARY_TEXT, encoding="utf-8")
     manifest = make_manifest(directory, context, root)
     (directory / "evidence_manifest.json").write_bytes(stable_json(manifest))
+    verify_source_checkout(root, context["synthetic_merge_sha"])
     return manifest
 
 

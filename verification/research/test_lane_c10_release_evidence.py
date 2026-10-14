@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import copy
+import subprocess
 from pathlib import Path
 from unittest import mock
 import tempfile
@@ -12,7 +13,7 @@ from c10_golden import create_golden
 from c10_emit_golden_bridge import emit_golden_bridge
 from c10_release_evidence import (
     EvidenceError, ROOT, SUMMARY_TEXT, THEOREMS, make_manifest, parse_pr_checkout,
-    stable_json, axiom_reports,
+    stable_json, axiom_reports, verify_source_checkout,
 )
 from c10_verify_release_evidence import (
     verify_bundle_structure, verify_release_bundle,
@@ -135,9 +136,10 @@ class C10ReleaseEvidenceTests(unittest.TestCase):
 
     def test_15_genuine_lean_rerun_is_mandatory_for_release(self):
         fake = mock.Mock(returncode=1, stdout="error: rejected", stderr="")
-        with mock.patch("c10_verify_release_evidence.subprocess.run", return_value=fake):
-            with self.assertRaises(EvidenceError):
-                verify_release_bundle(self.folder, CONTEXT, rerun_lean=True)
+        with mock.patch("c10_verify_release_evidence.verify_source_checkout"):
+            with mock.patch("c10_verify_release_evidence.subprocess.run", return_value=fake):
+                with self.assertRaises(EvidenceError):
+                    verify_release_bundle(self.folder, CONTEXT, rerun_lean=True)
 
     def test_16_shallow_merge_commit_parents_accepted(self):
         event = {
@@ -242,6 +244,88 @@ class C10ReleaseEvidenceTests(unittest.TestCase):
         self.refresh_manifest()
         self.assert_rejected()
 
+
+
+class C10RealGitSourceTests(unittest.TestCase):
+    """Use REAL temporary Git repos, not mocked status strings."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name)
+        self.run_git("init", "-q")
+        self.run_git("config", "user.name", "C10 Evidence Test")
+        self.run_git("config", "user.email", "ci@example.invalid")
+        spec = self.root / "docs/PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md"
+        spec.parent.mkdir(parents=True)
+        from c10_release_evidence import SPEC_PATH
+        spec.write_bytes((ROOT / SPEC_PATH).read_bytes())
+        script = self.root / "verification/research/producer.py"
+        script.parent.mkdir(parents=True)
+        script.write_text("VALUE = 1\n", encoding="utf-8")
+        lean = self.root / "PermanssonResearch/Core.lean"
+        lean.parent.mkdir(parents=True)
+        lean.write_text("theorem x : True := trivial\n", encoding="utf-8")
+        (self.root / ".gitignore").write_text(".lake/\n__pycache__/\n*.pyc\n",
+                                              encoding="utf-8")
+        self.run_git("add", ".")
+        self.run_git("commit", "-qm", "frozen source checkout")
+        self.original = self.run_git("rev-parse", "HEAD").stdout.strip()
+
+    def run_git(self, *args):
+        return subprocess.run(["git", *args], cwd=self.root, text=True,
+                              check=True, capture_output=True)
+
+    def test_clean_real_repo_passes_source_identity(self):
+        self.assertEqual(verify_source_checkout(self.root, self.original),
+                         self.original)
+
+    def test_dirty_tracked_specification_rejected(self):
+        path = self.root / "docs/PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md"
+        path.write_text(path.read_text(encoding="utf-8") + "\nFORGED\n", encoding="utf-8")
+        with self.assertRaises(EvidenceError):
+            verify_source_checkout(self.root, self.original)
+
+    def test_dirty_lean_source_rejected(self):
+        (self.root / "PermanssonResearch/Core.lean").write_text(
+            "axiom not_valid : False\n", encoding="utf-8")
+        with self.assertRaises(EvidenceError):
+            verify_source_checkout(self.root, self.original)
+
+    def test_dirty_producer_rejected(self):
+        (self.root / "verification/research/producer.py").write_text(
+            "VALUE = 9000\n", encoding="utf-8")
+        with self.assertRaises(EvidenceError):
+            verify_source_checkout(self.root, self.original)
+
+    def test_staged_change_rejected(self):
+        path = self.root / "verification/research/producer.py"
+        path.write_text("VALUE = 2\n", encoding="utf-8")
+        self.run_git("add", "verification/research/producer.py")
+        with self.assertRaises(EvidenceError):
+            verify_source_checkout(self.root, self.original)
+
+    def test_deleted_source_rejected(self):
+        (self.root / "PermanssonResearch/Core.lean").unlink()
+        with self.assertRaises(EvidenceError):
+            verify_source_checkout(self.root, self.original)
+
+    def test_untracked_shadow_source_rejected(self):
+        (self.root / "verification/research/shadow.py").write_text(
+            "TRUSTED = True\n", encoding="utf-8")
+        with self.assertRaises(EvidenceError):
+            verify_source_checkout(self.root, self.original)
+
+    def test_ignored_build_outputs_are_not_mislabeled_source(self):
+        target = self.root / ".lake/build/lib/lean/Stub.olean"
+        target.parent.mkdir(parents=True)
+        target.write_bytes(b"opaque build cache")
+        self.assertEqual(verify_source_checkout(self.root, self.original),
+                         self.original)
+
+    def test_expected_head_mismatch_rejected(self):
+        with self.assertRaises(EvidenceError):
+            verify_source_checkout(self.root, "0" * 40)
 
 if __name__ == "__main__":
     unittest.main()

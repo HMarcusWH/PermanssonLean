@@ -17,7 +17,7 @@ from c10_emit_golden_bridge import emit_golden_bridge
 from c10_verify_receipt import verify_receipt
 from c10_release_evidence import (
     ARTIFACTS, SUMMARY_TEXT, EvidenceError, ROOT, axiom_reports, make_manifest,
-    require, strict_json, trusted_ci_context, stable_json,
+    require, strict_json, trusted_ci_context, stable_json, verify_source_checkout,
 )
 
 
@@ -59,6 +59,7 @@ def verify_bundle_structure(directory: Path, expected_source: dict,
 
 def verify_release_bundle(directory: Path, expected_source: dict,
                           root: Path = ROOT, *, rerun_lean: bool = True) -> bool:
+    verify_source_checkout(root, expected_source["synthetic_merge_sha"])
     verify_bundle_structure(directory, expected_source, root)
     if not rerun_lean:
         # Structural integrity only, deliberately NOT release-grade evidence.
@@ -74,6 +75,7 @@ def verify_release_bundle(directory: Path, expected_source: dict,
             "independent generated Lean rerun failed: " +
             (completed.stdout + completed.stderr)[-4000:])
     axiom_reports(completed.stdout)
+    verify_source_checkout(root, expected_source["synthetic_merge_sha"])
     return True
 
 
