@@ -68,7 +68,8 @@ theorem worstStart_le_tied {n m : ℕ}
     (he : numericalEffect raw cert i x =
       numericalMargin raw checked cert i) :
     worstStart raw checked cert i ≤ x := by
-  exact Finset.min'_le _ (Finset.mem_filter.mpr ⟨hx, he⟩)
+  exact Finset.min'_le (worstStartSet raw checked cert i) x
+    (Finset.mem_filter.mpr ⟨hx, he⟩)
 
 /-- Complete reified report, including intermediate per-state numbers. -/
 structure FullReceipt (n m : ℕ) where
