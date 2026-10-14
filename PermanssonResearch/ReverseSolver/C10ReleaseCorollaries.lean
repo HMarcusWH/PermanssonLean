@@ -1,4 +1,5 @@
 import PermanssonResearch.ReverseSolver.TypedObservedCramerCorrespondence
+import PermanssonResearch.ReverseSolver.RationalTypedSupportBridge
 import PermanssonResearch.MultipleLimit.FiniteObservedSupportReachability
 import PermanssonResearch.MultipleLimit.TypedObservedEventConstitution
 import Mathlib.MeasureTheory.Measure.Real
@@ -21,6 +22,7 @@ namespace C10
 set_option autoImplicit false
 
 open FiniteStrategicRealization
+open RationalTypedSupportBridge
 open PermanssonResearch.MultipleLimit.FiniteCanonicalPath
 open PermanssonResearch.MultipleLimit.FiniteObservedSupportReachability
 open PermanssonResearch.MultipleLimit.TypedObservedEventConstitution
@@ -152,13 +154,15 @@ theorem cramerWeight_real_pos_iff_class_reachable
     constructor
     · intro h
       refine ⟨encode i, ?_, ?_⟩
-      · simpa only [decodedClass] using hiC
+      · change encode i ∈ C at hiC
+        exact hiC
       · apply (rationalTyped_reachable_iff L L x (encode i)).mpr
         simpa [K, rationalStrategicIntervention_applied,
           decode_encode] using h
     · rintro ⟨z, hz, hzReach⟩
       have hzC : decode z ∈ decodedClass C := by
-        simpa only [decodedClass] using hz
+        change encode (decode z) ∈ C
+        simpa only [encode_decode] using hz
       have hzCommunicates : decode z ∈ CommunicatingClass K i := by
         rw [hClassI]
         exact hzC
