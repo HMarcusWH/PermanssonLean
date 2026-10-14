@@ -47,20 +47,14 @@ theorem referenceMenu_check_true {n m : ℕ}
     checkMenu raw checked (referenceMenuCertificate raw checked) = true := by
   have hn : 0 < n := checked.statesPositive
   haveI : NeZero n := ⟨by omega⟩
-  change
-    checkDirichlet checked.baseline
-        (referenceDirichletCertificate checked.baseline) &&
-      decide (∀ i : Fin m,
-        checkDirichlet (checked.members i)
-          (referenceDirichletCertificate (checked.members i)) = true) = true
-  apply (andB_eq_true_iff _ _).mpr
-  constructor
-  · exact referenceDirichlet_check_true checked.baseline
-  · have hm : ∀ i : Fin m,
-        checkDirichlet (checked.members i)
-          (referenceDirichletCertificate (checked.members i)) = true :=
-      fun i => referenceDirichlet_check_true (checked.members i)
-    simpa only [decide_eq_true_eq] using hm
+  have hbase : checkDirichlet checked.baseline
+      (referenceDirichletCertificate checked.baseline) = true :=
+    referenceDirichlet_check_true checked.baseline
+  have hmembers : ∀ i : Fin m,
+      checkDirichlet (checked.members i)
+        (referenceDirichletCertificate (checked.members i)) = true :=
+    fun i => referenceDirichlet_check_true (checked.members i)
+  simp [checkMenu, referenceMenuCertificate, hbase, hmembers]
 
 /-- The complete constructed reference receipt is accepted for EVERY
 valid finite input, not merely for the hand-coded six-state witness. -/
