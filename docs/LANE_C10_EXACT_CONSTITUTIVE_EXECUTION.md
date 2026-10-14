@@ -126,9 +126,15 @@ separate final-head compiler/review obligation.
 
 [Reproduction guide](C10_RELEASE_EVIDENCE.md) details the new
 `c10_release_evidence.py` and `c10_verify_release_evidence.py` entry
-points. Their separate `Permansson.C10.release-evidence.v1` manifest
-does **not** change the frozen numerical receipt
-`Permansson.C10.rational-margin.v1`.
+points. Historical `Permansson.C10.rational-margin.v1` receipts
+retain their original comparison-only `effects` semantics and can be
+verified explicitly, but can never masquerade as complete all-state
+receipts. The current release requires
+`Permansson.C10.rational-margin.v2`: its `effects` covers **every**
+state and `comparison_effects` is the exact frozen B₁ projection.
+The separate `Permansson.C10.release-evidence.v2` manifest binds
+both the original six-state typed Lean witness and the new rational
+initial-mixture Lean fixture.
 
 On a trusted GitHub PR checkout, the generator binds the *actual raw Git
 synthetic merge object* (first parent = independent PR event base, second
@@ -214,3 +220,32 @@ verifiers and evidence manifest fields must compile and pass on their
 **own new final source head**, with fresh Codex assessment. Neither
 historical CI nor metadata certifies these new statements; merge
 remains author-controlled.
+
+
+## Post-Codex v2 source-completion inventory (not a historical certificate)
+
+The latest source changes include:
+- `c10_exact_execution.py` and `c10_verify_receipt.py` (strict
+  v2 all-state `effects`, `comparison_effects`, deterministic
+  B₁ min and explicit backward v1 verification).
+- `c10_emit_lean_receipt.py` and `c10_emit_golden_bridge.py`
+  (kernel reification of the **reported** full effects, not silent
+  recomputation; the original sixRaw typed bridge is unchanged).
+- `c10_eval_initial_law.py` and `c10_verify_initial_law.py`
+  (a separate exact rational mixed-law query, signed and absolute
+  mixed probability changes; no alternative optimizer).
+- `C10RationalInitialMixture.lean` (checked unit-mass rational
+  finite initial law, actual D0 probability measure and
+  C2 canonical infinite-path mixture theorem).
+- `c10_emit_initial_law_lean.py` plus added mixed JSON and
+  Lean witness files in the strict v2 release manifest.
+- Source Git integrity before/after evidence generation and
+  independent verification, including the frozen v1.1 spec
+  blob and real dirty checkout adversaries.
+
+The C8/C9/original hGR/B₁ conditional gates are **not** weakened.
+The v2 follow-on adds approximately **30** new source regressions
+against the historically verified **522/522** C10 checkpoint,
+for **552 expected** research tests. This is not a passing result
+until all four workflows and the generated Lean proof artifacts
+verify the **new exact source head and synthetic merge**.

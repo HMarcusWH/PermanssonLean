@@ -99,6 +99,23 @@ identical logical input and pinned implementation. Logs and CI provenance
 depend on run context; their byte hashes are recorded, not promised
 universally identical.
 
+## Run a standalone exact initial-law query
+
+The mixed-law evaluator consumes a verified v2 receipt plus a
+separately supplied rational law; it never changes the frozen B₁ or
+the selected global maximin member.
+
+```sh
+python3 verification/research/c10_golden.py /tmp/c10-golden
+printf '%s\n' '{"format":"Permansson.C10.initial-law.v1","weights":["0","1/2","1/2","0","0","0"]}' > /tmp/c10-golden/initial.json
+python3 verification/research/c10_eval_initial_law.py /tmp/c10-golden/receipt.json /tmp/c10-golden/initial.json -o /tmp/c10-golden/mixed.json
+python3 verification/research/c10_verify_initial_law.py /tmp/c10-golden/receipt.json /tmp/c10-golden/initial.json /tmp/c10-golden/mixed.json
+```
+
+The reported `absolute_change` equals `|Σ μ (p_i-p_0)|`,
+not `Σ μ |p_i-p_0|`; neither may replace the original
+`min_(x∈B₁)|p_i(x)-p_0(x)|` margin.
+
 ## Trust boundary
 
 Checking a digest verifies **byte identity relative to an expected value**.
@@ -137,8 +154,9 @@ arithmetic. It is a **probability query**, not a change to the fixed-menu
 optimizer. Mathematically, `C10RationalInitialMixture.lean` constructs
 the actual D0 probability measure and composes C2's canonical
 initial-mixture theorem with C10's point-start path-law correspondence.
-The two optional numeric effects
-`|Σ μ (p_i-p_0)|` and `Σ μ |p_i-p_0|` differ in general; neither is
+The mixed-law report's `absolute_change` is
+`|Σ μ (p_i-p_0)|`; it does **not** report `Σ μ |p_i-p_0|`, which
+differs in general. Neither is
 the original `min_(x∈B₁) |p_i(x)-p_0(x)|`. The adversarial four-state
 cancellation fixture has original numeric pointwise margin 1 but mixed
 signed/absolute probability change zero, demonstrating why mixing
