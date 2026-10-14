@@ -341,6 +341,8 @@ import PermanssonResearch.ReverseSolver.TypedStoppedClassAbsorption
 
 import PermanssonResearch.ReverseSolver.TypedStoppedClassSelection
 
+import PermanssonResearch.ReverseSolver.TypedObservedCramerCorrespondence
+
 /-!
 # PermanssonResearch
 
