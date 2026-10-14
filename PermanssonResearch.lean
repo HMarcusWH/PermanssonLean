@@ -332,6 +332,8 @@ import PermanssonResearch.ReverseSolver.RationalCramerCertification
 
 import PermanssonResearch.ReverseSolver.RationalFiniteStoppingBounds
 
+import PermanssonResearch.ReverseSolver.TypedStoppedClassEvent
+
 /-!
 # PermanssonResearch
 
