@@ -346,14 +346,6 @@ import PermanssonResearch.ReverseSolver.TypedObservedCramerCorrespondence
 import PermanssonResearch.ReverseSolver.CheckedRationalEventValue
 import PermanssonResearch.ReverseSolver.TypedOriginalMenuMargin
 
-/-!
-# PermanssonResearch
-
-Research-only library root. New mathematical extensions belong in this separate
-import tree and require independently reviewed theorem and counterexample gates.
-Importing this library does not strengthen the frozen v0.1.8 core.
--/
-
 import PermanssonResearch.ReverseSolver.C10ReferenceReceipt
 
 import PermanssonResearch.ReverseSolver.C10FullReceipt
@@ -361,3 +353,11 @@ import PermanssonResearch.ReverseSolver.C10FullReceipt
 import PermanssonResearch.ReverseSolver.C10ReceiptSemantics
 
 import PermanssonResearch.ReverseSolver.C10SixStateBridge
+
+/-!
+# PermanssonResearch
+
+Research-only library root. New mathematical extensions belong in this separate
+import tree and require independently reviewed theorem and counterexample gates.
+Importing this library does not strengthen the frozen v0.1.8 core.
+-/
