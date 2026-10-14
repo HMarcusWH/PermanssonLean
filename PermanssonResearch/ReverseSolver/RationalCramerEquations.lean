@@ -17,6 +17,42 @@ namespace C10
 
 set_option autoImplicit false
 
+/-- Exact adjugate evaluation solves the full rational Dirichlet
+matrix equation whenever the (separately proved) determinant is nonzero.
+This is an actual equation theorem, not a numerical equality premise. -/
+theorem cramerWeight_satisfies_matrix_equation {n : ℕ}
+    (K : RationalMarkovMatrix n) (C : Finset (Fin n))
+    (hdet : (dirichletMatrix K).det ≠ 0) (x : Fin n) :
+    (∑ y : Fin n,
+      dirichletMatrix K x y * cramerWeight K C y) =
+      dirichletRHS K C x := by
+  let A := dirichletMatrix K
+  let b := dirichletRHS K C
+  have hw (y : Fin n) :
+      cramerWeight K C y = (Matrix.cramer A b y) / A.det := by
+    unfold cramerWeight
+    rw [Matrix.cramer_eq_adjugate_mulVec]
+    rfl
+  have hmul := congrFun (Matrix.mulVec_cramer A b) x
+  have heq : (∑ y : Fin n, A x y * Matrix.cramer A b y) =
+      A.det * b x := by
+    simpa only [Matrix.mulVec, dotProduct, Pi.smul_apply,
+      smul_eq_mul] using hmul
+  calc
+    (∑ y : Fin n,
+      dirichletMatrix K x y * cramerWeight K C y) =
+        (∑ y : Fin n, A x y * (Matrix.cramer A b y / A.det)) := by
+          apply Finset.sum_congr rfl
+          intro y hy
+          rw [hw y]
+    _ = (∑ y : Fin n, A x y * Matrix.cramer A b y) / A.det := by
+          simp_rw [mul_div_assoc]
+          rw [Finset.sum_div]
+    _ = (A.det * b x) / A.det := by rw [heq]
+    _ = b x := by
+          apply mul_div_cancel_left₀
+          exact hdet
+
 /-- Every genuine computed recurrent row has the exact target-class indicator
 value under the total Cramer candidate, not merely an assumed boundary. -/
 theorem cramerWeight_boundary {n : ℕ} [NeZero n]
