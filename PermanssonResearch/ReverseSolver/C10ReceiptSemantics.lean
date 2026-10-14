@@ -129,6 +129,47 @@ theorem checkedFullReceipt_zero_excludes_uniformPR
     (rationalStrategicIntervention checked.baseline (checked.members i))
     hOriginalZero
 
+
+/-- An exact zero global optimum rules out uniform original PR status for
+EVERY listed typed intervention, including when baseline Exact GR has not
+been certified. This says nothing about unlisted family members. -/
+theorem checkedFullReceipt_all_zero_listed_not_uniformPR
+    {n m : ℕ} [NeZero n]
+    (raw : RawInput n m) (checked : CheckedInput raw)
+    (receipt : FullReceipt n m)
+    (hc : checkFullReceipt raw checked receipt = true)
+    (spec : RegimeSpecification (JointState Unit (Fin n)) Bool)
+    (reference : Measure (JointState Unit (Fin n)))
+    (B₁ : ConstitutiveComparisonSet (realizedModel checked.baseline) spec)
+    (hDescriptor : ∀ x : Fin n,
+      spec.descriptor (decode x) = raw.descriptor x)
+    (hComparison : ∀ x : Fin n,
+      x ∈ raw.comparison ↔ decode x ∈ B₁.states)
+    (hZeroMax : receipt.core.reportedOptimum = 0)
+    (i : Fin m) :
+    ¬ IsUniformGeneralizedPermanssonRegimeRelative
+      (realizedModel checked.baseline) spec reference
+      (researchActionFamily checked.baseline)
+      (eventuallyObservedProperty spec.descriptor true) B₁
+      (rationalStrategicIntervention checked.baseline (checked.members i)) := by
+  have hCore := full_receipt_core_checked raw checked receipt hc
+  have hBound := checked_receipt_global_max
+    raw checked receipt.core hCore i
+  rw [hZeroMax] at hBound
+  have hFields := (checkFullReceipt_sound raw checked receipt hc).1
+  have hNonneg : (0 : ℚ) ≤ receipt.core.reportedMargin i := by
+    rw [hFields.2.1 i]
+    change (0 : ℚ) ≤ raw.comparison.inf'
+      checked.comparisonNonempty (numericalEffect raw receipt.core.classTables i)
+    apply Finset.le_inf'
+    intro x _
+    exact numericalEffect_nonneg raw receipt.core.classTables i x
+  have hZero : receipt.core.reportedMargin i = 0 :=
+    le_antisymm hBound hNonneg
+  exact checkedFullReceipt_zero_excludes_uniformPR
+    raw checked receipt hc spec reference B₁
+    hDescriptor hComparison i hZero
+
 /-- Positive original PR requires the genuine Original Exact-GR proof;
 a positive numerical value alone never supplies that missing premise. -/
 theorem checkedFullReceipt_positive_plus_exactGR

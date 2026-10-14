@@ -158,6 +158,45 @@ theorem sixBest_exact :
     selectBest sixRaw sixChecked sixReference = (0 : Fin 6) := by
   decide +kernel
 
+
+/-- Two distinct original menu indices may choose the exact same typed
+identity action-selection intervention. Their zero margins remain two
+listed candidates, and first-index tie breaking is deterministic. -/
+def sixIdentityTieRaw : RawInput 6 2 where
+  baseline := sixStateMatrix.entry
+  members := fun _ => sixStateMatrix.entry
+  descriptor := observedRecurrent
+  comparison := {1, 2}
+
+def sixIdentityTieChecked : CheckedInput sixIdentityTieRaw where
+  statesPositive := by decide
+  menuPositive := by decide
+  comparisonNonempty := by simp [sixIdentityTieRaw]
+  baseline := sixStateMatrix
+  members := fun _ => sixStateMatrix
+  baselineExact := by intro x y; rfl
+  membersExact := by intro i x y; rfl
+
+def sixIdentityTieCertificate : MenuCertificate 6 2 where
+  baseline := sixBaselineCertificate
+  members := fun _ => sixBaselineCertificate
+
+theorem sixIdentityTie_valid :
+    checkMenu sixIdentityTieRaw sixIdentityTieChecked
+      sixIdentityTieCertificate = true := by
+  decide +kernel
+
+/-- Equal margins do not collapse two separately indexed interventions. -/
+theorem sixIdentityTie_complete_first_optimum :
+    optimalIndices sixIdentityTieRaw sixIdentityTieChecked
+        sixIdentityTieCertificate =
+        [(0 : Fin 2), (1 : Fin 2)] ∧
+    selectBest sixIdentityTieRaw sixIdentityTieChecked
+        sixIdentityTieCertificate = (0 : Fin 2) ∧
+    bestMargin sixIdentityTieRaw sixIdentityTieChecked
+        sixIdentityTieCertificate = 0 := by
+  decide +kernel
+
 end C10
 end ReverseSolver
 end PermanssonResearch
