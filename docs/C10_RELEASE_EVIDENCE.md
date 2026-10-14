@@ -95,6 +95,23 @@ Unsupported external model identification, unverifiable event metadata,
 missing/altered proof files, invalid rational data, source mismatch, and
 Lean execution failure are **not** mathematical infeasibility evidence.
 
+
+## Mathematical coverage
+
+The complete theorem and hypothesis crosswalk is in the
+[C10 research ledger](LANE_C10_EXACT_CONSTITUTIVE_EXECUTION.md#v11-mathematical-claim-coverage-source-hypothesis-review).
+The extra corollary file `C10ReleaseCorollaries.lean` derives
+Cramer good-class mass = C7 `pointGoodMass`, and positive
+rational Cramer absorption = existence of a reachable member of
+the computed bottom class, from C8 native-representative reachability.
+These are *additional* formal-proof obligations that require passing
+Research Lean compilation and the three-axiom audit at their exact
+source head; metadata cannot certify them.
+
+The original six-state baseline Exact GR evidence is a separate imported
+theorem, not a field in the numeric release receipt. Its hypotheses are
+not generalized to arbitrary external JSON inputs.
+
 ## Before merging
 
 Require all four exact-head GitHub workflows on the actual PR synthetic

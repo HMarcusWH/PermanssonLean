@@ -79,15 +79,20 @@ was **not** an executable infinite-horizon rational absorption evaluator.
 C10 implements a finite exact rational BSCC/Dirichlet reference, checked
 constitutive margins, deterministic full-menu maximin, the genuine
 original D0 typed infinite-path law, and full checked rational receipts.
-The **previous** source head `6601e9f90a01b036a6ba6720ccea257af31148bd`
-passed all four workflows on synthetic merge
-`218d8df33ecb561bdee72c1978d24d644551692a`; Research Lean audited
-3,540 declarations, 306 direct imports, and **489/489** numerical tests,
-including the generated Lean receipt. The new six-state-release provenance
-follow-on must be separately CI-verified on its own final source and
-synthetic merge before approval or merge. No arbitrary external causal
-identification, JSON-parser formal verification, or external peer review
-follows merely from those results.
+The **source-bound release** checkpoint
+`f3831cfef167846c213d1e9232ba0c3982eb04e7` passed all four
+workflows on synthetic merge
+`f495fe579efa10f872c2455fa6b8b574c44c07d6`.
+[Research Lean #38602351380](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38602351380)
+audited 3,540 declarations, 306 direct research imports, and **512/512**
+numerical/provenance tests, including the generated original six-state
+Lean bridge and independently replayed source-bound C10 proof artifact.
+The additional `C10ReleaseCorollaries.lean` source composes existing
+C7/C8/C10 good-class and exact positive-reachability results, but it
+is **not certified by the historical f383 checkpoint**: verify its own
+later final SHA and synthetic merge before approval or merge. No arbitrary
+external causal identification, formally verified JSON parser, or
+independent peer review follows merely from a successful CI run.
 
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),

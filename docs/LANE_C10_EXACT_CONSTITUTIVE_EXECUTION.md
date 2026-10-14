@@ -14,12 +14,27 @@ and passed D0-F golden plus source firewall. Original Lean, executable
 verification, Ubuntu and Windows application contracts passed that exact
 synthetic merge as well.
 
-**Current release follow-on:** adds the golden input-to-original-theorem
-kernel bridge, strict source-bound evidence generator/verifier, adversarial
-provenance tests, and a separate ephemeral C10 CI artifact. This follow-on
-is **not certified by the earlier green checkpoint**; its own final head
-and synthetic merge require fresh successful CI and final review. PR #61
-remains draft and unmerged.
+**Verified source-bound release checkpoint:** source head
+`f3831cfef167846c213d1e9232ba0c3982eb04e7` passed
+[Research Lean #38602351380](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38602351380)
+and all other three workflows on the exact synthetic merge
+`f495fe579efa10f872c2455fa6b8b574c44c07d6`.
+The run reports **512/512** exact research tests, **3,540** audited
+declarations in the three-axiom allowlist, **306/306** research imports,
+D0 golden and source firewall PASS. The generated *original six-state*
+input/margin Lean bridge compiled, and both independent C10 provenance
+verification and a fresh Lean replay passed. The separate C10 artifact
+`11913649704` was uploaded with 30-day retention and archive
+SHA-256 `5f330802c139932070c593a191636c7a440c1dfce386c3e85e798b72248d7813`.
+
+**Additional mathematical-interface follow-on:** the new
+`C10ReleaseCorollaries.lean` explicitly composes C8's source-specific
+positive representative selection theorem with C10 Cramer absorption
+and C7's `pointGoodMass` bridge. Its later source head and synthetic
+merge **must pass new CI** before those two corollaries may be described
+as compiled. This entry preserves the previous fully verified release
+checkpoint; it does not predict the outcome of the follow-on. PR #61
+remains draft and unmerged pending actual final-head review.
 
 ## Frozen object and semantics
 
@@ -60,6 +75,29 @@ These are committed **source statements**. A theorem in a module not yet reached
 
 **Trust boundary:** the Lean theorem covers the exact decoded/reified numeric values and the D0 typed construction under its real adapter hypotheses. It does NOT prove arbitrary JSON parsing, the Python program, SHA-256 cryptography, real-world parameter estimation, all possible strategic generators, or a prospective predictive claim.
 
+
+## V1.1 mathematical-claim coverage (source-hypothesis review)
+
+The theorem names below specify exactly what the research library proves,
+without adding numerical event values as assumptions:
+
+| Original acceptance obligation | Proved source interface and guard |
+|---|---|
+| Complete positive-edge graph and finite bottom SCC collection | `RationalGraphCompleteness`, `RationalBSCCNative.bottomClasses_native_iff`; an actual `RationalMarkovMatrix n` is required |
+| Unique rational class absorption and total accepted reference | `RationalDirichletDeterminant`, `RationalCramerCertification.referenceDirichlet_check_true`, `C10ReferenceReceipt.referenceReceipt_check_true`; nonempty state dimension derives from checked input |
+| Positivity of a class weight exactly when a class is reachable | C8 `FiniteObservedSupportReachability.selected_weight_nonzero_iff_reachable` plus C10 `TypedStoppedClassSelection.cramerWeight_eq_canonical_selected_class` and C9 `RationalTypedSupportBridge.rationalTyped_reachable_iff`; the optional explicit `C10ReleaseCorollaries.cramerWeight_real_pos_iff_class_reachable` is an additional compilation gate |
+| True infinite eventual-observation event | `TypedObservedCramerCorrespondence.cramer_eventValue_eq_canonical_probability`, `CheckedRationalEventValue.checked_eventValue_eq_actual_path`; the C7 `TypedObservedEventConstitution.pointGoodMass_eq_event_probability` gives the original good-class semantics. `C10ReleaseCorollaries.cramer_goodClass_eq_native_pointGoodMass` is an additional compilation gate |
+| Original complete B₁ and fixed descriptor | `TypedOriginalMenuMargin.realized_numeric_menu_margin` requires explicit global `hDescriptor` and complete `hComparison`; `sixDescriptor_frozen` and `sixComparison_complete` discharge the original six-state witness only |
+| Exact entire finite-menu maximin and ties | `ExecutableConstitutiveSelection.selected_dominates`, `ConstitutiveCertificateCheck.checked_receipt_global_max`, `C10FullReceipt.checkedFullReceipt_worstStart`; no optimization over unlisted interventions |
+| Original regime proof boundary | `C10ReceiptSemantics.checkedFullReceipt_zero_excludes_uniformPR` and `checkedFullReceipt_all_zero_listed_not_uniformPR` do not require baseline Exact GR; `checkedFullReceipt_positive_plus_exactGR` **does** |
+| Concrete original six-state release witness | `C10SixStateBridge.sixOriginalMargins_exact`, `sixOriginalFull_is_global_max`, `six_original_baseline_exactGR` plus generated `reifiedGolden_data_contract`, `reifiedGolden_numeric_margins`, `reifiedGolden_original_margins`; the latter are six-state-only, kernel checked |
+
+**Scope:** Every indexed numerical matrix is realized by the constructed D0
+alpha-only `Unit × Fin n` family, not an arbitrary identified empirical
+world. An external parser, a receipt status string, and a hash do not
+create a mathematical model equivalence or an Exact GR proof. Source
+`C10ReleaseCorollaries.lean` must compile and pass the transitive axiom
+audit before its two named corollaries are considered certified.
 
 ## Source-bound release evidence follow-on
 
@@ -111,11 +149,13 @@ lake env lean /tmp/C10ReifiedGolden.lean
 lake build
 ```
 
-The fully green pre-follow-on checkpoint reported **489/489**
-research tests (including 172 C10 tests). The present follow-on adds one
-golden-bridge adversary and 22 release-provenance regressions; **512** is the
-arithmetic expectation, *not a passing result*. Only the completed new
-Research Lean log establishes its actual discovered/passing total.
+The previously verified pre-release checkpoint had **489/489**
+passing research tests. The release-evidence extension adds **23** tests
+(one golden bridge adversary and 22 provenance regressions). The fully
+verified source-bound checkpoint at `f3831cf` reports **512/512 passed**,
+not an extrapolated test count. Any subsequent change, including this
+documentation or the extra mathematical corollaries, must be verified
+again on its own exact head and synthetic merge.
 
 Release requires a successful Research Lean build, its root transitive axiom audit limited to `propext`, `Classical.choice`, `Quot.sound`, independent complete rational tests and D0-F golden, root direct-import coverage, proof-placeholder and custom-axiom source firewall, frozen original default `lake build`, original Lean, executable verification, and application contracts Ubuntu+Windows. Verify the **same final source head and GitHub synthetic merge**, reconcile docs, obtain final-head code review, and reserve merge for explicit author approval.
 
