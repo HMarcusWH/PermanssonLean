@@ -334,6 +334,8 @@ import PermanssonResearch.ReverseSolver.RationalFiniteStoppingBounds
 
 import PermanssonResearch.ReverseSolver.TypedStoppedClassEvent
 
+import PermanssonResearch.ReverseSolver.TypedStoppedClassLimit
+
 /-!
 # PermanssonResearch
 
