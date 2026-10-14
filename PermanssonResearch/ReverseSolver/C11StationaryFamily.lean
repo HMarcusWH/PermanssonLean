@@ -25,7 +25,8 @@ def classKeys {n : ℕ} (rs : List (ClassStationaryCandidate n)) :
 def checkStationaryFamily {n : ℕ}
     (K : RationalMarkovMatrix n)
     (rs : List (ClassStationaryCandidate n)) : Bool :=
-  decide (classKeys rs).Nodup &&
+  decide (0 < n) &&
+  decide ((classKeys rs).Nodup) &&
   decide ((classKeys rs).toFinset = bottomClasses K) &&
   rs.all (fun r => checkClassStationary K r)
 
@@ -36,12 +37,28 @@ theorem checkStationaryFamily_sound {n : ℕ}
     (classKeys rs).toFinset = bottomClasses K ∧
     ∀ r ∈ rs, checkClassStationary K r = true := by
   have hh := (andB_eq_true_iff _ _).mp hc
-  have hl := (andB_eq_true_iff _ _).mp hh.1
-  refine ⟨of_decide_eq_true hl.1, of_decide_eq_true hl.2, ?_⟩
+  have hmid := (andB_eq_true_iff _ _).mp hh.1
+  have hl := (andB_eq_true_iff _ _).mp hmid.1
+  refine ⟨of_decide_eq_true hl.2, of_decide_eq_true hmid.2, ?_⟩
   intro r hr
   have hAll : ∀ x ∈ rs, checkClassStationary K x = true := by
     simpa only [List.all_eq_true] using hh.2
   exact hAll r hr
+
+/-- An empty table at dimension zero is NOT an accepted family. -/
+theorem checkStationaryFamily_zero_rejected
+    (K : RationalMarkovMatrix 0)
+    (rs : List (ClassStationaryCandidate 0)) :
+    checkStationaryFamily K rs = false := by
+  cases h : checkStationaryFamily K rs with
+  | false => rfl
+  | true =>
+      unfold checkStationaryFamily at h
+      have hh := (andB_eq_true_iff _ _).mp h
+      have hmid := (andB_eq_true_iff _ _).mp hh.1
+      have hl := (andB_eq_true_iff _ _).mp hmid.1
+      have hn : 0 < (0 : ℕ) := of_decide_eq_true hl.1
+      omega
 
 /-- Every computed bottom class has a checked receipt entry. -/
 theorem checked_family_complete {n : ℕ}
