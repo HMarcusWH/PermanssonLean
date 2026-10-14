@@ -354,6 +354,8 @@ import PermanssonResearch.ReverseSolver.C10ReceiptSemantics
 
 import PermanssonResearch.ReverseSolver.C10SixStateBridge
 
+import PermanssonResearch.ReverseSolver.C10ReleaseCorollaries
+
 /-!
 # PermanssonResearch
 
