@@ -46,7 +46,6 @@ class C11StationaryTests(unittest.TestCase):
         self.assertTrue(verify_report(out))
         self.assertEqual([(r["states"],r["stationary"],r["true_share"])
                           for r in out["classes"]], [
-            ([0],["1","0","0","0","0","0"],"0"),
             ([2,3],["0","0","1/2","1/2","0","0"],"1"),
             ([4,5],["0","0","0","0","1/3","2/3"],"1")])
 

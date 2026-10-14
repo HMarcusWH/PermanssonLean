@@ -43,6 +43,7 @@ change; neither Python tests nor schema validation substitutes for a Lean proof.
 | [Research library build guide](RESEARCH_BUILD.md) | How do I build and audit the separate research Lean target? |
 | [C10 exact rational execution ledger](LANE_C10_EXACT_CONSTITUTIVE_EXECUTION.md) | How do exact absorption, original constitutive margins, checked receipts and release gates fit together? |
 | [C10 source-bound release evidence](C10_RELEASE_EVIDENCE.md) | How is the six-state literal proof bound to the exact PR source, synthetic merge, specification and receipt? |
+| [C11-A rational stationary classes](LANE_C11_CLASS_STATIONARY_CERTIFICATION.md) | How are complete class stationary receipts checked and connected to the genuine typed long-run occupation law? |
 | [CQ-1 finite-path bridge](CQ1_FINITE_PATH_BRIDGE.md) | Which new bounded finite-horizon property and TV results are proposed and what are their boundaries? |
 
 ## Archives are not onboarding instructions

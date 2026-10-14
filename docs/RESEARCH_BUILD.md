@@ -72,7 +72,7 @@ C9 merged into `main@b4989fc4fc633601197cdfa733fbce3f5c9ea2c8` on
 13 October. Its finite-menu real-margin maximizer was noncomputable; it
 was **not** an executable infinite-horizon rational absorption evaluator.
 
-**C10 (PR #61 — implementation CI verified; final-head Codex review outstanding; unmerged):**
+**C10 (PR #61 merged; four post-merge workflows verified on main):**
 
 [Exact execution/release ledger](LANE_C10_EXACT_CONSTITUTIVE_EXECUTION.md) ·
 [Release-evidence reproduction](C10_RELEASE_EVIDENCE.md) ·
@@ -125,23 +125,35 @@ The source-bound C10 artifact was `11926991633`, archive SHA-256
 These are historical checkpoint identifiers, not claims about
 any later source head.
 
-**Review boundary:** All eleven earlier Codex threads were
-answered and resolved. They have not been independently re-reviewed
-on the final head. The latest final-head Codex review request
-received a usage-limit response. Code-review completion, CI
-verification, and independent scholarly peer review are distinct.
+**Review boundary:** All eleven earlier Codex threads were answered
+and resolved. The missing final-head Codex review received a
+**PR-specific explicit author waiver**, recorded in
+[PR #61](https://github.com/HMarcusWH/PermanssonLean/pull/61#issuecomment-6180010868).
+The waiver does not retroactively count as a completed review or
+extend to later PRs. Independent scholarly review remains separate.
 
-**Release rule:** Any subsequent source or documentation commit
-requires fresh exact-head and synthetic-merge CI. Current run
-identifiers and artifacts belong in the live PR release record.
-PR #61 remains unmerged pending the required final-head Codex
-review and a separate explicit author-controlled merge decision.
+**Merged checkpoint:** [PR #61](https://github.com/HMarcusWH/PermanssonLean/pull/61)
+merged into main as `57aa4eb3b58df770630f16b04940cb5933317709`.
+All four post-merge workflows passed on this precise merge commit;
+[Research Lean #38648523298](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38648523298)
+passed 552/552 regressions, the 3-axiom audit of 3,582 declarations,
+309 imports, default build, D0-F and source firewall. The new C11-A
+PR is a *separate* research release requiring its own exact-head
+CI, review and author-controlled merge. The C10 v2 evidence
+is deliberately PR-event bound; post-merge push does not reissue it.
 
 The frozen v0.1.8 theory, original Lean core, toolchain,
 dependency manifest, application contract and C1–C9 proofs
 remain unchanged. No arbitrary empirical-model certification,
 external causal identification or formally verified Python/JSON
 parser is claimed.
+
+**C11-A (draft PR #62; research only):**
+[Exact rational stationary-class certificate plan](LANE_C11_CLASS_STATIONARY_CERTIFICATION.md).
+C11-A proposes accepted rational class stationary vectors, a complete
+bottom-class table, genuine C2 stationary-measure transport, observed
+Boolean stationary shares and independent executable checks. These
+proofs are **under implementation**, not certified by C10 CI.
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),
