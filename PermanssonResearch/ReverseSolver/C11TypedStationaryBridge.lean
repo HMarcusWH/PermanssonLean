@@ -170,6 +170,11 @@ theorem checked_stationary_positive_on_class {n : ℕ}
     (hc : checkClassStationary L r = true)
     (x : Fin n) (hx : x ∈ r.classStates) :
     0 < r.weights x := by
+  -- C2's strict class-support lemma requires an actual nonempty
+  -- physical state type. The accepted exact certificate supplies it;
+  -- no implicit nonemptiness assumption is introduced for Fin 0.
+  letI : Nonempty (JointState Unit (Fin n)) :=
+    ⟨((), ⟨0, (checkClassStationary_sound L r hc).1⟩)⟩
   let T := (rationalStrategicIntervention K₀ L).intervention.apply.inducedKernel
   have hClass : decodedClass r.classStates ∈ RecurrentClasses T :=
     (bottomClasses_native_iff K₀ L r.classStates).mp
