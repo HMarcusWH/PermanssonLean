@@ -22,6 +22,11 @@ namespace ReverseSolver
 namespace C10
 
 set_option autoImplicit false
+-- Exact reflection on six-state rational Floyd–Warshall graphs is deeper
+-- than default kernel recursion; increase the bound without native_decide
+-- or an extra axiom. Keep this option scoped to the C10 witness module.
+set_option maxRecDepth 8192
+set_option maxHeartbeats 0
 
 open PermanssonResearch.MultipleLimit.ExactSixState
 open PermanssonResearch.MultipleLimit.ExactSixStateCanonical
