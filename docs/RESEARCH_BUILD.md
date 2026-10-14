@@ -72,34 +72,76 @@ C9 merged into `main@b4989fc4fc633601197cdfa733fbce3f5c9ea2c8` on
 13 October. Its finite-menu real-margin maximizer was noncomputable; it
 was **not** an executable infinite-horizon rational absorption evaluator.
 
-**C10 (ready for review, PR #61; unmerged):**
-[exact execution/release ledger](LANE_C10_EXACT_CONSTITUTIVE_EXECUTION.md) ·
-[release-evidence reproduction](C10_RELEASE_EVIDENCE.md) ·
-[audited v1.1 acceptance contract](PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md).
-C10 provides finite exact rational BSCC/Dirichlet absorption, checked
-full constitutive margins, original D0 typed infinite-path transport
-and input-bound numerical/Lean receipt evidence. Its previous
-source-bound checkpoint `f3831cf` passed 512/512 tests, 306 imports
-and 3,540 declarations in the three-axiom audit. The later *compiled*
-mathematical corollary source `27621f74e781a38ff75832432b7b7e93b7fb2f43`
-and documentation head `1e51c302c01f8a76cf4c09fbbbf98b7933e80df8`
-each passed 4/4 exact-head workflows, with 512/512 tests,
-307/307 direct imports, and 3,546 audited declarations.
-The post-Codex P1/P2 remediation adds the genuine hGR-gated original
-PR iff and literal-mode support gates, checks all documented evidence
-artifacts, and adds required state/menu metamorphic regressions.
-The original C10 v1.1 post-review head
-`c8fdebeb3fcb38920bf586b8b7de47162cc4de33` subsequently passed
-all four workflows, with [Research Lean #38609484285](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38609484285)
-recording **522/522** tests, **3,550** declarations and **308**
-imports, and a replayed source-bound artifact. A further Codex review
-identified three requirements, now addressed in source-changing
-follow-on commits: clean Git provenance, numeric v2 full-state effects,
-and a **separate** rational initial-law evaluator/actual D0 path-law
-theorem with checked mixed-witness proof. **These later changes must
-pass their own new final-head CI and Codex review**; the earlier green
-source cannot certify the follow-on. Neither JSON parsing nor
-empirical model identification is formally proved.
+**C10 (PR #61 — implementation CI verified; final-head Codex review outstanding; unmerged):**
+
+[Exact execution/release ledger](LANE_C10_EXACT_CONSTITUTIVE_EXECUTION.md) ·
+[Release-evidence reproduction](C10_RELEASE_EVIDENCE.md) ·
+[Audited v1.1 acceptance contract](PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md).
+
+C10 supplies executable exact finite-rational bottom-SCC and
+Cramer/Dirichlet absorption calculations, actual infinite-path
+eventual-observation probabilities, checked numerical receipts,
+and correspondence with the original typed constitutive-margin
+semantics.
+
+The current `Permansson.C10.rational-margin.v2` format reports
+all-state `effects` and the separate `comparison_effects`
+projection onto the complete frozen original B₁. The margin
+minimizes only over B₁; optimization covers only the declared
+finite intervention menu. Historical v1 rational-margin receipts
+remain separately verifiable but are rejected by the strict v2
+release-evidence gate.
+
+The `Permansson.C10.release-evidence.v2` bundle binds the frozen
+specification, Git source and synthetic merge, exact rational
+receipt, original six-state Lean witness, and separate rational
+initial-law evaluation. The latter retains its own
+`Permansson.C10.initial-law.v1` and
+`Permansson.C10.mixed-law.v1` schemas. The mixed-law query
+does not replace the original pointwise B₁ optimizer.
+
+The original uniform-relative PR correspondence requires an
+accepted receipt, exact descriptor and B₁ transport, and a
+genuine original Exact GR theorem. The C9 positive-margin/support
+equivalence additionally requires literal `almostSureWeak`
+convergence mode. A numerical result or JSON status cannot
+supply a missing theorem premise.
+
+**Historical verified checkpoint (14 October 2026):**
+PR source `30edfd40c05c03be6851e6cf3591506d7a844d07`,
+synthetic merge `3831b7f65038834558be4dce3e5a97009559a6a7`.
+
+All four exact-head workflows passed. Research Lean
+[#38632157542](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38632157542)
+reported 552/552 tests, 3,582 transitive declarations audited
+under `propext`, `Classical.choice`, `Quot.sound`, 309/309
+research imports, successful original and mixed-law proof replay,
+D0-F golden verification, original default build, and source
+firewall. Original Lean, executable verification and Ubuntu/Windows
+application contracts also passed.
+
+The source-bound C10 artifact was `11926991633`, archive SHA-256
+`e776a024facc39086624a39257e406e6d0d5a4372d14c922cacb358e8fcc2d0e`.
+These are historical checkpoint identifiers, not claims about
+any later source head.
+
+**Review boundary:** All eleven earlier Codex threads were
+answered and resolved. They have not been independently re-reviewed
+on the final head. The latest final-head Codex review request
+received a usage-limit response. Code-review completion, CI
+verification, and independent scholarly peer review are distinct.
+
+**Release rule:** Any subsequent source or documentation commit
+requires fresh exact-head and synthetic-merge CI. Current run
+identifiers and artifacts belong in the live PR release record.
+PR #61 remains unmerged pending the required final-head Codex
+review and a separate explicit author-controlled merge decision.
+
+The frozen v0.1.8 theory, original Lean core, toolchain,
+dependency manifest, application contract and C1–C9 proofs
+remain unchanged. No arbitrary empirical-model certification,
+external causal identification or formally verified Python/JSON
+parser is claimed.
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),
