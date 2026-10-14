@@ -35,7 +35,7 @@ theorem checkDirichlet_complete {n : ℕ}
     · simpa only [decide_eq_true_eq] using h.1
     · have hRows : ∀ i : Fin n, ComponentConditions K cert i := by
         intro i
-        unfold ComponentConditions
+        change component K i ∈ cert.classes → _
         intro hMember
         exact ⟨h.2.1 (component K i) hMember,
           h.2.2.1 (component K i) hMember⟩
