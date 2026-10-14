@@ -27,6 +27,11 @@ class C11StationaryTests(unittest.TestCase):
         self.assertTrue(verify_report(out))
         self.assertEqual(out["classes"][0]["stationary"],["1/2","1/2"])
         self.assertEqual(out["classes"][0]["true_share"],"1/2")
+        # This is NOT C10's eventually-always-true probability.
+        from c10_exact_execution import class_values
+        from fractions import Fraction as Q
+        mat = ((Q(0), Q(1)), (Q(1), Q(0)))
+        self.assertEqual(class_values(mat, (False, True))["event"], ["0", "0"])
 
     def test_03_asymmetric(self):
         out = execute(request([["2/3","1/3"],["1/4","3/4"]], [True,False]))

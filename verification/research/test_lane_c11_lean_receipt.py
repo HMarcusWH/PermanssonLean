@@ -44,7 +44,7 @@ class C11LeanLiteralTests(unittest.TestCase):
             for name in ("member0_accepted","member0_share",
                          "completeFamily_accepted"):
                 report=re.search(
-                    rf"'{name}' (does not depend on any axioms|depends on axioms: \[([^\]]*)\])",
+                    rf"'(?:C11ReifiedFixture\.)?{name}' (does not depend on any axioms|depends on axioms: \[([^\]]*)\])",
                     compiled.stdout)
                 self.assertIsNotNone(report,compiled.stdout[-3500:])
                 axioms={x.strip() for x in (report.group(2) or "").split(",") if x.strip()}
