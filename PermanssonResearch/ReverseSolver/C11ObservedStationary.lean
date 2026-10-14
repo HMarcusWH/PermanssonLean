@@ -203,6 +203,66 @@ theorem trueShare_mixed_iff {n : ℕ}
     · exact hp
     · linarith
 
+
+/-- Exact native typed stationary mass on the frozen true-observation
+event; the kernel, class, vector and descriptor are all bound to the
+same checked numerical input. -/
+theorem certified_true_mass {n : ℕ}
+    (L : RationalMarkovMatrix n) (r : ClassStationaryCandidate n)
+    (hc : checkClassStationary L r = true) (h : Fin n → Bool) :
+    (certifiedProbability L r hc).toMeasure
+      {y : PermanssonLean.JointState Unit (Fin n) | h (encode y) = true} =
+      ENNReal.ofReal (trueShare r h : ℝ) := by
+  let S : Set (PermanssonLean.JointState Unit (Fin n)) :=
+    {y | h (encode y) = true}
+  let s : Finset (PermanssonLean.JointState Unit (Fin n)) :=
+    Finset.univ.filter (fun y => h (encode y) = true)
+  have hs : (↑s : Set (PermanssonLean.JointState Unit (Fin n))) = S := by
+    ext y
+    simp [s, S]
+  have hsum : (∑ y ∈ s, realWeights r y) =
+      (trueShare r h : ℝ) := by
+    unfold s
+    rw [Finset.sum_filter]
+    rw [Fintype.sum_prod_type]
+    simp only [Fintype.sum_unique]
+    change (∑ x : Fin n, if h x then ((r.weights x : ℚ) : ℝ) else 0) =
+      ((∑ x : Fin n, if h x then r.weights x else 0 : ℚ) : ℝ)
+    norm_cast
+  change (vectorMeasure (realWeights r)) S =
+    ENNReal.ofReal (trueShare r h : ℝ)
+  calc
+    (vectorMeasure (realWeights r)) S =
+        ∑ y ∈ s, (vectorMeasure (realWeights r))
+          ({y} : Set (PermanssonLean.JointState Unit (Fin n))) := by
+      rw [← hs]
+      exact (sum_measure_singleton).symm
+    _ = ∑ y ∈ s, ENNReal.ofReal (realWeights r y) := by
+      apply Finset.sum_congr rfl
+      intro y hy
+      exact vectorMeasure_singleton (realWeights r) y
+    _ = ENNReal.ofReal (∑ y ∈ s, realWeights r y) := by
+      rw [ENNReal.ofReal_sum_of_nonneg (fun y hy =>
+        realWeights_nonneg L r hc y)]
+    _ = ENNReal.ofReal (trueShare r h : ℝ) := by
+      rw [hsum]
+
+theorem checked_observed_true_mass_eq_native {n : ℕ}
+    (K₀ L : RationalMarkovMatrix n)
+    (r : ClassStationaryCandidate n)
+    (hc : checkClassStationary L r = true) (h : Fin n → Bool) :
+    ((PermanssonResearch.MultipleLimit.ClassStationarySelectionLaw.stationaryForSet
+      (rationalStrategicIntervention K₀ L).intervention.apply.inducedKernel
+      (decodedClass r.classStates)).map
+        (fun y : PermanssonLean.JointState Unit (Fin n) => h (encode y))).toMeasure
+        ({true} : Set Bool) =
+      ENNReal.ofReal (trueShare r h : ℝ) := by
+  rw [← checked_stationary_eq_native K₀ L r hc]
+  rw [ProbabilityMeasure.toMeasure_map]
+  rw [Measure.map_apply (by fun_prop) (measurableSet_singleton true)]
+  simpa only [Set.preimage, Set.mem_setOf_eq, Set.mem_singleton_iff] using
+    certified_true_mass L r hc h
+
 end C11
 end ReverseSolver
 end PermanssonResearch
