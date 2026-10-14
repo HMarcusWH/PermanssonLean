@@ -5,7 +5,24 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
-**Status (14 October 2026):** The separate research library has merged
+## Current research status and v0.2.0 handoff (15 October 2026)
+
+**Snapshot base:** main@57aa4eb3b58df770630f16b04940cb5933317709. These statuses are scoped to that commit and the observed PR metadata; consult GitHub for newer heads/CI. The older chronological C1–C10 commentary below is a historical work log and contains pre-merge descriptions that do **not** supersede this section.
+
+| Lane | Merged / in progress | Status boundary |
+|---|---|---|
+| A — ConstitutiveQuasi/CQ-1 | PRs #36–38 merged | finite subordinate certificate, quantitative output/TV transport; not Exact GR without original gates |
+| B — GrammarRobust | PR #51 merged | typed partition grammar, minimal blocks, and genuine path-law **joint-only** uniform PR witness; not a general sequential metric interaction theorem |
+| C — MultipleLimit | PRs #52–61, C1–C10 merged | recurrent-class semantics, exact finite-state hitting/occupation/typed GR and rational C10 constitutive receipts |
+| C11-A | [PR #62](https://github.com/HMarcusWH/PermanssonLean/pull/62) draft/open | separately developing exact rational class stationary certification; no claim of full final-head approval |
+| D — ReverseSolver | PRs #39–50 merged | finite-menu and controlled-kernel/Bellman/typed nonstationary/history-dependent optimization; not general reach-and-stay/robust-control theory |
+| Original v0.1.8 | immutable snapshot c018f79ea4ce46f4f679ad5bca254509778fc53c | original discrete GR/PR core and historical paper release unchanged |
+
+The integrated future mathematical plan is now explicitly specified in [PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md](PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md), linked from the [roadmap](FUTURE_THEORY_ROADMAP.md) and [architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md). The additions are **proposed** A2 (primitive TV), A3 (contractive long run), B2 (sequential joint constitution), C-Exit (sub-Markov routing), D2 (reach-and-stay/switching), E1 (approximate typed quotient), F1 (multi-agent CL/OL) and X1 (MPE-learning flagship). Do not mark those proposed upgrades PROVED based only on overlap with earlier modules.
+
+**Current base CI evidence:** all four main-branch workflows (Original Lean, Research Lean, Executable verification and Application contract) passed at 57aa4eb3b58d. PR #62 has its own exact-head and merge gates, independent of this document-only integration. A new documentation PR is neither a mathematical proof nor a release.
+
+**Historical status text (originally dated 14 October 2026):** The separate research library has merged
 CQ-1 (PRs #36–38), D0/D1 (PRs #39–50), finite partition-grammar Lane B
 (PR #51), absorbing-class Lane C1 (PR #52), finite recurrent-class
 occupation laws Lane C2 (PR #53), original finite Exact GR iff
@@ -72,7 +89,7 @@ C9 merged into `main@b4989fc4fc633601197cdfa733fbce3f5c9ea2c8` on
 13 October. Its finite-menu real-margin maximizer was noncomputable; it
 was **not** an executable infinite-horizon rational absorption evaluator.
 
-**C10 (PR #61 — implementation CI verified; final-head Codex review outstanding; unmerged):**
+**C10 historical PR #61 checkpoint (written before merge; present status: merged):**
 
 [Exact execution/release ledger](LANE_C10_EXACT_CONSTITUTIVE_EXECUTION.md) ·
 [Release-evidence reproduction](C10_RELEASE_EVIDENCE.md) ·
@@ -134,8 +151,7 @@ verification, and independent scholarly peer review are distinct.
 **Release rule:** Any subsequent source or documentation commit
 requires fresh exact-head and synthetic-merge CI. Current run
 identifiers and artifacts belong in the live PR release record.
-PR #61 remains unmerged pending the required final-head Codex
-review and a separate explicit author-controlled merge decision.
+At the historical checkpoint described above, PR #61 had not yet merged and its final-head Codex review was outstanding. PR #61 subsequently **merged into main**; do not reinterpret the historical pre-merge wording as current status or as a claim that independent scholarly review occurred.
 
 The frozen v0.1.8 theory, original Lean core, toolchain,
 dependency manifest, application contract and C1–C9 proofs
