@@ -357,6 +357,7 @@ import PermanssonResearch.ReverseSolver.C10SixStateBridge
 import PermanssonResearch.ReverseSolver.C10ReleaseCorollaries
 
 import PermanssonResearch.ReverseSolver.C10ReleaseRegimeEquivalences
+import PermanssonResearch.ReverseSolver.C10RationalInitialMixture
 
 /-!
 # PermanssonResearch
