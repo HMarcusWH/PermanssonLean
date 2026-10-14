@@ -28,6 +28,7 @@ THEOREMS = (
     "reifiedReceipt_valid",
     "reifiedReceipt_conditions",
     "reifiedGolden_data_contract",
+    "reifiedGolden_numeric_margins",
     "reifiedGolden_original_margins",
     "reifiedGolden_selection",
     "reifiedGolden_original_global_max",

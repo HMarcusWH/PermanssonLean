@@ -47,21 +47,24 @@ theorem reifiedGolden_data_contract :
     reifiedRaw.comparison = sixRaw.comparison := by
   refine ⟨?_, ?_, ?_, ?_⟩ <;> decide +kernel
 
-/-- The receipt's exact rational margins, in its checked index order,
-are the genuine original real constitutive margins on the untouched B₁. -/
+/-- The reified rationals are exactly the complete computed sixRaw
+margins at every frozen menu index, not merely a matching printed table. -/
+theorem reifiedGolden_numeric_margins :
+    ∀ i : Fin 6,
+      reifiedReceipt.core.reportedMargin i =
+        numericalMargin sixRaw sixChecked sixReference i := by
+  decide +kernel
+
+/-- The checked rational equality transports to the untouched original
+real B₁ margin using the already proved genuine typed path-law bridge. -/
 theorem reifiedGolden_original_margins :
     ∀ i : Fin 6,
       (reifiedReceipt.core.reportedMargin i : ℝ) =
         sixOriginalMargin i := by
   intro i
-  rcases sixOriginalMargins_exact with ⟨h0, h1, h2, h3, h4, h5⟩
-  fin_cases i
-  · rw [h0]; norm_num [reifiedReceipt]
-  · rw [h1]; norm_num [reifiedReceipt]
-  · rw [h2]; norm_num [reifiedReceipt]
-  · rw [h3]; norm_num [reifiedReceipt]
-  · rw [h4]; norm_num [reifiedReceipt]
-  · rw [h5]; norm_num [reifiedReceipt]
+  rw [sixOriginalMargin_eq_numeric i]
+  exact congrArg (fun q : ℚ => (q : ℝ))
+    (reifiedGolden_numeric_margins i)
 
 /-- Selection, complete maximizer indices, and optimum are checked from
 the literal complete receipt rather than inferred from a name or hash. -/
@@ -80,6 +83,7 @@ theorem reifiedGolden_original_global_max (i : Fin 6) :
   exact sixOriginalFull_is_global_max i
 
 #print axioms reifiedGolden_data_contract
+#print axioms reifiedGolden_numeric_margins
 #print axioms reifiedGolden_original_margins
 #print axioms reifiedGolden_selection
 #print axioms reifiedGolden_original_global_max

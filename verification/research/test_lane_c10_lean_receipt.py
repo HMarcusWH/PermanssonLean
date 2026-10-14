@@ -77,7 +77,8 @@ class C10LeanReceiptTests(unittest.TestCase):
             self.assertEqual(p.returncode, 0, p.stdout + "\n" + p.stderr)
             self.assert_allowed_kernel_axioms(p.stdout, (
                 "reifiedReceipt_valid", "reifiedReceipt_conditions",
-                "reifiedGolden_data_contract", "reifiedGolden_original_margins",
+                "reifiedGolden_data_contract", "reifiedGolden_numeric_margins",
+                "reifiedGolden_original_margins",
                 "reifiedGolden_selection", "reifiedGolden_original_global_max",
                 "PermanssonResearch.ReverseSolver.C10.six_original_baseline_exactGR",
             ))
