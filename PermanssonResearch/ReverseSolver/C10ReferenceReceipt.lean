@@ -45,6 +45,7 @@ nonvacuity hypothesis rather than an unchecked class condition. -/
 theorem referenceMenu_check_true {n m : ℕ}
     (raw : RawInput n m) (checked : CheckedInput raw) :
     checkMenu raw checked (referenceMenuCertificate raw checked) = true := by
+  have hn : 0 < n := checked.statesPositive
   haveI : NeZero n := ⟨by omega⟩
   change
     checkDirichlet checked.baseline
