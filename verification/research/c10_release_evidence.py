@@ -19,6 +19,11 @@ from c10_emit_golden_bridge import emit_golden_bridge
 from c10_exact_execution import canonical_bytes, check_input
 from c10_golden import create_golden
 from c10_verify_receipt import strict_object, verify_receipt
+from c10_eval_initial_law import eval_initial_law
+from c10_verify_initial_law import verify_initial_report
+from c10_emit_initial_law_lean import (
+    MIXED_LAW, MIXED_PROOFS, emit_mixed_golden,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 SPEC_PATH = "docs/PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md"
@@ -42,6 +47,8 @@ ARTIFACTS = (
     "input.json", "normalized_input.json", "receipt.json",
     "C10ReifiedGolden.lean", "lean_check.stdout.txt",
     "lean_check.stderr.txt", "verification_summary.txt",
+    "mixed_initial.json", "mixed_report.json",
+    "C10MixedGolden.lean", "mixed_check.stdout.txt", "mixed_check.stderr.txt",
 )
 SUMMARY_TEXT = (
     "C10 six-state source-bound generated proof: compiler exit 0\n"
@@ -159,9 +166,9 @@ def trusted_ci_context(event_path: Path, repository: str,
     return context
 
 
-def axiom_reports(stdout: str) -> dict[str, list[str]]:
+def axiom_reports(stdout: str, theorems=THEOREMS) -> dict[str, list[str]]:
     result = {}
-    for name in THEOREMS:
+    for name in theorems:
         escaped = re.escape(name)
         matches = re.findall(
             rf"'{escaped}' (does not depend on any axioms|depends on axioms: \[([^\]]*)\])",
@@ -221,6 +228,13 @@ def generate_release(directory: Path, context: dict, root: Path = ROOT) -> dict:
     receipt = create_golden(directory)
     verify_receipt(receipt)
     (directory / "normalized_input.json").write_bytes(stable_json(receipt["normalized_input"]))
+    mixed_report = eval_initial_law(receipt, MIXED_LAW)
+    verify_initial_report(receipt, MIXED_LAW, mixed_report)
+    (directory / "mixed_initial.json").write_bytes(stable_json(MIXED_LAW))
+    (directory / "mixed_report.json").write_bytes(stable_json(mixed_report))
+    mixed_source = emit_mixed_golden(receipt, mixed_report)
+    mixed_path = directory / "C10MixedGolden.lean"
+    mixed_path.write_text(mixed_source, encoding="utf-8")
     source = emit_golden_bridge(receipt)
     lean_path = directory / "C10ReifiedGolden.lean"
     lean_path.write_text(source, encoding="utf-8")
@@ -237,6 +251,21 @@ def generate_release(directory: Path, context: dict, root: Path = ROOT) -> dict:
             "generated six-state Lean source did not compile:\n" +
             (completed.stdout + completed.stderr)[-5000:])
     axiom_reports(completed.stdout)
+    try:
+        mixed_completed = subprocess.run(
+            ["lake", "env", "lean", str(mixed_path.resolve())],
+            cwd=root, capture_output=True, text=True, timeout=600, check=False,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired) as exc:
+        raise EvidenceError("mixed-law Lean compiler missing or timed out") from exc
+    (directory / "mixed_check.stdout.txt").write_text(
+        mixed_completed.stdout, encoding="utf-8")
+    (directory / "mixed_check.stderr.txt").write_text(
+        mixed_completed.stderr, encoding="utf-8")
+    require(mixed_completed.returncode == 0,
+            "mixed-law kernel fixture did not compile:\n" +
+            (mixed_completed.stdout + mixed_completed.stderr)[-5000:])
+    axiom_reports(mixed_completed.stdout, MIXED_PROOFS)
     verify_source_checkout(root, context["synthetic_merge_sha"])
     (directory / "verification_summary.txt").write_text(SUMMARY_TEXT, encoding="utf-8")
     manifest = make_manifest(directory, context, root)

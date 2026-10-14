@@ -14,6 +14,8 @@ import subprocess
 from c10_exact_execution import check_input
 from c10_golden import six_input
 from c10_emit_golden_bridge import emit_golden_bridge
+from c10_emit_initial_law_lean import MIXED_LAW, MIXED_PROOFS, emit_mixed_golden
+from c10_verify_initial_law import verify_initial_report
 from c10_verify_receipt import verify_receipt
 from c10_release_evidence import (
     ARTIFACTS, SUMMARY_TEXT, EvidenceError, ROOT, axiom_reports, make_manifest,
@@ -54,6 +56,20 @@ def verify_bundle_structure(directory: Path, expected_source: dict,
     require((directory / "C10ReifiedGolden.lean").read_bytes() == regenerated,
             "Lean source does not exactly reify the receipt and original bridge")
     axiom_reports((directory / "lean_check.stdout.txt").read_text(encoding="utf-8"))
+    mixed_law = strict_json(directory / "mixed_initial.json")
+    mixed_report = strict_json(directory / "mixed_report.json")
+    require(mixed_law == MIXED_LAW, "mixed law changed from frozen release query")
+    require(verify_initial_report(receipt, mixed_law, mixed_report),
+            "independent exact initial-law receipt rejected")
+    require((directory / "mixed_initial.json").read_bytes() == stable_json(MIXED_LAW),
+            "mixed initial law serialization changed")
+    require((directory / "mixed_report.json").read_bytes() == stable_json(mixed_report),
+            "mixed report serialization changed")
+    require((directory / "C10MixedGolden.lean").read_bytes() ==
+            emit_mixed_golden(receipt, mixed_report).encode("utf-8"),
+            "mixed-law Lean literal does not match exact source and receipt")
+    axiom_reports((directory / "mixed_check.stdout.txt").read_text(encoding="utf-8"),
+                  MIXED_PROOFS)
     return True
 
 
@@ -75,6 +91,18 @@ def verify_release_bundle(directory: Path, expected_source: dict,
             "independent generated Lean rerun failed: " +
             (completed.stdout + completed.stderr)[-4000:])
     axiom_reports(completed.stdout)
+    try:
+        mixed_completed = subprocess.run(
+            ["lake", "env", "lean",
+             str((directory / "C10MixedGolden.lean").resolve())],
+            cwd=root, capture_output=True, text=True, timeout=600, check=False,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired) as exc:
+        raise EvidenceError("mixed-law kernel verification failed or timed out") from exc
+    require(mixed_completed.returncode == 0,
+            "independent mixed-law Lean replay failed:\n" +
+            (mixed_completed.stdout + mixed_completed.stderr)[-4000:])
+    axiom_reports(mixed_completed.stdout, MIXED_PROOFS)
     verify_source_checkout(root, expected_source["synthetic_merge_sha"])
     return True
 

@@ -11,6 +11,8 @@ import unittest
 from c10_exact_execution import check_input, execute
 from c10_golden import create_golden
 from c10_emit_golden_bridge import emit_golden_bridge
+from c10_emit_initial_law_lean import MIXED_LAW, MIXED_PROOFS, emit_mixed_golden
+from c10_eval_initial_law import eval_initial_law
 from c10_release_evidence import (
     EvidenceError, ROOT, SUMMARY_TEXT, THEOREMS, make_manifest, parse_pr_checkout,
     stable_json, axiom_reports, verify_source_checkout,
@@ -45,6 +47,15 @@ class C10ReleaseEvidenceTests(unittest.TestCase):
         )
         (self.folder / "lean_check.stdout.txt").write_text(fake, encoding="utf-8")
         (self.folder / "lean_check.stderr.txt").write_text("", encoding="utf-8")
+        mixed = eval_initial_law(self.receipt, MIXED_LAW)
+        (self.folder / "mixed_initial.json").write_bytes(stable_json(MIXED_LAW))
+        (self.folder / "mixed_report.json").write_bytes(stable_json(mixed))
+        (self.folder / "C10MixedGolden.lean").write_text(
+            emit_mixed_golden(self.receipt, mixed), encoding="utf-8")
+        (self.folder / "mixed_check.stdout.txt").write_text(
+            "".join("'" + theorem + "' does not depend on any axioms\n"
+                    for theorem in MIXED_PROOFS), encoding="utf-8")
+        (self.folder / "mixed_check.stderr.txt").write_text("", encoding="utf-8")
         (self.folder / "verification_summary.txt").write_text(
             SUMMARY_TEXT, encoding="utf-8")
         self.refresh_manifest()
@@ -245,6 +256,34 @@ class C10ReleaseEvidenceTests(unittest.TestCase):
         self.assert_rejected()
 
 
+
+    def test_28_mixed_report_tampering_rejected_after_rehash(self):
+        self.edit_json("mixed_report.json",
+                       lambda r: r["members"][1].update({"event": "1/999"}))
+        self.refresh_manifest()
+        self.assert_rejected()
+
+    def test_29_mixed_initial_law_tampering_rejected_after_rehash(self):
+        self.edit_json("mixed_initial.json",
+                       lambda r: r["weights"].__setitem__(1, "1/3"))
+        self.refresh_manifest()
+        self.assert_rejected()
+
+    def test_30_generated_mixed_lean_tamper_rejected_after_rehash(self):
+        target = self.folder / "C10MixedGolden.lean"
+        target.write_text(target.read_text(encoding="utf-8") +
+                          "\n-- forged\n", encoding="utf-8")
+        self.refresh_manifest()
+        self.assert_rejected()
+
+    def test_31_unpermitted_mixed_lean_axiom_rejected(self):
+        target = self.folder / "mixed_check.stdout.txt"
+        target.write_text(target.read_text(encoding="utf-8").replace(
+            "'mixedGolden_exact' does not depend on any axioms",
+            "'mixedGolden_exact' depends on axioms: [sorryAx]"
+        ), encoding="utf-8")
+        self.refresh_manifest()
+        self.assert_rejected()
 
 class C10RealGitSourceTests(unittest.TestCase):
     """Use REAL temporary Git repos, not mocked status strings."""
