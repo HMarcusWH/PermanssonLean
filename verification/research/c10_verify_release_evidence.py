@@ -16,7 +16,7 @@ from c10_golden import six_input
 from c10_emit_golden_bridge import emit_golden_bridge
 from c10_verify_receipt import verify_receipt
 from c10_release_evidence import (
-    ARTIFACTS, EvidenceError, ROOT, axiom_reports, make_manifest,
+    ARTIFACTS, SUMMARY_TEXT, EvidenceError, ROOT, axiom_reports, make_manifest,
     require, strict_json, trusted_ci_context, stable_json,
 )
 
@@ -28,6 +28,12 @@ def verify_bundle_structure(directory: Path, expected_source: dict,
     expected = make_manifest(directory, expected_source, root)
     require(actual == expected,
             "manifest identity, fixed trust boundary, source or artifact digest mismatch")
+    expected_names = set(ARTIFACTS) | {"evidence_manifest.json"}
+    require({entry.name for entry in directory.iterdir()} == expected_names,
+            "unexpected or missing source-bound release artifact")
+    require((directory / "verification_summary.txt").read_bytes() ==
+            SUMMARY_TEXT.encode("utf-8"),
+            "human-readable boundary statement does not match the audited release")
     normalized = strict_json(directory / "normalized_input.json")
     raw = strict_json(directory / "input.json")
     receipt = strict_json(directory / "receipt.json")

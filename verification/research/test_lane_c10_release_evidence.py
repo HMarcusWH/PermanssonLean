@@ -11,7 +11,7 @@ from c10_exact_execution import check_input, execute
 from c10_golden import create_golden
 from c10_emit_golden_bridge import emit_golden_bridge
 from c10_release_evidence import (
-    EvidenceError, ROOT, THEOREMS, make_manifest, parse_pr_checkout,
+    EvidenceError, ROOT, SUMMARY_TEXT, THEOREMS, make_manifest, parse_pr_checkout,
     stable_json, axiom_reports,
 )
 from c10_verify_release_evidence import (
@@ -44,6 +44,8 @@ class C10ReleaseEvidenceTests(unittest.TestCase):
         )
         (self.folder / "lean_check.stdout.txt").write_text(fake, encoding="utf-8")
         (self.folder / "lean_check.stderr.txt").write_text("", encoding="utf-8")
+        (self.folder / "verification_summary.txt").write_text(
+            SUMMARY_TEXT, encoding="utf-8")
         self.refresh_manifest()
 
     def refresh_manifest(self):
@@ -209,6 +211,21 @@ class C10ReleaseEvidenceTests(unittest.TestCase):
 
     def test_22_reject_extra_manifest_field(self):
         self.edit_json("evidence_manifest.json", lambda o: o.update({"trusted": True}))
+        self.assert_rejected()
+
+    def test_23_missing_human_readable_boundary_rejected(self):
+        (self.folder / "verification_summary.txt").unlink()
+        self.assert_rejected()
+
+    def test_24_forged_human_boundary_rejected_even_after_rehash(self):
+        (self.folder / "verification_summary.txt").write_text(
+            "C10 CERTIFIED EXTERNAL ORIGINAL GR for all models\n", encoding="utf-8")
+        self.refresh_manifest()
+        self.assert_rejected()
+
+    def test_25_unexpected_artifact_rejected_even_if_manifest_valid(self):
+        (self.folder / "forged-authority.txt").write_text(
+            "PR proof is unconditional", encoding="utf-8")
         self.assert_rejected()
 
 

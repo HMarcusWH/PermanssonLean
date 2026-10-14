@@ -38,7 +38,12 @@ ALLOW_AX = frozenset({"propext", "Classical.choice", "Quot.sound"})
 ARTIFACTS = (
     "input.json", "normalized_input.json", "receipt.json",
     "C10ReifiedGolden.lean", "lean_check.stdout.txt",
-    "lean_check.stderr.txt",
+    "lean_check.stderr.txt", "verification_summary.txt",
+)
+SUMMARY_TEXT = (
+    "C10 six-state source-bound generated proof: compiler exit 0\n"
+    "Every printed transitive axiom set is within propext/Classical.choice/Quot.sound.\n"
+    "This is not verified arbitrary JSON parsing or empirical identification.\n"
 )
 
 
@@ -199,14 +204,9 @@ def generate_release(directory: Path, context: dict, root: Path = ROOT) -> dict:
             "generated six-state Lean source did not compile:\n" +
             (completed.stdout + completed.stderr)[-5000:])
     axiom_reports(completed.stdout)
+    (directory / "verification_summary.txt").write_text(SUMMARY_TEXT, encoding="utf-8")
     manifest = make_manifest(directory, context, root)
     (directory / "evidence_manifest.json").write_bytes(stable_json(manifest))
-    (directory / "verification_summary.txt").write_text(
-        "C10 six-state source-bound generated proof: compiler exit 0\n"
-        "Every printed transitive axiom set is within propext/Classical.choice/Quot.sound.\n"
-        "This is not verified arbitrary JSON parsing or empirical identification.\n",
-        encoding="utf-8",
-    )
     return manifest
 
 
