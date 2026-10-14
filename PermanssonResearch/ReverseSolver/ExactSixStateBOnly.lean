@@ -30,6 +30,8 @@ open PermanssonResearch.MultipleLimit.CanonicalRecurrentResidence
 open PermanssonResearch.MultipleLimit.ExactSixState
 open PermanssonResearch.MultipleLimit.ExactSixStateCanonical
 open PermanssonResearch.MultipleLimit.ExactSixStateObservedGR
+open PermanssonResearch.MultipleLimit.ExactSixStateTyped
+open PermanssonResearch.MultipleLimit.RecurrentClassDecomposition
 open PermanssonResearch.MultipleLimit.ExactSixStateConstitution
 open PermanssonResearch.MultipleLimit.TypedEventResponse
 open PermanssonResearch.MultipleLimit.FrozenObservedEvent
@@ -56,18 +58,24 @@ private theorem bOnlyBSet_closed : ClosedSubset KB bOnlyBSet := by
   have hp (i : Fin 6) (he : y = decode i) :
       0 < bOnlyMatrixExecutable.entry i j := by
     subst y
-    exact (rationalTyped_positiveEdge_iff sixStateMatrix
-      bOnlyMatrixExecutable i j).mp
-      (by simpa only [KB, bOnlyJ] using hedge)
-  rcases hi with h4 | h5
-  · have hpos := hp 4 h4
-    fin_cases j <;>
-      norm_num [bOnlyBSet, bOnlyMatrixExecutable,
-        bOnlyEntryExecutable, transition, decode] at hpos ⊢
-  · have hpos := hp 5 h5
-    fin_cases j <;>
-      norm_num [bOnlyBSet, bOnlyMatrixExecutable,
-        bOnlyEntryExecutable, transition, decode] at hpos ⊢
+    have hedge' : PositiveEdge
+        (rationalStrategicIntervention sixStateMatrix
+          bOnlyMatrixExecutable).intervention.apply.inducedKernel
+        (decode i) (decode j) := by
+      simpa [KB, bOnlyJ, decode] using hedge
+    exact (rationalTyped_positiveEdge_iff
+      sixStateMatrix bOnlyMatrixExecutable i j).mp hedge'
+  have hj : j = 4 ∨ j = 5 := by
+    rcases hi with h4 | h5
+    · have hpos := hp 4 h4
+      fin_cases j <;>
+        norm_num [bOnlyMatrixExecutable, bOnlyEntryExecutable,
+          transition] at hpos ⊢
+    · have hpos := hp 5 h5
+      fin_cases j <;>
+        norm_num [bOnlyMatrixExecutable, bOnlyEntryExecutable,
+          transition] at hpos ⊢
+  rcases hj with rfl | rfl <;> simp [bOnlyBSet, decode]
 
 /-- Each of the six states has an actual strict-positive rational path
 into the original B recurrent set; no zero-probability graph edge counts. -/
@@ -75,30 +83,30 @@ private theorem all_reach_b0 (x : Fin 6) :
     Reachable KB (decode x) (decode (4 : Fin 6)) := by
   have h : RationalReachable bOnlyMatrixExecutable x (4 : Fin 6) := by
     fin_cases x
-    · apply Relation.ReflTransGen.trans
-        (Relation.ReflTransGen.single (by
-          norm_num [RationalPositiveEdge, bOnlyMatrixExecutable,
-            bOnlyEntryExecutable, transition]))
-        (Relation.ReflTransGen.single (by
-          norm_num [RationalPositiveEdge, bOnlyMatrixExecutable,
-            bOnlyEntryExecutable, transition]))
-    · exact Relation.ReflTransGen.single (by
-        norm_num [RationalPositiveEdge, bOnlyMatrixExecutable,
-          bOnlyEntryExecutable, transition])
-    · exact Relation.ReflTransGen.single (by
-        norm_num [RationalPositiveEdge, bOnlyMatrixExecutable,
-          bOnlyEntryExecutable, transition])
-    · apply Relation.ReflTransGen.trans
-        (Relation.ReflTransGen.single (by
-          norm_num [RationalPositiveEdge, bOnlyMatrixExecutable,
-            bOnlyEntryExecutable, transition]))
-        (Relation.ReflTransGen.single (by
-          norm_num [RationalPositiveEdge, bOnlyMatrixExecutable,
-            bOnlyEntryExecutable, transition]))
+    · exact Relation.ReflTransGen.trans
+        (Relation.ReflTransGen.single (show
+          0 < bOnlyMatrixExecutable.entry (0 : Fin 6) (1 : Fin 6) by
+            norm_num [bOnlyMatrixExecutable, bOnlyEntryExecutable, transition]))
+        (Relation.ReflTransGen.single (show
+          0 < bOnlyMatrixExecutable.entry (1 : Fin 6) (4 : Fin 6) by
+            norm_num [bOnlyMatrixExecutable, bOnlyEntryExecutable, transition]))
+    · exact Relation.ReflTransGen.single (show
+        0 < bOnlyMatrixExecutable.entry (1 : Fin 6) (4 : Fin 6) by
+          norm_num [bOnlyMatrixExecutable, bOnlyEntryExecutable, transition])
+    · exact Relation.ReflTransGen.single (show
+        0 < bOnlyMatrixExecutable.entry (2 : Fin 6) (4 : Fin 6) by
+          norm_num [bOnlyMatrixExecutable, bOnlyEntryExecutable, transition])
+    · exact Relation.ReflTransGen.trans
+        (Relation.ReflTransGen.single (show
+          0 < bOnlyMatrixExecutable.entry (3 : Fin 6) (2 : Fin 6) by
+            norm_num [bOnlyMatrixExecutable, bOnlyEntryExecutable, transition]))
+        (Relation.ReflTransGen.single (show
+          0 < bOnlyMatrixExecutable.entry (2 : Fin 6) (4 : Fin 6) by
+            norm_num [bOnlyMatrixExecutable, bOnlyEntryExecutable, transition]))
     · exact Relation.ReflTransGen.refl
-    · exact Relation.ReflTransGen.single (by
-        norm_num [RationalPositiveEdge, bOnlyMatrixExecutable,
-          bOnlyEntryExecutable, transition])
+    · exact Relation.ReflTransGen.single (show
+        0 < bOnlyMatrixExecutable.entry (5 : Fin 6) (4 : Fin 6) by
+          norm_num [bOnlyMatrixExecutable, bOnlyEntryExecutable, transition])
   exact (rationalTyped_reachable_iff sixStateMatrix
     bOnlyMatrixExecutable x 4).mp h
 
