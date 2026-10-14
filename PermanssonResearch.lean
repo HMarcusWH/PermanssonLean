@@ -359,3 +359,5 @@ import PermanssonResearch.ReverseSolver.C10ReferenceReceipt
 import PermanssonResearch.ReverseSolver.C10FullReceipt
 
 import PermanssonResearch.ReverseSolver.C10ReceiptSemantics
+
+import PermanssonResearch.ReverseSolver.C10SixStateBridge
