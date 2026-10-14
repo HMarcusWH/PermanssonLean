@@ -32,6 +32,19 @@ jobs:
           python-version: '3.13'
       - name: Run research-only exact rational regressions (CQ-1 and D0)
         run: python3 -m unittest discover -s verification/research -p 'test_*.py' -v
+      - name: Generate and independently verify C10 release proof evidence
+        if: github.event_name == 'pull_request'
+        run: |
+          python3 verification/research/c10_release_evidence.py "$RUNNER_TEMP/c10-release-evidence" --event-file "$GITHUB_EVENT_PATH" --repository "$GITHUB_REPOSITORY"
+          python3 verification/research/c10_verify_release_evidence.py "$RUNNER_TEMP/c10-release-evidence" --event-file "$GITHUB_EVENT_PATH" --repository "$GITHUB_REPOSITORY"
+      - name: Upload source-bound C10 proof evidence
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: c10-release-evidence
+          path: ${{ runner.temp }}/c10-release-evidence/
+          retention-days: 30
+          if-no-files-found: error
       - name: Generate and independently recheck D0-F golden reports
         run: python3 verification/research/d0_golden.py "$RUNNER_TEMP/d0-finite-certificates"
       - name: Upload ephemeral D0-F calculation evidence
