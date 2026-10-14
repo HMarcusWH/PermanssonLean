@@ -370,3 +370,4 @@ import PermanssonResearch.ReverseSolver.C11ClassStationaryCertificate
 import PermanssonResearch.ReverseSolver.C11StationaryFamily
 import PermanssonResearch.ReverseSolver.C11TypedStationaryBridge
 import PermanssonResearch.ReverseSolver.C11ObservedStationary
+import PermanssonResearch.ReverseSolver.C11SixStateWitness
