@@ -5,7 +5,7 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
-**Status (13 October 2026):** The separate research library has merged
+**Status (14 October 2026):** The separate research library has merged
 CQ-1 (PRs #36–38), D0/D1 (PRs #39–50), finite partition-grammar Lane B
 (PR #51), absorbing-class Lane C1 (PR #52), finite recurrent-class
 occupation laws Lane C2 (PR #53), original finite Exact GR iff
@@ -60,26 +60,30 @@ Application contract Ubuntu+Windows. C8 merged into main at
 post-merge workflows passed. Formal CI is not empirical identification
 or external mathematical peer review.
 
-**C9 draft / full audited v1.1 witness closure under final review:**
-[PR #60](https://github.com/HMarcusWH/PermanssonLean/pull/60)
-reuses D0's original typed `FrozenMenu` and C8's original uniform PR
-support characterization. Its source checkpoint
-`86caac5fc8d49bb2c02421596cdef23a65d99bdb`
-passed [Research Lean #38454297254](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38454297254):
-**3,062** transitive declarations within the 3-axiom allowlist,
-**317/317** exact-rational tests, **266** research root imports,
-D0-F golden checks, original default build and source firewall.
-Original Lean, Executable and Ubuntu/Windows Application contract passed
-on the same real synthetic merge. A v1.1-completeness follow-on commit
-`4e1c5f4622e6c9e5ac1406a7d1382a0f3b0ef60f` adds the formally
-named identity-only menu, one-row **partial** response and all
-constructed-menu P/U witnesses. This follow-on and any later
-documentation-only head **must be independently rechecked** by full
-Research Lean and exact-head CI; consult the PR's latest Actions rather
-than treating the earlier green checkpoint as current proof.
-See [C9 research ledger](LANE_C9_CERTIFIED_MENU_SYNTHESIS.md).
-This remains research, not an executable infinite-horizon margin solver,
-real-world identification, external peer review or a merged release.
+**Merged C9:** [PR #60](https://github.com/HMarcusWH/PermanssonLean/pull/60)
+completed the finite-menu original strategic constitution synthesis. Its final source
+head `f474be8a66d0227459e701911441ec2549fd255e` passed all four
+workflows, including [Research Lean #38469985022](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38469985022):
+**317/317** exact-rational regressions, **3,078** audited declarations within
+`propext`, `Classical.choice`, `Quot.sound`, **266** root imports, D0-F
+golden, original default build, and source firewall. Original Lean, executable
+verification, and the Ubuntu/Windows application contracts also passed.
+C9 merged into `main@b4989fc4fc633601197cdfa733fbce3f5c9ea2c8` on
+13 October. Its finite-menu real-margin maximizer was noncomputable; it
+was **not** an executable infinite-horizon rational absorption evaluator.
+
+**C10 (draft, PR #61):**
+[exact execution/release ledger](LANE_C10_EXACT_CONSTITUTIVE_EXECUTION.md) ·
+[audited v1.1 acceptance contract](PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md).
+C10 implements a finite exact rational BSCC/Dirichlet reference, checked
+constitutive margins, deterministic full-menu maximin, and an original
+D0 typed path-law bridge. It additionally includes a full finite receipt,
+six-state exact fractions, and a JSON-to-Lean literal reifier.
+**The branch is not certified by this text:** await completed exact-head
+Research Lean compilation, all numerical and Lean receipt tests, transitive
+axiom audit and the other three CI workflows before release. No arbitrary
+external causal-model identification or independent peer review follows.
+
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),

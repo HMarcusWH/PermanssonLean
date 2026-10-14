@@ -3,7 +3,18 @@
 **PR:** [#60](https://github.com/HMarcusWH/PermanssonLean/pull/60)
 **Specification:** PR60_C9_Certified_Finite_Menu_Strategic_Constitution_Spec_v1.1_AUDITED (2026-10-13)
 **Parent:** merged C8 `main@6c5a1c29bb05702eddc4634e51153643445be569` (all four original post-merge workflows green)
-**STATUS:** DRAFT / UNMERGED. The prior C9 checkpoint at `86caac5fc8d49bb2c02421596cdef23a65d99bdb` passed all four workflows on its exact synthetic merge, including 317/317 regressions and the allowed-axiom audit. Audited-v1.1 witness completion at `4e1c5f4622e6c9e5ac1406a7d1382a0f3b0ef60f` added proofs after that checkpoint; the actual final PR head and synthetic merge must again pass all four workflows before merge consideration. Neither CI nor Codex review is independent scholarly/empirical validation.
+**STATUS: MERGED, final-head verified.** Final source head
+`f474be8a66d0227459e701911441ec2549fd255e`; exact-head
+[Research Lean #38469985022](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38469985022)
+passed **317/317** exact-rational regressions and **3,078** transitive
+declarations within the three permitted axioms, with **266** direct imports,
+D0-F golden and source firewall. The other three final-head workflows passed
+(Original Lean, executable verification, Ubuntu+Windows application contract).
+PR #60 merged to `main@b4989fc4fc633601197cdfa733fbce3f5c9ea2c8`.
+Superseded draft/checkpoint descriptions below document *historical development*,
+not the current state. C9 did **not** supply C10's executable infinite-path
+absorption and original-margin evaluator; that is a separate research task.
+CI and code review do not constitute independent mathematical peer review.
 
 ## Mathematical object and exact hypotheses
 
@@ -95,6 +106,6 @@ by the Lean constructor/theorem types and kept outside C9 execution.
 - `MenuMarginOptimization.lean` explicitly transports original qualitative PR status between two menu members with identical support, but NEVER numerical margin equality
 - `RationalTypedSupportBridge.lean` proves exact positive rational-edge iff genuine D0 typed edge, finite graph reachability, descriptor equality and frozen `B₁` quantifier representation. **No complete decidable rational BSCC/absorption algorithm or numerical executable C9 optimizer is proved. That is C10's scope**, as permitted by v1.1's minimum adapter contract
 
-This evidence certifies the **mathematical source checkpoint only**. This release-ledger edit is itself a new PR head and must pass all four workflows and a fresh exact-head source review before C9 is eligible for the author's merge decision. Do not confuse `BASELINE_UNVERIFIED` with a mathematical `¬ExactGR`.
+This paragraph describes the historical C9 source checkpoint. The final verified C9 head and subsequent main merge are recorded in the updated status at the top. The mathematical scope and absence of external-model identification remain unchanged. Do not confuse `BASELINE_UNVERIFIED` with a mathematical `¬ExactGR`.
 
 **Final-head release gate:** any commit after the original successful source checkpoint, including the v1.1 witness-closure and documentation commits, must pass the complete *new* exact-head/synthetic-merge workflows, regressions, axiom audit and review; record those runs in the PR discussion. This document alone does not authorize merge.
