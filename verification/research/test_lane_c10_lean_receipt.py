@@ -25,7 +25,7 @@ class C10LeanReceiptTests(unittest.TestCase):
         allow = {"propext", "Classical.choice", "Quot.sound"}
         for theorem in ("reifiedReceipt_valid", "reifiedReceipt_conditions"):
             matches = re.findall(
-                rf"'{theorem}' (does not depend on any axioms|depends on axioms: \\[([^\\]]*)\\])",
+                rf"'{theorem}' (does not depend on any axioms|depends on axioms: \[([^\]]*)\])",
                 output,
             )
             self.assertEqual(len(matches), 1, f"missing/ambiguous axioms report for {theorem}: {output}")
@@ -37,8 +37,8 @@ class C10LeanReceiptTests(unittest.TestCase):
 
     def test_axiom_report_parser_rejects_extra_axiom(self):
         text = (
-            "'reifiedReceipt_valid' depends on axioms: [propext, sorryAx]\\n"
-            "'reifiedReceipt_conditions' does not depend on any axioms\\n"
+            "'reifiedReceipt_valid' depends on axioms: [propext, sorryAx]\n"
+            "'reifiedReceipt_conditions' does not depend on any axioms\n"
         )
         with self.assertRaises(AssertionError):
             self.assert_allowed_kernel_axioms(text)
