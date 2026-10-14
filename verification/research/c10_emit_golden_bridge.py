@@ -18,6 +18,8 @@ SIX_LABELS = ("full", "half", "tiny", "identity", "u-only", "b-only")
 def emit_golden_bridge(receipt: dict) -> str:
     """Require the exact original six-state data and fixed index/label order."""
     verify_receipt(receipt)
+    if receipt["format"] != "Permansson.C10.rational-margin.v2":
+        raise ReceiptError("the new source-bound six-state release requires complete v2 effects")
     original = check_input(six_input()).canonical()
     if receipt["normalized_input"] != original:
         raise ReceiptError("not the exact frozen six-state input")

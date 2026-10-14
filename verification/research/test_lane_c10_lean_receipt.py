@@ -53,6 +53,16 @@ class C10LeanReceiptTests(unittest.TestCase):
                 emit_source(receipt)
 
 
+    def test_v1_historical_numeric_receipt_cannot_claim_current_golden_proof(self):
+        from c10_exact_execution import execute, check_input
+        with tempfile.TemporaryDirectory() as d:
+            receipt = create_golden(d)
+            old = execute(check_input(receipt["normalized_input"]), format_version=1)
+            from c10_verify_receipt import verify_receipt
+            self.assertTrue(verify_receipt(old))
+            with self.assertRaises(ReceiptError):
+                emit_golden_bridge(old)
+
     def test_golden_bridge_refuses_other_input(self):
         with tempfile.TemporaryDirectory() as d:
             receipt = create_golden(d)

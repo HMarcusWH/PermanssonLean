@@ -37,6 +37,8 @@ def verify_bundle_structure(directory: Path, expected_source: dict,
     normalized = strict_json(directory / "normalized_input.json")
     raw = strict_json(directory / "input.json")
     receipt = strict_json(directory / "receipt.json")
+    require(receipt.get("format") == "Permansson.C10.rational-margin.v2",
+            "source-bound release requires complete full-state v2 receipt")
     require(check_input(raw).canonical() == normalized,
             "raw and normalized numeric input disagree")
     require(normalized == check_input(six_input()).canonical(),

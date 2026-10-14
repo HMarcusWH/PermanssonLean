@@ -81,7 +81,10 @@ def verify_geometry(matrix, descriptor, proposed):
 def verify_receipt(receipt:Any)->bool:
     require(isinstance(receipt,dict),'receipt object')
     require(set(receipt)=={'format','normalized_input','input_sha256','baseline','members','optimum','ties','selected','numerical_status','claim_boundary'},'receipt fields changed')
-    require(receipt['format']=='Permansson.C10.rational-margin.v1','format')
+    fmt = receipt.get('format')
+    require(fmt in {'Permansson.C10.rational-margin.v1',
+                    'Permansson.C10.rational-margin.v2'}, 'format')
+    modern = fmt.endswith('.v2')
     checked=check_input(receipt['normalized_input'])
     require(receipt['normalized_input']==checked.canonical(),'input not canonical/normalized')
     require(receipt['input_sha256']==hashlib.sha256(canonical_bytes(checked.canonical())).hexdigest(),'input fingerprint mismatch')
@@ -89,11 +92,22 @@ def verify_receipt(receipt:Any)->bool:
     require(isinstance(receipt['members'],list) and len(receipt['members'])==len(checked.menu),'menu cardinality')
     values=[]
     for item,(label,matrix) in zip(receipt['members'],checked.menu):
-        require(isinstance(item,dict) and set(item)=={'id','geometry','effects','margin','worst_start'},'member fields')
+        expected_fields = {'id', 'geometry', 'effects', 'margin', 'worst_start'}
+        if modern:
+            expected_fields.add('comparison_effects')
+        require(isinstance(item,dict) and set(item)==expected_fields,'member fields')
         require(item['id']==label,'candidate ID/order mismatch')
         probabilities=verify_geometry(matrix,checked.descriptor,item['geometry'])
-        deltas=[abs(basevals[i]-probabilities[i]) for i in checked.comparison]
-        require(item['effects']==[str(d) for d in deltas],'pointwise effect wrong')
+        full_deltas = [abs(basevals[i]-probabilities[i]) for i in range(checked.n)]
+        deltas = [full_deltas[i] for i in checked.comparison]
+        if modern:
+            require(item['effects'] == [str(d) for d in full_deltas],
+                    'complete pointwise effect wrong or truncated')
+            require(item['comparison_effects'] == [str(d) for d in deltas],
+                    'comparison projection differs from complete vector')
+        else:
+            require(item['effects'] == [str(d) for d in deltas],
+                    'historical v1 comparison effect wrong')
         m=min(deltas)
         require(item['margin']==str(m),'margin not min over all original BR')
         require(item['worst_start']==min(x for x,d in zip(checked.comparison,deltas) if d==m),'wrong argmin start')

@@ -228,6 +228,20 @@ class C10ReleaseEvidenceTests(unittest.TestCase):
             "PR proof is unconditional", encoding="utf-8")
         self.assert_rejected()
 
+    def test_26_legacy_receipt_not_accepted_as_release_proof(self):
+        historical = execute(check_input(self.receipt["normalized_input"]),
+                             format_version=1)
+        self.assertTrue(verify_receipt(historical))
+        (self.folder / "receipt.json").write_bytes(stable_json(historical))
+        self.refresh_manifest()
+        self.assert_rejected()
+
+    def test_27_full_state_effect_tamper_outside_comparison_rejected(self):
+        self.receipt["members"][0]["effects"][3] = "0"
+        (self.folder / "receipt.json").write_bytes(stable_json(self.receipt))
+        self.refresh_manifest()
+        self.assert_rejected()
+
 
 if __name__ == "__main__":
     unittest.main()

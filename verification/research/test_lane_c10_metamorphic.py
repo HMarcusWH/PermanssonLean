@@ -84,9 +84,12 @@ class C10MetamorphicTests(unittest.TestCase):
             self.assertEqual(old_member["margin"], new_member["margin"])
             self.assert_geometry_transported(
                 old_member["geometry"], new_member["geometry"], perm)
-            old_effects = dict(zip(comparison, old_member["effects"]))
+            self.assertEqual(
+                [new_member["effects"][perm[i]] for i in range(original["n"])],
+                old_member["effects"])
+            old_effects = dict(zip(comparison, old_member["comparison_effects"]))
             new_effects = dict(zip(b["normalized_input"]["comparison"],
-                                   new_member["effects"]))
+                                   new_member["comparison_effects"]))
             self.assertEqual(
                 {i: old_effects[i] for i in comparison},
                 {i: new_effects[perm[i]] for i in comparison},
@@ -126,7 +129,7 @@ class C10MetamorphicTests(unittest.TestCase):
             [original["menu"][i]["id"] for i in [2, 4, 1, 5, 3, 0]],
         )
         self.assertEqual(
-            {z["id"]: (z["geometry"], z["effects"], z["margin"], z["worst_start"])
+            {z["id"]: (z["geometry"], z["effects"], z["comparison_effects"], z["margin"], z["worst_start"])
              for z in a["members"]},
             {z["id"]: (z["geometry"], z["effects"], z["margin"], z["worst_start"])
              for z in b["members"]},

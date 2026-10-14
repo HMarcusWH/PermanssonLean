@@ -141,6 +141,8 @@ def emit_source(receipt: dict) -> str:
         "  pointwiseEffect := fun i x => " + choice(
             "i",
             [choice("x",
+                    [fraction_expr(v) for v in item["effects"]]
+                    if receipt["format"].endswith(".v2") else
                     [fraction_expr(str(abs(Fraction(b) - Fraction(v))))
                      for b, v in zip(receipt["baseline"]["event"],
                                      item["geometry"]["event"])], n)

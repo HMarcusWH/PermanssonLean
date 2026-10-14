@@ -59,7 +59,8 @@ class C10FixedCases(unittest.TestCase):
         self.assertEqual(r['numerical_status'],'NUMERIC_ALL_LISTED_MARGINS_ZERO')
     def test_003_one_row(self):
         r=receipt_of(inp([('u',UONLY)]));self.assertTrue(verify_receipt(r))
-        self.assertEqual(r['members'][0]['effects'],['1','0'])
+        self.assertEqual(r['members'][0]['comparison_effects'],['1','0'])
+        self.assertEqual(len(r['members'][0]['effects']),6)
         self.assertEqual(r['members'][0]['worst_start'],2)
     def test_004_b_only(self):
         r=receipt_of(inp([('b',BONLY)]));self.assertTrue(verify_receipt(r))
@@ -217,8 +218,9 @@ class C10FixedCases(unittest.TestCase):
         r=receipt_of(inp([('p',p),('q',q)],base=base,
                          descriptor=[True,True,False],comparison=[0,1]))
         self.assertTrue(verify_receipt(r))
-        self.assertEqual([x['effects'] for x in r['members']],
+        self.assertEqual([x['comparison_effects'] for x in r['members']],
                          [['1','0'],['0','1']])
+        self.assertEqual([len(x['effects']) for x in r['members']],[3,3])
         self.assertEqual([x['margin'] for x in r['members']],['0','0'])
         self.assertEqual(r['optimum'],'0')
     def test_056_sorted_baseline_classes(self):

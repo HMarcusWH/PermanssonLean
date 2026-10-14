@@ -193,23 +193,32 @@ def canonical_bytes(obj):
     return json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(',',':')).encode('utf-8')
 
 
-def execute(valid: FrozenInput) -> dict:
+def execute(valid: FrozenInput, *, format_version: int = 2) -> dict:
+    """v2 emits all-state effects; explicit v1 mode preserves historical bytes."""
+    if format_version not in (1, 2):
+        raise InputError("unsupported C10 receipt format")
     normalized = valid.canonical()
     base = class_values(valid.baseline, valid.descriptor)
     basevals = tuple(Fraction(v) for v in base["event"])
     items = []
     for label, matrix in valid.menu:
         res = class_values(matrix, valid.descriptor)
-        effects = tuple(abs(basevals[i] - Fraction(res["event"][i])) for i in valid.comparison)
-        val = min(effects)
-        worst = min(i for i, d in zip(valid.comparison, effects) if d == val)
-        items.append({"id":label, "geometry":res,
-                      "effects": [str(v) for v in effects], "margin":str(val),
-                      "worst_start": worst})
+        effects = tuple(abs(basevals[i] - Fraction(res["event"][i])) for i in range(valid.n))
+        comparison_effects = tuple(effects[i] for i in valid.comparison)
+        val = min(comparison_effects)
+        worst = min(i for i, d in zip(valid.comparison, comparison_effects) if d == val)
+        item = {"id": label, "geometry": res, "margin": str(val),
+                "worst_start": worst}
+        if format_version == 2:
+            item["effects"] = [str(v) for v in effects]
+            item["comparison_effects"] = [str(v) for v in comparison_effects]
+        else:
+            item["effects"] = [str(v) for v in comparison_effects]
+        items.append(item)
     optimum = max(Fraction(x["margin"]) for x in items)
     ties = [x["id"] for x in items if Fraction(x["margin"]) == optimum]
     status = "NUMERIC_ALL_LISTED_MARGINS_ZERO" if optimum == Q0 else "NUMERIC_POSITIVE_BASELINE_UNVERIFIED"
-    return {"format":"Permansson.C10.rational-margin.v1", "normalized_input": normalized,
+    return {"format":f"Permansson.C10.rational-margin.v{format_version}", "normalized_input": normalized,
             "input_sha256":sha256(canonical_bytes(normalized)).hexdigest(),
             "baseline":base,"members":items,"optimum":str(optimum),
             "ties":ties,"selected":ties[0], "numerical_status":status,

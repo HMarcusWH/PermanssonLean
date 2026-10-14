@@ -22,7 +22,7 @@ from c10_verify_receipt import strict_object, verify_receipt
 
 ROOT = Path(__file__).resolve().parents[2]
 SPEC_PATH = "docs/PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md"
-FORMAT = "Permansson.C10.release-evidence.v1"
+FORMAT = "Permansson.C10.release-evidence.v2"
 TYPE_ID = "D0.Unit-Fin-n.actionSelection.six-state"
 THEOREMS = (
     "reifiedReceipt_valid",
