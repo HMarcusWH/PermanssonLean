@@ -355,3 +355,5 @@ Importing this library does not strengthen the frozen v0.1.8 core.
 -/
 
 import PermanssonResearch.ReverseSolver.C10ReferenceReceipt
+
+import PermanssonResearch.ReverseSolver.C10FullReceipt
