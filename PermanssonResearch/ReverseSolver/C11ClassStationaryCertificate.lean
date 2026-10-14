@@ -34,6 +34,15 @@ def ClassStationaryConditions {n : ℕ}
   (∀ y, r.weights y =
     ∑ x : Fin n, r.weights x * K.entry x y)
 
+/-- Install the constructive finite-state decider explicitly: synthesis does
+not unfold the named conjunction of finite ℚ conditions by itself. -/
+private instance classStationaryConditions_decidable {n : ℕ}
+    (K : RationalMarkovMatrix n)
+    (r : ClassStationaryCandidate n) :
+    Decidable (ClassStationaryConditions K r) := by
+  unfold ClassStationaryConditions
+  infer_instance
+
 def checkClassStationary {n : ℕ}
     (K : RationalMarkovMatrix n)
     (r : ClassStationaryCandidate n) : Bool :=
