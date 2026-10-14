@@ -70,12 +70,13 @@ theorem typed_numericEffect_eq_original {n m : ℕ} [NeZero n]
     have h := hDescriptor (encode y)
     simpa only [decode_encode] using h
   change dist
-      ((realizedModel checked.baseline).pathLaw (Measure.dirac (decode x))).real
-        (eventuallyObserved spec.descriptor true)
-      ((rationalStrategicIntervention checked.baseline
+      (((realizedModel checked.baseline).pathLaw
+        (Measure.dirac (decode x))).real
+        (eventuallyObserved spec.descriptor true))
+      (((rationalStrategicIntervention checked.baseline
           (checked.members i)).intervention.apply.pathLaw
           (Measure.dirac (decode x))).real
-        (eventuallyObserved spec.descriptor true) =
+        (eventuallyObserved spec.descriptor true)) =
       (numericalEffect raw cert i x : ℝ)
   rw [hDescrEq, rationalStrategicIntervention_applied]
   rw [checked_eventValue_eq_actual_path checked.baseline cert.baseline
