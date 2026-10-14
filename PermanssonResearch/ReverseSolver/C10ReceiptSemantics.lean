@@ -35,6 +35,17 @@ private theorem full_receipt_core_checked {n m : ℕ}
   unfold checkFullReceipt at hc
   exact (andB_eq_true_iff _ _).mp hc |>.1
 
+/-- The semantic bridge needs the checked MENU equations, not merely
+the Boolean acceptance of the encompassing receipt. -/
+private theorem full_receipt_menu_checked {n m : ℕ}
+    (raw : RawInput n m) (checked : CheckedInput raw)
+    (receipt : FullReceipt n m)
+    (hc : checkFullReceipt raw checked receipt = true) :
+    checkMenu raw checked receipt.core.classTables = true := by
+  have hCore := full_receipt_core_checked raw checked receipt hc
+  unfold checkReceipt at hCore
+  exact ((andB_eq_true_iff _ _).mp hCore).1
+
 /-- Every accepted full receipt reports the UNMODIFIED original real
 constitutive margin over the complete original typed comparison set. -/
 theorem checkedFullReceipt_originalMargin {n m : ℕ} [NeZero n]
@@ -52,7 +63,7 @@ theorem checkedFullReceipt_originalMargin {n m : ℕ} [NeZero n]
       (researchActionFamily checked.baseline) B₁
       (realizedNumericMenu raw checked) i =
         (receipt.core.reportedMargin i : ℝ) := by
-  have hChecked := full_receipt_core_checked raw checked receipt hc
+  have hChecked := full_receipt_menu_checked raw checked receipt hc
   have hFields := (checkFullReceipt_sound raw checked receipt hc).1
   calc
     menuConstitutiveMargin (realizedModel checked.baseline) spec
@@ -84,7 +95,7 @@ theorem checkedFullReceipt_originalSelectedDominates
     menuConstitutiveMargin (realizedModel checked.baseline) spec
       (researchActionFamily checked.baseline) B₁
       (realizedNumericMenu raw checked) receipt.core.selectedIndex := by
-  have hChecked := full_receipt_core_checked raw checked receipt hc
+  have hChecked := full_receipt_menu_checked raw checked receipt hc
   have hFields := (checkFullReceipt_sound raw checked receipt hc).1
   simpa only [hFields.2.2.1] using
     realized_numeric_menu_selected_dominates raw checked
