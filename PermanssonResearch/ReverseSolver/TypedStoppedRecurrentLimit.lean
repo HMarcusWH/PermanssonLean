@@ -21,6 +21,7 @@ namespace ReverseSolver
 namespace C10
 
 set_option autoImplicit false
+set_option maxHeartbeats 0
 
 open FiniteStrategicRealization
 open PermanssonResearch.MultipleLimit.FiniteCanonicalPath
@@ -106,10 +107,7 @@ theorem beforeRecurrent_add_stoppedUnion {n : ℕ}
             (∑ y : Fin n, K.entry x y *
               (beforeRecurrent K T y +
                 stoppedClassHit K (rationalRecurrentUnion K) T y)) := by
-                  rw [Finset.sum_add_distrib]
-                  apply Finset.sum_congr rfl
-                  intro y _
-                  ring
+                  simp only [mul_add, Finset.sum_add_distrib]
           _ = (∑ y : Fin n, K.entry x y) := by
             apply Finset.sum_congr rfl
             intro y _
