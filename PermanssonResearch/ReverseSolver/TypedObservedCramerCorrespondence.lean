@@ -165,9 +165,13 @@ theorem cramer_eventValue_eq_canonical_probability {n : ℕ} [NeZero n]
         chosen w ∈ G) := by
     filter_upwards [hAE] with w hw
     rw [hw]
-    have hMem := selectedRationalClass_mem L w
-    simp only [G, Finset.mem_filter, hMem, true_and]
-    exact (good_selectedRationalClass_iff_native L h w).symm
+    simp only [G, Finset.mem_filter]
+    constructor
+    · intro hnative
+      exact ⟨selectedRationalClass_mem L w,
+        (good_selectedRationalClass_iff_native L h w).mpr hnative⟩
+    · intro hselected
+      exact (good_selectedRationalClass_iff_native L h w).mp hselected.2
   have hSets :
       eventuallyObserved (fun y => h (encode y)) true =ᵐ[P]
         (chosen ⁻¹' (↑G : Set (Finset (Fin n)))) := by
