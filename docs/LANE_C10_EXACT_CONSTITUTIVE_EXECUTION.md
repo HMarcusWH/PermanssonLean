@@ -1,8 +1,28 @@
 # Lane C10 — Executable exact absorption and original constitutive margins
 
-**PR:** [#61](https://github.com/HMarcusWH/PermanssonLean/pull/61) (draft; do not merge until release gates).
+**PR:** [#61](https://github.com/HMarcusWH/PermanssonLean/pull/61) (ready for review; unmerged; requires separate author-controlled merge decision).
 **Frozen acceptance spec:** [C10 v1.1 audited](PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md), 13 October 2026.
 **Parent:** merged C9 `main@b4989fc4fc633601197cdfa733fbce3f5c9ea2c8`.
+
+**Verified C10 v2 implementation checkpoint (14 October 2026):** source
+`e39750856f9b8430adebb385ae515ed0f85d3f6f`, GitHub PR synthetic merge
+`4656f228b4f44f2f927e8f1431b4ee329821c9dd`. All **4/4** workflows
+passed. [Research Lean #38620352609](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38620352609)
+compiled **4,023** jobs, ran **552/552** research regressions,
+audited **3,582** transitive declarations under only `propext`,
+`Classical.choice`, `Quot.sound`, and imported **309/309** research
+modules. Both generated original-six-state and rational mixed-initial-law
+Lean witnesses compiled and passed independent source-bound verification
+and replay; D0-F golden, original default build and proof-source firewall
+passed. Original Lean, executable verification and Ubuntu/Windows
+application contracts passed on the same head/merge. The C10 release
+artifact is `11921299472`, archive SHA-256
+`f032e24cd4365c995eaf42e0352aa21ac19633489d8a3630cfd5913c6cb41d1d`,
+retained until **13 November 2026**. This is CI and proof evidence,
+**not** a final independent review or merge approval. This subsequent
+release-documentation edit must receive its **own** exact-head
+four-workflow verification before merge.
+
 **Status on 14 October:** the previous fully verified C10 source checkpoint
 `6601e9f90a01b036a6ba6720ccea257af31148bd` passed all four workflows
 on synthetic merge `218d8df33ecb561bdee72c1978d24d644551692a`.
@@ -42,21 +62,17 @@ also passed all four workflows, including
 [Research Lean #38606274298](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38606274298)
 on exact synthetic merge `4a6d1fa8f2428a4c466b60f061dcab327b4d18dd`.
 
-**Post-Codex P1/P2 source-changing remediation — pending new CI:**
-the new `C10ReleaseRegimeEquivalences.lean` supplies original
-relative PR iff positive exact receipt margin **only with an actual
-original Exact GR proof**, plus exact C9 original opposing-support
-eligibility iff positive margin under hGR and literal
-`almostSureWeak` mode. Under literal mode it also gives the
-one-way support-ineligible ⇒ not PR result even without hGR.
-Evidence verification now checks every documented file, including
-`verification_summary.txt` against its fixed required content,
-and rejects unexpected files. The new metamorphic suite checks
-state-relabeling probability/effect transport and menu-permutation
-tie ordering. **These post-review source changes are not certified
-by the previous green checkpoints**; the next final-head build,
-research tests, source-bound Lean replay and review must pass.
-PR #61 is ready for review, still unmerged.
+**Post-Codex P1/P2 remediation — compiled at the verified v2 checkpoint:**
+`C10ReleaseRegimeEquivalences.lean` supplies original relative-PR iff
+positive exact margin only under a real original Exact GR proof, and
+the C9 support iff under that `hGR` plus literal `almostSureWeak` mode.
+The one-way support-ineligible implication has its narrower documented
+hypotheses. The complete v2 pointwise `effects` vector, frozen-B₁
+`comparison_effects`, rational initial-law mixture theorem and separate
+Python verifier, clean-Git source provenance, complete artifact manifest,
+and state-relabeling/menu-permutation regressions all passed the
+552-test implementation checkpoint above. Final-head documentation CI
+and review remain distinct release gates; the PR is unmerged.
 
 ## Frozen object and semantics
 
@@ -111,7 +127,7 @@ without adding numerical event values as assumptions:
 | True infinite eventual-observation event | `TypedObservedCramerCorrespondence.cramer_eventValue_eq_canonical_probability`, `CheckedRationalEventValue.checked_eventValue_eq_actual_path`; the C7 `TypedObservedEventConstitution.pointGoodMass_eq_event_probability` gives the original good-class semantics. `C10ReleaseCorollaries.cramer_goodClass_eq_native_pointGoodMass` has compiled on that checkpoint |
 | Original complete B₁ and fixed descriptor | `TypedOriginalMenuMargin.realized_numeric_menu_margin` requires explicit global `hDescriptor` and complete `hComparison`; `sixDescriptor_frozen` and `sixComparison_complete` discharge the original six-state witness only |
 | Exact entire finite-menu maximin and ties | `ExecutableConstitutiveSelection.selected_dominates`, `ConstitutiveCertificateCheck.checked_receipt_global_max`, `C10FullReceipt.checkedFullReceipt_worstStart`; no optimization over unlisted interventions |
-| Original regime proof boundary | `C10ReceiptSemantics.checkedFullReceipt_zero_excludes_uniformPR` and `checkedFullReceipt_all_zero_listed_not_uniformPR` do not require baseline Exact GR; `checkedFullReceipt_positive_plus_exactGR` **does**. The new `C10ReleaseRegimeEquivalences.checkedFullReceipt_positive_iff_original_uniformPR_of_exactGR` adds the original iff requiring genuine hGR; `checkedFullReceipt_positive_iff_support_of_exactGR_literalMode` and `checkedFullReceipt_originalPR_iff_exactGR_and_support_of_literalMode` preserve the separately required literal-mode gate. This additional module is pending fresh CI. |
+| Original regime proof boundary | `C10ReceiptSemantics.checkedFullReceipt_zero_excludes_uniformPR` and `checkedFullReceipt_all_zero_listed_not_uniformPR` do not require baseline Exact GR; `checkedFullReceipt_positive_plus_exactGR` **does**. The new `C10ReleaseRegimeEquivalences.checkedFullReceipt_positive_iff_original_uniformPR_of_exactGR` adds the original iff requiring genuine hGR; `checkedFullReceipt_positive_iff_support_of_exactGR_literalMode` and `checkedFullReceipt_originalPR_iff_exactGR_and_support_of_literalMode` preserve the separately required literal-mode gate. This additional module compiled and passed the three-axiom audit in Research Lean #38620352609; a later documentation commit requires new exact-head CI. |
 | Concrete original six-state release witness | `C10SixStateBridge.sixOriginalMargins_exact`, `sixOriginalFull_is_global_max`, `six_original_baseline_exactGR` plus generated `reifiedGolden_data_contract`, `reifiedGolden_numeric_margins`, `reifiedGolden_original_margins`; the latter are six-state-only, kernel checked |
 
 **Scope:** Every indexed numerical matrix is realized by the constructed D0
@@ -119,8 +135,7 @@ alpha-only `Unit × Fin n` family, not an arbitrary identified empirical
 world. An external parser, a receipt status string, and a hash do not
 create a mathematical model equivalence or an Exact GR proof. The C10 Cramer-positive/reachability and C7 point-good-mass corollaries
 have compiled and passed the research transitive audit at the verified
-corollary checkpoint. The new hGR-gated PR/support iff module is a
-separate final-head compiler/review obligation.
+corollary checkpoint. The hGR-gated PR/support iff module compiled and passed the transitive axiom audit at the verified v2 implementation checkpoint. Review of the final source and any subsequent documentation commit remain separate obligations.
 
 ## Source-bound release evidence follow-on
 
@@ -178,16 +193,15 @@ lake env lean /tmp/C10ReifiedGolden.lean
 lake build
 ```
 
-The previous frozen-source release checkpoint passed **489/489**
-research regressions; the verified six-state source-bound release and
-mathematical-corollary checkpoints passed **512/512** (one golden
-bridge and 22 provenance adversaries added). Post-Codex remediation
-adds **3** evidence-summary tampering tests and **7** state-relabeling /
-menu-permutation metamorphic tests, yielding **522 expected discovered
-tests**. This is a test-count forecast, **not a passing result** until
-new exact-head Research Lean CI finishes. Source-bound evidence now
-hashes `verification_summary.txt` and checks its exact content;
-unexpected files cause a fail-closed rejection.
+The release lineage passed **489/489**, then **512/512**, then
+**522/522** research regressions as C10 proof bridges, provenance
+adversaries, and metamorphic tests were added. The final v2
+rational-mixture/provenance follow-on passed **552/552** at
+`e3975085` ([Research Lean #38620352609](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38620352609)).
+The source-bound manifest hashes `verification_summary.txt` and
+rejects missing, modified or unexpected files; historical v1 receipts
+remain verifiable separately but cannot pass the strict v2 release
+contract. New release-documentation commits restart exact-head CI.
 
 Release requires a successful Research Lean build, its root transitive axiom audit limited to `propext`, `Classical.choice`, `Quot.sound`, independent complete rational tests and D0-F golden, root direct-import coverage, proof-placeholder and custom-axiom source firewall, frozen original default `lake build`, original Lean, executable verification, and application contracts Ubuntu+Windows. Verify the **same final source head and GitHub synthetic merge**, reconcile docs, obtain final-head code review, and reserve merge for explicit author approval.
 
@@ -202,27 +216,21 @@ All C10 source must remain under the separate research library or its verificati
 - Computable reference Cramer arithmetic need not be polynomial-time. Unsupported external JSON schema, size limits, or resource exhaustion are distinct from mathematical failure.
 - No `sorry`, `admit`, custom axioms, native-decision proof oracle, relaxed comparison set, or unproved baseline-certificate Boolean is acceptable.
 
-**Release status:** READY FOR REVIEW / UNMERGED. The existing C10 v1.1
-mathematics was fully verified at source `c8fdebeb3fcb38920bf586b8b7de47162cc4de33`:
-[Research Lean #38609484285](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38609484285)
-compiled 4,015 jobs, audited 3,550 declarations, ran **522/522**
-research tests, verified 308/308 imports, generated source-bound proof
-evidence and D0-F golden, with all four workflows green on the actual
-synthetic merge `b274c4ec777ee89046260c3bca40816cfc6e59f1`.
+**Release status:** C10 v2 implementation VERIFIED / PR READY FOR REVIEW /
+UNMERGED. All four workflows passed on `e39750856f9b8430adebb385ae515ed0f85d3f6f`
+and its recorded synthetic merge. [Research Lean #38620352609](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38620352609)
+established **552/552 tests**, **3,582 three-axiom-audited declarations**,
+**309/309 direct imports**, **4,023 jobs**, successful original and
+mixed-law proof witnesses, independent verification/replay and
+source firewall. The C10 artifact `11921299472` is archived for
+30 days. A final reviewer assessment and explicit author approval
+are still required; the evidence does **not** authorize merging.
+The final-head audit must be checked against GitHub's live PR
+head and synthetic merge, never against the SHA frozen in this
+historical checkpoint. A release-documentation commit does not
+retroactively alter the verified earlier source and requires fresh CI.
 
-**Current source-changing Codex follow-on (pending fresh CI):** strict
-clean Git provenance (before/after proof and verification), a
-backward-explicit numerical v2 full-state receipt, a separately checked
-mixed rational initial-law Python query, and a Lean module proving
-a genuine initial probability measure and C2 initial-mixture event
-correspondence. All generated mixed witness sources, independent
-verifiers and evidence manifest fields must compile and pass on their
-**own new final source head**, with fresh Codex assessment. Neither
-historical CI nor metadata certifies these new statements; merge
-remains author-controlled.
-
-
-## Post-Codex v2 source-completion inventory (not a historical certificate)
+## Verified v2 source-completion inventory
 
 The latest source changes include:
 - `c10_exact_execution.py` and `c10_verify_receipt.py` (strict
@@ -244,8 +252,9 @@ The latest source changes include:
   blob and real dirty checkout adversaries.
 
 The C8/C9/original hGR/B₁ conditional gates are **not** weakened.
-The v2 follow-on adds approximately **30** new source regressions
-against the historically verified **522/522** C10 checkpoint,
-for **552 expected** research tests. This is not a passing result
-until all four workflows and the generated Lean proof artifacts
-verify the **new exact source head and synthetic merge**.
+The v2 follow-on added **30** research regressions over the prior
+**522/522** checkpoint: **552/552 passed** on the verified
+`e3975085` implementation head and synthetic merge. New commits
+must pass the same four-workflow gate before merge. No independent
+code review approval or external scientific/empirical certification
+follows from this CI result.

@@ -173,6 +173,30 @@ missing/altered proof files, invalid rational data, source mismatch, and
 Lean execution failure are **not** mathematical infeasibility evidence.
 
 
+## Verified implementation checkpoint
+
+The strict v2 evidence bundle was uploaded as
+[`c10-release-evidence` artifact 11921299472](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38620352609)
+by [Research Lean #38620352609](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38620352609)
+on the source head `e39750856f9b8430adebb385ae515ed0f85d3f6f`
+and GitHub synthetic merge `4656f228b4f44f2f927e8f1431b4ee329821c9dd`.
+The archive SHA-256 is
+`f032e24cd4365c995eaf42e0352aa21ac19633489d8a3630cfd5913c6cb41d1d`;
+retention expires **13 November 2026**. The job compiled **4,023** Lean
+tasks, audited **3,582** declarations under the three allowed axioms,
+ran **552/552** research tests, verified **309/309** direct research
+imports, and completed original/mixed-law source-bound Lean proof
+replay and the other golden/build/firewall gates. The other three
+PR workflows passed the same exact head and merge, including Ubuntu
+and Windows contracts.
+
+This records a **completed implementation CI checkpoint**, not
+independent peer review, external causality identification, or an
+author-approved merge. Any further source **or documentation** commit
+must be checked on its own exact head and synthetic merge; the
+definitive latest-head run IDs belong in the GitHub PR release note
+rather than a self-referential tracked SHA.
+
 ## Mathematical coverage
 
 The complete theorem and hypothesis crosswalk is in the
@@ -182,16 +206,16 @@ hGR-gated positive-receipt-margin iff original relative PR statement,
 and the original C9 support eligibility iff under hGR **plus** literal
 `almostSureWeak` mode. Its one-way support-ineligible ⇒ not PR
 statement needs literal mode, but not hGR, and does not equate that
-conclusion with a zero margin without hGR. These are new post-review
-source assertions pending a fresh final-head Lean build and review.
+conclusion with a zero margin without hGR. These assertions compiled and passed the three-axiom transitive audit in Research Lean #38620352609; code review of the final exact head remains separate.
 
 The extra corollary file `C10ReleaseCorollaries.lean` derives
 Cramer good-class mass = C7 `pointGoodMass`, and positive
 rational Cramer absorption = existence of a reachable member of
 the computed bottom class, from C8 native-representative reachability.
-These are *additional* formal-proof obligations that require passing
-Research Lean compilation and the three-axiom audit at their exact
-source head; metadata cannot certify them.
+Both the source-bound correspondence and the C7/C8 corollary files
+passed Research Lean compilation and the three-axiom transitive audit
+at the verified implementation checkpoint. Metadata alone cannot
+certify them; a new source/doc commit requires fresh exact-head CI.
 
 The original six-state baseline Exact GR evidence is a separate imported
 theorem, not a field in the numeric release receipt. Its hypotheses are
