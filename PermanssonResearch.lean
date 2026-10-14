@@ -330,6 +330,8 @@ import PermanssonResearch.ReverseSolver.RationalCramerBounds
 import PermanssonResearch.ReverseSolver.RationalCramerPartition
 import PermanssonResearch.ReverseSolver.RationalCramerCertification
 
+import PermanssonResearch.ReverseSolver.RationalFiniteStoppingBounds
+
 /-!
 # PermanssonResearch
 
