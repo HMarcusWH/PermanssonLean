@@ -23,6 +23,7 @@ namespace ReverseSolver
 namespace C10
 
 set_option autoImplicit false
+set_option maxHeartbeats 0
 
 open FiniteStrategicRealization
 open PermanssonResearch.MultipleLimit.FiniteCanonicalPath
@@ -134,8 +135,8 @@ theorem cramerWeight_eq_canonical_selected_class {n : ℕ} [NeZero n]
              ∃ t : ℕ, w t ∈ decodedClass C} := by
         ext w
         simp [decodedClass]
-      rw [hEq, ← hEver]
-      rfl
+      rw [hEq]
+      simpa only [Measure.real] using congrArg ENNReal.toReal hEver.symm
 
 end
 end C10
