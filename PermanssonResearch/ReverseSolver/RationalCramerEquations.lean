@@ -46,7 +46,7 @@ theorem cramerWeight_satisfies_matrix_equation {n : ℕ}
           intro y hy
           rw [hw y]
     _ = (∑ y : Fin n, A x y * Matrix.cramer A b y) / A.det := by
-          simp_rw [mul_div_assoc]
+          simp_rw [← mul_div_assoc]
           rw [Finset.sum_div]
     _ = (A.det * b x) / A.det := by rw [heq]
     _ = b x := by

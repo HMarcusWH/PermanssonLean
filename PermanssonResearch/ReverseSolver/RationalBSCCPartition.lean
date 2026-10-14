@@ -56,7 +56,8 @@ theorem bottomClasses_indicator_sum_one {n : ℕ}
     by_cases hxD : x ∈ D
     · have hEq : D = C :=
         (bottomClasses_common_member_eq L D C hD hC x hxD hxC)
-      simp [hxD, hEq]
+      subst D
+      simp [hxC]
     · have hNe : D ≠ C := by
         intro hEq
         subst D

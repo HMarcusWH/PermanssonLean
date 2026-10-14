@@ -142,7 +142,7 @@ theorem sixDescriptor_frozen (x : Fin 6) :
 not assumed external Python values. -/
 theorem sixReference_valid :
     checkMenu sixRaw sixChecked sixReference = true := by
-  decide
+  decide +kernel
 
 theorem sixMargins_exact :
     numericalMargin sixRaw sixChecked sixReference (0 : Fin 6) = 1 ∧
@@ -151,12 +151,12 @@ theorem sixMargins_exact :
     numericalMargin sixRaw sixChecked sixReference (3 : Fin 6) = 0 ∧
     numericalMargin sixRaw sixChecked sixReference (4 : Fin 6) = 0 ∧
     numericalMargin sixRaw sixChecked sixReference (5 : Fin 6) = 0 := by
-  decide
+  decide +kernel
 
 theorem sixBest_exact :
     bestMargin sixRaw sixChecked sixReference = 1 ∧
     selectBest sixRaw sixChecked sixReference = (0 : Fin 6) := by
-  decide
+  decide +kernel
 
 end C10
 end ReverseSolver

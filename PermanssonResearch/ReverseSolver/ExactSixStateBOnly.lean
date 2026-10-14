@@ -69,12 +69,10 @@ private theorem bOnlyBSet_closed : ClosedSubset KB bOnlyBSet := by
     rcases hi with h4 | h5
     · have hpos := hp 4 h4
       fin_cases j <;>
-        norm_num [bOnlyMatrixExecutable, bOnlyEntryExecutable,
-          transition] at hpos ⊢
+        simp_all [bOnlyMatrixExecutable, bOnlyEntryExecutable, transition]
     · have hpos := hp 5 h5
       fin_cases j <;>
-        norm_num [bOnlyMatrixExecutable, bOnlyEntryExecutable,
-          transition] at hpos ⊢
+        simp_all [bOnlyMatrixExecutable, bOnlyEntryExecutable, transition]
   rcases hj with rfl | rfl <;> simp [bOnlyBSet, decode]
 
 /-- Each of the six states has an actual strict-positive rational path
@@ -165,7 +163,12 @@ theorem bOnly_original_effect_zero (y : SixY) :
       (eventuallyObserved observedDescriptor true)).toReal
     ((bOnlyJ.intervention.apply.pathLaw (Measure.dirac y))
       (eventuallyObserved observedDescriptor true)).toReal = 0
-  rw [baseline_event_probability_one y, bOnly_event_probability_one y]
+  have hbase :
+      (typedModel.pathLaw (Measure.dirac y))
+        (eventuallyObserved observedDescriptor true) = 1 := by
+    simpa only [TypedEventResponse.eventuallyTrue] using
+      baseline_event_probability_one y
+  rw [hbase, bOnly_event_probability_one y]
   simp
 
 /-- True original B₁ margin, not a C10 surrogate. -/

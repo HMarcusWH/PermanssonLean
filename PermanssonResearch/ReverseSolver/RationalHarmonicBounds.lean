@@ -84,7 +84,7 @@ theorem harmonic_unit_interval {n : ℕ} [NeZero n]
   intro y
   have ha := hLower y
   have hb := hUpper y
-  exact ⟨by dsimp at ha; linarith, hb⟩
+  exact ⟨by linarith [ha], hb⟩
 
 end C10
 end ReverseSolver
