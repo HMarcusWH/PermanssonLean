@@ -152,7 +152,7 @@ This is a **uniform strategic-constitutive certificate for the declared property
 
 ### 2.4 Quasi-stationary destination corollary
 
-If $\mu_B K_B=\theta_B\mu_B$ for a probability $\mu_B$ on $B$, $0\le\theta_B<1$, and $Q_r(y)=K(y,B^{(r)}\setminus B)$, then
+If $\mu_B K_B=\theta_B\mu_B$ for a probability $\mu_B$ on $B$ and the paper's QSD range $0<\theta_B<1$ (excluding the separate $\theta_B=1$ case), and $Q_r(y)=K(y,B^{(r)}\setminus B)$, then
 
 $$
 P_{\mu_B}(\tau_B<\infty,\;Y_{\tau_B}\in B^{(r)})
@@ -494,7 +494,7 @@ If $\kappa$ exceeds this full budget, the **quotient margin** remains positive, 
 
 Freeze one **identical world kernel** $P(dx'\mid x,a)$, world space $X$ (e.g. finite resource depleted/replete states), common joint action set $A=\prod_i A_i$, payoffs $r_i(x,a)$, discount $\beta_i\in(0,1)$, and one substantive comparison of $B,B_0,h,g,\psi,B_1$. Use compatible typed strategic states for both generator implementations, with an explicit transport if their internal memory spaces differ.
 
-**Generator E:** an actually certified Markov-perfect equilibrium $\pi^*$, not just a stationary policy. For finite discounted payoffs its value vector must satisfy, for all $i,x$,
+**Generator E:** an actually certified Markov-perfect equilibrium $\pi^*$ with independent per-player mixed policies $\pi^*(a\mid x)=\prod_i\pi_i^*(a_i\mid x)$, not just a stationary policy. For finite discounted payoffs its value vector must satisfy, for all $i,x$,
 
 $$
 V_i(x)=\sum_a\pi^*(a\mid x)
@@ -514,6 +514,63 @@ $$
 Also prove equality for actions receiving positive support in a mixed equilibrium. On finite rational examples certify the relevant value equations and incentive inequalities with exact arithmetic. Embed $\pi^*$ through the original EGR-to-GR machinery with a clearly defined strategic update.
 
 **Generator L:** a finite-memory reinforcement, log-linear, or multiplicative-weights-style update $(\alpha^{\mathrm{learn}},U^{\mathrm{learn}})$ sharing **exactly the same world $P$**, with fully specified parameters, feasible actions and Markov sufficient memory. Prove the claimed nonstationary/periodic/occupation behavior rather than inferring persistent cycles from a plot.
+
+### 8.1 Reproducible parameterized commons candidate — model *slot*, not completed witness
+
+To avoid deferring every modelling choice until paper drafting, the following **fully typed finite parameter family** is a recommended **candidate implementation**. It does **not** assert a verified MPE, cycle, PR, economic calibration, or that all choices of parameters satisfy Exact GR.
+
+For two players $i\in\{1,2\}$, take $X=\{0,1\}$ (depleted/replete), $A_i=\{0,1\}$ (restraint/extraction), $A=\{0,1\}^2$, $S_i=\{0,\ldots,M\}$ with integer $M\ge2$, and $S=S_1\times S_2$. Freeze rational parameters
+
+$
+0\le r_0\le r_1\le1,\quad 0\le d\le\tfrac12,\quad
+\beta_i\in(0,1)\cap\mathbb Q,\quad
+v_0,v_1,\chi,\lambda\in\mathbb Q_{\ge0}.
+$
+
+A single world transition kernel for **both** strategic generators is
+
+$
+p_\vartheta(x,a)=\min\!\left\{1,\max\!\left\{0,r_x-d(a_1+a_2)\right\}\right\},
+\qquad
+P(1\mid x,a)=p_\vartheta(x,a),\qquad P(0\mid x,a)=1-p_\vartheta(x,a).
+\tag{V20.35a}
+$
+
+Use the rational one-step payoff family (separate from the kernel)
+
+$
+r_i(x,a)=v_x a_i-\chi a_i a_{-i}-\lambda(1-x).
+\tag{V20.35b}
+$
+
+The replete/depleted and extraction labels are economic *interpretation*, not independently identified empirical state measures. For any parameter $\vartheta$ in this family, the probabilities are valid and reward values finite. For a meaningful incentive-sensitive instance, register a nondegenerate rational parameter choice and verify the equilibrium's exact Bellman equations, all unilateral inequalities, and the selected regime criteria. Do not simply assert equilibrium existence at the chosen rational *policy* without a proof of its actual best-response conditions.
+
+For the learner, fix rational exploratory rate $\varepsilon\in[0,1]$ and rational reference-payoff thresholds $b_i(x)$; let the fully measurable finite-grid choice kernel be
+
+$
+\alpha_i^{\mathrm L}(a_i=1\mid q_i,x)
+=(1-\varepsilon)\frac{q_i}{M}+\frac{\varepsilon}{2},
+\quad
+\alpha^{\mathrm L}=\alpha_1^{\mathrm L}\otimes\alpha_2^{\mathrm L}.
+\tag{V20.35c}
+$
+
+Specify a deterministic bounded reinforcement update after the realized next world state is drawn (the update may use the recorded current outcome and old world state):
+
+$
+q_i'=
+\operatorname{clip}_{\{0,\ldots,M\}}\!\left(
+q_i+(2a_i-1)\operatorname{sgn}[r_i(x,a)-b_i(x)]
+\right),\qquad
+U^{\mathrm L}(dq'\mid q,x,a,x')=\delta_{(q_1',q_2')}(dq').
+\tag{V20.35d}
+$
+
+Here $\operatorname{clip}_{\{0,\ldots,M\}}$ is exact integer clamping and $\operatorname{sgn}(0)=0$; all quantities/updates are finite-state, rational/measurable, and have an exact calculation path. The MPE embedding can inhabit **the same $S$** via $\alpha^{\mathrm E}(da\mid q,x)=\prod_i\pi_i^*(da_i\mid x)$ and $U^{\mathrm E}(dq'\mid q,x,a,x')=\delta_q(dq')$, so no change of $P$ or state-space trick is needed. Unlike $\alpha^{\mathrm E}$, the learner depends on $q$ and updates memory.
+
+For every parameter/witness combination, compute both induced matrices from the literal $\alpha\to P\to U$ order, the world-projected descriptor $h(q,x)=x$, and any additional genuinely relevant coupled descriptor separately. Freeze $B,B_0,B_1$ *before* looking at the outcomes. If e.g. $B=S\times\{1\}$ leaks, it is **not** an Exact GR for that generator: calculate finite killed persistence instead. A stochastic learning family can have stationary occupation without a deterministic Nash policy; **do not promise oscillation or nonconvergence without proving the selected instance does so**. Either find and certify a genuine cycle/metastable property or report stationary/non-equilibrium learning with the exact supported certificate.
+
+Both generator types must be judged against the same substantive target and relevance criteria, with distinct occupation targets if warranted; this candidate parametric family is a reproducible *starting point*, not a pre-certified flagship.
 
 The empirical and mathematical outputs must be calculated for both:
 
