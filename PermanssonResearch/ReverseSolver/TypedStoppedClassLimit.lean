@@ -43,8 +43,14 @@ theorem typedStoppedClassEvent_real_tendsto {n : ℕ}
   have hfinite : P (⋃ T : ℕ, typedStoppedClassEvent K C T) ≠ ⊤ :=
     measure_ne_top P _
   have hreal := (ENNReal.tendsto_toReal hfinite).comp hcont
-  simpa only [Function.comp_def, P, Measure.real,
-    typedStoppedClassEvent_real_eq_rational] using hreal
+  have hseq :
+      (fun T : ℕ => (P (typedStoppedClassEvent K C T)).toReal) =
+      (fun T : ℕ => (stoppedClassHit K C T x : ℝ)) := by
+    funext T
+    simpa only [P, Measure.real] using
+      typedStoppedClassEvent_real_eq_rational K C x T
+  rw [hseq] at hreal
+  simpa only [P, Measure.real] using hreal
 
 end
 end C10
