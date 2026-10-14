@@ -49,6 +49,7 @@ theorem typedStoppedClassEvent_real_tendsto {n : ℕ}
     funext T
     simpa only [P, Measure.real] using
       typedStoppedClassEvent_real_eq_rational K C x T
+  simp only [Function.comp_def] at hreal
   rw [hseq] at hreal
   simpa only [P, Measure.real] using hreal
 
