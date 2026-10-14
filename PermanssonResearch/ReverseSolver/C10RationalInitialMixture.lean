@@ -151,9 +151,19 @@ theorem checked_rationalMixedEventValue_eq_actual_path
       change (∑ y : Unit × Fin n,
         (ν.toMeasure {y}).toReal *
           (canonicalPathLaw M.inducedKernel (Measure.dirac y) E).toReal) = _
-      simp only [Fintype.sum_prod_type]
-      simp [ν, M, rationalInitialProbability_singleton,
-        ENNReal.toReal_ofReal, hn, hpoint, decode_encode]
+      simp only [Fintype.sum_prod_type, Fintype.sum_unique]
+      apply Finset.sum_congr rfl
+      intro x _
+      change (ν.toMeasure {decode x}).toReal *
+        (canonicalPathLaw M.inducedKernel (Measure.dirac (decode x)) E).toReal =
+          (initial.weight x : ℝ) * (eventValue cert h x : ℝ)
+      have hw : (ν.toMeasure {decode x}).toReal =
+          (initial.weight x : ℝ) := by
+        change ((rationalInitialProbability initial).toMeasure
+          {decode x}).toReal = _
+        rw [rationalInitialProbability_singleton]
+        exact ENNReal.toReal_ofReal (hn x)
+      rw [hw, hpoint x]
     _ = (rationalMixedEventValue cert h initial : ℝ) := by
       simp only [rationalMixedEventValue, Rat.cast_sum, Rat.cast_mul]
 
