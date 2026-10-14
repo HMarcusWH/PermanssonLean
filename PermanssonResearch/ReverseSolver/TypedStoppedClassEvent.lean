@@ -128,8 +128,8 @@ theorem typedStoppedClassEvent_real_eq_rational {n : ℕ}
           (Preorder.frestrictLe T) =
         PermanssonLean.ProbabilitySupport.finitePrefixLaw
           (realizedModel K).inducedKernel (decode x) T := by
-    rw [FiniteCanonicalPath.typed_pathLaw_eq_canonical]
-    exact FiniteCanonicalPath.canonicalPathLaw_prefix_dirac
+    rw [PermanssonResearch.MultipleLimit.FiniteCanonicalPath.typed_pathLaw_eq_canonical]
+    exact PermanssonResearch.MultipleLimit.FiniteCanonicalPath.canonicalPathLaw_prefix_dirac
       (realizedModel K).inducedKernel (decode x) T
   unfold typedStoppedClassEvent Measure.real
   rw [← Measure.map_apply (Preorder.measurable_frestrictLe T)
