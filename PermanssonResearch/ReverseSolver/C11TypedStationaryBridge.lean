@@ -134,7 +134,7 @@ theorem certifiedProbability_class_mass_one {n : ℕ}
 
 /-- Whole-measure equality to C2's unique genuine class-supported measure,
 for ANY matrix L applied as an actual typed intervention from baseline K₀. -/
-theorem checked_stationary_eq_native {n : ℕ}
+theorem checked_stationary_eq_native {n : ℕ} [NeZero n]
     (K₀ L : RationalMarkovMatrix n)
     (r : ClassStationaryCandidate n)
     (hc : checkClassStationary L r = true) :
@@ -164,7 +164,7 @@ theorem checked_stationary_eq_native {n : ℕ}
 
 /-- Strictly positive rational mass on every vertex of its irreducible
 bottom class; not a separate unproved full-support axiom. -/
-theorem checked_stationary_positive_on_class {n : ℕ}
+theorem checked_stationary_positive_on_class {n : ℕ} [NeZero n]
     (K₀ L : RationalMarkovMatrix n)
     (r : ClassStationaryCandidate n)
     (hc : checkClassStationary L r = true)

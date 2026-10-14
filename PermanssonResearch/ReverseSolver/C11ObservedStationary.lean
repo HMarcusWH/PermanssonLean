@@ -247,7 +247,7 @@ theorem certified_true_mass {n : ℕ}
     _ = ENNReal.ofReal (trueShare r h : ℝ) := by
       rw [hsum]
 
-theorem checked_observed_true_mass_eq_native {n : ℕ}
+theorem checked_observed_true_mass_eq_native {n : ℕ} [NeZero n]
     (K₀ L : RationalMarkovMatrix n)
     (r : ClassStationaryCandidate n)
     (hc : checkClassStationary L r = true) (h : Fin n → Bool) :
