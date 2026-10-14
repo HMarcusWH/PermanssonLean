@@ -196,4 +196,21 @@ All C10 source must remain under the separate research library or its verificati
 - Computable reference Cramer arithmetic need not be polynomial-time. Unsupported external JSON schema, size limits, or resource exhaustion are distinct from mathematical failure.
 - No `sorry`, `admit`, custom axioms, native-decision proof oracle, relaxed comparison set, or unproved baseline-certificate Boolean is acceptable.
 
-**Release status:** READY FOR REVIEW / UNMERGED. The source-changing P1/P2 follow-on requires fresh four-workflow CI and Codex reassessment before author-controlled merge.
+**Release status:** READY FOR REVIEW / UNMERGED. The existing C10 v1.1
+mathematics was fully verified at source `c8fdebeb3fcb38920bf586b8b7de47162cc4de33`:
+[Research Lean #38609484285](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38609484285)
+compiled 4,015 jobs, audited 3,550 declarations, ran **522/522**
+research tests, verified 308/308 imports, generated source-bound proof
+evidence and D0-F golden, with all four workflows green on the actual
+synthetic merge `b274c4ec777ee89046260c3bca40816cfc6e59f1`.
+
+**Current source-changing Codex follow-on (pending fresh CI):** strict
+clean Git provenance (before/after proof and verification), a
+backward-explicit numerical v2 full-state receipt, a separately checked
+mixed rational initial-law Python query, and a Lean module proving
+a genuine initial probability measure and C2 initial-mixture event
+correspondence. All generated mixed witness sources, independent
+verifiers and evidence manifest fields must compile and pass on their
+**own new final source head**, with fresh Codex assessment. Neither
+historical CI nor metadata certifies these new statements; merge
+remains author-controlled.

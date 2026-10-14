@@ -88,8 +88,17 @@ each passed 4/4 exact-head workflows, with 512/512 tests,
 The post-Codex P1/P2 remediation adds the genuine hGR-gated original
 PR iff and literal-mode support gates, checks all documented evidence
 artifacts, and adds required state/menu metamorphic regressions.
-**These new source changes must pass fresh exact-head CI and
-final-head code review before merge.** Neither JSON parsing nor
+The original C10 v1.1 post-review head
+`c8fdebeb3fcb38920bf586b8b7de47162cc4de33` subsequently passed
+all four workflows, with [Research Lean #38609484285](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38609484285)
+recording **522/522** tests, **3,550** declarations and **308**
+imports, and a replayed source-bound artifact. A further Codex review
+identified three requirements, now addressed in source-changing
+follow-on commits: clean Git provenance, numeric v2 full-state effects,
+and a **separate** rational initial-law evaluator/actual D0 path-law
+theorem with checked mixed-witness proof. **These later changes must
+pass their own new final-head CI and Codex review**; the earlier green
+source cannot certify the follow-on. Neither JSON parsing nor
 empirical model identification is formally proved.
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),

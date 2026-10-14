@@ -6,10 +6,19 @@
 
 ## What it proves and what it does not
 
-The existing `Permansson.C10.rational-margin.v1` output is an exact
-rational **numerical** report. The separate
-`Permansson.C10.release-evidence.v1` manifest binds it, without modifying
-its strict schema, to source, specification, input and generated Lean proof.
+**Historical compatibility:** `Permansson.C10.rational-margin.v1` retains
+its original meaning: `effects` is a vector over the normalized comparison
+set. It remains verifiable for archival records; the new release does not
+rewrite or falsely relabel old receipts.
+
+**Current release:** `Permansson.C10.rational-margin.v2` reports a complete
+`effects` vector over **all** `n` states plus a checked
+`comparison_effects` projection. The original margin still minimizes
+**only** that projection on the predeclared `B₁`. The new strict
+`Permansson.C10.release-evidence.v2` manifest binds the v2 numerical
+receipt, source, frozen specification, original six-state Lean proof, and a
+separate rational-initial-law evaluation plus Lean witness.
+A v1 receipt is rejected by the v2 release-evidence verifier.
 
 The six-state-only emitter `c10_emit_golden_bridge.py` first verifies the
 whole normalized frozen six-state input and index/ID ordering. In its
@@ -49,18 +58,36 @@ which works even with checkout depth one, and checks the synthetic merge's
 first and second parent identities against the GitHub event. A supplied
 manifest cannot override these expectations.
 
-The artifact `c10-release-evidence` has 30-day retention; its folder
-includes:
+Before generation, after the Lean proof, before independent verification,
+and after replay, source integrity checks compare tracked and untracked
+non-ignored files to the commit (`git status --porcelain=v1 -z`), verify the
+immutable v1.1 specification Git blob and reject staged/unstaged/deleted
+or untracked shadow sources. Legitimate ignored `.lake` build artifacts
+remain separate from the Git source identity; actual compilation, toolchain
+pinning and Lean kernel checks remain their own gates. The audit does not
+misrepresent a clean Git tree as a proof about arbitrary cached binaries.
+
+The artifact `c10-release-evidence` has 30-day retention; the v2 folder
+contains all of the following and rejects unexpected additional files:
 
 - `input.json` — original raw golden request, not falsely equated to
   its canonical normalized representation
 - `normalized_input.json` — exactly normalized comparison/menu and matrix
   inputs
-- `receipt.json` — independent exact-Fraction certificate, unchanged v1
+- `receipt.json` — independently checked **complete full-state v2**
+  exact-Fraction numerical receipt
 - `C10ReifiedGolden.lean` — complete reconstructed input, numeric claims,
   original-six-state data binding and real-margin theorems
 - `lean_check.stdout.txt`, `lean_check.stderr.txt` — actual Lean compiler
-  output (plus a *separate fresh rerun* during validation)
+  output (plus a separate fresh rerun during validation)
+- `mixed_initial.json` — exactly normalized rational distribution over all
+  six states, with half the mass at each original comparison start
+- `mixed_report.json` — independent non-PR mixed-event report with exact
+  baseline/member values, signed changes and absolute changes
+- `C10MixedGolden.lean` — Lean-checked literal six-state initial-law mixture
+  using `C10RationalInitialMixture.lean`
+- `mixed_check.stdout.txt`, `mixed_check.stderr.txt` — actual mixed-law
+  Lean compiler output and a separate fresh kernel replay
 - `evidence_manifest.json` — source/base/merge identifiers, artifact
   SHA-256 values, frozen specification SHA-256, fixed interpretation scope
 - `verification_summary.txt` — a human-readable fixed boundary statement,
@@ -87,6 +114,12 @@ input parsing/normalization code with the numerical producer. It is
 independent arithmetic rechecking, **not** independent verified parsing
 or formally verified Python.
 
+The v2 full-effect-vector test cases specifically tamper with an effect
+**outside B₁**, leaving the actual original margin unaffected. Both the
+independent Python checker and generated Lean `FullReceipt.pointwiseEffect`
+must reject a forged value. Historical v1 only covers the old projected
+effect schema, never masquerading as a complete v2 report.
+
 The C10 metamorphic regressions also perform nontrivial complete
 **physical-state relabelings**, checking bottom-class/absorption weights,
 the frozen Boolean event vector, all original comparison-state effects
@@ -95,6 +128,21 @@ and lowest-index worst-start tie breaking in the *new* coordinates.
 complete set of maximizers; the first normalized tie is intentionally
 allowed to change with the declared menu order. Distinct IDs sharing
 an identical kernel remain distinct candidates.
+
+The new, separate `c10_eval_initial_law.py` accepts a finite exactly
+normalized rational initial law and checks a v2 receipt. Its independent
+`c10_verify_initial_law.py` recomputes all mixed probabilities without
+calling the producer's aggregation function. Both use exact `Fraction`
+arithmetic. It is a **probability query**, not a change to the fixed-menu
+optimizer. Mathematically, `C10RationalInitialMixture.lean` constructs
+the actual D0 probability measure and composes C2's canonical
+initial-mixture theorem with C10's point-start path-law correspondence.
+The two optional numeric effects
+`|Σ μ (p_i-p_0)|` and `Σ μ |p_i-p_0|` differ in general; neither is
+the original `min_(x∈B₁) |p_i(x)-p_0(x)|`. The adversarial four-state
+cancellation fixture has original numeric pointwise margin 1 but mixed
+signed/absolute probability change zero, demonstrating why mixing
+must never replace the original B₁ objective.
 
 The generated Lean source and its proof terms are rechecked by the real
 Lean kernel (`decide +kernel`; no `native_decide`), while both initial
