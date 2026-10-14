@@ -27,14 +27,36 @@ verification and a fresh Lean replay passed. The separate C10 artifact
 `11913649704` was uploaded with 30-day retention and archive
 SHA-256 `5f330802c139932070c593a191636c7a440c1dfce386c3e85e798b72248d7813`.
 
-**Additional mathematical-interface follow-on:** the new
-`C10ReleaseCorollaries.lean` explicitly composes C8's source-specific
-positive representative selection theorem with C10 Cramer absorption
-and C7's `pointGoodMass` bridge. Its later source head and synthetic
-merge **must pass new CI** before those two corollaries may be described
-as compiled. This entry preserves the previous fully verified release
-checkpoint; it does not predict the outcome of the follow-on. PR #61
-remains draft and unmerged pending actual final-head review.
+**Verified mathematical corollary checkpoint:** source head
+`27621f74e781a38ff75832432b7b7e93b7fb2f43` passed
+[Research Lean #38605559315](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38605559315)
+and all other workflows on synthetic merge
+`c355e6708d7f7dc1544a104d38b2e4c0a77d5e1c`.
+`C10ReleaseCorollaries.lean` explicitly composes C8 source-specific
+positive representative reachability and C10 Cramer absorption and
+C7 `pointGoodMass`: its theorems **compiled**. The run audited **3,546**
+declarations under the three allowed axioms, imported **307/307**
+modules, and passed **512/512** research regressions. Documentation-only
+source head `1e51c302c01f8a76cf4c09fbbbf98b7933e80df8`
+also passed all four workflows, including
+[Research Lean #38606274298](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38606274298)
+on exact synthetic merge `4a6d1fa8f2428a4c466b60f061dcab327b4d18dd`.
+
+**Post-Codex P1/P2 source-changing remediation — pending new CI:**
+the new `C10ReleaseRegimeEquivalences.lean` supplies original
+relative PR iff positive exact receipt margin **only with an actual
+original Exact GR proof**, plus exact C9 original opposing-support
+eligibility iff positive margin under hGR and literal
+`almostSureWeak` mode. Under literal mode it also gives the
+one-way support-ineligible ⇒ not PR result even without hGR.
+Evidence verification now checks every documented file, including
+`verification_summary.txt` against its fixed required content,
+and rejects unexpected files. The new metamorphic suite checks
+state-relabeling probability/effect transport and menu-permutation
+tie ordering. **These post-review source changes are not certified
+by the previous green checkpoints**; the next final-head build,
+research tests, source-bound Lean replay and review must pass.
+PR #61 is ready for review, still unmerged.
 
 ## Frozen object and semantics
 
@@ -85,19 +107,20 @@ without adding numerical event values as assumptions:
 |---|---|
 | Complete positive-edge graph and finite bottom SCC collection | `RationalGraphCompleteness`, `RationalBSCCNative.bottomClasses_native_iff`; an actual `RationalMarkovMatrix n` is required |
 | Unique rational class absorption and total accepted reference | `RationalDirichletDeterminant`, `RationalCramerCertification.referenceDirichlet_check_true`, `C10ReferenceReceipt.referenceReceipt_check_true`; nonempty state dimension derives from checked input |
-| Positivity of a class weight exactly when a class is reachable | C8 `FiniteObservedSupportReachability.selected_weight_nonzero_iff_reachable` plus C10 `TypedStoppedClassSelection.cramerWeight_eq_canonical_selected_class` and C9 `RationalTypedSupportBridge.rationalTyped_reachable_iff`; the optional explicit `C10ReleaseCorollaries.cramerWeight_real_pos_iff_class_reachable` is an additional compilation gate |
-| True infinite eventual-observation event | `TypedObservedCramerCorrespondence.cramer_eventValue_eq_canonical_probability`, `CheckedRationalEventValue.checked_eventValue_eq_actual_path`; the C7 `TypedObservedEventConstitution.pointGoodMass_eq_event_probability` gives the original good-class semantics. `C10ReleaseCorollaries.cramer_goodClass_eq_native_pointGoodMass` is an additional compilation gate |
+| Positivity of a class weight exactly when a class is reachable | C8 `FiniteObservedSupportReachability.selected_weight_nonzero_iff_reachable` plus C10 `TypedStoppedClassSelection.cramerWeight_eq_canonical_selected_class` and C9 `RationalTypedSupportBridge.rationalTyped_reachable_iff`; the exact theorem `C10ReleaseCorollaries.cramerWeight_real_pos_iff_class_reachable` has compiled on the verified mathematical corollary checkpoint |
+| True infinite eventual-observation event | `TypedObservedCramerCorrespondence.cramer_eventValue_eq_canonical_probability`, `CheckedRationalEventValue.checked_eventValue_eq_actual_path`; the C7 `TypedObservedEventConstitution.pointGoodMass_eq_event_probability` gives the original good-class semantics. `C10ReleaseCorollaries.cramer_goodClass_eq_native_pointGoodMass` has compiled on that checkpoint |
 | Original complete B₁ and fixed descriptor | `TypedOriginalMenuMargin.realized_numeric_menu_margin` requires explicit global `hDescriptor` and complete `hComparison`; `sixDescriptor_frozen` and `sixComparison_complete` discharge the original six-state witness only |
 | Exact entire finite-menu maximin and ties | `ExecutableConstitutiveSelection.selected_dominates`, `ConstitutiveCertificateCheck.checked_receipt_global_max`, `C10FullReceipt.checkedFullReceipt_worstStart`; no optimization over unlisted interventions |
-| Original regime proof boundary | `C10ReceiptSemantics.checkedFullReceipt_zero_excludes_uniformPR` and `checkedFullReceipt_all_zero_listed_not_uniformPR` do not require baseline Exact GR; `checkedFullReceipt_positive_plus_exactGR` **does** |
+| Original regime proof boundary | `C10ReceiptSemantics.checkedFullReceipt_zero_excludes_uniformPR` and `checkedFullReceipt_all_zero_listed_not_uniformPR` do not require baseline Exact GR; `checkedFullReceipt_positive_plus_exactGR` **does**. The new `C10ReleaseRegimeEquivalences.checkedFullReceipt_positive_iff_original_uniformPR_of_exactGR` adds the original iff requiring genuine hGR; `checkedFullReceipt_positive_iff_support_of_exactGR_literalMode` and `checkedFullReceipt_originalPR_iff_exactGR_and_support_of_literalMode` preserve the separately required literal-mode gate. This additional module is pending fresh CI. |
 | Concrete original six-state release witness | `C10SixStateBridge.sixOriginalMargins_exact`, `sixOriginalFull_is_global_max`, `six_original_baseline_exactGR` plus generated `reifiedGolden_data_contract`, `reifiedGolden_numeric_margins`, `reifiedGolden_original_margins`; the latter are six-state-only, kernel checked |
 
 **Scope:** Every indexed numerical matrix is realized by the constructed D0
 alpha-only `Unit × Fin n` family, not an arbitrary identified empirical
 world. An external parser, a receipt status string, and a hash do not
-create a mathematical model equivalence or an Exact GR proof. Source
-`C10ReleaseCorollaries.lean` must compile and pass the transitive axiom
-audit before its two named corollaries are considered certified.
+create a mathematical model equivalence or an Exact GR proof. The C10 Cramer-positive/reachability and C7 point-good-mass corollaries
+have compiled and passed the research transitive audit at the verified
+corollary checkpoint. The new hGR-gated PR/support iff module is a
+separate final-head compiler/review obligation.
 
 ## Source-bound release evidence follow-on
 
@@ -149,13 +172,16 @@ lake env lean /tmp/C10ReifiedGolden.lean
 lake build
 ```
 
-The previously verified pre-release checkpoint had **489/489**
-passing research tests. The release-evidence extension adds **23** tests
-(one golden bridge adversary and 22 provenance regressions). The fully
-verified source-bound checkpoint at `f3831cf` reports **512/512 passed**,
-not an extrapolated test count. Any subsequent change, including this
-documentation or the extra mathematical corollaries, must be verified
-again on its own exact head and synthetic merge.
+The previous frozen-source release checkpoint passed **489/489**
+research regressions; the verified six-state source-bound release and
+mathematical-corollary checkpoints passed **512/512** (one golden
+bridge and 22 provenance adversaries added). Post-Codex remediation
+adds **3** evidence-summary tampering tests and **7** state-relabeling /
+menu-permutation metamorphic tests, yielding **522 expected discovered
+tests**. This is a test-count forecast, **not a passing result** until
+new exact-head Research Lean CI finishes. Source-bound evidence now
+hashes `verification_summary.txt` and checks its exact content;
+unexpected files cause a fail-closed rejection.
 
 Release requires a successful Research Lean build, its root transitive axiom audit limited to `propext`, `Classical.choice`, `Quot.sound`, independent complete rational tests and D0-F golden, root direct-import coverage, proof-placeholder and custom-axiom source firewall, frozen original default `lake build`, original Lean, executable verification, and application contracts Ubuntu+Windows. Verify the **same final source head and GitHub synthetic merge**, reconcile docs, obtain final-head code review, and reserve merge for explicit author approval.
 
@@ -170,4 +196,4 @@ All C10 source must remain under the separate research library or its verificati
 - Computable reference Cramer arithmetic need not be polynomial-time. Unsupported external JSON schema, size limits, or resource exhaustion are distinct from mathematical failure.
 - No `sorry`, `admit`, custom axioms, native-decision proof oracle, relaxed comparison set, or unproved baseline-certificate Boolean is acceptable.
 
-**Release status:** DRAFT / UNMERGED until every exact-head gate reports success.
+**Release status:** READY FOR REVIEW / UNMERGED. The source-changing P1/P2 follow-on requires fresh four-workflow CI and Codex reassessment before author-controlled merge.

@@ -72,28 +72,25 @@ C9 merged into `main@b4989fc4fc633601197cdfa733fbce3f5c9ea2c8` on
 13 October. Its finite-menu real-margin maximizer was noncomputable; it
 was **not** an executable infinite-horizon rational absorption evaluator.
 
-**C10 (draft, PR #61):**
+**C10 (ready for review, PR #61; unmerged):**
 [exact execution/release ledger](LANE_C10_EXACT_CONSTITUTIVE_EXECUTION.md) ·
 [release-evidence reproduction](C10_RELEASE_EVIDENCE.md) ·
 [audited v1.1 acceptance contract](PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md).
-C10 implements a finite exact rational BSCC/Dirichlet reference, checked
-constitutive margins, deterministic full-menu maximin, the genuine
-original D0 typed infinite-path law, and full checked rational receipts.
-The **source-bound release** checkpoint
-`f3831cfef167846c213d1e9232ba0c3982eb04e7` passed all four
-workflows on synthetic merge
-`f495fe579efa10f872c2455fa6b8b574c44c07d6`.
-[Research Lean #38602351380](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38602351380)
-audited 3,540 declarations, 306 direct research imports, and **512/512**
-numerical/provenance tests, including the generated original six-state
-Lean bridge and independently replayed source-bound C10 proof artifact.
-The additional `C10ReleaseCorollaries.lean` source composes existing
-C7/C8/C10 good-class and exact positive-reachability results, but it
-is **not certified by the historical f383 checkpoint**: verify its own
-later final SHA and synthetic merge before approval or merge. No arbitrary
-external causal identification, formally verified JSON parser, or
-independent peer review follows merely from a successful CI run.
-
+C10 provides finite exact rational BSCC/Dirichlet absorption, checked
+full constitutive margins, original D0 typed infinite-path transport
+and input-bound numerical/Lean receipt evidence. Its previous
+source-bound checkpoint `f3831cf` passed 512/512 tests, 306 imports
+and 3,540 declarations in the three-axiom audit. The later *compiled*
+mathematical corollary source `27621f74e781a38ff75832432b7b7e93b7fb2f43`
+and documentation head `1e51c302c01f8a76cf4c09fbbbf98b7933e80df8`
+each passed 4/4 exact-head workflows, with 512/512 tests,
+307/307 direct imports, and 3,546 audited declarations.
+The post-Codex P1/P2 remediation adds the genuine hGR-gated original
+PR iff and literal-mode support gates, checks all documented evidence
+artifacts, and adds required state/menu metamorphic regressions.
+**These new source changes must pass fresh exact-head CI and
+final-head code review before merge.** Neither JSON parsing nor
+empirical model identification is formally proved.
 
 See the [C4 verified ledger](LANE_C4_SIX_STATE_PRECISION.md),
 [C3 ledger](LANE_C_EXACT_GR_CHARACTERIZATION.md),

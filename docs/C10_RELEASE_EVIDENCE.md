@@ -63,7 +63,9 @@ includes:
   output (plus a *separate fresh rerun* during validation)
 - `evidence_manifest.json` — source/base/merge identifiers, artifact
   SHA-256 values, frozen specification SHA-256, fixed interpretation scope
-- `verification_summary.txt` — a human-readable boundary statement
+- `verification_summary.txt` — a human-readable fixed boundary statement,
+  **included in the canonical SHA-256 manifest and checked byte-for-byte**
+  during independent verification; unexpected bundle files are rejected
 
 Input, receipt and generated Lean source are byte-reproducible for an
 identical logical input and pinned implementation. Logs and CI provenance
@@ -85,6 +87,15 @@ input parsing/normalization code with the numerical producer. It is
 independent arithmetic rechecking, **not** independent verified parsing
 or formally verified Python.
 
+The C10 metamorphic regressions also perform nontrivial complete
+**physical-state relabelings**, checking bottom-class/absorption weights,
+the frozen Boolean event vector, all original comparison-state effects
+and lowest-index worst-start tie breaking in the *new* coordinates.
+**Menu permutations** preserve per-ID probabilities/margins and the
+complete set of maximizers; the first normalized tie is intentionally
+allowed to change with the declared menu order. Distinct IDs sharing
+an identical kernel remain distinct candidates.
+
 The generated Lean source and its proof terms are rechecked by the real
 Lean kernel (`decide +kernel`; no `native_decide`), while both initial
 and rerun `#print axioms` reports must use only
@@ -100,6 +111,14 @@ Lean execution failure are **not** mathematical infeasibility evidence.
 
 The complete theorem and hypothesis crosswalk is in the
 [C10 research ledger](LANE_C10_EXACT_CONSTITUTIVE_EXECUTION.md#v11-mathematical-claim-coverage-source-hypothesis-review).
+The new `C10ReleaseRegimeEquivalences.lean` supplies the strictly
+hGR-gated positive-receipt-margin iff original relative PR statement,
+and the original C9 support eligibility iff under hGR **plus** literal
+`almostSureWeak` mode. Its one-way support-ineligible ⇒ not PR
+statement needs literal mode, but not hGR, and does not equate that
+conclusion with a zero margin without hGR. These are new post-review
+source assertions pending a fresh final-head Lean build and review.
+
 The extra corollary file `C10ReleaseCorollaries.lean` derives
 Cramer good-class mass = C7 `pointGoodMass`, and positive
 rational Cramer absorption = existence of a reachable member of
