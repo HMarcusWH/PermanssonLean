@@ -1,6 +1,6 @@
 # Permansson next-generation mathematical research architecture
 
-**Document status:** RESEARCH SPECIFICATION v0.1 — proposed, unimplemented, subject to mathematical review.  
+**Document status:** HISTORICAL A/B/C/D RESEARCH DESIGN v0.1 (8 October 2026). The below proposal-era implementation statements are preserved as history; for current status and v0.2.0 obligations see the 15 October overlay and linked full mathematical contract.  
 **Prepared:** 2026-10-08. **Scope:** Permansson Regime Theory / PermanssonLean; not an Allfather runtime integration.  
 **Canonical repository:** [HMarcusWH/PermanssonLean](https://github.com/HMarcusWH/PermanssonLean).  
 **Read-only design reference:** `0604fb2a2f8567614b4f29a3385d1c84266c1887` (`main` when this plan was drafted).  
@@ -12,6 +12,14 @@
 **Application-status firewall:** [APPLICATION_BOUNDARY.md](APPLICATION_BOUNDARY.md), [Application Standard](../application/APPLICATION_STANDARD.md).
 
 > **Non-claim:** This document does not add a theorem, prove any of the proposed extensions, independently certify OpenAI Math, validate the Iran applications, modify the v0.1.8 paper, or authorize a theory-implementation PR. Proposed module and declaration names below are specifications, not existing source.
+
+## Current integration overlay — 15 October 2026 (documentation only)
+
+**Do not infer current progress from this document's historical “eventual,” “unimplemented,” or illustrative PR numbering.** As of main@57aa4eb3b58df770630f16b04940cb5933317709, CQ-1 (PRs #36–38), D0/D1 (PRs #39–50), Lane B (PR #51) and C1–C10 (PRs #52–61) are merged research developments. C11-A ([PR #62](https://github.com/HMarcusWH/PermanssonLean/pull/62)) is an independent active draft and must not be touched or called proven in this documentation PR.
+
+**Versioned mathematical implementation source of truth:** [Permansson v0.2.0 Mathematical Integration and Adversarial Verification Contract](PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md). That document preserves **full formulas, precise quantifiers, proofs, failure models, optional-versus-required statements, proposed Lean paths, editorial source wiring and release criteria**. The [roadmap](FUTURE_THEORY_ROADMAP.md) is the navigational index; [RESEARCH_BUILD.md](RESEARCH_BUILD.md) is the evidence and CI state ledger. Current work must not be back-projected into the immutable v0.1.8 proof snapshot.
+
+The proposed v0.2.0 work extends the existing lanes as **A2** (primitive TV), **A3** (contractive occupation law), **B2** (four-corner sequential strategic constitution), **C-Exit** (first exit destination and intervention-driven target GR), and **D2** (distinct reach-and-stay/switching solver objectives). New lanes **E1** (approximate type-respecting quotient) and **F1** (multi-agent opponent-response protocols) are proposed, followed by an **X1** flagship common-world MPE/learning benchmark. These are not aliases for already-proved work. For example, Lane B **already proves** original joint-only constitution, while the metric conditional-unlocking theorem is still a proposed generalization.
 
 ## 1. Executive purpose and deliverable
 
@@ -527,3 +535,86 @@ Before coding each milestone, an agent must:
 The programme is **not complete** when four folders exist or all computational tests pass. It is complete, at the scope of each independently promoted research lane, only when definitions and quantifiers are fixed, theorem obligations are discharged by Lean under audited assumptions, counterexamples defeat unjustified stronger claims, algorithm outputs have proofs tied to their actual controlled kernel, and a new release snapshot/claim ledger preserves the v0.1.8 boundary.
 
 **Immediate approved scope of this documentation PR:** the detailed plan and navigation changes only. **Next theory-implementation decision:** independently review and explicitly authorize CQ-1's final Lean theorem signatures, including the distinction between regional survival and the comparison-basin constitutive effect.
+
+
+## 14. v0.2.0 mathematical cross-lane addendum — canonical equations and obligations
+
+This section is an **architectural map, not a second rival theorem specification**. For all hypotheses, proof sketches, counterexamples and exact definitions, follow [the complete v0.2.0 mathematical contract](PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md). The original Sections 1–13 above remain the historical A/B/C/D research design.
+
+### 14.1 Old-to-new mathematical dependency map
+
+| New milestone | Original proof source / research lane | What must still be proved |
+|---|---|---|
+| A2 | canonical $\alpha\to P\to U$; Proposition 5.4; CQ-1 | typed primitive error budget and quantitative finite constitutive margin |
+| A3 | C2 invariant/occupation laws; existing margin perturbation | stable long-run kernel-to-occupation-law and property bound **under contraction** |
+| B2 | Lane B OR/AND/XOR original constitutive witnesses | **general** conditional effects, sequential metric inequalities, normed interaction |
+| C-Exit | killed survival, C2/C10 class-entry and absorption | full exit-destination subkernel, Neumann routing, target-GR switch and QSD routing |
+| D2 | D0/D1 finite exact solver | reach-and-stay and separately justified asymptotic-switching objective |
+| E1 | exact Theorem 7.4b and Proposition 5.4 | nonexact intertwining defect to finite-prefix and margin bounds |
+| F1 | typed kernels and intervention-family grammar | player factorization and anchored CL/OL law comparisons |
+| X1 | D1, C, A/B and original EGR embedding | certified MPE and non-equilibrium learner sharing one world primitive |
+
+### 14.2 Core new operators — preserve these exact constructions
+
+For measurable $B\subseteq Y$ and $y\in B$,
+
+$$
+E_B(y,D)=K(y,D\setminus B),\quad
+R_B^{(L)}(y,D)=\sum_{n=0}^{L-1}(K_B^nE_B(\cdot,D))(y),\quad
+R_B^{(L)}(y,Y\setminus B)+(K_B^L1_B)(y)=1.
+$$
+
+Prove the exact event identity $R_B^{(L)}(y,D)=P_y(\tau_B\le L,Y_{\tau_B}\in D)$ and its infinite counterpart. For the post-intervention model only, routing into an independently certified Exact-GR target basin $B'_0\subseteq B'\subseteq Y\setminus B$ gives a switch; the original baseline's Exact GR makes its baseline routing vanish. For an eigenmeasure $\mu_BK_B=\theta_B\mu_B$ with $0<\theta_B<1$, the destination probability is $\mu_B(K(\cdot,B^{(r)}\setminus B))/(1-\theta_B)$.
+
+For primitive perturbations with stage-level TV errors on the necessary feasible/reachable rows,
+
+$$
+\sup_y\|K_y-\widetilde K_y\|_{\rm TV}\le
+\min\{1,\delta_\alpha+\delta_P+\delta_U\}.
+$$
+
+The multiplicative $(1-\delta_\alpha)(1-\delta_P)(1-\delta_U)$ common-mass strengthening requires an additional measurable-coupling theorem. Propagate **separate baseline and intervention** errors through the existing geometric finite-prefix envelope and the two-sided property-margin triangle inequality. The infinite-horizon subclass requires a contractive $W_1$ bound $\delta_\ell/(1-\rho_\ell)$ and a Lipschitz occupation-law property. Small TV errors must **not** be used to infer preservation of exact infinite survival.
+
+For the four-corner $(\alpha,U)$ intervention design, write $z_{00},z_{10},z_{01},z_{11}$. Define $\Delta_{U\mid\alpha}=d(z_{10},z_{11})$, $\Delta_\alpha=d(z_{00},z_{10})$ and $\Delta_{\alpha U}=d(z_{00},z_{11})$. The valid comparison is
+
+$$
+|\Delta_\alpha-\Delta_{U\mid\alpha}|
+\le\Delta_{\alpha U}
+\le\Delta_\alpha+\Delta_{U\mid\alpha},
+\qquad
+\inf_{B_1}\Delta_{U\mid\alpha}
+\ge\kappa_{\alpha U}-\sup_{B_1}\Delta_\alpha.
+$$
+
+A zero **infimum** for a singleton does **not** prove it has zero effect at all comparison states. Genuine singleton-null/joint-positive witnesses **already exist in Lane B**. For normed outputs only, a four-way interaction is $I_{\alpha U}=z_{11}-z_{10}-z_{01}+z_{00}$; component minimality remains grammar/order-dependent.
+
+For $q=q_S\times q_X$ with the original frozen family/semantic preservation gates but one-step quotient defect $\eta_\ell$, the non-Markov projected process satisfies the **provable linear** prefix-TV budget
+
+$$
+\|(q^{0:T})_\#P_y^{K^\ell,0:T}
+-P_{q(y)}^{\bar K^{\phi(\ell)},0:T}\|_{\rm TV}\le\min\{1,T\eta_\ell\},
+\quad
+|\kappa-\bar\kappa|\le L_\psi T(\eta_0+\eta_J)
+$$
+
+for a properly factored finite-prefix $L_\psi$-Lipschitz property. The stronger $1-(1-\eta_\ell)^T$ needs an explicit common-mass proof; an additive hybrid induction is not sufficient. Approximate quotients **do not generally preserve exact GR**: positive leakage, however small, is a counterexample.
+
+For multi-agent closed-loop versus predeclared frozen-response laws $z_{\rm CL},z_{\rm OL}$ relative to baseline $z_0$, show
+
+$$
+|d(z_0,z_{\rm CL})-d(z_0,z_{\rm OL})|
+\le d(z_{\rm CL},z_{\rm OL})
+\le d(z_0,z_{\rm CL})+d(z_0,z_{\rm OL}).
+$$
+
+The opponent anchor is a **separate structural intervention** defined on every counterfactual-reachable row, and the difference is protocol-relative, not automatically identified causal mediation. The product action/update factorization is a stated subclass, not a universal theorem for correlated strategies.
+
+### 14.3 Common-world economic witness contract
+
+Freeze $P(dx'\mid x,a)$ independently of the strategic generator, payoffs $r_i(x,a)$, discount factors $0<\beta_i<1$, common substantive $B,h,g,\psi,B_1$ and explicit typed state compatibility. An MPE candidate $\pi^*$ must satisfy its simultaneous Bellman equalities and **every unilateral best-response inequality**; non-equilibrium learning must specify an observable memory/update kernel and a proved occupation or periodicity claim. Comparing the same economic world does **not** imply a shared limiting $\nu$ unless both achieve it. Record killed-survival, $\alpha$- and $U$-sensitivity, joint effects, and nine categorical application status fields. This is an application proof obligation, not a calibrated economic forecast.
+
+### 14.4 New section/paper wiring and deferred work
+
+When creating a **new versioned v0.2.0 TeX**, insert C-Exit after 4.2c and the strategic-switch corollary into Section 5.4; A2/A3 after Prop. 5.4 with contraction explicitly subclassed; B2 and F1 as new subsections 5.4.2/5.4.3; E1 after Figure 5 / Theorem 7.4b; X1 as a flagship game in Section 8.4 or its own application section. Extend notation, quantitative-ledger table, proof notes, failure modes, workflow steps, Lean crosswalk, and new release provenance. Editorial carry-forward: symmetric off-feasible-graph convention for $U$ and $P$, justified post-exit $h$, theorem typography, mathematical words/symbols and captions of Tables 3–4.
+
+No documentation statement upgrades an OPEN theorem to PROVED. All releases retain the frozen v0.1.8 hash gate and separate research-target build. New PRs must check source-head and synthetic-merge CI, transitive axiom allowlist, negative countermodels and original application contract. The detailed PR sequencing and complete acceptance matrix live in the linked mathematical contract.
