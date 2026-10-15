@@ -50,16 +50,16 @@ theorem pointPathLaw_history_joint
   let u : (i : Finset.Iic (0 : ℕ)) → JointState S X :=
     fun _ => z
   have hz :
-      N.pathLaw (Measure.dirac z) = Kernel.traj κ 0 u := by
+      N.pathLaw (Measure.dirac z) = Kernel.traj (X := fun _ : ℕ => JointState S X) κ 0 u := by
     rw [←canonicalFutureKernel_apply N z]
     rfl
   rw [hz]
-  change (Kernel.traj κ 0 u).map
+  change (Kernel.traj (X := fun _ : ℕ => JointState S X) κ 0 u).map
     (fun w => (Preorder.frestrictLe m w, w)) =
-    ((Kernel.traj κ 0 u).map (Preorder.frestrictLe m)) ⊗ₘ
-      (Kernel.traj κ m)
+    ((Kernel.traj (X := fun _ : ℕ => JointState S X) κ 0 u).map (Preorder.frestrictLe m)) ⊗ₘ
+      (Kernel.traj (X := fun _ : ℕ => JointState S X) κ m)
   rw [Kernel.traj_map_frestrictLe_apply]
-  exact (Kernel.partialTraj_compProd_traj (κ := κ)
+  exact (Kernel.partialTraj_compProd_traj (X := fun _ : ℕ => JointState S X) (κ := κ)
     (a := 0) (b := m) (Nat.zero_le m) u).symm
 
 end PermanssonResearch.RegimeExit

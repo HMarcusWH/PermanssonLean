@@ -35,7 +35,7 @@ noncomputable def canonicalHistoryContinuation
       (ℕ → JointState S X) := by
   letI : IsMarkovKernel N.inducedKernel :=
     StrategicWorldModel.inducedKernel_isMarkov N
-  exact Kernel.traj
+  exact Kernel.traj (X := fun _ : ℕ => JointState S X)
     (fun n => StrategicWorldModel.stationaryHistoryKernel
       N.inducedKernel n) m
 
@@ -58,7 +58,7 @@ theorem canonicalHistoryContinuation_prefix
        Measure.dirac h := by
   letI : IsMarkovKernel N.inducedKernel :=
     StrategicWorldModel.inducedKernel_isMarkov N
-  change (Kernel.traj
+  change (Kernel.traj (X := fun _ : ℕ => JointState S X)
       (fun n => StrategicWorldModel.stationaryHistoryKernel
         N.inducedKernel n) m h).map (Preorder.frestrictLe m) =
         Measure.dirac h
@@ -71,22 +71,22 @@ is on both sides: this is not merely equality at time m+1. -/
 theorem canonicalHistoryContinuation_succ
     (N : StrategicWorldModel S X A) (m : ℕ) :
     (canonicalHistoryContinuation N (m+1)) ∘ₖ
-      (Kernel.partialTraj
+      (Kernel.partialTraj (X := fun _ : ℕ => JointState S X)
         (fun n => StrategicWorldModel.stationaryHistoryKernel
           N.inducedKernel n) m (m+1)) =
         canonicalHistoryContinuation N m := by
   letI : IsMarkovKernel N.inducedKernel :=
     StrategicWorldModel.inducedKernel_isMarkov N
-  change (Kernel.traj
+  change (Kernel.traj (X := fun _ : ℕ => JointState S X)
     (fun n => StrategicWorldModel.stationaryHistoryKernel
       N.inducedKernel n) (m+1)) ∘ₖ
-    (Kernel.partialTraj
+    (Kernel.partialTraj (X := fun _ : ℕ => JointState S X)
       (fun n => StrategicWorldModel.stationaryHistoryKernel
         N.inducedKernel n) m (m+1)) =
-    Kernel.traj
+    Kernel.traj (X := fun _ : ℕ => JointState S X)
       (fun n => StrategicWorldModel.stationaryHistoryKernel
         N.inducedKernel n) m
-  exact Kernel.traj_comp_partialTraj (Nat.le_succ m)
+  exact Kernel.traj_comp_partialTraj (X := fun _ : ℕ => JointState S X) (Nat.le_succ m)
 
 /-- More generally, continuing an actual homogeneous trajectory
 first to a later prefix and then indefinitely equals continuing
@@ -95,21 +95,21 @@ theorem canonicalHistoryContinuation_comp
     (N : StrategicWorldModel S X A)
     {a b : ℕ} (hab : a ≤ b) :
     (canonicalHistoryContinuation N b) ∘ₖ
-      (Kernel.partialTraj
+      (Kernel.partialTraj (X := fun _ : ℕ => JointState S X)
         (fun n => StrategicWorldModel.stationaryHistoryKernel
           N.inducedKernel n) a b) =
        canonicalHistoryContinuation N a := by
   letI : IsMarkovKernel N.inducedKernel :=
     StrategicWorldModel.inducedKernel_isMarkov N
-  change (Kernel.traj
+  change (Kernel.traj (X := fun _ : ℕ => JointState S X)
     (fun n => StrategicWorldModel.stationaryHistoryKernel
       N.inducedKernel n) b) ∘ₖ
-    (Kernel.partialTraj
+    (Kernel.partialTraj (X := fun _ : ℕ => JointState S X)
       (fun n => StrategicWorldModel.stationaryHistoryKernel
         N.inducedKernel n) a b) =
-    Kernel.traj
+    Kernel.traj (X := fun _ : ℕ => JointState S X)
       (fun n => StrategicWorldModel.stationaryHistoryKernel
         N.inducedKernel n) a
-  exact Kernel.traj_comp_partialTraj hab
+  exact Kernel.traj_comp_partialTraj (X := fun _ : ℕ => JointState S X) hab
 
 end PermanssonResearch.RegimeExit
