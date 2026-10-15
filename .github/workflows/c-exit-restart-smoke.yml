@@ -23,7 +23,7 @@ jobs:
         with:
           auto-config: false
           build: true
-          build-args: PermanssonResearch.RegimeExit.CanonicalTailKernel PermanssonResearch.RegimeExit.RestartSanity
+          build-args: PermanssonResearch.RegimeExit.CanonicalTailKernel PermanssonResearch.RegimeExit.RestartSanity PermanssonResearch.RegimeExit.StationaryTailLaw
           test: false
           lint: false
           use-mathlib-cache: true
