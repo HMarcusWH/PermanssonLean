@@ -390,6 +390,7 @@ import PermanssonResearch.Perturbation.PrimitiveLipschitz
 import PermanssonResearch.Perturbation.PrimitiveAdversaries
 
 import PermanssonResearch.RegimeExit.SwitchRouting
+import PermanssonResearch.RegimeExit.SwitchRetention
 import PermanssonResearch.RegimeExit.SwitchProperty
 import PermanssonResearch.RegimeExit.SwitchConstitution
 import PermanssonResearch.RegimeExit.SwitchGrounded
