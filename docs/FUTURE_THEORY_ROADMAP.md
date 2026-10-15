@@ -99,6 +99,12 @@ specified model and policy class.
 
 Every formula in this section is **PROPOSED**, unless the stated legacy declaration is named as EXISTING. The corresponding complete theorem statements, proofs/countermodels, Lean targets and assumptions are in the [v0.2.0 Mathematical Integration Contract](PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md). Existing v0.1.8 notations and quantified gates remain unchanged.
 
+**Implementation tracking (15 October 2026):** A2 is being implemented in
+[draft PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64). Source and
+test commits are not proof release evidence; promote only after the exact-head
+Lean and independent review gates. C11-A PR #62 has merged since this
+roadmap's historical baseline.
+
 ### A2 — Typed primitive-kernel error to finite constitutive margin
 
 For the canonical $\alpha\to P\to U$ kernel, given global one-step event-TV bounds $\delta_\alpha,\delta_P,\delta_U\in[0,1]$ on all relevant kernel rows, require the **additive** primitive error theorem
