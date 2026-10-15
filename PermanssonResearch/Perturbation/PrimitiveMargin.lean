@@ -318,7 +318,7 @@ theorem primitive_positive_finiteMargin
   have h := primitive_constitutiveMargin_abs_le
     (M := M) (spec := spec) (F := F) (B₁ := B₁) (J := J)
     (pair := pair) bounds T f
-  have hright := (abs_le.mp h).2
+  have hlower := (abs_le.mp h).1
   linarith
 
 /-- Complete CQ-1 finite constitutive certificate: transfer BOTH the
@@ -377,7 +377,7 @@ theorem transportPrimitiveFiniteConstitutiveCertificate
   have hmargin := primitive_constitutiveMargin_abs_le
     (M := M) (spec := spec) (F := F) (B₁ := B₁) (J := J)
     (pair := pair) bounds T f
-  have hupper := (abs_le.mp hmargin).2
+  have hlower := (abs_le.mp hmargin).1
   have hbound :
       κ - e₀ - eJ ≤
         PermanssonLean.RegimeSpecification.constitutiveMargin
@@ -386,7 +386,10 @@ theorem transportPrimitiveFiniteConstitutiveCertificate
           pair.approximateIntervention := by
     dsimp [e₀, eJ]
     linarith [certificate.marginFloor]
-  exact ⟨hsurvival, by dsimp [e₀, eJ]; linarith, hbound⟩
+  have hpositive : 0 <
+      κ - bounds.baselinePrefixBudget T - bounds.interventionPrefixBudget T := by
+    linarith [hremaining]
+  exact ⟨hsurvival, hpositive, hbound⟩
 
 /-- A2.4: optional independently bounded numerical/reporting profile.
 These extra b0/bJ uncertainties are separate from the exact second-model
