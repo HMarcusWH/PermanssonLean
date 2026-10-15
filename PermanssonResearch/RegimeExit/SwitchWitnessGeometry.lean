@@ -173,38 +173,44 @@ theorem baseline_zero_not_recurrent :
     decode (0 : Fin 5) ∉ RecurrentStates baselineModel.inducedKernel :=
   nonrecurrent_if_two_positive_into_closed baselineModel.inducedKernel
     terminalTail baseline_terminal_closed (decode 0) (decode 1)
-    (decode 4) (by decide) (by decide)
+    (decode 4) (by norm_num [terminalTail, encode, decode])
+    (by norm_num [terminalTail, encode, decode])
     baseline_edge_01 baseline_edge_14
 
 theorem baseline_one_not_recurrent :
     decode (1 : Fin 5) ∉ RecurrentStates baselineModel.inducedKernel :=
   nonrecurrent_if_positive_into_closed baselineModel.inducedKernel
     terminalTail baseline_terminal_closed (decode 1)
-    (decode 4) (by decide) (by decide) baseline_edge_14
+    (decode 4) (by norm_num [terminalTail, encode, decode])
+    (by norm_num [terminalTail, encode, decode]) baseline_edge_14
 
 theorem baseline_two_not_recurrent :
     decode (2 : Fin 5) ∉ RecurrentStates baselineModel.inducedKernel :=
   nonrecurrent_if_positive_into_closed baselineModel.inducedKernel
     terminalTail baseline_terminal_closed (decode 2)
-    (decode 3) (by decide) (by decide) baseline_edge_23
+    (decode 3) (by norm_num [terminalTail, encode, decode])
+    (by norm_num [terminalTail, encode, decode]) baseline_edge_23
 
 theorem full_zero_not_recurrent :
     decode (0 : Fin 5) ∉ RecurrentStates fullModel.inducedKernel :=
   nonrecurrent_if_two_positive_into_closed fullModel.inducedKernel
     terminalTail full_terminal_closed (decode 0) (decode 2)
-    (decode 3) (by decide) (by decide) full_edge_02 full_edge_23
+    (decode 3) (by norm_num [terminalTail, encode, decode])
+    (by norm_num [terminalTail, encode, decode]) full_edge_02 full_edge_23
 
 theorem full_one_not_recurrent :
     decode (1 : Fin 5) ∉ RecurrentStates fullModel.inducedKernel :=
   nonrecurrent_if_positive_into_closed fullModel.inducedKernel
     terminalTail full_terminal_closed (decode 1)
-    (decode 3) (by decide) (by decide) full_edge_13
+    (decode 3) (by norm_num [terminalTail, encode, decode])
+    (by norm_num [terminalTail, encode, decode]) full_edge_13
 
 theorem full_two_not_recurrent :
     decode (2 : Fin 5) ∉ RecurrentStates fullModel.inducedKernel :=
   nonrecurrent_if_positive_into_closed fullModel.inducedKernel
     terminalTail full_terminal_closed (decode 2)
-    (decode 3) (by decide) (by decide) full_edge_23
+    (decode 3) (by norm_num [terminalTail, encode, decode])
+    (by norm_num [terminalTail, encode, decode]) full_edge_23
 
 /-- A genuinely nonconstant descriptor on BOTH declared regime regions:
 false at their transient input states and true at either terminal state. -/
