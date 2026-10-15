@@ -199,3 +199,42 @@ theorem jointOnly_conditionalMargins_pos (C : FourCornerProtocol M F)
   exact ⟨hjoint,hjoint⟩
 
 end PermanssonResearch.GrammarRobust.ConditionalMargins
+
+
+namespace PermanssonResearch.GrammarRobust.ConditionalMargins
+open PermanssonLean
+universe uS uX uA
+variable {S : Type uS} {X : Type uX} {A : Type uA}
+variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
+
+theorem marginOf_eq_of_constant
+    (B : Set (JointState S X)) (hB : B.Nonempty)
+    (f : JointState S X → ℝ) (r : ℝ)
+    (hf : ∀ y ∈ B, f y = r) :
+    marginOf B f = r := by
+  unfold marginOf
+  have hset : f '' B = {r} := by
+    ext z
+    constructor
+    · rintro ⟨y,hy,rfl⟩
+      exact hf y hy
+    · intro hz
+      obtain ⟨y,hy⟩ := hB
+      refine ⟨y,hy,?_⟩
+      rw [hf y hy]
+      simpa using hz.symm
+  rw [hset]
+  simp
+
+theorem marginOf_nonneg (B : Set (JointState S X))
+    (hB : B.Nonempty) (f : JointState S X → ℝ)
+    (hf : ∀ y ∈ B, 0 ≤ f y) :
+    0 ≤ marginOf B f := by
+  unfold marginOf
+  apply le_csInf
+  · obtain ⟨y,hy⟩ := hB
+    exact ⟨f y, ⟨y,hy,rfl⟩⟩
+  · rintro z ⟨y,hy,rfl⟩
+    exact hf y hy
+
+end PermanssonResearch.GrammarRobust.ConditionalMargins
