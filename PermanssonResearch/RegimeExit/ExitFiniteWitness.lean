@@ -93,6 +93,10 @@ theorem f1_second_step_to_a :
         (encode ⁻¹' ({1} : Set (Fin 3))) = 1/6
   rw [f1_kernel_b_to_a]
   rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 3)]
+  norm_num only [ENNReal.ofReal_one, ENNReal.ofReal_ofNat, one_div]
+  rw [← ENNReal.mul_inv
+    (a := (2 : ℝ≥0∞)) (b := (3 : ℝ≥0∞))
+    (Or.inl (by norm_num)) (Or.inl (by norm_num))]
   norm_num
 
 /-- Two-transition first-exit destination probability is exactly 1/2. -/
@@ -109,7 +113,18 @@ theorem f1_two_step_to_a :
       (encode ⁻¹' ({1} : Set (Fin 3))) +
       firstExitStepMass f1Model f1Spec 1 b destinationA = 1/2
   rw [f1_one_step_to_a, f1_second_step_to_a]
-  rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 3)]
+  have h3 : (3 : ℝ≥0∞)⁻¹ = ENNReal.ofReal (1/3 : ℝ) := by
+    rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 3)]
+    norm_num
+  have h6 : (6 : ℝ≥0∞)⁻¹ = ENNReal.ofReal (1/6 : ℝ) := by
+    rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 6)]
+    norm_num
+  have h2 : (2 : ℝ≥0∞)⁻¹ = ENNReal.ofReal (1/2 : ℝ) := by
+    rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 2)]
+    norm_num
+  rw [h3, h6, h2, ← ENNReal.ofReal_add
+    (by norm_num : 0 ≤ (1/3 : ℝ))
+    (by norm_num : 0 ≤ (1/6 : ℝ))]
   norm_num
 
 end PermanssonResearch.RegimeExit.ExitFiniteWitness
