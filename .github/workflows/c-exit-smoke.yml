@@ -30,3 +30,14 @@ jobs:
           python-version: '3.13'
       - name: Run exact-rational C-Exit destructive checks
         run: python3 -m unittest discover -s verification/research -p 'test_c_exit_routing.py' -v
+
+
+  c-exit-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Independently run all exact-Fraction exit-routing fixtures
+        run: python3 -m unittest discover -s verification/research -p 'test_c_exit_routing.py' -v
