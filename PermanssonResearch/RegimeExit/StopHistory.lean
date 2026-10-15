@@ -48,12 +48,20 @@ theorem firstExitHistoryAt_measurable
     MeasurableSet (firstExitHistoryAt spec n D) := by
   unfold firstExitHistoryAt
   apply MeasurableSet.inter
-  · change MeasurableSet
-      (⋂ t : Finset.Iic n,
-        (fun h : (i : Finset.Iic (n+1)) → JointState S X =>
-          h ⟨t.1, Finset.mem_Iic.mpr
-            (Nat.le_succ_of_le (Finset.mem_Iic.mp t.2))⟩) ⁻¹'
-              spec.region)
+  · have hset :
+        {h : (i : Finset.Iic (n+1)) → JointState S X |
+          ∀ t : Finset.Iic n,
+            h ⟨t.1, Finset.mem_Iic.mpr
+              (Nat.le_succ_of_le (Finset.mem_Iic.mp t.2))⟩ ∈
+                spec.region} =
+        ⋂ t : Finset.Iic n,
+          (fun h : (i : Finset.Iic (n+1)) → JointState S X =>
+            h ⟨t.1, Finset.mem_Iic.mpr
+              (Nat.le_succ_of_le (Finset.mem_Iic.mp t.2))⟩) ⁻¹'
+                spec.region := by
+          ext h
+          simp only [Set.mem_setOf_eq, Set.mem_iInter, Set.mem_preimage]
+    rw [hset]
     apply MeasurableSet.iInter
     intro t
     exact spec.region_measurable.preimage (measurable_pi_apply _)
