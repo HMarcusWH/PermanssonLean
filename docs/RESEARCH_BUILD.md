@@ -9,9 +9,16 @@
 
 [PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64) implements the
 proposed A2 primitive-kernel TV and two-budget finite constitutive-certificate
-transport in the *research* library. Its source status is **DRAFT / under CI and
+transport in the *research* library, including a separately typed general TV-Lipschitz
+metric-valued property bridge. A2 exact rational regressions now comprise 16
+tests, not 15. A full verified checkpoint is [`fe38bd4d`](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38728397965),
+with 4,034 build jobs, 594/594 research regressions, 3,802 audited declarations,
+319/319 direct research imports, D0-F and C10 evidence checks. A later
+[`db1c7e78` focused run](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38728807954)
+passed 16/16 adversarial Python tests and Lean A2 smoke. Both are scoped to
+their own heads. Its source status is **DRAFT / under CI and
 review**, not PROVED solely because code is committed. See
-[Lane A2 ledger](LANE_A2_PRIMITIVE_TV.md) and inspect the exact final PR head,
+[Lane A2 ledger](LANE_A2_PRIMITIVE_TV.md) and the [v0.2.0 theorem ledger](V020_RESEARCH_PROOF_LEDGER.md); inspect the exact final PR head,
 test results, and transitive axiom audit before promotion.
 
 PR #62 (C11-A) has merged to main at `d137ac2308285f843a1ccf76fede74b4b6b65131`,

@@ -1,6 +1,7 @@
 # A2 — Typed primitive-kernel TV robustness (PR #64)
 
-**Research status: IMPLEMENTATION IN PROGRESS / UNVERIFIED UNTIL EXACT-HEAD RESEARCH LEAN CI.**
+**Research status: draft PR #64; final-head verification and source review required before release promotion.**
+Checkpoint `fe38bd4d` passed all four workflows, 594 research tests and the 3,802-declaration axiom audit ([Research Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38728397965)); later `db1c7e78` passed the focused A2 build and 16/16 exact-fraction tests ([smoke](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38728807954)). These are **version-specific**, not a substitute for the final PR source-head/synthetic-merge gates. See [v0.2.0 source-to-proof ledger](V020_RESEARCH_PROOF_LEDGER.md).
 **Base:** `main@d137ac2308285f843a1ccf76fede74b4b6b65131`.
 **Release target:** proposed Permansson v0.2.0 Proposition 5.5 / Corollary 5.6.
 **Boundary:** independently versioned `PermanssonResearch` theory. Original v0.1.8 paper, Lean source, hashes, application schema and toolchain are frozen.
@@ -37,7 +38,7 @@ For the baseline and matched intervened pair, supply separate `PrimitiveErrorBou
   |κtilde_f(B1) - κ_f(B1)| ≤ e0 + eJ
 ```
 
-This is the source-compatible factor-one bounded score. A generic L-Lipschitz path property is **not** automatically admitted as a `FinitePathProperty`; a separate explicit Lipschitz bridge is needed. The existing `RegimeSpecification.constitutiveMargin_perturbation_abs_le` proves the metric margin part. The actual second-model uniform margin must be identified via the original `transportComparisonSet` theorem (requires `MeasurableSpace.SeparatesPoints`).
+This is the source-compatible factor-one bounded score. The separately typed `TVLipschitzPrefixProperty` carries an explicitly quantified nonnegative Lipschitz constant and a metric-valued functional of the true canonical T-prefix *measure*; it proves the genuine original-property margin bound `Lψ(e0+eJ)`, its linear `Lψ T(d0+dJ)` envelope and a conditional positive-gap corollary. An arbitrary non-Lipschitz property is **not** covered. The existing `RegimeSpecification.constitutiveMargin_perturbation_abs_le` proves the metric margin part. The actual second-model uniform margin must be identified via the original `transportComparisonSet` theorem (requires `MeasurableSpace.SeparatesPoints`).
 
 Optional independently verified numerical output-error values `b0,bJ` can be added *after* the exact model comparison via `HasConstitutiveOutputErrors`. Do not call a numerical output profile the exact margin of a second model.
 
@@ -61,12 +62,14 @@ When `eta'=1`, the persistence statement may be vacuous, so a **nontrivial survi
 - `PermanssonResearch/Perturbation/PrimitiveModelPair.lean` — typed matched models and original comparison transport
 - `PermanssonResearch/Perturbation/PrimitiveTV.lean` — true induced-kernel primitive error derivation
 - `PermanssonResearch/Perturbation/PrimitiveMargin.lean` — two-budget error, exact profile, uniform margin and complete certificate
+- `PermanssonResearch/Perturbation/PrimitiveLipschitz.lean` — genuinely metric-valued TV-Lipschitz property, geometric/linear bounds and strict-gap preservation
+- `PermanssonResearch/Perturbation/PrimitiveAdversaries.lean` — source-compiled destructive logical boundaries
 - `verification/research/test_a2_primitive_tv.py` — deterministic exact-rational primitive/order/negative controls
 - `PermanssonResearch.lean` — root imports; verification infrastructure audits every research declaration
 
 ## Destructive suite
 
-Tests A2-01 through A2-15 include zero/single stage/capped errors, 0/1-horizon cases, post-intervention-only rows, x'-sensitive update order, changed P as structural error, zero uniform gap despite a positive statewise effect, small-leak infinite-invariance failure, score bounds, protocol matching and seeded exact-rational exhaustive path-law examples.
+Tests A2-01 through A2-16 include zero/single stage/capped errors, 0/1-horizon cases, post-intervention-only rows, x'-sensitive update order, changed P as structural error, zero uniform gap despite a positive statewise effect, small-leak infinite-invariance failure, score bounds, protocol matching and seeded exact-rational exhaustive path-law examples.
 
 The Python suite is not a Lean theorem, a source-bound Lean receipt, or a proof of external data identity. Required Lean witness/negative controls remain a separate review gate.
 

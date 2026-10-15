@@ -1,7 +1,7 @@
 # Future Permansson theory roadmap
 
 **RESEARCH / NOT PART OF THE FROZEN v0.1.8 RELEASE.**  
-**Current planning checkpoint:** 15 October 2026; baseline main@57aa4eb3b58df770630f16b04940cb5933317709. This is a **date- and commit-scoped status**, not a live CI dashboard.  
+**Current planning checkpoint:** 15 October 2026; main@d137ac2308285f843a1ccf76fede74b4b6b65131, following merged C11-A and the DOC-0 v0.2.0 specification. This is a **date- and commit-scoped status**, not a live CI dashboard.  
 **Complete mathematical specification:** [PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md](PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md) — hypotheses, all equations, proof skeletons, exact-countermodel tests, Lean module names and manuscript wiring.  
 **Detailed original A/B/C/D architecture:** [PERMANSSON_RESEARCH_ARCHITECTURE.md](PERMANSSON_RESEARCH_ARCHITECTURE.md). **Actual research-build evidence:** [RESEARCH_BUILD.md](RESEARCH_BUILD.md).
 
@@ -12,8 +12,8 @@
 | Original v0.1.8 | **Frozen, historical proof snapshot** | c018f79ea4ce46f4f679ad5bca254509778fc53c; discrete GR/PR core through Prop. 8.1, not empirical certification |
 | A / CQ-1 | **Merged research**, PRs #36–38 | finite bounded-path and approximation certificates, no automatic Exact GR |
 | B / grammar robustness | **Merged research**, PR #51 | joint-only constitutive PR witness, OR/AND/XOR and admissible block grammar/minimality already implemented |
-| C / multiple limits | **C1–C10 merged**, PRs #52–61 | recurrent-class occupations, typed Exact GR, eventual events, rational absorption and finite-menu margins; specialized finite chain scope |
-| C11-A | **Draft / in progress**, PR #62 | exact stationary rational class certificate under review; do not call current source head fully CI-certified |
+| C / multiple limits | **C1–C11-A merged**, PRs #52–62 | recurrent-class occupations, typed Exact GR, eventual events, rational absorption, certified class stationarity; specialized finite chain scope and conditional receipt semantics |
+| C11-A | **Merged**, PR #62 | exact rational stationary class certificates on the typed finite subclass; not a universal solver, Exact GR/PR promotion or independent peer review |
 | D / reverse solver | **Merged research**, PRs #39–50 | finite menus, controlled kernels, Bellman, rational nonstationary/history-sensitive policies; optimum in specified class |
 | E / approximate typed quotients | **PROPOSED** | exact quotient theorem exists, quantitative defect-to-margin transport does not yet exist |
 | F / multi-agent protocols | **PROPOSED** | typed intervention primitives exist, opponent CL/OL semantics are not yet formalized |
@@ -99,8 +99,8 @@ specified model and policy class.
 
 Every formula in this section is **PROPOSED**, unless the stated legacy declaration is named as EXISTING. The corresponding complete theorem statements, proofs/countermodels, Lean targets and assumptions are in the [v0.2.0 Mathematical Integration Contract](PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md). Existing v0.1.8 notations and quantified gates remain unchanged.
 
-**Implementation tracking (15 October 2026):** A2 is being implemented in
-[draft PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64). Source and
+**Implementation tracking (15 October 2026):** A2's additive primitive TV, factor-one bounded score and generic metric-valued L-Lipschitz source are implemented in
+[draft PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64), alongside 16 exact-rational adversaries and full finite-persistence certificate transport. [Proof ledger](V020_RESEARCH_PROOF_LEDGER.md). Source and
 test commits are not proof release evidence; promote only after the exact-head
 Lean and independent review gates. C11-A PR #62 has merged since this
 roadmap's historical baseline.
