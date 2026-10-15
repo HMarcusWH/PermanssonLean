@@ -6,6 +6,12 @@ Check merged [PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64), draf
 the encoded declarations on its matching source SHA; it is not a v0.2.0 paper
 release or independent third-party review.
 
+## Current merge status and active C-Exit candidate (15 October 2026)
+
+PR #65 merged `main@af9d1084664e9e51f7aba0045e98532e58c18829`, and all four post-merge main workflows passed. PR #66 remains **DRAFT, UNVERIFIED**. Its [C-Exit theorem-to-source ledger](LANE_C_EXIT_ROUTING.md) tracks `RegimeExit/ExitEvents`, `ExitSubkernel`, `ExitRouting`, `ExitConservation`, `QSDDestination`, `ExitModels`, 22 independent exact-Fraction adversaries, and the focused smoke workflow. Do not promote v0.2.0 Definition 4.2d or Theorem 4.2e or QSD corollary while any proof/CI gate is incomplete. PR #67 switch/PR constitution remains OPEN.
+
+## Historical source-to-theorem ledgers (dated snapshots)
+
 ## Current merged baseline and B2 draft
 
 Main `a9d914520c68741a23cda89357499f3cf3f1500a` has merged A2. All four post-merge main workflows passed on this exact SHA; this is not an acceptance of the new B2 branch.
