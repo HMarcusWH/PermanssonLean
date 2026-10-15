@@ -397,6 +397,7 @@ import PermanssonResearch.RegimeExit.SwitchProperty
 import PermanssonResearch.RegimeExit.SwitchConstitution
 import PermanssonResearch.RegimeExit.SwitchGrounded
 import PermanssonResearch.RegimeExit.SwitchWitnessModels
+import PermanssonResearch.RegimeExit.SwitchWitnessGeometry
 
 /-!
 # PermanssonResearch
