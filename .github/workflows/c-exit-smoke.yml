@@ -19,8 +19,14 @@ jobs:
         with:
           auto-config: false
           build: true
-          build-args: PermanssonResearch.RegimeExit.ExitSubkernel
+          build-args: PermanssonResearch.RegimeExit.ExitRouting
           test: false
           lint: false
           use-mathlib-cache: true
           use-github-cache: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run exact-rational C-Exit destructive checks
+        run: python3 -m unittest discover -s verification/research -p 'test_c_exit_routing.py' -v
