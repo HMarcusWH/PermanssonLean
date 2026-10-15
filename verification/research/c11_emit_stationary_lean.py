@@ -66,10 +66,10 @@ def emit_source(report):
                   f"  classStates := {finite_set(c['states'],n)}",
                   f"  weights := fun x => {weights}", "",
                   f"theorem member{index}_accepted :",
-                  f"    checkClassStationary kernel member{index} = true := by decide",
+                  f"    checkClassStationary kernel member{index} = true := by decide +kernel",
                   f"theorem member{index}_share :",
                   f"    trueShare member{index} descriptor =",
-                  f"      {rational_expr(c['true_share'])} := by decide", ""]
+                  f"      {rational_expr(c['true_share'])} := by decide +kernel", ""]
     # These proofs use the reified kernel itself as the baseline AND the
     # intervention member. They certify the constructed D0 typed model,
     # not arbitrary external models or JSON parsing.
@@ -100,7 +100,7 @@ def emit_source(report):
     lines += [f"def completeFamily : List (ClassStationaryCandidate {n}) :=",
               f"  [{members}]", "",
               "theorem completeFamily_accepted :",
-              "    checkStationaryFamily kernel completeFamily = true := by decide",
+              "    checkStationaryFamily kernel completeFamily = true := by decide +kernel",
               "", "end C11ReifiedFixture", ""]
     for i in range(len(report["classes"])):
         lines.append(f"#print axioms C11ReifiedFixture.member{i}_accepted")
