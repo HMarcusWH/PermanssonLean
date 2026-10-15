@@ -382,3 +382,4 @@ import PermanssonResearch.GrammarRobust.ConditionalMargins
 import PermanssonResearch.GrammarRobust.InteractionVector
 import PermanssonResearch.GrammarRobust.SequentialBlockBridge
 import PermanssonResearch.GrammarRobust.SequentialBooleanBridge
+import PermanssonResearch.GrammarRobust.SequentialAdversaries
