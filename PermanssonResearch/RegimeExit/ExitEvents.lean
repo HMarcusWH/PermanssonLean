@@ -110,9 +110,8 @@ theorem firstExitAt_eq_exitTime_succ
   · rintro ⟨ht, hD⟩
     by_cases hex : ∃ t : ℕ, w t ∉ spec.region
     · have hval : Nat.find hex = n+1 := by
-        have hcast : (Nat.find hex : ℕ∞) = (n+1 : ℕ∞) := by
-        simpa only [exitTime, dif_pos hex] using ht
-      exact_mod_cast hcast
+        simp only [exitTime, dif_pos hex] at ht
+      exact_mod_cast ht
       refine ⟨?_, hD, ?_⟩
       · intro t htle
         by_contra hnot
@@ -216,18 +215,25 @@ theorem firstExitEverDestination_iff_not_survivesForever
       w ∉ survivesForeverSet spec := by
   classical
   constructor
-  · rintro ⟨n, hn⟩ hforever
+  · intro hExit hforever
+    obtain ⟨n, hn⟩ := Set.mem_iUnion.mp hExit
+    change w ∈ survivesThroughSet spec n ∩
+      ((fun u : ℕ → JointState S X => u (n+1)) ⁻¹'
+        (Set.univ \ spec.region)) at hn
     exact hn.2.2 (hforever (n+1))
   · intro h
     have hex : ∃ t : ℕ, w t ∉ spec.region := by
       simpa [survivesForeverSet, SurvivesForever] using h
     have hpos : 0 < Nat.find hex := by
-      have hb := Nat.find_spec hex
-      omega
+      by_contra h
+      have hz : Nat.find hex = 0 := Nat.eq_zero_of_not_pos h
+      have hf := Nat.find_spec hex
+      rw [hz] at hf
+      exact hf h0
     obtain ⟨n, hn⟩ : ∃ n : ℕ, Nat.find hex = n+1 := by
       cases hfind : Nat.find hex with
       | zero => omega
-      | succ n => exact ⟨n, hfind⟩
+      | succ n => exact ⟨n, rfl⟩
     apply Set.mem_iUnion.mpr
     refine ⟨n, ?_⟩
     have hout : w (n+1) ∉ spec.region := by
