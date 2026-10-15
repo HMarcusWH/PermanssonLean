@@ -18,7 +18,7 @@ jobs:
         with:
           auto-config: false
           build: true
-          build-args: PermanssonResearch.RegimeExit.SwitchRouting PermanssonResearch.RegimeExit.SwitchProperty
+          build-args: PermanssonResearch.RegimeExit.SwitchRouting PermanssonResearch.RegimeExit.SwitchProperty PermanssonResearch.RegimeExit.SwitchConstitution
           test: false
           lint: false
           use-mathlib-cache: true

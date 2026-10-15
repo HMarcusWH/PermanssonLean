@@ -391,6 +391,7 @@ import PermanssonResearch.Perturbation.PrimitiveAdversaries
 
 import PermanssonResearch.RegimeExit.SwitchRouting
 import PermanssonResearch.RegimeExit.SwitchProperty
+import PermanssonResearch.RegimeExit.SwitchConstitution
 
 /-!
 # PermanssonResearch
