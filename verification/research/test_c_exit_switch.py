@@ -109,11 +109,25 @@ class SwitchingAdversaries(unittest.TestCase):
             self.assertEqual(routing(full(),y,TARGET,5),
                              routing(full(),y,TARGET|B,5))
     def test_competing_exit_must_not_be_a_switch(self):
-        K=full();K[0]={0:HALF,2:Q(1,4),4:Q(1,4)}
-        K[1]={1:HALF,3:Q(1,4),4:Q(1,4)}
+        # Sixth physical state 5 is outside source B but not a target.
+        # An inside-B absorbing state 4 is NOT a competing exit.
+        K={0:{0:HALF,2:Q(1,4),5:Q(1,4)},
+           1:{1:HALF,3:Q(1,4),5:Q(1,4)},
+           2:{3:ONE},3:{3:ONE},4:{4:ONE},5:{5:ONE}}
         for y in BASIN:
-            p,rest=routing(K,y,TARGET,10)
-            self.assertLess(p,ONE-rest)
+            living={y:ONE}
+            target=other=ZERO
+            for _ in range(10):
+                step={s:ZERO for s in range(6)}
+                for s,p in living.items():
+                    for z,q in K[s].items(): step[z]+=p*q
+                target+=sum((p for s,p in step.items() if s in TARGET),ZERO)
+                other+=step[5]
+                living={s:p for s,p in step.items() if s in B and p}
+            rest=sum(living.values(),ZERO)
+            self.assertGreater(other,ZERO)
+            self.assertEqual(target+other+rest,ONE)
+            self.assertLess(target,ONE-rest)
     def test_target_arrival_without_invariance(self):
         K=full();K[2]={4:ONE}
         self.assertFalse(has_closed_region(K,TARGET))
