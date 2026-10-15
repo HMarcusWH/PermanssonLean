@@ -85,6 +85,10 @@ theorem exitSubkernel_mass_add_killedKernel_mass_eq_one
     StrategicWorldModel.inducedKernel_isMarkov M
   have h := measure_add_measure_compl spec.region_measurable
     (μ := M.inducedKernel y)
+  have hOutside : Set.univ \ spec.region = spec.regionᶜ := by
+    ext z
+    simp
+  rw [hOutside]
   simpa [add_comm] using h
 
 /-- The actual n-step killed measure, then one exit transition. -/
