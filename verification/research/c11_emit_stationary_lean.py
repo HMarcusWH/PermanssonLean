@@ -47,7 +47,8 @@ def emit_source(report):
         "import Mathlib.Tactic", "",
         "open PermanssonResearch.ReverseSolver",
         "open PermanssonResearch.ReverseSolver.C11",
-        "open PermanssonResearch.ReverseSolver.C10", "",
+        "open PermanssonResearch.ReverseSolver.C10",
+        "open PermanssonResearch.ReverseSolver.FiniteStrategicRealization", "",
         "set_option autoImplicit false",
         "set_option maxRecDepth 8192",
         "set_option maxHeartbeats 0", "",
@@ -68,6 +69,32 @@ def emit_source(report):
                   f"theorem member{index}_share :",
                   f"    trueShare member{index} descriptor =",
                   f"      {rational_expr(c['true_share'])} := by decide", ""]
+    # These proofs use the reified kernel itself as the baseline AND the
+    # intervention member. They certify the constructed D0 typed model,
+    # not arbitrary external models or JSON parsing.
+    for index, c in enumerate(report["classes"]):
+        lines += [
+            f"def member{index}_reportedTrue : ℚ :=",
+            f"  {rational_expr(c['true_share'])}", "",
+            f"theorem member{index}_native :",
+            f"    certifiedProbability kernel member{index} member{index}_accepted =",
+            "      PermanssonResearch.MultipleLimit.ClassStationarySelectionLaw.stationaryForSet",
+            "        (rationalStrategicIntervention kernel kernel).intervention.apply.inducedKernel",
+            f"        (decodedClass member{index}.classStates) := by",
+            f"  exact checked_stationary_eq_native kernel kernel member{index}",
+            f"    member{index}_accepted", "",
+            f"theorem member{index}_native_observed :",
+            "    ((PermanssonResearch.MultipleLimit.ClassStationarySelectionLaw.stationaryForSet",
+            "        (rationalStrategicIntervention kernel kernel).intervention.apply.inducedKernel",
+            f"        (decodedClass member{index}.classStates)).map",
+            f"          (fun y : PermanssonLean.JointState Unit (Fin {n}) =>",
+            "            descriptor (encode y))).toMeasure",
+            "        ({true} : Set Bool) =",
+            f"      ENNReal.ofReal (member{index}_reportedTrue : ℝ) := by",
+            f"  simpa only [member{index}_share, member{index}_reportedTrue] using",
+            f"    (checked_observed_true_mass_eq_native kernel kernel member{index}",
+            f"      member{index}_accepted descriptor)", ""
+        ]
     members = ", ".join(f"member{i}" for i in range(len(report["classes"])))
     lines += [f"def completeFamily : List (ClassStationaryCandidate {n}) :=",
               f"  [{members}]", "",
@@ -77,6 +104,8 @@ def emit_source(report):
     for i in range(len(report["classes"])):
         lines.append(f"#print axioms C11ReifiedFixture.member{i}_accepted")
         lines.append(f"#print axioms C11ReifiedFixture.member{i}_share")
+        lines.append(f"#print axioms C11ReifiedFixture.member{i}_native")
+        lines.append(f"#print axioms C11ReifiedFixture.member{i}_native_observed")
     lines.append("#print axioms C11ReifiedFixture.completeFamily_accepted")
     return "\n".join(lines) + "\n"
 
