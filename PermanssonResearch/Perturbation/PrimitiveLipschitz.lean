@@ -227,5 +227,77 @@ theorem primitiveLipschitz_constitutiveMargin_abs_le
     (p.toOutputErrors (B₁ := B₁) bounds)
   rwa [lipschitzApproximateProfile_margin_eq] at h
 
+/-- The same v0.2.0 Lipschitz bound in its weaker, explicit linear
+T-transition form, obtained from the original geometric Proposition 5.4.
+The geometric estimate remains the preferred finite-horizon certificate. -/
+theorem primitiveLipschitz_constitutiveMargin_le_linear
+    [MeasurableSpace.SeparatesPoints (PermanssonLean.JointState S X)]
+    {T : ℕ}
+    (p : TVLipschitzPrefixProperty
+      (PermanssonLean.JointState S X) Z T)
+    {M : PermanssonLean.StrategicWorldModel S X A}
+    {spec : PermanssonLean.RegimeSpecification
+      (PermanssonLean.JointState S X) H}
+    {Component : Type*}
+    {F : PermanssonLean.InterventionFamily M Component}
+    {B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet M spec}
+    {J : PermanssonLean.AdmissibleStrategicIntervention F}
+    {pair : PrimitiveModelPair M F J}
+    (bounds : PrimitiveProtocolErrors M F J pair) :
+    |PermanssonLean.RegimeSpecification.constitutiveMargin
+        pair.approximate spec pair.approximateFamily p.toRegimeProperty
+        (pair.comparisonSet spec B₁) pair.approximateIntervention -
+      PermanssonLean.RegimeSpecification.constitutiveMargin
+        M spec F p.toRegimeProperty B₁ J| ≤
+      p.constant * (T : ℝ) *
+        (bounds.baseline.kernelBudget + bounds.intervention.kernelBudget) := by
+  have hgeometry := primitiveLipschitz_constitutiveMargin_abs_le
+    (M := M) (spec := spec) (F := F) (B₁ := B₁) (J := J)
+    (pair := pair) p bounds
+  have h0 := PermanssonLean.ProbabilitySupport.geometricTVEnvelope_le_linear
+    bounds.baseline.kernelBudget_nonneg bounds.baseline.kernelBudget_le_one T
+  have hJ := PermanssonLean.ProbabilitySupport.geometricTVEnvelope_le_linear
+    bounds.intervention.kernelBudget_nonneg
+    bounds.intervention.kernelBudget_le_one T
+  calc
+    _ ≤ p.constant * bounds.baselinePrefixBudget T +
+        p.constant * bounds.interventionPrefixBudget T := hgeometry
+    _ ≤ p.constant * ((T : ℝ) * bounds.baseline.kernelBudget) +
+        p.constant * ((T : ℝ) * bounds.intervention.kernelBudget) := by
+          exact add_le_add
+            (mul_le_mul_of_nonneg_left h0 p.constant_nonneg)
+            (mul_le_mul_of_nonneg_left hJ p.constant_nonneg)
+    _ = _ := by ring
+
+/-- A strictly positive finite-horizon uniform constitutive margin survives
+when the *two independently certified* primitive model error budgets are
+strictly below the original margin. The conclusion is not Exact GR or PR. -/
+theorem primitiveLipschitz_positive_finiteMargin
+    [MeasurableSpace.SeparatesPoints (PermanssonLean.JointState S X)]
+    {T : ℕ}
+    (p : TVLipschitzPrefixProperty
+      (PermanssonLean.JointState S X) Z T)
+    {M : PermanssonLean.StrategicWorldModel S X A}
+    {spec : PermanssonLean.RegimeSpecification
+      (PermanssonLean.JointState S X) H}
+    {Component : Type*}
+    {F : PermanssonLean.InterventionFamily M Component}
+    {B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet M spec}
+    {J : PermanssonLean.AdmissibleStrategicIntervention F}
+    {pair : PrimitiveModelPair M F J}
+    (bounds : PrimitiveProtocolErrors M F J pair)
+    (hgap : p.constant * bounds.baselinePrefixBudget T +
+      p.constant * bounds.interventionPrefixBudget T <
+        PermanssonLean.RegimeSpecification.constitutiveMargin
+          M spec F p.toRegimeProperty B₁ J) :
+    0 < PermanssonLean.RegimeSpecification.constitutiveMargin
+      pair.approximate spec pair.approximateFamily p.toRegimeProperty
+      (pair.comparisonSet spec B₁) pair.approximateIntervention := by
+  have h := primitiveLipschitz_constitutiveMargin_abs_le
+    (M := M) (spec := spec) (F := F) (B₁ := B₁) (J := J)
+    (pair := pair) p bounds
+  have hlower := (abs_le.mp h).1
+  linarith
+
 end Perturbation
 end PermanssonResearch
