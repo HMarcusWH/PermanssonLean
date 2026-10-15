@@ -82,7 +82,7 @@ noncomputable def f1Spec : RegimeSpecification Y3 (Fin 3) where
   descriptor := Prod.snd
   descriptor_measurable := measurable_snd
   target := ⟨Measure.dirac 0, inferInstance⟩
-  convergenceMode := RegimeSpecification.ConvergenceMode.almostSureWeak Y3 (Fin 3)
+  convergenceMode := ConvergenceMode.almostSureWeak Y3 (Fin 3)
 
 noncomputable def f2Spec : RegimeSpecification Y3 (Fin 3) where
   region := {y | y.2 = 0 ∨ y.2 = 1}
@@ -93,7 +93,7 @@ noncomputable def f2Spec : RegimeSpecification Y3 (Fin 3) where
   descriptor := Prod.snd
   descriptor_measurable := measurable_snd
   target := ⟨Measure.dirac 1, inferInstance⟩
-  convergenceMode := RegimeSpecification.ConvergenceMode.almostSureWeak Y3 (Fin 3)
+  convergenceMode := ConvergenceMode.almostSureWeak Y3 (Fin 3)
 
 noncomputable def f4Spec : RegimeSpecification Y4 (Fin 4) where
   region := {y | y.2 = 0 ∨ y.2 = 1}
@@ -104,7 +104,7 @@ noncomputable def f4Spec : RegimeSpecification Y4 (Fin 4) where
   descriptor := Prod.snd
   descriptor_measurable := measurable_snd
   target := ⟨Measure.dirac 0, inferInstance⟩
-  convergenceMode := RegimeSpecification.ConvergenceMode.almostSureWeak Y4 (Fin 4)
+  convergenceMode := ConvergenceMode.almostSureWeak Y4 (Fin 4)
 
 theorem f1_kernel_b_to_a :
     f1Model.inducedKernel (decode (0 : Fin 3))
