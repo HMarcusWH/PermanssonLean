@@ -61,10 +61,17 @@ theorem firstExitHistoryAt_measurable
                 spec.region := by
           ext h
           simp only [Set.mem_setOf_eq, Set.mem_iInter, Set.mem_preimage]
-    rw [hset]
-    apply MeasurableSet.iInter
-    intro t
-    exact spec.region_measurable.preimage (measurable_pi_apply _)
+    have hi : MeasurableSet
+        (⋂ t : Finset.Iic n,
+          (fun h : (i : Finset.Iic (n+1)) → JointState S X =>
+            h ⟨t.1, Finset.mem_Iic.mpr
+              (Nat.le_succ_of_le (Finset.mem_Iic.mp t.2))⟩) ⁻¹'
+                spec.region) := by
+      apply MeasurableSet.iInter
+      intro t
+      exact spec.region_measurable.preimage (measurable_pi_apply _)
+    rw [← hset] at hi
+    exact hi
   · exact (hD.diff spec.region_measurable).preimage
       (measurable_pi_apply _)
 
