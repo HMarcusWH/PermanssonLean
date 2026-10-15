@@ -26,6 +26,7 @@ class C11LeanLiteralTests(unittest.TestCase):
     def test_02_source_contains_complete_data(self):
         code=emit_source(self.example)
         for text in ["ClassStationaryCandidate 2","checkStationaryFamily",
+                     "inducedKernel_isMarkov",
                      "member0_share","member0_native",
                      "member0_native_observed","completeFamily_accepted",
                      "#print axioms C11ReifiedFixture.member0_native_observed",

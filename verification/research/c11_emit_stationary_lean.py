@@ -49,6 +49,7 @@ def emit_source(report):
         "open PermanssonResearch.ReverseSolver.C11",
         "open PermanssonResearch.ReverseSolver.C10",
         "open PermanssonResearch.ReverseSolver.FiniteStrategicRealization", "",
+        "attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov", "",
         "set_option autoImplicit false",
         "set_option maxRecDepth 8192",
         "set_option maxHeartbeats 0", "",
