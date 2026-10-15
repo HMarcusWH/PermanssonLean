@@ -364,6 +364,9 @@ import PermanssonResearch.ReverseSolver.C11TypedStationaryBridge
 import PermanssonResearch.ReverseSolver.C11ObservedStationary
 import PermanssonResearch.ReverseSolver.C11SixStateWitness
 
+import PermanssonResearch.Perturbation.PrimitiveModelPair
+import PermanssonResearch.Perturbation.PrimitiveTV
+
 /-!
 # PermanssonResearch
 
