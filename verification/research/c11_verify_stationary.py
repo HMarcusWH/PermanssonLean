@@ -68,7 +68,10 @@ def verify_report(obj):
     for reported, cls in zip(classes, actual):
         require(type(reported) is dict and set(reported) ==
                 {"states", "stationary", "true_share"}, "wrong class fields")
-        require(reported["states"] == list(cls), "wrong/missing/extra or reordered class")
+        states = reported["states"]
+        require(type(states) is list and all(type(x) is int for x in states),
+                "class states must be integer indices, not booleans or floats")
+        require(states == list(cls), "wrong/missing/extra or reordered class")
         v = reported["stationary"]
         require(type(v) is list and len(v) == n, "incomplete stationary vector")
         values = [fraction(x) for x in v]

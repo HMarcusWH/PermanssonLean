@@ -155,5 +155,13 @@ class C11StationaryTests(unittest.TestCase):
         with self.assertRaises(StationaryError):
             verify_report(forged)
 
+    def test_17_reject_noninteger_class_state_indices(self):
+        out = execute(request([["1", "0"], ["0", "1"]], [False, True]))
+        for invalid in (True, 1.0):
+            forged = copy.deepcopy(out)
+            forged["classes"][1]["states"] = [invalid]
+            with self.assertRaises(StationaryError):
+                verify_report(forged)
+
 if __name__=="__main__":
     unittest.main()
