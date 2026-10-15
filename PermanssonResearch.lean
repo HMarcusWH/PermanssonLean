@@ -401,6 +401,7 @@ import PermanssonResearch.RegimeExit.SwitchWitnessGeometry
 import PermanssonResearch.RegimeExit.SwitchWitnessExactGR
 import PermanssonResearch.RegimeExit.SwitchWitnessCertificate
 import PermanssonResearch.RegimeExit.SwitchWitnessMargin
+import PermanssonResearch.RegimeExit.SwitchWitnessOccupation
 
 /-!
 # PermanssonResearch
