@@ -34,6 +34,8 @@ theorem f1_one_step_to_a :
   have hOutside : D \ f1Spec.region = D := by
     ext y
     simp [D, f1Spec, encode]
+    intro h
+    simp [h]
   calc
     exitRoutingFinite f1Model f1Spec 1 (decode 0) D =
         firstExitStepMass f1Model f1Spec 0 (decode 0) D := by
