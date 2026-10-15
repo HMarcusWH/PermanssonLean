@@ -139,6 +139,12 @@ noncomputable def commonInducedKernel
 theorem commonInducedKernel_le_left
     (M N : PermanssonLean.StrategicWorldModel S X A) :
     commonInducedKernel M N ≤ M.inducedKernel := by
+  letI : IsMarkovKernel M.generator.action := M.generator.action_isMarkov
+  letI : IsMarkovKernel N.generator.action := N.generator.action_isMarkov
+  letI : IsMarkovKernel M.world := M.world_isMarkov
+  letI : IsMarkovKernel N.world := N.world_isMarkov
+  letI : IsMarkovKernel M.generator.update := M.generator.update_isMarkov
+  letI : IsMarkovKernel N.generator.update := N.generator.update_isMarkov
   unfold commonInducedKernel
   apply PermanssonLean.ProbabilitySupport.kernelMap_mono
   · apply compProd_mono
@@ -156,6 +162,12 @@ theorem commonInducedKernel_le_left
 theorem commonInducedKernel_le_right
     (M N : PermanssonLean.StrategicWorldModel S X A) :
     commonInducedKernel M N ≤ N.inducedKernel := by
+  letI : IsMarkovKernel M.generator.action := M.generator.action_isMarkov
+  letI : IsMarkovKernel N.generator.action := N.generator.action_isMarkov
+  letI : IsMarkovKernel M.world := M.world_isMarkov
+  letI : IsMarkovKernel N.world := N.world_isMarkov
+  letI : IsMarkovKernel M.generator.update := M.generator.update_isMarkov
+  letI : IsMarkovKernel N.generator.update := N.generator.update_isMarkov
   unfold commonInducedKernel
   apply PermanssonLean.ProbabilitySupport.kernelMap_mono
   · apply compProd_mono
