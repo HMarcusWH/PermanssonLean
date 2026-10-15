@@ -84,7 +84,9 @@ theorem targetBadStep_probability_zero
       K z target.regionᶜ = 0 := by
     have hfin : K z target.region ≠ ⊤ := measure_ne_top _ _
     rw [measure_compl target.region_measurable hfin]
-    simp [hInv z hz]
+    change (1 : ℝ≥0∞) - N.inducedKernel z target.region = 0
+    rw [hInv z hz]
+    simp
   have hSet : pairFn ⁻¹' (A ×ˢ target.regionᶜ) =
       targetBadStep target n := by
     ext w
@@ -100,7 +102,6 @@ theorem targetBadStep_probability_zero
           StrategicWorldModel.stationaryHistoryKernel K n)
           (A ×ˢ target.regionᶜ) := by
       rw [hPair]
-      rfl
     _ = ∫⁻ h in A, K (last h) target.regionᶜ
           ∂(P.map (Preorder.frestrictLe n)) := by
       rw [Measure.compProd_apply_prod hA hC]
