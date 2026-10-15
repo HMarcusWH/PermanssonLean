@@ -26,6 +26,7 @@ open PermanssonResearch.RegimeExit.SwitchWitnessModels
 open PermanssonResearch.RegimeExit.SwitchWitnessGeometry
 open PermanssonResearch.RegimeExit.SwitchWitnessExactGR
 open PermanssonResearch.RegimeExit.SwitchWitnessCertificate
+open PermanssonResearch.ReverseSolver
 open PermanssonResearch.ReverseSolver.FiniteStrategicRealization
 
 private theorem source_singleton_outside (j : Fin 5)
@@ -116,7 +117,8 @@ private theorem singleton_exit_subset_target
   refine ⟨hs, ?_⟩
   have hpoint : w (0+1) = decode j := by
     simpa only [Set.mem_singleton_iff] using hd.1
-  exact ⟨hpoint.symm ▸ htarget, hd.2⟩
+  refine ⟨?_, hd.2⟩
+  simpa only [hpoint] using htarget
 
 private theorem half_le_routing_zero :
     (1/2 : ℝ≥0∞) ≤
@@ -176,12 +178,16 @@ theorem full_routing_half :
     · exact Or.inl (by simpa [decode] using congrArg (fun i : Fin 5 => ((),i)) h0)
     · exact Or.inr (by simpa [decode] using congrArg (fun i : Fin 5 => ((),i)) h1)
   rcases h with rfl | rfl
-  · rw [show fullIntervention.intervention.apply = fullModel from
-      actual_full_intervened_model]
-    simpa using half_le_routing_zero
-  · rw [show fullIntervention.intervention.apply = fullModel from
-      actual_full_intervened_model]
-    simpa using half_le_routing_one
+  · change (1 - (1/2 : ℝ≥0∞)) ≤
+        exitRoutingInfinite fullModel sourceObservedSpec
+          (decode (0 : Fin 5)) targetObservedSpec.basin
+    have hhalf : (1 : ℝ≥0∞) - 1/2 = 1/2 := by norm_num
+    simpa only [hhalf] using half_le_routing_zero
+  · change (1 - (1/2 : ℝ≥0∞)) ≤
+        exitRoutingInfinite fullModel sourceObservedSpec
+          (decode (1 : Fin 5)) targetObservedSpec.basin
+    have hhalf : (1 : ℝ≥0∞) - 1/2 = 1/2 := by norm_num
+    simpa only [hhalf] using half_le_routing_one
 
 /-- The original constitutive-margin object is uniformly at least one
 half under the actually constructed, independently certified model. -/
