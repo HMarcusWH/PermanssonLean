@@ -73,16 +73,18 @@ theorem interactionVector_norm_le_condAction_add_action
 noncomputable def uniformInteractionMagnitude
     (C : FourCornerProtocol M F)
     (ψ : RegimePropertyMap (JointState S X) Z)
-    (B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet M spec) :
+    (B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet M spec)
+    (hBound : BddAbove ((fun y => ‖interactionVector C ψ y‖) '' B₁.states)) :
     ℝ := sSup ((fun y => ‖interactionVector C ψ y‖) '' B₁.states)
 
 theorem uniformInteractionMagnitude_le
     (C : FourCornerProtocol M F)
     (ψ : RegimePropertyMap (JointState S X) Z)
     (B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet M spec)
+    (hBound : BddAbove ((fun y => ‖interactionVector C ψ y‖) '' B₁.states))
     (R : ℝ)
     (hR : ∀ y ∈ B₁.states, ‖interactionVector C ψ y‖ ≤ R) :
-    uniformInteractionMagnitude C ψ B₁ ≤ R := by
+    uniformInteractionMagnitude C ψ B₁ hBound ≤ R := by
   unfold uniformInteractionMagnitude
   apply csSup_le
   · rcases B₁.states_nonempty M spec with ⟨y,hy⟩
