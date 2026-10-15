@@ -24,6 +24,7 @@ set_option maxHeartbeats 0
 
 open C10
 open PermanssonResearch.MultipleLimit.ExactSixState
+open PermanssonResearch.MultipleLimit.ExactSixStateCanonical
 open PermanssonResearch.MultipleLimit.ExactSixStateClassLaws
 open PermanssonResearch.MultipleLimit.ExactSixStateStationaryCoordinates
 open PermanssonResearch.MultipleLimit.ExactSixStateObservedGR
@@ -38,34 +39,38 @@ def sixClassB : ClassStationaryCandidate 6 where
   weights := piB
 
 theorem sixClassA_checked :
-    checkClassStationary sixStateMatrix sixClassA = true := by decide
+    checkClassStationary sixStateMatrix sixClassA = true := by
+  decide +kernel
 
 theorem sixClassB_checked :
-    checkClassStationary sixStateMatrix sixClassB = true := by decide
+    checkClassStationary sixStateMatrix sixClassB = true := by
+  decide +kernel
 
 theorem sixClassA_share :
-    trueShare sixClassA sixRaw.descriptor = 1 := by decide
+    trueShare sixClassA sixRaw.descriptor = 1 := by
+  decide +kernel
 
 theorem sixClassB_share :
-    trueShare sixClassB sixRaw.descriptor = 1 := by decide
+    trueShare sixClassB sixRaw.descriptor = 1 := by
+  decide +kernel
 
 /-- C4's entire actual class-supported stationary measure is recovered,
 not just an independently recomputed numerical example. -/
 theorem sixClassA_eq_C4 :
     certifiedProbability sixStateMatrix sixClassA sixClassA_checked =
-      ExactSixStateClassLaws.πA := by
+      PermanssonResearch.MultipleLimit.ExactSixStateClassLaws.πA := by
   calc
     certifiedProbability sixStateMatrix sixClassA sixClassA_checked =
         explicitPiA := by rfl
-    _ = ExactSixStateClassLaws.πA := piA_eq_explicit.symm
+    _ = PermanssonResearch.MultipleLimit.ExactSixStateClassLaws.πA := piA_eq_explicit.symm
 
 theorem sixClassB_eq_C4 :
     certifiedProbability sixStateMatrix sixClassB sixClassB_checked =
-      ExactSixStateClassLaws.πB := by
+      PermanssonResearch.MultipleLimit.ExactSixStateClassLaws.πB := by
   calc
     certifiedProbability sixStateMatrix sixClassB sixClassB_checked =
         explicitPiB := by rfl
-    _ = ExactSixStateClassLaws.πB := piB_eq_explicit.symm
+    _ = PermanssonResearch.MultipleLimit.ExactSixStateClassLaws.πB := piB_eq_explicit.symm
 
 /-- Original full-disruption member: the newly introduced absorbing
 state u=1 has actual long-run false observation. -/
@@ -75,10 +80,12 @@ def sixFullFalseClass : ClassStationaryCandidate 6 where
 
 theorem sixFullFalseClass_checked :
     checkClassStationary (sixMenuMatrix (0 : Fin 6))
-      sixFullFalseClass = true := by decide
+      sixFullFalseClass = true := by
+  decide +kernel
 
 theorem sixFullFalseClass_share :
-    trueShare sixFullFalseClass sixRaw.descriptor = 0 := by decide
+    trueShare sixFullFalseClass sixRaw.descriptor = 0 := by
+  decide +kernel
 
 /-- The checked full-member stationary law is an actual intervened
 alpha-only C2 stationary class probability, not a fake baseline model. -/
