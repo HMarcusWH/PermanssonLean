@@ -16,6 +16,8 @@ independent mathematical nonclaim: no A2 theorem may transfer Exact GR from
 positive one-step TV proximity alone.
 -/
 
+open scoped ENNReal
+
 namespace PermanssonResearch
 namespace Perturbation
 
