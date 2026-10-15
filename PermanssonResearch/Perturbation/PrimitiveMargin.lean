@@ -177,12 +177,17 @@ theorem PrimitiveProtocolErrors.toOutputErrors
       M.inducedKernel pair.approximate.inducedKernel
       bounds.baseline.kernelBudget_nonneg bounds.baseline.kernelBudget_le_one
       bounds.baseline.induced_tv y T f
+    change dist
+      (PermanssonLean.RegimeSpecification.baselinePropertyValue
+        (f.toRegimeProperty T) M y)
+      (PermanssonLean.RegimeSpecification.baselinePropertyValue
+        (f.toRegimeProperty T) pair.approximate y) ≤
+        bounds.baselinePrefixBudget T
     rw [← PermanssonResearch.ConstitutiveQuasi.finitePathExpectation_eq_baselineProperty
         M y T f,
       ← PermanssonResearch.ConstitutiveQuasi.finitePathExpectation_eq_baselineProperty
-        pair.approximate y T f] at h
-    simpa [exactApproximateProfile, PrimitiveProtocolErrors.baselinePrefixBudget,
-      Real.dist_eq] using h
+        pair.approximate y T f, Real.dist_eq]
+    exact h
   · intro y hy
     have h := PermanssonResearch.ConstitutiveQuasi.finitePathExpectation_abs_le_geometric
       J.intervention.apply.inducedKernel
@@ -190,12 +195,17 @@ theorem PrimitiveProtocolErrors.toOutputErrors
       bounds.intervention.kernelBudget_nonneg
       bounds.intervention.kernelBudget_le_one
       bounds.intervention.induced_tv y T f
+    change dist
+      (PermanssonLean.RegimeSpecification.intervenedPropertyValue
+        (f.toRegimeProperty T) J.intervention y)
+      (PermanssonLean.RegimeSpecification.intervenedPropertyValue
+        (f.toRegimeProperty T) pair.approximateIntervention.intervention y) ≤
+        bounds.interventionPrefixBudget T
     rw [← PermanssonResearch.ConstitutiveQuasi.finitePathExpectation_eq_intervenedProperty
         J y T f,
       ← PermanssonResearch.ConstitutiveQuasi.finitePathExpectation_eq_intervenedProperty
-        pair.approximateIntervention y T f] at h
-    simpa [exactApproximateProfile, PrimitiveProtocolErrors.interventionPrefixBudget,
-      Real.dist_eq] using h
+        pair.approximateIntervention y T f, Real.dist_eq]
+    exact h
 
 /-- The comparison set's *states* are transported unchanged; this equality
 identifies the second model's real original-style margin, not merely a profile
