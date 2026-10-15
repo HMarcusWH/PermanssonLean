@@ -63,7 +63,7 @@ theorem canonicalHistoryContinuation_prefix
         N.inducedKernel n) m h).map (Preorder.frestrictLe m) =
         Measure.dirac h
   rw [Kernel.traj_map_frestrictLe_apply]
-  simp
+  simpa only [Kernel.partialTraj_self] using (Kernel.id_apply h)
 
 /-- The actual complete future trajectory law composes across any
 one additional stationary transition. The whole infinite trajectory
