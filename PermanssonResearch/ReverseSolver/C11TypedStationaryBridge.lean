@@ -164,7 +164,7 @@ theorem checked_stationary_eq_native {n : ℕ} [NeZero n]
 
 /-- Strictly positive rational mass on every vertex of its irreducible
 bottom class; not a separate unproved full-support axiom. -/
-theorem checked_stationary_positive_on_class {n : ℕ} [NeZero n]
+theorem checked_stationary_positive_on_class {n : ℕ}
     (K₀ L : RationalMarkovMatrix n)
     (r : ClassStationaryCandidate n)
     (hc : checkClassStationary L r = true)
