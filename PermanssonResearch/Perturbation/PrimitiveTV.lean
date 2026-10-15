@@ -38,6 +38,7 @@ variable [MeasurableSpace.CountableOrCountablyGenerated
 attribute [local instance]
   PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
   PermanssonLean.StrategicWorldModel.oneStepHistoryKernel_isMarkov
+  PermanssonLean.StrategicWorldModel.reassociatedUpdate_isMarkov
 
 private theorem compProd_mono
     {I B C : Type*} [MeasurableSpace I] [MeasurableSpace B]
@@ -136,6 +137,12 @@ noncomputable def commonInducedKernel
   ((commonAction M N ⊗ₖ commonWorld M N) ⊗ₖ commonUpdate M N).map
     (fun z : ((A × X) × S) => (z.2, z.1.2))
 
+instance commonInducedKernel_isFinite
+    (M N : PermanssonLean.StrategicWorldModel S X A) :
+    IsFiniteKernel (commonInducedKernel M N) := by
+  unfold commonInducedKernel
+  infer_instance
+
 theorem commonInducedKernel_le_left
     (M N : PermanssonLean.StrategicWorldModel S X A) :
     commonInducedKernel M N ≤ M.inducedKernel := by
@@ -208,7 +215,7 @@ private theorem commonInducedKernel_mass_ge
     have h := PermanssonLean.ProbabilitySupport.one_sub_le_commonPartKernel_real_univ_of_uniformTV
       M.generator.action N.generator.action ha z
     apply (ENNReal.ofReal_le_iff_le_toReal (by finiteness)).2
-    simpa only [commonAction] using h
+    simpa only [commonAction, Measure.real] using h
   have hP : ∀ z, qp ≤ commonWorld M N z Set.univ := by
     letI : IsMarkovKernel M.world := M.world_isMarkov
     letI : IsMarkovKernel N.world := N.world_isMarkov
@@ -216,7 +223,7 @@ private theorem commonInducedKernel_mass_ge
     have h := PermanssonLean.ProbabilitySupport.one_sub_le_commonPartKernel_real_univ_of_uniformTV
       M.world N.world hp z
     apply (ENNReal.ofReal_le_iff_le_toReal (by finiteness)).2
-    simpa only [commonWorld] using h
+    simpa only [commonWorld, Measure.real] using h
   have hU : ∀ z, qu ≤ commonUpdate M N z Set.univ := by
     letI : IsMarkovKernel M.generator.update := M.generator.update_isMarkov
     letI : IsMarkovKernel N.generator.update := N.generator.update_isMarkov
@@ -225,7 +232,7 @@ private theorem commonInducedKernel_mass_ge
       M.generator.update N.generator.update hu
       (PermanssonLean.StrategicWorldModel.updateInputReassoc z)
     apply (ENNReal.ofReal_le_iff_le_toReal (by finiteness)).2
-    simpa only [commonUpdate, Kernel.comap_apply] using h
+    simpa only [commonUpdate, Kernel.comap_apply, Measure.real] using h
   have hAP : qp * commonAction M N y Set.univ ≤
       (commonAction M N ⊗ₖ commonWorld M N) y Set.univ :=
     compProd_mass_ge _ _ qp hP y
@@ -235,10 +242,17 @@ private theorem commonInducedKernel_mass_ge
   have hmap : commonInducedKernel M N y Set.univ =
       ((commonAction M N ⊗ₖ commonWorld M N) ⊗ₖ commonUpdate M N)
         y Set.univ := by
-    unfold commonInducedKernel
-    rw [Kernel.map_apply _ (by fun_prop)]
-    simp only [Measure.map_apply (by fun_prop) MeasurableSet.univ,
-      Set.preimage_univ]
+    let phi : ((A × X) × S) → PermanssonLean.JointState S X :=
+      fun z => (z.2, z.1.2)
+    have hphi : Measurable phi := by
+      unfold phi
+      fun_prop
+    change (((commonAction M N ⊗ₖ commonWorld M N) ⊗ₖ
+      commonUpdate M N).map phi) y Set.univ =
+      ((commonAction M N ⊗ₖ commonWorld M N) ⊗ₖ commonUpdate M N)
+        y Set.univ
+    rw [Kernel.map_apply' _ hphi y MeasurableSet.univ]
+    simp only [Set.preimage_univ]
   rw [hmap]
   calc
     qu * qp * qa = qu * (qp * qa) := by ac_rfl
@@ -246,7 +260,7 @@ private theorem commonInducedKernel_mass_ge
       gcongr
       exact hA y
     _ ≤ qu * (commonAction M N ⊗ₖ commonWorld M N) y Set.univ :=
-      mul_le_mul_left' hAP qu
+      mul_le_mul_of_nonneg_left hAP (by exact bot_le)
     _ ≤ _ := hAPU
 
 /-- A2 Proposition 5.5: actual primitive α/P/U errors bound the
