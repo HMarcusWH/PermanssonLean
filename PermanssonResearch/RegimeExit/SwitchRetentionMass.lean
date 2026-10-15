@@ -83,6 +83,7 @@ theorem successful_switch_event_ae_eq_first_exit
   have h := switch_eventual_retention_ae M source target
     mSource mTarget F B₁ J cert μ
   filter_upwards [h] with w hw
+  apply propext
   constructor
   · exact successfullySwitchedAndRetained_subset_firstExit source target
   · intro hevent
@@ -113,6 +114,8 @@ theorem successful_switch_retention_probability_eq_routing
     exitRoutingInfinite J.intervention.apply source y target.basin := by
   have h := successful_switch_event_ae_eq_first_exit M source target
     mSource mTarget F B₁ J cert (diracProba y)
+  change J.intervention.apply.pathLaw (diracProba y).toMeasure
+    (successfullySwitchedAndRetained source target) = _
   rw [measure_congr h]
   exact (exitRoutingInfinite_eq_prob_exit_in J.intervention.apply
     source (ConstitutiveComparisonSet.states_subset_region M source B₁ hy)
