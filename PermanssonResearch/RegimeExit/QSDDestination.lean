@@ -102,10 +102,11 @@ theorem qsdThetaOne_no_exit
     simp
   have he : qsdOneStepExitMass M spec μ Set.univ = 0 := by
     rw [hstay] at hExitConservation
-    exact (ENNReal.add_eq_right.mp hExitConservation)
+    have heq := ENNReal.eq_sub_of_add_eq ENNReal.one_ne_top hExitConservation
+    simpa using heq
   have hle : qsdOneStepExitMass M spec μ D ≤
       qsdOneStepExitMass M spec μ Set.univ := measure_mono (Set.subset_univ D)
-  exact le_antisymm (h le_trans he) bot_le
+  exact le_antisymm (by simpa [he] using hle) bot_le
 
 /-- Initial-law survival obeys QSD powers, not pointwise powers at every y. -/
 theorem qsdSurvivalFinite_eq_pow
