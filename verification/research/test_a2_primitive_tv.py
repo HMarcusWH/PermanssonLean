@@ -253,17 +253,20 @@ class A2PrimitiveTests(unittest.TestCase):
         self.assertTrue(matched("jointStrategic", "jointStrategic", "k", "k"))
 
     def test_a2_16_baseline_and_intervention_need_separate_budgets(self):
-        # Strategic intervention replaces only alpha. Distinct structural P
-        # values are model uncertainty, not an intervention's target.
+        # A matched alpha-only strategic intervention holds each model's P.
+        # Approximation changes both original α and structural P, whereas
+        # matched post-J models have identical α, so their GLOBAL primitive
+        # error budgets genuinely differ (not merely visited-row errors).
         original = baseline()
         p = dict(original.world)
         ptilde = dict(original.world)
         for y in STATES:
             p[(y, 1)] = (Q(1, 2), Q(1, 2))
-            ptilde[(y, 0)] = (Q(3, 4), Q(1, 4))
+            ptilde[(y, 0)] = (Q(9, 10), Q(1, 10))
             ptilde[(y, 1)] = (Q(3, 5), Q(2, 5))
         m = with_changed(original, world=p)
-        n = with_changed(original, world=ptilde)
+        alpha_tilde = {y: (Q(17, 20), Q(3, 20)) for y in STATES}
+        n = FiniteModel(alpha_tilde, ptilde, m.update)
         select_one = {y: (Q(0), Q(1)) for y in STATES}
         j = with_changed(m, alpha=select_one)
         nj = with_changed(n, alpha=select_one)
@@ -277,8 +280,9 @@ class A2PrimitiveTests(unittest.TestCase):
         kappa = gap(m, j, STATES, 1, f)
         kappa_tilde = gap(n, nj, STATES, 1, f)
         self.assertEqual(kappa, Q(1, 2))
-        self.assertEqual(kappa_tilde, Q(3, 20))
-        self.assertEqual(abs(kappa - kappa_tilde), e0 + eJ)
+        self.assertEqual(kappa_tilde, Q(51, 200))
+        self.assertEqual(abs(kappa - kappa_tilde), Q(49, 200))
+        self.assertLessEqual(abs(kappa - kappa_tilde), e0 + eJ)
         self.assertGreater(kappa, e0 + eJ)
 
     def test_a2_15_exact_exhaustive_synthetic_primitives(self):
