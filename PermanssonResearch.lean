@@ -3,6 +3,7 @@ import PermanssonResearch.RegimeExit.RestartSanity
 import PermanssonResearch.RegimeExit.StationaryTailLaw
 import PermanssonResearch.RegimeExit.FiniteHistoryTail
 import PermanssonResearch.RegimeExit.FiniteHistoryEvent
+import PermanssonResearch.RegimeExit.StopHistory
 import PermanssonResearch.RegimeExit.ExitAdversaries
 import PermanssonResearch.RegimeExit.ExitLongHorizonWitness
 import PermanssonResearch.RegimeExit.ExitFiniteWitness
