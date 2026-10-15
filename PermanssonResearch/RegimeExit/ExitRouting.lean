@@ -114,7 +114,7 @@ theorem exitRoutingFinite_succ
       exitRoutingFinite M spec L y D +
         firstExitStepMass M spec L y D := by
   simp [exitRoutingFinite, exitRoutingFiniteMeasure,
-    firstExitStepMass, Measure.add_apply hD]
+    firstExitStepMass, Measure.add_apply]
 
 theorem exitRoutingFiniteMeasure_apply
     (M : StrategicWorldModel S X A)
@@ -126,7 +126,7 @@ theorem exitRoutingFiniteMeasure_apply
   induction L with
   | zero => simp [exitRoutingFiniteMeasure]
   | succ L ih =>
-      rw [exitRoutingFiniteMeasure, Measure.add_apply hD, ih]
+      rw [exitRoutingFiniteMeasure, Measure.add_apply, ih]
       simp [Finset.sum_range_succ, firstExitStepMass]
 
 theorem exitRoutingInfiniteMeasure_apply
@@ -136,7 +136,7 @@ theorem exitRoutingInfiniteMeasure_apply
     (D : Set (JointState S X)) (hD : MeasurableSet D) :
     exitRoutingInfiniteMeasure M spec y D =
       ∑' n : ℕ, firstExitStepMass M spec n y D := by
-  simp only [exitRoutingInfiniteMeasure, Measure.sum_apply hD, firstExitStepMass]
+  simp only [exitRoutingInfiniteMeasure, Measure.sum_apply _ hD, firstExitStepMass]
 
 theorem exitRoutingFiniteMeasureFromLaw_apply
     (M : StrategicWorldModel S X A)
@@ -148,7 +148,7 @@ theorem exitRoutingFiniteMeasureFromLaw_apply
   induction L with
   | zero => simp [exitRoutingFiniteMeasureFromLaw]
   | succ L ih =>
-      rw [exitRoutingFiniteMeasureFromLaw, Measure.add_apply hD, ih]
+      rw [exitRoutingFiniteMeasureFromLaw, Measure.add_apply, ih]
       simp [Finset.sum_range_succ]
 
 theorem exitRoutingInfiniteMeasureFromLaw_apply
@@ -158,7 +158,7 @@ theorem exitRoutingInfiniteMeasureFromLaw_apply
     (D : Set (JointState S X)) (hD : MeasurableSet D) :
     exitRoutingInfiniteMeasureFromLaw M spec μ D =
       ∑' n : ℕ, firstExitStepMeasureFromLaw M spec μ n D := by
-  simp only [exitRoutingInfiniteMeasureFromLaw, Measure.sum_apply hD]
+  simp only [exitRoutingInfiniteMeasureFromLaw, Measure.sum_apply _ hD]
 
 /-- The actual source law conditional on survival through n drives one exit row. -/
 theorem firstExitAt_eq_stepFromLaw
