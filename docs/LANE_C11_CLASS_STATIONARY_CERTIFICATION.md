@@ -40,3 +40,13 @@ No approximate float thresholds. Explicit operational limits are 1–12 states, 
 Require the *actual final PR head and GitHub synthetic merge* to pass the four existing workflows: Research Lean (including all discovered C11 tests, 3-axiom transitive audit limited to `propext`, `Classical.choice`, `Quot.sound`, new root import check, source firewall, D0-F and C10 original/mixed generated receipt rechecks), Original Lean, Executable verification, and Application contract Ubuntu/Windows. The prior baseline was 552/552 research regressions, 309 directly imported modules and 3,582 audited declarations; new totals must be **observed**, not invented.
 
 Review the actual C11 theorem statements and their hypotheses, independent checker, malformed-input adversaries, and the truth/mixed distinction. The author-approved Codex review waiver for PR #61 does not authorize waiving PR #62 review. PR #62 stays draft and unmerged until explicit author permission.
+
+## Interim compiler/debugging checkpoints (historical)
+
+- C11 root imports were initially appended after the library module documentation. This was a source-layout failure and was corrected by moving all five imports above that documentation.
+- [Research Lean #38656112328](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38656112328) demonstrated that the new constructive class-condition decider compiled after repair; its remaining error was an incorrectly applied conjunction projection in `C11StationaryFamily.checked_family_no_extra`. That specific proof-application bug was corrected subsequently.
+- [Research Lean #38656310783](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38656310783) likewise compiled the class checker but failed at the **same old family-checker source**, before the family fix commit.
+- The theorem interface for actual C2 typed class stationary measures now exposes a checkable nonempty-state instance where the type itself requires it; strict class positivity derives nonemptiness internally from the accepted positive-dimension certificate.
+- In a local, independent Python reconstruction of the committed numerical implementation, the 15 planned C11 exact-rational regression cases passed, including the six-state and adversarial cases. This **does not** certify GitHub's discovered Python tests, compiler-driven Lean fixture, or source provenance.
+- **No final exact-head Research Lean success is claimed at this stage.** The current live PR head and its latest workflow records—not these earlier attempts—control release readiness.
+
