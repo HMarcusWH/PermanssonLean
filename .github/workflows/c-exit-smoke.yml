@@ -1,0 +1,26 @@
+name: C-Exit focused Lean smoke
+
+on:
+  push:
+    branches:
+      - research/c-exit-exact-routing
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  c-exit-lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile C-Exit research theorem modules
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch.RegimeExit.ExitSubkernel
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
