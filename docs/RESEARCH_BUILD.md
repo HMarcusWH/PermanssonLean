@@ -5,6 +5,14 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
+## Current active C-Exit draft and merged B2 (15 October 2026)
+
+**Main:** `af9d1084664e9e51f7aba0045e98532e58c18829` after merged [PR #65](https://github.com/HMarcusWH/PermanssonLean/pull/65). All four post-merge main workflows passed: [Research Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38772480255), [Original Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38772479542), [Executable verification](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38772480217), [Application contract](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38772479825). B2's source-only proofs are merged, not a v0.2.0 paper or independent external peer review.
+
+**PR #66 C-Exit exact routing** is a [draft](https://github.com/HMarcusWH/PermanssonLean/pull/66), not certified: see [source crosswalk and test contract](LANE_C_EXIT_ROUTING.md). All statements in new modules are research proof targets until the final source HEAD and synthetic merge pass the full Lean, axiom, independent exact rational, and source firewall gates. PR #67 strategic switching is not included. The original frozen core is unchanged.
+
+## Historical A2/B2 checkpoints — preserved verbatim below
+
 ## Current branch and merge status (15 October 2026)
 
 **Main:** `a9d914520c68741a23cda89357499f3cf3f1500a` after merged [PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64). All four post-merge main workflows passed: [Research Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38736758059), [Original Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38736758899), [Executable verification](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38736758104), [Application contract](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38736758072).

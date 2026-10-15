@@ -1,0 +1,43 @@
+name: C-Exit focused Lean smoke
+
+on:
+  push:
+    branches:
+      - research/c-exit-exact-routing
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  c-exit-lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile C-Exit research theorem modules
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch.RegimeExit.ExitAdversaries PermanssonResearch.RegimeExit.ExitLawLimits PermanssonResearch.RegimeExit.QSDExitBoundary PermanssonResearch.RegimeExit.ExitLongHorizonWitness PermanssonResearch.RegimeExit.ExitFiniteWitness PermanssonResearch.RegimeExit.ExitDestinationMask PermanssonResearch.RegimeExit.ExitDiracBridge
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run exact-rational C-Exit destructive checks
+        run: python3 -m unittest discover -s verification/research -p 'test_c_exit_routing.py' -v
+
+
+  c-exit-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Independently run all exact-Fraction exit-routing fixtures
+        run: python3 -m unittest discover -s verification/research -p 'test_c_exit_routing.py' -v
