@@ -69,9 +69,9 @@ When `eta'=1`, the persistence statement may be vacuous, so a **nontrivial survi
 
 ## Destructive suite
 
-Tests A2-01 through A2-16 include zero/single stage/capped errors, 0/1-horizon cases, post-intervention-only rows, x'-sensitive update order, changed P as structural error, zero uniform gap despite a positive statewise effect, small-leak infinite-invariance failure, score bounds, protocol matching and seeded exact-rational exhaustive path-law examples.
+The expanded current-head tests A2-01 through A2-18 include zero/single stage/capped errors, 0/1-horizon cases, post-intervention-only rows, x'-sensitive update order, changed P as structural error, zero uniform gap despite a positive statewise effect, small-leak infinite-invariance failure, score bounds, protocol matching, off-graph zero-support primitive rows, explicit non-Lipschitz discontinuity and seeded exact-rational path-law examples.
 
-The Python suite is not a Lean theorem, a source-bound Lean receipt, or a proof of external data identity. Required Lean witness/negative controls remain a separate review gate.
+The latest two new tests and the explicit Lean same-P negative bridge require their own final-head CI run; the earlier 16/16 checkpoint does not cover them. The Python suite is not a Lean theorem, a source-bound Lean receipt, or a proof of external data identity. Required Lean witness/negative controls remain a separate review gate.
 
 ## Review and release gates
 

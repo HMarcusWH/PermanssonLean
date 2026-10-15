@@ -18,7 +18,7 @@ release or independent third-party review.
 | Full conditional CQ-1 transfer | `PrimitiveMargin.lean`: `transportPrimitiveFiniteConstitutiveCertificate` | Original finite-persistence certificate, full region-wide persistence, κ greater than both errors, `clampedPersistenceError`; still not Exact GR/PR |
 | Generic metric-valued Lψ subclass | `Perturbation/PrimitiveLipschitz.lean`: `TVLipschitzPrefixProperty`, `primitiveLipschitz_constitutiveMargin_abs_le`, `primitiveLipschitz_constitutiveMargin_le_linear`, `primitiveLipschitz_positive_finiteMargin` | Lipschitz property is a *hypothesis* over genuine probability laws; not all regime properties satisfy it |
 | Numerical reporting error | `PrimitiveMargin.lean`: `reportedPrimitiveMargin_abs_le` | Independent b₀/bJ uncertainty for a reported profile; not equality to exact second-model margin |
-| Adversarial boundaries | `Perturbation/PrimitiveAdversaries.lean` and `verification/research/test_a2_primitive_tv.py` | Typed zero-horizon and QSD firewall; 16 finite exact-fraction tests on a separately implemented evaluator |
+| Adversarial boundaries | `Perturbation/PrimitiveAdversaries.lean` and `verification/research/test_a2_primitive_tv.py` | Typed zero-horizon, changed-world same-P rejection, and QSD firewall; 18 proposed finite exact-fraction tests, with the added off-graph and non-Lipschitz controls pending final-head CI |
 
 All `Perturbation/*.lean` modules must be imported *directly* in
 `PermanssonResearch.lean`, and compiled with the pinned Lean 4.34.0/mathlib.

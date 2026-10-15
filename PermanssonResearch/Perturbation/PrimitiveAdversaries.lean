@@ -71,5 +71,20 @@ theorem qsd_is_not_uniform_persistence_witness :
       PermanssonLean.QSDCounterexample.spec 1 0 :=
   PermanssonLean.QSDCounterexample.qsd_does_not_imply_uniform_finitePersistence
 
+/-- Structural world-model error is not admissible as the frozen
+same-P CQ-1 approximation. This is a type-level rejection, independent of
+whether the actual induced Markov rows happen to be close or even equal. -/
+theorem changed_world_not_same_P_approximation
+    (M N : PermanssonLean.StrategicWorldModel S X A)
+    {Component : Type uC}
+    (F : PermanssonLean.InterventionFamily M Component)
+    (J : PermanssonLean.AdmissibleStrategicIntervention F)
+    (hP : N.world ≠ M.world) :
+    ¬ ∃ pair : PermanssonResearch.ConstitutiveQuasi.StrategicApproximationPair
+          M F J,
+        pair.approx = N :=
+  PermanssonResearch.ConstitutiveQuasi.noStrategicApproximationPair_of_world_ne
+    M N F J hP
+
 end Perturbation
 end PermanssonResearch

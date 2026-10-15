@@ -285,7 +285,51 @@ class A2PrimitiveTests(unittest.TestCase):
         self.assertLessEqual(abs(kappa - kappa_tilde), e0 + eJ)
         self.assertGreater(kappa, e0 + eJ)
 
-    def test_a2_15_exact_exhaustive_synthetic_primitives(self):
+    def test_a2_17_off_graph_primitive_rows_do_not_change_feasible_law(self):
+        # Fixture-only feasibility grammar: action zero is feasible in every
+        # state. The Lean world-model currently expresses this with alpha
+        # support, not a separately encoded feasible correspondence.
+        original = baseline()
+        feasible = {y: {0} for y in STATES}
+        for y in STATES:
+            assert all(original.alpha[y][a] == 0 for a in ACTIONS
+                       if a not in feasible[y])
+        p = dict(original.world)
+        u = dict(original.update)
+        for y in STATES:
+            p[(y, 1)] = (Q(0), Q(1))
+            for xp in range(2):
+                u[(y, 1, xp)] = (Q(0), Q(1))
+        changed = with_changed(original, world=p, update=u)
+        self.assertEqual(all_primitive_errors(original, changed),
+                         (Q(0), Q(1), Q(1)))
+        self.assertEqual(check_primitive_bound(original, changed), 1)
+        for y in STATES:
+            self.assertEqual(original.joint()[y], changed.joint()[y])
+        # Deliberately NOT a theorem that bounds only feasible rows globally;
+        # it demonstrates why the global-row hypothesis is conservative.
+
+    def test_a2_18_non_lipschitz_property_breaks_small_tv_transport(self):
+        # Exact binary "is event probability literally one" is discontinuous
+        # at one. A tiny TV error may flip its output by one, so it cannot
+        # enter the generic Lψ corollary without a *proved* Lipschitz modulus.
+        original = baseline()
+        for denominator in (10, 100, 1000, 10000):
+            epsilon = Q(1, denominator)
+            world = dict(original.world)
+            world[(STATES[0], 0)] = (1 - epsilon, epsilon)
+            changed = with_changed(original, world=world)
+            self.assertEqual(check_primitive_bound(original, changed), epsilon)
+            event = lambda w: Q(1) if w[-1][1] == 0 else Q(0)
+            p = finite_score(original.joint(), STATES[0], 1, event)
+            q = finite_score(changed.joint(), STATES[0], 1, event)
+            self.assertEqual(p, 1)
+            self.assertEqual(q, 1 - epsilon)
+            psi = lambda probability: Q(1) if probability == 1 else Q(0)
+            self.assertEqual(abs(psi(p) - psi(q)), 1)
+            self.assertGreater(abs(psi(p) - psi(q)), epsilon)
+
+    def test_a2_15_seeded_exact_rational_primitive_rows(self):
         rng = random.Random(6402)
         for _ in range(35):
             def one():

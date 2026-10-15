@@ -10,8 +10,9 @@
 [PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64) implements the
 proposed A2 primitive-kernel TV and two-budget finite constitutive-certificate
 transport in the *research* library, including a separately typed general TV-Lipschitz
-metric-valued property bridge. A2 exact rational regressions now comprise 16
-tests, not 15. A full verified checkpoint is [`fe38bd4d`](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38728397965),
+metric-valued property bridge. A2 exact rational regressions now comprise 18 proposed
+current-head tests (the older db1c7e78 verified checkpoint includes 16),
+including off-graph zero-support and non-Lipschitz controls. A full verified checkpoint is [`fe38bd4d`](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38728397965),
 with 4,034 build jobs, 594/594 research regressions, 3,802 audited declarations,
 319/319 direct research imports, D0-F and C10 evidence checks. A later
 [`db1c7e78` focused run](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38728807954)
