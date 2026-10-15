@@ -12,6 +12,7 @@ factorization. Neither is redefined, omitted, or postulated as trivial.
 -/
 
 open MeasureTheory ProbabilityTheory
+open scoped ENNReal
 
 namespace PermanssonResearch.RegimeExit
 
