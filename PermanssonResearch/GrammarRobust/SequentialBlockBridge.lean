@@ -20,6 +20,7 @@ open ConditionalMargins
 universe uS uX uA uI uJ uC uH uZ
 variable {S : Type uS} {X : Type uX} {A : Type uA}
 variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
+variable [TopologicalSpace S] [TopologicalSpace X]
 variable {IA : Type uI} {IU : Type uJ} {C : Type uC}
 variable [Fintype IA] [Fintype IU] [Fintype C]
 variable [LinearOrder IA] [LinearOrder IU]
