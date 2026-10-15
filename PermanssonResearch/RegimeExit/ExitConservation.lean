@@ -69,7 +69,7 @@ theorem exitRoutingFromLaw_eq_prob_exit_in
           exitRoutingFiniteFromLaw M spec L μ D +
             firstExitStepMeasureFromLaw M spec μ L D := by
             simp [exitRoutingFiniteFromLaw,
-              exitRoutingFiniteMeasureFromLaw, Measure.add_apply hD]
+              exitRoutingFiniteMeasureFromLaw, Measure.add_apply]
         _ = M.pathLaw μ.toMeasure
               (firstExitWithinDestination spec L D) +
             M.pathLaw μ.toMeasure
@@ -272,7 +272,7 @@ theorem exitRoutingInfinite_add_survivalForever_eq_one
   have hsplit :
       P (firstExitEverDestination spec Set.univ) +
         P (survivesForeverSet spec) = 1 := by
-    rw [← measure_union firstExitInfinite_partition_disjoint
+    rw [← measure_union (firstExitInfinite_partition_disjoint spec)
       (measurableSet_survivesForeverSet spec)]
     rw [firstExitInfinite_partition]
     exact hstart
@@ -303,7 +303,7 @@ theorem exitRoutingInfiniteFromLaw_add_survivalForever_eq_one
   have hsplit :
       P (firstExitEverDestination spec Set.univ) +
         P (survivesForeverSet spec) = 1 := by
-    rw [← measure_union firstExitInfinite_partition_disjoint
+    rw [← measure_union (firstExitInfinite_partition_disjoint spec)
       (measurableSet_survivesForeverSet spec)]
     rw [firstExitInfinite_partition]
     exact hstart
