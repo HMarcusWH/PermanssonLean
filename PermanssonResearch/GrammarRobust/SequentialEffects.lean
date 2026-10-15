@@ -155,8 +155,8 @@ theorem jointEffect_abs_update_sub_condAction_le
     rw [dist_comm (jointValue C ψ y) (updateValue C ψ y)] at h
     linarith
 
-/-- No direct subadditivity theorem in terms of the two baseline-relative
-singleton legs is asserted: they are not a path between 00 and 11. -/
+/- No direct subadditivity follows from the two baseline-relative singleton legs;
+   they do not form a path between 00 and 11. -/
 
 end SequentialEffects
 end GrammarRobust
