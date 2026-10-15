@@ -95,6 +95,39 @@ theorem PrimitiveErrorBounds.induced_tv
     bounds.update_nonneg bounds.update_le_one
     bounds.action_tv bounds.world_tv bounds.update_tv
 
+/-- A2.2: the real canonical finite-prefix law (0 through T) satisfies the
+existing geometric TV envelope, now with a *derived primitive* budget. -/
+theorem PrimitiveErrorBounds.finitePrefix_tv
+    {M N : PermanssonLean.StrategicWorldModel S X A}
+    (bounds : PrimitiveErrorBounds M N)
+    (y : PermanssonLean.JointState S X) (T : ℕ) :
+    PermanssonLean.ProbabilitySupport.eventTotalVariation
+      (PermanssonLean.ProbabilitySupport.finitePrefixLaw
+        M.inducedKernel y T)
+      (PermanssonLean.ProbabilitySupport.finitePrefixLaw
+        N.inducedKernel y T) ≤
+      PermanssonLean.ProbabilitySupport.geometricTVEnvelope
+        bounds.kernelBudget T :=
+  PermanssonLean.ProbabilitySupport.finitePrefix_eventTotalVariation_le_geometric
+    M.inducedKernel N.inducedKernel
+    bounds.kernelBudget_nonneg bounds.kernelBudget_le_one
+    bounds.induced_tv y T
+
+theorem PrimitiveErrorBounds.finitePrefix_tv_le_linear
+    {M N : PermanssonLean.StrategicWorldModel S X A}
+    (bounds : PrimitiveErrorBounds M N)
+    (y : PermanssonLean.JointState S X) (T : ℕ) :
+    PermanssonLean.ProbabilitySupport.eventTotalVariation
+      (PermanssonLean.ProbabilitySupport.finitePrefixLaw
+        M.inducedKernel y T)
+      (PermanssonLean.ProbabilitySupport.finitePrefixLaw
+        N.inducedKernel y T) ≤
+      (T : ℝ) * bounds.kernelBudget :=
+  PermanssonLean.ProbabilitySupport.finitePrefix_eventTotalVariation_le_linear
+    M.inducedKernel N.inducedKernel
+    bounds.kernelBudget_nonneg bounds.kernelBudget_le_one
+    bounds.induced_tv y T
+
 /-- Two independently checked primitive comparisons, both using the actual
 action/world/update kernels *after* their matched strategic interventions. -/
 structure PrimitiveProtocolErrors
@@ -350,6 +383,70 @@ theorem transportPrimitiveFiniteConstitutiveCertificate
     dsimp [e₀, eJ]
     linarith [certificate.marginFloor]
   exact ⟨hsurvival, by dsimp [e₀, eJ]; linarith, hbound⟩
+
+/-- A2.4: optional independently bounded numerical/reporting profile.
+These extra b0/bJ uncertainties are separate from the exact second-model
+errors; the reported profile is NOT automatically that model's exact margin. -/
+theorem reportedPrimitiveMargin_abs_le
+    {M : PermanssonLean.StrategicWorldModel S X A}
+    {spec : PermanssonLean.RegimeSpecification (PermanssonLean.JointState S X) H}
+    {Component : Type uC}
+    {F : PermanssonLean.InterventionFamily M Component}
+    {B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet M spec}
+    {J : PermanssonLean.AdmissibleStrategicIntervention F}
+    {pair : PrimitiveModelPair M F J}
+    (bounds : PrimitiveProtocolErrors M F J pair)
+    (T : ℕ)
+    (f : PermanssonResearch.ConstitutiveQuasi.FinitePathProperty
+      (PermanssonLean.JointState S X) T)
+    (report : PermanssonLean.RegimeSpecification.PerturbedPropertyProfile
+      (PermanssonLean.JointState S X) ℝ)
+    {b₀ bJ : ℝ} (hb₀ : 0 ≤ b₀) (hbJ : 0 ≤ bJ)
+    (hreport₀ : ∀ y ∈ B₁.states,
+      dist (exactApproximateProfile pair T f).baseline y (report.baseline y) ≤ b₀)
+    (hreportJ : ∀ y ∈ B₁.states,
+      dist (exactApproximateProfile pair T f).intervention y
+        (report.intervention y) ≤ bJ) :
+    |PermanssonLean.RegimeSpecification.perturbedConstitutiveMargin
+        M spec B₁ report -
+      PermanssonLean.RegimeSpecification.constitutiveMargin
+        M spec F (f.toRegimeProperty T) B₁ J| ≤
+      (bounds.baselinePrefixBudget T + b₀) +
+        (bounds.interventionPrefixBudget T + bJ) := by
+  have hmodel := bounds.toOutputErrors (spec := spec) (B₁ := B₁) T f
+  have houtput : PermanssonLean.RegimeSpecification.HasConstitutiveOutputErrors
+      M spec F (f.toRegimeProperty T) B₁ J report
+      (bounds.baselinePrefixBudget T + b₀)
+      (bounds.interventionPrefixBudget T + bJ) := by
+    refine ⟨add_nonneg hmodel.baseline_nonneg hb₀,
+      add_nonneg hmodel.intervention_nonneg hbJ, ?_, ?_⟩
+    · intro y hy
+      calc
+        dist (PermanssonLean.RegimeSpecification.baselinePropertyValue
+            (f.toRegimeProperty T) M y) (report.baseline y) ≤
+            dist (PermanssonLean.RegimeSpecification.baselinePropertyValue
+              (f.toRegimeProperty T) M y)
+              (exactApproximateProfile pair T f).baseline y +
+            dist (exactApproximateProfile pair T f).baseline y
+              (report.baseline y) := dist_triangle _ _ _
+        _ ≤ bounds.baselinePrefixBudget T + b₀ :=
+          add_le_add (hmodel.baseline_le y hy) (hreport₀ y hy)
+    · intro y hy
+      calc
+        dist (PermanssonLean.RegimeSpecification.intervenedPropertyValue
+            (f.toRegimeProperty T) J.intervention y)
+            (report.intervention y) ≤
+            dist (PermanssonLean.RegimeSpecification.intervenedPropertyValue
+              (f.toRegimeProperty T) J.intervention y)
+              (exactApproximateProfile pair T f).intervention y +
+            dist (exactApproximateProfile pair T f).intervention y
+              (report.intervention y) := dist_triangle _ _ _
+        _ ≤ bounds.interventionPrefixBudget T + bJ :=
+          add_le_add (hmodel.intervention_le y hy) (hreportJ y hy)
+  exact PermanssonLean.RegimeSpecification.constitutiveMargin_perturbation_abs_le
+    M spec F (f.toRegimeProperty T) B₁ J report
+    (bounds.baselinePrefixBudget T + b₀)
+    (bounds.interventionPrefixBudget T + bJ) houtput
 
 end Perturbation
 end PermanssonResearch
