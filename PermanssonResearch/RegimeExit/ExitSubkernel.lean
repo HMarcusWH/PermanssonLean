@@ -81,9 +81,11 @@ theorem exitSubkernel_mass_add_killedKernel_mass_eq_one
       killedKernel M spec y Set.univ = 1 := by
   rw [exitSubkernel_apply M spec y MeasurableSet.univ,
     killedKernel_apply_univ M spec y]
-  haveI : IsProbabilityMeasure (M.inducedKernel y) :=
-    (StrategicWorldModel.inducedKernel_isMarkov M).isProbability y
-  simpa using (measure_add_measure_compl spec.region_measurable (M.inducedKernel y)).symm
+  letI : IsMarkovKernel M.inducedKernel :=
+    StrategicWorldModel.inducedKernel_isMarkov M
+  have h := measure_add_measure_compl spec.region_measurable
+    (μ := M.inducedKernel y)
+  simpa [add_comm] using h
 
 /-- The actual n-step killed measure, then one exit transition. -/
 noncomputable def firstExitStepMeasure
@@ -122,6 +124,8 @@ theorem firstExitStepMeasure_zero
     (spec : RegimeSpecification (JointState S X) H)
     (y : JointState S X) :
     firstExitStepMeasure M spec 0 y = exitSubkernel M spec y := by
-  simp [firstExitStepMeasure]
+  unfold firstExitStepMeasure
+  rw [pow_zero]
+  exact Measure.dirac_bind (Kernel.measurable (exitSubkernel M spec)) y
 
 end PermanssonResearch.RegimeExit
