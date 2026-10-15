@@ -1,0 +1,30 @@
+name: C-Exit stopped continuation focused smoke
+
+on:
+  push:
+    branches: [research/c-exit-stopped-continuation]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  restart-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Exact rational stopped-future adversaries
+        run: python3 -m unittest discover -s verification/research -p 'test_c_exit_restart.py' -v
+      - name: Compile C-Exit C kernel and endpoint identity
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch.RegimeExit.CanonicalTailKernel PermanssonResearch.RegimeExit.RestartSanity
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
