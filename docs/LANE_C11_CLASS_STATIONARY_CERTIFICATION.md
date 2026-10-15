@@ -1,6 +1,13 @@
 # C11-A — Exact rational recurrent-class stationary certification
 
-**Research-only draft PR #62**, base `main@57aa4eb3b58df770630f16b04940cb5933317709` (merged C10). This ledger describes implementation obligations and progress; no uncompiled theorem, generated fixture or CI count is claimed as verified.
+**Research-only draft PR #62.** Original creation base:
+`main@57aa4eb3b58df770630f16b04940cb5933317709` (merged C10).
+Current integrated base: `main@f6bbd4033e39389579909cf689f8a0f8aaaf9957`,
+reconciled with the v0.2.0 research-documentation update on
+`a220ceddda0742e782c671a3d5e35cbfd818f4dc`.
+The live PR source SHA, synthetic merge, workflow runs, and artifacts are
+the authority for release status; this ledger never certifies uncompiled
+proofs or outstanding reviews.
 
 ## Objective and established dependencies
 
@@ -22,8 +29,8 @@ All five files must be directly imported by `PermanssonResearch.lean`. The branc
 
 - `c11_stationary_execution.py`: closed exact rational input; deterministic positive-edge closure and BSCC list; rational Gaussian elimination on `(I - L_Cᵀ)` with one row replaced by the unit-mass constraint; full-state extension and balance validation; canonical `Permansson.C11.stationary-research.v1` report.
 - `c11_verify_stationary.py`: independent DFS SCC enumeration, exact nonnegative/unit-mass/off-class/all-state-balance/share verification and hash/schema checks. It never calls the producer's solver.
-- `c11_emit_stationary_lean.py`: complete literal kernel, descriptor, class vectors and shares, genuine `checkStationaryFamily = true` theorem checked by `lake env lean` and transitive axioms printed. External JSON parsing and Python code are not Lean-verified.
-- `test_lane_c11_stationary.py`, `test_lane_c11_lean_receipt.py`: discovered exact small-model, negative, state-relabeling, completeness and generated kernel-proof regressions.
+- `c11_emit_stationary_lean.py`: complete literal kernel, descriptor, class vectors and shares, genuine `checkStationaryFamily = true` theorem plus **per-class applications** of `checked_stationary_eq_native` and `checked_observed_true_mass_eq_native` for the constructed `K₀=L` D0 typed model. `lake env lean` must check every asserted value; transitive axiom reports must cover all numerical and typed proof outputs. External JSON parsing, Python code and arbitrary empirical-model identification remain unverified.
+- `test_lane_c11_stationary.py`, `test_lane_c11_lean_receipt.py`: discovered exact small-model, negative, state-relabeling, completeness and generated kernel-proof regressions. The Lean test must **fail** without a compiler and must deliberately corrupt previously emitted stationary-weight and observed-share literals, requiring the actual Lean kernel to reject each; checking malformed JSON *before* emission does not meet this gate.
 
 No approximate float thresholds. Explicit operational limits are 1–12 states, 2 MB input, 256-bit input rationals, 8192-bit intermediate/result rationals; a resource limit is not a mathematical nonexistence result. Producer/checker input parsing is shared and outside the formal Lean proof.
 
@@ -49,4 +56,26 @@ Review the actual C11 theorem statements and their hypotheses, independent check
 - The theorem interface for actual C2 typed class stationary measures now exposes a checkable nonempty-state instance where the type itself requires it; strict class positivity derives nonemptiness internally from the accepted positive-dimension certificate.
 - In a local, independent Python reconstruction of the committed numerical implementation, the 15 planned C11 exact-rational regression cases passed, including the six-state and adversarial cases. This **does not** certify GitHub's discovered Python tests, compiler-driven Lean fixture, or source provenance.
 - **No final exact-head Research Lean success is claimed at this stage.** The current live PR head and its latest workflow records—not these earlier attempts—control release readiness.
+
+## Last technical closing work and final gate
+
+The [last completed Research Lean run on the previous head
+#38659870548](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38659870548)
+compiled the class checker, complete stationary family, and generic actual
+typed stationary-measure bridge. It failed at the Boolean-share partition
+(`Unknown identifier x`) and a `ℚ → ℝ` finite-sum cast in
+`C11ObservedStationary.lean`, before reaching the six-state witness,
+Python regressions, generated Lean receipt replay, root axiom audit, and
+C10 source-bound evidence stage. Subsequent C11-only commits replace both
+proofs by explicit finite-sum equalities and add input-bound typed and
+observed Lean reification plus post-emission tampering tests.
+
+**Completion remains contingent on new exact-head results:** the C11
+Boolean-share and six-state proofs compile; all numerical and generated
+Lean tests execute, without skipped proof compilation; the original
+C10/D0 evidence and original default build pass; the transitive
+axiom audit and source firewall pass; all four PR workflows are green
+on the actual source SHA and GitHub synthetic merge; a fresh independent
+final-head source review addresses findings; and the author separately
+authorizes a merge. The PR #61 review waiver is not inherited.
 
