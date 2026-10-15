@@ -5,7 +5,13 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
-## Active A2 implementation — PR #64 (15 October 2026)
+## Current branch and merge status (15 October 2026)
+
+**Main:** `a9d914520c68741a23cda89357499f3cf3f1500a` after merged [PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64). All four post-merge main workflows passed: [Research Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38736758059), [Original Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38736758899), [Executable verification](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38736758104), [Application contract](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38736758072).
+
+**B2 in draft:** [PR #65](https://github.com/HMarcusWH/PermanssonLean/pull/65), [B2 source and theorem ledger](LANE_B2_SEQUENTIAL_EFFECTS.md). Generic actual four-corner path-law effects, two-sided triangles, uniform conditional margins and original baseline-margin bridges, normed vector interaction, compatible admitted-grammar bridge and explicit Boolean adversaries are implementation targets, not certified until exact-head/synthetic-merge Lean, Python, axiom and source gates pass. This branch does not change the v0.1.8 core.
+
+## A2 implementation — historical PR #64 checkpoint (15 October 2026)
 
 [PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64) implements the
 proposed A2 primitive-kernel TV and two-budget finite constitutive-certificate
@@ -17,8 +23,7 @@ with 4,034 build jobs, 594/594 research regressions, 3,802 audited declarations,
 319/319 direct research imports, D0-F and C10 evidence checks. A later
 [`db1c7e78` focused run](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38728807954)
 passed 16/16 adversarial Python tests and Lean A2 smoke. Both are scoped to
-their own heads. Its source status is **DRAFT / under CI and
-review**, not PROVED solely because code is committed. See
+their own heads. At those cited pre-merge checkpoints its source status was **DRAFT / under CI and review**; PR #64 subsequently merged and post-merge main CI passed, as recorded in the current status above. Older checkpoints were not retroactively upgraded. See
 [Lane A2 ledger](LANE_A2_PRIMITIVE_TV.md) and the [v0.2.0 theorem ledger](V020_RESEARCH_PROOF_LEDGER.md); inspect the exact final PR head,
 test results, and transitive axiom audit before promotion.
 
