@@ -26,10 +26,13 @@ class FiniteModel:
     def __init__(self, alpha, world, update):
         self.alpha, self.world, self.update = alpha, world, update
         for y in STATES:
+            assert all(v >= 0 for v in self.alpha[y])
             assert sum(self.alpha[y]) == 1
             for a in ACTIONS:
+                assert all(v >= 0 for v in self.world[(y, a)])
                 assert sum(self.world[(y, a)]) == 1
                 for xp in range(2):
+                    assert all(v >= 0 for v in self.update[(y, a, xp)])
                     assert sum(self.update[(y, a, xp)]) == 1
 
     def joint(self):
@@ -117,11 +120,20 @@ class A2PrimitiveTests(unittest.TestCase):
         self.assertEqual(check_primitive_bound(m, m), 0)
 
     def test_a2_02_action_only(self):
-        m = baseline()
+        original = baseline()
+        p = dict(original.world)
+        # Action a=1 genuinely changes the realized next world.
+        for y in STATES:
+            p[(y, 1)] = (Q(0), Q(1))
+        m = with_changed(original, world=p)
         a = dict(m.alpha)
         a[STATES[0]] = (Q(2, 5), Q(3, 5))
         n = with_changed(m, alpha=a)
+        self.assertEqual(m.world, n.world)
+        self.assertEqual(m.update, n.update)
         self.assertEqual(check_primitive_bound(m, n), Q(3, 5))
+        self.assertEqual(tv(m.joint()[STATES[0]], n.joint()[STATES[0]]),
+                         Q(3, 5))
 
     def test_a2_03_world_only(self):
         m = baseline()
@@ -130,12 +142,17 @@ class A2PrimitiveTests(unittest.TestCase):
         n = with_changed(m, world=p)
         self.assertEqual(check_primitive_bound(m, n), Q(3, 4))
         self.assertNotEqual(m.world, n.world)
+        self.assertEqual(tv(m.joint()[STATES[0]], n.joint()[STATES[0]]),
+                         Q(3, 4))
 
     def test_a2_04_update_only(self):
         m = baseline()
         u = dict(m.update)
         u[(STATES[0], 0, 0)] = (Q(1, 5), Q(4, 5))
-        self.assertEqual(check_primitive_bound(m, with_changed(m, update=u)), Q(4, 5))
+        n = with_changed(m, update=u)
+        self.assertEqual(check_primitive_bound(m, n), Q(4, 5))
+        self.assertEqual(tv(m.joint()[STATES[0]], n.joint()[STATES[0]]),
+                         Q(4, 5))
 
     def test_a2_05_sum_clamps_to_one(self):
         m = baseline()
@@ -149,8 +166,12 @@ class A2PrimitiveTests(unittest.TestCase):
 
     def test_a2_06_zero_horizon_identical(self):
         m = baseline()
+        a = {y: (Q(0), Q(1)) for y in STATES}
+        n = with_changed(m, alpha=a)
         for y in STATES:
             self.assertEqual(path_law(m.joint(), y, 0), {(y,): Q(1)})
+            self.assertEqual(path_tv(path_law(m.joint(), y, 0),
+                                     path_law(n.joint(), y, 0)), 0)
 
     def test_a2_07_one_transition(self):
         m = baseline()
@@ -205,15 +226,18 @@ class A2PrimitiveTests(unittest.TestCase):
         self.assertEqual(gap(m, j, STATES, 1, f), 0)
 
     def test_a2_12_arbitrarily_small_leak_breaks_exact_invariance(self):
-        eps = Q(1, 1000)
         k = {y: (Q(1), Q(0), Q(0), Q(0)) for y in STATES}
-        leak = {y: (1 - eps, eps, Q(0), Q(0)) for y in STATES}
-        self.assertEqual(max(tv(k[y], leak[y]) for y in STATES), eps)
-        for t in range(1, 5):
-            self.assertEqual(sum(p for w, p in path_law(leak, STATES[0], t).items()
-                                 if all(z == STATES[0] for z in w)),
-                             (1 - eps) ** t)
-        self.assertLess(1 - eps, 1)  # Infinite retention is zero.
+        # For each tested epsilon>0, the candidate region {STATES[0]}
+        # has positive one-step exit probability. No Exact GR invariance.
+        for exponent in (1, 2, 3, 4, 5):
+            eps = Q(1, 10 ** exponent)
+            leak = {y: (1 - eps, eps, Q(0), Q(0)) for y in STATES}
+            self.assertEqual(max(tv(k[y], leak[y]) for y in STATES), eps)
+            for t in range(1, 5):
+                self.assertEqual(sum(p for w, p in path_law(leak, STATES[0], t).items()
+                                     if all(z == STATES[0] for z in w)),
+                                 (1 - eps) ** t)
+            self.assertLess(1 - eps, 1)
 
     def test_a2_13_scores_outside_unit_interval_not_admissible(self):
         def check_score(values):
@@ -227,6 +251,35 @@ class A2PrimitiveTests(unittest.TestCase):
         self.assertFalse(matched("actionSelection", "strategicUpdate", "k", "k"))
         self.assertFalse(matched("actionSelection", "actionSelection", "k", "other"))
         self.assertTrue(matched("jointStrategic", "jointStrategic", "k", "k"))
+
+    def test_a2_16_baseline_and_intervention_need_separate_budgets(self):
+        # Strategic intervention replaces only alpha. Distinct structural P
+        # values are model uncertainty, not an intervention's target.
+        original = baseline()
+        p = dict(original.world)
+        ptilde = dict(original.world)
+        for y in STATES:
+            p[(y, 1)] = (Q(1, 2), Q(1, 2))
+            ptilde[(y, 0)] = (Q(3, 4), Q(1, 4))
+            ptilde[(y, 1)] = (Q(3, 5), Q(2, 5))
+        m = with_changed(original, world=p)
+        n = with_changed(original, world=ptilde)
+        select_one = {y: (Q(0), Q(1)) for y in STATES}
+        j = with_changed(m, alpha=select_one)
+        nj = with_changed(n, alpha=select_one)
+        self.assertEqual(m.world, j.world)
+        self.assertEqual(n.world, nj.world)
+        e0 = check_primitive_bound(m, n)
+        eJ = check_primitive_bound(j, nj)
+        self.assertEqual(e0, Q(1, 4))
+        self.assertEqual(eJ, Q(1, 10))
+        f = lambda w: Q(1) if w[-1][1] == 1 else Q(0)
+        kappa = gap(m, j, STATES, 1, f)
+        kappa_tilde = gap(n, nj, STATES, 1, f)
+        self.assertEqual(kappa, Q(1, 2))
+        self.assertEqual(kappa_tilde, Q(3, 20))
+        self.assertEqual(abs(kappa - kappa_tilde), e0 + eJ)
+        self.assertGreater(kappa, e0 + eJ)
 
     def test_a2_15_exact_exhaustive_synthetic_primitives(self):
         rng = random.Random(6402)
