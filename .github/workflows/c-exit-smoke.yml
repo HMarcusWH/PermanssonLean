@@ -19,7 +19,7 @@ jobs:
         with:
           auto-config: false
           build: true
-          build-args: PermanssonResearch.RegimeExit.ExitAdversaries PermanssonResearch.RegimeExit.ExitLawLimits PermanssonResearch.RegimeExit.QSDExitBoundary PermanssonResearch.RegimeExit.ExitLongHorizonWitness
+          build-args: PermanssonResearch.RegimeExit.ExitAdversaries PermanssonResearch.RegimeExit.ExitLawLimits PermanssonResearch.RegimeExit.QSDExitBoundary PermanssonResearch.RegimeExit.ExitLongHorizonWitness PermanssonResearch.RegimeExit.ExitFiniteWitness
           test: false
           lint: false
           use-mathlib-cache: true
