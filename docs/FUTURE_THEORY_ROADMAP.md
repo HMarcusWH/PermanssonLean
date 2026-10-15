@@ -144,6 +144,9 @@ This **does not** cover discontinuous indefinite survival indicators: an arbitra
 
 ### B2 — Four-corner strategic-generator interaction
 
+**Implementation (PR #65, draft):** [B2 theorem and adversarial ledger](LANE_B2_SEQUENTIAL_EFFECTS.md). The branch formalizes three *separately admitted* interventions, physical α/U atom compatibility rather than a downward-closure assumption, the original B₁ margin bridge, and a genuine two-time zero-infimum counterexample. This is in research only and does not alter the frozen v0.1.8 paper/core. Exact-head compilation and CI remain the promotion gate.
+
+
 Freeze $z_{00},z_{10},z_{01},z_{11}$ for baseline, action-only, update-only and joint $(\alpha,U)$ interventions, with fixed $P$ and the same property map. Set
 
 $$
