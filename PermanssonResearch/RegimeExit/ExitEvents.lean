@@ -111,7 +111,10 @@ theorem firstExitAt_eq_exitTime_succ
     by_cases hex : ∃ t : ℕ, w t ∉ spec.region
     · have hval : Nat.find hex = n+1 := by
         simp only [exitTime, dif_pos hex] at ht
-      exact_mod_cast ht
+      have hc : (Nat.find hex : ℕ∞) = ((n+1 : ℕ) : ℕ∞) := by
+        rw [ENat.natCast_add, ENat.natCast_one]
+        exact ht
+      exact ENat.natCast_inj.mp hc
       refine ⟨?_, hD, ?_⟩
       · intro t htle
         by_contra hnot
