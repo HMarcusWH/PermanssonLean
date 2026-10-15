@@ -64,6 +64,7 @@ theorem realWeights_nonneg {n : ℕ}
     (hc : checkClassStationary L r = true) :
     ∀ y : JointState Unit (Fin n), 0 ≤ realWeights r y := by
   intro y
+  change 0 ≤ ((r.weights (encode y) : ℚ) : ℝ)
   exact_mod_cast checked_nonnegative L r hc (encode y)
 
 theorem realWeights_total {n : ℕ}
@@ -198,6 +199,7 @@ theorem checked_stationary_positive_on_class {n : ℕ}
     (decode x)
     (show decode x ∈ decodedClass r.classStates by
       simpa [decodedClass] using hx)
+  change (0 : ℝ) < ((r.weights x : ℚ) : ℝ) at hpos
   exact_mod_cast hpos
 
 end C11
