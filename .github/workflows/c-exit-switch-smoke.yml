@@ -1,0 +1,30 @@
+name: C-Exit switch focused Lean smoke
+
+on:
+  push:
+    branches: [research/c-exit-switch-certified]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  switch-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run exact rational switching adversaries
+        run: python3 -m unittest discover -s verification/research -p 'test_c_exit_switch.py' -v
+      - name: Build C-Exit switching source
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch.RegimeExit.SwitchRouting PermanssonResearch.RegimeExit.SwitchRetention PermanssonResearch.RegimeExit.SwitchRetentionMass PermanssonResearch.RegimeExit.SwitchRestart PermanssonResearch.RegimeExit.SwitchProperty PermanssonResearch.RegimeExit.SwitchConstitution PermanssonResearch.RegimeExit.SwitchWitnessModels PermanssonResearch.RegimeExit.SwitchGrounded PermanssonResearch.RegimeExit.SwitchWitnessGeometry PermanssonResearch.RegimeExit.SwitchWitnessExactGR PermanssonResearch.RegimeExit.SwitchWitnessCertificate PermanssonResearch.RegimeExit.SwitchWitnessMargin PermanssonResearch.RegimeExit.SwitchWitnessOccupation
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false

@@ -389,6 +389,20 @@ import PermanssonResearch.Perturbation.PrimitiveMargin
 import PermanssonResearch.Perturbation.PrimitiveLipschitz
 import PermanssonResearch.Perturbation.PrimitiveAdversaries
 
+import PermanssonResearch.RegimeExit.SwitchRouting
+import PermanssonResearch.RegimeExit.SwitchRetention
+import PermanssonResearch.RegimeExit.SwitchRetentionMass
+import PermanssonResearch.RegimeExit.SwitchRestart
+import PermanssonResearch.RegimeExit.SwitchProperty
+import PermanssonResearch.RegimeExit.SwitchConstitution
+import PermanssonResearch.RegimeExit.SwitchGrounded
+import PermanssonResearch.RegimeExit.SwitchWitnessModels
+import PermanssonResearch.RegimeExit.SwitchWitnessGeometry
+import PermanssonResearch.RegimeExit.SwitchWitnessExactGR
+import PermanssonResearch.RegimeExit.SwitchWitnessCertificate
+import PermanssonResearch.RegimeExit.SwitchWitnessMargin
+import PermanssonResearch.RegimeExit.SwitchWitnessOccupation
+
 /-!
 # PermanssonResearch
 
