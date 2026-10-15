@@ -5,6 +5,19 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
+## Active A2 implementation — PR #64 (15 October 2026)
+
+[PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64) implements the
+proposed A2 primitive-kernel TV and two-budget finite constitutive-certificate
+transport in the *research* library. Its source status is **DRAFT / under CI and
+review**, not PROVED solely because code is committed. See
+[Lane A2 ledger](LANE_A2_PRIMITIVE_TV.md) and inspect the exact final PR head,
+test results, and transitive axiom audit before promotion.
+
+PR #62 (C11-A) has merged to main at `d137ac2308285f843a1ccf76fede74b4b6b65131`,
+with 4/4 post-merge workflows green. Any statement below calling C11-A
+“draft/open” is a historical snapshot from before that merge, not current.
+
 ## Current research status and v0.2.0 handoff (15 October 2026)
 
 **Snapshot base:** main@57aa4eb3b58df770630f16b04940cb5933317709. These statuses are scoped to that commit and the observed PR metadata; consult GitHub for newer heads/CI. The older chronological C1–C10 commentary below is a historical work log and contains pre-merge descriptions that do **not** supersede this section.
