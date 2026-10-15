@@ -36,8 +36,8 @@ def pathTailShift (m : ℕ)
 /-- Time shifting is measurable in the canonical countable product
 measurable space; no discreteness or finite state assumption. -/
 theorem measurable_pathTailShift (m : ℕ) :
-    Measurable (pathTailShift (S := S) (X := X) (A := A) m) := by
-  apply measurable_pi_iff.mpr
+    Measurable (pathTailShift (S := S) (X := X) m) := by
+  apply Measurable.of_eval
   intro t
   exact measurable_pi_apply (m + t)
 
@@ -73,7 +73,7 @@ theorem canonicalFutureKernel_apply
   letI : IsMarkovKernel N.inducedKernel :=
     StrategicWorldModel.inducedKernel_isMarkov N
   unfold canonicalFutureKernel StrategicWorldModel.pathLaw Kernel.trajMeasure
-  rw [Measure.map_dirac z]
+  rw [Measure.map_dirac' (by fun_prop) z]
   rw [Measure.dirac_bind (Kernel.measurable _)]
   rfl
 

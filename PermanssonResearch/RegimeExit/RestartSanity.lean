@@ -26,7 +26,7 @@ variable [MeasurableSpace A] [MeasurableSpace H]
 future is exactly the very first state of that future. -/
 theorem shifted_future_zero (n : ℕ)
     (w : ℕ → JointState S X) :
-    pathTailShift (S := S) (X := X) (A := A) (n+1) w 0 = w (n+1) := by
+    pathTailShift (S := S) (X := X) (n+1) w 0 = w (n+1) := by
   rfl
 
 /-- The first-exit event and the shifted future's time-zero observable
@@ -37,7 +37,7 @@ theorem firstExit_shift_zero_inter
     (n : ℕ)
     (D C : Set (JointState S X)) :
     firstExitAtDestination spec n D ∩
-      (pathTailShift (S := S) (X := X) (A := A) (n+1)) ⁻¹'
+      (pathTailShift (S := S) (X := X) (n+1)) ⁻¹'
         {v : ℕ → JointState S X | v 0 ∈ C} =
       firstExitAtDestination spec n (D ∩ C) := by
   ext w
@@ -56,7 +56,7 @@ theorem firstExit_shift_zero_probability
     (hD : MeasurableSet D) (hC : MeasurableSet C) :
     N.pathLaw (Measure.dirac y)
       (firstExitAtDestination spec n D ∩
-        (pathTailShift (S := S) (X := X) (A := A) (n+1)) ⁻¹'
+        (pathTailShift (S := S) (X := X) (n+1)) ⁻¹'
           {v : ℕ → JointState S X | v 0 ∈ C}) =
       firstExitStepMeasure N spec n y (D ∩ C) := by
   rw [firstExit_shift_zero_inter]
