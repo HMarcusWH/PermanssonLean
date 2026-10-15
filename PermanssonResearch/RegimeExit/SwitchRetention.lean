@@ -82,10 +82,8 @@ theorem targetBadStep_probability_zero
     StrategicWorldModel.pathLaw_has_transition_pair N μ.toMeasure n
   have hZero (z : JointState S X) (hz : z ∈ target.region) :
       K z target.regionᶜ = 0 := by
-    have hfin : K z target.region ≠ ⊤ := measure_ne_top _ _
-    rw [measure_compl target.region_measurable hfin]
-    change (1 : ℝ≥0∞) - N.inducedKernel z target.region = 0
-    rw [hInv z hz]
+    change N.inducedKernel z target.regionᶜ = 0
+    rw [prob_compl_eq_one_sub target.region_measurable, hInv z hz]
     simp
   have hSet : pairFn ⁻¹' (A ×ˢ target.regionᶜ) =
       targetBadStep target n := by
