@@ -67,6 +67,8 @@ theorem zeroInf_action (y : Y) :
     (admittedBlockIntervention baseline bank fine actionBlock).intervention.apply
     (diracProba y)) = _
   rw [admittedBlockIntervention_apply]
+  change zeroInfProperty (pathProbability
+    (blockModel baseline bank fine actionOnly) (diracProba y)) = _
   rw [zeroInfProperty_constant
     (blockModel baseline bank fine actionOnly) actionDest
     actionOnly_inducedKernel y]
@@ -80,6 +82,8 @@ theorem zeroInf_update (y : Y) :
     (admittedBlockIntervention baseline bank fine updateBlock).intervention.apply
     (diracProba y)) = 0
   rw [admittedBlockIntervention_apply]
+  change zeroInfProperty (pathProbability
+    (blockModel baseline bank fine updateOnly) (diracProba y)) = 0
   rw [zeroInfProperty_constant
     (blockModel baseline bank fine updateOnly) updateDest
     updateOnly_inducedKernel y]
@@ -93,6 +97,8 @@ theorem zeroInf_joint (y : Y) :
     (admittedBlockIntervention baseline bank fine jointBlock).intervention.apply
     (diracProba y)) = 1
   rw [admittedBlockIntervention_apply]
+  change zeroInfProperty (pathProbability
+    (blockModel baseline bank fine joint) (diracProba y)) = 1
   rw [zeroInfProperty_constant
     (blockModel baseline bank fine joint) jointDest joint_inducedKernel y]
   simp [zeroInfP]
@@ -139,9 +145,11 @@ open BooleanModel BooleanBaseline BooleanDynamics BooleanPersistence
 open SequentialBooleanBridge
 
 private theorem q0_in_comparison : q0 ∈ comparison.states := by
-  simp [comparison, basin]
+  change q0 ∈ BooleanBaseline.basin
+  simp [BooleanBaseline.basin]
 private theorem q1_in_comparison : q1 ∈ comparison.states := by
-  simp [comparison, basin]
+  change q1 ∈ BooleanBaseline.basin
+  simp [BooleanBaseline.basin]
 
 theorem zeroInf_actionMargin_zero :
     actionMargin booleanCorners zeroInfProperty comparison = 0 := by
@@ -258,54 +266,45 @@ noncomputable def vectorProperty : RegimePropertyMap Y ℝ :=
 
 theorem vector_baseline (y : Y) :
     baselinePropertyValue vectorProperty baseline y = 0 := by
-  change propertyAtOne atAction (pathProbability baseline (diracProba y)) -
-      propertyAtOne atUpdate (pathProbability baseline (diracProba y)) +
-      2 * propertyAtOne atJoint (pathProbability baseline (diracProba y)) = 0
+  change baselinePropertyValue (propertyAtOne atAction) baseline y -
+      baselinePropertyValue (propertyAtOne atUpdate) baseline y +
+      2 * baselinePropertyValue (propertyAtOne atJoint) baseline y = 0
   rw [baseline_value atAction y, baseline_value atUpdate y, baseline_value atJoint y]
   norm_num [atAction, atUpdate, atJoint, q0, actionDest, updateDest, jointDest]
 
 theorem vector_action (y : Y) :
     intervenedPropertyValue vectorProperty
       (admittedBlockIntervention baseline bank fine actionBlock).intervention y = 1 := by
-  change propertyAtOne atAction (pathProbability
-        (admittedBlockIntervention baseline bank fine actionBlock).intervention.apply
-        (diracProba y)) -
-      propertyAtOne atUpdate (pathProbability
-        (admittedBlockIntervention baseline bank fine actionBlock).intervention.apply
-        (diracProba y)) +
-      2 * propertyAtOne atJoint (pathProbability
-        (admittedBlockIntervention baseline bank fine actionBlock).intervention.apply
-        (diracProba y)) = 1
+  change intervenedPropertyValue (propertyAtOne atAction)
+        (admittedBlockIntervention baseline bank fine actionBlock).intervention y -
+      intervenedPropertyValue (propertyAtOne atUpdate)
+        (admittedBlockIntervention baseline bank fine actionBlock).intervention y +
+      2 * intervenedPropertyValue (propertyAtOne atJoint)
+        (admittedBlockIntervention baseline bank fine actionBlock).intervention y = 1
   rw [action_value atAction y, action_value atUpdate y, action_value atJoint y]
   norm_num [atAction, atUpdate, atJoint, actionDest, updateDest, jointDest]
 
 theorem vector_update (y : Y) :
     intervenedPropertyValue vectorProperty
       (admittedBlockIntervention baseline bank fine updateBlock).intervention y = -1 := by
-  change propertyAtOne atAction (pathProbability
-        (admittedBlockIntervention baseline bank fine updateBlock).intervention.apply
-        (diracProba y)) -
-      propertyAtOne atUpdate (pathProbability
-        (admittedBlockIntervention baseline bank fine updateBlock).intervention.apply
-        (diracProba y)) +
-      2 * propertyAtOne atJoint (pathProbability
-        (admittedBlockIntervention baseline bank fine updateBlock).intervention.apply
-        (diracProba y)) = -1
+  change intervenedPropertyValue (propertyAtOne atAction)
+        (admittedBlockIntervention baseline bank fine updateBlock).intervention y -
+      intervenedPropertyValue (propertyAtOne atUpdate)
+        (admittedBlockIntervention baseline bank fine updateBlock).intervention y +
+      2 * intervenedPropertyValue (propertyAtOne atJoint)
+        (admittedBlockIntervention baseline bank fine updateBlock).intervention y = -1
   rw [update_value atAction y, update_value atUpdate y, update_value atJoint y]
   norm_num [atAction, atUpdate, atJoint, actionDest, updateDest, jointDest]
 
 theorem vector_joint (y : Y) :
     intervenedPropertyValue vectorProperty
       (admittedBlockIntervention baseline bank fine jointBlock).intervention y = 2 := by
-  change propertyAtOne atAction (pathProbability
-        (admittedBlockIntervention baseline bank fine jointBlock).intervention.apply
-        (diracProba y)) -
-      propertyAtOne atUpdate (pathProbability
-        (admittedBlockIntervention baseline bank fine jointBlock).intervention.apply
-        (diracProba y)) +
-      2 * propertyAtOne atJoint (pathProbability
-        (admittedBlockIntervention baseline bank fine jointBlock).intervention.apply
-        (diracProba y)) = 2
+  change intervenedPropertyValue (propertyAtOne atAction)
+        (admittedBlockIntervention baseline bank fine jointBlock).intervention y -
+      intervenedPropertyValue (propertyAtOne atUpdate)
+        (admittedBlockIntervention baseline bank fine jointBlock).intervention y +
+      2 * intervenedPropertyValue (propertyAtOne atJoint)
+        (admittedBlockIntervention baseline bank fine jointBlock).intervention y = 2
   rw [joint_value atAction y, joint_value atUpdate y, joint_value atJoint y]
   norm_num [atAction, atUpdate, atJoint, actionDest, updateDest, jointDest]
 
@@ -349,13 +348,13 @@ theorem vector_conditional_legs_unequal (y : Y) :
       (intervenedPropertyValue vectorProperty
         (admittedBlockIntervention baseline bank fine jointBlock).intervention y) = 1
     rw [vector_action, vector_joint]
-    norm_num
+    norm_num [Real.dist_eq]
   · change dist
       (intervenedPropertyValue vectorProperty
         (admittedBlockIntervention baseline bank fine updateBlock).intervention y)
       (intervenedPropertyValue vectorProperty
         (admittedBlockIntervention baseline bank fine jointBlock).intervention y) = 3
     rw [vector_update, vector_joint]
-    norm_num
+    norm_num [Real.dist_eq]
 
 end PermanssonResearch.GrammarRobust.SequentialAdversaries
