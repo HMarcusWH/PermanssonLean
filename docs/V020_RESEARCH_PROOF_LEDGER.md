@@ -2,10 +2,29 @@
 
 **Scope: additive mathematical research extensions only.** This ledger does
 not modify the original v0.1.8 theorem corpus, proof manifests or paper.
-Check live [PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64)
-and the exact HEAD for current status. A dated proof checkpoint proves only
+Check merged [PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64), draft [PR #65](https://github.com/HMarcusWH/PermanssonLean/pull/65), and the exact HEAD for current status. A dated proof checkpoint proves only
 the encoded declarations on its matching source SHA; it is not a v0.2.0 paper
 release or independent third-party review.
+
+## Current merged baseline and B2 draft
+
+Main `a9d914520c68741a23cda89357499f3cf3f1500a` has merged A2. All four post-merge main workflows passed on this exact SHA; this is not an acceptance of the new B2 branch.
+
+**B2 source crosswalk (PR #65; unverified until exact-head CI):**
+
+| Obligation | Source declarations | Firewall |
+|---|---|---|
+| Four genuine 00/10/01/11 path-law corners | `GrammarRobust/SequentialEffects.lean`: `FourCornerProtocol`, `jointEffect_le_action_add_condUpdate`, `jointEffect_abs_action_sub_condUpdate_le`, symmetric theorems | Three independently admitted strategic interventions; identical frozen P and ψ |
+| Uniform conditional bounds | `GrammarRobust/ConditionalMargins.lean`: `condUpdateMargin_ge_joint_sub_action`, symmetric bound, strict-positivity corollaries | Uniform singleton *upper bounds*, original certified B₁; no zero-infimum promotion |
+| Original baseline bridges | `ConditionalMargins.lean`: `jointMargin_eq_constitutiveMargin`, action/update counterparts | Only baseline-relative effects identify original PR constitution |
+| Strong singleton-null identity | `jointOnly_conditionalMargins_eq_jointMargin` | Pointwise zero on every original comparison state |
+| Vector subclass | `GrammarRobust/InteractionVector.lean`: `interactionVector_norm_le_condUpdate_add_update`, symmetric bound, `uniformInteractionMagnitude_le` | Normed additive output, explicit finite supremum bound |
+| Admissible block grammar repair | `GrammarRobust/SequentialBlockBridge.lean`: `fromAllowed`, effect/margin bridges | Independent accepted blocks and four physical action/update atom equations; no downward closure |
+| Canonical Boolean witness | `GrammarRobust/SequentialBooleanBridge.lean` | Original `BooleanPersistence` and `BooleanEffects` reused, not re-proved as new discovery |
+| False-claim witnesses | `GrammarRobust/SequentialAdversaries.lean` | Two-time path-law property: zero singleton infima, joint margin one, conditional update margin zero; real vector I=2 versus scalar remainder 0 |
+| Exact deterministic independent checks | `verification/research/test_lane_b2_sequential_effects.py` | 18 exact-rational model-executed cases; Python is not a Lean theorem |
+
+See [B2 verification ledger](LANE_B2_SEQUENTIAL_EFFECTS.md). Do not promote a green earlier commit to a later source head.
 
 ## A2 source-to-theorem crosswalk
 
