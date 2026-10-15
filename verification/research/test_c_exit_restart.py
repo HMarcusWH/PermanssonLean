@@ -32,6 +32,13 @@ def baseline():
     return check({0:{1:ONE}, 1:{4:ONE}, 2:{3:ONE},
                   3:{3:ONE}, 4:{4:ONE}})
 
+def branching():
+    """Two distinct exit destinations and stochastic post-arrival futures."""
+    return check({0:{0:F(1,4),2:F(1,2),3:F(1,4)},
+                  1:{1:F(1,4),2:F(1,4),3:F(1,2)},
+                  2:{2:F(1,3),3:F(2,3)},
+                  3:{3:ONE},4:{4:ONE}})
+
 def arrival_submeasure(K, start, n):
     """Mass exiting exactly at observation n+1; no normalization."""
     living={start:ONE}
@@ -56,37 +63,12 @@ def path_weight(K, word):
         result *= K[a].get(b,ZERO)
     return result
 
-def direct_restarted_cylinder(K, start, n, D, future):
-    """Enumerate full paths, filter the first exit and future-cylinder."""
-    length=n+len(future)
-    current={(start,):ONE}
-    for _ in range(length):
-        nxt={}
-        for history,p in current.items():
-            for z,q in K[history[-1]].items():
-                w=history+(z,)
-                nxt[w]=nxt.get(w,ZERO)+p*q
-        current=nxt
-    return sum((p for w,p in current.items()
-                if all(w[k] in SOURCE for k in range(n+1))
-                and w[n+1] in (set(D)-SOURCE)
-                and tuple(w[n+1:n+2+len(future)])[:len(future)+1]==tuple(future)),
-               ZERO)
-
-def routed_future_cylinder(K,start,n,D,future):
-    if not future:
-        return sum((v for z,v in arrival_submeasure(K,start,n).items()
-                    if z in (set(D)-SOURCE)),ZERO)
-    return sum((q*path_weight(K,future)
-                for z,q in arrival_submeasure(K,start,n).items()
-                if z in (set(D)-SOURCE) and z==future[0]),ZERO)
-
 def future_prob(K,z,word):
     return path_weight(K,(z,)+tuple(word))
 
 def direct(K,start,n,D,tail):
     """Explicit enumeration from time 0 through the requested tail."""
-    horizon = (n+1) + (len(tail)-1)
+    horizon = (n+1) + max(0, len(tail)-1)
     curr={(start,):ONE}
     for _ in range(horizon):
         nxt={}
@@ -142,13 +124,37 @@ class StoppedFutureTests(unittest.TestCase):
     def test_never_exit_tail_positive(self):
         self.assertEqual(F(1,2)**8,F(1,256))
     def test_exact_finite_cylinders(self):
-        for K in (switched(),partial(),baseline()):
+        for K in (switched(),partial(),baseline(),branching()):
             for y in (0,1):
                 for n in (0,1,2,3):
                     for D in ({2,3},{2},{3},set(STATES)):
                         for tail in ((2,),(2,3),(2,3,3),(3,3),(3,3,3)):
                             with self.subTest(start=y,n=n,dest=D,tail=tail):
                                 self.assertEqual(direct(K,y,n,D,tail),mixture(K,y,n,D,tail))
+    def test_branching_multiple_arrivals(self):
+        self.assertEqual(arrival_submeasure(branching(),0,0),
+                         {2:F(1,2),3:F(1,4)})
+    def test_branching_both_destinations_total(self):
+        self.assertEqual(mixture(branching(),0,0,{2,3},()),F(3,4))
+    def test_branching_delayed_mass(self):
+        self.assertEqual(arrival_submeasure(branching(),0,1),
+                         {2:F(1,8),3:F(1,16)})
+    def test_branching_future_not_just_endpoint(self):
+        self.assertEqual(mixture(branching(),0,0,{2,3},(2,2,3)),F(1,9))
+        self.assertEqual(mixture(branching(),0,0,{2,3},(2,3,3)),F(1,3))
+        self.assertEqual(mixture(branching(),0,0,{2,3},(3,3,3)),F(1,4))
+    def test_branching_future_event_zero(self):
+        self.assertEqual(mixture(branching(),0,0,{2,3},(3,2)),ZERO)
+    def test_empty_tail_direct_matches_routing(self):
+        self.assertEqual(direct(branching(),0,0,{2,3},()),
+                         mixture(branching(),0,0,{2,3},()))
+    def test_post_exit_kernel_change_is_not_the_same_protocol(self):
+        altered=branching()
+        altered[2]={3:ONE}
+        self.assertNotEqual(direct(altered,0,0,{2,3},(2,2,3)),
+                            mixture(branching(),0,0,{2,3},(2,2,3)))
+    def test_branching_eventual_absorption_geometric_identity(self):
+        self.assertEqual(F(2,3)/(ONE-F(1,3)),ONE)
     def test_independent_tail_words_not_just_endpoint(self):
         self.assertEqual(mixture(switched(),0,0,{2,3},(2,3,3)),HALF)
         self.assertEqual(mixture(switched(),0,0,{2,3},(2,2,2)),ZERO)
