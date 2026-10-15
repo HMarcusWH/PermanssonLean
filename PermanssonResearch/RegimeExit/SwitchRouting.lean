@@ -85,7 +85,7 @@ theorem switch_first_exit_event_lower_bound
     _ = J.intervention.apply.pathLaw (Measure.dirac y)
           (firstExitEverDestination source target.basin) :=
       exitRoutingInfinite_eq_prob_exit_in J.intervention.apply source
-        (B₁.states_subset_region hy) target.basin
+        (ConstitutiveComparisonSet.states_subset_region M source B₁ hy) target.basin
         target.basin_measurable
 
 /-- The source regime remains invariant under the ORIGINAL model. -/
@@ -103,7 +103,7 @@ theorem switch_source_baseline_survival_one
     survivalForeverProbability M source y = 1 := by
   exact exactInvariant_survivalForever M source
     (exactGR_exactlyInvariant M source mSource cert.sourceExact)
-    (B₁.states_subset_region hy)
+    (ConstitutiveComparisonSet.states_subset_region M source B₁ hy)
 
 /-- Arrival in the certified target basin grants probability-one survival
 from that arrival state under the SAME permanently intervened model. -/
