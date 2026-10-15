@@ -45,6 +45,7 @@ change; neither Python tests nor schema validation substitutes for a Lean proof.
 | [v0.2.0 mathematical integration contract](PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md) | Full new equations, hypotheses, proofs-to-build, Lean targets, counterexamples and release conditions |
 | [Next-generation research architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md) | How are lanes A/B/C/D specified, wired, proved and independently tested? |
 | [Research library build guide](RESEARCH_BUILD.md) | How do I build and audit the separate research Lean target? |
+| [A2 primitive-kernel perturbation](LANE_A2_PRIMITIVE_TV.md) | Which bounded typed alpha/world/update errors imply a finite constitutive margin under matched interventions? Draft PR #64, not a completed proof release. |
 | [C10 exact rational execution ledger](LANE_C10_EXACT_CONSTITUTIVE_EXECUTION.md) | How do exact absorption, original constitutive margins, checked receipts and release gates fit together? |
 | [C10 source-bound release evidence](C10_RELEASE_EVIDENCE.md) | How is the six-state literal proof bound to the exact PR source, synthetic merge, specification and receipt? |
 | [C11-A rational stationary-class certification](LANE_C11_CLASS_STATIONARY_CERTIFICATION.md) | How are complete exact stationary class receipts related to genuine typed C2 occupation laws? |
