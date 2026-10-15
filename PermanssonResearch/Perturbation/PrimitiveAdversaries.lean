@@ -18,6 +18,8 @@ positive one-step TV proximity alone.
 namespace PermanssonResearch
 namespace Perturbation
 
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
+
 universe uS uX uA uH uC
 
 variable {S : Type uS} {X : Type uX} {A : Type uA} {H : Type uH}
