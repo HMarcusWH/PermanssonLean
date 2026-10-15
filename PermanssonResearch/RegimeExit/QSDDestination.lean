@@ -86,7 +86,7 @@ theorem qsdRoutingInfinite_eq_fraction
 
 /-- A certified QSD at theta=1 has *zero integrated exit mass*;
 this says nothing about every other state inside B. -/
-theorem qsdThetaOne_no_exit
+theorem qsdThetaOne_no_exit_of_conservation
     (M : StrategicWorldModel S X A)
     (spec : RegimeSpecification (JointState S X) H)
     (μ : ProbabilityMeasure (JointState S X))
