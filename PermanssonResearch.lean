@@ -389,6 +389,9 @@ import PermanssonResearch.Perturbation.PrimitiveMargin
 import PermanssonResearch.Perturbation.PrimitiveLipschitz
 import PermanssonResearch.Perturbation.PrimitiveAdversaries
 
+import PermanssonResearch.RegimeExit.SwitchRouting
+import PermanssonResearch.RegimeExit.SwitchProperty
+
 /-!
 # PermanssonResearch
 
