@@ -1,4 +1,5 @@
 import PermanssonResearch.Perturbation.PrimitiveMargin
+import PermanssonResearch.Perturbation.PrimitiveLipschitz
 import PermanssonResearch.ConstitutiveQuasi.AdversarialExamples
 import PermanssonLean.Examples.QSDCounterexample
 
