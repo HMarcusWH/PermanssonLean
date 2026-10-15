@@ -58,7 +58,7 @@ theorem targetBadStep_probability_zero
   let P := N.pathLaw μ.toMeasure
   let K := N.inducedKernel
   letI : IsMarkovKernel K := StrategicWorldModel.inducedKernel_isMarkov N
-  let prefix : (ℕ → JointState S X) →
+  let prefFn : (ℕ → JointState S X) →
       ((i : Finset.Iic n) → JointState S X) :=
     Preorder.frestrictLe n
   let last : ((i : Finset.Iic n) → JointState S X) →
@@ -68,13 +68,13 @@ theorem targetBadStep_probability_zero
     last ⁻¹' target.region
   let pairFn : (ℕ → JointState S X) →
       (((i : Finset.Iic n) → JointState S X) × JointState S X) :=
-    fun w => (prefix w, w (n+1))
+    fun w => (prefFn w, w (n+1))
   have hlast : Measurable last := by dsimp [last]; fun_prop
   have hA : MeasurableSet A :=
     target.region_measurable.preimage hlast
   have hC : MeasurableSet target.regionᶜ :=
     target.region_measurable.compl
-  have hp : Measurable pairFn := by dsimp [pairFn, prefix]; fun_prop
+  have hp : Measurable pairFn := by dsimp [pairFn, prefFn]; fun_prop
   have hPair :
       (P.map (Preorder.frestrictLe n)) ⊗ₘ
         StrategicWorldModel.stationaryHistoryKernel K n =
