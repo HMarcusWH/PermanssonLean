@@ -146,5 +146,14 @@ class C11StationaryTests(unittest.TestCase):
             self.assertEqual(independent_classes(mat),bottom_classes(mat))
 
 
+    def test_16_same_length_duplicate_replaces_missing_class(self):
+        out = execute(request([["1", "0"], ["0", "1"]], [False, True]))
+        self.assertEqual(len(out["classes"]), 2)
+        forged = copy.deepcopy(out)
+        forged["classes"][1] = copy.deepcopy(forged["classes"][0])
+        self.assertEqual(len(forged["classes"]), 2)
+        with self.assertRaises(StationaryError):
+            verify_report(forged)
+
 if __name__=="__main__":
     unittest.main()

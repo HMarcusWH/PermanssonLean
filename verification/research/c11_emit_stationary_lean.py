@@ -56,8 +56,8 @@ def emit_source(report):
         "namespace C11ReifiedFixture", "",
         f"def kernel : RationalMarkovMatrix {n} where",
         f"  entry := fun x y => {matrix}",
-        "  entry_nonneg := by decide",
-        "  row_sum_one := by decide", "",
+        "  entry_nonneg := by decide +kernel",
+        "  row_sum_one := by decide +kernel", "",
         f"def descriptor : Fin {n} → Bool := fun x => {labels}", ""
     ]
     for index, c in enumerate(report["classes"]):
