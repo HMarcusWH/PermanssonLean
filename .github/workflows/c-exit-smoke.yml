@@ -19,7 +19,7 @@ jobs:
         with:
           auto-config: false
           build: true
-          build-args: PermanssonResearch.RegimeExit.ExitConservation PermanssonResearch.RegimeExit.QSDDestination PermanssonResearch.RegimeExit.ExitModels
+          build-args: PermanssonResearch.RegimeExit.ExitAdversaries
           test: false
           lint: false
           use-mathlib-cache: true
