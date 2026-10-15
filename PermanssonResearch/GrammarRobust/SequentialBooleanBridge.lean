@@ -125,6 +125,11 @@ theorem boolean_naiveSubadditivity_false :
   linarith
 
 /-- The witness is also a genuine generalized original PR, not a table. -/
-theorem boolean_joint_is_uniform_original_PR := uniformRelativePR
+theorem boolean_joint_is_uniform_original_PR :
+    IsUniformGeneralizedPermanssonRegimeRelative
+      baseline spec referenceMeasure
+      (blockFamily baseline bank fine) persistenceProperty comparison
+      (admittedBlockIntervention baseline bank fine jointBlock) :=
+  uniformRelativePR
 
 end PermanssonResearch.GrammarRobust.SequentialBooleanBridge
