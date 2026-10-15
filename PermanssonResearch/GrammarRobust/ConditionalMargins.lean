@@ -113,3 +113,89 @@ theorem condActionMargin_ge_joint_sub_update (C : FourCornerProtocol M F)
     linarith
 
 end PermanssonResearch.GrammarRobust.ConditionalMargins
+
+
+namespace PermanssonResearch.GrammarRobust.ConditionalMargins
+open PermanssonLean PermanssonLean.RegimeSpecification
+open SequentialEffects
+universe uS uX uA uC uZ uH
+variable {S : Type uS} {X : Type uX} {A : Type uA}
+variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
+variable {Component : Type uC} {Z : Type uZ} [MetricSpace Z]
+variable {H : Type uH} [MeasurableSpace H]
+variable {M : StrategicWorldModel S X A}
+variable {F : InterventionFamily M Component}
+variable {spec : RegimeSpecification (JointState S X) H}
+
+theorem condUpdateMargin_positive (C : FourCornerProtocol M F)
+    (ψ : RegimePropertyMap (JointState S X) Z)
+    (B₁ : ConstitutiveComparisonSet M spec) (ε : ℝ)
+    (hε : ∀ y ∈ B₁.states, actionEffect C ψ y ≤ ε)
+    (hjoint : ε < jointMargin C ψ B₁) :
+    0 < condUpdateMargin C ψ B₁ := by
+  have h := condUpdateMargin_ge_joint_sub_action C ψ B₁ ε hε
+  linarith
+
+theorem condActionMargin_positive (C : FourCornerProtocol M F)
+    (ψ : RegimePropertyMap (JointState S X) Z)
+    (B₁ : ConstitutiveComparisonSet M spec) (ε : ℝ)
+    (hε : ∀ y ∈ B₁.states, updateEffect C ψ y ≤ ε)
+    (hjoint : ε < jointMargin C ψ B₁) :
+    0 < condActionMargin C ψ B₁ := by
+  have h := condActionMargin_ge_joint_sub_update C ψ B₁ ε hε
+  linarith
+
+theorem condUpdateEffect_eq_joint_of_action_null
+    (C : FourCornerProtocol M F)
+    (ψ : RegimePropertyMap (JointState S X) Z)
+    (y : JointState S X) (h : actionEffect C ψ y = 0) :
+    condUpdateEffect C ψ y = jointEffect C ψ y := by
+  change dist (baselineValue C ψ y) (actionValue C ψ y) = 0 at h
+  have hv := dist_eq_zero.mp h
+  change dist (actionValue C ψ y) (jointValue C ψ y) =
+    dist (baselineValue C ψ y) (jointValue C ψ y)
+  rw [← hv]
+
+theorem condActionEffect_eq_joint_of_update_null
+    (C : FourCornerProtocol M F)
+    (ψ : RegimePropertyMap (JointState S X) Z)
+    (y : JointState S X) (h : updateEffect C ψ y = 0) :
+    condActionEffect C ψ y = jointEffect C ψ y := by
+  change dist (baselineValue C ψ y) (updateValue C ψ y) = 0 at h
+  have hv := dist_eq_zero.mp h
+  change dist (updateValue C ψ y) (jointValue C ψ y) =
+    dist (baselineValue C ψ y) (jointValue C ψ y)
+  rw [← hv]
+
+/-- Exact pointwise singleton nullity implies equality of all three margins.
+Strict joint positivity is NOT needed for the equalities. -/
+theorem jointOnly_conditionalMargins_eq_jointMargin
+    (C : FourCornerProtocol M F)
+    (ψ : RegimePropertyMap (JointState S X) Z)
+    (B₁ : ConstitutiveComparisonSet M spec)
+    (hα : ∀ y ∈ B₁.states, actionEffect C ψ y = 0)
+    (hU : ∀ y ∈ B₁.states, updateEffect C ψ y = 0) :
+    condUpdateMargin C ψ B₁ = jointMargin C ψ B₁ ∧
+    condActionMargin C ψ B₁ = jointMargin C ψ B₁ := by
+  constructor
+  · unfold condUpdateMargin jointMargin
+    apply marginOf_congr
+    intro y hy
+    exact condUpdateEffect_eq_joint_of_action_null C ψ y (hα y hy)
+  · unfold condActionMargin jointMargin
+    apply marginOf_congr
+    intro y hy
+    exact condActionEffect_eq_joint_of_update_null C ψ y (hU y hy)
+
+theorem jointOnly_conditionalMargins_pos (C : FourCornerProtocol M F)
+    (ψ : RegimePropertyMap (JointState S X) Z)
+    (B₁ : ConstitutiveComparisonSet M spec)
+    (hα : ∀ y ∈ B₁.states, actionEffect C ψ y = 0)
+    (hU : ∀ y ∈ B₁.states, updateEffect C ψ y = 0)
+    (hjoint : 0 < jointMargin C ψ B₁) :
+    0 < condUpdateMargin C ψ B₁ ∧ 0 < condActionMargin C ψ B₁ := by
+  obtain ⟨h1,h2⟩ := jointOnly_conditionalMargins_eq_jointMargin C ψ B₁ hα hU
+  rw [h1,h2]
+  exact ⟨hjoint,hjoint⟩
+
+end PermanssonResearch.GrammarRobust.ConditionalMargins
