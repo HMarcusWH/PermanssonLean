@@ -23,7 +23,7 @@ jobs:
         with:
           auto-config: false
           build: true
-          build-args: PermanssonResearch.RegimeExit.SwitchRouting PermanssonResearch.RegimeExit.SwitchRetention PermanssonResearch.RegimeExit.SwitchProperty PermanssonResearch.RegimeExit.SwitchConstitution PermanssonResearch.RegimeExit.SwitchWitnessModels PermanssonResearch.RegimeExit.SwitchGrounded
+          build-args: PermanssonResearch.RegimeExit.SwitchRouting PermanssonResearch.RegimeExit.SwitchRetention PermanssonResearch.RegimeExit.SwitchRetentionMass PermanssonResearch.RegimeExit.SwitchProperty PermanssonResearch.RegimeExit.SwitchConstitution PermanssonResearch.RegimeExit.SwitchWitnessModels PermanssonResearch.RegimeExit.SwitchGrounded
           test: false
           lint: false
           use-mathlib-cache: true
