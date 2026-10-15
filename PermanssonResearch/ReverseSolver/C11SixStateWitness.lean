@@ -30,6 +30,8 @@ open PermanssonResearch.MultipleLimit.ExactSixStateStationaryCoordinates
 open PermanssonResearch.MultipleLimit.ExactSixStateObservedGR
 open FiniteStrategicRealization
 
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
+
 def sixClassA : ClassStationaryCandidate 6 where
   classStates := {2, 3}
   weights := piA
