@@ -114,8 +114,9 @@ private theorem singleton_exit_subset_target
   refine ⟨0, ?_⟩
   rcases hw with ⟨hs, hd⟩
   refine ⟨hs, ?_⟩
-  exact ⟨by simpa only [Set.mem_singleton_iff] using
-      (hd.1 ▸ htarget), hd.2⟩
+  have hpoint : w (0+1) = decode j := by
+    simpa only [Set.mem_singleton_iff] using hd.1
+  exact ⟨hpoint.symm ▸ htarget, hd.2⟩
 
 private theorem half_le_routing_zero :
     (1/2 : ℝ≥0∞) ≤
