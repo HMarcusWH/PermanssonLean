@@ -76,6 +76,9 @@ private theorem full_first_step_02 :
     fullModel.pathLaw (Measure.dirac (decode (0 : Fin 5)))
       (firstExitAtDestination sourceObservedSpec 0
         ({decode (2 : Fin 5)} : Set Y)) = (1/2 : ℝ≥0∞) := by
+  change (realizedModel fullMatrix).pathLaw (Measure.dirac (decode (0 : Fin 5)))
+    (firstExitAtDestination sourceObservedSpec 0
+      ({decode (2 : Fin 5)} : Set Y)) = (1/2 : ℝ≥0∞)
   rw [first_exit_singleton_at_one fullMatrix 0 2
     (by simp [sourceObservedSpec, sourceSpec, decode]) (Or.inl rfl)]
   change (realizedModel fullMatrix).inducedKernel (decode 0)
@@ -89,6 +92,9 @@ private theorem full_first_step_13 :
     fullModel.pathLaw (Measure.dirac (decode (1 : Fin 5)))
       (firstExitAtDestination sourceObservedSpec 0
         ({decode (3 : Fin 5)} : Set Y)) = (1/2 : ℝ≥0∞) := by
+  change (realizedModel fullMatrix).pathLaw (Measure.dirac (decode (1 : Fin 5)))
+    (firstExitAtDestination sourceObservedSpec 0
+      ({decode (3 : Fin 5)} : Set Y)) = (1/2 : ℝ≥0∞)
   rw [first_exit_singleton_at_one fullMatrix 1 3
     (by simp [sourceObservedSpec, sourceSpec, decode]) (Or.inr rfl)]
   change (realizedModel fullMatrix).inducedKernel (decode 1)
