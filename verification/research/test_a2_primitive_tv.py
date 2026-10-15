@@ -189,12 +189,16 @@ class A2PrimitiveTests(unittest.TestCase):
         self.assertTrue(matched("actionSelection", "actionSelection", "k", "k"))
 
     def test_a2_11_pointwise_positive_not_uniform(self):
-        m = baseline()
+        original = baseline()
+        # The structural world law is frozen across the intervention.
+        # Only action selection changes at the first state.
+        p = dict(original.world)
+        p[(STATES[0], 1)] = (Q(0), Q(1))
+        m = with_changed(original, world=p)
         a = dict(m.alpha)
         a[STATES[0]] = (Q(0), Q(1))
-        p = dict(m.world)
-        p[(STATES[0], 1)] = (Q(0), Q(1))
-        j = FiniteModel(a, p, m.update)
+        j = with_changed(m, alpha=a)
+        self.assertEqual(j.world, m.world)
         f = lambda path: Q(1) if path[-1][1] == 1 else Q(0)
         self.assertGreater(abs(finite_score(m.joint(), STATES[0], 1, f) -
                                finite_score(j.joint(), STATES[0], 1, f)), 0)
