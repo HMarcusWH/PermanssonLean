@@ -366,6 +366,7 @@ import PermanssonResearch.ReverseSolver.C11SixStateWitness
 
 import PermanssonResearch.Perturbation.PrimitiveModelPair
 import PermanssonResearch.Perturbation.PrimitiveTV
+import PermanssonResearch.Perturbation.PrimitiveMargin
 
 /-!
 # PermanssonResearch
