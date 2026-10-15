@@ -33,7 +33,7 @@ theorem f1_one_step_to_a :
   have hD : MeasurableSet D := MeasurableSet.of_discrete
   have hOutside : D \ f1Spec.region = D := by
     ext y
-    simp [D, f1Spec, FiniteStrategicRealization.encode]
+    simp [D, f1Spec, encode]
   calc
     exitRoutingFinite f1Model f1Spec 1 (decode 0) D =
         firstExitStepMass f1Model f1Spec 0 (decode 0) D := by
