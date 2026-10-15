@@ -80,8 +80,9 @@ theorem checked_family_no_extra {n : ℕ}
     (hc : checkStationaryFamily K rs = true)
     (r : ClassStationaryCandidate n) (hr : r ∈ rs) :
     r.classStates ∈ bottomClasses K := by
-  exact (checkClassStationary_sound K r
-    (checkStationaryFamily_sound K rs hc).2.2 r hr).2.1
+  have hAccepted : checkClassStationary K r = true :=
+    (checkStationaryFamily_sound K rs hc).2.2 r hr
+  exact (checkClassStationary_sound K r hAccepted).2.1
 
 end C11
 end ReverseSolver
