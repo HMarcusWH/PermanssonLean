@@ -124,10 +124,22 @@ class SwitchingAdversaries(unittest.TestCase):
     def test_full_positive_uniform_gap(self):
         self.assertEqual(min((ONE-HALF/(ONE-HALF) for _ in BASIN)),ZERO)
         self.assertEqual(min((HALF/(ONE-HALF) for _ in BASIN)),ONE)
-    def test_full_almost_sure_exit_infinite_mean_not_necessary(self):
+    def test_full_has_no_finite_horizon_guarantee(self):
         # Finite-L misses a tail, but the infinite sum is exactly one.
         self.assertLess(routing(full(),0,TARGET,60)[0],ONE)
         self.assertEqual(HALF/(ONE-HALF),ONE)
+    def test_countable_heavy_tail_exit_without_finite_mean(self):
+        # Illustrative countable-state transition hazard 1/(n+2).
+        # Survival through step n equals 1/(n+1), tending to zero;
+        # its harmonic tail sum diverges. Finite prefix checks are not
+        # a theorem of divergence or a certificate of a typed Lean model.
+        survival=ONE
+        for n in range(1,257):
+            survival*=Q(n,n+1)
+            self.assertEqual(survival,Q(1,n+1))
+        self.assertEqual(survival,Q(1,257))
+        harmonic=sum((Q(1,k) for k in range(1,257)),ZERO)
+        self.assertGreater(harmonic,Q(6))
     def test_invalid_rows_rejected(self):
         with self.assertRaises(AssertionError): mk({**baseline(),0:{1:Q(9,8)}})
     def test_source_state_exclusion(self):

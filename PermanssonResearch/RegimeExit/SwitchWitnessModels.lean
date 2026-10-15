@@ -163,7 +163,6 @@ theorem full_zero_to_two_half :
   change (realizedModel fullMatrix).inducedKernel (decode 0)
     (encode ⁻¹' ({2} : Set (Fin 5))) = _
   rw [inducedKernel_encodedEntry fullMatrix 0 2]
-  rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 2)]
   norm_num [fullMatrix]
 
 theorem partial_zero_to_two_half :
@@ -172,7 +171,6 @@ theorem partial_zero_to_two_half :
   change (realizedModel partialMatrix).inducedKernel (decode 0)
     (encode ⁻¹' ({2} : Set (Fin 5))) = _
   rw [inducedKernel_encodedEntry partialMatrix 0 2]
-  rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 2)]
   norm_num [partialMatrix]
 
 end PermanssonResearch.RegimeExit.SwitchWitnessModels
