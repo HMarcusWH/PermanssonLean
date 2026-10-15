@@ -110,9 +110,9 @@ theorem firstExitAt_eq_exitTime_succ
   · rintro ⟨ht, hD⟩
     by_cases hex : ∃ t : ℕ, w t ∉ spec.region
     · have hval : Nat.find hex = n+1 := by
-        have heq : (Nat.find hex : ℕ∞) = (n+1 : ℕ∞) := by
-        simpa [exitTime, dif_pos hex] using ht
-      exact_mod_cast heq
+        have hcast : (Nat.find hex : ℕ∞) = (n+1 : ℕ∞) := by
+        simpa only [exitTime, dif_pos hex] using ht
+      exact_mod_cast hcast
       refine ⟨?_, hD, ?_⟩
       · intro t htle
         by_contra hnot
