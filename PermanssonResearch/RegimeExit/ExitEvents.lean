@@ -137,4 +137,105 @@ theorem firstExitAtDestination_subset_ever
   intro w hw
   exact Set.mem_iUnion.mpr ⟨n, hw⟩
 
+
+/-- Splitting the finite horizon at the final possible transition. -/
+theorem firstExitWithinDestination_succ
+    (spec : RegimeSpecification (JointState S X) H)
+    (L : ℕ) (D : Set (JointState S X)) :
+    firstExitWithinDestination spec (L+1) D =
+      firstExitWithinDestination spec L D ∪
+        firstExitAtDestination spec L D := by
+  ext w
+  simp only [firstExitWithinDestination, Set.mem_iUnion, Set.mem_union]
+  constructor
+  · rintro ⟨n, hn⟩
+    by_cases h : (n : ℕ) < L
+    · exact Or.inl ⟨⟨n, h⟩, hn⟩
+    · have hnL : (n : ℕ) = L := by omega
+      right
+      simpa [hnL] using hn
+  · rintro (⟨n, hn⟩ | hn)
+    · exact ⟨⟨n, by omega⟩, hn⟩
+    · exact ⟨⟨L, Nat.lt_succ_self L⟩, hn⟩
+
+/-- The final step is disjoint from all earlier first-exit steps. -/
+theorem firstExitWithinDestination_disjoint_last
+    (spec : RegimeSpecification (JointState S X) H)
+    (L : ℕ) (D : Set (JointState S X)) :
+    Disjoint (firstExitWithinDestination spec L D)
+      (firstExitAtDestination spec L D) := by
+  apply Set.disjoint_left.mpr
+  intro w hOld hLast
+  change w ∈ (⋃ n : Fin L, firstExitAtDestination spec (n : ℕ) D) at hOld
+  obtain ⟨n, hn⟩ := Set.mem_iUnion.mp hOld
+  have hne : (n : ℕ) ≠ L := by omega
+  exact (Set.disjoint_left.mp
+    (firstExitAtDestination_disjoint spec D hne)) hn hLast
+
+/-- Inside B, all finite first-exit events are exactly the complement of
+surviving through L, including L=0. -/
+theorem firstExitWithinDestination_iff_not_survives
+    (spec : RegimeSpecification (JointState S X) H)
+    (L : ℕ) (w : ℕ → JointState S X)
+    (h0 : w 0 ∈ spec.region) :
+    w ∈ firstExitWithinDestination spec L Set.univ ↔
+      w ∉ survivesThroughSet spec L := by
+  classical
+  induction L with
+  | zero =>
+      simp [firstExitWithinDestination_zero, survivesThroughSet_zero, h0]
+  | succ L ih =>
+      rw [firstExitWithinDestination_succ, Set.mem_union]
+      have hsurvSucc :
+          w ∈ survivesThroughSet spec (L+1) ↔
+            w ∈ survivesThroughSet spec L ∧ w (L+1) ∈ spec.region := by
+        rw [survivesThroughSet_succ]
+        rfl
+      rw [hsurvSucc]
+      constructor
+      · rintro (hOld | hAt)
+        · have hn := (ih.mp hOld)
+          exact fun ⟨hs,_⟩ => hn hs
+        · have hnot : w (L+1) ∉ spec.region := hAt.2.2
+          exact fun ⟨_,hb⟩ => hnot hb
+      · intro hn
+        by_cases hs : w ∈ survivesThroughSet spec L
+        · right
+          have hout : w (L+1) ∉ spec.region := by
+            intro hmem
+            exact hn ⟨hs,hmem⟩
+          exact ⟨hs, Set.mem_univ _, hout⟩
+        · exact Or.inl (ih.mpr hs)
+
+/-- A path starting in B either stays forever or has a positive-time
+finite first exit. No evaluation at the extended-time ∞ occurs. -/
+theorem firstExitEverDestination_iff_not_survivesForever
+    (spec : RegimeSpecification (JointState S X) H)
+    (w : ℕ → JointState S X) (h0 : w 0 ∈ spec.region) :
+    w ∈ firstExitEverDestination spec Set.univ ↔
+      w ∉ survivesForeverSet spec := by
+  classical
+  constructor
+  · rintro ⟨n, hn⟩ hforever
+    exact hn.2.2 (hforever (n+1))
+  · intro h
+    have hex : ∃ t : ℕ, w t ∉ spec.region := by
+      simpa [survivesForeverSet, SurvivesForever] using h
+    have hpos : 0 < Nat.find hex := by
+      have hb := Nat.find_spec hex
+      omega
+    obtain ⟨n, hn⟩ : ∃ n : ℕ, Nat.find hex = n+1 := by
+      cases hfind : Nat.find hex with
+      | zero => omega
+      | succ n => exact ⟨n, hfind⟩
+    apply Set.mem_iUnion.mpr
+    refine ⟨n, ?_⟩
+    have hout : w (n+1) ∉ spec.region := by
+      simpa [← hn] using Nat.find_spec hex
+    refine ⟨?_, Set.mem_univ _, hout⟩
+    intro t htle
+    by_contra hfail
+    have hmin := Nat.find_min' hex hfail
+    omega
+
 end PermanssonResearch.RegimeExit
