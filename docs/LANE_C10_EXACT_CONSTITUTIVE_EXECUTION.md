@@ -1,6 +1,6 @@
 # Lane C10 — Executable exact absorption and original constitutive margins
 
-**PR:** [#61](https://github.com/HMarcusWH/PermanssonLean/pull/61) (ready for review; unmerged; requires separate author-controlled merge decision).
+**PR:** [#61](https://github.com/HMarcusWH/PermanssonLean/pull/61) (merged to `main@57aa4eb3b58df770630f16b04940cb5933317709` with documented one-time final-head Codex-review waiver; all four post-merge workflows passed). Historical pre-merge checkpoint details below are retained unchanged.
 **Frozen acceptance spec:** [C10 v1.1 audited](PR61_C10_Exact_Constitutive_Execution_Spec_v1.1_AUDITED.md), 13 October 2026.
 **Parent:** merged C9 `main@b4989fc4fc633601197cdfa733fbce3f5c9ea2c8`.
 

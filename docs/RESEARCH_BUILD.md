@@ -14,7 +14,7 @@
 | A — ConstitutiveQuasi/CQ-1 | PRs #36–38 merged | finite subordinate certificate, quantitative output/TV transport; not Exact GR without original gates |
 | B — GrammarRobust | PR #51 merged | typed partition grammar, minimal blocks, and genuine path-law **joint-only** uniform PR witness; not a general sequential metric interaction theorem |
 | C — MultipleLimit | PRs #52–61, C1–C10 merged | recurrent-class semantics, exact finite-state hitting/occupation/typed GR and rational C10 constitutive receipts |
-| C11-A | [PR #62](https://github.com/HMarcusWH/PermanssonLean/pull/62) draft/open | separately developing exact rational class stationary certification; no claim of full final-head approval |
+| C11-A | [PR #62](https://github.com/HMarcusWH/PermanssonLean/pull/62) draft/open · [C11 research ledger](LANE_C11_CLASS_STATIONARY_CERTIFICATION.md) | exact rational class stationary certification under construction; final-head CI and review outstanding |
 | D — ReverseSolver | PRs #39–50 merged | finite-menu and controlled-kernel/Bellman/typed nonstationary/history-dependent optimization; not general reach-and-stay/robust-control theory |
 | Original v0.1.8 | immutable snapshot c018f79ea4ce46f4f679ad5bca254509778fc53c | original discrete GR/PR core and historical paper release unchanged |
 
