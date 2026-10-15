@@ -29,3 +29,13 @@ jobs:
           python-version: '3.13'
       - name: Run exact-rational A2 destructive tests
         run: python3 -m unittest discover -s verification/research -p 'test_a2_primitive_tv.py' -v
+
+  a2-exact-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Independent exact-rational A2 regression suite
+        run: python3 -m unittest discover -s verification/research -p 'test_a2_primitive_tv.py' -v
