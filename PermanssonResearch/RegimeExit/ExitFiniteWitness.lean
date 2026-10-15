@@ -61,6 +61,8 @@ theorem f1_kernel_b_to_b :
     (encode ⁻¹' ({0} : Set (Fin 3))) = _
   rw [inducedKernel_encodedEntry f1Matrix 0 0]
   norm_num [f1Matrix]
+  rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 2)]
+  norm_num
 
 /-- The actual output-restricted kernel at b has one Dirac atom, mass 1/2. -/
 theorem f1_killed_b_eq_half_dirac :
@@ -90,6 +92,7 @@ theorem f1_second_step_to_a :
       f1Model.inducedKernel (decode (0 : Fin 3))
         (encode ⁻¹' ({1} : Set (Fin 3))) = 1/6
   rw [f1_kernel_b_to_a]
+  rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 3)]
   norm_num
 
 /-- Two-transition first-exit destination probability is exactly 1/2. -/
@@ -106,6 +109,7 @@ theorem f1_two_step_to_a :
       (encode ⁻¹' ({1} : Set (Fin 3))) +
       firstExitStepMass f1Model f1Spec 1 b destinationA = 1/2
   rw [f1_one_step_to_a, f1_second_step_to_a]
+  rw [ENNReal.ofReal_div_of_pos (by norm_num : (0 : ℝ) < 3)]
   norm_num
 
 end PermanssonResearch.RegimeExit.ExitFiniteWitness
