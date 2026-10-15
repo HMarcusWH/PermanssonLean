@@ -130,3 +130,98 @@ theorem zeroInf_update_effect_zero (y : Y) :
   simp
 
 end PermanssonResearch.GrammarRobust.SequentialAdversaries
+
+
+namespace PermanssonResearch.GrammarRobust.SequentialAdversaries
+open PermanssonLean PermanssonLean.RegimeSpecification
+open SequentialEffects ConditionalMargins
+open BooleanModel BooleanBaseline BooleanDynamics BooleanPersistence
+open SequentialBooleanBridge
+
+private theorem q0_in_comparison : q0 ∈ comparison.states := by
+  simp [comparison, basin]
+private theorem q1_in_comparison : q1 ∈ comparison.states := by
+  simp [comparison, basin]
+
+theorem zeroInf_actionMargin_zero :
+    actionMargin booleanCorners zeroInfProperty comparison = 0 := by
+  apply le_antisymm
+  · calc
+      actionMargin booleanCorners zeroInfProperty comparison ≤
+          actionEffect booleanCorners zeroInfProperty q0 :=
+        marginOf_le comparison.states (actionEffect booleanCorners zeroInfProperty)
+          (by intro _ _; exact dist_nonneg) q0_in_comparison
+      _ = 0 := zeroInf_action_effect_q0
+  · exact marginOf_nonneg comparison.states
+      (comparison.states_nonempty baseline spec)
+      (actionEffect booleanCorners zeroInfProperty)
+      (by intro _ _; exact dist_nonneg)
+
+theorem zeroInf_updateMargin_zero :
+    updateMargin booleanCorners zeroInfProperty comparison = 0 := by
+  apply marginOf_eq_of_constant
+  · exact comparison.states_nonempty baseline spec
+  · intro y hy
+    exact zeroInf_update_effect_zero y
+
+theorem zeroInf_jointMargin_one :
+    jointMargin booleanCorners zeroInfProperty comparison = 1 := by
+  apply marginOf_eq_of_constant
+  · exact comparison.states_nonempty baseline spec
+  · intro y hy
+    exact zeroInf_joint_effect_one y
+
+theorem zeroInf_condUpdate_effect_q1 :
+    condUpdateEffect booleanCorners zeroInfProperty q1 = 0 := by
+  change dist
+    (intervenedPropertyValue zeroInfProperty
+      (admittedBlockIntervention baseline bank fine actionBlock).intervention q1)
+    (intervenedPropertyValue zeroInfProperty
+      (admittedBlockIntervention baseline bank fine jointBlock).intervention q1) = 0
+  rw [zeroInf_action, zeroInf_joint]
+  simp
+
+theorem zeroInf_condUpdateMargin_zero :
+    condUpdateMargin booleanCorners zeroInfProperty comparison = 0 := by
+  apply le_antisymm
+  · calc
+      condUpdateMargin booleanCorners zeroInfProperty comparison ≤
+          condUpdateEffect booleanCorners zeroInfProperty q1 :=
+        marginOf_le comparison.states
+          (condUpdateEffect booleanCorners zeroInfProperty)
+          (by intro _ _; exact dist_nonneg) q1_in_comparison
+      _ = 0 := zeroInf_condUpdate_effect_q1
+  · exact marginOf_nonneg comparison.states
+      (comparison.states_nonempty baseline spec)
+      (condUpdateEffect booleanCorners zeroInfProperty)
+      (by intro _ _; exact dist_nonneg)
+
+theorem zeroInf_condActionMargin_one :
+    condActionMargin booleanCorners zeroInfProperty comparison = 1 := by
+  apply marginOf_eq_of_constant
+  · exact comparison.states_nonempty baseline spec
+  · intro y hy
+    change dist
+      (intervenedPropertyValue zeroInfProperty
+        (admittedBlockIntervention baseline bank fine updateBlock).intervention y)
+      (intervenedPropertyValue zeroInfProperty
+        (admittedBlockIntervention baseline bank fine jointBlock).intervention y) = 1
+    rw [zeroInf_update, zeroInf_joint]
+    norm_num
+
+/-- Stronger than a numerical zero-infimum illustration: with the actual
+two-state B₁, BOTH singleton infima vanish and the joint uniform margin
+is one, but the conditional-update uniform margin is zero.  At q₁ the
+action singleton effect is strictly positive. -/
+theorem zeroInf_strong_false_promotion :
+    actionMargin booleanCorners zeroInfProperty comparison = 0 ∧
+    updateMargin booleanCorners zeroInfProperty comparison = 0 ∧
+    jointMargin booleanCorners zeroInfProperty comparison = 1 ∧
+    condUpdateMargin booleanCorners zeroInfProperty comparison = 0 ∧
+    condActionMargin booleanCorners zeroInfProperty comparison = 1 ∧
+    actionEffect booleanCorners zeroInfProperty q1 = 1 :=
+  ⟨zeroInf_actionMargin_zero, zeroInf_updateMargin_zero,
+    zeroInf_jointMargin_one, zeroInf_condUpdateMargin_zero,
+    zeroInf_condActionMargin_one, zeroInf_action_effect_q1⟩
+
+end PermanssonResearch.GrammarRobust.SequentialAdversaries
