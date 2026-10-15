@@ -85,7 +85,8 @@ theorem successful_switch_event_ae_eq_first_exit
   filter_upwards [h] with w hw
   apply propext
   constructor
-  · exact successfullySwitchedAndRetained_subset_firstExit source target
+  · intro hret
+    exact successfullySwitchedAndRetained_subset_firstExit source target hret
   · intro hevent
     obtain ⟨n, hn, hstay⟩ := hw hevent
     apply Set.mem_iUnion.mpr
