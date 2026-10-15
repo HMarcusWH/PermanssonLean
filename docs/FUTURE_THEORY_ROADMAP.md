@@ -169,6 +169,8 @@ For normed vector outputs, add $I_{\alpha U}=z_{11}-z_{10}-z_{01}+z_{00}$. Prese
 
 ### C-Exit — Sub-Markov destination and constitutive switching
 
+**Live implementation overlay (PR #66, draft):** [C-Exit research ledger](LANE_C_EXIT_ROUTING.md) documents actual first-exit path-law events, finite/infinite destination submeasures and QSD routing in separate research modules. Its generic Lean proofs and typed adversaries are not accepted until exact-head and synthetic-merge CI pass. Typed intervention-driven switching and random-entry occupation convergence stay in PR #67.
+
 For $y\in B$, $K_B(y,C)=K(y,C\cap B)$, and $\tau_B=\inf\{t\ge0:Y_t\notin B\}$, define
 
 $$
