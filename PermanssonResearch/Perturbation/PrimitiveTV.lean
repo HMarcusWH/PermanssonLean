@@ -39,6 +39,7 @@ attribute [local instance]
   PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
   PermanssonLean.StrategicWorldModel.oneStepHistoryKernel_isMarkov
   PermanssonLean.StrategicWorldModel.reassociatedUpdate_isMarkov
+  PermanssonLean.StrategicWorldModel.actionWorldKernel_isMarkov
 
 private theorem compProd_mono
     {I B C : Type*} [MeasurableSpace I] [MeasurableSpace B]
