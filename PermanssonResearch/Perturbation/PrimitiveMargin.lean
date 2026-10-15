@@ -151,7 +151,7 @@ def PrimitiveProtocolErrors.baselinePrefixBudget
   PermanssonLean.ProbabilitySupport.geometricTVEnvelope
     bounds.baseline.kernelBudget T
 
-def PrimitiveProtocolErrors.interventionPrefixBudget
+noncomputable def PrimitiveProtocolErrors.interventionPrefixBudget
     {M : PermanssonLean.StrategicWorldModel S X A}
     {Component : Type uC}
     {F : PermanssonLean.InterventionFamily M Component}
@@ -315,7 +315,9 @@ theorem primitive_positive_finiteMargin
       pair.approximate spec pair.approximateFamily
       (f.toRegimeProperty T) (pair.comparisonSet spec B₁)
       pair.approximateIntervention := by
-  have h := primitive_constitutiveMargin_abs_le bounds T f
+  have h := primitive_constitutiveMargin_abs_le
+    (M := M) (spec := spec) (F := F) (B₁ := B₁) (J := J)
+    (pair := pair) bounds T f
   have hright := (abs_le.mp h).2
   linarith
 
@@ -372,7 +374,9 @@ theorem transportPrimitiveFiniteConstitutiveCertificate
       bounds.baseline.kernelBudget_nonneg
       bounds.baseline.kernelBudget_le_one
       bounds.baseline.induced_tv
-  have hmargin := primitive_constitutiveMargin_abs_le bounds T f
+  have hmargin := primitive_constitutiveMargin_abs_le
+    (M := M) (spec := spec) (F := F) (B₁ := B₁) (J := J)
+    (pair := pair) bounds T f
   have hupper := (abs_le.mp hmargin).2
   have hbound :
       κ - e₀ - eJ ≤
@@ -403,9 +407,9 @@ theorem reportedPrimitiveMargin_abs_le
       (PermanssonLean.JointState S X) ℝ)
     {b₀ bJ : ℝ} (hb₀ : 0 ≤ b₀) (hbJ : 0 ≤ bJ)
     (hreport₀ : ∀ y ∈ B₁.states,
-      dist (exactApproximateProfile pair T f).baseline y (report.baseline y) ≤ b₀)
+      dist ((exactApproximateProfile pair T f).baseline y) (report.baseline y) ≤ b₀)
     (hreportJ : ∀ y ∈ B₁.states,
-      dist (exactApproximateProfile pair T f).intervention y
+      dist ((exactApproximateProfile pair T f).intervention y)
         (report.intervention y) ≤ bJ) :
     |PermanssonLean.RegimeSpecification.perturbedConstitutiveMargin
         M spec B₁ report -
@@ -426,8 +430,8 @@ theorem reportedPrimitiveMargin_abs_le
             (f.toRegimeProperty T) M y) (report.baseline y) ≤
             dist (PermanssonLean.RegimeSpecification.baselinePropertyValue
               (f.toRegimeProperty T) M y)
-              (exactApproximateProfile pair T f).baseline y +
-            dist (exactApproximateProfile pair T f).baseline y
+              ((exactApproximateProfile pair T f).baseline y) +
+            dist ((exactApproximateProfile pair T f).baseline y)
               (report.baseline y) := dist_triangle _ _ _
         _ ≤ bounds.baselinePrefixBudget T + b₀ :=
           add_le_add (hmodel.baseline_le y hy) (hreport₀ y hy)
@@ -438,8 +442,8 @@ theorem reportedPrimitiveMargin_abs_le
             (report.intervention y) ≤
             dist (PermanssonLean.RegimeSpecification.intervenedPropertyValue
               (f.toRegimeProperty T) J.intervention y)
-              (exactApproximateProfile pair T f).intervention y +
-            dist (exactApproximateProfile pair T f).intervention y
+              ((exactApproximateProfile pair T f).intervention y) +
+            dist ((exactApproximateProfile pair T f).intervention y)
               (report.intervention y) := dist_triangle _ _ _
         _ ≤ bounds.interventionPrefixBudget T + bJ :=
           add_le_add (hmodel.intervention_le y hy) (hreportJ y hy)
