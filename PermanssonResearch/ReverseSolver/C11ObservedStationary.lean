@@ -61,16 +61,16 @@ theorem share_partition {n : ℕ}
     (L : RationalMarkovMatrix n) (r : ClassStationaryCandidate n)
     (hc : checkClassStationary L r = true) (h : Fin n → Bool) :
     trueShare r h + falseShare r h = 1 := by
-  unfold trueShare falseShare
-  rw [← Finset.sum_add_distrib]
   calc
-    (∑ x : Fin n,
-        (if h x then r.weights x else 0) +
-        (if h x then 0 else r.weights x)) =
-        ∑ x : Fin n, r.weights x := by
-          apply Finset.sum_congr rfl
-          intro x hx
-          cases hb : h x <;> simp [hb]
+    trueShare r h + falseShare r h =
+        ∑ x : Fin n,
+          ((if h x then r.weights x else 0) +
+           (if h x then 0 else r.weights x)) := by
+        simp only [trueShare, falseShare, Finset.sum_add_distrib]
+    _ = ∑ x : Fin n, r.weights x := by
+      apply Finset.sum_congr rfl
+      intro x hx
+      cases hb : h x <;> simp [hb]
     _ = 1 := checked_normalized L r hc
 
 theorem trueShare_positive_of_true {n : ℕ}
@@ -228,7 +228,14 @@ theorem certified_true_mass {n : ℕ}
     simp only [Fintype.sum_unique]
     change (∑ x : Fin n, if h x then ((r.weights x : ℚ) : ℝ) else 0) =
       ((∑ x : Fin n, if h x then r.weights x else 0 : ℚ) : ℝ)
-    norm_cast
+    calc
+      (∑ x : Fin n, if h x then ((r.weights x : ℚ) : ℝ) else 0) =
+          ∑ x : Fin n, ((if h x then r.weights x else 0 : ℚ) : ℝ) := by
+        apply Finset.sum_congr rfl
+        intro x hx
+        cases hb : h x <;> simp [hb]
+      _ = ((∑ x : Fin n, if h x then r.weights x else 0 : ℚ) : ℝ) := by
+        norm_cast
   change (vectorMeasure (realWeights r)) S =
     ENNReal.ofReal (trueShare r h : ℝ)
   calc
