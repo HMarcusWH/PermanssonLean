@@ -27,6 +27,7 @@ open PermanssonResearch.RegimeExit.SwitchWitnessGeometry
 open PermanssonResearch.MultipleLimit
 open PermanssonResearch.MultipleLimit.FiniteCanonicalPath
 open PermanssonResearch.MultipleLimit.FiniteEventuallyObserved
+open PermanssonResearch.ReverseSolver.FiniteStrategicRealization
 
 attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 

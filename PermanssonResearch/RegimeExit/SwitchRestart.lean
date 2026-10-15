@@ -64,6 +64,7 @@ theorem firstExitArrivalEndpointMeasure_eq_step
   rw [Measure.map_apply (measurable_pi_apply (n+1)) hD,
     Measure.restrict_apply (hD.preimage (measurable_pi_apply (n+1))),
     hEvent D]
-  exact (firstExitStep_eq_pathEvent M spec n hy D hD).symm
+  simpa only [firstExitStepMass] using
+    (firstExitStep_eq_pathEvent M spec n hy D hD)
 
 end PermanssonResearch.RegimeExit
