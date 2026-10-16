@@ -11,6 +11,12 @@ last-state future-law hypothesis. No such hypothesis is installed as an
 axiom, no artificial normalization is performed, and this source is NOT
 the completed strong Markov proof. The generic stationary-last-state
 lemma remains to be constructed independently.
+
+**Update (C69, PR #69):** the premise `HasCanonicalLastStateRestart N` is
+now PROVED for every canonical model in
+`RegimeExit/ShiftedPrefixStationarity.lean` (`hasCanonicalLastStateRestart`),
+and the unconditional consequence is `finiteStoppedFutureMeasure_restart`
+in `RegimeExit/StoppedFutureRestart.lean`. No declaration here changed.
 -/
 
 open MeasureTheory ProbabilityTheory Set
