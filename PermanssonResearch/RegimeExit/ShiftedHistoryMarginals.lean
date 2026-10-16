@@ -33,9 +33,9 @@ theorem shiftedHistory_zero_marginal
     (canonicalShiftedHistoryKernel N m h).map
       (fun w : ℕ → JointState S X => w 0) =
         Measure.dirac (h ⟨m, Finset.mem_Iic.mpr le_rfl⟩) := by
-  change ((canonicalHistoryContinuation N m h).map
-    (pathTailShift (S := S) (X := X) m)).map
-      (fun w : ℕ → JointState S X => w 0) = _
+  unfold canonicalShiftedHistoryKernel
+  rw [Kernel.map_apply (canonicalHistoryContinuation N m)
+    (measurable_pathTailShift (S := S) (X := X) m) h]
   rw [Measure.map_map (by fun_prop)
     (measurable_pathTailShift (S := S) (X := X) m)]
   have hcomp :
@@ -66,6 +66,9 @@ theorem shiftedHistory_one_step
       Kernel ((i : Finset.Iic n) → JointState S X)
         (JointState S X) :=
     fun n => StrategicWorldModel.stationaryHistoryKernel N.inducedKernel n
+  unfold canonicalShiftedHistoryKernel
+  rw [Kernel.map_apply (canonicalHistoryContinuation N m)
+    (measurable_pathTailShift (S := S) (X := X) m) h]
   change ((Kernel.traj (X := fun _ : ℕ => JointState S X)
     κ m h).map
       (pathTailShift (S := S) (X := X) m)).map

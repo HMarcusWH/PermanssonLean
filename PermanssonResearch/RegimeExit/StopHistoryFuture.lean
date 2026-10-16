@@ -50,13 +50,18 @@ theorem firstExit_shifted_history_future_integral
   let G := firstExitHistoryAt spec n D
   let K := canonicalShiftedHistoryKernel N (n+1)
   let shift := pathTailShift (S := S) (X := X) (n+1)
+  have hShift : Measurable shift :=
+    measurable_pathTailShift (S := S) (X := X) (n+1)
+  have hPair : Measurable (fun w : ℕ → JointState S X =>
+      (Preorder.frestrictLe (n+1) w, shift w)) := by
+    exact (by fun_prop : Measurable (Preorder.frestrictLe (n+1))).prodMk hShift
   have hG : MeasurableSet G :=
     firstExitHistoryAt_measurable spec n D hD
   calc
     P (firstExitAtDestination spec n D ∩ shift ⁻¹' F) =
       (P.map (fun w : ℕ → JointState S X =>
         (Preorder.frestrictLe (n+1) w, shift w))) (G ×ˢ F) := by
-      rw [Measure.map_apply (by fun_prop) (hG.prod hF)]
+      rw [Measure.map_apply hPair (hG.prod hF)]
       rw [firstExitAt_eq_history_preimage]
       rfl
     _ = (μ ⊗ₘ K) (G ×ˢ F) := by
