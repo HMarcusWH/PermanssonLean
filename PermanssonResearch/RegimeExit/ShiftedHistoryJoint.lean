@@ -39,7 +39,7 @@ instance canonicalShiftedHistoryKernel_isMarkov
     (N : StrategicWorldModel S X A) (m : ℕ) :
     IsMarkovKernel (canonicalShiftedHistoryKernel N m) := by
   unfold canonicalShiftedHistoryKernel
-  exact IsMarkovKernel.map
+  exact Kernel.IsMarkovKernel.map
     (canonicalHistoryContinuation N m)
     (measurable_pathTailShift (S := S) (X := X) m)
 
@@ -62,7 +62,10 @@ theorem pointPathLaw_shifted_history_joint
   let shift := pathTailShift (S := S) (X := X) m
   have hShift : Measurable shift :=
     measurable_pathTailShift (S := S) (X := X) m
-  have hProd : Measurable (Prod.map id shift) :=
+  have hProd : Measurable
+      (Prod.map
+        (id : ((i : Finset.Iic m) → JointState S X) →
+          ((i : Finset.Iic m) → JointState S X)) shift) :=
     measurable_id.prodMap hShift
   calc
     P.map (fun w : ℕ → JointState S X =>
