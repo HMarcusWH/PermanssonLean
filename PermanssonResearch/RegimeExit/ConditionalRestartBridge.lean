@@ -71,6 +71,7 @@ theorem stoppedFuture_measure_restart_of_lastState
       exact finiteStoppedFutureMeasure_eq_history N spec n y D hD F hF
     _ = ∫⁻ h in G, (canonicalFutureKernel N (last h)) F ∂μ := by
       simp_rw [hLast (n+1)]
+      rfl
     _ = ∫⁻ z, (canonicalFutureKernel N z) F
           ∂((μ.restrict G).map last) := by
       rw [lintegral_map hFunMeas hLastMeas]
