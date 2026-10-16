@@ -39,7 +39,9 @@ instance canonicalShiftedHistoryKernel_isMarkov
     (N : StrategicWorldModel S X A) (m : ℕ) :
     IsMarkovKernel (canonicalShiftedHistoryKernel N m) := by
   unfold canonicalShiftedHistoryKernel
-  infer_instance
+  exact IsMarkovKernel.map
+    (canonicalHistoryContinuation N m)
+    (measurable_pathTailShift (S := S) (X := X) m)
 
 /-- The observed prefix and *shifted* entire future have exactly
 the distribution obtained by composing the observed prefix marginal
@@ -58,13 +60,17 @@ theorem pointPathLaw_shifted_history_joint
   let μ := P.map (Preorder.frestrictLe m)
   let κ := canonicalHistoryContinuation N m
   let shift := pathTailShift (S := S) (X := X) m
+  have hShift : Measurable shift :=
+    measurable_pathTailShift (S := S) (X := X) m
+  have hProd : Measurable (Prod.map id shift) :=
+    measurable_id.prodMap hShift
   calc
     P.map (fun w : ℕ → JointState S X =>
         (Preorder.frestrictLe m w, shift w)) =
       (P.map (fun w : ℕ → JointState S X =>
         (Preorder.frestrictLe m w, w))).map
           (Prod.map id shift) := by
-        rw [Measure.map_map (by fun_prop) (by fun_prop)]
+        rw [Measure.map_map hProd (by fun_prop)]
         rfl
     _ = (μ ⊗ₘ κ).map (Prod.map id shift) := by
         rw [pointPathLaw_history_joint N z m]
