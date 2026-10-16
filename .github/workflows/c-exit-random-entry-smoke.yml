@@ -5,7 +5,7 @@ name: C-Exit E random-entry occupation focused smoke
 
 on:
   push:
-    branches: [claude/zen-einstein-ub8zgr]
+    branches: [claude/zen-einstein-ub8zgr, claude/zen-einstein-ub8zgr-c70]
   pull_request:
     branches: [main]
     paths:

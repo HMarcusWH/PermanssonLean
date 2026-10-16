@@ -351,7 +351,11 @@ Inputs: E1, F1, A3, C69/C70, D0/D1, C10/C11. Consumers: R.
   `pathLaw_firstExitFutureEvent_restart`, `infiniteStoppedFutureMeasure_restart`,
   CB.3 retention; target C70.1–C70.3 above.
 
-### C70 (stacked on #69) — local branch, not yet pushed
+### C70 (stacked on #69) — branch `claude/zen-einstein-ub8zgr-c70`, PR base `claude/zen-einstein-ub8zgr`
+
+Stacked-PR structure authorized by the author (16 October 2026): each later lane uses
+`claude/zen-einstein-ub8zgr-<lane>`. The C70 PR is retargeted to `main` after #69 merges;
+full PR-to-main CI (synthetic merge) runs then. Until then CI evidence is branch-head only.
 
 - **Completed anchors:** C70.1–C70.3 (PROVED, source level).
 - **Open anchors:** none inside C70; metric in-probability equivalence not claimed.
