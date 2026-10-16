@@ -49,7 +49,7 @@ theorem stoppedFuture_measure_restart_of_lastState
     (F : Set (ℕ → JointState S X)) (hF : MeasurableSet F) :
     finiteStoppedFutureMeasure N spec n y D F =
       ∫⁻ z, (canonicalFutureKernel N z) F
-        ∂(firstExitStepMeasure N spec n y) := by
+        ∂((firstExitStepMeasure N spec n y).restrict D) := by
   let P := N.pathLaw (Measure.dirac y)
   let μ := P.map (Preorder.frestrictLe (n+1))
   let G := firstExitHistoryAt spec n D
@@ -61,7 +61,7 @@ theorem stoppedFuture_measure_restart_of_lastState
     Kernel.measurable_coe (canonicalFutureKernel N) hF
   have hEndpoint :
       ((μ.restrict G).map last) =
-        firstExitStepMeasure N spec n y :=
+        (firstExitStepMeasure N spec n y).restrict D :=
     firstExitHistory_endpointMeasure_eq_step N spec n hy D hD
   calc
     finiteStoppedFutureMeasure N spec n y D F =
@@ -75,7 +75,7 @@ theorem stoppedFuture_measure_restart_of_lastState
           ∂((μ.restrict G).map last) := by
       rw [lintegral_map hFunMeas hLastMeas]
     _ = ∫⁻ z, (canonicalFutureKernel N z) F
-          ∂(firstExitStepMeasure N spec n y) := by
+          ∂((firstExitStepMeasure N spec n y).restrict D) := by
       rw [hEndpoint]
 
 end PermanssonResearch.RegimeExit

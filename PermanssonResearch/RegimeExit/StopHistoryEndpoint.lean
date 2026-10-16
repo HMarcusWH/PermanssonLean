@@ -38,7 +38,7 @@ theorem firstExitHistory_endpointMeasure_eq_step
         (firstExitHistoryAt spec n D)).map
           (fun h : (i : Finset.Iic (n+1)) → JointState S X =>
             h ⟨n+1, Finset.mem_Iic.mpr le_rfl⟩) =
-      firstExitStepMeasure N spec n y := by
+      (firstExitStepMeasure N spec n y).restrict D := by
   let P := N.pathLaw (Measure.dirac y)
   let prefix : (ℕ → JointState S X) →
       ((i : Finset.Iic (n+1)) → JointState S X) :=
@@ -55,7 +55,7 @@ theorem firstExitHistory_endpointMeasure_eq_step
       firstExitAtDestination spec n D := by
     exact (firstExitAt_eq_history_preimage spec n D).symm
   change ((P.map prefix).restrict Hn).map endpoint =
-      firstExitStepMeasure N spec n y
+      (firstExitStepMeasure N spec n y).restrict D
   calc
     ((P.map prefix).restrict Hn).map endpoint =
         ((P.restrict (prefix ⁻¹' Hn)).map prefix).map endpoint := by
@@ -66,7 +66,22 @@ theorem firstExitHistory_endpointMeasure_eq_step
           (fun w : ℕ → JointState S X => w (n+1)) := by
       rw [hevent]
       rfl
-    _ = firstExitStepMeasure N spec n y := by
-      exact firstExitArrivalEndpointMeasure_eq_step N spec n hy
+    _ = (firstExitStepMeasure N spec n y).restrict D := by
+      ext C hC
+      rw [Measure.map_apply (measurable_pi_apply (n+1)) hC,
+        Measure.restrict_apply
+          (hC.preimage (measurable_pi_apply (n+1))),
+        Measure.restrict_apply hC]
+      have hIntersection :
+          ((fun w : ℕ → JointState S X => w (n+1)) ⁻¹' C) ∩
+              firstExitAtDestination spec n D =
+            firstExitAtDestination spec n (D ∩ C) := by
+        ext w
+        simp only [firstExitAtDestination, Set.mem_inter_iff,
+          Set.mem_preimage, Set.mem_diff, Set.mem_setOf_eq]
+        tauto
+      rw [hIntersection, Set.inter_comm C D]
+      exact firstExitStep_eq_pathEvent
+        N spec n hy (D ∩ C) (hD.inter hC)
 
 end PermanssonResearch.RegimeExit
