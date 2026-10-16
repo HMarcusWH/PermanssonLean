@@ -3,6 +3,7 @@ import PermanssonResearch.Perturbation.PrimitiveLipschitz
 import PermanssonLean.Regime.ConstitutiveMargin
 import PermanssonLean.Regime.Perturbation
 import PermanssonLean.Intervention.FrozenFamily
+import PermanssonLean.Quotient.Constitution
 import Mathlib.Tactic
 
 /-!
@@ -248,5 +249,102 @@ theorem approxQuotient_family_margin_abs_le
       p.constant * (min 1 (T * η₀) + min 1 (T * η l)) :=
   approxQuotient_margin_abs_le Qc p spec specBar F Fbar B₁ B₁bar hB _ _
     h₀ (hη l) hdef₀ (hdef l)
+
+/-! ### Bridges to the frozen Theorem 7.4b interface -/
+
+/-- `projectedPrefixProperty` satisfies the frozen all-laws factorization
+predicate `PropertyFactorsThroughCompression` (condition (v) of Thm 7.4b). -/
+theorem projectedPrefixProperty_factors
+    (Qc : TypeRespectingStateCompression S X Sb Xb) {T : ℕ}
+    (p : TVLipschitzPrefixProperty (JointState Sb Xb) Z T) :
+    PropertyFactorsThroughCompression Qc (projectedPrefixProperty Qc p)
+      p.toRegimeProperty := by
+  intro μ
+  change p.functional ((μ.toMeasure.map (Preorder.frestrictLe T)).map
+      (prefixMap Qc.stateMap T)) =
+    p.functional ((μ.toMeasure.map Qc.pathMap).map (Preorder.frestrictLe T))
+  rw [Measure.map_map (measurable_prefixMap Qc.stateMap_measurable T)
+      (Preorder.measurable_frestrictLe T),
+    Measure.map_map (Preorder.measurable_frestrictLe T) Qc.pathMap_measurable]
+  rfl
+
+/-- Any fine property that factors (for ALL path laws) through the compression
+and the coarse `T`-prefix property IS `projectedPrefixProperty`. -/
+theorem eq_projectedPrefixProperty_of_factors
+    (Qc : TypeRespectingStateCompression S X Sb Xb) {T : ℕ}
+    (p : TVLipschitzPrefixProperty (JointState Sb Xb) Z T)
+    {ψ : RegimePropertyMap (JointState S X) Z}
+    (hψ : PropertyFactorsThroughCompression Qc ψ p.toRegimeProperty) :
+    ψ = projectedPrefixProperty Qc p :=
+  funext fun μ => (hψ μ).trans (projectedPrefixProperty_factors Qc p μ).symm
+
+/-- The frozen comparison-set certificate (condition (ii), preimage form)
+gives the image relation `B̄₁ = q(B₁)` used by the margin theorem. -/
+theorem image_states_of_quotientCompatible
+    (Qc : TypeRespectingStateCompression S X Sb Xb)
+    {M : StrategicWorldModel S X A} {Mbar : StrategicWorldModel Sb Xb Ab}
+    {spec : RegimeSpecification (JointState S X) H}
+    {specBar : RegimeSpecification (JointState Sb Xb) H}
+    {B₁ : ConstitutiveComparisonSet M spec}
+    {B₁bar : ConstitutiveComparisonSet Mbar specBar}
+    (hcompat : QuotientCompatibleComparisonSets Qc B₁ B₁bar) :
+    B₁bar.states = Qc.stateMap '' B₁.states := by
+  rw [hcompat.states_preimage,
+    Set.image_preimage_eq _ Qc.stateMap_surjective]
+
+/-- **E1.3, Theorem 7.4b interface.** Margin comparison for an ARBITRARY fine
+property `ψ` given the frozen factorization certificate `hψ` and the frozen
+comparison-set certificate `hcompat`; with `η₀ = η_J = 0` the budget is zero. -/
+theorem approxQuotient_margin_abs_le_of_certificates
+    (Qc : TypeRespectingStateCompression S X Sb Xb) {T : ℕ}
+    (p : TVLipschitzPrefixProperty (JointState Sb Xb) Z T)
+    {ψ : RegimePropertyMap (JointState S X) Z}
+    (hψ : PropertyFactorsThroughCompression Qc ψ p.toRegimeProperty)
+    {M : StrategicWorldModel S X A} {Mbar : StrategicWorldModel Sb Xb Ab}
+    (spec : RegimeSpecification (JointState S X) H)
+    (specBar : RegimeSpecification (JointState Sb Xb) H)
+    {Component : Type uK} {ComponentBar : Type uKb}
+    (F : InterventionFamily M Component) (Fbar : InterventionFamily Mbar ComponentBar)
+    (B₁ : ConstitutiveComparisonSet M spec)
+    (B₁bar : ConstitutiveComparisonSet Mbar specBar)
+    (hcompat : QuotientCompatibleComparisonSets Qc B₁ B₁bar)
+    (J : AdmissibleStrategicIntervention F)
+    (Jbar : AdmissibleStrategicIntervention Fbar)
+    {η₀ ηJ : ℝ} (h₀ : 0 ≤ η₀) (hJ : 0 ≤ ηJ)
+    (hdef₀ : ApproxKernelIntertwines Qc M Mbar η₀)
+    (hdefJ : ApproxKernelIntertwines Qc J.intervention.apply
+      Jbar.intervention.apply ηJ) :
+    |constitutiveMargin M spec F ψ B₁ J -
+        constitutiveMargin Mbar specBar Fbar p.toRegimeProperty B₁bar Jbar| ≤
+      p.constant * (min 1 (T * η₀) + min 1 (T * ηJ)) := by
+  rw [eq_projectedPrefixProperty_of_factors Qc p hψ]
+  exact approxQuotient_margin_abs_le Qc p spec specBar F Fbar B₁ B₁bar
+    (image_states_of_quotientCompatible Qc hcompat) J Jbar h₀ hJ hdef₀ hdefJ
+
+/-- AQ1: exact intertwining of baseline and intervention (defects `0`) gives
+EQUAL margins for every factored Lipschitz prefix property. -/
+theorem approxQuotient_margin_eq_of_exact
+    (Qc : TypeRespectingStateCompression S X Sb Xb) {T : ℕ}
+    (p : TVLipschitzPrefixProperty (JointState Sb Xb) Z T)
+    {M : StrategicWorldModel S X A} {Mbar : StrategicWorldModel Sb Xb Ab}
+    (spec : RegimeSpecification (JointState S X) H)
+    (specBar : RegimeSpecification (JointState Sb Xb) Hb)
+    {Component : Type uK} {ComponentBar : Type uKb}
+    (F : InterventionFamily M Component) (Fbar : InterventionFamily Mbar ComponentBar)
+    (B₁ : ConstitutiveComparisonSet M spec)
+    (B₁bar : ConstitutiveComparisonSet Mbar specBar)
+    (hB : B₁bar.states = Qc.stateMap '' B₁.states)
+    (J : AdmissibleStrategicIntervention F)
+    (Jbar : AdmissibleStrategicIntervention Fbar)
+    (h₀ : KernelIntertwines Qc M.inducedKernel Mbar.inducedKernel)
+    (hJ : KernelIntertwines Qc J.intervention.apply.inducedKernel
+      Jbar.intervention.apply.inducedKernel) :
+    constitutiveMargin M spec F (projectedPrefixProperty Qc p) B₁ J =
+      constitutiveMargin Mbar specBar Fbar p.toRegimeProperty B₁bar Jbar := by
+  have h := approxQuotient_margin_abs_le Qc p spec specBar F Fbar B₁ B₁bar hB J Jbar
+    le_rfl le_rfl (approxKernelIntertwines_zero_of_exact Qc M Mbar h₀)
+    (approxKernelIntertwines_zero_of_exact Qc _ _ hJ)
+  simp only [mul_zero, min_eq_right zero_le_one, add_zero] at h
+  exact sub_eq_zero.mp (abs_nonpos_iff.mp h)
 
 end PermanssonResearch.Quotient

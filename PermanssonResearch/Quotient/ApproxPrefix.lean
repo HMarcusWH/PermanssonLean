@@ -252,4 +252,22 @@ theorem approxQuotient_pathLaw_prefix_tv_le
     ConstitutiveQuasi.pathLaw_finitePrefix_eq]
   exact approxQuotient_prefix_tv_le_min Qc.stateMap_measurable _ _ hη hdef y T
 
+/-- **E1.2, canonical path laws, linear form** (the name used in the spec's
+crosswalk, V20.31 without the `min(1,·)` cap). -/
+theorem approxQuotient_pathLaw_tv_le_linear
+    (Qc : TypeRespectingStateCompression S X Sb Xb)
+    (M : StrategicWorldModel S X A) (Mbar : StrategicWorldModel Sb Xb Ab)
+    {η : ℝ} (hη : 0 ≤ η) (hdef : ApproxKernelIntertwines Qc M Mbar η)
+    (y : JointState S X) (T : ℕ) :
+    eventTotalVariation
+      (((M.pathLaw (Measure.dirac y)).map (Preorder.frestrictLe T)).map
+        (prefixMap Qc.stateMap T))
+      ((Mbar.pathLaw (Measure.dirac (Qc.stateMap y))).map
+        (Preorder.frestrictLe T)) ≤ T * η := by
+  letI := StrategicWorldModel.inducedKernel_isMarkov M
+  letI := StrategicWorldModel.inducedKernel_isMarkov Mbar
+  rw [ConstitutiveQuasi.pathLaw_finitePrefix_eq,
+    ConstitutiveQuasi.pathLaw_finitePrefix_eq]
+  exact approxQuotient_prefix_tv_le_linear Qc.stateMap_measurable _ _ hη hdef y T
+
 end PermanssonResearch.Quotient

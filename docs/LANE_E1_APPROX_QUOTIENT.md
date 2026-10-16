@@ -13,11 +13,12 @@ implementation index created there; no mathematical dependency on C69/C70).
 | E1.0 (calculus) | For measurable `0 ≤ f ≤ 1`: `∫f dμ ≤ ∫f dν + TV(μ,ν)`; pushforward contraction; triangle; `TV(α⊗κ, α⊗ι) ≤ η` if kernels within `η` pointwise; `TV(α⊗κ, β⊗κ) ≤ TV(α,β)`. **No countability / standard-Borel hypothesis** (Hahn decomposition) | `lintegral_le_add_eventTotalVariation`, `abs_lintegral_toReal_sub_le_eventTotalVariation`, `eventTotalVariation_map_le`, `eventTotalVariation_triangle`, `eventTotalVariation_compProd_right_le`, `eventTotalVariation_compProd_left_le` | `Probability/EventTVCalculus.lean` |
 | E1.0 (shared) | `(ρ.map f) ⊗ₘ η = (ρ ⊗ₘ η.comap f).map (Prod.map f id)` — moved here from C69 so neither lane imports the other | `compProd_map_left_eq_map_compProd_comap` | `Probability/CompProdPushforward.lean` |
 | E1.1 | One-step defect `η = sup_y ‖q_#K(y,·) − K̄(q y,·)‖_TV`, for EVERY fine state; typed version through a `TypeRespectingStateCompression`; exact `KernelIntertwines` ⇒ `η = 0` | `HasQuotientDefect`, `ApproxKernelIntertwines`, `hasQuotientDefect_zero_of_intertwines`, `approxKernelIntertwines_zero_of_exact` | `Quotient/ApproxPrefix.lean` |
-| E1.2 | `TV((q^{0:T})_# P_y^{K,0:T}, P_{q y}^{K̄,0:T}) ≤ min(1, Tη)` — projected fine process need not be Markov | `approxQuotient_prefix_tv_le_linear`, `approxQuotient_prefix_tv_le_min`, `approxQuotient_pathLaw_prefix_tv_le` (canonical path laws) | same |
+| E1.2 | `TV((q^{0:T})_# P_y^{K,0:T}, P_{q y}^{K̄,0:T}) ≤ min(1, Tη)` — projected fine process need not be Markov | `approxQuotient_prefix_tv_le_linear`, `approxQuotient_prefix_tv_le_min`, `approxQuotient_pathLaw_tv_le_linear`, `approxQuotient_pathLaw_prefix_tv_le` (canonical path laws) | same |
 | E1.2 (support) | Ionescu–Tulcea recursion of `finitePrefixLaw`; projection commutes with appending | `finitePrefixLaw_succ`, `prefixMap_appendLast`, `finitePrefixLaw_zero_map` | same |
 | E1.3 | Effects: `\|Δ(y) − Δ̄(q y)\| ≤ L(min(1,Tη₀)+min(1,Tη_J))`; margins with `B̄₁ = q(B₁)`: same bound; positive-margin transfer both ways; frozen-family version over the label equivalence `φ` | `approxQuotient_effect_abs_le`, `approxQuotient_margin_abs_le`, `approxQuotient_fine_margin_pos_of_coarse`, `approxQuotient_coarse_margin_pos_of_fine`, `approxQuotient_family_margin_abs_le`, `approxBudget_le_linear` | `Quotient/ApproxMargin.lean` |
 | E1.3 (property) | The fine property FACTORS through the compressed prefix law by construction; the coarse property is an explicit A2 `TVLipschitzPrefixProperty` | `projectedPrefixProperty`, `projectedPrefixProperty_value`, `coarsePrefixProperty_value` | same |
-| E1.4 | Leakage: identity quotient on `Bool`, `K = δ_false`, `K̄_ε = (1−ε)δ_false + εδ_true`; defect ≤ ε, fine `{false}` invariant, coarse leaks with probability ε for every ε > 0 | `leaky_hasQuotientDefect`, `fine_region_invariant`, `coarse_region_leaks`, `small_defect_does_not_preserve_invariance` | `Quotient/ApproxAdversaries.lean` |
+| E1.3 (7.4b interface) | Frozen `PropertyFactorsThroughCompression` and `QuotientCompatibleComparisonSets` certificates feed the margin bound for arbitrary factored `ψ`; exact intertwining (AQ1) gives EQUAL margins | `projectedPrefixProperty_factors`, `eq_projectedPrefixProperty_of_factors`, `image_states_of_quotientCompatible`, `approxQuotient_margin_abs_le_of_certificates`, `approxQuotient_margin_eq_of_exact` | same |
+| E1.4 | Leakage (kernel level): identity quotient on `Bool`, `K = δ_false`, `K̄_ε = (1−ε)δ_false + εδ_true`; defect ≤ ε, fine `{false}` invariant, coarse leaks with probability ε for every ε > 0. The step to "no Exact-GR/PR transfer" is interpretive (no `IsExactGeneratedRegime` theorem) | `leaky_hasQuotientDefect`, `fine_region_invariant`, `coarse_region_leaks`, `small_defect_does_not_preserve_invariance` | `Quotient/ApproxAdversaries.lean` |
 | E1.5 | Geometric bound `1 − (1−η)^T` | — | **OPEN** (needs a measurable common-mass/coupling construction; not implied by E1.2) |
 
 ## Proof of E1.2 (last-step hybrid)
@@ -31,15 +32,34 @@ With the hybrid `H = (q^{0:T}_#μ_T) ⊗ K̄_T` and the coarse law `C = ν_T ⊗
 The coarse kernel is never applied to a fine history, the projected process is
 never assumed Markov, and no fibre disintegration is used.
 
-## Hypotheses kept independent (spec §7, conditions (ii)–(vi) of Thm 7.4b)
+## What the Lean theorems take, and what stays a separate obligation
 
-The Lean margin theorem takes as explicit inputs: the type-respecting compression;
-`B̄₁.states = q(B₁.states)` (exact equality); both comparison sets as ORIGINAL
-`ConstitutiveComparisonSet`s of their own models; separate defects `η₀` (baseline)
-and `η_J` (matched intervention); property factorization (by definition of
-`projectedPrefixProperty`); a frozen label equivalence for the family version.
-Nothing is inferred from small TV error. Exact-GR and grounding gates of either
-model are not touched and must be established independently.
+The core margin inequality (`approxQuotient_margin_abs_le`) uses exactly: a
+`TypeRespectingStateCompression`; the image relation `B̄₁.states = q(B₁.states)`;
+both comparison sets as ORIGINAL `ConstitutiveComparisonSet`s of their own models;
+separate defects `η₀` (baseline) and `η_J` (matched intervention); and a fine
+property that factors through the compressed prefix law (built into
+`projectedPrefixProperty`). The certificate-level wrapper
+`approxQuotient_margin_abs_le_of_certificates` instead takes the frozen Theorem 7.4b
+objects for conditions (ii) and (v): `QuotientCompatibleComparisonSets` (preimage
+form, turned into the image relation by `image_states_of_quotientCompatible`) and
+`PropertyFactorsThroughCompression` for an ARBITRARY fine `ψ`
+(`eq_projectedPrefixProperty_of_factors`). The frozen-family version runs over the
+label equivalence of `QuotientFamilyMatching`.
+
+**Not used and NOT formalized in E1** (they remain independent obligations for any
+Exact-GR / PR claim on either side): `B = q⁻¹B̄`, `B₀ = q⁻¹B̄₀`, the descriptor and
+grounding factorizations `h = h̄∘q`, `g = ḡ∘q`
+(`QuotientCompatibleRegimeSpecifications`), each model's Assumption 4.1 /
+nontriviality gates, convergence-mode compatibility, and admissible initial-law
+lifts. The margin inequality is true without them; it simply says nothing about
+Exact GR. Factorization only on the compared Dirac laws (weaker than the frozen
+all-laws predicate) is not covered.
+
+**Spec name map.** The spec crosswalk's `approxQuotient_pathLaw_tv_le_linear` exists
+with exactly that name (canonical path laws, `T η` form); the capped form is
+`approxQuotient_pathLaw_prefix_tv_le`, and the generic kernel-level forms are
+`approxQuotient_prefix_tv_le_linear` / `approxQuotient_prefix_tv_le_min`.
 
 ## Executable adversaries
 
@@ -50,12 +70,14 @@ ALL fine states; horizon zero; exact lumpability (`η = 0` ⇒ TV 0 at every hor
 leakage (`TV = 1 − (1−ε)^T ≤ Tε`, invariance lost); the geometric envelope observed
 numerically only (E1.5 stays OPEN); margin budget V20.33–34; a non-factoring
 property distinguishing exactly-lumped models; a label mismatch defeating the
-budget; positive coarse margin without coarse Exact GR.
+budget; a coarse margin `1−ε` strictly above the budget `Tε` that transfers to a
+positive fine margin while the coarse region `{0}` leaks (positive margin is not
+Exact GR).
 
 ## Verification evidence (local)
 
 - Lean 4.34.0 / pinned mathlib: all five modules compile; signatures inspected —
   no `CountableOrCountablyGenerated` or standard-Borel instance appears.
-- `verification/research/e1_axiom_audit.py`: 45/45 declarations allowlisted.
-- The C69 audit still passes (33/33) after moving the shared lemma.
+- `verification/research/e1_axiom_audit.py`: all E1 declarations allowlisted (count printed by the script; see the PR).
+- The C69 audit passes 33/33 after moving the shared lemma (`compProd_map_left_eq_map_compProd_comap` is now audited by `e1_axiom_audit.py`).
 - Focused workflow: `.github/workflows/e1-approx-quotient-smoke.yml`.

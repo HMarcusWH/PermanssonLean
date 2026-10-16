@@ -230,12 +230,31 @@ class MarginTests(unittest.TestCase):
         self.assertGreater(defect(KL, KJ_wrong, QL), ZERO)
 
     def test_positive_quotient_margin_not_exact_gr(self):
-        """Positive coarse margin with leaky coarse dynamics: margin transfer
-        is not an Exact-GR certificate (coarse region {0} leaks)."""
-        eps = F(1, 50)
-        Kb = leaky(eps)
-        self.assertGreater(Kb[0][1], ZERO)
-
+        """Positive coarse margin ABOVE the V20.34 budget (so the fine margin
+        is positive too), while the coarse region {0} is not invariant:
+        margin transfer is not an Exact-GR certificate.
+        Identity quotient on {0,1}; baseline fine K0 = δ0 (fine {0} invariant),
+        coarse K̄0 = leaky(ε); intervention fine KJ = coarse K̄J = δ1."""
+        eps, T = F(1, 50), 3
+        ident = lambda z: z
+        K0, K0b = KFIX, leaky(eps)
+        KJ = check({0: {1: ONE}, 1: {1: ONE}})
+        KJb = KJ
+        eta0, etaJ = defect(K0, K0b, ident), defect(KJ, KJb, ident)
+        self.assertEqual((eta0, etaJ), (eps, ZERO))
+        prop = lambda law: sum((p for w, p in law.items() if w[T] == 1), ZERO)
+        B1 = (0,)
+        fine_margin = min(abs(prop(prefix_law(K0, y, T)) - prop(prefix_law(KJ, y, T)))
+                          for y in B1)
+        coarse_margin = min(abs(prop(prefix_law(K0b, x, T)) - prop(prefix_law(KJb, x, T)))
+                            for x in B1)
+        budget = min(ONE, T * eta0) + min(ONE, T * etaJ)
+        self.assertEqual(coarse_margin, 1 - eps)          # P̄_0(Y_T = 1) = ε
+        self.assertGreater(coarse_margin, budget)         # transfer hypothesis
+        self.assertLessEqual(abs(fine_margin - coarse_margin), budget)
+        self.assertGreater(fine_margin, ZERO)             # transferred positivity
+        self.assertGreater(K0b[0][1], ZERO)               # coarse {0} leaks
+        self.assertEqual(K0[0].get(1, ZERO), ZERO)        # fine {0} invariant
 
 if __name__ == "__main__":
     unittest.main()

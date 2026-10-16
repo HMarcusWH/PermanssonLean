@@ -9,10 +9,13 @@ quotient, the fine kernel `K(y,·) = δ_false` and the coarse kernel
 `K̄_ε(y,·) = (1−ε)δ_false + εδ_true` have one-step quotient defect at most `ε`
 (`leaky_hasQuotientDefect`), for every `ε ∈ [0,1]`. Yet `{false}` is exactly
 invariant for `K` and NOT invariant for `K̄_ε` whenever `ε > 0`
-(`fine_region_invariant`, `coarse_region_leaks`). Hence no amount of small
-approximate intertwining transfers exact invariance, Exact GR or PR status.
-The finite-prefix margin statements of E1.2–E1.3 remain valid; only the
-promotion to exact regime certificates is refuted.
+(`fine_region_invariant`, `coarse_region_leaks`). What is PROVED here is
+kernel-level: arbitrarily small quotient defect does not transfer exact
+one-step invariance of a region. Since `IsExactGeneratedRegime` requires
+`IsExactlyInvariant`, this blocks any inference from small defect to Exact-GR
+or PR status — but that last step is an interpretation, not a Lean theorem over
+`StrategicWorldModel`/`IsExactGeneratedRegime` (none is provided here). The
+finite-prefix margin statements of E1.2–E1.3 are unaffected.
 -/
 
 open MeasureTheory ProbabilityTheory Set

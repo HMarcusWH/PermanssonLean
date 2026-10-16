@@ -123,7 +123,9 @@ Source modules: `PermanssonResearch/RegimeExit/ShiftedPrefixStationarity.lean`,
 - **Status.** PROVED.
 - **Verification.** Local: module compiles on Lean 4.34.0 / pinned mathlib; local
   `#print axioms` audit of all 34 new C69 declarations: only `propext`,
-  `Classical.choice`, `Quot.sound`. CI: see PR #69 (record run IDs at merge).
+  `Classical.choice`, `Quot.sound` (33 after the E1 PR moves the generic
+  `compProd_map_left_eq_map_compProd_comap` to `Probability/CompProdPushforward.lean`,
+  where `e1_axiom_audit.py` audits it). CI: see PR #69 (record run IDs at merge).
 - **Manuscript.** v0.2.0 §4.2 strong-Markov lemma preceding Prop. 4.2f.
 
 ### C69.2 — unconditional full-future last-state restart
@@ -256,16 +258,16 @@ Lane document: [LANE_E1_APPROX_QUOTIENT.md](LANE_E1_APPROX_QUOTIENT.md). Modules
 |---|---|---|---|
 | E1.0 | General event-TV calculus without countability: integral of `[0,1]` functions within TV (Hahn), pushforward contraction, triangle, two `⊗ₘ` comparison bounds | `lintegral_le_add_eventTotalVariation`, `eventTotalVariation_map_le`, `eventTotalVariation_triangle`, `eventTotalVariation_compProd_right_le`, `eventTotalVariation_compProd_left_le` | PROVED |
 | E1.1 | Defect `η_ℓ = sup_y ‖q_#K^ℓ(y,·) − K̄^{φ(ℓ)}(q y,·)‖_TV` for EVERY fine state; exact intertwining ⇒ `η=0` | `HasQuotientDefect`, `ApproxKernelIntertwines`, `approxKernelIntertwines_zero_of_exact` | DEFINED (+ PROVED reduction) |
-| E1.2 | `TV(q-projected fine T-prefix, coarse T-prefix) ≤ min(1, Tη)` from the same fine start; projected process need not be Markov | `approxQuotient_prefix_tv_le_linear`, `approxQuotient_prefix_tv_le_min`, `approxQuotient_pathLaw_prefix_tv_le` | PROVED |
-| E1.3 | `\|Δ(y)−Δ̄(q y)\| ≤ L(min(1,Tη₀)+min(1,Tη_J))`; margins with `B̄₁ = q(B₁)`; positive-margin transfer; frozen-family version | `approxQuotient_effect_abs_le`, `approxQuotient_margin_abs_le`, `approxQuotient_fine_margin_pos_of_coarse`, `approxQuotient_coarse_margin_pos_of_fine`, `approxQuotient_family_margin_abs_le` | PROVED |
-| E1.4 | Leakage counterexample (Lean): defect ≤ ε, exact invariance lost for all ε>0; Python: non-Markov projection, lumpable η=0, factorization failure, label mismatch | `small_defect_does_not_preserve_invariance`; `test_e1_approx_quotient.py` (14) | PROVED / executable |
+| E1.2 | `TV(q-projected fine T-prefix, coarse T-prefix) ≤ min(1, Tη)` from the same fine start; projected process need not be Markov | `approxQuotient_prefix_tv_le_linear`, `approxQuotient_prefix_tv_le_min`, `approxQuotient_pathLaw_tv_le_linear` (spec name), `approxQuotient_pathLaw_prefix_tv_le` | PROVED |
+| E1.3 | `\|Δ(y)−Δ̄(q y)\| ≤ L(min(1,Tη₀)+min(1,Tη_J))`; margins with `B̄₁ = q(B₁)`; positive-margin transfer; frozen-family version; Thm 7.4b certificate interface (arbitrary factored `ψ`, `QuotientCompatibleComparisonSets`); exact intertwining ⇒ equal margins | `approxQuotient_effect_abs_le`, `approxQuotient_margin_abs_le`, `approxQuotient_fine_margin_pos_of_coarse`, `approxQuotient_coarse_margin_pos_of_fine`, `approxQuotient_family_margin_abs_le`, `approxQuotient_margin_abs_le_of_certificates`, `approxQuotient_margin_eq_of_exact` | PROVED |
+| E1.4 | Leakage counterexample (Lean, kernel level): defect ≤ ε, one-step region invariance lost for all ε>0 (Exact-GR/PR non-transfer is the interpretation, not a separate theorem); Python: non-Markov projection, lumpable η=0, factorization failure, label mismatch, positive coarse margin above budget with leaking coarse region | `small_defect_does_not_preserve_invariance`; `test_e1_approx_quotient.py` (14) | PROVED / executable |
 | E1.5 | Geometric bound `1 − (1 − η)^T` | — | OPEN (needs a measurable common-mass construction; NOT implied by E1.2) |
 
 Inputs: CORE.Q74b (`TypeRespectingStateCompression`, `KernelIntertwines`, `QuotientFamilyMatching`),
 CORE.P54 (`finitePrefixLaw`, `eventTotalVariation`), A2 (`TVLipschitzPrefixProperty`),
 CORE.P52 (`abs_sInf_image_sub_sInf_image_le_of_uniform`), C69 shared lemma (moved to
 `Probability/CompProdPushforward.lean`). Consumers: X1, R. Manuscript: §7.4.3 (Thm 7.4c).
-Verification: local compile; `e1_axiom_audit.py` 45/45; CI pending (E1 PR).
+Verification: local compile; `e1_axiom_audit.py` all declarations allowlisted (count in the PR); CI pending (E1 PR).
 
 ## F1 — multi-agent closed-loop versus opponent-locked protocols
 
