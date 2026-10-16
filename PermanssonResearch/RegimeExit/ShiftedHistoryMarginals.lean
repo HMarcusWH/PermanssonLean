@@ -88,6 +88,10 @@ theorem shiftedHistory_one_step
       (Kernel.map_traj_succ_self
         (X := fun _ : ℕ => JointState S X)
         (κ := κ) (a := m))
-  exact hnext
+  rw [Kernel.map_apply (Kernel.traj
+    (X := fun _ : ℕ => JointState S X) κ m)
+    (measurable_pi_apply (m+1)) h] at hnext
+  simpa only [κ, StrategicWorldModel.stationaryHistoryKernel,
+    Kernel.coe_comap, Function.comp_apply] using hnext
 
 end PermanssonResearch.RegimeExit

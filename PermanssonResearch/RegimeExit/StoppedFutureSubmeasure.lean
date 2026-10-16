@@ -56,6 +56,8 @@ theorem finiteStoppedFutureMeasure_apply
       (S := S) (X := X) (n+1)) hF,
     Measure.restrict_apply (hF.preimage
       (measurable_pathTailShift (S := S) (X := X) (n+1)))]
+  rw [Set.inter_comm (pathTailShift (S := S) (X := X) (n+1) ⁻¹' F)
+    (firstExitAtDestination spec n D)]
 
 /-- Genuine non-normalized mass: it is exactly PR66's nth exit
 step mass, not one unless every path exits at this time. -/
