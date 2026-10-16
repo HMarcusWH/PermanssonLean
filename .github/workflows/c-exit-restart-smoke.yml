@@ -23,7 +23,7 @@ jobs:
         with:
           auto-config: false
           build: true
-          build-args: PermanssonResearch.RegimeExit.CanonicalTailKernel PermanssonResearch.RegimeExit.RestartSanity PermanssonResearch.RegimeExit.StationaryTailLaw PermanssonResearch.RegimeExit.FiniteHistoryTail PermanssonResearch.RegimeExit.FiniteHistoryEvent PermanssonResearch.RegimeExit.StopHistory PermanssonResearch.RegimeExit.ShiftedHistoryJoint PermanssonResearch.RegimeExit.ShiftedHistoryMarginals PermanssonResearch.RegimeExit.StopHistoryFuture PermanssonResearch.RegimeExit.StoppedFutureSubmeasure PermanssonResearch.RegimeExit.StopHistoryEndpoint PermanssonResearch.RegimeExit.ConditionalRestartBridge
+          build-args: PermanssonResearch.RegimeExit.CanonicalTailKernel PermanssonResearch.RegimeExit.RestartSanity PermanssonResearch.RegimeExit.StationaryTailLaw PermanssonResearch.RegimeExit.FiniteHistoryTail PermanssonResearch.RegimeExit.FiniteHistoryEvent PermanssonResearch.RegimeExit.StopHistory PermanssonResearch.RegimeExit.ShiftedHistoryJoint PermanssonResearch.RegimeExit.ShiftedHistoryMarginals PermanssonResearch.RegimeExit.StopHistoryFuture PermanssonResearch.RegimeExit.StoppedFutureSubmeasure PermanssonResearch.RegimeExit.StopHistoryEndpoint PermanssonResearch.RegimeExit.ConditionalRestartBridge PermanssonResearch.RegimeExit.StationaryLastStateReduction
           test: false
           lint: false
           use-mathlib-cache: true

@@ -10,6 +10,7 @@ import PermanssonResearch.RegimeExit.StopHistoryFuture
 import PermanssonResearch.RegimeExit.StoppedFutureSubmeasure
 import PermanssonResearch.RegimeExit.StopHistoryEndpoint
 import PermanssonResearch.RegimeExit.ConditionalRestartBridge
+import PermanssonResearch.RegimeExit.StationaryLastStateReduction
 import PermanssonResearch.RegimeExit.ExitAdversaries
 import PermanssonResearch.RegimeExit.ExitLongHorizonWitness
 import PermanssonResearch.RegimeExit.ExitFiniteWitness
