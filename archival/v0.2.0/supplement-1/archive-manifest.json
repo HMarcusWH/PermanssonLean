@@ -315,8 +315,8 @@
     },
     {
       "path": "tooling/verification/integrity/tests/test_preservation.py",
-      "sha256": "6154fdeea3c1ac73b3dabaa2e2c27ff0eaf2f8b2c556480cc86fd44d8414f484",
-      "size": 10861
+      "sha256": "7d177fb0876a78503c347bfea660421211cb18abf739bcc3ec3e47af1c081bac",
+      "size": 13973
     },
     {
       "path": "tooling/verification/integrity/tests/test_reference.py",
@@ -516,9 +516,9 @@
         "sha256": "10ba495a5dab584114155ca87717bb5ae6f92b142ccdf2f796b3840c9f05ba86"
       },
       {
-        "blob": "9cec8fdf4e158fdce1a31c572faa131e788d599b",
+        "blob": "ee523b5e51a37dd3018692d2849ec54920818438",
         "path": "verification/integrity/tests/test_preservation.py",
-        "sha256": "6154fdeea3c1ac73b3dabaa2e2c27ff0eaf2f8b2c556480cc86fd44d8414f484"
+        "sha256": "7d177fb0876a78503c347bfea660421211cb18abf739bcc3ec3e47af1c081bac"
       },
       {
         "blob": "f61d597a6b990483fa508e6d2799b44e08d83c82",
@@ -546,6 +546,6 @@
         "sha256": "d82b6ee6b8c97dcb7b0565e9fc635c7da8432bd3a0273c7373b19173bcaf8a6f"
       }
     ],
-    "source_commit": "562a22210e9e1cb23b19a6ebddacbc6bdc2bd6d0"
+    "source_commit": "a83d57a707afc91861fc5fec853d01f576ba0334"
   }
 }
