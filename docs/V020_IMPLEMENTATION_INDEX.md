@@ -14,6 +14,40 @@ dated ledgers ([proof ledger](V020_RESEARCH_PROOF_LEDGER.md),
 [research build](RESEARCH_BUILD.md), lane documents) → historical plans.
 A roadmap entry is never evidence that a theorem exists.
 
+## Verified integration snapshot — 17 October 2026
+
+This table records accepted provider commits and their actual PR synthetic-merge
+evidence. Historical stacked-branch notes below retain their original context.
+Later consumers still require verification against their own final merge base.
+
+| Lane | Accepted source | Main merge | Research run / checked synthetic merge |
+|---|---|---|---|
+| C69 / #69 | `d8a96a423f402fcbe791c6e114d169894739f944` | `54848efd002a0153641c9e340325dce857e1e5db` | `38905103071` / `3a11d5776772f87cc2160ca3222b1e34d1b3043c` |
+| C70 / #70 | `547d17e2fff8ab2136562dbb93562529bcda062e` | `24ea0836db5bb45c964b00121718613d843ce255` | `39035552321` / `775a1317cbe664d70ac2aebbc55e40e4811be2b3` |
+| E1 / #71 | `7ae2fab0b221a77e0a13ef83cedd6f8933569c26` | `2a2246ad851e2cdc435dcd0f98f259e1264541b3` | `39036276477` / `cfdf3386d2d5363f7187e2087310b7e1b152f752` |
+
+Each listed run passed the full research build, three-axiom transitive audit,
+research regressions, direct imports, source firewall, original-core build,
+D0 golden regeneration, and PR-only C10 generation plus independent
+source-bound verification. Their observed declaration/test/module counts were
+respectively `4383/715/366`, `4442/727/370`, and `4499/747/375`.
+The original Lean, executable verification and both application OS jobs also
+passed. Independent source/spec reviews found no new blocker in the stated scopes.
+
+The E1 integration preserves C70's reusable `c69_axiom_audit.run_audit` and moves
+the unchanged generic `compProd_map_left_eq_map_compProd_comap` proof to
+`Probability/CompProdPushforward.lean`, audited by E1. C69 owns 33 declarations
+after this move; E1 owns the shared helper. Every lane import is retained.
+
+F1's P1 correction is commit `6df963caba903d34cf42510429e756de9a8bcc79`.
+Standalone repaired head `0b001dc127c7f5e937b4be849df3e886597f2fc7` passed
+Research run `39035866423` (`4617/732/371`, C10 source-bound PASS) and a fresh
+Codex review with no major findings; the original P1 thread is resolved with
+that evidence. **Strict MA2 remains OPEN/unfulfilled.** The broader reactive
+counterexample is not MA2; the new full-law obstruction is explicitly limited
+to the deterministic recording toy. This F1/C70/E1 combined tree needs fresh
+exact-head synthetic-merge CI before acceptance.
+
 ## Status vocabulary
 
 | Status | Meaning |
