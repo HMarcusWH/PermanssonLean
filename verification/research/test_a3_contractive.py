@@ -102,7 +102,8 @@ def mean(mu):
 def random_kernel(rng, xs, theta=F(1, 4)):
     """Doeblin-type kernel K(x, .) = (1 - theta) nu + theta R_x with a common
     random law nu: W1(K_x, K_y) = theta W1(R_x, R_y) <= theta * diam, so the
-    contraction coefficient is <= theta * diam / min_gap (< 1 for the grids used)."""
+    contraction coefficient is <= theta * diam / min_gap. Tests requiring a
+    strict contraction compute its coefficient and check rho < 1 explicitly."""
     def rlaw():
         w = [F(rng.randint(1, 6)) for _ in xs]
         return {y: wi / sum(w) for y, wi in zip(xs, w)}
@@ -192,6 +193,48 @@ class InvariantPerturbationTests(unittest.TestCase):
 
 class MarginTests(unittest.TestCase):
 
+    def test_positive_margin_transfer_is_sharp_and_needs_both_budgets(self):
+        """A deterministic positive-margin instance: the full budget is below
+        the original margin and certifies a strictly positive transferred one.
+        Deleting EITHER the baseline or intervention term is a false bound.
+        These are mean-law properties, so all four factorization identities
+        hold by the declared property definition (not an ergodic inference)."""
+        eps = F(1, 10)
+        const = lambda law: check({0: dict(law), 1: dict(law)})
+        K0, KJ = const({0: ONE}), const({1: ONE})
+        K0t = const({0: 1 - eps, 1: eps})
+        KJt = const({0: eps, 1: 1 - eps})
+        kappa = abs(mean(invariant(K0)) - mean(invariant(KJ)))
+        kappat = abs(mean(invariant(K0t)) - mean(invariant(KJt)))
+        baseline = defect(K0, K0t) / (1 - contraction(K0))
+        intervention = defect(KJ, KJt) / (1 - contraction(KJ))
+        budget = baseline + intervention
+        self.assertEqual((kappa, kappat, baseline, intervention),
+                         (ONE, F(4, 5), eps, eps))
+        self.assertLess(budget, kappa)
+        self.assertGreater(kappa - budget, ZERO)
+        self.assertEqual(kappat, kappa - budget)  # sharp, positive transfer
+        self.assertGreater(abs(kappat - kappa), baseline)  # mutation: omit J
+        self.assertGreater(abs(kappat - kappa), intervention)  # mutation: omit 0
+
+    def test_margin_rejects_dropped_one_minus_rho_denominator(self):
+        """The margin theorem also needs the geometric denominator, even
+        when both the correct bound and the transferred margin are non-vacuous."""
+        a, d = F(1, 20), F(1, 100)
+        K0 = check({0: {0: 1 - a, 1: a}, 1: {0: a, 1: 1 - a}})
+        K0t = check({0: {0: 1 - a - d, 1: a + d}, 1: {0: a, 1: 1 - a}})
+        KJ = check({0: {1: ONE}, 1: {1: ONE}})
+        kappa = abs(mean(invariant(K0)) - mean(invariant(KJ)))
+        kappat = abs(mean(invariant(K0t)) - mean(invariant(KJ)))
+        delta, rho = defect(K0, K0t), contraction(K0)
+        budget = delta / (1 - rho)  # intervention perturbation is zero
+        self.assertEqual((kappa, kappat, delta, rho, budget),
+                         (HALF, F(5, 11), d, F(9, 10), F(1, 10)))
+        self.assertLess(budget, kappa)
+        self.assertGreater(kappa - budget, ZERO)
+        self.assertLessEqual(abs(kappat - kappa), budget)
+        self.assertGreater(abs(kappat - kappa), delta)  # mutation: denominator = 1
+
     def test_v20_18_margin_budget(self):
         """Descriptor h(x) = x (L_h = 1), functional F = mean (L_F = 1 for W1);
         effects factor through the invariant laws; |kappa~ - kappa| <= budget."""
@@ -213,6 +256,30 @@ class MarginTests(unittest.TestCase):
 
 
 class LeakageTests(unittest.TestCase):
+
+    def test_four_process_factorization_cannot_be_deleted(self):
+        """Destructive overclaim control: use forever survival in place of a
+        factored mean-law property. Every invariant/contraction/defect premise
+        still holds, but the putative margin-robustness conclusion is false.
+        For a constant row with mass q in {0}, survival is q**n; its forever
+        limit is 1 exactly when q=1, otherwise 0 (all q here lie in [0,1])."""
+        eps = F(1, 100)
+        const = lambda law: check({0: dict(law), 1: dict(law)})
+        K0 = const({0: ONE})
+        K0t = const({0: 1 - eps, 1: eps})
+        KJ = const({1: ONE})
+        for K in (K0, K0t, KJ):
+            self.assertEqual(contraction(K), ZERO)
+            self.assertEqual(apply(invariant(K), K),
+                             {x: p for x, p in invariant(K).items() if p})
+        forever = lambda K: ONE if K[0].get(0, ZERO) == ONE else ZERO
+        kappa = abs(forever(K0) - forever(KJ))
+        kappat = abs(forever(K0t) - forever(KJ))
+        budget = defect(K0, K0t) + defect(KJ, KJ)
+        self.assertEqual((kappa, kappat, budget), (ONE, ZERO, eps))
+        self.assertGreater(abs(kappat - kappa), budget)
+        # The finite initial invariant-law gap is small, as A3.1 requires.
+        self.assertEqual(w1(invariant(K0), invariant(K0t)), eps)
 
     def test_a3_3_survival_flips(self):
         """Mirrors contraction_does_not_transfer_survival: rho = 0 for both constant

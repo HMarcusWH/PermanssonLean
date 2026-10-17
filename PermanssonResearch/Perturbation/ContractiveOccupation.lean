@@ -9,12 +9,12 @@ open scoped ENNReal NNReal ProbabilityTheory
 /-!
 # A3.1–A3.2 — Contractive invariant-law perturbation and margin robustness
 
-* (V20.17) `invariantLaw_wasserstein_le`: invariant laws `π = Kπ`, `π̃ = K̃π̃`, a
+* Dual analogue of (V20.17), `invariantLaw_wasserstein_le`: invariant laws `π = Kπ`, `π̃ = K̃π̃`, a
   uniform `W₁` contraction `K` with `0 ≤ ρ < 1`, a one-step defect
   `sup_y W₁(K_y, K̃_y) ≤ δ` and a finite initial gap give `W₁(π, π̃) ≤ δ/(1−ρ)`
   (dual form). Proof: one-step recursion `c ↦ ρc + δ`, iteration, closure — no
   completeness or fixed-point theorem.
-* (V20.18) `occupationMargin_robust`: if the property FACTORS as `F(h_#π)` for all
+* Conditional dual analogue of (V20.18), `occupationMargin_robust`: if the property FACTORS as `F(h_#π)` for all
   four compared processes on every comparison state, with `h` `L_h`-Lipschitz and
   `F` `L_F`-Lipschitz for dual `W₁`, the ORIGINAL frozen constitutive margins differ
   by at most `L_F L_h (δ₀/(1−ρ₀) + δ_J/(1−ρ_J))`.
@@ -22,7 +22,9 @@ open scoped ENNReal NNReal ProbabilityTheory
 Invariance, contraction, defect, finiteness and the factorization identity are
 HYPOTHESES (existence/uniqueness of invariant laws, Doeblin/Dobrushin derivations
 of contraction and an ergodic bridge are not formalized). A3.3 shows the
-conclusion fails for exact-survival properties.
+conclusion fails for exact-survival properties. The spec's coupling Wasserstein
+metric is not identified with `W1DualLE`; in particular, a coupling-form
+contraction has not been proved to imply the dual contraction premise below.
 -/
 
 namespace PermanssonResearch.Perturbation
@@ -52,7 +54,7 @@ theorem invariantLaw_step (K Kt : Kernel Y Y) [IsMarkovKernel K] [IsMarkovKernel
   have h3 := h1.trans h2
   rwa [hπ, hπt] at h3
 
-/-- **A3.1 / (V20.17).** Invariant-law perturbation under uniform `W₁`
+/-- **A3.1 / dual analogue of (V20.17).** Invariant-law perturbation under uniform `W₁`
 contraction: `W₁(π, π̃) ≤ δ / (1 − ρ)`. The finiteness hypothesis `hfin` holds
 whenever both laws have finite first moments (`W1DualLE.of_integrable_dist`). -/
 theorem invariantLaw_wasserstein_le (K Kt : Kernel Y Y) [IsMarkovKernel K]
@@ -147,11 +149,13 @@ open PermanssonLean PermanssonLean.RegimeSpecification PermanssonResearch.Probab
 
 universe uS uX uA uH uH' uZ uC uC' uV
 
-/-- **A3.2 / (V20.18).** Margin robustness for properties that FACTOR through a
+/-- **A3.2 / conditional dual analogue of (V20.18).** Margin robustness for properties that FACTOR through a
 Lipschitz functional of the descriptor image of the invariant law, for all
 four compared processes and every comparison state:
 `|κ̃ − κ| ≤ L_F L_h (δ₀/(1−ρ₀) + δ_J/(1−ρ_J))`. Both margins are the ORIGINAL
-frozen constitutive margins over the same comparison states. -/
+frozen constitutive margins over the same comparison states. The factorization
+map `h` is supplied separately; it is not inferred to equal either regime
+specification's descriptor. -/
 theorem occupationMargin_robust
     {S : Type uS} {X : Type uX} {A : Type uA} {H : Type uH} {H' : Type uH'} {Z : Type uZ}
     [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A] [MeasurableSpace H]

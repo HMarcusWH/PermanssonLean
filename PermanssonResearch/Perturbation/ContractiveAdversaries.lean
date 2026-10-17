@@ -208,6 +208,56 @@ theorem leak_defect {ε : ℝ} (hε : 0 ≤ ε) (hε1 : ε ≤ 1) :
   rw [this, abs_mul, abs_of_nonneg hε]
   nlinarith [abs_nonneg (f y0 - f y1)]
 
+/-- The image of the constant world law is an invariant probability law for
+the actual induced kernel. This supplies the invariance fields of A3.1 rather
+than merely appealing to the constant-row intuition. -/
+theorem model_invariant (ν : Measure ℝ) [IsProbabilityMeasure ν] :
+    (model ν).inducedKernel ∘ₘ (ν.map emb) = ν.map emb := by
+  rw [model_inducedKernel, Measure.const_comp, measure_univ, one_smul]
+
+/-- All A3.1 assumptions for the survival counterexample, including the two
+invariant laws and a finite initial dual gap, assembled in the actual bundle. -/
+noncomputable def leakPerturbation {ε : ℝ} (hε : 0 ≤ ε) (hε1 : ε ≤ 1) :
+    haveI := leakLaw_isProbability hε hε1
+    ContractivePerturbation (model fineLaw).inducedKernel
+      (model (leakLaw ε)).inducedKernel := by
+  have := leakLaw_isProbability hε hε1
+  refine
+    { π := fineLaw.map emb
+      πt := (leakLaw ε).map emb
+      π_isProb := inferInstance
+      πt_isProb := inferInstance
+      invariant := model_invariant fineLaw
+      invariant_t := model_invariant (leakLaw ε)
+      ρ := 0
+      δ := ε
+      ρ_nonneg := le_rfl
+      ρ_lt_one := zero_lt_one
+      contraction := ?_
+      defect := ?_
+      finite := ⟨ε, leak_defect hε hε1⟩ }
+  · rw [model_inducedKernel]; exact const_isW1Contraction _
+  · intro y
+    rw [model_inducedKernel, model_inducedKernel, Kernel.const_apply, Kernel.const_apply]
+    exact leak_defect hε hε1
+
+/-- The full contractive-perturbation bundle coexists with a unit change in
+forever survival for arbitrarily small positive `ε`. The invariant-law bound
+holds; an additional four-process property-factorization premise is essential
+for transporting constitutive margins. -/
+theorem bundled_survival_counterexample {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
+    haveI := leakLaw_isProbability hε.le hε1
+    ∃ D : ContractivePerturbation (model fineLaw).inducedKernel
+        (model (leakLaw ε)).inducedKernel,
+      D.ρ = 0 ∧ D.δ = ε ∧
+      D.π = fineLaw.map emb ∧ D.πt = (leakLaw ε).map emb ∧
+      W1DualLE D.π D.πt ε ∧
+      survivalForeverProbability (model fineLaw) specZero y0 = 1 ∧
+      survivalForeverProbability (model (leakLaw ε)) specZero y0 = 0 := by
+  have := leakLaw_isProbability hε.le hε1
+  exact ⟨leakPerturbation hε.le hε1, rfl, rfl, rfl, rfl,
+    leak_defect hε.le hε1, fine_survivalForever, leak_survivalForever hε hε1⟩
+
 /-- **A3.3 (firewall).** For every `ε ∈ (0,1]` the fine and leaky kernels satisfy
 the A3.1 hypotheses with `ρ = 0` (both constant, hence `W₁` contractions) and
 one-step dual `W₁` defect `≤ ε` at every state, yet the exact-survival indicator

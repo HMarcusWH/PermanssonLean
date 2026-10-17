@@ -293,9 +293,9 @@ tests) on arbitrary pseudo-metric spaces; KR duality with the coupling form is N
 | Anchor | Claim | Provider | Status |
 |---|---|---|---|
 | A3.0 | Dual-W₁ calculus without Polish/standard-Borel hypotheses: monotone, symmetric, triangle, closed under limits; pointwise kernel defect ⇒ mixture defect; `L`-Lipschitz pushforward scales by `L`; finite first moments ⇒ finite bound | `W1DualLE`, `IsKRTest`, `W1DualLE.trans`, `W1DualLE.of_tendsto`, `W1DualLE.comp_of_forall`, `W1DualLE.map_lipschitz`, `W1DualLE.of_integrable_dist` | DEFINED (+ PROVED) |
-| A3.1 | (V20.17) `W₁(π, π̃) ≤ δ/(1−ρ)` given invariance of both laws, uniform dual-W₁ contraction `0 ≤ ρ < 1` of the ORIGINAL kernel, pointwise defect `δ` at every state and a finite initial gap (no finite-state restriction) | `invariantLaw_wasserstein_le`, `ContractivePerturbation.w1_le` | PROVED |
-| A3.2 | (V20.18) `\|κ̃ − κ\| ≤ L_F L_h (δ₀/(1−ρ₀) + δ_J/(1−ρ_J))` for the ORIGINAL frozen margins when `ψ(P_y) = F(h_#π)` for all four processes on `B₁` (hypothesis), `h` measurable `L_h`-Lipschitz, `F` `L_F`-Lipschitz for dual W₁ | `occupationMargin_robust`, `descriptorFunctional_dist_le` | PROVED |
-| A3.3 | Survival counterexample on actual models (`Unit × ℝ`): for every `ε ∈ (0,1]`, both kernels are dual-W₁ contractions with `ρ = 0`, defect `≤ ε`, yet `P₀(τ_B = ∞)` is `1` vs `0` | `contraction_does_not_transfer_survival` | PROVED |
+| A3.1 | Dual analogue of (V20.17): `W1DualLE π π̃ (δ/(1−ρ))` given invariance of both laws, uniform dual contraction `0 ≤ ρ < 1` of the ORIGINAL kernel, pointwise dual defect `δ` and a finite initial dual gap | `invariantLaw_wasserstein_le`, `ContractivePerturbation.w1_le` | PROVED (dual analogue); coupling-form obligation OPEN |
+| A3.2 | Conditional dual analogue of (V20.18): `\|κ̃ − κ\| ≤ L_F L_h (δ₀/(1−ρ₀) + δ_J/(1−ρ_J))` for the ORIGINAL frozen margins when `ψ(P_y) = F(h_#π)` for all four processes on `B₁` (hypothesis), `h` measurable `L_h`-Lipschitz, `F` `L_F`-Lipschitz for dual W₁ | `occupationMargin_robust`, `descriptorFunctional_dist_le` | PROVED (conditional dual analogue); coupling-form obligation OPEN |
+| A3.3 | Survival counterexample on actual models (`Unit × ℝ`): explicit `ContractivePerturbation` including invariant probability laws and finite gap, `ρ = 0`, defect `ε`, yet `P₀(τ_B = ∞)` is `1` vs `0` for every `ε ∈ (0,1]` | `model_invariant`, `leakPerturbation`, `bundled_survival_counterexample`, `contraction_does_not_transfer_survival` | Original survival theorem PROVED; new bundle PENDING pinned Lean/audit replay |
 | A3.4 | TV → W₁ only with a diameter factor: `dist ≤ D ⇒ W₁ ≤ D·TV`; on `ℝ` no constant converts TV into W₁ | `W1DualLE.of_eventTV`, `tv_does_not_control_w1_on_real` | PROVED |
 | A3.5 | Existence/uniqueness of invariant laws; contraction from Doeblin/Dobrushin; ergodic bridge `ψ(P_y) = F(h_#π)`; KR duality; bounded → all 1-Lipschitz tests | — | OPEN (hypotheses in A3.1–A3.2) |
 
@@ -307,7 +307,11 @@ machinery (`killedKernel_apply`, `survivalProbability_eq_killedSurvivalMass`, `k
 `survivesForeverSet_eq_iInter`, `survivesThroughSet_antitone`, `measurableSet_survivesThroughSet`) and
 `StrategicWorldModel.inducedKernel_apply`. A2 is NOT used (no primitive budget is converted; A3.4 shows why a TV
 budget cannot be substituted). Consumers: X1, R. Manuscript: §5.4.1.
-Verification: local compile; `a3_axiom_audit.py` 50/50 declarations allowlisted; CI on the A3 PR.
+Verification: historical `f757b9e` compiled and passed `a3_axiom_audit.py` (50/50);
+the revised bundle adds three declarations and requires fresh exact-head Lean/audit and PR CI.
+Revised focused rational suite: 13/13 tests pass locally; compilation/audit remain PENDING.
+The rational tests now include sharp positive-margin transfer and destructive removal of
+either budget term, the geometric denominator, or the four-process factorization premise.
 
 ## D2 — reverse-solver regime-switching objectives (separate lane)
 
