@@ -1,6 +1,6 @@
 # A3 — Conditional dual invariant-law and margin robustness
 
-**Branch:** `claude/zen-einstein-ub8zgr-a3`, stacked on the E1 branch (PR #71). It
+**Branch:** `claude/zen-einstein-ub8zgr-a3` (PR #73, base `main` after E1/#71 merged). It
 reuses E1's Hahn-decomposition TV calculus for the bounded-diameter conversion.
 **Anchors:** A3.0–A3.5 in [V020_IMPLEMENTATION_INDEX.md](V020_IMPLEMENTATION_INDEX.md).
 **Normative mathematics:** [integration spec](PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md)
