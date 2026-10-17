@@ -424,6 +424,13 @@ import PermanssonResearch.RegimeExit.SwitchWitnessCertificate
 import PermanssonResearch.RegimeExit.SwitchWitnessMargin
 import PermanssonResearch.RegimeExit.SwitchWitnessOccupation
 
+import PermanssonResearch.X1.Parameters
+import PermanssonResearch.X1.TypedModels
+import PermanssonResearch.X1.MPECertificate
+import PermanssonResearch.X1.Comparison
+import PermanssonResearch.X1.FiniteOutputs
+import PermanssonResearch.X1.Occupation
+
 /-!
 # PermanssonResearch
 

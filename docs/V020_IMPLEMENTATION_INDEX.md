@@ -310,9 +310,9 @@ Inputs: D0/D1, C69, C70. Must not mutate D0/D1 receipts.
 
 | Anchor | Claim | Planned provider | Status |
 |---|---|---|---|
-| X1.1 | Exact rational MPE: Bellman equations and every unilateral incentive inequality on the commons family (spec §8.1) | `Examples/CommonsMPE.lean` + independent rational checker | PROPOSED |
-| X1.2 | Learning generator in the SAME world `P`, Markov-sufficient memory | `Examples/CommonsLearning.lean` | PROPOSED |
-| X1.3 | Comparative regime certificates (persistence, occupation, GR, constitution, grounding, nine categorical dimensions) | `Examples/CommonsComparison.lean` | PROPOSED |
+| X1.1 | Selected exact rational commons candidate: BOTH players' Bellman equations, pure and all real/rational mixed one-shot incentive inequalities and support equalities; unrestricted discounted-strategy verification bridge remains OPEN | `X1/Parameters.lean`, `X1/MPECertificate.lean`; independent exact checker | IMPLEMENTED; pinned verification pending |
+| X1.2 | Same `Fin 3 × Fin 3` memory and literally IDENTICAL P; complete exploratory/reinforcement generator; actual α→P→U atomic-matrix expression | `X1/TypedModels.lean`: `identical_world`, `inducedKernel_atom_entry`, `update_ignores_new_world` | IMPLEMENTED; pinned verification pending |
+| X1.3 | Replete B leaks for BOTH, so no Exact GR for B; typed α/U/joint interventions; prospective whole-B comparison v2 after invalid singleton rejected; canonical property/original κ transported to actual finite-kernel expressions (numerical fraction reflection OPEN); actual-model a.s. RANDOM occupation limits and original empirical-sequence bridge (separate deterministic-target identification OPEN); nine categorical fields | `X1/Comparison.lean`, `X1/FiniteOutputs.lean`, `X1/Occupation.lean`; [lane document](LANE_X1_COMMONS.md), exact Python calculations/tests/audit | SCOPED implementation/calculations; pinned verification pending; no PR promotion |
 | X1.4 | Scientific interpretation section | manuscript | PROPOSED |
 
 Inputs: E1, F1, A3, C69/C70, D0/D1, C10/C11. Consumers: R.

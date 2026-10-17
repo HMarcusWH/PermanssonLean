@@ -1,0 +1,45 @@
+name: X1 exact commons focused smoke
+
+on:
+  push:
+    branches: [codex/v020-x1]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'PermanssonResearch/X1/**'
+      - 'verification/research/x1_commons.py'
+      - 'verification/research/test_x1_commons.py'
+      - 'verification/research/x1_axiom_audit.py'
+      - '.github/workflows/x1-commons-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-commons:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Exact incentives, common world, paths and stationary calculations
+        run: python3 -m unittest discover -s verification/research -p 'test_x1_commons.py' -v
+      - name: Compile actual typed models and both-player certificates
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch.X1.FiniteOutputs PermanssonResearch.X1.Occupation
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+      - name: Transitive audit of every named X1 declaration
+        run: python3 verification/research/x1_axiom_audit.py
+      - name: Reject proof placeholders and custom axioms
+        run: |
+          if grep -R -n --include='*.lean' -E '(^|[^[:alnum:]_])(sorry|admit|native_decide)([^[:alnum:]_]|$)|^[[:space:]]*((private|protected|noncomputable|unsafe)[[:space:]]+)*axiom[[:space:]]' PermanssonResearch/X1; then
+            exit 1
+          fi
