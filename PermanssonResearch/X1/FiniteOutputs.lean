@@ -22,20 +22,18 @@ open PermanssonResearch.MultipleLimit
 
 attribute [local instance] StrategicWorldModel.inducedKernel_isMarkov
 
-/-- The registered replete region has a computational membership decision. -/
-instance region_decidablePred : DecidablePred region :=
-  fun y => inferInstanceAs (Decidable (y.2 = true))
-
 /-- Backward finite matrix evaluation of terminal repletion. This is NOT killed
 persistence: intermediate exits are allowed, exactly as the declared property. -/
 noncomputable def kernelTerminal (K : Kernel Y Y) : ℕ → Y → ℝ≥0∞
-  | 0, y => if y ∈ region then 1 else 0
+  | 0, y => if y.2 = true then 1 else 0
   | n+1, y => ∑ z : Y, kernelTerminal K n z * K y {z}
 
 theorem kernelTerminal_eq_power (K : Kernel Y Y) [IsSFiniteKernel K] (n : ℕ) (y : Y) :
     kernelTerminal K n y = (K ^ n) y region := by
   induction n generalizing y with
-  | zero => simp [kernelTerminal, Kernel.id_apply, Measure.dirac_apply]
+  | zero =>
+      change (if y.2 = true then 1 else 0) = (Measure.dirac y) region
+      simp [Measure.dirac_apply, region, Set.indicator]
   | succ n ih =>
       calc
         kernelTerminal K (n+1) y = ∫⁻ z, (K ^ n) z region ∂K y := by
@@ -66,7 +64,7 @@ theorem survivalProbability_one (m : Mode) :
 
 /-- Baseline evaluation using the explicit primitive-derived transition entries. -/
 noncomputable def primitiveTerminal (m : Mode) : ℕ → Y → ℝ≥0∞
-  | 0, y => if y ∈ region then 1 else 0
+  | 0, y => if y.2 = true then 1 else 0
   | n+1, y => ∑ z : Y, primitiveTerminal m n z * transitionEntry m y z
 
 theorem primitiveTerminal_eq_kernelTerminal (m : Mode) (n : ℕ) (y : Y) :

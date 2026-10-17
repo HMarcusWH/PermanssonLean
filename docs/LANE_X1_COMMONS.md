@@ -67,14 +67,15 @@ descriptor-nondegeneracy or confirmatory gates.
 | `targetReplete_ne` | Distinct recorded rational target masses, not one shared ν label. |
 | `replete_one_step_leaks`, `replete_not_exactGR` | At y₀ both actual kernels retain 13/20 of B mass; no spec with this B can be an Exact GR for either generator, irrespective of target/convergence choice. |
 | `baselineProperty_eq_kernelTerminal`, `primitiveTerminal_eq_kernelTerminal` | Actual canonical ψ equals finite-kernel evaluation; baseline evaluation uses primitive-derived atoms. |
-| `survivalProbability_eq_kernelTerminal_killed`, `survivalProbability_one` | Original finite-path staying equals the recurrence with the frozen killed kernel at every horizon; exact one-step survival is 13/20 for both. Follow-up scripts remain pending full validation. |
+| `survivalProbability_eq_kernelTerminal_killed`, `survivalProbability_one` | Original finite-path staying equals the recurrence with the frozen killed kernel at every horizon, for starts in B; exact one-step survival is 13/20 for both. |
 | `constitutiveEffect_eq_finiteEffect`, `constitutiveMargin_eq_finiteInf` | ORIGINAL effects/margin equal finite-kernel expressions on the genuine v2 comparison object; specific external numerical fractions still need arithmetic reflection. |
 | `physicalRandomLimit_ae`, `observedRandomLimit_ae`, `original_empirical_randomLimit_ae` | Both actual models have a.s. random recurrent-class occupation limits under arbitrary initial laws, including the original empirical sequence; no deterministic target identification assumed. |
-| `OccupationNumerics.poisson_identity`, `actual_poisson_identity`, `canonical_occupation_target_ae` | Follow-up proof scripts identify the distinct descriptor targets via an exact Poisson identity on all 18 actual states, including transient states. These scripts remain pending pinned Lean validation. |
+| `OccupationNumerics.poisson_identity`, `actual_poisson_identity`, `canonical_occupation_target_ae` | Distinct deterministic descriptor occupation targets under the actual typed laws, for every initial probability, via an exact Poisson identity on all 18 actual states including transients; no stationarity or irreducibility assumed. |
 | `observedRandomLimit_full_law` | Complete class-selection-weighted law on observed probability measures under the actual typed path law. |
 
-These source proof scripts still require pinned Lean compilation and their
-declaration audit on the completed head. Bellman/incentive conditions are not
+All eight source modules compiled with the exact pins, and the focused
+transitive audit accepted 135/135 named declarations. Full exact-head and
+synthetic-merge CI remain required before integration. Bellman/incentive conditions are not
 promoted to an independently formalized infinite-history discounted strategy
 verification theorem. That general bridge remains open.
 
@@ -100,20 +101,21 @@ and verify every stationary equation exactly.
 The stationary vectors satisfy the finite invariant equations. `Occupation.lean`
 reuses the existing finite-chain strong law on the **actual** typed models to
 obtain a.s. random recurrent-class occupation limits for every initial law,
-with the original empirical-sequence bridge. It does **not** identify those
-random limits with the separately recorded deterministic targets. Independent unchanged
+with the original empirical-sequence bridge. `OccupationTargets.lean` then
+identifies their descriptor images with the separately registered deterministic
+targets. Independent unchanged
 C11 calculation tooling also accepted E's two-state input and L's eleven-state
 player-swap quotient. It correctly rejected the direct sixteen-state L input
 against its unchanged twelve-state budget. A formal quotient/actual-kernel
-occupation bridge remains open; a quotient calculation is not silently a
+occupation bridge is not assumed; a quotient calculation alone is not a
 source-typed occupation theorem.
 
-The follow-up `OccupationNumerics.lean` and `OccupationTargets.lean` scripts
-use a direct alternative to quotient transport: certify the Poisson equation
+`OccupationNumerics.lean` and `OccupationTargets.lean` prove a direct
+alternative to quotient transport: certify the Poisson equation
 on every actual state, connect every rational entry to `inducedKernel_atom_entry`,
 cancel against any invariant probability, then identify the descriptor law of
 the actual random occupation limit. This route requires no global uniqueness
-of the physical invariant law. These scripts are pending pinned validation;
+of the physical invariant law. Both modules passed pinned compilation;
 the four additional independent tests check every row, wrong-target mutations,
 transient-state bias corruption, and E's nine distinct physical invariant laws.
 
@@ -155,13 +157,15 @@ None is a numerical score or empirical institutional claim.
 Run the focused exact suite, pinned builds of `PermanssonResearch.X1.FiniteOutputs`
 and `PermanssonResearch.X1.OccupationTargets`,
 `x1_axiom_audit.py`, then the full research/default builds and original checks.
+The completed local focused verification passed all eight source modules,
+16/16 exact tests, and the 135-declaration transitive audit (119 declarations
+use only the three allowed axioms; 16 are axiom-free).
 The focused workflow does not replace synthetic-merge CI or PR-only C10
 source-bound evidence. All eight new modules are imported directly by the
 research root. The source does not require the broader F1 state-feedback witness.
 
 Outstanding scientific/formal bridges: unrestricted discounted strategy
 verification; exact arithmetic reflection for the horizon-3 output/margins;
-validation of the direct deterministic stationary-target proof scripts (the
-independent quotient transport is not assumed); confirmatory descriptor
+confirmatory descriptor
 and grounding gates. The invalid replete Exact-GR claim is explicitly rejected.
 The separately versioned manuscript/release kit must preserve these boundaries.
