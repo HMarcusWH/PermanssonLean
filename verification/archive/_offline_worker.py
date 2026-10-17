@@ -27,13 +27,14 @@ def main(argv=None):
         os.environ["PERMANSSON_PARENT_NETNS"] = args.parent_netns
         details = verify_supplement(args.supplement, args.scratch, require_isolation=True)
         details["isolation"] = isolation
-        payload = check_report("archive-reproducibility-worker", details=details)
+        payload = check_report("archive-reproducibility", details=details,
+                               completed_stages=details["completed_stages"])
         code = 0
     except HardeningError as exc:
-        payload = check_report("archive-reproducibility-worker", None, "BLOCKED" if exc.exit_code == 3 else "FAIL", exc)
+        payload = check_report("archive-reproducibility", None, "BLOCKED" if exc.exit_code == 3 else "FAIL", exc)
         code = exc.exit_code
     except Exception as exc:
-        payload = check_report("archive-reproducibility-worker", None, "FAIL", HardeningError("E_UNEXPECTED", str(exc)))
+        payload = check_report("archive-reproducibility", None, "FAIL", HardeningError("E_UNEXPECTED", str(exc)))
         code = 1
     write_report(args.report, payload)
     return code

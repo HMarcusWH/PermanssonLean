@@ -202,9 +202,12 @@ def build_history(repo, registry, destination, *, production=True):
 def create_supplement(repo, evidence, output):
     """Production builder: clean T first, package outside the source tree."""
     from .acquire_evidence import validate_evidence
-    evidence, output = Path(evidence).resolve(), Path(output).absolute()
-    if output.exists() or output.is_symlink():
+    evidence, requested_output = Path(evidence).resolve(), Path(output).absolute()
+    if requested_output.exists() or requested_output.is_symlink():
         fail("E_MANIFEST_FORMAT", "Supplement output must be new", 2)
+    if any(parent.is_symlink() for parent in requested_output.parents):
+        fail("E_MANIFEST_FORMAT", "Supplement output may not traverse a symlink", 2)
+    output = requested_output.resolve()
     if output == repo.root or repo.root in output.parents:
         fail("E_MANIFEST_FORMAT", "Package outside the repository before committing", 2)
     if repo.run("status", "--porcelain", "--untracked-files=all").strip():
