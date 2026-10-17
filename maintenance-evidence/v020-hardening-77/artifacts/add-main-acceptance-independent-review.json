@@ -1,0 +1,114 @@
+{
+  "format": "Permansson.AddMainAcceptance.IndependentReview.v1",
+  "status": "CLEAR_SCOPED_PREPARATION_ONLY",
+  "reviewed_at": "2026-10-17T21:15:15.831144+00:00",
+  "helper_sha256": "ef7cba3d847fa51d00e3c100451beaf233c493de6f53629c86de04ced72c2c93",
+  "packet_helper_sha256": "1da37f4aa9859a14974b452c55717d74493e5d1e9941ebf9a28ba0eb4cf40c21",
+  "main_adapter_sha256": "d901d59f376dc0140518a4b755498e3a7180391fa5f8a66cd676aeb63c312fbb",
+  "premerge_ledger_sha256": "5958d8c155086bbf3ccbca1dc6c651fe0b88ffa6bba729facce4dcaf4e632524",
+  "author_controls_sha256": "7a05ddfc1485615d208e42fede046548ba2c41c486aa0be62f7a5b4fea790196",
+  "exact_delta_checks": {
+    "writer_only_packet_helper_hash_literal": true,
+    "packet_only3approved_optional_filenames": true
+  },
+  "source_review": [
+    "Literal fixed5958 preledger pin and current M/T/H/B/S/tree identity; immutable original cases and PR records retained.",
+    "Postmerge index uses explicit whitelist, byte/credential screening and successful9checks/6runs/10publisherZIP joins.",
+    "Pinned adapter d901 is replayed with python-I-S-B only in scratch copies; resulting summary and legacy joins must reproduce, original capture bytes rechecked afterward.",
+    "Current fetched origin/main=M and canonical parents/tree/T ancestry checked; no source or Git mutation.",
+    "M/main-push runs append separately; OPS and scientific exclusions remain unchanged; no output before conjunction succeeds."
+  ],
+  "control_count": 15,
+  "controls": [
+    {
+      "probe": "fixed_actual_premerge_positive_and_no_mutation",
+      "result": "PASS"
+    },
+    {
+      "probe": "stale_source",
+      "result": "REJECTED",
+      "diagnostic": "Premerge source is not the fixed accepted PR tuple"
+    },
+    {
+      "probe": "premature_M",
+      "result": "REJECTED",
+      "diagnostic": "Premerge source is not the fixed accepted PR tuple"
+    },
+    {
+      "probe": "F3_promotion",
+      "result": "REJECTED",
+      "diagnostic": "F3/OPS closure cannot be inferred"
+    },
+    {
+      "probe": "scientific_promotion",
+      "result": "REJECTED",
+      "diagnostic": "Mathematical scope cannot be promoted"
+    },
+    {
+      "probe": "new_assumption",
+      "result": "REJECTED",
+      "diagnostic": "Mathematical scope cannot be promoted"
+    },
+    {
+      "probe": "stale_K4",
+      "result": "REJECTED",
+      "diagnostic": "Original PR/K4 acceptance changed"
+    },
+    {
+      "probe": "enforcement_promoted",
+      "result": "REJECTED",
+      "diagnostic": "Technical/enforcement stage states differ"
+    },
+    {
+      "probe": "OPS_executed_result",
+      "result": "REJECTED",
+      "diagnostic": "OPS cannot be promoted"
+    },
+    {
+      "probe": "outside_artifacts_path",
+      "result": "REJECTED",
+      "diagnostic": "Receipt inputs/output must stay in the explicit artifacts directory"
+    },
+    {
+      "probe": "actual_canonical_M_parents_tree_T_ancestor_fetched_origin",
+      "result": "PASS",
+      "main": "39279799834ae536bda715dedecdc11a32bf6c82",
+      "parents": [
+        "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501"
+      ],
+      "tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+      "scope": "read-only Git identity; no postmerge verification/ledger assembly"
+    },
+    {
+      "probe": "invalid_index_basename",
+      "result": "REJECTED_NO_OUTPUT",
+      "exit_code": 1,
+      "diagnostic": "Main acceptance blocked: Explicit sibling main-push index is required"
+    },
+    {
+      "probe": "wrong_explicit_M",
+      "result": "REJECTED_NO_OUTPUT",
+      "exit_code": 1,
+      "diagnostic": "Main acceptance blocked: Explicit actual maintenance M is required"
+    },
+    {
+      "probe": "changed_frozen_preledger_bytes",
+      "result": "REJECTED_NO_OUTPUT",
+      "exit_code": 1
+    },
+    {
+      "probe": "existing_output_preserved",
+      "result": "REJECTED_UNCHANGED_OUTPUT",
+      "exit_code": 1
+    }
+  ],
+  "duration_seconds": 0.797,
+  "actual_main_acceptance_executed": false,
+  "new_main_ledger_created": false,
+  "limitations": [
+    "This is source review and bounded private controls, not actual postmerge artifact acceptance.",
+    "Actual main receipt must still require complete postmerge capture/index, all9success and adapter replay; no claim about pending checks is made.",
+    "No counted GitHub APPROVED review, mathematical promotion, settings/tag/external publication or publisher authentication is established."
+  ]
+}

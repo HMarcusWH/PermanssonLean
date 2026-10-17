@@ -1,0 +1,341 @@
+{
+  "fetched_at": "2026-10-17T21:12:57.780Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649760/jobs?per_page=100",
+  "response": {
+    "total_count": 3,
+    "jobs": [
+      {
+        "id": 117504415776,
+        "run_id": 39069649760,
+        "workflow_name": "Research integrity",
+        "head_branch": "main",
+        "run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649760",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUkBtPs8AAAAbW88YIA",
+        "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117504415776",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39069649760/job/117504415776",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-17T21:08:07Z",
+        "started_at": "2026-10-17T21:08:10Z",
+        "completed_at": "2026-10-17T21:08:25Z",
+        "name": "release-export-integrity",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-17T21:08:11Z",
+            "completed_at": "2026-10-17T21:08:11Z"
+          },
+          {
+            "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-17T21:08:11Z",
+            "completed_at": "2026-10-17T21:08:14Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-17T21:08:14Z",
+            "completed_at": "2026-10-17T21:08:14Z"
+          },
+          {
+            "name": "Bind actual source context",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-17T21:08:14Z",
+            "completed_at": "2026-10-17T21:08:14Z"
+          },
+          {
+            "name": "Compare the complete isolated TeX export",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-17T21:08:14Z",
+            "completed_at": "2026-10-17T21:08:14Z"
+          },
+          {
+            "name": "Execute independent equation and import-isolation adversaries",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-17T21:08:14Z",
+            "completed_at": "2026-10-17T21:08:20Z"
+          },
+          {
+            "name": "Preserve export and test reports",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-17T21:08:20Z",
+            "completed_at": "2026-10-17T21:08:22Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-17T21:08:22Z",
+            "completed_at": "2026-10-17T21:08:22Z"
+          },
+          {
+            "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-17T21:08:22Z",
+            "completed_at": "2026-10-17T21:08:22Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-17T21:08:22Z",
+            "completed_at": "2026-10-17T21:08:22Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/117504415776",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000109508,
+        "runner_name": "GitHub Actions 1000109508",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 117504415955,
+        "run_id": 39069649760,
+        "workflow_name": "Research integrity",
+        "head_branch": "main",
+        "run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649760",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUkBtPs8AAAAbW88Y0w",
+        "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117504415955",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39069649760/job/117504415955",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-17T21:08:07Z",
+        "started_at": "2026-10-17T21:08:10Z",
+        "completed_at": "2026-10-17T21:09:05Z",
+        "name": "archive-reproducibility",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-17T21:08:10Z",
+            "completed_at": "2026-10-17T21:08:11Z"
+          },
+          {
+            "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-17T21:08:11Z",
+            "completed_at": "2026-10-17T21:08:13Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-17T21:08:13Z",
+            "completed_at": "2026-10-17T21:08:13Z"
+          },
+          {
+            "name": "Bind actual source context",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-17T21:08:13Z",
+            "completed_at": "2026-10-17T21:08:14Z"
+          },
+          {
+            "name": "Prepare the pinned replay dependency before isolation",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-17T21:08:14Z",
+            "completed_at": "2026-10-17T21:08:18Z"
+          },
+          {
+            "name": "Execute archive adversaries",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-17T21:08:18Z",
+            "completed_at": "2026-10-17T21:08:31Z"
+          },
+          {
+            "name": "Restore the actual historical bundle without network access",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-17T21:08:31Z",
+            "completed_at": "2026-10-17T21:09:02Z"
+          },
+          {
+            "name": "Preserve archival restoration reports",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-17T21:09:02Z",
+            "completed_at": "2026-10-17T21:09:03Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-17T21:09:03Z",
+            "completed_at": "2026-10-17T21:09:03Z"
+          },
+          {
+            "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-17T21:09:03Z",
+            "completed_at": "2026-10-17T21:09:03Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-17T21:09:03Z",
+            "completed_at": "2026-10-17T21:09:03Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/117504415955",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000109509,
+        "runner_name": "GitHub Actions 1000109509",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 117504415973,
+        "run_id": 39069649760,
+        "workflow_name": "Research integrity",
+        "head_branch": "main",
+        "run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649760",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUkBtPs8AAAAbW88Y5Q",
+        "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117504415973",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39069649760/job/117504415973",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-17T21:08:07Z",
+        "started_at": "2026-10-17T21:08:10Z",
+        "completed_at": "2026-10-17T21:08:35Z",
+        "name": "frozen-source-preservation",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-17T21:08:11Z",
+            "completed_at": "2026-10-17T21:08:11Z"
+          },
+          {
+            "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-17T21:08:11Z",
+            "completed_at": "2026-10-17T21:08:13Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-17T21:08:13Z",
+            "completed_at": "2026-10-17T21:08:13Z"
+          },
+          {
+            "name": "Bind actual source context",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-17T21:08:13Z",
+            "completed_at": "2026-10-17T21:08:13Z"
+          },
+          {
+            "name": "Verify every protected Git object",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-17T21:08:13Z",
+            "completed_at": "2026-10-17T21:08:15Z"
+          },
+          {
+            "name": "Execute reference and preservation adversaries",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-17T21:08:15Z",
+            "completed_at": "2026-10-17T21:08:31Z"
+          },
+          {
+            "name": "Preserve source and test reports",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-17T21:08:31Z",
+            "completed_at": "2026-10-17T21:08:32Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-17T21:08:32Z",
+            "completed_at": "2026-10-17T21:08:32Z"
+          },
+          {
+            "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-17T21:08:32Z",
+            "completed_at": "2026-10-17T21:08:32Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-17T21:08:32Z",
+            "completed_at": "2026-10-17T21:08:32Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/117504415973",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000109510,
+        "runner_name": "GitHub Actions 1000109510",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "fetched_at": "2026-10-17T21:12:25.493Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069650103/artifacts?per_page=100",
+  "response": {
+    "total_count": 1,
+    "artifacts": [
+      {
+        "id": 12115230434,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNTIzMDQzNA==",
+        "name": "legacy-build-source-context",
+        "size_in_bytes": 492,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12115230434",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12115230434/zip",
+        "expired": false,
+        "digest": "sha256:1e0d3ad8920d77a3c5bf96c5de3ee33ac83f177d09967db8797fc863f18db656",
+        "created_at": "2026-10-17T21:11:21Z",
+        "updated_at": "2026-10-17T21:11:21Z",
+        "expires_at": "2026-11-16T21:11:20Z",
+        "workflow_run": {
+          "id": 39069650103,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "main",
+          "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82"
+        }
+      }
+    ]
+  }
+}

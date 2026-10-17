@@ -1,0 +1,146 @@
+{
+  "format": "Permansson.IndependentLegacySourceContextJoin.v1",
+  "limits": [
+    "Consistency and execution ordering; no independent publisher authentication"
+  ],
+  "records": [
+    {
+      "bytes": 492,
+      "guard_step": 4,
+      "job": "build",
+      "job_id": 117504416713,
+      "name": "legacy-build-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": null,
+        "checked_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "push",
+        "event_sha256": "74237b09059efa7f38a398d82fdd1f951021ce81a5982f02524fa210b15acb5d",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": null,
+        "pr_number": null,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39069650103,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39069650103,
+      "sha256": "1e0d3ad8920d77a3c5bf96c5de3ee33ac83f177d09967db8797fc863f18db656",
+      "status": "PASS",
+      "work_step": 6
+    },
+    {
+      "bytes": 491,
+      "guard_step": 4,
+      "job": "research",
+      "job_id": 117504415681,
+      "name": "legacy-research-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": null,
+        "checked_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "push",
+        "event_sha256": "74237b09059efa7f38a398d82fdd1f951021ce81a5982f02524fa210b15acb5d",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": null,
+        "pr_number": null,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39069649734,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39069649734,
+      "sha256": "fbc24b6dd5a358e3ef15999ea7277369ac3f7b67f3a6ca698a7e7602ab35578d",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 491,
+      "guard_step": 4,
+      "job": "executable-verification",
+      "job_id": 117504415857,
+      "name": "legacy-executable-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": null,
+        "checked_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "push",
+        "event_sha256": "74237b09059efa7f38a398d82fdd1f951021ce81a5982f02524fa210b15acb5d",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": null,
+        "pr_number": null,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39069649772,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39069649772,
+      "sha256": "7c42d7c29ebca9905bcd9628323d334519e63d4eeacbdfcb5ec0dee62b05c3d2",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 490,
+      "guard_step": 4,
+      "job": "Application contract (ubuntu-latest)",
+      "job_id": 117504415971,
+      "name": "legacy-application-source-context-ubuntu-latest",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": null,
+        "checked_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "push",
+        "event_sha256": "74237b09059efa7f38a398d82fdd1f951021ce81a5982f02524fa210b15acb5d",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": null,
+        "pr_number": null,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39069649751,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39069649751,
+      "sha256": "c88bcb3db951cc29257100a25db6f3b56527fafe72560d7b820dd49f7b4b32c5",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 490,
+      "guard_step": 4,
+      "job": "Application contract (windows-latest)",
+      "job_id": 117504415735,
+      "name": "legacy-application-source-context-windows-latest",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": null,
+        "checked_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "push",
+        "event_sha256": "80658b9bdbcd04649ed0e58975f5e6db9cd7baededc80c2a6937393ac172b9c2",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": null,
+        "pr_number": null,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39069649751,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39069649751,
+      "sha256": "cd74f50d60292e64b0dd4055727b80eb805fa86cef8ea998ce52e0384d5f6036",
+      "status": "PASS",
+      "work_step": 5
+    }
+  ],
+  "source": {
+    "base": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "head": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "main": "39279799834ae536bda715dedecdc11a32bf6c82",
+    "synthetic": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778"
+  },
+  "status": "PASS"
+}

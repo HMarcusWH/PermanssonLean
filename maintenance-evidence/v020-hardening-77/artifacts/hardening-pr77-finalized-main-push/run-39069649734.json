@@ -1,0 +1,49 @@
+{
+  "fetched_at": "2026-10-17T21:21:32.587Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649734/artifacts?per_page=100",
+  "response": {
+    "total_count": 2,
+    "artifacts": [
+      {
+        "id": 12115345409,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNTM0NTQwOQ==",
+        "name": "d0-finite-calculation-evidence",
+        "size_in_bytes": 1323,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12115345409",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12115345409/zip",
+        "expired": false,
+        "digest": "sha256:8d78fb5fcc8df709ba370e883731d48ee5c333c229c12585f82038c325594ea4",
+        "created_at": "2026-10-17T21:20:49Z",
+        "updated_at": "2026-10-17T21:20:49Z",
+        "expires_at": "2026-10-24T21:20:48Z",
+        "workflow_run": {
+          "id": 39069649734,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "main",
+          "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82"
+        }
+      },
+      {
+        "id": 12114459659,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNDQ1OTY1OQ==",
+        "name": "legacy-research-source-context",
+        "size_in_bytes": 491,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114459659",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114459659/zip",
+        "expired": false,
+        "digest": "sha256:fbc24b6dd5a358e3ef15999ea7277369ac3f7b67f3a6ca698a7e7602ab35578d",
+        "created_at": "2026-10-17T21:20:52Z",
+        "updated_at": "2026-10-17T21:20:52Z",
+        "expires_at": "2026-11-16T21:20:51Z",
+        "workflow_run": {
+          "id": 39069649734,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "main",
+          "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82"
+        }
+      }
+    ]
+  }
+}

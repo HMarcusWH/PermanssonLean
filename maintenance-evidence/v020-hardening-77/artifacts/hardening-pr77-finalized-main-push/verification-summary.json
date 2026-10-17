@@ -1,0 +1,392 @@
+{
+  "archive_tooling": {
+    "binding": "canonical_T_C_and_executing_code",
+    "files": 35,
+    "guide_blob": "39fda5fa453fc66985c1cf9f227c81eaf4c1ce6f",
+    "guide_path": "archival/v0.2.0/README.md",
+    "guide_sha256": "d6e53c10c1123444d86a52b9fb478ac09b07364aee6333e5bd76fcf51de0e1e2",
+    "publisher_authentication": "not_created_by_content_hashes",
+    "reproduction_instructions_match": true,
+    "source_candidate": "39279799834ae536bda715dedecdc11a32bf6c82",
+    "source_commit": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388"
+  },
+  "artifacts": [
+    {
+      "bytes": 1323,
+      "id": 12115345409,
+      "name": "d0-finite-calculation-evidence",
+      "run_id": 39069649734,
+      "sha256": "8d78fb5fcc8df709ba370e883731d48ee5c333c229c12585f82038c325594ea4"
+    },
+    {
+      "bytes": 491,
+      "id": 12114459659,
+      "name": "legacy-research-source-context",
+      "run_id": 39069649734,
+      "sha256": "fbc24b6dd5a358e3ef15999ea7277369ac3f7b67f3a6ca698a7e7602ab35578d"
+    },
+    {
+      "bytes": 4667,
+      "id": 12114926349,
+      "name": "hardening-windows-portability-reports",
+      "run_id": 39069649738,
+      "sha256": "50b5dc6d542627394d09906355955ff21157387888ad68161874ac4a291aaac2"
+    },
+    {
+      "bytes": 490,
+      "id": 12114363307,
+      "name": "legacy-application-source-context-ubuntu-latest",
+      "run_id": 39069649751,
+      "sha256": "c88bcb3db951cc29257100a25db6f3b56527fafe72560d7b820dd49f7b4b32c5"
+    },
+    {
+      "bytes": 490,
+      "id": 12114209143,
+      "name": "legacy-application-source-context-windows-latest",
+      "run_id": 39069649751,
+      "sha256": "cd74f50d60292e64b0dd4055727b80eb805fa86cef8ea998ce52e0384d5f6036"
+    },
+    {
+      "bytes": 2467,
+      "id": 12114915853,
+      "name": "hardening-export-reports",
+      "run_id": 39069649760,
+      "sha256": "5347d3cc74b79a551d4122e3ee78abd7fc4adf749ec86968fb41da3938a127da"
+    },
+    {
+      "bytes": 9172,
+      "id": 12114825610,
+      "name": "hardening-preservation-reports",
+      "run_id": 39069649760,
+      "sha256": "e3e358cd9ef9f761ccfa992a29fe4cd7ba0e354970d52b841fd85e8b5b1961cd"
+    },
+    {
+      "bytes": 7067,
+      "id": 12114586817,
+      "name": "hardening-archive-reports",
+      "run_id": 39069649760,
+      "sha256": "96e1d3e22ea252c299d0ec2e13ede905c412c44da5758c0d6ec9d669483b0572"
+    },
+    {
+      "bytes": 491,
+      "id": 12113729586,
+      "name": "legacy-executable-source-context",
+      "run_id": 39069649772,
+      "sha256": "7c42d7c29ebca9905bcd9628323d334519e63d4eeacbdfcb5ec0dee62b05c3d2"
+    },
+    {
+      "bytes": 492,
+      "id": 12115230434,
+      "name": "legacy-build-source-context",
+      "run_id": 39069650103,
+      "sha256": "1e0d3ad8920d77a3c5bf96c5de3ee33ac83f177d09967db8797fc863f18db656"
+    }
+  ],
+  "c10_main": {
+    "artifact": "absent",
+    "generation": "skipped",
+    "scope": "PR-only current C10 proof preserved in separate frozen premerge packet",
+    "upload": "skipped"
+  },
+  "checks": [
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117504416713,
+      "name": "build",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117504415973,
+      "name": "frozen-source-preservation",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117504415971,
+      "name": "Application contract (ubuntu-latest)",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117504415955,
+      "name": "archive-reproducibility",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117504415857,
+      "name": "executable-verification",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117504415776,
+      "name": "release-export-integrity",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117504415735,
+      "name": "Application contract (windows-latest)",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117504415681,
+      "name": "research",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117504415647,
+      "name": "integrity-portability-windows",
+      "status": "completed"
+    }
+  ],
+  "executed_at": "2026-10-17T21:22:14.041700+00:00",
+  "format": "Permansson.Hardening.MainPushArtifactVerification.v1",
+  "isolation": {
+    "capabilities": "all_zero",
+    "child_network_namespace": "net:[4026532219]",
+    "gid": 1001,
+    "network_isolation": "ENFORCED",
+    "no_new_privileges": true,
+    "outward_routes": [],
+    "outward_socket_denied_errno": 101,
+    "parent_network_namespace": "net:[4026531833]",
+    "supplementary_groups": [],
+    "uid": 1001
+  },
+  "legacy_source_contexts": [
+    {
+      "bytes": 492,
+      "guard_step": 4,
+      "job": "build",
+      "job_id": 117504416713,
+      "name": "legacy-build-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": null,
+        "checked_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "push",
+        "event_sha256": "74237b09059efa7f38a398d82fdd1f951021ce81a5982f02524fa210b15acb5d",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": null,
+        "pr_number": null,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39069650103,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39069650103,
+      "sha256": "1e0d3ad8920d77a3c5bf96c5de3ee33ac83f177d09967db8797fc863f18db656",
+      "status": "PASS",
+      "work_step": 6
+    },
+    {
+      "bytes": 491,
+      "guard_step": 4,
+      "job": "research",
+      "job_id": 117504415681,
+      "name": "legacy-research-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": null,
+        "checked_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "push",
+        "event_sha256": "74237b09059efa7f38a398d82fdd1f951021ce81a5982f02524fa210b15acb5d",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": null,
+        "pr_number": null,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39069649734,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39069649734,
+      "sha256": "fbc24b6dd5a358e3ef15999ea7277369ac3f7b67f3a6ca698a7e7602ab35578d",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 491,
+      "guard_step": 4,
+      "job": "executable-verification",
+      "job_id": 117504415857,
+      "name": "legacy-executable-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": null,
+        "checked_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "push",
+        "event_sha256": "74237b09059efa7f38a398d82fdd1f951021ce81a5982f02524fa210b15acb5d",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": null,
+        "pr_number": null,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39069649772,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39069649772,
+      "sha256": "7c42d7c29ebca9905bcd9628323d334519e63d4eeacbdfcb5ec0dee62b05c3d2",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 490,
+      "guard_step": 4,
+      "job": "Application contract (ubuntu-latest)",
+      "job_id": 117504415971,
+      "name": "legacy-application-source-context-ubuntu-latest",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": null,
+        "checked_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "push",
+        "event_sha256": "74237b09059efa7f38a398d82fdd1f951021ce81a5982f02524fa210b15acb5d",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": null,
+        "pr_number": null,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39069649751,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39069649751,
+      "sha256": "c88bcb3db951cc29257100a25db6f3b56527fafe72560d7b820dd49f7b4b32c5",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 490,
+      "guard_step": 4,
+      "job": "Application contract (windows-latest)",
+      "job_id": 117504415735,
+      "name": "legacy-application-source-context-windows-latest",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": null,
+        "checked_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "push",
+        "event_sha256": "80658b9bdbcd04649ed0e58975f5e6db9cd7baededc80c2a6937393ac172b9c2",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": null,
+        "pr_number": null,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39069649751,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39069649751,
+      "sha256": "cd74f50d60292e64b0dd4055727b80eb805fa86cef8ea998ce52e0384d5f6036",
+      "status": "PASS",
+      "work_step": 5
+    }
+  ],
+  "limits": [
+    "Does not constitute GitHub APPROVED review or mathematical peer review",
+    "No administrative settings/tag/external publication performed",
+    "Copied metadata and hashes provide consistency, not independent publisher authentication"
+  ],
+  "publication": {
+    "candidate": "39279799834ae536bda715dedecdc11a32bf6c82",
+    "canonical_inner_files": 71,
+    "members": 71,
+    "scope": "canonical_candidate_objects",
+    "sidecar_blob": "4e7691fb4e7dececb28b9cff45d3d95e8fa43e49",
+    "status": "PASS",
+    "verified_filesystem_matches_C": true,
+    "zip_blob": "9f76cb81cd15c4ab33b4596f65557e8f842f60a5",
+    "zip_bytes": 7465148,
+    "zip_path": "archival/v0.2.0/publication-candidate/Permansson_v0.2.0_archival-supplement-1.zip",
+    "zip_sha256": "f6f119cadb1a3ebe09f9010510476bab2e75194ededde922eb99a8891652eca4"
+  },
+  "runs": [
+    39069649734,
+    39069649738,
+    39069649751,
+    39069649760,
+    39069649772,
+    39069650103
+  ],
+  "source": {
+    "base": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "head": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "main": "39279799834ae536bda715dedecdc11a32bf6c82",
+    "synthetic": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778"
+  },
+  "status": "PASS",
+  "tests": [
+    {
+      "artifact": "hardening-windows-portability-reports",
+      "methods": 17,
+      "subtests": 14,
+      "suite": "reference"
+    },
+    {
+      "artifact": "hardening-windows-portability-reports",
+      "methods": 26,
+      "subtests": 19,
+      "suite": "preservation"
+    },
+    {
+      "artifact": "hardening-windows-portability-reports",
+      "methods": 20,
+      "subtests": 4,
+      "suite": "tex"
+    },
+    {
+      "artifact": "hardening-export-reports",
+      "methods": 20,
+      "subtests": 4,
+      "suite": "tex"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "methods": 6,
+      "subtests": 2,
+      "suite": "context"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "methods": 26,
+      "subtests": 19,
+      "suite": "preservation"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "methods": 17,
+      "subtests": 14,
+      "suite": "reference"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "methods": 8,
+      "subtests": 94,
+      "suite": "workflow"
+    },
+    {
+      "artifact": "hardening-archive-reports",
+      "methods": 35,
+      "subtests": 110,
+      "suite": "archive"
+    }
+  ]
+}

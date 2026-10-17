@@ -1,0 +1,45 @@
+{
+  "format": "Permansson.Hardening.ActualMainMergeIndependentVerification.v1",
+  "status": "MERGE_IDENTITY_PASS_MAIN_CI_PENDING",
+  "observed_at_utc": "2026-10-17 21:08:47 UTC",
+  "source": {
+    "repository": "HMarcusWH/PermanssonLean",
+    "pr_number": 77,
+    "head_H": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "base_B": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "synthetic_S": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "tooling_T": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+    "main_merge_M": "39279799834ae536bda715dedecdc11a32bf6c82",
+    "synthetic_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+    "main_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+    "ordered_main_parents": [
+      "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501"
+    ]
+  },
+  "merge": {
+    "method": "merge",
+    "expected_head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "github_merged_at": "2026-10-17T21:08:04Z",
+    "api_merged": true
+  },
+  "canonical_git": {
+    "fetched_main": "39279799834ae536bda715dedecdc11a32bf6c82",
+    "main_parents_match_base_head": true,
+    "main_tree_equals_accepted_synthetic_tree": true,
+    "synthetic_to_main_diff_empty": true,
+    "tooling_T_ancestor_of_main": true
+  },
+  "premerge_evidence": {
+    "branch": "evidence/v020-hardening-77",
+    "commit": "af0357b8b2d52d22d873b56d2fcea6c1139813e8",
+    "canonical_receipt_files_verified": 253,
+    "packet_inventory_sha256": "7999d84beeb670fc117920a8b2b8a401e6e2d3a9d46d3e9fe0c84e8c74c141a3",
+    "remote_ref_read_back": true
+  },
+  "limits": [
+    "This identity check does not certify later main CI; its nine fresh checks and ten artifact ZIPs are pending at this observation.",
+    "Twelve OPS cases remain deferred; no settings, remote archival tag or external publication performed.",
+    "No theorem or assumption changes or scientific promotion."
+  ]
+}

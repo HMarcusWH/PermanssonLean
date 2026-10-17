@@ -1,0 +1,9 @@
+# Separate actual main-push evidence
+
+Actual main M `39279799834ae536bda715dedecdc11a32bf6c82` has ordered parents B `37c0cb8f2fbe7934639127e5f8b6d64a01e6950f` and H `92e45179a5e3ecbe1b2bcadc4da54a0d1657f501` and tree `d1c01b2812a13b672f164841a7cc4a8ab7dcc778`, identical to the accepted genuine synthetic S `d5f2d3a72bda670859c5da87bb173f9eb96696ee`. `merge-verification.json` is the unchanged earlier independent identity observation; its contemporaneous main-CI-pending qualification is superseded only by the separately acquired final checks and `verification-summary.json`.
+
+The preserved `verify_capture.py` was executed against this actual M and passed. It joins nine successful GitHub Actions checks and six genuine push-main runs, ten exact publisher artifact ZIPs and their GitHub digests, all five legacy source guards before proof/tests, and every report's pushM context with null PR/head/base fields. Six Linux suites executed 112 methods; Windows executed 63 methods. Current main's archival job again enforced network isolation and privilege reduction, restored the historical objects and replayed 29 accepted legacy tests, and bound the code/guide and committed publication ZIP to canonical M.
+
+The Research job succeeded. Its two PR-only C10 generation/upload steps were reported skipped, and its artifact inventory contains only D0 and the source-context report. The fresh PR-only C10 proof remains in the separate frozen premerge capture; this main run does not manufacture another C10 artifact.
+
+`capture-inventory.json` freezes this sibling addendum independently of the unchanged premerge index. Administrative enforcement, reviewer eligibility, tag creation and external publication remain deferred. These checks do not constitute a GitHub APPROVED review or mathematical peer-review certificate; copied metadata and hashes provide consistency evidence, not independent publisher authentication.

@@ -1,0 +1,49 @@
+{
+  "fetched_at": "2026-10-17T21:10:12.551Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649751/artifacts?per_page=100",
+  "response": {
+    "total_count": 2,
+    "artifacts": [
+      {
+        "id": 12114363307,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNDM2MzMwNw==",
+        "name": "legacy-application-source-context-ubuntu-latest",
+        "size_in_bytes": 490,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114363307",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114363307/zip",
+        "expired": false,
+        "digest": "sha256:c88bcb3db951cc29257100a25db6f3b56527fafe72560d7b820dd49f7b4b32c5",
+        "created_at": "2026-10-17T21:08:20Z",
+        "updated_at": "2026-10-17T21:08:20Z",
+        "expires_at": "2026-11-16T21:08:19Z",
+        "workflow_run": {
+          "id": 39069649751,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "main",
+          "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82"
+        }
+      },
+      {
+        "id": 12114209143,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNDIwOTE0Mw==",
+        "name": "legacy-application-source-context-windows-latest",
+        "size_in_bytes": 490,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114209143",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114209143/zip",
+        "expired": false,
+        "digest": "sha256:cd74f50d60292e64b0dd4055727b80eb805fa86cef8ea998ce52e0384d5f6036",
+        "created_at": "2026-10-17T21:08:31Z",
+        "updated_at": "2026-10-17T21:08:31Z",
+        "expires_at": "2026-11-16T21:08:30Z",
+        "workflow_run": {
+          "id": 39069649751,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "main",
+          "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82"
+        }
+      }
+    ]
+  }
+}

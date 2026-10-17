@@ -1,10 +1,10 @@
 # Permansson v0.2.0 maintenance evidence: H/T/S/M
 
-This packet records PR77 source H `92e45179a5e3ecbe1b2bcadc4da54a0d1657f501`, tooling T `71cc34fa0bc4b639c05d2ec5f39f0b88afd56388`, genuine synthetic S `d5f2d3a72bda670859c5da87bb173f9eb96696ee`, main merge M `PENDING`, and base B `37c0cb8f2fbe7934639127e5f8b6d64a01e6950f`.
+This packet records PR77 source H `92e45179a5e3ecbe1b2bcadc4da54a0d1657f501`, tooling T `71cc34fa0bc4b639c05d2ec5f39f0b88afd56388`, genuine synthetic S `d5f2d3a72bda670859c5da87bb173f9eb96696ee`, main merge M `39279799834ae536bda715dedecdc11a32bf6c82`, and base B `37c0cb8f2fbe7934639127e5f8b6d64a01e6950f`.
 
 Read [source binding](source-binding.json), the [portable ledger](ledger/acceptance-ledger.json), its [unit ledger](ledger/unit-ledger.json), and the [reference map](source-reference-map.json). Original captures and source ledgers retain their exact bytes under `artifacts/`; historical H2, prebase and PR78 records are not relabeled as final PR77 evidence.
 
-This premerge receipt has M=null and contains no postmerge acceptance claim. A later main-push receipt must be assembled in a new staging directory and preserve this packet and its source captures.
+The separate main-push addendum binds nine actual successful checks from six workflows and ten publisher ZIPs to M and the accepted synthetic tree. Its five legacy and four integrity source-context reports carry push/M with null PR/head/base fields; the Research C10 generation/upload steps are recorded skipped as designed. The original PR-only C10 evidence remains in the unchanged premerge capture.
 
 The 96 technical cases and 12 deferred OPS cases retain their recorded scope. Repository enforcement, remote archival tags, eligible human approval and external publication remain separate. Source restoration, artifact replay, actual CI compiler execution and publisher authentication are distinct evidence types.
 

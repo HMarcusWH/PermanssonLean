@@ -1,0 +1,96 @@
+{
+  "actual_main_acceptance_executed": false,
+  "control_count": 15,
+  "controls": [
+    {
+      "main_acceptance_claim": false,
+      "probe": "fixed_actual_premerge_validator_positive",
+      "result": "PASS"
+    },
+    {
+      "diagnostic": "Premerge source is not the fixed accepted PR tuple",
+      "probe": "stale_head",
+      "result": "REJECTED"
+    },
+    {
+      "diagnostic": "Premerge source is not the fixed accepted PR tuple",
+      "probe": "premerge_already_claims_main",
+      "result": "REJECTED"
+    },
+    {
+      "diagnostic": "Premerge conjunction must remain96 technical passes and12 deferred OPS",
+      "probe": "missing_case",
+      "result": "REJECTED"
+    },
+    {
+      "diagnostic": "Premerge conjunction must remain96 technical passes and12 deferred OPS",
+      "probe": "OPS_promotion",
+      "result": "REJECTED"
+    },
+    {
+      "diagnostic": "OPS cannot be promoted",
+      "probe": "OPS_executed_result",
+      "result": "REJECTED"
+    },
+    {
+      "diagnostic": "Technical/enforcement stage states differ",
+      "probe": "enforcement_promotion",
+      "result": "REJECTED"
+    },
+    {
+      "diagnostic": "Technical/enforcement stage states differ",
+      "probe": "technical_stage_pending",
+      "result": "REJECTED"
+    },
+    {
+      "diagnostic": "F3/OPS closure cannot be inferred",
+      "probe": "F3_closed",
+      "result": "REJECTED"
+    },
+    {
+      "diagnostic": "Mathematical scope cannot be promoted",
+      "probe": "new_math_assumption",
+      "result": "REJECTED"
+    },
+    {
+      "diagnostic": "Original PR/K4 acceptance changed",
+      "probe": "K4_stale_source",
+      "result": "REJECTED"
+    },
+    {
+      "diagnostic": "Original PR/K4 acceptance changed",
+      "probe": "premerge_acceptance_changed",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "reviewed_packet_helper_exact_pin_and_only_authorized_whitelist_deltas",
+      "result": "PASS"
+    },
+    {
+      "diagnostic": "Main acceptance blocked: Explicit actual maintenance M is required",
+      "exit_code": 1,
+      "probe": "wrong_explicit_main",
+      "result": "REJECTED_NO_NEW_OUTPUT"
+    },
+    {
+      "diagnostic": "Main acceptance blocked: Refuse to overwrite an existing receipt",
+      "exit_code": 1,
+      "probe": "refuse_output_overwrite",
+      "result": "REJECTED_NO_NEW_OUTPUT"
+    }
+  ],
+  "format": "Permansson.AddMainAcceptance.AuthorControls.v1",
+  "helper_sha256": "ef7cba3d847fa51d00e3c100451beaf233c493de6f53629c86de04ced72c2c93",
+  "main_adapter_sha256": "d901d59f376dc0140518a4b755498e3a7180391fa5f8a66cd676aeb63c312fbb",
+  "output_ledger_created": false,
+  "packet_helper_sha256": "1da37f4aa9859a14974b452c55717d74493e5d1e9941ebf9a28ba0eb4cf40c21",
+  "previous_author_run": {
+    "control_count": 15,
+    "helper_sha256": "9f9585ffb33832d22485d44baba9f18cb66fd24cb4f822ab9056d77a58119eeb",
+    "report_sha256": "30423a0ee35ff1c4d6203e7824fda3a5aca4a3e19ada005ce9e1e08a85ae0e9f",
+    "source_delta": "Only reviewed packet-helper hash literal updated after root authorized three exact optional filenames."
+  },
+  "recorded_at": "2026-10-17T21:14:08.430114+00:00",
+  "scope": "Private validator/CLI controls and frozen premerge read only. Actual postmerge acceptance awaits all9 main checks and10 original publisher artifacts; no future acceptance is created by these controls.",
+  "status": "PASS_SCOPED_PREPARATION_ONLY"
+}

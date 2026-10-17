@@ -1,0 +1,257 @@
+{
+  "fetched_at": "2026-10-17T21:12:57.673Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649751/jobs?per_page=100",
+  "response": {
+    "total_count": 2,
+    "jobs": [
+      {
+        "id": 117504415735,
+        "run_id": 39069649751,
+        "workflow_name": "Application contract",
+        "head_branch": "main",
+        "run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649751",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUkBtPs8AAAAbW88X9w",
+        "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117504415735",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39069649751/job/117504415735",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-17T21:08:07Z",
+        "started_at": "2026-10-17T21:08:09Z",
+        "completed_at": "2026-10-17T21:08:34Z",
+        "name": "Application contract (windows-latest)",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-17T21:08:10Z",
+            "completed_at": "2026-10-17T21:08:11Z"
+          },
+          {
+            "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-17T21:08:11Z",
+            "completed_at": "2026-10-17T21:08:17Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-17T21:08:17Z",
+            "completed_at": "2026-10-17T21:08:20Z"
+          },
+          {
+            "name": "Bind genuine required-check source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-17T21:08:20Z",
+            "completed_at": "2026-10-17T21:08:20Z"
+          },
+          {
+            "name": "Install application-only dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-17T21:08:20Z",
+            "completed_at": "2026-10-17T21:08:26Z"
+          },
+          {
+            "name": "Positive, negative and boundary tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-17T21:08:26Z",
+            "completed_at": "2026-10-17T21:08:29Z"
+          },
+          {
+            "name": "Verify committed example regeneration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-17T21:08:29Z",
+            "completed_at": "2026-10-17T21:08:30Z"
+          },
+          {
+            "name": "Application repository synchronization gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-17T21:08:30Z",
+            "completed_at": "2026-10-17T21:08:30Z"
+          },
+          {
+            "name": "Preserve required-check source context",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-17T21:08:30Z",
+            "completed_at": "2026-10-17T21:08:31Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-17T21:08:31Z",
+            "completed_at": "2026-10-17T21:08:31Z"
+          },
+          {
+            "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-10-17T21:08:31Z",
+            "completed_at": "2026-10-17T21:08:32Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-10-17T21:08:32Z",
+            "completed_at": "2026-10-17T21:08:32Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/117504415735",
+        "labels": [
+          "windows-latest"
+        ],
+        "runner_id": 1000109505,
+        "runner_name": "GitHub Actions 1000109505",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 117504415971,
+        "run_id": 39069649751,
+        "workflow_name": "Application contract",
+        "head_branch": "main",
+        "run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649751",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUkBtPs8AAAAbW88Y4w",
+        "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117504415971",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39069649751/job/117504415971",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-17T21:08:07Z",
+        "started_at": "2026-10-17T21:08:09Z",
+        "completed_at": "2026-10-17T21:08:21Z",
+        "name": "Application contract (ubuntu-latest)",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-17T21:08:10Z",
+            "completed_at": "2026-10-17T21:08:11Z"
+          },
+          {
+            "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-17T21:08:11Z",
+            "completed_at": "2026-10-17T21:08:12Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-17T21:08:12Z",
+            "completed_at": "2026-10-17T21:08:14Z"
+          },
+          {
+            "name": "Bind genuine required-check source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-17T21:08:14Z",
+            "completed_at": "2026-10-17T21:08:14Z"
+          },
+          {
+            "name": "Install application-only dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-17T21:08:14Z",
+            "completed_at": "2026-10-17T21:08:16Z"
+          },
+          {
+            "name": "Positive, negative and boundary tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-17T21:08:16Z",
+            "completed_at": "2026-10-17T21:08:19Z"
+          },
+          {
+            "name": "Verify committed example regeneration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-17T21:08:19Z",
+            "completed_at": "2026-10-17T21:08:19Z"
+          },
+          {
+            "name": "Application repository synchronization gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-17T21:08:19Z",
+            "completed_at": "2026-10-17T21:08:19Z"
+          },
+          {
+            "name": "Preserve required-check source context",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-17T21:08:19Z",
+            "completed_at": "2026-10-17T21:08:20Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-17T21:08:20Z",
+            "completed_at": "2026-10-17T21:08:20Z"
+          },
+          {
+            "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-10-17T21:08:20Z",
+            "completed_at": "2026-10-17T21:08:20Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-10-17T21:08:20Z",
+            "completed_at": "2026-10-17T21:08:20Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/117504415971",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000109507,
+        "runner_name": "GitHub Actions 1000109507",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  }
+}

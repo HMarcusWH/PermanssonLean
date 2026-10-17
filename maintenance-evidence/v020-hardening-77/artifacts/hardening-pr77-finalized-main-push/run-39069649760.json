@@ -1,0 +1,69 @@
+{
+  "fetched_at": "2026-10-17T21:10:12.555Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649760/artifacts?per_page=100",
+  "response": {
+    "total_count": 3,
+    "artifacts": [
+      {
+        "id": 12114915853,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNDkxNTg1Mw==",
+        "name": "hardening-export-reports",
+        "size_in_bytes": 2467,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114915853",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114915853/zip",
+        "expired": false,
+        "digest": "sha256:5347d3cc74b79a551d4122e3ee78abd7fc4adf749ec86968fb41da3938a127da",
+        "created_at": "2026-10-17T21:08:22Z",
+        "updated_at": "2026-10-17T21:08:22Z",
+        "expires_at": "2026-11-16T21:08:21Z",
+        "workflow_run": {
+          "id": 39069649760,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "main",
+          "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82"
+        }
+      },
+      {
+        "id": 12114825610,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNDgyNTYxMA==",
+        "name": "hardening-preservation-reports",
+        "size_in_bytes": 9172,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114825610",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114825610/zip",
+        "expired": false,
+        "digest": "sha256:e3e358cd9ef9f761ccfa992a29fe4cd7ba0e354970d52b841fd85e8b5b1961cd",
+        "created_at": "2026-10-17T21:08:32Z",
+        "updated_at": "2026-10-17T21:08:32Z",
+        "expires_at": "2026-11-16T21:08:31Z",
+        "workflow_run": {
+          "id": 39069649760,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "main",
+          "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82"
+        }
+      },
+      {
+        "id": 12114586817,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNDU4NjgxNw==",
+        "name": "hardening-archive-reports",
+        "size_in_bytes": 7067,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114586817",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114586817/zip",
+        "expired": false,
+        "digest": "sha256:96e1d3e22ea252c299d0ec2e13ede905c412c44da5758c0d6ec9d669483b0572",
+        "created_at": "2026-10-17T21:09:03Z",
+        "updated_at": "2026-10-17T21:09:03Z",
+        "expires_at": "2026-11-16T21:09:02Z",
+        "workflow_run": {
+          "id": 39069649760,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "main",
+          "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82"
+        }
+      }
+    ]
+  }
+}

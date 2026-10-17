@@ -1,0 +1,266 @@
+{
+  "acquisitions": [
+    {
+      "fetched_at": "2026-10-17T21:21:32.587Z",
+      "file": "run-39069649734.json",
+      "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649734/artifacts?per_page=100",
+      "response": {
+        "artifacts": [
+          {
+            "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12115345409/zip",
+            "created_at": "2026-10-17T21:20:49Z",
+            "digest": "sha256:8d78fb5fcc8df709ba370e883731d48ee5c333c229c12585f82038c325594ea4",
+            "expired": false,
+            "expires_at": "2026-10-24T21:20:48Z",
+            "id": 12115345409,
+            "name": "d0-finite-calculation-evidence",
+            "node_id": "MDg6QXJ0aWZhY3QxMjExNTM0NTQwOQ==",
+            "size_in_bytes": 1323,
+            "updated_at": "2026-10-17T21:20:49Z",
+            "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12115345409",
+            "workflow_run": {
+              "head_branch": "main",
+              "head_repository_id": 1379953982,
+              "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+              "id": 39069649734,
+              "repository_id": 1379953982
+            }
+          },
+          {
+            "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114459659/zip",
+            "created_at": "2026-10-17T21:20:52Z",
+            "digest": "sha256:fbc24b6dd5a358e3ef15999ea7277369ac3f7b67f3a6ca698a7e7602ab35578d",
+            "expired": false,
+            "expires_at": "2026-11-16T21:20:51Z",
+            "id": 12114459659,
+            "name": "legacy-research-source-context",
+            "node_id": "MDg6QXJ0aWZhY3QxMjExNDQ1OTY1OQ==",
+            "size_in_bytes": 491,
+            "updated_at": "2026-10-17T21:20:52Z",
+            "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114459659",
+            "workflow_run": {
+              "head_branch": "main",
+              "head_repository_id": 1379953982,
+              "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+              "id": 39069649734,
+              "repository_id": 1379953982
+            }
+          }
+        ],
+        "total_count": 2
+      }
+    },
+    {
+      "fetched_at": "2026-10-17T21:14:21.791Z",
+      "file": "run-39069649738.json",
+      "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649738/artifacts?per_page=100",
+      "response": {
+        "artifacts": [
+          {
+            "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114926349/zip",
+            "created_at": "2026-10-17T21:12:30Z",
+            "digest": "sha256:50b5dc6d542627394d09906355955ff21157387888ad68161874ac4a291aaac2",
+            "expired": false,
+            "expires_at": "2026-11-16T21:12:29Z",
+            "id": 12114926349,
+            "name": "hardening-windows-portability-reports",
+            "node_id": "MDg6QXJ0aWZhY3QxMjExNDkyNjM0OQ==",
+            "size_in_bytes": 4667,
+            "updated_at": "2026-10-17T21:12:30Z",
+            "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114926349",
+            "workflow_run": {
+              "head_branch": "main",
+              "head_repository_id": 1379953982,
+              "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+              "id": 39069649738,
+              "repository_id": 1379953982
+            }
+          }
+        ],
+        "total_count": 1
+      }
+    },
+    {
+      "fetched_at": "2026-10-17T21:10:12.551Z",
+      "file": "run-39069649751.json",
+      "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649751/artifacts?per_page=100",
+      "response": {
+        "artifacts": [
+          {
+            "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114363307/zip",
+            "created_at": "2026-10-17T21:08:20Z",
+            "digest": "sha256:c88bcb3db951cc29257100a25db6f3b56527fafe72560d7b820dd49f7b4b32c5",
+            "expired": false,
+            "expires_at": "2026-11-16T21:08:19Z",
+            "id": 12114363307,
+            "name": "legacy-application-source-context-ubuntu-latest",
+            "node_id": "MDg6QXJ0aWZhY3QxMjExNDM2MzMwNw==",
+            "size_in_bytes": 490,
+            "updated_at": "2026-10-17T21:08:20Z",
+            "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114363307",
+            "workflow_run": {
+              "head_branch": "main",
+              "head_repository_id": 1379953982,
+              "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+              "id": 39069649751,
+              "repository_id": 1379953982
+            }
+          },
+          {
+            "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114209143/zip",
+            "created_at": "2026-10-17T21:08:31Z",
+            "digest": "sha256:cd74f50d60292e64b0dd4055727b80eb805fa86cef8ea998ce52e0384d5f6036",
+            "expired": false,
+            "expires_at": "2026-11-16T21:08:30Z",
+            "id": 12114209143,
+            "name": "legacy-application-source-context-windows-latest",
+            "node_id": "MDg6QXJ0aWZhY3QxMjExNDIwOTE0Mw==",
+            "size_in_bytes": 490,
+            "updated_at": "2026-10-17T21:08:31Z",
+            "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114209143",
+            "workflow_run": {
+              "head_branch": "main",
+              "head_repository_id": 1379953982,
+              "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+              "id": 39069649751,
+              "repository_id": 1379953982
+            }
+          }
+        ],
+        "total_count": 2
+      }
+    },
+    {
+      "fetched_at": "2026-10-17T21:10:12.555Z",
+      "file": "run-39069649760.json",
+      "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649760/artifacts?per_page=100",
+      "response": {
+        "artifacts": [
+          {
+            "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114915853/zip",
+            "created_at": "2026-10-17T21:08:22Z",
+            "digest": "sha256:5347d3cc74b79a551d4122e3ee78abd7fc4adf749ec86968fb41da3938a127da",
+            "expired": false,
+            "expires_at": "2026-11-16T21:08:21Z",
+            "id": 12114915853,
+            "name": "hardening-export-reports",
+            "node_id": "MDg6QXJ0aWZhY3QxMjExNDkxNTg1Mw==",
+            "size_in_bytes": 2467,
+            "updated_at": "2026-10-17T21:08:22Z",
+            "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114915853",
+            "workflow_run": {
+              "head_branch": "main",
+              "head_repository_id": 1379953982,
+              "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+              "id": 39069649760,
+              "repository_id": 1379953982
+            }
+          },
+          {
+            "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114825610/zip",
+            "created_at": "2026-10-17T21:08:32Z",
+            "digest": "sha256:e3e358cd9ef9f761ccfa992a29fe4cd7ba0e354970d52b841fd85e8b5b1961cd",
+            "expired": false,
+            "expires_at": "2026-11-16T21:08:31Z",
+            "id": 12114825610,
+            "name": "hardening-preservation-reports",
+            "node_id": "MDg6QXJ0aWZhY3QxMjExNDgyNTYxMA==",
+            "size_in_bytes": 9172,
+            "updated_at": "2026-10-17T21:08:32Z",
+            "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114825610",
+            "workflow_run": {
+              "head_branch": "main",
+              "head_repository_id": 1379953982,
+              "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+              "id": 39069649760,
+              "repository_id": 1379953982
+            }
+          },
+          {
+            "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114586817/zip",
+            "created_at": "2026-10-17T21:09:03Z",
+            "digest": "sha256:96e1d3e22ea252c299d0ec2e13ede905c412c44da5758c0d6ec9d669483b0572",
+            "expired": false,
+            "expires_at": "2026-11-16T21:09:02Z",
+            "id": 12114586817,
+            "name": "hardening-archive-reports",
+            "node_id": "MDg6QXJ0aWZhY3QxMjExNDU4NjgxNw==",
+            "size_in_bytes": 7067,
+            "updated_at": "2026-10-17T21:09:03Z",
+            "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114586817",
+            "workflow_run": {
+              "head_branch": "main",
+              "head_repository_id": 1379953982,
+              "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+              "id": 39069649760,
+              "repository_id": 1379953982
+            }
+          }
+        ],
+        "total_count": 3
+      }
+    },
+    {
+      "fetched_at": "2026-10-17T21:10:12.553Z",
+      "file": "run-39069649772.json",
+      "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069649772/artifacts?per_page=100",
+      "response": {
+        "artifacts": [
+          {
+            "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113729586/zip",
+            "created_at": "2026-10-17T21:08:21Z",
+            "digest": "sha256:7c42d7c29ebca9905bcd9628323d334519e63d4eeacbdfcb5ec0dee62b05c3d2",
+            "expired": false,
+            "expires_at": "2026-11-16T21:08:20Z",
+            "id": 12113729586,
+            "name": "legacy-executable-source-context",
+            "node_id": "MDg6QXJ0aWZhY3QxMjExMzcyOTU4Ng==",
+            "size_in_bytes": 491,
+            "updated_at": "2026-10-17T21:08:21Z",
+            "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113729586",
+            "workflow_run": {
+              "head_branch": "main",
+              "head_repository_id": 1379953982,
+              "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+              "id": 39069649772,
+              "repository_id": 1379953982
+            }
+          }
+        ],
+        "total_count": 1
+      }
+    },
+    {
+      "fetched_at": "2026-10-17T21:12:25.493Z",
+      "file": "run-39069650103.json",
+      "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39069650103/artifacts?per_page=100",
+      "response": {
+        "artifacts": [
+          {
+            "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12115230434/zip",
+            "created_at": "2026-10-17T21:11:21Z",
+            "digest": "sha256:1e0d3ad8920d77a3c5bf96c5de3ee33ac83f177d09967db8797fc863f18db656",
+            "expired": false,
+            "expires_at": "2026-11-16T21:11:20Z",
+            "id": 12115230434,
+            "name": "legacy-build-source-context",
+            "node_id": "MDg6QXJ0aWZhY3QxMjExNTIzMDQzNA==",
+            "size_in_bytes": 492,
+            "updated_at": "2026-10-17T21:11:21Z",
+            "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12115230434",
+            "workflow_run": {
+              "head_branch": "main",
+              "head_repository_id": 1379953982,
+              "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+              "id": 39069650103,
+              "repository_id": 1379953982
+            }
+          }
+        ],
+        "total_count": 1
+      }
+    }
+  ],
+  "format": "Permansson.PostMergeArtifactMetadataCollection.v1",
+  "source_main": "39279799834ae536bda715dedecdc11a32bf6c82"
+}

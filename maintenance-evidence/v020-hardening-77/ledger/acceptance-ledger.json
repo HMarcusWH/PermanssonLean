@@ -4632,8 +4632,52 @@
     "base_B": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
     "head_H": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
     "head_tree": null,
-    "main_merge_M": null,
-    "main_tree": null,
+    "main_merge_M": "39279799834ae536bda715dedecdc11a32bf6c82",
+    "main_push_workflow_runs": [
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "run_attempt": 1,
+        "run_id": 39069649734
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "run_attempt": 1,
+        "run_id": 39069649738
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "run_attempt": 1,
+        "run_id": 39069649751
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "run_attempt": 1,
+        "run_id": 39069649760
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "run_attempt": 1,
+        "run_id": 39069649772
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "39279799834ae536bda715dedecdc11a32bf6c82",
+        "run_attempt": 1,
+        "run_id": 39069650103
+      }
+    ],
+    "main_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
     "pr_number": 77,
     "repository": "HMarcusWH/PermanssonLean",
     "review_evidence": [
@@ -4700,6 +4744,85 @@
       }
     ]
   },
+  "postmerge_acceptance": {
+    "Linux_unit_methods": 112,
+    "PR_only_C10_main": {
+      "artifact": "absent",
+      "generation": "skipped",
+      "scope": "PR-only current C10 proof preserved in separate frozen premerge packet",
+      "upload": "skipped"
+    },
+    "Windows_portability_methods": 63,
+    "actual_check_contexts": 9,
+    "actual_main_Research_Lean_check": "success",
+    "actual_push_workflows": 6,
+    "all108_case_records_preserved": true,
+    "assembled_at_utc": "2026-10-17T21:22:52.992930+00:00",
+    "format": "Permansson.Hardening.PostmergeAcceptance.v1",
+    "frozen_premerge_ledger": {
+      "bytes": 217168,
+      "original_artifact_path": "maintenance-acceptance-ledger-finalized-premerge-verified.json",
+      "path": "../artifacts/maintenance-acceptance-ledger-finalized-premerge-verified.json",
+      "portable_href": "../artifacts/maintenance-acceptance-ledger-finalized-premerge-verified.json",
+      "portable_path": "artifacts/maintenance-acceptance-ledger-finalized-premerge-verified.json",
+      "raw_original_path": "maintenance-acceptance-ledger-finalized-premerge-verified.json",
+      "sha256": "5958d8c155086bbf3ccbca1dc6c651fe0b88ffa6bba729facce4dcaf4e632524"
+    },
+    "main_capture_index": {
+      "bytes": 7767,
+      "original_artifact_path": "hardening-pr77-finalized-main-push/capture-inventory.json",
+      "path": "../artifacts/hardening-pr77-finalized-main-push/capture-inventory.json",
+      "portable_href": "../artifacts/hardening-pr77-finalized-main-push/capture-inventory.json",
+      "portable_path": "artifacts/hardening-pr77-finalized-main-push/capture-inventory.json",
+      "raw_original_path": "hardening-pr77-finalized-main-push/capture-inventory.json",
+      "sha256": "8198dc8f1532e881c9f8749ac45568d01432bf8430fc34d177eed764bbac54e8"
+    },
+    "main_commit_API": {
+      "bytes": 1196772,
+      "original_artifact_path": "hardening-pr77-finalized-main-push/main-commit.json",
+      "path": "../artifacts/hardening-pr77-finalized-main-push/main-commit.json",
+      "portable_href": "../artifacts/hardening-pr77-finalized-main-push/main-commit.json",
+      "portable_path": "artifacts/hardening-pr77-finalized-main-push/main-commit.json",
+      "raw_original_path": "hardening-pr77-finalized-main-push/main-commit.json",
+      "sha256": "588cc8766e604b3238d46725782f4667315ec77d63c67d28a2e25ca642a1f694"
+    },
+    "main_verification_summary": {
+      "bytes": 12723,
+      "original_artifact_path": "hardening-pr77-finalized-main-push/verification-summary.json",
+      "path": "../artifacts/hardening-pr77-finalized-main-push/verification-summary.json",
+      "portable_href": "../artifacts/hardening-pr77-finalized-main-push/verification-summary.json",
+      "portable_path": "artifacts/hardening-pr77-finalized-main-push/verification-summary.json",
+      "raw_original_path": "hardening-pr77-finalized-main-push/verification-summary.json",
+      "sha256": "e77d06ccbf3dcf9cc156260ea4520f2ba7fdb30f24d4671bdcdef0609a621e3a"
+    },
+    "original_PR_workflow_runs_preserved": true,
+    "publisher_ZIPs": 10,
+    "scope_limits": [
+      "Original PR case checked_sha/evidence and premerge acceptance remain unchanged at their actual S/H.",
+      "Main-push execution is a separate actual M record, not transferred PR C10 evidence.",
+      "No mathematical promotion, counted GitHub APPROVED review, publisher authentication or OPS completion."
+    ],
+    "source": {
+      "base": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "head": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+      "main": "39279799834ae536bda715dedecdc11a32bf6c82",
+      "pr_number": 77,
+      "repository": "HMarcusWH/PermanssonLean",
+      "synthetic": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "tooling_T": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+      "tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778"
+    },
+    "status": "MAIN_PUSH_VERIFIED_TECHNICAL_PASS_OPS_DEFERRED",
+    "verification_parser_replay": {
+      "adapter_path": "hardening-pr77/verify_main_capture.py",
+      "adapter_sha256": "d901d59f376dc0140518a4b755498e3a7180391fa5f8a66cd676aeb63c312fbb",
+      "capture_mutated": false,
+      "isolated_standard_library_parser_replay": "PASS",
+      "local_Lean_rerun": false,
+      "network_isolation_claim": false,
+      "summary_equal_except_execution_time": true
+    }
+  },
   "premerge_acceptance": {
     "actual_candidate_K4_scope": "PASS",
     "all_nine_current_checks_green": true,
@@ -4764,7 +4887,7 @@
       "source": "../artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip"
     },
     "format": "Permansson.Hardening.UnitReceiptAssembly.v1",
-    "merge_acceptance": "PREMERGE_CURRENT_TUPLE_ONLY; MAIN_M_NOT_ESTABLISHED",
+    "merge_acceptance": "MAIN_PUSH_VERIFIED; ORIGINAL_PR_ACCEPTANCE_RETAINED",
     "operational_completion": "DEFERRED_BY_USER",
     "publisher_authentication": "must_be_established_from_separate_API_artifact_and_job_records",
     "remaining_technical_cases": [],
