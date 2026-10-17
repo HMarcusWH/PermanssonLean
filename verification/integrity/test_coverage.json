@@ -827,8 +827,10 @@
     "archive": [
       "verification.archive.tests.test_archive.ArchiveInputTests.test_manifest_nested_declarations_cannot_be_repaired_into_promotion",
       "verification.archive.tests.test_archive.ArchiveInputTests.test_manifest_extra_payload_and_symlink_rejected",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_dotdot_scratch_overlap_rejected_before_creation",
       "verification.archive.tests.test_archive.ArchiveInputTests.test_final_job_log_omission_repaired_index_rejected",
-      "verification.archive.tests.test_archive.ArchiveInputTests.test_standalone_context_requires_actual_restore_before_pass"
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_standalone_context_requires_actual_restore_before_pass",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_foreign_repository_cannot_supply_local_context"
     ],
     "context": [
       "verification.integrity.tests.test_context.ContextTests.test_genuine_pr_positive",

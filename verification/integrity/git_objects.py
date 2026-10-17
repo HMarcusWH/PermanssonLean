@@ -64,9 +64,13 @@ class GitRepo:
                          "GIT_TERMINAL_PROMPT": "0", "GIT_CONFIG_NOSYSTEM": "1",
                          "GIT_CONFIG_GLOBAL": os.devnull, "LC_ALL": "C",
                          "HOME": self._config.name, "XDG_CONFIG_HOME": self._config.name})
-        self._validate_root()
-        if preflight:
-            self.preflight()
+        try:
+            self._validate_root()
+            if preflight:
+                self.preflight()
+        except Exception:
+            self._config.cleanup()
+            raise
 
     def close(self):
         self._config.cleanup()

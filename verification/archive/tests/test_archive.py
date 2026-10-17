@@ -25,7 +25,7 @@ from verification.archive.manifest import (FORMAT, MAX_BUNDLE, MAX_METADATA, MAX
                                            strict_json, validate_manifest)
 from verification.archive.offline_smoke import launch_offline, require_dependencies, sanitized_environment, invocation_context
 from verification.archive.verify_bundle import (bundle_header, parse_objects, require_commit_targets,
-                                                restore_history, validate_c10_content)
+                                                restore_history, validate_c10_content, verify_supplement, require_empty_scratch)
 
 
 def manifest_fixture(root):
@@ -301,6 +301,24 @@ class ArchiveInputTests(unittest.TestCase):
                 changed["workflow_run"][field] = 1 if field == "id" else "0" * 40
                 self.reject("E_CAPTURE_ID", validate_r_identity, changed)
 
+    def test_dotdot_scratch_overlap_rejected_before_creation(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            supplement = root / "supplement"
+            supplement.mkdir()
+            (root / "anchor").mkdir()
+            scratch = root / "anchor" / ".." / "supplement" / "restore"
+            self.assertEqual(scratch.resolve(), require_empty_scratch(scratch, create=False))
+            with self.assertRaises(HardeningError) as caught:
+                verify_supplement(supplement, scratch, require_isolation=False)
+            self.assertEqual("E_MANIFEST_FORMAT", caught.exception.code)
+            self.assertIn("separate trees", str(caught.exception))
+            self.assertFalse((supplement / "restore").exists())
+            alias = root / "anchor" / ".." / "supplement"
+            with self.assertRaises(HardeningError) as caught:
+                verify_supplement(alias, supplement / "restore", require_isolation=False)
+            self.assertEqual("E_MANIFEST_FORMAT", caught.exception.code)
+            self.assertFalse((supplement / "restore").exists())
     def test_arch_18_missing_final_code_review(self):
         from verification.archive.acquire_evidence import validate_evidence
         source = capture_fixture_path()
@@ -384,6 +402,19 @@ class ArchiveInputTests(unittest.TestCase):
                     self.reject("E_REFERENCE_MISSING", invocation_context)
             finally:
                 os.chdir(previous)
+
+    def test_foreign_repository_cannot_supply_local_context(self):
+        from verification.integrity.tests._fixtures import GitFixture
+        fixture = GitFixture()
+        self.addCleanup(fixture.close)
+        previous = Path.cwd()
+        try:
+            os.chdir(fixture.root)
+            with patch.dict(os.environ, {"GITHUB_ACTIONS": ""}):
+                self.assertIsNone(invocation_context())
+                self.reject("E_REFERENCE_MISSING", invocation_context, ".", fixture.accepted)
+        finally:
+            os.chdir(previous)
 
 
 class ArchiveIsolationTests(unittest.TestCase):

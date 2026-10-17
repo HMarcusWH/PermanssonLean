@@ -21,15 +21,17 @@ from .manifest import MAX_METADATA, fail, read_bounded, strict_json
 def invocation_context(repo_path=None, candidate=None):
     """CI always binds C; standalone local replay may acquire A after restore."""
     from verification.integrity.ci_context import capture_context
+    from .create_bundle import ACCEPTED, ACCEPTED_TREE
     try:
         repo = GitRepo(repo_path or ".")
+        target = candidate or repo.run("rev-parse", "HEAD").decode().strip()
+        repo.validate_candidate(target, accepted_sha=ACCEPTED, accepted_tree=ACCEPTED_TREE)
+        return capture_context(repo, target)
     except HardeningError as exc:
         if (repo_path is None and candidate is None and os.environ.get("GITHUB_ACTIONS") != "true"
-                and exc.code == "E_REFERENCE_MISSING"):
+                and exc.code in {"E_REFERENCE_MISSING", "E_REFERENCE_ID", "E_ANCESTRY", "E_GIT"}):
             return None
         raise
-    target = candidate or repo.run("rev-parse", "HEAD").decode().strip()
-    return capture_context(repo, target)
 
 
 def restored_artifact_context(scratch):

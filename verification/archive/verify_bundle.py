@@ -72,14 +72,15 @@ def parse_objects(path):
     return rows
 
 
-def require_empty_scratch(path):
+def require_empty_scratch(path, *, create=True):
     path = Path(path).absolute()
     if path.is_symlink() or any(parent.is_symlink() for parent in path.parents):
         fail("E_MANIFEST_FORMAT", "Scratch path may not traverse a symlink", 2)
+    path = path.resolve()
     if path.exists():
         if not path.is_dir() or any(path.iterdir()):
             fail("E_MANIFEST_FORMAT", "Scratch must be new or an empty directory", 2)
-    else:
+    elif create:
         path.mkdir(parents=True)
     return path
 
@@ -280,9 +281,11 @@ def verify_supplement(supplement, scratch, require_isolation=True):
     supplement = Path(supplement).absolute()
     if supplement.is_symlink() or any(parent.is_symlink() for parent in supplement.parents):
         fail("E_MANIFEST_FORMAT", "Supplement path may not traverse a symlink")
-    scratch = require_empty_scratch(scratch)
+    supplement = supplement.resolve()
+    scratch = require_empty_scratch(scratch, create=False)
     if scratch == supplement or supplement in scratch.parents or scratch in supplement.parents:
         fail("E_MANIFEST_FORMAT", "Scratch and supplement must be separate trees", 2)
+    scratch.mkdir(parents=True, exist_ok=True)
     manifest = validate_manifest(supplement)
     if (manifest["repository"] != REPOSITORY or manifest["accepted_release"] != ACCEPTED
             or manifest["accepted_tree"] != ACCEPTED_TREE
