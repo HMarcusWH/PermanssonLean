@@ -8,18 +8,13 @@
 
 ## 0. TL;DR — what to do next, in order
 
-1. **Review A3 (PR #73).** Its adversarial review never completed; three attempts were killed by session limits. Run one: math, overclaim and tests lenses, plus verification. Fix whatever it confirms. A3 is the only PR without an independent review.
-2. **Watch PRs #70–#73.** UPDATE 13:10 UTC: the author merged **#69** as merge commit `54848ef`, and **#70, #71 and #72 were retargeted to `main`**. They merge cleanly, because `main`'s tree equals `d8a96a4`, so their existing green CI describes the merge result. **#73 still targets the E1 branch**: retarget it to `main` once #71 merges. Each lane edits its own section of `docs/V020_IMPLEMENTATION_INDEX.md`, but after one lane merges, the next may need `main` merged in (merge commit, never rebase) to resolve index or README hunks.
-   - CI: all green, including #72 at `b7e83c3` (Research Lean 39033626515 succeeded).
-   - UPDATE 13:22 UTC: the author merged **#70** as merge commit `24ea083`. The author and Codex then pushed new heads: E1 is now `7ae2fab`, which merges C70 `main`; F1 is now `0b001dc`, with Codex fix `6df963c` "expose strict MA2 boundary and require common exogeneity" plus a merge of `main`. **Re-read those two branches before changing them**: the SHAs and CI run IDs in the PR table below predate these pushes. #73 is still at `f757b9e`, based on the OLD E1 head `60d1425`; it needs the new E1 head (or, after #71 merges, `main`) merged in.
+1. **All five lane PRs are MERGED (UPDATE 14:12 UTC).** The author merged #69 (`54848ef`), #70 (`24ea083`), #71 (`2a2246a`), #72 (`2285977`) and #73 (`9cf3410`). `main` is now `9cf3410`. Before merging, the author and Codex pushed final fixes to E1, F1 and A3. Read the lane code from `main`, not from the old branch heads listed elsewhere in this file.
+   - **A3 review** was done by the author/Codex on `f757b9e`, and fixes landed in `fefaf69`/`a977da5`. Those fixes are: dual-vs-coupling scope wording; `model_invariant`, `leakPerturbation` and `bundled_survival_counterexample`; and three deterministic destructive margin tests. Codex reported no major issues on `a977da5`. Local check on `a977da5`: the build passed, the A3 audit was 53/53 and 13/13 tests passed.
+   - **Late Claude review of A3.** A five-lens adversarial review (math, spec, overclaim, tests, integrity) ran against the pre-fix merge head `d4a4b28`. Its surviving findings are reported to the author in chat as follow-up candidates only. Nothing was pushed after the merge.
+   - **Codex has opened a D2 PR**, [#74](https://github.com/HMarcusWH/PermanssonLean/pull/74), from `codex/v020-d2`. **Check it before starting D2 yourself** (see item 3). Do not duplicate it.
    - Nothing may be merged without the author's explicit approval.
-   - When #69 merges:
-     - retarget #70, #71 and #72 to `main`;
-     - after #71 merges, retarget #73 to `main`;
-     - merge `main` into each head if it conflicts;
-     - dispatch the four workflows;
-     - post a synthetic-merge CI comment.
-3. **D2** (reverse-solver switching objectives): not started. §6 has the plan.
+2. **Open lane work:** D2 (in progress by Codex, #74), X1, then R.
+3. **D2** (reverse-solver switching objectives): Codex opened #74 (`codex/v020-d2`). Coordinate with the author before doing any D2 work. §6 has the original plan.
 4. **X1** (flagship MPE versus learner): a certified-MPE candidate and an exact model prototype exist in `docs/handover/x1/`. §7 has the plan.
 5. **v0.2.0 manuscript and release kit (R).** Do this only after the lanes are accepted. See §8.
 
@@ -88,20 +83,18 @@
 ## 3. PR / branch map (as of handover)
 
 ```
-main 24ea083  (PRs #1–#70 merged; #69 = 54848ef, #70 = 24ea083)
-├── #71  …-e1                         7ae2fab  E1 approximate quotients                  (base: main)
-│   └── #73  …-a3                     f757b9e  A3 contractive W1                         (base: …-e1; built on old E1 60d1425)
-├── #72  …-f1                         0b001dc  F1 multi-agent protocols                  (base: main)
-└── (ref) …-handover                           this document (no PR; based on d8a96a4)
+main 9cf3410  (PRs #1–#73 merged: #69 54848ef, #70 24ea083, #71 2a2246a, #72 2285977, #73 9cf3410)
+├── #74  codex/v020-d2                    D2 (opened by Codex; not from this session)
+└── (ref) …-handover                      this document (no PR; based on d8a96a4)
 ```
 
-| PR | Lane | Head | CI | Review | Status |
-|---|---|---|---|---|---|
-| [#69](https://github.com/HMarcusWH/PermanssonLean/pull/69) | C69 restart / countable routing | `d8a96a4` | 5/5 green | done | **MERGED** (`54848ef`) |
-| [#70](https://github.com/HMarcusWH/PermanssonLean/pull/70) | C70 random-entry occupation | `547d17e` | green | done; Codex no findings | **MERGED** (`24ea083`) |
-| [#71](https://github.com/HMarcusWH/PermanssonLean/pull/71) | E1 approximate quotients | `7ae2fab` (runs below are for `60d1425`) | 5/5 green (runs 38996000796, 38996001960, 38996003453, 38996004564, 38995995542) | 2 rounds, all fixed; Codex no findings | awaiting author; base now `main` |
-| [#72](https://github.com/HMarcusWH/PermanssonLean/pull/72) | F1 multi-agent protocols | `0b001dc` (runs below are for `b7e83c3`) | 5/5 green at `b7e83c3` (Research Lean 39033626515, Lean 39033628189, Executable verification 39033629860, Application 39033631711, smoke 39033624386) | 2 rounds (round-2 verifiers did not run; findings fixed by hand) | awaiting author; base now `main` |
-| [#73](https://github.com/HMarcusWH/PermanssonLean/pull/73) | A3 contractive W₁ | `f757b9e` | 5/5 green (39015546427, 39015547946, 39015549786, 39015551573, 39015543224) | **NONE completed** | **review first** |
+| PR | Lane | Final head | Review | Status |
+|---|---|---|---|---|
+| [#69](https://github.com/HMarcusWH/PermanssonLean/pull/69) | C69 restart / countable routing | `d8a96a4` | done | **MERGED** (`54848ef`) |
+| [#70](https://github.com/HMarcusWH/PermanssonLean/pull/70) | C70 random-entry occupation | `547d17e` | done; Codex no findings | **MERGED** (`24ea083`) |
+| [#71](https://github.com/HMarcusWH/PermanssonLean/pull/71) | E1 approximate quotients | `7ae2fab` | 2 Claude rounds; Codex no findings on `7ae2fab` | **MERGED** (`2a2246a`) |
+| [#72](https://github.com/HMarcusWH/PermanssonLean/pull/72) | F1 multi-agent protocols | `018e8fc` (includes Codex fix `6df963c`) | 2 Claude rounds plus the author/Codex fix | **MERGED** (`2285977`) |
+| [#73](https://github.com/HMarcusWH/PermanssonLean/pull/73) | A3 contractive W₁ | `a977da5` | author/Codex review and fixes; Codex no major issues; CI 8/8 green on `d4a4b28` | **MERGED** (`9cf3410`) |
 
 Master status table: `docs/V020_IMPLEMENTATION_INDEX.md`. Each stacked branch carries its own lane rows; they merge cleanly, since each lane edits a different section. The README links each lane doc.
 
