@@ -108,8 +108,9 @@ Source modules: `PermanssonResearch/RegimeExit/ShiftedPrefixStationarity.lean`,
   I.e. `HasCanonicalShiftedPrefixLaws N` holds unconditionally.
 - **Source.** Spec §2.3 (strong Markov step of Prop. 4.2f); LANE_C_EXIT_RESTART step 3.
 - **Provider.** `hasCanonicalShiftedPrefixLaws`; supporting `shiftedHistory_hasTransitionPair`,
-  `stationaryHistoryKernel_add_eq_comap_drop`, `compProd_map_left_eq_map_compProd_comap`,
-  `map_frestrictLe_zero_of_eval_zero`.
+  `stationaryHistoryKernel_add_eq_comap_drop`, `map_frestrictLe_zero_of_eval_zero`, and the
+  generic `PermanssonResearch.Probability.compProd_map_left_eq_map_compProd_comap`
+  (moved to `Probability/CompProdPushforward.lean` by the E1 PR; originally in this module).
 - **Inputs.** Frozen `StrategicWorldModel.prefix_maps_eq_of_initial_and_transition`,
   `pathLaw_has_transition_pair`; mathlib `Kernel.partialTraj_compProd_eq_map_traj`,
   `Kernel.traj_map_frestrictLe_apply`; #68 `shiftedHistory_zero_marginal`,
@@ -122,7 +123,9 @@ Source modules: `PermanssonResearch/RegimeExit/ShiftedPrefixStationarity.lean`,
 - **Status.** PROVED.
 - **Verification.** Local: module compiles on Lean 4.34.0 / pinned mathlib; local
   `#print axioms` audit of all 34 new C69 declarations: only `propext`,
-  `Classical.choice`, `Quot.sound`. CI: see PR #69 (record run IDs at merge).
+  `Classical.choice`, `Quot.sound` (33 after the E1 PR moves the generic
+  `compProd_map_left_eq_map_compProd_comap` to `Probability/CompProdPushforward.lean`,
+  where `e1_axiom_audit.py` audits it). CI: see PR #69 (record run IDs at merge).
 - **Manuscript.** v0.2.0 §4.2 strong-Markov lemma preceding Prop. 4.2f.
 
 ### C69.2 — unconditional full-future last-state restart
@@ -197,65 +200,101 @@ Source modules: `PermanssonResearch/RegimeExit/ShiftedPrefixStationarity.lean`,
 
 ---
 
-## C70 — C-Exit E: random-entry occupation and Proposition 4.2f (next PR)
+## C70 — C-Exit E: random-entry occupation and Proposition 4.2f (stacked on #69)
 
-**Status of lane:** BLOCKED on C69 merge (or an explicitly stacked PR on top of #69).
+Lane document: [LANE_C_EXIT_RANDOM_ENTRY.md](LANE_C_EXIT_RANDOM_ENTRY.md).
+Source modules: `RegimeExit/OccupationPrefixDeletion.lean`, `RegimeExit/RandomEntryOccupation.lean`,
+`RegimeExit/InProbabilityOccupation.lean`, `RegimeExit/Proposition42f.lean`.
+**Merge dependency:** PR #69 must merge first.
 
 ### C70.1 — almost-sure occupation after random entry
 
-- **Claim.** Let `J` be admissible strategic, `R' = (J(G), P, B', B'_0, h', ν', c')` an
-  independently certified Exact GR for `K^J` with almost-sure weak occupation convergence,
-  `B'_0 ⊆ B' ⊆ Y \ B`. For `y ∈ B`, `P^J_y`-a.s. on `{τ_B < ∞, Y_{τ_B} ∈ B'_0}`, the
-  post-entry empirical `h'`-occupation measures converge weakly to `ν'`; and the
-  *whole-path* empirical occupation `T⁻¹ Σ_{t<T} δ_{h'(Y_t)}` also converges to `ν'`
-  (finite random prefix deleted with an explicit `2τ_B/T` bounded-Lipschitz or
-  weak-topology estimate).
-- **Source.** Spec §2.3 (random-entry argument).
-- **Provider (planned).** `RegimeExit/RandomEntryOccupation.lean`:
-  `postEntryOccupation_ae`, `empiricalOccupation_shift_tendsto_iff` (finite-prefix deletion),
-  `switch_occupation_ae_of_routing`.
-- **Inputs.** C69.2–C69.4; CB.3; frozen `Regime/Occupation.lean`
-  (`empiricalOccupation`, `IsLimitingOccupationLaw`), `ConvergenceMode.almostSureWeak`;
-  target `IsExactGeneratedRegime` certificate.
+- **Claim.** For any canonical `N`, source spec (region `B`), target spec with
+  `IsExactGeneratedRegime N target mT` and `target.convergenceMode = almostSureWeak`,
+  and `y ∈ B`: `P_y`-a.s., (i) for every finite first-exit time `n+1` into `B'_0`, the
+  occupation laws of `θ_{n+1}w` converge weakly to `ν'`; (ii) on the routed event
+  `{τ_B<∞, Y_{τ_B}∈B'_0}` the whole-path occupation laws converge to `ν'`. Supporting:
+  finite-prefix estimate `|∫f dν̂_{k+T}(w) − ∫f dν̂_T(θ_k w)| ≤ 2kC/(k+T)`; generic a.e.
+  transport for any property certified on all `B'_0`-supported laws.
+- **Source.** Spec §2.3 random-entry paragraph.
+- **Provider.** `postEntry_occupation_ae`, `randomEntry_occupation_ae`;
+  `stoppedFuture_ae_of_basinLaws`, `stoppedFuture_ae_all_of_basinLaws`;
+  `tendsto_empiricalOccupation_of_tailShift`, `abs_average_sub_shift_average_le`,
+  `abs_integral_empiricalOccupation_sub_shift_le`; `pathLaw_eq_bind`, `normalizedArrivalLaw`.
+- **Inputs.** C69.3 `finiteStoppedFutureMeasure_eq_bind`; frozen `IsExactGeneratedRegime`,
+  `IsLimitingOccupationLaw`, `ConvergenceMode.almostSureWeak`, `empiricalOccupation`;
+  `MultipleLimit.FiniteUniformAverage.integral_uniformFin_eq_average`.
 - **Consumers.** C70.3, X1.3.
-- **Counterexamples.** Target entered without Exact-GR invariance; occupation target
-  of a *different* kernel; descriptor undefined outside `B'`.
-- **Status.** PROPOSED.
+- **Counterexamples.** Leaky target (entry without invariance; long-run target share
+  9/13); non-prefix-invariant custom mode; post-intervention kernel mismatch (C69.5).
+- **Status.** PROVED (source level).
+- **Verification.** Local compile; `c70_axiom_audit.py` 37/37; 727/727 regressions.
+  CI pending (C70 PR).
+- **Manuscript.** v0.2.0 §4.2, Prop. 4.2f proof (random entry, a.s.).
 
 ### C70.2 — in-probability convergence after random entry
 
-- **Claim.** With a research-library in-probability weak-convergence mode (explicitly typed
-  over a metric on `ProbabilityMeasure H`), the post-entry occupation converges in
-  probability on the routed event, using endpoint-conditioned convergence probabilities,
-  the countable stopping decomposition (C69.4) and dominated/bounded convergence.
-- **Provider (planned).** `RegimeExit/InProbabilityOccupation.lean`.
-- **Counterexamples.** An arbitrary `ConvergenceMode.custom` predicate is **not** transported.
-- **Status.** PROPOSED.
+- **Claim.** Research mode `inProbabilityWeak` (for every `f : H →ᵇ ℝ`, `ε>0`:
+  `P(|∫f dν̂_{n+1} − ∫f dν| > ε) → 0`). If the target is an Exact GR in this mode, then for
+  `y ∈ B`: `P_y(routed ∩ {|∫f dν̂_{n+1} − ∫f dν'| > ε}) → 0`; and under
+  `P_y(routed) ≥ 1−η`, eventually `P_y(|…| > ε) ≤ η + δ` for every `δ>0`.
+- **Provider.** `inProbabilityWeak`, `occupationDeviationSet`, `occupationDeviationSet_measurable`,
+  `occupationDeviation_subset_shift`, `firstExit_shift_le_mass_mul`,
+  `firstExit_deviation_tendsto_zero`, `randomEntry_occupation_inProbability`,
+  `inProbability_deviation_eventually_le`.
+- **Inputs.** C69.3, C70.1 (normalized arrival law, prefix estimate); mathlib
+  `tendsto_tsum_of_dominated_convergence` (Tannery).
+- **Counterexamples.** η>0 deviation does not vanish (Python); arbitrary
+  `ConvergenceMode.custom` not transported.
+- **Status.** PROVED (source level). Mode equivalence with metric in-probability
+  convergence: NOT claimed.
+- **Verification.** As C70.1.
 
 ### C70.3 — completed scoped Proposition 4.2f
 
-- **Claim.** Combine CA, CB, C69, C70.1–C70.2 and the grounded confirmatory semantics:
-  routing bound `R_B^{J,∞}(y,B'_0) ≥ 1-η` on `B₁` ⇒ with probability `≥ 1-η` finite
-  first exit into `B'_0`, retention in `B'` and target occupation convergence (for the two
-  supported modes); `ψ_B(P_y)=P_y(τ_B=∞)` frozen; `κ_{ψ_B,J}(B₁) ≥ 1-η`; positive
-  uniform constitution only under `η<1` and all original gates.
-- **Provider (planned).** `RegimeExit/Proposition42f.lean`: `proposition_4_2f_almostSure`,
-  `proposition_4_2f_inProbability`.
-- **Status.** PROPOSED.
+- **Claim.** Under `CertifiedSwitchData` (source/target Exact GR, disjoint regions,
+  admissible strategic `J`) and `SwitchRoutingBound … η`:
+  (a.s. mode) `κ_{ψ_B,J}(B₁) ≥ 1−η` and for every `y ∈ B₁` the event "finite first
+  exit into `B'_0`, retention in `B'` afterwards, whole-path occupation → `ν'`" has
+  (outer) probability `≥ 1−η`, equal to one when `η = 0`;
+  (in-probability mode) margin bound, retention probability `≥ 1−η`, routed deviation
+  → 0 and eventual whole-path deviation `≤ η+δ`; positive uniform constitution and
+  grounded confirmatory PR only for `η<1` with all original gates.
+  `ψ_B(P_y)=P_y(τ_B=∞)` frozen.
+- **Provider.** `proposition_4_2f_almostSure`, `proposition_4_2f_inProbability`,
+  `proposition_4_2f_eta_zero_almostSure`, `proposition_4_2f_uniformPR`,
+  `switchRetainEvent`, `switchRetainEvent_measurable`, `switchOccupationEvent`,
+  `switchRetainEvent_prob_ge`.
+- **Inputs.** CA.1, CB.1–CB.3, C69, C70.1, C70.2.
+- **Consumers.** D2.4, X1.3, R.1.
+- **Counterexamples.** η = 1 vacuity; finite hit ≠ persistence (PR #67 witnesses);
+  leaky target.
+- **Status.** PROVED (source level).
+- **Verification.** As C70.1.
+- **Manuscript.** v0.2.0 Proposition 4.2f (full scoped statement) in §4.2 and §5.4.
 
----
+## E1 — approximate type-respecting quotients (branch `claude/zen-einstein-ub8zgr-e1`, stacked on #69)
 
-## E1 — approximate type-respecting quotients
+Lane document: [LANE_E1_APPROX_QUOTIENT.md](LANE_E1_APPROX_QUOTIENT.md). Modules:
+`Probability/EventTVCalculus.lean`, `Probability/CompProdPushforward.lean`,
+`Quotient/ApproxPrefix.lean`, `Quotient/ApproxMargin.lean`, `Quotient/ApproxAdversaries.lean`.
 
-| Anchor | Claim | Planned provider | Status |
+| Anchor | Claim | Provider | Status |
 |---|---|---|---|
-| E1.1 | One-step defect `η_ℓ = sup_y ‖q_# K^ℓ(y,·) − K̄^{φ(ℓ)}(q y,·)‖_TV ∈ [0,1]` (definition, typed quotient, frozen label bijection `φ`) | `Quotient/ApproxDefect.lean` | PROPOSED |
-| E1.2 | `TV((q^{0:T})_# P_y^{K^ℓ,0:T}, P̄_{q y}^{K̄^{φ ℓ},0:T}) ≤ min(1, T η_ℓ)` — projected fine process need not be Markov; analytic hybrid induction | `Quotient/ApproxPrefix.lean`: `approxQuotient_pathLaw_tv_le_linear` | PROPOSED |
-| E1.3 | Lipschitz finite-prefix property: `|Δ − Δ̄| ≤ L_ψ T(η_0+η_J)` and margin bound on surjective `q(B₁)=B̄₁` | `Quotient/ApproxMargin.lean`: `approxQuotient_margin_abs_le` | PROPOSED |
-| E1.4 | Counterexamples: small η with failed exact invariance; intervention-label mismatch; property non-factorization | `Quotient/ApproxAdversaries.lean` + Python | PROPOSED |
-| E1.5 | Optional geometric bound `1-(1-η)^T` | `Quotient/CommonMass.lean` | OPEN (separate proof obligation; not implied by E1.2) |
+| E1.0 | General event-TV calculus without countability: integral of `[0,1]` functions within TV (Hahn), pushforward contraction, triangle, two `⊗ₘ` comparison bounds | `lintegral_le_add_eventTotalVariation`, `eventTotalVariation_map_le`, `eventTotalVariation_triangle`, `eventTotalVariation_compProd_right_le`, `eventTotalVariation_compProd_left_le` | PROVED |
+| E1.1 | Defect as an UPPER-BOUND predicate `HasQuotientDefect q K K̄ η :⇔ ∀ y, ‖q_#K(y,·) − K̄(q y,·)‖_TV ≤ η` over EVERY fine state (the spec's `η = sup_y …` is the least such bound; the supremum itself is not defined in Lean and all theorems are monotone in `η`); per-label defects `η_ℓ` against `K̄^{φ(ℓ)}` enter as per-label hypotheses of the family theorem; exact intertwining ⇒ `η=0` | `HasQuotientDefect`, `ApproxKernelIntertwines`, `approxKernelIntertwines_zero_of_exact` | DEFINED (+ PROVED reduction) |
+| E1.2 | `TV(q-projected fine T-prefix, coarse T-prefix) ≤ min(1, Tη)` from the same fine start; projected process need not be Markov | `approxQuotient_prefix_tv_le_linear`, `approxQuotient_prefix_tv_le_min`, `approxQuotient_pathLaw_tv_le_linear` (spec name), `approxQuotient_pathLaw_prefix_tv_le` | PROVED |
+| E1.3 | For a factored property whose coarse side is an `L`-event-TV-Lipschitz `T`-prefix functional (`TVLipschitzPrefixProperty`, `L = p.constant`), with `0 ≤ η₀, η_J`: `\|Δ(y)−Δ̄(q y)\| ≤ L(min(1,Tη₀)+min(1,Tη_J))`; margins with `B̄₁ = q(B₁)`; positive-margin transfer; frozen-family version; Thm 7.4b certificate interface (arbitrary factored `ψ`, `QuotientCompatibleComparisonSets`); exact intertwining ⇒ equal margins | `approxQuotient_effect_abs_le`, `approxQuotient_margin_abs_le`, `approxQuotient_fine_margin_pos_of_coarse`, `approxQuotient_coarse_margin_pos_of_fine`, `approxQuotient_family_margin_abs_le`, `approxQuotient_margin_abs_le_of_certificates`, `approxQuotient_margin_eq_of_exact` | PROVED |
+| E1.4 | Leakage counterexample (Lean, kernel level): for every `ε ∈ (0,1]`, defect ≤ ε, fine region one-step invariant, coarse model leaves it with probability exactly ε (Exact-GR/PR non-transfer is the interpretation, not a separate theorem); Python (finite chains, NOT proofs): non-Markov projection from one start with non-vacuous linear bound (`Tη < 1`), defect over unreachable states, initial-law lift failure, lumpable η=0 (horizons ≤ 5) and equal margins, leakage incl. the η=1 cap, factorization failure, label mismatch, baseline-only certificate insufficient, non-saturated region does not descend, untyped (parity) quotient with η=0 rejected, positive margins above budget transferring in both directions with a leaking coarse region and an admissible `B₁` | `small_defect_does_not_preserve_invariance`; `test_e1_approx_quotient.py` (20) | PROVED / executable |
+| E1.5 | Geometric bound `1 − (1 − η)^T` | — | OPEN (needs a measurable common-mass construction; NOT implied by E1.2) |
 
-Inputs: CORE.Q74b, CORE.P54, A2.2, CORE.P52. Consumers: X1, R. Manuscript: §7.4.3 (Thm 7.4c).
+Inputs: CORE.Q74b (`TypeRespectingStateCompression`, `KernelIntertwines`, `kernelIntertwines_apply`,
+`QuotientFamilyMatching`, `PropertyFactorsThroughCompression`, `QuotientCompatibleComparisonSets`),
+CORE.P54 (`finitePrefixLaw`, `eventTotalVariation`), A2 (`TVLipschitzPrefixProperty`),
+CQ-1 (`ConstitutiveQuasi.pathLaw_finitePrefix_eq`),
+CORE.P52 (`abs_sInf_image_sub_sInf_image_le_of_uniform`), C69 shared lemma (moved to
+`Probability/CompProdPushforward.lean`). Consumers: X1, R. Manuscript: §7.4.3 (Thm 7.4c).
+Verification: local compile; `e1_axiom_audit.py` all declarations allowlisted (count in the PR); CI pending (E1 PR).
 
 ## F1 — multi-agent closed-loop versus opponent-locked protocols (branch `claude/zen-einstein-ub8zgr-f1`, stacked on #69)
 
@@ -303,7 +342,7 @@ Inputs: A2, C-lane occupation (C2/C11). Consumers: X1, R. Manuscript: §5.4.1.
 | D2.1 | Reach-by-horizon objective with exact Bellman evaluation on declared finite policy classes | `ReverseSolver/D2Reach.lean` | PROPOSED |
 | D2.2 | Reach-before-forbidden objective | `ReverseSolver/D2ReachAvoid.lean` | PROPOSED |
 | D2.3 | Reach-and-stay for declared finite duration (hit ≠ stay) | `ReverseSolver/D2ReachStay.lean` | PROPOSED |
-| D2.4 | Eventual switching under exact/bounded conditions, consuming C69.4 | `ReverseSolver/D2Switch.lean` | BLOCKED (C69, C70) |
+| D2.4 | Eventual switching under exact/bounded conditions, consuming C69.4 | `ReverseSolver/D2Switch.lean` | BLOCKED (merge of #69 and the C70 PR) |
 | D2.5 | `sup_π inf_K` vs `inf_K sup_π` separation witness; no rectangularity assumed | `ReverseSolver/D2MinimaxAdversaries.lean` | PROPOSED |
 
 Inputs: D0/D1, C69, C70. Must not mutate D0/D1 receipts.
@@ -342,3 +381,14 @@ Inputs: E1, F1, A3, C69/C70, D0/D1, C10/C11. Consumers: R.
 - **Next PR contract (C70):** inputs `hasCanonicalLastStateRestart`,
   `pathLaw_firstExitFutureEvent_restart`, `infiniteStoppedFutureMeasure_restart`,
   CB.3 retention; target C70.1–C70.3 above.
+
+### C70 (stacked on #69) — branch `claude/zen-einstein-ub8zgr-c70`, PR base `claude/zen-einstein-ub8zgr`
+
+Stacked-PR structure authorized by the author (16 October 2026): each later lane uses
+`claude/zen-einstein-ub8zgr-<lane>`. The C70 PR is retargeted to `main` after #69 merges;
+full PR-to-main CI (synthetic merge) runs then. Until then CI evidence is branch-head only.
+
+- **Completed anchors:** C70.1–C70.3 (PROVED, source level).
+- **Open anchors:** none inside C70; metric in-probability equivalence not claimed.
+- **Version boundary:** unchanged frozen core, toolchain, manifest, paper, schemas.
+- **Next PR contract:** E1 (independent of C70), then F1, A3; D2 after C70 merges.
