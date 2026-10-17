@@ -1,0 +1,46 @@
+name: Integrity portability
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  integrity-portability-windows:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Exercise canonical Git and isolated imports on Windows
+        shell: pwsh
+        run: |
+          # Match the Windows runner's checkout policy after the Git reader
+          # deliberately removes inherited global configuration.
+          git config --local core.autocrlf true
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -B -m verification.integrity.ci_context --repo . --event-file "$env:GITHUB_EVENT_PATH" --report "$env:RUNNER_TEMP/context.json"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          foreach ($suite in @('reference', 'preservation', 'tex')) {
+            python -B -m verification.integrity.run_tests --suite $suite --report "$env:RUNNER_TEMP/$suite-tests.json"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
+      - name: Preserve portability reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: hardening-windows-portability-reports
+          path: |
+            ${{ runner.temp }}/context.json
+            ${{ runner.temp }}/*-tests.json
+          if-no-files-found: error
+          retention-days: 30
