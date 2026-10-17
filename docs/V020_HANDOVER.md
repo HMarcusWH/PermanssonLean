@@ -11,6 +11,7 @@
 1. **Review A3 (PR #73).** Its adversarial review never completed; three attempts were killed by session limits. Run one: math, overclaim and tests lenses, plus verification. Fix whatever it confirms. A3 is the only PR without an independent review.
 2. **Watch PRs #70–#73.** UPDATE 13:10 UTC: the author merged **#69** as merge commit `54848ef`, and **#70, #71 and #72 were retargeted to `main`**. They merge cleanly, because `main`'s tree equals `d8a96a4`, so their existing green CI describes the merge result. **#73 still targets the E1 branch**: retarget it to `main` once #71 merges. Each lane edits its own section of `docs/V020_IMPLEMENTATION_INDEX.md`, but after one lane merges, the next may need `main` merged in (merge commit, never rebase) to resolve index or README hunks.
    - CI: all green, including #72 at `b7e83c3` (Research Lean 39033626515 succeeded).
+   - UPDATE 13:22 UTC: the author merged **#70** as merge commit `24ea083`. The author and Codex then pushed new heads: E1 is now `7ae2fab`, which merges C70 `main`; F1 is now `0b001dc`, with Codex fix `6df963c` "expose strict MA2 boundary and require common exogeneity" plus a merge of `main`. **Re-read those two branches before changing them**: the SHAs and CI run IDs in the PR table below predate these pushes. #73 is still at `f757b9e`, based on the OLD E1 head `60d1425`; it needs the new E1 head (or, after #71 merges, `main`) merged in.
    - Nothing may be merged without the author's explicit approval.
    - When #69 merges:
      - retarget #70, #71 and #72 to `main`;
@@ -87,20 +88,19 @@
 ## 3. PR / branch map (as of handover)
 
 ```
-main 54848ef  (PRs #1–#69 merged; #69 = C69, merge commit of d8a96a4)
-├── #70  …-c70                        d5b60b6  C70 random-entry occupation / Prop 4.2f   (base: main)
-├── #71  …-e1                         60d1425  E1 approximate quotients                  (base: main)
-│   └── #73  …-a3                     f757b9e  A3 contractive W1                         (base: …-e1)
-├── #72  …-f1                         b7e83c3  F1 multi-agent protocols                  (base: main)
+main 24ea083  (PRs #1–#70 merged; #69 = 54848ef, #70 = 24ea083)
+├── #71  …-e1                         7ae2fab  E1 approximate quotients                  (base: main)
+│   └── #73  …-a3                     f757b9e  A3 contractive W1                         (base: …-e1; built on old E1 60d1425)
+├── #72  …-f1                         0b001dc  F1 multi-agent protocols                  (base: main)
 └── (ref) …-handover                           this document (no PR; based on d8a96a4)
 ```
 
 | PR | Lane | Head | CI | Review | Status |
 |---|---|---|---|---|---|
 | [#69](https://github.com/HMarcusWH/PermanssonLean/pull/69) | C69 restart / countable routing | `d8a96a4` | 5/5 green | done | **MERGED** (`54848ef`) |
-| [#70](https://github.com/HMarcusWH/PermanssonLean/pull/70) | C70 random-entry occupation | `d5b60b6` | 5/5 green (dispatch) | done; Codex no findings | awaiting author; base now `main` |
-| [#71](https://github.com/HMarcusWH/PermanssonLean/pull/71) | E1 approximate quotients | `60d1425` | 5/5 green (runs 38996000796, 38996001960, 38996003453, 38996004564, 38995995542) | 2 rounds, all fixed; Codex no findings | awaiting author; base now `main` |
-| [#72](https://github.com/HMarcusWH/PermanssonLean/pull/72) | F1 multi-agent protocols | `b7e83c3` | 5/5 green at `b7e83c3` (Research Lean 39033626515, Lean 39033628189, Executable verification 39033629860, Application 39033631711, smoke 39033624386) | 2 rounds (round-2 verifiers did not run; findings fixed by hand) | awaiting author; base now `main` |
+| [#70](https://github.com/HMarcusWH/PermanssonLean/pull/70) | C70 random-entry occupation | `547d17e` | green | done; Codex no findings | **MERGED** (`24ea083`) |
+| [#71](https://github.com/HMarcusWH/PermanssonLean/pull/71) | E1 approximate quotients | `7ae2fab` (runs below are for `60d1425`) | 5/5 green (runs 38996000796, 38996001960, 38996003453, 38996004564, 38995995542) | 2 rounds, all fixed; Codex no findings | awaiting author; base now `main` |
+| [#72](https://github.com/HMarcusWH/PermanssonLean/pull/72) | F1 multi-agent protocols | `0b001dc` (runs below are for `b7e83c3`) | 5/5 green at `b7e83c3` (Research Lean 39033626515, Lean 39033628189, Executable verification 39033629860, Application 39033631711, smoke 39033624386) | 2 rounds (round-2 verifiers did not run; findings fixed by hand) | awaiting author; base now `main` |
 | [#73](https://github.com/HMarcusWH/PermanssonLean/pull/73) | A3 contractive W₁ | `f757b9e` | 5/5 green (39015546427, 39015547946, 39015549786, 39015551573, 39015543224) | **NONE completed** | **review first** |
 
 Master status table: `docs/V020_IMPLEMENTATION_INDEX.md`. Each stacked branch carries its own lane rows; they merge cleanly, since each lane edits a different section. The README links each lane doc.
