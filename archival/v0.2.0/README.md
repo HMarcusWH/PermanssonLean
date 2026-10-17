@@ -14,6 +14,13 @@ Its artifact ID is `12106535829`, run `39045919534`. A new workflow run cannot
 replace those historical bytes. Never put credentials or signed redirect URLs
 in the supplement.
 
+Retain every page behind assembled review submissions and threads. Connector
+thread responses expose no pagination state, so their full saved response and
+exact PR request are cross-checked against exhaustive REST inline-comment pages
+and the captured PR comment count. Do not invent a completion flag. Each final
+job needs its own nonempty, source-bound log capture; an unopened run-level ZIP
+cannot substitute for those logs.
+
 Commit clean tooling at T first. Then, from the repository root:
 
 ```text

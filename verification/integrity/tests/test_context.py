@@ -5,7 +5,7 @@ from pathlib import Path
 import unittest
 from unittest import mock
 
-from verification.integrity.ci_context import capture_context, require_pr_acceptance, REPOSITORY
+from verification.integrity.ci_context import capture_context, require_pr_acceptance, REPOSITORY, main as context_cli
 from verification.integrity.reports import HardeningError
 from verification.integrity.tests._fixtures import GitFixture
 
@@ -66,6 +66,14 @@ class ContextTests(unittest.TestCase):
         ctx = self.capture()
         self.assertEqual("workflow_dispatch", ctx.event)
         self.assert_context_error(lambda: require_pr_acceptance(ctx, head=self.head, base=self.base, synthetic=self.synthetic))
+        report = self.fixture.root / ".hardening-reports" / "manual-context.json"
+        with mock.patch.dict(os.environ, self.env):
+            result = context_cli(["--repo", str(self.fixture.root),
+                                  "--event-file", str(self.event_path), "--report", str(report)])
+        self.assertEqual(1, result)
+        payload = json.loads(report.read_bytes())
+        self.assertEqual("FAIL", payload["status"])
+        self.assertEqual("E_CONTEXT", payload["error_code"])
 
     def test_push_positive_and_after_binding(self):
         self.env.update(GITHUB_EVENT_NAME="push", GITHUB_REF="refs/heads/main")

@@ -39,6 +39,14 @@ Exit codes are 0 PASS, 1 verification failure, 2 invalid invocation/input and 3 
 
 The three independent always-on contexts are `frozen-source-preservation`, `release-export-integrity` and `archive-reproducibility`. An additional Windows portability job checks canonical line endings and isolated imports. Existing proof, executable and application checks remain unchanged. The path-filtered historical `research-release` context is not proposed as globally required.
 
+These required workflows expose only main-targeting PR and main-push events.
+The required context entry point also rejects diagnostic dispatches. The static
+workflow contract fixes effective read-only permissions and direct approved
+commands, rejecting job overrides, shell backgrounding and swallowed failures.
+It also pins the complete reviewed workflow profile, so additional steps,
+actions, event filters or runtime changes require an explicit reviewed policy
+update. This does not independently authenticate candidate-owned checker code.
+
 Code verification, active enforcement and external publication are distinct states. Before integration, obtain current H/B/S evidence, genuine synthetic ordered parents, fresh maintenance PR-only C10 evidence, zero release changes, zero Lean changes and resolved substantive findings. The eventual M must have the accepted synthetic tree and ordered parents. Final maintenance acceptance belongs in an external receipt, avoiding a self-referential archival package.
 
 `.github/repository-rules/main.proposed.json` is deliberately disabled. Settings activation, an unused annotated remote tag and external publication require the separate authorized rollout. Resolve an eligible independent reviewer, observe exact job contexts/App IDs, apply and read back effective rules including bypass data, verify tag peeling to the accepted release, and retrieve/hash the externally published supplement. A proposed file or local archive does not complete those operations.

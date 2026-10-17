@@ -825,6 +825,8 @@
   ],
   "controls": {
     "archive": [
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
       "verification.archive.tests.test_archive.ArchiveInputTests.test_manifest_nested_declarations_cannot_be_repaired_into_promotion",
       "verification.archive.tests.test_archive.ArchiveInputTests.test_manifest_extra_payload_and_symlink_rejected",
       "verification.archive.tests.test_archive.ArchiveInputTests.test_dotdot_scratch_overlap_rejected_before_creation",
@@ -847,6 +849,10 @@
       "verification.integrity.tests.test_reference.ReferenceTests.test_tree_gitlink_target_may_be_external"
     ],
     "workflow": [
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_required_workflow_rejects_dispatch",
       "verification.integrity.tests.test_workflow.WorkflowTests.test_read_only_credentials_review_control",
       "verification.integrity.tests.test_workflow.WorkflowTests.test_disabled_ruleset_is_only_a_proposal"
     ]

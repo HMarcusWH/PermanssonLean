@@ -108,6 +108,8 @@ def main(argv=None):
         repo = GitRepo(args.repo)
         candidate = repo.run("rev-parse", "HEAD").strip().decode("ascii")
         context = capture_context(repo, candidate, args.event_file)
+        if context.event not in {"pull_request", "push"}:
+            raise HardeningError("E_CONTEXT", "Required check contexts accept only genuine PR merges or main pushes")
         write_report(args.report, {"format": "Permansson.Hardening.CIContext.v1", **asdict(context)})
         return 0
     except HardeningError as exc:
