@@ -43,4 +43,12 @@ Code verification, active enforcement and external publication are distinct stat
 
 `.github/repository-rules/main.proposed.json` is deliberately disabled. Settings activation, an unused annotated remote tag and external publication require the separate authorized rollout. Resolve an eligible independent reviewer, observe exact job contexts/App IDs, apply and read back effective rules including bypass data, verify tag peeling to the accepted release, and retrieve/hash the externally published supplement. A proposed file or local archive does not complete those operations.
 
+The user has left the eligible reviewer and publication destination undetermined
+for later review by Claude or ChatGPT Pro. The repository includes the final ZIP
+and checksum under `archival/v0.2.0/publication-candidate/`; storing them in Git
+does not complete external publication. Settings, remote archival tags and
+external publication remain deferred. Source-bound maintenance results belong
+in a separate receipt identifying the tested commits, outside the historical
+supplement and its publication ZIP.
+
 The source/evidence bundle supports source restoration and artifact replay. Fresh pinned Lean execution is separately established by current proof CI. Offline replay does not create publisher authentication. Strict MA2, broader A3/D2/E1 results, X1 numerical reflection and unrestricted strategies retain their existing scientific status.
