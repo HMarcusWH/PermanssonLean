@@ -1,0 +1,673 @@
+{
+  "title": "Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium",
+  "subtitle": "v0.2.0 research companion: exit routing, intervention bounds, residence objectives, and a same-world commons benchmark",
+  "author": "Marcus Hermansson",
+  "date": "17 October 2026",
+  "version": "0.2.0",
+  "abstract": "This research companion extends the discrete strategic-world framework without changing its frozen v0.1.8 mathematical core. A typed action-selection kernel, world-transition kernel, and strategic-update kernel induce a single canonical path law; regime persistence, descriptor occupation, and intervention-relative constitution remain separate questions. The accepted extensions establish canonical restart after finite first exit, preserve never-exit mass, transport supported occupation-convergence statements across random entry, bound finite-prefix errors under primitive perturbations and approximate quotients, and compare sequential and multi-agent intervention protocols. The accepted research extensions further formalize finite residence objectives, conditional long-run contraction bounds, and an exact rational commons example with equilibrium incentives and learning under the identical world kernel. The commons replete region leaks for both generators, so the proposed Exact Generated Regime claim fails. Its distinct descriptor occupation targets are identified by a verified Poisson certificate connected to the actual typed kernels. Strict opponent-locked MA2 remains open; the implemented contraction distance is a Lipschitz dual quantity, with coupling-Wasserstein identification and assumed ergodic factorization explicitly separated. Every result is stated at its encoded scope. Computational checks, deductive proofs, source-bound verification, and empirical interpretation are reported as different evidentiary layers.",
+  "sections": [
+    {
+      "title": "1. Research scope, provenance, and acceptance",
+      "paragraphs": [
+        "The analytical question remains how strategic behavior generates a persistent and substantively interpretable dynamical object. Equilibrium, reinforcement, evolutionary adjustment, and other rules can generate processes on a common enlarged state space. A regime classification then requires more than a policy label or an invariant distribution: the analyst must specify a region, admissible starts, persistence requirement, descriptor, occupation target, convergence mode, and intervention-relative property. The present research companion develops several connections between these ingredients while preserving their logical separation.",
+        "The canonical predecessor is the v0.1.8 editorial-clean manuscript dated 23 September 2026, by Marcus Hermansson, with the same main title. Its immutable Lean snapshot is c018f79ea4ce46f4f679ad5bca254509778fc53c. The historical TeX SHA-256 is 8235f6140bca33e7e3f0e96b4fd3aa2431c476fbdaf7c5d86d6d0b703ea54ed9; the distributed PDF SHA-256 is 24f7dd43c8996b6fc8bedf708704969ba2124e159783bbd2ded45db61525df54. These identify preserved artifacts. This companion has its own source, build record, inventory, and release status. It neither replaces those bytes nor extends their historical PASS reports to later source.",
+        "The source repository is https://github.com/HMarcusWH/PermanssonLean. The accepted research snapshot for this companion is 5822cdff0fc360d9e368e10ff5f7576c3141a1b3. The repository provides the pinned environment, Lean modules, declaration audits, independent executable checks, and source-bound verification receipts; the separately versioned release kit records this manuscript and its artifact hashes.",
+        "Acceptance is attached to a statement, its hypotheses, and an exact source tree. The accepted research source is main 5822cdff0fc360d9e368e10ff5f7576c3141a1b3. Earlier A2 and B2 providers are joined by accepted C69, C70, E1, repaired F1, conditional dual-distance A3, finite full-history D2, and the scoped X1 implementation. Their exact-source and synthetic-merge evidence is recorded separately from CI for this release kit. A new source edit requires new evidence; open scientific obligations are retained even after the proved scopes are accepted.",
+        "The companion separates theorem proofs, exact calculations, source-bound verification, and empirical interpretation. Its unchanged application standard retains independent selection, identification, uncertainty, grounding, and provenance gates. Weaker results never discharge an open requirement."
+      ],
+      "claims": [
+        {
+          "anchor": "R.SCOPE",
+          "title": "Additive research release boundary",
+          "status": "DEFINED",
+          "statement": "All extensions belong to the separate research library and this separately versioned companion; the original core, v0.1.8 paper, provenance, toolchain, dependency manifest, and application schema retain their identities.",
+          "assumptions": [
+            "Final release acceptance requires exact-source and synthetic-merge verification, transitive axiom audit, destructive controls, a current declaration crosswalk, and a fresh artifact inventory."
+          ],
+          "proof": "This is a release obligation checked by source comparison, build evidence, and artifact hashes rather than a mathematical theorem.",
+          "providers": [],
+          "open": "Acceptance covers the stated research scopes, not every item of the integration specification. Final-head CI for the current release kit remains a separate pending gate; accepted research proofs do not pre-empt it."
+        }
+      ]
+    },
+    {
+      "title": "2. The canonical typed process and the regime boundary",
+      "paragraphs": [
+        "Let the strategic state, world state, and joint action spaces be measurable spaces S, X, and A. The current state is y=(s,x). An action law alpha(y,da) is followed by a physical transition P(y,a,dx'), then a strategic update U(y,a,x',ds'). Their ordered composition determines the joint kernel K on S times X. This order matters: an update can observe the realized next world when the model permits it, but the X1 reinforcement example deliberately reads the old world. Merely presenting a transition matrix does not establish correspondence with the declared strategic primitives.",
+        "Feasible-graph specifications must be extended measurably before they define kernels on full product spaces. The same discipline applies to U and P: a fixed law on a nonempty target space supplies the declared off-graph extension where needed. Such a completion is part of the model, not evidence that off-graph behavior is substantively identified. Error bounds and intervention comparisons must include rows reachable under the compared interventions, even when those rows have zero probability under baseline data.",
+        "Freeze Sigma=(B,B0,h,nu,c): a measurable regime region B, a measurable initial basin B0 contained in B, a measurable descriptor h on the whole state space, a target probability nu on the descriptor space, and an explicitly declared convergence mode c. The reference measure used for region nontriviality is frozen separately. The immutable specification is supplied before classification; the formal API does not infer historical preregistration from already constructed values.",
+        "Exact GR has four clauses: the canonical process is well posed for every initial probability law; Assumption4.1 holds; every state y in B has K(y,B)=1; and the descriptor empirical occupations converge to nu in mode c for every initial probability supported on B0. Assumption4.1 requires a nonempty basin, nonempty region interior or positive region reference mass, at least two descriptor values somewhere on B, and two basin point-start baseline path laws that differ. Basin-reachable descriptor nondegeneracy is an additional confirmatory-GR requirement, not a fifth universal Exact-GR clause.",
+        "Constitutive comparisons freeze a measurable B1 contained in B0 with TWO starts inducing distinct baseline point-start path laws. Randomness within one starting law does not satisfy that condition. An admissible strategic replacement holds P fixed. For a frozen property psi, constitution means baseline and intervened values differ at every y in B1. Uniform constitution is stronger: the infimum over B1 of their metric distance is positive, supplying a common positive lower bound. Pointwise positive effects can still have infimum zero. Neither property effects nor positive uniform margins supply Exact-GR persistence or convergence.",
+        "Confirmatory use also needs substantive descriptor grounding. When a property reads the descriptor after leaving the regime region, the off-region descriptor must be frozen and justified by the relevance map. A decorative extension outside the region cannot earn a grounded constitutive interpretation merely because it changes a measurable output. These requirements remain separate from the existence and uniqueness of the canonical path law and from the formal convenience of a finite state space."
+      ],
+      "equations": [
+        {
+          "latex": "K((s,x),ds'\\,dx')=\\int_A U((s,x),a,x',ds')\\,P((s,x),a,dx')\\,\\alpha((s,x),da).",
+          "caption": "The ordered alpha/P/U composition fixes the actual process being classified."
+        }
+      ],
+      "claims": [
+        {
+          "anchor": "CORE.IDENTITY",
+          "title": "Reuse of the original canonical process",
+          "status": "FROZEN_PROVIDER",
+          "statement": "Research proofs use the original induced kernel, canonical path law, empirical occupation, typed interventions, and constitutive margin rather than substitute definitions.",
+          "assumptions": [
+            "Each invocation retains the measurable-space, probability, admissibility, and comparison-set instances required by its exact declaration."
+          ],
+          "proof": "Later bridges identify newly convenient finite expressions with the existing objects; they do not alter the frozen statements to make an extension fit.",
+          "providers": [
+            {
+              "module": "PermanssonLean.Regime.Perturbation",
+              "declaration": "PermanssonLean.RegimeSpecification.constitutiveMargin_perturbation_abs_le"
+            },
+            {
+              "module": "PermanssonLean.Probability.FinitePrefixTV",
+              "declaration": "PermanssonLean.ProbabilitySupport.proposition_5_4"
+            },
+            {
+              "module": "PermanssonLean.Quotient.Preservation",
+              "declaration": "PermanssonLean.RegimeSpecification.quotient_frozenFamilyPR_iff"
+            },
+            {
+              "module": "PermanssonLean.Regime.Specification",
+              "declaration": "PermanssonLean.RegimeSpecification"
+            },
+            {
+              "module": "PermanssonLean.Regime.Assumption41",
+              "declaration": "PermanssonLean.RegimeSpecification.Assumption41"
+            },
+            {
+              "module": "PermanssonLean.Regime.GeneratedRegime",
+              "declaration": "PermanssonLean.RegimeSpecification.IsExactGeneratedRegime"
+            },
+            {
+              "module": "PermanssonLean.Regime.GeneratedRegime",
+              "declaration": "PermanssonLean.RegimeSpecification.IsConfirmatoryGeneratedRegime"
+            },
+            {
+              "module": "PermanssonLean.Regime.Constitution",
+              "declaration": "PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet"
+            },
+            {
+              "module": "PermanssonLean.Regime.Constitution",
+              "declaration": "PermanssonLean.RegimeSpecification.IsStrategicallyConstitutive"
+            },
+            {
+              "module": "PermanssonLean.Regime.ConstitutiveMargin",
+              "declaration": "PermanssonLean.RegimeSpecification.uniformlyConstitutive_iff_margin_pos"
+            }
+          ],
+          "open": "The original completion claim concerns the discrete GR/PR core, not every specialized, empirical, or continuous-state research extension."
+        }
+      ]
+    },
+    {
+      "title": "3. Exact first-exit routing and canonical restart",
+      "paragraphs": [
+        "Exit routing records where a process first leaves a declared region, without conditioning away trajectories that never leave. For a start inside B, the finite routing submeasure sums the mutually exclusive events whose first exit occurs at transitions one through L. Its mass at a destination set depends only on the destination outside B. Adding the surviving mass after L transitions gives one. The countable limit retains a separate never-exit term. This accounting prevents normalization from falsely turning a rare exit into an almost-sure destination.",
+        "C69 proves that the existing canonical future after a finite history agrees with restart from the history's last state. The proof first matches every shifted finite-prefix law using stationarity of the canonical transition construction. It then applies projective uniqueness of the already constructed infinite path law. Thus the result discharges the earlier restart interface instead of postulating an independent strong-Markov axiom or rebuilding a second trajectory law.",
+        "The stopping argument decomposes by a concrete finite first-exit time. Each finite piece restarts from the unnormalized arrival submeasure; summing those pieces gives the infinite routing formula. No expression evaluates the stopped state at an infinite exit time. Histories that remain forever inside B retain exactly their own mass. The generic result works for the measurable spaces of the encoded canonical model and does not insert a finite-state or standard-Borel assumption into this particular restart theorem.",
+        "Quasi-stationary destination formulas require their own hypotheses. When a QSD has one-step retention theta strictly between zero and one, the destination distribution is the one-step exit mass divided by one minus theta. At theta equal to one there is no exiting mass to normalize. None of these formulas says that arrival in another set implies remaining there: target invariance is an independent premise of an eventual-switch claim."
+      ],
+      "equations": [
+        {
+          "latex": "R_B^{(L)}(y,Y\\setminus B)+\\mathbb{P}_y(\\tau_B>L)=1,\\qquad R_B^{(\\infty)}(y,Y\\setminus B)+\\mathbb{P}_y(\\tau_B=\\infty)=1.",
+          "caption": "Finite and infinite exit accounting preserve the nonexit alternative."
+        }
+      ],
+      "claims": [
+        {
+          "anchor": "C69.RESTART",
+          "title": "Last-state restart of the actual canonical future",
+          "status": "ACCEPTED_PROVIDER",
+          "statement": "Every canonical shifted future kernel equals the canonical path kernel restarted from the last observed state; the first-exit future submeasure therefore has the corresponding arrival-law integral representation.",
+          "assumptions": [
+            "The canonical stationary strategic-world model and its original measurable kernel interfaces; first-exit routing starts inside B. Arrival measures remain unnormalized."
+          ],
+          "proof": "Shifted histories satisfy the same one-step transition relation as restarted histories. Induction identifies all finite-prefix marginals, projective uniqueness identifies the infinite laws, and the first-exit decomposition transfers the identity to stopped-future submeasures.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.RegimeExit.ShiftedPrefixStationarity",
+              "declaration": "PermanssonResearch.RegimeExit.hasCanonicalLastStateRestart"
+            },
+            {
+              "module": "PermanssonResearch.RegimeExit.StoppedFutureRestart",
+              "declaration": "PermanssonResearch.RegimeExit.pathLaw_firstExitFutureEvent_restart"
+            },
+            {
+              "module": "PermanssonResearch.RegimeExit.StoppedFutureRestart",
+              "declaration": "PermanssonResearch.RegimeExit.infiniteStoppedFutureMeasure_add_survivalForever_eq_one"
+            }
+          ],
+          "open": "No normalized law is assigned to a zero-mass arrival, and no state at infinite exit time is required."
+        }
+      ]
+    },
+    {
+      "title": "4. Random entry, occupation limits, and successful switching",
+      "paragraphs": [
+        "An occupation statement certified from deterministic target starts must be transported carefully to entry at a random time and state. C70 first expresses the canonical path law as a bind over its initial law. A positive-mass arrival submeasure is normalized into a genuine probability supported on the target basin. The target certificate applies to that law, and multiplication by the arrival mass recovers the stopped-future statement. Zero-mass arrivals are handled separately by the zero measure.",
+        "The whole-path conclusion then requires deletion of the finite prefix preceding entry. For a bounded observable with absolute value at most C, deleting k observations changes the appropriately aligned averages by at most 2kC divided by k+T. This explicit estimate vanishes for every realized finite k. The argument preserves a weak occupation limit without presuming a measurable set of convergent paths on an arbitrary descriptor space. Almost-everywhere transport is used directly, and the final event has the corresponding outer-measure interpretation where needed.",
+        "The supported in-probability statement is defined through bounded continuous test integrals. On the routed event, the probability of a fixed positive deviation tends to zero. If routing and retention have failure budget eta, the unconditional eventual deviation bound contains eta; it need not vanish when eta is positive. The research mode is not presented as an unproved equivalence with a metric definition of convergence in probability on all probability measures.",
+        "In almostSureWeak mode, a successful-switch event combines routing, target retention, and occupation with probability at least one minus eta. The in-probability mode instead has the deviation bounds just stated, alongside the retention bound. The original source-survival property has constitutive margin at least 1-eta.toReal in both modes. Grounded uniform PR adds eta below one and all original regime, grounding, and confirmatory gates. A custom whole-path convergence predicate additionally needs finite-prefix invariance."
+      ],
+      "equations": [
+        {
+          "latex": "\\left|\\int f\\,d\\widehat{\\nu}_{k+T}(w)-\\int f\\,d\\widehat{\\nu}_T(\\theta_k w)\\right|\\leq \\frac{2kC}{k+T},\\qquad |f|\\leq C.",
+          "caption": "For T>=1, deleting a realized finite pre-entry history does not change the limiting occupation law."
+        }
+      ],
+      "claims": [
+        {
+          "anchor": "C70.SWITCH",
+          "title": "Scoped routing-retention-occupation theorem",
+          "status": "ACCEPTED_PROVIDER",
+          "statement": "Retention has probability at least 1-eta. In almostSureWeak mode, the occupation-and-retention event also has probability at least 1-eta. In inProbabilityWeak mode, routed deviation probabilities tend to zero and, for every delta>0, full deviation probability is eventually at most eta+delta. The original survival-property constitutive margin is at least 1-eta.toReal in both modes.",
+          "assumptions": [
+            "Certified source Exact GR, disjoint source and target regions, actual fixed-world admissible intervention, original comparison set, and infinite routing budget eta<=1.",
+            "For almostSureWeak conclusions the target has that mode; for inProbabilityWeak conclusions the target has the declared test-integral in-probability mode, with each fixed bounded continuous test and positive deviation threshold. Grounded uniform PR separately requires eta<1 and all original grounding and confirmatory gates."
+          ],
+          "proof": "Canonical restart, positive-mass arrival-law transport, and target invariance prove the shared retention bound. Finite-prefix deletion transports almost-sure occupation to the corresponding occupation-and-retention event. In the in-probability case, summing routed exit-time contributions makes routed deviations vanish, while the unrouted remainder leaves the eventual eta+delta budget. The original source-survival argument supplies the shared margin bound.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.RegimeExit.RandomEntryOccupation",
+              "declaration": "PermanssonResearch.RegimeExit.randomEntry_occupation_ae"
+            },
+            {
+              "module": "PermanssonResearch.RegimeExit.InProbabilityOccupation",
+              "declaration": "PermanssonResearch.RegimeExit.randomEntry_occupation_inProbability"
+            },
+            {
+              "module": "PermanssonResearch.RegimeExit.Proposition42f",
+              "declaration": "PermanssonResearch.RegimeExit.proposition_4_2f_almostSure"
+            },
+            {
+              "module": "PermanssonResearch.RegimeExit.Proposition42f",
+              "declaration": "PermanssonResearch.RegimeExit.proposition_4_2f_uniformPR"
+            }
+          ],
+          "open": "Arbitrary custom convergence modes, eta=1 positive constitution, and arrival without target invariance are excluded."
+        }
+      ]
+    },
+    {
+      "title": "5. Finite-horizon perturbations and approximate quotients",
+      "paragraphs": [
+        "A2 propagates primitive errors through the actual ordered composition. With declared uniform event-total-variation budgets for alpha, P, and U, the induced one-step error is at most their sum, capped at one. The comparison may allow different physical kernels between two models; within each model its strategic intervention must still satisfy that model's fixed-world admissibility condition. A changed world is not relabeled as a strategic replacement.",
+        "Finite-prefix propagation starts from a common initial state and counts T transitions. It yields quantitative property and margin bounds only when the frozen property is a bounded finite-prefix score or carries the explicit Lipschitz certificate used by the theorem. Baseline and intervention errors contribute separate budgets. The resulting finite-persistence transport still needs a nonvacuous survival floor and a margin greater than the relevant errors. Clamping a persistence-error estimate to one does not prove a useful persistence guarantee.",
+        "E1 replaces exact type-respecting intertwining by a uniform one-step projection defect. The fine projected process may retain hidden memory and need not be Markov. A last-step hybrid compares its next-step extension with the coarse kernel under the same projected history law, then compares history laws under the same coarse kernel. Pushforward contraction and the TV triangle inequality give the additive induction, without assuming a disintegration over quotient fibres.",
+        "The margin theorem further requires the fine property to factor through the compressed prefix law, a declared TV-Lipschitz coarse property, and compatible original comparison sets. Exact zero defect recovers equal margins in that scope. Region, basin, descriptor, relevance, and convergence compatibility remain independent conditions for Exact-GR or PR preservation. A tiny leakage defect can destroy exact invariance while leaving a positive finite-horizon margin. The sharper geometric quotient envelope remains open as a general Lean theorem."
+      ],
+      "equations": [
+        {
+          "latex": "\\delta_K\\leq \\min(1,\\delta_\\alpha+\\delta_P+\\delta_U),\\qquad {\\rm TV}(q_{\\ast}P^{0:T}_y,\\overline{P}^{0:T}_{q(y)})\\leq\\min(1,T\\eta).",
+          "caption": "Primitive composition and approximate compression provide finite-horizon budgets."
+        }
+      ],
+      "claims": [
+        {
+          "anchor": "A2.FINITE",
+          "title": "Primitive-to-margin finite-prefix transport",
+          "status": "ACCEPTED_PROVIDER",
+          "statement": "Separate baseline and intervention primitive TV bounds control the change in the original finite-prefix constitutive margin and transport the stated finite certificate.",
+          "assumptions": [
+            "Uniform primitive row bounds, exact typed composition, common point starts, separately admissible matched interventions, the original comparison set, and the encoded bounded-score or TV-Lipschitz property hypotheses. Required measurable-space instances are retained."
+          ],
+          "proof": "A common-subkernel composition bounds the one-step discrepancy; prefix propagation bounds actual path restrictions; Lipschitz control and uniform infimum comparison yield the margin estimate.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.Perturbation.PrimitiveTV",
+              "declaration": "PermanssonResearch.Perturbation.inducedKernel_tv_le_primitive_sum"
+            },
+            {
+              "module": "PermanssonResearch.Perturbation.PrimitiveMargin",
+              "declaration": "PermanssonResearch.Perturbation.primitive_constitutiveMargin_abs_le"
+            },
+            {
+              "module": "PermanssonResearch.Perturbation.PrimitiveMargin",
+              "declaration": "PermanssonResearch.Perturbation.transportPrimitiveFiniteConstitutiveCertificate"
+            }
+          ],
+          "open": "This does not establish arbitrary infinite-path robustness, exact invariance, or a primitive Wasserstein budget."
+        },
+        {
+          "anchor": "E1.LINEAR",
+          "title": "Approximate typed quotient prefix and margin bounds",
+          "status": "ACCEPTED_PROVIDER",
+          "statement": "A uniform defect eta bounds projected-prefix TV by min(1,T eta); compatible finite-prefix properties and comparison sets give the corresponding two-budget margin bound.",
+          "assumptions": [
+            "A type-respecting compression; every fine row bounded, including intervention-reachable rows; matched initial states; baseline and matched-intervention defects; property factorization and compatible original comparison sets."
+          ],
+          "proof": "The final-step hybrid separates kernel error from accumulated history error. Induction yields the prefix bound, and the original uniform-margin perturbation argument supplies the margin result.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.Quotient.ApproxPrefix",
+              "declaration": "PermanssonResearch.Quotient.approxQuotient_pathLaw_prefix_tv_le"
+            },
+            {
+              "module": "PermanssonResearch.Quotient.ApproxMargin",
+              "declaration": "PermanssonResearch.Quotient.approxQuotient_margin_abs_le_of_certificates"
+            },
+            {
+              "module": "PermanssonResearch.Quotient.ApproxMargin",
+              "declaration": "PermanssonResearch.Quotient.approxQuotient_margin_eq_of_exact"
+            }
+          ],
+          "open": "The general geometric bound, an untyped quotient, hidden-state properties that fail to descend, and automatic Exact-GR transfer are not supplied."
+        }
+      ]
+    },
+    {
+      "title": "6. Sequential attribution and multi-agent protocol scope",
+      "paragraphs": [
+        "Sequential intervention analysis compares four genuine corners: baseline, action replacement, update replacement, and their jointly admissible replacement. All use the same frozen world primitive and property map. The metric triangle inequality bounds the joint effect by the baseline action effect plus the conditional update effect after the action replacement. The symmetric order is a separate comparison. The resulting conditional margins are not generally obtained by subtracting singleton baseline margins.",
+        "Joint-only constitution illustrates why pointwise statements matter. Both singleton effects can vanish at every comparison state while the joint margin is positive. An infimum equal to zero is weaker: a singleton intervention can have positive effect at some starts and still have zero margin. The accepted B2 witness reuses the existing Boolean persistence construction. Vector interaction identities require a normed additive output space; a scalar metric remainder is not automatically an interaction vector or a causal mediation effect.",
+        "F1 makes closed-loop and declared open-loop response protocols explicit. In the strict opponent-locked semantics, an opponent anchor's action and update may use its own state and the exogenous common component permitted by the specification. Endogenous public feedback is excluded when it carries the treated player's response channel. Baseline agreement at one start does not authorize treating a reactive opponent as frozen after an intervention reaches a different state.",
+        "The unresolved strict MA2 obligation must remain visible. The earlier state-feedback example establishes a broader response phenomenon but does not witness strict opponent-locked MA2. The repaired Boolean deterministic recording toy proves a scoped obstruction: strict anchors agreeing with baseline at the designated start give identical full open-loop laws for any treated action rule. That is neither a general impossibility theorem for stochastic anchors nor a completion of the required witness. Exogenous-common-process agreement conditions are sufficient conditions within their stated class, not a necessary characterization."
+      ],
+      "equations": [
+        {
+          "latex": "|\\Delta_{\\rm CL}(y)-\\Delta_{\\rm OL}(y)|\\leq A(y)\\leq\\Delta_{\\rm CL}(y)+\\Delta_{\\rm OL}(y).",
+          "caption": "Adaptation-gap bounds are metric relations between declared intervened outputs."
+        }
+      ],
+      "claims": [
+        {
+          "anchor": "B2.SEQUENTIAL",
+          "title": "Four-corner metric bounds and pointwise joint-only constitution",
+          "status": "ACCEPTED_PROVIDER",
+          "statement": "Joint effects admit sequential metric bounds and conditional-margin consequences under independently admissible corners; pointwise singleton-null effects identify the stated joint-only margin.",
+          "assumptions": [
+            "Actual four path laws, the identical world and frozen property, the original comparison domain, and the stated uniform upper bounds. Vector versions require the additional normed linear structure."
+          ],
+          "proof": "Apply triangle and reverse-triangle inequalities at each start, then take uniform bounds and the original infimum. Pointwise nullity, rather than zero infimum alone, is used in the strong identity.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.GrammarRobust.SequentialEffects",
+              "declaration": "PermanssonResearch.GrammarRobust.SequentialEffects.jointEffect_le_action_add_condUpdate"
+            },
+            {
+              "module": "PermanssonResearch.GrammarRobust.ConditionalMargins",
+              "declaration": "PermanssonResearch.GrammarRobust.ConditionalMargins.condUpdateMargin_ge_joint_sub_action"
+            },
+            {
+              "module": "PermanssonResearch.GrammarRobust.ConditionalMargins",
+              "declaration": "PermanssonResearch.GrammarRobust.ConditionalMargins.jointOnly_conditionalMargins_eq_jointMargin"
+            }
+          ],
+          "open": "No general baseline-origin singleton subadditivity or causal mediation interpretation follows."
+        },
+        {
+          "anchor": "F1.PROTOCOL",
+          "title": "Typed two-player response protocols and generic metric bounds",
+          "status": "ACCEPTED_PROVIDER",
+          "statement": "Within the conditional-product two-player subclass, declared closed-loop and open-loop generators define admissible interventions retaining P. For two interventions of one frozen family and property, absolute effect difference is bounded by protocol gap, which is bounded by the sum of effects. A uniform gap G on the original comparison domain bounds the absolute difference of original margins by G. The strict-menu Boolean witness has closed-loop effect1, open-loop effect0, gap1; a separate correlated law cannot be represented by the conditional product.",
+          "assumptions": [
+            "The typed two-player construction uses state-conditional product action laws and conditional product common/private update laws; it is a subclass, not a representation of all games. Shared-state-mediated correlation remains representable.",
+            "Fix the world P, replacement, declared anchor menu, intervention family and metric-valued path property. Margin transport requires the gap bound at EVERY state of the SAME original comparison set.",
+            "For the declared sufficient opponent-locked strict submenu, anchor action/update factor through own state and the allowed common coordinate, and the common update reads only its old common state. This exogenous-common condition is sufficient, not a general necessity characterization."
+          ],
+          "proof": "Typed assembly and the admissible replacement cases preserve the literal world kernel. Metric triangle and reverse-triangle inequalities give pointwise bounds; uniform infimum comparison yields the margin bound. Exact canonical Boolean paths verify the strict witness, and a diagonal Boolean law rules out a universal product representation.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.MultiAgent.Protocols",
+              "declaration": "PermanssonResearch.MultiAgent.protocol_world_eq"
+            },
+            {
+              "module": "PermanssonResearch.MultiAgent.Protocols",
+              "declaration": "PermanssonResearch.MultiAgent.opponentLockedAnchors"
+            },
+            {
+              "module": "PermanssonResearch.MultiAgent.AdaptationBound",
+              "declaration": "PermanssonResearch.MultiAgent.abs_effect_sub_le_protocolGap"
+            },
+            {
+              "module": "PermanssonResearch.MultiAgent.AdaptationBound",
+              "declaration": "PermanssonResearch.MultiAgent.protocolGap_le_effect_add"
+            },
+            {
+              "module": "PermanssonResearch.MultiAgent.AdaptationBound",
+              "declaration": "PermanssonResearch.MultiAgent.abs_constitutiveMargin_sub_le_of_protocolGap"
+            },
+            {
+              "module": "PermanssonResearch.MultiAgent.ProtocolWitnesses",
+              "declaration": "PermanssonResearch.MultiAgent.Witness.closedLoop_ne_openLoop"
+            },
+            {
+              "module": "PermanssonResearch.MultiAgent.ProtocolWitnesses",
+              "declaration": "PermanssonResearch.MultiAgent.correlatedLaw_ne_prod"
+            }
+          ],
+          "open": "These are protocol-relative metric bounds, not causal mediation or an ordering of closed/open effects. No global n-player generalization or strict MA2 witness is supplied."
+        },
+        {
+          "anchor": "F1.MA2",
+          "title": "Strict opponent-locked witness remains unfulfilled",
+          "status": "OPEN",
+          "statement": "The required pair of strict baseline-agreeing open-loop anchors with distinct intervened laws has not been supplied. The deterministic own-action-recording toy instead has a proved full-law agreement obstruction.",
+          "assumptions": [
+            "The obstruction uses the encoded Boolean toy, unit common state, deterministic recording, and anchors satisfying strictness and agreement at the designated start."
+          ],
+          "proof": "Strictness and recorded own-action dynamics constrain the reachable anchor orbit. Equality of its action and update behavior propagates to equal canonical transition histories and full path laws.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.MultiAgent.ProtocolWitnesses",
+              "declaration": "PermanssonResearch.MultiAgent.Witness.strict_recording_anchors_pathLaw_eq"
+            }
+          ],
+          "open": "A valid witness in the original strict specification, or a separately justified general impossibility result, remains required. The specification is not weakened."
+        }
+      ]
+    },
+    {
+      "title": "7. A conditional long-run contraction subclass",
+      "paragraphs": [
+        "A3 isolates a restricted long-run argument. Its test class consists of bounded measurable real 1-Lipschitz functions; the bound may depend on the test function and no common supnorm-one cap is imposed. Lean encodes W1DualLE(mu,nu,c) directly as the universal assertion that every such test has expectation gap at most c. An extended supremum D over those gaps is a useful interpretation, but the proof does not construct or manipulate a finite numeric distance. Some source declarations are named Wasserstein; this companion calls their result a Lipschitz-dual contraction theorem. Identification with transport-coupling W1 needs an additional Kantorovich-Rubinstein theorem under suitable hypotheses.",
+        "For invariant probability laws pi and pi-tilde, the encoded baseline contraction maps every dual bound c to rho times c, and every row has the declared dual defect bound delta. The theorem also explicitly requires hfin: there exists a real c such that W1DualLE(pi,pi-tilde,c). Finite first moments can supply this premise through the proved integrable-distance lemma, but a finite initial dual gap is not inferred from invariance alone. With 0<=rho<1, put L=delta/(1-rho). One-step invariance gives the new bound rho c+delta. Iteration gives c_n=rho^n(c-L)+L, which tends to L. Closure of each test-function inequality under this limit proves W1DualLE(pi,pi-tilde,L). This avoids rearranging an inequality involving a potentially infinite supremum.",
+        "An occupation-property margin requires a further bridge for all four processes: original baseline, original intervention, perturbed baseline, and perturbed intervention. Each full-path property value must equal the declared Lipschitz functional of the factorization map image of its corresponding invariant law, uniformly over the original comparison starts. The map is supplied explicitly and is not inferred to equal either regime specification descriptor. The baseline and intervention perturbation bundles each carry invariant probabilities, contraction, all-row defect, and their own finite initial dual gap. The four factorization equalities are assumptions in the theorem. The contraction result derives none of them, and a stationary-law calculation alone does not imply an initial-state-independent occupation limit.",
+        "The actual-model survival counterexample enforces this boundary. Constant-row kernels can both be contractive while an arbitrarily small positive leakage changes infinite survival in the zero region from one to zero. The repaired construction supplies the invariant laws and the actual ContractivePerturbation bundle, so the failure occurs inside the encoded assumptions for the contraction result. Its survival property falls outside the required Lipschitz occupation factorization. No TV primitive budget is inserted into an unproved W1 conversion."
+      ],
+      "equations": [
+        {
+          "latex": "D(\\pi,\\widetilde{\\pi})\\leq\\frac{\\delta}{1-\\rho},\\qquad |\\widetilde{\\kappa}-\\kappa|\\leq L_FL_h\\left(\\frac{\\delta_0}{1-\\rho_0}+\\frac{\\delta_J}{1-\\rho_J}\\right).",
+          "caption": "The second inequality additionally requires all four full-path occupation-property factorizations."
+        },
+        {
+          "latex": "L=\\frac{\\delta}{1-\\rho},\\qquad c_n=\\rho^n(c-L)+L\\longrightarrow L.",
+          "caption": "The proof iterates a supplied finite dual bound and takes the limit test by test."
+        }
+      ],
+      "claims": [
+        {
+          "anchor": "A3.DUAL",
+          "title": "Dual invariant-law and conditional occupation-margin bounds",
+          "status": "PROVED",
+          "statement": "The implemented Lipschitz-dual distance obeys the invariant-law contraction budget; a Lipschitz descriptor and functional give the two-pair margin bound under all four explicit full-path factorization equalities.",
+          "assumptions": [
+            "Probability laws invariant under the original and perturbed Markov kernels; the dual test class is bounded measurable real 1-Lipschitz functions, with a separate finite bound for each test and no shared supnorm-one cap.",
+            "The encoded contraction sends any W1DualLE bound c to rho*c; every row has W1DualLE defect at most delta; 0<=rho<1; and hfin explicitly supplies a real c with W1DualLE(pi,pi-tilde,c). Both baseline and intervention bundles have these data.",
+            "The chosen factorization map is measurable and L_h-Lipschitz; the functional satisfies the source IsW1LipschitzFunctional condition; all four full-path factorization equalities hold on the identical original comparison domain. The map is not inferred from either specification descriptor."
+          ],
+          "proof": "Invariance, triangle, contraction, and defect transform a supplied finite bound c into rho*c+delta. With L=delta/(1-rho), induction gives W1DualLE at c_n=rho^n(c-L)+L. Since c_n tends to L, closedness of the universal test inequalities proves the final dual bound. Lipschitz pushforward and the functional bound control both value pairs, then metric triangles and uniform infimum comparison control the original margins.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.Perturbation.ContractiveOccupation",
+              "declaration": "PermanssonResearch.Perturbation.invariantLaw_wasserstein_le"
+            },
+            {
+              "module": "PermanssonResearch.Perturbation.ContractiveOccupation",
+              "declaration": "PermanssonResearch.Perturbation.occupationMargin_robust"
+            }
+          ],
+          "open": "Coupling-W1 identification, primitive coupling certificates, and derivation of the four ergodic factorizations remain separate open bridges."
+        },
+        {
+          "anchor": "A3.SURVIVAL",
+          "title": "Bundled small-defect failure of infinite survival",
+          "status": "PROVED",
+          "statement": "For every leakage epsilon in (0,1], the typed constant-row example satisfies the encoded contraction bundle while exact infinite survival in the zero region changes from one to zero.",
+          "assumptions": [
+            "The explicit constant-row typed models, zero region, and positive leakage epsilon at most one."
+          ],
+          "proof": "Compute the killed n-step survival as a geometric power, take its limit, and connect the same actual kernels to invariant measures, contraction, and one-step dual defect.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.Perturbation.ContractiveAdversaries",
+              "declaration": "PermanssonResearch.Perturbation.ContractiveLeak.bundled_survival_counterexample"
+            },
+            {
+              "module": "PermanssonResearch.Perturbation.ContractiveAdversaries",
+              "declaration": "PermanssonResearch.Perturbation.ContractiveLeak.contraction_does_not_transfer_survival"
+            }
+          ],
+          "open": "This counterexample rejects a universal survival-robustness promotion; it does not refute the properly conditional occupation theorem."
+        }
+      ]
+    },
+    {
+      "title": "8. Reach-and-stay objectives and the policy quantifiers",
+      "paragraphs": [
+        "D2 retains D0/D1's finite rational rows, certified nonempty control menus, canonical history laws, and deterministic full-history policy class. A residence duration m means m transitions after entry, hence m+1 consecutive target observations. Starting inside the target counts as entry at time zero. Failed visits may be retried: the successful run need not begin at the first hit. An entry deadline T is observed through T+m transitions; a completed-by-D objective instead requires entry plus m at most D.",
+        "The event is first defined as a literal contiguous block in the chronological path word. A separate proof identifies it with the largest completed contiguous-run count and checks initialization on a singleton observation. Thus zero residence duration reduces to an observed target hit, while a single target observation has completed no positive-duration stay. The hit-then-exit counterexample rules out substituting a hitting recursion for residence.",
+        "The probability-to-value bridge precedes optimization. Singleton atoms of the actual prefix law yield a chronological finite path sum; an independently defined completion enumeration yields the same sum; backward recursion yields the evaluator. The finite-menu maximum then bounds every admissible deterministic history policy and constructs an admissible maximizer. The typed theorem transports the event through D1's genuine full history law. The controller may depend on the whole observed past; an efficient Markov controller on a smaller augmented state is not asserted.",
+        "Robust order and risk impose further independent constraints. In the one-decision two-model witness, committing a randomized action before the model is revealed has worst-model optimum one half, whereas choosing after revelation has value one; deterministic committed controls have value zero. This is an exact quantifier-order separation, not a robust Bellman theorem. A separate hard-risk example has unconstrained success maximized by a choice that violates the risk budget. Maximizing success does not certify admissible danger."
+      ],
+      "equations": [
+        {
+          "latex": "\\{\\exists e\\leq T:\\ \\forall j\\leq m,\\ Y_{e+j}\\in G\\},\\qquad \\sup_{p\\in\\mathbb{Q}\\cap[0,1]}\\min(p,1-p)=\\frac{1}{2}<1=\\min_{\\theta}\\sup_{p\\in\\mathbb{Q}\\cap[0,1]} V(\\theta,p).",
+          "caption": "Residence uses a successful contiguous run; both robust suprema range over rational p in [0,1], as in the Lean theorem."
+        }
+      ],
+      "claims": [
+        {
+          "anchor": "D2.RESIDENCE",
+          "title": "True finite-path residence evaluation and attained optimization",
+          "status": "PROVED",
+          "statement": "The contiguous residence event equals the initialized residence-count event; its actual finite-path probability equals the backward value, bounded and attained over the declared deterministic history policies.",
+          "assumptions": [
+            "Finite fully observed rational controlled process, original admissible finite menus, nonanticipating deterministic full-history policies, target predicate, and explicitly chosen completion or entry deadline."
+          ],
+          "proof": "Prove list-block/count equivalence independently of the recursion. Then identify genuine prefix atoms with path enumeration and backward evaluation, and apply the existing finite-menu maximizer construction.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.ReverseSolver.ResidenceEvent",
+              "declaration": "PermanssonResearch.ReverseSolver.Residence.hasRun_iff_block"
+            },
+            {
+              "module": "PermanssonResearch.ReverseSolver.ResidenceEvent",
+              "declaration": "PermanssonResearch.ReverseSolver.Residence.mem_entryByResidenceEvent_iff"
+            },
+            {
+              "module": "PermanssonResearch.ReverseSolver.ResidenceValue",
+              "declaration": "PermanssonResearch.ReverseSolver.Residence.typed_residenceProbability_eq_value"
+            },
+            {
+              "module": "PermanssonResearch.ReverseSolver.ResidenceValue",
+              "declaration": "PermanssonResearch.ReverseSolver.Residence.residenceProbability_optimal_and_attained"
+            }
+          ],
+          "open": "A small product-state reduction, randomized-policy sufficiency, partial observation, combined avoid/residence optimization, and finite-to-infinite persistence promotion are not proved."
+        },
+        {
+          "anchor": "D2.ORDER",
+          "title": "Robust commitment and hard-risk firewalls",
+          "status": "PROVED",
+          "statement": "The explicit rational witnesses separate committed robust choice from model-revealed choice and unconstrained success from hard-risk-constrained success.",
+          "assumptions": [
+            "The declared one-decision model order; nature knows the committed distribution but does not observe its realized private action draw. The risk example uses its separate exact probability budget."
+          ],
+          "proof": "Greatest-element statements optimize over the entire rational interval, using min(p,1-p) and linear success/risk constraints rather than a sampled grid.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.ReverseSolver.ResidenceContracts",
+              "declaration": "PermanssonResearch.ReverseSolver.Residence.robust_quantifier_order_separation"
+            },
+            {
+              "module": "PermanssonResearch.ReverseSolver.ResidenceContracts",
+              "declaration": "PermanssonResearch.ReverseSolver.Residence.hard_risk_budget_optimum"
+            },
+            {
+              "module": "PermanssonResearch.ReverseSolver.ResidenceContracts",
+              "declaration": "PermanssonResearch.ReverseSolver.Residence.unconstrained_success_is_not_risk_constrained"
+            }
+          ],
+          "open": "No rectangularity assumption or general robust dynamic programming result is silently introduced."
+        }
+      ]
+    },
+    {
+      "title": "9. The common-world equilibrium and learning benchmark",
+      "paragraphs": [
+        "X1 is a constructed rational commons model, continued from the committed handover prototype. The world is Boolean, with true interpreted as replete. Both players choose Boolean extraction actions and carry memory in Fin 3 times Fin 3. The physical probability of next-period repletion is the clipped value r_x minus one quarter of the number extracting, with r_false=1/4 and r_true=9/10. Both typed models use literally the same P and the same reward parameters.",
+        "Player i receives one half times extraction when replete, minus congestion 193/211 when both extract, minus depletion cost 1/10 when depleted. The common discount is 9/10. The candidate equilibrium extracts independently with probability zero when depleted and one half when replete, holding memory fixed. Separate indexed certificates verify both players' Bellman equalities, both pure deviations, every real mixed one-shot probability, and equality on the support. Depleted extraction loses exactly 9/211. These proofs are not promoted here into a separately formalized unrestricted infinite-history strategy-verification theorem.",
+        "The learner extracts with probability (9/10)(q_i/2)+1/20, then applies the declared clipped reinforcement update using the old world, realized action, and reference payoffs. Memory is included in the Markov state. Tests falsify using the new world by mistake, hiding the memory coordinate, or resetting memory before the current action. An identical one-step world probability, 13/20 from the designated start, does not make the two full next-state laws or later path laws equal.",
+        "The substantive region is all memory pairs with a replete world; the descriptor and relevance map are the world coordinate everywhere. The original pointwise start is ((1,1),true). A proposed singleton constitutive comparison was invalid because the original nontriviality gate requires two starts with different path laws. That failure is retained. A transparently prospective exploratory design revision uses all nine replete starts, before evaluating its infima. It is not described as preregistered. A direct check of the existing definitions gives an additional obstruction: h=x is constant on the replete region B, so the Assumption4.1 requirement of two distinct descriptor values on B fails. This is independent of one-step leakage. Whole-B path-law nontriviality repairs the comparison-set gate alone; it supplies neither all regime gates nor confirmatory descriptor nondegeneracy. This check is not claimed as a new Lean theorem or an alternate certificate."
+      ],
+      "equations": [
+        {
+          "latex": "p_{\\rm rep}(x,a)=\\min\\{1,\\max\\{0,r_x-\\frac{1}{4}(a_1+a_2)\\}\\},\\quad V_i(0)=-\\frac{121}{211},\\quad V_i(1)=-\\frac{81}{211}.",
+          "caption": "Both players' incentives and both generators share this exact physical primitive."
+        }
+      ],
+      "claims": [
+        {
+          "anchor": "X1.MODEL",
+          "title": "Both-player one-shot certificates under the identical world",
+          "status": "PROVED",
+          "statement": "The candidate satisfies both indexed players' Bellman, pure, real mixed one-shot, and support conditions; the two typed generators share the identical world kernel and have primitive-derived atom formulas.",
+          "assumptions": [
+            "The explicit rational parameters, product conditional action laws, full memory state, and the declared alpha/P/U order. The incentive verification uses the same world probabilities as the typed models."
+          ],
+          "proof": "Finite player/state/action reductions verify exact Q/V equalities and inequalities. Integration of actual product action laws and deterministic updates yields each kernel atom, rather than assuming a matrix match.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.X1.MPECertificate",
+              "declaration": "PermanssonResearch.X1.bellman_equation"
+            },
+            {
+              "module": "PermanssonResearch.X1.MPECertificate",
+              "declaration": "PermanssonResearch.X1.no_real_mixed_deviation"
+            },
+            {
+              "module": "PermanssonResearch.X1.MPECertificate",
+              "declaration": "PermanssonResearch.X1.support_equality"
+            },
+            {
+              "module": "PermanssonResearch.X1.TypedModels",
+              "declaration": "PermanssonResearch.X1.identical_world"
+            },
+            {
+              "module": "PermanssonResearch.X1.TypedModels",
+              "declaration": "PermanssonResearch.X1.inducedKernel_atom_entry"
+            }
+          ],
+          "open": "An unrestricted discounted-strategy verification bridge remains OPEN. The accepted certificate proves both players indexed Bellman, pure/mixed one-shot and support conditions under the actual identical world."
+        }
+      ]
+    },
+    {
+      "title": "10. Failed replete persistence, distinct occupation laws, and intervention outputs",
+      "paragraphs": [
+        "Both generators leave the replete region with probability 7/20 at the designated start. The region therefore fails exact invariance, independently of the choice of target occupation law or convergence mode. Killed two-transition survival is 169/400 for the equilibrium generator and 257/800 for the learner. Every replete row has retention at most 9/10, so killed persistence decays to zero. Return visits can nevertheless produce a positive long-run replete share; persistence and occupation describe different events.",
+        "The equilibrium model has nine closed physical memory classes, so a global unique physical invariant-law claim would be false. Their descriptor images all have replete mass 5/12. The learner has a unique closed sixteen-state class and two transient actual states; its exact stationary replete mass is 44984685451641390245/355006278148174557117. These values were independently reconstructed with rational arithmetic. The original C11 state-budget checker is unchanged: direct sixteen-state input is rejected, while a twelve-state player-exchange quotient supplies an independent calculation cross-check, not an assumed typed transport theorem.",
+        "The actual finite-chain theorem supplies a random recurrent-class occupation limit under every initial probability law, with a proved bridge to the original empirical descriptor sequence. A direct Poisson certificate identifies the descriptor law without quotient transport: on all eighteen actual states, including the transient states, a rational bias satisfies g-Kg=indicator(replete)-nu. Every rational row is connected to the actual induced-kernel atom. Cancellation against any invariant probability fixes its descriptor mean, and a Boolean probability law is determined by that mean. Thus the original descriptor occupations converge almost surely to their separate deterministic E/L targets for every initial law. The complete actual-kernel proof and transitive audit passed on the accepted combined source.",
+        "The frozen finite property is repletion at time three, allowing exit and re-entry. The admissible replacements are all-restrain actions, next-memory reset to (1,1), and their joint replacement, each holding P fixed. At the designated start, baseline values are 227/500 for equilibrium and 8381459/32000000 for learning; action or joint replacement gives 3171/4000 in both; memory reset gives 227/500 and 41417/128000 respectively. These are terminal probabilities, not killed survival.",
+        "Across all nine prospective comparison starts, exact finite-matrix infima are 271/800 for equilibrium action and joint effects, zero for its update effect, 3010663529/6400000000 for learner action and joint effects, and 1244820951/25600000000 for learner update. The canonical property and original-margin bridge is proved for the actual typed process. Kernel-checked arithmetic reflection of these particular fractions remains OPEN. Positive computed infima cannot repair failed Exact GR and do not establish an empirical or confirmatory PR."
+      ],
+      "equations": [
+        {
+          "latex": "g(y)-\\sum_zK(y,z)g(z)=\\mathbf{1}_{\\{x=1\\}}-\\nu,\\qquad \\sum_y\\pi(y)K(y,z)=\\pi(z)\\ \\Longrightarrow\\ \\sum_y\\pi(y)\\mathbf{1}_{\\{x=1\\}}=\\nu.",
+          "caption": "Here pi is an invariant probability with sum_y pi(y)=1; the actual-kernel Poisson certificate then identifies its descriptor mean without global physical-law uniqueness."
+        }
+      ],
+      "claims": [
+        {
+          "anchor": "X1.NOEXACT",
+          "title": "The proposed replete-region Exact-GR claim fails",
+          "status": "PROVED",
+          "statement": "Neither actual generator can satisfy Exact GR for the declared replete region: its one-step retention at the designated replete state is 13/20.",
+          "assumptions": [
+            "The declared replete region and actual typed kernels. The conclusion is independent of the recorded target law and convergence choice."
+          ],
+          "proof": "The actual world atom gives positive probability outside the region, contradicting the region-wide invariance required by Exact GR.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.X1.Comparison",
+              "declaration": "PermanssonResearch.X1.replete_one_step_leaks"
+            },
+            {
+              "module": "PermanssonResearch.X1.Comparison",
+              "declaration": "PermanssonResearch.X1.replete_not_exactGR"
+            }
+          ],
+          "open": "Finite survival calculations and positive finite property effects remain useful scoped outputs, but they are not Exact-GR or PR certificates. A direct check also finds the original Assumption4.1 two-descriptor-values-on-B clause false because h=x is constant on replete B. No new formal theorem is attributed to that check; the cited formal obstruction remains the proved leakage witness."
+        },
+        {
+          "anchor": "X1.OCCUPATION",
+          "title": "Actual random limits and deterministic descriptor identification",
+          "status": "PROVED",
+          "statement": "For every initial law, actual empirical occupations converge almost surely to the recurrent-class random limit. The verified actual-kernel Poisson certificate identifies its Boolean descriptor image with the separate recorded E/L target, hence proves convergence of the original descriptor empirical sequence to that deterministic target.",
+          "assumptions": [
+            "The actual finite typed models and original descriptor. The deterministic identification requires the proved all-state rational certificate, actual induced-kernel atom correspondence, and invariant-law cancellation, rather than an assumed ergodic factorization."
+          ],
+          "proof": "Reuse the existing canonical finite-chain strong law and original empirical bridge. Verify g-Kg on all actual states, cancel finite sums against invariant probabilities, identify Boolean probability measures from their true masses, then substitute into the random-limit theorem.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.X1.Occupation",
+              "declaration": "PermanssonResearch.X1.original_empirical_randomLimit_ae"
+            },
+            {
+              "module": "PermanssonResearch.X1.OccupationNumerics",
+              "declaration": "PermanssonResearch.X1.OccupationNumerics.poisson_identity"
+            },
+            {
+              "module": "PermanssonResearch.X1.OccupationTargets",
+              "declaration": "PermanssonResearch.X1.actual_poisson_identity"
+            },
+            {
+              "module": "PermanssonResearch.X1.OccupationTargets",
+              "declaration": "PermanssonResearch.X1.canonical_occupation_target_ae"
+            }
+          ],
+          "open": "No global uniqueness of physical invariant laws is inferred; E has multiple such laws. Descriptor occupation convergence supplies neither replete-region invariance nor an Exact-GR or PR certificate."
+        },
+        {
+          "anchor": "X1.FINITEOUTPUT",
+          "title": "Original finite property and margin bridge",
+          "status": "PROVED",
+          "statement": "The canonical time-three property and original constitutive effects/margins are connected to actual finite-kernel terminal evaluation on the valid prospective whole-region comparison object. The original finite-path survival probability also equals evaluation of the actual killed kernel, and its one-step value at y0 is13/20 for both generators; intermediate exits cannot be restored by terminal re-entry.",
+          "assumptions": [
+            "Exactly the declared property, actual baseline and replacement kernels, all nine comparison starts, and the frozen original comparison-set interface.",
+            "The killed-kernel bridge starts in the declared region and matches that region to the frozen specification; its general recurrence holds at every horizon."
+          ],
+          "proof": "Identify canonical terminal events with finite-kernel recursions and transfer the original absolute effects and infimum; independent enumeration checks the stated rational values. The existing killed-survival identity and kernel-power recursion identify the original stay event, separately from terminal repletion.",
+          "providers": [
+            {
+              "module": "PermanssonResearch.X1.FiniteOutputs",
+              "declaration": "PermanssonResearch.X1.baselineProperty_eq_kernelTerminal"
+            },
+            {
+              "module": "PermanssonResearch.X1.FiniteOutputs",
+              "declaration": "PermanssonResearch.X1.constitutiveEffect_eq_finiteEffect"
+            },
+            {
+              "module": "PermanssonResearch.X1.FiniteOutputs",
+              "declaration": "PermanssonResearch.X1.constitutiveMargin_eq_finiteInf"
+            },
+            {
+              "module": "PermanssonResearch.X1.FiniteOutputs",
+              "declaration": "PermanssonResearch.X1.survivalProbability_eq_kernelTerminal_killed"
+            },
+            {
+              "module": "PermanssonResearch.X1.FiniteOutputs",
+              "declaration": "PermanssonResearch.X1.survivalProbability_one"
+            }
+          ],
+          "open": "Kernel-checked reflection of the listed numerical infimum fractions remains separate until its own declaration and verification evidence are supplied."
+        }
+      ]
+    },
+    {
+      "title": "11. Application interpretation and falsification",
+      "paragraphs": [
+        "The benchmark shows that a common physical world can support strategically different occupation and intervention profiles. It does not identify a real economy, calibrate a commons, or recommend an intervention. Its parameters are selected mathematical constants and its revised comparison design is exploratory. The unchanged nine-dimensional application record should retain that constructed-model epistemic status, selection history, identification scope, uncertainty treatment, grounding limitations, and provenance. Exact arithmetic is evidence for a model calculation, not simultaneous statistical coverage.",
+        "Destructive controls are part of the argument. Tests use positive observed discrepancies with budgets below the trivial cap where nonvacuity matters; they mutate intervention labels, world rows, update timing, policy order, and occupation targets. In X1, corrupting a transient-state bias is caught by the all-row Poisson certificate even though a stationary-weighted aggregate can remain unchanged. Distinct equilibrium physical invariant laws reject accidental global-uniqueness claims. Wrong congestion and changed physical probabilities reject incentive certificates detached from the declared world.",
+        "Failure boundaries also guide further theory. Strict MA2 needs a valid witness under the original strict semantics. A3 needs a genuine coupling-distance bridge and derived four-process ergodic factorizations before its original broader W1 programme can be called complete. D2 needs any proposed efficient state reduction and enlarged policy class proved on their own terms. X1 still needs numerical reflection before promoting the listed calculation fractions to formal numerical kappa certificates, and an unrestricted strategy-verification theorem before claiming the stronger equilibrium certificate.",
+        "No lane alone proves empirical causal modularity, primitive-kernel identification from observations, novelty relative to all existing theory, real-world regime persistence, political collapse, or intervention safety. Those questions require additional models and evidence. Preserving these limits gives the extension its practical meaning: the reader can locate the exact mathematical dependency that supports a conclusion and the additional claim that remains unavailable."
+      ]
+    },
+    {
+      "title": "12. Reproduction, crosswalk, and release record",
+      "paragraphs": [
+        "The reproduction target is the repository's exact Lean 4.34.0 and pinned mathlib environment, with no dependency update. The research root directly imports each module. Source scans reject sorry, admit, custom axioms, and hidden proof bypasses; the transitive declaration audit permits only propext, Classical.choice, and Quot.sound. Original-core compilation, research compilation, executable verification, application-contract jobs, lane controls, and protected-source comparison remain distinct required evidence.",
+        "Each crosswalk entry records actual declarations, assumptions and quantifiers, original-interface bridges, source SHA, synthetic-merge event, audit, tests, and open findings. Green provider heads do not certify later integrated trees. Retargeted branches require genuine merge verification, including PR-only C10 source-bound evidence.",
+        "Accepted integration anchors already distinguish C69 source d8a96a423f402fcbe791c6e114d169894739f944, C70 source 547d17e2fff8ab2136562dbb93562529bcda062e, and E1 source 7ae2fab0b221a77e0a13ef83cedd6f8933569c26 with their recorded synthetic merges. A3 source a977da54057837797ab1cea163f8bcec98cddb2d passed Research run 39038951100 at synthetic merge 11c4baace0de6025709b0cdd637e99c255a70bc6, including 4861 allowlisted declarations, 777 tests, 384 direct imports, and C10 source-bound evidence, and merged as main 9cf3410e9786b68f68d93c0684613329cdc9159e. The release inventory supplies the complete accepted source-bound receipts, including repaired F1 and X1. Historical branch notes are retained as dated context, never substituted for the current acceptance state.",
+        "D2 source 37faf4430897e0abdd6dca664919a673b6f34b42 passed Research run 39039886205, job 117417023192, on synthetic merge 89da71c43657d79d3f60cffe6b4b02efe7331fcd against accepted A3 base 9cf3410e9786b68f68d93c0684613329cdc9159e. Its evidence records 4990 allowlisted declarations, 794 tests, 387 direct imports, and C10 source-bound PASS. The focused 51-declaration audit and 17 exact tests, all workflows, and a fresh source review passed. D2 merged as main bc7617e15084673aa6053ab58282260226344c2b.",
+        "X1 source 54babeeefd980c83fd7373f7429e028e5fa574e6 passed Research run 39041222836, job 117420952984, on synthetic merge f1da869c9558faa9935e57042afba04b22eb3e00 against base bc7617e15084673aa6053ab58282260226344c2b. Evidence records 5248 allowlisted declarations, 810 tests, 395 direct imports, and C10 generation plus independent source binding PASS. Focused run 39041222796 passed the 135-declaration audit and 16 exact tests. All five required workflows and the exact-head review passed without findings or open review threads; review comment 6235150076 records that check. X1 merged as main 5822cdff0fc360d9e368e10ff5f7576c3141a1b3, the accepted research source of this companion.",
+        "Production of a PDF does not complete the release. The new manuscript requires a cold build and visual proofreading, including equations, page breaks, and captions inside appropriate multipage table environments. The inventory records source and PDF hashes, environment pins, source-tree and CI identities, calculation receipts, and reproduction instructions. Canonical Git bytes are used when hashing frozen textual artifacts: a Windows CRLF checkout can differ in bytes without a source change and must not cause historical hashes to be rewritten.",
+        "Scientific OPEN obligations remain visible: strict MA2, coupling-W1 and derived ergodic factorization bridges, wider D2 policy reductions, numerical X1 kappa reflection, and unrestricted strategy verification. The frozen v0.1.8 artifacts retain their identities. Accepted research evidence is distinct from pending final-head CI for this release kit; the final inventory records that separate acceptance when available."
+      ]
+    }
+  ]
+}

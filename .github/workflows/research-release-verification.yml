@@ -1,0 +1,43 @@
+name: v0.2.0 research release verification
+
+on:
+  pull_request:
+    branches: [main]
+    paths: ['release/**', '.github/workflows/research-release-verification.yml']
+  push:
+    branches: [main]
+    paths: ['release/**', '.github/workflows/research-release-verification.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  research-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install PDF inspection dependency
+        run: python -m pip install pypdf==6.10.0
+      - name: Fetch the exact recorded synthetic merges
+        run: |
+          python - <<'PY'
+          import json, re, subprocess
+          from pathlib import Path
+          evidence = json.loads(Path('release/v0.2.0/acceptance-evidence.json').read_text())
+          shas = [r['synthetic_merge_sha'] for r in evidence['receipts']]
+          if not shas or not all(re.fullmatch('[0-9a-f]{40}', s) for s in shas):
+              raise SystemExit('Invalid synthetic merge identity')
+          subprocess.run(['git', 'fetch', 'origin', *shas], check=True)
+          PY
+      - name: Verify final manuscript, source binding, historical blobs and artifact inventory
+        run: python release/v0.2.0/verify_release.py
+      - name: Verify every packaged byte and archive checksum
+        run: python release/v0.2.0/package_release.py --verify
+      - name: Exercise independent archive and release mutation controls
+        run: python -m unittest discover -s release/v0.2.0 -p 'test_*.py' -v

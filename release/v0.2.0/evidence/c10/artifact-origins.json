@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "artifacts": [
+    {
+      "anchor": "C69",
+      "sha256": "ba9a2461bb2558a4d572dcdf7569b2b4843cedea69fcc136453f3e2a831365d6",
+      "artifact_id": 12048182504,
+      "run_id": 38905103071,
+      "source_sha": "d8a96a423f402fcbe791c6e114d169894739f944",
+      "path": "evidence/c10/C69-c10.zip",
+      "origin": "GitHub Actions c10-release-evidence artifact",
+      "repository": "HMarcusWH/PermanssonLean"
+    },
+    {
+      "anchor": "C70",
+      "sha256": "986aa23b705d1c87f78558fa0307f0f981dae095e802d5a228b9878ff402cf3f",
+      "artifact_id": 12101179998,
+      "run_id": 39035552321,
+      "source_sha": "547d17e2fff8ab2136562dbb93562529bcda062e",
+      "path": "evidence/c10/C70-c10.zip",
+      "origin": "GitHub Actions c10-release-evidence artifact",
+      "repository": "HMarcusWH/PermanssonLean"
+    },
+    {
+      "anchor": "E1",
+      "sha256": "2ebe4d5c5ec22aba023439fcc1add3e230de39b887f30332fc9df96a74a0b924",
+      "artifact_id": 12102214059,
+      "run_id": 39036276477,
+      "source_sha": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+      "path": "evidence/c10/E1-c10.zip",
+      "origin": "GitHub Actions c10-release-evidence artifact",
+      "repository": "HMarcusWH/PermanssonLean"
+    },
+    {
+      "anchor": "F1",
+      "sha256": "7b254fce1b7ae93f1502eb14d38bfc5f2c5a54da7d808e0856ce62ba8bf3e300",
+      "artifact_id": 12102438217,
+      "run_id": 39037392282,
+      "source_sha": "018e8fcfbaff1d53efa9467f65c34d91169606f2",
+      "path": "evidence/c10/F1-c10.zip",
+      "origin": "GitHub Actions c10-release-evidence artifact",
+      "repository": "HMarcusWH/PermanssonLean"
+    },
+    {
+      "anchor": "A3",
+      "sha256": "8820502905c19bce3d47f79fa33ff3bd4a03e020b22000d6fc2302af26ca9df7",
+      "artifact_id": 12103631905,
+      "run_id": 39038951100,
+      "source_sha": "a977da54057837797ab1cea163f8bcec98cddb2d",
+      "path": "evidence/c10/A3-c10.zip",
+      "origin": "GitHub Actions c10-release-evidence artifact",
+      "repository": "HMarcusWH/PermanssonLean"
+    },
+    {
+      "anchor": "D2",
+      "sha256": "50d4ebce285bb146ae5d9ed76063a331f6de456f2c008b28ce44153a8d903568",
+      "artifact_id": 12103449716,
+      "run_id": 39039886205,
+      "source_sha": "37faf4430897e0abdd6dca664919a673b6f34b42",
+      "path": "evidence/c10/D2-c10.zip",
+      "origin": "GitHub Actions c10-release-evidence artifact",
+      "repository": "HMarcusWH/PermanssonLean"
+    },
+    {
+      "anchor": "X1",
+      "sha256": "3b4e9ae828defcb2203ea6022cc5b1ccbdee7e9b69e7aeadb02461abe09aa982",
+      "artifact_id": 12103774666,
+      "run_id": 39041222836,
+      "source_sha": "54babeeefd980c83fd7373f7429e028e5fa574e6",
+      "path": "evidence/c10/X1-c10.zip",
+      "origin": "GitHub Actions c10-release-evidence artifact",
+      "repository": "HMarcusWH/PermanssonLean"
+    }
+  ]
+}
