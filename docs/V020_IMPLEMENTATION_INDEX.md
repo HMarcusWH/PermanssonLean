@@ -108,8 +108,9 @@ Source modules: `PermanssonResearch/RegimeExit/ShiftedPrefixStationarity.lean`,
   I.e. `HasCanonicalShiftedPrefixLaws N` holds unconditionally.
 - **Source.** Spec §2.3 (strong Markov step of Prop. 4.2f); LANE_C_EXIT_RESTART step 3.
 - **Provider.** `hasCanonicalShiftedPrefixLaws`; supporting `shiftedHistory_hasTransitionPair`,
-  `stationaryHistoryKernel_add_eq_comap_drop`, `compProd_map_left_eq_map_compProd_comap`,
-  `map_frestrictLe_zero_of_eval_zero`.
+  `stationaryHistoryKernel_add_eq_comap_drop`, `map_frestrictLe_zero_of_eval_zero`, and the
+  generic `PermanssonResearch.Probability.compProd_map_left_eq_map_compProd_comap`
+  (moved to `Probability/CompProdPushforward.lean` by the E1 PR; originally in this module).
 - **Inputs.** Frozen `StrategicWorldModel.prefix_maps_eq_of_initial_and_transition`,
   `pathLaw_has_transition_pair`; mathlib `Kernel.partialTraj_compProd_eq_map_traj`,
   `Kernel.traj_map_frestrictLe_apply`; #68 `shiftedHistory_zero_marginal`,
@@ -122,7 +123,9 @@ Source modules: `PermanssonResearch/RegimeExit/ShiftedPrefixStationarity.lean`,
 - **Status.** PROVED.
 - **Verification.** Local: module compiles on Lean 4.34.0 / pinned mathlib; local
   `#print axioms` audit of all 34 new C69 declarations: only `propext`,
-  `Classical.choice`, `Quot.sound`. CI: see PR #69 (record run IDs at merge).
+  `Classical.choice`, `Quot.sound` (33 after the E1 PR moves the generic
+  `compProd_map_left_eq_map_compProd_comap` to `Probability/CompProdPushforward.lean`,
+  where `e1_axiom_audit.py` audits it). CI: see PR #69 (record run IDs at merge).
 - **Manuscript.** v0.2.0 §4.2 strong-Markov lemma preceding Prop. 4.2f.
 
 ### C69.2 — unconditional full-future last-state restart
@@ -270,17 +273,28 @@ Source modules: `RegimeExit/OccupationPrefixDeletion.lean`, `RegimeExit/RandomEn
 - **Verification.** As C70.1.
 - **Manuscript.** v0.2.0 Proposition 4.2f (full scoped statement) in §4.2 and §5.4.
 
-## E1 — approximate type-respecting quotients
+## E1 — approximate type-respecting quotients (branch `claude/zen-einstein-ub8zgr-e1`, stacked on #69)
 
-| Anchor | Claim | Planned provider | Status |
+Lane document: [LANE_E1_APPROX_QUOTIENT.md](LANE_E1_APPROX_QUOTIENT.md). Modules:
+`Probability/EventTVCalculus.lean`, `Probability/CompProdPushforward.lean`,
+`Quotient/ApproxPrefix.lean`, `Quotient/ApproxMargin.lean`, `Quotient/ApproxAdversaries.lean`.
+
+| Anchor | Claim | Provider | Status |
 |---|---|---|---|
-| E1.1 | One-step defect `η_ℓ = sup_y ‖q_# K^ℓ(y,·) − K̄^{φ(ℓ)}(q y,·)‖_TV ∈ [0,1]` (definition, typed quotient, frozen label bijection `φ`) | `Quotient/ApproxDefect.lean` | PROPOSED |
-| E1.2 | `TV((q^{0:T})_# P_y^{K^ℓ,0:T}, P̄_{q y}^{K̄^{φ ℓ},0:T}) ≤ min(1, T η_ℓ)` — projected fine process need not be Markov; analytic hybrid induction | `Quotient/ApproxPrefix.lean`: `approxQuotient_pathLaw_tv_le_linear` | PROPOSED |
-| E1.3 | Lipschitz finite-prefix property: `|Δ − Δ̄| ≤ L_ψ T(η_0+η_J)` and margin bound on surjective `q(B₁)=B̄₁` | `Quotient/ApproxMargin.lean`: `approxQuotient_margin_abs_le` | PROPOSED |
-| E1.4 | Counterexamples: small η with failed exact invariance; intervention-label mismatch; property non-factorization | `Quotient/ApproxAdversaries.lean` + Python | PROPOSED |
-| E1.5 | Optional geometric bound `1-(1-η)^T` | `Quotient/CommonMass.lean` | OPEN (separate proof obligation; not implied by E1.2) |
+| E1.0 | General event-TV calculus without countability: integral of `[0,1]` functions within TV (Hahn), pushforward contraction, triangle, two `⊗ₘ` comparison bounds | `lintegral_le_add_eventTotalVariation`, `eventTotalVariation_map_le`, `eventTotalVariation_triangle`, `eventTotalVariation_compProd_right_le`, `eventTotalVariation_compProd_left_le` | PROVED |
+| E1.1 | Defect as an UPPER-BOUND predicate `HasQuotientDefect q K K̄ η :⇔ ∀ y, ‖q_#K(y,·) − K̄(q y,·)‖_TV ≤ η` over EVERY fine state (the spec's `η = sup_y …` is the least such bound; the supremum itself is not defined in Lean and all theorems are monotone in `η`); per-label defects `η_ℓ` against `K̄^{φ(ℓ)}` enter as per-label hypotheses of the family theorem; exact intertwining ⇒ `η=0` | `HasQuotientDefect`, `ApproxKernelIntertwines`, `approxKernelIntertwines_zero_of_exact` | DEFINED (+ PROVED reduction) |
+| E1.2 | `TV(q-projected fine T-prefix, coarse T-prefix) ≤ min(1, Tη)` from the same fine start; projected process need not be Markov | `approxQuotient_prefix_tv_le_linear`, `approxQuotient_prefix_tv_le_min`, `approxQuotient_pathLaw_tv_le_linear` (spec name), `approxQuotient_pathLaw_prefix_tv_le` | PROVED |
+| E1.3 | For a factored property whose coarse side is an `L`-event-TV-Lipschitz `T`-prefix functional (`TVLipschitzPrefixProperty`, `L = p.constant`), with `0 ≤ η₀, η_J`: `\|Δ(y)−Δ̄(q y)\| ≤ L(min(1,Tη₀)+min(1,Tη_J))`; margins with `B̄₁ = q(B₁)`; positive-margin transfer; frozen-family version; Thm 7.4b certificate interface (arbitrary factored `ψ`, `QuotientCompatibleComparisonSets`); exact intertwining ⇒ equal margins | `approxQuotient_effect_abs_le`, `approxQuotient_margin_abs_le`, `approxQuotient_fine_margin_pos_of_coarse`, `approxQuotient_coarse_margin_pos_of_fine`, `approxQuotient_family_margin_abs_le`, `approxQuotient_margin_abs_le_of_certificates`, `approxQuotient_margin_eq_of_exact` | PROVED |
+| E1.4 | Leakage counterexample (Lean, kernel level): for every `ε ∈ (0,1]`, defect ≤ ε, fine region one-step invariant, coarse model leaves it with probability exactly ε (Exact-GR/PR non-transfer is the interpretation, not a separate theorem); Python (finite chains, NOT proofs): non-Markov projection from one start with non-vacuous linear bound (`Tη < 1`), defect over unreachable states, initial-law lift failure, lumpable η=0 (horizons ≤ 5) and equal margins, leakage incl. the η=1 cap, factorization failure, label mismatch, baseline-only certificate insufficient, non-saturated region does not descend, untyped (parity) quotient with η=0 rejected, positive margins above budget transferring in both directions with a leaking coarse region and an admissible `B₁` | `small_defect_does_not_preserve_invariance`; `test_e1_approx_quotient.py` (20) | PROVED / executable |
+| E1.5 | Geometric bound `1 − (1 − η)^T` | — | OPEN (needs a measurable common-mass construction; NOT implied by E1.2) |
 
-Inputs: CORE.Q74b, CORE.P54, A2.2, CORE.P52. Consumers: X1, R. Manuscript: §7.4.3 (Thm 7.4c).
+Inputs: CORE.Q74b (`TypeRespectingStateCompression`, `KernelIntertwines`, `kernelIntertwines_apply`,
+`QuotientFamilyMatching`, `PropertyFactorsThroughCompression`, `QuotientCompatibleComparisonSets`),
+CORE.P54 (`finitePrefixLaw`, `eventTotalVariation`), A2 (`TVLipschitzPrefixProperty`),
+CQ-1 (`ConstitutiveQuasi.pathLaw_finitePrefix_eq`),
+CORE.P52 (`abs_sInf_image_sub_sInf_image_le_of_uniform`), C69 shared lemma (moved to
+`Probability/CompProdPushforward.lean`). Consumers: X1, R. Manuscript: §7.4.3 (Thm 7.4c).
+Verification: local compile; `e1_axiom_audit.py` all declarations allowlisted (count in the PR); CI pending (E1 PR).
 
 ## F1 — multi-agent closed-loop versus opponent-locked protocols
 
