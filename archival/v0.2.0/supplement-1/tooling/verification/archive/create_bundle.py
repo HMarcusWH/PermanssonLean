@@ -28,6 +28,7 @@ R_SOURCE = {"repository": REPOSITORY, "pr_number": 76,
 R_IDENTITY = {"artifact_id": 12106535829, "run_id": 39045919534, "size": 9377,
               "sha256": "75d61c01020f63d7f9555f10f32de9d63a09c0107536463ae549cdb85ebe9fc8"}
 RECEIPT_PATH = b"release/v0.2.0/acceptance-evidence.json"
+GUIDE_PATH = "archival/v0.2.0/README.md"
 
 
 def derive_registry(repo):
@@ -199,6 +200,32 @@ def build_history(repo, registry, destination, *, production=True):
         return object_inventory(stage, sorted(refs))
 
 
+def _snapshot_tooling(repo, tooling_commit, output):
+    """Snapshot canonical code and its reproduction guide from the same T."""
+    output = Path(output)
+    entries = repo.tree(tooling_commit)
+    guide = entries.get(GUIDE_PATH.encode())
+    if guide is None or guide.object_type != "blob" or guide.mode not in {"100644", "100755"}:
+        fail("E_TOOLING_CLOSURE", "Commit the canonical offline guide before packaging")
+    tooling = []
+    for path, entry in sorted(entries.items()):
+        relative = path.decode("utf-8")
+        if not (relative.startswith("verification/integrity/")
+                or relative.startswith("verification/archive/") or relative == GUIDE_PATH):
+            continue
+        if entry.object_type != "blob" or entry.mode not in {"100644", "100755"}:
+            fail("E_TOOLING_CLOSURE", "Tooling snapshot contains a nonregular source entry")
+        payload = repo.blob(entry.oid, limit=MAX_METADATA)
+        target = output / "tooling" / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(payload)
+        tooling.append({"path": relative, "blob": entry.oid, "sha256": digest(payload)})
+    if not any(row["path"] == "verification/archive/verify_bundle.py" for row in tooling):
+        fail("E_TOOLING_CLOSURE", "Committed tooling snapshot is incomplete")
+    (output / "OFFLINE_REPRODUCTION.md").write_bytes(repo.blob(guide.oid, limit=MAX_METADATA))
+    return tooling
+
+
 def create_supplement(repo, evidence, output):
     """Production builder: clean T first, package outside the source tree."""
     from .acquire_evidence import validate_evidence
@@ -223,24 +250,7 @@ def create_supplement(repo, evidence, output):
     atomic_json(output / "refs.json", registry)
     objects = build_history(repo, registry, output / "history.bundle")
     (output / "objects.jsonl").write_bytes(b"".join(stable_json(row).replace(b"\n", b"") + b"\n" for row in objects))
-    tooling = []
-    for path, entry in sorted(repo.tree(tooling_commit).items()):
-        relative = path.decode("utf-8")
-        if not (relative.startswith("verification/integrity/") or relative.startswith("verification/archive/")):
-            continue
-        if entry.object_type != "blob" or entry.mode not in {"100644", "100755"}:
-            fail("E_TOOLING_CLOSURE", "Tooling snapshot contains a nonregular source entry")
-        payload = repo.blob(entry.oid)
-        target = output / "tooling" / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(payload)
-        tooling.append({"path": relative, "blob": entry.oid, "sha256": digest(payload)})
-    if not any(row["path"] == "verification/archive/verify_bundle.py" for row in tooling):
-        fail("E_TOOLING_CLOSURE", "Committed tooling snapshot is incomplete")
-    guide = repo.tree(tooling_commit).get(b"archival/v0.2.0/README.md")
-    if guide is None or guide.object_type != "blob" or guide.mode not in {"100644", "100755"}:
-        fail("E_TOOLING_CLOSURE", "Commit the canonical offline guide before packaging")
-    (output / "OFFLINE_REPRODUCTION.md").write_bytes(repo.blob(guide.oid))
+    tooling = _snapshot_tooling(repo, tooling_commit, output)
     files = scan_files(output)
     by_path = {row["path"]: row for row in files}
     manifest = {"format": FORMAT, "schema_version": 1, "repository": REPOSITORY,

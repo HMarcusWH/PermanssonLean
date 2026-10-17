@@ -22,6 +22,28 @@ FINAL_RUNS = {39045919531: ("Lean", {"build"}),
               39045919547: ("v0.2.0 research release verification", {"research-release"}),
               39045919577: ("Executable verification", {"executable-verification"}),
               39045919601: ("Application contract", {"Application contract (ubuntu-latest)", "Application contract (windows-latest)"})}
+# Independently observed PR76 issue-comment REST identities and exact decoded
+# UTF-8 bodies, acquired on 2026-10-17. Candidate capture hashes are not their
+# authority. The first item is a code-review comment, not mathematical peer
+# review or a counted GitHub APPROVED review. No production refresh/override.
+FIXED_COMMENTS = {
+    "final-code-review-comment.json": {
+        "id": 6235925253, "node_id": "IC_kwDOUkBtPs8AAAABc7CrBQ",
+        "author": {"id": 199175422, "login": "chatgpt-codex-connector[bot]",
+                   "node_id": "BOT_kgDOC98s_g", "type": "Bot"},
+        "created_at": "2026-10-17T15:40:46Z", "updated_at": "2026-10-17T15:40:46Z",
+        "body_utf8_bytes": 621,
+        "body_utf8_sha256": "8d3f62c4f58b93d6254e5caa1278b8784f5e739b04a116c8d95e1865a042ce5e",
+    },
+    "acceptance-comment.json": {
+        "id": 6236142249, "node_id": "IC_kwDOUkBtPs8AAAABc7P6qQ",
+        "author": {"id": 173802548, "login": "HMarcusWH",
+                   "node_id": "U_kgDOClwENA", "type": "User"},
+        "created_at": "2026-10-17T15:54:04Z", "updated_at": "2026-10-17T15:54:04Z",
+        "body_utf8_bytes": 3363,
+        "body_utf8_sha256": "b33381ce1f8cc769577a192f55107092c4775d0c88f812d6f0ae52031abd36b1",
+    },
+}
 
 
 def _index_entries(root):
@@ -267,6 +289,28 @@ def _validate_job_log_text(content):
     _utc_timestamp(match.group(1), "Job log has an invalid calendar timestamp")
 
 
+def _validate_fixed_comment(value, name):
+    expected = FIXED_COMMENTS[name]
+    identity = expected["id"]
+    author = value.get("user") if isinstance(value, dict) else None
+    if (not isinstance(value, dict) or type(value.get("id")) is not int
+            or value["id"] != identity or value.get("node_id") != expected["node_id"]
+            or value.get("url") != API + "/repos/" + REPOSITORY + "/issues/comments/" + str(identity)
+            or value.get("issue_url") != API + "/repos/" + REPOSITORY + "/issues/76"
+            or value.get("html_url") != "https://github.com/" + REPOSITORY + "/pull/76#issuecomment-" + str(identity)
+            or not isinstance(author, dict) or type(author.get("id")) is not int
+            or any(author.get(key) != pinned for key, pinned in expected["author"].items())
+            or any(value.get(key) != expected[key] for key in ("created_at", "updated_at"))
+            or not isinstance(value.get("body"), str)):
+        fail("E_CAPTURE_ID", "Fixed historical comment identity/author/timestamps differ: " + name)
+    try:
+        body = value["body"].encode("utf-8")
+    except UnicodeError:
+        fail("E_CAPTURE_ID", "Fixed historical comment body is not valid UTF-8: " + name)
+    if len(body) != expected["body_utf8_bytes"] or digest(body) != expected["body_utf8_sha256"]:
+        fail("E_CAPTURE_ID", "Fixed historical comment body differs: " + name)
+
+
 def validate_evidence(root):
     root = Path(root)
     scan_files(root)  # Reject symlinks/types before reading or copying evidence.
@@ -283,13 +327,12 @@ def validate_evidence(root):
             or pr.get("merge_commit_sha") != ACCEPTED
             or pr.get("base", {}).get("repo", {}).get("full_name") != REPOSITORY):
         fail("E_CAPTURE_ID", "Final PR capture has the wrong repository or H/B/M")
-    for name, identity in (("final-code-review-comment.json", 6235925253), ("acceptance-comment.json", 6236142249)):
-        value = strict_json(read_bounded(root / name))
-        if (value.get("id") != identity
-                or value.get("issue_url") != API + "/repos/" + REPOSITORY + "/issues/76"
-                or not isinstance(value.get("body"), str) or not value["body"]):
-            fail("E_CAPTURE_ID", "Wrong or empty captured final comment: " + name)
     entries_by_path = _index_entries(root)
+    for name, expected in FIXED_COMMENTS.items():
+        value = strict_json(read_bounded(root / name))
+        _validate_fixed_comment(value, name)
+        if entries_by_path.get(name, {}).get("endpoint") != API + "/repos/" + REPOSITORY + "/issues/comments/" + str(expected["id"]):
+            fail("E_CAPTURE_ID", "Fixed historical comment acquisition endpoint differs: " + name)
     reviews = strict_json(read_bounded(root / "final-review-submissions.json"))
     if not isinstance(reviews, list):
         fail("E_CAPTURE_ID", "Review submissions must preserve the complete paginated list")

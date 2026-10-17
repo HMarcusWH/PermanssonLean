@@ -223,6 +223,7 @@ class PreservationTests(unittest.TestCase):
             ):
                 with self.subTest(candidate=candidate, expected_exit=code):
                     self.assertEqual("PASS", self.fixture.compare(candidate).status)
+                    self.fixture.repo.run("update-ref", "refs/heads/main", candidate)
                     self.assertEqual(code, main(["--repo", str(self.fixture.root),
                                                 "--candidate", candidate,
                                                 "--report", str(report)]))

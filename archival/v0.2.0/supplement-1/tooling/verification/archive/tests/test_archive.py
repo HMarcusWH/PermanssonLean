@@ -508,6 +508,47 @@ class ArchiveInputTests(unittest.TestCase):
                 validate_evidence(root)
             self.assertEqual(caught.exception.code, "E_CAPTURE_ID")
             self.assertIn("final-code-review-comment.json", str(caught.exception))
+        # The fixed comments are historical content, not merely nonempty JSON.
+        # Repair the acquisition index AND complete outer manifest so each
+        # semantic pin must reject at E_CAPTURE_ID after the outer gate passes.
+        for name in ("final-code-review-comment.json", "acceptance-comment.json"):
+            for field in ("body", "body_surrogate", "author.id", "author.login",
+                          "author.node_id", "author.type", "created_at", "updated_at",
+                          "missing_created_at", "missing_updated_at", "node_id", "endpoint"):
+                def mutate(root, name=name, field=field):
+                    path = root / name
+                    value = strict_json(path.read_bytes())
+                    if field == "body":
+                        # Preserve byte length: the independently pinned digest
+                        # must detect this rather than only a size comparison.
+                        value["body"] = ("!" if value["body"][0] != "!" else "?") + value["body"][1:]
+                    elif field == "body_surrogate":
+                        value["body"] += chr(0xD800)
+                    elif field.startswith("author."):
+                        key = field.partition(".")[2]
+                        value["user"][key] = (value["user"][key] + 1 if key == "id"
+                                              else value["user"][key] + "-altered")
+                    elif field in ("created_at", "updated_at"):
+                        value[field] = "2026-10-16T00:00:00Z"
+                    elif field.startswith("missing_"):
+                        value.pop(field[len("missing_"):])
+                    elif field == "node_id":
+                        value["node_id"] += "-altered"
+                    else:
+                        index_path = root / "acquisition-index.json"
+                        index = strict_json(index_path.read_bytes())
+                        key = "entries" if "entries" in index else "records"
+                        next(row for row in index[key] if row["path"] == name)["endpoint"] = (
+                            "https://api.github.com/repos/HMarcusWH/PermanssonLean/issues/comments/1")
+                        index_path.write_bytes(stable_json(index))
+                    path.write_bytes(stable_json(value))
+                with self.subTest(comment=name, altered=field), tempfile.TemporaryDirectory() as temporary:
+                    evidence = self.repaired_capture(temporary, mutate)
+                    with self.assertRaises(HardeningError) as caught:
+                        validate_evidence(evidence)
+                    self.assertEqual("E_CAPTURE_ID", caught.exception.code)
+                    self.assertIn("Fixed historical comment", str(caught.exception))
+                    self.assertIn(name, str(caught.exception))
 
     def test_final_job_log_omission_repaired_index_rejected(self):
         from verification.archive.acquire_evidence import validate_evidence
@@ -611,6 +652,165 @@ class ArchiveIsolationTests(unittest.TestCase):
         result = strict_json(done.stdout)
         self.assertEqual(result["network_isolation"], "ENFORCED")
         self.assertNotEqual(result["parent_network_namespace"], result["child_network_namespace"])
+
+
+class GuideClosureTests(unittest.TestCase):
+    def test_guide_closure_canonical_and_standalone(self):
+        """Repaired outer hashes must not hide drift from canonical T/C guides."""
+        from verification.archive.create_bundle import GUIDE_PATH, _snapshot_tooling
+        from verification.archive.verify_bundle import require_source_pair, validate_tooling
+        from verification.integrity.tests._fixtures import GitFixture
+        from verification.archive import offline_smoke, _offline_worker
+
+        original = GitRepo(Path(__file__).resolve().parents[3])
+        try:
+            head = original.run("rev-parse", "HEAD").decode().strip()
+            guide = original.blob(original.tree(head)[GUIDE_PATH.encode()].oid)
+        finally:
+            original.close()
+        fixture = GitFixture()
+        self.addCleanup(fixture.close)
+        code = {b"verification/archive/verify_bundle.py": b"# fixture archive code\n",
+                b"verification/integrity/__init__.py": b"# fixture integrity code\n"}
+        changes = {path: ("100644", payload) for path, payload in code.items()}
+        changes[GUIDE_PATH.encode()] = ("100644", guide)
+        tooling_commit = fixture.commit(changes)
+        fixture.repo.run("update-ref", "refs/heads/main", tooling_commit)
+        for name, (_, payload) in changes.items():
+            target = fixture.root / name.decode()
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(payload)
+
+        def reject(code, function, *args, **kwargs):
+            with self.assertRaises(HardeningError) as caught:
+                function(*args, **kwargs)
+            self.assertEqual(code, caught.exception.code, str(caught.exception))
+
+        with tempfile.TemporaryDirectory(prefix="permansson-guide-") as temporary:
+            supplement = Path(temporary) / "supplement"
+            supplement.mkdir()
+            rows = _snapshot_tooling(fixture.repo, tooling_commit, supplement)
+            manifest = manifest_fixture(supplement)
+            manifest["tooling"] = {"source_commit": tooling_commit, "files": rows}
+
+            def repair(value):
+                value["files"] = scan_files(supplement)
+                write_manifest(supplement, value)
+                return validate_manifest(supplement)  # outer PASS precedes every semantic attack
+
+            manifest = repair(manifest)
+            bound = {"source_repo": fixture.root, "source_candidate": tooling_commit}
+            source_file = fixture.root / "verification/archive/verify_bundle.py"
+            with patch("verification.archive.verify_bundle.__file__", str(source_file)), \
+                 patch("verification.archive.verify_bundle.ACCEPTED", fixture.accepted), \
+                 patch("verification.archive.verify_bundle.ACCEPTED_TREE", fixture.repo.commit(fixture.accepted).tree):
+                with self.subTest(control="canonical_original_guide"):
+                    self.assertEqual(guide, (supplement / "OFFLINE_REPRODUCTION.md").read_bytes())
+                    result = validate_tooling(supplement, manifest, **bound)
+                    self.assertEqual("canonical_T_C_and_executing_code", result["binding"])
+                    self.assertEqual(3, result["files"])
+                    self.assertTrue(result["reproduction_instructions_match"])
+                with self.subTest(control="checkout_CRLF_is_not_canonical_drift"):
+                    (fixture.root / GUIDE_PATH).write_bytes(guide.replace(b"\n", b"\r\n"))
+                    self.assertEqual(result, validate_tooling(supplement, manifest, **bound))
+                    (fixture.root / GUIDE_PATH).write_bytes(guide)
+                with self.subTest(attack="committed_guide_changes_after_packaging"):
+                    candidate = fixture.commit({GUIDE_PATH.encode(): ("100644", guide + b"\nChanged guide.\n")},
+                                               parent=tooling_commit)
+                    fixture.repo.run("update-ref", "refs/heads/main", candidate)
+                    validate_manifest(supplement)
+                    reject("E_TOOLING_CLOSURE", validate_tooling, supplement, manifest,
+                           source_repo=fixture.root, source_candidate=candidate)
+                    fixture.repo.run("update-ref", "refs/heads/main", tooling_commit)
+                with self.subTest(attack="repaired_outer_instructions_only"):
+                    (supplement / "OFFLINE_REPRODUCTION.md").write_bytes(guide + b"\nChanged instructions.\n")
+                    altered = repair(deepcopy(manifest))
+                    reject("E_TOOLING_CLOSURE", validate_tooling, supplement, altered, **bound)
+                    (supplement / "OFFLINE_REPRODUCTION.md").write_bytes(guide)
+                with self.subTest(attack="repaired_snapshot_and_instructions_and_blob"):
+                    payload = guide + b"\nSelf-consistent altered guide.\n"
+                    (supplement / "OFFLINE_REPRODUCTION.md").write_bytes(payload)
+                    (supplement / "tooling" / GUIDE_PATH).write_bytes(payload)
+                    altered = deepcopy(manifest)
+                    row = next(row for row in altered["tooling"]["files"] if row["path"] == GUIDE_PATH)
+                    row.update(sha256=digest(payload), blob=fixture.blob(payload))
+                    altered = repair(altered)
+                    reject("E_TOOLING_CLOSURE", validate_tooling, supplement, altered, **bound)
+                    (supplement / "OFFLINE_REPRODUCTION.md").write_bytes(guide)
+                    (supplement / "tooling" / GUIDE_PATH).write_bytes(guide)
+                    manifest = repair(manifest)
+                with self.subTest(attack="T_file_omitted_from_C_snapshot_and_executing_code"):
+                    path = b"verification/integrity/__init__.py"
+                    candidate = fixture.commit({path: None}, parent=tooling_commit)
+                    fixture.repo.run("update-ref", "refs/heads/main", candidate)
+                    (fixture.root / path.decode()).unlink()
+                    (supplement / "tooling" / path.decode()).unlink()
+                    altered = deepcopy(manifest)
+                    altered["tooling"]["files"] = [row for row in altered["tooling"]["files"] if row["path"] != path.decode()]
+                    altered = repair(altered)
+                    reject("E_TOOLING_CLOSURE", validate_tooling, supplement, altered,
+                           source_repo=fixture.root, source_candidate=candidate)
+                    fixture.repo.run("update-ref", "refs/heads/main", tooling_commit)
+                    (fixture.root / path.decode()).write_bytes(code[path])
+                    (supplement / "tooling" / path.decode()).write_bytes(code[path])
+                    manifest = repair(manifest)
+
+            delivered_source = supplement / "tooling/verification/archive/verify_bundle.py"
+            with patch("verification.archive.verify_bundle.__file__", str(delivered_source)):
+                with self.subTest(control="standalone_delivered_guide_no_git_autodiscovery"), \
+                     patch("verification.archive.verify_bundle.GitRepo", side_effect=AssertionError("unexpected Git autodiscovery")):
+                    result = validate_tooling(supplement, manifest)
+                    self.assertEqual("standalone_content_hashes_only", result["binding"])
+                    self.assertIsNone(result["source_candidate"])
+                with self.subTest(attack="standalone_unapproved_guide_hash"):
+                    (supplement / "tooling" / GUIDE_PATH).write_bytes(guide + b"\nUnapproved.\n")
+                    (supplement / "OFFLINE_REPRODUCTION.md").write_bytes(guide + b"\nUnapproved.\n")
+                    altered = repair(deepcopy(manifest))
+                    reject("E_TOOLING_CLOSURE", validate_tooling, supplement, altered)
+                    (supplement / "tooling" / GUIDE_PATH).write_bytes(guide)
+                    (supplement / "OFFLINE_REPRODUCTION.md").write_bytes(guide)
+                    manifest = repair(manifest)
+                with self.subTest(attack="guide_omitted_from_declared_closure"):
+                    altered = deepcopy(manifest)
+                    altered["tooling"]["files"] = [row for row in altered["tooling"]["files"] if row["path"] != GUIDE_PATH]
+                    altered = repair(altered)
+                    reject("E_TOOLING_CLOSURE", validate_tooling, supplement, altered)
+
+        for source_repo, candidate in ((fixture.root, None), (None, tooling_commit), (fixture.root, "short")):
+            with self.subTest(attack="incomplete_binding", source_repo=str(source_repo), candidate=candidate):
+                reject("E_CONTEXT", require_source_pair, source_repo, candidate)
+                reject("E_CONTEXT", launch_offline, "unused", "unused", source_repo=source_repo, source_candidate=candidate)
+
+        # These are argument-plumbing controls, not claims of namespace execution.
+        flags = ["--supplement", "unused", "--scratch", "unused", "--report", "unused.json"]
+        payload = {"status": "PASS"}
+        with self.subTest(control="bound_parent_propagates_checked_pair"), \
+             patch.object(offline_smoke, "invocation_context", return_value=object()) as context, \
+             patch.object(offline_smoke, "launch_offline", return_value={"completed_stages": []}) as launch, \
+             patch.object(offline_smoke, "check_report", return_value=payload), \
+             patch.object(offline_smoke, "write_report"):
+            self.assertEqual(0, offline_smoke.main(flags + ["--repo", str(fixture.root), "--candidate", tooling_commit]))
+            context.assert_called_once_with(str(fixture.root), tooling_commit)
+            launch.assert_called_once_with("unused", "unused", source_repo=str(fixture.root), source_candidate=tooling_commit)
+        with self.subTest(control="standalone_parent_does_not_discover_repository"), \
+             patch.dict(os.environ, {"GITHUB_ACTIONS": ""}), \
+             patch.object(offline_smoke, "invocation_context", side_effect=AssertionError("unexpected context autodiscovery")), \
+             patch.object(offline_smoke, "restored_artifact_context", return_value=object()) as restored, \
+             patch.object(offline_smoke, "launch_offline", return_value={"completed_stages": []}) as launch, \
+             patch.object(offline_smoke, "check_report", return_value=payload), \
+             patch.object(offline_smoke, "write_report"):
+            self.assertEqual(0, offline_smoke.main(flags))
+            launch.assert_called_once_with("unused", "unused", source_repo=None, source_candidate=None)
+            restored.assert_called_once_with("unused")
+        with self.subTest(control="privilege_dropped_worker_receives_pair"), \
+             patch.object(_offline_worker, "isolation_attestation", return_value={}), \
+             patch.object(_offline_worker, "verify_supplement", return_value={"completed_stages": []}) as verify, \
+             patch.object(_offline_worker, "check_report", return_value=payload), \
+             patch.object(_offline_worker, "write_report"), patch.dict(os.environ):
+            self.assertEqual(0, _offline_worker.main(flags + ["--parent-netns", "net:[fixture]", "--source-repo", str(fixture.root),
+                                                           "--source-candidate", tooling_commit]))
+            verify.assert_called_once_with("unused", "unused", require_isolation=True,
+                                           source_repo=str(fixture.root), source_candidate=tooling_commit)
 
 
 if __name__ == "__main__":

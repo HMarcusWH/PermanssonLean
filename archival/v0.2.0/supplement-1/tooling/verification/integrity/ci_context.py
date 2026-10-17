@@ -33,6 +33,9 @@ def capture_context(repo, candidate, event_file=None):
     from .policy import ACCEPTED_RELEASE
     full_oid(candidate)
     commit = repo.commit(candidate)
+    actual = repo.run("rev-parse", "HEAD").strip().decode("ascii")
+    if actual != candidate:
+        raise HardeningError("E_CONTEXT", "Checkout HEAD differs from tested candidate")
     if os.environ.get("GITHUB_ACTIONS") != "true":
         if event_file is not None:
             raise HardeningError("E_CONTEXT", "An event file cannot manufacture a genuine CI context")
@@ -42,9 +45,6 @@ def capture_context(repo, candidate, event_file=None):
             raise HardeningError("E_CONTEXT", "Unexpected GitHub repository")
         if full_oid(os.environ["GITHUB_SHA"]) != candidate:
             raise HardeningError("E_CONTEXT", "Candidate differs from the event SHA")
-        actual = repo.run("rev-parse", "HEAD").strip().decode("ascii")
-        if actual != candidate:
-            raise HardeningError("E_CONTEXT", "Checkout HEAD differs from tested candidate")
         event_path = Path(os.environ["GITHUB_EVENT_PATH"])
         if event_path.stat().st_size > 8 * 1024 * 1024:
             raise HardeningError("E_LIMIT", "Event payload exceeds budget")

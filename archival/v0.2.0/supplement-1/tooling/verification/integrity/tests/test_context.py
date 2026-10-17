@@ -84,6 +84,15 @@ class ContextTests(unittest.TestCase):
 
     def test_local_cannot_fabricate_ci_event(self):
         with mock.patch.dict(os.environ, {"GITHUB_ACTIONS": "false"}):
-            ctx = capture_context(self.fixture.repo, self.head)
+            ctx = capture_context(self.fixture.repo, self.synthetic)
             self.assertEqual("local", ctx.event)
-            self.assert_context_error(lambda: capture_context(self.fixture.repo, self.head, self.event_path))
+            self.assertEqual(self.synthetic, ctx.checked_sha)
+            self.assert_context_error(lambda: capture_context(self.fixture.repo, self.synthetic, self.event_path))
+            for stale in (self.head, self.base):
+                with self.subTest(stale=stale):
+                    self.assert_context_error(lambda: capture_context(self.fixture.repo, stale))
+            advanced = self.fixture.commit({b"docs/newer.md": ("100644", b"later checkout\n")},
+                                           parent=self.synthetic)
+            self.fixture.repo.run("update-ref", "refs/heads/main", advanced)
+            self.assertEqual(advanced, capture_context(self.fixture.repo, advanced).checked_sha)
+            self.assert_context_error(lambda: capture_context(self.fixture.repo, self.synthetic))

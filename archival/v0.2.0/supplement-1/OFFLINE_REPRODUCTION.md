@@ -44,6 +44,12 @@ verification, commit supplement files separately. Later tooling changes require
 updating that snapshot; stale copies are rejected. Record eventual maintenance
 H/B/S/M, review, rollout and publication in an external acceptance receipt.
 
+The snapshot includes this canonical guide. Candidate-bound replay compares the
+complete code and guide closure at T and current checkout C, then checks the
+executing code and delivered copies. `OFFLINE_REPRODUCTION.md` must exactly
+match the guide snapshot. These comparisons use committed Git content for the
+guide, so checkout newline conversion does not alter its source identity.
+
 ## Supported offline profile
 
 Install Python 3.13, Git and `pypdf==6.10.0` before the isolation boundary.
@@ -73,6 +79,10 @@ context is captured from the actual restored A and explicitly labeled
 `accepted_artifact_replay`. Candidate-context CI acceptance still requires the
 real maintenance Git checkout and genuine event. A standalone replay report
 cannot replace current candidate CI.
+
+Standalone replay compares the delivered code and guide copies by content; it
+does not discover a surrounding Git repository or authenticate the publisher.
+Both `--repo` and `--candidate` are required together for candidate-bound use.
 
 ## What the archival gate proves
 
