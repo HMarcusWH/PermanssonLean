@@ -1,0 +1,53 @@
+name: C-Exit E random-entry occupation focused smoke
+
+# Focused source-head gate for C70 (random-entry occupation and scoped
+# Proposition 4.2f). It does NOT replace the full Research Lean workflow.
+
+on:
+  push:
+    branches: [claude/zen-einstein-ub8zgr, claude/zen-einstein-ub8zgr-c70]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'PermanssonResearch/RegimeExit/**'
+      - 'verification/research/test_c_exit_random_entry.py'
+      - 'verification/research/c70_axiom_audit.py'
+      - '.github/workflows/c-exit-random-entry-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  random-entry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Exact rational random-entry, prefix-deletion and firewall adversaries
+        run: python3 -m unittest discover -s verification/research -p 'test_c_exit_random_entry.py' -v
+      - name: Compile C70 modules
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch.RegimeExit.OccupationPrefixDeletion PermanssonResearch.RegimeExit.RandomEntryOccupation PermanssonResearch.RegimeExit.InProbabilityOccupation PermanssonResearch.RegimeExit.Proposition42f
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+      - name: Declaration-level transitive axiom audit of every C70 declaration
+        run: python3 verification/research/c70_axiom_audit.py
+      - name: Reject proof placeholders and custom axioms in C70 sources
+        run: |
+          if grep -n -E '(^|[^[:alnum:]_])(sorry|admit|native_decide)([^[:alnum:]_]|$)|^[[:space:]]*((private|protected|noncomputable|unsafe)[[:space:]]+)*axiom[[:space:]]' \
+              PermanssonResearch/RegimeExit/OccupationPrefixDeletion.lean \
+              PermanssonResearch/RegimeExit/RandomEntryOccupation.lean \
+              PermanssonResearch/RegimeExit/InProbabilityOccupation.lean \
+              PermanssonResearch/RegimeExit/Proposition42f.lean; then
+            echo 'Forbidden placeholder, native_decide or axiom in C70 sources'
+            exit 1
+          fi
+          echo 'C70 source firewall PASS'
