@@ -11,23 +11,33 @@ A typed two-player commons toy on `S = Unit × (Bool × Bool)`, `X = Bool`,
 `A = Bool × Bool` (`true` = extract). Each player records its own last action;
 the COMMON world kernel is `x' = a₁` (the resource is depleted iff player 1
 extracted). Baseline: player 1 repeats its last action and the opponent COPIES
-player 1's last action (a reactive opponent). The declared replacement makes
-player 1 always extract. Property: the opponent extracts at time 2.
+player 1's last action (a reactive opponent, NOT strictly non-reactive:
+`baselineOpponent_not_strict`). The declared replacement makes player 1 always
+extract. Property `ψ`: the opponent's action taken at time 1 (recorded in `s₂` at
+time 2) is "extract".
 
-* **MA1** (`closedLoop_ne_openLoop`): `Δ_CL = 1`, `Δ_OL = 0`, `A₁ = 1` against
-  the constant "never extract" anchor; the protocols separate only after the
-  intervention-reachable state where player 1 has extracted.
-* **Agreement** (`closedLoop_eq_openLoopWorld`): against the anchor that reads
-  the world state the two protocols give the same value.
-* **MA2** (`anchors_agree_on_support_but_openLoop_differs`): the two anchors have
-  identical kernels at every baseline-reachable state, yet their OL values
-  differ: baseline agreement does not identify the anchor off support.
+* **MA1** (`closedLoop_ne_openLoop`, STRICT family): against the strictly
+  non-reactive "never extract" anchor, `Δ_CL = 1`, `Δ_OL = 0`, `A₁ = 1`.
+  `protocols_separate_after_reachable_state` locates the separation: at `y₀` the
+  CL opponent and the anchor play the same law; at the CL state at time 1, which
+  is not on the baseline orbit, they differ.
+* **Agreement** (`closedLoop_eq_openLoopExtract`, STRICT family): against the
+  strictly non-reactive "always extract" anchor the two protocols give the same
+  value. (`closedLoop_eq_openLoopWorld` is the same equality for a state-feedback
+  anchor that reads `x`; it is NOT an opponent-locked protocol in the strict
+  sense.)
+* **MA2** (`anchors_agree_on_support_but_openLoop_differs`): the strict anchor
+  `anchorConst` and the state-feedback anchor `anchorWorld` BOTH coincide with the
+  baseline opponent (action and update kernels) at every baseline-reachable
+  state, yet their OL values differ: baseline agreement does not identify the
+  anchor off support.
 * **MA3** (`correlated_generator_not_product`): a generator whose joint action
-  law is perfectly correlated at some state is not the generator of ANY
-  two-player conditional-product model.
+  law at some state equals the specific perfectly correlated law `correlatedLaw`
+  on `Bool × Bool` is not the generator of any two-player conditional-product
+  model. Correlation mediated by a shared `S₀` coordinate is NOT excluded.
 
-All values are computed exactly through `pathLaw_dirac_of_deterministic` (frozen
-uniqueness), not by assumption.
+All property values are computed exactly through `pathLaw_dirac_of_deterministic`
+(frozen uniqueness), not by assumption.
 -/
 
 namespace PermanssonResearch.MultiAgent.Witness
@@ -79,11 +89,15 @@ instance world_isMarkov : IsMarkovKernel world := by unfold world; infer_instanc
 last action (reactive). -/
 noncomputable def baseline : TwoPlayerGenerator Unit Bool Bool Bool Bool Bool := gen s1 s1
 noncomputable def extract : PlayerOneMechanism Unit Bool Bool Bool Bool Bool := mech1 (fun _ => true)
-/-- Open-loop anchor: never extract (state independent). -/
+/-- Strictly non-reactive anchor: never extract. -/
 noncomputable def anchorConst : PlayerTwoMechanism Unit Bool Bool Bool Bool Bool := mech2 (fun _ => false)
-/-- Anchor reading the world state (agrees with `anchorConst` on baseline support). -/
+/-- Strictly non-reactive anchor: always extract. -/
+noncomputable def anchorExtract : PlayerTwoMechanism Unit Bool Bool Bool Bool Bool :=
+  mech2 (fun _ => true)
+/-- State-feedback anchor reading the world state `x` (NOT strictly non-reactive). -/
 noncomputable def anchorWorld : PlayerTwoMechanism Unit Bool Bool Bool Bool Bool := mech2 xw
-def anchors : Set (PlayerTwoMechanism Unit Bool Bool Bool Bool Bool) := {anchorConst, anchorWorld}
+def anchors : Set (PlayerTwoMechanism Unit Bool Bool Bool Bool Bool) :=
+  {anchorConst, anchorWorld, anchorExtract}
 
 def step (a1 a2 : Y → Bool) (y : Y) : Y := (((), (a1 y, a2 y)), a1 y)
 
@@ -122,9 +136,72 @@ theorem ψ_dirac (w : ℕ → Y) :
 
 def y0 : Y := (((), (false, false)), false)
 
+/-- Exact value of `ψ` from `y₀` for any product generator of the toy. -/
+theorem gen_value (a1 a2 : Y → Bool) :
+    ψ (pathProbability ((gen a1 a2).toModel world) (diracProba y0)) =
+      if s2 (detOrbit (step a1 a2) y0 2) = true then 1 else 0 := by
+  change ψ ⟨((gen a1 a2).toModel world).pathLaw (Measure.dirac y0), _⟩ = _
+  simp only [gen_pathLaw]
+  rw [ψ_dirac]
+
+/-! ### Strict non-reactivity of the anchors -/
+
+theorem dirac_false_ne_true : (Measure.dirac false : Measure Bool) ≠ Measure.dirac true := by
+  intro h
+  have h2 := congrArg (fun μ : Measure Bool => μ {true}) h
+  simp at h2
+
+theorem mech2_update_factors (act : Y → Bool) :
+    ∃ ū : Kernel ((Unit × Bool) × Bool) Bool,
+      (mech2 act).update = ū.comap anchorUpdateKey measurable_anchorUpdateKey :=
+  ⟨detK (fun k : (Unit × Bool) × Bool => k.2), Kernel.ext fun u => by
+    change detK (fun u : UI => u.1.2.2) u = _
+    rw [detK_apply, Kernel.comap_apply, detK_apply]; rfl⟩
+
+theorem const_anchor_strict (b : Bool) : IsStrictlyNonReactive (mech2 (fun _ => b)) :=
+  ⟨⟨Kernel.const _ (Measure.dirac b), Kernel.ext fun y => by
+      change detK (fun _ : Y => b) y = _
+      rw [detK_apply, Kernel.comap_apply, Kernel.const_apply]⟩,
+    mech2_update_factors _⟩
+
+theorem anchorConst_strict : IsStrictlyNonReactive anchorConst := const_anchor_strict false
+theorem anchorExtract_strict : IsStrictlyNonReactive anchorExtract := const_anchor_strict true
+
+/-- Two states with the same `(s₀, s₂)` but different `s₁` and `x`. -/
+theorem mech2_not_strict (act : Y → Bool) {y y' : Y} (hk : anchorKey y = anchorKey y')
+    (hne : act y ≠ act y') : ¬ IsStrictlyNonReactive (mech2 act) := by
+  intro h
+  have := h.action_eq hk
+  change detK act y = detK act y' at this
+  rw [detK_apply, detK_apply] at this
+  cases hy : act y <;> cases hy' : act y' <;> simp_all [dirac_false_ne_true,
+    dirac_false_ne_true.symm]
+
+theorem anchorWorld_not_strict : ¬ IsStrictlyNonReactive anchorWorld :=
+  mech2_not_strict xw (y := (((), (false, false)), false)) (y' := (((), (false, false)), true))
+    rfl (by decide)
+
+theorem baselineOpponent_not_strict : ¬ IsStrictlyNonReactive baseline.player2 :=
+  mech2_not_strict s1 (y := (((), (false, false)), false)) (y' := (((), (true, false)), false))
+    rfl (by decide)
+
+theorem anchorConst_mem_strict : anchorConst ∈ strictAnchors anchors :=
+  ⟨by simp [anchors], anchorConst_strict⟩
+theorem anchorExtract_mem_strict : anchorExtract ∈ strictAnchors anchors :=
+  ⟨by simp [anchors], anchorExtract_strict⟩
+theorem anchorWorld_not_mem_strict : anchorWorld ∉ strictAnchors anchors :=
+  fun h => anchorWorld_not_strict h.2
+
+/-! ### Interventions -/
+
 noncomputable abbrev baselineModel : StrategicWorldModel (GameState Unit Bool Bool) Bool (Bool × Bool) :=
   baseline.toModel world
+
+/-- Full menu (declared-kernel reading). -/
 noncomputable abbrev family := protocolFamily baseline world extract anchors
+/-- Strict menu (strictly non-reactive anchors only). -/
+noncomputable abbrev strictFamily := protocolFamily baseline world extract (strictAnchors anchors)
+
 noncomputable def JCL : AdmissibleStrategicIntervention family :=
   closedLoopIntervention baseline world extract anchors
 noncomputable def JOLconst : AdmissibleStrategicIntervention family :=
@@ -132,61 +209,121 @@ noncomputable def JOLconst : AdmissibleStrategicIntervention family :=
 noncomputable def JOLworld : AdmissibleStrategicIntervention family :=
   openLoopIntervention baseline world extract anchors anchorWorld (by simp [anchors])
 
+noncomputable def JCLs : AdmissibleStrategicIntervention strictFamily :=
+  closedLoopIntervention baseline world extract (strictAnchors anchors)
+noncomputable def JOLconsts : AdmissibleStrategicIntervention strictFamily :=
+  openLoopIntervention baseline world extract (strictAnchors anchors) anchorConst
+    anchorConst_mem_strict
+noncomputable def JOLextracts : AdmissibleStrategicIntervention strictFamily :=
+  openLoopIntervention baseline world extract (strictAnchors anchors) anchorExtract
+    anchorExtract_mem_strict
+
+/-! ### Exact values -/
+
 theorem baseline_value : baselinePropertyValue ψ baselineModel y0 = 0 := by
-  change ψ ⟨(gen s1 s1).toModel world |>.pathLaw (Measure.dirac y0), _⟩ = 0
-  simp only [gen_pathLaw]
   have h : s2 (detOrbit (step s1 s1) y0 2) = false := rfl
-  rw [ψ_dirac]; simp [h]
+  exact (gen_value s1 s1).trans (by simp [h])
 
-theorem closedLoop_value : intervenedPropertyValue ψ JCL.intervention y0 = 1 := by
-  change ψ ⟨(gen (fun _ => true) s1).toModel world |>.pathLaw (Measure.dirac y0), _⟩ = 1
-  simp only [gen_pathLaw]
+theorem cl_value : ψ (pathProbability ((gen (fun _ => true) s1).toModel world)
+    (diracProba y0)) = 1 := by
   have h : s2 (detOrbit (step (fun _ => true) s1) y0 2) = true := rfl
-  rw [ψ_dirac]; simp [h]
+  exact (gen_value _ _).trans (by simp [h])
 
-theorem openLoopConst_value : intervenedPropertyValue ψ JOLconst.intervention y0 = 0 := by
-  change ψ ⟨(gen (fun _ => true) (fun _ => false)).toModel world |>.pathLaw
-    (Measure.dirac y0), _⟩ = 0
-  simp only [gen_pathLaw]
+theorem olConst_value : ψ (pathProbability ((gen (fun _ => true) (fun _ => false)).toModel world)
+    (diracProba y0)) = 0 := by
   have h : s2 (detOrbit (step (fun _ => true) (fun _ => false)) y0 2) = false := rfl
-  rw [ψ_dirac]; simp [h]
+  exact (gen_value _ _).trans (by simp [h])
 
-theorem openLoopWorld_value : intervenedPropertyValue ψ JOLworld.intervention y0 = 1 := by
-  change ψ ⟨(gen (fun _ => true) xw).toModel world |>.pathLaw (Measure.dirac y0), _⟩ = 1
-  simp only [gen_pathLaw]
+theorem olExtract_value : ψ (pathProbability ((gen (fun _ => true) (fun _ => true)).toModel world)
+    (diracProba y0)) = 1 := by
+  have h : s2 (detOrbit (step (fun _ => true) (fun _ => true)) y0 2) = true := rfl
+  exact (gen_value _ _).trans (by simp [h])
+
+theorem olWorld_value : ψ (pathProbability ((gen (fun _ => true) xw).toModel world)
+    (diracProba y0)) = 1 := by
   have h : s2 (detOrbit (step (fun _ => true) xw) y0 2) = true := rfl
-  rw [ψ_dirac]; simp [h]
+  exact (gen_value _ _).trans (by simp [h])
 
-/-- **MA1.** Closed loop and opponent-locked differ: `Δ_CL = 1`, `Δ_OL = 0`, gap `= 1`. -/
+theorem closedLoop_value : intervenedPropertyValue ψ JCL.intervention y0 = 1 := cl_value
+theorem openLoopConst_value : intervenedPropertyValue ψ JOLconst.intervention y0 = 0 :=
+  olConst_value
+theorem openLoopWorld_value : intervenedPropertyValue ψ JOLworld.intervention y0 = 1 :=
+  olWorld_value
+theorem closedLoopStrict_value : intervenedPropertyValue ψ JCLs.intervention y0 = 1 := cl_value
+theorem openLoopConstStrict_value : intervenedPropertyValue ψ JOLconsts.intervention y0 = 0 :=
+  olConst_value
+theorem openLoopExtractStrict_value :
+    intervenedPropertyValue ψ JOLextracts.intervention y0 = 1 := olExtract_value
+
+/-! ### MA1, locus, agreement, MA2 -/
+
+/-- **MA1 (strict family).** Closed loop versus the strictly non-reactive
+"never extract" anchor: `Δ_CL = 1`, `Δ_OL = 0`, `A = 1`. -/
 theorem closedLoop_ne_openLoop :
-    constitutiveEffect baselineModel ψ JCL y0 = 1 ∧ constitutiveEffect baselineModel ψ JOLconst y0 = 0 ∧
-      protocolGap ψ JCL JOLconst y0 = 1 := by
+    constitutiveEffect baselineModel ψ JCLs y0 = 1 ∧
+      constitutiveEffect baselineModel ψ JOLconsts y0 = 0 ∧
+      protocolGap ψ JCLs JOLconsts y0 = 1 := by
   unfold constitutiveEffect protocolGap
-  rw [baseline_value, closedLoop_value, openLoopConst_value]
+  rw [baseline_value, closedLoopStrict_value, openLoopConstStrict_value]
   norm_num [Real.dist_eq]
-
-/-- **Agreement.** With the world-reading anchor, CL and OL coincide here. -/
-theorem closedLoop_eq_openLoopWorld : protocolGap ψ JCL JOLworld y0 = 0 := by
-  unfold protocolGap
-  rw [closedLoop_value, openLoopWorld_value, dist_self]
 
 theorem baseline_orbit_const (t : ℕ) : detOrbit (step s1 s1) y0 t = y0 := by
   induction t with
   | zero => rfl
   | succ t ih => rw [detOrbit_succ, ih]; rfl
 
-/-- **MA2.** The two anchors have IDENTICAL kernels at every baseline-reachable
-state from `y0`, yet their opponent-locked protocol values differ: agreement on
-baseline support does not identify the OL protocol off support. -/
+/-- **MA1 locus.** At `y₀` the CL opponent (the baseline opponent, kept by
+`closedLoop`) and the strict anchor play the same law; at the CL state at time 1
+— which is NOT on the baseline orbit — they play different laws. -/
+theorem protocols_separate_after_reachable_state :
+    (baseline.closedLoop extract).player2.action y0 = anchorConst.action y0 ∧
+      detOrbit (step (fun _ => true) s1) y0 1 ∉ Set.range (detOrbit (step s1 s1) y0) ∧
+      (baseline.closedLoop extract).player2.action (detOrbit (step (fun _ => true) s1) y0 1) ≠
+        anchorConst.action (detOrbit (step (fun _ => true) s1) y0 1) := by
+  refine ⟨?_, ?_, ?_⟩
+  · change detK s1 y0 = detK (fun _ : Y => false) y0
+    rw [detK_apply, detK_apply]; rfl
+  · rintro ⟨t, ht⟩
+    rw [baseline_orbit_const] at ht
+    have h2 : y0.2 = (detOrbit (step (fun _ => true) s1) y0 1).2 := congrArg Prod.snd ht
+    exact absurd h2 (by decide)
+  · change detK s1 _ ≠ detK (fun _ : Y => false) _
+    rw [detK_apply, detK_apply]
+    exact dirac_false_ne_true.symm
+
+/-- **Agreement (strict family).** Against the strictly non-reactive "always
+extract" anchor, CL and OL give the same value. -/
+theorem closedLoop_eq_openLoopExtract : protocolGap ψ JCLs JOLextracts y0 = 0 := by
+  unfold protocolGap
+  rw [closedLoopStrict_value, openLoopExtractStrict_value, dist_self]
+
+/-- Same equality for the STATE-FEEDBACK anchor `anchorWorld` (it reads `x`, which
+equals player 1's last action, so it is not opponent-locked in the strict sense). -/
+theorem closedLoop_eq_openLoopWorld : protocolGap ψ JCL JOLworld y0 = 0 := by
+  unfold protocolGap
+  rw [closedLoop_value, openLoopWorld_value, dist_self]
+
+/-- **MA2.** The strict anchor `anchorConst` and the state-feedback anchor
+`anchorWorld` both coincide with the BASELINE opponent — action kernels at every
+baseline-reachable state from `y₀`, and update kernels everywhere — yet their OL
+values differ: agreement with the baseline on baseline support does not identify
+the anchor (or the OL protocol) off support. -/
 theorem anchors_agree_on_support_but_openLoop_differs :
     (∀ t, anchorConst.action (detOrbit (step s1 s1) y0 t) =
-        anchorWorld.action (detOrbit (step s1 s1) y0 t)) ∧
-      anchorConst.update = anchorWorld.update ∧
+        baseline.player2.action (detOrbit (step s1 s1) y0 t)) ∧
+      (∀ t, anchorWorld.action (detOrbit (step s1 s1) y0 t) =
+        baseline.player2.action (detOrbit (step s1 s1) y0 t)) ∧
+      anchorConst.update = baseline.player2.update ∧
+      anchorWorld.update = baseline.player2.update ∧
+      IsStrictlyNonReactive anchorConst ∧ ¬ IsStrictlyNonReactive anchorWorld ∧
       intervenedPropertyValue ψ JOLconst.intervention y0 ≠
         intervenedPropertyValue ψ JOLworld.intervention y0 := by
-  refine ⟨fun t => ?_, rfl, ?_⟩
+  refine ⟨fun t => ?_, fun t => ?_, rfl, rfl, anchorConst_strict, anchorWorld_not_strict, ?_⟩
   · rw [baseline_orbit_const]
-    change detK (fun _ : Y => false) y0 = detK xw y0
+    change detK (fun _ : Y => false) y0 = detK s1 y0
+    rw [detK_apply, detK_apply]; rfl
+  · rw [baseline_orbit_const]
+    change detK xw y0 = detK s1 y0
     rw [detK_apply, detK_apply]; rfl
   · rw [openLoopConst_value, openLoopWorld_value]; norm_num
 
@@ -199,7 +336,7 @@ open PermanssonLean
 
 /-! ### MA3: correlated actions are outside the product subclass -/
 
-/-- Perfectly correlated joint action law on `Bool × Bool`. -/
+/-- The perfectly correlated joint action law `½ δ_(t,t) + ½ δ_(f,f)` on `Bool × Bool`. -/
 noncomputable def correlatedLaw : Measure (Bool × Bool) :=
   (2⁻¹ : ℝ≥0∞) • Measure.dirac (true, true) + (2⁻¹ : ℝ≥0∞) • Measure.dirac (false, false)
 
@@ -221,8 +358,9 @@ theorem correlatedLaw_ne_prod (ν₁ ν₂ : Measure Bool) [SFinite ν₂] :
   · rw [h1, zero_mul] at htt; simp at htt
   · rw [h2, mul_zero] at hff; simp at hff
 
-/-- **MA3.** A generator whose joint action law at some state is perfectly
-correlated is NOT the generator of any two-player conditional-product model. -/
+/-- **MA3.** A generator whose joint action law at some state EQUALS `correlatedLaw`
+is NOT the generator of any two-player conditional-product model. (Correlation
+mediated by a shared `S₀` coordinate is representable and is not excluded.) -/
 theorem correlated_generator_not_product
     {S0 : Type*} {S1 : Type*} {S2 : Type*} {X : Type*}
     [MeasurableSpace S0] [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X]

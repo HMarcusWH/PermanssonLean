@@ -1,9 +1,11 @@
 """Focused transitive axiom audit for the F1 (multi-agent protocols) declarations.
 
-Every theorem/lemma/def/abbrev/instance in the listed modules
-(namespace-aware) is passed to `#print axioms`; each must depend only on
-{propext, Classical.choice, Quot.sound}. Anonymous instances are rejected (they
-must be named so they can be audited). Complements, and does not replace, the
+Every top-level theorem/lemma/def/abbrev/instance/structure/inductive/class in
+the listed modules (namespace-aware; attribute-prefixed, `noncomputable` and
+`protected` forms included; non-ASCII names included) is passed to
+`#print axioms`; each must depend only on {propext, Classical.choice,
+Quot.sound}. Anonymous instances and `private` declarations are rejected (they
+cannot be addressed by name, so they could not be audited). Complements, and does not replace, the
 full Research Lean audit.
 """
 import re
@@ -24,8 +26,11 @@ IMPORTS = [
 ]
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
 ATTR = r"(?:@\[[^\]]*\]\s*)?"
-DECL = re.compile(ATTR + r"(?:noncomputable\s+)?(?:theorem|lemma|def|abbrev|instance)\s+([^\s:({\[]+)")
-ANON_INSTANCE = re.compile(ATTR + r"(?:noncomputable\s+)?instance\s*(?::|\(|\[|\{)")
+MODS = r"(?:(?:noncomputable|protected)\s+)*"
+DECL = re.compile(ATTR + MODS +
+                  r"(?:theorem|lemma|def|abbrev|instance|structure|inductive|class)\s+([^\s:({\[]+)")
+ANON_INSTANCE = re.compile(ATTR + MODS + r"instance\s*(?::|\(|\[|\{)")
+PRIVATE = re.compile(ATTR + r"private\s")
 NS = re.compile(r"^namespace\s+(\S+)")
 END = re.compile(r"^end\s+(\S+)")
 
@@ -37,6 +42,8 @@ def declarations(text: str):
             stack.append(m.group(1))
         elif (m := END.match(line)) and stack and stack[-1] == m.group(1):
             stack.pop()
+        elif PRIVATE.match(line):
+            raise SystemExit(f"private declaration (cannot be audited by name): {line!r}")
         elif ANON_INSTANCE.match(line):
             raise SystemExit(f"anonymous instance (name it to audit it): {line!r}")
         elif m := DECL.match(line):
