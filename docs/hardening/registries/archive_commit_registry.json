@@ -1,0 +1,224 @@
+{
+  "format": "Permansson.Hardening.ArchiveRefs.v1",
+  "milestones": [
+    {
+      "anchor": "C69",
+      "base": "6191a1acbf00867042a21c8e6c4a532af43017bc",
+      "head": "d8a96a423f402fcbe791c6e114d169894739f944",
+      "main": "54848efd002a0153641c9e340325dce857e1e5db",
+      "pr": 69,
+      "synthetic": "3a11d5776772f87cc2160ca3222b1e34d1b3043c"
+    },
+    {
+      "anchor": "C70",
+      "base": "54848efd002a0153641c9e340325dce857e1e5db",
+      "head": "547d17e2fff8ab2136562dbb93562529bcda062e",
+      "main": "24ea0836db5bb45c964b00121718613d843ce255",
+      "pr": 70,
+      "synthetic": "775a1317cbe664d70ac2aebbc55e40e4811be2b3"
+    },
+    {
+      "anchor": "E1",
+      "base": "24ea0836db5bb45c964b00121718613d843ce255",
+      "head": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+      "main": "2a2246ad851e2cdc435dcd0f98f259e1264541b3",
+      "pr": 71,
+      "synthetic": "cfdf3386d2d5363f7187e2087310b7e1b152f752"
+    },
+    {
+      "anchor": "F1",
+      "base": "2a2246ad851e2cdc435dcd0f98f259e1264541b3",
+      "head": "018e8fcfbaff1d53efa9467f65c34d91169606f2",
+      "main": "22859775afb744a6dce89f73f47f816afb88bb23",
+      "pr": 72,
+      "synthetic": "5c6e4eaea7bb3afc58fafd79bbef182336120e51"
+    },
+    {
+      "anchor": "A3",
+      "base": "22859775afb744a6dce89f73f47f816afb88bb23",
+      "head": "a977da54057837797ab1cea163f8bcec98cddb2d",
+      "main": "9cf3410e9786b68f68d93c0684613329cdc9159e",
+      "pr": 73,
+      "synthetic": "11c4baace0de6025709b0cdd637e99c255a70bc6"
+    },
+    {
+      "anchor": "D2",
+      "base": "9cf3410e9786b68f68d93c0684613329cdc9159e",
+      "head": "37faf4430897e0abdd6dca664919a673b6f34b42",
+      "main": "bc7617e15084673aa6053ab58282260226344c2b",
+      "pr": 74,
+      "synthetic": "89da71c43657d79d3f60cffe6b4b02efe7331fcd"
+    },
+    {
+      "anchor": "X1",
+      "base": "bc7617e15084673aa6053ab58282260226344c2b",
+      "head": "54babeeefd980c83fd7373f7429e028e5fa574e6",
+      "main": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+      "pr": 75,
+      "synthetic": "f1da869c9558faa9935e57042afba04b22eb3e00"
+    },
+    {
+      "anchor": "R",
+      "base": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+      "head": "cdbe7ed5124781be495404122fac1de3315cb6ec",
+      "main": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+      "pr": 76,
+      "synthetic": "c70362b97ae7d0828a569fa15e194f9861b22b46"
+    }
+  ],
+  "provenance": {
+    "accepted_commit": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "external_registry_package_available": false,
+    "kind": "derived_from_accepted_git_receipts_and_fixed_R",
+    "receipt_blob": "4f67ff97cd5deeace83497c0a7c65a291160e84e",
+    "receipt_path": "release/v0.2.0/acceptance-evidence.json",
+    "receipt_sha256": "abdd45287f9e558d0900dd13661a856065c0ef77b33f6f0f203101dbbb52c12c"
+  },
+  "refs": [
+    {
+      "commit": "22859775afb744a6dce89f73f47f816afb88bb23",
+      "ref": "refs/archive/permansson/v0.2.0/A3/base"
+    },
+    {
+      "commit": "a977da54057837797ab1cea163f8bcec98cddb2d",
+      "ref": "refs/archive/permansson/v0.2.0/A3/head"
+    },
+    {
+      "commit": "9cf3410e9786b68f68d93c0684613329cdc9159e",
+      "ref": "refs/archive/permansson/v0.2.0/A3/main"
+    },
+    {
+      "commit": "11c4baace0de6025709b0cdd637e99c255a70bc6",
+      "ref": "refs/archive/permansson/v0.2.0/A3/synthetic"
+    },
+    {
+      "commit": "6191a1acbf00867042a21c8e6c4a532af43017bc",
+      "ref": "refs/archive/permansson/v0.2.0/C69/base"
+    },
+    {
+      "commit": "d8a96a423f402fcbe791c6e114d169894739f944",
+      "ref": "refs/archive/permansson/v0.2.0/C69/head"
+    },
+    {
+      "commit": "54848efd002a0153641c9e340325dce857e1e5db",
+      "ref": "refs/archive/permansson/v0.2.0/C69/main"
+    },
+    {
+      "commit": "3a11d5776772f87cc2160ca3222b1e34d1b3043c",
+      "ref": "refs/archive/permansson/v0.2.0/C69/synthetic"
+    },
+    {
+      "commit": "54848efd002a0153641c9e340325dce857e1e5db",
+      "ref": "refs/archive/permansson/v0.2.0/C70/base"
+    },
+    {
+      "commit": "547d17e2fff8ab2136562dbb93562529bcda062e",
+      "ref": "refs/archive/permansson/v0.2.0/C70/head"
+    },
+    {
+      "commit": "24ea0836db5bb45c964b00121718613d843ce255",
+      "ref": "refs/archive/permansson/v0.2.0/C70/main"
+    },
+    {
+      "commit": "775a1317cbe664d70ac2aebbc55e40e4811be2b3",
+      "ref": "refs/archive/permansson/v0.2.0/C70/synthetic"
+    },
+    {
+      "commit": "9cf3410e9786b68f68d93c0684613329cdc9159e",
+      "ref": "refs/archive/permansson/v0.2.0/D2/base"
+    },
+    {
+      "commit": "37faf4430897e0abdd6dca664919a673b6f34b42",
+      "ref": "refs/archive/permansson/v0.2.0/D2/head"
+    },
+    {
+      "commit": "bc7617e15084673aa6053ab58282260226344c2b",
+      "ref": "refs/archive/permansson/v0.2.0/D2/main"
+    },
+    {
+      "commit": "89da71c43657d79d3f60cffe6b4b02efe7331fcd",
+      "ref": "refs/archive/permansson/v0.2.0/D2/synthetic"
+    },
+    {
+      "commit": "24ea0836db5bb45c964b00121718613d843ce255",
+      "ref": "refs/archive/permansson/v0.2.0/E1/base"
+    },
+    {
+      "commit": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+      "ref": "refs/archive/permansson/v0.2.0/E1/head"
+    },
+    {
+      "commit": "2a2246ad851e2cdc435dcd0f98f259e1264541b3",
+      "ref": "refs/archive/permansson/v0.2.0/E1/main"
+    },
+    {
+      "commit": "cfdf3386d2d5363f7187e2087310b7e1b152f752",
+      "ref": "refs/archive/permansson/v0.2.0/E1/synthetic"
+    },
+    {
+      "commit": "2a2246ad851e2cdc435dcd0f98f259e1264541b3",
+      "ref": "refs/archive/permansson/v0.2.0/F1/base"
+    },
+    {
+      "commit": "018e8fcfbaff1d53efa9467f65c34d91169606f2",
+      "ref": "refs/archive/permansson/v0.2.0/F1/head"
+    },
+    {
+      "commit": "22859775afb744a6dce89f73f47f816afb88bb23",
+      "ref": "refs/archive/permansson/v0.2.0/F1/main"
+    },
+    {
+      "commit": "5c6e4eaea7bb3afc58fafd79bbef182336120e51",
+      "ref": "refs/archive/permansson/v0.2.0/F1/synthetic"
+    },
+    {
+      "commit": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+      "ref": "refs/archive/permansson/v0.2.0/R/base"
+    },
+    {
+      "commit": "cdbe7ed5124781be495404122fac1de3315cb6ec",
+      "ref": "refs/archive/permansson/v0.2.0/R/head"
+    },
+    {
+      "commit": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+      "ref": "refs/archive/permansson/v0.2.0/R/main"
+    },
+    {
+      "commit": "c70362b97ae7d0828a569fa15e194f9861b22b46",
+      "ref": "refs/archive/permansson/v0.2.0/R/synthetic"
+    },
+    {
+      "commit": "bc7617e15084673aa6053ab58282260226344c2b",
+      "ref": "refs/archive/permansson/v0.2.0/X1/base"
+    },
+    {
+      "commit": "54babeeefd980c83fd7373f7429e028e5fa574e6",
+      "ref": "refs/archive/permansson/v0.2.0/X1/head"
+    },
+    {
+      "commit": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+      "ref": "refs/archive/permansson/v0.2.0/X1/main"
+    },
+    {
+      "commit": "f1da869c9558faa9935e57042afba04b22eb3e00",
+      "ref": "refs/archive/permansson/v0.2.0/X1/synthetic"
+    },
+    {
+      "commit": "c018f79ea4ce46f4f679ad5bca254509778fc53c",
+      "ref": "refs/archive/permansson/v0.2.0/frozen-core"
+    },
+    {
+      "commit": "6191a1acbf00867042a21c8e6c4a532af43017bc",
+      "ref": "refs/archive/permansson/v0.2.0/historical-baseline"
+    },
+    {
+      "commit": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+      "ref": "refs/archive/permansson/v0.2.0/release"
+    },
+    {
+      "commit": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+      "ref": "refs/archive/permansson/v0.2.0/research-source"
+    }
+  ],
+  "schema_version": 1
+}
