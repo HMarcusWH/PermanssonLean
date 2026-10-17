@@ -1,0 +1,4 @@
+# Preserve the supplied reference's exact original canonical bytes.
+02_Implementation_Spec.md -text
+03_Acceptance_Test_Plan.md -text
+04_Rollout_Runbook.md -text
