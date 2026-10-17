@@ -1,0 +1,51 @@
+name: E1 approximate-quotient focused smoke
+
+# Focused source-head gate for E1 (approximate type-respecting quotients).
+# It does NOT replace the full Research Lean workflow.
+
+on:
+  push:
+    branches: [claude/zen-einstein-ub8zgr-e1]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'PermanssonResearch/Probability/**'
+      - 'PermanssonResearch/Quotient/**'
+      - 'verification/research/test_e1_approx_quotient.py'
+      - 'verification/research/e1_axiom_audit.py'
+      - '.github/workflows/e1-approx-quotient-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  approx-quotient:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Exact rational approximate-quotient adversaries
+        run: python3 -m unittest discover -s verification/research -p 'test_e1_approx_quotient.py' -v
+      - name: Compile E1 modules
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch.Probability.CompProdPushforward PermanssonResearch.Probability.EventTVCalculus PermanssonResearch.Quotient.ApproxPrefix PermanssonResearch.Quotient.ApproxMargin PermanssonResearch.Quotient.ApproxAdversaries
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+      - name: Declaration-level transitive axiom audit of every E1 declaration
+        run: python3 verification/research/e1_axiom_audit.py
+      - name: Reject proof placeholders and custom axioms in E1 sources
+        run: |
+          if grep -n -E '(^|[^[:alnum:]_])(sorry|admit|native_decide)([^[:alnum:]_]|$)|^[[:space:]]*((private|protected|noncomputable|unsafe)[[:space:]]+)*axiom[[:space:]]' \
+              PermanssonResearch/Probability/*.lean PermanssonResearch/Quotient/*.lean; then
+            echo 'Forbidden placeholder, native_decide or axiom in E1 sources'
+            exit 1
+          fi
+          echo 'E1 source firewall PASS'

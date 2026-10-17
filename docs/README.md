@@ -46,6 +46,8 @@ change; neither Python tests nor schema validation substitutes for a Lean proof.
 | [Next-generation research architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md) | How are lanes A/B/C/D specified, wired, proved and independently tested? |
 | [Research library build guide](RESEARCH_BUILD.md) | How do I build and audit the separate research Lean target? |
 | [v0.2.0 master implementation index](V020_IMPLEMENTATION_INDEX.md) | Live anchor-by-anchor status (claim, provider declaration, inputs, consumers, counterexamples, verification, manuscript target) for every v0.2.0 deliverable, starting with C69 (PR #69) |
+| [F1 multi-agent protocols](LANE_F1_MULTIAGENT_PROTOCOLS.md) | Crosswalk for F1: two-player conditional-product subclass, strict opponent-locking, V20.29 metric bounds, MA1 and MA3 witnesses, and the open strict MA2 boundary |
+| [E1 approximate quotients](LANE_E1_APPROX_QUOTIENT.md) | Crosswalk for E1: general event-TV calculus, linear finite-prefix bound for approximate type-respecting quotients, margin comparison, leakage counterexample |
 | [C-Exit E random-entry occupation](LANE_C_EXIT_RANDOM_ENTRY.md) | Crosswalk for C70: finite-prefix deletion estimate, a.s. and in-probability occupation after random entry, scoped Proposition 4.2f |
 | [D2 finite residence objectives](D2_RESIDENCE_OBJECTIVE.md) | Literal reach-and-stay events, genuine typed finite-path evaluation, finite-history optimization, robust-order and hard-risk boundaries |
 | [v0.2.0 research proof ledger](V020_RESEARCH_PROOF_LEDGER.md) | What is implemented in proposed v0.2.0, what passed at a specific commit, and which proof/empirical gates remain open? |

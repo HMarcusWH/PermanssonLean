@@ -99,6 +99,19 @@ complete deterministic-policy enumeration, product-clock versus history
 optimization, robust-order separation and the hard-risk example.
 
 The focused smoke builds all three new modules and audits every declaration.
+At source `7c3e7e450f11af9913d393757a52e37e7bb4f4fa`, PR #74's focused
+run `39038337508` checked synthetic merge
+`bc0dc18659e22745003cdb45f8a0968029129547` against then-main
+`2a2246ad851e2cdc435dcd0f98f259e1264541b3`: all three modules compiled on
+Lean 4.34.0 and pinned mathlib, all 51 declarations passed the three-axiom
+audit, all 17 exact tests passed, and the source firewall passed.
+
+This candidate incorporates main
+`22859775afb744a6dce89f73f47f816afb88bb23`, retaining C70, E1 and repaired
+F1. Fresh final-head synthetic-merge CI and review are pending; the earlier
+focused result is evidence for that recorded source, not acceptance of this
+combined tree.
+
 The full Research Lean workflow must still build the research root, audit
 transitive axioms, run all regressions and direct-import/source firewalls,
 replay D0 goldens and execute the PR-only C10 source-bound evidence step.
