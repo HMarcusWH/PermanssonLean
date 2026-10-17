@@ -21,11 +21,14 @@ def main(argv=None):
     parser.add_argument("--scratch", required=True)
     parser.add_argument("--report", required=True)
     parser.add_argument("--parent-netns", required=True)
+    parser.add_argument("--source-repo")
+    parser.add_argument("--source-candidate")
     args = parser.parse_args(argv)
     try:
         isolation = isolation_attestation(args.parent_netns)
         os.environ["PERMANSSON_PARENT_NETNS"] = args.parent_netns
-        details = verify_supplement(args.supplement, args.scratch, require_isolation=True)
+        details = verify_supplement(args.supplement, args.scratch, require_isolation=True,
+                                    source_repo=args.source_repo, source_candidate=args.source_candidate)
         details["isolation"] = isolation
         payload = check_report("archive-reproducibility", details=details,
                                completed_stages=details["completed_stages"])

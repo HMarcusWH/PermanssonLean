@@ -106,8 +106,10 @@ def sanitized_environment():
     return environment
 
 
-def launch_offline(supplement, scratch):
+def launch_offline(supplement, scratch, *, source_repo=None, source_candidate=None):
     """No archive parser runs through sudo: privileges drop before Python starts."""
+    from .verify_bundle import require_source_pair
+    require_source_pair(source_repo, source_candidate)
     if platform.system() != "Linux" or os.getuid() == 0 or os.getgid() == 0:
         fail("E_OFFLINE_UNAVAILABLE", "Supported isolation requires a nonroot Linux runner", 3)
     require_dependencies()
@@ -123,6 +125,9 @@ def launch_offline(supplement, scratch):
                    "--bounding-set=-all", "--inh-caps=-all", "--ambient-caps=-all", "--no-new-privs",
                    sys.executable, "-B", str(worker), "--supplement", str(Path(supplement).absolute()),
                    "--scratch", str(Path(scratch).absolute()), "--report", str(output), "--parent-netns", parent]
+        if source_repo is not None:
+            command.extend(["--source-repo", str(Path(source_repo).absolute()),
+                            "--source-candidate", source_candidate])
         try:
             with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
                 process = subprocess.Popen(command, env=sanitized_environment(), stdin=subprocess.DEVNULL,
@@ -163,8 +168,15 @@ def main(argv=None):
     args = parser.parse_args(argv)
     context = None
     try:
-        context = invocation_context(args.repo, args.candidate)
-        details = launch_offline(args.supplement, args.scratch)
+        from .verify_bundle import require_source_pair
+        require_source_pair(args.repo, args.candidate)
+        if args.repo is None:
+            if os.environ.get("GITHUB_ACTIONS") == "true":
+                fail("E_CONTEXT", "Standalone artifact replay cannot satisfy candidate CI")
+        else:
+            context = invocation_context(args.repo, args.candidate)
+        details = launch_offline(args.supplement, args.scratch,
+                                 source_repo=args.repo, source_candidate=args.candidate)
         if context is None:
             context = restored_artifact_context(args.scratch)
             details["acceptance_scope"] = "accepted_artifact_replay_only"

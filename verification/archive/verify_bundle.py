@@ -13,7 +13,7 @@ import sys
 from verification.integrity.git_objects import GitRepo
 from verification.integrity.reports import HardeningError, check_report, write_report
 from .acquire_evidence import validate_evidence
-from .create_bundle import (ACCEPTED, ACCEPTED_TREE, BASELINE, CORE, MAX_METADATA,
+from .create_bundle import (ACCEPTED, ACCEPTED_TREE, BASELINE, CORE, GUIDE_PATH, MAX_METADATA,
                             REPOSITORY, RESEARCH, R_IDENTITY, R_SOURCE, derive_registry,
                             object_inventory, validate_bindings, validate_registry_shape)
 from .manifest import (MAX_BUNDLE, MAX_CLOSURE, MAX_OBJECT, MAX_OBJECTS, SHA, SHA256,
@@ -243,37 +243,112 @@ def validate_c10_content(archive, root, source=R_SOURCE):
     return strict_json(done.stdout)
 
 
-def validate_tooling(root, manifest):
-    """Compare delivered tooling to this executing source closure, not itself."""
+def require_source_pair(source_repo, source_candidate):
+    """Internal child binding: explicit C or explicit standalone artifact replay."""
+    if (source_repo is None) != (source_candidate is None):
+        fail("E_CONTEXT", "Source repository and candidate must be supplied together", 2)
+    if source_repo is not None and (not str(source_repo) or not isinstance(source_candidate, str)
+                                    or not SHA.fullmatch(source_candidate)):
+        fail("E_CONTEXT", "Source binding requires a repository and full candidate SHA", 2)
+
+
+def _tooling_payload(path, name):
+    try:
+        return read_bounded(path)
+    except HardeningError as exc:
+        if exc.code == "E_LIMIT":
+            raise
+        raise HardeningError("E_TOOLING_CLOSURE", "Missing or nonregular tooling source: " + name) from exc
+
+
+def validate_tooling(root, manifest, *, source_repo=None, source_candidate=None):
+    """Bind T/C/code/guide to the snapshot; standalone mode uses reviewed hashes."""
+    require_source_pair(source_repo, source_candidate)
+    root = Path(root)
     source = Path(__file__).resolve().parents[1]
-    expected = {}
+    executing, total = {}, 0
     for directory in (source / "integrity", source / "archive"):
         for path in directory.rglob("*"):
             if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc":
                 relative = "verification/" + path.relative_to(source).as_posix()
-                expected[relative] = digest(path.read_bytes())
+                payload = _tooling_payload(path, relative)
+                total += len(payload)
+                executing[relative] = digest(payload)
+                if len(executing) > MAX_OBJECTS or total > MAX_CLOSURE:
+                    fail("E_LIMIT", "Executing tooling closure exceeds its fixed budget")
     rows = manifest["tooling"].get("files")
     if not isinstance(rows, list) or not SHA.fullmatch(manifest["tooling"].get("source_commit", "")):
         fail("E_TOOLING_CLOSURE", "Missing pre-packaging source commit/tooling closure")
-    actual = {}
+    actual, blobs = {}, {}
     for row in rows:
         if not isinstance(row, dict) or set(row) != {"path", "blob", "sha256"}:
             fail("E_TOOLING_CLOSURE", "Malformed tooling source record")
         name = safe_path(row["path"])
         if name in actual or not SHA.fullmatch(row.get("blob", "")):
             fail("E_TOOLING_CLOSURE", "Duplicate or malformed tooling source identity")
-        payload = read_bounded(Path(root) / "tooling" / name)
+        payload = _tooling_payload(root / "tooling" / name, name)
         if digest(payload) != row.get("sha256"):
             fail("E_TOOLING_CLOSURE", "Tooling content differs from its declared source")
         kind = b"blob " + str(len(payload)).encode() + b"\0"
         if __import__("hashlib").sha1(kind + payload).hexdigest() != row["blob"]:
             fail("E_TOOLING_CLOSURE", "Tooling Git blob identity differs")
         actual[name] = digest(payload)
+        blobs[name] = row["blob"]
+    if GUIDE_PATH not in actual:
+        fail("E_TOOLING_CLOSURE", "The canonical reproduction guide is missing from the source closure")
+    if _tooling_payload(root / "OFFLINE_REPRODUCTION.md", "OFFLINE_REPRODUCTION.md") != _tooling_payload(
+            root / "tooling" / GUIDE_PATH, GUIDE_PATH):
+        fail("E_TOOLING_CLOSURE", "Reproduction instructions differ from the source-guide snapshot")
+    if source_repo is None:
+        # No Git autodiscovery: an unpacked supplement may live inside an
+        # unrelated repository. Its guide copy is part of the delivered closure;
+        # matching hashes do not authenticate this candidate-owned implementation.
+        expected = {**executing, GUIDE_PATH: digest(_tooling_payload(source.parent / GUIDE_PATH, GUIDE_PATH))}
+        binding = "standalone_content_hashes_only"
+    else:
+        candidate = GitRepo(source_repo)
+        try:
+            candidate.validate_candidate(source_candidate, accepted_sha=ACCEPTED, accepted_tree=ACCEPTED_TREE)
+            if candidate.run("rev-parse", "HEAD").decode().strip() != source_candidate:
+                fail("E_TOOLING_CLOSURE", "Source candidate differs from the current checkout HEAD")
+            source_commit = manifest["tooling"]["source_commit"]
+            candidate.commit(source_commit)
+            try:
+                candidate.run("merge-base", "--is-ancestor", source_commit, source_candidate)
+            except HardeningError as exc:
+                raise HardeningError("E_TOOLING_CLOSURE", "Tooling T is not an ancestor of candidate C") from exc
+            current, original = candidate.tree(source_candidate), candidate.tree(source_commit)
+            def selected(tree):
+                return {path: entry for path, entry in tree.items()
+                        if path.startswith((b"verification/integrity/", b"verification/archive/"))
+                        or path == GUIDE_PATH.encode()}
+            current, original = selected(current), selected(original)
+            if current != original:
+                fail("E_TOOLING_CLOSURE", "Complete canonical code/guide closure differs between T and C")
+            expected = {}
+            for path, entry in current.items():
+                name = path.decode("utf-8")
+                old = original.get(path)
+                if (entry.object_type != "blob" or entry.mode not in {"100644", "100755"}
+                        or old != entry or blobs.get(name) != entry.oid):
+                    fail("E_TOOLING_CLOSURE", "Current canonical source differs from tooling T/snapshot: " + name)
+                expected[name] = digest(candidate.blob(entry.oid, limit=MAX_METADATA))
+            if executing != {name: value for name, value in expected.items() if name != GUIDE_PATH}:
+                fail("E_TOOLING_CLOSURE", "Executing code differs from canonical candidate C")
+            binding = "canonical_T_C_and_executing_code"
+        finally:
+            candidate.close()
     if actual != expected:
-        fail("E_TOOLING_CLOSURE", "Delivered tooling differs from the executing committed tool closure")
+        fail("E_TOOLING_CLOSURE", "Delivered tooling/guide differs from the executing source closure")
+    return {"binding": binding, "source_candidate": source_candidate,
+            "source_commit": manifest["tooling"]["source_commit"], "files": len(actual),
+            "guide_path": GUIDE_PATH, "guide_blob": blobs[GUIDE_PATH],
+            "guide_sha256": actual[GUIDE_PATH], "reproduction_instructions_match": True,
+            "publisher_authentication": "not_created_by_content_hashes"}
 
 
-def verify_supplement(supplement, scratch, require_isolation=True):
+def verify_supplement(supplement, scratch, require_isolation=True, *, source_repo=None, source_candidate=None):
+    require_source_pair(source_repo, source_candidate)
     if require_isolation:
         from .offline_smoke import isolation_attestation, require_dependencies
         isolation_attestation(os.environ.get("PERMANSSON_PARENT_NETNS"))
@@ -292,7 +367,7 @@ def verify_supplement(supplement, scratch, require_isolation=True):
             or manifest["provenance"] != {"frozen_core": CORE, "historical_baseline": BASELINE, "research_source": RESEARCH}
             or manifest["r_c10"] != {**R_IDENTITY, "source": R_SOURCE}):
         fail("E_REFERENCE_ID", "Supplement authority differs from the fixed release profile")
-    validate_tooling(supplement, manifest)
+    tooling = validate_tooling(supplement, manifest, source_repo=source_repo, source_candidate=source_candidate)
     evidence = validate_evidence(supplement / "evidence")
     registry = strict_json(read_bounded(supplement / "refs.json"))
     objects = parse_objects(supplement / "objects.jsonl")
@@ -322,7 +397,8 @@ def verify_supplement(supplement, scratch, require_isolation=True):
                                  "exact_objects_refs", "parents_trees_ancestry", "canonical_checkout", "369_pins", "exact_tex", "legacy_replay", "post_replay_hashes"],
             "counts": {"refs": 36, "input_commits": 26, "objects": len(objects), "legacy_test_methods": 29},
             "source_restore": "PASS", "artifact_replay": "PASS", "fresh_lean_execution": "NOT_PERFORMED",
-            "publisher_authentication": "NOT_CREATED_BY_OFFLINE_REPLAY", "evidence": evidence, "legacy": replay}
+            "publisher_authentication": "NOT_CREATED_BY_OFFLINE_REPLAY", "tooling": tooling,
+            "evidence": evidence, "legacy": replay}
 
 
 def main(argv=None):
@@ -336,8 +412,11 @@ def main(argv=None):
     args = parser.parse_args(argv)
     context = None
     try:
-        context = invocation_context(args.repo, args.candidate)
-        details = verify_supplement(args.supplement, args.scratch)
+        require_source_pair(args.repo, args.candidate)
+        if args.repo is None and os.environ.get("GITHUB_ACTIONS") == "true":
+            fail("E_CONTEXT", "Standalone artifact replay cannot satisfy candidate CI")
+        context = invocation_context(args.repo, args.candidate) if args.repo is not None else None
+        details = verify_supplement(args.supplement, args.scratch, source_repo=args.repo, source_candidate=args.candidate)
         if context is None:
             context = restored_artifact_context(args.scratch)
             details["acceptance_scope"] = "accepted_artifact_replay_only"

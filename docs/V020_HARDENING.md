@@ -14,6 +14,13 @@ The export checker extracts and hashes the accepted builder, verifier helper and
 
 The candidate-owned workflow and checker remain sensitive to independent review. App binding and content hashes do not independently authenticate their implementation or a copied publisher response.
 
+Local and CI context capture both require the candidate to equal checkout HEAD.
+Historical object comparisons remain available internally without issuing a
+current-checkout report. The fixed final-review and acceptance comments also
+require independently observed author identities, timestamps and exact UTF-8
+body hashes; repaired candidate acquisition and manifest hashes cannot replace
+those pins. These comments retain their original code-review/provenance role.
+
 ## Inputs and provenance
 
 The five user-supplied Markdown contracts are retained under `docs/hardening/contract/`. The linked complete ZIP, its registries and templates were not present locally. The convenience registries under `docs/hardening/registries/` are therefore explicitly derived from accepted Git objects and fixed R identities, rather than represented as copies of the missing package. Production authority is the accepted Git snapshot and fixed digest pins.
