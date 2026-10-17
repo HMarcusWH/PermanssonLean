@@ -320,6 +320,55 @@
       "representation": "normalized_connector",
       "sha256": "c786455568c53b53babe88266ba428d572407ec12de7f1f2dff3d74975bafd96",
       "size": 37654
+    },
+    {
+      "acquired_on": "2026-10-17",
+      "captured_at": "2026-10-17 18:51:30 UTC",
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+      "endpoint_role": "resource_identity_only",
+      "pagination_state": "NOT_EXPOSED",
+      "path": "thread-pages/1.json",
+      "provenance": "Actual full connector result and request retained; no HTTP headers or GraphQL pagination state were exposed.",
+      "representation": "normalized_connector_capture",
+      "request": {
+        "pr_number": 76,
+        "repo_full_name": "HMarcusWH/PermanssonLean",
+        "tool": "mcp__codex_apps__github_list_pull_request_review_threads"
+      },
+      "sha256": "c28793619c6444e0d221202d4b42f6dfe266d2c5af5f285a411428fd33f28ae7",
+      "size": 23432
+    },
+    {
+      "acquired_on": "2026-10-17",
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76/comments?per_page=100&page=1",
+      "endpoint_role": "resource_identity_only",
+      "path": "thread-comment-pages/1.json",
+      "provenance": "Actual connector-returned REST JSON text materialized with LF; endpoint records logical requested resource identity, not an observed raw HTTP capture.",
+      "representation": "normalized_connector_json",
+      "request": {
+        "page": 1,
+        "per_page": 100,
+        "pr_number": 76,
+        "repo_full_name": "HMarcusWH/PermanssonLean"
+      },
+      "sha256": "2fc8ff2459862772bea3bbad20630e9b8109d355b26590ecd3ad9b7cb7285e83",
+      "size": 275201
+    },
+    {
+      "acquired_on": "2026-10-17",
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76/comments?per_page=100&page=2",
+      "endpoint_role": "resource_identity_only",
+      "path": "thread-comment-pages/2.json",
+      "provenance": "Actual connector-returned REST JSON text materialized with LF; endpoint records logical requested resource identity, not an observed raw HTTP capture.",
+      "representation": "normalized_connector_json",
+      "request": {
+        "page": 2,
+        "per_page": 100,
+        "pr_number": 76,
+        "repo_full_name": "HMarcusWH/PermanssonLean"
+      },
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "size": 3
     }
   ]
 }

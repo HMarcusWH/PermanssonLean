@@ -55,7 +55,10 @@ def capture_fixture_path():
     locations = [root / "archival/v0.2.0/supplement-1/evidence",
                  root.parent / "artifacts/hardening-capture"]
     for path in locations:
-        if (path / "R-c10.zip").is_file():
+        if ((path / "R-c10.zip").is_file()
+                and (path / "thread-comment-pages/1.json").is_file()
+                and ((path / "thread-pages/1.json").is_file()
+                     or (path / "pagination/threads-1.json").is_file())):
             return path
     raise HardeningError("E_DEPENDENCY_MISSING", "Real acquired historical evidence fixture is required", 3)
 
@@ -218,6 +221,176 @@ class ArchiveInputTests(unittest.TestCase):
         with self.assertRaises(HardeningError) as caught:
             function(*args, **kwargs)
         self.assertEqual(caught.exception.code, code, str(caught.exception))
+
+    def repaired_capture(self, temporary, mutate):
+        """Repair both outer inventory and inner capture hashes before semantics."""
+        source = Path(__file__).resolve().parents[3] / "archival/v0.2.0/supplement-1"
+        root = Path(temporary) / "supplement"
+        shutil.copytree(source, root)
+        shutil.copytree(capture_fixture_path(), root / "evidence", dirs_exist_ok=True)
+        evidence = root / "evidence"
+        from verification.archive.acquire_evidence import validate_evidence
+        validate_evidence(evidence)
+        mutate(evidence)
+        index = strict_json((evidence / "acquisition-index.json").read_bytes())
+        key = "entries" if "entries" in index else "records"
+        records = {row["path"]: row for row in index[key]}
+        actual = {p.relative_to(evidence).as_posix(): p for p in evidence.rglob("*")
+                  if p.is_file() and p.name != "acquisition-index.json"}
+        rows = []
+        for name, path in sorted(actual.items()):
+            match = __import__("re").fullmatch(r"runs/job-([0-9]+)-logs\.txt", name)
+            endpoint = ("https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/" + match.group(1) + "/logs"
+                        if match else "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39045919531/logs")
+            row = records.get(name, {"path": name, "endpoint": endpoint,
+                                     "representation": "raw_http", "acquired_on": "2026-10-17"})
+            payload = path.read_bytes()
+            row.update(size=len(payload), sha256=digest(payload))
+            rows.append(row)
+        index[key] = rows
+        (evidence / "acquisition-index.json").write_bytes(stable_json(index))
+        manifest = strict_json((root / "archive-manifest.json").read_bytes())
+        manifest["files"] = scan_files(root)
+        write_manifest(root, manifest)
+        validate_manifest(root)  # Hashes and complete delivered inventory pass.
+        return evidence
+
+    def test_review_normalization_is_bound_to_source_pages(self):
+        from verification.archive.acquire_evidence import validate_evidence
+        def rewrite(path, change):
+            def mutate(root):
+                target = root / path
+                value = strict_json(target.read_bytes())
+                replacement = change(value)
+                target.write_bytes(stable_json(value if replacement is None else replacement))
+            return mutate
+        mutations = {
+            "empty_review_list": rewrite("final-review-submissions.json", lambda value: []),
+            "drop_review": rewrite("final-review-submissions.json", lambda value: value[:-1]),
+            "empty_thread_list": rewrite("review-threads.json", lambda value: value.update(review_threads=[])),
+            "alter_thread_body": rewrite("review-threads.json", lambda value: value["review_threads"][0]["comments"][0].update(body="erased finding")),
+            "wrong_review_pr": rewrite("review-pages/1.json", lambda value: value[0].update(pull_request_url="https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77")),
+            "wrong_comment_pr": rewrite("thread-comment-pages/1.json", lambda value: value[0].update(pull_request_url="https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77")),
+            "missing_terminal_comments": lambda root: (root / "thread-comment-pages/2.json").unlink(),
+            "erase_rest_comments": rewrite("thread-comment-pages/1.json", lambda value: []),
+            "wrong_connector_pr": rewrite("thread-pages/1.json", lambda value: value["request"].update(pr_number=77)),
+            "connector_error_envelope": rewrite("thread-pages/1.json", lambda value: value["result"].update(isError=True)),
+        }
+        # Deleting an optional empty completion probe after a short page is
+        # still complete; instead make page1 full before removing page2 below.
+        def truncate_comments(root):
+            path = root / "thread-comment-pages/1.json"
+            value = strict_json(path.read_bytes())
+            path.write_bytes(stable_json((value * 8)[:100]))
+            (root / "thread-comment-pages/2.json").unlink()
+        mutations["missing_terminal_comments"] = truncate_comments
+        def wrong_review_pr(root):
+            for name in ("review-pages/1.json", "final-review-submissions.json"):
+                path = root / name
+                value = strict_json(path.read_bytes())
+                value[0]["pull_request_url"] = "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77"
+                path.write_bytes(stable_json(value))
+        mutations["wrong_review_pr"] = wrong_review_pr
+        def omit_thread_from_both(root):
+            path = root / "thread-pages/1.json"
+            value = strict_json(path.read_bytes())
+            value["result"]["structuredContent"]["review_threads"].pop()
+            path.write_bytes(stable_json(value))
+            path = root / "review-threads.json"
+            value = strict_json(path.read_bytes())
+            value["review_threads"].pop()
+            path.write_bytes(stable_json(value))
+        mutations["omit_thread_from_both_sources"] = omit_thread_from_both
+        def remove_connector_result_status(value):
+            value["result"].pop("isError")
+        mutations["missing_connector_result_status"] = rewrite("thread-pages/1.json", remove_connector_result_status)
+        def edit_both_thread_sources(root, change):
+            for name in ("thread-pages/1.json", "review-threads.json"):
+                path = root / name
+                value = strict_json(path.read_bytes())
+                threads = (value["review_threads"] if name == "review-threads.json"
+                           else value["result"]["structuredContent"]["review_threads"])
+                for thread in threads:
+                    for comment in thread["comments"]:
+                        change(comment)
+                path.write_bytes(stable_json(value))
+        def remove_timestamps(comment):
+            for key in ("created_at", "updated_at", "createdAt", "updatedAt"):
+                comment.pop(key, None)
+        mutations["erase_timestamps_from_both_thread_sources"] = lambda root: edit_both_thread_sources(root, remove_timestamps)
+        for field in ("created_at", "updated_at"):
+            mutations["erase_" + field] = lambda root, field=field: edit_both_thread_sources(root, lambda comment: comment.pop(field))
+        mutations["conflicting_timestamp_alias"] = lambda root: edit_both_thread_sources(root, lambda comment: comment.update(createdAt="2026-10-16T00:00:00Z"))
+        def erase_review_sources(root):
+            for name in ("review-pages/1.json", "final-review-submissions.json"):
+                (root / name).write_bytes(stable_json([]))
+        mutations["erase_both_review_submission_sources"] = erase_review_sources
+        mutations["unknown_comment_review_id"] = rewrite("thread-comment-pages/1.json", lambda value: value[0].update(pull_request_review_id=1))
+        mutations["boolean_comment_review_id"] = rewrite("thread-comment-pages/1.json", lambda value: value[0].update(pull_request_review_id=True))
+        def remove_rest_created(value):
+            value[0].pop("created_at")
+        mutations["missing_rest_created_timestamp"] = rewrite("thread-comment-pages/1.json", remove_rest_created)
+        mutations["invalid_rest_updated_timestamp"] = rewrite("thread-comment-pages/1.json", lambda value: value[0].update(updated_at="2026-99-99T99:99:99Z"))
+        def graphql_names(comment):
+            comment["createdAt"] = comment.pop("created_at")
+            comment["updatedAt"] = comment.pop("updated_at")
+        with self.subTest(control="native_graphql_timestamp_names"), tempfile.TemporaryDirectory() as temporary:
+            evidence = self.repaired_capture(temporary, lambda root: edit_both_thread_sources(root, graphql_names))
+            validate_evidence(evidence)
+        for name, mutate in mutations.items():
+            with self.subTest(attack=name), tempfile.TemporaryDirectory() as temporary:
+                evidence = self.repaired_capture(temporary, mutate)
+                self.reject("E_CAPTURE_ID", validate_evidence, evidence)
+
+    def test_unparsed_run_zip_cannot_replace_per_job_logs(self):
+        from verification.archive.acquire_evidence import validate_evidence
+        def mutate(root):
+            job = strict_json((root / "runs/39045919531-jobs.json").read_bytes())["jobs"][0]
+            (root / "runs" / ("job-" + str(job["id"]) + "-logs.json")).unlink()
+            (root / "runs/39045919531-logs.zip").write_bytes(b"not a ZIP; mere existence is insufficient")
+        with tempfile.TemporaryDirectory() as temporary:
+            evidence = self.repaired_capture(temporary, mutate)
+            self.reject("E_CAPTURE_ID", validate_evidence, evidence)
+        def raw_log(root, payload=None):
+            job = strict_json((root / "runs/39045919531-jobs.json").read_bytes())["jobs"][0]
+            source = root / "runs" / ("job-" + str(job["id"]) + "-logs.json")
+            captured = strict_json(source.read_bytes())
+            content = captured["result"]["structuredContent"]["content"].encode("utf-8")
+            source.unlink()
+            (root / "runs" / ("job-" + str(job["id"]) + "-logs.txt")).write_bytes(content if payload is None else payload)
+        for control, payload in (("timestamped_actual_raw_text", None),
+                                 ("valid_bom_and_seven_fractional_digits", "\ufeff2026-10-17T15:38:14.1234567Z valid format fixture\n".encode("utf-8"))):
+            with self.subTest(control=control), tempfile.TemporaryDirectory() as temporary:
+                evidence = self.repaired_capture(temporary, lambda root: raw_log(root, payload))
+                validate_evidence(evidence)
+        for attack, payload in (("binary_zip_in_raw_path", b"PK\x03\x04\0corrupt ZIP"),
+                                ("invalid_utf8_raw_log", b"\xff\xfe"), ("empty_raw_log", b""),
+                                ("invalid_calendar_timestamp", b"2026-99-99T99:99:99Z fake log\n"),
+                                ("invalid_nonleap_day", b"2026-02-29T15:38:14.1234567Z fake log\n"),
+                                ("invalid_zero_year", b"0000-10-17T15:38:14Z fake log\n")):
+            with self.subTest(attack=attack), tempfile.TemporaryDirectory() as temporary:
+                evidence = self.repaired_capture(temporary, lambda root: raw_log(root, payload))
+                self.reject("E_CAPTURE_ID", validate_evidence, evidence)
+        def wrong_endpoint(root):
+            job = strict_json((root / "runs/39045919531-jobs.json").read_bytes())["jobs"][0]
+            index_path = root / "acquisition-index.json"
+            index = strict_json(index_path.read_bytes())
+            key = "entries" if "entries" in index else "records"
+            row = next(row for row in index[key] if row["path"] == "runs/job-" + str(job["id"]) + "-logs.json")
+            row["endpoint"] = "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/1/logs"
+            index_path.write_bytes(stable_json(index))
+        with self.subTest(attack="wrong_job_endpoint"), tempfile.TemporaryDirectory() as temporary:
+            evidence = self.repaired_capture(temporary, wrong_endpoint)
+            self.reject("E_CAPTURE_ID", validate_evidence, evidence)
+        def invalid_normalized_utf8(root):
+            job = strict_json((root / "runs/39045919531-jobs.json").read_bytes())["jobs"][0]
+            path = root / "runs" / ("job-" + str(job["id"]) + "-logs.json")
+            value = strict_json(path.read_bytes())
+            value["result"]["structuredContent"]["content"] = "2026-10-17T15:38:14Z " + chr(0xD800)
+            path.write_bytes(stable_json(value))
+        with self.subTest(attack="unpaired_surrogate_in_normalized_log"), tempfile.TemporaryDirectory() as temporary:
+            evidence = self.repaired_capture(temporary, invalid_normalized_utf8)
+            self.reject("E_CAPTURE_ID", validate_evidence, evidence)
 
     def test_arch_07_bundle_checksum_mismatch(self):
         with tempfile.TemporaryDirectory() as temporary:
