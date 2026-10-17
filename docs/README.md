@@ -46,6 +46,7 @@ change; neither Python tests nor schema validation substitutes for a Lean proof.
 | [Next-generation research architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md) | How are lanes A/B/C/D specified, wired, proved and independently tested? |
 | [Research library build guide](RESEARCH_BUILD.md) | How do I build and audit the separate research Lean target? |
 | [v0.2.0 master implementation index](V020_IMPLEMENTATION_INDEX.md) | Live anchor-by-anchor status (claim, provider declaration, inputs, consumers, counterexamples, verification, manuscript target) for every v0.2.0 deliverable, starting with C69 (PR #69) |
+| [X1 same-world commons](LANE_X1_COMMONS.md) | Both-player exact incentive certificates, typed equilibrium/learner models with identical P, leaking replete region, distinct stationary calculations and explicit comparison-design limits |
 | [F1 multi-agent protocols](LANE_F1_MULTIAGENT_PROTOCOLS.md) | Crosswalk for F1: two-player conditional-product subclass, strict opponent-locking, V20.29 metric bounds, MA1 and MA3 witnesses, and the open strict MA2 boundary |
 | [E1 approximate quotients](LANE_E1_APPROX_QUOTIENT.md) | Crosswalk for E1: general event-TV calculus, linear finite-prefix bound for approximate type-respecting quotients, margin comparison, leakage counterexample |
 | [A3 conditional dual-form robustness](LANE_A3_CONTRACTIVE.md) | Crosswalk for A3: conditional dual-form distance calculus, assumed invariant laws and four-law margin factorization, bundled survival counterexample, TV conversion firewall |

@@ -1,0 +1,231 @@
+{
+  "application_categories": {
+    "direction": "reported per frozen intervention and property",
+    "epistemic_mode": "constructed mathematical example",
+    "identification": "structural model stipulated; no empirical identification",
+    "provenance": "committed handover candidate; independently checked implementation",
+    "selection": "handover parameter candidate; exploratory comparison-design v2 repair",
+    "statistics": "exact arithmetic; no sampled estimates",
+    "substantive_PR_status": "not certified; proposed replete Exact GR fails for both",
+    "uniform_gap_status": "no formal uniform-gap certificate claimed",
+    "validity": "exact finite calculations; Lean verification recorded separately"
+  },
+  "comparison_design": "v2: whole predeclared replete region; exploratory correction of invalid singleton comparison before infimum evaluation",
+  "frozen_property": "replete at time 3 (allows exit and re-entry)",
+  "modes": {
+    "E": {
+      "finite_matrix_direction": {
+        "action": "strict increase at all nine starts",
+        "joint": "strict increase at all nine starts",
+        "update": "zero at all nine starts"
+      },
+      "finite_matrix_effect_infima": {
+        "action": "271/800",
+        "joint": "271/800",
+        "update": "0"
+      },
+      "finite_matrix_effects_by_start": {
+        "action": {
+          "((0, 0), True)": "271/800",
+          "((0, 1), True)": "271/800",
+          "((0, 2), True)": "271/800",
+          "((1, 0), True)": "271/800",
+          "((1, 1), True)": "271/800",
+          "((1, 2), True)": "271/800",
+          "((2, 0), True)": "271/800",
+          "((2, 1), True)": "271/800",
+          "((2, 2), True)": "271/800"
+        },
+        "joint": {
+          "((0, 0), True)": "271/800",
+          "((0, 1), True)": "271/800",
+          "((0, 2), True)": "271/800",
+          "((1, 0), True)": "271/800",
+          "((1, 1), True)": "271/800",
+          "((1, 2), True)": "271/800",
+          "((2, 0), True)": "271/800",
+          "((2, 1), True)": "271/800",
+          "((2, 2), True)": "271/800"
+        },
+        "update": {
+          "((0, 0), True)": "0",
+          "((0, 1), True)": "0",
+          "((0, 2), True)": "0",
+          "((1, 0), True)": "0",
+          "((1, 1), True)": "0",
+          "((1, 2), True)": "0",
+          "((2, 0), True)": "0",
+          "((2, 1), True)": "0",
+          "((2, 2), True)": "0"
+        }
+      },
+      "formal_margin_transport": "FiniteOutputs connects original kappa to actual finite-kernel expressions; exact numerical fraction reflection OPEN; corrected-head compilation recorded separately",
+      "infimum_starts": {
+        "action": [
+          "((0, 0), True)",
+          "((0, 1), True)",
+          "((0, 2), True)",
+          "((1, 0), True)",
+          "((1, 1), True)",
+          "((1, 2), True)",
+          "((2, 0), True)",
+          "((2, 1), True)",
+          "((2, 2), True)"
+        ],
+        "joint": [
+          "((0, 0), True)",
+          "((0, 1), True)",
+          "((0, 2), True)",
+          "((1, 0), True)",
+          "((1, 1), True)",
+          "((1, 2), True)",
+          "((2, 0), True)",
+          "((2, 1), True)",
+          "((2, 2), True)"
+        ],
+        "update": [
+          "((0, 0), True)",
+          "((0, 1), True)",
+          "((0, 2), True)",
+          "((1, 0), True)",
+          "((1, 1), True)",
+          "((1, 2), True)",
+          "((2, 0), True)",
+          "((2, 1), True)",
+          "((2, 2), True)"
+        ]
+      },
+      "killed_persistence": {
+        "0": "1",
+        "1": "13/20",
+        "2": "169/400",
+        "20": "19004963774880799438801/104857600000000000000000000",
+        "3": "2197/8000",
+        "5": "371293/3200000"
+      },
+      "property_values": {
+        "action": "3171/4000",
+        "baseline": "227/500",
+        "joint": "3171/4000",
+        "update": "227/500"
+      },
+      "reachable_states": 2,
+      "singleton_effects": {
+        "action": "271/800",
+        "joint": "271/800",
+        "update": "0"
+      },
+      "stationary_law": {
+        "((1, 1), False)": "7/12",
+        "((1, 1), True)": "5/12"
+      },
+      "stationary_replete_mass": "5/12"
+    },
+    "L": {
+      "finite_matrix_direction": {
+        "action": "strict increase at all nine starts",
+        "joint": "strict increase at all nine starts",
+        "update": "strict increase at all nine starts"
+      },
+      "finite_matrix_effect_infima": {
+        "action": "3010663529/6400000000",
+        "joint": "3010663529/6400000000",
+        "update": "1244820951/25600000000"
+      },
+      "finite_matrix_effects_by_start": {
+        "action": {
+          "((0, 0), True)": "3010663529/6400000000",
+          "((0, 1), True)": "1342445531/2560000000",
+          "((0, 2), True)": "284197969/512000000",
+          "((1, 0), True)": "1342445531/2560000000",
+          "((1, 1), True)": "16986541/32000000",
+          "((1, 2), True)": "2886717043/5120000000",
+          "((2, 0), True)": "284197969/512000000",
+          "((2, 1), True)": "2886717043/5120000000",
+          "((2, 2), True)": "15243920951/25600000000"
+        },
+        "joint": {
+          "((0, 0), True)": "3010663529/6400000000",
+          "((0, 1), True)": "1342445531/2560000000",
+          "((0, 2), True)": "284197969/512000000",
+          "((1, 0), True)": "1342445531/2560000000",
+          "((1, 1), True)": "16986541/32000000",
+          "((1, 2), True)": "2886717043/5120000000",
+          "((2, 0), True)": "284197969/512000000",
+          "((2, 1), True)": "2886717043/5120000000",
+          "((2, 2), True)": "15243920951/25600000000"
+        },
+        "update": {
+          "((0, 0), True)": "504938529/6400000000",
+          "((0, 1), True)": "240750531/2560000000",
+          "((0, 2), True)": "43977969/512000000",
+          "((1, 0), True)": "240750531/2560000000",
+          "((1, 1), True)": "1972791/32000000",
+          "((1, 2), True)": "285707043/5120000000",
+          "((2, 0), True)": "43977969/512000000",
+          "((2, 1), True)": "285707043/5120000000",
+          "((2, 2), True)": "1244820951/25600000000"
+        }
+      },
+      "formal_margin_transport": "FiniteOutputs connects original kappa to actual finite-kernel expressions; exact numerical fraction reflection OPEN; corrected-head compilation recorded separately",
+      "infimum_starts": {
+        "action": [
+          "((0, 0), True)"
+        ],
+        "joint": [
+          "((0, 0), True)"
+        ],
+        "update": [
+          "((2, 2), True)"
+        ]
+      },
+      "killed_persistence": {
+        "0": "1",
+        "1": "13/20",
+        "2": "257/800",
+        "20": "3754365040253209420183756064199235455069864640571137/400000000000000000000000000000000000000000000000000000000",
+        "3": "40183/200000",
+        "5": "24860744831/400000000000"
+      },
+      "property_values": {
+        "action": "3171/4000",
+        "baseline": "8381459/32000000",
+        "joint": "3171/4000",
+        "update": "41417/128000"
+      },
+      "reachable_states": 16,
+      "singleton_effects": {
+        "action": "16986541/32000000",
+        "joint": "16986541/32000000",
+        "update": "1972791/32000000"
+      },
+      "stationary_law": {
+        "((0, 0), False)": "28374926274873623200/355006278148174557117",
+        "((0, 0), True)": "1459389221188755500/355006278148174557117",
+        "((0, 1), False)": "87313907092875947240/1065018834444523671351",
+        "((0, 1), True)": "834817131677291000/355006278148174557117",
+        "((0, 2), False)": "78163957027890259600/1065018834444523671351",
+        "((1, 0), False)": "87313907092875947240/1065018834444523671351",
+        "((1, 0), True)": "834817131677291000/355006278148174557117",
+        "((1, 1), False)": "295916080110264481256/1065018834444523671351",
+        "((1, 1), True)": "14412334893340209245/355006278148174557117",
+        "((1, 2), False)": "72267177217300598240/1065018834444523671351",
+        "((1, 2), True)": "4393774377248900000/355006278148174557117",
+        "((2, 0), False)": "78163957027890259600/1065018834444523671351",
+        "((2, 1), False)": "72267177217300598240/1065018834444523671351",
+        "((2, 1), True)": "4393774377248900000/355006278148174557117",
+        "((2, 2), False)": "24511278826193513200/355006278148174557117",
+        "((2, 2), True)": "18655778319260043500/355006278148174557117"
+      },
+      "stationary_replete_mass": "44984685451641390245/355006278148174557117"
+    }
+  },
+  "persistence": "in replete region at ALL times 0 through L",
+  "start": [
+    [
+      1,
+      1
+    ],
+    true
+  ]
+}
