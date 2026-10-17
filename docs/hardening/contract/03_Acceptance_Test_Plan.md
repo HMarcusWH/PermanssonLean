@@ -1,6 +1,8 @@
 # Acceptance test plan
 
-**108 specified acceptance cases.** These are requirements for the build, not tests claimed to have run. The executed source/exporter/toy-Git probes are separately reported in `evidence/source_probes.json`.
+**Repository amendment:** PRES-23 explicitly covers additions, edits and deletions, including unprotected Lean paths. The byte-identical supplied plan is preserved in [supplied/03_Acceptance_Test_Plan.md](supplied/03_Acceptance_Test_Plan.md).
+
+**108 specified acceptance cases.** These are requirements for the build, not tests claimed to have run. The new independent source/exporter subset is reported in `evidence/source_probes.json`; the original author's E1 source-ZIP and toy-Git probe records were NOT_SUPPLIED. See `00_README.md` for provenance.
 
 Every negative case must have a nearby positive control and assert the intended code/stage. A missing tool, timeout or earlier checksum failure is not a substitute for exercising the specified condition. `BLOCKED_...` is an unmet environment/authorization requirement, not successful rejection of a malicious input.
 
@@ -52,7 +54,7 @@ Production policy cannot be overridden from the CLI; small reference policies ar
 | PRES-20 | **LF/CRLF checkout invariance** — Checkout one canonical commit under LF and CRLF settings, including a Windows test. | `PASS` | unit |
 | PRES-21 | **Committed CRLF conversion** — Commit the converted protected content rather than merely checking it out. | `E_PROTECTED_CONTENT` | unit |
 | PRES-22 | **Dirty worktree caveat** — Edit working bytes without committing; canonical-commit predicate stays PASS and report does not claim workspace cleanliness. | `PASS` | unit |
-| PRES-23 | **Maintenance-only Lean scope** — One-time PR acceptance: any addition/edit under either Lean tree or roots fails, but this is not an always-on future policy. | `E_MAINTENANCE_SCOPE` | unit |
+| PRES-23 | **Maintenance-only Lean scope** — One-time PR acceptance: reject any addition, edit or deletion under `PermanssonLean/` or `PermanssonResearch/`, or of `PermanssonLean.lean` or `PermanssonResearch.lean`, including unprotected paths outside the 369-file inventory. Compare both complete Lean trees and both roots with A; unchanged scope passes. This is separate from the always-on policy so future additive research remains allowed. | `E_MAINTENANCE_SCOPE` | unit |
 
 ## TEX
 

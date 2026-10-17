@@ -8,9 +8,33 @@ Read this companion before interpreting the citations in the five supplied docum
 - [Rollout runbook](04_Rollout_Runbook.md)
 - [Implementing-agent directive](AGENT_BUILD_DIRECTIVE.md)
 
-Their canonical Git blobs are preserved unchanged from `2ff920d6ab470cd49f6f392f23855676ac1f8db3` and byte-match the five supplied Markdown originals. A Windows checkout may represent their line endings as CRLF. This companion clarifies provenance without rewriting the supplied audit's first-person assertions or normative requirements.
+Four active documents retain their canonical Git blobs unchanged from `2ff920d6ab470cd49f6f392f23855676ac1f8db3` and byte-match their supplied Markdown originals: `01_Proposal_Audit.md`, `02_Implementation_Spec.md`, `04_Rollout_Runbook.md`, and `AGENT_BUILD_DIRECTIVE.md`. The active [acceptance plan](03_Acceptance_Test_Plan.md) is explicitly amended: PRES-23 now covers additions, edits and deletions across both complete Lean trees and both roots, including paths outside the permanent protected inventory; its opening provenance statement also distinguishes the new probe subset from the unavailable original E1 experiments. The byte-identical supplied plan remains at [supplied/03_Acceptance_Test_Plan.md](supplied/03_Acceptance_Test_Plan.md), with original Git blob `38e9edc01043a9f912c2a652912dfc2ea1a9a570`. A local attributes rule preserves that reference's original bytes through Windows checkouts and staging. None of the original Downloads files is changed.
 
 The original full package ZIP, its `00_README.md`, `sources/Original_Proposal.txt`, and the author's E1 probe program/results were **NOT_SUPPLIED** to this repository change. This file is a newly authored companion, **not the recovered original source register**. The three [registries](../registries/) are independently derived repository records, as their provenance fields state; they are not represented as recovered package bytes.
+
+## Reconstructed runbook template
+
+The runbook's literal `templates/research-integrity.yml` reference resolves to the [reconstructed template](templates/research-integrity.yml). This is **NOT_RECOVERED_ORIGINAL_PACKAGE_TEMPLATE**. It copies the reviewed maintenance workflow's exact canonical bytes; it does not reconstruct an unavailable author's template or claim that installing it has already produced genuine PR CI or activated required checks. Production modules, the historical supplement and tests must exist before use. The reviewed required workflow runs on main PRs and main pushes; optional manual dispatch is excluded from this required-check profile.
+
+Template provenance manifest:
+
+| Field | Exact value |
+|---|---|
+| Reviewed maintenance source | [`.github/workflows/research-integrity.yml` at `049d2620317afd10f8a584254d768f36af1d4979`](https://github.com/HMarcusWH/PermanssonLean/blob/049d2620317afd10f8a584254d768f36af1d4979/.github/workflows/research-integrity.yml) |
+| Source Git blob | `52c50993395dc794d1ab8d8dae7357ba39a72c4c` |
+| Canonical payload | 4,760 bytes, UTF-8 with LF |
+| SHA-256 | `70cd7e8569beb995981be210369f57c34460289e6a5890c54153683a26939093` |
+| Review boundary | Any profile change requires a reviewed checker-policy update; the candidate-owned checker does not authenticate its own review. |
+
+The action commits in this reviewed source match references actually observed in the separately captured accepted R Research job `117434492474`, run `39045919534`. The [captured log](https://github.com/HMarcusWH/PermanssonLean/blob/e314ccc2b3587065425a0357874ad5580cce841d/archival/v0.2.0/supplement-1/evidence/runs/job-117434492474-logs.json) is a later **normalized connector** record, not the missing original package or a raw HTTP log response; its SHA-256 is `b69acc4f08e96bba69f9d9a4b417adeee6bd92385307b21c789cd469b8d7ff91`.
+
+| Action | Observed accepted-CI commit retained in the reviewed template |
+|---|---|
+| `actions/checkout` | `11d5960a326750d5838078e36cf38b85af677262` |
+| `actions/setup-python` | `a26af69be951a213d495a4c3e4e4022e16d87065` |
+| `actions/upload-artifact` | `ea165f8d65b6e75b540449e92b4886f43607fa02` |
+
+The runbook contains no other literal `templates/...` path. The implementation specification's schema and production-tool paths describe required build outputs, not additional recovered package files.
 
 ## Original citation labels: what can be established
 
