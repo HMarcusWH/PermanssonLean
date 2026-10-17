@@ -54,7 +54,7 @@ Production policy cannot be overridden from the CLI; small reference policies ar
 | PRES-20 | **LF/CRLF checkout invariance** — Checkout one canonical commit under LF and CRLF settings, including a Windows test. | `PASS` | unit |
 | PRES-21 | **Committed CRLF conversion** — Commit the converted protected content rather than merely checking it out. | `E_PROTECTED_CONTENT` | unit |
 | PRES-22 | **Dirty worktree caveat** — Edit working bytes without committing; canonical-commit predicate stays PASS and report does not claim workspace cleanliness. | `PASS` | unit |
-| PRES-23 | **Maintenance-only Lean scope** — One-time PR acceptance: reject any addition, edit or deletion under `PermanssonLean/` or `PermanssonResearch/`, or of `PermanssonLean.lean` or `PermanssonResearch.lean`, including unprotected paths outside the 369-file inventory. Compare both complete Lean trees and both roots with A; unchanged scope passes. This is separate from the always-on policy so future additive research remains allowed. | `E_MAINTENANCE_SCOPE` | unit |
+| PRES-23 | **Maintenance-only Lean scope** — Unit fixtures must reject any addition, edit or deletion under `PermanssonLean/` or `PermanssonResearch/`, or of `PermanssonLean.lean` or `PermanssonResearch.lean`, including unprotected paths outside the 369-file inventory; unchanged scope passes. These regressions cannot discharge the separate mandatory K4 actual-S scope report and independent current H/B/S binding in specification §14 and runbook K4. Keep this restriction separate from the always-on policy so future additive research remains allowed. | `E_MAINTENANCE_SCOPE` | unit |
 
 ## TEX
 

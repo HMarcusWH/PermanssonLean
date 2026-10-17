@@ -6,7 +6,9 @@
 **Status:** implementation contract, not an implemented or deployed product.  
 **Scope names:** `HARDENING.F1`, `HARDENING.F2`, `HARDENING.F3`. These are maintenance findings, not the mathematical MultiAgent/F1 lane.
 
-MUST means an acceptance requirement. MAY means an explicitly optional implementation detail. The original proposal is preserved in `sources/Original_Proposal.txt`; audit corrections are explicit in `01_Proposal_Audit.md`.
+**Repository amendment:** archival CLI examples include candidate source binding, and K4 explicitly requires a separate actual-candidate Lean-scope report. The byte-identical supplied specification is preserved in [supplied/02_Implementation_Spec.md](supplied/02_Implementation_Spec.md).
+
+MUST means an acceptance requirement. MAY means an explicitly optional implementation detail. The original package's `sources/Original_Proposal.txt` was not supplied; see the [companion provenance register](00_README.md). Audit corrections are explicit in `01_Proposal_Audit.md`.
 
 ## 1. Non-negotiable scope
 
@@ -60,6 +62,7 @@ The audited reference registry is useful test/review data. A copied candidate re
 | `verification/integrity/git_objects.py` | Sanitized bounded Git subprocesses, object/type/mode reads, NUL-delimited trees, batch blob reads |
 | `verification/integrity/inventory.py` | Derive and validate 340 historical plus 29 release reference entries |
 | `verification/integrity/preservation.py` | Pure candidate-object comparisons and fail-closed CLI |
+| `verification/integrity/maintenance_scope.py` | One-time K4 CLI comparing both complete Lean trees and both roots with A; not a permanent required check |
 | `verification/integrity/tex_export.py` | Trusted reference extraction, isolated renderer invocation, exact candidate-byte comparison |
 | `verification/integrity/_tex_worker.py` | Minimal subprocess harness; only calls accepted `tex_document` |
 | `verification/integrity/ci_context.py` | Validate event/head/base/checked SHA; emit source context, never mutate repository |
@@ -165,9 +168,12 @@ python -B -m verification.integrity.ci_context --repo ROOT --event-file EVENT --
 python -B -m verification.integrity.run_tests --suite SUITE --report OUT.json
 python -B -m verification.archive.acquire_evidence --output NEW_DIRECTORY
 python -B -m verification.archive.create_bundle --repo ROOT --evidence CAPTURE_DIR --output NEW_DIRECTORY
-python -B -m verification.archive.verify_bundle --supplement DIRECTORY --scratch NEW_EMPTY_DIRECTORY --report OUT.json
-python -B -m verification.archive.offline_smoke --supplement DIRECTORY --scratch NEW_EMPTY_DIRECTORY --report OUT.json
+python -B -m verification.archive.offline_smoke --repo ROOT --candidate FULL_SHA --supplement DIRECTORY --scratch NEW_EMPTY_DIRECTORY --report OUT.json
 ```
+
+`verification.archive.offline_smoke` is the supported ordinary acceptance launcher: it establishes the required network namespace and privilege profile before invoking the verifier. `verification.archive.verify_bundle` is an internal namespace-child interface, not an alternate ordinary acceptance command; a bare invocation outside the enforced profile must return BLOCKED/nonzero. Do not bypass the launcher to obtain an acceptance result.
+
+For candidate-bound CI and K4 archival acceptance, `--repo` and `--candidate` are both required on the launcher. ROOT is the tested candidate checkout and FULL_SHA is its complete candidate commit ID; on a PR this is the actual current genuine synthetic S. The parent capture binds the archive report to C before the isolated child restores accepted A. An implementation's standalone artifact-replay mode without these arguments supplies no candidate source binding and cannot discharge K4. Keep candidate C verification and accepted-A archival replay separately labeled.
 
 `acquire_evidence` is the only online evidence-fetching command. Fetching missing Git objects is an explicit preparation action, not an automatic fallback inside either preservation or offline validation. Validators never update policy, refresh manifests, overwrite source files or create remote refs.
 
@@ -493,6 +499,18 @@ Use a fresh annotated remote tag such as `permansson-v0.2.0-research` only after
 Require exact-head local tests, three new genuine synthetic-merge jobs, existing full CI, fresh PR-only C10 evidence for this maintenance H/B/S, no unresolved findings, and explicit merge approval. The new maintenance C10 capture is additional integration evidence and must not overwrite the historical R artifact.
 
 Require no release-path changes and all 369 pins unchanged. Require no changes to either Lean tree, either Lean root, dependency pins or application semantics in this maintenance PR. New tests are outside the accepted kit. Confirm that a PR with zero changed `release/**` paths visibly executed all three new checks.
+
+**Separate mandatory K4 acceptance condition:** execute the shipped one-time scope CLI from a clean isolated checkout of the actual current S, before merge:
+
+```text
+python -B -m verification.integrity.maintenance_scope --repo . --candidate FULL_SHA --report /scratch/maintenance-scope.json
+```
+
+FULL_SHA must be the complete current genuine synthetic merge SHA, not a fixture, H, a previous S or a revision expression. Require subprocess exit 0 and a PASS `Permansson.Hardening.Check.v1` report with check `maintenance-Lean-scope`, the fixed accepted A/tree, the checked candidate S/tree, all four compared paths, and `details.completed_stages` containing `fixed_authority` and `complete_Lean_scope_comparison`. The four paths are `PermanssonLean/`, `PermanssonResearch/`, `PermanssonLean.lean` and `PermanssonResearch.lean`; additions, edits and deletions anywhere in their complete scope fail, including paths outside the 369 permanent pins. The report must identify `details.acceptance_only=true` and `details.permanent_preservation_policy=false`.
+
+Join that report to independently captured current GitHub PR metadata for H/B/S. Verify that the report's checked SHA and tree are S and tree(S), that S has ordered parents `[B,H]`, and that the capture still describes the current head and base. A local invocation remains labeled local: its JSON does not manufacture a genuine GitHub event or publisher authentication. Retain the independent source receipt beside the scope report. A missing report, nonzero result, stale tuple, wrong tree, or incomplete stages blocks K4. Repeat this one-time check after any head or base change.
+
+PRES-23 remains a unit-level regression requirement for the checker. Passing its fixture tests does not discharge this additional actual-candidate K4 condition. Do not add this scope restriction to the permanent three-job workflow or turn it into a new always-on context; future additive research remains allowed by the permanent policy. This condition does not add or renumber any of the 108 acceptance cases.
 
 Record H, B, S and M separately, their tree relationships, actual run IDs/attempts, exact test outcomes, code/fixture hashes, supplement hash, review identity and open deployment steps. Do not infer broad mathematical completion from maintenance PASS.
 

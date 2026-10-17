@@ -4,6 +4,8 @@
 **Status:** instructions for the implementing agent/operator, not an execution receipt.  
 **Reference:** `02_Implementation_Spec.md` is normative. The shell/Python examples below are command patterns to implement or execute after preflight; they are not claims that the real archive or deployment already exists.
 
+**Repository amendment:** archival acceptance uses the supported candidate-bound offline launcher, and K4 requires an explicit actual-candidate Lean-scope report with independent H/B/S binding. The byte-identical supplied runbook is preserved in [supplied/04_Rollout_Runbook.md](supplied/04_Rollout_Runbook.md).
+
 ## 1. Decisions fixed by this contract
 
 Build one coordinated maintenance change with three independent check contexts. Use the accepted release commit A as the immutable reference; retain the original research-source argument G for TeX. Preserve 369 fixed files and the eight closed roots. Build a new archival supplement without changing the accepted release kit. Restore actual historical Git objects from that supplement in an empty network-isolated environment. Keep mathematical work out of scope.
@@ -129,6 +131,14 @@ sudo -n /usr/bin/unshare --net -- \
 
 This is an adapter design, **not a successful namespace run recorded by this audit**. Capture child/parent namespace identities, UID/GID, absence of outward routes and a denied outward socket attempt. Sanitize proxies, credentials and inherited descriptors. A timeout alone is not a sufficient denial result. If the platform cannot enforce the isolation profile, return BLOCKED/nonzero and stop; do not rerun the test online and report offline success.
 
+The supported ordinary acceptance entry point installs that profile before invoking the internal verifier:
+
+```text
+python -B -m verification.archive.offline_smoke --repo . --candidate FULL_SHA --supplement DIRECTORY --scratch NEW_EMPTY_DIRECTORY --report /scratch/archive-reproducibility.json
+```
+
+For CI/K4, both `--repo` and `--candidate` are mandatory; FULL_SHA is the complete current genuine synthetic S. The parent report binds the candidate C before the child restores accepted A. Standalone artifact replay without candidate arguments cannot discharge K4. `verification.archive.verify_bundle` is a namespace-child/internal interface; bare use outside the enforced isolation profile must return BLOCKED/nonzero and cannot replace this launcher.
+
 Network isolation is not a general sandbox against a malicious maintainer who controls the workflow. The new checker and workflow remain review-sensitive. The purpose is to prove the archival replay cannot acquire missing history or dependencies from the network.
 
 ### 5.4 Avoid the package/hash cycle
@@ -144,6 +154,16 @@ If tooling changes, regenerate the tooling snapshot and supplement manifest befo
 Use `templates/research-integrity.yml` only after its referenced production modules and tests exist. All three jobs must execute on every PR targeting main and every push to main, even when no release path changes. No paths filters, docs-only conditions, `continue-on-error` or dependency chain that turns a failed prerequisite into a skipped success.
 
 Each job verifies event context. On a PR, the actual checkout must be the genuine S with ordered parents `[B,H]`. A manual workflow on H is useful diagnostic evidence but does not replace the PR event. Existing Lean, Research Lean, executable verification and both application OS jobs continue unchanged. Fresh PR-only C10 evidence for the maintenance H/B/S is separate from historical R evidence.
+
+Before merging this maintenance PR, run the shipped one-time scope checker from a clean isolated checkout of the actual current genuine synthetic S:
+
+```text
+python -B -m verification.integrity.maintenance_scope --repo . --candidate FULL_SHA --report /scratch/maintenance-scope.json
+```
+
+Replace FULL_SHA with the complete current S. Require exit 0, report PASS, check `maintenance-Lean-scope`, fixed A/tree, current checked S/tree and `details.completed_stages` containing `fixed_authority` and `complete_Lean_scope_comparison`. Require all four complete scopes (`PermanssonLean/`, `PermanssonResearch/`, `PermanssonLean.lean`, `PermanssonResearch.lean`) unchanged, including unprotected additions, edits and deletions. Preserve the report's `details.acceptance_only=true` and `details.permanent_preservation_policy=false` labels.
+
+Independently capture the current GitHub PR's H/B/S, verify S's ordered parents `[B,H]`, and bind that receipt to the report's checked SHA/tree. A locally produced report stays labeled local; it does not itself authenticate a GitHub event. Retain both records in the K4 packet. Missing, stale, mismatched or failing evidence blocks acceptance; rerun after any head or base change. PRES-23's unit fixtures test checker behavior and cannot replace this actual-candidate acceptance condition. Do not install the one-time restriction as a permanent workflow job or required context; it adds no new acceptance case ID or level.
 
 Observe the actual new contexts and publisher App before proposing activation:
 
