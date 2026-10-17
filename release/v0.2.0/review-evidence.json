@@ -63,6 +63,13 @@
       "issue": "Captured C10 proof contents could be internally invalid despite repaired hashes.",
       "resolution": "The helper reuses authoritative structural and exact arithmetic validation, regenerates both Lean inputs and validates complete clean compiler/axiom captures without claiming a fresh Lean run.",
       "independent_regression": "All seven original ZIPs pass; 20 rehashed invalid-content variants are rejected by the 21-test suite."
+    },
+    {
+      "id": "R10",
+      "review_comment": "https://github.com/HMarcusWH/PermanssonLean/pull/76#discussion_r4303254937",
+      "issue": "The outer C10 gate decompressed members before the helper checked fixed inventory and size limits.",
+      "resolution": "Both outer and direct-helper entry points invoke one shared metadata-only preflight before their first ZIP member read, including the manifest: exact13 fixed members, at most4,000,000 bytes each and16,000,000 total.",
+      "independent_regression": "Five small rehashed inventory/size fixtures reject at both entry points with ZipFile.read never called; exact member and total limit metadata are accepted without reads. Original seven publisher archives remain unchanged."
     }
   ],
   "validation": {
@@ -82,13 +89,25 @@
     "durable_rehashed_guard_mutations_rejected": 34,
     "durable_guard_zip_metadata_mutations_rejected": 11,
     "durable_test_command": "python -m unittest discover -s release/v0.2.0 -p 'test_*.py' -v",
-    "durable_unittest_seconds": 131.486
+    "durable_unittest_seconds": 131.486,
+    "durable_unittest_source_commit": "dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7",
+    "r10_checks": {
+      "prior_full_suite_source_commit": "dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7",
+      "focused_pre_read_methods_passed": 1,
+      "focused_pre_read_seconds": 6.408,
+      "mutated_zip_fixtures": 5,
+      "pre_read_negative_endpoint_controls_passed": 10,
+      "positive_boundary_metadata_controls_passed": 2,
+      "c10_regression_test_cases_passed": 21,
+      "independently_reproduced": true,
+      "scope": "Prior full28-method run remains recorded above; after R10, the21 C10 regressions and one new focused method were rerun. Full29-method discovery is required in fresh CI."
+    }
   },
   "scope": "Offline validation checks the captured GitHub receipts and actual local Git objects; it does not independently authenticate GitHub or replace Lean kernel checks. Scientific OPEN obligations remain explicit in the manuscript and acceptance evidence.",
   "reviewed_code_sha256": {
     "build_release.py": "a711fce840920846e9ffdd55b2580ebe358233ca7b432bffa78af315be69ffa6",
-    "verify_release.py": "4f7dbf04fe93e36a49b6db433f87069473677358028a81adecab7410d336b03b",
+    "verify_release.py": "abe1cd70491b4976ab7e3d1f06c405508e2fde7e3890f818a89b97ed88841dc2",
     "package_release.py": "5e70a8aa65331408c1a15e83707cc023e5d0b0adae9bd470c3c28371f8b0d1b4",
-    "c10_archive_validation.py": "043c012270b20a1d12b545a1ffdc34561a9b0616bc2bb757f9b821a5bc06c482"
+    "c10_archive_validation.py": "36dfefb05c863e46b50e17b0dcf5d397016b5420b05244367af89c98a5968706"
   }
 }

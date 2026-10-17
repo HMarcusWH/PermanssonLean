@@ -348,10 +348,11 @@ def validate_c10_archives(kit, root, evidence, draft):
                 and archive.resolve().is_relative_to(kit.resolve()), f"{anchor}: invalid C10 archive path")
         require(re.fullmatch(r"[0-9a-f]{64}", origin.get("sha256", ""))
                 and digest(archive.read_bytes()) == origin["sha256"], f"{anchor}: C10 publisher ZIP digest mismatch")
+        from c10_archive_validation import preflight_c10_zip, validate_c10_archive
         with zipfile.ZipFile(archive) as zipped:
-            names = zipped.namelist()
-            require(len(names) == len(set(names)) and "evidence_manifest.json" in names,
-                    f"{anchor}: duplicate/missing C10 ZIP entries")
+            # Validate every central-directory entry before decompressing even
+            # the manifest; the content helper enforces this same bounded gate.
+            names = preflight_c10_zip(zipped, root)
             machine = json.loads(zipped.read("evidence_manifest.json"))
             require(machine.get("format") == "Permansson.C10.release-evidence.v2", f"{anchor}: wrong C10 format")
             artifacts = machine.get("artifacts", {})
@@ -371,7 +372,6 @@ def validate_c10_archives(kit, root, evidence, draft):
                     f"{anchor}: invalid C10 specification path")
             require(digest(blob(root, receipt["source_sha"], path)) == specification.get("sha256"),
                     f"{anchor}: C10 specification differs from canonical source blob")
-        from c10_archive_validation import validate_c10_archive
         validate_c10_archive(archive, expected_source, root)
 
 

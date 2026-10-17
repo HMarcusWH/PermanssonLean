@@ -2071,7 +2071,7 @@
     ".gitignore": "1410caa22a9048b554bc9347fbf5a8cfb66f74823f0ebc24c5caf6065b3fecb9",
     "acceptance-evidence.json": "abdd45287f9e558d0900dd13661a856065c0ef77b33f6f0f203101dbbb52c12c",
     "build_release.py": "a711fce840920846e9ffdd55b2580ebe358233ca7b432bffa78af315be69ffa6",
-    "c10_archive_validation.py": "043c012270b20a1d12b545a1ffdc34561a9b0616bc2bb757f9b821a5bc06c482",
+    "c10_archive_validation.py": "36dfefb05c863e46b50e17b0dcf5d397016b5420b05244367af89c98a5968706",
     "compile-evidence.json": "602c2b5723186c992a47efd728605a79266bff9dcdfab365c3cebf033c2d9fdf",
     "evidence/c10/A3-c10.zip": "8820502905c19bce3d47f79fa33ff3bd4a03e020b22000d6fc2302af26ca9df7",
     "evidence/c10/artifact-origins.json": "d27ae9cd4d82f009220b8296826387b6252476299d730c60c5b32388f213a45f",
@@ -2087,12 +2087,12 @@
     "output/pdf/theorem-map.csv": "15435e59e9e5b2662672394419c5696713a61bc8b34ed80d050cd6c39fb3c2a0",
     "output/pdf/theorem-map.json": "05105c8fb569de11472ee003e2d79d2cece19f9610388425f88044fadc64438f",
     "package_release.py": "5e70a8aa65331408c1a15e83707cc023e5d0b0adae9bd470c3c28371f8b0d1b4",
-    "README.md": "784f3809c8265e895aaf41d434713297a9c57020171655ab71130fbd8895618f",
+    "README.md": "02dc607ab6f390604e486020435360da8fd8a2fc094acb6c00c139185a7ea38f",
     "requirements.txt": "dd799a4aa410a31d63665c8d55c2088d881d2226d76681a2d91732f0870a2651",
-    "review-evidence.json": "a1d5606b084f3d9c94635688af6827cdc58818faf3000b0b11b8fb4327045987",
+    "review-evidence.json": "ccec6cf9b3b52c0d2c05598a6327597513b5c54157c121a05d0ec52f06e0d859",
     "test_c10_archive_validation.py": "0038db7e8e78d54174b38cc24c7debb2e7ee9b001b2351e93d387056f92a98e7",
-    "test_release_guards.py": "5d655d8f419644a8f34a92ef2b822564645ae12d457096750ff6d63bb38d987a",
-    "verify_release.py": "4f7dbf04fe93e36a49b6db433f87069473677358028a81adecab7410d336b03b"
+    "test_release_guards.py": "34a852bc185c01bea82da060e2648dceb7fe824c00639be04e5776008d4cb9ad",
+    "verify_release.py": "abe1cd70491b4976ab7e3d1f06c405508e2fde7e3890f818a89b97ed88841dc2"
   },
   "self_excluded": [
     "manifest.json"

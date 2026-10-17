@@ -12,6 +12,7 @@ import io
 import json
 from pathlib import Path
 import shutil
+import struct
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -79,6 +80,111 @@ def rehashed_c10(kit, mutate):
             zipped.writestr(name, data)
     origin["sha256"] = digest(archive.read_bytes())
     origins_path.write_bytes(encoded(origins))
+
+
+class C10ArchivePreflightTests(unittest.TestCase):
+    def test_outer_gate_rejects_size_and_inventory_before_first_content_read(self):
+        from c10_archive_validation import preflight_c10_zip, validate_c10_archive
+
+        evidence = json.loads((KIT / "acceptance-evidence.json").read_bytes())
+        original_archives = {path: digest(path.read_bytes())
+                             for path in (KIT / "evidence/c10").glob("*.zip")}
+        # Positive control uses the same final-mode outer entry point.
+        verifier.validate_c10_archives(KIT, ROOT, evidence, False)
+
+        def declared_sizes(archive, sizes):
+            # Only a small fixture's central-directory declarations change.
+            # No inflated payload is allocated, compressed or decompressed.
+            payload = bytearray(archive.read_bytes())
+            with zipfile.ZipFile(archive) as zipped:
+                offset, entries = zipped.start_dir, zipped.infolist()
+            for entry in entries:
+                self.assertEqual(payload[offset:offset + 4], b"PK\x01\x02")
+                name_length, extra_length, comment_length = struct.unpack_from("<HHH", payload, offset + 28)
+                if entry.filename in sizes:
+                    struct.pack_into("<I", payload, offset + 24, sizes[entry.filename])
+                offset += 46 + name_length + extra_length + comment_length
+            archive.write_bytes(payload)
+
+        def replace_inventory(archive, duplicate=False):
+            with zipfile.ZipFile(archive) as zipped:
+                payloads = [(entry.filename, zipped.read(entry)) for entry in zipped.infolist()]
+
+            def write_entries():
+                with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as zipped:
+                    for name, data in payloads:
+                        # Preserve count while breaking fixed names/uniqueness.
+                        renamed = "input.json" if duplicate else "unexpected.json"
+                        zipped.writestr(renamed if name == "receipt.json" else name, data)
+
+            if duplicate:
+                with self.assertWarnsRegex(UserWarning, "Duplicate name: 'input.json'"):
+                    write_entries()
+            else:
+                write_entries()
+
+        cases = [
+            ("oversize manifest", lambda archive: declared_sizes(archive, {"evidence_manifest.json": 4_000_001}), "C10 ZIP.*size"),
+            ("oversize ordinary member", lambda archive: declared_sizes(archive, {"receipt.json": 4_000_001}), "C10 ZIP.*size"),
+            ("oversize total", lambda archive: declared_sizes(archive, {
+                name: 1_300_000 for name in zip_names(archive)}), "C10 ZIP.*size"),
+            ("wrong fixed inventory", lambda archive: replace_inventory(archive), "C10 ZIP.*inventory"),
+            ("duplicate inventory", lambda archive: replace_inventory(archive, True), "C10 ZIP.*inventory"),
+        ]
+
+        def zip_names(archive):
+            with zipfile.ZipFile(archive) as zipped:
+                return zipped.namelist()
+
+        with tempfile.TemporaryDirectory(prefix="c10-preflight-") as temporary:
+            for index, (label, mutate, message) in enumerate(cases):
+                with self.subTest(label=label):
+                    kit = Path(temporary) / str(index) / "release" / "v0.2.0"
+                    shutil.copytree(KIT, kit, ignore=shutil.ignore_patterns("tmp", "__pycache__"))
+                    origins_path = kit / "evidence/c10/artifact-origins.json"
+                    origins = json.loads(origins_path.read_bytes())
+                    first = origins["artifacts"][0]
+                    archive = kit / first["path"]
+                    receipt = next(row for row in evidence["receipts"] if row["anchor"] == first["anchor"])
+                    source = {"repository": evidence["repository"], "pr_number": receipt["pr"],
+                              "head_sha": receipt["source_sha"], "base_sha": receipt["base_sha"],
+                              "synthetic_merge_sha": receipt["synthetic_merge_sha"]}
+                    mutate(archive)
+                    self.assertLess(archive.stat().st_size, 1_000_000)
+                    first["sha256"] = digest(archive.read_bytes())
+                    origins_path.write_bytes(encoded(origins))
+                    rehash_inventory(kit)
+                    # An attempted read is a test failure, not an accepted
+                    # exception. Only the intended preflight ValueError passes.
+                    endpoints = {
+                        "outer": lambda: verifier.validate_c10_archives(kit, ROOT, evidence, False),
+                        "direct helper": lambda: validate_c10_archive(archive, source, ROOT),
+                    }
+                    for endpoint, validate in endpoints.items():
+                        with self.subTest(endpoint=endpoint), patch.object(zipfile.ZipFile, "read",
+                                side_effect=AssertionError("C10 content read before resource preflight")) as read:
+                            with self.assertRaisesRegex(ValueError, message):
+                                validate()
+                            read.assert_not_called()
+
+            # Test inclusive resource boundaries on central metadata only.
+            # These are preflight successes, not claims of payload validity.
+            source_archive = next(iter(original_archives))
+            names = zip_names(source_archive)
+            limits = [
+                {name: 4_000_000 if name == "evidence_manifest.json" else 0 for name in names},
+                {name: 4_000_000 if index < 4 else 0 for index, name in enumerate(names)},
+            ]
+            for index, sizes in enumerate(limits):
+                with self.subTest(inclusive_boundary=index):
+                    archive = Path(temporary) / ("boundary-" + str(index) + ".zip")
+                    shutil.copyfile(source_archive, archive)
+                    declared_sizes(archive, sizes)
+                    with zipfile.ZipFile(archive) as zipped, patch.object(zipfile.ZipFile, "read",
+                            side_effect=AssertionError("Metadata-only preflight read content")) as read:
+                        self.assertEqual(preflight_c10_zip(zipped, ROOT), set(names))
+                        read.assert_not_called()
+        self.assertEqual(original_archives, {path: digest(path.read_bytes()) for path in original_archives})
 
 
 class ReleaseGuardTests(unittest.TestCase):

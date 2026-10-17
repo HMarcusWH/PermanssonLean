@@ -82,6 +82,23 @@ def compiler_capture(stdout, stderr, theorems, evidence):
     return reports
 
 
+def preflight_c10_zip(zipped: zipfile.ZipFile, root: Path) -> set[str]:
+    """Check the complete fixed inventory and size budgets before reading data.
+
+    This function inspects central-directory metadata only. Every caller that
+    reads C10 ZIP members must run this shared gate before its first member read.
+    """
+    with authoritative_checker(root) as (_, evidence):
+        names = {*evidence.ARTIFACTS, "evidence_manifest.json"}
+    entries = zipped.infolist()
+    require(len(entries) == len(names) and {entry.filename for entry in entries} == names,
+            "C10 ZIP fixed artifact inventory is incomplete, duplicated or extended")
+    require(all(not entry.is_dir() and entry.file_size <= 4_000_000 for entry in entries)
+            and sum(entry.file_size for entry in entries) <= 16_000_000,
+            "C10 ZIP exceeds the bounded six-state evidence size")
+    return names
+
+
 def validate_c10_archive(archive: Path, expected_source: dict, root: Path) -> dict:
     """Validate a publisher ZIP after its independently trusted origin binding.
 
@@ -101,14 +118,8 @@ def validate_c10_archive(archive: Path, expected_source: dict, root: Path) -> di
             "Invalid C10 source SHA")
     try:
         with authoritative_checker(root) as (checker, evidence):
-            names = {*evidence.ARTIFACTS, "evidence_manifest.json"}
             with zipfile.ZipFile(archive) as zipped:
-                entries = zipped.infolist()
-                require(len(entries) == len(names) and {entry.filename for entry in entries} == names,
-                        "C10 ZIP fixed artifact inventory is incomplete, duplicated or extended")
-                require(all(not entry.is_dir() and entry.file_size <= 4_000_000 for entry in entries)
-                        and sum(entry.file_size for entry in entries) <= 16_000_000,
-                        "C10 ZIP exceeds the bounded six-state evidence size")
+                names = preflight_c10_zip(zipped, root)
                 payloads = {name: zipped.read(name) for name in names}
             specification = git_blob(root, expected_source["head_sha"], evidence.SPEC_PATH)
             spec_oid = subprocess.run(

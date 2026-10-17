@@ -102,6 +102,9 @@ nested digest, the source/base/synthetic/PR binding, and the specification hash
 against the canonical Git blob at that head. These are receipts for the
 original constructed six-state C10 golden, including when collected by X1's
 integration run; they are not numeric certificates for the X1 commons model.
+Before decompressing any member, including the evidence manifest, both archive
+gates require the fixed 13-member inventory and declared sizes of at most
+4,000,000 bytes per member and 16,000,000 bytes in total.
 The content gate also reuses the original independent C10 structural and exact
 arithmetic checks, regenerates both Lean inputs, and verifies complete clean
 axiom/compiler captures. This is a consistency replay of captured evidence;
