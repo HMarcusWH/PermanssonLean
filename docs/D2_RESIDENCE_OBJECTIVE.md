@@ -99,24 +99,25 @@ complete deterministic-policy enumeration, product-clock versus history
 optimization, robust-order separation and the hard-risk example.
 
 The focused smoke builds all three new modules and audits every declaration.
-At source `7c3e7e450f11af9913d393757a52e37e7bb4f4fa`, PR #74's focused
+Historical focused evidence: at source `7c3e7e450f11af9913d393757a52e37e7bb4f4fa`, PR #74's focused
 run `39038337508` checked synthetic merge
 `bc0dc18659e22745003cdb45f8a0968029129547` against then-main
 `2a2246ad851e2cdc435dcd0f98f259e1264541b3`: all three modules compiled on
 Lean 4.34.0 and pinned mathlib, all 51 declarations passed the three-axiom
 audit, all 17 exact tests passed, and the source firewall passed.
 
-This candidate incorporates main
-`9cf3410e9786b68f68d93c0684613329cdc9159e`, retaining C70, E1, repaired
-F1 and accepted conditional A3. Fresh final-head synthetic-merge CI and review are pending; the earlier
-focused result is evidence for that recorded source, not acceptance of this
-combined tree.
-
-The full Research Lean workflow must still build the research root, audit
-transitive axioms, run all regressions and direct-import/source firewalls,
-replay D0 goldens and execute the PR-only C10 source-bound evidence step.
-The original Lean, executable and Linux/Windows application workflows remain
-mandatory at the exact final head and synthetic merge.
+Accepted source `37faf4430897e0abdd6dca664919a673b6f34b42` incorporates
+main `9cf3410e9786b68f68d93c0684613329cdc9159e`, retaining C70, E1,
+repaired F1 and accepted conditional A3. It passed all workflows and a fresh
+independent review before PR #74 merged at
+`bc7617e15084673aa6053ab58282260226344c2b`.
+[Full Research run `39039886205`, job `117417023192`](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39039886205/job/117417023192)
+checked synthetic merge `89da71c43657d79d3f60cffe6b4b02efe7331fcd`:
+4990 declarations passed the transitive axiom audit, 794 tests and 387 direct
+imports passed, D0 goldens were replayed, and PR-only C10 source-bound
+evidence passed. The original Lean, executable and Linux/Windows application
+workflows also passed. Later consumers, including X1, require fresh full CI
+against their own final source and synthetic merge.
 
 **OPEN:** a formally proved reduction of the controller to a small product
 state `(y,k,completed)`, beyond the independently tested product-clock

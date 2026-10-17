@@ -27,13 +27,14 @@ Later consumers still require verification against their own final merge base.
 | E1 / #71 | `7ae2fab0b221a77e0a13ef83cedd6f8933569c26` | `2a2246ad851e2cdc435dcd0f98f259e1264541b3` | `39036276477` / `cfdf3386d2d5363f7187e2087310b7e1b152f752` |
 | F1 / #72 | `018e8fcfbaff1d53efa9467f65c34d91169606f2` | `22859775afb744a6dce89f73f47f816afb88bb23` | `39037392282` / `5c6e4eaea7bb3afc58fafd79bbef182336120e51` |
 | A3 / #73 | `a977da54057837797ab1cea163f8bcec98cddb2d` | `9cf3410e9786b68f68d93c0684613329cdc9159e` | `39038951100` / `11c4baace0de6025709b0cdd637e99c255a70bc6` |
+| D2 / #74 | `37faf4430897e0abdd6dca664919a673b6f34b42` | `bc7617e15084673aa6053ab58282260226344c2b` | `39039886205` / `89da71c43657d79d3f60cffe6b4b02efe7331fcd` |
 
 Each listed run passed the full research build, three-axiom transitive audit,
 research regressions, direct imports, source firewall, original-core build,
 D0 golden regeneration, and PR-only C10 generation plus independent
 source-bound verification. Their observed declaration/test/module counts were
 respectively `4383/715/366`, `4442/727/370`, `4499/747/375`,
-`4733/764/380`, and `4861/777/384`.
+`4733/764/380`, `4861/777/384`, and `4990/794/387`.
 The original Lean, executable verification and both application OS jobs also
 passed. Independent source/spec reviews found no new blocker in the stated scopes.
 
@@ -381,7 +382,7 @@ tests) on arbitrary pseudo-metric spaces; KR duality with the coupling form is N
 | A3.0 | Dual-W₁ calculus without Polish/standard-Borel hypotheses: monotone, symmetric, triangle, closed under limits; pointwise kernel defect ⇒ mixture defect; `L`-Lipschitz pushforward scales by `L`; finite first moments ⇒ finite bound | `W1DualLE`, `IsKRTest`, `W1DualLE.trans`, `W1DualLE.of_tendsto`, `W1DualLE.comp_of_forall`, `W1DualLE.map_lipschitz`, `W1DualLE.of_integrable_dist` | DEFINED (+ PROVED) |
 | A3.1 | Dual analogue of (V20.17): `W1DualLE π π̃ (δ/(1−ρ))` given invariance of both laws, uniform dual contraction `0 ≤ ρ < 1` of the ORIGINAL kernel, pointwise dual defect `δ` and a finite initial dual gap | `invariantLaw_wasserstein_le`, `ContractivePerturbation.w1_le` | PROVED (dual analogue); coupling-form obligation OPEN |
 | A3.2 | Conditional dual analogue of (V20.18): `\|κ̃ − κ\| ≤ L_F L_h (δ₀/(1−ρ₀) + δ_J/(1−ρ_J))` for the ORIGINAL frozen margins when `ψ(P_y) = F(h_#π)` for all four processes on `B₁` (hypothesis), `h` measurable `L_h`-Lipschitz, `F` `L_F`-Lipschitz for dual W₁ | `occupationMargin_robust`, `descriptorFunctional_dist_le` | PROVED (conditional dual analogue); coupling-form obligation OPEN |
-| A3.3 | Survival counterexample on actual models (`Unit × ℝ`): explicit `ContractivePerturbation` including invariant probability laws and finite gap, `ρ = 0`, defect `ε`, yet `P₀(τ_B = ∞)` is `1` vs `0` for every `ε ∈ (0,1]` | `model_invariant`, `leakPerturbation`, `bundled_survival_counterexample`, `contraction_does_not_transfer_survival` | Original survival theorem PROVED; new bundle PENDING pinned Lean/audit replay |
+| A3.3 | Survival counterexample on actual models (`Unit × ℝ`): explicit `ContractivePerturbation` including invariant probability laws and finite gap, `ρ = 0`, defect `ε`, yet `P₀(τ_B = ∞)` is `1` vs `0` for every `ε ∈ (0,1]` | `model_invariant`, `leakPerturbation`, `bundled_survival_counterexample`, `contraction_does_not_transfer_survival` | PROVED; revised bundle CI-verified at accepted source `a977da5` |
 | A3.4 | TV → W₁ only with a diameter factor: `dist ≤ D ⇒ W₁ ≤ D·TV`; on `ℝ` no constant converts TV into W₁ | `W1DualLE.of_eventTV`, `tv_does_not_control_w1_on_real` | PROVED |
 | A3.5 | Existence/uniqueness of invariant laws; contraction from Doeblin/Dobrushin; ergodic bridge `ψ(P_y) = F(h_#π)`; KR duality; bounded → all 1-Lipschitz tests | — | OPEN (hypotheses in A3.1–A3.2) |
 
@@ -393,9 +394,12 @@ machinery (`killedKernel_apply`, `survivalProbability_eq_killedSurvivalMass`, `k
 `survivesForeverSet_eq_iInter`, `survivesThroughSet_antitone`, `measurableSet_survivesThroughSet`) and
 `StrategicWorldModel.inducedKernel_apply`. A2 is NOT used (no primitive budget is converted; A3.4 shows why a TV
 budget cannot be substituted). Consumers: X1, R. Manuscript: §5.4.1.
-Verification: historical `f757b9e` compiled and passed `a3_axiom_audit.py` (50/50);
-the revised bundle adds three declarations and requires fresh exact-head Lean/audit and PR CI.
-Revised focused rational suite: 13/13 tests pass locally; compilation/audit remain PENDING.
+Verification: accepted source `a977da54057837797ab1cea163f8bcec98cddb2d`
+passed all required workflows, focused audit 53/53 and 13/13 exact tests, and full
+Research run `39038951100` on synthetic merge `11c4baace0de6025709b0cdd637e99c255a70bc6`
+(4861 audited declarations, 777 tests, 384 direct imports, source-bound C10 PASS).
+Fresh independent review found no blocker in the stated conditional dual scope;
+[acceptance record](https://github.com/HMarcusWH/PermanssonLean/pull/73#issuecomment-6234932052).
 The rational tests now include sharp positive-margin transfer and destructive removal of
 either budget term, the geometric denominator, or the four-process factorization premise.
 
@@ -403,29 +407,34 @@ either budget term, the geometric denominator, or the four-process factorization
 
 | Anchor | Claim | Planned provider | Status |
 |---|---|---|---|
-| D2.1 | Reach-by-horizon under the existing finite, fully observed deterministic history class | `ReverseSolver.Residence.reachBeforeForbidden_optimal_and_attained` (D1 reuse) | IMPLEMENTED; exact-head verification pending |
-| D2.2 | Literal goal-before-forbidden event, unchanged D1 semantics | same; original `HistoryDependentTyped.typed_history_bellman_optimal_and_attained` | IMPLEMENTED; exact-head verification pending |
-| D2.3 | Any successful m-transition target residence run entered by T, completed by T+m; actual event probability, full-history recurrence and attainment | `ResidenceEvent` / `ResidenceValue`; [scope](D2_RESIDENCE_OBJECTIVE.md) | IMPLEMENTED; exact-head verification pending; efficient clock-policy reduction OPEN |
-| D2.4 | Eventual switching with all-future retention, consuming C69/C70 | unchanged `RegimeExit.switchRetainEvent_prob_ge`, `proposition_4_2f_almostSure`; `ReverseSolver.Residence.eventual_switch_event_semantics` | REUSED; combined final-head CI pending |
-| D2.5 | Committed randomization max-min=1/2 versus model-revealed-first min-max=1, fixed one-step timing | `ReverseSolver.Residence.robust_quantifier_order_separation` | IMPLEMENTED; exact-head verification pending; no robust dynamic recursion |
+| D2.1 | Reach-by-horizon under the existing finite, fully observed deterministic history class | `ReverseSolver.Residence.reachBeforeForbidden_optimal_and_attained` (D1 reuse) | PROVED in stated deterministic-history scope; CI-verified at accepted source `37faf44` |
+| D2.2 | Literal goal-before-forbidden event, unchanged D1 semantics | same; original `HistoryDependentTyped.typed_history_bellman_optimal_and_attained` | PROVED in stated scope; CI-verified at accepted source `37faf44` |
+| D2.3 | Any successful m-transition target residence run entered by T, completed by T+m; actual event probability, full-history recurrence and attainment | `ResidenceEvent` / `ResidenceValue`; [scope](D2_RESIDENCE_OBJECTIVE.md) | PROVED in stated scope; CI-verified at accepted source `37faf44`; efficient clock-policy reduction OPEN |
+| D2.4 | Eventual switching with all-future retention, consuming C69/C70 | unchanged `RegimeExit.switchRetainEvent_prob_ge`, `proposition_4_2f_almostSure`; `ReverseSolver.Residence.eventual_switch_event_semantics` | REUSED; CI-verified on accepted combined source `37faf44` |
+| D2.5 | Committed randomization max-min=1/2 versus model-revealed-first min-max=1, fixed one-step timing | `ReverseSolver.Residence.robust_quantifier_order_separation` | PROVED for stated one-step timing; CI-verified at accepted source `37faf44`; no robust dynamic recursion |
 
 Inputs: D0/D1, C69, C70. Must not mutate D0/D1 receipts.
 
-Verification: PR #74 source `7c3e7e450f11af9913d393757a52e37e7bb4f4fa`
+Historical focused evidence: PR #74 source `7c3e7e450f11af9913d393757a52e37e7bb4f4fa`
 passed focused synthetic-merge run `39038337508` at
 `bc0dc18659e22745003cdb45f8a0968029129547`: all three D2 modules compiled,
 all 51 declarations passed the standard three-axiom audit, and 17 exact tests
-plus the source firewall passed. This candidate integrates main
-`22859775afb744a6dce89f73f47f816afb88bb23` (C70/E1/repaired F1); fresh
-combined-head full CI, PR-only C10 evidence and review remain pending.
+plus the source firewall passed. Accepted source
+`37faf4430897e0abdd6dca664919a673b6f34b42` then passed all workflows and a
+fresh independent review on synthetic merge
+`89da71c43657d79d3f60cffe6b4b02efe7331fcd` against accepted A3 main.
+[Research run `39039886205`, job `117417023192`](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39039886205/job/117417023192)
+verified 4990 declarations, 794 tests, 387 direct imports and source-bound C10
+PASS. PR #74 merged at `bc7617e15084673aa6053ab58282260226344c2b`.
+Later consumers, including X1, still require their own final combined CI.
 
 ## X1 — flagship economic-world MPE versus learning model
 
 | Anchor | Claim | Planned provider | Status |
 |---|---|---|---|
-| X1.1 | Exact rational MPE: Bellman equations and every unilateral incentive inequality on the commons family (spec §8.1) | `Examples/CommonsMPE.lean` + independent rational checker | PROPOSED |
-| X1.2 | Learning generator in the SAME world `P`, Markov-sufficient memory | `Examples/CommonsLearning.lean` | PROPOSED |
-| X1.3 | Comparative regime certificates (persistence, occupation, GR, constitution, grounding, nine categorical dimensions) | `Examples/CommonsComparison.lean` | PROPOSED |
+| X1.1 | Selected exact rational commons candidate: BOTH players' Bellman equations, pure and all real/rational mixed one-shot incentive inequalities and support equalities; unrestricted discounted-strategy verification bridge remains OPEN | `X1/Parameters.lean`, `X1/MPECertificate.lean`; independent exact checker | PROVED in stated one-shot scope; local pinned build/audit PASS; full PR CI pending |
+| X1.2 | Same `Fin 3 × Fin 3` memory and literally IDENTICAL P; complete exploratory/reinforcement generator; actual α→P→U atomic-matrix expression | `X1/TypedModels.lean`: `identical_world`, `inducedKernel_atom_entry`, `update_ignores_new_world` | PROVED; local pinned build/audit PASS; full PR CI pending |
+| X1.3 | Replete B leaks for BOTH, so no Exact GR for B; typed α/U/joint interventions; prospective whole-B comparison v2 after invalid singleton rejected; original staying events and canonical property/original κ transported to actual finite-kernel expressions (numerical fraction reflection OPEN); actual-model occupation limits with ORIGINAL empirical-sequence bridge; direct all-18-state Poisson identification of distinct deterministic descriptor targets for every initial law; nine categorical fields | `X1/Comparison.lean`, `X1/FiniteOutputs.lean`, `X1/Occupation.lean`, `X1/OccupationNumerics.lean`, `X1/OccupationTargets.lean`; [lane document](LANE_X1_COMMONS.md), exact Python calculations/tests/audit | PROVED in stated scope; all 8 modules compile, 135-declaration local audit and 16 exact tests PASS; full PR CI pending; no PR promotion |
 | X1.4 | Scientific interpretation section | manuscript | PROPOSED |
 
 Inputs: E1, F1, A3, C69/C70, D0/D1, C10/C11. Consumers: R.
