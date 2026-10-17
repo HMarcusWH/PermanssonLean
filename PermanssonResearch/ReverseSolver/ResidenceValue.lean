@@ -41,7 +41,7 @@ theorem extendHistory_actual {n : ℕ} (t : ℕ) (w : History n t) :
     extendHistory ⟨0, singletonPrefix
       (w ⟨0, Finset.mem_Iic.mpr (Nat.zero_le t)⟩)⟩
       (List.ofFn (stepsFromHistory t w)) = ⟨t, w⟩ := by
-  induction t generalizing w with
+  induction t with
   | zero =>
       have hw : singletonPrefix (w ⟨0, Finset.mem_Iic.mpr (Nat.zero_le 0)⟩) = w := by
         funext j
@@ -49,14 +49,16 @@ theorem extendHistory_actual {n : ℕ} (t : ℕ) (w : History n t) :
           apply Subtype.ext
           exact Nat.eq_zero_of_le_zero (Finset.mem_Iic.mp j.property)
         simp [singletonPrefix, hj]
-      simpa [extendHistory] using congrArg (Sigma.mk 0) hw
+      simpa [extendHistory] using congrArg
+        (fun h : History n 0 => (⟨0, h⟩ : PackedHistory n)) hw
   | succ t ih =>
       let pre := observedPrefix w t t.le_succ
       have hstart : w ⟨0, Finset.mem_Iic.mpr (Nat.zero_le (t+1))⟩ =
           pre ⟨0, Finset.mem_Iic.mpr (Nat.zero_le t)⟩ := rfl
       rw [stepsFromHistory_snoc, extendHistory_append, hstart, ih pre]
       simp only [extendHistory]
-      exact congrArg (Sigma.mk (t+1)) (appendHistory_reconstruct w)
+      exact congrArg (fun h : History n (t+1) => (⟨t+1, h⟩ : PackedHistory n))
+        (appendHistory_reconstruct w)
 
 /-- Independent full-word evaluation, using D1's actual chronological weights. -/
 def objectiveEnumeration {C : Type uC} [DecidableEq C] {n : ℕ}
@@ -89,8 +91,18 @@ theorem objectiveEnumeration_succ {C : Type uC} [DecidableEq C] {n : ℕ}
   rw [sum_map_finRange_residence]
   apply Finset.sum_congr rfl
   intro z _
-  simp [List.map_map, Function.comp_def, completionMass, extendHistory,
-    mul_assoc, List.sum_map_mul_left]
+  simp only [List.map_map]
+  have hfactor : ∀ xs : List (Fin n),
+      completionMass sys σ D i h (z :: xs) *
+        (if accept (extendHistory ⟨i, h⟩ (z :: xs)) then (1 : ℚ) else 0) =
+      selectedEntry sys σ D i h z *
+        (completionMass sys σ D (i+1) (appendHistory h z) xs *
+          (if accept (extendHistory ⟨i+1, appendHistory h z⟩ xs)
+            then (1 : ℚ) else 0)) := by
+    intro xs
+    simp only [completionMass, extendHistory]
+    ring
+  simp only [Function.comp_def, hfactor, List.sum_map_mul_left]
 
 /-- Backwards evaluation under one declared history policy. -/
 def objectiveValue {C : Type uC} [DecidableEq C] {n : ℕ}
@@ -107,8 +119,10 @@ theorem objectiveEnumeration_eq_value {C : Type uC} [DecidableEq C] {n : ℕ}
     (accept : PackedHistory n → Bool) (D r i : ℕ) (h : History n i) :
     objectiveEnumeration sys σ accept D i h r = objectiveValue sys σ accept D r i h := by
   induction r generalizing i with
-  | zero => simp [objectiveEnumeration, objectiveValue, finiteSuccessorWords,
-      completionMass, extendHistory]
+  | zero =>
+      cases hb : accept ⟨i, h⟩ <;>
+        simp [objectiveEnumeration, objectiveValue, finiteSuccessorWords,
+          completionMass, extendHistory, hb]
   | succ r ih =>
       rw [objectiveEnumeration_succ]
       simp only [objectiveValue, ih]
@@ -140,7 +154,15 @@ theorem objectiveProbability_eq_pathSum
   have hfilter : (↑(Finset.univ.filter (fun w : History n D => w ∈ E)) :
       Set (History n D)) = E := by ext w; simp
   change μ E = _
-  rw [← hfilter, sum_measure_singleton, Finset.sum_filter]
+  have hsum : μ E = ∑ w : History n D, if w ∈ E then μ {w} else 0 := by
+    calc
+      μ E = μ (↑(Finset.univ.filter (fun w : History n D => w ∈ E)) :
+          Set (History n D)) := by rw [hfilter]
+      _ = ∑ w ∈ Finset.univ.filter (fun w : History n D => w ∈ E), μ {w} := by
+        rw [sum_measure_singleton]
+      _ = ∑ w : History n D, if w ∈ E then μ {w} else 0 := by
+        simp [Finset.sum_filter]
+  rw [hsum]
   have hterm : ∀ w : History n D,
       (if w ∈ E then μ {w} else 0) = ENNReal.ofReal
         ((if w ⟨0, Finset.mem_Iic.mpr (Nat.zero_le D)⟩ = x ∧ accept ⟨D, w⟩ = true
@@ -183,7 +205,7 @@ theorem objectivePathSum_eq_enumeration
       symm
       apply Fintype.sum_equiv (fullHistoryEquiv (n := n) D)
       intro p
-      simp
+      rfl
     _ = ∑ v : Fin D → Fin n,
         if accept ⟨D, historyFromSteps D x v⟩ = true
         then rationalPathWeight sys σ D D (historyFromSteps D x v) else 0 := by
@@ -205,7 +227,10 @@ theorem objectivePathSum_eq_enumeration
       cases accept ⟨D, historyFromSteps D x v⟩ <;> simp
     _ = objectiveEnumeration sys σ accept D 0 (singletonPrefix x) D := by
       unfold objectiveEnumeration
-      exact (finiteSuccessorWords_sum_eq_vectorSum n D _).symm
+      exact (finiteSuccessorWords_sum_eq_vectorSum n D
+        (fun xs => completionMass sys σ D 0 (singletonPrefix x) xs *
+          (if accept (extendHistory ⟨0, singletonPrefix x⟩ xs)
+            then (1 : ℚ) else 0))).symm
 
 /-- Genuine event probability = independent enumeration = backwards recursion. -/
 theorem objectiveProbability_eq_value
@@ -260,10 +285,19 @@ theorem objectiveMaximizer_attains
   | zero => rfl
   | succ r ih =>
       have hsub : D-(i+1) = r := by omega
+      let v := fun z => objectiveBellman sys accept r (i+1) (appendHistory h z)
+      have hchoose : (objectiveMaximizer sys accept).choose D i h =
+          bestControl sys v (last h) := by
+        simp only [objectiveMaximizer, hsub]
       change (∑ z : Fin n, selectedEntry sys (objectiveMaximizer sys accept) D i h z *
         objectiveValue sys (objectiveMaximizer sys accept) accept D r (i+1)
-          (appendHistory h z)) = _
-      simp only [objectiveBellman, actionScore, selectedEntry, objectiveMaximizer, hsub]
+          (appendHistory h z)) = actionScore sys v (last h) (bestControl sys v (last h))
+      have hrow : ∀ z, selectedEntry sys (objectiveMaximizer sys accept) D i h z =
+          (sys.matrix (bestControl sys v (last h))).entry (last h) z := by
+        intro z
+        unfold selectedEntry
+        rw [hchoose]
+      simp only [hrow, actionScore]
       apply Finset.sum_congr rfl
       intro z _
       rw [ih (i+1) (appendHistory h z) (by omega)]
