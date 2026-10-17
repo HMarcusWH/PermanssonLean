@@ -148,14 +148,64 @@ class PreservationTests(unittest.TestCase):
         self.assertEqual("canonical_commit_objects", verify_preservation(repo, ACCEPTED_RELEASE)["scope"])
 
     def test_pres_23_maintenance_scope_is_separate(self):
-        candidate = self.fixture.commit({b"PermanssonResearch/ReverseSolver/NewResearch.lean":
-                                         ("100644", b"-- future research\n")})
-        self.assertEqual("PASS", self.fixture.compare(candidate).status)
-        with mock.patch("verification.integrity.preservation.ACCEPTED_RELEASE", self.fixture.accepted):
-            validate_maintenance_scope(self.fixture.repo, self.fixture.accepted)
+        # Extend only the private maintenance baseline. These research entries
+        # remain outside the original permanent inventory and its closed roots.
+        unprotected = {
+            b"PermanssonResearch.lean": b"import PermanssonResearch.ReverseSolver.MaintenanceOnly\n",
+            b"PermanssonResearch/ReverseSolver/MaintenanceOnly.lean": b"-- additive research\n",
+        }
+        baseline = self.fixture.commit({path: ("100644", data)
+                                        for path, data in unprotected.items()})
+        self.assertEqual("PASS", self.fixture.compare(baseline).status)
+        scope_files = {
+            b"PermanssonLean.lean": self.fixture.files[b"PermanssonLean.lean"],
+            b"PermanssonLean/Regime/Constitution.lean":
+                self.fixture.files[b"PermanssonLean/Regime/Constitution.lean"],
+            **unprotected,
+        }
+
+        def scope_rejects(candidate):
             with self.assertRaises(HardeningError) as raised:
                 validate_maintenance_scope(self.fixture.repo, candidate)
             self.assertEqual("E_MAINTENANCE_SCOPE", raised.exception.code)
+
+        with mock.patch("verification.integrity.preservation.ACCEPTED_RELEASE", baseline):
+            validate_maintenance_scope(self.fixture.repo, baseline)
+            for operation in ("edit", "delete"):
+                for path, data in scope_files.items():
+                    with self.subTest(operation=operation, path=path):
+                        replacement = ("100644", data + b"-- maintenance edit\n") if operation == "edit" else None
+                        candidate = self.fixture.commit({path: replacement}, parent=baseline)
+                        permanent = self.fixture.compare(candidate)
+                        if path in unprotected:
+                            # In particular, these deletions are not covered by
+                            # PRES-05: the permanent comparator must permit them.
+                            self.assertEqual("PASS", permanent.status)
+                        else:
+                            self.assertEqual("E_PROTECTED_CONTENT" if operation == "edit"
+                                             else "E_PROTECTED_MISSING", permanent.error_code)
+                        scope_rejects(candidate)
+            for tree in (b"PermanssonLean", b"PermanssonResearch"):
+                with self.subTest(operation="add_module", tree=tree):
+                    candidate = self.fixture.commit({tree + b"/NewMaintenance.lean":
+                                                     ("100644", b"-- new module\n")}, parent=baseline)
+                    permanent = self.fixture.compare(candidate)
+                    if tree == b"PermanssonResearch":
+                        self.assertEqual("PASS", permanent.status)
+                    else:
+                        self.assertEqual("E_CLOSED_ADDITION", permanent.error_code)
+                    scope_rejects(candidate)
+
+        # A private baseline lacking each root separately reaches root-addition
+        # handling. Restoring it passes the unchanged permanent inventory gate.
+        for root in (b"PermanssonLean.lean", b"PermanssonResearch.lean"):
+            with self.subTest(operation="add_root", path=root):
+                without_root = self.fixture.commit({root: None}, parent=baseline)
+                candidate = self.fixture.commit({root: ("100644", scope_files[root])}, parent=without_root)
+                self.assertEqual("PASS", self.fixture.compare(candidate).status)
+                with mock.patch("verification.integrity.preservation.ACCEPTED_RELEASE", without_root):
+                    validate_maintenance_scope(self.fixture.repo, without_root)
+                    scope_rejects(candidate)
 
     def test_protected_root_symlink_and_file_directory(self):
         self.rejected({b"paper": ("120000", b"elsewhere")}, "E_PROTECTED_TYPE")
