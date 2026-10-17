@@ -1,0 +1,29 @@
+{
+  "artifact_replay": "NOT_PERFORMED",
+  "bundle_sha256": "56c401a24130fd37231d667fdbad3f5578587bb6a1c6d3c406698bd5a966537f",
+  "bundle_size": 6633053,
+  "context": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "base_sha": null,
+    "checked_sha": "562a22210e9e1cb23b19a6ebddacbc6bdc2bd6d0",
+    "checked_tree": "7c0ba2242a80a9bb837312627de77892623ba4ac",
+    "event": "local",
+    "event_sha256": null,
+    "head_sha": null,
+    "pr_number": null,
+    "repository": "HMarcusWH/PermanssonLean",
+    "run_attempt": null,
+    "run_id": null,
+    "scope": "canonical_commit_objects"
+  },
+  "format": "Permansson.Hardening.LocalSourceRestore.v1",
+  "fresh_lean_execution": "NOT_PERFORMED",
+  "input_commits": 26,
+  "manifest_sha256": "d64c69508a89d677318c2d5a67a43e8ed2393911c5b22fdaee7cebf7d69b353c",
+  "network_isolation": "NOT_ENFORCED",
+  "objects": 8202,
+  "publisher_authentication": false,
+  "refs": 36,
+  "status": "PASS",
+  "tooling_source": "562a22210e9e1cb23b19a6ebddacbc6bdc2bd6d0"
+}

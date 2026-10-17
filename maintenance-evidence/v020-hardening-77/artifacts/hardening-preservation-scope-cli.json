@@ -1,0 +1,382 @@
+{
+  "context": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "base_sha": null,
+    "checked_sha": "cc0d29a38f3b27f4fdb760292790e677e4738d8d",
+    "checked_tree": "61e77b4053252d212f460ad3554f528b027edf93",
+    "event": "local",
+    "event_sha256": null,
+    "head_sha": null,
+    "pr_number": null,
+    "repository": "HMarcusWH/PermanssonLean",
+    "run_attempt": null,
+    "run_id": null,
+    "scope": "canonical_commit_objects"
+  },
+  "covered_requirements": [
+    "PRES-01",
+    "PRES-02",
+    "PRES-03",
+    "PRES-04",
+    "PRES-05",
+    "PRES-06",
+    "PRES-07",
+    "PRES-08",
+    "PRES-09",
+    "PRES-10",
+    "PRES-11",
+    "PRES-12",
+    "PRES-13",
+    "PRES-14",
+    "PRES-15",
+    "PRES-16",
+    "PRES-17",
+    "PRES-18",
+    "PRES-19",
+    "PRES-20",
+    "PRES-21",
+    "PRES-22",
+    "PRES-23"
+  ],
+  "error_code": null,
+  "errors": 0,
+  "execution_tracked_clean": true,
+  "failures": 0,
+  "format": "Permansson.Hardening.Tests.v1",
+  "methods_run": 26,
+  "results": [
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_candidate_bound_maintenance_cli",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_candidate_bound_maintenance_cli (verification.integrity.tests.test_preservation.PreservationTests.test_candidate_bound_maintenance_cli) (candidate='9913dce9d8e44f1d5ce78d9d7f07e24183f9dccc', expected_exit=0)"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_candidate_bound_maintenance_cli",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_candidate_bound_maintenance_cli (verification.integrity.tests.test_preservation.PreservationTests.test_candidate_bound_maintenance_cli) (candidate='252540e7fb9f564d9fbce2d0949ddea6bc4b3b67', expected_exit=1)"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_candidate_bound_maintenance_cli",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_empty_tree_closed_topology",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_01_actual_369_unchanged",
+      "requirements": [
+        "PRES-01"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_02_core_comment",
+      "requirements": [
+        "PRES-02"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_03_solver_comment",
+      "requirements": [
+        "PRES-03"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_04_semantic_edit",
+      "requirements": [
+        "PRES-04"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_05_deletion",
+      "requirements": [
+        "PRES-05"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_06_rename",
+      "requirements": [
+        "PRES-06"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_07_executable_mode",
+      "requirements": [
+        "PRES-07"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_08_symlink_replacement",
+      "requirements": [
+        "PRES-08"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_09_gitlink_file_and_root",
+      "requirements": [
+        "PRES-09"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_09_gitlink_file_and_root (verification.integrity.tests.test_preservation.PreservationTests.test_pres_09_gitlink_file_and_root) (path=b'paper/original.md')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_09_gitlink_file_and_root",
+      "requirements": [
+        "PRES-09"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_09_gitlink_file_and_root (verification.integrity.tests.test_preservation.PreservationTests.test_pres_09_gitlink_file_and_root) (path=b'paper')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_09_gitlink_file_and_root",
+      "requirements": [
+        "PRES-09"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_10_historical_addition",
+      "requirements": [
+        "PRES-10"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_11_version_additions",
+      "requirements": [
+        "PRES-11"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_11_version_additions (verification.integrity.tests.test_preservation.PreservationTests.test_pres_11_version_additions) (path=b'release/v0.2.0/new.txt')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_11_version_additions",
+      "requirements": [
+        "PRES-11"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_11_version_additions (verification.integrity.tests.test_preservation.PreservationTests.test_pres_11_version_additions) (path=b'release/v0.2.0/tmp/x')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_11_version_additions",
+      "requirements": [
+        "PRES-11"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_11_version_additions (verification.integrity.tests.test_preservation.PreservationTests.test_pres_11_version_additions) (path=b'release/v0.2.0/__pycache__/x')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_11_version_additions",
+      "requirements": [
+        "PRES-11"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_12_nested_addition",
+      "requirements": [
+        "PRES-12"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_13_prefix_lookalike",
+      "requirements": [
+        "PRES-13"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_14_new_research",
+      "requirements": [
+        "PRES-14"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_15_new_documentation",
+      "requirements": [
+        "PRES-15"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_16_new_release_version",
+      "requirements": [
+        "PRES-16"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_17_candidate_manifest_repair",
+      "requirements": [
+        "PRES-17"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_18_published_zip_replacement",
+      "requirements": [
+        "PRES-18"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_19_scientific_promotion",
+      "requirements": [
+        "PRES-19"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_20_checkout_line_endings",
+      "requirements": [
+        "PRES-20"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_21_committed_crlf",
+      "requirements": [
+        "PRES-21"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_22_dirty_workspace_caveat",
+      "requirements": [
+        "PRES-22"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='edit', path=b'PermanssonLean.lean')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='edit', path=b'PermanssonLean/Regime/Constitution.lean')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='edit', path=b'PermanssonResearch.lean')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='edit', path=b'PermanssonResearch/ReverseSolver/MaintenanceOnly.lean')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='delete', path=b'PermanssonLean.lean')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='delete', path=b'PermanssonLean/Regime/Constitution.lean')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='delete', path=b'PermanssonResearch.lean')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='delete', path=b'PermanssonResearch/ReverseSolver/MaintenanceOnly.lean')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='add_module', tree=b'PermanssonLean')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='add_module', tree=b'PermanssonResearch')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='add_root', path=b'PermanssonLean.lean')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS",
+      "subtest": "test_pres_23_maintenance_scope_is_separate (verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate) (operation='add_root', path=b'PermanssonResearch.lean')"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate",
+      "requirements": [
+        "PRES-23"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_preservation.PreservationTests.test_protected_root_symlink_and_file_directory",
+      "requirements": [],
+      "status": "PASS"
+    }
+  ],
+  "runtime": {
+    "git": "git version 2.45.2.windows.1",
+    "python": "3.12.14"
+  },
+  "schema_version": 1,
+  "skips": 0,
+  "status": "PASS",
+  "subtests_run": 19,
+  "suite": "preservation"
+}

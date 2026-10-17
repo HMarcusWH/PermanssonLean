@@ -1,0 +1,113 @@
+{
+  "duration_seconds": 44.563,
+  "errors": 0,
+  "failures": 0,
+  "format": "Permansson.FixedCommentRegression.v1",
+  "methods_run": 1,
+  "python": "3.12.14",
+  "scope": "Actualhistoricalcapturepositive,missingfinalreview,24fixedcommentsemanticattacks;eachmutationalreadyrepairedinneracquisitionindexandoutermanifestwithvalidate_manifestPASSbeforevalidate_evidence",
+  "skips": 0,
+  "source_sha256": "1cebc70a4f9796669309be659874d48dc8b80a270c784ac18e7d648f9024809a",
+  "status": "PASS",
+  "subtests": [
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='body')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='body_surrogate')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='author.id')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='author.login')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='author.node_id')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='author.type')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='created_at')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='updated_at')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='missing_created_at')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='missing_updated_at')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='node_id')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='final-code-review-comment.json', altered='endpoint')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='body')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='body_surrogate')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='author.id')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='author.login')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='author.node_id')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='author.type')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='created_at')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='updated_at')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='missing_created_at')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='missing_updated_at')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='node_id')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_arch_18_missing_final_code_review (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review) (comment='acceptance-comment.json', altered='endpoint')"
+    }
+  ],
+  "subtests_run": 24,
+  "test_method": "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review",
+  "test_method_source_sha256": "ffd420aeb3b096fb02e7b63b354fe0e7a8cf86d58da42cc5b33865f9efecfcb6"
+}

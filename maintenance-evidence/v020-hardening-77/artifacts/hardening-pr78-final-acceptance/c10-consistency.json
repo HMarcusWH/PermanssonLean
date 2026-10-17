@@ -1,0 +1,103 @@
+{
+  "accepted_helper_sha256": {
+    "release/v0.2.0/c10_archive_validation.py": "36dfefb05c863e46b50e17b0dcf5d397016b5420b05244367af89c98a5968706",
+    "verification/research/c10_emit_golden_bridge.py": "790223ae2289163619377626d2dd43e2512714da0cbb721eee4e5a09fac64a51",
+    "verification/research/c10_emit_initial_law_lean.py": "153b47b261bc01b8d63840e0b30df684be324dfd5fc3b9a2c60de0b01e50a86b",
+    "verification/research/c10_emit_lean_receipt.py": "a01bb72b21a5e512367e1c03bc7924e891dcc9da3e3169845a9e281132caaafc",
+    "verification/research/c10_eval_initial_law.py": "0099bf19a014736abad3032fa117f911970713aebd95fb4116092ee7f772188d",
+    "verification/research/c10_exact_execution.py": "f27a93626b31f6bfab3cff7cc1c584b023cf4f1bf946b1ef7eb78d23577b9be7",
+    "verification/research/c10_golden.py": "4c33cc52e1648c9e3a259d18093cf98460e13c71cb67826c0d4d88a896dc61a0",
+    "verification/research/c10_release_evidence.py": "cdf4088f1afb9e40a71817e7c1ad897ccfc2d9ae33c6862c51cb04c9ee05a26a",
+    "verification/research/c10_verify_initial_law.py": "76f3b6e2ccc6fc96c9abbf93d426594ee59e39f4b9dbd70b92108af56e90457c",
+    "verification/research/c10_verify_receipt.py": "dd94134ebb715fd60c1516ce63e1265b53e39bed2f14c08126ec666e08bedebc",
+    "verification/research/c10_verify_release_evidence.py": "bb9eea849730b5a76c25c92afd6a1025dbf4eb9e37c70e5fd34f4df9d09dcf29"
+  },
+  "format": "Permansson.PR78.C10Consistency.v1",
+  "publisher_artifact": 12113010574,
+  "publisher_run": 39063559009,
+  "publisher_zip_sha256": "3722dd43bc42277c6e3b100c7e37348126b6cb2a7f592d26275a41b707db34ff",
+  "publisher_zip_size": 9376,
+  "result": {
+    "captured_compiler_result": "consistent_success",
+    "compiler_rerun": false,
+    "execution_trust_root": "independently accepted source-bound GitHub workflow",
+    "generated_lean_matches_receipts": "pass",
+    "mixed_theorems": {
+      "PermanssonResearch.ReverseSolver.C10.checked_rationalMixedEventValue_eq_actual_path": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "PermanssonResearch.ReverseSolver.C10.rationalInitialProbability_singleton": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "mixedGolden_exact": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "point_theorems": {
+      "PermanssonResearch.ReverseSolver.C10.six_original_baseline_exactGR": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "reifiedGolden_data_contract": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "reifiedGolden_numeric_margins": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "reifiedGolden_original_global_max": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "reifiedGolden_original_margins": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "reifiedGolden_selection": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "reifiedReceipt_conditions": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "reifiedReceipt_valid": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "publisher_zip_sha256": "3722dd43bc42277c6e3b100c7e37348126b6cb2a7f592d26275a41b707db34ff",
+    "source": {
+      "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+      "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+      "pr_number": 78,
+      "repository": "HMarcusWH/PermanssonLean",
+      "synthetic_merge_sha": "4403ec593fe3178495b6633c9221ccd0e49bc166"
+    },
+    "status": "pass",
+    "structural_and_exact_arithmetic": "pass"
+  },
+  "scope": "Archived source-bound structural/arithmetic/compiler-capture consistency; no local Lean execution",
+  "source": {
+    "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+    "pr_number": 78,
+    "repository": "HMarcusWH/PermanssonLean",
+    "synthetic_merge_sha": "4403ec593fe3178495b6633c9221ccd0e49bc166"
+  }
+}

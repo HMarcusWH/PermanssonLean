@@ -1,0 +1,115 @@
+{
+  "format": "Permansson.PR78.MergeBinding.v1",
+  "acquired_at": "2026-10-17 19:54:50 UTC",
+  "status": "PASS",
+  "source": {
+    "repository": "HMarcusWH/PermanssonLean",
+    "pr_number": 78,
+    "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+    "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "synthetic_merge_sha": "4403ec593fe3178495b6633c9221ccd0e49bc166",
+    "main_merge_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "synthetic_tree": "b00dcc3910ff9eb513a45f00dd83731597f0fe6e",
+    "main_tree": "b00dcc3910ff9eb513a45f00dd83731597f0fe6e",
+    "ordered_parents": [
+      "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+      "ed8309843eedbd6cfe56b5e543c99285e28cead5"
+    ],
+    "github_merged_at": "2026-10-17T19:53:21Z"
+  },
+  "checks": {
+    "pr_closed_and_merged": true,
+    "github_main_merge_matches_M": true,
+    "exact_PR_head_base": true,
+    "synthetic_ordered_parents": true,
+    "main_ordered_parents": true,
+    "synthetic_and_main_trees_equal": true
+  },
+  "api_sources": [
+    "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/78",
+    "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/4403ec593fe3178495b6633c9221ccd0e49bc166"
+  ],
+  "representation": "GitHub API JSON exposed through connector, parsed/reserialized; not raw HTTP transport",
+  "merge_commit": {
+    "sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "node_id": "C_kwDOUkBtPtoAKDM3YzBjYjhmMmZiZTc5MzQ2MzkxMjdlNWY4YjZkNjRhMDFlNjk1MGY",
+    "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/commit/37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "author": {
+      "name": "Marcus Hermansson",
+      "email": "marcus@hmwh.se",
+      "date": "2026-10-17T19:53:21Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-10-17T19:53:21Z"
+    },
+    "tree": {
+      "sha": "b00dcc3910ff9eb513a45f00dd83731597f0fe6e",
+      "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/trees/b00dcc3910ff9eb513a45f00dd83731597f0fe6e"
+    },
+    "message": "Merge pull request #78 from HMarcusWH/maintenance/v020-hardening-contract\n\ndocs: record the v0.2.0 hardening contract and reference inventories",
+    "parents": [
+      {
+        "sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/commit/d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618"
+      },
+      {
+        "sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/ed8309843eedbd6cfe56b5e543c99285e28cead5",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/commit/ed8309843eedbd6cfe56b5e543c99285e28cead5"
+      }
+    ],
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJq09IxCRC1aQ7uu5UhlAAA8R0QACBTq4JTNcn0MAGq2/+dOf5M\ngn1QS7t3ZGkJ8IGbuohz9Lr+AgmHYqqxshnpgGKNryJvstbap1QiU0WJ9GqU6JIU\njsLs+aYH24N3vb9ylZaGv53hPFLX6o3GOxKH46sc5iPdxjiSpBrbeLtcu4Wb0p8F\n5xkVzhILUBw4R4nn9gAnlAlZhPb5qseboKvMz7ldgwASeP7ohCcSAYUy3x+u92hn\nIzrpmxUTHKVNJN6LX4im+J7xylth2lzV0k24L4Gxft9K1/c0EynOpFD7z8GKqAdK\nIhDd02ZpSc459F1+h4/4eWcQapbSAb3ABspCsGtkrqnkihzOLDRjIyvXq14yA+sZ\nyHK1gmus/tlCDaKG526kNZ8TPyiLWMGwH9/h9MOYkvq/2bZY3YOHGKwtOJKr4Ej+\nGBgrZKmSl0ei9Nva8GEAWhRTIY0VOgk3WZt0ObARGEej82wG/NYcF0HUQOMJ1xWM\nxuw2HIzaxcsL8IcL1FNxgclVoshW3G6omgNNe24DSt/3oCptNEcMwqdjsqI/5pA1\nVe2xyvwaVF4A0E9+dyAA/hAhjRJgc3ZR7fcZWaBK35ZS4UmZR+VoCHgDh4wm0hAV\nBapIuy7vUBGBzIEOpMygI9e3pNimZU+RnYUQ3bhIBQv7phRtosUJiDJG7KNos28b\nt3hsaACDucawldp0zE2E\n=HJ3N\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree b00dcc3910ff9eb513a45f00dd83731597f0fe6e\nparent d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618\nparent ed8309843eedbd6cfe56b5e543c99285e28cead5\nauthor Marcus Hermansson <marcus@hmwh.se> 1792266801 +0200\ncommitter GitHub <noreply@github.com> 1792266801 +0200\n\nMerge pull request #78 from HMarcusWH/maintenance/v020-hardening-contract\n\ndocs: record the v0.2.0 hardening contract and reference inventories",
+      "verified_at": "2026-10-17T19:53:21Z"
+    }
+  },
+  "synthetic_commit": {
+    "sha": "4403ec593fe3178495b6633c9221ccd0e49bc166",
+    "node_id": "C_kwDOUkBtPtoAKDQ0MDNlYzU5M2ZlMzE3ODQ5NWI2NjMzYzkyMjFjY2QwZTQ5YmMxNjY",
+    "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/4403ec593fe3178495b6633c9221ccd0e49bc166",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/commit/4403ec593fe3178495b6633c9221ccd0e49bc166",
+    "author": {
+      "name": "Marcus Hermansson",
+      "email": "marcus@hmwh.se",
+      "date": "2026-10-17T19:41:39Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-10-17T19:41:39Z"
+    },
+    "tree": {
+      "sha": "b00dcc3910ff9eb513a45f00dd83731597f0fe6e",
+      "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/trees/b00dcc3910ff9eb513a45f00dd83731597f0fe6e"
+    },
+    "message": "Merge ed8309843eedbd6cfe56b5e543c99285e28cead5 into d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "parents": [
+      {
+        "sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/commit/d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618"
+      },
+      {
+        "sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/ed8309843eedbd6cfe56b5e543c99285e28cead5",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/commit/ed8309843eedbd6cfe56b5e543c99285e28cead5"
+      }
+    ],
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJq089zCRC1aQ7uu5UhlAAAtK4QACdeHkPrwUD1kFFQVkfyciEC\n5h0ObwW58aWUwarIec+2i2ZtrsuJL7yoPbv37qYHM1ZyJOzraihpMvjGoGXcmm0Z\ngPATUFzsoqOvmFRkoDoEPrHqQtRErb5kdWkpL+l6OCbv5TuEZPj/i9BDUaZVefai\nfrgFq1CKJKh/pXIFtT1SCmScXhQ6zis/XAfmvoCKEmR39FPK7mViY9r7NnseSUkM\nW5YwtZq7OkVbvM5SPtTmVIKwmKUP83+j4izbdFi1LAjYJKL8ui18aHP3mNny2cFz\niAS2HzGJtT4LIDdiqkyyHwYJ9yrsx0KKrB42eAtQyOQaNyn8CsYrpgFwsQ6q4vr8\nBNRNJ7ZU0xu1p9dVC7PAREkB+C2alPvKPR0GQYNGbnKiAACAajaJzPGyu89UFUbF\nmNs4AF8GXBIbPfNkHjSQg/uYza1pU2D28O4x3XhifPVP6WKM5/n6GKKYytE+tLCB\nVzXzwRVSOlwZfzI0hQ9GfY5EKQaWYyhFgAzHZzv/KqO/AOFTDPGBvi0XGwSwXnm/\nTap8KZOD3FKgf5bSKuN4iacd1p36l82TZLatVHc65W9I7nDzQ4yAiFMSvtWHvk55\nY/wYZs1ySPshiyRcptgE7Au4PUr7VynzShJZBMEjseOa2Y+2YdsCqP6lVZ1YBdaS\nI0yHmFEc03mq78C2RWxl\n=EQOR\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree b00dcc3910ff9eb513a45f00dd83731597f0fe6e\nparent d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618\nparent ed8309843eedbd6cfe56b5e543c99285e28cead5\nauthor Marcus Hermansson <marcus@hmwh.se> 1792266099 +0000\ncommitter GitHub <noreply@github.com> 1792266099 +0000\n\nMerge ed8309843eedbd6cfe56b5e543c99285e28cead5 into d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618\n",
+      "verified_at": "2026-10-17T19:41:39Z"
+    }
+  },
+  "provenance": "External post-integration receipt appended after the premerge capture-files.json inventory. It reports observed merge/source binding; it is not contained in the historical supplement."
+}

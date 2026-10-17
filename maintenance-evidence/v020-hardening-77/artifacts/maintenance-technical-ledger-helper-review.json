@@ -1,0 +1,164 @@
+{
+  "author_selfcheck": {
+    "control_count": 20,
+    "helper_sha256": "499301ce034f565d9e32ae1dac381f78e72674f0f723de2bc401738a04e3fd6d",
+    "independently_reexecuted_author_script": false,
+    "path": "maintenance-technical-ledger-helper-selfcheck.json"
+  },
+  "format": "Permansson.TechnicalLedgerHelper.IndependentReview.v1",
+  "helper_sha256": "4d6f9a35712220ef9a1489f04a6f6e33b543e3e4abb914f4d513fcaf2b81148e",
+  "independent_control_count": 20,
+  "independent_controls": [
+    {
+      "probe": "fixture_source_context_positive",
+      "result": "PASS"
+    },
+    {
+      "message": "Stale/wrong source context",
+      "probe": "context_head_sha",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Stale/wrong source context",
+      "probe": "context_base_sha",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Stale/wrong source context",
+      "probe": "context_checked_sha",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Stale/wrong source context",
+      "probe": "context_checked_tree",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Stale/wrong source context",
+      "probe": "context_event",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Missing genuine run/event identity",
+      "probe": "context_run_id",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Missing genuine run/event identity",
+      "probe": "context_event_sha256",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Stale/wrong source context",
+      "probe": "context_format",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "probe": "nine_contexts_positive",
+      "result": "PASS"
+    },
+    {
+      "message": "Non-success/wrong source/publisher check",
+      "probe": "skipped_job",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Non-success/wrong source/publisher check",
+      "probe": "stale_check",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Non-success/wrong source/publisher check",
+      "probe": "wrong_publisher",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Duplicate JSON key: x",
+      "probe": "duplicate_JSON",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Nonfinite JSON",
+      "probe": "nonfinite_JSON",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "message": "Evidence/output must stay under this explicit artifacts directory",
+      "probe": "outside_artifacts",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "probe": "bounded_ZIP_member_positive",
+      "result": "PASS"
+    },
+    {
+      "message": "Missing/duplicate ZIP member: report.json",
+      "probe": "duplicate_ZIP_member",
+      "result": "REJECTED_AS_INTENDED"
+    },
+    {
+      "diagnostic": "Technical ledger completion blocked: Missing evidence: C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-temp\\independent-technical-ledger-465ujr7y\\verification-summary.json",
+      "exit_code": 1,
+      "probe": "missing_actual_summary",
+      "result": "REJECTED_NO_OUTPUT"
+    },
+    {
+      "diagnostic": "Technical ledger completion blocked: Refuse superseded-source acceptance",
+      "exit_code": 1,
+      "probe": "superseded_head",
+      "result": "REJECTED_NO_OUTPUT"
+    }
+  ],
+  "independent_controls_source_sha256": "499301ce034f565d9e32ae1dac381f78e72674f0f723de2bc401738a04e3fd6d",
+  "initial_control_run_created_acceptance_output": false,
+  "original_review_artifact_sha256": "753a7231d85c682b9605e2ae4db4846fffbb3a1519b04ec58d612dc0f4ebed5b",
+  "post_population_review": {
+    "K4_actual_S": "PASS",
+    "actual_methods": 112,
+    "changed_ledger_fields": [
+      "/premerge_acceptance/assembled_at_utc",
+      "/stage_states/F1.code_verified",
+      "/stage_states/F2.code_verified",
+      "/stage_states/F3.bundle_materialized",
+      "/stage_states/F3.offline_restore_verified",
+      "/stage_states/F3.original_evidence_captured"
+    ],
+    "helper_delta": "Only exact five guarded technical stage updates after final96 conjunction; removal reproduces original499301ce source hash. No tests rerun or source acceptance bypass.",
+    "ledger_path": "maintenance-acceptance-ledger-finalized-premerge-verified.json",
+    "ledger_sha256": "5958d8c155086bbf3ccbca1dc6c651fe0b88ffa6bba729facce4dcaf4e632524",
+    "main_merge_M": null,
+    "previous_ledger_retained": "maintenance-acceptance-ledger-finalized-premerge.json",
+    "requirement_status_counts": {
+      "DEFERRED_BY_USER": 12,
+      "PASS": 96
+    },
+    "reviewed_at": "2026-10-17T21:03:54.599058+00:00",
+    "scope": "Independent read-only populated-ledger and byte/member joins. Actual CI source and scientific limits remain explicit; no OPS or main merge inferred.",
+    "status": "CLEAR",
+    "suite_method_counts": {
+      "archive": 35,
+      "context": 6,
+      "preservation": 26,
+      "reference": 17,
+      "tex": 20,
+      "workflow": 8
+    },
+    "unique_hashed_artifact_files": 32,
+    "unit_rows_unchanged": 87,
+    "verified_ZIP_member_records": 9,
+    "verified_file_evidence_records": 36
+  },
+  "reviewed_at": "2026-10-17T20:50:37.783554+00:00",
+  "reviewer": "independent Codex subagent /root/hardening_f1",
+  "scope": "Read-only complete source review plus private controls. No actual ledger completion, fresh GitHub CI, network-isolated restore, mathematical peer review, APPROVED review, OPS operation or main merge is certified.",
+  "source_review_guards": [
+    "All112 methods in six fresh suites,87unit cases preserve canonicalT mappings and actualS report/container hashes.",
+    "All11 actual publisher ZIPs join six currentPR workflows,9successful app15368 checks and5legacy direct source guards; H/B/S/tree exact.",
+    "CI04 joins historicalH171/B37/S7743 green before newruns; CI05 joins cc/A/S86ff green before observed M78=B37 with freshcurrent replacement context.",
+    "Current completed clean Codex review, all knownnonempty threads resolved, actualS local K4 plus independenttuple join required.",
+    "Fresh repackedbundle offlineactualLinux restore/35code+guide closure/canonical71member publication/acceptedA legacy29tests required.",
+    "Six exactH/S credentialprofiles and independently replayed currentPR-only C10 evidence required.",
+    "Only nine pendingtechnicalcases becomePASS;87unit rows unchanged,12OPS empty/deferred,96technicalPASS only after all guards; M remainsnull."
+  ],
+  "status": "PASS_SCOPED_SOURCE_AND_DISPOSABLE_CONTROLS"
+}

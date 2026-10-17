@@ -1,0 +1,69 @@
+{
+  "format": "Permansson.CommentPinIndependentReview.v1",
+  "literal_pins_match_independent_live_source": true,
+  "positive_control": {
+    "artifact_bytes": 9377,
+    "capture_files": 28,
+    "original_artifact_sha256": "75d61c01020f63d7f9555f10f32de9d63a09c0107536463ae549cdb85ebe9fc8",
+    "publisher_authentication": "not_created_by_offline_checksums",
+    "run_id": 39045919534
+  },
+  "repaired_attack_probes": [
+    {
+      "acquisition_index_repaired": true,
+      "attack": "body",
+      "comment": "final-code-review-comment.json",
+      "error_code": "E_CAPTURE_ID",
+      "message": "Fixed historical comment body differs: final-code-review-comment.json",
+      "outer_manifest_repaired_and_validated": true
+    },
+    {
+      "acquisition_index_repaired": true,
+      "attack": "author",
+      "comment": "final-code-review-comment.json",
+      "error_code": "E_CAPTURE_ID",
+      "message": "Fixed historical comment identity/author/timestamps differ: final-code-review-comment.json",
+      "outer_manifest_repaired_and_validated": true
+    },
+    {
+      "acquisition_index_repaired": true,
+      "attack": "timestamp",
+      "comment": "final-code-review-comment.json",
+      "error_code": "E_CAPTURE_ID",
+      "message": "Fixed historical comment identity/author/timestamps differ: final-code-review-comment.json",
+      "outer_manifest_repaired_and_validated": true
+    },
+    {
+      "acquisition_index_repaired": true,
+      "attack": "body",
+      "comment": "acceptance-comment.json",
+      "error_code": "E_CAPTURE_ID",
+      "message": "Fixed historical comment body differs: acceptance-comment.json",
+      "outer_manifest_repaired_and_validated": true
+    },
+    {
+      "acquisition_index_repaired": true,
+      "attack": "author",
+      "comment": "acceptance-comment.json",
+      "error_code": "E_CAPTURE_ID",
+      "message": "Fixed historical comment identity/author/timestamps differ: acceptance-comment.json",
+      "outer_manifest_repaired_and_validated": true
+    },
+    {
+      "acquisition_index_repaired": true,
+      "attack": "timestamp",
+      "comment": "acceptance-comment.json",
+      "error_code": "E_CAPTURE_ID",
+      "message": "Fixed historical comment identity/author/timestamps differ: acceptance-comment.json",
+      "outer_manifest_repaired_and_validated": true
+    }
+  ],
+  "reviewed_at": "2026-10-17T20:07:14.054345+00:00",
+  "reviewer": "/root/hardening_f1",
+  "scope": "Read-only independent source review and disposable input mutation; no original comments, repository files, or supplement bytes edited.",
+  "source_sha256": {
+    "verification/archive/acquire_evidence.py": "1cebc70a4f9796669309be659874d48dc8b80a270c784ac18e7d648f9024809a",
+    "verification/archive/tests/test_archive.py": "9569d8f7f35f5fb1b68f00c1799af0ae13ffed5751c6c696c2ef519b8ecdc9a0"
+  },
+  "status": "PASS"
+}

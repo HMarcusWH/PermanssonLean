@@ -1,0 +1,89 @@
+{
+  "K4_outside_108_still_pending": true,
+  "OPS_deferred": 12,
+  "all_five_pristine_originals_match_Downloads": true,
+  "canonical_provenance_records_checked": 11,
+  "duration_seconds": 39.188,
+  "format": "Permansson.LedgerTemplateRefresh.IndependentReview.v1",
+  "helper_sha256": "978a280bcff3c9a2992419a3f04a4959dbe7089498fe1cfdb2fef41c5cef8dfd",
+  "negative_controls": 9,
+  "positive_controls": 1,
+  "probes": [
+    {
+      "output_byte_equal_validated_template": true,
+      "probe": "positive",
+      "result": "PASS"
+    },
+    {
+      "exit_code": 1,
+      "expected_guard": "Template requirement IDs differ",
+      "output_created": false,
+      "probe": "unknown_id",
+      "result": "REJECTED"
+    },
+    {
+      "exit_code": 1,
+      "expected_guard": "Template level/suite/method mapping differs",
+      "output_created": false,
+      "probe": "changed_level",
+      "result": "REJECTED"
+    },
+    {
+      "exit_code": 1,
+      "expected_guard": "Template level/suite/method mapping differs",
+      "output_created": false,
+      "probe": "changed_methods",
+      "result": "REJECTED"
+    },
+    {
+      "exit_code": 1,
+      "expected_guard": "Template contains execution fields",
+      "output_created": false,
+      "probe": "prior_execution",
+      "result": "REJECTED"
+    },
+    {
+      "exit_code": 1,
+      "expected_guard": "Additional acceptance condition already contains execution",
+      "output_created": false,
+      "probe": "K4_checked_tree",
+      "result": "REJECTED"
+    },
+    {
+      "exit_code": 1,
+      "expected_guard": "Template maintenance context already populated",
+      "output_created": false,
+      "probe": "context_head",
+      "result": "REJECTED"
+    },
+    {
+      "exit_code": 1,
+      "expected_guard": "Template already contains execution claims",
+      "output_created": false,
+      "probe": "status_pass",
+      "result": "REJECTED"
+    },
+    {
+      "exit_code": 1,
+      "expected_guard": "Expected unexecuted complete template",
+      "output_created": false,
+      "probe": "missing_case",
+      "result": "REJECTED"
+    },
+    {
+      "exit_code": 1,
+      "expected_guard": "Template requirement IDs differ",
+      "output_created": false,
+      "probe": "duplicate_id",
+      "result": "REJECTED"
+    }
+  ],
+  "required_cases": 108,
+  "requirement_ids_levels_suites_methods_match_canonical_registry": true,
+  "scope": "External helper/produced-template validation only; no source edits, candidate verification, fresh CI, K4 execution or acceptance promotion.",
+  "source_tooling": "507ff2461762a248b6a5f90dc966d11627c4b1b9",
+  "status": "PASS",
+  "technical_cases_pending": 96,
+  "template_sha256": "0dfc84e63c9448f5d6c33f87579c9aa140b9b6255aca807d372b2aa80062e83a",
+  "unit_case_mappings": 87
+}

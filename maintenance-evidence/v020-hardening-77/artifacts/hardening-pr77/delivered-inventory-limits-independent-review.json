@@ -1,0 +1,92 @@
+{
+  "claims": "Independent private real-filesystem boundedness controls and actual package metadata/hash scan; no genuine CI, network-isolated restoration or fresh Lean run claimed.",
+  "format": "Permansson.Archive.DeliveredBoundsIndependentReview.v1",
+  "observed_at": "2026-10-17T20:38:48.541732+00:00",
+  "results": [
+    {
+      "error_code": "E_LIMIT",
+      "file_hash_calls": 0,
+      "limits": {
+        "MAX_FILES": 2
+      },
+      "message": "Delivered file count exceeds its fixed budget",
+      "probe": "file_count",
+      "status": "PASS"
+    },
+    {
+      "error_code": "E_LIMIT",
+      "file_hash_calls": 0,
+      "limits": {
+        "MAX_TOTAL_BYTES": 3
+      },
+      "message": "Delivered aggregate bytes exceed their fixed budget",
+      "probe": "aggregate_bytes",
+      "status": "PASS"
+    },
+    {
+      "error_code": "E_LIMIT",
+      "file_hash_calls": 0,
+      "limits": {
+        "MAX_DIRECTORIES": 2
+      },
+      "message": "Delivered directory traversal exceeds its fixed budget",
+      "probe": "directory_count",
+      "status": "PASS"
+    },
+    {
+      "error_code": "E_LIMIT",
+      "file_hash_calls": 0,
+      "limits": {
+        "MAX_DIRECTORY_DEPTH": 1
+      },
+      "message": "Delivered directory traversal exceeds its fixed budget",
+      "probe": "directory_depth",
+      "status": "PASS"
+    },
+    {
+      "error_code": "E_LIMIT",
+      "filesystem_walk_calls": 0,
+      "limits": {
+        "MAX_FILES": 2
+      },
+      "message": "Declared file count exceeds its fixed budget",
+      "probe": "declared_file_count",
+      "status": "PASS"
+    },
+    {
+      "error_code": "E_LIMIT",
+      "filesystem_walk_calls": 0,
+      "limits": {
+        "MAX_TOTAL_BYTES": 3
+      },
+      "message": "Declared aggregate bytes exceed their fixed budget",
+      "probe": "declared_aggregate_bytes",
+      "status": "PASS"
+    },
+    {
+      "probe": "exact_small_limits_positive",
+      "records": [
+        {
+          "path": "b",
+          "sha256": "2e7d2c03a9507ae265ecf5b5356885a53393a2029d241394997265a1a25aefc6",
+          "size": 1
+        },
+        {
+          "path": "one/a",
+          "sha256": "fb8e20fc2e4c3f248c60c39bd652f3c1347298bb977b8b4d5903b85055620603",
+          "size": 2
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "aggregate_payload_bytes": 9839093,
+      "payload_count": 68,
+      "probe": "actual_delivered_supplement_positive",
+      "status": "PASS"
+    }
+  ],
+  "source_path": "verification/archive/manifest.py",
+  "source_sha256": "f77d991d784b000b6cb5114dd5cdcbd110d719449ccdca161908dc14d68bfd00",
+  "status": "PASS_SCOPED_LOCAL_CONTROLS"
+}

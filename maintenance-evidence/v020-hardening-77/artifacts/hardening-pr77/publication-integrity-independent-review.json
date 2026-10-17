@@ -1,0 +1,72 @@
+{
+  "format": "Permansson.Hardening.IndependentReview.v1",
+  "scope": "disposable Git fixture and read-only source review; no fresh GitHub CI claim",
+  "reviewed_behavior": [
+    "canonical C full inner paths, regular 0644 modes and bytes including both manifest files",
+    "canonical C ZIP and exact repaired sidecar; bounded no-extraction ZIP validation",
+    "bound-only integration and explicit standalone NOT_APPLICABLE",
+    "unchanged accepted ancestry requirement"
+  ],
+  "status": "PASS",
+  "source_sha256": {
+    "verification/archive/publication.py": "63b4477e3575400b23cb945fb63726e89d7df436a19f4ed7f3923ad927b59978",
+    "verification/archive/verify_bundle.py": "58b2d601b9b360bf57228d32ad1c8ae51d3d18e3ca98cc6b7d4b8dcc0eae7918",
+    "verification/archive/tests/test_archive.py": "63cbe01b0667db381605fd9ab9139e04889bbc9d30b2775974d740f7e2d184a7"
+  },
+  "source_unchanged_during_run": true,
+  "test_methods": 1,
+  "subtests": [
+    {
+      "case": "test_committed_publication_matches_verified_inner_objects (verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects) (control='canonical_C_positive')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_committed_publication_matches_verified_inner_objects (verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects) (attack='stale_payload_repaired_sidecar')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_committed_publication_matches_verified_inner_objects (verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects) (attack='unsafe_member')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_committed_publication_matches_verified_inner_objects (verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects) (attack='symlink_member')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_committed_publication_matches_verified_inner_objects (verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects) (attack='duplicate_member')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_committed_publication_matches_verified_inner_objects (verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects) (attack='encrypted_member')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_committed_publication_matches_verified_inner_objects (verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects) (attack='declared_size_bomb')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_committed_publication_matches_verified_inner_objects (verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects) (attack='concealed_duplicate_count')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_committed_publication_matches_verified_inner_objects (verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects) (attack='corrupt_deflate_stream')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_committed_publication_matches_verified_inner_objects (verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects) (attack='canonical_extra_inner_path')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_committed_publication_matches_verified_inner_objects (verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects) (attack='filesystem_cannot_define_publication_authority')",
+      "status": "PASS"
+    }
+  ],
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "elapsed_seconds": 84.625,
+  "limitations": [
+    "Fixture policies are private test patches; production pins and ancestry checks remain fixed.",
+    "This review does not authenticate GitHub publisher identity or complete OPS acceptance."
+  ]
+}

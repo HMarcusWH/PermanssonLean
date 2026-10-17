@@ -1,0 +1,39 @@
+{
+  "format": "Permansson.UnitLedgerAssemblerDiagnostics.v1",
+  "negative_controls": {
+    "boolean_run_attempt": "REJECTED",
+    "dirty_source": "REJECTED",
+    "duplicate_json_keys": "REJECTED",
+    "failed_subtest": "REJECTED",
+    "missing_base": "REJECTED",
+    "missing_case_from_template": "REJECTED",
+    "missing_covered_case": "REJECTED",
+    "missing_head": "REJECTED",
+    "missing_method_result": "REJECTED",
+    "missing_suite": "REJECTED",
+    "missing_synthetic": "REJECTED",
+    "old_head_inside_one_report": "REJECTED",
+    "old_reports_cannot_claim_current_head": "REJECTED",
+    "ops_cannot_be_silently_promoted": "REJECTED",
+    "skipped_suite": "REJECTED",
+    "unsupported_runtime": "REJECTED",
+    "wrong_event": "REJECTED",
+    "wrong_run_attempt": "REJECTED",
+    "zero_discovery": "REJECTED"
+  },
+  "not_current_CI_acceptance": true,
+  "old_source_context": {
+    "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "checked_sha": "b96e30d8b38575796a8c598c028488e449b85a8d",
+    "head_sha": "e314ccc2b3587065425a0357874ad5580cce841d",
+    "run_attempt": 1,
+    "run_id": 39058545127
+  },
+  "positive_in_memory_counts": {
+    "DEFERRED_BY_USER": 12,
+    "PASS": 87,
+    "PENDING_EVIDENCE": 9
+  },
+  "scope": "OLD_SOURCE_REPORT_PARSER_MECHANICS_ONLY",
+  "script_sha256": "4ec65e13701c129e261d31325523d42c3281c237780bd126219e980783c3ebfb"
+}

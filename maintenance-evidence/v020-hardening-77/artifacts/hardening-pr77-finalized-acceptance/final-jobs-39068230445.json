@@ -1,0 +1,173 @@
+{
+  "fetched_at": "2026-10-17T21:01:06.566Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39068230445/jobs?per_page=100",
+  "response": {
+    "total_count": 1,
+    "jobs": [
+      {
+        "id": 117500231732,
+        "run_id": 39068230445,
+        "workflow_name": "Research Lean",
+        "head_branch": "maintenance/v020-integrity-and-archive",
+        "run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39068230445",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUkBtPs8AAAAbW49ANA",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117500231732",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39068230445/job/117500231732",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-17T20:47:51Z",
+        "started_at": "2026-10-17T20:47:54Z",
+        "completed_at": "2026-10-17T20:59:47Z",
+        "name": "research",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-17T20:47:54Z",
+            "completed_at": "2026-10-17T20:47:56Z"
+          },
+          {
+            "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-17T20:47:56Z",
+            "completed_at": "2026-10-17T20:47:58Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-17T20:47:58Z",
+            "completed_at": "2026-10-17T20:47:58Z"
+          },
+          {
+            "name": "Bind genuine required-check source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-17T20:47:58Z",
+            "completed_at": "2026-10-17T20:47:58Z"
+          },
+          {
+            "name": "Build research library and audit its transitive axioms",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-17T20:47:58Z",
+            "completed_at": "2026-10-17T20:58:36Z"
+          },
+          {
+            "name": "Run research-only exact rational regressions (CQ-1 and D0)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-17T20:58:36Z",
+            "completed_at": "2026-10-17T20:59:23Z"
+          },
+          {
+            "name": "Generate and independently verify C10 release proof evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-17T20:59:23Z",
+            "completed_at": "2026-10-17T20:59:38Z"
+          },
+          {
+            "name": "Upload source-bound C10 proof evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-17T20:59:38Z",
+            "completed_at": "2026-10-17T20:59:39Z"
+          },
+          {
+            "name": "Generate and independently recheck D0-F golden reports",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-17T20:59:39Z",
+            "completed_at": "2026-10-17T20:59:40Z"
+          },
+          {
+            "name": "Upload ephemeral D0-F calculation evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-10-17T20:59:40Z",
+            "completed_at": "2026-10-17T20:59:41Z"
+          },
+          {
+            "name": "Verify original default target still builds",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-10-17T20:59:41Z",
+            "completed_at": "2026-10-17T20:59:42Z"
+          },
+          {
+            "name": "Ensure every research module is imported by the research root",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-17T20:59:42Z",
+            "completed_at": "2026-10-17T20:59:42Z"
+          },
+          {
+            "name": "Reject proof placeholders and custom axiom declarations",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-17T20:59:42Z",
+            "completed_at": "2026-10-17T20:59:42Z"
+          },
+          {
+            "name": "Preserve required-check source context",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-17T20:59:42Z",
+            "completed_at": "2026-10-17T20:59:44Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 27,
+            "started_at": "2026-10-17T20:59:44Z",
+            "completed_at": "2026-10-17T20:59:44Z"
+          },
+          {
+            "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 28,
+            "started_at": "2026-10-17T20:59:44Z",
+            "completed_at": "2026-10-17T20:59:44Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29,
+            "started_at": "2026-10-17T20:59:44Z",
+            "completed_at": "2026-10-17T20:59:44Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/117500231732",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000109459,
+        "runner_name": "GitHub Actions 1000109459",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  }
+}

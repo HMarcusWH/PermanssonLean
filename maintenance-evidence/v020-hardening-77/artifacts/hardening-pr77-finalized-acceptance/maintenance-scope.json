@@ -1,0 +1,51 @@
+{
+  "check": "maintenance-Lean-scope",
+  "completed_stages": [
+    "context",
+    "verification"
+  ],
+  "context": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "base_sha": null,
+    "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+    "event": "local",
+    "event_sha256": null,
+    "head_sha": null,
+    "pr_number": null,
+    "repository": "HMarcusWH/PermanssonLean",
+    "run_attempt": null,
+    "run_id": null,
+    "scope": "canonical_commit_objects"
+  },
+  "details": {
+    "acceptance_binding": "Join this canonical candidate/tree with independently captured current PR H/B/S; local execution does not manufacture a GitHub event.",
+    "acceptance_only": true,
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "accepted_tree": "72ad841cc5b3cffc5f82979a9739b7fd03d75e15",
+    "candidate": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "candidate_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+    "compared_paths": [
+      "PermanssonLean/",
+      "PermanssonLean.lean",
+      "PermanssonResearch/",
+      "PermanssonResearch.lean"
+    ],
+    "completed_stages": [
+      "fixed_authority",
+      "complete_Lean_scope_comparison"
+    ],
+    "differences": [],
+    "permanent_preservation_policy": false,
+    "scope": "complete-canonical-Lean-trees-and-root-files"
+  },
+  "error_code": null,
+  "format": "Permansson.Hardening.Check.v1",
+  "message": null,
+  "runtime": {
+    "platform": "Windows",
+    "python": "3.12.14"
+  },
+  "schema_version": 1,
+  "status": "PASS"
+}

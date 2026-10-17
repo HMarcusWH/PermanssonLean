@@ -1,0 +1,42 @@
+{
+  "current_pair_positive_control": "PASS",
+  "format": "Permansson.Hardening.LiveContextTransition.v1",
+  "kind": "base-change",
+  "new_context": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+    "event": "pull_request",
+    "event_sha256": "d3a7eaad9193a9d84ca3736daef38fac0fe3d2e96de3fe1089858a818142a72b",
+    "format": "Permansson.Hardening.CIContext.v1",
+    "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "pr_number": 77,
+    "repository": "HMarcusWH/PermanssonLean",
+    "run_attempt": 1,
+    "run_id": 39068230438,
+    "scope": "canonical_commit_objects"
+  },
+  "new_zip_sha256": "ab1b3154fb80886a7938bbf3bf8667c7c32a1fb061dc366267c9f1c7db214da1",
+  "old_context": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "checked_sha": "86ff0d8ce3482935d2ff09ee24c260d309f069d1",
+    "checked_tree": "bc2af29f32f6b89b5ea927ea04a6579422e4e6eb",
+    "event": "pull_request",
+    "event_sha256": "7afef6a4e5b989a5cc2cab5e939bb5905b65619212731d85059ac1991e49b673",
+    "format": "Permansson.Hardening.CIContext.v1",
+    "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9",
+    "pr_number": 77,
+    "repository": "HMarcusWH/PermanssonLean",
+    "run_attempt": 1,
+    "run_id": 39061789338,
+    "scope": "canonical_commit_objects"
+  },
+  "old_zip_sha256": "be590e1c5323750e3aa32db9a98d1e4bde090655d10e1bd23ad1cc9187a2f148",
+  "previous_pair_for_current_objects": "E_CONTEXT",
+  "previous_pair_positive_control": "PASS",
+  "scope": "source-binding; job-success-and-before-green chronology are separate captured evidence",
+  "source": "captured-GitHub-artifact-contexts-and-canonical-Git-objects",
+  "status": "PASS"
+}

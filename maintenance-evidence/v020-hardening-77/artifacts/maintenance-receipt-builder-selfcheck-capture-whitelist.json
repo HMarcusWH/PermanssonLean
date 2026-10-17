@@ -1,0 +1,186 @@
+{
+  "checks": [
+    {
+      "case": "pinned_index_hardening-pr77-prebase-acceptance/capture-inventory.json",
+      "payload_count": 57,
+      "status": "PASS"
+    },
+    {
+      "case": "pinned_index_hardening-pr78-final-acceptance/capture-files.json",
+      "payload_count": 25,
+      "status": "PASS"
+    },
+    {
+      "case": "pinned_index_hardening-pr78-final-acceptance/postmerge-addendum-files.json",
+      "payload_count": 10,
+      "status": "PASS"
+    },
+    {
+      "case": "explicit_historical_and_required_privacy_screen",
+      "files": 110,
+      "status": "PASS"
+    },
+    {
+      "case": "unsafe_path",
+      "expected_rejection": "relative path",
+      "status": "PASS"
+    },
+    {
+      "case": "unsafe_path",
+      "expected_rejection": "relative path",
+      "status": "PASS"
+    },
+    {
+      "case": "unsafe_path",
+      "expected_rejection": "relative path",
+      "status": "PASS"
+    },
+    {
+      "case": "unsafe_path",
+      "expected_rejection": "relative path",
+      "status": "PASS"
+    },
+    {
+      "case": "unsafe_path",
+      "expected_rejection": "relative path",
+      "status": "PASS"
+    },
+    {
+      "case": "signed_url_text",
+      "expected_rejection": "signed/credential URL",
+      "status": "PASS"
+    },
+    {
+      "case": "signed_url_JSON_escape",
+      "expected_rejection": "signed/credential URL",
+      "status": "PASS"
+    },
+    {
+      "case": "signed_url_arbitrary_ZIP_member",
+      "expected_rejection": "signed/credential URL",
+      "status": "PASS"
+    },
+    {
+      "case": "unapproved_final_member",
+      "expected_rejection": "explicit whitelist review",
+      "status": "PASS"
+    },
+    {
+      "case": "portable_links_preserve_raw_and_verify_member",
+      "status": "PASS"
+    },
+    {
+      "case": "wrong_member_digest",
+      "expected_rejection": "member digest differs",
+      "status": "PASS"
+    },
+    {
+      "case": "synthetic_ledger_positive",
+      "status": "PASS"
+    },
+    {
+      "case": "stale_ledger_head",
+      "expected_rejection": "source H/B/S/T differs",
+      "status": "PASS"
+    },
+    {
+      "case": "stale_unit_case",
+      "expected_rejection": "not bound to current S",
+      "status": "PASS"
+    },
+    {
+      "case": "OPS_promotion",
+      "expected_rejection": "promoted case",
+      "status": "PASS"
+    },
+    {
+      "case": "five_current_legacy_context_ZIPs_positive",
+      "status": "PASS"
+    },
+    {
+      "case": "legacy_context_repaired_head_sha",
+      "expected_rejection": "actual current PR/check run",
+      "status": "PASS"
+    },
+    {
+      "case": "legacy_context_repaired_event",
+      "expected_rejection": "actual current PR/check run",
+      "status": "PASS"
+    },
+    {
+      "case": "legacy_context_repaired_run_id",
+      "expected_rejection": "actual current PR/check run",
+      "status": "PASS"
+    },
+    {
+      "case": "legacy_context_extra_ZIP_member",
+      "expected_rejection": "exactly required-source.json",
+      "status": "PASS"
+    },
+    {
+      "case": "legacy_context_publisher_digest",
+      "expected_rejection": "publisher/ZIP identity differs",
+      "status": "PASS"
+    },
+    {
+      "case": "legacy_context_missing_ZIP",
+      "expected_rejection": "publisher/ZIP identity differs",
+      "status": "PASS"
+    },
+    {
+      "case": "separate_main_push_addendum_positive_9checks_6runs_10ZIPs",
+      "status": "PASS"
+    },
+    {
+      "case": "main_push_stale_check",
+      "expected_rejection": "nine actual successful current-main",
+      "status": "PASS"
+    },
+    {
+      "case": "main_push_manual_run",
+      "expected_rejection": "six actual main-push workflows",
+      "status": "PASS"
+    },
+    {
+      "case": "main_push_wrong_API_parents",
+      "expected_rejection": "API commit parent/tree",
+      "status": "PASS"
+    },
+    {
+      "case": "main_push_repaired_legacy_PR_fields",
+      "expected_rejection": "actual current main-push/check run",
+      "status": "PASS"
+    },
+    {
+      "case": "main_push_repaired_integrity_stale_source",
+      "expected_rejection": "integrity context is not",
+      "status": "PASS"
+    },
+    {
+      "case": "main_push_C10_not_skipped",
+      "expected_rejection": "C10 generation/upload was not reported skipped",
+      "status": "PASS"
+    },
+    {
+      "case": "main_push_C10_extra_artifact",
+      "expected_rejection": "ten publisher ZIPs and no PR-only C10",
+      "status": "PASS"
+    },
+    {
+      "case": "main_push_publisher_digest",
+      "expected_rejection": "publisher/ZIP bytes differ",
+      "status": "PASS"
+    },
+    {
+      "case": "Habcc_never_final",
+      "expected_rejection": "cannot be certified",
+      "status": "PASS"
+    }
+  ],
+  "control_script_sha256": "ab20ed80860312607b3d4a51f9aa3cc5546bd0f377bc96d335559d5174d2c87d",
+  "count": 36,
+  "format": "Permansson.ReceiptBuilderSelfcheck.v1",
+  "helper_sha256": "ab0001a97ff05ec24a9a3c4c558221af45f74691f733802d37aaec8172e0e550",
+  "scope": "Curated historical files and disposable fixtures only. No final receipt built, no Habcc acceptance promoted, no repository mutations.",
+  "status": "PASS"
+}

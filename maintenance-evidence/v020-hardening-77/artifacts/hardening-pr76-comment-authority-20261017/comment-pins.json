@@ -1,0 +1,89 @@
+{
+  "authority_basis": "Independent live GitHub REST source read; candidate capture comparison is corroboration, not the source of the body or identity pins",
+  "format": "Permansson.PR76.IndependentCommentPins.v1",
+  "representation": "API JSON exposed through the GitHub connector, parsed/reserialized; no raw HTTP transport, signed URL, credentials or cryptographic publisher authentication claimed",
+  "rows": [
+    {
+      "author": {
+        "id": 199175422,
+        "login": "chatgpt-codex-connector[bot]",
+        "node_id": "BOT_kgDOC98s_g",
+        "type": "Bot"
+      },
+      "body_utf8_bytes": 621,
+      "body_utf8_sha256": "8d3f62c4f58b93d6254e5caa1278b8784f5e739b04a116c8d95e1865a042ce5e",
+      "canonical_candidate_capture": {
+        "bytes": 4229,
+        "commit": "abccf9d7ce389fffe5637ea0ff0acd5718d9058f",
+        "git_blob": "4fa9eb551822c1e7273f6e8f749b6ecb04152ff3",
+        "path": "archival/v0.2.0/supplement-1/evidence/final-code-review-comment.json",
+        "sha256": "75ed1db9b3f035547a127203f25fd801924b646e8eab740e67f49bd3fd6db1d3"
+      },
+      "capture_path": "artifacts/hardening-pr76-comment-authority-20261017/comment-6235925253.json",
+      "capture_sha256": "e80eb37c4cc9ec668b7979d017aa7d0bed8d08f63480be108398a81a37d41efe",
+      "comment_id": 6235925253,
+      "comment_node_id": "IC_kwDOUkBtPs8AAAABc7CrBQ",
+      "created_at": "2026-10-17T15:40:46Z",
+      "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/76#issuecomment-6235925253",
+      "issue_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/issues/76",
+      "live_acquired_at": "2026-10-17 20:04:29 UTC",
+      "live_source_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/issues/comments/6235925253",
+      "live_vs_candidate_pinned_fields": {
+        "author_id": true,
+        "author_login": true,
+        "author_node_id": true,
+        "author_type": true,
+        "body_utf8_exact": true,
+        "created_at": true,
+        "html_url": true,
+        "id": true,
+        "issue_url": true,
+        "node_id": true,
+        "updated_at": true
+      },
+      "updated_at": "2026-10-17T15:40:46Z"
+    },
+    {
+      "author": {
+        "id": 173802548,
+        "login": "HMarcusWH",
+        "node_id": "U_kgDOClwENA",
+        "type": "User"
+      },
+      "body_utf8_bytes": 3363,
+      "body_utf8_sha256": "b33381ce1f8cc769577a192f55107092c4775d0c88f812d6f0ae52031abd36b1",
+      "canonical_candidate_capture": {
+        "bytes": 6708,
+        "commit": "abccf9d7ce389fffe5637ea0ff0acd5718d9058f",
+        "git_blob": "3518030660afc31a932c56df5946ca8112391769",
+        "path": "archival/v0.2.0/supplement-1/evidence/acceptance-comment.json",
+        "sha256": "681b77544e478171d1e98d46fbc025532ec5a4c45265e44695d167a3255a8da4"
+      },
+      "capture_path": "artifacts/hardening-pr76-comment-authority-20261017/comment-6236142249.json",
+      "capture_sha256": "f3772c3ba8b08901bdf743151a6431c415d4a3ffd2fb5dcddb3a702daa7e67c7",
+      "comment_id": 6236142249,
+      "comment_node_id": "IC_kwDOUkBtPs8AAAABc7P6qQ",
+      "created_at": "2026-10-17T15:54:04Z",
+      "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/76#issuecomment-6236142249",
+      "issue_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/issues/76",
+      "live_acquired_at": "2026-10-17 20:04:29 UTC",
+      "live_source_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/issues/comments/6236142249",
+      "live_vs_candidate_pinned_fields": {
+        "author_id": true,
+        "author_login": true,
+        "author_node_id": true,
+        "author_type": true,
+        "body_utf8_exact": true,
+        "created_at": true,
+        "html_url": true,
+        "id": true,
+        "issue_url": true,
+        "node_id": true,
+        "updated_at": true
+      },
+      "updated_at": "2026-10-17T15:54:04Z"
+    }
+  ],
+  "scientific_limit": "The Codex item is a no-major-issues code-review comment, not a counted APPROVED review or mathematical peer-review certificate.",
+  "status": "PASS"
+}

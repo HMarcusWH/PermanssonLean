@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "scope": "canonical_candidate_objects",
+  "candidate": "171c954c4733d2c8eaaac3ad90e60e4d1d4637c3",
+  "zip_path": "archival/v0.2.0/publication-candidate/Permansson_v0.2.0_archival-supplement-1.zip",
+  "zip_blob": "d2d61e7b2707aefe6ba82d9fc204f2697759d8e4",
+  "sidecar_blob": "25dac8ae89ec447eb07c83a738f1c9e143b48ea9",
+  "zip_sha256": "d67531969705ca39b41d25e91180dccec2c491aa3df776e876140b7777f43eca",
+  "zip_bytes": 7446882,
+  "members": 70,
+  "canonical_inner_files": 70,
+  "verified_filesystem_matches_C": true,
+  "scope_note": "Independent direct publication stage against existing canonical H171c only; superseded source, not full replacement-source CI acceptance.",
+  "environment_note": "Initial attempt stopped during default Windows sandbox temp cleanup; this retry used an explicit writable workspace temporary directory without changing source."
+}

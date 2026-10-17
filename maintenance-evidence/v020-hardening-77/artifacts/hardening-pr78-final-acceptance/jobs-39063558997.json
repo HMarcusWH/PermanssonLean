@@ -1,0 +1,61 @@
+{
+  "format": "Permansson.ConnectorCapture.v1",
+  "acquired_at": "2026-10-17 19:45:25 UTC",
+  "representation": "Connector-normalized jobs; not raw HTTP transport",
+  "payload": {
+    "jobs": [
+      {
+        "id": 117486376215,
+        "name": "build",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39063558997,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run leanprover/lean-action@v1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Build",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Reject placeholders and extra axioms",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          }
+        ]
+      }
+    ]
+  }
+}

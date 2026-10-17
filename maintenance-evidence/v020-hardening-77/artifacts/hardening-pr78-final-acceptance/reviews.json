@@ -1,0 +1,48 @@
+{
+  "format": "Permansson.ConnectorCapture.v1",
+  "acquired_at": "2026-10-17 19:43:28 UTC",
+  "representation": "Connector-normalized GraphQL review representation; not raw HTTP transport",
+  "payload": {
+    "reviews": [
+      {
+        "id": "PRR_kwDOUkBtPs8AAAABS13PNg",
+        "state": "COMMENTED",
+        "body": "<!-- codex-review-receipt:v1 -->\n\n\n### 💡 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `2ff920d6ab`\n    \n\n<details> <summary>ℹ️ About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with 👍.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>",
+        "submitted_at": "2026-10-17T18:38:47Z",
+        "author": {
+          "login": "chatgpt-codex-connector",
+          "name": "chatgpt-codex-connector",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+          "id": null
+        }
+      },
+      {
+        "id": "PRR_kwDOUkBtPs8AAAABS1_EEw",
+        "state": "COMMENTED",
+        "body": "<!-- codex-review-receipt:v1 -->\n\n\n### 💡 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `37544d2f66`\n    \n\n<details> <summary>ℹ️ About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with 👍.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>",
+        "submitted_at": "2026-10-17T19:03:12Z",
+        "author": {
+          "login": "chatgpt-codex-connector",
+          "name": "chatgpt-codex-connector",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+          "id": null
+        }
+      },
+      {
+        "id": "PRR_kwDOUkBtPs8AAAABS2FlyA",
+        "state": "COMMENTED",
+        "body": "<!-- codex-review-receipt:v1 -->\n\n\n### 💡 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `6c741382c2`\n    \n\n<details> <summary>ℹ️ About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with 👍.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>",
+        "submitted_at": "2026-10-17T19:23:14Z",
+        "author": {
+          "login": "chatgpt-codex-connector",
+          "name": "chatgpt-codex-connector",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+          "id": null
+        }
+      }
+    ]
+  }
+}

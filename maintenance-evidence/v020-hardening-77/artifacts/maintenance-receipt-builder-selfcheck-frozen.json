@@ -1,0 +1,108 @@
+{
+  "checks": [
+    {
+      "case": "pinned_index_hardening-pr77-prebase-acceptance/capture-inventory.json",
+      "payload_count": 57,
+      "status": "PASS"
+    },
+    {
+      "case": "pinned_index_hardening-pr78-final-acceptance/capture-files.json",
+      "payload_count": 25,
+      "status": "PASS"
+    },
+    {
+      "case": "pinned_index_hardening-pr78-final-acceptance/postmerge-addendum-files.json",
+      "payload_count": 10,
+      "status": "PASS"
+    },
+    {
+      "case": "explicit_historical_and_required_privacy_screen",
+      "files": 110,
+      "status": "PASS"
+    },
+    {
+      "case": "unsafe_path",
+      "expected_rejection": "relative path",
+      "status": "PASS"
+    },
+    {
+      "case": "unsafe_path",
+      "expected_rejection": "relative path",
+      "status": "PASS"
+    },
+    {
+      "case": "unsafe_path",
+      "expected_rejection": "relative path",
+      "status": "PASS"
+    },
+    {
+      "case": "unsafe_path",
+      "expected_rejection": "relative path",
+      "status": "PASS"
+    },
+    {
+      "case": "unsafe_path",
+      "expected_rejection": "relative path",
+      "status": "PASS"
+    },
+    {
+      "case": "signed_url_text",
+      "expected_rejection": "signed/credential URL",
+      "status": "PASS"
+    },
+    {
+      "case": "signed_url_JSON_escape",
+      "expected_rejection": "signed/credential URL",
+      "status": "PASS"
+    },
+    {
+      "case": "signed_url_arbitrary_ZIP_member",
+      "expected_rejection": "signed/credential URL",
+      "status": "PASS"
+    },
+    {
+      "case": "unapproved_final_member",
+      "expected_rejection": "explicit whitelist review",
+      "status": "PASS"
+    },
+    {
+      "case": "portable_links_preserve_raw_and_verify_member",
+      "status": "PASS"
+    },
+    {
+      "case": "wrong_member_digest",
+      "expected_rejection": "member digest differs",
+      "status": "PASS"
+    },
+    {
+      "case": "synthetic_ledger_positive",
+      "status": "PASS"
+    },
+    {
+      "case": "stale_ledger_head",
+      "expected_rejection": "source H/B/S/T differs",
+      "status": "PASS"
+    },
+    {
+      "case": "stale_unit_case",
+      "expected_rejection": "not bound to current S",
+      "status": "PASS"
+    },
+    {
+      "case": "OPS_promotion",
+      "expected_rejection": "promoted case",
+      "status": "PASS"
+    },
+    {
+      "case": "Habcc_never_final",
+      "expected_rejection": "cannot be certified",
+      "status": "PASS"
+    }
+  ],
+  "control_script_sha256": "0e983a47372c7c3e5f491313d2b4a5fb4cde94ff767ae76f1e9ed8b27f3339fe",
+  "count": 20,
+  "format": "Permansson.ReceiptBuilderSelfcheck.v1",
+  "helper_sha256": "5ae1e3bc8b12611de9b19a6606d3beae36732baca705ac7e343b483bc3c7b139",
+  "scope": "Curated historical files and disposable fixtures only. No final receipt built, no Habcc acceptance promoted, no repository mutations.",
+  "status": "PASS"
+}

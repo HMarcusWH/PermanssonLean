@@ -1,0 +1,14 @@
+{
+  "format": "Permansson.MainPushSource.v1",
+  "acquired_at": "2026-10-17 19:56:56 UTC",
+  "event": "push",
+  "branch": "main",
+  "checked_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+  "checked_tree": "b00dcc3910ff9eb513a45f00dd83731597f0fe6e",
+  "pull_request": 78,
+  "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+  "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+  "accepted_synthetic_sha": "4403ec593fe3178495b6633c9221ccd0e49bc166",
+  "merge_binding_receipt": "../merge-api-verification.json",
+  "scope": "Postmerge main-push execution of five existing job contexts in four workflows. Separate from premerge genuine PR/C10 evidence; PR-only C10 is not claimed to execute on push."
+}

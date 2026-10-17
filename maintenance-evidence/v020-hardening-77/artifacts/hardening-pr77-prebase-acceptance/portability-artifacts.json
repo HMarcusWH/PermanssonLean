@@ -1,0 +1,30 @@
+{
+  "fetched_at": "2026-10-17T19:26:25.195Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39061789338/artifacts?per_page=100",
+  "response": {
+    "total_count": 1,
+    "artifacts": [
+      {
+        "id": 12111782816,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExMTc4MjgxNg==",
+        "name": "hardening-windows-portability-reports",
+        "size_in_bytes": 4687,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12111782816",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12111782816/zip",
+        "expired": false,
+        "digest": "sha256:be590e1c5323750e3aa32db9a98d1e4bde090655d10e1bd23ad1cc9187a2f148",
+        "created_at": "2026-10-17T19:23:55Z",
+        "updated_at": "2026-10-17T19:23:55Z",
+        "expires_at": "2026-11-16T19:23:54Z",
+        "workflow_run": {
+          "id": 39061789338,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9"
+        }
+      }
+    ]
+  }
+}
+

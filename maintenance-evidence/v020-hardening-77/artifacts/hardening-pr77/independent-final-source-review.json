@@ -1,0 +1,153 @@
+{
+  "format": "Permansson.Hardening.IndependentFinalSourceReview.v1",
+  "repository": "HMarcusWH/PermanssonLean",
+  "pr_number": 77,
+  "reviewer": "Codex subagent /root/hardening_f1; independent remote observation",
+  "author_relationship": "This subagent authored the legacy workflow/profile changes; their independent source peer review is separately recorded by /root/hardening_f2. Publication and bounded-manifest changes were authored by other agents. This record does not turn author self-review into independent peer approval.",
+  "observed_window_utc": {
+    "began": "2026-10-17 21:00:30 UTC",
+    "ended": "2026-10-17 21:00:31 UTC"
+  },
+  "source": {
+    "head": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "base": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "synthetic": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+    "ordered_parents": [
+      "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501"
+    ],
+    "tooling": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388"
+  },
+  "pr": {
+    "state": "open",
+    "merged": false
+  },
+  "status": "SOURCE_REVIEW_CLEAR_API_CHECKS_GREEN_ARTIFACT_ACCEPTANCE_PENDING",
+  "checks": {
+    "success": 9,
+    "total": 9,
+    "rows": [
+      {
+        "name": "build",
+        "id": 117500232286,
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "publisher_app_id": 15368,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Application contract (windows-latest)",
+        "id": 117500232063,
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "publisher_app_id": 15368,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Application contract (ubuntu-latest)",
+        "id": 117500231869,
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "publisher_app_id": 15368,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "release-export-integrity",
+        "id": 117500231774,
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "publisher_app_id": 15368,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "archive-reproducibility",
+        "id": 117500231737,
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "publisher_app_id": 15368,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "research",
+        "id": 117500231732,
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "publisher_app_id": 15368,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "integrity-portability-windows",
+        "id": 117500231679,
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "publisher_app_id": 15368,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "executable-verification",
+        "id": 117500231571,
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "publisher_app_id": 15368,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "frozen-source-preservation",
+        "id": 117500231565,
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "publisher_app_id": 15368,
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "review": {
+    "comment_id": 6238643446,
+    "code_review": {
+      "commit_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+      "has_any_findings": false,
+      "has_unresolved_findings": false,
+      "status": "completed"
+    },
+    "security_review": {
+      "commit_sha": "e314ccc2b3587065425a0357874ad5580cce841d",
+      "has_any_findings": false,
+      "has_unresolved_findings": false,
+      "status": "completed"
+    },
+    "security_scope": "The security summary is historical e314ccc, not current-H security certification.",
+    "threads_total": 12,
+    "unresolved": []
+  },
+  "source_concerns": {
+    "additional_actionable_findings": [],
+    "reviewed": [
+      "Canonical19-file workflow registry and direct genuine legacy source guards",
+      "Fixed-budget delivered metadata preflight before payload hashing",
+      "Canonical publication inner-file equality, ZIP/sidecar binding, safe bounded ZIP parsing",
+      "Candidate-bound offline verifier integration and T/C/code/guide closure"
+    ],
+    "code_source": "Read-only currentH/T source review; packaging-only H versusT diff and clean checkout observed."
+  },
+  "superseded_observation": {
+    "success": 8,
+    "total": 9,
+    "pending": [
+      "research"
+    ],
+    "scope": "Earlier read-only snapshot; superseded by the timestamped API observation above. No fabricated timestamp assigned to that earlier snapshot."
+  },
+  "limits": [
+    "No source changes or broad retesting performed.",
+    "API check status is not full artifact/C10/ledger/packet acceptance; those joins remain independently required.",
+    "Code review is not mathematical peer review, a counted GitHub APPROVED review, current-H security certification, publisher authentication, or OPS completion.",
+    "No main merge or postmerge execution inferred."
+  ],
+  "public_request_urls": {
+    "pr": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77",
+    "checks": "https://api.github.com/repos/HMarcusWH/PermanssonLean/commits/92e45179a5e3ecbe1b2bcadc4da54a0d1657f501/check-runs?per_page=100",
+    "comments": "https://api.github.com/repos/HMarcusWH/PermanssonLean/issues/77/comments?per_page=100",
+    "synthetic": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/d5f2d3a72bda670859c5da87bb173f9eb96696ee"
+  }
+}

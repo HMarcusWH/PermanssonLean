@@ -1,0 +1,189 @@
+{
+  "format": "Permansson.ConnectorCapture.v1",
+  "acquired_at": "2026-10-17 19:43:28 UTC",
+  "representation": "Connector-normalized GraphQL review representation; not raw HTTP transport",
+  "payload": {
+    "review_threads": [
+      {
+        "id": "PRRT_kwDOUkBtPs6tjLMU",
+        "is_resolved": true,
+        "is_outdated": false,
+        "path": "docs/hardening/contract/01_Proposal_Audit.md",
+        "line": 18,
+        "diff_side": "RIGHT",
+        "start_line": 18,
+        "start_diff_side": null,
+        "original_line": 18,
+        "original_start_line": null,
+        "resolved_by": {
+          "login": "HMarcusWH",
+          "name": "HMarcusWH",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+          "id": null
+        },
+        "comments": [
+          {
+            "id": "PRRC_kwDOUkBtPs8AAAABAIldLQ",
+            "database_id": 4303969581,
+            "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Add the cited evidence register**\n\nWhen a reviewer or implementing agent tries to validate the audit's `[R#]`, `[G#]`, or `[E#]` claims, `00_README.md` is absent from both this commit and the rest of the repository; the separately referenced `evidence/source_probes.json` is also absent. Consequently, claims about live repository settings, exporter probes, and bundle experiments cannot be traced to their stated sources. Include the register and probe record (or remove the unsupported citation claims) so this audit is independently reviewable.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+            "created_at": "2026-10-17T18:38:48Z",
+            "updated_at": "2026-10-17T18:38:48Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          }
+        ]
+      },
+      {
+        "id": "PRRT_kwDOUkBtPs6tjY2n",
+        "is_resolved": true,
+        "is_outdated": false,
+        "path": "docs/hardening/contract/04_Rollout_Runbook.md",
+        "line": 154,
+        "diff_side": "RIGHT",
+        "start_line": 154,
+        "start_diff_side": null,
+        "original_line": 144,
+        "original_start_line": null,
+        "resolved_by": {
+          "login": "HMarcusWH",
+          "name": "HMarcusWH",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+          "id": null
+        },
+        "comments": [
+          {
+            "id": "PRRC_kwDOUkBtPs8AAAABAIq9OA",
+            "database_id": 4304059704,
+            "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Include the workflow template referenced by the runbook**\n\nWhen an implementing agent reaches K4, this instruction cannot be followed: a repo-wide search finds this as the only reference to `templates/research-integrity.yml`, and neither that file nor a `templates/` directory exists. The normative file layout instead lists only the eventual `.github/workflows/research-integrity.yml`, while the specification also claims that the missing template supplies reviewed action pins. Include the template or update the contract to identify an existing source for the workflow and its pins.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+            "created_at": "2026-10-17T19:03:12Z",
+            "updated_at": "2026-10-17T19:03:12Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          }
+        ]
+      },
+      {
+        "id": "PRRT_kwDOUkBtPs6tjY2r",
+        "is_resolved": true,
+        "is_outdated": true,
+        "path": "docs/hardening/contract/03_Acceptance_Test_Plan.md",
+        "line": null,
+        "diff_side": "RIGHT",
+        "start_line": null,
+        "start_diff_side": null,
+        "original_line": 55,
+        "original_start_line": null,
+        "resolved_by": {
+          "login": "HMarcusWH",
+          "name": "HMarcusWH",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+          "id": null
+        },
+        "comments": [
+          {
+            "id": "PRRC_kwDOUkBtPs8AAAABAIq9Pw",
+            "database_id": 4304059711,
+            "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Add a deletion case for the maintenance-only Lean scope**\n\nExtend this case to cover deletions as well as additions and edits. The normative specification requires both complete Lean trees and both root files to remain identical to A, but 272 `PermanssonResearch` paths (including `PermanssonResearch.lean`) are outside the 340-file protected inventory, so PRES-05 does not exercise their removal. An implementation mapped to the stated acceptance cases could therefore pass all required deletion tests while failing to enforce the one-time whole-tree invariant.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+            "created_at": "2026-10-17T19:03:12Z",
+            "updated_at": "2026-10-17T19:03:12Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          }
+        ]
+      },
+      {
+        "id": "PRRT_kwDOUkBtPs6tjkqu",
+        "is_resolved": true,
+        "is_outdated": true,
+        "path": "docs/hardening/contract/03_Acceptance_Test_Plan.md",
+        "line": null,
+        "diff_side": "RIGHT",
+        "start_line": null,
+        "start_diff_side": null,
+        "original_line": 57,
+        "original_start_line": null,
+        "resolved_by": {
+          "login": "HMarcusWH",
+          "name": "HMarcusWH",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+          "id": null
+        },
+        "comments": [
+          {
+            "id": "PRRC_kwDOUkBtPs8AAAABAIvzrQ",
+            "database_id": 4304139181,
+            "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Bind the maintenance-only Lean check to the PR candidate**\n\nAlthough the new wording fixes the earlier deletion-coverage gap, this remains classified as a unit case even though it is the only control for unprotected Lean paths. For a maintenance PR that adds or deletes such a path, the template only invokes the permanent `preservation` CLI—which explicitly allows unlisted research modules—and then runs fixture-oriented suites without an explicit candidate-bound maintenance-scope command; F2 and F3 do not inspect the complete Lean trees either. Thus all three required jobs can pass without producing the promised comparison of the actual PR candidate to A. Make this a candidate-bound one-time acceptance step/report rather than only a unit adversary, while keeping it out of the permanent policy so future research additions remain allowed.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+            "created_at": "2026-10-17T19:23:14Z",
+            "updated_at": "2026-10-17T19:23:14Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          }
+        ]
+      },
+      {
+        "id": "PRRT_kwDOUkBtPs6tjkqx",
+        "is_resolved": true,
+        "is_outdated": false,
+        "path": "docs/hardening/contract/templates/research-integrity.yml",
+        "line": 91,
+        "diff_side": "RIGHT",
+        "start_line": 91,
+        "start_diff_side": null,
+        "original_line": 91,
+        "original_start_line": null,
+        "resolved_by": {
+          "login": "HMarcusWH",
+          "name": "HMarcusWH",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+          "id": null
+        },
+        "comments": [
+          {
+            "id": "PRRC_kwDOUkBtPs8AAAABAIvzsQ",
+            "database_id": 4304139185,
+            "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Align the archive command with its normative CLI contract**\n\nWhen the archive tool is implemented from the normative command contract in `02_Implementation_Spec.md`, this job passes two unsupported options: the specified `offline_smoke` interface only accepts `--supplement`, `--scratch`, and `--report`, while `--repo` and `--candidate` are added here. The resulting required `archive-reproducibility` job exits with the documented usage error before attempting restoration. Either add these arguments and their semantics to the normative CLI contract or remove them from the template.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+            "created_at": "2026-10-17T19:23:14Z",
+            "updated_at": "2026-10-17T19:23:14Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          }
+        ]
+      }
+    ]
+  }
+}

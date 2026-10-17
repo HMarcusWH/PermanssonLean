@@ -1,0 +1,166 @@
+{
+  "fetched_at": "2026-10-17T21:01:06.567Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77/reviews?per_page=100",
+  "response": [
+    {
+      "id": 5559409298,
+      "node_id": "PRR_kwDOUkBtPs8AAAABS13akg",
+      "user": {
+        "login": "chatgpt-codex-connector[bot]",
+        "id": 199175422,
+        "node_id": "BOT_kgDOC98s_g",
+        "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+        "html_url": "https://github.com/apps/chatgpt-codex-connector",
+        "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "<!-- codex-review-receipt:v1 -->\n\n\n### 💡 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `e314ccc2b3`\n    \n\n<details> <summary>ℹ️ About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with 👍.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/77#pullrequestreview-5559409298",
+      "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/HMarcusWH/PermanssonLean/pull/77#pullrequestreview-5559409298"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77"
+        }
+      },
+      "submitted_at": "2026-10-17T18:39:24Z",
+      "commit_id": "e314ccc2b3587065425a0357874ad5580cce841d"
+    },
+    {
+      "id": 5559796944,
+      "node_id": "PRR_kwDOUkBtPs8AAAABS2PE0A",
+      "user": {
+        "login": "chatgpt-codex-connector[bot]",
+        "id": 199175422,
+        "node_id": "BOT_kgDOC98s_g",
+        "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+        "html_url": "https://github.com/apps/chatgpt-codex-connector",
+        "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "<!-- codex-review-receipt:v1 -->\n\n\n### 💡 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `abccf9d7ce`\n    \n\n<details> <summary>ℹ️ About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with 👍.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/77#pullrequestreview-5559796944",
+      "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/HMarcusWH/PermanssonLean/pull/77#pullrequestreview-5559796944"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77"
+        }
+      },
+      "submitted_at": "2026-10-17T20:00:57Z",
+      "commit_id": "abccf9d7ce389fffe5637ea0ff0acd5718d9058f"
+    },
+    {
+      "id": 5559918613,
+      "node_id": "PRR_kwDOUkBtPs8AAAABS2WgFQ",
+      "user": {
+        "login": "chatgpt-codex-connector[bot]",
+        "id": 199175422,
+        "node_id": "BOT_kgDOC98s_g",
+        "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+        "html_url": "https://github.com/apps/chatgpt-codex-connector",
+        "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "<!-- codex-review-receipt:v1 -->\n\n\n### 💡 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `171c954c47`\n    \n\n<details> <summary>ℹ️ About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with 👍.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/77#pullrequestreview-5559918613",
+      "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/HMarcusWH/PermanssonLean/pull/77#pullrequestreview-5559918613"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77"
+        }
+      },
+      "submitted_at": "2026-10-17T20:26:25Z",
+      "commit_id": "171c954c4733d2c8eaaac3ad90e60e4d1d4637c3"
+    },
+    {
+      "id": 5559931567,
+      "node_id": "PRR_kwDOUkBtPs8AAAABS2XSrw",
+      "user": {
+        "login": "HMarcusWH",
+        "id": 173802548,
+        "node_id": "U_kgDOClwENA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/HMarcusWH",
+        "html_url": "https://github.com/HMarcusWH",
+        "followers_url": "https://api.github.com/users/HMarcusWH/followers",
+        "following_url": "https://api.github.com/users/HMarcusWH/following{/other_user}",
+        "gists_url": "https://api.github.com/users/HMarcusWH/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/HMarcusWH/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/HMarcusWH/subscriptions",
+        "organizations_url": "https://api.github.com/users/HMarcusWH/orgs",
+        "repos_url": "https://api.github.com/users/HMarcusWH/repos",
+        "events_url": "https://api.github.com/users/HMarcusWH/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/HMarcusWH/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/77#pullrequestreview-5559931567",
+      "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77",
+      "author_association": "OWNER",
+      "_links": {
+        "html": {
+          "href": "https://github.com/HMarcusWH/PermanssonLean/pull/77#pullrequestreview-5559931567"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/77"
+        }
+      },
+      "submitted_at": "2026-10-17T20:30:02Z",
+      "commit_id": "171c954c4733d2c8eaaac3ad90e60e4d1d4637c3"
+    }
+  ]
+}

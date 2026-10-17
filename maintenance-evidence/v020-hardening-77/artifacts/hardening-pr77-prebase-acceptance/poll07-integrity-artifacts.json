@@ -1,0 +1,50 @@
+{
+  "fetched_at": "2026-10-17T19:32:59.759Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39061789373/artifacts?per_page=100&page=1",
+  "response": {
+    "total_count": 2,
+    "artifacts": [
+      {
+        "id": 12112460922,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExMjQ2MDkyMg==",
+        "name": "hardening-export-reports",
+        "size_in_bytes": 2560,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12112460922",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12112460922/zip",
+        "expired": false,
+        "digest": "sha256:8626f293d815b905f0fce6ddb8d2239cc16b74a88808ce9aea7fe61960c60b30",
+        "created_at": "2026-10-17T19:31:06Z",
+        "updated_at": "2026-10-17T19:31:06Z",
+        "expires_at": "2026-11-16T19:31:05Z",
+        "workflow_run": {
+          "id": 39061789373,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9"
+        }
+      },
+      {
+        "id": 12111494558,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExMTQ5NDU1OA==",
+        "name": "hardening-archive-reports",
+        "size_in_bytes": 5734,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12111494558",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12111494558/zip",
+        "expired": false,
+        "digest": "sha256:85b5c375881b5285b44e37572454a2f24d73ad782cdc1447c8d328f15432b9be",
+        "created_at": "2026-10-17T19:28:08Z",
+        "updated_at": "2026-10-17T19:28:08Z",
+        "expires_at": "2026-11-16T19:28:07Z",
+        "workflow_run": {
+          "id": 39061789373,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9"
+        }
+      }
+    ]
+  }
+}
+

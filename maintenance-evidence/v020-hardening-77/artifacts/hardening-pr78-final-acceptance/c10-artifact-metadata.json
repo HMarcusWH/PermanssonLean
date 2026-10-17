@@ -1,0 +1,26 @@
+{
+  "format": "Permansson.ConnectorCapture.v1",
+  "acquired_at": "2026-10-17 19:53:19 UTC",
+  "representation": "GitHub run/artifacts API JSON exposed through connector; parsed/reserialized, not raw HTTP transport",
+  "source_endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39063559009/artifacts",
+  "payload": {
+    "id": 12113010574,
+    "node_id": "MDg6QXJ0aWZhY3QxMjExMzAxMDU3NA==",
+    "name": "c10-release-evidence",
+    "size_in_bytes": 9376,
+    "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113010574",
+    "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113010574/zip",
+    "expired": false,
+    "digest": "sha256:3722dd43bc42277c6e3b100c7e37348126b6cb2a7f592d26275a41b707db34ff",
+    "created_at": "2026-10-17T19:51:39Z",
+    "updated_at": "2026-10-17T19:51:39Z",
+    "expires_at": "2026-11-16T19:51:38Z",
+    "workflow_run": {
+      "id": 39063559009,
+      "repository_id": 1379953982,
+      "head_repository_id": 1379953982,
+      "head_branch": "maintenance/v020-hardening-contract",
+      "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5"
+    }
+  }
+}

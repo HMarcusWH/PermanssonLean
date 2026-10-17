@@ -1,0 +1,40 @@
+{
+  "carry_forward": {
+    "current_test_sha256": "7db284db550fd972fd926fef09d2dbe8a0628c87afce23ef1cc34c5953d6078e",
+    "delta": "exactly_one_terminal_LF_removed",
+    "fresh_test_rerun": false,
+    "independent_byte_proof": "SHA256(current_bytes + LF) equals independently executed original SHA256"
+  },
+  "format": "Permansson.IndependentLegacySourceBindingReview.v1",
+  "independent_execution": {
+    "elapsed_seconds": 37.343,
+    "errors": 0,
+    "failures": 0,
+    "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_required_workflow_rejects_dispatch",
+    "methods_run": 1,
+    "skips": 0,
+    "subtests": "executed by unittest subTest; not separately counted in retained author-independent output"
+  },
+  "limits": [
+    "This is an agent code review, not a GitHub APPROVED review",
+    "The full production default-loader suite has a separate clean T execution record",
+    "Fresh11 artifact bytes, exact final H/B/S CI and eventual main acceptance are separate",
+    "No mathematical, rollout or publication claim"
+  ],
+  "recorded_at": "2026-10-17T20:42:49.267776+00:00",
+  "reviewed_properties": [
+    "Required legacy profiles remove dispatch and bind source directly before proof/test/dependency work",
+    "Immutable action pins, full credential-free history and read-only workflow permissions",
+    "All19 canonical profiles must match their complete reviewed filename/payload registry",
+    "Canonical HEAD tree/blob loader ignores poisoned or untracked checkout files",
+    "Committed CRLF, mode, symlink and additional workflow mutations reject",
+    "Required source-context CLI rejects diagnostic dispatch instead of creating genuine PR acceptance"
+  ],
+  "reviewed_source_sha256": {
+    "verification/integrity/tests/test_workflow.py": "b2e7e2584ac5ae12bda50bbf3994b2b2174de835b8c7ab01fe51a2bddc227d47",
+    "verification/integrity/workflow_contract.py": "e5c824e26d59a9dd63361b34b6fd78a29b08510dcb0d19a0954485052f29f769"
+  },
+  "scope": "frozen_source_code_review_and_private_real_Git_fixture",
+  "source_findings": [],
+  "status": "PASS"
+}

@@ -1,0 +1,91 @@
+{
+  "fetched_at": "2026-10-17T19:26:25.362Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39061789373/jobs?per_page=100",
+  "response": {
+    "total_count": 3,
+    "jobs": [
+      {
+        "id": 117481078810,
+        "run_id": 39061789373,
+        "workflow_name": "Research integrity",
+        "head_branch": "maintenance/v020-integrity-and-archive",
+        "run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39061789373",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUkBtPs8AAAAbWmsAGg",
+        "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117481078810",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39061789373/job/117481078810",
+        "status": "queued",
+        "conclusion": null,
+        "created_at": "2026-10-17T19:17:07Z",
+        "started_at": "2026-10-17T19:17:07Z",
+        "completed_at": null,
+        "name": "release-export-integrity",
+        "steps": [],
+        "check_run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/117481078810",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 0,
+        "runner_name": "",
+        "runner_group_id": 0,
+        "runner_group_name": ""
+      },
+      {
+        "id": 117481078923,
+        "run_id": 39061789373,
+        "workflow_name": "Research integrity",
+        "head_branch": "maintenance/v020-integrity-and-archive",
+        "run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39061789373",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUkBtPs8AAAAbWmsAiw",
+        "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117481078923",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39061789373/job/117481078923",
+        "status": "queued",
+        "conclusion": null,
+        "created_at": "2026-10-17T19:17:07Z",
+        "started_at": "2026-10-17T19:17:07Z",
+        "completed_at": null,
+        "name": "frozen-source-preservation",
+        "steps": [],
+        "check_run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/117481078923",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 0,
+        "runner_name": "",
+        "runner_group_id": 0,
+        "runner_group_name": ""
+      },
+      {
+        "id": 117481078942,
+        "run_id": 39061789373,
+        "workflow_name": "Research integrity",
+        "head_branch": "maintenance/v020-integrity-and-archive",
+        "run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39061789373",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUkBtPs8AAAAbWmsAng",
+        "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117481078942",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39061789373/job/117481078942",
+        "status": "queued",
+        "conclusion": null,
+        "created_at": "2026-10-17T19:17:07Z",
+        "started_at": "2026-10-17T19:17:07Z",
+        "completed_at": null,
+        "name": "archive-reproducibility",
+        "steps": [],
+        "check_run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/117481078942",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 0,
+        "runner_name": "",
+        "runner_group_id": 0,
+        "runner_group_name": ""
+      }
+    ]
+  }
+}
+

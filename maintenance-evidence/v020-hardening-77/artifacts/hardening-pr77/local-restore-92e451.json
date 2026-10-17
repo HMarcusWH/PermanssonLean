@@ -1,0 +1,47 @@
+{
+  "artifact_replay": "NOT_PERFORMED",
+  "bundle_bytes_changed": true,
+  "bundle_sha256": "f49203e5a7f2189565c24509bd56652318ab383dfcda36ee756b78332b1e5792",
+  "bundle_size": 6639932,
+  "completed_stages": [
+    "delivered_hashes",
+    "canonical_T_C_tooling",
+    "empty_database_import",
+    "strict_full_fsck",
+    "exact_all_objects_and_closure",
+    "exact_named_refs",
+    "accepted_registry",
+    "ordered_parents_trees_and_ancestry"
+  ],
+  "elapsed_seconds": 33.219,
+  "executed_at": "2026-10-17T20:45:29.392769+00:00",
+  "format": "Permansson.IndependentRepackedBundleRestore.v1",
+  "fresh_lean_execution": "NOT_PERFORMED",
+  "head": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+  "input_commits": 26,
+  "manifest_sha256": "8fc56980228519e96e927a212b3c49afbebd5007ef8f1fa3086b17241a3da18d",
+  "network_isolation": "NOT_ENFORCED",
+  "objects": 8202,
+  "previous_bundle_sha256": "56c401a24130fd37231d667fdbad3f5578587bb6a1c6d3c406698bd5a966537f",
+  "publisher_authentication": false,
+  "refs": 36,
+  "semantic_inputs": "UNCHANGED",
+  "status": "PASS",
+  "tooling_binding": {
+    "binding": "canonical_T_C_and_executing_code",
+    "files": 35,
+    "guide_blob": "39fda5fa453fc66985c1cf9f227c81eaf4c1ce6f",
+    "guide_path": "archival/v0.2.0/README.md",
+    "guide_sha256": "d6e53c10c1123444d86a52b9fb478ac09b07364aee6333e5bd76fcf51de0e1e2",
+    "publisher_authentication": "not_created_by_content_hashes",
+    "reproduction_instructions_match": true,
+    "source_candidate": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "source_commit": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388"
+  },
+  "tooling_source": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+  "unchanged_semantic_Git_blobs": {
+    "objects.jsonl": "b82f1cb787f5c6dadc96ba4e26af02d62336c6d0",
+    "refs.json": "d16f74db6e32a7d0314af44ab5f77efd855ce87c"
+  },
+  "uncompressed_bytes": 27391135
+}

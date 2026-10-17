@@ -1,0 +1,131 @@
+{
+  "artifacts": [
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114103991/zip",
+        "created_at": "2026-10-17T20:59:43Z",
+        "digest": "sha256:7e4a2bcaa9b87a1eb0638e4c843cee9f1ff28f49a7951a97c464fee7555127a7",
+        "expired": false,
+        "expires_at": "2026-11-16T20:59:43Z",
+        "id": 12114103991,
+        "name": "legacy-research-source-context",
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNDEwMzk5MQ==",
+        "size_in_bytes": 541,
+        "updated_at": "2026-10-17T20:59:43Z",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114103991",
+        "workflow_run": {
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_repository_id": 1379953982,
+          "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+          "id": 39068230445,
+          "repository_id": 1379953982
+        }
+      },
+      "fetched_at": "2026-10-17T21:01:06.413Z",
+      "metadata_file": "final-research-artifacts.json",
+      "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39068230445/artifacts?per_page=100"
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113588557/zip",
+        "created_at": "2026-10-17T20:51:03Z",
+        "digest": "sha256:a88af36f40de621512c53798324ddeed70639d94af6933040433341f40294640",
+        "expired": false,
+        "expires_at": "2026-11-16T20:51:02Z",
+        "id": 12113588557,
+        "name": "legacy-build-source-context",
+        "node_id": "MDg6QXJ0aWZhY3QxMjExMzU4ODU1Nw==",
+        "size_in_bytes": 541,
+        "updated_at": "2026-10-17T20:51:03Z",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113588557",
+        "workflow_run": {
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_repository_id": 1379953982,
+          "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+          "id": 39068230472,
+          "repository_id": 1379953982
+        }
+      },
+      "fetched_at": "2026-10-17T20:56:14.601Z",
+      "metadata_file": "final-lean-artifacts.json",
+      "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39068230472/artifacts?per_page=100"
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114008154/zip",
+        "created_at": "2026-10-17T20:48:09Z",
+        "digest": "sha256:fa34601798e08d823a123f92e574054bb1a2825b53066635916b0fb728af32a6",
+        "expired": false,
+        "expires_at": "2026-11-16T20:48:08Z",
+        "id": 12114008154,
+        "name": "legacy-executable-source-context",
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNDAwODE1NA==",
+        "size_in_bytes": 541,
+        "updated_at": "2026-10-17T20:48:09Z",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114008154",
+        "workflow_run": {
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_repository_id": 1379953982,
+          "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+          "id": 39068230440,
+          "repository_id": 1379953982
+        }
+      },
+      "fetched_at": "2026-10-17T20:56:14.602Z",
+      "metadata_file": "final-verification-artifacts.json",
+      "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39068230440/artifacts?per_page=100"
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114162119/zip",
+        "created_at": "2026-10-17T20:48:18Z",
+        "digest": "sha256:5c2d2d5e6db5bf830df5aa3ed5274385e7fb3a31726c3fc325e94d40cb99ed9a",
+        "expired": false,
+        "expires_at": "2026-11-16T20:48:17Z",
+        "id": 12114162119,
+        "name": "legacy-application-source-context-windows-latest",
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNDE2MjExOQ==",
+        "size_in_bytes": 543,
+        "updated_at": "2026-10-17T20:48:18Z",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114162119",
+        "workflow_run": {
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_repository_id": 1379953982,
+          "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+          "id": 39068230480,
+          "repository_id": 1379953982
+        }
+      },
+      "fetched_at": "2026-10-17T20:56:14.604Z",
+      "metadata_file": "final-application-artifacts.json",
+      "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39068230480/artifacts?per_page=100"
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113972159/zip",
+        "created_at": "2026-10-17T20:48:06Z",
+        "digest": "sha256:dad502237dedf56fa96899c244ee2c627d0244149f6d58c745b05685b4082076",
+        "expired": false,
+        "expires_at": "2026-11-16T20:48:05Z",
+        "id": 12113972159,
+        "name": "legacy-application-source-context-ubuntu-latest",
+        "node_id": "MDg6QXJ0aWZhY3QxMjExMzk3MjE1OQ==",
+        "size_in_bytes": 541,
+        "updated_at": "2026-10-17T20:48:06Z",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113972159",
+        "workflow_run": {
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_repository_id": 1379953982,
+          "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+          "id": 39068230480,
+          "repository_id": 1379953982
+        }
+      },
+      "fetched_at": "2026-10-17T20:56:14.604Z",
+      "metadata_file": "final-application-artifacts.json",
+      "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39068230480/artifacts?per_page=100"
+    }
+  ],
+  "format": "Permansson.LegacyContextArtifactAcquisition.v1",
+  "source_head": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501"
+}

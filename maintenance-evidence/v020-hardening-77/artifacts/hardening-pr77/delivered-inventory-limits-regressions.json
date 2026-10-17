@@ -1,0 +1,43 @@
+{
+  "format": "Permansson.Archive.DeliveredBoundsRegression.v1",
+  "status": "PASS",
+  "source_path": "verification/archive/manifest.py",
+  "source_sha256": "f77d991d784b000b6cb5114dd5cdcbd110d719449ccdca161908dc14d68bfd00",
+  "test_methods": 1,
+  "subtests": [
+    {
+      "case": "test_arch_27_bounded_archive_metadata (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_27_bounded_archive_metadata) (attack='many_unknown_empty_files')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_arch_27_bounded_archive_metadata (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_27_bounded_archive_metadata) (attack='aggregate_small_files')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_arch_27_bounded_archive_metadata (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_27_bounded_archive_metadata) (attack='many_empty_directories')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_arch_27_bounded_archive_metadata (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_27_bounded_archive_metadata) (attack='directory_depth')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_arch_27_bounded_archive_metadata (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_27_bounded_archive_metadata) (attack='declared_count_before_scan')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_arch_27_bounded_archive_metadata (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_27_bounded_archive_metadata) (attack='declared_aggregate_before_scan')",
+      "status": "PASS"
+    },
+    {
+      "case": "test_arch_27_bounded_archive_metadata (verification.archive.tests.test_archive.ArchiveInputTests.test_arch_27_bounded_archive_metadata) (attack='Windows_reparse_directory_metadata')",
+      "status": "PASS"
+    }
+  ],
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "elapsed_seconds": 1.64,
+  "claims": "Author targeted unit regression; private tiny fixture ceilings have no production override. Windows reparse detection is a metadata mock, not a real junction execution. No fresh CI or namespace replay claimed.",
+  "provenance_note": "Restored by rerunning after an independent report temporarily reused this filename; the independent report is retained separately."
+}

@@ -1,0 +1,68 @@
+{
+  "boundary": "Separate post-integration addendum; original premerge capture-files.json remains unchanged. This manifest excludes itself and does not create publisher authentication.",
+  "created_at": "2026-10-17T20:09:11.754872+00:00",
+  "entries": [
+    {
+      "path": "merge-api-verification.json",
+      "sha256": "ae887fc3dbf41604ffd1c34ac3211161065d280e2c4f97d77e53e30e4bddba39",
+      "size": 7652
+    },
+    {
+      "path": "merge-observation.json",
+      "sha256": "199996dbb0dc91a1f44c219c5e2633efff1e24b0fc834571186b9074e831c2fb",
+      "size": 545
+    },
+    {
+      "path": "postmerge-main-push/capture-summary.json",
+      "sha256": "114a0774ec72423a4e3fa432600c01c69b6247111180e1fba0d70f1eaa52d1c0",
+      "size": 3474
+    },
+    {
+      "path": "postmerge-main-push/check-runs-final.json",
+      "sha256": "e90ae145687b07e51b2ad4a1007830ce5a118b473c733d234945ac65e008a99e",
+      "size": 22914
+    },
+    {
+      "path": "postmerge-main-push/jobs-39064389002.json",
+      "sha256": "70c45f387da476d6dea2b148fe4cf0499d92c0fa5e05a5d7c316f90c640ea409",
+      "size": 3205
+    },
+    {
+      "path": "postmerge-main-push/jobs-39064389020.json",
+      "sha256": "a933925e1c6381cb870ab054571fcc937e878aa8fc4fb522d64cdde36961cbb8",
+      "size": 1584
+    },
+    {
+      "path": "postmerge-main-push/jobs-39064389021.json",
+      "sha256": "a6fd01396ff235ab4beb3a527728c80b38794d65a849ce2e84c8847c020ac9a7",
+      "size": 2166
+    },
+    {
+      "path": "postmerge-main-push/jobs-39064389023.json",
+      "sha256": "b892aab5bab52a2e9e510b107a1d10f41d395cc13aafc3641a753ee73ed908fc",
+      "size": 4184
+    },
+    {
+      "path": "postmerge-main-push/runs-final.json",
+      "sha256": "231496184fe01575931e1e67665eacb04661ee1badce86b6dab1b79c9996c976",
+      "size": 62284
+    },
+    {
+      "path": "postmerge-main-push/source.json",
+      "sha256": "225ca5ff2e332748b0c8f03dda0026c94e6942f9c027156d404c39d3c33c9f8e",
+      "size": 712
+    }
+  ],
+  "format": "Permansson.PR78.PostmergeAddendumFiles.v1",
+  "source": {
+    "accepted_synthetic_sha": "4403ec593fe3178495b6633c9221ccd0e49bc166",
+    "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "branch": "main",
+    "checked_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "checked_tree": "b00dcc3910ff9eb513a45f00dd83731597f0fe6e",
+    "event": "push",
+    "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+    "merge_verification": "../merge-api-verification.json"
+  },
+  "status": "PASS"
+}

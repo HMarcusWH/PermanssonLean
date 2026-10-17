@@ -1,0 +1,56 @@
+{
+  "format": "Permansson.LocalHeadIndependentReview.v1",
+  "probes": [
+    {
+      "control": "actual_current_S",
+      "status": "PASS"
+    },
+    {
+      "candidate": "0f5e514276be13b2a271e9cfe668a50e0256a4e2",
+      "expected": "E_CONTEXT",
+      "observed": "E_CONTEXT"
+    },
+    {
+      "candidate": "b8095ec444ce86db843390f0f5e18fcf22c6c902",
+      "expected": "E_CONTEXT",
+      "observed": "E_CONTEXT"
+    },
+    {
+      "candidate": "99ef7490a26a31196037116b4c7a178b833688e7",
+      "expected": "E_CONTEXT",
+      "observed": "E_CONTEXT"
+    },
+    {
+      "control": "actual_current_child",
+      "status": "PASS"
+    },
+    {
+      "candidate": "99ef7490a26a31196037116b4c7a178b833688e7",
+      "expected": "E_CONTEXT",
+      "observed": "E_CONTEXT"
+    }
+  ],
+  "reviewed_at": "2026-10-17T20:08:33.693334+00:00",
+  "reviewed_source": {
+    "docs/hardening/contract/02_Implementation_Spec.md": {
+      "canonical_git_blob": "106ce83055902f4873f9009848b0758f798a9421",
+      "working_bytes_sha256": "900bbd1a538240826cc87f26814bc600d2da44414dc4f573daae77bf90a6b259"
+    },
+    "verification/integrity/ci_context.py": {
+      "canonical_git_blob": "6cc7469a5ec3a3ccf74e0eb10f7ca3c02d1deb52",
+      "working_bytes_sha256": "80c13ff7b4faf0f822b896cb0cbcb4c374f1c60653e6cda7c53bc4ea2b9a3d25"
+    },
+    "verification/integrity/tests/test_context.py": {
+      "canonical_git_blob": "860effa54b5b83c03d2202a8d71beb841dae8af4",
+      "working_bytes_sha256": "3e0851a4d4b820c74b5c484a9fba3858dfdf8cf6e3a12dd61e5b525f41bc9ce8"
+    },
+    "verification/integrity/tests/test_preservation.py": {
+      "canonical_git_blob": "04fed100e112c9034ea4e0986b28fea9d159731e",
+      "working_bytes_sha256": "c9ff00ce57ccfb7576de614ba512ea0a0c62a223979bd304c1e0538f306aa363"
+    }
+  },
+  "reviewer": "/root/hardening_f1",
+  "scope": "Disposable independent fixture probes and read-only review; no source or PR mutations; no broad-suite rerun.",
+  "source_review": "Guard now compares candidate with actual rev-parse HEAD before both local and CI branches; local reports remain diagnostic and cannot manufacture an event. Public maintenance CLI fixture explicitly advances its actual HEAD to each candidate before expected scope verdict; permanent object comparators remain unchanged. Active specification distinguishes canonical committed identity from K4 worktree cleanliness.",
+  "status": "PASS"
+}

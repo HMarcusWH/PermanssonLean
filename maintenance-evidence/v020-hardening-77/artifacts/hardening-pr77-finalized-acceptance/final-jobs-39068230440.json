@@ -1,0 +1,133 @@
+{
+  "fetched_at": "2026-10-17T20:56:14.720Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39068230440/jobs?per_page=100",
+  "response": {
+    "total_count": 1,
+    "jobs": [
+      {
+        "id": 117500231571,
+        "run_id": 39068230440,
+        "workflow_name": "Executable verification",
+        "head_branch": "maintenance/v020-integrity-and-archive",
+        "run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39068230440",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUkBtPs8AAAAbW48_kw",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117500231571",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39068230440/job/117500231571",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-17T20:47:51Z",
+        "started_at": "2026-10-17T20:47:53Z",
+        "completed_at": "2026-10-17T20:48:12Z",
+        "name": "executable-verification",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-17T20:47:54Z",
+            "completed_at": "2026-10-17T20:47:56Z"
+          },
+          {
+            "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-17T20:47:56Z",
+            "completed_at": "2026-10-17T20:47:58Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-17T20:47:58Z",
+            "completed_at": "2026-10-17T20:48:02Z"
+          },
+          {
+            "name": "Bind genuine required-check source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-17T20:48:02Z",
+            "completed_at": "2026-10-17T20:48:02Z"
+          },
+          {
+            "name": "Install Python dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-17T20:48:02Z",
+            "completed_at": "2026-10-17T20:48:06Z"
+          },
+          {
+            "name": "Run destructive/regression suite (Runs 17-30)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-17T20:48:06Z",
+            "completed_at": "2026-10-17T20:48:08Z"
+          },
+          {
+            "name": "Repository synchronization gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-17T20:48:08Z",
+            "completed_at": "2026-10-17T20:48:08Z"
+          },
+          {
+            "name": "Syntax-check preserved release gates",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-17T20:48:08Z",
+            "completed_at": "2026-10-17T20:48:08Z"
+          },
+          {
+            "name": "Preserve required-check source context",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-17T20:48:08Z",
+            "completed_at": "2026-10-17T20:48:09Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-17T20:48:09Z",
+            "completed_at": "2026-10-17T20:48:09Z"
+          },
+          {
+            "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-10-17T20:48:09Z",
+            "completed_at": "2026-10-17T20:48:10Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-10-17T20:48:10Z",
+            "completed_at": "2026-10-17T20:48:10Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/117500231571",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000109457,
+        "runner_name": "GitHub Actions 1000109457",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  }
+}

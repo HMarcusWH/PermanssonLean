@@ -1,0 +1,44 @@
+{
+  "fetched_at": "2026-10-17T20:21:39.196Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/7743ecbcfec71711f6be9a035934ac01a767c40d",
+  "response": {
+    "sha": "7743ecbcfec71711f6be9a035934ac01a767c40d",
+    "node_id": "C_kwDOUkBtPtoAKDc3NDNlY2JjZmVjNzE3MTFmNmJlOWEwMzU5MzRhYzAxYTc2N2M0MGQ",
+    "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/7743ecbcfec71711f6be9a035934ac01a767c40d",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/commit/7743ecbcfec71711f6be9a035934ac01a767c40d",
+    "author": {
+      "name": "Marcus Hermansson",
+      "email": "marcus@hmwh.se",
+      "date": "2026-10-17T20:20:32Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-10-17T20:20:32Z"
+    },
+    "tree": {
+      "sha": "90f4d4eeb50a1b801302620571534e1149bda265",
+      "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/trees/90f4d4eeb50a1b801302620571534e1149bda265"
+    },
+    "message": "Merge 171c954c4733d2c8eaaac3ad90e60e4d1d4637c3 into 37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "parents": [
+      {
+        "sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/commit/37c0cb8f2fbe7934639127e5f8b6d64a01e6950f"
+      },
+      {
+        "sha": "171c954c4733d2c8eaaac3ad90e60e4d1d4637c3",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/git/commits/171c954c4733d2c8eaaac3ad90e60e4d1d4637c3",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/commit/171c954c4733d2c8eaaac3ad90e60e4d1d4637c3"
+      }
+    ],
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJq09iQCRC1aQ7uu5UhlAAAPgIQAE8scdvjzTuG43wsDcH94Qcw\nGkp/qTF1j5VzqWxNLwQAm2szmsn/lHrMg8HtSYB0bRp8GIEXpYjtcJZsSldfvf5v\nHQ5WNLZ2cDocv9St2V8qTK3TxTl6Ap0bF/l4V4OY+QvS7V0KSE4PRYpFGiBN9BN3\nMPDFZrDmRtzpZxRL9A+xGJWxZs0m2ZeNMTyV8oGF2eJU/rAFG8nMm5v976c70BcJ\nXc/c4KRBn7VN/B3ZnhcUnH/R6uhJCl9+ZCuB/h1pmxkkatiCjFiAgqgwJP3tSbpk\nykzkokKgv1YuIwB1McxUx0MoP067OagNYnEXO0bLzjrnOTj+39VUDYxIPP0BQwk2\nNcvIWc7mIzNaS0stYE0DHUh2Rx7YZB5tvcwikRXmPTg8Ru5+6vD0rurKWt3ujp4o\nf7JNPqUKOwG17oxVbTsRAnWEFojas+yMmN85bKOCgF7Nqd9iGQCYT9BQl5g3e6gP\nEa9T42QUDSIGeACv/RKSWH0AEat6WAw7L0d7s6sk4r+Trd1N55LsmRska+VnsV8k\na0Swlh0uQrht/7XJ+eqx/6C2ddSLlWeYpJ2awH9bdZ/laCWVFNvf0Rc5uQs9r5Eg\npd8KoO/PlNsCB9TJ6XXo5J89mv7zil5ZljPnXUcCNDD1FkA9ysGziSeImgHQfjFH\n8ti1PX2W3PQJXo4Q9gkP\n=WFHa\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree 90f4d4eeb50a1b801302620571534e1149bda265\nparent 37c0cb8f2fbe7934639127e5f8b6d64a01e6950f\nparent 171c954c4733d2c8eaaac3ad90e60e4d1d4637c3\nauthor Marcus Hermansson <marcus@hmwh.se> 1792268432 +0000\ncommitter GitHub <noreply@github.com> 1792268432 +0000\n\nMerge 171c954c4733d2c8eaaac3ad90e60e4d1d4637c3 into 37c0cb8f2fbe7934639127e5f8b6d64a01e6950f\n",
+      "verified_at": "2026-10-17T20:20:32Z"
+    }
+  }
+}

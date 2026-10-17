@@ -1,0 +1,686 @@
+{
+  "accepted_legacy_replay": {
+    "artifact_replay": "PASS",
+    "methods": 29,
+    "source_restore": "PASS",
+    "target": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618"
+  },
+  "archive_tooling": {
+    "binding": "canonical_T_C_and_executing_code",
+    "files": 35,
+    "guide_blob": "39fda5fa453fc66985c1cf9f227c81eaf4c1ce6f",
+    "guide_path": "archival/v0.2.0/README.md",
+    "guide_sha256": "d6e53c10c1123444d86a52b9fb478ac09b07364aee6333e5bd76fcf51de0e1e2",
+    "publisher_authentication": "not_created_by_content_hashes",
+    "reproduction_instructions_match": true,
+    "source_candidate": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "source_commit": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388"
+  },
+  "artifacts": [
+    {
+      "bytes": 2627,
+      "files": [
+        "context.json",
+        "tex-export.json",
+        "tex-tests.json"
+      ],
+      "id": 12114341108,
+      "name": "hardening-export-reports",
+      "run_id": 39068230438,
+      "sha256": "38756328aa9e463ea000d2eb2c743c263f6e0084c2c417db924c44aee9c614d9"
+    },
+    {
+      "bytes": 9515,
+      "files": [
+        "context.json",
+        "preservation-tests.json",
+        "context-tests.json",
+        "preservation.json",
+        "reference-tests.json",
+        "workflow-tests.json"
+      ],
+      "id": 12114023107,
+      "name": "hardening-preservation-reports",
+      "run_id": 39068230438,
+      "sha256": "ab1b3154fb80886a7938bbf3bf8667c7c32a1fb061dc366267c9f1c7db214da1"
+    },
+    {
+      "bytes": 7234,
+      "files": [
+        "context.json",
+        "archive-tests.json",
+        "archive-replay.json"
+      ],
+      "id": 12113598457,
+      "name": "hardening-archive-reports",
+      "run_id": 39068230438,
+      "sha256": "97acd2c644190188ffd0ee042c1847d73922ef23c23faf45130b6077e65577c1"
+    },
+    {
+      "bytes": 4908,
+      "files": [
+        "context.json",
+        "reference-tests.json",
+        "preservation-tests.json",
+        "tex-tests.json"
+      ],
+      "id": 12113573715,
+      "name": "hardening-windows-portability-reports",
+      "run_id": 39068230443,
+      "sha256": "2a45ee056958b45190daeb06d684b79991514c394845ff0518a2e8606dd56ddb"
+    },
+    {
+      "bytes": 1323,
+      "files": [
+        "MANIFEST.txt",
+        "lean_two_state.json",
+        "python_three_state.json"
+      ],
+      "id": 12114178183,
+      "name": "d0-finite-calculation-evidence",
+      "run_id": 39068230445,
+      "sha256": "d1a1d6bf8b30bf10e229393619dc5b44f73c2578baa16bebfa2710ccdaaeb019"
+    },
+    {
+      "bytes": 541,
+      "files": [
+        "required-source.json"
+      ],
+      "id": 12114103991,
+      "name": "legacy-research-source-context",
+      "run_id": 39068230445,
+      "sha256": "7e4a2bcaa9b87a1eb0638e4c843cee9f1ff28f49a7951a97c464fee7555127a7"
+    },
+    {
+      "bytes": 9376,
+      "files": [
+        "C10MixedGolden.lean",
+        "evidence_manifest.json",
+        "C10ReifiedGolden.lean",
+        "input.json",
+        "lean_check.stderr.txt",
+        "mixed_check.stderr.txt",
+        "lean_check.stdout.txt",
+        "mixed_check.stdout.txt",
+        "mixed_initial.json",
+        "mixed_report.json",
+        "normalized_input.json",
+        "receipt.json",
+        "verification_summary.txt"
+      ],
+      "id": 12114034403,
+      "name": "c10-release-evidence",
+      "run_id": 39068230445,
+      "sha256": "e4705d9e899de5f5a0a9183e9cb02e419f9ba3debf15e1eaa558898ad53eafc4"
+    },
+    {
+      "bytes": 541,
+      "files": [
+        "required-source.json"
+      ],
+      "id": 12113588557,
+      "name": "legacy-build-source-context",
+      "run_id": 39068230472,
+      "sha256": "a88af36f40de621512c53798324ddeed70639d94af6933040433341f40294640"
+    },
+    {
+      "bytes": 541,
+      "files": [
+        "required-source.json"
+      ],
+      "id": 12114008154,
+      "name": "legacy-executable-source-context",
+      "run_id": 39068230440,
+      "sha256": "fa34601798e08d823a123f92e574054bb1a2825b53066635916b0fb728af32a6"
+    },
+    {
+      "bytes": 543,
+      "files": [
+        "required-source.json"
+      ],
+      "id": 12114162119,
+      "name": "legacy-application-source-context-windows-latest",
+      "run_id": 39068230480,
+      "sha256": "5c2d2d5e6db5bf830df5aa3ed5274385e7fb3a31726c3fc325e94d40cb99ed9a"
+    },
+    {
+      "bytes": 541,
+      "files": [
+        "required-source.json"
+      ],
+      "id": 12113972159,
+      "name": "legacy-application-source-context-ubuntu-latest",
+      "run_id": 39068230480,
+      "sha256": "dad502237dedf56fa96899c244ee2c627d0244149f6d58c745b05685b4082076"
+    }
+  ],
+  "checks": [
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117500232286,
+      "name": "build",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117500232063,
+      "name": "Application contract (windows-latest)",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117500231869,
+      "name": "Application contract (ubuntu-latest)",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117500231774,
+      "name": "release-export-integrity",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117500231737,
+      "name": "archive-reproducibility",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117500231732,
+      "name": "research",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117500231679,
+      "name": "integrity-portability-windows",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117500231571,
+      "name": "executable-verification",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117500231565,
+      "name": "frozen-source-preservation",
+      "status": "completed"
+    }
+  ],
+  "codex_review": {
+    "code_review": {
+      "commit_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+      "has_any_findings": false,
+      "has_unresolved_findings": false,
+      "status": "completed"
+    },
+    "security_review": {
+      "commit_sha": "e314ccc2b3587065425a0357874ad5580cce841d",
+      "has_any_findings": false,
+      "has_unresolved_findings": false,
+      "status": "completed"
+    }
+  },
+  "current_c10": {
+    "claim_boundary": "Metadata is provenance, not mathematical proof. Generic JSON decoding and external-model identification are unverified; original positive relative PR requires an input-bound Exact GR theorem.",
+    "entries": 13,
+    "format": "Permansson.Hardening.C10CaptureCheck.v1",
+    "fresh_lean_execution": "separate-successful-GitHub-Research-job",
+    "local_check": "captured-structure-and-arithmetic-only",
+    "local_lean_rerun": false,
+    "proof": {
+      "status": "GENERATED_LITERAL_KERNEL_CHECKED",
+      "theorems": [
+        "reifiedReceipt_valid",
+        "reifiedReceipt_conditions",
+        "reifiedGolden_data_contract",
+        "reifiedGolden_numeric_margins",
+        "reifiedGolden_original_margins",
+        "reifiedGolden_selection",
+        "reifiedGolden_original_global_max",
+        "PermanssonResearch.ReverseSolver.C10.six_original_baseline_exactGR"
+      ],
+      "tool": "lake env lean",
+      "transitive_axioms_allowlist": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "source": {
+      "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+      "pr_number": 77,
+      "repository": "HMarcusWH/PermanssonLean",
+      "synthetic_merge_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee"
+    },
+    "specification_source": "canonical-frozen-Git-blob",
+    "status": "PASS",
+    "zip_sha256": "e4705d9e899de5f5a0a9183e9cb02e419f9ba3debf15e1eaa558898ad53eafc4",
+    "zip_size": 9376
+  },
+  "executed_at": "2026-10-17T21:02:09.807773+00:00",
+  "format": "Permansson.Hardening.FinalMergeCandidateArtifactVerification.v1",
+  "isolation": {
+    "capabilities": "all_zero",
+    "child_network_namespace": "net:[4026532268]",
+    "gid": 1001,
+    "network_isolation": "ENFORCED",
+    "no_new_privileges": true,
+    "outward_routes": [],
+    "outward_socket_denied_errno": 101,
+    "parent_network_namespace": "net:[4026531833]",
+    "supplementary_groups": [],
+    "uid": 1001
+  },
+  "legacy_source_contexts": [
+    {
+      "bytes": 541,
+      "guard_step": 4,
+      "job": "build",
+      "job_id": 117500232286,
+      "name": "legacy-build-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "pull_request",
+        "event_sha256": "d3a7eaad9193a9d84ca3736daef38fac0fe3d2e96de3fe1089858a818142a72b",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "pr_number": 77,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39068230472,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39068230472,
+      "sha256": "a88af36f40de621512c53798324ddeed70639d94af6933040433341f40294640",
+      "status": "PASS",
+      "work_step": 6
+    },
+    {
+      "bytes": 541,
+      "guard_step": 4,
+      "job": "research",
+      "job_id": 117500231732,
+      "name": "legacy-research-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "pull_request",
+        "event_sha256": "d3a7eaad9193a9d84ca3736daef38fac0fe3d2e96de3fe1089858a818142a72b",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "pr_number": 77,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39068230445,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39068230445,
+      "sha256": "7e4a2bcaa9b87a1eb0638e4c843cee9f1ff28f49a7951a97c464fee7555127a7",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 541,
+      "guard_step": 4,
+      "job": "executable-verification",
+      "job_id": 117500231571,
+      "name": "legacy-executable-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "pull_request",
+        "event_sha256": "d3a7eaad9193a9d84ca3736daef38fac0fe3d2e96de3fe1089858a818142a72b",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "pr_number": 77,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39068230440,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39068230440,
+      "sha256": "fa34601798e08d823a123f92e574054bb1a2825b53066635916b0fb728af32a6",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 541,
+      "guard_step": 4,
+      "job": "Application contract (ubuntu-latest)",
+      "job_id": 117500231869,
+      "name": "legacy-application-source-context-ubuntu-latest",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "pull_request",
+        "event_sha256": "d3a7eaad9193a9d84ca3736daef38fac0fe3d2e96de3fe1089858a818142a72b",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "pr_number": 77,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39068230480,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39068230480,
+      "sha256": "dad502237dedf56fa96899c244ee2c627d0244149f6d58c745b05685b4082076",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 543,
+      "guard_step": 4,
+      "job": "Application contract (windows-latest)",
+      "job_id": 117500232063,
+      "name": "legacy-application-source-context-windows-latest",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "pull_request",
+        "event_sha256": "26bb5e00a46d1e0d748456098c267840b08d67f3b4b411ede44283b694d1531a",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "pr_number": 77,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39068230480,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39068230480,
+      "sha256": "5c2d2d5e6db5bf830df5aa3ed5274385e7fb3a31726c3fc325e94d40cb99ed9a",
+      "status": "PASS",
+      "work_step": 5
+    }
+  ],
+  "limits": [
+    "This exact merge-candidate tuple does not certify later source changes or eventual main M",
+    "Agent review is not a GitHub APPROVED review",
+    "OPS/reviewer/publication remain deferred",
+    "Captured source metadata and checksums are consistency evidence, not independent publisher authentication"
+  ],
+  "live_base_change": {
+    "new_base": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "old_base": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "stale_result": "E_CONTEXT",
+    "status": "PASS"
+  },
+  "one_time_actual_S_scope": {
+    "candidate": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "clean_exit_zero": true,
+    "independent_genuine_tuple_join": true,
+    "local_execution": true,
+    "scope_report_sha256": "4d70c247186e9b1c71eb7e86edd6c582fc983ab2101d63c3a5de7d49f211d5b4",
+    "status": "PASS",
+    "tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778"
+  },
+  "publication": {
+    "candidate": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "canonical_inner_files": 71,
+    "members": 71,
+    "scope": "canonical_candidate_objects",
+    "sidecar_blob": "4e7691fb4e7dececb28b9cff45d3d95e8fa43e49",
+    "status": "PASS",
+    "verified_filesystem_matches_C": true,
+    "zip_blob": "9f76cb81cd15c4ab33b4596f65557e8f842f60a5",
+    "zip_bytes": 7465148,
+    "zip_path": "archival/v0.2.0/publication-candidate/Permansson_v0.2.0_archival-supplement-1.zip",
+    "zip_sha256": "f6f119cadb1a3ebe09f9010510476bab2e75194ededde922eb99a8891652eca4"
+  },
+  "review_threads": {
+    "count": 12,
+    "unresolved": 0
+  },
+  "source": {
+    "base": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "head": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "pr_number": 77,
+    "repository": "HMarcusWH/PermanssonLean",
+    "synthetic": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778"
+  },
+  "status": "PASS",
+  "tests": [
+    {
+      "artifact": "hardening-export-reports",
+      "covered_requirements": [
+        "TEX-01",
+        "TEX-02",
+        "TEX-03",
+        "TEX-04",
+        "TEX-05",
+        "TEX-06",
+        "TEX-07",
+        "TEX-08",
+        "TEX-09",
+        "TEX-10",
+        "TEX-11",
+        "TEX-12",
+        "TEX-13",
+        "TEX-14",
+        "TEX-15",
+        "TEX-16",
+        "TEX-17",
+        "TEX-18",
+        "TEX-19",
+        "TEX-20"
+      ],
+      "methods": 20,
+      "subtests": 4,
+      "suite": "tex"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "covered_requirements": [
+        "PRES-01",
+        "PRES-02",
+        "PRES-03",
+        "PRES-04",
+        "PRES-05",
+        "PRES-06",
+        "PRES-07",
+        "PRES-08",
+        "PRES-09",
+        "PRES-10",
+        "PRES-11",
+        "PRES-12",
+        "PRES-13",
+        "PRES-14",
+        "PRES-15",
+        "PRES-16",
+        "PRES-17",
+        "PRES-18",
+        "PRES-19",
+        "PRES-20",
+        "PRES-21",
+        "PRES-22",
+        "PRES-23"
+      ],
+      "methods": 26,
+      "subtests": 19,
+      "suite": "preservation"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "covered_requirements": [
+        "CI-03",
+        "CI-09"
+      ],
+      "methods": 6,
+      "subtests": 2,
+      "suite": "context"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "covered_requirements": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11",
+        "REF-12",
+        "REF-13",
+        "REF-14",
+        "REF-15"
+      ],
+      "methods": 17,
+      "subtests": 14,
+      "suite": "reference"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "covered_requirements": [
+        "CI-06",
+        "CI-07"
+      ],
+      "methods": 8,
+      "subtests": 94,
+      "suite": "workflow"
+    },
+    {
+      "artifact": "hardening-archive-reports",
+      "covered_requirements": [
+        "ARCH-01",
+        "ARCH-02",
+        "ARCH-03",
+        "ARCH-04",
+        "ARCH-05",
+        "ARCH-06",
+        "ARCH-07",
+        "ARCH-08",
+        "ARCH-09",
+        "ARCH-10",
+        "ARCH-11",
+        "ARCH-12",
+        "ARCH-13",
+        "ARCH-15",
+        "ARCH-16",
+        "ARCH-17",
+        "ARCH-18",
+        "ARCH-19",
+        "ARCH-20",
+        "ARCH-21",
+        "ARCH-22",
+        "ARCH-24",
+        "ARCH-25",
+        "ARCH-26",
+        "ARCH-27"
+      ],
+      "methods": 35,
+      "subtests": 110,
+      "suite": "archive"
+    },
+    {
+      "artifact": "hardening-windows-portability-reports",
+      "covered_requirements": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11",
+        "REF-12",
+        "REF-13",
+        "REF-14",
+        "REF-15"
+      ],
+      "methods": 17,
+      "subtests": 14,
+      "suite": "reference"
+    },
+    {
+      "artifact": "hardening-windows-portability-reports",
+      "covered_requirements": [
+        "PRES-01",
+        "PRES-02",
+        "PRES-03",
+        "PRES-04",
+        "PRES-05",
+        "PRES-06",
+        "PRES-07",
+        "PRES-08",
+        "PRES-09",
+        "PRES-10",
+        "PRES-11",
+        "PRES-12",
+        "PRES-13",
+        "PRES-14",
+        "PRES-15",
+        "PRES-16",
+        "PRES-17",
+        "PRES-18",
+        "PRES-19",
+        "PRES-20",
+        "PRES-21",
+        "PRES-22",
+        "PRES-23"
+      ],
+      "methods": 26,
+      "subtests": 19,
+      "suite": "preservation"
+    },
+    {
+      "artifact": "hardening-windows-portability-reports",
+      "covered_requirements": [
+        "TEX-01",
+        "TEX-02",
+        "TEX-03",
+        "TEX-04",
+        "TEX-05",
+        "TEX-06",
+        "TEX-07",
+        "TEX-08",
+        "TEX-09",
+        "TEX-10",
+        "TEX-11",
+        "TEX-12",
+        "TEX-13",
+        "TEX-14",
+        "TEX-15",
+        "TEX-16",
+        "TEX-17",
+        "TEX-18",
+        "TEX-19",
+        "TEX-20"
+      ],
+      "methods": 20,
+      "subtests": 4,
+      "suite": "tex"
+    }
+  ]
+}

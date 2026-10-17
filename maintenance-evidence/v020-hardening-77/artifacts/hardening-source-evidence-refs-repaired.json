@@ -1,0 +1,25 @@
+{
+  "format": "Permansson.Hardening.SourceEvidenceRefs.v1",
+  "repository": "HMarcusWH/PermanssonLean",
+  "source": "successful Git pushes and immediate git ls-remote read-backs",
+  "observations": [
+    {
+      "observed_at": "2026-10-17 19:56:29 UTC",
+      "refs": {
+        "refs/heads/evidence/v020-contract-synthetic": "4403ec593fe3178495b6633c9221ccd0e49bc166",
+        "refs/heads/evidence/v020-hardening-initial-synthetic": "b96e30d8b38575796a8c598c028488e449b85a8d",
+        "refs/heads/evidence/v020-hardening-prebase": "86ff0d8ce3482935d2ff09ee24c260d309f069d1",
+        "refs/heads/evidence/v020-hardening-scope-tooling": "3f2791d23b08d0dd157303d6c265c3dad036a349"
+      }
+    },
+    {
+      "observed_at": "2026-10-17 20:23:21 UTC",
+      "read_back": "All six references above and below were rechecked together immediately before this timestamp",
+      "refs": {
+        "refs/heads/evidence/v020-hardening-guide-tooling": "171c954c4733d2c8eaaac3ad90e60e4d1d4637c3",
+        "refs/heads/evidence/v020-hardening-superseded-synthetic": "76eeb466805f229ef9fb7cd216a0d5d45c09b225"
+      }
+    }
+  ],
+  "scope": "Git source/evidence retention only; no archival tag, ruleset activation or external publication"
+}

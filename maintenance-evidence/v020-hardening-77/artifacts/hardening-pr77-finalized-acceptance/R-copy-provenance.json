@@ -1,0 +1,23 @@
+{
+  "canonical_head": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+  "claim": "copy_of_already_acquired_original_publisher_bytes; NOT_fresh_acquisition",
+  "copied_at": "2026-10-17T20:52:59.081042+00:00",
+  "files": [
+    {
+      "blob": "b76fba2531a86b605b91f8942c1ba20dbf67dbbc",
+      "bytes": 9377,
+      "canonical_repository_path": "archival/v0.2.0/supplement-1/evidence/R-c10.zip",
+      "path": "R-c10.zip",
+      "sha256": "75d61c01020f63d7f9555f10f32de9d63a09c0107536463ae549cdb85ebe9fc8"
+    },
+    {
+      "blob": "338e4243de5bea1585b08e46010c137ec87520fc",
+      "bytes": 708,
+      "canonical_repository_path": "archival/v0.2.0/supplement-1/evidence/R-c10-artifact-metadata.json",
+      "path": "R-c10-artifact-metadata.json",
+      "sha256": "2508adeef48c85d72fdb9ad59297f8ddf8435802a4cde942d9f099219ddbe025"
+    }
+  ],
+  "format": "Permansson.HistoricalEvidenceCanonicalCopy.v1",
+  "repository": "HMarcusWH/PermanssonLean"
+}

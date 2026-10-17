@@ -1,0 +1,21 @@
+{
+  "format": "Permansson.Hardening.GitHubMergeObservation.v1",
+  "pr": 78,
+  "expected_head": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+  "observed_at": "2026-10-17 19:53:22 UTC",
+  "source": "GitHub connector normalized merge result",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "merged": true,
+      "message": "Pull Request successfully merged"
+    },
+    "isError": false
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "format": "Permansson.IndependentLegacySourceContextJoin.v1",
+  "limits": [
+    "Consistency and execution ordering; no independent publisher authentication"
+  ],
+  "records": [
+    {
+      "bytes": 541,
+      "guard_step": 4,
+      "job": "build",
+      "job_id": 117500232286,
+      "name": "legacy-build-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "pull_request",
+        "event_sha256": "d3a7eaad9193a9d84ca3736daef38fac0fe3d2e96de3fe1089858a818142a72b",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "pr_number": 77,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39068230472,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39068230472,
+      "sha256": "a88af36f40de621512c53798324ddeed70639d94af6933040433341f40294640",
+      "status": "PASS",
+      "work_step": 6
+    },
+    {
+      "bytes": 541,
+      "guard_step": 4,
+      "job": "research",
+      "job_id": 117500231732,
+      "name": "legacy-research-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "pull_request",
+        "event_sha256": "d3a7eaad9193a9d84ca3736daef38fac0fe3d2e96de3fe1089858a818142a72b",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "pr_number": 77,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39068230445,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39068230445,
+      "sha256": "7e4a2bcaa9b87a1eb0638e4c843cee9f1ff28f49a7951a97c464fee7555127a7",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 541,
+      "guard_step": 4,
+      "job": "executable-verification",
+      "job_id": 117500231571,
+      "name": "legacy-executable-source-context",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "pull_request",
+        "event_sha256": "d3a7eaad9193a9d84ca3736daef38fac0fe3d2e96de3fe1089858a818142a72b",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "pr_number": 77,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39068230440,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39068230440,
+      "sha256": "fa34601798e08d823a123f92e574054bb1a2825b53066635916b0fb728af32a6",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 541,
+      "guard_step": 4,
+      "job": "Application contract (ubuntu-latest)",
+      "job_id": 117500231869,
+      "name": "legacy-application-source-context-ubuntu-latest",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "pull_request",
+        "event_sha256": "d3a7eaad9193a9d84ca3736daef38fac0fe3d2e96de3fe1089858a818142a72b",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "pr_number": 77,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39068230480,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39068230480,
+      "sha256": "dad502237dedf56fa96899c244ee2c627d0244149f6d58c745b05685b4082076",
+      "status": "PASS",
+      "work_step": 5
+    },
+    {
+      "bytes": 543,
+      "guard_step": 4,
+      "job": "Application contract (windows-latest)",
+      "job_id": 117500232063,
+      "name": "legacy-application-source-context-windows-latest",
+      "report": {
+        "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+        "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+        "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+        "event": "pull_request",
+        "event_sha256": "26bb5e00a46d1e0d748456098c267840b08d67f3b4b411ede44283b694d1531a",
+        "format": "Permansson.Hardening.CIContext.v1",
+        "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+        "pr_number": 77,
+        "repository": "HMarcusWH/PermanssonLean",
+        "run_attempt": 1,
+        "run_id": 39068230480,
+        "scope": "canonical_commit_objects"
+      },
+      "run_id": 39068230480,
+      "sha256": "5c2d2d5e6db5bf830df5aa3ed5274385e7fb3a31726c3fc325e94d40cb99ed9a",
+      "status": "PASS",
+      "work_step": 5
+    }
+  ],
+  "source": {
+    "base": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "head": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "synthetic": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778"
+  },
+  "status": "PASS"
+}

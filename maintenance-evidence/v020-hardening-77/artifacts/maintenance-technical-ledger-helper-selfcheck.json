@@ -1,0 +1,92 @@
+{
+  "format": "Permansson.TechnicalLedgerHelper.SelfCheck.v1",
+  "status": "PASS",
+  "helper_sha256": "499301ce034f565d9e32ae1dac381f78e72674f0f723de2bc401738a04e3fd6d",
+  "controls": [
+    {
+      "probe": "exact_context_fixture",
+      "result": "PASS"
+    },
+    {
+      "probe": "old_head",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "old_synthetic",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "wrong_base",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "zero_run",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "bad_event_digest",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "dispatch",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "wrong_format",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "duplicate_json_key",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "nonfinite_json",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "outside_artifacts",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "bounded_zip_member_fixture",
+      "result": "PASS"
+    },
+    {
+      "probe": "missing_zip_member",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "duplicate_zip_member",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "nine_successful_context_fixture",
+      "result": "PASS"
+    },
+    {
+      "probe": "skipped_required_job",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "wrong_check_publisher",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "old_check_head",
+      "result": "REJECTED"
+    },
+    {
+      "probe": "missing_current_summary_CLI",
+      "result": "REJECTED_NO_OUTPUT",
+      "exit_code": 1
+    },
+    {
+      "probe": "superseded_head_CLI",
+      "result": "REJECTED_NO_OUTPUT",
+      "exit_code": 1
+    }
+  ],
+  "control_count": 20,
+  "acceptance_output_created": false,
+  "scope": "Author helper controls only, using private synthetic data. Full assembly is intentionally not executed until replacement current source summary/CI/review/K4 evidence exists. This is not an independent code review or technical acceptance."
+}

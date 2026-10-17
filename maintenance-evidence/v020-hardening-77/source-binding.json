@@ -1,0 +1,23 @@
+{
+  "format": "Permansson.CuratedReceiptSource.v1",
+  "main_push_checks_joined": false,
+  "postmerge_index": null,
+  "scope": "Curated external evidence; no new CI execution, publisher authentication, counted approval or operational rollout inferred.",
+  "source": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "base_B": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "head_H": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "main_merge_M": null,
+    "main_tree": null,
+    "pr_number": 77,
+    "repository": "HMarcusWH/PermanssonLean",
+    "synthetic_S": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "synthetic_ordered_parents": [
+      "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501"
+    ],
+    "synthetic_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+    "tooling_T": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388"
+  },
+  "status": "SOURCE_JOIN_CHECKED_PACKET_ASSEMBLED"
+}

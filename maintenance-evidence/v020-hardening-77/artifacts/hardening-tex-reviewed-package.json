@@ -1,0 +1,45 @@
+{
+  "check": "release-export-integrity",
+  "completed_stages": [
+    "context",
+    "verification"
+  ],
+  "context": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "base_sha": null,
+    "checked_sha": "049d2620317afd10f8a584254d768f36af1d4979",
+    "checked_tree": "6bacf22e7865f9bbcc039e12e1dc5579cb16e2a4",
+    "event": "local",
+    "event_sha256": null,
+    "head_sha": null,
+    "pr_number": null,
+    "repository": "HMarcusWH/PermanssonLean",
+    "run_attempt": null,
+    "run_id": null,
+    "scope": "canonical_commit_objects"
+  },
+  "details": {
+    "actual_sha256": "3524da1f1ef92cfee179917efebeb3c2786b8ad484653d2f1c8f4d8036952416",
+    "actual_size": 71379,
+    "completed_stages": [
+      "trusted_input_hashes",
+      "isolated_reference_render",
+      "reference_output_pin",
+      "candidate_byte_comparison"
+    ],
+    "equation_records": 10,
+    "expected_sha256": "3524da1f1ef92cfee179917efebeb3c2786b8ad484653d2f1c8f4d8036952416",
+    "expected_size": 71379,
+    "reference_revision": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+    "scope": "canonical_commit_objects"
+  },
+  "error_code": null,
+  "format": "Permansson.Hardening.Check.v1",
+  "message": null,
+  "runtime": {
+    "platform": "Windows",
+    "python": "3.12.14"
+  },
+  "schema_version": 1,
+  "status": "PASS"
+}

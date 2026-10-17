@@ -1,0 +1,38 @@
+{
+  "claim_boundary": "Metadata is provenance, not mathematical proof. Generic JSON decoding and external-model identification are unverified; original positive relative PR requires an input-bound Exact GR theorem.",
+  "entries": 13,
+  "format": "Permansson.Hardening.C10CaptureCheck.v1",
+  "fresh_lean_execution": "separate-successful-GitHub-Research-job",
+  "local_check": "captured-structure-and-arithmetic-only",
+  "local_lean_rerun": false,
+  "proof": {
+    "status": "GENERATED_LITERAL_KERNEL_CHECKED",
+    "theorems": [
+      "reifiedReceipt_valid",
+      "reifiedReceipt_conditions",
+      "reifiedGolden_data_contract",
+      "reifiedGolden_numeric_margins",
+      "reifiedGolden_original_margins",
+      "reifiedGolden_selection",
+      "reifiedGolden_original_global_max",
+      "PermanssonResearch.ReverseSolver.C10.six_original_baseline_exactGR"
+    ],
+    "tool": "lake env lean",
+    "transitive_axioms_allowlist": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "source": {
+    "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9",
+    "pr_number": 77,
+    "repository": "HMarcusWH/PermanssonLean",
+    "synthetic_merge_sha": "86ff0d8ce3482935d2ff09ee24c260d309f069d1"
+  },
+  "specification_source": "canonical-frozen-Git-blob",
+  "status": "PASS",
+  "zip_sha256": "254ff1c98476a9db1a81892282165a137f6b597ebc25e553e317f330e123762a",
+  "zip_size": 9376
+}

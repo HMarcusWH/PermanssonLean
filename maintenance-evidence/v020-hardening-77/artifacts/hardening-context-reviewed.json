@@ -1,0 +1,71 @@
+{
+  "context": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "base_sha": null,
+    "checked_sha": "562a22210e9e1cb23b19a6ebddacbc6bdc2bd6d0",
+    "checked_tree": "7c0ba2242a80a9bb837312627de77892623ba4ac",
+    "event": "local",
+    "event_sha256": null,
+    "head_sha": null,
+    "pr_number": null,
+    "repository": "HMarcusWH/PermanssonLean",
+    "run_attempt": null,
+    "run_id": null,
+    "scope": "canonical_commit_objects"
+  },
+  "covered_requirements": [
+    "CI-03",
+    "CI-09"
+  ],
+  "error_code": null,
+  "errors": 0,
+  "execution_tracked_clean": true,
+  "failures": 0,
+  "format": "Permansson.Hardening.Tests.v1",
+  "methods_run": 6,
+  "results": [
+    {
+      "method": "verification.integrity.tests.test_context.ContextTests.test_ci_03_wrong_checkout_context",
+      "requirements": [
+        "CI-03"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_context.ContextTests.test_ci_09_manual_not_pr_acceptance",
+      "requirements": [
+        "CI-09"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_context.ContextTests.test_genuine_pr_positive",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_context.ContextTests.test_local_cannot_fabricate_ci_event",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_context.ContextTests.test_previous_head_and_base_reports_rejected_unit_controls",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_context.ContextTests.test_push_positive_and_after_binding",
+      "requirements": [],
+      "status": "PASS"
+    }
+  ],
+  "runtime": {
+    "git": "git version 2.45.2.windows.1",
+    "python": "3.12.14"
+  },
+  "schema_version": 1,
+  "skips": 0,
+  "status": "PASS",
+  "subtests_run": 0,
+  "suite": "context"
+}

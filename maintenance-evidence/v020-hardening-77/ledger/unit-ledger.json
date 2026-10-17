@@ -1,0 +1,4283 @@
+{
+  "acceptance_plan_provenance": {
+    "active_plan": {
+      "commit": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+      "git_blob": "c998a97ec5f3ad1219d5c1716ba5a12690966cda",
+      "immutable_source_url": "https://github.com/HMarcusWH/PermanssonLean/blob/ed8309843eedbd6cfe56b5e543c99285e28cead5/docs/hardening/contract/03_Acceptance_Test_Plan.md",
+      "path": "docs/hardening/contract/03_Acceptance_Test_Plan.md",
+      "sha256": "e31fca00dc046a5f57d98fd695111e3c09818430d4b5dde559420161d25f8632",
+      "status": "EXPLICITLY_AMENDED_REPOSITORY_PLAN"
+    },
+    "amendment_is_execution_evidence": false,
+    "amendments": [
+      "PRES-23 unit fixtures cover additions, edits and deletions in both complete Lean trees and both roots, including unprotected paths outside the permanent inventory.",
+      "The amended implementation specification and rollout runbook require the shipped one-time maintenance_scope CLI on actual current S and an independently captured current H/B/S/tree/ordered-parent receipt; fixture tests cannot discharge that K4 condition.",
+      "The supported archival acceptance launcher is offline_smoke with explicit --repo and --candidate; standalone artifact replay is not candidate-bound K4 acceptance.",
+      "Opening provenance distinguishes newly executed four-check source/exporter subset from unavailable original E1 source-ZIP/toy-Git records; originals02/03/04 remain byte-identical under supplied/.",
+      "The active implementation specification also requires local candidate=HEAD and full canonical T/C code+guide closure; standalone replay supplies no candidate-CI acceptance."
+    ],
+    "original_full_package_zip": "NOT_SUPPLIED",
+    "pristine_supplied_plan": {
+      "byte_identity": "Independently byte-matched original supplied Downloads plan and original Git blob 38e9edc01043a9f912c2a652912dfc2ea1a9a570",
+      "commit": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+      "git_blob": "38e9edc01043a9f912c2a652912dfc2ea1a9a570",
+      "immutable_source_url": "https://github.com/HMarcusWH/PermanssonLean/blob/ed8309843eedbd6cfe56b5e543c99285e28cead5/docs/hardening/contract/supplied/03_Acceptance_Test_Plan.md",
+      "local_attributes": "-text preserves exact supplied bytes",
+      "path": "docs/hardening/contract/supplied/03_Acceptance_Test_Plan.md",
+      "sha256": "09b6f1bad56b776c6ffefd80ea967407b39c41364ab4402286d14bb0ecaa2453"
+    },
+    "provenance_companion": {
+      "commit": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+      "git_blob": "176b6c437c6bbb1de09a5a5f0a4b4d31896650c5",
+      "immutable_source_url": "https://github.com/HMarcusWH/PermanssonLean/blob/ed8309843eedbd6cfe56b5e543c99285e28cead5/docs/hardening/contract/00_README.md",
+      "path": "docs/hardening/contract/00_README.md",
+      "sha256": "a43e692ed0d87b3e81bf9c23eb7cccc2224053e9e03fba06d5de3e84de0bb8eb"
+    },
+    "requirements_count": 108
+  },
+  "additional_acceptance_conditions": [
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "checked_tree": null,
+      "evidence": [],
+      "id": "K4.actual_candidate_Lean_scope",
+      "new_requirement_case_or_level": false,
+      "outside_108_case_registry": true,
+      "permanent_job_or_required_context": false,
+      "production_tooling_source": {
+        "commit": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+        "git_blob": "fa7f59ca34da6c2de7929a6d594f8579769f4f3c",
+        "immutable_source_url": "https://github.com/HMarcusWH/PermanssonLean/blob/71cc34fa0bc4b639c05d2ec5f39f0b88afd56388/verification/integrity/maintenance_scope.py",
+        "path": "verification/integrity/maintenance_scope.py",
+        "sha256": "fb55ab26b16ce02e154c0c349c9c319614f81713b16c5e9be403ab3c8d8b1411"
+      },
+      "required_command": "python -B -m verification.integrity.maintenance_scope --repo . --candidate FULL_CURRENT_SYNTHETIC_S --report /scratch/maintenance-scope.json",
+      "required_evidence": [
+        "Execute from a clean isolated checkout of the actual current genuine synthetic S before merge; require process exit0.",
+        "Compare both complete canonical Lean trees and both root files against fixed accepted A/tree, including path additions, deletions, content, modes and types outside the permanent inventory.",
+        "Join checked SHA/tree to independently captured current GitHub PR H/B/S, canonical ordered parents[B,H] and tree(S); repeat after any head or base change.",
+        "A local invocation remains event=local and supplies no GitHub publisher/run authentication; retain independent source receipt beside report.",
+        "Missing, nonzero, stale, mismatched or incomplete evidence blocks K4. PRES-23 fixture PASS and permanent preservation PASS cannot substitute."
+      ],
+      "required_report": {
+        "check": "maintenance-Lean-scope",
+        "details.acceptance_only": true,
+        "details.completed_stages": [
+          "fixed_authority",
+          "complete_Lean_scope_comparison"
+        ],
+        "details.permanent_preservation_policy": false,
+        "format": "Permansson.Hardening.Check.v1",
+        "status": "PASS"
+      },
+      "status": "PENDING_EVIDENCE"
+    }
+  ],
+  "cases": [
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_01_accepted_authority"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_01_accepted_authority"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "REF-01",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_01_accepted_authority"
+      ],
+      "requirement": "**Accepted authority exists** \u2014 Resolve A as a commit and verify its fixed tree and manifest hash.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_REFERENCE_MISSING",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_02_missing_authority"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_02_missing_authority"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_REFERENCE_MISSING",
+      "id": "REF-02",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_02_missing_authority"
+      ],
+      "requirement": "**Missing accepted commit** \u2014 Production command in a source-only archive or repo without A.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_REFERENCE_ID",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_03_candidate_requires_full_identity"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_03_candidate_requires_full_identity"
+          ],
+          "passed_subtests": 4,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_REFERENCE_ID",
+      "id": "REF-03",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_03_candidate_requires_full_identity"
+      ],
+      "requirement": "**Short or expressive candidate ref** \u2014 Supply abbreviated SHA, HEAD~1 or a newline/option-like value.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_REFERENCE_ID",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_04_wrong_authority_tree"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_04_wrong_authority_tree"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_REFERENCE_ID",
+      "id": "REF-04",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_04_wrong_authority_tree"
+      ],
+      "requirement": "**Wrong accepted tree** \u2014 Fixture authority commit resolves to an unexpected pinned tree.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_POLICY_INVENTORY",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_05_duplicate_json_key"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_05_duplicate_json_key"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_POLICY_INVENTORY",
+      "id": "REF-05",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_05_duplicate_json_key"
+      ],
+      "requirement": "**Duplicate inventory key** \u2014 Direct policy-parser fixture has duplicate JSON keys.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_POLICY_INVENTORY",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_06_duplicate_historical_path"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_06_duplicate_historical_path"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_POLICY_INVENTORY",
+      "id": "REF-06",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_06_duplicate_historical_path"
+      ],
+      "requirement": "**Duplicate historical path** \u2014 Direct fixture has 340 rows with one duplicated path and one omitted.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_POLICY_INVENTORY",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_07_historical_count"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_07_historical_count"
+          ],
+          "passed_subtests": 2,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_POLICY_INVENTORY",
+      "id": "REF-07",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_07_historical_count"
+      ],
+      "requirement": "**Inventory count mismatch** \u2014 Direct fixture has 339 or 341 entries; do not use the candidate manifest as reference.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_POLICY_INVENTORY",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_08_blob_metadata"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_08_blob_metadata"
+          ],
+          "passed_subtests": 3,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_POLICY_INVENTORY",
+      "id": "REF-08",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_08_blob_metadata"
+      ],
+      "requirement": "**Reference blob metadata mismatch** \u2014 Fixture entry differs from actual reference mode, OID or SHA-256.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_HISTORY_SHALLOW",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_09_actual_shallow_clone"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_09_actual_shallow_clone"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_HISTORY_SHALLOW",
+      "id": "REF-09",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_09_actual_shallow_clone"
+      ],
+      "requirement": "**Shallow history** \u2014 Use an actual depth-limited clone for full-history replay.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_HISTORY_EXTERNAL",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_10_promisor_metadata"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_10_promisor_metadata"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_HISTORY_EXTERNAL",
+      "id": "REF-10",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_10_promisor_metadata"
+      ],
+      "requirement": "**Promisor history** \u2014 Set promisor/partial-clone metadata before offline validation.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_HISTORY_EXTERNAL",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_11_borrowed_objects"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_11_borrowed_objects"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_HISTORY_EXTERNAL",
+      "id": "REF-11",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_11_borrowed_objects"
+      ],
+      "requirement": "**Borrowed object database** \u2014 Use objects/info/alternates or inherited GIT_ALTERNATE_OBJECT_DIRECTORIES.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_HISTORY_EXTERNAL",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_12_replace_and_graft"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_12_replace_and_graft"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_HISTORY_EXTERNAL",
+      "id": "REF-12",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_12_replace_and_graft"
+      ],
+      "requirement": "**Replacement object context** \u2014 Add replace refs or grafts; never let the overlay redefine A.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_13_raw_path_boundaries"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_13_raw_path_boundaries"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "REF-13",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_13_raw_path_boundaries"
+      ],
+      "requirement": "**Path/parser safety** \u2014 Unrelated new paths contain spaces, tabs and newlines; fixed paths are still compared literally.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "USAGE_ERROR",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_14_no_refresh_cli"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_14_no_refresh_cli"
+          ],
+          "passed_subtests": 3,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "USAGE_ERROR",
+      "id": "REF-14",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_14_no_refresh_cli"
+      ],
+      "requirement": "**Production cannot refresh** \u2014 Pass --refresh, --update-baseline or an unsupported policy override.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_ANCESTRY",
+        "methods": [
+          "verification.integrity.tests.test_reference.ReferenceTests.test_ref_15_candidate_outside_ancestry"
+        ],
+        "suite": "reference",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_reference.ReferenceTests.test_ref_15_candidate_outside_ancestry"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "reference"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_ANCESTRY",
+      "id": "REF-15",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_15_candidate_outside_ancestry"
+      ],
+      "requirement": "**Target outside accepted ancestry** \u2014 Resolve a valid candidate commit not descending from A.",
+      "status": "PASS",
+      "suite": "reference"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_01_actual_369_unchanged"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_01_actual_369_unchanged"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "PRES-01",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_01_actual_369_unchanged"
+      ],
+      "requirement": "**Unchanged 369 pins** \u2014 Run production reference comparison on A.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_CONTENT",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_02_core_comment"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_02_core_comment"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_CONTENT",
+      "id": "PRES-02",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_02_core_comment"
+      ],
+      "requirement": "**Comment-only frozen core** \u2014 Append a Lean comment to PermanssonLean/Regime/Constitution.lean.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_CONTENT",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_03_solver_comment"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_03_solver_comment"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_CONTENT",
+      "id": "PRES-03",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_03_solver_comment"
+      ],
+      "requirement": "**Comment-only historical solver** \u2014 Append a comment to PermanssonResearch/ReverseSolver/C10ReceiptSemantics.lean.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_CONTENT",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_04_semantic_edit"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_04_semantic_edit"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_CONTENT",
+      "id": "PRES-04",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_04_semantic_edit"
+      ],
+      "requirement": "**Semantic frozen edit** \u2014 Change a protected theorem body in a disposable commit.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_MISSING",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_05_deletion"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_05_deletion"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_MISSING",
+      "id": "PRES-05",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_05_deletion"
+      ],
+      "requirement": "**Deletion** \u2014 Delete an inventoried paper or source file.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_MISSING",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_06_rename"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_06_rename"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_MISSING",
+      "id": "PRES-06",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_06_rename"
+      ],
+      "requirement": "**Rename** \u2014 Rename a protected file while preserving its bytes.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_MODE",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_07_executable_mode"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_07_executable_mode"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_MODE",
+      "id": "PRES-07",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_07_executable_mode"
+      ],
+      "requirement": "**Executable bit** \u2014 Change 100644 to 100755 through Git index plumbing.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_TYPE",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_08_symlink_replacement"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_08_symlink_replacement"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_TYPE",
+      "id": "PRES-08",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_08_symlink_replacement"
+      ],
+      "requirement": "**Symlink replacement** \u2014 Replace a protected file by 120000 entry pointing to original bytes.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_TYPE",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_09_gitlink_file_and_root"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_09_gitlink_file_and_root"
+          ],
+          "passed_subtests": 2,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_TYPE",
+      "id": "PRES-09",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_09_gitlink_file_and_root"
+      ],
+      "requirement": "**Gitlink replacement** \u2014 Replace a protected root or file by a 160000 gitlink.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_CLOSED_ADDITION",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_10_historical_addition"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_10_historical_addition"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_CLOSED_ADDITION",
+      "id": "PRES-10",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_10_historical_addition"
+      ],
+      "requirement": "**Historical closed-tree addition** \u2014 Add paper/new.md or another unlisted closed-root descendant.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_CLOSED_ADDITION",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_11_version_additions"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_11_version_additions"
+          ],
+          "passed_subtests": 3,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_CLOSED_ADDITION",
+      "id": "PRES-11",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_11_version_additions"
+      ],
+      "requirement": "**Version-specific closed addition** \u2014 Commit release/v0.2.0/new.txt, tmp/x or __pycache__/x.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_CLOSED_ADDITION",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_12_nested_addition"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_12_nested_addition"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_CLOSED_ADDITION",
+      "id": "PRES-12",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_12_nested_addition"
+      ],
+      "requirement": "**Nested closed-root addition** \u2014 Add a new subdirectory and file under a closed root.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_13_prefix_lookalike"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_13_prefix_lookalike"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "PRES-13",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_13_prefix_lookalike"
+      ],
+      "requirement": "**Prefix lookalike allowed** \u2014 Add paper2/note.md outside the exact paper root.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_14_new_research"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_14_new_research"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "PRES-14",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_14_new_research"
+      ],
+      "requirement": "**New research module allowed** \u2014 Add an ordinary new ReverseSolver module not present in the historical inventory.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_15_new_documentation"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_15_new_documentation"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "PRES-15",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_15_new_documentation"
+      ],
+      "requirement": "**Documentation allowed** \u2014 Add an ordinary document outside pinned paths and closed roots.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_16_new_release_version"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_16_new_release_version"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "PRES-16",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_16_new_release_version"
+      ],
+      "requirement": "**New release version allowed** \u2014 Add release/v0.2.1/example.txt, leaving v0.2.0 untouched.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_CONTENT",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_17_candidate_manifest_repair"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_17_candidate_manifest_repair"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_CONTENT",
+      "id": "PRES-17",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_17_candidate_manifest_repair"
+      ],
+      "requirement": "**Manifest removal and repaired hashes** \u2014 Delete a protected row from candidate manifest and repair its candidate archive hashes.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_CONTENT",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_18_published_zip_replacement"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_18_published_zip_replacement"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_CONTENT",
+      "id": "PRES-18",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_18_published_zip_replacement"
+      ],
+      "requirement": "**Published archive replacement** \u2014 Change old ZIP bytes and repair its checksum file.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_CONTENT",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_19_scientific_promotion"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_19_scientific_promotion"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_CONTENT",
+      "id": "PRES-19",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_19_scientific_promotion"
+      ],
+      "requirement": "**Scientific promotion rejected as bytes** \u2014 Change F1.MA2 from OPEN in the frozen manuscript and rebuild candidate outputs.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_20_checkout_line_endings"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_20_checkout_line_endings"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "PRES-20",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_20_checkout_line_endings"
+      ],
+      "requirement": "**LF/CRLF checkout invariance** \u2014 Checkout one canonical commit under LF and CRLF settings, including a Windows test.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PROTECTED_CONTENT",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_21_committed_crlf"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_21_committed_crlf"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PROTECTED_CONTENT",
+      "id": "PRES-21",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_21_committed_crlf"
+      ],
+      "requirement": "**Committed CRLF conversion** \u2014 Commit the converted protected content rather than merely checking it out.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_22_dirty_workspace_caveat"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_22_dirty_workspace_caveat"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "PRES-22",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_22_dirty_workspace_caveat"
+      ],
+      "requirement": "**Dirty worktree caveat** \u2014 Edit working bytes without committing; canonical-commit predicate stays PASS and report does not claim workspace cleanliness.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_MAINTENANCE_SCOPE",
+        "methods": [
+          "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate"
+        ],
+        "suite": "preservation",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate"
+          ],
+          "passed_subtests": 12,
+          "report_sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "preservation"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_MAINTENANCE_SCOPE",
+      "id": "PRES-23",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate"
+      ],
+      "requirement": "**Maintenance-only Lean scope** \u2014 Unit fixtures must reject any addition, edit or deletion under `PermanssonLean/` or `PermanssonResearch/`, or of `PermanssonLean.lean` or `PermanssonResearch.lean`, including unprotected paths outside the 369-file inventory; unchanged scope passes. These regressions cannot discharge the separate mandatory K4 actual-S scope report and independent current H/B/S binding in specification \u00a714 and runbook K4. Keep this restriction separate from the always-on policy so future additive research remains allowed.",
+      "status": "PASS",
+      "suite": "preservation"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_01_accepted_complete_export"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_01_accepted_complete_export"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "TEX-01",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_01_accepted_complete_export"
+      ],
+      "requirement": "**Accepted complete export** \u2014 Isolated trusted two-module renderer regenerates 71,379 bytes and all ten equations.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_EXPORT_REFERENCE",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_02_wrong_render_revision"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_02_wrong_render_revision"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_EXPORT_REFERENCE",
+      "id": "TEX-02",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_02_wrong_render_revision"
+      ],
+      "requirement": "**Wrong render revision** \u2014 Call reference using A instead of G in an internal renderer regression fixture.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_TEX_MISMATCH",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_03_equation_zero_equals_one"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_03_equation_zero_equals_one"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_TEX_MISMATCH",
+      "id": "TEX-03",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_03_equation_zero_equals_one"
+      ],
+      "requirement": "**Equation replaced by 0=1** \u2014 Mutate one equation body while retaining all captions/narrative; invoke F2 alone.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_TEX_MISMATCH",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_04_equation_sign"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_04_equation_sign"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_TEX_MISMATCH",
+      "id": "TEX-04",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_04_equation_sign"
+      ],
+      "requirement": "**Sign changed** \u2014 Flip one minus sign in an equation; leave surrounding prose unchanged.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_TEX_MISMATCH",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_05_equation_fraction"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_05_equation_fraction"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_TEX_MISMATCH",
+      "id": "TEX-05",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_05_equation_fraction"
+      ],
+      "requirement": "**Fraction changed** \u2014 Alter one rational denominator without changing captions.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_TEX_MISMATCH",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_06_equation_removed"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_06_equation_removed"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_TEX_MISMATCH",
+      "id": "TEX-06",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_06_equation_removed"
+      ],
+      "requirement": "**Equation removed** \u2014 Remove one complete companionEquation block.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_TEX_MISMATCH",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_07_equation_duplicated"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_07_equation_duplicated"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_TEX_MISMATCH",
+      "id": "TEX-07",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_07_equation_duplicated"
+      ],
+      "requirement": "**Equation duplicated** \u2014 Duplicate an existing equation with its caption.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_TEX_MISMATCH",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_08_equation_order"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_08_equation_order"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_TEX_MISMATCH",
+      "id": "TEX-08",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_08_equation_order"
+      ],
+      "requirement": "**Equation order changed** \u2014 Swap two equation blocks; inclusion-only checks would still pass.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_TEX_MISMATCH",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_09_caption_and_metadata"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_09_caption_and_metadata"
+          ],
+          "passed_subtests": 2,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_TEX_MISMATCH",
+      "id": "TEX-09",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_09_caption_and_metadata"
+      ],
+      "requirement": "**Caption or metadata changed** \u2014 Change caption, label-like text or source header only.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_TEX_MISMATCH",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_10_trailing_newline"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_10_trailing_newline"
+          ],
+          "passed_subtests": 2,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_TEX_MISMATCH",
+      "id": "TEX-10",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_10_trailing_newline"
+      ],
+      "requirement": "**Trailing newline changed** \u2014 Drop or duplicate the final newline.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_TEX_MISMATCH",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_11_repaired_receipts"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_11_repaired_receipts"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_TEX_MISMATCH",
+      "id": "TEX-11",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_11_repaired_receipts"
+      ],
+      "requirement": "**Repaired receipt attack** \u2014 Repair candidate inventory and compile/review input hashes after an equation mutation; F2 is independent of F1.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS_WITH_MARKER_ABSENT",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_12_candidate_builder_shadow"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_12_candidate_builder_shadow"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS_WITH_MARKER_ABSENT",
+      "id": "TEX-12",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_12_candidate_builder_shadow"
+      ],
+      "requirement": "**Candidate builder shadow** \u2014 Candidate builder writes a marker if imported; trusted render must ignore it and accepted candidate TeX still matches.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS_WITH_MARKER_ABSENT",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_13_candidate_verifier_shadow"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_13_candidate_verifier_shadow"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS_WITH_MARKER_ABSENT",
+      "id": "TEX-13",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_13_candidate_verifier_shadow"
+      ],
+      "requirement": "**Candidate verifier shadow** \u2014 Candidate verify_release.py writes a marker; F2 alone must not import it.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS_WITH_MARKER_ABSENT",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_14_pythonpath_startup_injection"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_14_pythonpath_startup_injection"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS_WITH_MARKER_ABSENT",
+      "id": "TEX-14",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_14_pythonpath_startup_injection"
+      ],
+      "requirement": "**PYTHONPATH/startup injection** \u2014 Place shadow modules/sitecustomize in cwd and PYTHONPATH; worker uses -I -S.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_REFERENCE_MISSING",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_15_missing_accepted_helper"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_15_missing_accepted_helper"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_REFERENCE_MISSING",
+      "id": "TEX-15",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_15_missing_accepted_helper"
+      ],
+      "requirement": "**Missing accepted helper** \u2014 Internal trusted-input fixture omits verify_release.py.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_EXPORT_REFERENCE",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_16_wrong_helper_hash"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_16_wrong_helper_hash"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_EXPORT_REFERENCE",
+      "id": "TEX-16",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_16_wrong_helper_hash"
+      ],
+      "requirement": "**Wrong trusted helper hash** \u2014 Internal fixture replaces accepted helper bytes.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_COMMAND_TIMEOUT",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_17_render_timeout"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_17_render_timeout"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_COMMAND_TIMEOUT",
+      "id": "TEX-17",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_17_render_timeout"
+      ],
+      "requirement": "**Render timeout** \u2014 Inject a controlled hanging test worker, without changing production authority switches.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_18_pdf_and_build_never_called"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_18_pdf_and_build_never_called"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "TEX-18",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_18_pdf_and_build_never_called"
+      ],
+      "requirement": "**PDF path never called** \u2014 Patch reference PDF/build entry points in a fixture to throw if called; TeX-only operation succeeds.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_LIMIT",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_19_output_budget"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_19_output_budget"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_LIMIT",
+      "id": "TEX-19",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_19_output_budget"
+      ],
+      "requirement": "**Output budget** \u2014 Fixture renderer returns more than the output size budget.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_TEX_TYPE",
+        "methods": [
+          "verification.integrity.tests.test_tex.TexExportTests.test_tex_20_candidate_symlink"
+        ],
+        "suite": "tex",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_tex.TexExportTests.test_tex_20_candidate_symlink"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "tex"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_TEX_TYPE",
+      "id": "TEX-20",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_20_candidate_symlink"
+      ],
+      "requirement": "**Candidate TeX is symlink** \u2014 Candidate TeX entry is type 120000.",
+      "status": "PASS",
+      "suite": "tex"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_01_named_synthetic_full_restore"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_01_named_synthetic_full_restore"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "ARCH-01",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_01_named_synthetic_full_restore"
+      ],
+      "requirement": "**Named synthetic full restore** \u2014 Toy base/head/S/M graph, all required named refs, fresh empty repo, import and fsck.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_BUNDLE_REFS",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_02_main_only_omits_synthetic"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_02_main_only_omits_synthetic"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_BUNDLE_REFS",
+      "id": "ARCH-02",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_02_main_only_omits_synthetic"
+      ],
+      "requirement": "**Main-only graph** \u2014 Build a valid full main-only bundle while synthetic object is unreferenced.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_BUNDLE_REFS",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_03_missing_required_commit_target"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_03_missing_required_commit_target"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_BUNDLE_REFS",
+      "id": "ARCH-03",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_03_missing_required_commit_target"
+      ],
+      "requirement": "**Missing synthetic object** \u2014 Repair ref/manifest test fixture so required synthetic cannot be resolved after import.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_BUNDLE_REFS",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_04_wrong_valid_ref_target"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_04_wrong_valid_ref_target"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_BUNDLE_REFS",
+      "id": "ARCH-04",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_04_wrong_valid_ref_target"
+      ],
+      "requirement": "**Wrong valid ref target** \u2014 Point a required ref at another valid commit; repair outer hashes.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_BUNDLE_PREREQUISITE",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_05_incremental_prerequisite"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_05_incremental_prerequisite"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_BUNDLE_PREREQUISITE",
+      "id": "ARCH-05",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_05_incremental_prerequisite"
+      ],
+      "requirement": "**Incremental prerequisite** \u2014 Create base..main bundle and verify against a genuinely empty repo.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_BUNDLE_IMPORT",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_06_intact_header_truncated_pack_import"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_06_intact_header_truncated_pack_import"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_BUNDLE_IMPORT",
+      "id": "ARCH-06",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_06_intact_header_truncated_pack_import"
+      ],
+      "requirement": "**Truncated payload after intact header** \u2014 Truncate pack bytes; keep header valid and repair outer hash; header verify may succeed, import must fail.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_BUNDLE_HASH",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_07_bundle_checksum_mismatch"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_07_bundle_checksum_mismatch"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_BUNDLE_HASH",
+      "id": "ARCH-07",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_07_bundle_checksum_mismatch"
+      ],
+      "requirement": "**Checksum mismatch** \u2014 Flip bundle bytes without repairing its independently expected digest.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_GIT_FSCK",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_08_corrupt_object_fails_strict_fsck"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_08_corrupt_object_fails_strict_fsck"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_GIT_FSCK",
+      "id": "ARCH-08",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_08_corrupt_object_fails_strict_fsck"
+      ],
+      "requirement": "**Corrupt object integrity** \u2014 Inject a corrupted loose object into restored fixture before fsck.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_BUNDLE_REFS",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_09_extra_ref"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_09_extra_ref"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_BUNDLE_REFS",
+      "id": "ARCH-09",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_09_extra_ref"
+      ],
+      "requirement": "**Extra ref** \u2014 Include an undeclared maintenance or unrelated branch ref.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_OBJECT_INVENTORY",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_10_extra_object_inventory"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_10_extra_object_inventory"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_OBJECT_INVENTORY",
+      "id": "ARCH-10",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_10_extra_object_inventory"
+      ],
+      "requirement": "**Extra object inventory** \u2014 Manifest inventory includes an object outside the required restored closure.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_PARENT_BINDING",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_11_ordered_parent_reversal"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_11_ordered_parent_reversal"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_PARENT_BINDING",
+      "id": "ARCH-11",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_11_ordered_parent_reversal"
+      ],
+      "requirement": "**Source/base parent reversal** \u2014 Fixture synthetic merge has reversed valid parents.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_TREE_BINDING",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_12_synthetic_main_tree_difference"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_12_synthetic_main_tree_difference"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_TREE_BINDING",
+      "id": "ARCH-12",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_12_synthetic_main_tree_difference"
+      ],
+      "requirement": "**Different synthetic/main tree** \u2014 Both commits valid and same parents, but their trees differ.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_BUNDLE_REFS",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_13_builder_rejects_extra_production_root"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_13_builder_rejects_extra_production_root"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_BUNDLE_REFS",
+      "id": "ARCH-13",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_13_builder_rejects_extra_production_root"
+      ],
+      "requirement": "**Archive self-inclusion** \u2014 Builder receives a maintenance/supplement commit as an extra root.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Actual original publisher ZIP bytes: artifact12106535829/run39045919534, length9377, SHA256 75d61c01020f63d7f9555f10f32de9d63a09c0107536463ae549cdb85ebe9fc8",
+        "Captured original artifact/run/head/repository metadata and truthful acquisition provenance",
+        "Do not substitute regenerated or older-lane evidence"
+      ],
+      "expected_result": "PASS",
+      "fixed_artifact": {
+        "artifact_id": 12106535829,
+        "run_id": 39045919534,
+        "sha256": "75d61c01020f63d7f9555f10f32de9d63a09c0107536463ae549cdb85ebe9fc8",
+        "size": 9377
+      },
+      "id": "ARCH-14",
+      "level": "integration",
+      "notes": [],
+      "required_methods": [],
+      "requirement": "**Original R publisher hash** \u2014 Real R bytes are acquired with the published 9,377-byte identity and digest.",
+      "status": "PENDING_EVIDENCE",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_CAPTURE_ID",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_15_wrong_r_capture_identity"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_15_wrong_r_capture_identity"
+          ],
+          "passed_subtests": 5,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_CAPTURE_ID",
+      "id": "ARCH-15",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_15_wrong_r_capture_identity"
+      ],
+      "requirement": "**Wrong R run or artifact** \u2014 Valid ZIP/capture claims another run, head, artifact ID or repository.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_EVIDENCE_HASH",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_16_r_payload_external_hash"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_16_r_payload_external_hash"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_EVIDENCE_HASH",
+      "id": "ARCH-16",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_16_r_payload_external_hash"
+      ],
+      "requirement": "**R payload mismatch** \u2014 R ZIP bytes differ from externally observed published digest.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_C10_CONTENT",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_17_repaired_hashes_fail_at_c10_content"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_17_repaired_hashes_fail_at_c10_content"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_C10_CONTENT",
+      "id": "ARCH-17",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_17_repaired_hashes_fail_at_c10_content"
+      ],
+      "requirement": "**R content inconsistency** \u2014 Fixture changes proof/arithmetic content and repairs nested hashes; direct content validator must fail.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_CAPTURE_ID",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review"
+          ],
+          "passed_subtests": 24,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_CAPTURE_ID",
+      "id": "ARCH-18",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review"
+      ],
+      "requirement": "**Missing final code review** \u2014 Remove required captured final-review file from supplement.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_MANIFEST_FORMAT",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_19_unsafe_delivered_paths_and_duplicates"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_19_unsafe_delivered_paths_and_duplicates"
+          ],
+          "passed_subtests": 8,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_MANIFEST_FORMAT",
+      "id": "ARCH-19",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_19_unsafe_delivered_paths_and_duplicates"
+      ],
+      "requirement": "**Extra or unsafe delivered file** \u2014 Add traversal, duplicate key/path, unlisted payload or symlink in supplement.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "BLOCKED_E_OFFLINE_UNAVAILABLE",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_20_unavailable_isolation_blocks"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_20_unavailable_isolation_blocks"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "BLOCKED_E_OFFLINE_UNAVAILABLE",
+      "id": "ARCH-20",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_20_unavailable_isolation_blocks"
+      ],
+      "requirement": "**Unavailable isolation** \u2014 Network namespace cannot be created; never fall back to online success.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveIsolationTests.test_arch_21_real_linux_namespace"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveIsolationTests.test_arch_21_real_linux_namespace"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success",
+        "Actual supported Linux network namespace, distinct parent/child IDs, no outward routes and conclusively denied outward socket",
+        "Nonroot original UID/GID, cleared groups/capabilities and no-new-privileges; Windows BLOCKED is not PASS"
+      ],
+      "expected_result": "PASS",
+      "id": "ARCH-21",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveIsolationTests.test_arch_21_real_linux_namespace"
+      ],
+      "requirement": "**Isolation actually enforced** \u2014 New namespace has no external route; outward socket attempt is denied.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_HISTORY_EXTERNAL",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_22_borrowed_offline_prerequisite"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_22_borrowed_offline_prerequisite"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_HISTORY_EXTERNAL",
+      "id": "ARCH-22",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_22_borrowed_offline_prerequisite"
+      ],
+      "requirement": "**Borrowed offline prerequisites** \u2014 Restored repository inherits alternates/remotes/promisor state.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Successful actual supplement replay targeting accepted A d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+        "Enforced Linux network isolation with dependencies installed before the boundary",
+        "Empty object database import, strict fsck, exact36refs/full object closure and parent/tree/ancestry bindings",
+        "Canonical accepted checkout,369pins,exact TeX,unchanged final verifier,package --verify,all29legacytests and original R C10 consistency",
+        "Post-replay delivered/accepted hash checks; no fresh Lean or publisher-authentication claim"
+      ],
+      "expected_result": "PASS",
+      "id": "ARCH-23",
+      "level": "integration",
+      "notes": [],
+      "required_methods": [],
+      "requirement": "**Legacy accepted verifier replay** \u2014 Actual supplement restores A; final verifier and package --verify run successfully.",
+      "status": "PENDING_EVIDENCE",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "BLOCKED_E_DEPENDENCY_MISSING",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_24_missing_offline_dependency_blocks"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_24_missing_offline_dependency_blocks"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "BLOCKED_E_DEPENDENCY_MISSING",
+      "id": "ARCH-24",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_24_missing_offline_dependency_blocks"
+      ],
+      "requirement": "**Missing offline dependency** \u2014 pypdf is unavailable in the isolated runtime.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_25_delivered_bytes_unchanged"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_25_delivered_bytes_unchanged"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "ARCH-25",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_25_delivered_bytes_unchanged"
+      ],
+      "requirement": "**Old bytes remain unchanged** \u2014 Rehash source kit and supplement after replay and legacy 29-test suite.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "PASS",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_26_bundle_bytes_and_object_semantics_separate"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_26_bundle_bytes_and_object_semantics_separate"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "PASS",
+      "id": "ARCH-26",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_26_bundle_bytes_and_object_semantics_separate"
+      ],
+      "requirement": "**Rebuild semantics not universal bytes** \u2014 Two supported Git builds may vary pack bytes; delivered digest is fixed, reconstructed required ref/object closure must match.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_LIMIT",
+        "methods": [
+          "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_27_bounded_archive_metadata"
+        ],
+        "suite": "archive",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_27_bounded_archive_metadata"
+          ],
+          "passed_subtests": 7,
+          "report_sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "archive"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_LIMIT",
+      "id": "ARCH-27",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_27_bounded_archive_metadata"
+      ],
+      "requirement": "**Bounded archive inputs** \u2014 Declared bundle/object/metadata size exceeds policy cap.",
+      "status": "PASS",
+      "suite": "archive"
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Genuine pull_request event targeting main with exact H/B/S",
+        "Zero changed release/** paths",
+        "All three hardening job contexts actually executed and succeeded at S"
+      ],
+      "expected_result": "PASS",
+      "id": "CI-01",
+      "level": "live_pr",
+      "notes": [],
+      "required_methods": [],
+      "requirement": "**Zero release diff real PR** \u2014 A genuine maintenance PR changes only new tooling/docs/archival paths; all three jobs execute.",
+      "status": "PENDING_EVIDENCE",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Trusted event head H/base B and actual checkout S",
+        "Commit S has ordered parents [B,H]",
+        "Recorded repository, PR number, run ID and attempt"
+      ],
+      "expected_result": "PASS",
+      "id": "CI-02",
+      "level": "live_pr",
+      "notes": [],
+      "required_methods": [],
+      "requirement": "**Actual synthetic parents** \u2014 On PR, compare event H/B with git show S parents and actual checkout HEAD.",
+      "status": "PENDING_EVIDENCE",
+      "suite": null
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_CONTEXT",
+        "methods": [
+          "verification.integrity.tests.test_context.ContextTests.test_ci_03_wrong_checkout_context"
+        ],
+        "suite": "context",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_context.ContextTests.test_ci_03_wrong_checkout_context"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "b9c117697b42279ea891a5fea4a0e01c16e8319d9e08a2e88b8bb25c8300dd9a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "context"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_CONTEXT",
+      "id": "CI-03",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_context.ContextTests.test_ci_03_wrong_checkout_context"
+      ],
+      "requirement": "**Wrong checkout context** \u2014 Use H or a previous synthetic instead of current S.",
+      "status": "PASS",
+      "suite": "context"
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Observed new head after an earlier green run",
+        "Old report/source tuple rejected for the new head",
+        "Fresh genuine synthetic-merge evidence for the new H/B/S"
+      ],
+      "expected_result": "E_CONTEXT",
+      "id": "CI-04",
+      "level": "live_pr",
+      "notes": [],
+      "required_methods": [],
+      "requirement": "**Head changes after green** \u2014 Push a new commit; old reports cannot be reused for new head.",
+      "status": "PENDING_EVIDENCE",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Observed integration-base movement",
+        "Old base/synthetic tuple rejected",
+        "Fresh genuine synthetic merge S and checks bound to updated B and H"
+      ],
+      "expected_result": "E_CONTEXT",
+      "id": "CI-05",
+      "level": "live_pr",
+      "notes": [],
+      "required_methods": [],
+      "requirement": "**Base changes after green** \u2014 Refresh genuine synthetic CI against updated B and capture new S; old pair fails.",
+      "status": "PENDING_EVIDENCE",
+      "suite": null
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_WORKFLOW_CONTRACT",
+        "methods": [
+          "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden"
+        ],
+        "suite": "workflow",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden"
+          ],
+          "passed_subtests": 7,
+          "report_sha256": "0f490c553b7218fb2e158623853d347714bed449fb38681c7f780c2b8a849f16",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "workflow"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_WORKFLOW_CONTRACT",
+      "id": "CI-06",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden"
+      ],
+      "requirement": "**Workflow filters forbidden** \u2014 Static test introduces paths/paths-ignore or docs-only job skip around new checks.",
+      "status": "PASS",
+      "suite": "workflow"
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_REPORT",
+        "methods": [
+          "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_07_discovery_reports_and_skips_fail_closed"
+        ],
+        "suite": "workflow",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_07_discovery_reports_and_skips_fail_closed"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "0f490c553b7218fb2e158623853d347714bed449fb38681c7f780c2b8a849f16",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "workflow"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_REPORT",
+      "id": "CI-07",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_07_discovery_reports_and_skips_fail_closed"
+      ],
+      "requirement": "**Skip cannot become PASS** \u2014 Simulate failed prerequisites, absent reports, zero test discovery, missing case mappings and unexpected skips; none may become success.",
+      "status": "PASS",
+      "suite": "workflow"
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Actual GitHub check runs expose all eight intended context names",
+        "Unique job names and GitHub Actions publisher App identity observed",
+        "No substituted workflow titles or omitted required checks"
+      ],
+      "expected_result": "PASS",
+      "id": "CI-08",
+      "level": "live_pr",
+      "notes": [],
+      "required_methods": [],
+      "requirement": "**Unique actual contexts** \u2014 Observe eight intended required job contexts from GitHub Actions; new names not workflow titles.",
+      "status": "PENDING_EVIDENCE",
+      "suite": null
+    },
+    {
+      "actual_result": {
+        "expected_validator_outcome": "E_CONTEXT",
+        "methods": [
+          "verification.integrity.tests.test_context.ContextTests.test_ci_09_manual_not_pr_acceptance"
+        ],
+        "suite": "context",
+        "unit_requirement_verified": true
+      },
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "evidence": [
+        {
+          "methods": [
+            "verification.integrity.tests.test_context.ContextTests.test_ci_09_manual_not_pr_acceptance"
+          ],
+          "passed_subtests": 0,
+          "report_sha256": "b9c117697b42279ea891a5fea4a0e01c16e8319d9e08a2e88b8bb25c8300dd9a",
+          "run_attempt": 1,
+          "run_id": 39068230438,
+          "suite": "context"
+        }
+      ],
+      "evidence_expectations": [
+        "Exact-source fail-closed test report with this requirement ID and mapped executed method/subtest",
+        "Intended success or exact rejection code from the required validator stage",
+        "Adjacent positive control; prerequisite failures and unexpected skips do not count as adversarial success"
+      ],
+      "expected_result": "E_CONTEXT",
+      "id": "CI-09",
+      "level": "unit",
+      "notes": [],
+      "required_methods": [
+        "verification.integrity.tests.test_context.ContextTests.test_ci_09_manual_not_pr_acceptance"
+      ],
+      "requirement": "**Manual run not acceptance** \u2014 Try to use a workflow_dispatch diagnostic report as genuine-PR acceptance; reject that use at the acceptance context validator.",
+      "status": "PASS",
+      "suite": "context"
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Independent review of candidate workflow and credential handling",
+        "Read-only contents permission, persist-credentials:false, no candidate write token/secrets",
+        "Current-head review artifact; a unit mock alone does not complete this review case"
+      ],
+      "expected_result": "PASS",
+      "id": "CI-10",
+      "level": "review",
+      "notes": [],
+      "required_methods": [],
+      "requirement": "**No candidate credentials** \u2014 Fork-safe job has contents:read, persist-credentials:false and no write token/secrets.",
+      "status": "PENDING_EVIDENCE",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Newly executed PR-only C10 evidence bound to maintenance H/B/S",
+        "Published artifact/run metadata and actual payload retained",
+        "Historical R ZIP remains separately preserved and unchanged"
+      ],
+      "expected_result": "PASS",
+      "id": "CI-11",
+      "level": "live_pr",
+      "notes": [],
+      "required_methods": [],
+      "requirement": "**Fresh maintenance C10 binding** \u2014 Capture newly executed PR-only C10 with current maintenance H/B/S, separate from historical R ZIP.",
+      "status": "PENDING_EVIDENCE",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "E_RULESET_INACTIVE",
+      "id": "OPS-01",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Disabled proposed rules** \u2014 Unapplied or disabled JSON cannot close enforcement.",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "BLOCKED_E_REVIEW_INELIGIBLE",
+      "id": "OPS-02",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Eligible reviewer prerequisite** \u2014 Only author approval or a no-major-issues comment is available.",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "E_REVIEW_INELIGIBLE",
+      "id": "OPS-03",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Stale approval** \u2014 New reviewable push invalidates previously eligible approval under policy.",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "PASS",
+      "id": "OPS-04",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Privileged settings read-back** \u2014 Read active rules and full bypass list; verify strict base, contexts, review and merge fields.",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "BLOCKED_E_BYPASS_UNKNOWN",
+      "id": "OPS-05",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Bypass omitted from response** \u2014 Permissions cannot expose bypass actors; do not treat omitted property as [].",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "PASS",
+      "id": "OPS-06",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Force push/deletion policy** \u2014 Inspect effective active rules and authorized controlled policy tests; production branch is never destructively tested without approval.",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "PASS",
+      "id": "OPS-07",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Remote tag verified** \u2014 Authorized new tag is created and peeled to A; existing wrong tag is not moved.",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "E_TAG_CONFLICT",
+      "id": "OPS-08",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Tag collision** \u2014 Proposed tag already exists at a different object.",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "PASS",
+      "id": "OPS-09",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Supplement publication verified** \u2014 Authorized external publication is retrieved and checked against independently recorded digest.",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "E_PUBLICATION_MISSING",
+      "id": "OPS-10",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Publication missing** \u2014 Tooling and local bundle exist but no durable external publication receipt exists.",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "PASS",
+      "id": "OPS-11",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Final stage conjunction** \u2014 F3 remains OPEN until all required capture/restore/settings/tag/publication states are evidenced.",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    },
+    {
+      "actual_result": null,
+      "checked_sha": null,
+      "evidence": [],
+      "evidence_expectations": [
+        "Separately authorized operational evidence satisfying the exact contract stimulus and expected result",
+        "Effective configuration/tag/publication read-back where relevant; full privileges needed for bypass visibility",
+        "Current user authorization must be obtained before settings changes, remote tag creation or external publication"
+      ],
+      "expected_result": "PASS",
+      "id": "OPS-12",
+      "level": "authorized_rollout",
+      "notes": [
+        "Operational rollout has not been authorized in this implementation phase. Reviewer and external publication destination remain undetermined.",
+        "Do not mark PASS from a disabled proposed ruleset, repository push, local ZIP, missing bypass information or code-review comment alone."
+      ],
+      "required_methods": [],
+      "requirement": "**Scientific exclusion** \u2014 Maintenance completion records zero new/changed theorem declarations and no promotion of open mathematical obligations.",
+      "status": "DEFERRED_BY_USER",
+      "suite": null
+    }
+  ],
+  "completion_policy": {
+    "all108_complete": false,
+    "local_or_repository_archive_is_external_publication": false,
+    "overall_F3_closed": false,
+    "prerequisite_failure_is_adversarial_success": false,
+    "registry_mapping_is_execution_evidence": false,
+    "unexecuted_is_pass": false
+  },
+  "contract_document_provenance": {
+    "amended_active_documents": [
+      {
+        "active": {
+          "commit": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+          "git_blob": "2bfeb01943c0e0cf63e1e9c5ba6fbea7ee17be14",
+          "immutable_source_url": "https://github.com/HMarcusWH/PermanssonLean/blob/71cc34fa0bc4b639c05d2ec5f39f0b88afd56388/docs/hardening/contract/02_Implementation_Spec.md",
+          "path": "docs/hardening/contract/02_Implementation_Spec.md",
+          "sha256": "f8f92a2a13dd25dbffc817a175fff3a81f20b7698a4d1a1f2630c06e5f8698e5"
+        },
+        "pristine_supplied": {
+          "byte_identity": "Independently byte-matched original Downloads/02_Implementation_Spec.md",
+          "commit": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+          "git_blob": "8d0379cc65a9eb056a06673a5b82147dca0468e5",
+          "immutable_source_url": "https://github.com/HMarcusWH/PermanssonLean/blob/ed8309843eedbd6cfe56b5e543c99285e28cead5/docs/hardening/contract/supplied/02_Implementation_Spec.md",
+          "local_attributes": "-text preserves exact supplied bytes",
+          "path": "docs/hardening/contract/supplied/02_Implementation_Spec.md",
+          "sha256": "58fb94fcca4c483facda75a1d716c8786884a734de59e8a4f0397da2f99ec864"
+        }
+      },
+      {
+        "active": {
+          "commit": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+          "git_blob": "c998a97ec5f3ad1219d5c1716ba5a12690966cda",
+          "immutable_source_url": "https://github.com/HMarcusWH/PermanssonLean/blob/71cc34fa0bc4b639c05d2ec5f39f0b88afd56388/docs/hardening/contract/03_Acceptance_Test_Plan.md",
+          "path": "docs/hardening/contract/03_Acceptance_Test_Plan.md",
+          "sha256": "e31fca00dc046a5f57d98fd695111e3c09818430d4b5dde559420161d25f8632"
+        },
+        "pristine_supplied": {
+          "byte_identity": "Independently byte-matched original Downloads/03_Acceptance_Test_Plan.md",
+          "commit": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+          "git_blob": "38e9edc01043a9f912c2a652912dfc2ea1a9a570",
+          "immutable_source_url": "https://github.com/HMarcusWH/PermanssonLean/blob/ed8309843eedbd6cfe56b5e543c99285e28cead5/docs/hardening/contract/supplied/03_Acceptance_Test_Plan.md",
+          "local_attributes": "-text preserves exact supplied bytes",
+          "path": "docs/hardening/contract/supplied/03_Acceptance_Test_Plan.md",
+          "sha256": "09b6f1bad56b776c6ffefd80ea967407b39c41364ab4402286d14bb0ecaa2453"
+        }
+      },
+      {
+        "active": {
+          "commit": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+          "git_blob": "213878c06303ed60aa00ff14ae82782a7762da8d",
+          "immutable_source_url": "https://github.com/HMarcusWH/PermanssonLean/blob/71cc34fa0bc4b639c05d2ec5f39f0b88afd56388/docs/hardening/contract/04_Rollout_Runbook.md",
+          "path": "docs/hardening/contract/04_Rollout_Runbook.md",
+          "sha256": "5bedea3505e601f3ac3fe66c16daf548fa1413ae8882695fc792f26ae7373fcd"
+        },
+        "pristine_supplied": {
+          "byte_identity": "Independently byte-matched original Downloads/04_Rollout_Runbook.md",
+          "commit": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+          "git_blob": "ea30c552ef47a02aa1873a259d96fb09c4781021",
+          "immutable_source_url": "https://github.com/HMarcusWH/PermanssonLean/blob/ed8309843eedbd6cfe56b5e543c99285e28cead5/docs/hardening/contract/supplied/04_Rollout_Runbook.md",
+          "local_attributes": "-text preserves exact supplied bytes",
+          "path": "docs/hardening/contract/supplied/04_Rollout_Runbook.md",
+          "sha256": "f8c682e0945094d13919076573ceb5ba40c6cc7cbf4569edd49a098dbd255f28"
+        }
+      }
+    ],
+    "amendment_is_execution_evidence": false,
+    "original_full_package_zip": "NOT_SUPPLIED",
+    "unchanged_active_originals": [
+      "01_Proposal_Audit.md",
+      "AGENT_BUILD_DIRECTIVE.md"
+    ]
+  },
+  "fixed_authority": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "accepted_tree": "72ad841cc5b3cffc5f82979a9739b7fd03d75e15",
+    "research_source": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3"
+  },
+  "format": "Permansson.Hardening.AcceptanceLedgerTemplate.v1",
+  "maintenance_context": {
+    "base_B": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "head_H": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "head_tree": null,
+    "main_merge_M": null,
+    "main_tree": null,
+    "pr_number": 77,
+    "repository": "HMarcusWH/PermanssonLean",
+    "review_evidence": [],
+    "synthetic_S": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "synthetic_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+    "workflow_runs": [
+      {
+        "run_attempt": 1,
+        "run_id": 39068230438
+      }
+    ]
+  },
+  "receipt_assembly": {
+    "assembled_at_utc": "2026-10-17T20:51:08.645227+00:00",
+    "context_evidence": {
+      "bytes": 617,
+      "container_bytes": 9515,
+      "container_sha256": "ab1b3154fb80886a7938bbf3bf8667c7c32a1fb061dc366267c9f1c7db214da1",
+      "member": "context.json",
+      "original_artifact_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-preservation-reports.zip",
+      "portable_href": "../artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+      "portable_path": "artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+      "raw_original_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-preservation-reports.zip",
+      "sha256": "73f654b178121908704eb52a20d25aace4c952420d641c44256514d29f67a890",
+      "source": "../artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip"
+    },
+    "format": "Permansson.Hardening.UnitReceiptAssembly.v1",
+    "merge_acceptance": "NOT_ESTABLISHED",
+    "operational_completion": "DEFERRED_BY_USER",
+    "publisher_authentication": "must_be_established_from_separate_API_artifact_and_job_records",
+    "remaining_technical_cases": [
+      "ARCH-14",
+      "ARCH-23",
+      "CI-01",
+      "CI-02",
+      "CI-04",
+      "CI-05",
+      "CI-08",
+      "CI-10",
+      "CI-11"
+    ],
+    "reports": {
+      "archive": {
+        "bytes": 53910,
+        "container_bytes": 7234,
+        "container_sha256": "97acd2c644190188ffd0ee042c1847d73922ef23c23faf45130b6077e65577c1",
+        "covered_requirements": [
+          "ARCH-01",
+          "ARCH-02",
+          "ARCH-03",
+          "ARCH-04",
+          "ARCH-05",
+          "ARCH-06",
+          "ARCH-07",
+          "ARCH-08",
+          "ARCH-09",
+          "ARCH-10",
+          "ARCH-11",
+          "ARCH-12",
+          "ARCH-13",
+          "ARCH-15",
+          "ARCH-16",
+          "ARCH-17",
+          "ARCH-18",
+          "ARCH-19",
+          "ARCH-20",
+          "ARCH-21",
+          "ARCH-22",
+          "ARCH-24",
+          "ARCH-25",
+          "ARCH-26",
+          "ARCH-27"
+        ],
+        "member": "archive-tests.json",
+        "methods_run": 35,
+        "original_artifact_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-archive-reports.zip",
+        "portable_href": "../artifacts/hardening-pr77-finalized-acceptance/hardening-archive-reports.zip",
+        "portable_path": "artifacts/hardening-pr77-finalized-acceptance/hardening-archive-reports.zip",
+        "raw_original_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-archive-reports.zip",
+        "run_attempt": 1,
+        "run_id": 39068230438,
+        "runtime": {
+          "git": "git version 2.55.0",
+          "python": "3.13.16"
+        },
+        "sha256": "37e4d95de7a8c0f789cff0fffda28bf0986c07c5495c963cc7b12835c3f08e8e",
+        "source": "../artifacts/hardening-pr77-finalized-acceptance/hardening-archive-reports.zip",
+        "subtests_run": 110
+      },
+      "context": {
+        "bytes": 2859,
+        "container_bytes": 9515,
+        "container_sha256": "ab1b3154fb80886a7938bbf3bf8667c7c32a1fb061dc366267c9f1c7db214da1",
+        "covered_requirements": [
+          "CI-03",
+          "CI-09"
+        ],
+        "member": "context-tests.json",
+        "methods_run": 6,
+        "original_artifact_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-preservation-reports.zip",
+        "portable_href": "../artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "portable_path": "artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "raw_original_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-preservation-reports.zip",
+        "run_attempt": 1,
+        "run_id": 39068230438,
+        "runtime": {
+          "git": "git version 2.55.0",
+          "python": "3.13.16"
+        },
+        "sha256": "b9c117697b42279ea891a5fea4a0e01c16e8319d9e08a2e88b8bb25c8300dd9a",
+        "source": "../artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "subtests_run": 2
+      },
+      "preservation": {
+        "bytes": 14673,
+        "container_bytes": 9515,
+        "container_sha256": "ab1b3154fb80886a7938bbf3bf8667c7c32a1fb061dc366267c9f1c7db214da1",
+        "covered_requirements": [
+          "PRES-01",
+          "PRES-02",
+          "PRES-03",
+          "PRES-04",
+          "PRES-05",
+          "PRES-06",
+          "PRES-07",
+          "PRES-08",
+          "PRES-09",
+          "PRES-10",
+          "PRES-11",
+          "PRES-12",
+          "PRES-13",
+          "PRES-14",
+          "PRES-15",
+          "PRES-16",
+          "PRES-17",
+          "PRES-18",
+          "PRES-19",
+          "PRES-20",
+          "PRES-21",
+          "PRES-22",
+          "PRES-23"
+        ],
+        "member": "preservation-tests.json",
+        "methods_run": 26,
+        "original_artifact_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-preservation-reports.zip",
+        "portable_href": "../artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "portable_path": "artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "raw_original_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-preservation-reports.zip",
+        "run_attempt": 1,
+        "run_id": 39068230438,
+        "runtime": {
+          "git": "git version 2.55.0",
+          "python": "3.13.16"
+        },
+        "sha256": "dfb44356e19f5de7729d21c9deaab769d7fb8fd761d75d6211d445e4d24bf10a",
+        "source": "../artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "subtests_run": 19
+      },
+      "reference": {
+        "bytes": 9605,
+        "container_bytes": 9515,
+        "container_sha256": "ab1b3154fb80886a7938bbf3bf8667c7c32a1fb061dc366267c9f1c7db214da1",
+        "covered_requirements": [
+          "REF-01",
+          "REF-02",
+          "REF-03",
+          "REF-04",
+          "REF-05",
+          "REF-06",
+          "REF-07",
+          "REF-08",
+          "REF-09",
+          "REF-10",
+          "REF-11",
+          "REF-12",
+          "REF-13",
+          "REF-14",
+          "REF-15"
+        ],
+        "member": "reference-tests.json",
+        "methods_run": 17,
+        "original_artifact_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-preservation-reports.zip",
+        "portable_href": "../artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "portable_path": "artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "raw_original_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-preservation-reports.zip",
+        "run_attempt": 1,
+        "run_id": 39068230438,
+        "runtime": {
+          "git": "git version 2.55.0",
+          "python": "3.13.16"
+        },
+        "sha256": "274ed2343191cecf5c30be4d78c4207f3771e028bb6134e3d249c44a8f8e8bbd",
+        "source": "../artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "subtests_run": 14
+      },
+      "tex": {
+        "bytes": 6447,
+        "container_bytes": 2627,
+        "container_sha256": "38756328aa9e463ea000d2eb2c743c263f6e0084c2c417db924c44aee9c614d9",
+        "covered_requirements": [
+          "TEX-01",
+          "TEX-02",
+          "TEX-03",
+          "TEX-04",
+          "TEX-05",
+          "TEX-06",
+          "TEX-07",
+          "TEX-08",
+          "TEX-09",
+          "TEX-10",
+          "TEX-11",
+          "TEX-12",
+          "TEX-13",
+          "TEX-14",
+          "TEX-15",
+          "TEX-16",
+          "TEX-17",
+          "TEX-18",
+          "TEX-19",
+          "TEX-20"
+        ],
+        "member": "tex-tests.json",
+        "methods_run": 20,
+        "original_artifact_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-export-reports.zip",
+        "portable_href": "../artifacts/hardening-pr77-finalized-acceptance/hardening-export-reports.zip",
+        "portable_path": "artifacts/hardening-pr77-finalized-acceptance/hardening-export-reports.zip",
+        "raw_original_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-export-reports.zip",
+        "run_attempt": 1,
+        "run_id": 39068230438,
+        "runtime": {
+          "git": "git version 2.55.0",
+          "python": "3.13.16"
+        },
+        "sha256": "a62e6ff727511d82704d2e540c44032e0d52c6292738d13195641eec4fd176d3",
+        "source": "../artifacts/hardening-pr77-finalized-acceptance/hardening-export-reports.zip",
+        "subtests_run": 4
+      },
+      "workflow": {
+        "bytes": 79413,
+        "container_bytes": 9515,
+        "container_sha256": "ab1b3154fb80886a7938bbf3bf8667c7c32a1fb061dc366267c9f1c7db214da1",
+        "covered_requirements": [
+          "CI-06",
+          "CI-07"
+        ],
+        "member": "workflow-tests.json",
+        "methods_run": 8,
+        "original_artifact_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-preservation-reports.zip",
+        "portable_href": "../artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "portable_path": "artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "raw_original_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\hardening-pr77-finalized-acceptance\\hardening-preservation-reports.zip",
+        "run_attempt": 1,
+        "run_id": 39068230438,
+        "runtime": {
+          "git": "git version 2.55.0",
+          "python": "3.13.16"
+        },
+        "sha256": "0f490c553b7218fb2e158623853d347714bed449fb38681c7f780c2b8a849f16",
+        "source": "../artifacts/hardening-pr77-finalized-acceptance/hardening-preservation-reports.zip",
+        "subtests_run": 94
+      }
+    },
+    "scope": "87_unit_requirements_only",
+    "source_context": {
+      "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+      "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+      "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+      "event": "pull_request",
+      "event_sha256": "d3a7eaad9193a9d84ca3736daef38fac0fe3d2e96de3fe1089858a818142a72b",
+      "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+      "pr_number": 77,
+      "repository": "HMarcusWH/PermanssonLean",
+      "run_attempt": 1,
+      "run_id": 39068230438,
+      "scope": "canonical_commit_objects"
+    },
+    "template_evidence": {
+      "bytes": 111521,
+      "container_bytes": 111521,
+      "container_sha256": "e7a1b50f9138f41077a711c0c8e9dc831677cf9e716e79b4b432025fcc5958d9",
+      "original_artifact_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\maintenance-acceptance-ledger-template-finalized.json",
+      "portable_href": "../artifacts/maintenance-acceptance-ledger-template-finalized.json",
+      "portable_path": "artifacts/maintenance-acceptance-ledger-template-finalized.json",
+      "raw_original_source": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\artifacts\\maintenance-acceptance-ledger-template-finalized.json",
+      "sha256": "e7a1b50f9138f41077a711c0c8e9dc831677cf9e716e79b4b432025fcc5958d9",
+      "source": "../artifacts/maintenance-acceptance-ledger-template-finalized.json"
+    }
+  },
+  "receipt_packet_portability": {
+    "layout": "artifacts/<original acquisition-relative name>",
+    "raw_ledger_retained": true,
+    "rewritten_fields": "Evidence path/source/portable_href/portable_path only; source/code claims and case verdicts retained",
+    "source_references_preserved": true
+  },
+  "registry_controls": {
+    "archive": [
+      "verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects",
+      "verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_manifest_nested_declarations_cannot_be_repaired_into_promotion",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_manifest_extra_payload_and_symlink_rejected",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_dotdot_scratch_overlap_rejected_before_creation",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_final_job_log_omission_repaired_index_rejected",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_standalone_context_requires_actual_restore_before_pass",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_foreign_repository_cannot_supply_local_context"
+    ],
+    "context": [
+      "verification.integrity.tests.test_context.ContextTests.test_genuine_pr_positive",
+      "verification.integrity.tests.test_context.ContextTests.test_previous_head_and_base_reports_rejected_unit_controls",
+      "verification.integrity.tests.test_context.ContextTests.test_push_positive_and_after_binding",
+      "verification.integrity.tests.test_context.ContextTests.test_local_cannot_fabricate_ci_event"
+    ],
+    "preservation": [
+      "verification.integrity.tests.test_preservation.PreservationTests.test_candidate_bound_maintenance_cli",
+      "verification.integrity.tests.test_preservation.PreservationTests.test_protected_root_symlink_and_file_directory",
+      "verification.integrity.tests.test_preservation.PreservationTests.test_empty_tree_closed_topology"
+    ],
+    "reference": [
+      "verification.integrity.tests.test_reference.ReferenceTests.test_corrupt_loose_subtree_is_rejected",
+      "verification.integrity.tests.test_reference.ReferenceTests.test_tree_gitlink_target_may_be_external"
+    ],
+    "workflow": [
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_required_workflow_rejects_dispatch",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_read_only_credentials_review_control",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_disabled_ruleset_is_only_a_proposal"
+    ]
+  },
+  "registry_source": {
+    "commit": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+    "contract_path": "docs/hardening/contract/03_Acceptance_Test_Plan.md",
+    "git_blob": "ba56d16cf05c341d96e5df754db068a95568f362",
+    "immutable_source_url": "https://github.com/HMarcusWH/PermanssonLean/blob/71cc34fa0bc4b639c05d2ec5f39f0b88afd56388/verification/integrity/test_coverage.json",
+    "path": "verification/integrity/test_coverage.json",
+    "sha256": "000b9d116b5ef24573d3d07825d1ae65ff23120d36bda56d2549a8f20174cf77"
+  },
+  "required_case_counts": {
+    "authorized_rollout": 12,
+    "integration": 2,
+    "live_pr": 6,
+    "review": 1,
+    "unit": 87
+  },
+  "schema_version": 1,
+  "scientific_exclusions": {
+    "fresh_Lean_claim_from_archive_replay": false,
+    "new_mathematical_assumptions": 0,
+    "new_or_changed_theorem_declarations": 0,
+    "preserve": [
+      "Original v0.1.8 formal core,paper,provenance,manifests,toolchain and application schema",
+      "All369protected paths and all accepted release bytes"
+    ],
+    "publisher_authentication_created_by_copying_evidence": false,
+    "scientific_promotion": false,
+    "unchanged_open_boundaries": [
+      "Strict MA2 remains OPEN",
+      "A3 remains conditional in its accepted scope",
+      "D2 retains initialized finite-path reach-and-stay scope",
+      "Both X1 replete-region Exact-GR claims fail",
+      "X1 exact numerical original-margin reflection remains OPEN",
+      "Unrestricted discounted-history strategy verification remains OPEN",
+      "Broader A3/D2/E1 extensions remain outside this maintenance work"
+    ]
+  },
+  "stage_states": {
+    "F1.code_verified": "PENDING_EVIDENCE",
+    "F1.enforcement_active": "DEFERRED_BY_USER",
+    "F2.code_verified": "PENDING_EVIDENCE",
+    "F2.enforcement_active": "DEFERRED_BY_USER",
+    "F3.bundle_materialized": "PENDING_EVIDENCE",
+    "F3.offline_restore_verified": "PENDING_EVIDENCE",
+    "F3.original_evidence_captured": "PENDING_EVIDENCE",
+    "F3.remote_tag_verified": "DEFERRED_BY_USER",
+    "F3.ruleset_active_and_read_back": "DEFERRED_BY_USER",
+    "F3.supplement_published_and_retrieved": "DEFERRED_BY_USER"
+  },
+  "template_only": false,
+  "total_required_cases": 108,
+  "user_decisions": {
+    "external_publication": "DEFERRED_BY_USER",
+    "external_publication_destination": "UNDETERMINED",
+    "independent_reviewer": "UNDETERMINED",
+    "push_repository_work": true,
+    "remote_tag": "DEFERRED_BY_USER",
+    "repository_settings": "DEFERRED_BY_USER"
+  }
+}

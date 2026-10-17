@@ -1,0 +1,118 @@
+{
+  "fetched_at": "2026-10-17T19:35:04.084Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39061789402/jobs?per_page=100&filter=latest",
+  "response": {
+    "total_count": 1,
+    "jobs": [
+      {
+        "id": 117481078856,
+        "run_id": 39061789402,
+        "workflow_name": "Executable verification",
+        "head_branch": "maintenance/v020-integrity-and-archive",
+        "run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39061789402",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUkBtPs8AAAAbWmsASA",
+        "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9",
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117481078856",
+        "html_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39061789402/job/117481078856",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-17T19:17:07Z",
+        "started_at": "2026-10-17T19:26:03Z",
+        "completed_at": "2026-10-17T19:26:16Z",
+        "name": "executable-verification",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-17T19:26:04Z",
+            "completed_at": "2026-10-17T19:26:05Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-17T19:26:05Z",
+            "completed_at": "2026-10-17T19:26:07Z"
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-17T19:26:07Z",
+            "completed_at": "2026-10-17T19:26:09Z"
+          },
+          {
+            "name": "Install Python dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-17T19:26:09Z",
+            "completed_at": "2026-10-17T19:26:11Z"
+          },
+          {
+            "name": "Run destructive/regression suite (Runs 17-30)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-17T19:26:11Z",
+            "completed_at": "2026-10-17T19:26:13Z"
+          },
+          {
+            "name": "Repository synchronization gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-17T19:26:13Z",
+            "completed_at": "2026-10-17T19:26:13Z"
+          },
+          {
+            "name": "Syntax-check preserved release gates",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-17T19:26:13Z",
+            "completed_at": "2026-10-17T19:26:13Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-17T19:26:13Z",
+            "completed_at": "2026-10-17T19:26:13Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-17T19:26:13Z",
+            "completed_at": "2026-10-17T19:26:13Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-17T19:26:13Z",
+            "completed_at": "2026-10-17T19:26:13Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/117481078856",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000109364,
+        "runner_name": "GitHub Actions 1000109364",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  }
+}
+

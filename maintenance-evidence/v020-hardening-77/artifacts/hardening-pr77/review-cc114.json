@@ -1,0 +1,138 @@
+{
+  "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+  "delta_paths": [
+    "archival/v0.2.0/publication-candidate/Permansson_v0.2.0_archival-supplement-1.zip",
+    "archival/v0.2.0/publication-candidate/Permansson_v0.2.0_archival-supplement-1.zip.sha256",
+    "archival/v0.2.0/publication-candidate/README.md",
+    "archival/v0.2.0/supplement-1/archive-manifest.json",
+    "archival/v0.2.0/supplement-1/archive-manifest.sha256",
+    "archival/v0.2.0/supplement-1/tooling/verification/integrity/tests/test_preservation.py",
+    "verification/integrity/tests/test_preservation.py"
+  ],
+  "elapsed_seconds": 19.984,
+  "evidence": {
+    "artifact_bytes": 9377,
+    "capture_files": 28,
+    "original_artifact_sha256": "75d61c01020f63d7f9555f10f32de9d63a09c0107536463ae549cdb85ebe9fc8",
+    "publisher_authentication": "not_created_by_offline_checksums",
+    "run_id": 39045919534
+  },
+  "executed_at": "2026-10-17T19:21:19.744725+00:00",
+  "format": "Permansson.IndependentExactPackagingDeltaReview.v1",
+  "head": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9",
+  "historical_bundle": {
+    "input_commits": 26,
+    "new_full_import": "NOT_PERFORMED",
+    "objects": 8202,
+    "refs": 36,
+    "reused_previous_exact_closure_review": true,
+    "sha256": "56c401a24130fd37231d667fdbad3f5578587bb6a1c6d3c406698bd5a966537f",
+    "unchanged_from_previous_head": true,
+    "uncompressed_bytes": 27391135
+  },
+  "limits": [
+    "No fresh GitHub CI or H/B/S observation",
+    "No new empty import or Linux offline execution",
+    "No fresh Lean execution",
+    "No GitHub APPROVED review",
+    "No settings, remote tag or external publication"
+  ],
+  "previous_cleared_head": "049d2620317afd10f8a584254d768f36af1d4979",
+  "publication_zip": {
+    "all_payloads_equal_H": true,
+    "bytes": 7437026,
+    "fixed_timestamp": "2026-10-17T00:00:00",
+    "members": 68,
+    "regular_mode": "100644",
+    "sha256": "da51255e8f47c3c3e16ef28fd41611eb532f370887722654dc88e01ac7dd97d1"
+  },
+  "reused_identical_input_results": {
+    "fresh_execution": false,
+    "preservation": {
+      "completed_stages": [
+        "reference_inventory",
+        "protected_comparison",
+        "closed_root_membership"
+      ],
+      "inventory_sha256": "8b4e5e235781c625c61f60b700f2d19f172e8bd9131a6b62edbda0907e77f160",
+      "protected_bytes": 6680695,
+      "protected_count": 369,
+      "scope": "canonical_commit_objects",
+      "trust_boundary": "Candidate-owned checker and workflow require independent review.",
+      "trust_sensitive_changes": [
+        ".github/repository-rules",
+        ".github/repository-rules/main.proposed.json",
+        ".github/workflows",
+        ".github/workflows/research-integrity-portability.yml",
+        ".github/workflows/research-integrity.yml",
+        "verification/archive",
+        "verification/archive/.gitattributes",
+        "verification/archive/__init__.py",
+        "verification/archive/_offline_worker.py",
+        "verification/archive/acquire_evidence.py",
+        "verification/archive/create_bundle.py",
+        "verification/archive/manifest.py",
+        "verification/archive/offline_smoke.py",
+        "verification/archive/schemas",
+        "verification/archive/schemas/archive-manifest.schema.json",
+        "verification/archive/tests",
+        "verification/archive/tests/__init__.py",
+        "verification/archive/tests/test_archive.py",
+        "verification/archive/verify_bundle.py",
+        "verification/integrity",
+        "verification/integrity/.gitattributes",
+        "verification/integrity/__init__.py",
+        "verification/integrity/_tex_worker.py",
+        "verification/integrity/ci_context.py",
+        "verification/integrity/git_objects.py",
+        "verification/integrity/inventory.py",
+        "verification/integrity/policy.py",
+        "verification/integrity/preservation.py",
+        "verification/integrity/reports.py",
+        "verification/integrity/requirements.txt",
+        "verification/integrity/run_tests.py",
+        "verification/integrity/schemas",
+        "verification/integrity/schemas/check-report.schema.json",
+        "verification/integrity/test_coverage.json",
+        "verification/integrity/tests",
+        "verification/integrity/tests/_fixtures.py",
+        "verification/integrity/tests/test_context.py",
+        "verification/integrity/tests/test_preservation.py",
+        "verification/integrity/tests/test_reference.py",
+        "verification/integrity/tests/test_tex.py",
+        "verification/integrity/tests/test_workflow.py",
+        "verification/integrity/tex_export.py",
+        "verification/integrity/workflow_contract.py"
+      ]
+    },
+    "source_head": "049d2620317afd10f8a584254d768f36af1d4979",
+    "tex": {
+      "actual_sha256": "3524da1f1ef92cfee179917efebeb3c2786b8ad484653d2f1c8f4d8036952416",
+      "actual_size": 71379,
+      "completed_stages": [
+        "trusted_input_hashes",
+        "isolated_reference_render",
+        "reference_output_pin",
+        "candidate_byte_comparison"
+      ],
+      "equation_records": 10,
+      "expected_sha256": "3524da1f1ef92cfee179917efebeb3c2786b8ad484653d2f1c8f4d8036952416",
+      "expected_size": 71379,
+      "reference_revision": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+      "scope": "canonical_commit_objects"
+    }
+  },
+  "scope": {
+    "lean_release_application_differences": [],
+    "maintenance_scope": "PASS"
+  },
+  "status": "PASS",
+  "supplement": {
+    "files": 68,
+    "manifest_sha256": "019f816a67d492e65dfb3c3873d2f8a353b08b7706a73489251190a42572710a",
+    "tooling_files": 32
+  },
+  "test_execution": "Already passed author and independent targeted execution at identical bytes; not rerun here",
+  "test_source_sha256": "7d177fb0876a78503c347bfea660421211cb18abf739bcc3ec3e47af1c081bac",
+  "tooling_commit": "a83d57a707afc91861fc5fec853d01f576ba0334"
+}

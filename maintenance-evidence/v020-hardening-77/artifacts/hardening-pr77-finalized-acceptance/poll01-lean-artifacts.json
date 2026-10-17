@@ -1,0 +1,29 @@
+{
+  "fetched_at": "2026-10-17T20:52:06.939Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39068230472/artifacts?per_page=100",
+  "response": {
+    "total_count": 1,
+    "artifacts": [
+      {
+        "id": 12113588557,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExMzU4ODU1Nw==",
+        "name": "legacy-build-source-context",
+        "size_in_bytes": 541,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113588557",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113588557/zip",
+        "expired": false,
+        "digest": "sha256:a88af36f40de621512c53798324ddeed70639d94af6933040433341f40294640",
+        "created_at": "2026-10-17T20:51:03Z",
+        "updated_at": "2026-10-17T20:51:03Z",
+        "expires_at": "2026-11-16T20:51:02Z",
+        "workflow_run": {
+          "id": 39068230472,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501"
+        }
+      }
+    ]
+  }
+}

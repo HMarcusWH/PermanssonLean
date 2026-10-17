@@ -1,0 +1,389 @@
+{
+  "context": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "base_sha": null,
+    "checked_sha": "562a22210e9e1cb23b19a6ebddacbc6bdc2bd6d0",
+    "checked_tree": "7c0ba2242a80a9bb837312627de77892623ba4ac",
+    "event": "local",
+    "event_sha256": null,
+    "head_sha": null,
+    "pr_number": null,
+    "repository": "HMarcusWH/PermanssonLean",
+    "run_attempt": null,
+    "run_id": null,
+    "scope": "canonical_commit_objects"
+  },
+  "covered_requirements": [
+    "CI-06",
+    "CI-07"
+  ],
+  "error_code": null,
+  "errors": 0,
+  "execution_tracked_clean": true,
+  "failures": 0,
+  "format": "Permansson.Hardening.Tests.v1",
+  "methods_run": 8,
+  "results": [
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden",
+      "requirements": [
+        "CI-06"
+      ],
+      "status": "PASS",
+      "subtest": "test_ci_06_filters_and_skip_paths_forbidden (verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden) (snippet=\"    paths: ['docs/**']\\n\")"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden",
+      "requirements": [
+        "CI-06"
+      ],
+      "status": "PASS",
+      "subtest": "test_ci_06_filters_and_skip_paths_forbidden (verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden) (snippet=\"    paths-ignore: ['release/**']\\n\")"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden",
+      "requirements": [
+        "CI-06"
+      ],
+      "status": "PASS",
+      "subtest": "test_ci_06_filters_and_skip_paths_forbidden (verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden) (snippet='    if: false\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden",
+      "requirements": [
+        "CI-06"
+      ],
+      "status": "PASS",
+      "subtest": "test_ci_06_filters_and_skip_paths_forbidden (verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden) (snippet='    needs: absent\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden",
+      "requirements": [
+        "CI-06"
+      ],
+      "status": "PASS",
+      "subtest": "test_ci_06_filters_and_skip_paths_forbidden (verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden) (snippet='    continue-on-error: true\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden",
+      "requirements": [
+        "CI-06"
+      ],
+      "status": "PASS",
+      "subtest": "test_ci_06_filters_and_skip_paths_forbidden (verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden) (restricted_types='closed')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden",
+      "requirements": [
+        "CI-06"
+      ],
+      "status": "PASS",
+      "subtest": "test_ci_06_filters_and_skip_paths_forbidden (verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden) (restricted_types='labeled')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden",
+      "requirements": [
+        "CI-06"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_07_discovery_reports_and_skips_fail_closed",
+      "requirements": [
+        "CI-07"
+      ],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_disabled_ruleset_is_only_a_proposal",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (override='    env:\\n      PATH: /tmp/shadow\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (override=\"    defaults:\\n      run:\\n        shell: bash -c 'true'\\n\")"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (override=\"    shell: bash -c 'true'\\n\")"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (override='    working-directory: /tmp/shadow\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (override='    container: ubuntu:latest\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (override='    services: {}\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (override='    strategy: {}\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (override='    name: misleading-check-context\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (structural_form='%YAML 1.2\\nname: Research integ\\n          retention-days: 30\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (structural_form='---\\nname: Research integrity\\n\\n\\n          retention-days: 30\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (structural_form='name: Research integrity\\n\\non:\\n      retention-days: 30\\n\\n...\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (structural_form='name: Research integrity\\n\\non:\\nys: 30\\n\\n---\\n# second document\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (profile_drift='name: Research integrity\\n\\non:\\n  pull_request:\\n    branches: [main]\\n  push:\\n    branches: [main]\\n\\npermissions:\\n  contents: read\\n\\njobs:\\n  frozen-source-preservation:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - run: echo injected\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Verify every protected Git object\\n        run: python -B -m verification.integrity.preservation --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/preservation.json\"\\n      - name: Execute reference and preservation adversaries\\n        run: |\\n          python -B -m verification.integrity.run_tests --suite reference --report \"$RUNNER_TEMP/reference-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite preservation --report \"$RUNNER_TEMP/preservation-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite context --report \"$RUNNER_TEMP/context-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite workflow --report \"$RUNNER_TEMP/workflow-tests.json\"\\n      - name: Preserve source and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-preservation-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/preservation.json\\n            ${{ runner.temp }}/*-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  release-export-integrity:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Compare the complete isolated TeX export\\n        run: python -B -m verification.integrity.tex_export --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/tex-export.json\"\\n      - name: Execute independent equation and import-isolation adversaries\\n        run: python -B -m verification.integrity.run_tests --suite tex --report \"$RUNNER_TEMP/tex-tests.json\"\\n      - name: Preserve export and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-export-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/tex-export.json\\n            ${{ runner.temp }}/tex-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  archive-reproducibility:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Prepare the pinned replay dependency before isolation\\n        run: python -m pip install -r verification/integrity/requirements.txt\\n      - name: Execute archive adversaries\\n        run: python -B -m verification.integrity.run_tests --suite archive --report \"$RUNNER_TEMP/archive-tests.json\"\\n      - name: Restore the actual historical bundle without network access\\n        run: python -B -m verification.archive.offline_smoke --repo . --candidate \"$GITHUB_SHA\" --supplement archival/v0.2.0/supplement-1 --scratch \"$RUNNER_TEMP/archive-clean\" --report \"$RUNNER_TEMP/archive-replay.json\"\\n      - name: Preserve archival restoration reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-archive-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/archive-tests.json\\n            ${{ runner.temp }}/archive-replay.json\\n          if-no-files-found: error\\n          retention-days: 30\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (profile_drift='name: Research integrity\\n\\non:\\n  pull_request:\\n    branches: [main]\\n  push:\\n    branches: [main]\\n\\npermissions:\\n  contents: read\\n\\njobs:\\n  frozen-source-preservation:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - {run: echo injected}\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Verify every protected Git object\\n        run: python -B -m verification.integrity.preservation --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/preservation.json\"\\n      - name: Execute reference and preservation adversaries\\n        run: |\\n          python -B -m verification.integrity.run_tests --suite reference --report \"$RUNNER_TEMP/reference-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite preservation --report \"$RUNNER_TEMP/preservation-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite context --report \"$RUNNER_TEMP/context-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite workflow --report \"$RUNNER_TEMP/workflow-tests.json\"\\n      - name: Preserve source and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-preservation-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/preservation.json\\n            ${{ runner.temp }}/*-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  release-export-integrity:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Compare the complete isolated TeX export\\n        run: python -B -m verification.integrity.tex_export --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/tex-export.json\"\\n      - name: Execute independent equation and import-isolation adversaries\\n        run: python -B -m verification.integrity.run_tests --suite tex --report \"$RUNNER_TEMP/tex-tests.json\"\\n      - name: Preserve export and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-export-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/tex-export.json\\n            ${{ runner.temp }}/tex-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  archive-reproducibility:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Prepare the pinned replay dependency before isolation\\n        run: python -m pip install -r verification/integrity/requirements.txt\\n      - name: Execute archive adversaries\\n        run: python -B -m verification.integrity.run_tests --suite archive --report \"$RUNNER_TEMP/archive-tests.json\"\\n      - name: Restore the actual historical bundle without network access\\n        run: python -B -m verification.archive.offline_smoke --repo . --candidate \"$GITHUB_SHA\" --supplement archival/v0.2.0/supplement-1 --scratch \"$RUNNER_TEMP/archive-clean\" --report \"$RUNNER_TEMP/archive-replay.json\"\\n      - name: Preserve archival restoration reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-archive-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/archive-tests.json\\n            ${{ runner.temp }}/archive-replay.json\\n          if-no-files-found: error\\n          retention-days: 30\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (profile_drift='name: Research integrity\\n\\non:\\n  pull_request:\\n    branches: [main]\\n  push:\\n    branches: [main]\\n\\npermissions:\\n  contents: read\\n\\njobs:\\n  frozen-source-preservation:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - run: >\\n          echo injected\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Verify every protected Git object\\n        run: python -B -m verification.integrity.preservation --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/preservation.json\"\\n      - name: Execute reference and preservation adversaries\\n        run: |\\n          python -B -m verification.integrity.run_tests --suite reference --report \"$RUNNER_TEMP/reference-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite preservation --report \"$RUNNER_TEMP/preservation-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite context --report \"$RUNNER_TEMP/context-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite workflow --report \"$RUNNER_TEMP/workflow-tests.json\"\\n      - name: Preserve source and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-preservation-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/preservation.json\\n            ${{ runner.temp }}/*-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  release-export-integrity:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Compare the complete isolated TeX export\\n        run: python -B -m verification.integrity.tex_export --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/tex-export.json\"\\n      - name: Execute independent equation and import-isolation adversaries\\n        run: python -B -m verification.integrity.run_tests --suite tex --report \"$RUNNER_TEMP/tex-tests.json\"\\n      - name: Preserve export and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-export-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/tex-export.json\\n            ${{ runner.temp }}/tex-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  archive-reproducibility:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Prepare the pinned replay dependency before isolation\\n        run: python -m pip install -r verification/integrity/requirements.txt\\n      - name: Execute archive adversaries\\n        run: python -B -m verification.integrity.run_tests --suite archive --report \"$RUNNER_TEMP/archive-tests.json\"\\n      - name: Restore the actual historical bundle without network access\\n        run: python -B -m verification.archive.offline_smoke --repo . --candidate \"$GITHUB_SHA\" --supplement archival/v0.2.0/supplement-1 --scratch \"$RUNNER_TEMP/archive-clean\" --report \"$RUNNER_TEMP/archive-replay.json\"\\n      - name: Preserve archival restoration reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-archive-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/archive-tests.json\\n            ${{ runner.temp }}/archive-replay.json\\n          if-no-files-found: error\\n          retention-days: 30\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (profile_drift='name: Research integrity\\n\\non:\\n  pull_request:\\n    branches: [main]\\n  push:\\n    branches: [main]\\n\\npermissions:\\n  contents: read\\n\\njobs:\\n  frozen-source-preservation:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: ./candidate-action\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Verify every protected Git object\\n        run: python -B -m verification.integrity.preservation --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/preservation.json\"\\n      - name: Execute reference and preservation adversaries\\n        run: |\\n          python -B -m verification.integrity.run_tests --suite reference --report \"$RUNNER_TEMP/reference-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite preservation --report \"$RUNNER_TEMP/preservation-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite context --report \"$RUNNER_TEMP/context-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite workflow --report \"$RUNNER_TEMP/workflow-tests.json\"\\n      - name: Preserve source and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-preservation-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/preservation.json\\n            ${{ runner.temp }}/*-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  release-export-integrity:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Compare the complete isolated TeX export\\n        run: python -B -m verification.integrity.tex_export --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/tex-export.json\"\\n      - name: Execute independent equation and import-isolation adversaries\\n        run: python -B -m verification.integrity.run_tests --suite tex --report \"$RUNNER_TEMP/tex-tests.json\"\\n      - name: Preserve export and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-export-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/tex-export.json\\n            ${{ runner.temp }}/tex-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  archive-reproducibility:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Prepare the pinned replay dependency before isolation\\n        run: python -m pip install -r verification/integrity/requirements.txt\\n      - name: Execute archive adversaries\\n        run: python -B -m verification.integrity.run_tests --suite archive --report \"$RUNNER_TEMP/archive-tests.json\"\\n      - name: Restore the actual historical bundle without network access\\n        run: python -B -m verification.archive.offline_smoke --repo . --candidate \"$GITHUB_SHA\" --supplement archival/v0.2.0/supplement-1 --scratch \"$RUNNER_TEMP/archive-clean\" --report \"$RUNNER_TEMP/archive-replay.json\"\\n      - name: Preserve archival restoration reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-archive-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/archive-tests.json\\n            ${{ runner.temp }}/archive-replay.json\\n          if-no-files-found: error\\n          retention-days: 30\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (profile_drift='name: Research integrity\\n\\non:\\n  pull_request:\\n    branches: [main]\\n  push:\\n    branches: [main]\\n\\npermissions:\\n  contents: read\\n\\njobs:\\n  frozen-source-preservation:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Verify every protected Git object\\n        run: python -B -m verification.integrity.preservation --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/preservation.json\"\\n      - name: Execute reference and preservation adversaries\\n        run: |\\n          python -B -m verification.integrity.run_tests --suite reference --report \"$RUNNER_TEMP/reference-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite preservation --report \"$RUNNER_TEMP/preservation-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite context --report \"$RUNNER_TEMP/context-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite workflow --report \"$RUNNER_TEMP/workflow-tests.json\"\\n      - name: Preserve source and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-preservation-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/preservation.json\\n            ${{ runner.temp }}/*-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  release-export-integrity:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Compare the complete isolated TeX export\\n        run: python -B -m verification.integrity.tex_export --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/tex-export.json\"\\n      - name: Execute independent equation and import-isolation adversaries\\n        run: python -B -m verification.integrity.run_tests --suite tex --report \"$RUNNER_TEMP/tex-tests.json\"\\n      - name: Preserve export and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-export-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/tex-export.json\\n            ${{ runner.temp }}/tex-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  archive-reproducibility:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Prepare the pinned replay dependency before isolation\\n        run: python -m pip install -r verification/integrity/requirements.txt\\n      - name: Execute archive adversaries\\n        run: python -B -m verification.integrity.run_tests --suite archive --report \"$RUNNER_TEMP/archive-tests.json\"\\n      - name: Restore the actual historical bundle without network access\\n        run: python -B -m verification.archive.offline_smoke --repo . --candidate \"$GITHUB_SHA\" --supplement archival/v0.2.0/supplement-1 --scratch \"$RUNNER_TEMP/archive-clean\" --report \"$RUNNER_TEMP/archive-replay.json\"\\n      - name: Preserve archival restoration reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-archive-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/archive-tests.json\\n            ${{ runner.temp }}/archive-replay.json\\n          if-no-files-found: error\\n          retention-days: 30\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (profile_drift='name: Research integrity\\n\\non:\\n  pull_request:\\n    branches: [main]\\n  push:\\n    branches: [main]\\n\\npermissions:\\n  contents: read\\n\\njobs:\\n  frozen-source-preservation:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: docker://alpine:latest\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Verify every protected Git object\\n        run: python -B -m verification.integrity.preservation --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/preservation.json\"\\n      - name: Execute reference and preservation adversaries\\n        run: |\\n          python -B -m verification.integrity.run_tests --suite reference --report \"$RUNNER_TEMP/reference-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite preservation --report \"$RUNNER_TEMP/preservation-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite context --report \"$RUNNER_TEMP/context-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite workflow --report \"$RUNNER_TEMP/workflow-tests.json\"\\n      - name: Preserve source and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-preservation-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/preservation.json\\n            ${{ runner.temp }}/*-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  release-export-integrity:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Compare the complete isolated TeX export\\n        run: python -B -m verification.integrity.tex_export --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/tex-export.json\"\\n      - name: Execute independent equation and import-isolation adversaries\\n        run: python -B -m verification.integrity.run_tests --suite tex --report \"$RUNNER_TEMP/tex-tests.json\"\\n      - name: Preserve export and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-export-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/tex-export.json\\n            ${{ runner.temp }}/tex-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  archive-reproducibility:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Prepare the pinned replay dependency before isolation\\n        run: python -m pip install -r verification/integrity/requirements.txt\\n      - name: Execute archive adversaries\\n        run: python -B -m verification.integrity.run_tests --suite archive --report \"$RUNNER_TEMP/archive-tests.json\"\\n      - name: Restore the actual historical bundle without network access\\n        run: python -B -m verification.archive.offline_smoke --repo . --candidate \"$GITHUB_SHA\" --supplement archival/v0.2.0/supplement-1 --scratch \"$RUNNER_TEMP/archive-clean\" --report \"$RUNNER_TEMP/archive-replay.json\"\\n      - name: Preserve archival restoration reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-archive-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/archive-tests.json\\n            ${{ runner.temp }}/archive-replay.json\\n          if-no-files-found: error\\n          retention-days: 30\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (profile_drift='name: Research integrity\\n\\non:\\n  pull_request:\\n    branches: [main]\\n  push:\\n    branches: [main]\\n\\npermissions:\\n  contents: read\\n\\njobs:\\n  frozen-source-preservation:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.12\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Verify every protected Git object\\n        run: python -B -m verification.integrity.preservation --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/preservation.json\"\\n      - name: Execute reference and preservation adversaries\\n        run: |\\n          python -B -m verification.integrity.run_tests --suite reference --report \"$RUNNER_TEMP/reference-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite preservation --report \"$RUNNER_TEMP/preservation-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite context --report \"$RUNNER_TEMP/context-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite workflow --report \"$RUNNER_TEMP/workflow-tests.json\"\\n      - name: Preserve source and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-preservation-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/preservation.json\\n            ${{ runner.temp }}/*-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  release-export-integrity:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Compare the complete isolated TeX export\\n        run: python -B -m verification.integrity.tex_export --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/tex-export.json\"\\n      - name: Execute independent equation and import-isolation adversaries\\n        run: python -B -m verification.integrity.run_tests --suite tex --report \"$RUNNER_TEMP/tex-tests.json\"\\n      - name: Preserve export and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-export-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/tex-export.json\\n            ${{ runner.temp }}/tex-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  archive-reproducibility:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Prepare the pinned replay dependency before isolation\\n        run: python -m pip install -r verification/integrity/requirements.txt\\n      - name: Execute archive adversaries\\n        run: python -B -m verification.integrity.run_tests --suite archive --report \"$RUNNER_TEMP/archive-tests.json\"\\n      - name: Restore the actual historical bundle without network access\\n        run: python -B -m verification.archive.offline_smoke --repo . --candidate \"$GITHUB_SHA\" --supplement archival/v0.2.0/supplement-1 --scratch \"$RUNNER_TEMP/archive-clean\" --report \"$RUNNER_TEMP/archive-replay.json\"\\n      - name: Preserve archival restoration reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-archive-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/archive-tests.json\\n            ${{ runner.temp }}/archive-replay.json\\n          if-no-files-found: error\\n          retention-days: 30\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_execution_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected) (profile_drift='name: Research integrity\\n\\non:\\n  pull_request:\\n    branches: [main]\\n  push:\\n    branches: [main]\\n\\npermissions:\\n  contents: read\\n\\njobs:\\n  frozen-source-preservation:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          ref: main\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Verify every protected Git object\\n        run: python -B -m verification.integrity.preservation --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/preservation.json\"\\n      - name: Execute reference and preservation adversaries\\n        run: |\\n          python -B -m verification.integrity.run_tests --suite reference --report \"$RUNNER_TEMP/reference-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite preservation --report \"$RUNNER_TEMP/preservation-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite context --report \"$RUNNER_TEMP/context-tests.json\"\\n          python -B -m verification.integrity.run_tests --suite workflow --report \"$RUNNER_TEMP/workflow-tests.json\"\\n      - name: Preserve source and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-preservation-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/preservation.json\\n            ${{ runner.temp }}/*-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  release-export-integrity:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Compare the complete isolated TeX export\\n        run: python -B -m verification.integrity.tex_export --repo . --candidate \"$GITHUB_SHA\" --report \"$RUNNER_TEMP/tex-export.json\"\\n      - name: Execute independent equation and import-isolation adversaries\\n        run: python -B -m verification.integrity.run_tests --suite tex --report \"$RUNNER_TEMP/tex-tests.json\"\\n      - name: Preserve export and test reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-export-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/tex-export.json\\n            ${{ runner.temp }}/tex-tests.json\\n          if-no-files-found: error\\n          retention-days: 30\\n  archive-reproducibility:\\n    runs-on: ubuntu-latest\\n    timeout-minutes: 25\\n    steps:\\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\\n        with:\\n          fetch-depth: 0\\n          persist-credentials: false\\n      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\\n        with:\\n          python-version: \\'3.13\\'\\n      - name: Bind actual source context\\n        run: python -B -m verification.integrity.ci_context --repo . --event-file \"$GITHUB_EVENT_PATH\" --report \"$RUNNER_TEMP/context.json\"\\n      - name: Prepare the pinned replay dependency before isolation\\n        run: python -m pip install -r verification/integrity/requirements.txt\\n      - name: Execute archive adversaries\\n        run: python -B -m verification.integrity.run_tests --suite archive --report \"$RUNNER_TEMP/archive-tests.json\"\\n      - name: Restore the actual historical bundle without network access\\n        run: python -B -m verification.archive.offline_smoke --repo . --candidate \"$GITHUB_SHA\" --supplement archival/v0.2.0/supplement-1 --scratch \"$RUNNER_TEMP/archive-clean\" --report \"$RUNNER_TEMP/archive-replay.json\"\\n      - name: Preserve archival restoration reports\\n        if: always()\\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\\n        with:\\n          name: hardening-archive-reports\\n          path: |\\n            ${{ runner.temp }}/context.json\\n            ${{ runner.temp }}/archive-tests.json\\n            ${{ runner.temp }}/archive-replay.json\\n          if-no-files-found: error\\n          retention-days: 30\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_job_permission_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected) (override='    permissions: {contents: write}\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_job_permission_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected) (override='    permissions:\\n      contents: write\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_job_permission_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected) (override='    permissions:\\n      contents: read\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_job_permission_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected) (override='    \"permissions\": {contents: write}\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_job_permission_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected) (override=\"    'permissions':\\n      contents: write\\n\")"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_job_permission_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected) (override='    \"permis\\\\u0073ions\":\\n      contents: write\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_job_permission_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected) (override='    !!str permissions:\\n      contents: write\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_job_permission_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected) (override='    !<tag:yaml.org,2002:str> permissions:\\n      contents: write\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_job_permission_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected) (override='    &override !!str permissions:\\n      contents: write\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_job_permission_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected) (grant='  issues: write\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_job_permission_overrides_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected) (grant='# mapping continues across this comment\\n  id-token: write\\n')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_read_only_credentials_review_control",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_required_workflow_rejects_dispatch",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_shell_background_and_redirection_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected) (suffix=' & true')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_shell_background_and_redirection_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected) (suffix='&true')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_shell_background_and_redirection_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected) (suffix=' | true')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_shell_background_and_redirection_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected) (suffix='|true')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_shell_background_and_redirection_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected) (suffix=' > ignored')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_shell_background_and_redirection_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected) (suffix='>ignored')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_shell_background_and_redirection_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected) (suffix=' < /dev/null')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_shell_background_and_redirection_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected) (suffix=' || true')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_shell_background_and_redirection_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected) (suffix=' && true')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_shell_background_and_redirection_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected) (suffix=' ; true')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS",
+      "subtest": "test_shell_background_and_redirection_rejected (verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected) (suffix=' --report \"$RUNNER_TEMP/other-report.json\"')"
+    },
+    {
+      "method": "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "requirements": [],
+      "status": "PASS"
+    }
+  ],
+  "runtime": {
+    "git": "git version 2.45.2.windows.1",
+    "python": "3.12.14"
+  },
+  "schema_version": 1,
+  "skips": 0,
+  "status": "PASS",
+  "subtests_run": 49,
+  "suite": "workflow"
+}

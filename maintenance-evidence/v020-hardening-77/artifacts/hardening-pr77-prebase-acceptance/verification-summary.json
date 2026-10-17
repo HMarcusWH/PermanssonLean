@@ -1,0 +1,452 @@
+{
+  "accepted_legacy_replay": {
+    "artifact_replay": "PASS",
+    "methods": 29,
+    "source_restore": "PASS",
+    "target": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618"
+  },
+  "artifacts": [
+    {
+      "bytes": 2560,
+      "files": [
+        "tex-export.json",
+        "context.json",
+        "tex-tests.json"
+      ],
+      "id": 12112460922,
+      "name": "hardening-export-reports",
+      "run_id": 39061789373,
+      "sha256": "8626f293d815b905f0fce6ddb8d2239cc16b74a88808ce9aea7fe61960c60b30"
+    },
+    {
+      "bytes": 5734,
+      "files": [
+        "context.json",
+        "archive-tests.json",
+        "archive-replay.json"
+      ],
+      "id": 12111494558,
+      "name": "hardening-archive-reports",
+      "run_id": 39061789373,
+      "sha256": "85b5c375881b5285b44e37572454a2f24d73ad782cdc1447c8d328f15432b9be"
+    },
+    {
+      "bytes": 8638,
+      "files": [
+        "context.json",
+        "preservation-tests.json",
+        "context-tests.json",
+        "preservation.json",
+        "reference-tests.json",
+        "workflow-tests.json"
+      ],
+      "id": 12111448540,
+      "name": "hardening-preservation-reports",
+      "run_id": 39061789373,
+      "sha256": "6f50c7a7094594c6f187dffffb1d0fd526ba6812442cc33f5bb79b4ab059fb78"
+    },
+    {
+      "bytes": 4687,
+      "files": [
+        "preservation-tests.json",
+        "context.json",
+        "reference-tests.json",
+        "tex-tests.json"
+      ],
+      "id": 12111782816,
+      "name": "hardening-windows-portability-reports",
+      "run_id": 39061789338,
+      "sha256": "be590e1c5323750e3aa32db9a98d1e4bde090655d10e1bd23ad1cc9187a2f148"
+    },
+    {
+      "bytes": 9376,
+      "files": [
+        "C10MixedGolden.lean",
+        "C10ReifiedGolden.lean",
+        "evidence_manifest.json",
+        "input.json",
+        "lean_check.stderr.txt",
+        "lean_check.stdout.txt",
+        "mixed_check.stderr.txt",
+        "mixed_check.stdout.txt",
+        "mixed_initial.json",
+        "mixed_report.json",
+        "normalized_input.json",
+        "receipt.json",
+        "verification_summary.txt"
+      ],
+      "id": 12111892884,
+      "name": "c10-release-evidence",
+      "run_id": 39061789410,
+      "sha256": "254ff1c98476a9db1a81892282165a137f6b597ebc25e553e317f330e123762a"
+    },
+    {
+      "bytes": 1323,
+      "files": [
+        "MANIFEST.txt",
+        "lean_two_state.json",
+        "python_three_state.json"
+      ],
+      "id": 12111534369,
+      "name": "d0-finite-calculation-evidence",
+      "run_id": 39061789410,
+      "sha256": "92b93e86fac738895fe679db0bb3808e9e64ad0a393eb354254a400da8cba697"
+    }
+  ],
+  "checks": [
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117481078942,
+      "name": "archive-reproducibility",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117481078923,
+      "name": "frozen-source-preservation",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117481078872,
+      "name": "research",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117481078856,
+      "name": "executable-verification",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117481078810,
+      "name": "release-export-integrity",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117481078786,
+      "name": "build",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117481078642,
+      "name": "Application contract (windows-latest)",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117481078630,
+      "name": "integrity-portability-windows",
+      "status": "completed"
+    },
+    {
+      "app_id": 15368,
+      "conclusion": "success",
+      "id": 117481078485,
+      "name": "Application contract (ubuntu-latest)",
+      "status": "completed"
+    }
+  ],
+  "current_c10": {
+    "claim_boundary": "Metadata is provenance, not mathematical proof. Generic JSON decoding and external-model identification are unverified; original positive relative PR requires an input-bound Exact GR theorem.",
+    "entries": 13,
+    "format": "Permansson.Hardening.C10CaptureCheck.v1",
+    "fresh_lean_execution": "separate-successful-GitHub-Research-job",
+    "local_check": "captured-structure-and-arithmetic-only",
+    "local_lean_rerun": false,
+    "proof": {
+      "status": "GENERATED_LITERAL_KERNEL_CHECKED",
+      "theorems": [
+        "reifiedReceipt_valid",
+        "reifiedReceipt_conditions",
+        "reifiedGolden_data_contract",
+        "reifiedGolden_numeric_margins",
+        "reifiedGolden_original_margins",
+        "reifiedGolden_selection",
+        "reifiedGolden_original_global_max",
+        "PermanssonResearch.ReverseSolver.C10.six_original_baseline_exactGR"
+      ],
+      "tool": "lake env lean",
+      "transitive_axioms_allowlist": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "source": {
+      "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+      "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9",
+      "pr_number": 77,
+      "repository": "HMarcusWH/PermanssonLean",
+      "synthetic_merge_sha": "86ff0d8ce3482935d2ff09ee24c260d309f069d1"
+    },
+    "specification_source": "canonical-frozen-Git-blob",
+    "status": "PASS",
+    "zip_sha256": "254ff1c98476a9db1a81892282165a137f6b597ebc25e553e317f330e123762a",
+    "zip_size": 9376
+  },
+  "executed_at": "2026-10-17T19:35:33.584733+00:00",
+  "format": "Permansson.Hardening.PrebaseCIArtifactVerification.v1",
+  "isolation": {
+    "capabilities": "all_zero",
+    "child_network_namespace": "net:[4026532221]",
+    "gid": 1001,
+    "network_isolation": "ENFORCED",
+    "no_new_privileges": true,
+    "outward_routes": [],
+    "outward_socket_denied_errno": 101,
+    "parent_network_namespace": "net:[4026531833]",
+    "supplementary_groups": [],
+    "uid": 1001
+  },
+  "limits": [
+    "This exact prebase tuple does not certify later base/head changes or final integration",
+    "No standalone candidate-bound maintenance-scope CLI receipt at this head; that follow-up remains open",
+    "Agent review is not a GitHub APPROVED review",
+    "OPS/reviewer/publication remain deferred",
+    "Captured source metadata and checksums are consistency evidence, not independent publisher authentication"
+  ],
+  "review_threads": {
+    "count": 5,
+    "unresolved": 0
+  },
+  "source": {
+    "base": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "head": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9",
+    "pr_number": 77,
+    "repository": "HMarcusWH/PermanssonLean",
+    "synthetic": "86ff0d8ce3482935d2ff09ee24c260d309f069d1",
+    "tree": "bc2af29f32f6b89b5ea927ea04a6579422e4e6eb"
+  },
+  "status": "PASS",
+  "tests": [
+    {
+      "artifact": "hardening-export-reports",
+      "covered_requirements": [
+        "TEX-01",
+        "TEX-02",
+        "TEX-03",
+        "TEX-04",
+        "TEX-05",
+        "TEX-06",
+        "TEX-07",
+        "TEX-08",
+        "TEX-09",
+        "TEX-10",
+        "TEX-11",
+        "TEX-12",
+        "TEX-13",
+        "TEX-14",
+        "TEX-15",
+        "TEX-16",
+        "TEX-17",
+        "TEX-18",
+        "TEX-19",
+        "TEX-20"
+      ],
+      "methods": 20,
+      "subtests": 4,
+      "suite": "tex"
+    },
+    {
+      "artifact": "hardening-archive-reports",
+      "covered_requirements": [
+        "ARCH-01",
+        "ARCH-02",
+        "ARCH-03",
+        "ARCH-04",
+        "ARCH-05",
+        "ARCH-06",
+        "ARCH-07",
+        "ARCH-08",
+        "ARCH-09",
+        "ARCH-10",
+        "ARCH-11",
+        "ARCH-12",
+        "ARCH-13",
+        "ARCH-15",
+        "ARCH-16",
+        "ARCH-17",
+        "ARCH-18",
+        "ARCH-19",
+        "ARCH-20",
+        "ARCH-21",
+        "ARCH-22",
+        "ARCH-24",
+        "ARCH-25",
+        "ARCH-26",
+        "ARCH-27"
+      ],
+      "methods": 33,
+      "subtests": 53,
+      "suite": "archive"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "covered_requirements": [
+        "PRES-01",
+        "PRES-02",
+        "PRES-03",
+        "PRES-04",
+        "PRES-05",
+        "PRES-06",
+        "PRES-07",
+        "PRES-08",
+        "PRES-09",
+        "PRES-10",
+        "PRES-11",
+        "PRES-12",
+        "PRES-13",
+        "PRES-14",
+        "PRES-15",
+        "PRES-16",
+        "PRES-17",
+        "PRES-18",
+        "PRES-19",
+        "PRES-20",
+        "PRES-21",
+        "PRES-22",
+        "PRES-23"
+      ],
+      "methods": 25,
+      "subtests": 17,
+      "suite": "preservation"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "covered_requirements": [
+        "CI-03",
+        "CI-09"
+      ],
+      "methods": 6,
+      "subtests": 0,
+      "suite": "context"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "covered_requirements": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11",
+        "REF-12",
+        "REF-13",
+        "REF-14",
+        "REF-15"
+      ],
+      "methods": 17,
+      "subtests": 14,
+      "suite": "reference"
+    },
+    {
+      "artifact": "hardening-preservation-reports",
+      "covered_requirements": [
+        "CI-06",
+        "CI-07"
+      ],
+      "methods": 8,
+      "subtests": 49,
+      "suite": "workflow"
+    },
+    {
+      "artifact": "hardening-windows-portability-reports",
+      "covered_requirements": [
+        "PRES-01",
+        "PRES-02",
+        "PRES-03",
+        "PRES-04",
+        "PRES-05",
+        "PRES-06",
+        "PRES-07",
+        "PRES-08",
+        "PRES-09",
+        "PRES-10",
+        "PRES-11",
+        "PRES-12",
+        "PRES-13",
+        "PRES-14",
+        "PRES-15",
+        "PRES-16",
+        "PRES-17",
+        "PRES-18",
+        "PRES-19",
+        "PRES-20",
+        "PRES-21",
+        "PRES-22",
+        "PRES-23"
+      ],
+      "methods": 25,
+      "subtests": 17,
+      "suite": "preservation"
+    },
+    {
+      "artifact": "hardening-windows-portability-reports",
+      "covered_requirements": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11",
+        "REF-12",
+        "REF-13",
+        "REF-14",
+        "REF-15"
+      ],
+      "methods": 17,
+      "subtests": 14,
+      "suite": "reference"
+    },
+    {
+      "artifact": "hardening-windows-portability-reports",
+      "covered_requirements": [
+        "TEX-01",
+        "TEX-02",
+        "TEX-03",
+        "TEX-04",
+        "TEX-05",
+        "TEX-06",
+        "TEX-07",
+        "TEX-08",
+        "TEX-09",
+        "TEX-10",
+        "TEX-11",
+        "TEX-12",
+        "TEX-13",
+        "TEX-14",
+        "TEX-15",
+        "TEX-16",
+        "TEX-17",
+        "TEX-18",
+        "TEX-19",
+        "TEX-20"
+      ],
+      "methods": 20,
+      "subtests": 4,
+      "suite": "tex"
+    }
+  ]
+}

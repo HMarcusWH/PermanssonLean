@@ -1,0 +1,13 @@
+{
+  "candidate": "171c954c4733d2c8eaaac3ad90e60e4d1d4637c3",
+  "canonical_inner_files": 70,
+  "members": 70,
+  "scope": "canonical_candidate_objects",
+  "sidecar_blob": "25dac8ae89ec447eb07c83a738f1c9e143b48ea9",
+  "status": "PASS",
+  "verified_filesystem_matches_C": true,
+  "zip_blob": "d2d61e7b2707aefe6ba82d9fc204f2697759d8e4",
+  "zip_bytes": 7446882,
+  "zip_path": "archival/v0.2.0/publication-candidate/Permansson_v0.2.0_archival-supplement-1.zip",
+  "zip_sha256": "d67531969705ca39b41d25e91180dccec2c491aa3df776e876140b7777f43eca"
+}

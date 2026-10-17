@@ -1,0 +1,36 @@
+{
+  "checkout_HEAD": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+  "checkout_clean_before_and_after": true,
+  "ci_zip_sha256": "ab1b3154fb80886a7938bbf3bf8667c7c32a1fb061dc366267c9f1c7db214da1",
+  "claim": "Clean current-S execution joined to separately captured genuine PR source context",
+  "executing_module_blob": "fa7f59ca34da6c2de7929a6d594f8579769f4f3c",
+  "executing_module_sha256": "fb55ab26b16ce02e154c0c349c9c319614f81713b16c5e9be403ab3c8d8b1411",
+  "format": "Permansson.Hardening.ActualMaintenanceAcceptance.v1",
+  "local_event_does_not_manufacture_GitHub_execution": true,
+  "observed_at": "2026-10-17T20:50:18.444048+00:00",
+  "ordered_parents": [
+    "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501"
+  ],
+  "process_exit": 0,
+  "report_sha256": "4d70c247186e9b1c71eb7e86edd6c582fc983ab2101d63c3a5de7d49f211d5b4",
+  "source": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "base_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+    "checked_tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778",
+    "event": "pull_request",
+    "event_sha256": "d3a7eaad9193a9d84ca3736daef38fac0fe3d2e96de3fe1089858a818142a72b",
+    "format": "Permansson.Hardening.CIContext.v1",
+    "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501",
+    "pr_number": 77,
+    "repository": "HMarcusWH/PermanssonLean",
+    "run_attempt": 1,
+    "run_id": 39068230438,
+    "scope": "canonical_commit_objects"
+  },
+  "status": "PASS",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "0dd6aba688e7515aab692e6a3c654a5fc1614b736c06d2f2e54cf216adc7d03d",
+  "tree": "d1c01b2812a13b672f164841a7cc4a8ab7dcc778"
+}

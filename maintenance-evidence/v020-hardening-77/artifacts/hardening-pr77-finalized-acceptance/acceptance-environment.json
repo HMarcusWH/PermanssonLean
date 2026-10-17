@@ -1,0 +1,11 @@
+{
+  "HEAD": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+  "checked_sha": "d5f2d3a72bda670859c5da87bb173f9eb96696ee",
+  "clean": true,
+  "format": "Permansson.Hardening.AcceptanceEnvironmentObservation.v1",
+  "local_core_autocrlf": "true",
+  "observed_at": "2026-10-17T20:50:24.321002+00:00",
+  "qualification": "Repository-local core.autocrlf=true retains the documented Windows CI-compatible checkout profile. No committed source bytes changed. This current actual S was checked clean before and after the successful source-bound command. The local context does not manufacture a GitHub event.",
+  "sanitized_core_autocrlf": "true",
+  "source": "Actual sanitized GitRepo configuration and status read after successful current-S one-time acceptance"
+}

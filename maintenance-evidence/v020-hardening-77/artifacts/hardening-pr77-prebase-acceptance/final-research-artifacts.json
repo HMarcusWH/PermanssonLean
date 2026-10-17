@@ -1,0 +1,50 @@
+{
+  "fetched_at": "2026-10-17T19:28:24.311Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39061789410/artifacts?per_page=100",
+  "response": {
+    "total_count": 2,
+    "artifacts": [
+      {
+        "id": 12111892884,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExMTg5Mjg4NA==",
+        "name": "c10-release-evidence",
+        "size_in_bytes": 9376,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12111892884",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12111892884/zip",
+        "expired": false,
+        "digest": "sha256:254ff1c98476a9db1a81892282165a137f6b597ebc25e553e317f330e123762a",
+        "created_at": "2026-10-17T19:27:57Z",
+        "updated_at": "2026-10-17T19:27:57Z",
+        "expires_at": "2026-11-16T19:27:56Z",
+        "workflow_run": {
+          "id": 39061789410,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9"
+        }
+      },
+      {
+        "id": 12111534369,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExMTUzNDM2OQ==",
+        "name": "d0-finite-calculation-evidence",
+        "size_in_bytes": 1323,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12111534369",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12111534369/zip",
+        "expired": false,
+        "digest": "sha256:92b93e86fac738895fe679db0bb3808e9e64ad0a393eb354254a400da8cba697",
+        "created_at": "2026-10-17T19:27:58Z",
+        "updated_at": "2026-10-17T19:27:58Z",
+        "expires_at": "2026-10-24T19:27:57Z",
+        "workflow_run": {
+          "id": 39061789410,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_sha": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9"
+        }
+      }
+    ]
+  }
+}
+

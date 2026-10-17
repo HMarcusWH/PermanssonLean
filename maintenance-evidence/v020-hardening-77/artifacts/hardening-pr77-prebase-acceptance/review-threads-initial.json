@@ -1,0 +1,202 @@
+{
+  "fetched_at": "2026-10-17T19:27:06.554Z",
+  "source": "GitHub connector list_pull_request_review_threads",
+  "request": {
+    "pr_number": 77,
+    "repo_full_name": "HMarcusWH/PermanssonLean"
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "review_threads": [
+        {
+          "id": "PRRT_kwDOUkBtPs6tjLfP",
+          "is_resolved": true,
+          "is_outdated": true,
+          "path": ".github/workflows/research-integrity.yml",
+          "line": null,
+          "diff_side": "RIGHT",
+          "start_line": null,
+          "start_diff_side": null,
+          "original_line": 8,
+          "original_start_line": null,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAIlk_g",
+              "database_id": 4303971582,
+              "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Keep dispatch runs out of required check contexts**\n\nBecause this workflow exposes `workflow_dispatch` using the same three job names proposed as required status contexts, a manual run for the relevant commit can publish successful GitHub Actions checks without genuine PR H/B/S binding. `capture_context` accepts `workflow_dispatch`, while `require_pr_acceptance` is never called by these jobs, so the commands still exit successfully and the report is marked `PASS`. Put diagnostic dispatches under distinct, non-required job names or make these required jobs non-successful for dispatch events.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T18:39:24Z",
+              "updated_at": "2026-10-17T18:39:24Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            }
+          ]
+        },
+        {
+          "id": "PRRT_kwDOUkBtPs6tjLfT",
+          "is_resolved": true,
+          "is_outdated": false,
+          "path": "verification/archive/acquire_evidence.py",
+          "line": 297,
+          "diff_side": "RIGHT",
+          "start_line": 293,
+          "start_diff_side": "RIGHT",
+          "original_line": 72,
+          "original_start_line": 68,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAIllAw",
+              "database_id": 4303971587,
+              "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Bind normalized reviews to their captured pages**\n\nThese checks only require the assembled review submissions and thread captures to have the expected top-level JSON type; they never derive or compare them with the separately inventoried pagination responses. A candidate can therefore replace `final-review-submissions.json` with even `[]` (or erase the thread data), update the acquisition-index and manifest hashes, and still pass `validate_evidence`, causing the archive gate to certify incomplete review evidence. Reconstruct or cross-check these normalized files against every declared captured page.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T18:39:24Z",
+              "updated_at": "2026-10-17T18:39:24Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            }
+          ]
+        },
+        {
+          "id": "PRRT_kwDOUkBtPs6tjLfU",
+          "is_resolved": true,
+          "is_outdated": true,
+          "path": "verification/archive/acquire_evidence.py",
+          "line": null,
+          "diff_side": "RIGHT",
+          "start_line": null,
+          "start_diff_side": "RIGHT",
+          "original_line": 110,
+          "original_start_line": 109,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAIllBA",
+              "database_id": 4303971588,
+              "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Validate run-log ZIP contents before accepting job evidence**\n\nWhen evidence uses the run-level `RUN_ID-logs.zip` produced by `acquire`, this branch treats mere file existence as proof that every expected job has a log. An empty, corrupt, or incomplete ZIP can be entered into the acquisition index and manifest with repaired hashes and will satisfy all jobs in that run—including both Application contract jobs—without being opened or matched to job IDs. Parse the bounded ZIP and require a nonempty log member for each job before accepting it.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T18:39:24Z",
+              "updated_at": "2026-10-17T18:39:24Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            }
+          ]
+        },
+        {
+          "id": "PRRT_kwDOUkBtPs6tjLfZ",
+          "is_resolved": true,
+          "is_outdated": true,
+          "path": "verification/integrity/workflow_contract.py",
+          "line": null,
+          "diff_side": "RIGHT",
+          "start_line": null,
+          "start_diff_side": "RIGHT",
+          "original_line": 22,
+          "original_start_line": 21,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAIllCg",
+              "database_id": 4303971594,
+              "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Reject job-level permission overrides**\n\nThis only verifies that the workflow contains one read-only top-level `permissions` block, but GitHub Actions permits a job-level `permissions` mapping to override it. A later PR can add `permissions: {contents: write}` to any candidate-executing integrity job and `validate_workflow` still returns success, defeating the contract intended to keep the token read-only. Reject every job-level override or parse the workflow and verify the effective permissions of each job.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T18:39:24Z",
+              "updated_at": "2026-10-17T18:39:24Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            }
+          ]
+        },
+        {
+          "id": "PRRT_kwDOUkBtPs6tjLfb",
+          "is_resolved": true,
+          "is_outdated": true,
+          "path": "verification/integrity/workflow_contract.py",
+          "line": null,
+          "diff_side": "RIGHT",
+          "start_line": null,
+          "start_diff_side": "RIGHT",
+          "original_line": 75,
+          "original_start_line": 74,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAIllDQ",
+              "database_id": 4303971597,
+              "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Reject backgrounded verifier commands**\n\nThe shell-token blacklist omits a single `&`, so a required command can be changed to `python ... & true` while still matching its expected prefix and passing `validate_workflow`. In that scenario the step reports the status of `true` rather than the verifier, allowing a failed or unfinished integrity check to publish a successful required job. Reject asynchronous shell operators as well, or validate that each run entry is exactly the expected argument vector.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T18:39:24Z",
+              "updated_at": "2026-10-17T18:39:24Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            }
+          ]
+        }
+      ]
+    },
+    "isError": false
+  }
+}
+

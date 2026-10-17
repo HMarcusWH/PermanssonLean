@@ -1,0 +1,69 @@
+{
+  "fetched_at": "2026-10-17T20:56:14.603Z",
+  "request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39068230438/artifacts?per_page=100",
+  "response": {
+    "total_count": 3,
+    "artifacts": [
+      {
+        "id": 12114341108,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNDM0MTEwOA==",
+        "name": "hardening-export-reports",
+        "size_in_bytes": 2627,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114341108",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114341108/zip",
+        "expired": false,
+        "digest": "sha256:38756328aa9e463ea000d2eb2c743c263f6e0084c2c417db924c44aee9c614d9",
+        "created_at": "2026-10-17T20:48:06Z",
+        "updated_at": "2026-10-17T20:48:06Z",
+        "expires_at": "2026-11-16T20:48:05Z",
+        "workflow_run": {
+          "id": 39068230438,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501"
+        }
+      },
+      {
+        "id": 12114023107,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExNDAyMzEwNw==",
+        "name": "hardening-preservation-reports",
+        "size_in_bytes": 9515,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114023107",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12114023107/zip",
+        "expired": false,
+        "digest": "sha256:ab1b3154fb80886a7938bbf3bf8667c7c32a1fb061dc366267c9f1c7db214da1",
+        "created_at": "2026-10-17T20:48:15Z",
+        "updated_at": "2026-10-17T20:48:15Z",
+        "expires_at": "2026-11-16T20:48:15Z",
+        "workflow_run": {
+          "id": 39068230438,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501"
+        }
+      },
+      {
+        "id": 12113598457,
+        "node_id": "MDg6QXJ0aWZhY3QxMjExMzU5ODQ1Nw==",
+        "name": "hardening-archive-reports",
+        "size_in_bytes": 7234,
+        "url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113598457",
+        "archive_download_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12113598457/zip",
+        "expired": false,
+        "digest": "sha256:97acd2c644190188ffd0ee042c1847d73922ef23c23faf45130b6077e65577c1",
+        "created_at": "2026-10-17T20:48:39Z",
+        "updated_at": "2026-10-17T20:48:39Z",
+        "expires_at": "2026-11-16T20:48:38Z",
+        "workflow_run": {
+          "id": 39068230438,
+          "repository_id": 1379953982,
+          "head_repository_id": 1379953982,
+          "head_branch": "maintenance/v020-integrity-and-archive",
+          "head_sha": "92e45179a5e3ecbe1b2bcadc4da54a0d1657f501"
+        }
+      }
+    ]
+  }
+}

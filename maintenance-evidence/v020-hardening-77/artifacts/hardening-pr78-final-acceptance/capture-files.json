@@ -1,0 +1,143 @@
+{
+  "entries": [
+    {
+      "path": "c10-artifact-metadata.json",
+      "sha256": "419f4f4445a610c357e78cf20f2f80ac6b4b712d55d684d128b909bfc39c5597",
+      "size": 1190
+    },
+    {
+      "path": "c10-consistency.json",
+      "sha256": "74f95a7b890d387f59aab15bd6ca5d1d3a3542bf7d3ee143055c02875092855f",
+      "size": 4251
+    },
+    {
+      "path": "capture-summary.json",
+      "sha256": "b343003259fb2c4acf79b1a81401ed03e9c9b26b3dc1fd5ba1a628f9280dea88",
+      "size": 3036
+    },
+    {
+      "path": "check-runs-final.json",
+      "sha256": "8e19efd5a8d052439505dea1710cbf8652374b35c24ebe673f8adf947976fbcf",
+      "size": 27194
+    },
+    {
+      "path": "check-runs.json",
+      "sha256": "f7cc5049f35a658ea8b08818563fec4f31032a2897f1059f8f23520b44609cf6",
+      "size": 27147
+    },
+    {
+      "path": "jobs-39063558991.json",
+      "sha256": "5180f53096ec890983178901fd34a31a1164662ebebe41ad6f793eb54bf0cb1b",
+      "size": 2166
+    },
+    {
+      "path": "jobs-39063558995.json",
+      "sha256": "3d78b10646cfa3a465d557b018cbb833aec646c8afc8687a63fac3d06cb897c3",
+      "size": 4184
+    },
+    {
+      "path": "jobs-39063558997.json",
+      "sha256": "87b911d116e012c70cd0f53fa71acfc44ceb57ae75e05dc96979ffad277e396b",
+      "size": 1584
+    },
+    {
+      "path": "jobs-39063559009.json",
+      "sha256": "83f0ae72f115ee3c1eaf124099454adcf37b35e8e1261c297a6f56878c1fc894",
+      "size": 3205
+    },
+    {
+      "path": "merge-observation.json",
+      "sha256": "199996dbb0dc91a1f44c219c5e2633efff1e24b0fc834571186b9074e831c2fb",
+      "size": 545
+    },
+    {
+      "path": "pr-final.json",
+      "sha256": "5f7b2ed4a4aba183b21fda1fccb4786e5e3f26d37ffbc9bb9e2bf789e6f291c5",
+      "size": 21638
+    },
+    {
+      "path": "pr.json",
+      "sha256": "2e9ebf2a0e74887bbe1eb974f9c19b9f15b97329883c2037b0aa896b645bdd0a",
+      "size": 21994
+    },
+    {
+      "path": "PR78-final-acceptance-c10.zip",
+      "sha256": "3722dd43bc42277c6e3b100c7e37348126b6cb2a7f592d26275a41b707db34ff",
+      "size": 9376
+    },
+    {
+      "path": "recheck_c10.py",
+      "sha256": "0612ba59c33a392dfc968005aa405462ff09d7ba9f81a8d65232e630332115fe",
+      "size": 3161
+    },
+    {
+      "path": "review-summary-comments-final.json",
+      "sha256": "876482f560f5d87db8b95397e030a5b0cbd433a8f1965f0954de9e21a148bf51",
+      "size": 6570
+    },
+    {
+      "path": "review-summary-comments.json",
+      "sha256": "107fd0d8f7edd7a2c0600df217253e090a17793a1c3e05dae34559c3363d833c",
+      "size": 6572
+    },
+    {
+      "path": "review-threads-final.json",
+      "sha256": "645ebfc77689fde3311c2d1b2729a827b79a76604e2b2299be8849540bdb0529",
+      "size": 10048
+    },
+    {
+      "path": "review-threads.json",
+      "sha256": "495a19b664ea3405fedf07dd4e386638a5154a31ca77e546dd75c2f57a113888",
+      "size": 10055
+    },
+    {
+      "path": "reviews-final.json",
+      "sha256": "f83b46d3275f3ee1868accc32a022dc070e331c2531f02502322b75550a8ae6a",
+      "size": 3526
+    },
+    {
+      "path": "reviews.json",
+      "sha256": "b9a99c90175ea21a291bb1048021d42a2256d93a4c0bb0de171a4870ec4eac3d",
+      "size": 3533
+    },
+    {
+      "path": "run-39063558991.json",
+      "sha256": "4884af5473ca528a023132dfd2a172e223b1b898f2e4284d1c26eb03e5aa2ef9",
+      "size": 15513
+    },
+    {
+      "path": "run-39063558995.json",
+      "sha256": "b5791e649cdc49a388137d41c405c338c0755d16e4d18c4957bb85308b071140",
+      "size": 15509
+    },
+    {
+      "path": "run-39063558997.json",
+      "sha256": "3a4c7723796874c3313618263382dbe4772a4f35e243d8c62535280787dc7551",
+      "size": 15486
+    },
+    {
+      "path": "run-39063559009.json",
+      "sha256": "ad59635c7f93204246fcbecd266990af164335d14c6acc534d990f9a428d2c84",
+      "size": 15503
+    },
+    {
+      "path": "synthetic.json",
+      "sha256": "9f941f141a19be8238466efa2aeaecf15251e81ecf32622657b233b879b710ed",
+      "size": 3146
+    }
+  ],
+  "format": "Permansson.ExternalCaptureFiles.v1",
+  "provenance": "External evidence inventory only; these checksums do not manufacture publisher authentication.",
+  "source": {
+    "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+    "ordered_synthetic_parents": [
+      "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+      "ed8309843eedbd6cfe56b5e543c99285e28cead5"
+    ],
+    "pr_number": 78,
+    "repository": "HMarcusWH/PermanssonLean",
+    "synthetic_merge_sha": "4403ec593fe3178495b6633c9221ccd0e49bc166",
+    "tree": "b00dcc3910ff9eb513a45f00dd83731597f0fe6e"
+  }
+}

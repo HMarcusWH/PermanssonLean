@@ -1,0 +1,189 @@
+{
+  "errors": 0,
+  "executed_at_utc": "2026-10-17T19:06:33.040456+00:00",
+  "failures": 0,
+  "format": "Permansson.IndependentCaptureRegressions.v1",
+  "methods_run": 2,
+  "results": [
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (control='native_graphql_timestamp_names')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='empty_review_list')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='drop_review')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='empty_thread_list')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='alter_thread_body')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='wrong_review_pr')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='wrong_comment_pr')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='missing_terminal_comments')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='erase_rest_comments')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='wrong_connector_pr')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='connector_error_envelope')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='omit_thread_from_both_sources')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='missing_connector_result_status')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='erase_timestamps_from_both_thread_sources')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='erase_created_at')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='erase_updated_at')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='conflicting_timestamp_alias')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='erase_both_review_submission_sources')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='unknown_comment_review_id')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='boolean_comment_review_id')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='missing_rest_created_timestamp')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS",
+      "subtest": "test_review_normalization_is_bound_to_source_pages (verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages) (attack='invalid_rest_updated_timestamp')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "status": "PASS"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "status": "PASS",
+      "subtest": "test_unparsed_run_zip_cannot_replace_per_job_logs (verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs) (control='timestamped_actual_raw_text')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "status": "PASS",
+      "subtest": "test_unparsed_run_zip_cannot_replace_per_job_logs (verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs) (control='valid_bom_and_seven_fractional_digits')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "status": "PASS",
+      "subtest": "test_unparsed_run_zip_cannot_replace_per_job_logs (verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs) (attack='binary_zip_in_raw_path')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "status": "PASS",
+      "subtest": "test_unparsed_run_zip_cannot_replace_per_job_logs (verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs) (attack='invalid_utf8_raw_log')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "status": "PASS",
+      "subtest": "test_unparsed_run_zip_cannot_replace_per_job_logs (verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs) (attack='empty_raw_log')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "status": "PASS",
+      "subtest": "test_unparsed_run_zip_cannot_replace_per_job_logs (verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs) (attack='invalid_calendar_timestamp')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "status": "PASS",
+      "subtest": "test_unparsed_run_zip_cannot_replace_per_job_logs (verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs) (attack='invalid_nonleap_day')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "status": "PASS",
+      "subtest": "test_unparsed_run_zip_cannot_replace_per_job_logs (verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs) (attack='invalid_zero_year')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "status": "PASS",
+      "subtest": "test_unparsed_run_zip_cannot_replace_per_job_logs (verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs) (attack='wrong_job_endpoint')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "status": "PASS",
+      "subtest": "test_unparsed_run_zip_cannot_replace_per_job_logs (verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs) (attack='unpaired_surrogate_in_normalized_log')"
+    },
+    {
+      "method": "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "status": "PASS"
+    }
+  ],
+  "runtime": {
+    "platform": "Windows",
+    "python": "3.12.14"
+  },
+  "scope": "uncommitted_working_source_with_digests",
+  "skips": 0,
+  "source_sha256": {
+    "verification/archive/acquire_evidence.py": "c520c7f603a6393e4d37a97349f21987fc5adb56f7e12b9276d03880d24d10a2",
+    "verification/archive/tests/test_archive.py": "d71117a52d005b8e0909e0f6fad295c87ce4f9c68b27e6ae4608db4679ac8632"
+  },
+  "status": "PASS",
+  "subtests_run": 32
+}

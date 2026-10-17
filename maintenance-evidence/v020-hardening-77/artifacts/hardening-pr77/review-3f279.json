@@ -1,0 +1,100 @@
+{
+  "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+  "all_delta_paths": [
+    "archival/v0.2.0/publication-candidate/Permansson_v0.2.0_archival-supplement-1.zip",
+    "archival/v0.2.0/publication-candidate/Permansson_v0.2.0_archival-supplement-1.zip.sha256",
+    "archival/v0.2.0/publication-candidate/README.md",
+    "archival/v0.2.0/supplement-1/archive-manifest.json",
+    "archival/v0.2.0/supplement-1/archive-manifest.sha256",
+    "archival/v0.2.0/supplement-1/tooling/verification/integrity/maintenance_scope.py",
+    "archival/v0.2.0/supplement-1/tooling/verification/integrity/schemas/check-report.schema.json",
+    "archival/v0.2.0/supplement-1/tooling/verification/integrity/test_coverage.json",
+    "archival/v0.2.0/supplement-1/tooling/verification/integrity/tests/test_preservation.py",
+    "docs/V020_HARDENING.md",
+    "verification/integrity/maintenance_scope.py",
+    "verification/integrity/schemas/check-report.schema.json",
+    "verification/integrity/test_coverage.json",
+    "verification/integrity/tests/test_preservation.py"
+  ],
+  "elapsed_seconds": 22.125,
+  "evidence": {
+    "artifact_bytes": 9377,
+    "capture_files": 28,
+    "original_artifact_sha256": "75d61c01020f63d7f9555f10f32de9d63a09c0107536463ae549cdb85ebe9fc8",
+    "publisher_authentication": "not_created_by_offline_checksums",
+    "run_id": 39045919534
+  },
+  "executed_at": "2026-10-17T19:43:33.156307+00:00",
+  "format": "Permansson.IndependentMaintenanceFollowupPackagingReview.v1",
+  "head": "3f2791d23b08d0dd157303d6c265c3dad036a349",
+  "historical_bundle": {
+    "input_commits": 26,
+    "objects": 8202,
+    "refs": 36,
+    "sha256": "56c401a24130fd37231d667fdbad3f5578587bb6a1c6d3c406698bd5a966537f",
+    "unchanged": true,
+    "uncompressed_bytes": 27391135
+  },
+  "limits": [
+    "No genuine new PR H/B/S CI or merge acceptance",
+    "No new full import or offline replay",
+    "Local candidate scope must join independent genuine H/B/S evidence",
+    "No GitHub APPROVED review",
+    "No new Lean execution, mathematical promotion, settings, tags or external publication"
+  ],
+  "one_time_local_candidate_scope": {
+    "acceptance_binding": "Join this canonical candidate/tree with independently captured current PR H/B/S; local execution does not manufacture a GitHub event.",
+    "acceptance_only": true,
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "accepted_tree": "72ad841cc5b3cffc5f82979a9739b7fd03d75e15",
+    "candidate": "3f2791d23b08d0dd157303d6c265c3dad036a349",
+    "candidate_tree": "0a8ebcb83bf40e2b01e5f50f878dc54f9edd393c",
+    "compared_paths": [
+      "PermanssonLean/",
+      "PermanssonLean.lean",
+      "PermanssonResearch/",
+      "PermanssonResearch.lean"
+    ],
+    "completed_stages": [
+      "fixed_authority",
+      "complete_Lean_scope_comparison"
+    ],
+    "differences": [],
+    "permanent_preservation_policy": false,
+    "scope": "complete-canonical-Lean-trees-and-root-files"
+  },
+  "previous_cleared_head": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9",
+  "protected_scope_changes": [],
+  "publication_zip": {
+    "all_payloads_equal_H": true,
+    "bytes": 7438442,
+    "fixed_timestamp": "2026-10-17T00:00:00",
+    "members": 69,
+    "mode": "100644",
+    "sha256": "a103a54501e89b014e32f0a954845e6e500bb833cac03e2ffc1320b037e75020"
+  },
+  "reused_identical_inputs": {
+    "fresh_execution": false,
+    "full_historical_closure_review": true,
+    "preservation_and_tex": true,
+    "previous_head": "cc114ee60ff8749b3bb64bb24a8d5e76d2120af9"
+  },
+  "reviewed_source_hashes": {
+    "check-report.schema.json": "f071aaebf6092081e99be315ec632954f8d64b493d5dfee19a044b36ef3eb5a6",
+    "maintenance_scope.py": "fb55ab26b16ce02e154c0c349c9c319614f81713b16c5e9be403ab3c8d8b1411"
+  },
+  "source_delta": [
+    "verification/integrity/maintenance_scope.py",
+    "verification/integrity/schemas/check-report.schema.json",
+    "verification/integrity/test_coverage.json",
+    "verification/integrity/tests/test_preservation.py"
+  ],
+  "status": "PASS",
+  "supplement": {
+    "files": 69,
+    "manifest_sha256": "d6a6cc21510534f05f1006600bd47c6091c47d5228c01e6536b401d256f54a9f",
+    "tooling_files": 33
+  },
+  "test_sha256": "ca9f1ff7be4ead7d43089cf97e1104b068bf8de7c92065b3e5f0ee32cc912a38",
+  "tooling_commit": "cc0d29a38f3b27f4fdb760292790e677e4738d8d"
+}

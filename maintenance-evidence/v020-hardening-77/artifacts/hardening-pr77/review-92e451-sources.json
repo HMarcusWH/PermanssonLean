@@ -1,0 +1,13 @@
+{
+  ".github/workflows/application.yml": "0cab92bf19cd34881c22a4a5c7de615306259bb7253bf761ac75bb28901009b2",
+  ".github/workflows/lean.yml": "c0634d712d25b76bc365caa6e2c04e0ad84d4d2b16a21b1de7267704956ee34e",
+  ".github/workflows/research-lean.yml": "05cac80044b86c5a4f722e94b31a81d2417b1a1fecf74266ba7eddc6f5662242",
+  ".github/workflows/verification.yml": "d66b71b296ccf2cc3c94d42063932374b5f559a97dfc47f686e61749b7311455",
+  "verification/archive/manifest.py": "f77d991d784b000b6cb5114dd5cdcbd110d719449ccdca161908dc14d68bfd00",
+  "verification/archive/publication.py": "63b4477e3575400b23cb945fb63726e89d7df436a19f4ed7f3923ad927b59978",
+  "verification/archive/tests/test_archive.py": "63cbe01b0667db381605fd9ab9139e04889bbc9d30b2775974d740f7e2d184a7",
+  "verification/archive/verify_bundle.py": "58b2d601b9b360bf57228d32ad1c8ae51d3d18e3ca98cc6b7d4b8dcc0eae7918",
+  "verification/integrity/test_coverage.json": "000b9d116b5ef24573d3d07825d1ae65ff23120d36bda56d2549a8f20174cf77",
+  "verification/integrity/tests/test_workflow.py": "7db284db550fd972fd926fef09d2dbe8a0628c87afce23ef1cc34c5953d6078e",
+  "verification/integrity/workflow_contract.py": "e5c824e26d59a9dd63361b34b6fd78a29b08510dcb0d19a0954485052f29f769"
+}

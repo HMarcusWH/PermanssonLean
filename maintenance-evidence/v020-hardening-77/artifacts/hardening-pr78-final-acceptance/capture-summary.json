@@ -1,0 +1,96 @@
+{
+  "format": "Permansson.PR78.CICapture.v1",
+  "acquired_at": "2026-10-17 19:53:19 UTC",
+  "source": {
+    "repository": "HMarcusWH/PermanssonLean",
+    "pr_number": 78,
+    "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+    "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "synthetic_merge_sha": "4403ec593fe3178495b6633c9221ccd0e49bc166",
+    "tree": "b00dcc3910ff9eb513a45f00dd83731597f0fe6e",
+    "ordered_synthetic_parents": [
+      "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+      "ed8309843eedbd6cfe56b5e543c99285e28cead5"
+    ]
+  },
+  "jobs": [
+    {
+      "id": 117486376369,
+      "name": "research",
+      "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+      "status": "completed",
+      "conclusion": "success",
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      }
+    },
+    {
+      "id": 117486376318,
+      "name": "Application contract (ubuntu-latest)",
+      "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+      "status": "completed",
+      "conclusion": "success",
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      }
+    },
+    {
+      "id": 117486376259,
+      "name": "executable-verification",
+      "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+      "status": "completed",
+      "conclusion": "success",
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      }
+    },
+    {
+      "id": 117486376215,
+      "name": "build",
+      "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+      "status": "completed",
+      "conclusion": "success",
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      }
+    },
+    {
+      "id": 117486376133,
+      "name": "Application contract (windows-latest)",
+      "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+      "status": "completed",
+      "conclusion": "success",
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      }
+    }
+  ],
+  "workflow_run_attempts": {
+    "39063558991": 1,
+    "39063558995": 1,
+    "39063558997": 1,
+    "39063559009": 1
+  },
+  "artifact": {
+    "id": 12113010574,
+    "run_id": 39063559009,
+    "size": 9376,
+    "sha256": "3722dd43bc42277c6e3b100c7e37348126b6cb2a7f592d26275a41b707db34ff",
+    "name": "PR78-final-acceptance-c10.zip"
+  },
+  "consistency_replay": "PASS via accepted A helper, exact H/B/S; compiler_rerun=false",
+  "reviews": {
+    "threads": 5,
+    "unresolved": 0,
+    "current_head_code_review": "completed_without_findings",
+    "review_summary_issuecomment": 6238682123,
+    "counted_approved_reviews": 0
+  },
+  "provenance": "Connector API JSON captures and normalized job/review records are explicitly labeled; no raw HTTP transport, credentials or temporary download URLs retained. Original publisher ZIP bytes match live reported size/digest.",
+  "scope": "Exact recorded head/base/synthetic only. Local consistency replay performs no fresh Lean execution and creates no publisher authentication. Future head/base changes require new evidence."
+}

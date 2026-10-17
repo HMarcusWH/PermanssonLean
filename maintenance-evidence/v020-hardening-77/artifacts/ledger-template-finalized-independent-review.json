@@ -1,0 +1,28 @@
+{
+  "format": "Permansson.LedgerTemplateRefresh.IndependentReview.v1",
+  "status": "PASS",
+  "scope": "Current canonical source/template provenance and unchanged-helper real CLI positive only; no CI, K4 or acceptance promotion. Prior helper mutation review is retained separately.",
+  "source_tooling": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+  "helper_sha256": "978a280bcff3c9a2992419a3f04a4959dbe7089498fe1cfdb2fef41c5cef8dfd",
+  "template_sha256": "e7a1b50f9138f41077a711c0c8e9dc831677cf9e716e79b4b432025fcc5958d9",
+  "positive_helper_output_byte_equal": true,
+  "cases": 108,
+  "unit_case_mappings": 87,
+  "technical_cases_pending": 96,
+  "OPS_deferred": 12,
+  "K4_outside_108_still_pending": true,
+  "cases_identical_to_previous_unexecuted_template": true,
+  "canonical_registry_controls_equal": true,
+  "added_controls": {
+    "archive": [
+      "verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects"
+    ],
+    "context": [],
+    "preservation": [],
+    "reference": [],
+    "workflow": []
+  },
+  "canonical_provenance_records_checked": 11,
+  "all_five_pristine_originals_match_Downloads": true,
+  "duration_seconds": 24.328
+}

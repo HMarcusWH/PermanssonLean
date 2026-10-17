@@ -1,0 +1,117 @@
+{
+  "format": "Permansson.PR78.PostmergePush.v1",
+  "acquired_at": "2026-10-17 20:09:00 UTC",
+  "status": "PASS",
+  "source": {
+    "event": "push",
+    "branch": "main",
+    "checked_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+    "checked_tree": "b00dcc3910ff9eb513a45f00dd83731597f0fe6e",
+    "head_sha": "ed8309843eedbd6cfe56b5e543c99285e28cead5",
+    "base_sha": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "accepted_synthetic_sha": "4403ec593fe3178495b6633c9221ccd0e49bc166",
+    "merge_verification": "../merge-api-verification.json"
+  },
+  "jobs": [
+    {
+      "id": 117488837019,
+      "name": "Application contract (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      }
+    },
+    {
+      "id": 117488836983,
+      "name": "executable-verification",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      }
+    },
+    {
+      "id": 117488836977,
+      "name": "build",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      }
+    },
+    {
+      "id": 117488836917,
+      "name": "research",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      }
+    },
+    {
+      "id": 117488836869,
+      "name": "Application contract (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      }
+    }
+  ],
+  "workflow_runs": [
+    {
+      "id": 39064389021,
+      "name": "Executable verification",
+      "event": "push",
+      "head_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "head_branch": "main",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39064389023,
+      "name": "Application contract",
+      "event": "push",
+      "head_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "head_branch": "main",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39064389020,
+      "name": "Lean",
+      "event": "push",
+      "head_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "head_branch": "main",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39064389002,
+      "name": "Research Lean",
+      "event": "push",
+      "head_sha": "37c0cb8f2fbe7934639127e5f8b6d64a01e6950f",
+      "head_branch": "main",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "pr_only_c10": "Generation/upload steps skipped on main push as designed; fresh PR C10 evidence remains separately bound to H/B/S, not relabeled as push evidence.",
+  "local_fresh_Lean_execution": "NOT_PERFORMED",
+  "scope": "Observed postmerge GitHub execution of the five existing contexts. The three new maintenance gates belong to PR77 and are not claimed to have run on this documentation-only main merge."
+}

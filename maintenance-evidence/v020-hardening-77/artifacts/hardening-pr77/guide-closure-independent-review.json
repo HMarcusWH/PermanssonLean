@@ -1,0 +1,83 @@
+{
+  "duration_seconds": 39.437,
+  "errors": 0,
+  "failures": 0,
+  "format": "Permansson.GuideClosure.IndependentReview.v1",
+  "methods_run": 1,
+  "prior_reproduced_finding": "Before the full selected T/C dictionary comparison was added, removing a T-only code file from C, executing code, snapshot and manifest passed outer validation and incorrectly passed bound closure. The revised targeted control must now reject E_TOOLING_CLOSURE.",
+  "python": "3.12.14",
+  "reviewer": "Independent archive agent /root/hardening_archive",
+  "scope": "Independent targeted fixture execution after source review; canonical T/C guide and complete code closure, repaired manifest attacks, explicit source propagation and honest standalone controls. No Linux namespace or final source CI run claimed.",
+  "skips": 0,
+  "source_sha256": {
+    "verification/archive/_offline_worker.py": "4225a3d889639c4f2a154ad38f1de243dbae8b1e2aa64730f369ae5cadb11f75",
+    "verification/archive/create_bundle.py": "a9e4040687952d62a5d930dedbd42b4a19b48a733c627d34eae2df851c088805",
+    "verification/archive/offline_smoke.py": "96131ba19504bddc02b5ce980ef39c877bc9e2cb92809b6fc75896b3e27b729c",
+    "verification/archive/tests/test_archive.py": "f07e8f4f57b2df83e57eb0d5ce6615e7fa08b13732e1637fb1cb06faf8b41903",
+    "verification/archive/verify_bundle.py": "daefcee4425588ac2f343689deb9e0a868dc3c15c245e88c5737d4acacb5ccd2"
+  },
+  "status": "PASS",
+  "subtests": [
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (control='canonical_original_guide')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (control='checkout_CRLF_is_not_canonical_drift')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (attack='committed_guide_changes_after_packaging')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (attack='repaired_outer_instructions_only')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (attack='repaired_snapshot_and_instructions_and_blob')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (attack='T_file_omitted_from_C_snapshot_and_executing_code')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (control='standalone_delivered_guide_no_git_autodiscovery')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (attack='standalone_unapproved_guide_hash')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (attack='guide_omitted_from_declared_closure')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (attack='incomplete_binding', source_repo='C:\\\\Users\\\\macka\\\\.codex\\\\.chatgpt-projects\\\\g-p-6a7dcd5280008191a543947c8a70779d\\\\artifacts\\\\guide-final-review-tmp\\\\permansson-integrity-fixture-yv4xepja', candidate=None)"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (attack='incomplete_binding', source_repo='None', candidate='1b9dce15e8b452a54063b73add287947703e3b40')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (attack='incomplete_binding', source_repo='C:\\\\Users\\\\macka\\\\.codex\\\\.chatgpt-projects\\\\g-p-6a7dcd5280008191a543947c8a70779d\\\\artifacts\\\\guide-final-review-tmp\\\\permansson-integrity-fixture-yv4xepja', candidate='short')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (control='bound_parent_propagates_checked_pair')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (control='standalone_parent_does_not_discover_repository')"
+    },
+    {
+      "status": "PASS",
+      "subtest": "test_guide_closure_canonical_and_standalone (verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone) (control='privilege_dropped_worker_receives_pair')"
+    }
+  ],
+  "subtests_run": 15
+}

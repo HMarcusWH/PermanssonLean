@@ -1,0 +1,12 @@
+{
+  "verification/archive/_offline_worker.py": "4225a3d889639c4f2a154ad38f1de243dbae8b1e2aa64730f369ae5cadb11f75",
+  "verification/archive/acquire_evidence.py": "1cebc70a4f9796669309be659874d48dc8b80a270c784ac18e7d648f9024809a",
+  "verification/archive/create_bundle.py": "a9e4040687952d62a5d930dedbd42b4a19b48a733c627d34eae2df851c088805",
+  "verification/archive/offline_smoke.py": "96131ba19504bddc02b5ce980ef39c877bc9e2cb92809b6fc75896b3e27b729c",
+  "verification/archive/tests/test_archive.py": "f07e8f4f57b2df83e57eb0d5ce6615e7fa08b13732e1637fb1cb06faf8b41903",
+  "verification/archive/verify_bundle.py": "daefcee4425588ac2f343689deb9e0a868dc3c15c245e88c5737d4acacb5ccd2",
+  "verification/integrity/ci_context.py": "80c13ff7b4faf0f822b896cb0cbcb4c374f1c60653e6cda7c53bc4ea2b9a3d25",
+  "verification/integrity/test_coverage.json": "4296d37148d6636cb854bde21a18dc3b002d50c5931035ba68fb7a4d2066d295",
+  "verification/integrity/tests/test_context.py": "3e0851a4d4b820c74b5c484a9fba3858dfdf8cf6e3a12dd61e5b525f41bc9ce8",
+  "verification/integrity/tests/test_preservation.py": "c9ff00ce57ccfb7576de614ba512ea0a0c62a223979bd304c1e0538f306aa363"
+}
