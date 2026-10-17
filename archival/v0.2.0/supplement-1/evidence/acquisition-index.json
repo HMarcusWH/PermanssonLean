@@ -1,0 +1,325 @@
+{
+  "format": "Permansson.Hardening.Acquisition.v1",
+  "records": [
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:39 GMT",
+        "ETag": "\"b7cd2debc14df91a40d99218943e2b5ee0d2a247896d266222716001913809ee\"",
+        "X-GitHub-Request-Id": "4382:2A9A70:149F4A8:1F95ABA:6AD3B83F",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "pr76.json",
+      "received_at": "2026-10-17T18:02:39.528984+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:39.096376+00:00",
+      "sha256": "56ec33b7ba6f2334a35ba5faf9ed10f0e08965c1a3c52ec99cb6d3cafcbdd6e9",
+      "size": 20594
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/issues/comments/6235925253",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:39 GMT",
+        "ETag": "W/\"41c62d7287c4b4d64d03634b172dc0731b1d61b16e2585536af9bb718ace11e6\"",
+        "X-GitHub-Request-Id": "4384:10D5FB:1525559:20280F2:6AD3B83F",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "final-code-review-comment.json",
+      "received_at": "2026-10-17T18:02:39.923981+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:39.530954+00:00",
+      "sha256": "75ed1db9b3f035547a127203f25fd801924b646e8eab740e67f49bd3fd6db1d3",
+      "size": 4229
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/issues/comments/6236142249",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:40 GMT",
+        "ETag": "W/\"db22854adf6f4b2c814c5c9bec11424f92ab81b21292db611ada4ff027f84143\"",
+        "X-GitHub-Request-Id": "4385:82226:14DA72E:1FDDA55:6AD3B83F",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "acceptance-comment.json",
+      "received_at": "2026-10-17T18:02:40.262088+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:39.933155+00:00",
+      "sha256": "681b77544e478171d1e98d46fbc025532ec5a4c45265e44695d167a3255a8da4",
+      "size": 6708
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12106535829",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:40 GMT",
+        "ETag": "W/\"d0c629b83d9c295077cee9c47cb124014a89f6a5726c090e1af46edd8c897af7\"",
+        "X-GitHub-Request-Id": "4386:119354:163AD82:2142B4C:6AD3B840",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "R-c10-artifact-metadata.json",
+      "received_at": "2026-10-17T18:02:40.494358+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:40.263093+00:00",
+      "sha256": "2508adeef48c85d72fdb9ad59297f8ddf8435802a4cde942d9f099219ddbe025",
+      "size": 708
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76/reviews?per_page=100&page=1",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:40 GMT",
+        "ETag": "W/\"5e0dcf6320515bfb72093907b3b3f4e9d9c3896e518f635ed093231edb332dc1\"",
+        "X-GitHub-Request-Id": "4387:CA085:1585DDD:20925C1:6AD3B840",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "review-pages/1.json",
+      "received_at": "2026-10-17T18:02:40.940086+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:40.497373+00:00",
+      "sha256": "72f527d9c4116544f9360d1b4fd26596d6193d1e44177a672b83f464cc4142e5",
+      "size": 15720
+    },
+    {
+      "pages": 1,
+      "path": "final-review-submissions.json",
+      "representation": "assembled_paginated_api_json",
+      "sha256": "94e7dbef94ce2a72e6fb9b302b9198c31bcab0b466ebc17548b65ac899ae3acc",
+      "size": 18684
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs?head_sha=cdbe7ed5124781be495404122fac1de3315cb6ec&per_page=100",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:41 GMT",
+        "ETag": "W/\"f6533b1fbb3861b2cfd070484db72addd6e849ef0c6e4d37f1e2ca02ed1e6e6f\"",
+        "X-GitHub-Request-Id": "4388:173A16:151D4B1:2029793:6AD3B840",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "runs/source-head-runs.json",
+      "received_at": "2026-10-17T18:02:41.384923+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:40.957117+00:00",
+      "sha256": "43372faa7226c436a0085793aa40646e8612b1445a9b4e5ac2449ebf247b6594",
+      "size": 63880
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39045919577",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:41 GMT",
+        "ETag": "W/\"f782614acefdb0389d73889c0e87d8c18a6e30dea7484fd628fc5abaff10c1f3\"",
+        "X-GitHub-Request-Id": "4389:3FEBE9:15FA7A6:21036BA:6AD3B841",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "runs/39045919577.json",
+      "received_at": "2026-10-17T18:02:41.664135+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:41.386907+00:00",
+      "sha256": "6e08899dee82d6eca2ec792478d2ccc70932cd9e30fecd07034deee8bedf1e8b",
+      "size": 12771
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39045919577/jobs?per_page=100",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:42 GMT",
+        "ETag": "W/\"f16507635c2dfed647484432390f522ad541af97546494d22bd294f63ba435c9\"",
+        "X-GitHub-Request-Id": "438A:2A0871:14DAC1A:1FE615F:6AD3B841",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "runs/39045919577-jobs.json",
+      "received_at": "2026-10-17T18:02:42.131872+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:41.666137+00:00",
+      "sha256": "4c57a610909857a9e79d0d9f4a2989f14bfda1cd444081e2f73a547ec9ad8387",
+      "size": 2656
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39045919547",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:42 GMT",
+        "ETag": "W/\"931e4ca351a852561864ab0f7ad45a10d7ffcd1870a6b4684434693f840463c9\"",
+        "X-GitHub-Request-Id": "438B:BD193:156A206:20775F2:6AD3B842",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "runs/39045919547.json",
+      "received_at": "2026-10-17T18:02:42.380272+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:42.134343+00:00",
+      "sha256": "d2ea6f015832fbc31a1aa424ba48496dab50f6d9aa9b5b1a9b02d747f346eda7",
+      "size": 12798
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39045919547/jobs?per_page=100",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:42 GMT",
+        "ETag": "W/\"69a2e67477238c019425f4b19750250e271903fe1254074f71c6dba16349bd59\"",
+        "X-GitHub-Request-Id": "438C:2F97D3:151C268:2027947:6AD3B842",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "runs/39045919547-jobs.json",
+      "received_at": "2026-10-17T18:02:42.836662+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:42.381779+00:00",
+      "sha256": "519e085a361e211661164f3ead4dadb2a7d3ffbb0fde757a33b7cad23ab8451e",
+      "size": 2923
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39045919601",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:43 GMT",
+        "ETag": "W/\"ef231d8c2cd649d333696900108606d980a9a460ccb2835530e07ddf7c70b021\"",
+        "X-GitHub-Request-Id": "438D:C64D0:150A44A:2018A9F:6AD3B842",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "runs/39045919601.json",
+      "received_at": "2026-10-17T18:02:43.087753+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:42.837664+00:00",
+      "sha256": "3dfb32a54c039bd3accc32f4d0a1f1ca0043ef991775bcb2eb26afb5f1e60d93",
+      "size": 12766
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39045919601/jobs?per_page=100",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:43 GMT",
+        "ETag": "W/\"72e9c0f90ddea6c56f218a20e925c7ae86d1740a33f4a4b1f5cd54532b4be80f\"",
+        "X-GitHub-Request-Id": "438E:1F6056:1496377:1F9BD5A:6AD3B843",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "runs/39045919601-jobs.json",
+      "received_at": "2026-10-17T18:02:43.761014+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:43.089029+00:00",
+      "sha256": "70d556f00f1c8690f97fc463daf2bad741c8a9d2ca3917e14415649a5d7fb18e",
+      "size": 5338
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39045919531",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:43 GMT",
+        "ETag": "W/\"33b96229112d032b78dec37e7d7117e27ca24c66b58ba7a8443d2de6b40046f6\"",
+        "X-GitHub-Request-Id": "438F:2109E3:14E8D28:1FEF3EA:6AD3B843",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "runs/39045919531.json",
+      "received_at": "2026-10-17T18:02:43.996337+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:43.763534+00:00",
+      "sha256": "c63a06a3d3bf41e440787b685ddc375630414f7fa50114db43554ba2732f07f9",
+      "size": 12744
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39045919531/jobs?per_page=100",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:44 GMT",
+        "ETag": "W/\"aa3cd395bd70c0715b3ac99bf71ae7990f544237cd9c20f40e6517eee92dec97\"",
+        "X-GitHub-Request-Id": "4390:2520C7:157D414:2080D01:6AD3B844",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "runs/39045919531-jobs.json",
+      "received_at": "2026-10-17T18:02:44.470751+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:43.998372+00:00",
+      "sha256": "acbc48a32937ecfbf04ddbb65e70363053c9e067faca8d3a9eb7961fb58910c1",
+      "size": 2067
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39045919534",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:44 GMT",
+        "ETag": "W/\"2c7bfd2f74a03a69e4433c6afca3042881b45fc8faa1e5ff310ba4fbc7d1865e\"",
+        "X-GitHub-Request-Id": "4EE2:2520C7:157D451:2080D63:6AD3B844",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "runs/39045919534.json",
+      "received_at": "2026-10-17T18:02:44.762968+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:44.471258+00:00",
+      "sha256": "684731a2dc0ee29435f6afa5e5dfbf0cedfa11dbf1e323ed292a657127f750e9",
+      "size": 12761
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/runs/39045919534/jobs?per_page=100",
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 18:02:45 GMT",
+        "ETag": "W/\"5128d264efc02c89b7ce2527792a07224adebdee7ef2f025fb4b38d0838f54b5\"",
+        "X-GitHub-Request-Id": "4391:2A9A70:149F721:1F95EE6:6AD3B844",
+        "x-github-api-version-selected": "2022-11-28"
+      },
+      "http_status": 200,
+      "path": "runs/39045919534-jobs.json",
+      "received_at": "2026-10-17T18:02:45.199820+00:00",
+      "representation": "raw_http_response_body",
+      "requested_at": "2026-10-17T18:02:44.763974+00:00",
+      "sha256": "17351137c348159ea4e237f219bc8da610db68594917ed360cf5a575180603b4",
+      "size": 3665
+    },
+    {
+      "acquired_on": "2026-10-17",
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/artifacts/12106535829/zip",
+      "path": "R-c10.zip",
+      "representation": "original_publisher_zip_via_GitHub_connector",
+      "sha256": "75d61c01020f63d7f9555f10f32de9d63a09c0107536463ae549cdb85ebe9fc8",
+      "size": 9377
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+      "path": "review-threads.json",
+      "representation": "normalized_connector",
+      "sha256": "df7468602c62b4bc0229d856fc82ead04cac211a41f42ba1aef8d71f7d93005a",
+      "size": 21424
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117434492474/logs",
+      "path": "runs/job-117434492474-logs.json",
+      "representation": "normalized_connector",
+      "sha256": "b69acc4f08e96bba69f9d9a4b417adeee6bd92385307b21c789cd469b8d7ff91",
+      "size": 630030
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117434492541/logs",
+      "path": "runs/job-117434492541-logs.json",
+      "representation": "normalized_connector",
+      "sha256": "3c9788666fb4ef9077ab0ff444944e8deca6a5ef5f1e92beb1fa830f3c5dfc37",
+      "size": 169816
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117434492645/logs",
+      "path": "runs/job-117434492645-logs.json",
+      "representation": "normalized_connector",
+      "sha256": "25fa97ad040ea46a1cab6955f3d675080d619b50a5939ed0c7880bb3ab5e5661",
+      "size": 35224
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117434492666/logs",
+      "path": "runs/job-117434492666-logs.json",
+      "representation": "normalized_connector",
+      "sha256": "1f1adfd94415dc4153bb06f78c3d6d11135564b479079d9dc9455075a9b81a5c",
+      "size": 28949
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117434492716/logs",
+      "path": "runs/job-117434492716-logs.json",
+      "representation": "normalized_connector",
+      "sha256": "5a1831533f9097431826d9d0d06cd5d3a08b86eac37d750a95f01bae970b4548",
+      "size": 37429
+    },
+    {
+      "endpoint": "https://api.github.com/repos/HMarcusWH/PermanssonLean/actions/jobs/117434492945/logs",
+      "path": "runs/job-117434492945-logs.json",
+      "representation": "normalized_connector",
+      "sha256": "c786455568c53b53babe88266ba428d572407ec12de7f1f2dff3d74975bafd96",
+      "size": 37654
+    }
+  ]
+}
