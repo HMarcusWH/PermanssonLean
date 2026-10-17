@@ -282,16 +282,32 @@ Verification: local compile; `e1_axiom_audit.py` all declarations allowlisted (c
 
 Inputs: typed interventions (frozen), B2.1. Consumers: X1, R. Manuscript: §5.4.3.
 
-## A3 — contractive infinite-horizon robustness
+## A3 — contractive infinite-horizon robustness (branch `claude/zen-einstein-ub8zgr-a3`, stacked on the E1 branch / #71)
 
-| Anchor | Claim | Planned provider | Status |
+Lane document: [LANE_A3_CONTRACTIVE.md](LANE_A3_CONTRACTIVE.md). Modules:
+`Probability/KantorovichDual.lean`, `Probability/KantorovichTV.lean`,
+`Perturbation/ContractiveOccupation.lean`, `Perturbation/ContractiveAdversaries.lean`.
+All W₁ statements use the Kantorovich–Rubinstein DUAL form `W1DualLE` (measurable, bounded, 1-Lipschitz
+tests) on arbitrary pseudo-metric spaces; KR duality with the coupling form is NOT formalized.
+
+| Anchor | Claim | Provider | Status |
 |---|---|---|---|
-| A3.1 | `W_1(π, π̃) ≤ δ/(1-ρ)` under verified invariant laws, finite first moments, uniform `W_1` contraction `ρ<1` and one-step `W_1` defect `δ` (finite-state subclass first) | `Perturbation/ContractiveOccupation.lean`: `invariantLaw_wasserstein_le` | PROPOSED |
-| A3.2 | Margin bound `|κ̃ − κ| ≤ L_F L_h (δ_0/(1-ρ_0) + δ_J/(1-ρ_J))` when ψ factors through Lipschitz descriptor and Lipschitz functional of the deterministic occupation limit | `occupationMargin_robust` | PROPOSED |
-| A3.3 | Leakage counterexample: `K=δ_0`, `K̃=(1-ε)δ_0+εδ_1` flips `P_0(τ_{0}=∞)` from 1 to 0 for all ε>0 | `Perturbation/ContractiveAdversaries.lean` | PROPOSED |
-| A3.4 | No TV→W₁ substitution without proved diameter conversion | (firewall) | — |
+| A3.0 | Dual-W₁ calculus without Polish/standard-Borel hypotheses: monotone, symmetric, triangle, closed under limits; pointwise kernel defect ⇒ mixture defect; `L`-Lipschitz pushforward scales by `L`; finite first moments ⇒ finite bound | `W1DualLE`, `IsKRTest`, `W1DualLE.trans`, `W1DualLE.of_tendsto`, `W1DualLE.comp_of_forall`, `W1DualLE.map_lipschitz`, `W1DualLE.of_integrable_dist` | DEFINED (+ PROVED) |
+| A3.1 | (V20.17) `W₁(π, π̃) ≤ δ/(1−ρ)` given invariance of both laws, uniform dual-W₁ contraction `0 ≤ ρ < 1` of the ORIGINAL kernel, pointwise defect `δ` at every state and a finite initial gap (no finite-state restriction) | `invariantLaw_wasserstein_le`, `ContractivePerturbation.w1_le` | PROVED |
+| A3.2 | (V20.18) `\|κ̃ − κ\| ≤ L_F L_h (δ₀/(1−ρ₀) + δ_J/(1−ρ_J))` for the ORIGINAL frozen margins when `ψ(P_y) = F(h_#π)` for all four processes on `B₁` (hypothesis), `h` measurable `L_h`-Lipschitz, `F` `L_F`-Lipschitz for dual W₁ | `occupationMargin_robust`, `descriptorFunctional_dist_le` | PROVED |
+| A3.3 | Survival counterexample on actual models (`Unit × ℝ`): for every `ε ∈ (0,1]`, both kernels are dual-W₁ contractions with `ρ = 0`, defect `≤ ε`, yet `P₀(τ_B = ∞)` is `1` vs `0` | `contraction_does_not_transfer_survival` | PROVED |
+| A3.4 | TV → W₁ only with a diameter factor: `dist ≤ D ⇒ W₁ ≤ D·TV`; on `ℝ` no constant converts TV into W₁ | `W1DualLE.of_eventTV`, `tv_does_not_control_w1_on_real` | PROVED |
+| A3.5 | Existence/uniqueness of invariant laws; contraction from Doeblin/Dobrushin; ergodic bridge `ψ(P_y) = F(h_#π)`; KR duality; bounded → all 1-Lipschitz tests | — | OPEN (hypotheses in A3.1–A3.2) |
 
-Inputs: A2, C-lane occupation (C2/C11). Consumers: X1, R. Manuscript: §5.4.1.
+Inputs: E1.0 (`abs_lintegral_toReal_sub_le_eventTotalVariation`, `eventTotalVariation_le_of_forall`,
+`abs_measureReal_sub_le_eventTotalVariation`); frozen `constitutiveMargin`, `constitutiveEffect_nonneg`,
+`baselinePropertyValue`, `intervenedPropertyValue`, `ConstitutiveComparisonSet.pathLawNontrivial`,
+`PermanssonLean/Regime/Perturbation.lean: abs_sInf_image_sub_sInf_image_le_of_uniform`; frozen survival
+machinery (`killedKernel_apply`, `survivalProbability_eq_killedSurvivalMass`, `killedSurvivalMass`,
+`survivesForeverSet_eq_iInter`, `survivesThroughSet_antitone`, `measurableSet_survivesThroughSet`) and
+`StrategicWorldModel.inducedKernel_apply`. A2 is NOT used (no primitive budget is converted; A3.4 shows why a TV
+budget cannot be substituted). Consumers: X1, R. Manuscript: §5.4.1.
+Verification: local compile; `a3_axiom_audit.py` 50/50 declarations allowlisted; CI on the A3 PR.
 
 ## D2 — reverse-solver regime-switching objectives (separate lane)
 
