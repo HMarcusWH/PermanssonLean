@@ -1,0 +1,381 @@
+{
+  "format": "Permansson.GitHubConnectorCapture.v1",
+  "captured_at": "2026-10-17 18:51:30 UTC",
+  "request": {
+    "tool": "mcp__codex_apps__github_list_pull_request_review_threads",
+    "repo_full_name": "HMarcusWH/PermanssonLean",
+    "pr_number": 76
+  },
+  "pagination_state": "NOT_EXPOSED",
+  "provenance": "Actual saved connector result; no raw HTTP headers or GraphQL pagination state were exposed. Collection completeness is separately cross-checked against terminal REST inline-comment pages.",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "review_threads": [
+        {
+          "id": "PRRT_kwDOUkBtPs6thSfi",
+          "is_resolved": true,
+          "is_outdated": false,
+          "path": "release/v0.2.0/verify_release.py",
+          "line": 496,
+          "diff_side": "RIGHT",
+          "start_line": 496,
+          "start_diff_side": null,
+          "original_line": 406,
+          "original_start_line": null,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAHz6pA",
+              "database_id": 4303157924,
+              "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Bind protected snapshots to the release checkout**\n\nThe preservation check is run against `selected_source_sha` (the fixed accepted research cut), not the release commit currently being verified. Consequently, if a release PR modifies or deletes a protected historical paper, core, application, or provenance file while leaving the accepted source SHA at `5822cd...`, both the manifest build and CI verification still compare the baseline with the old accepted tree and pass. Preserve the research-source check, but additionally compare the protected paths against the checked-out release HEAD so the release gate actually detects historical-source changes.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T15:04:32Z",
+              "updated_at": "2026-10-17T15:04:33Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            },
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAH4ebg",
+              "database_id": 4303232622,
+              "body": "Fixed in dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7. Preservation now checks both the selected accepted research cut and the current release HEAD against the baseline, including protected modes and added/deleted frozen-tree files. Baseline C10 checker/evidence sources and tests are protected too. The independent final suite rejects a core mode change and historical paper deletion at the intended current-HEAD guard.\n\nIndependent final discovery: 28/28 tests pass, with 34 repaired-hash adversarial controls across these six gaps. All four manuscript exports remain byte-identical. Fresh exact-head review and full CI are the remaining acceptance gates.",
+              "created_at": "2026-10-17T15:25:25Z",
+              "updated_at": "2026-10-17T15:25:25Z",
+              "author": {
+                "login": "HMarcusWH",
+                "name": "HMarcusWH",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+                "id": null
+              },
+              "viewer_did_author": true
+            }
+          ]
+        },
+        {
+          "id": "PRRT_kwDOUkBtPs6thSfo",
+          "is_resolved": true,
+          "is_outdated": false,
+          "path": "release/v0.2.0/verify_release.py",
+          "line": 509,
+          "diff_side": "RIGHT",
+          "start_line": 506,
+          "start_diff_side": "RIGHT",
+          "original_line": 419,
+          "original_start_line": 416,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAHz6rQ",
+              "database_id": 4303157933,
+              "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Require the compile and review receipts**\n\nThe final-artifact allowlist does not require `compile-evidence.json` or `review-evidence.json`. If either receipt is accidentally deleted before a final rebuild, `build_release.py` simply omits it from `artifact_files`, and both verification and packaging still succeed, producing an accepted archive without the evidence used to support the documented compilation, visual-review, and mutation-review claims. Add both files to the final required set and validate their source and artifact hashes.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T15:04:32Z",
+              "updated_at": "2026-10-17T15:04:33Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            },
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAH4gTQ",
+              "database_id": 4303233101,
+              "body": "Fixed in dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7. Final build, verification and packaging now require both compilation and review receipts. Source, manuscript/TeX/PDF inputs, successful compiler/visual captures, exact provider count and all four reviewed production-code hashes are checked. Independent controls reject receipt omission and stale source/export/compiler/code bindings after inventory hashes are repaired.\n\nIndependent final discovery: 28/28 tests pass, with 34 repaired-hash adversarial controls across these six gaps. All four manuscript exports remain byte-identical. Fresh exact-head review and full CI are the remaining acceptance gates.",
+              "created_at": "2026-10-17T15:25:33Z",
+              "updated_at": "2026-10-17T15:25:33Z",
+              "author": {
+                "login": "HMarcusWH",
+                "name": "HMarcusWH",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+                "id": null
+              },
+              "viewer_did_author": true
+            }
+          ]
+        },
+        {
+          "id": "PRRT_kwDOUkBtPs6thSfs",
+          "is_resolved": true,
+          "is_outdated": false,
+          "path": "release/v0.2.0/verify_release.py",
+          "line": 282,
+          "diff_side": "RIGHT",
+          "start_line": 281,
+          "start_diff_side": "RIGHT",
+          "original_line": 251,
+          "original_start_line": 250,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAHz6sg",
+              "database_id": 4303157938,
+              "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Validate each recorded main merge**\n\nOnly the synthetic merge's parents are inspected; each receipt's `main_merge_sha` is otherwise ignored. A mistyped or unrelated main-merge identity therefore survives a rebuild and passes the verifier even though the manuscript and implementation index publish those values as exact integration provenance. Verify that the recorded main merge exists, contains the expected source/base integration, and has the checked synthetic tree (or otherwise matches the repository's declared merge policy).\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T15:04:32Z",
+              "updated_at": "2026-10-17T15:04:33Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            },
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAH4h1A",
+              "database_id": 4303233492,
+              "body": "Fixed in dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7. Each recorded main merge must be a real commit with the exact declared base/source parents, the same tree as its checked synthetic merge, and ancestry in the accepted research cut. A stale D2 identity substituted for the X1 main merge is rejected by the final provenance check.\n\nIndependent final discovery: 28/28 tests pass, with 34 repaired-hash adversarial controls across these six gaps. All four manuscript exports remain byte-identical. Fresh exact-head review and full CI are the remaining acceptance gates.",
+              "created_at": "2026-10-17T15:25:40Z",
+              "updated_at": "2026-10-17T15:25:40Z",
+              "author": {
+                "login": "HMarcusWH",
+                "name": "HMarcusWH",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+                "id": null
+              },
+              "viewer_did_author": true
+            }
+          ]
+        },
+        {
+          "id": "PRRT_kwDOUkBtPs6thSfu",
+          "is_resolved": true,
+          "is_outdated": false,
+          "path": "release/v0.2.0/verify_release.py",
+          "line": 162,
+          "diff_side": "RIGHT",
+          "start_line": 158,
+          "start_diff_side": "RIGHT",
+          "original_line": 142,
+          "original_start_line": 138,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAHz6tQ",
+              "database_id": 4303157941,
+              "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Pin required claims and scientific OPEN statuses**\n\nThis validation only requires an open boundary when the submitted status is already `OPEN`; it never checks an expected claim inventory or immutable status map. Thus `F1.MA2` can be deleted or changed from `OPEN` to `PROVED` while citing its existing obstruction declaration, after which rebuilding all generated artifacts produces a final kit that passes despite promoting the explicitly unfulfilled scientific obligation. Bind final manuscripts to the required anchors and status/open-boundary invariants, including the accepted evidence's declared open boundaries.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T15:04:33Z",
+              "updated_at": "2026-10-17T15:04:33Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            },
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAH4jOQ",
+              "database_id": 4303233849,
+              "body": "Fixed in dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7. Final v0.2.0 policy now fixes the exact 17-anchor/status map, approved manuscript bytes and canonical semantics, and all eight scientific boundaries in acceptance evidence. Strict F1.MA2 remains OPEN. The independent suite rejects deletion, promotion and nonempty false replacement prose, plus altered accepted boundaries. Deliberate future changes require reviewed policy revisions; draft mode remains available.\n\nIndependent final discovery: 28/28 tests pass, with 34 repaired-hash adversarial controls across these six gaps. All four manuscript exports remain byte-identical. Fresh exact-head review and full CI are the remaining acceptance gates.",
+              "created_at": "2026-10-17T15:25:46Z",
+              "updated_at": "2026-10-17T15:25:47Z",
+              "author": {
+                "login": "HMarcusWH",
+                "name": "HMarcusWH",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+                "id": null
+              },
+              "viewer_did_author": true
+            }
+          ]
+        },
+        {
+          "id": "PRRT_kwDOUkBtPs6thSfx",
+          "is_resolved": true,
+          "is_outdated": false,
+          "path": "release/v0.2.0/package_release.py",
+          "line": 70,
+          "diff_side": "RIGHT",
+          "start_line": 40,
+          "start_diff_side": "RIGHT",
+          "original_line": 44,
+          "original_start_line": 40,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAHz6uQ",
+              "database_id": 4303157945,
+              "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Verify deterministic ZIP entry metadata**\n\nArchive verification compares only member names, order, sizes, and payload bytes. If the kit is repacked with current timestamps, different Unix modes, a different creator system, or another compression method and the checksum companion is regenerated, `--verify` still passes even though the release promises fixed entry metadata and a deterministic archive. Check each entry's `date_time`, `create_system`, `external_attr`, and `compress_type` against the values used by the writer.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T15:04:33Z",
+              "updated_at": "2026-10-17T15:04:33Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            },
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAH4k3w",
+              "database_id": 4303234271,
+              "body": "Fixed in dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7. The packager and checker share explicit canonical entry metadata. Verification checks timestamps, creator system, Unix modes, compression, versions, internal attributes, flags, comments and extra fields, plus exact names/order/payloads. Eleven metadata/comment mutations with recomputed archive checksums are rejected in the durable guard suite.\n\nIndependent final discovery: 28/28 tests pass, with 34 repaired-hash adversarial controls across these six gaps. All four manuscript exports remain byte-identical. Fresh exact-head review and full CI are the remaining acceptance gates.",
+              "created_at": "2026-10-17T15:25:53Z",
+              "updated_at": "2026-10-17T15:25:53Z",
+              "author": {
+                "login": "HMarcusWH",
+                "name": "HMarcusWH",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+                "id": null
+              },
+              "viewer_did_author": true
+            }
+          ]
+        },
+        {
+          "id": "PRRT_kwDOUkBtPs6thSf0",
+          "is_resolved": true,
+          "is_outdated": false,
+          "path": "release/v0.2.0/verify_release.py",
+          "line": 360,
+          "diff_side": "RIGHT",
+          "start_line": 357,
+          "start_diff_side": "RIGHT",
+          "original_line": 320,
+          "original_start_line": 317,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAHz6vQ",
+              "database_id": 4303157949,
+              "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Validate the preserved C10 proof results**\n\nThe nested C10 verifier checks the manifest format, member inventory, hashes, and source identity but never examines `machine[\"proof\"]` or independently validates the numeric receipt and generated Lean evidence. A failed or incomplete bundle can therefore be relabeled with self-consistent hashes, a new outer digest, and `c10.status: pass`, and the final release still accepts it. At minimum enforce the expected proof status, theorem and axiom inventory, receipt format/input coherence, and recorded compiler success; preferably reuse the existing `c10_verify_release_evidence.py` structural checks on the archived members.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T15:04:33Z",
+              "updated_at": "2026-10-17T15:04:33Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            },
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAH4mfg",
+              "database_id": 4303234686,
+              "body": "Fixed in dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7. The preserved ZIP content gate now reuses the authoritative C10 structural and exact-arithmetic checker, checks the complete fixed proof/theorem/axiom manifest, recomputes raw/normalized/receipt/mixed values, regenerates both Lean inputs and validates clean complete compiler captures. All seven publisher ZIPs pass unchanged; 20 invalid-content variants with repaired nested hashes are rejected. The helper explicitly preserves accepted source-bound CI as the execution trust root and does not claim a new Lean run.\n\nIndependent final discovery: 28/28 tests pass, with 34 repaired-hash adversarial controls across these six gaps. All four manuscript exports remain byte-identical. Fresh exact-head review and full CI are the remaining acceptance gates.",
+              "created_at": "2026-10-17T15:26:00Z",
+              "updated_at": "2026-10-17T15:26:00Z",
+              "author": {
+                "login": "HMarcusWH",
+                "name": "HMarcusWH",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+                "id": null
+              },
+              "viewer_did_author": true
+            }
+          ]
+        },
+        {
+          "id": "PRRT_kwDOUkBtPs6thg2N",
+          "is_resolved": true,
+          "is_outdated": false,
+          "path": "release/v0.2.0/verify_release.py",
+          "line": 375,
+          "diff_side": "RIGHT",
+          "start_line": 375,
+          "start_diff_side": null,
+          "original_line": 375,
+          "original_start_line": null,
+          "resolved_by": {
+            "login": "HMarcusWH",
+            "name": "HMarcusWH",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+            "id": null
+          },
+          "comments": [
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAH51mQ",
+              "database_id": 4303254937,
+              "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Enforce ZIP bounds before reading members**\n\nIn pull-request CI, a contributor can commit a highly compressed C10 ZIP and repair its origin and outer hashes; `validate_c10_archives` reads `evidence_manifest.json` and then every declared artifact before this bounded helper is invoked. Consequently, a member whose declared size exceeds the helper's 4 MB/16 MB limits can consume arbitrary memory during `zipped.read(...)`, potentially terminating the runner before the new checks reject it. Inspect and enforce the fixed inventory and size limits before any member is read.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+              "created_at": "2026-10-17T15:31:10Z",
+              "updated_at": "2026-10-17T15:31:10Z",
+              "author": {
+                "login": "chatgpt-codex-connector",
+                "name": "chatgpt-codex-connector",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+                "id": null
+              },
+              "viewer_did_author": false
+            },
+            {
+              "id": "PRRC_kwDOUkBtPs8AAAABAH7ebg",
+              "database_id": 4303281774,
+              "body": "Fixed in cdbe7ed5124781be495404122fac1de3315cb6ec. Both outer validate_c10_archives and the direct content helper invoke the SAME metadata-only preflight immediately after opening a ZIP, before their first ZipFile.read (including the manifest). It enforces the authoritative exact13-member inventory,4,000,000-byte member limit and16,000,000-byte total limit.\n\nA new durable test repairs origin/outer hashes on five small inventory/size-mutated ZIPs and spies on ZipFile.read. Both entry points reject all five with zero reads (10 negative controls); the inclusive member/total boundary controls pass. Two independent reviewers reproduced the new test and21 existing C10 regressions. All seven publisher ZIPs and all four manuscript exports remain unchanged. Strict final verification and packaging pass. Fresh29-method CI and exact-head review will run before merge; the prior28-method run is explicitly recorded as prior-head evidence.",
+              "created_at": "2026-10-17T15:38:22Z",
+              "updated_at": "2026-10-17T15:38:22Z",
+              "author": {
+                "login": "HMarcusWH",
+                "name": "HMarcusWH",
+                "email": null,
+                "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+                "id": null
+              },
+              "viewer_did_author": true
+            }
+          ]
+        }
+      ]
+    },
+    "isError": false
+  }
+}

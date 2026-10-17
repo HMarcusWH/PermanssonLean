@@ -187,7 +187,7 @@ Every report records schema/version, check name, status, error code, repository,
 
 Use `schema_version=1`; UTF-8; LF; sorted keys for machine output. Timestamps and run IDs may vary, but comparison/inventory payloads have deterministic ordering. Write reports atomically outside frozen source directories. Do not trust a report merely because its own status is PASS; CI must use subprocess exit status and validate context and required completed stages.
 
-`ci_context.py` exposes `capture_context(repo, candidate, event_file=None) -> CheckContext`. Every production verifier invokes it, not merely the preliminary workflow step. In CI it reads the actual GitHub event/environment, verifies candidate equals checkout HEAD and the event SHA, and rejects disagreement with a supplied event file. Outside CI it labels reports `local`. Its standalone command writes a context record, not a fourth required check report; use `format="Permansson.Hardening.CIContext.v1"`, the CheckContext fields above, and a SHA-256 of the raw event file when one exists. The three check reports embed the same context fields. Missing context/run evidence blocks genuine-PR acceptance rather than being filled with invented values.
+`ci_context.py` exposes `capture_context(repo, candidate, event_file=None) -> CheckContext`. Every production verifier invokes it, not merely the preliminary workflow step. Every reported candidate must equal checkout HEAD, including local invocations; a reachable previous synthetic merge or ancestor is not the current checkout. In CI it also reads the actual GitHub event/environment, verifies candidate equals the event SHA, and rejects disagreement with a supplied event file. Outside CI it labels reports `local`. This identifies canonical committed objects, not worktree cleanliness: K4 separately requires clean actual-S execution. Pure internal object comparators can inspect historical commits without issuing a current-checkout context. Its standalone command writes a context record, not a fourth required check report; use `format="Permansson.Hardening.CIContext.v1"`, the CheckContext fields above, and a SHA-256 of the raw event file when one exists. The three check reports embed the same context fields. Missing context/run evidence blocks genuine-PR acceptance rather than being filled with invented values.
 
 Recommended error families are in the supplied schema and test plan. Precise codes include `E_REFERENCE_MISSING`, `E_REFERENCE_ID`, `E_POLICY_INVENTORY`, `E_PROTECTED_MISSING`, `E_PROTECTED_TYPE`, `E_PROTECTED_MODE`, `E_PROTECTED_CONTENT`, `E_CLOSED_ADDITION`, `E_IMPORT_ORIGIN`, `E_TEX_MISMATCH`, `E_BUNDLE_HASH`, `E_BUNDLE_PREREQUISITE`, `E_BUNDLE_REFS`, `E_BUNDLE_IMPORT`, `E_GIT_FSCK`, `E_PARENT_BINDING`, `E_TREE_BINDING`, `E_OBJECT_INVENTORY`, `E_EVIDENCE_HASH`, `E_CAPTURE_ID`, `E_C10_CONTENT`, `E_LEGACY_VERIFY`, `E_NETWORK_NOT_ISOLATED`, and `E_REVIEW_INELIGIBLE`.
 
@@ -385,6 +385,8 @@ Missing fields, unknown format versions, duplicate keys, duplicate paths, traver
 
 Build tooling at a clean pre-packaging maintenance commit `T`. Copy the exact source bytes needed for offline replay under `tooling/`, recording `T` and source blob/content hashes. The history bundle still ends at A plus its declared historical synthetic roots; it does not contain T or the later supplement commit.
 
+The source closure includes `archival/v0.2.0/README.md` as well as both verification packages. Candidate-bound replay requires the complete canonical closure at T and current candidate C to agree, checks the executing code against C, and requires `OFFLINE_REPRODUCTION.md` to equal the delivered source-guide copy. The explicitly supplied repository/candidate pair crosses the isolation boundary without an unbound fallback. Standalone replay checks delivered content without discovering an ambient repository; it remains artifact replay, not candidate CI acceptance or publisher authentication.
+
 Generate the supplement outside the repository first; verify it; then commit its files as a new maintenance commit. If tooling changes later, update the tooling copy and its manifest in a new supplement candidate, preserving all accepted historical inputs. Final maintenance head and merge acceptance remain in a subsequent external receipt.
 
 This yields an acyclic dependency graph: historical source/evidence → bundle/tooling files → supplement manifest → maintenance integration → external acceptance. No file is required to predict its own future commit or archive hash.
@@ -443,11 +445,17 @@ Each of the three jobs is independent, with its own checkout and no `needs` chai
 
 Do not fetch historical evidence from Actions in each job. The supplement carries it. F1/F2 require the accepted A objects, obtained through the checkout's full history or an explicit fixed-SHA preparation fetch. F3 proves its own historical objects come from the delivered bundle, not from the job's checkout.
 
+The candidate-bound archival job also verifies the committed publication-candidate ZIP and sidecar against every canonical inner supplement file at C, including both manifest files. It enforces the documented exact member inventory, bytes, modes and timestamps. Standalone replay without candidate Git authority reports this comparison as not applicable; it cannot satisfy this candidate-bound gate. Filesystem inventories must enforce fixed count, depth and aggregate-byte budgets during traversal before payload hashing, with separate streaming growth limits.
+
 On a genuine PR, the context checker must confirm checkout `HEAD=S`, actual parents `[B,H]`, repository identity and event PR number. For a push, confirm checkout `HEAD` equals the event's `after` SHA and the ref is main. Dispatch reports are marked diagnostic and cannot substitute for a required genuine-PR run.
 
 ### 11.3 Existing jobs and exact names
 
-Preserve existing Lean, Research Lean, executable verification and both Application contract OS jobs. The live observed required contexts are:
+Preserve existing Lean, Research Lean, executable verification and both Application contract OS jobs.
+
+Each existing job must run the genuine-event context preflight before its verification work using a full-history checkout, read-only permissions and disabled checkout credential persistence. Remove manual dispatch from these required-result workflows, retain PR/main-push handling, and check their reviewed profiles in the integrity workflow contract. Preserve the underlying verification commands and PR-only C10 source binding. Capture each actual job's source context; a same-name manual result or a result from H cannot replace proof execution on the genuine S.
+
+The live observed required contexts are:
 
 ```text
 build

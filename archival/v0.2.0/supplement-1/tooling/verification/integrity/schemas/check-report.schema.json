@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "Permansson.Hardening.Check.v1",
+  "type": "object",
+  "required": ["format", "schema_version", "check", "status", "error_code", "context", "runtime"],
+  "properties": {
+    "format": {"const": "Permansson.Hardening.Check.v1"},
+    "schema_version": {"const": 1},
+    "check": {"enum": ["frozen-source-preservation", "release-export-integrity", "archive-reproducibility", "maintenance-Lean-scope"]},
+    "status": {"enum": ["PASS", "FAIL", "BLOCKED"]},
+    "error_code": {"type": ["string", "null"]},
+    "context": {"type": "object"},
+    "runtime": {"type": "object"},
+    "completed_stages": {"type": "array", "items": {"type": "string"}}
+  },
+  "allOf": [{"if": {"properties": {"status": {"const": "PASS"}}}, "then": {"required": ["completed_stages"], "properties": {"error_code": {"type": "null"}, "completed_stages": {"minItems": 1}}}}]
+}
