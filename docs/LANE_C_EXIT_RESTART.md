@@ -51,7 +51,9 @@ last-state restart fails.
   `lake build PermanssonResearch` and default `lake build` are re-run
   before the PR is marked ready (see PR #69 body for exact results).
 - `verification/research/c69_axiom_audit.py`: 34/34 new declarations depend
-  only on `propext`, `Classical.choice`, `Quot.sound`.
+  only on `propext`, `Classical.choice`, `Quot.sound` (33/33 after the E1 PR moves
+  the generic `compProd_map_left_eq_map_compProd_comap` to
+  `Probability/CompProdPushforward.lean`, where `e1_axiom_audit.py` audits it).
 - `verification/research/test_c_exit_restart.py`: 47/47 exact-Fraction
   tests (26 pre-existing + 21 C69 tests: `C69LastStateRestartTests`,
   `C69StoppedFutureTests`, `C69CountableRoutingTests`).

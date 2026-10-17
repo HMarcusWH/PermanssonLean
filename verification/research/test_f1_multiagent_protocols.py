@@ -3,7 +3,8 @@
 Independent executable cross-checks of PermanssonResearch/MultiAgent/*. Finite
 two-player conditional-product games only; these are NOT proofs of the general
 measurable-space Lean theorems. Covers the spec section 6 test list: response vs
-frozen (MA1), baseline-agreeing anchors that differ off support (MA2), correlated
+frozen (MA1), a broader state-feedback counterexample (NOT strict MA2), the
+scoped strict MA2 obstruction and endogenous-common-state loophole, correlated
 actions outside the product subclass (MA3), infeasible anchors, interventions
 that change P, nonstationary anchors needing a clock, and direction vs uniform gap.
 """
@@ -146,6 +147,18 @@ def strictly_non_reactive(anchor, states=STATES):
     return True
 
 
+def exogenous_common(G, states=STATES):
+    """Lean IsExogenousCommon: U0 factors through the old s0 alone."""
+    inputs = [(y, a, x) for y in states for a in ACTIONS for x in B]
+    by_s0 = {}
+    for y, a, x in inputs:
+        law = norm(G.up0(y, a, x))
+        if y[0][0] in by_s0 and by_s0[y[0][0]] != law:
+            return False
+        by_s0[y[0][0]] = law
+    return True
+
+
 def is_protocol(Gi, G, r1, menu, states=STATES):
     """Lean protocol_admissible_cases: P and U0 are G's, player 1 is r1, and the
     opponent is G's own (CL) or a declared menu anchor (OL)."""
@@ -218,7 +231,11 @@ class ResponseVersusFrozenTests(unittest.TestCase):
 
 class AnchorIdentificationTests(unittest.TestCase):
 
-    def test_ma2_baseline_agreeing_anchors_differ_off_support(self):
+    def test_declared_state_feedback_anchors_differ_off_support_not_strict_ma2(self):
+        """Mirrors declared_anchors_agree_on_support_but_openLoop_differs.
+        Explicitly rejects promotion of the world-reading anchor to strict MA2."""
+        self.assertTrue(strictly_non_reactive(ANCHOR_CONST))
+        self.assertFalse(strictly_non_reactive(ANCHOR_WORLD))
         support = reachable(BASE, Y0, 6)
         self.assertEqual(support, {Y0})
         for anc in (ANCHOR_CONST, ANCHOR_WORLD):
@@ -235,6 +252,74 @@ class AnchorIdentificationTests(unittest.TestCase):
         self.assertNotEqual(ANCHOR_CONST[0](off), ANCHOR_WORLD[0](off))
         self.assertNotEqual(psi(open_loop(BASE, R1, ANCHOR_CONST)),
                             psi(open_loop(BASE, R1, ANCHOR_WORLD)))
+
+    def test_strict_recording_anchors_full_laws_equal_exhaustively(self):
+        """Mirrors strict_recording_anchors_pathLaw_eq: ALL 256 deterministic
+        treated action functions, ALL strict Bool-own-state action functions
+        agreeing with baseline, own-action recording and exogenous Unit S0.
+        Checks entire finite path laws rather than one coincident observable."""
+        self.assertTrue(exogenous_common(BASE))
+        anchors = []
+        for at_false, at_true in product(B, repeat=2):
+            table = {False: at_false, True: at_true}
+            anc = (lambda y, table=table: dirac(table[s2(y)]), ANCHOR_CONST[1])
+            self.assertTrue(strictly_non_reactive(anc))
+            if anc[0](Y0) == BASE.act2(Y0):
+                anchors.append(anc)
+        self.assertEqual(len(anchors), 2)
+        off_own_key = (((), (False, True)), False)
+        self.assertNotEqual(anchors[0][0](off_own_key), anchors[1][0](off_own_key))
+        state_index = {y: i for i, y in enumerate(STATES)}
+        for outputs in product(B, repeat=len(STATES)):
+            replacement = (lambda y, outputs=outputs: dirac(outputs[state_index[y]]), R1[1])
+            laws = [prefix_law(open_loop(BASE, replacement, anc), Y0, 6) for anc in anchors]
+            self.assertEqual(laws[0], laws[1])
+            self.assertTrue(all(not s2(y) for w in laws[0] for y in w))
+        # Removing baseline agreement destroys the conclusion, even for a strict anchor.
+        self.assertNotEqual(prefix_law(open_loop(BASE, R1, ANCHOR_CONST), Y0, 3),
+                            prefix_law(open_loop(BASE, R1, ANCHOR_EXTRACT), Y0, 3))
+
+    def test_strict_autonomous_off_support_difference_stochastic_crosscheck(self):
+        """Additional finite stochastic cross-check; the Lean obstruction is
+        deliberately claimed only for its deterministic recording-update scope."""
+        anchors = [
+            (lambda y, q=q: ({False: ONE} if not s2(y) else {False: q, True: ONE-q}),
+             ANCHOR_CONST[1]) for q in (F(1, 4), F(3, 4))]
+        replacement = (lambda y: {False: F(1, 3), True: F(2, 3)},
+                       lambda y, a, x: {False: HALF, True: HALF})
+        for anc in anchors:
+            self.assertTrue(strictly_non_reactive(anc))
+            self.assertEqual(anc[0](Y0), BASE.act2(Y0))
+        self.assertNotEqual(anchors[0][0]((((), (False, True)), False)),
+                            anchors[1][0]((((), (False, True)), False)))
+        for horizon in range(1, 5):
+            laws = [norm(prefix_law(open_loop(BASE, replacement, anc), Y0, horizon))
+                    for anc in anchors]
+            self.assertEqual(laws[0], laws[1])
+            self.assertGreater(len(laws[0]), 1)  # not an accidentally deterministic fixture
+
+    def test_endogenous_common_state_is_not_opponent_locked(self):
+        """A factorized anchor can still respond via s0 <- a1. Baseline-support
+        agreement and local strictness alone permit divergence; IsExogenousCommon
+        must reject this apparent strict MA2 witness."""
+        states = [((c, (i, j)), x) for c, i, j, x in product(B, repeat=4)]
+        start = ((False, (False, False)), False)
+        game = BASE.with_(up0=lambda y, a, x: dirac(a[0]))
+        const = ANCHOR_CONST
+        public = (lambda y: dirac(y[0][0]), ANCHOR_CONST[1])
+        self.assertFalse(exogenous_common(game, states))
+        self.assertTrue(exogenous_common(game.with_(up0=lambda y, a, x: dirac(not y[0][0])), states))
+        support = reachable(game, start, 6)
+        self.assertEqual(support, {start})
+        for anc in (const, public):
+            self.assertTrue(strictly_non_reactive(anc, states))
+            for y in support:
+                self.assertEqual(anc[0](y), game.act2(y))
+                for a in ACTIONS:
+                    for x in B:
+                        self.assertEqual(anc[1](y, a, x), game.up2(y, a, x))
+        self.assertEqual(psi(open_loop(game, R1, const), start), ZERO)
+        self.assertEqual(psi(open_loop(game, R1, public), start), ONE)
 
 
 class ProductSubclassTests(unittest.TestCase):

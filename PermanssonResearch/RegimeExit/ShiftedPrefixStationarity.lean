@@ -1,6 +1,7 @@
 import PermanssonResearch.RegimeExit.StationaryLastStateReduction
 import PermanssonResearch.RegimeExit.ShiftedHistoryMarginals
 import PermanssonLean.StrategicWorld.WellPosedness
+import PermanssonResearch.Probability.CompProdPushforward
 import Mathlib.Probability.Kernel.Composition.MeasureCompProd
 import Mathlib.MeasureTheory.Integral.Lebesgue.Map
 import Mathlib.Tactic
@@ -46,28 +47,6 @@ open PermanssonLean PermanssonLean.RegimeSpecification
 universe uS uX uA
 variable {S : Type uS} {X : Type uX} {A : Type uA}
 variable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
-
-/-- Pushing the FIRST factor of a measure–kernel composition forward along
-`f` is the same as composing with the kernel read through `f` and then
-pushing the pair forward. Generic finite-measure fact on arbitrary
-measurable spaces (no standard-Borel hypothesis). -/
-theorem compProd_map_left_eq_map_compProd_comap
-    {α β γ : Type*} [MeasurableSpace α] [MeasurableSpace β]
-    [MeasurableSpace γ]
-    (ρ : Measure α) [IsFiniteMeasure ρ]
-    {f : α → β} (hf : Measurable f)
-    (η : Kernel β γ) [IsMarkovKernel η] :
-    (ρ.map f) ⊗ₘ η = (ρ ⊗ₘ η.comap f hf).map (Prod.map f id) := by
-  apply Measure.ext_prod
-  intro s t hs ht
-  rw [Measure.map_apply (hf.prodMap measurable_id) (hs.prod ht)]
-  have hpre : Prod.map f id ⁻¹' (s ×ˢ t) = (f ⁻¹' s) ×ˢ t := by
-    ext ⟨a, c⟩
-    simp
-  rw [hpre, Measure.compProd_apply_prod hs ht,
-    Measure.compProd_apply_prod (hf hs) ht,
-    setLIntegral_map hs (η.measurable_coe ht) hf]
-  rfl
 
 /-- Forget the first `m` coordinates of an absolute-time history through
 `m + n`, re-indexing the remaining `n + 1` states at zero. -/
@@ -171,7 +150,8 @@ theorem shiftedHistory_hasTransitionPair
   have hκ : κ (m + n) = (κ n).comap drop hDrop :=
     stationaryHistoryKernel_add_eq_comap_drop N.inducedKernel m n
   rw [hprefix, hpair, ← habs, hκ]
-  exact compProd_map_left_eq_map_compProd_comap _ hDrop (κ n)
+  exact PermanssonResearch.Probability.compProd_map_left_eq_map_compProd_comap
+    _ hDrop (κ n)
 
 /-- The singleton-prefix embedding used to compare time-zero laws without
 appealing to a particular `Unique` instance of `Finset.Iic 0`. -/

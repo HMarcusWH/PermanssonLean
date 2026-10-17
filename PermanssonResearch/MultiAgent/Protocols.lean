@@ -25,20 +25,21 @@ single component kind is `jointStrategic`, so the frozen grammar guarantees that
 generator for `r`, or an OL generator for `r` and an anchor from the menu
 (`protocol_admissible_cases`).
 
-**Two readings of "non-reactive anchor".** The spec asks for a "frozen, ex-ante
-declared non-reactive anchor".
+**Declared kernels versus non-reactive anchors.** The spec asks for a "frozen,
+ex-ante declared non-reactive anchor".
 * `protocolFamily G P r anchors` admits ANY declared anchor kernel (the "frozen
-  declared kernel" reading). This is the reading under which MA2 is
-  non-vacuous: anchors may differ off baseline support only if they can read
-  coordinates whose reachable values the intervention changes. Under this
-  reading non-reactivity is NOT enforced; it is the menu's responsibility, and
+  declared kernel" family). This broader family does NOT enforce the spec's
+  non-reactivity requirement; it is the menu's responsibility, and
   if the menu contains the baseline opponent `G.player2` the OL label carries the
   CL generator (`openLoop_self`).
 * `IsStrictlyNonReactive a` is the strict reading: the anchor's action reads only
   the common coordinate `S₀` and its OWN private state `S₂`, and its update reads
   only those and its OWN action. `protocolFamily G P r (strictAnchors anchors)` is
-  the strict family. Even then `S₀` is updated by the common `U₀`, which may read
-  player 1's action, so exogeneity of `S₀` is a separate modelling obligation.
+  a structurally restricted family. Even then `S₀` is updated by the common
+  `U₀`, which may read player 1's action. `IsExogenousCommon G` explicitly rules
+  out this channel by requiring `U₀` to factor through `S₀` alone.
+  `opponentLockedAnchors G anchors` requires BOTH conditions; this is a
+  sufficient autonomous subclass of the spec's non-reactive anchors.
   A nonstationary (clocked) anchor needs its clock in a state coordinate that
   the protocol can actually update: either the BASELINE `S₀` with the baseline
   `U₀` (protocols never change `U₀`), or the anchor's OWN `S₂` through the
@@ -124,10 +125,53 @@ theorem IsStrictlyNonReactive.action_eq {a : PlayerTwoMechanism S0 S1 S2 X A1 A2
   obtain ⟨ā, hā⟩ := ha.action_factors
   rw [hā, Kernel.comap_apply, Kernel.comap_apply, h]
 
+/-- Strict anchors also use the same private-update law at inputs with the same
+own key and own action, irrespective of the treated action and world state. -/
+theorem IsStrictlyNonReactive.update_eq {a : PlayerTwoMechanism S0 S1 S2 X A1 A2}
+    (ha : IsStrictlyNonReactive a)
+    {u u' : UpdateInput (GameState S0 S1 S2) X (A1 × A2)}
+    (h : anchorUpdateKey u = anchorUpdateKey u') : a.update u = a.update u' := by
+  obtain ⟨ū, hū⟩ := ha.update_factors
+  rw [hū, Kernel.comap_apply, Kernel.comap_apply, h]
+
+/-- The old common coordinate, before either action or the world update. -/
+def commonUpdateKey (u : UpdateInput (GameState S0 S1 S2) X (A1 × A2)) : S0 :=
+  u.1.1.1.1
+
+theorem measurable_commonUpdateKey :
+    Measurable (commonUpdateKey (S0 := S0) (S1 := S1) (S2 := S2) (X := X)
+      (A1 := A1) (A2 := A2)) := by
+  unfold commonUpdateKey; fun_prop
+
+/-- A sufficient structural exogeneity condition: the common update reads only
+the old `S₀`. Together with strict anchor factorization this excludes response
+to player 1 through an endogenous public-state coordinate. This is a declared
+subclass, not a necessary condition for every possible non-reactive protocol. -/
+structure IsExogenousCommon (G : TwoPlayerGenerator S0 S1 S2 X A1 A2) : Prop where
+  common_factors : ∃ c : Kernel S0 S0,
+    G.common = c.comap commonUpdateKey measurable_commonUpdateKey
+
+theorem IsExogenousCommon.closedLoop {G : TwoPlayerGenerator S0 S1 S2 X A1 A2}
+    (hG : IsExogenousCommon G) (r : PlayerOneMechanism S0 S1 S2 X A1 A2) :
+    IsExogenousCommon (G.closedLoop r) := ⟨hG.common_factors⟩
+
+theorem IsExogenousCommon.openLoop {G : TwoPlayerGenerator S0 S1 S2 X A1 A2}
+    (hG : IsExogenousCommon G) (r : PlayerOneMechanism S0 S1 S2 X A1 A2)
+    (a : PlayerTwoMechanism S0 S1 S2 X A1 A2) : IsExogenousCommon (G.openLoop r a) :=
+  ⟨hG.common_factors⟩
+
 /-- The strict sub-menu. -/
 def strictAnchors (anchors : Set (PlayerTwoMechanism S0 S1 S2 X A1 A2)) :
     Set (PlayerTwoMechanism S0 S1 S2 X A1 A2) :=
   {a | a ∈ anchors ∧ IsStrictlyNonReactive a}
+
+/-- Autonomous opponent-locked sub-menu: local anchor factorization AND an
+exogenous common process. Membership cannot be obtained merely by routing the
+treated player's action through `S₀`. -/
+def opponentLockedAnchors (G : TwoPlayerGenerator S0 S1 S2 X A1 A2)
+    (anchors : Set (PlayerTwoMechanism S0 S1 S2 X A1 A2)) :
+    Set (PlayerTwoMechanism S0 S1 S2 X A1 A2) :=
+  {a | a ∈ strictAnchors anchors ∧ IsExogenousCommon G}
 
 /-- The two protocol labels. -/
 inductive Protocol
