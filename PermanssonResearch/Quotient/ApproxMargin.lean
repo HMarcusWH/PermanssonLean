@@ -278,7 +278,7 @@ theorem eq_projectedPrefixProperty_of_factors
     ψ = projectedPrefixProperty Qc p :=
   funext fun μ => (hψ μ).trans (projectedPrefixProperty_factors Qc p μ).symm
 
-/-- The frozen comparison-set certificate (condition (ii), preimage form)
+/-- The frozen comparison-set certificate (Theorem 7.4b condition (iv), preimage form)
 gives the image relation `B̄₁ = q(B₁)` used by the margin theorem. -/
 theorem image_states_of_quotientCompatible
     (Qc : TypeRespectingStateCompression S X Sb Xb)

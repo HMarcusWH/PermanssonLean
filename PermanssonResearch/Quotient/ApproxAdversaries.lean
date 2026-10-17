@@ -42,7 +42,7 @@ theorem leakyLaw_isProbability {ε : ℝ} (h0 : 0 ≤ ε) (h1 : ε ≤ 1) :
 /-- Fine kernel: always jump to `false`. -/
 noncomputable def fineKernel : Kernel Bool Bool := Kernel.const Bool (Measure.dirac false)
 
-instance : IsMarkovKernel fineKernel := by
+instance fineKernel_isMarkov : IsMarkovKernel fineKernel := by
   unfold fineKernel; infer_instance
 
 /-- Coarse kernel: leak to `true` with probability `ε`. -/
@@ -94,13 +94,16 @@ theorem coarse_region_leaks {ε : ℝ} (hpos : 0 < ε) (y : Bool) :
     simp [leakyKernel, leakyLaw, Measure.add_apply, Measure.smul_apply]
   exact ⟨hval, by rw [hval]; exact (ENNReal.ofReal_pos.mpr hpos).ne'⟩
 
-/-- **Firewall.** For every `ε ∈ (0,1]` there is a pair with defect ≤ ε whose
-coarse model leaves the fine-invariant region in one step with probability ε. -/
+/-- **Firewall.** For every `ε ∈ (0,1]`, the identity-quotient pair
+`(fineKernel, leakyKernel ε)` has defect `≤ ε`, the fine region `{false}` is
+one-step invariant, and from every state the coarse model leaves it in one step
+with probability exactly `ε` (in particular `≠ 0`). -/
 theorem small_defect_does_not_preserve_invariance {ε : ℝ} (hpos : 0 < ε) (h1 : ε ≤ 1) :
     HasQuotientDefect id fineKernel (leakyKernel ε) ε ∧
       (∀ y, fineKernel y {false}ᶜ = 0) ∧
-      (∀ y, leakyKernel ε y {false}ᶜ ≠ 0) :=
+      (∀ y, leakyKernel ε y {false}ᶜ = ENNReal.ofReal ε ∧
+        leakyKernel ε y {false}ᶜ ≠ 0) :=
   ⟨leaky_hasQuotientDefect hpos.le h1, fine_region_invariant,
-    fun y => (coarse_region_leaks hpos y).2⟩
+    fun y => coarse_region_leaks hpos y⟩
 
 end PermanssonResearch.Quotient.Adversaries

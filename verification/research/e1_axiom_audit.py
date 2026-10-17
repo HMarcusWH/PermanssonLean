@@ -1,8 +1,10 @@
 """Focused transitive axiom audit for the E1 (approximate quotient) declarations.
 
-Every theorem/def in the listed modules (namespace-aware) is passed to
-`#print axioms`; each must depend only on {propext, Classical.choice,
-Quot.sound}. Complements, and does not replace, the full Research Lean audit.
+Every theorem/lemma/def/abbrev/instance in the listed modules
+(namespace-aware) is passed to `#print axioms`; each must depend only on
+{propext, Classical.choice, Quot.sound}. Anonymous instances are rejected (they
+must be named so they can be audited). Complements, and does not replace, the
+full Research Lean audit.
 """
 import re
 import subprocess
@@ -22,7 +24,8 @@ IMPORTS = [
     "PermanssonResearch.Quotient.ApproxAdversaries",
 ]
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
-DECL = re.compile(r"^(?:theorem|lemma|def|noncomputable def|abbrev)\s+([A-Za-z_0-9.']+)")
+DECL = re.compile(r"^(?:noncomputable\s+)?(?:theorem|lemma|def|abbrev|instance)\s+([A-Za-z_0-9.']+)")
+ANON_INSTANCE = re.compile(r"^(?:noncomputable\s+)?instance\s*(?::|\()")
 NS = re.compile(r"^namespace\s+(\S+)")
 END = re.compile(r"^end\s+(\S+)")
 
@@ -34,6 +37,8 @@ def declarations(text: str):
             stack.append(m.group(1))
         elif (m := END.match(line)) and stack and stack[-1] == m.group(1):
             stack.pop()
+        elif ANON_INSTANCE.match(line):
+            raise SystemExit(f"anonymous instance (name it to audit it): {line!r}")
         elif m := DECL.match(line):
             out.append(".".join(stack + [m.group(1)]))
     return out
