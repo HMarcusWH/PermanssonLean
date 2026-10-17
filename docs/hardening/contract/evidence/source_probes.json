@@ -1,0 +1,84 @@
+{
+  "checks": [
+    {
+      "accepted_tree_file_count": 748,
+      "id": "COMPANION-REF",
+      "input_sha256": {
+        "build_release.py": "a711fce840920846e9ffdd55b2580ebe358233ca7b432bffa78af315be69ffa6",
+        "manifest.json": "6065ec5431430f6804ebabffe636170d8bb349f08cfa817776b05a85bb6fe127",
+        "manuscript.json": "8022291f1ec19961578bdcb60f205fdec31057982bf9a78f6b9610bd3b184239",
+        "output/pdf/Permansson_Research_Companion_v0.2.0.tex": "3524da1f1ef92cfee179917efebeb3c2786b8ad484653d2f1c8f4d8036952416",
+        "verify_release.py": "abe1cd70491b4976ab7e3d1f06c405508e2fde7e3890f818a89b97ed88841dc2"
+      },
+      "status": "PASS"
+    },
+    {
+      "canonical_bytes": 6680695,
+      "historical": 340,
+      "id": "COMPANION-INVENTORY",
+      "matches_companion_registry": true,
+      "release": 29,
+      "status": "PASS",
+      "unique_total": 369
+    },
+    {
+      "bytes": 71379,
+      "equation_records": 10,
+      "id": "COMPANION-EXPORT",
+      "isolation_flags": [
+        "-I",
+        "-S",
+        "-B"
+      ],
+      "pdf_build_called": false,
+      "sha256": "3524da1f1ef92cfee179917efebeb3c2786b8ad484653d2f1c8f4d8036952416",
+      "status": "PASS"
+    },
+    {
+      "control_revision": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+      "control_sha256": "5a55edb57bcd225170893adaa7610906dcbbf429dfb065f82411f721a56aee71",
+      "differs_from_correct_export": true,
+      "id": "COMPANION-WRONG-REVISION",
+      "status": "PASS"
+    }
+  ],
+  "executed_at_utc": "2026-10-17T18:55:25.695223+00:00",
+  "format": "Permansson.Hardening.CompanionSourceProbes.v1",
+  "not_performed": [
+    "original source ZIP reconstruction",
+    "original author toy-bundle probes",
+    "live main/protection/ruleset reads",
+    "GitHub CI acceptance",
+    "network-isolated archive replay",
+    "fresh Lean execution",
+    "publisher authentication",
+    "administrative rollout"
+  ],
+  "original_audit_inputs": {
+    "author_E1_program_and_results": "NOT_SUPPLIED",
+    "author_source_register": "NOT_SUPPLIED",
+    "author_source_zip": {
+      "author_reported_sha256": "e1cae51533373cd87a1a8e82ea9d94fb72c048a45c1af66c6cf03843d723017b",
+      "reconstruction_performed_here": false,
+      "status": "NOT_SUPPLIED"
+    },
+    "original_proposal_file": "NOT_SUPPLIED"
+  },
+  "provenance": "NEW_INDEPENDENT_REPRODUCTION_NOT_ORIGINAL_E1",
+  "reference": {
+    "accepted_release": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "accepted_tree": "72ad841cc5b3cffc5f82979a9739b7fd03d75e15",
+    "research_source": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3"
+  },
+  "runtime": {
+    "git": "git version 2.45.2.windows.1",
+    "platform": "Windows",
+    "python": "3.12.14"
+  },
+  "schema_version": 1,
+  "script": {
+    "path": "docs/hardening/contract/evidence/reproduce_source_probes.py",
+    "sha256": "29563bb0c57894f1d59def004de7d32c6747c47482ae44240602fa7d50fd4a6a"
+  },
+  "status": "PASS"
+}
