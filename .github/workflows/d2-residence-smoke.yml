@@ -1,0 +1,44 @@
+name: D2 finite residence focused smoke
+
+on:
+  push:
+    branches: [codex/v020-d2]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'PermanssonResearch/ReverseSolver/Residence*.lean'
+      - 'verification/research/test_d2_residence.py'
+      - 'verification/research/d2_axiom_audit.py'
+      - '.github/workflows/d2-residence-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  residence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Independent exact path, controller, risk and mutation tests
+        run: python3 -m unittest discover -s verification/research -p 'test_d2_residence.py' -v
+      - name: Compile finite residence, event correspondence and contracts
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch.ReverseSolver.ResidenceContracts
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+      - name: Audit every D2 declaration
+        run: python3 verification/research/d2_axiom_audit.py
+      - name: Source firewall
+        run: |
+          if grep -n -E '(^|[^[:alnum:]_])(sorry|admit|native_decide)([^[:alnum:]_]|$)|^[[:space:]]*((private|protected|noncomputable|unsafe)[[:space:]]+)*axiom[[:space:]]' PermanssonResearch/ReverseSolver/Residence*.lean; then
+            exit 1
+          fi
