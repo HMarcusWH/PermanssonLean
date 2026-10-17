@@ -18,6 +18,10 @@ import PermanssonResearch.Probability.EventTVCalculus
 import PermanssonResearch.Quotient.ApproxPrefix
 import PermanssonResearch.Quotient.ApproxMargin
 import PermanssonResearch.Quotient.ApproxAdversaries
+import PermanssonResearch.RegimeExit.OccupationPrefixDeletion
+import PermanssonResearch.RegimeExit.RandomEntryOccupation
+import PermanssonResearch.RegimeExit.InProbabilityOccupation
+import PermanssonResearch.RegimeExit.Proposition42f
 import PermanssonResearch.Probability.KantorovichDual
 import PermanssonResearch.Probability.KantorovichTV
 import PermanssonResearch.Perturbation.ContractiveOccupation
