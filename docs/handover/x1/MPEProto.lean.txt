@@ -1,0 +1,52 @@
+import Mathlib
+
+namespace X1Proto
+
+/-- World: `true` = replete. Actions: `true` = extract. -/
+def r0 : ℚ := 1/4
+def r1 : ℚ := 9/10
+def dd : ℚ := 1/4
+def β : ℚ := 9/10
+def v0 : ℚ := 0
+def v1 : ℚ := 1/2
+def χ : ℚ := 193/211
+def lam : ℚ := 1/10
+
+def ind (b : Bool) : ℚ := if b then 1 else 0
+
+/-- `P(replete' | x, a)`. -/
+def pRep (x a1 a2 : Bool) : ℚ := max 0 (min 1 ((if x then r1 else r0) - dd * (ind a1 + ind a2)))
+
+def reward (x ai aj : Bool) : ℚ := (if x then v1 else v0) * ind ai - χ * ind ai * ind aj - lam * (1 - ind x)
+
+/-- Symmetric MPE extraction probability. -/
+def πx (x : Bool) : ℚ := if x then 1/2 else 0
+def πa (x a : Bool) : ℚ := if a then πx x else 1 - πx x
+
+def V (x : Bool) : ℚ := if x then -81/211 else -121/211
+
+/-- Continuation value after `(x, a)`. -/
+def cont (x a1 a2 : Bool) : ℚ := pRep x a1 a2 * V true + (1 - pRep x a1 a2) * V false
+
+/-- One-shot deviation value `Q_1(x, a₁)` against the opponent's `π*`. -/
+def Q (x ai : Bool) : ℚ :=
+  πa x false * (reward x ai false + β * cont x ai false) +
+    πa x true * (reward x ai true + β * cont x ai true)
+
+/-- (V20.35) value equation for player 1 (player 2 by symmetry). -/
+theorem value_eq (x : Bool) : V x = πa x false * Q x false + πa x true * Q x true := by
+  cases x <;> simp [V, Q, πa, πx, reward, cont, pRep, ind, r0, r1, dd, β, v0, v1, χ, lam] <;> norm_num
+
+/-- (V20.36) no profitable unilateral deviation. -/
+theorem no_deviation (x ai : Bool) : Q x ai ≤ V x := by
+  cases x <;> cases ai <;> simp [V, Q, πa, πx, reward, cont, pRep, ind, r0, r1, dd, β, v0, v1, χ, lam] <;> norm_num
+
+/-- Equality on the support (indifference where mixed). -/
+theorem support_eq (x ai : Bool) (h : πa x ai ≠ 0) : Q x ai = V x := by
+  cases x <;> cases ai <;> simp_all [V, Q, πa, πx, reward, cont, pRep, ind, r0, r1, dd, β, v0, v1, χ, lam] <;> norm_num
+
+/-- Strict incentive at the depleted state: restraint strictly better. -/
+theorem depleted_strict : Q false true < Q false false := by
+  simp [Q, πa, πx, reward, cont, pRep, ind, r0, r1, dd, β, v0, v1, χ, lam, V]; norm_num
+
+end X1Proto
