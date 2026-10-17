@@ -25,6 +25,10 @@ jobs:
       - name: Exercise canonical Git and isolated imports on Windows
         shell: pwsh
         run: |
+          # Match the Windows runner's checkout policy after the Git reader
+          # deliberately removes inherited global configuration.
+          git config --local core.autocrlf true
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python -B -m verification.integrity.ci_context --repo . --event-file "$env:GITHUB_EVENT_PATH" --report "$env:RUNNER_TEMP/context.json"
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           foreach ($suite in @('reference', 'preservation', 'tex')) {
