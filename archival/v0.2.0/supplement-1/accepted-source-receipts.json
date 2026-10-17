@@ -1,0 +1,602 @@
+{
+  "schema_version": 1,
+  "repository": "HMarcusWH/PermanssonLean",
+  "accepted_source_sha": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+  "baseline_sha": "6191a1acbf00867042a21c8e6c4a532af43017bc",
+  "frozen_core_release_sha": "c018f79ea4ce46f4f679ad5bca254509778fc53c",
+  "acceptance_status": "accepted",
+  "environment": {
+    "lean": "4.34.0",
+    "lean_commit": "293d5d0c0c3f3dded4688b3ccd6a33939ac5102b",
+    "mathlib_commit": "5ed2965256430c3649e86755f9576b54eca72435",
+    "lake_update_performed": false
+  },
+  "receipts": [
+    {
+      "anchor": "C69",
+      "pr": 69,
+      "source_sha": "d8a96a423f402fcbe791c6e114d169894739f944",
+      "base_sha": "6191a1acbf00867042a21c8e6c4a532af43017bc",
+      "synthetic_merge_sha": "3a11d5776772f87cc2160ca3222b1e34d1b3043c",
+      "main_merge_sha": "54848efd002a0153641c9e340325dce857e1e5db",
+      "research_run_id": 38905103071,
+      "counts": {
+        "declarations": 4383,
+        "tests": 715,
+        "imports": 366
+      },
+      "open_findings": [],
+      "acceptance_status": "accepted",
+      "workflow_runs": [
+        {
+          "name": "Lean",
+          "run_id": 38905103072,
+          "conclusion": "success",
+          "head_sha": "d8a96a423f402fcbe791c6e114d169894739f944",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/38905103072"
+        },
+        {
+          "name": "Research Lean",
+          "run_id": 38905103071,
+          "conclusion": "success",
+          "head_sha": "d8a96a423f402fcbe791c6e114d169894739f944",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/38905103071",
+          "checked_sha": "3a11d5776772f87cc2160ca3222b1e34d1b3043c"
+        },
+        {
+          "name": "Executable verification",
+          "run_id": 38905103172,
+          "conclusion": "success",
+          "head_sha": "d8a96a423f402fcbe791c6e114d169894739f944",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/38905103172"
+        },
+        {
+          "name": "Application contract",
+          "run_id": 38905103044,
+          "conclusion": "success",
+          "head_sha": "d8a96a423f402fcbe791c6e114d169894739f944",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/38905103044",
+          "jobs": [
+            {
+              "name": "Application contract (ubuntu-latest)",
+              "conclusion": "success",
+              "id": 116986579199
+            },
+            {
+              "name": "Application contract (windows-latest)",
+              "conclusion": "success",
+              "id": 116986579654
+            }
+          ]
+        },
+        {
+          "name": "C-Exit D unconditional restart focused smoke",
+          "run_id": 38905103060,
+          "conclusion": "success",
+          "head_sha": "d8a96a423f402fcbe791c6e114d169894739f944",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/38905103060"
+        }
+      ],
+      "review": {
+        "status": "pass",
+        "kind": "codex_and_independent_mathematical_review",
+        "commit_sha": "d8a96a423f402fcbe791c6e114d169894739f944",
+        "url": "https://github.com/HMarcusWH/PermanssonLean/pull/69#issuecomment-6216391811"
+      },
+      "c10": {
+        "status": "pass",
+        "source_head_sha": "d8a96a423f402fcbe791c6e114d169894739f944",
+        "logs_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/38905103071/job/116986579979"
+      }
+    },
+    {
+      "anchor": "C70",
+      "pr": 70,
+      "source_sha": "547d17e2fff8ab2136562dbb93562529bcda062e",
+      "base_sha": "54848efd002a0153641c9e340325dce857e1e5db",
+      "synthetic_merge_sha": "775a1317cbe664d70ac2aebbc55e40e4811be2b3",
+      "main_merge_sha": "24ea0836db5bb45c964b00121718613d843ce255",
+      "research_run_id": 39035552321,
+      "counts": {
+        "declarations": 4442,
+        "tests": 727,
+        "imports": 370
+      },
+      "open_findings": [],
+      "acceptance_status": "accepted",
+      "workflow_runs": [
+        {
+          "name": "Lean",
+          "run_id": 39035552337,
+          "conclusion": "success",
+          "head_sha": "547d17e2fff8ab2136562dbb93562529bcda062e",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39035552337"
+        },
+        {
+          "name": "Research Lean",
+          "run_id": 39035552321,
+          "conclusion": "success",
+          "head_sha": "547d17e2fff8ab2136562dbb93562529bcda062e",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39035552321",
+          "checked_sha": "775a1317cbe664d70ac2aebbc55e40e4811be2b3"
+        },
+        {
+          "name": "Executable verification",
+          "run_id": 39035552361,
+          "conclusion": "success",
+          "head_sha": "547d17e2fff8ab2136562dbb93562529bcda062e",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39035552361"
+        },
+        {
+          "name": "Application contract",
+          "run_id": 39035552320,
+          "conclusion": "success",
+          "head_sha": "547d17e2fff8ab2136562dbb93562529bcda062e",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39035552320",
+          "jobs": [
+            {
+              "name": "Application contract (windows-latest)",
+              "conclusion": "success",
+              "id": 117404506801
+            },
+            {
+              "name": "Application contract (ubuntu-latest)",
+              "conclusion": "success",
+              "id": 117404506907
+            }
+          ]
+        },
+        {
+          "name": "C-Exit E random-entry occupation focused smoke",
+          "run_id": 39035552479,
+          "conclusion": "success",
+          "head_sha": "547d17e2fff8ab2136562dbb93562529bcda062e",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39035552479"
+        },
+        {
+          "name": "C-Exit D unconditional restart focused smoke",
+          "run_id": 39035552336,
+          "conclusion": "success",
+          "head_sha": "547d17e2fff8ab2136562dbb93562529bcda062e",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39035552336"
+        }
+      ],
+      "review": {
+        "status": "pass",
+        "kind": "independent_mathematical_and_source_review",
+        "commit_sha": "547d17e2fff8ab2136562dbb93562529bcda062e",
+        "url": "https://github.com/HMarcusWH/PermanssonLean/pull/70#issuecomment-6234401889"
+      },
+      "c10": {
+        "status": "pass",
+        "source_head_sha": "547d17e2fff8ab2136562dbb93562529bcda062e",
+        "logs_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39035552321/job/117404506756"
+      }
+    },
+    {
+      "anchor": "E1",
+      "pr": 71,
+      "source_sha": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+      "base_sha": "24ea0836db5bb45c964b00121718613d843ce255",
+      "synthetic_merge_sha": "cfdf3386d2d5363f7187e2087310b7e1b152f752",
+      "main_merge_sha": "2a2246ad851e2cdc435dcd0f98f259e1264541b3",
+      "research_run_id": 39036276477,
+      "counts": {
+        "declarations": 4499,
+        "tests": 747,
+        "imports": 375
+      },
+      "open_findings": [],
+      "acceptance_status": "accepted",
+      "workflow_runs": [
+        {
+          "name": "Lean",
+          "run_id": 39036276502,
+          "conclusion": "success",
+          "head_sha": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39036276502"
+        },
+        {
+          "name": "Research Lean",
+          "run_id": 39036276477,
+          "conclusion": "success",
+          "head_sha": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39036276477",
+          "checked_sha": "cfdf3386d2d5363f7187e2087310b7e1b152f752"
+        },
+        {
+          "name": "Executable verification",
+          "run_id": 39036276515,
+          "conclusion": "success",
+          "head_sha": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39036276515"
+        },
+        {
+          "name": "Application contract",
+          "run_id": 39036276509,
+          "conclusion": "success",
+          "head_sha": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39036276509",
+          "jobs": [
+            {
+              "name": "Application contract (windows-latest)",
+              "conclusion": "success",
+              "id": 117406583372
+            },
+            {
+              "name": "Application contract (ubuntu-latest)",
+              "conclusion": "success",
+              "id": 117406583531
+            }
+          ]
+        },
+        {
+          "name": "E1 approximate-quotient focused smoke",
+          "run_id": 39036276517,
+          "conclusion": "success",
+          "head_sha": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39036276517"
+        },
+        {
+          "name": "C-Exit D unconditional restart focused smoke",
+          "run_id": 39036276501,
+          "conclusion": "success",
+          "head_sha": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39036276501"
+        },
+        {
+          "name": "C-Exit E random-entry occupation focused smoke",
+          "run_id": 39036276539,
+          "conclusion": "success",
+          "head_sha": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39036276539"
+        }
+      ],
+      "review": {
+        "status": "pass",
+        "kind": "codex_and_independent_mathematical_review",
+        "commit_sha": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+        "url": "https://github.com/HMarcusWH/PermanssonLean/pull/71#issuecomment-6234572964"
+      },
+      "c10": {
+        "status": "pass",
+        "source_head_sha": "7ae2fab0b221a77e0a13ef83cedd6f8933569c26",
+        "logs_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39036276477/job/117406583223"
+      }
+    },
+    {
+      "anchor": "F1",
+      "pr": 72,
+      "source_sha": "018e8fcfbaff1d53efa9467f65c34d91169606f2",
+      "base_sha": "2a2246ad851e2cdc435dcd0f98f259e1264541b3",
+      "synthetic_merge_sha": "5c6e4eaea7bb3afc58fafd79bbef182336120e51",
+      "main_merge_sha": "22859775afb744a6dce89f73f47f816afb88bb23",
+      "research_run_id": 39037392282,
+      "counts": {
+        "declarations": 4733,
+        "tests": 764,
+        "imports": 380
+      },
+      "open_findings": [],
+      "acceptance_status": "accepted",
+      "workflow_runs": [
+        {
+          "name": "Lean",
+          "run_id": 39037392255,
+          "conclusion": "success",
+          "head_sha": "018e8fcfbaff1d53efa9467f65c34d91169606f2",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39037392255"
+        },
+        {
+          "name": "Research Lean",
+          "run_id": 39037392282,
+          "conclusion": "success",
+          "head_sha": "018e8fcfbaff1d53efa9467f65c34d91169606f2",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39037392282",
+          "checked_sha": "5c6e4eaea7bb3afc58fafd79bbef182336120e51"
+        },
+        {
+          "name": "Executable verification",
+          "run_id": 39037392268,
+          "conclusion": "success",
+          "head_sha": "018e8fcfbaff1d53efa9467f65c34d91169606f2",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39037392268"
+        },
+        {
+          "name": "Application contract",
+          "run_id": 39037392289,
+          "conclusion": "success",
+          "head_sha": "018e8fcfbaff1d53efa9467f65c34d91169606f2",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39037392289",
+          "jobs": [
+            {
+              "name": "Application contract (ubuntu-latest)",
+              "conclusion": "success",
+              "id": 117409869748
+            },
+            {
+              "name": "Application contract (windows-latest)",
+              "conclusion": "success",
+              "id": 117409869980
+            }
+          ]
+        },
+        {
+          "name": "F1 multi-agent protocols focused smoke",
+          "run_id": 39037392376,
+          "conclusion": "success",
+          "head_sha": "018e8fcfbaff1d53efa9467f65c34d91169606f2",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39037392376"
+        }
+      ],
+      "review": {
+        "status": "pass",
+        "kind": "codex_and_independent_mathematical_review",
+        "commit_sha": "018e8fcfbaff1d53efa9467f65c34d91169606f2",
+        "url": "https://github.com/HMarcusWH/PermanssonLean/pull/72#issuecomment-6234807559"
+      },
+      "c10": {
+        "status": "pass",
+        "source_head_sha": "018e8fcfbaff1d53efa9467f65c34d91169606f2",
+        "logs_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39037392282/job/117409869929"
+      }
+    },
+    {
+      "anchor": "A3",
+      "pr": 73,
+      "source_sha": "a977da54057837797ab1cea163f8bcec98cddb2d",
+      "base_sha": "22859775afb744a6dce89f73f47f816afb88bb23",
+      "synthetic_merge_sha": "11c4baace0de6025709b0cdd637e99c255a70bc6",
+      "main_merge_sha": "9cf3410e9786b68f68d93c0684613329cdc9159e",
+      "research_run_id": 39038951100,
+      "acceptance_status": "accepted",
+      "counts": {
+        "declarations": 4861,
+        "tests": 777,
+        "imports": 384
+      },
+      "open_findings": [],
+      "c10": {
+        "status": "pass",
+        "source_head_sha": "a977da54057837797ab1cea163f8bcec98cddb2d",
+        "logs_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39038951100/job/117414328386"
+      },
+      "review": {
+        "status": "pass",
+        "kind": "codex_and_independent_mathematical_review",
+        "commit_sha": "a977da54057837797ab1cea163f8bcec98cddb2d",
+        "url": "https://github.com/HMarcusWH/PermanssonLean/pull/73#issuecomment-6234826648"
+      },
+      "workflow_runs": [
+        {
+          "name": "Lean",
+          "run_id": 39038951120,
+          "conclusion": "success",
+          "head_sha": "a977da54057837797ab1cea163f8bcec98cddb2d",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39038951120"
+        },
+        {
+          "name": "Research Lean",
+          "run_id": 39038951100,
+          "conclusion": "success",
+          "head_sha": "a977da54057837797ab1cea163f8bcec98cddb2d",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39038951100",
+          "checked_sha": "11c4baace0de6025709b0cdd637e99c255a70bc6"
+        },
+        {
+          "name": "Executable verification",
+          "run_id": 39038951096,
+          "conclusion": "success",
+          "head_sha": "a977da54057837797ab1cea163f8bcec98cddb2d",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39038951096"
+        },
+        {
+          "name": "Application contract",
+          "run_id": 39038951102,
+          "conclusion": "success",
+          "head_sha": "a977da54057837797ab1cea163f8bcec98cddb2d",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39038951102",
+          "jobs": [
+            {
+              "name": "Application contract (ubuntu-latest)",
+              "id": 117414328502,
+              "conclusion": "success"
+            },
+            {
+              "name": "Application contract (windows-latest)",
+              "id": 117414328703,
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "name": "A3 contractive robustness focused smoke",
+          "run_id": 39038951079,
+          "conclusion": "success",
+          "head_sha": "a977da54057837797ab1cea163f8bcec98cddb2d",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39038951079"
+        },
+        {
+          "name": "E1 approximate-quotient focused smoke",
+          "run_id": 39038951098,
+          "conclusion": "success",
+          "head_sha": "a977da54057837797ab1cea163f8bcec98cddb2d",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39038951098"
+        }
+      ]
+    },
+    {
+      "anchor": "D2",
+      "pr": 74,
+      "source_sha": "37faf4430897e0abdd6dca664919a673b6f34b42",
+      "base_sha": "9cf3410e9786b68f68d93c0684613329cdc9159e",
+      "synthetic_merge_sha": "89da71c43657d79d3f60cffe6b4b02efe7331fcd",
+      "main_merge_sha": "bc7617e15084673aa6053ab58282260226344c2b",
+      "research_run_id": 39039886205,
+      "acceptance_status": "accepted",
+      "counts": {
+        "declarations": 4990,
+        "tests": 794,
+        "imports": 387
+      },
+      "open_findings": [],
+      "c10": {
+        "status": "pass",
+        "source_head_sha": "37faf4430897e0abdd6dca664919a673b6f34b42",
+        "logs_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39039886205/job/117417023192"
+      },
+      "review": {
+        "status": "pass",
+        "kind": "codex_and_independent_mathematical_review",
+        "commit_sha": "37faf4430897e0abdd6dca664919a673b6f34b42",
+        "url": "https://github.com/HMarcusWH/PermanssonLean/pull/74#issuecomment-6234962154"
+      },
+      "workflow_runs": [
+        {
+          "name": "Lean",
+          "run_id": 39039886166,
+          "conclusion": "success",
+          "head_sha": "37faf4430897e0abdd6dca664919a673b6f34b42",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39039886166"
+        },
+        {
+          "name": "Research Lean",
+          "run_id": 39039886205,
+          "conclusion": "success",
+          "head_sha": "37faf4430897e0abdd6dca664919a673b6f34b42",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39039886205",
+          "checked_sha": "89da71c43657d79d3f60cffe6b4b02efe7331fcd"
+        },
+        {
+          "name": "Executable verification",
+          "run_id": 39039886174,
+          "conclusion": "success",
+          "head_sha": "37faf4430897e0abdd6dca664919a673b6f34b42",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39039886174"
+        },
+        {
+          "name": "Application contract",
+          "run_id": 39039886188,
+          "conclusion": "success",
+          "head_sha": "37faf4430897e0abdd6dca664919a673b6f34b42",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39039886188",
+          "jobs": [
+            {
+              "name": "Application contract (ubuntu-latest)",
+              "id": 117417023170,
+              "conclusion": "success"
+            },
+            {
+              "name": "Application contract (windows-latest)",
+              "id": 117417023276,
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "name": "D2 finite residence focused smoke",
+          "run_id": 39039886158,
+          "conclusion": "success",
+          "head_sha": "37faf4430897e0abdd6dca664919a673b6f34b42",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39039886158"
+        }
+      ]
+    },
+    {
+      "anchor": "X1",
+      "pr": 75,
+      "source_sha": "54babeeefd980c83fd7373f7429e028e5fa574e6",
+      "base_sha": "bc7617e15084673aa6053ab58282260226344c2b",
+      "synthetic_merge_sha": "f1da869c9558faa9935e57042afba04b22eb3e00",
+      "main_merge_sha": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+      "research_run_id": 39041222836,
+      "acceptance_status": "accepted",
+      "counts": {
+        "declarations": 5248,
+        "tests": 810,
+        "imports": 395
+      },
+      "open_findings": [],
+      "c10": {
+        "status": "pass",
+        "source_head_sha": "54babeeefd980c83fd7373f7429e028e5fa574e6",
+        "logs_url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39041222836/job/117420952984"
+      },
+      "review": {
+        "status": "pass",
+        "kind": "codex_and_independent_mathematical_review",
+        "commit_sha": "54babeeefd980c83fd7373f7429e028e5fa574e6",
+        "url": "https://github.com/HMarcusWH/PermanssonLean/pull/75#issuecomment-6235150076"
+      },
+      "workflow_runs": [
+        {
+          "name": "Lean",
+          "run_id": 39041222814,
+          "conclusion": "success",
+          "head_sha": "54babeeefd980c83fd7373f7429e028e5fa574e6",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39041222814"
+        },
+        {
+          "name": "Research Lean",
+          "run_id": 39041222836,
+          "conclusion": "success",
+          "head_sha": "54babeeefd980c83fd7373f7429e028e5fa574e6",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39041222836",
+          "checked_sha": "f1da869c9558faa9935e57042afba04b22eb3e00"
+        },
+        {
+          "name": "Executable verification",
+          "run_id": 39041222786,
+          "conclusion": "success",
+          "head_sha": "54babeeefd980c83fd7373f7429e028e5fa574e6",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39041222786"
+        },
+        {
+          "name": "Application contract",
+          "run_id": 39041222844,
+          "conclusion": "success",
+          "head_sha": "54babeeefd980c83fd7373f7429e028e5fa574e6",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39041222844",
+          "jobs": [
+            {
+              "name": "Application contract (ubuntu-latest)",
+              "id": 117420953002,
+              "conclusion": "success"
+            },
+            {
+              "name": "Application contract (windows-latest)",
+              "id": 117420953318,
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "name": "X1 exact commons focused smoke",
+          "run_id": 39041222796,
+          "conclusion": "success",
+          "head_sha": "54babeeefd980c83fd7373f7429e028e5fa574e6",
+          "url": "https://github.com/HMarcusWH/PermanssonLean/actions/runs/39041222796"
+        }
+      ]
+    }
+  ],
+  "required_anchors": [
+    "C69",
+    "C70",
+    "E1",
+    "F1",
+    "A3",
+    "D2",
+    "X1"
+  ],
+  "open_boundaries": [
+    "Strict MA2 remains unfulfilled; deterministic recording obstruction is scoped, not a general stochastic impossibility theorem.",
+    "A3 uses a conditional bounded-Lipschitz dual relation; coupling-Wasserstein/KR identification, invariant-law existence and ergodic factorization are open.",
+    "E1 proves a linear finite-prefix bound; no geometric sharpening or Exact-GR transfer is inferred.",
+    "D2 optimizes finite objectives over deterministic fully observed history policies; efficient controller reduction, randomized sufficiency and general robust/risk dynamic programming remain open.",
+    "X1 unrestricted discounted-history strategy verification and exact numerical original-margin reflection remain open; exploratory comparison design v2 is disclosed.",
+    "X1's replete region leaks for BOTH generators, so neither is an Exact GR or substantive PR on that region.",
+    "Constructed theoretical benchmark, not empirical identification, calibration, institutional prediction or intervention effectiveness.",
+    "On X1 replete B the descriptor h=x is constant, so the raw descriptor nontriviality clause of Assumption4.1 also fails independently of proved leakage; the whole-B comparison repair does not create a regime certificate."
+  ]
+}

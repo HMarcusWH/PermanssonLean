@@ -1,0 +1,362 @@
+[
+  {
+    "id": 5558379218,
+    "node_id": "PRR_kwDOUkBtPs8AAAABS04i0g",
+    "user": {
+      "login": "chatgpt-codex-connector[bot]",
+      "id": 199175422,
+      "node_id": "BOT_kgDOC98s_g",
+      "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+      "html_url": "https://github.com/apps/chatgpt-codex-connector",
+      "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "<!-- codex-review-receipt:v1 -->\n\n\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `a582514aa8`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>",
+    "state": "COMMENTED",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558379218",
+    "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+    "author_association": "NONE",
+    "_links": {
+      "html": {
+        "href": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558379218"
+      },
+      "pull_request": {
+        "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76"
+      }
+    },
+    "submitted_at": "2026-10-17T15:04:32Z",
+    "commit_id": "a582514aa869ec65d839605e2a12ba873f201f72"
+  },
+  {
+    "id": 5558471372,
+    "node_id": "PRR_kwDOUkBtPs8AAAABS0-KzA",
+    "user": {
+      "login": "HMarcusWH",
+      "id": 173802548,
+      "node_id": "U_kgDOClwENA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/HMarcusWH",
+      "html_url": "https://github.com/HMarcusWH",
+      "followers_url": "https://api.github.com/users/HMarcusWH/followers",
+      "following_url": "https://api.github.com/users/HMarcusWH/following{/other_user}",
+      "gists_url": "https://api.github.com/users/HMarcusWH/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/HMarcusWH/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/HMarcusWH/subscriptions",
+      "organizations_url": "https://api.github.com/users/HMarcusWH/orgs",
+      "repos_url": "https://api.github.com/users/HMarcusWH/repos",
+      "events_url": "https://api.github.com/users/HMarcusWH/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/HMarcusWH/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558471372",
+    "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+    "author_association": "OWNER",
+    "_links": {
+      "html": {
+        "href": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558471372"
+      },
+      "pull_request": {
+        "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76"
+      }
+    },
+    "submitted_at": "2026-10-17T15:25:25Z",
+    "commit_id": "dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7"
+  },
+  {
+    "id": 5558471962,
+    "node_id": "PRR_kwDOUkBtPs8AAAABS0-NGg",
+    "user": {
+      "login": "HMarcusWH",
+      "id": 173802548,
+      "node_id": "U_kgDOClwENA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/HMarcusWH",
+      "html_url": "https://github.com/HMarcusWH",
+      "followers_url": "https://api.github.com/users/HMarcusWH/followers",
+      "following_url": "https://api.github.com/users/HMarcusWH/following{/other_user}",
+      "gists_url": "https://api.github.com/users/HMarcusWH/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/HMarcusWH/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/HMarcusWH/subscriptions",
+      "organizations_url": "https://api.github.com/users/HMarcusWH/orgs",
+      "repos_url": "https://api.github.com/users/HMarcusWH/repos",
+      "events_url": "https://api.github.com/users/HMarcusWH/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/HMarcusWH/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558471962",
+    "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+    "author_association": "OWNER",
+    "_links": {
+      "html": {
+        "href": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558471962"
+      },
+      "pull_request": {
+        "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76"
+      }
+    },
+    "submitted_at": "2026-10-17T15:25:33Z",
+    "commit_id": "dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7"
+  },
+  {
+    "id": 5558472489,
+    "node_id": "PRR_kwDOUkBtPs8AAAABS0-PKQ",
+    "user": {
+      "login": "HMarcusWH",
+      "id": 173802548,
+      "node_id": "U_kgDOClwENA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/HMarcusWH",
+      "html_url": "https://github.com/HMarcusWH",
+      "followers_url": "https://api.github.com/users/HMarcusWH/followers",
+      "following_url": "https://api.github.com/users/HMarcusWH/following{/other_user}",
+      "gists_url": "https://api.github.com/users/HMarcusWH/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/HMarcusWH/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/HMarcusWH/subscriptions",
+      "organizations_url": "https://api.github.com/users/HMarcusWH/orgs",
+      "repos_url": "https://api.github.com/users/HMarcusWH/repos",
+      "events_url": "https://api.github.com/users/HMarcusWH/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/HMarcusWH/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558472489",
+    "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+    "author_association": "OWNER",
+    "_links": {
+      "html": {
+        "href": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558472489"
+      },
+      "pull_request": {
+        "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76"
+      }
+    },
+    "submitted_at": "2026-10-17T15:25:40Z",
+    "commit_id": "dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7"
+  },
+  {
+    "id": 5558473051,
+    "node_id": "PRR_kwDOUkBtPs8AAAABS0-RWw",
+    "user": {
+      "login": "HMarcusWH",
+      "id": 173802548,
+      "node_id": "U_kgDOClwENA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/HMarcusWH",
+      "html_url": "https://github.com/HMarcusWH",
+      "followers_url": "https://api.github.com/users/HMarcusWH/followers",
+      "following_url": "https://api.github.com/users/HMarcusWH/following{/other_user}",
+      "gists_url": "https://api.github.com/users/HMarcusWH/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/HMarcusWH/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/HMarcusWH/subscriptions",
+      "organizations_url": "https://api.github.com/users/HMarcusWH/orgs",
+      "repos_url": "https://api.github.com/users/HMarcusWH/repos",
+      "events_url": "https://api.github.com/users/HMarcusWH/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/HMarcusWH/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558473051",
+    "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+    "author_association": "OWNER",
+    "_links": {
+      "html": {
+        "href": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558473051"
+      },
+      "pull_request": {
+        "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76"
+      }
+    },
+    "submitted_at": "2026-10-17T15:25:46Z",
+    "commit_id": "dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7"
+  },
+  {
+    "id": 5558473638,
+    "node_id": "PRR_kwDOUkBtPs8AAAABS0-Tpg",
+    "user": {
+      "login": "HMarcusWH",
+      "id": 173802548,
+      "node_id": "U_kgDOClwENA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/HMarcusWH",
+      "html_url": "https://github.com/HMarcusWH",
+      "followers_url": "https://api.github.com/users/HMarcusWH/followers",
+      "following_url": "https://api.github.com/users/HMarcusWH/following{/other_user}",
+      "gists_url": "https://api.github.com/users/HMarcusWH/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/HMarcusWH/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/HMarcusWH/subscriptions",
+      "organizations_url": "https://api.github.com/users/HMarcusWH/orgs",
+      "repos_url": "https://api.github.com/users/HMarcusWH/repos",
+      "events_url": "https://api.github.com/users/HMarcusWH/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/HMarcusWH/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558473638",
+    "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+    "author_association": "OWNER",
+    "_links": {
+      "html": {
+        "href": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558473638"
+      },
+      "pull_request": {
+        "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76"
+      }
+    },
+    "submitted_at": "2026-10-17T15:25:53Z",
+    "commit_id": "dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7"
+  },
+  {
+    "id": 5558474220,
+    "node_id": "PRR_kwDOUkBtPs8AAAABS0-V7A",
+    "user": {
+      "login": "HMarcusWH",
+      "id": 173802548,
+      "node_id": "U_kgDOClwENA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/HMarcusWH",
+      "html_url": "https://github.com/HMarcusWH",
+      "followers_url": "https://api.github.com/users/HMarcusWH/followers",
+      "following_url": "https://api.github.com/users/HMarcusWH/following{/other_user}",
+      "gists_url": "https://api.github.com/users/HMarcusWH/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/HMarcusWH/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/HMarcusWH/subscriptions",
+      "organizations_url": "https://api.github.com/users/HMarcusWH/orgs",
+      "repos_url": "https://api.github.com/users/HMarcusWH/repos",
+      "events_url": "https://api.github.com/users/HMarcusWH/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/HMarcusWH/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558474220",
+    "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+    "author_association": "OWNER",
+    "_links": {
+      "html": {
+        "href": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558474220"
+      },
+      "pull_request": {
+        "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76"
+      }
+    },
+    "submitted_at": "2026-10-17T15:26:00Z",
+    "commit_id": "dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7"
+  },
+  {
+    "id": 5558502296,
+    "node_id": "PRR_kwDOUkBtPs8AAAABS1ADmA",
+    "user": {
+      "login": "chatgpt-codex-connector[bot]",
+      "id": 199175422,
+      "node_id": "BOT_kgDOC98s_g",
+      "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+      "html_url": "https://github.com/apps/chatgpt-codex-connector",
+      "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "<!-- codex-review-receipt:v1 -->\n\n\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `dcac3df8aa`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>",
+    "state": "COMMENTED",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558502296",
+    "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+    "author_association": "NONE",
+    "_links": {
+      "html": {
+        "href": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558502296"
+      },
+      "pull_request": {
+        "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76"
+      }
+    },
+    "submitted_at": "2026-10-17T15:31:10Z",
+    "commit_id": "dcac3df8aaeaae206c8fe6fadbcfbc8d60c1ccb7"
+  },
+  {
+    "id": 5558537821,
+    "node_id": "PRR_kwDOUkBtPs8AAAABS1COXQ",
+    "user": {
+      "login": "HMarcusWH",
+      "id": 173802548,
+      "node_id": "U_kgDOClwENA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/173802548?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/HMarcusWH",
+      "html_url": "https://github.com/HMarcusWH",
+      "followers_url": "https://api.github.com/users/HMarcusWH/followers",
+      "following_url": "https://api.github.com/users/HMarcusWH/following{/other_user}",
+      "gists_url": "https://api.github.com/users/HMarcusWH/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/HMarcusWH/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/HMarcusWH/subscriptions",
+      "organizations_url": "https://api.github.com/users/HMarcusWH/orgs",
+      "repos_url": "https://api.github.com/users/HMarcusWH/repos",
+      "events_url": "https://api.github.com/users/HMarcusWH/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/HMarcusWH/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558537821",
+    "pull_request_url": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76",
+    "author_association": "OWNER",
+    "_links": {
+      "html": {
+        "href": "https://github.com/HMarcusWH/PermanssonLean/pull/76#pullrequestreview-5558537821"
+      },
+      "pull_request": {
+        "href": "https://api.github.com/repos/HMarcusWH/PermanssonLean/pulls/76"
+      }
+    },
+    "submitted_at": "2026-10-17T15:38:22Z",
+    "commit_id": "cdbe7ed5124781be495404122fac1de3315cb6ec"
+  }
+]

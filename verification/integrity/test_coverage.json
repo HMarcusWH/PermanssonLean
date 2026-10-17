@@ -1,0 +1,868 @@
+{
+  "cases": [
+    {
+      "id": "REF-01",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_01_accepted_authority"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-02",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_02_missing_authority"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-03",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_03_candidate_requires_full_identity"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-04",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_04_wrong_authority_tree"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-05",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_05_duplicate_json_key"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-06",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_06_duplicate_historical_path"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-07",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_07_historical_count"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-08",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_08_blob_metadata"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-09",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_09_actual_shallow_clone"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-10",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_10_promisor_metadata"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-11",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_11_borrowed_objects"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-12",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_12_replace_and_graft"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-13",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_13_raw_path_boundaries"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-14",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_14_no_refresh_cli"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "REF-15",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_reference.ReferenceTests.test_ref_15_candidate_outside_ancestry"
+      ],
+      "suite": "reference"
+    },
+    {
+      "id": "PRES-01",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_01_actual_369_unchanged"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-02",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_02_core_comment"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-03",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_03_solver_comment"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-04",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_04_semantic_edit"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-05",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_05_deletion"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-06",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_06_rename"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-07",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_07_executable_mode"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-08",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_08_symlink_replacement"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-09",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_09_gitlink_file_and_root"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-10",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_10_historical_addition"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-11",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_11_version_additions"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-12",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_12_nested_addition"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-13",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_13_prefix_lookalike"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-14",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_14_new_research"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-15",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_15_new_documentation"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-16",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_16_new_release_version"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-17",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_17_candidate_manifest_repair"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-18",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_18_published_zip_replacement"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-19",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_19_scientific_promotion"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-20",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_20_checkout_line_endings"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-21",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_21_committed_crlf"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-22",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_22_dirty_workspace_caveat"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "PRES-23",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_preservation.PreservationTests.test_pres_23_maintenance_scope_is_separate"
+      ],
+      "suite": "preservation"
+    },
+    {
+      "id": "TEX-01",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_01_accepted_complete_export"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-02",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_02_wrong_render_revision"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-03",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_03_equation_zero_equals_one"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-04",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_04_equation_sign"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-05",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_05_equation_fraction"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-06",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_06_equation_removed"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-07",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_07_equation_duplicated"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-08",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_08_equation_order"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-09",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_09_caption_and_metadata"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-10",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_10_trailing_newline"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-11",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_11_repaired_receipts"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-12",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_12_candidate_builder_shadow"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-13",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_13_candidate_verifier_shadow"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-14",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_14_pythonpath_startup_injection"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-15",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_15_missing_accepted_helper"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-16",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_16_wrong_helper_hash"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-17",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_17_render_timeout"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-18",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_18_pdf_and_build_never_called"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-19",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_19_output_budget"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "TEX-20",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_tex.TexExportTests.test_tex_20_candidate_symlink"
+      ],
+      "suite": "tex"
+    },
+    {
+      "id": "ARCH-01",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_01_named_synthetic_full_restore"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-02",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_02_main_only_omits_synthetic"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-03",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_03_missing_required_commit_target"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-04",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_04_wrong_valid_ref_target"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-05",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_05_incremental_prerequisite"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-06",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_06_intact_header_truncated_pack_import"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-07",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_07_bundle_checksum_mismatch"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-08",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_08_corrupt_object_fails_strict_fsck"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-09",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_09_extra_ref"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-10",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_10_extra_object_inventory"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-11",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_11_ordered_parent_reversal"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-12",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_12_synthetic_main_tree_difference"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-13",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_13_builder_rejects_extra_production_root"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-14",
+      "level": "integration",
+      "methods": [],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-15",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_15_wrong_r_capture_identity"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-16",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_16_r_payload_external_hash"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-17",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_17_repaired_hashes_fail_at_c10_content"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-18",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_18_missing_final_code_review"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-19",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_19_unsafe_delivered_paths_and_duplicates"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-20",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_20_unavailable_isolation_blocks"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-21",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveIsolationTests.test_arch_21_real_linux_namespace"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-22",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_22_borrowed_offline_prerequisite"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-23",
+      "level": "integration",
+      "methods": [],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-24",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_24_missing_offline_dependency_blocks"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-25",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_25_delivered_bytes_unchanged"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-26",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveGraphTests.test_arch_26_bundle_bytes_and_object_semantics_separate"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "ARCH-27",
+      "level": "unit",
+      "methods": [
+        "verification.archive.tests.test_archive.ArchiveInputTests.test_arch_27_bounded_archive_metadata"
+      ],
+      "suite": "archive"
+    },
+    {
+      "id": "CI-01",
+      "level": "live_pr",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "CI-02",
+      "level": "live_pr",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "CI-03",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_context.ContextTests.test_ci_03_wrong_checkout_context"
+      ],
+      "suite": "context"
+    },
+    {
+      "id": "CI-04",
+      "level": "live_pr",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "CI-05",
+      "level": "live_pr",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "CI-06",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_06_filters_and_skip_paths_forbidden"
+      ],
+      "suite": "workflow"
+    },
+    {
+      "id": "CI-07",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_workflow.WorkflowTests.test_ci_07_discovery_reports_and_skips_fail_closed"
+      ],
+      "suite": "workflow"
+    },
+    {
+      "id": "CI-08",
+      "level": "live_pr",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "CI-09",
+      "level": "unit",
+      "methods": [
+        "verification.integrity.tests.test_context.ContextTests.test_ci_09_manual_not_pr_acceptance"
+      ],
+      "suite": "context"
+    },
+    {
+      "id": "CI-10",
+      "level": "review",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "CI-11",
+      "level": "live_pr",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-01",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-02",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-03",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-04",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-05",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-06",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-07",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-08",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-09",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-10",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-11",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    },
+    {
+      "id": "OPS-12",
+      "level": "authorized_rollout",
+      "methods": [],
+      "suite": null
+    }
+  ],
+  "controls": {
+    "archive": [
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_manifest_nested_declarations_cannot_be_repaired_into_promotion",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_manifest_extra_payload_and_symlink_rejected",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_dotdot_scratch_overlap_rejected_before_creation",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_final_job_log_omission_repaired_index_rejected",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_standalone_context_requires_actual_restore_before_pass",
+      "verification.archive.tests.test_archive.ArchiveInputTests.test_foreign_repository_cannot_supply_local_context"
+    ],
+    "context": [
+      "verification.integrity.tests.test_context.ContextTests.test_genuine_pr_positive",
+      "verification.integrity.tests.test_context.ContextTests.test_previous_head_and_base_reports_rejected_unit_controls",
+      "verification.integrity.tests.test_context.ContextTests.test_push_positive_and_after_binding",
+      "verification.integrity.tests.test_context.ContextTests.test_local_cannot_fabricate_ci_event"
+    ],
+    "preservation": [
+      "verification.integrity.tests.test_preservation.PreservationTests.test_protected_root_symlink_and_file_directory",
+      "verification.integrity.tests.test_preservation.PreservationTests.test_empty_tree_closed_topology"
+    ],
+    "reference": [
+      "verification.integrity.tests.test_reference.ReferenceTests.test_corrupt_loose_subtree_is_rejected",
+      "verification.integrity.tests.test_reference.ReferenceTests.test_tree_gitlink_target_may_be_external"
+    ],
+    "workflow": [
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_job_permission_overrides_rejected",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_shell_background_and_redirection_rejected",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_execution_overrides_rejected",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_required_workflow_rejects_dispatch",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_read_only_credentials_review_control",
+      "verification.integrity.tests.test_workflow.WorkflowTests.test_disabled_ruleset_is_only_a_proposal"
+    ]
+  },
+  "format": "Permansson.Hardening.Coverage.v1",
+  "schema_version": 1,
+  "unexecuted_evidence_levels": [
+    "integration",
+    "live_pr",
+    "review",
+    "authorized_rollout"
+  ]
+}
