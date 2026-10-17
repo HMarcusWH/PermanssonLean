@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:permansson:hardening:archive-manifest:1",
+  "title": "Permansson historical archival supplement",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "schema_version", "repository", "accepted_release", "accepted_tree", "provenance", "registry", "bundle", "object_inventory", "files", "r_c10", "tooling", "dependencies", "reproduction_levels"],
+  "properties": {
+    "format": {"const": "Permansson.Hardening.Archive.v1"},
+    "schema_version": {"const": 1},
+    "repository": {"const": "HMarcusWH/PermanssonLean"},
+    "accepted_release": {"const": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618"},
+    "accepted_tree": {"const": "72ad841cc5b3cffc5f82979a9739b7fd03d75e15"},
+    "provenance": {"type": "object"},
+    "registry": {"type": "object", "required": ["path", "sha256", "count", "distinct_commits"], "properties": {"path": {"const": "refs.json"}, "count": {"const": 36}, "distinct_commits": {"const": 26}, "sha256": {"$ref": "#/$defs/sha256"}}},
+    "bundle": {"type": "object", "additionalProperties": false, "required": ["path", "format", "size", "sha256"], "properties": {"path": {"const": "history.bundle"}, "format": {"const": 2}, "size": {"type": "integer", "minimum": 1, "maximum": 268435456}, "sha256": {"$ref": "#/$defs/sha256"}}},
+    "object_inventory": {"type": "object", "required": ["path", "sha256", "count", "uncompressed_size"], "properties": {"path": {"const": "objects.jsonl"}, "sha256": {"$ref": "#/$defs/sha256"}, "count": {"type": "integer", "minimum": 1, "maximum": 200000}, "uncompressed_size": {"type": "integer", "minimum": 0, "maximum": 1073741824}}},
+    "files": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["path", "size", "sha256"], "properties": {"path": {"type": "string", "minLength": 1}, "size": {"type": "integer", "minimum": 0, "maximum": 268435456}, "sha256": {"$ref": "#/$defs/sha256"}}}},
+    "r_c10": {"type": "object"},
+    "tooling": {"type": "object", "required": ["source_commit", "files"], "properties": {"source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "files": {"type": "array", "minItems": 1}}},
+    "dependencies": {"type": "object"},
+    "reproduction_levels": {"type": "object", "required": ["source_restore", "artifact_replay", "fresh_lean_execution", "publisher_authentication"], "properties": {"source_restore": {"const": true}, "artifact_replay": {"const": true}, "fresh_lean_execution": {"const": false}, "publisher_authentication": {"const": false}}}
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}
