@@ -101,7 +101,7 @@ theorem objectiveEnumeration_succ {C : Type uC} [DecidableEq C] {n : ℕ}
             then (1 : ℚ) else 0)) := by
     intro xs
     simp only [completionMass, extendHistory]
-    ring
+    exact mul_assoc _ _ _
   simp only [Function.comp_def, hfactor, List.sum_map_mul_left]
 
 /-- Backwards evaluation under one declared history policy. -/
@@ -172,7 +172,7 @@ theorem objectiveProbability_eq_pathSum
     change (if w ∈ E then prefixLaw sys σ D x D {w} else 0) = _
     rw [ha]
     by_cases hs : w ⟨0, Finset.mem_Iic.mpr (Nat.zero_le D)⟩ = x
-    · cases hb : accept ⟨D, w⟩ <;> simp [E, hs, hb]
+    · by_cases hb : accept ⟨D, w⟩ = true <;> simp [E, hs, hb]
     · simp [hs]
   simp_rw [hterm]
   have hnonneg : ∀ w ∈ (Finset.univ : Finset (History n D)),
@@ -288,7 +288,7 @@ theorem objectiveMaximizer_attains
       let v := fun z => objectiveBellman sys accept r (i+1) (appendHistory h z)
       have hchoose : (objectiveMaximizer sys accept).choose D i h =
           bestControl sys v (last h) := by
-        simp only [objectiveMaximizer, hsub]
+        simp only [objectiveMaximizer, hsub, v]
       change (∑ z : Fin n, selectedEntry sys (objectiveMaximizer sys accept) D i h z *
         objectiveValue sys (objectiveMaximizer sys accept) accept D r (i+1)
           (appendHistory h z)) = actionScore sys v (last h) (bestControl sys v (last h))
