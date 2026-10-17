@@ -54,7 +54,7 @@ FROZEN v0.1.8 CORE (PermanssonLean/)
   +-- A2 (#64) / CQ-1 ---------------------+               C70 (random-entry occupation, Prop 4.2f)
   +-- B2 (#65) / Lane B -------------------+                 |
   +-- exact quotients (Thm 7.4b) ----------+--> E1           |
-  +-- typed interventions + B2 ------------+--> F1           |
+  +-- typed interventions (frozen) --------+--> F1           |
   +-- A2 + C-lane occupation/C11 ----------+--> A3           |
   +-- D0/D1 + C69/C70 ---------------------------------------+--> D2 (separate solver lane)
   +-- E1, F1, A3, C70, D0/D1, C10/C11 -----------------------+--> X1 (flagship)
@@ -257,16 +257,28 @@ Source modules: `PermanssonResearch/RegimeExit/ShiftedPrefixStationarity.lean`,
 
 Inputs: CORE.Q74b, CORE.P54, A2.2, CORE.P52. Consumers: X1, R. Manuscript: §7.4.3 (Thm 7.4c).
 
-## F1 — multi-agent closed-loop versus opponent-locked protocols
+## F1 — multi-agent closed-loop versus opponent-locked protocols (branch `claude/zen-einstein-ub8zgr-f1`, stacked on #69)
 
-| Anchor | Claim | Planned provider | Status |
+Lane document: [LANE_F1_MULTIAGENT_PROTOCOLS.md](LANE_F1_MULTIAGENT_PROTOCOLS.md). Modules:
+`StrategicWorld/DeterministicOrbit.lean`, `MultiAgent/ProductGame.lean`, `MultiAgent/Protocols.lean`,
+`MultiAgent/AdaptationBound.lean`, `MultiAgent/ProtocolWitnesses.lean`.
+
+| Anchor | Claim | Provider | Status |
 |---|---|---|---|
-| F1.1 | Conditional-product subclass: player action kernels `α_i`, update kernels `U_i`, common `U_0`, common `P`; product composition is a `StrategicWorldModel` | `MultiAgent/ProductGame.lean` | PROPOSED |
-| F1.2 | CL and OL protocols as distinct typed interventions; OL requires a declared measurable opponent anchor | `MultiAgent/Protocols.lean` | PROPOSED |
-| F1.3 | `|Δ_CL − Δ_OL| ≤ d_ψ(z_CL, z_OL) ≤ Δ_CL + Δ_OL`, connected to original path-law margins | `MultiAgent/AdaptationBound.lean`: `abs_closedLoop_sub_openLoop_le_adapt` | PROPOSED |
-| F1.4 | Witnesses: CL≠OL, CL=OL, baseline-support-only anchor non-identification; correlated actions out of scope | `MultiAgent/ProtocolWitnesses.lean` + Python | PROPOSED |
+| F1.0 | Deterministic support: Dirac induced kernel `δ_{f y}` ⇒ canonical path law `δ_{orbit}` (arbitrary measurable spaces, via frozen uniqueness); deterministic `α → P → U` on singleton-measurable `A`, `X` ⇒ Dirac induced kernel | `pathLaw_dirac_of_deterministic`, `inducedKernel_eq_dirac_of_deterministic`, `dirac_compProd_eq_map` | PROVED |
+| F1.1 | Two-player conditional-product SUBCLASS (V20.28, `n = 2`): `S = S₀ × (S₁ × S₂)`, `α = α₁ ⊗ α₂`, `U = U₀ ⊗ (U₁ ⊗ U₂)`, common `P`; assembles a frozen `StrategicGenerator` / `StrategicWorldModel`; pointwise product forms | `TwoPlayerGenerator`, `toGenerator`, `toModel`, `toGenerator_action_apply`, `toGenerator_update_apply` | DEFINED (+ PROVED apply lemmas) |
+| F1.2 | `J_CL` (replace player 1 only) and `J_OL` (also install an anchor from an ex-ante declared menu) as admissible strategic interventions of ONE frozen `InterventionFamily` (component kind `jointStrategic`); `P` held fixed; admissible ⇔ CL generator or OL generator with a menu anchor; OL with the baseline opponent as anchor is CL | `protocolFamily`, `closedLoopIntervention`, `openLoopIntervention`, `protocol_world_eq`, `protocol_admissible_cases`, `openLoop_self` | DEFINED (+ PROVED) |
+| F1.3 | V20.29 for any two admissible strategic interventions of one family: `\|Δ₁ − Δ₂\| ≤ A ≤ Δ₁ + Δ₂`, `A = Δ₁` if `Δ₂ = 0` (both sides); CL/OL specialization; uniform gap on `B₁` ⇒ ORIGINAL frozen margins differ by at most the gap (direction not asserted) | `abs_effect_sub_le_protocolGap`, `protocolGap_le_effect_add`, `protocolGap_eq_of_effect_zero(_left)`, `abs_closedLoop_sub_openLoop_le_adapt` (spec name), `abs_constitutiveMargin_sub_le_of_protocolGap` | PROVED |
+| F1.4 | Witnesses on a typed Boolean commons toy: MA1 (`Δ_CL = 1`, `Δ_OL = 0`, `A = 1`), CL = OL for a world-reading anchor, MA2 (anchors identical on baseline-reachable states, different OL values), MA3 (perfectly correlated joint action law is not a product, so no `TwoPlayerGenerator` produces it) | `closedLoop_ne_openLoop`, `closedLoop_eq_openLoopWorld`, `anchors_agree_on_support_but_openLoop_differs`, `correlatedLaw_ne_prod`, `correlated_generator_not_product`; `test_f1_multiagent_protocols.py` (11) | PROVED / executable |
+| F1.5 | `n`-player version; clock-augmented nonstationary anchors as a typed construction; causal mediation interpretation | — | OPEN (n = 2 only; clock handled by declaring it in `S₀`, tested in Python; mediation NOT claimed) |
 
-Inputs: typed interventions (frozen), B2.1. Consumers: X1, R. Manuscript: §5.4.3.
+Inputs: frozen typed interventions (`InterventionFamily`, `AdmissibleStrategicIntervention`,
+`InterventionTarget.isStrategic_jointStrategic`, `AdmissibleStrategicIntervention.world_eq`), frozen
+`constitutiveEffect` / `constitutiveMargin` / `constitutiveEffect_nonneg`, CORE.P52
+(`abs_sInf_image_sub_sInf_image_le_of_uniform`), frozen well-posedness (`pathLaw_existsUnique`,
+`pathLaw_spec`, `inducedKernel_apply`). B2.1 is NOT used: V20.29 compares two intervened outputs and
+is proved directly from the metric triangle. Consumers: X1, R. Manuscript: §5.4.3.
+Verification: local compile; `f1_axiom_audit.py` all declarations allowlisted (count in the PR); CI pending (F1 PR).
 
 ## A3 — contractive infinite-horizon robustness
 
