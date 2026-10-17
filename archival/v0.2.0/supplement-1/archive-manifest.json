@@ -4,8 +4,8 @@
   "bundle": {
     "format": 2,
     "path": "history.bundle",
-    "sha256": "56c401a24130fd37231d667fdbad3f5578587bb6a1c6d3c406698bd5a966537f",
-    "size": 6633053
+    "sha256": "f49203e5a7f2189565c24509bd56652318ab383dfcda36ee756b78332b1e5792",
+    "size": 6639932
   },
   "dependencies": {
     "git": "SHA-1 Git with bundle v2",
@@ -15,8 +15,8 @@
   "files": [
     {
       "path": "OFFLINE_REPRODUCTION.md",
-      "sha256": "c475de9b0d057a59f02ff761d0a55c6dd6d6d4d12161d8d59097b52b6903f3f9",
-      "size": 6699
+      "sha256": "d6e53c10c1123444d86a52b9fb478ac09b07364aee6333e5bd76fcf51de0e1e2",
+      "size": 7459
     },
     {
       "path": "accepted-source-receipts.json",
@@ -170,8 +170,8 @@
     },
     {
       "path": "history.bundle",
-      "sha256": "56c401a24130fd37231d667fdbad3f5578587bb6a1c6d3c406698bd5a966537f",
-      "size": 6633053
+      "sha256": "f49203e5a7f2189565c24509bd56652318ab383dfcda36ee756b78332b1e5792",
+      "size": 6639932
     },
     {
       "path": "objects.jsonl",
@@ -185,8 +185,8 @@
     },
     {
       "path": "tooling/archival/v0.2.0/README.md",
-      "sha256": "c475de9b0d057a59f02ff761d0a55c6dd6d6d4d12161d8d59097b52b6903f3f9",
-      "size": 6699
+      "sha256": "d6e53c10c1123444d86a52b9fb478ac09b07364aee6333e5bd76fcf51de0e1e2",
+      "size": 7459
     },
     {
       "path": "tooling/verification/archive/.gitattributes",
@@ -215,13 +215,18 @@
     },
     {
       "path": "tooling/verification/archive/manifest.py",
-      "sha256": "87ddc5f6525907d1a1a5795df47ecc1d87170f236b77b6f7cb4fb201c0d798c1",
-      "size": 9363
+      "sha256": "f77d991d784b000b6cb5114dd5cdcbd110d719449ccdca161908dc14d68bfd00",
+      "size": 12308
     },
     {
       "path": "tooling/verification/archive/offline_smoke.py",
       "sha256": "96131ba19504bddc02b5ce980ef39c877bc9e2cb92809b6fc75896b3e27b729c",
       "size": 10605
+    },
+    {
+      "path": "tooling/verification/archive/publication.py",
+      "sha256": "63b4477e3575400b23cb945fb63726e89d7df436a19f4ed7f3923ad927b59978",
+      "size": 7799
     },
     {
       "path": "tooling/verification/archive/schemas/archive-manifest.schema.json",
@@ -235,13 +240,13 @@
     },
     {
       "path": "tooling/verification/archive/tests/test_archive.py",
-      "sha256": "f07e8f4f57b2df83e57eb0d5ce6615e7fa08b13732e1637fb1cb06faf8b41903",
-      "size": 51561
+      "sha256": "63cbe01b0667db381605fd9ab9139e04889bbc9d30b2775974d740f7e2d184a7",
+      "size": 65085
     },
     {
       "path": "tooling/verification/archive/verify_bundle.py",
-      "sha256": "daefcee4425588ac2f343689deb9e0a868dc3c15c245e88c5737d4acacb5ccd2",
-      "size": 24936
+      "sha256": "58b2d601b9b360bf57228d32ad1c8ae51d3d18e3ca98cc6b7d4b8dcc0eae7918",
+      "size": 25615
     },
     {
       "path": "tooling/verification/integrity/.gitattributes",
@@ -310,8 +315,8 @@
     },
     {
       "path": "tooling/verification/integrity/test_coverage.json",
-      "sha256": "4296d37148d6636cb854bde21a18dc3b002d50c5931035ba68fb7a4d2066d295",
-      "size": 24130
+      "sha256": "000b9d116b5ef24573d3d07825d1ae65ff23120d36bda56d2549a8f20174cf77",
+      "size": 24254
     },
     {
       "path": "tooling/verification/integrity/tests/_fixtures.py",
@@ -340,8 +345,8 @@
     },
     {
       "path": "tooling/verification/integrity/tests/test_workflow.py",
-      "sha256": "bb8110866bcd473d576cf8e53b8854e33258ab48dc82574770d4241a39c3d1e5",
-      "size": 9376
+      "sha256": "7db284db550fd972fd926fef09d2dbe8a0628c87afce23ef1cc34c5953d6078e",
+      "size": 15590
     },
     {
       "path": "tooling/verification/integrity/tex_export.py",
@@ -350,8 +355,8 @@
     },
     {
       "path": "tooling/verification/integrity/workflow_contract.py",
-      "sha256": "d82b6ee6b8c97dcb7b0565e9fc635c7da8432bd3a0273c7373b19173bcaf8a6f",
-      "size": 8486
+      "sha256": "e5c824e26d59a9dd63361b34b6fd78a29b08510dcb0d19a0954485052f29f769",
+      "size": 16128
     }
   ],
   "format": "Permansson.Hardening.Archive.v1",
@@ -396,9 +401,9 @@
   "tooling": {
     "files": [
       {
-        "blob": "0969efa71ee3a642dfd68c22cbe7dd48c11b973e",
+        "blob": "39fda5fa453fc66985c1cf9f227c81eaf4c1ce6f",
         "path": "archival/v0.2.0/README.md",
-        "sha256": "c475de9b0d057a59f02ff761d0a55c6dd6d6d4d12161d8d59097b52b6903f3f9"
+        "sha256": "d6e53c10c1123444d86a52b9fb478ac09b07364aee6333e5bd76fcf51de0e1e2"
       },
       {
         "blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
@@ -426,14 +431,19 @@
         "sha256": "a9e4040687952d62a5d930dedbd42b4a19b48a733c627d34eae2df851c088805"
       },
       {
-        "blob": "0d6927a857ec32f872e0334e99a32c98c3bca936",
+        "blob": "2116eb5424bfd763e8cdeb0f9e261a0a1f90da7a",
         "path": "verification/archive/manifest.py",
-        "sha256": "87ddc5f6525907d1a1a5795df47ecc1d87170f236b77b6f7cb4fb201c0d798c1"
+        "sha256": "f77d991d784b000b6cb5114dd5cdcbd110d719449ccdca161908dc14d68bfd00"
       },
       {
         "blob": "49458417589e5e923969ec12701fa34a143073d1",
         "path": "verification/archive/offline_smoke.py",
         "sha256": "96131ba19504bddc02b5ce980ef39c877bc9e2cb92809b6fc75896b3e27b729c"
+      },
+      {
+        "blob": "2e11e5287dc6350f97b051eabc68a3475d06a0e3",
+        "path": "verification/archive/publication.py",
+        "sha256": "63b4477e3575400b23cb945fb63726e89d7df436a19f4ed7f3923ad927b59978"
       },
       {
         "blob": "0b56d196da247aaf59023238652e8352bf6aff41",
@@ -446,14 +456,14 @@
         "sha256": "4501eb9ce86161d092a51edca9c252f303eb37d105cc7ebf9cafde75b007b9b6"
       },
       {
-        "blob": "5de0e35079e26f1cc21307189126fc3dee51a611",
+        "blob": "0bd630019172eef2e6d254e9976dac8d74e86f95",
         "path": "verification/archive/tests/test_archive.py",
-        "sha256": "f07e8f4f57b2df83e57eb0d5ce6615e7fa08b13732e1637fb1cb06faf8b41903"
+        "sha256": "63cbe01b0667db381605fd9ab9139e04889bbc9d30b2775974d740f7e2d184a7"
       },
       {
-        "blob": "302289b97f6a3711066b42e13ac1cb08a260c7ce",
+        "blob": "c0abbe50821b3a367fdbad7c692c18c61c2a8702",
         "path": "verification/archive/verify_bundle.py",
-        "sha256": "daefcee4425588ac2f343689deb9e0a868dc3c15c245e88c5737d4acacb5ccd2"
+        "sha256": "58b2d601b9b360bf57228d32ad1c8ae51d3d18e3ca98cc6b7d4b8dcc0eae7918"
       },
       {
         "blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
@@ -521,9 +531,9 @@
         "sha256": "f071aaebf6092081e99be315ec632954f8d64b493d5dfee19a044b36ef3eb5a6"
       },
       {
-        "blob": "d1cca83f632677145630ee972d36a609496b3442",
+        "blob": "ba56d16cf05c341d96e5df754db068a95568f362",
         "path": "verification/integrity/test_coverage.json",
-        "sha256": "4296d37148d6636cb854bde21a18dc3b002d50c5931035ba68fb7a4d2066d295"
+        "sha256": "000b9d116b5ef24573d3d07825d1ae65ff23120d36bda56d2549a8f20174cf77"
       },
       {
         "blob": "ca083f7892a5138378a4ffdc866a0436fdf385f8",
@@ -551,9 +561,9 @@
         "sha256": "3fbd466772cb68407d836754d2dbc366fe59daeba08fbaac147dd6974fa001c1"
       },
       {
-        "blob": "ccdf42c27a25439b0f27d4fe78bf533a5d3e78da",
+        "blob": "66ba674710cae286605baf3eee570ee1d7fcf282",
         "path": "verification/integrity/tests/test_workflow.py",
-        "sha256": "bb8110866bcd473d576cf8e53b8854e33258ab48dc82574770d4241a39c3d1e5"
+        "sha256": "7db284db550fd972fd926fef09d2dbe8a0628c87afce23ef1cc34c5953d6078e"
       },
       {
         "blob": "a6ef67695f21a50c5e4eeafd14a5ee0e489a4a12",
@@ -561,11 +571,11 @@
         "sha256": "1bcd8f3a2e53a21b3d0685959e46a2f547b876f769c18b2abdfcf388763fcc45"
       },
       {
-        "blob": "4e22e94f1ce51d235d41886b77a0ddf4dc0ef779",
+        "blob": "7c1b26559dc30c2f37e8165983ce71094b205cde",
         "path": "verification/integrity/workflow_contract.py",
-        "sha256": "d82b6ee6b8c97dcb7b0565e9fc635c7da8432bd3a0273c7373b19173bcaf8a6f"
+        "sha256": "e5c824e26d59a9dd63361b34b6fd78a29b08510dcb0d19a0954485052f29f769"
       }
     ],
-    "source_commit": "507ff2461762a248b6a5f90dc966d11627c4b1b9"
+    "source_commit": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388"
   }
 }

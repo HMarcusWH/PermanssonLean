@@ -368,6 +368,16 @@ def verify_supplement(supplement, scratch, require_isolation=True, *, source_rep
             or manifest["r_c10"] != {**R_IDENTITY, "source": R_SOURCE}):
         fail("E_REFERENCE_ID", "Supplement authority differs from the fixed release profile")
     tooling = validate_tooling(supplement, manifest, source_repo=source_repo, source_candidate=source_candidate)
+    if source_repo is None:
+        publication = {"status": "NOT_APPLICABLE", "scope": "standalone_artifact_replay",
+                       "reason": "No candidate publication Git objects; this is not genuine candidate CI acceptance"}
+    else:
+        from .publication import validate_committed_publication
+        candidate = GitRepo(source_repo)
+        try:
+            publication = validate_committed_publication(candidate, source_candidate, supplement, manifest)
+        finally:
+            candidate.close()
     evidence = validate_evidence(supplement / "evidence")
     registry = strict_json(read_bounded(supplement / "refs.json"))
     objects = parse_objects(supplement / "objects.jsonl")
@@ -393,11 +403,13 @@ def verify_supplement(supplement, scratch, require_isolation=True, *, source_rep
     ensure_clean(checkout)
     validate_manifest(supplement)
     return {"replay_target": ACCEPTED, "replay_tree": ACCEPTED_TREE,
-            "completed_stages": ["delivered_inventory", "tooling_closure", "original_evidence", "empty_import", "strict_fsck",
+            "completed_stages": ["delivered_inventory", "tooling_closure"]
+                                + (["committed_publication"] if source_repo is not None else [])
+                                + ["original_evidence", "empty_import", "strict_fsck",
                                  "exact_objects_refs", "parents_trees_ancestry", "canonical_checkout", "369_pins", "exact_tex", "legacy_replay", "post_replay_hashes"],
             "counts": {"refs": 36, "input_commits": 26, "objects": len(objects), "legacy_test_methods": 29},
             "source_restore": "PASS", "artifact_replay": "PASS", "fresh_lean_execution": "NOT_PERFORMED",
-            "publisher_authentication": "NOT_CREATED_BY_OFFLINE_REPLAY", "tooling": tooling,
+            "publisher_authentication": "NOT_CREATED_BY_OFFLINE_REPLAY", "tooling": tooling, "publication": publication,
             "evidence": evidence, "legacy": replay}
 
 

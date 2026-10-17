@@ -50,6 +50,14 @@ executing code and delivered copies. `OFFLINE_REPRODUCTION.md` must exactly
 match the guide snapshot. These comparisons use committed Git content for the
 guide, so checkout newline conversion does not alter its source identity.
 
+Candidate-bound replay also checks the committed publication-candidate ZIP and
+checksum against the complete committed supplement at C. Every delivered inner
+file must match that same canonical snapshot, including the manifest and its
+checksum. The ZIP must contain exactly those bytes with the documented sorted
+inventory, regular modes and fixed timestamps. Repaired sidecar hashes cannot
+make a stale or altered ZIP acceptable. Standalone artifact replay has no
+candidate repository and explicitly does not perform this publication check.
+
 ## Supported offline profile
 
 Install Python 3.13, Git and `pypdf==6.10.0` before the isolation boundary.
@@ -91,6 +99,10 @@ symlinks, extra files and unbounded input; checks a prerequisite-free v2 header;
 imports into an empty object database; runs full strict Git object checking;
 and compares exact refs, full objects, ordered merge parents, matching synthetic
 and main trees, ancestry and accepted tree.
+
+Fixed file-count, directory-count, depth and aggregate-byte budgets apply during
+the filesystem metadata walk, before hashing payloads. Per-file streaming limits
+also reject files that grow after metadata preflight.
 
 It restores accepted A using canonical normal blobs, rechecks all 369 pins and
 the complete deterministic TeX export, then runs the unchanged final release

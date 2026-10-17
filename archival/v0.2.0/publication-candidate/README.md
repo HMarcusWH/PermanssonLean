@@ -1,16 +1,16 @@
 # Archival supplement publication candidate
 
-`Permansson_v0.2.0_archival-supplement-1.zip` packages the 70 files in
+`Permansson_v0.2.0_archival-supplement-1.zip` packages the 71 files in
 `../supplement-1/`, with identical payloads and a sorted, safe member inventory.
-It is 7,446,882 bytes; SHA-256:
+It is 7,465,148 bytes; SHA-256:
 
 ```text
-d67531969705ca39b41d25e91180dccec2c491aa3df776e876140b7777f43eca
+f6f119cadb1a3ebe09f9010510476bab2e75194ededde922eb99a8891652eca4
 ```
 
 The archive uses fixed 17 October 2026 timestamps and regular-file mode 0644.
 Its manifest SHA-256 is
-`e53fe5f13ee270c425f7171c4006402fa73556970bbfe6a7018fb3c9fb1563de`.
+`8fc56980228519e96e927a212b3c49afbebd5007ef8f1fa3086b17241a3da18d`.
 The companion checksum covers the delivered ZIP bytes. Neither a checksum nor
 the copied publisher responses independently authenticate the publisher.
 
