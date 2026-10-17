@@ -1,6 +1,7 @@
 import PermanssonResearch.X1.Comparison
 import PermanssonResearch.MultipleLimit.CanonicalKernelMarginals
 import PermanssonLean.Regime.ConstitutiveMargin
+import PermanssonLean.Regime.SurvivalBridge
 
 /-!+# X1: genuine canonical horizon output and original margin transport
 
@@ -21,13 +22,17 @@ open PermanssonResearch.MultipleLimit
 
 attribute [local instance] StrategicWorldModel.inducedKernel_isMarkov
 
+/-- The registered replete region has a computational membership decision. -/
+instance region_decidablePred : DecidablePred region :=
+  fun y => inferInstanceAs (Decidable (y.2 = true))
+
 /-- Backward finite matrix evaluation of terminal repletion. This is NOT killed
 persistence: intermediate exits are allowed, exactly as the declared property. -/
 noncomputable def kernelTerminal (K : Kernel Y Y) : ℕ → Y → ℝ≥0∞
   | 0, y => if y ∈ region then 1 else 0
   | n+1, y => ∑ z : Y, kernelTerminal K n z * K y {z}
 
-theorem kernelTerminal_eq_power (K : Kernel Y Y) [IsMarkovKernel K] (n : ℕ) (y : Y) :
+theorem kernelTerminal_eq_power (K : Kernel Y Y) [IsSFiniteKernel K] (n : ℕ) (y : Y) :
     kernelTerminal K n y = (K ^ n) y region := by
   induction n generalizing y with
   | zero => simp [kernelTerminal, Kernel.id_apply, Measure.dirac_apply]
@@ -40,6 +45,24 @@ theorem kernelTerminal_eq_power (K : Kernel Y Y) [IsMarkovKernel K] (n : ℕ) (y
           simpa only [Nat.add_comm 1 n, pow_one] using
             (Kernel.pow_add_apply_eq_lintegral K 1 n y
               (show MeasurableSet region from MeasurableSet.of_discrete)).symm
+
+/-- The ORIGINAL finite-path stay event is the same finite recurrence applied
+to the frozen killed kernel, for every horizon and every initial state in B.
+Intermediate exits are killed; terminal re-entry cannot restore their mass. -/
+theorem survivalProbability_eq_kernelTerminal_killed
+    (M : StrategicWorldModel Memory Bool Action) (spec : RegimeSpecification Y Bool)
+    (hregion : spec.region = region) (n : ℕ) (y : Y) (hy : y ∈ spec.region) :
+    survivalProbability M spec y n = kernelTerminal (killedKernel M spec) n y := by
+  rw [survivalProbability_eq_killedSurvivalMass M spec n hy,
+    killedSurvivalMass, kernelTerminal_eq_power, hregion]
+
+/-- Genuine killed survival at the registered start, for BOTH actual models.
+This is the finite-path stay event, not merely an unbound matrix output. -/
+theorem survivalProbability_one (m : Mode) :
+    survivalProbability (model m) (specification m) y0 1 = (13 / 20 : ℝ≥0∞) := by
+  rw [survivalProbability_eq_killedSurvivalMass (model m) (specification m) 1
+    (show y0 ∈ (specification m).region from rfl), killedSurvivalMass_one]
+  exact replete_one_step_leaks m
 
 /-- Baseline evaluation using the explicit primitive-derived transition entries. -/
 noncomputable def primitiveTerminal (m : Mode) : ℕ → Y → ℝ≥0∞

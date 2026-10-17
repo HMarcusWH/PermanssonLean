@@ -130,6 +130,10 @@ theorem replete_one_step_leaks (m : Mode) :
     norm_num [Fintype.sum_prod_type, sum_bool, coin_lintegral, update,
       Kernel.deterministic_apply, Measure.dirac_apply, region,
       extractionRate, piExtract, learnerExtract, y0, pRep, indicator, boolMass]
+  all_goals
+    apply (ENNReal.toReal_eq_toReal_iff' (by finiteness) (by finiteness)).1
+    repeat rw [ENNReal.toReal_add (by finiteness) (by finiteness)]
+    norm_num [ENNReal.toReal_mul]
 
 /-- For either strategic generator, NO choice of occupation target or
 convergence mode can turn the leaking replete region into an Exact GR. -/
@@ -141,6 +145,7 @@ theorem replete_not_exactGR (m : Mode) (spec : RegimeSpecification Y Bool)
   have hstart : y0 ∈ spec.region := by rw [hregion]; rfl
   have hmass := hinv y0 hstart
   rw [hregion, replete_one_step_leaks] at hmass
-  norm_num at hmass
+  have hreal := congrArg ENNReal.toReal hmass
+  norm_num at hreal
 
 end PermanssonResearch.X1

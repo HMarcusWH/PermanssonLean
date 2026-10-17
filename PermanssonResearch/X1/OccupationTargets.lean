@@ -46,7 +46,9 @@ theorem numerical_target_eq (m : Mode) :
 
 theorem boolMass_nonneg (p : ℚ) (hp : 0 ≤ p ∧ p ≤ 1) (b : Bool) :
     0 ≤ boolMass p b := by
-  cases b <;> simp only [boolMass] <;> linarith
+  cases b with
+  | false => simpa [boolMass] using sub_nonneg.mpr hp.2
+  | true => simpa [boolMass] using hp.1
 
 theorem numerical_entry_nonneg (m : Mode) (y z : Y) :
     0 ≤ OccupationNumerics.entry (learnerFlag m) y z := by
@@ -197,7 +199,7 @@ theorem probability_bool_eq_of_true_real (μ ν : ProbabilityMeasure Bool)
   | false =>
       have hc : ({false} : Set Bool) = ({true} : Set Bool)ᶜ := by
         ext b; cases b <;> simp
-      simp only [hc, PermanssonLean.ProbabilitySupport.prob_compl_eq_one_sub
+      simp only [hc, MeasureTheory.prob_compl_eq_one_sub
         (measurableSet_singleton true), ht]
 
 /-- Every invariant law of the ACTUAL typed kernel has the separately

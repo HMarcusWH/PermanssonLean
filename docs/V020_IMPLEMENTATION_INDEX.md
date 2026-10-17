@@ -26,13 +26,14 @@ Later consumers still require verification against their own final merge base.
 | C70 / #70 | `547d17e2fff8ab2136562dbb93562529bcda062e` | `24ea0836db5bb45c964b00121718613d843ce255` | `39035552321` / `775a1317cbe664d70ac2aebbc55e40e4811be2b3` |
 | E1 / #71 | `7ae2fab0b221a77e0a13ef83cedd6f8933569c26` | `2a2246ad851e2cdc435dcd0f98f259e1264541b3` | `39036276477` / `cfdf3386d2d5363f7187e2087310b7e1b152f752` |
 | F1 / #72 | `018e8fcfbaff1d53efa9467f65c34d91169606f2` | `22859775afb744a6dce89f73f47f816afb88bb23` | `39037392282` / `5c6e4eaea7bb3afc58fafd79bbef182336120e51` |
+| A3 / #73 | `a977da54057837797ab1cea163f8bcec98cddb2d` | `9cf3410e9786b68f68d93c0684613329cdc9159e` | `39038951100` / `11c4baace0de6025709b0cdd637e99c255a70bc6` |
 
 Each listed run passed the full research build, three-axiom transitive audit,
 research regressions, direct imports, source firewall, original-core build,
 D0 golden regeneration, and PR-only C10 generation plus independent
 source-bound verification. Their observed declaration/test/module counts were
-respectively `4383/715/366`, `4442/727/370`, `4499/747/375`, and
-`4733/764/380`.
+respectively `4383/715/366`, `4442/727/370`, `4499/747/375`,
+`4733/764/380`, and `4861/777/384`.
 The original Lean, executable verification and both application OS jobs also
 passed. Independent source/spec reviews found no new blocker in the stated scopes.
 
@@ -380,7 +381,7 @@ tests) on arbitrary pseudo-metric spaces; KR duality with the coupling form is N
 | A3.0 | Dual-W₁ calculus without Polish/standard-Borel hypotheses: monotone, symmetric, triangle, closed under limits; pointwise kernel defect ⇒ mixture defect; `L`-Lipschitz pushforward scales by `L`; finite first moments ⇒ finite bound | `W1DualLE`, `IsKRTest`, `W1DualLE.trans`, `W1DualLE.of_tendsto`, `W1DualLE.comp_of_forall`, `W1DualLE.map_lipschitz`, `W1DualLE.of_integrable_dist` | DEFINED (+ PROVED) |
 | A3.1 | Dual analogue of (V20.17): `W1DualLE π π̃ (δ/(1−ρ))` given invariance of both laws, uniform dual contraction `0 ≤ ρ < 1` of the ORIGINAL kernel, pointwise dual defect `δ` and a finite initial dual gap | `invariantLaw_wasserstein_le`, `ContractivePerturbation.w1_le` | PROVED (dual analogue); coupling-form obligation OPEN |
 | A3.2 | Conditional dual analogue of (V20.18): `\|κ̃ − κ\| ≤ L_F L_h (δ₀/(1−ρ₀) + δ_J/(1−ρ_J))` for the ORIGINAL frozen margins when `ψ(P_y) = F(h_#π)` for all four processes on `B₁` (hypothesis), `h` measurable `L_h`-Lipschitz, `F` `L_F`-Lipschitz for dual W₁ | `occupationMargin_robust`, `descriptorFunctional_dist_le` | PROVED (conditional dual analogue); coupling-form obligation OPEN |
-| A3.3 | Survival counterexample on actual models (`Unit × ℝ`): explicit `ContractivePerturbation` including invariant probability laws and finite gap, `ρ = 0`, defect `ε`, yet `P₀(τ_B = ∞)` is `1` vs `0` for every `ε ∈ (0,1]` | `model_invariant`, `leakPerturbation`, `bundled_survival_counterexample`, `contraction_does_not_transfer_survival` | Original survival theorem PROVED; new bundle PENDING pinned Lean/audit replay |
+| A3.3 | Survival counterexample on actual models (`Unit × ℝ`): explicit `ContractivePerturbation` including invariant probability laws and finite gap, `ρ = 0`, defect `ε`, yet `P₀(τ_B = ∞)` is `1` vs `0` for every `ε ∈ (0,1]` | `model_invariant`, `leakPerturbation`, `bundled_survival_counterexample`, `contraction_does_not_transfer_survival` | PROVED; revised bundle CI-verified at accepted source `a977da5` |
 | A3.4 | TV → W₁ only with a diameter factor: `dist ≤ D ⇒ W₁ ≤ D·TV`; on `ℝ` no constant converts TV into W₁ | `W1DualLE.of_eventTV`, `tv_does_not_control_w1_on_real` | PROVED |
 | A3.5 | Existence/uniqueness of invariant laws; contraction from Doeblin/Dobrushin; ergodic bridge `ψ(P_y) = F(h_#π)`; KR duality; bounded → all 1-Lipschitz tests | — | OPEN (hypotheses in A3.1–A3.2) |
 
@@ -392,9 +393,12 @@ machinery (`killedKernel_apply`, `survivalProbability_eq_killedSurvivalMass`, `k
 `survivesForeverSet_eq_iInter`, `survivesThroughSet_antitone`, `measurableSet_survivesThroughSet`) and
 `StrategicWorldModel.inducedKernel_apply`. A2 is NOT used (no primitive budget is converted; A3.4 shows why a TV
 budget cannot be substituted). Consumers: X1, R. Manuscript: §5.4.1.
-Verification: historical `f757b9e` compiled and passed `a3_axiom_audit.py` (50/50);
-the revised bundle adds three declarations and requires fresh exact-head Lean/audit and PR CI.
-Revised focused rational suite: 13/13 tests pass locally; compilation/audit remain PENDING.
+Verification: accepted source `a977da54057837797ab1cea163f8bcec98cddb2d`
+passed all five workflows, focused audit 53/53 and 13/13 exact tests, and full
+Research run `39038951100` on synthetic merge `11c4baace0de6025709b0cdd637e99c255a70bc6`
+(4861 audited declarations, 777 tests, 384 direct imports, source-bound C10 PASS).
+Fresh independent review found no blocker in the stated conditional dual scope;
+[acceptance record](https://github.com/HMarcusWH/PermanssonLean/pull/73#issuecomment-6234932052).
 The rational tests now include sharp positive-margin transfer and destructive removal of
 either budget term, the geometric denominator, or the four-process factorization premise.
 
