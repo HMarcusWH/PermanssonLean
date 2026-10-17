@@ -1,0 +1,52 @@
+name: C-Exit D unconditional restart focused smoke
+
+# Focused source-head gate for C69 (PR #69). It does NOT replace the full
+# Research Lean workflow (full library build, transitive axiom audit of the
+# whole research root, all regressions, C10/D0 evidence, source firewall).
+
+on:
+  push:
+    branches: [claude/zen-einstein-ub8zgr]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'PermanssonResearch/RegimeExit/**'
+      - 'verification/research/test_c_exit_restart.py'
+      - 'verification/research/c69_axiom_audit.py'
+      - '.github/workflows/c-exit-restart-d-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  restart-d:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Exact rational restart, routing and nonstationary adversaries
+        run: python3 -m unittest discover -s verification/research -p 'test_c_exit_restart.py' -v
+      - name: Compile C69 unconditional restart and countable routing modules
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch.RegimeExit.ShiftedPrefixStationarity PermanssonResearch.RegimeExit.StoppedFutureRestart
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+      - name: Declaration-level transitive axiom audit of every C69 declaration
+        run: python3 verification/research/c69_axiom_audit.py
+      - name: Reject proof placeholders and custom axioms in C69 sources
+        run: |
+          if grep -n -E '(^|[^[:alnum:]_])(sorry|admit|native_decide)([^[:alnum:]_]|$)|^[[:space:]]*((private|protected|noncomputable|unsafe)[[:space:]]+)*axiom[[:space:]]' \
+              PermanssonResearch/RegimeExit/ShiftedPrefixStationarity.lean \
+              PermanssonResearch/RegimeExit/StoppedFutureRestart.lean; then
+            echo 'Forbidden placeholder, native_decide or axiom in C69 sources'
+            exit 1
+          fi
+          echo 'C69 source firewall PASS'

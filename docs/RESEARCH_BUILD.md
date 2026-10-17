@@ -5,6 +5,19 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
+## C-Exit D (PR #69) — unconditional restart (16 October 2026)
+
+**Main:** `6191a1acbf00867042a21c8e6c4a532af43017bc` (PR #68 merged; PRs #1–#68 merged).
+**PR #69** (`claude/zen-einstein-ub8zgr`) adds
+`RegimeExit/ShiftedPrefixStationarity.lean` and `RegimeExit/StoppedFutureRestart.lean`
+(both directly imported by `PermanssonResearch.lean`), discharging PR #68's
+`HasCanonicalShiftedPrefixLaws` / `HasCanonicalLastStateRestart` predicates and
+proving the unconditional finite and countable first-exit future-law identities.
+See [lane document](LANE_C_EXIT_RESTART.md) and anchors C69.1–C69.5 in the
+[implementation index](V020_IMPLEMENTATION_INDEX.md). Focused workflow:
+`.github/workflows/c-exit-restart-d-smoke.yml`. The original frozen core,
+toolchain, manifest and v0.1.8 release are unchanged.
+
 ## Current active C-Exit draft and merged B2 (15 October 2026)
 
 **Main:** `af9d1084664e9e51f7aba0045e98532e58c18829` after merged [PR #65](https://github.com/HMarcusWH/PermanssonLean/pull/65). All four post-merge main workflows passed: [Research Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38772480255), [Original Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38772479542), [Executable verification](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38772480217), [Application contract](https://github.com/HMarcusWH/PermanssonLean/actions/runs/38772479825). B2's source-only proofs are merged, not a v0.2.0 paper or independent external peer review.

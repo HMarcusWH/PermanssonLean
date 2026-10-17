@@ -6,6 +6,26 @@ Check merged [PR #64](https://github.com/HMarcusWH/PermanssonLean/pull/64), draf
 the encoded declarations on its matching source SHA; it is not a v0.2.0 paper
 release or independent third-party review.
 
+## C-Exit D / C69 candidate (16 October 2026) — PR #69
+
+Base `main@6191a1acbf00867042a21c8e6c4a532af43017bc` (PRs #1–#68 merged).
+The live anchor-level index is now [V020_IMPLEMENTATION_INDEX.md](V020_IMPLEMENTATION_INDEX.md);
+this ledger keeps dated checkpoints.
+
+| Anchor | Exact research declarations | Mandatory limits |
+|---|---|---|
+| C69.1 shifted prefix stationarity | `RegimeExit/ShiftedPrefixStationarity.lean`: `hasCanonicalShiftedPrefixLaws`, `shiftedHistory_hasTransitionPair` | Stationary canonical model only (stationarity used in `stationaryHistoryKernel_add_eq_comap_drop`); arbitrary measurable `S, X, A` |
+| C69.2 last-state restart | `hasCanonicalLastStateRestart`, `canonicalShiftedHistoryKernel_eq_restart`, `canonicalShiftedHistoryKernel_eq_of_last_eq`, `pointPathLaw_prefix_shift_event` | No `StrongMarkov` premise; frozen projective uniqueness; no second path-law construction |
+| C69.3 finite first-exit future | `RegimeExit/StoppedFutureRestart.lean`: `finiteStoppedFutureMeasure_restart`, `firstExit_shift_event_restart`, `finiteStoppedFutureMeasure_eq_bind` | `y ∈ B`; exit at `n+1`; unnormalized arrival submeasure; `D` and `D\B` restrictions coincide |
+| C69.4 countable routing | `infiniteStoppedFutureMeasure_restart`, `pathLaw_firstExitFutureEvent_restart`, `infiniteStoppedFutureMeasure_add_survivalForever_eq_one`, `infiniteStoppedFutureMeasure_eq_zero_of_routing_zero` | `τ_B` evaluated only at finite values; never-exit mass preserved; no normalization |
+| C69.5 executable checks | `verification/research/test_c_exit_restart.py` (47 tests, 21 new), `verification/research/c69_axiom_audit.py`, `.github/workflows/c-exit-restart-d-smoke.yml` | Python is not a Lean proof |
+
+**Status:** source-level PROVED for C69.1–C69.4 (local compile; 34/34 new
+declarations audited to `propext/Classical.choice/Quot.sound`). CI-verified
+only once PR #69's exact head and synthetic merge pass all mandatory
+workflows; record run IDs on the PR. Random-entry occupation (C70) is not
+claimed.
+
 ## Current merge status and active C-Exit candidate (15 October 2026)
 
 PR #65 merged `main@af9d1084664e9e51f7aba0045e98532e58c18829`, and all four post-merge main workflows passed. PR #66 was merged to main as a5987dc1 (all post-merge workflows green). Its [C-Exit theorem-to-source ledger](LANE_C_EXIT_ROUTING.md) tracks `RegimeExit/ExitEvents`, `ExitSubkernel`, `ExitRouting`, `ExitConservation`, `QSDDestination`, `ExitModels`, 22 independent exact-Fraction adversaries, and the focused smoke workflow. Do not promote v0.2.0 Definition 4.2d or Theorem 4.2e or QSD corollary while any proof/CI gate is incomplete. PR #67 switch/PR constitution is in active separate implementation; no Lean promotion before exact-head CI.

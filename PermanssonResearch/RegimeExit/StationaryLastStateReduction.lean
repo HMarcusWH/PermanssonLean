@@ -12,6 +12,10 @@ v0.1.8 well-posedness/projective-uniqueness theorem, not a new axiom.
 The finite-prefix stationarity statement is still a mathematical
 obligation. In particular, observing one or two coordinates does NOT
 satisfy the quantifier over every prefix length.
+
+**Update (C69, PR #69):** `HasCanonicalShiftedPrefixLaws N` is now PROVED
+for every canonical model (`hasCanonicalShiftedPrefixLaws` in
+`RegimeExit/ShiftedPrefixStationarity.lean`). No declaration here changed.
 -/
 
 open MeasureTheory ProbabilityTheory Set
