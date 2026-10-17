@@ -406,13 +406,21 @@ either budget term, the geometric denominator, or the four-process factorization
 
 | Anchor | Claim | Planned provider | Status |
 |---|---|---|---|
-| D2.1 | Reach-by-horizon objective with exact Bellman evaluation on declared finite policy classes | `ReverseSolver/D2Reach.lean` | PROPOSED |
-| D2.2 | Reach-before-forbidden objective | `ReverseSolver/D2ReachAvoid.lean` | PROPOSED |
-| D2.3 | Reach-and-stay for declared finite duration (hit ≠ stay) | `ReverseSolver/D2ReachStay.lean` | PROPOSED |
-| D2.4 | Eventual switching under exact/bounded conditions, consuming C69.4 | `ReverseSolver/D2Switch.lean` | BLOCKED (merge of #69 and the C70 PR) |
-| D2.5 | `sup_π inf_K` vs `inf_K sup_π` separation witness; no rectangularity assumed | `ReverseSolver/D2MinimaxAdversaries.lean` | PROPOSED |
+| D2.1 | Reach-by-horizon under the existing finite, fully observed deterministic history class | `ReverseSolver.Residence.reachBeforeForbidden_optimal_and_attained` (D1 reuse) | IMPLEMENTED; exact-head verification pending |
+| D2.2 | Literal goal-before-forbidden event, unchanged D1 semantics | same; original `HistoryDependentTyped.typed_history_bellman_optimal_and_attained` | IMPLEMENTED; exact-head verification pending |
+| D2.3 | Any successful m-transition target residence run entered by T, completed by T+m; actual event probability, full-history recurrence and attainment | `ResidenceEvent` / `ResidenceValue`; [scope](D2_RESIDENCE_OBJECTIVE.md) | IMPLEMENTED; exact-head verification pending; efficient clock-policy reduction OPEN |
+| D2.4 | Eventual switching with all-future retention, consuming C69/C70 | unchanged `RegimeExit.switchRetainEvent_prob_ge`, `proposition_4_2f_almostSure`; `ReverseSolver.Residence.eventual_switch_event_semantics` | REUSED; combined final-head CI pending |
+| D2.5 | Committed randomization max-min=1/2 versus model-revealed-first min-max=1, fixed one-step timing | `ReverseSolver.Residence.robust_quantifier_order_separation` | IMPLEMENTED; exact-head verification pending; no robust dynamic recursion |
 
 Inputs: D0/D1, C69, C70. Must not mutate D0/D1 receipts.
+
+Verification: PR #74 source `7c3e7e450f11af9913d393757a52e37e7bb4f4fa`
+passed focused synthetic-merge run `39038337508` at
+`bc0dc18659e22745003cdb45f8a0968029129547`: all three D2 modules compiled,
+all 51 declarations passed the standard three-axiom audit, and 17 exact tests
+plus the source firewall passed. This candidate integrates main
+`22859775afb744a6dce89f73f47f816afb88bb23` (C70/E1/repaired F1); fresh
+combined-head full CI, PR-only C10 evidence and review remain pending.
 
 ## X1 — flagship economic-world MPE versus learning model
 
