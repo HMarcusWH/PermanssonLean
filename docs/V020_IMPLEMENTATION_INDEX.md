@@ -28,13 +28,14 @@ Later consumers still require verification against their own final merge base.
 | F1 / #72 | `018e8fcfbaff1d53efa9467f65c34d91169606f2` | `22859775afb744a6dce89f73f47f816afb88bb23` | `39037392282` / `5c6e4eaea7bb3afc58fafd79bbef182336120e51` |
 | A3 / #73 | `a977da54057837797ab1cea163f8bcec98cddb2d` | `9cf3410e9786b68f68d93c0684613329cdc9159e` | `39038951100` / `11c4baace0de6025709b0cdd637e99c255a70bc6` |
 | D2 / #74 | `37faf4430897e0abdd6dca664919a673b6f34b42` | `bc7617e15084673aa6053ab58282260226344c2b` | `39039886205` / `89da71c43657d79d3f60cffe6b4b02efe7331fcd` |
+| X1 / #75 | `54babeeefd980c83fd7373f7429e028e5fa574e6` | `5822cdff0fc360d9e368e10ff5f7576c3141a1b3` | `39041222836` / `f1da869c9558faa9935e57042afba04b22eb3e00` |
 
 Each listed run passed the full research build, three-axiom transitive audit,
 research regressions, direct imports, source firewall, original-core build,
 D0 golden regeneration, and PR-only C10 generation plus independent
 source-bound verification. Their observed declaration/test/module counts were
 respectively `4383/715/366`, `4442/727/370`, `4499/747/375`,
-`4733/764/380`, `4861/777/384`, and `4990/794/387`.
+`4733/764/380`, `4861/777/384`, `4990/794/387`, and `5248/810/395`.
 The original Lean, executable verification and both application OS jobs also
 passed. Independent source/spec reviews found no new blocker in the stated scopes.
 
@@ -432,22 +433,34 @@ Later consumers, including X1, still require their own final combined CI.
 
 | Anchor | Claim | Planned provider | Status |
 |---|---|---|---|
-| X1.1 | Selected exact rational commons candidate: BOTH players' Bellman equations, pure and all real/rational mixed one-shot incentive inequalities and support equalities; unrestricted discounted-strategy verification bridge remains OPEN | `X1/Parameters.lean`, `X1/MPECertificate.lean`; independent exact checker | PROVED in stated one-shot scope; local pinned build/audit PASS; full PR CI pending |
-| X1.2 | Same `Fin 3 × Fin 3` memory and literally IDENTICAL P; complete exploratory/reinforcement generator; actual α→P→U atomic-matrix expression | `X1/TypedModels.lean`: `identical_world`, `inducedKernel_atom_entry`, `update_ignores_new_world` | PROVED; local pinned build/audit PASS; full PR CI pending |
-| X1.3 | Replete B leaks for BOTH, so no Exact GR for B; typed α/U/joint interventions; prospective whole-B comparison v2 after invalid singleton rejected; original staying events and canonical property/original κ transported to actual finite-kernel expressions (numerical fraction reflection OPEN); actual-model occupation limits with ORIGINAL empirical-sequence bridge; direct all-18-state Poisson identification of distinct deterministic descriptor targets for every initial law; nine categorical fields | `X1/Comparison.lean`, `X1/FiniteOutputs.lean`, `X1/Occupation.lean`, `X1/OccupationNumerics.lean`, `X1/OccupationTargets.lean`; [lane document](LANE_X1_COMMONS.md), exact Python calculations/tests/audit | PROVED in stated scope; all 8 modules compile, 135-declaration local audit and 16 exact tests PASS; full PR CI pending; no PR promotion |
-| X1.4 | Scientific interpretation section | manuscript | PROPOSED |
+| X1.1 | Selected exact rational commons candidate: BOTH players' Bellman equations, pure and all real/rational mixed one-shot incentive inequalities and support equalities; unrestricted discounted-strategy verification bridge remains OPEN | `X1/Parameters.lean`, `X1/MPECertificate.lean`; independent exact checker | PROVED in stated one-shot scope; accepted #75 (evidence below) |
+| X1.2 | Same `Fin 3 × Fin 3` memory and literally IDENTICAL P; complete exploratory/reinforcement generator; actual α→P→U atomic-matrix expression | `X1/TypedModels.lean`: `identical_world`, `inducedKernel_atom_entry`, `update_ignores_new_world` | PROVED; accepted #75 (evidence below) |
+| X1.3 | Replete B leaks for BOTH, so no Exact GR for B; typed α/U/joint interventions; prospective whole-B comparison v2 after invalid singleton rejected; original staying events and canonical property/original κ transported to actual finite-kernel expressions (numerical fraction reflection OPEN); actual-model occupation limits with ORIGINAL empirical-sequence bridge; direct all-18-state Poisson identification of distinct deterministic descriptor targets for every initial law; nine categorical fields | `X1/Comparison.lean`, `X1/FiniteOutputs.lean`, `X1/Occupation.lean`, `X1/OccupationNumerics.lean`, `X1/OccupationTargets.lean`; [lane document](LANE_X1_COMMONS.md), exact Python calculations/tests/audit | PROVED in stated scope; all 8 modules, 135-declaration focused audit, 16 exact tests and full source-bound CI PASS; no PR promotion |
+| X1.4 | Scientific interpretation and explicit limits | [v0.2.0 research companion](../release/v0.2.0/README.md) | IMPLEMENTED in the separately versioned manuscript |
 
 Inputs: E1, F1, A3, C69/C70, D0/D1, C10/C11. Consumers: R.
+
+Accepted X1 source `54babeeefd980c83fd7373f7429e028e5fa574e6` passed
+Research run `39041222836` / job `117420952984` on actual synthetic merge
+`f1da869c9558faa9935e57042afba04b22eb3e00`: 5248 allowlisted declarations,
+810 tests, 395 direct imports and source-bound C10 PASS. All required workflows,
+both application OS jobs, focused audit 135/135, 16 exact tests and fresh
+exact-head review passed. PR #75 merged at
+`5822cdff0fc360d9e368e10ff5f7576c3141a1b3`.
+The raw descriptor `h=x` is also constant on replete B, so Assumption 4.1's
+raw descriptor nontriviality gate fails independently of the proved leakage.
+The full-history discounted-strategy verification theorem and numerical
+horizon-three margin reflection remain OPEN; no substantive PR is claimed.
 
 ## R — v0.2.0 manuscript and release
 
 | Anchor | Deliverable | Status |
 |---|---|---|
-| R.1 | New versioned v0.2.0 TeX (v0.1.8 untouched), only PROVED or visibly conditional statements | PROPOSED |
-| R.2 | Theorem-to-Lean crosswalk generated from this index | PROPOSED |
-| R.3 | Environment/commit manifests, machine-readable receipts, SHA-256 inventory | PROPOSED |
-| R.4 | Editorial carry-forward (spec §9) | PROPOSED |
-| R.5 | Fresh end-to-end reproduction and audit | PROPOSED |
+| R.1 | New versioned TeX/PDF research companion, v0.1.8 untouched; accepted scopes and explicit OPEN statements | IMPLEMENTED; source and render evidence in the [new kit](../release/v0.2.0/README.md) |
+| R.2 | Claim-to-Lean crosswalk generated from manuscript records and exact accepted source | IMPLEMENTED; JSON/CSV include complete assumptions and namespaced providers |
+| R.3 | Environment/commit manifests, seven captured source-bound C10 archives, SHA-256 inventory and portable ZIP | IMPLEMENTED; separate v0.2.0 artifacts, no historical manifest changes |
+| R.4 | Editorial carry-forward within the research companion: off-graph completion, grounded descriptors, convergence/policy quantifiers and nonclaims | IMPLEMENTED; independent TeX/render review; no promotion of omitted specialized theory |
+| R.5 | Fresh end-to-end reproduction and audit | Research source accepted at the snapshot above; kit integrity, source/export checks and independent mutation review recorded in its manifest/review evidence; release PR CI is a separate gate |
 
 ---
 

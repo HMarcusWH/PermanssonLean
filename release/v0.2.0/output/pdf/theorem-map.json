@@ -1,0 +1,953 @@
+{
+  "version": "0.2.0",
+  "source_sha": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+  "claims": [
+    {
+      "section": "1. Research scope, provenance, and acceptance",
+      "anchor": "R.SCOPE",
+      "title": "Additive research release boundary",
+      "status": "DEFINED",
+      "statement": "All extensions belong to the separate research library and this separately versioned companion; the original core, v0.1.8 paper, provenance, toolchain, dependency manifest, and application schema retain their identities.",
+      "assumptions": [
+        "Final release acceptance requires exact-source and synthetic-merge verification, transitive axiom audit, destructive controls, a current declaration crosswalk, and a fresh artifact inventory."
+      ],
+      "proof": "This is a release obligation checked by source comparison, build evidence, and artifact hashes rather than a mathematical theorem.",
+      "providers": [],
+      "open": "Acceptance covers the stated research scopes, not every item of the integration specification. Final-head CI for the current release kit remains a separate pending gate; accepted research proofs do not pre-empt it.",
+      "source_providers": []
+    },
+    {
+      "section": "2. The canonical typed process and the regime boundary",
+      "anchor": "CORE.IDENTITY",
+      "title": "Reuse of the original canonical process",
+      "status": "FROZEN_PROVIDER",
+      "statement": "Research proofs use the original induced kernel, canonical path law, empirical occupation, typed interventions, and constitutive margin rather than substitute definitions.",
+      "assumptions": [
+        "Each invocation retains the measurable-space, probability, admissibility, and comparison-set instances required by its exact declaration."
+      ],
+      "proof": "Later bridges identify newly convenient finite expressions with the existing objects; they do not alter the frozen statements to make an extension fit.",
+      "providers": [
+        {
+          "module": "PermanssonLean.Regime.Perturbation",
+          "declaration": "PermanssonLean.RegimeSpecification.constitutiveMargin_perturbation_abs_le"
+        },
+        {
+          "module": "PermanssonLean.Probability.FinitePrefixTV",
+          "declaration": "PermanssonLean.ProbabilitySupport.proposition_5_4"
+        },
+        {
+          "module": "PermanssonLean.Quotient.Preservation",
+          "declaration": "PermanssonLean.RegimeSpecification.quotient_frozenFamilyPR_iff"
+        },
+        {
+          "module": "PermanssonLean.Regime.Specification",
+          "declaration": "PermanssonLean.RegimeSpecification"
+        },
+        {
+          "module": "PermanssonLean.Regime.Assumption41",
+          "declaration": "PermanssonLean.RegimeSpecification.Assumption41"
+        },
+        {
+          "module": "PermanssonLean.Regime.GeneratedRegime",
+          "declaration": "PermanssonLean.RegimeSpecification.IsExactGeneratedRegime"
+        },
+        {
+          "module": "PermanssonLean.Regime.GeneratedRegime",
+          "declaration": "PermanssonLean.RegimeSpecification.IsConfirmatoryGeneratedRegime"
+        },
+        {
+          "module": "PermanssonLean.Regime.Constitution",
+          "declaration": "PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet"
+        },
+        {
+          "module": "PermanssonLean.Regime.Constitution",
+          "declaration": "PermanssonLean.RegimeSpecification.IsStrategicallyConstitutive"
+        },
+        {
+          "module": "PermanssonLean.Regime.ConstitutiveMargin",
+          "declaration": "PermanssonLean.RegimeSpecification.uniformlyConstitutive_iff_margin_pos"
+        }
+      ],
+      "open": "The original completion claim concerns the discrete GR/PR core, not every specialized, empirical, or continuous-state research extension.",
+      "source_providers": [
+        {
+          "module": "PermanssonLean.Regime.Perturbation",
+          "declaration": "PermanssonLean.RegimeSpecification.constitutiveMargin_perturbation_abs_le",
+          "source_path": "PermanssonLean/Regime/Perturbation.lean",
+          "source_blob": "60a469d5981be63eb15fd6f73567576c9ac97e9e",
+          "found": true
+        },
+        {
+          "module": "PermanssonLean.Probability.FinitePrefixTV",
+          "declaration": "PermanssonLean.ProbabilitySupport.proposition_5_4",
+          "source_path": "PermanssonLean/Probability/FinitePrefixTV.lean",
+          "source_blob": "8a21a14a9ad19e4807aac97cc5fa0cf4c7dc8dd2",
+          "found": true
+        },
+        {
+          "module": "PermanssonLean.Quotient.Preservation",
+          "declaration": "PermanssonLean.RegimeSpecification.quotient_frozenFamilyPR_iff",
+          "source_path": "PermanssonLean/Quotient/Preservation.lean",
+          "source_blob": "272455184ba48f530feab997e7907f3f9c6840ac",
+          "found": true
+        },
+        {
+          "module": "PermanssonLean.Regime.Specification",
+          "declaration": "PermanssonLean.RegimeSpecification",
+          "source_path": "PermanssonLean/Regime/Specification.lean",
+          "source_blob": "799eb2b84e51055bdcd4e124b03cc04ca3c89005",
+          "found": true
+        },
+        {
+          "module": "PermanssonLean.Regime.Assumption41",
+          "declaration": "PermanssonLean.RegimeSpecification.Assumption41",
+          "source_path": "PermanssonLean/Regime/Assumption41.lean",
+          "source_blob": "857a151cec487cfa497b4e9c793fab145eee6323",
+          "found": true
+        },
+        {
+          "module": "PermanssonLean.Regime.GeneratedRegime",
+          "declaration": "PermanssonLean.RegimeSpecification.IsExactGeneratedRegime",
+          "source_path": "PermanssonLean/Regime/GeneratedRegime.lean",
+          "source_blob": "c14e5f64cb20db2e9a19022870271de2c7fe5764",
+          "found": true
+        },
+        {
+          "module": "PermanssonLean.Regime.GeneratedRegime",
+          "declaration": "PermanssonLean.RegimeSpecification.IsConfirmatoryGeneratedRegime",
+          "source_path": "PermanssonLean/Regime/GeneratedRegime.lean",
+          "source_blob": "c14e5f64cb20db2e9a19022870271de2c7fe5764",
+          "found": true
+        },
+        {
+          "module": "PermanssonLean.Regime.Constitution",
+          "declaration": "PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet",
+          "source_path": "PermanssonLean/Regime/Constitution.lean",
+          "source_blob": "8ceabd8d77483108bf55e094c30d8d4f08b52e07",
+          "found": true
+        },
+        {
+          "module": "PermanssonLean.Regime.Constitution",
+          "declaration": "PermanssonLean.RegimeSpecification.IsStrategicallyConstitutive",
+          "source_path": "PermanssonLean/Regime/Constitution.lean",
+          "source_blob": "8ceabd8d77483108bf55e094c30d8d4f08b52e07",
+          "found": true
+        },
+        {
+          "module": "PermanssonLean.Regime.ConstitutiveMargin",
+          "declaration": "PermanssonLean.RegimeSpecification.uniformlyConstitutive_iff_margin_pos",
+          "source_path": "PermanssonLean/Regime/ConstitutiveMargin.lean",
+          "source_blob": "05ca8cdea3d30e97fcdfe02466958ea8bfbde473",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "3. Exact first-exit routing and canonical restart",
+      "anchor": "C69.RESTART",
+      "title": "Last-state restart of the actual canonical future",
+      "status": "ACCEPTED_PROVIDER",
+      "statement": "Every canonical shifted future kernel equals the canonical path kernel restarted from the last observed state; the first-exit future submeasure therefore has the corresponding arrival-law integral representation.",
+      "assumptions": [
+        "The canonical stationary strategic-world model and its original measurable kernel interfaces; first-exit routing starts inside B. Arrival measures remain unnormalized."
+      ],
+      "proof": "Shifted histories satisfy the same one-step transition relation as restarted histories. Induction identifies all finite-prefix marginals, projective uniqueness identifies the infinite laws, and the first-exit decomposition transfers the identity to stopped-future submeasures.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.RegimeExit.ShiftedPrefixStationarity",
+          "declaration": "PermanssonResearch.RegimeExit.hasCanonicalLastStateRestart"
+        },
+        {
+          "module": "PermanssonResearch.RegimeExit.StoppedFutureRestart",
+          "declaration": "PermanssonResearch.RegimeExit.pathLaw_firstExitFutureEvent_restart"
+        },
+        {
+          "module": "PermanssonResearch.RegimeExit.StoppedFutureRestart",
+          "declaration": "PermanssonResearch.RegimeExit.infiniteStoppedFutureMeasure_add_survivalForever_eq_one"
+        }
+      ],
+      "open": "No normalized law is assigned to a zero-mass arrival, and no state at infinite exit time is required.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.RegimeExit.ShiftedPrefixStationarity",
+          "declaration": "PermanssonResearch.RegimeExit.hasCanonicalLastStateRestart",
+          "source_path": "PermanssonResearch/RegimeExit/ShiftedPrefixStationarity.lean",
+          "source_blob": "e1de16f5ae430ac9e94675aec59c48d8f75a6cd2",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.RegimeExit.StoppedFutureRestart",
+          "declaration": "PermanssonResearch.RegimeExit.pathLaw_firstExitFutureEvent_restart",
+          "source_path": "PermanssonResearch/RegimeExit/StoppedFutureRestart.lean",
+          "source_blob": "e09ba4b8abf5c38046a3eb24bf34bf5c728a16f5",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.RegimeExit.StoppedFutureRestart",
+          "declaration": "PermanssonResearch.RegimeExit.infiniteStoppedFutureMeasure_add_survivalForever_eq_one",
+          "source_path": "PermanssonResearch/RegimeExit/StoppedFutureRestart.lean",
+          "source_blob": "e09ba4b8abf5c38046a3eb24bf34bf5c728a16f5",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "4. Random entry, occupation limits, and successful switching",
+      "anchor": "C70.SWITCH",
+      "title": "Scoped routing-retention-occupation theorem",
+      "status": "ACCEPTED_PROVIDER",
+      "statement": "Retention has probability at least 1-eta. In almostSureWeak mode, the occupation-and-retention event also has probability at least 1-eta. In inProbabilityWeak mode, routed deviation probabilities tend to zero and, for every delta>0, full deviation probability is eventually at most eta+delta. The original survival-property constitutive margin is at least 1-eta.toReal in both modes.",
+      "assumptions": [
+        "Certified source Exact GR, disjoint source and target regions, actual fixed-world admissible intervention, original comparison set, and infinite routing budget eta<=1.",
+        "For almostSureWeak conclusions the target has that mode; for inProbabilityWeak conclusions the target has the declared test-integral in-probability mode, with each fixed bounded continuous test and positive deviation threshold. Grounded uniform PR separately requires eta<1 and all original grounding and confirmatory gates."
+      ],
+      "proof": "Canonical restart, positive-mass arrival-law transport, and target invariance prove the shared retention bound. Finite-prefix deletion transports almost-sure occupation to the corresponding occupation-and-retention event. In the in-probability case, summing routed exit-time contributions makes routed deviations vanish, while the unrouted remainder leaves the eventual eta+delta budget. The original source-survival argument supplies the shared margin bound.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.RegimeExit.RandomEntryOccupation",
+          "declaration": "PermanssonResearch.RegimeExit.randomEntry_occupation_ae"
+        },
+        {
+          "module": "PermanssonResearch.RegimeExit.InProbabilityOccupation",
+          "declaration": "PermanssonResearch.RegimeExit.randomEntry_occupation_inProbability"
+        },
+        {
+          "module": "PermanssonResearch.RegimeExit.Proposition42f",
+          "declaration": "PermanssonResearch.RegimeExit.proposition_4_2f_almostSure"
+        },
+        {
+          "module": "PermanssonResearch.RegimeExit.Proposition42f",
+          "declaration": "PermanssonResearch.RegimeExit.proposition_4_2f_uniformPR"
+        }
+      ],
+      "open": "Arbitrary custom convergence modes, eta=1 positive constitution, and arrival without target invariance are excluded.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.RegimeExit.RandomEntryOccupation",
+          "declaration": "PermanssonResearch.RegimeExit.randomEntry_occupation_ae",
+          "source_path": "PermanssonResearch/RegimeExit/RandomEntryOccupation.lean",
+          "source_blob": "de32086ad812e1536a4eb7d9d771193ebcf68aff",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.RegimeExit.InProbabilityOccupation",
+          "declaration": "PermanssonResearch.RegimeExit.randomEntry_occupation_inProbability",
+          "source_path": "PermanssonResearch/RegimeExit/InProbabilityOccupation.lean",
+          "source_blob": "bd43b6cc8792592264445f74e9a073bcfb2d308a",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.RegimeExit.Proposition42f",
+          "declaration": "PermanssonResearch.RegimeExit.proposition_4_2f_almostSure",
+          "source_path": "PermanssonResearch/RegimeExit/Proposition42f.lean",
+          "source_blob": "58e916f58ad6999573fc004c17cb80b9b73c47a8",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.RegimeExit.Proposition42f",
+          "declaration": "PermanssonResearch.RegimeExit.proposition_4_2f_uniformPR",
+          "source_path": "PermanssonResearch/RegimeExit/Proposition42f.lean",
+          "source_blob": "58e916f58ad6999573fc004c17cb80b9b73c47a8",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "5. Finite-horizon perturbations and approximate quotients",
+      "anchor": "A2.FINITE",
+      "title": "Primitive-to-margin finite-prefix transport",
+      "status": "ACCEPTED_PROVIDER",
+      "statement": "Separate baseline and intervention primitive TV bounds control the change in the original finite-prefix constitutive margin and transport the stated finite certificate.",
+      "assumptions": [
+        "Uniform primitive row bounds, exact typed composition, common point starts, separately admissible matched interventions, the original comparison set, and the encoded bounded-score or TV-Lipschitz property hypotheses. Required measurable-space instances are retained."
+      ],
+      "proof": "A common-subkernel composition bounds the one-step discrepancy; prefix propagation bounds actual path restrictions; Lipschitz control and uniform infimum comparison yield the margin estimate.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.Perturbation.PrimitiveTV",
+          "declaration": "PermanssonResearch.Perturbation.inducedKernel_tv_le_primitive_sum"
+        },
+        {
+          "module": "PermanssonResearch.Perturbation.PrimitiveMargin",
+          "declaration": "PermanssonResearch.Perturbation.primitive_constitutiveMargin_abs_le"
+        },
+        {
+          "module": "PermanssonResearch.Perturbation.PrimitiveMargin",
+          "declaration": "PermanssonResearch.Perturbation.transportPrimitiveFiniteConstitutiveCertificate"
+        }
+      ],
+      "open": "This does not establish arbitrary infinite-path robustness, exact invariance, or a primitive Wasserstein budget.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.Perturbation.PrimitiveTV",
+          "declaration": "PermanssonResearch.Perturbation.inducedKernel_tv_le_primitive_sum",
+          "source_path": "PermanssonResearch/Perturbation/PrimitiveTV.lean",
+          "source_blob": "b03653ae05f014235cd9b6bbf712c9b9696e1b76",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.Perturbation.PrimitiveMargin",
+          "declaration": "PermanssonResearch.Perturbation.primitive_constitutiveMargin_abs_le",
+          "source_path": "PermanssonResearch/Perturbation/PrimitiveMargin.lean",
+          "source_blob": "c7e9739b4f332f49344cf7f4a9548923cbaa498b",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.Perturbation.PrimitiveMargin",
+          "declaration": "PermanssonResearch.Perturbation.transportPrimitiveFiniteConstitutiveCertificate",
+          "source_path": "PermanssonResearch/Perturbation/PrimitiveMargin.lean",
+          "source_blob": "c7e9739b4f332f49344cf7f4a9548923cbaa498b",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "5. Finite-horizon perturbations and approximate quotients",
+      "anchor": "E1.LINEAR",
+      "title": "Approximate typed quotient prefix and margin bounds",
+      "status": "ACCEPTED_PROVIDER",
+      "statement": "A uniform defect eta bounds projected-prefix TV by min(1,T eta); compatible finite-prefix properties and comparison sets give the corresponding two-budget margin bound.",
+      "assumptions": [
+        "A type-respecting compression; every fine row bounded, including intervention-reachable rows; matched initial states; baseline and matched-intervention defects; property factorization and compatible original comparison sets."
+      ],
+      "proof": "The final-step hybrid separates kernel error from accumulated history error. Induction yields the prefix bound, and the original uniform-margin perturbation argument supplies the margin result.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.Quotient.ApproxPrefix",
+          "declaration": "PermanssonResearch.Quotient.approxQuotient_pathLaw_prefix_tv_le"
+        },
+        {
+          "module": "PermanssonResearch.Quotient.ApproxMargin",
+          "declaration": "PermanssonResearch.Quotient.approxQuotient_margin_abs_le_of_certificates"
+        },
+        {
+          "module": "PermanssonResearch.Quotient.ApproxMargin",
+          "declaration": "PermanssonResearch.Quotient.approxQuotient_margin_eq_of_exact"
+        }
+      ],
+      "open": "The general geometric bound, an untyped quotient, hidden-state properties that fail to descend, and automatic Exact-GR transfer are not supplied.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.Quotient.ApproxPrefix",
+          "declaration": "PermanssonResearch.Quotient.approxQuotient_pathLaw_prefix_tv_le",
+          "source_path": "PermanssonResearch/Quotient/ApproxPrefix.lean",
+          "source_blob": "7247a08f724e3079e7c4472263e193cd4b598e17",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.Quotient.ApproxMargin",
+          "declaration": "PermanssonResearch.Quotient.approxQuotient_margin_abs_le_of_certificates",
+          "source_path": "PermanssonResearch/Quotient/ApproxMargin.lean",
+          "source_blob": "d26aad6f5d478673738367276ba6ec1f8b14022d",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.Quotient.ApproxMargin",
+          "declaration": "PermanssonResearch.Quotient.approxQuotient_margin_eq_of_exact",
+          "source_path": "PermanssonResearch/Quotient/ApproxMargin.lean",
+          "source_blob": "d26aad6f5d478673738367276ba6ec1f8b14022d",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "6. Sequential attribution and multi-agent protocol scope",
+      "anchor": "B2.SEQUENTIAL",
+      "title": "Four-corner metric bounds and pointwise joint-only constitution",
+      "status": "ACCEPTED_PROVIDER",
+      "statement": "Joint effects admit sequential metric bounds and conditional-margin consequences under independently admissible corners; pointwise singleton-null effects identify the stated joint-only margin.",
+      "assumptions": [
+        "Actual four path laws, the identical world and frozen property, the original comparison domain, and the stated uniform upper bounds. Vector versions require the additional normed linear structure."
+      ],
+      "proof": "Apply triangle and reverse-triangle inequalities at each start, then take uniform bounds and the original infimum. Pointwise nullity, rather than zero infimum alone, is used in the strong identity.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.GrammarRobust.SequentialEffects",
+          "declaration": "PermanssonResearch.GrammarRobust.SequentialEffects.jointEffect_le_action_add_condUpdate"
+        },
+        {
+          "module": "PermanssonResearch.GrammarRobust.ConditionalMargins",
+          "declaration": "PermanssonResearch.GrammarRobust.ConditionalMargins.condUpdateMargin_ge_joint_sub_action"
+        },
+        {
+          "module": "PermanssonResearch.GrammarRobust.ConditionalMargins",
+          "declaration": "PermanssonResearch.GrammarRobust.ConditionalMargins.jointOnly_conditionalMargins_eq_jointMargin"
+        }
+      ],
+      "open": "No general baseline-origin singleton subadditivity or causal mediation interpretation follows.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.GrammarRobust.SequentialEffects",
+          "declaration": "PermanssonResearch.GrammarRobust.SequentialEffects.jointEffect_le_action_add_condUpdate",
+          "source_path": "PermanssonResearch/GrammarRobust/SequentialEffects.lean",
+          "source_blob": "be3953183919a331cc2b41d2c70f5b9e8c021755",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.GrammarRobust.ConditionalMargins",
+          "declaration": "PermanssonResearch.GrammarRobust.ConditionalMargins.condUpdateMargin_ge_joint_sub_action",
+          "source_path": "PermanssonResearch/GrammarRobust/ConditionalMargins.lean",
+          "source_blob": "250a700d10b861b0311c5d33ed5b2784304891e8",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.GrammarRobust.ConditionalMargins",
+          "declaration": "PermanssonResearch.GrammarRobust.ConditionalMargins.jointOnly_conditionalMargins_eq_jointMargin",
+          "source_path": "PermanssonResearch/GrammarRobust/ConditionalMargins.lean",
+          "source_blob": "250a700d10b861b0311c5d33ed5b2784304891e8",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "6. Sequential attribution and multi-agent protocol scope",
+      "anchor": "F1.PROTOCOL",
+      "title": "Typed two-player response protocols and generic metric bounds",
+      "status": "ACCEPTED_PROVIDER",
+      "statement": "Within the conditional-product two-player subclass, declared closed-loop and open-loop generators define admissible interventions retaining P. For two interventions of one frozen family and property, absolute effect difference is bounded by protocol gap, which is bounded by the sum of effects. A uniform gap G on the original comparison domain bounds the absolute difference of original margins by G. The strict-menu Boolean witness has closed-loop effect1, open-loop effect0, gap1; a separate correlated law cannot be represented by the conditional product.",
+      "assumptions": [
+        "The typed two-player construction uses state-conditional product action laws and conditional product common/private update laws; it is a subclass, not a representation of all games. Shared-state-mediated correlation remains representable.",
+        "Fix the world P, replacement, declared anchor menu, intervention family and metric-valued path property. Margin transport requires the gap bound at EVERY state of the SAME original comparison set.",
+        "For the declared sufficient opponent-locked strict submenu, anchor action/update factor through own state and the allowed common coordinate, and the common update reads only its old common state. This exogenous-common condition is sufficient, not a general necessity characterization."
+      ],
+      "proof": "Typed assembly and the admissible replacement cases preserve the literal world kernel. Metric triangle and reverse-triangle inequalities give pointwise bounds; uniform infimum comparison yields the margin bound. Exact canonical Boolean paths verify the strict witness, and a diagonal Boolean law rules out a universal product representation.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.MultiAgent.Protocols",
+          "declaration": "PermanssonResearch.MultiAgent.protocol_world_eq"
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.Protocols",
+          "declaration": "PermanssonResearch.MultiAgent.opponentLockedAnchors"
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.AdaptationBound",
+          "declaration": "PermanssonResearch.MultiAgent.abs_effect_sub_le_protocolGap"
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.AdaptationBound",
+          "declaration": "PermanssonResearch.MultiAgent.protocolGap_le_effect_add"
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.AdaptationBound",
+          "declaration": "PermanssonResearch.MultiAgent.abs_constitutiveMargin_sub_le_of_protocolGap"
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.ProtocolWitnesses",
+          "declaration": "PermanssonResearch.MultiAgent.Witness.closedLoop_ne_openLoop"
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.ProtocolWitnesses",
+          "declaration": "PermanssonResearch.MultiAgent.correlatedLaw_ne_prod"
+        }
+      ],
+      "open": "These are protocol-relative metric bounds, not causal mediation or an ordering of closed/open effects. No global n-player generalization or strict MA2 witness is supplied.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.MultiAgent.Protocols",
+          "declaration": "PermanssonResearch.MultiAgent.protocol_world_eq",
+          "source_path": "PermanssonResearch/MultiAgent/Protocols.lean",
+          "source_blob": "ea38c5498e85c03d24c6cc6a553a5f33cde406f2",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.Protocols",
+          "declaration": "PermanssonResearch.MultiAgent.opponentLockedAnchors",
+          "source_path": "PermanssonResearch/MultiAgent/Protocols.lean",
+          "source_blob": "ea38c5498e85c03d24c6cc6a553a5f33cde406f2",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.AdaptationBound",
+          "declaration": "PermanssonResearch.MultiAgent.abs_effect_sub_le_protocolGap",
+          "source_path": "PermanssonResearch/MultiAgent/AdaptationBound.lean",
+          "source_blob": "02ef258744fdfc87cfc16b14737f5f848ed302be",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.AdaptationBound",
+          "declaration": "PermanssonResearch.MultiAgent.protocolGap_le_effect_add",
+          "source_path": "PermanssonResearch/MultiAgent/AdaptationBound.lean",
+          "source_blob": "02ef258744fdfc87cfc16b14737f5f848ed302be",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.AdaptationBound",
+          "declaration": "PermanssonResearch.MultiAgent.abs_constitutiveMargin_sub_le_of_protocolGap",
+          "source_path": "PermanssonResearch/MultiAgent/AdaptationBound.lean",
+          "source_blob": "02ef258744fdfc87cfc16b14737f5f848ed302be",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.ProtocolWitnesses",
+          "declaration": "PermanssonResearch.MultiAgent.Witness.closedLoop_ne_openLoop",
+          "source_path": "PermanssonResearch/MultiAgent/ProtocolWitnesses.lean",
+          "source_blob": "6cdd059d1e3d86bdb39a5e984ae0aaf76b4c6d7c",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.MultiAgent.ProtocolWitnesses",
+          "declaration": "PermanssonResearch.MultiAgent.correlatedLaw_ne_prod",
+          "source_path": "PermanssonResearch/MultiAgent/ProtocolWitnesses.lean",
+          "source_blob": "6cdd059d1e3d86bdb39a5e984ae0aaf76b4c6d7c",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "6. Sequential attribution and multi-agent protocol scope",
+      "anchor": "F1.MA2",
+      "title": "Strict opponent-locked witness remains unfulfilled",
+      "status": "OPEN",
+      "statement": "The required pair of strict baseline-agreeing open-loop anchors with distinct intervened laws has not been supplied. The deterministic own-action-recording toy instead has a proved full-law agreement obstruction.",
+      "assumptions": [
+        "The obstruction uses the encoded Boolean toy, unit common state, deterministic recording, and anchors satisfying strictness and agreement at the designated start."
+      ],
+      "proof": "Strictness and recorded own-action dynamics constrain the reachable anchor orbit. Equality of its action and update behavior propagates to equal canonical transition histories and full path laws.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.MultiAgent.ProtocolWitnesses",
+          "declaration": "PermanssonResearch.MultiAgent.Witness.strict_recording_anchors_pathLaw_eq"
+        }
+      ],
+      "open": "A valid witness in the original strict specification, or a separately justified general impossibility result, remains required. The specification is not weakened.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.MultiAgent.ProtocolWitnesses",
+          "declaration": "PermanssonResearch.MultiAgent.Witness.strict_recording_anchors_pathLaw_eq",
+          "source_path": "PermanssonResearch/MultiAgent/ProtocolWitnesses.lean",
+          "source_blob": "6cdd059d1e3d86bdb39a5e984ae0aaf76b4c6d7c",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "7. A conditional long-run contraction subclass",
+      "anchor": "A3.DUAL",
+      "title": "Dual invariant-law and conditional occupation-margin bounds",
+      "status": "PROVED",
+      "statement": "The implemented Lipschitz-dual distance obeys the invariant-law contraction budget; a Lipschitz descriptor and functional give the two-pair margin bound under all four explicit full-path factorization equalities.",
+      "assumptions": [
+        "Probability laws invariant under the original and perturbed Markov kernels; the dual test class is bounded measurable real 1-Lipschitz functions, with a separate finite bound for each test and no shared supnorm-one cap.",
+        "The encoded contraction sends any W1DualLE bound c to rho*c; every row has W1DualLE defect at most delta; 0<=rho<1; and hfin explicitly supplies a real c with W1DualLE(pi,pi-tilde,c). Both baseline and intervention bundles have these data.",
+        "The chosen factorization map is measurable and L_h-Lipschitz; the functional satisfies the source IsW1LipschitzFunctional condition; all four full-path factorization equalities hold on the identical original comparison domain. The map is not inferred from either specification descriptor."
+      ],
+      "proof": "Invariance, triangle, contraction, and defect transform a supplied finite bound c into rho*c+delta. With L=delta/(1-rho), induction gives W1DualLE at c_n=rho^n(c-L)+L. Since c_n tends to L, closedness of the universal test inequalities proves the final dual bound. Lipschitz pushforward and the functional bound control both value pairs, then metric triangles and uniform infimum comparison control the original margins.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.Perturbation.ContractiveOccupation",
+          "declaration": "PermanssonResearch.Perturbation.invariantLaw_wasserstein_le"
+        },
+        {
+          "module": "PermanssonResearch.Perturbation.ContractiveOccupation",
+          "declaration": "PermanssonResearch.Perturbation.occupationMargin_robust"
+        }
+      ],
+      "open": "Coupling-W1 identification, primitive coupling certificates, and derivation of the four ergodic factorizations remain separate open bridges.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.Perturbation.ContractiveOccupation",
+          "declaration": "PermanssonResearch.Perturbation.invariantLaw_wasserstein_le",
+          "source_path": "PermanssonResearch/Perturbation/ContractiveOccupation.lean",
+          "source_blob": "0f10a84626786b705ac9075e53c05b0ed889bf2d",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.Perturbation.ContractiveOccupation",
+          "declaration": "PermanssonResearch.Perturbation.occupationMargin_robust",
+          "source_path": "PermanssonResearch/Perturbation/ContractiveOccupation.lean",
+          "source_blob": "0f10a84626786b705ac9075e53c05b0ed889bf2d",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "7. A conditional long-run contraction subclass",
+      "anchor": "A3.SURVIVAL",
+      "title": "Bundled small-defect failure of infinite survival",
+      "status": "PROVED",
+      "statement": "For every leakage epsilon in (0,1], the typed constant-row example satisfies the encoded contraction bundle while exact infinite survival in the zero region changes from one to zero.",
+      "assumptions": [
+        "The explicit constant-row typed models, zero region, and positive leakage epsilon at most one."
+      ],
+      "proof": "Compute the killed n-step survival as a geometric power, take its limit, and connect the same actual kernels to invariant measures, contraction, and one-step dual defect.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.Perturbation.ContractiveAdversaries",
+          "declaration": "PermanssonResearch.Perturbation.ContractiveLeak.bundled_survival_counterexample"
+        },
+        {
+          "module": "PermanssonResearch.Perturbation.ContractiveAdversaries",
+          "declaration": "PermanssonResearch.Perturbation.ContractiveLeak.contraction_does_not_transfer_survival"
+        }
+      ],
+      "open": "This counterexample rejects a universal survival-robustness promotion; it does not refute the properly conditional occupation theorem.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.Perturbation.ContractiveAdversaries",
+          "declaration": "PermanssonResearch.Perturbation.ContractiveLeak.bundled_survival_counterexample",
+          "source_path": "PermanssonResearch/Perturbation/ContractiveAdversaries.lean",
+          "source_blob": "91dcf1c1a30da283dd71365004ba556024fe3a32",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.Perturbation.ContractiveAdversaries",
+          "declaration": "PermanssonResearch.Perturbation.ContractiveLeak.contraction_does_not_transfer_survival",
+          "source_path": "PermanssonResearch/Perturbation/ContractiveAdversaries.lean",
+          "source_blob": "91dcf1c1a30da283dd71365004ba556024fe3a32",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "8. Reach-and-stay objectives and the policy quantifiers",
+      "anchor": "D2.RESIDENCE",
+      "title": "True finite-path residence evaluation and attained optimization",
+      "status": "PROVED",
+      "statement": "The contiguous residence event equals the initialized residence-count event; its actual finite-path probability equals the backward value, bounded and attained over the declared deterministic history policies.",
+      "assumptions": [
+        "Finite fully observed rational controlled process, original admissible finite menus, nonanticipating deterministic full-history policies, target predicate, and explicitly chosen completion or entry deadline."
+      ],
+      "proof": "Prove list-block/count equivalence independently of the recursion. Then identify genuine prefix atoms with path enumeration and backward evaluation, and apply the existing finite-menu maximizer construction.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceEvent",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.hasRun_iff_block"
+        },
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceEvent",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.mem_entryByResidenceEvent_iff"
+        },
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceValue",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.typed_residenceProbability_eq_value"
+        },
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceValue",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.residenceProbability_optimal_and_attained"
+        }
+      ],
+      "open": "A small product-state reduction, randomized-policy sufficiency, partial observation, combined avoid/residence optimization, and finite-to-infinite persistence promotion are not proved.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceEvent",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.hasRun_iff_block",
+          "source_path": "PermanssonResearch/ReverseSolver/ResidenceEvent.lean",
+          "source_blob": "b7a7a1ff5207a9e3364eac14a98418ea4b036e0f",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceEvent",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.mem_entryByResidenceEvent_iff",
+          "source_path": "PermanssonResearch/ReverseSolver/ResidenceEvent.lean",
+          "source_blob": "b7a7a1ff5207a9e3364eac14a98418ea4b036e0f",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceValue",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.typed_residenceProbability_eq_value",
+          "source_path": "PermanssonResearch/ReverseSolver/ResidenceValue.lean",
+          "source_blob": "b0fd7b67c0b4e641f8683c301710ad0c7d736db8",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceValue",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.residenceProbability_optimal_and_attained",
+          "source_path": "PermanssonResearch/ReverseSolver/ResidenceValue.lean",
+          "source_blob": "b0fd7b67c0b4e641f8683c301710ad0c7d736db8",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "8. Reach-and-stay objectives and the policy quantifiers",
+      "anchor": "D2.ORDER",
+      "title": "Robust commitment and hard-risk firewalls",
+      "status": "PROVED",
+      "statement": "The explicit rational witnesses separate committed robust choice from model-revealed choice and unconstrained success from hard-risk-constrained success.",
+      "assumptions": [
+        "The declared one-decision model order; nature knows the committed distribution but does not observe its realized private action draw. The risk example uses its separate exact probability budget."
+      ],
+      "proof": "Greatest-element statements optimize over the entire rational interval, using min(p,1-p) and linear success/risk constraints rather than a sampled grid.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceContracts",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.robust_quantifier_order_separation"
+        },
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceContracts",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.hard_risk_budget_optimum"
+        },
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceContracts",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.unconstrained_success_is_not_risk_constrained"
+        }
+      ],
+      "open": "No rectangularity assumption or general robust dynamic programming result is silently introduced.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceContracts",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.robust_quantifier_order_separation",
+          "source_path": "PermanssonResearch/ReverseSolver/ResidenceContracts.lean",
+          "source_blob": "48738f671dbc2e9d5443ac50438898e5bd614ac5",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceContracts",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.hard_risk_budget_optimum",
+          "source_path": "PermanssonResearch/ReverseSolver/ResidenceContracts.lean",
+          "source_blob": "48738f671dbc2e9d5443ac50438898e5bd614ac5",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.ReverseSolver.ResidenceContracts",
+          "declaration": "PermanssonResearch.ReverseSolver.Residence.unconstrained_success_is_not_risk_constrained",
+          "source_path": "PermanssonResearch/ReverseSolver/ResidenceContracts.lean",
+          "source_blob": "48738f671dbc2e9d5443ac50438898e5bd614ac5",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "9. The common-world equilibrium and learning benchmark",
+      "anchor": "X1.MODEL",
+      "title": "Both-player one-shot certificates under the identical world",
+      "status": "PROVED",
+      "statement": "The candidate satisfies both indexed players' Bellman, pure, real mixed one-shot, and support conditions; the two typed generators share the identical world kernel and have primitive-derived atom formulas.",
+      "assumptions": [
+        "The explicit rational parameters, product conditional action laws, full memory state, and the declared alpha/P/U order. The incentive verification uses the same world probabilities as the typed models."
+      ],
+      "proof": "Finite player/state/action reductions verify exact Q/V equalities and inequalities. Integration of actual product action laws and deterministic updates yields each kernel atom, rather than assuming a matrix match.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.X1.MPECertificate",
+          "declaration": "PermanssonResearch.X1.bellman_equation"
+        },
+        {
+          "module": "PermanssonResearch.X1.MPECertificate",
+          "declaration": "PermanssonResearch.X1.no_real_mixed_deviation"
+        },
+        {
+          "module": "PermanssonResearch.X1.MPECertificate",
+          "declaration": "PermanssonResearch.X1.support_equality"
+        },
+        {
+          "module": "PermanssonResearch.X1.TypedModels",
+          "declaration": "PermanssonResearch.X1.identical_world"
+        },
+        {
+          "module": "PermanssonResearch.X1.TypedModels",
+          "declaration": "PermanssonResearch.X1.inducedKernel_atom_entry"
+        }
+      ],
+      "open": "An unrestricted discounted-strategy verification bridge remains OPEN. The accepted certificate proves both players indexed Bellman, pure/mixed one-shot and support conditions under the actual identical world.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.X1.MPECertificate",
+          "declaration": "PermanssonResearch.X1.bellman_equation",
+          "source_path": "PermanssonResearch/X1/MPECertificate.lean",
+          "source_blob": "564bbd73a9de1c572a560c0a0a333ddf6982c22c",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.MPECertificate",
+          "declaration": "PermanssonResearch.X1.no_real_mixed_deviation",
+          "source_path": "PermanssonResearch/X1/MPECertificate.lean",
+          "source_blob": "564bbd73a9de1c572a560c0a0a333ddf6982c22c",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.MPECertificate",
+          "declaration": "PermanssonResearch.X1.support_equality",
+          "source_path": "PermanssonResearch/X1/MPECertificate.lean",
+          "source_blob": "564bbd73a9de1c572a560c0a0a333ddf6982c22c",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.TypedModels",
+          "declaration": "PermanssonResearch.X1.identical_world",
+          "source_path": "PermanssonResearch/X1/TypedModels.lean",
+          "source_blob": "2d57bc2e11f15f2862861aa8c63de9ce0712432a",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.TypedModels",
+          "declaration": "PermanssonResearch.X1.inducedKernel_atom_entry",
+          "source_path": "PermanssonResearch/X1/TypedModels.lean",
+          "source_blob": "2d57bc2e11f15f2862861aa8c63de9ce0712432a",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "10. Failed replete persistence, distinct occupation laws, and intervention outputs",
+      "anchor": "X1.NOEXACT",
+      "title": "The proposed replete-region Exact-GR claim fails",
+      "status": "PROVED",
+      "statement": "Neither actual generator can satisfy Exact GR for the declared replete region: its one-step retention at the designated replete state is 13/20.",
+      "assumptions": [
+        "The declared replete region and actual typed kernels. The conclusion is independent of the recorded target law and convergence choice."
+      ],
+      "proof": "The actual world atom gives positive probability outside the region, contradicting the region-wide invariance required by Exact GR.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.X1.Comparison",
+          "declaration": "PermanssonResearch.X1.replete_one_step_leaks"
+        },
+        {
+          "module": "PermanssonResearch.X1.Comparison",
+          "declaration": "PermanssonResearch.X1.replete_not_exactGR"
+        }
+      ],
+      "open": "Finite survival calculations and positive finite property effects remain useful scoped outputs, but they are not Exact-GR or PR certificates. A direct check also finds the original Assumption4.1 two-descriptor-values-on-B clause false because h=x is constant on replete B. No new formal theorem is attributed to that check; the cited formal obstruction remains the proved leakage witness.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.X1.Comparison",
+          "declaration": "PermanssonResearch.X1.replete_one_step_leaks",
+          "source_path": "PermanssonResearch/X1/Comparison.lean",
+          "source_blob": "3cebd836e1945834ed7a1cef33d2c7906d801442",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.Comparison",
+          "declaration": "PermanssonResearch.X1.replete_not_exactGR",
+          "source_path": "PermanssonResearch/X1/Comparison.lean",
+          "source_blob": "3cebd836e1945834ed7a1cef33d2c7906d801442",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "10. Failed replete persistence, distinct occupation laws, and intervention outputs",
+      "anchor": "X1.OCCUPATION",
+      "title": "Actual random limits and deterministic descriptor identification",
+      "status": "PROVED",
+      "statement": "For every initial law, actual empirical occupations converge almost surely to the recurrent-class random limit. The verified actual-kernel Poisson certificate identifies its Boolean descriptor image with the separate recorded E/L target, hence proves convergence of the original descriptor empirical sequence to that deterministic target.",
+      "assumptions": [
+        "The actual finite typed models and original descriptor. The deterministic identification requires the proved all-state rational certificate, actual induced-kernel atom correspondence, and invariant-law cancellation, rather than an assumed ergodic factorization."
+      ],
+      "proof": "Reuse the existing canonical finite-chain strong law and original empirical bridge. Verify g-Kg on all actual states, cancel finite sums against invariant probabilities, identify Boolean probability measures from their true masses, then substitute into the random-limit theorem.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.X1.Occupation",
+          "declaration": "PermanssonResearch.X1.original_empirical_randomLimit_ae"
+        },
+        {
+          "module": "PermanssonResearch.X1.OccupationNumerics",
+          "declaration": "PermanssonResearch.X1.OccupationNumerics.poisson_identity"
+        },
+        {
+          "module": "PermanssonResearch.X1.OccupationTargets",
+          "declaration": "PermanssonResearch.X1.actual_poisson_identity"
+        },
+        {
+          "module": "PermanssonResearch.X1.OccupationTargets",
+          "declaration": "PermanssonResearch.X1.canonical_occupation_target_ae"
+        }
+      ],
+      "open": "No global uniqueness of physical invariant laws is inferred; E has multiple such laws. Descriptor occupation convergence supplies neither replete-region invariance nor an Exact-GR or PR certificate.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.X1.Occupation",
+          "declaration": "PermanssonResearch.X1.original_empirical_randomLimit_ae",
+          "source_path": "PermanssonResearch/X1/Occupation.lean",
+          "source_blob": "c40e0b0214bd133c6f7231e1d64d9d734ddc4e12",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.OccupationNumerics",
+          "declaration": "PermanssonResearch.X1.OccupationNumerics.poisson_identity",
+          "source_path": "PermanssonResearch/X1/OccupationNumerics.lean",
+          "source_blob": "31484fb175143c8cb885136192c39bccc7bf9ec5",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.OccupationTargets",
+          "declaration": "PermanssonResearch.X1.actual_poisson_identity",
+          "source_path": "PermanssonResearch/X1/OccupationTargets.lean",
+          "source_blob": "a38358fc4af78ab5965d1f0ce291e169df6f43c9",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.OccupationTargets",
+          "declaration": "PermanssonResearch.X1.canonical_occupation_target_ae",
+          "source_path": "PermanssonResearch/X1/OccupationTargets.lean",
+          "source_blob": "a38358fc4af78ab5965d1f0ce291e169df6f43c9",
+          "found": true
+        }
+      ]
+    },
+    {
+      "section": "10. Failed replete persistence, distinct occupation laws, and intervention outputs",
+      "anchor": "X1.FINITEOUTPUT",
+      "title": "Original finite property and margin bridge",
+      "status": "PROVED",
+      "statement": "The canonical time-three property and original constitutive effects/margins are connected to actual finite-kernel terminal evaluation on the valid prospective whole-region comparison object. The original finite-path survival probability also equals evaluation of the actual killed kernel, and its one-step value at y0 is13/20 for both generators; intermediate exits cannot be restored by terminal re-entry.",
+      "assumptions": [
+        "Exactly the declared property, actual baseline and replacement kernels, all nine comparison starts, and the frozen original comparison-set interface.",
+        "The killed-kernel bridge starts in the declared region and matches that region to the frozen specification; its general recurrence holds at every horizon."
+      ],
+      "proof": "Identify canonical terminal events with finite-kernel recursions and transfer the original absolute effects and infimum; independent enumeration checks the stated rational values. The existing killed-survival identity and kernel-power recursion identify the original stay event, separately from terminal repletion.",
+      "providers": [
+        {
+          "module": "PermanssonResearch.X1.FiniteOutputs",
+          "declaration": "PermanssonResearch.X1.baselineProperty_eq_kernelTerminal"
+        },
+        {
+          "module": "PermanssonResearch.X1.FiniteOutputs",
+          "declaration": "PermanssonResearch.X1.constitutiveEffect_eq_finiteEffect"
+        },
+        {
+          "module": "PermanssonResearch.X1.FiniteOutputs",
+          "declaration": "PermanssonResearch.X1.constitutiveMargin_eq_finiteInf"
+        },
+        {
+          "module": "PermanssonResearch.X1.FiniteOutputs",
+          "declaration": "PermanssonResearch.X1.survivalProbability_eq_kernelTerminal_killed"
+        },
+        {
+          "module": "PermanssonResearch.X1.FiniteOutputs",
+          "declaration": "PermanssonResearch.X1.survivalProbability_one"
+        }
+      ],
+      "open": "Kernel-checked reflection of the listed numerical infimum fractions remains separate until its own declaration and verification evidence are supplied.",
+      "source_providers": [
+        {
+          "module": "PermanssonResearch.X1.FiniteOutputs",
+          "declaration": "PermanssonResearch.X1.baselineProperty_eq_kernelTerminal",
+          "source_path": "PermanssonResearch/X1/FiniteOutputs.lean",
+          "source_blob": "d709ba5729ae9164d7776088e18123f59f059169",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.FiniteOutputs",
+          "declaration": "PermanssonResearch.X1.constitutiveEffect_eq_finiteEffect",
+          "source_path": "PermanssonResearch/X1/FiniteOutputs.lean",
+          "source_blob": "d709ba5729ae9164d7776088e18123f59f059169",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.FiniteOutputs",
+          "declaration": "PermanssonResearch.X1.constitutiveMargin_eq_finiteInf",
+          "source_path": "PermanssonResearch/X1/FiniteOutputs.lean",
+          "source_blob": "d709ba5729ae9164d7776088e18123f59f059169",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.FiniteOutputs",
+          "declaration": "PermanssonResearch.X1.survivalProbability_eq_kernelTerminal_killed",
+          "source_path": "PermanssonResearch/X1/FiniteOutputs.lean",
+          "source_blob": "d709ba5729ae9164d7776088e18123f59f059169",
+          "found": true
+        },
+        {
+          "module": "PermanssonResearch.X1.FiniteOutputs",
+          "declaration": "PermanssonResearch.X1.survivalProbability_one",
+          "source_path": "PermanssonResearch/X1/FiniteOutputs.lean",
+          "source_blob": "d709ba5729ae9164d7776088e18123f59f059169",
+          "found": true
+        }
+      ]
+    }
+  ]
+}

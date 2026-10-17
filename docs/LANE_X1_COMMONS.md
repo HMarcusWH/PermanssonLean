@@ -169,3 +169,31 @@ verification; exact arithmetic reflection for the horizon-3 output/margins;
 confirmatory descriptor
 and grounding gates. The invalid replete Exact-GR claim is explicitly rejected.
 The separately versioned manuscript/release kit must preserve these boundaries.
+
+## Accepted integration - 17 October 2026
+
+Source `54babeeefd980c83fd7373f7429e028e5fa574e6`, base
+`bc7617e15084673aa6053ab58282260226344c2b`, actual checked synthetic merge
+`f1da869c9558faa9935e57042afba04b22eb3e00`, main merge
+`5822cdff0fc360d9e368e10ff5f7576c3141a1b3`.
+Research run `39041222836`, job `117420952984`, passed with 5248 audited
+declarations, 810 exact regressions, 395 direct imports and PR-only C10
+generation/independent source binding. Original/default core, D0 goldens,
+source firewall, all required workflows and both application OS jobs passed.
+Fresh exact-head review found no major issues; no unresolved threads remain.
+Focused run `39041222796` compiled all eight modules, passed all 135 audited
+declarations (16 axiom-free), and ran 16 exact tests successfully.
+
+`canonical_occupation_target_ae` is now verified on the actual typed models
+for both modes and every initial probability law. It uses the all-state
+Poisson bridge, not a quotient assumption or global physical invariant-law
+uniqueness. Original finite-output/margin transport and the killed-path event
+bridge are also verified; the particular numerical margin fractions remain
+computational results pending arithmetic reflection.
+
+In addition to the formal leakage obstruction, `h=x` is constant on replete
+B. Direct inspection of the original definitions therefore also rejects
+Assumption 4.1's raw descriptor nontriviality clause. The all-nine-start
+comparison revision supplies the separate path-law comparison gate only.
+The [separately versioned research manuscript and kit](../release/v0.2.0/README.md)
+retain this limit, the exploratory selection history and all OPEN obligations.

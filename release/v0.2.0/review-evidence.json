@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "research_source_sha": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+  "review_kind": "Independent mathematical, source and artifact-integrity reviews by Codex agents",
+  "open_acceptance_findings": [],
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "issue": "Ancestry alone could attach a pre-X1 check to a later selected tree.",
+      "resolution": "Final selected research tree must equal the final X1 checked synthetic tree; that source must contain every manuscript provider.",
+      "independent_regression": "Relabeled stale D2 receipt rejected by the tree-identity guard."
+    },
+    {
+      "id": "R2",
+      "issue": "A generic smoke requirement could omit a required dependency workflow.",
+      "resolution": "Require the exact per-anchor set of focused workflow families, in addition to original/research/executable/application checks and both application OS jobs.",
+      "independent_regression": "Dropping A3 E1 focused evidence is rejected."
+    },
+    {
+      "id": "R3",
+      "issue": "Every basename manifest.json was excluded rather than only the root inventory.",
+      "resolution": "Only the exact root kit manifest is excluded; nested manifests are inventoried.",
+      "independent_regression": "Unexpected nested manifest is covered or causes inventory mismatch."
+    }
+  ],
+  "validation": {
+    "owner_substantive_mutation_cases_passed": 15,
+    "independent_archive_controls": [
+      "unchanged archive accepted",
+      "byte flip rejected",
+      "payload change with repaired checksum rejected",
+      "missing member with repaired checksum rejected",
+      "missing archive rejected"
+    ],
+    "preserved_c10_archives": 7,
+    "historical_canonical_blobs": 324
+  },
+  "scope": "Offline validation checks the captured GitHub receipts and actual local Git objects; it does not independently authenticate GitHub or replace Lean kernel checks. Scientific OPEN obligations remain explicit in the manuscript and acceptance evidence.",
+  "reviewed_code_sha256": {
+    "build_release.py": "36cf79c698d75b4474ee3782e63deea02316350a84223ea8a4ed18f8d89b6bab",
+    "verify_release.py": "aec9670fa8c35a8ceedf02a41dd908bb62bb7db57c6f8df8fbd8e71c629dd103",
+    "package_release.py": "658e1ad0fe83aa902cef311d12fe40fbe8b0b255b4e0165d422661091a86e8d7"
+  }
+}
