@@ -1,0 +1,51 @@
+name: F1 multi-agent protocols focused smoke
+
+# Focused source-head gate for F1 (closed-loop vs opponent-locked protocols).
+# It does NOT replace the full Research Lean workflow.
+
+on:
+  push:
+    branches: [claude/zen-einstein-ub8zgr-f1]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'PermanssonResearch/StrategicWorld/**'
+      - 'PermanssonResearch/MultiAgent/**'
+      - 'verification/research/test_f1_multiagent_protocols.py'
+      - 'verification/research/f1_axiom_audit.py'
+      - '.github/workflows/f1-multiagent-protocols-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  multiagent-protocols:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Exact rational multi-agent protocol adversaries
+        run: python3 -m unittest discover -s verification/research -p 'test_f1_multiagent_protocols.py' -v
+      - name: Compile F1 modules
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch.StrategicWorld.DeterministicOrbit PermanssonResearch.MultiAgent.ProductGame PermanssonResearch.MultiAgent.Protocols PermanssonResearch.MultiAgent.AdaptationBound PermanssonResearch.MultiAgent.ProtocolWitnesses
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+      - name: Declaration-level transitive axiom audit of every F1 declaration
+        run: python3 verification/research/f1_axiom_audit.py
+      - name: Reject proof placeholders and custom axioms in F1 sources
+        run: |
+          if grep -n -E '(^|[^[:alnum:]_])(sorry|admit|native_decide)([^[:alnum:]_]|$)|^[[:space:]]*((private|protected|noncomputable|unsafe)[[:space:]]+)*axiom[[:space:]]' \
+              PermanssonResearch/StrategicWorld/*.lean PermanssonResearch/MultiAgent/*.lean; then
+            echo 'Forbidden placeholder, native_decide or axiom in F1 sources'
+            exit 1
+          fi
+          echo 'F1 source firewall PASS'

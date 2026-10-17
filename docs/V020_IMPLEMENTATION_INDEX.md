@@ -14,6 +14,40 @@ dated ledgers ([proof ledger](V020_RESEARCH_PROOF_LEDGER.md),
 [research build](RESEARCH_BUILD.md), lane documents) → historical plans.
 A roadmap entry is never evidence that a theorem exists.
 
+## Verified integration snapshot — 17 October 2026
+
+This table records accepted provider commits and their actual PR synthetic-merge
+evidence. Historical stacked-branch notes below retain their original context.
+Later consumers still require verification against their own final merge base.
+
+| Lane | Accepted source | Main merge | Research run / checked synthetic merge |
+|---|---|---|---|
+| C69 / #69 | `d8a96a423f402fcbe791c6e114d169894739f944` | `54848efd002a0153641c9e340325dce857e1e5db` | `38905103071` / `3a11d5776772f87cc2160ca3222b1e34d1b3043c` |
+| C70 / #70 | `547d17e2fff8ab2136562dbb93562529bcda062e` | `24ea0836db5bb45c964b00121718613d843ce255` | `39035552321` / `775a1317cbe664d70ac2aebbc55e40e4811be2b3` |
+| E1 / #71 | `7ae2fab0b221a77e0a13ef83cedd6f8933569c26` | `2a2246ad851e2cdc435dcd0f98f259e1264541b3` | `39036276477` / `cfdf3386d2d5363f7187e2087310b7e1b152f752` |
+
+Each listed run passed the full research build, three-axiom transitive audit,
+research regressions, direct imports, source firewall, original-core build,
+D0 golden regeneration, and PR-only C10 generation plus independent
+source-bound verification. Their observed declaration/test/module counts were
+respectively `4383/715/366`, `4442/727/370`, and `4499/747/375`.
+The original Lean, executable verification and both application OS jobs also
+passed. Independent source/spec reviews found no new blocker in the stated scopes.
+
+The E1 integration preserves C70's reusable `c69_axiom_audit.run_audit` and moves
+the unchanged generic `compProd_map_left_eq_map_compProd_comap` proof to
+`Probability/CompProdPushforward.lean`, audited by E1. C69 owns 33 declarations
+after this move; E1 owns the shared helper. Every lane import is retained.
+
+F1's P1 correction is commit `6df963caba903d34cf42510429e756de9a8bcc79`.
+Standalone repaired head `0b001dc127c7f5e937b4be849df3e886597f2fc7` passed
+Research run `39035866423` (`4617/732/371`, C10 source-bound PASS) and a fresh
+Codex review with no major findings; the original P1 thread is resolved with
+that evidence. **Strict MA2 remains OPEN/unfulfilled.** The broader reactive
+counterexample is not MA2; the new full-law obstruction is explicitly limited
+to the deterministic recording toy. This F1/C70/E1 combined tree needs fresh
+exact-head synthetic-merge CI before acceptance.
+
 ## Status vocabulary
 
 | Status | Meaning |
@@ -54,7 +88,7 @@ FROZEN v0.1.8 CORE (PermanssonLean/)
   +-- A2 (#64) / CQ-1 ---------------------+               C70 (random-entry occupation, Prop 4.2f)
   +-- B2 (#65) / Lane B -------------------+                 |
   +-- exact quotients (Thm 7.4b) ----------+--> E1           |
-  +-- typed interventions + B2 ------------+--> F1           |
+  +-- typed interventions (frozen) --------+--> F1           |
   +-- A2 + C-lane occupation/C11 ----------+--> A3           |
   +-- D0/D1 + C69/C70 ---------------------------------------+--> D2 (separate solver lane)
   +-- E1, F1, A3, C70, D0/D1, C10/C11 -----------------------+--> X1 (flagship)
@@ -296,16 +330,33 @@ CORE.P52 (`abs_sInf_image_sub_sInf_image_le_of_uniform`), C69 shared lemma (move
 `Probability/CompProdPushforward.lean`). Consumers: X1, R. Manuscript: §7.4.3 (Thm 7.4c).
 Verification: local compile; `e1_axiom_audit.py` all declarations allowlisted (count in the PR); CI pending (E1 PR).
 
-## F1 — multi-agent closed-loop versus opponent-locked protocols
+## F1 — multi-agent closed-loop versus opponent-locked protocols (branch `claude/zen-einstein-ub8zgr-f1`, stacked on #69)
 
-| Anchor | Claim | Planned provider | Status |
+Lane document: [LANE_F1_MULTIAGENT_PROTOCOLS.md](LANE_F1_MULTIAGENT_PROTOCOLS.md). Modules:
+`StrategicWorld/DeterministicOrbit.lean`, `MultiAgent/ProductGame.lean`, `MultiAgent/Protocols.lean`,
+`MultiAgent/AdaptationBound.lean`, `MultiAgent/ProtocolWitnesses.lean`.
+
+| Anchor | Claim | Provider | Status |
 |---|---|---|---|
-| F1.1 | Conditional-product subclass: player action kernels `α_i`, update kernels `U_i`, common `U_0`, common `P`; product composition is a `StrategicWorldModel` | `MultiAgent/ProductGame.lean` | PROPOSED |
-| F1.2 | CL and OL protocols as distinct typed interventions; OL requires a declared measurable opponent anchor | `MultiAgent/Protocols.lean` | PROPOSED |
-| F1.3 | `|Δ_CL − Δ_OL| ≤ d_ψ(z_CL, z_OL) ≤ Δ_CL + Δ_OL`, connected to original path-law margins | `MultiAgent/AdaptationBound.lean`: `abs_closedLoop_sub_openLoop_le_adapt` | PROPOSED |
-| F1.4 | Witnesses: CL≠OL, CL=OL, baseline-support-only anchor non-identification; correlated actions out of scope | `MultiAgent/ProtocolWitnesses.lean` + Python | PROPOSED |
+| F1.0 | Deterministic support: Dirac induced kernel `δ_{f y}` ⇒ canonical path law `δ_{orbit}` (arbitrary measurable spaces, via frozen uniqueness); deterministic `α → P → U` on singleton-measurable `A`, `X` ⇒ Dirac induced kernel | `pathLaw_dirac_of_deterministic`, `inducedKernel_eq_dirac_of_deterministic`, `dirac_compProd_eq_map` | PROVED |
+| F1.1 | Two-player conditional-product SUBCLASS (V20.28, `n = 2`): `S = S₀ × (S₁ × S₂)`, `α = α₁ ⊗ α₂`, `U = U₀ ⊗ (U₁ ⊗ U₂)`, common `P`; assembles a frozen `StrategicGenerator` / `StrategicWorldModel`; pointwise product forms | `TwoPlayerGenerator`, `toGenerator`, `toModel`, `toGenerator_action_apply`, `toGenerator_update_apply` | DEFINED (+ PROVED apply lemmas) |
+| F1.2 | `J_CL` (player 1 is the ONLY treated player formalized) and declared-anchor `J_OL` as admissible strategic interventions of ONE frozen `InterventionFamily`; `P` and `U₀` held fixed; admissible ⇔ CL generator or OL generator with a menu anchor. The broader declared-kernel family does NOT enforce non-reactivity. Local strictness factors through `(s₀, s₂)` / `((s₀, s₂), a₂)`; the sufficient autonomous sub-menu additionally requires `U₀` to factor through old `S₀` alone, closing the endogenous-public-state response channel. Both protocols preserve that exogeneity. | `protocolFamily`, `closedLoopIntervention`, `openLoopIntervention`, `protocol_world_eq`, `protocol_admissible_cases`, `openLoop_self`, `IsStrictlyNonReactive`, `IsStrictlyNonReactive.action_eq`, `IsStrictlyNonReactive.update_eq`, `strictAnchors`, `IsExogenousCommon`, `opponentLockedAnchors` | DEFINED (+ PROVED) |
+| F1.3 | V20.29 for any two admissible strategic interventions of one family: `\|Δ₁ − Δ₂\| ≤ A ≤ Δ₁ + Δ₂`, `A = Δ₁` if `Δ₂ = 0` (both sides); CL/OL specialization; uniform gap on `B₁` ⇒ ORIGINAL frozen margins differ by at most the gap (direction not asserted). Metric identities, NOT causal mediation | `abs_effect_sub_le_protocolGap`, `protocolGap_le_effect_add`, `protocolGap_eq_of_effect_zero(_left)`, `abs_closedLoop_sub_openLoop_le_adapt` (spec name), `abs_constitutiveMargin_sub_le_of_protocolGap` | PROVED |
+| F1.4 | Boolean commons toy: MA1 (`Δ_CL = 1`, `Δ_OL = 0`, `A = 1`) and agreement in a strict family with PROVED exogenous common process; MA1 locus; broader state-feedback baseline-agreement counterexample (explicitly NOT strict MA2); MA3 non-product `correlatedLaw` (`S₀`-mediated correlation is not excluded) | `closedLoop_ne_openLoop`, `protocols_separate_after_reachable_state`, `closedLoop_eq_openLoopExtract`, `closedLoop_eq_openLoopWorld` (state-feedback), `declared_anchors_agree_on_support_but_openLoop_differs`, `gen_common_exogenous`, `anchorConst_strict`, `anchorWorld_not_strict`, `baselineOpponent_not_strict`, `correlatedLaw_ne_prod`, `correlated_generator_not_product`; `test_f1_multiagent_protocols.py` (17) | PROVED / executable; strict MA2 excluded |
+| F1.MA2 | Strict baseline-agreeing OL anchors with different laws: no witness supplied. Scoped obstruction in the Boolean `S₀ = Unit`, deterministic own-action-recording toy: ANY two strict anchors agreeing with baseline at `y₀` yield IDENTICAL full OL laws for ANY treated action function. No general stochastic impossibility claim. Spec unchanged. | `strict_recording_anchor_orbit_eq`, `strict_recording_anchor_pathLaw_eq`, `strict_recording_anchors_pathLaw_eq` | Strict MA2 OPEN / unfulfilled; scoped obstruction PROVED |
+| F1.5 | Treated player 2; `n` players; typed clock construction (clock in baseline `S₀`/`U₀`, or anchor's own `S₂` via its update; Python only); typed feasibility (separate Python toy only); general exogeneity characterization; causal mediation | — | OPEN / not claimed |
 
-Inputs: typed interventions (frozen), B2.1. Consumers: X1, R. Manuscript: §5.4.3.
+Inputs (frozen v0.1.8 core unless noted): typed interventions (`InterventionFamily`, `TypedIntervention`,
+`AdmissibleStrategicIntervention`, `InterventionTarget.isStrategic_jointStrategic`,
+`AdmissibleStrategicIntervention.world_eq`, `applyReplacement`); `constitutiveEffect`, `constitutiveMargin`,
+`constitutiveEffect_nonneg`, `baselinePropertyValue`, `intervenedPropertyValue`, `pathProbability`, Mathlib's `diracProba`,
+`ConstitutiveComparisonSet.pathLawNontrivial`; the frozen helper
+`PermanssonLean/Regime/Perturbation.lean: abs_sInf_image_sub_sInf_image_le_of_uniform`; well-posedness
+(`pathLaw_existsUnique`, `pathLaw_spec`, `inducedKernel_apply`, `StrategicWorldModel.inducedKernel_isMarkov`).
+B2.1 is NOT used (V20.29 compares two intervened outputs and is proved directly). Consumers: X1, R. Manuscript: §5.4.3.
+Verification before correction: `b7e83c3` had 5/5 successful workflows and 111/111 declarations allowlisted.
+Corrected source: 17/17 local exact rational tests pass; pinned Lean, updated axiom audit and source-bound CI
+must be rerun before acceptance. See the lane document for the strict MA2 boundary and exact assumptions.
 
 ## A3 — contractive infinite-horizon robustness (branch `claude/zen-einstein-ub8zgr-a3`, stacked on the E1 branch / #71)
 

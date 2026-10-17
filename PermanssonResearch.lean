@@ -13,6 +13,11 @@ import PermanssonResearch.RegimeExit.ConditionalRestartBridge
 import PermanssonResearch.RegimeExit.StationaryLastStateReduction
 import PermanssonResearch.RegimeExit.ShiftedPrefixStationarity
 import PermanssonResearch.RegimeExit.StoppedFutureRestart
+import PermanssonResearch.StrategicWorld.DeterministicOrbit
+import PermanssonResearch.MultiAgent.ProductGame
+import PermanssonResearch.MultiAgent.Protocols
+import PermanssonResearch.MultiAgent.AdaptationBound
+import PermanssonResearch.MultiAgent.ProtocolWitnesses
 import PermanssonResearch.Probability.CompProdPushforward
 import PermanssonResearch.Probability.EventTVCalculus
 import PermanssonResearch.Quotient.ApproxPrefix
