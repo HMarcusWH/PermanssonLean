@@ -105,7 +105,8 @@ theorem action_product (m : Mode) (y : Y) :
 
 theorem update_dirac (m : Mode) (u : UI) :
     (model m).generator.update u = Measure.dirac (nextMemory m u.1.1 u.1.2) :=
-  Kernel.deterministic_apply _ _
+  Kernel.deterministic_apply (f := fun v : UI => nextMemory m v.1.1 v.1.2)
+    Measurable.of_discrete u
 
 /-- The update is performed after P, but the specified reinforcement reads the
 OLD world and recorded action. It does not accidentally substitute x'. -/
@@ -151,6 +152,6 @@ theorem inducedKernel_atom_entry (m : Mode) (y z : Y) :
   congr 1
   rw [coin_lintegral]
   simp [update, Kernel.deterministic_apply, Measure.dirac_apply,
-    sum_bool, boolMass, add_comm]
+    Set.indicator, mul_ite, boolMass, add_comm]
 
 end PermanssonResearch.X1

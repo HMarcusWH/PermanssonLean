@@ -438,6 +438,8 @@ import PermanssonResearch.X1.MPECertificate
 import PermanssonResearch.X1.Comparison
 import PermanssonResearch.X1.FiniteOutputs
 import PermanssonResearch.X1.Occupation
+import PermanssonResearch.X1.OccupationNumerics
+import PermanssonResearch.X1.OccupationTargets
 
 /-!
 # PermanssonResearch

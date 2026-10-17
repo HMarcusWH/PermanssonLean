@@ -27,6 +27,29 @@ def enumerate_paths(mode, horizon, restrain=False, reset=False, start=C.START):
 
 
 class X1IncentiveTests(unittest.TestCase):
+    def test_certificate_policy_is_the_actual_equilibrium_generator(self):
+        """Equal world transitions alone could hide asymmetric non-equilibrium
+        policies. Verify BOTH actual marginals and incentive expectations."""
+        for y in C.STATES:
+            p = F(1, 2) if y[1] else F(0)
+            actual = C.action_law("E", y)
+            expected = {a: (p if a[0] else 1-p)*(p if a[1] else 1-p) for a in C.ACTIONS}
+            self.assertEqual(actual, expected)
+            for i in range(2):
+                bellman = sum(pa * (C.reward(i, y[1], a) + C.BETA *
+                                     sum(px*C.value(i, x) for x, px in C.world(y, a).items()))
+                              for a, pa in actual.items())
+                self.assertEqual(bellman, C.value(i, y[1]))
+                opponent = {b: sum(pa for a, pa in actual.items() if a[1-i] == b) for b in C.BOOL}
+                for own in C.BOOL:
+                    deviation = F(0)
+                    for other, mass in opponent.items():
+                        a = (own, other) if i == 0 else (other, own)
+                        deviation += mass * (C.reward(i, y[1], a) + C.BETA *
+                                              sum(px*C.value(i, x) for x, px in C.world(y, a).items()))
+                    self.assertEqual(deviation, C.deviation(i, y[1], own))
+                    self.assertLessEqual(deviation, C.value(i, y[1]))
+
     def test_both_players_bellman_and_all_pure_deviations(self):
         """Mirrors bellman_equation, no_pure_deviation, support_equality."""
         for i, x in product(range(2), C.BOOL):

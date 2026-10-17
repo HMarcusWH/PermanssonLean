@@ -21,8 +21,10 @@ MODULES = [
     "PermanssonResearch/X1/Comparison.lean",
     "PermanssonResearch/X1/FiniteOutputs.lean",
     "PermanssonResearch/X1/Occupation.lean",
+    "PermanssonResearch/X1/OccupationNumerics.lean",
+    "PermanssonResearch/X1/OccupationTargets.lean",
 ]
-IMPORTS = ["PermanssonResearch.X1.FiniteOutputs", "PermanssonResearch.X1.Occupation"]
+IMPORTS = ["PermanssonResearch.X1.FiniteOutputs", "PermanssonResearch.X1.OccupationTargets"]
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
 ATTR = r"(?:@\[[^\]]*\]\s*)?"
 MODS = r"(?:(?:noncomputable|protected)\s+)*"

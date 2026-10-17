@@ -9,6 +9,7 @@ on:
       - 'PermanssonResearch/X1/**'
       - 'verification/research/x1_commons.py'
       - 'verification/research/test_x1_commons.py'
+      - 'verification/research/test_x1_poisson.py'
       - 'verification/research/x1_axiom_audit.py'
       - '.github/workflows/x1-commons-smoke.yml'
   workflow_dispatch:
@@ -25,13 +26,13 @@ jobs:
         with:
           python-version: '3.13'
       - name: Exact incentives, common world, paths and stationary calculations
-        run: python3 -m unittest discover -s verification/research -p 'test_x1_commons.py' -v
+        run: python3 -m unittest discover -s verification/research -p 'test_x1*.py' -v
       - name: Compile actual typed models and both-player certificates
         uses: leanprover/lean-action@v1
         with:
           auto-config: false
           build: true
-          build-args: PermanssonResearch.X1.FiniteOutputs PermanssonResearch.X1.Occupation
+          build-args: PermanssonResearch.X1.FiniteOutputs PermanssonResearch.X1.OccupationTargets
           test: false
           lint: false
           use-mathlib-cache: true

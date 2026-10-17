@@ -11,6 +11,12 @@ namespace PermanssonResearch.X1
 set_option autoImplicit false
 open PermanssonLean
 
+/-- The very policy in both-player Bellman certificates is the actual E
+generator's joint law, not an unrelated rational policy with similar outcomes. -/
+theorem equilibrium_action_implements_policy (y : Y) :
+    (model .equilibrium).generator.action y =
+      (coin (piExtract y.2)).prod (coin (piExtract y.2)) := rfl
+
 noncomputable def restrainAction : Kernel Y Action :=
   Kernel.deterministic (fun _ => (false, false)) Measurable.of_discrete
 

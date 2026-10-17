@@ -69,6 +69,7 @@ descriptor-nondegeneracy or confirmatory gates.
 | `baselineProperty_eq_kernelTerminal`, `primitiveTerminal_eq_kernelTerminal` | Actual canonical ψ equals finite-kernel evaluation; baseline evaluation uses primitive-derived atoms. |
 | `constitutiveEffect_eq_finiteEffect`, `constitutiveMargin_eq_finiteInf` | ORIGINAL effects/margin equal finite-kernel expressions on the genuine v2 comparison object; specific external numerical fractions still need arithmetic reflection. |
 | `physicalRandomLimit_ae`, `observedRandomLimit_ae`, `original_empirical_randomLimit_ae` | Both actual models have a.s. random recurrent-class occupation limits under arbitrary initial laws, including the original empirical sequence; no deterministic target identification assumed. |
+| `OccupationNumerics.poisson_identity`, `actual_poisson_identity`, `canonical_occupation_target_ae` | Follow-up proof scripts identify the distinct descriptor targets via an exact Poisson identity on all 18 actual states, including transient states. These scripts remain pending pinned Lean validation. |
 | `observedRandomLimit_full_law` | Complete class-selection-weighted law on observed probability measures under the actual typed path law. |
 
 These source proof scripts still require pinned Lean compilation and their
@@ -106,6 +107,15 @@ against its unchanged twelve-state budget. A formal quotient/actual-kernel
 occupation bridge remains open; a quotient calculation is not silently a
 source-typed occupation theorem.
 
+The follow-up `OccupationNumerics.lean` and `OccupationTargets.lean` scripts
+use a direct alternative to quotient transport: certify the Poisson equation
+on every actual state, connect every rational entry to `inducedKernel_atom_entry`,
+cancel against any invariant probability, then identify the descriptor law of
+the actual random occupation limit. This route requires no global uniqueness
+of the physical invariant law. These scripts are pending pinned validation;
+the four additional independent tests check every row, wrong-target mutations,
+transient-state bias corruption, and E's nine distinct physical invariant laws.
+
 For v2, every one of the nine starts is evaluated and retained in the receipt:
 
 | Finite-matrix absolute-effect infimum on all B | E | L |
@@ -142,14 +152,15 @@ None is a numerical score or empirical institutional claim.
 ## Verification and remaining dependencies
 
 Run the focused exact suite, pinned builds of `PermanssonResearch.X1.FiniteOutputs`
-and `PermanssonResearch.X1.Occupation`,
+and `PermanssonResearch.X1.OccupationTargets`,
 `x1_axiom_audit.py`, then the full research/default builds and original checks.
 The focused workflow does not replace synthetic-merge CI or PR-only C10
-source-bound evidence. All six new modules are imported directly by the
+source-bound evidence. All eight new modules are imported directly by the
 research root. The source does not require the broader F1 state-feedback witness.
 
 Outstanding scientific/formal bridges: unrestricted discounted strategy
 verification; exact arithmetic reflection for the horizon-3 output/margins;
-deterministic stationary-target identification and quotient transport; confirmatory descriptor
+validation of the direct deterministic stationary-target proof scripts (the
+independent quotient transport is not assumed); confirmatory descriptor
 and grounding gates. The invalid replete Exact-GR claim is explicitly rejected.
 The separately versioned manuscript/release kit must preserve these boundaries.
