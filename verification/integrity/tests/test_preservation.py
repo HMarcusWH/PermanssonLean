@@ -207,6 +207,43 @@ class PreservationTests(unittest.TestCase):
                     validate_maintenance_scope(self.fixture.repo, without_root)
                     scope_rejects(candidate)
 
+    def test_candidate_bound_maintenance_cli(self):
+        from verification.integrity.maintenance_scope import main
+        baseline = self.fixture.accepted
+        tree = self.fixture.repo.commit(baseline).tree
+        report = self.fixture.root / "artifacts" / "maintenance-scope.json"
+        with (mock.patch("verification.integrity.maintenance_scope.ACCEPTED_RELEASE", baseline),
+              mock.patch("verification.integrity.maintenance_scope.ACCEPTED_RELEASE_TREE", tree),
+              mock.patch("verification.integrity.preservation.ACCEPTED_RELEASE", baseline),
+              mock.patch.dict(os.environ, {"GITHUB_ACTIONS": "false"})):
+            for candidate, code in (
+                (baseline, 0),
+                (self.fixture.commit({b"PermanssonResearch/NewUnprotected.lean":
+                                      ("100644", b"-- allowed permanent addition\n")}), 1),
+            ):
+                with self.subTest(candidate=candidate, expected_exit=code):
+                    self.assertEqual("PASS", self.fixture.compare(candidate).status)
+                    self.assertEqual(code, main(["--repo", str(self.fixture.root),
+                                                "--candidate", candidate,
+                                                "--report", str(report)]))
+                    captured = json.loads(report.read_bytes())
+                    schema = json.loads((Path(__file__).resolve().parents[1]
+                                         / "schemas/check-report.schema.json").read_bytes())
+                    self.assertEqual(schema["$id"], captured["format"])
+                    self.assertEqual([], [key for key in schema["required"] if key not in captured])
+                    self.assertIn(captured["check"], schema["properties"]["check"]["enum"])
+                    self.assertIn(captured["status"], schema["properties"]["status"]["enum"])
+                    self.assertEqual(candidate, captured["context"]["checked_sha"])
+                    self.assertEqual(self.fixture.repo.commit(candidate).tree,
+                                     captured["context"]["checked_tree"])
+                    self.assertEqual("local", captured["context"]["event"])
+                    self.assertEqual("E_MAINTENANCE_SCOPE" if code else None,
+                                     captured["error_code"])
+                    if not code:
+                        self.assertEqual(baseline, captured["details"]["accepted_release"])
+                        self.assertTrue(captured["details"]["acceptance_only"])
+                        self.assertFalse(captured["details"]["permanent_preservation_policy"])
+
     def test_protected_root_symlink_and_file_directory(self):
         self.rejected({b"paper": ("120000", b"elsewhere")}, "E_PROTECTED_TYPE")
         self.rejected({b"paper/original.md": None,

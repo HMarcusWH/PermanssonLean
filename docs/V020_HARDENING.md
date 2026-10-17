@@ -28,6 +28,7 @@ Use Python 3.13 and full SHA-1 Git history. The preservation and export checks r
 python -B -m verification.integrity.preservation --repo . --candidate FULL_SHA --report /scratch/preservation.json
 python -B -m verification.integrity.tex_export --repo . --candidate FULL_SHA --report /scratch/tex.json
 python -B -m verification.integrity.run_tests --suite reference --report /scratch/reference-tests.json
+python -B -m verification.integrity.maintenance_scope --repo . --candidate ACTUAL_SYNTHETIC_SHA --report /scratch/maintenance-scope.json
 python -B -m verification.archive.offline_smoke --repo . --candidate FULL_SHA --supplement archival/v0.2.0/supplement-1 --scratch /scratch/new-empty-restore --report /scratch/archive.json
 ```
 
@@ -47,7 +48,7 @@ It also pins the complete reviewed workflow profile, so additional steps,
 actions, event filters or runtime changes require an explicit reviewed policy
 update. This does not independently authenticate candidate-owned checker code.
 
-Code verification, active enforcement and external publication are distinct states. Before integration, obtain current H/B/S evidence, genuine synthetic ordered parents, fresh maintenance PR-only C10 evidence, zero release changes, zero Lean changes and resolved substantive findings. The eventual M must have the accepted synthetic tree and ordered parents. Final maintenance acceptance belongs in an external receipt, avoiding a self-referential archival package.
+Code verification, active enforcement and external publication are distinct states. Before integration, obtain current H/B/S evidence, genuine synthetic ordered parents, fresh maintenance PR-only C10 evidence, zero release changes, zero Lean changes and resolved substantive findings. The one-time `maintenance_scope` command must compare the actual current synthetic candidate against A across both complete Lean trees and both root files. Retain its PASS report and join its exact candidate/tree to the independently captured current PR H/B/S context; a local invocation reports local execution. Fixture tests alone do not satisfy this acceptance step. It is deliberately absent from the permanent workflow, which continues to permit legitimate later research additions. The eventual M must have the accepted synthetic tree and ordered parents. Final maintenance acceptance belongs in an external receipt, avoiding a self-referential archival package.
 
 `.github/repository-rules/main.proposed.json` is deliberately disabled. Settings activation, an unused annotated remote tag and external publication require the separate authorized rollout. Resolve an eligible independent reviewer, observe exact job contexts/App IDs, apply and read back effective rules including bypass data, verify tag peeling to the accepted release, and retrieve/hash the externally published supplement. A proposed file or local archive does not complete those operations.
 
