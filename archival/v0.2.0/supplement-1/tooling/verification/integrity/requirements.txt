@@ -1,0 +1,2 @@
+# Only the historical artifact replay needs a third-party Python dependency.
+pypdf==6.10.0
