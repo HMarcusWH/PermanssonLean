@@ -39,8 +39,11 @@ declared non-reactive anchor".
   only those and its OWN action. `protocolFamily G P r (strictAnchors anchors)` is
   the strict family. Even then `S₀` is updated by the common `U₀`, which may read
   player 1's action, so exogeneity of `S₀` is a separate modelling obligation.
-  A nonstationary (clocked) anchor needs the clock in the BASELINE `S₀`/`U₀`,
-  because protocols never change `U₀`.
+  A nonstationary (clocked) anchor needs its clock in a state coordinate that
+  the protocol can actually update: either the BASELINE `S₀` with the baseline
+  `U₀` (protocols never change `U₀`), or the anchor's OWN `S₂` through the
+  anchor's own update (when the `S₂` type can hold the clock, at the cost of
+  `S₂`'s baseline meaning).
 
 Typed action feasibility of anchors is not encoded; it is a property the menu
 must satisfy.

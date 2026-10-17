@@ -126,16 +126,22 @@ def anchor_key(y):
     return (y[0][0], s2(y))
 
 
+def norm(law):
+    """Laws as measures: drop explicit zero atoms before comparing."""
+    return {k: v for k, v in law.items() if v != 0}
+
+
 def strictly_non_reactive(anchor, states=STATES):
     """Lean IsStrictlyNonReactive: the action law depends only on (s0, s2), the
     update law only on ((s0, s2), a2)."""
     act, up = anchor
     for y, z in product(states, repeat=2):
-        if anchor_key(y) == anchor_key(z) and act(y) != act(z):
+        if anchor_key(y) == anchor_key(z) and norm(act(y)) != norm(act(z)):
             return False
     inputs = [(y, a, x) for y in states for a in ACTIONS for x in B]
     for (y, a, x), (z, b, w) in product(inputs, repeat=2):
-        if anchor_key(y) == anchor_key(z) and a[1] == b[1] and up(y, a, x) != up(z, b, w):
+        if (anchor_key(y) == anchor_key(z) and a[1] == b[1]
+                and norm(up(y, a, x)) != norm(up(z, b, w))):
             return False
     return True
 
@@ -145,7 +151,9 @@ def is_protocol(Gi, G, r1, menu, states=STATES):
     opponent is G's own (CL) or a declared menu anchor (OL)."""
     ya = [(y, a) for y in states for a in ACTIONS]
     yax = [(y, a, x) for y, a in ya for x in B]
-    same = lambda f, g, args: all(f(*t) == g(*t) for t in args)
+    same = lambda f, g, args: all(norm(f(*t)) == norm(g(*t)) for t in args)
+    if Gi.joint_action is not None:          # correlated override: not a product game
+        return False
     if not (same(Gi.world, G.world, ya) and same(Gi.up0, G.up0, yax)):
         return False
     if not (same(Gi.act1, r1[0], [(y,) for y in states]) and same(Gi.up1, r1[1], yax)):
@@ -173,6 +181,12 @@ class ResponseVersusFrozenTests(unittest.TestCase):
         self.assertTrue(strictly_non_reactive(ANCHOR_EXTRACT))
         self.assertFalse(strictly_non_reactive(ANCHOR_WORLD))
         self.assertFalse(strictly_non_reactive((BASE.act2, BASE.up2)))
+        # the UPDATE half of the predicate: constant action, update reading a1 or x'
+        self.assertFalse(strictly_non_reactive((ANCHOR_CONST[0], lambda y, a, x: dirac(a[0]))))
+        self.assertFalse(strictly_non_reactive((ANCHOR_CONST[0], lambda y, a, x: dirac(x))))
+        # explicit zero atoms do not change the law
+        self.assertTrue(strictly_non_reactive(
+            (lambda y: {False: ONE, True: ZERO} if s1(y) else {False: ONE}, ANCHOR_CONST[1])))
 
     def test_ma1_closed_loop_differs_from_strict_opponent_locked(self):
         z0, zcl, zol = psi(BASE), psi(closed_loop(BASE, R1)), psi(open_loop(BASE, R1, ANCHOR_CONST))
@@ -214,7 +228,9 @@ class AnchorIdentificationTests(unittest.TestCase):
                     for x in B:
                         self.assertEqual(anc[1](y, a, x), BASE.up2(y, a, x))
         off = (((), (True, False)), True)
-        self.assertIn(off, reachable(closed_loop(BASE, R1), Y0, 2))   # reachable under J
+        self.assertIn(off, reachable(closed_loop(BASE, R1), Y0, 2))   # reachable under CL
+        for anc in (ANCHOR_CONST, ANCHOR_WORLD):                      # ...and under each OL run
+            self.assertIn(off, reachable(open_loop(BASE, R1, anc), Y0, 2))
         self.assertNotIn(off, support)
         self.assertNotEqual(ANCHOR_CONST[0](off), ANCHOR_WORLD[0](off))
         self.assertNotEqual(psi(open_loop(BASE, R1, ANCHOR_CONST)),
@@ -226,8 +242,9 @@ class ProductSubclassTests(unittest.TestCase):
     CORR = {(True, True): HALF, (False, False): HALF}
 
     def test_ma3_correlated_law_not_product_exact(self):
-        """Exact argument mirroring correlatedLaw_ne_prod: if p1·q1 = 1/2 and
-        p0·q0 = 1/2 then p1, q0 > 0, so p1·q0 > 0, contradicting P(t, f) = 0."""
+        """A Bool x Bool probability law is a product iff it equals the product of
+        its own marginals; correlatedLaw is not (Lean: correlatedLaw_ne_prod, by a
+        different singleton argument)."""
         def is_product(law):
             p1 = sum((v for (a, _), v in law.items() if a), ZERO)
             q1 = sum((v for (_, b), v in law.items() if b), ZERO)
@@ -279,12 +296,14 @@ class FeasibilityAndWorldTests(unittest.TestCase):
         def ok(Gi, who):
             return all(set(who(z)) <= feasible(z) for z in reachable(Gi, Y0, H))
 
-        self.assertTrue(ok(G, G.act2) and ok(closed_loop(G, r1), G.act2))
+        self.assertTrue(ok(G, G.act1) and ok(G, G.act2))                    # baseline
+        self.assertTrue(ok(closed_loop(G, r1), r1[0]) and ok(closed_loop(G, r1), G.act2))
         menu = [a for a in (ANCHOR_CONST, guarded, always)
                 if ok(open_loop(G, r1, a), a[0])]
         self.assertEqual(len(menu), 2)
         self.assertNotIn(always, menu)
         for a in menu:
+            self.assertTrue(ok(open_loop(G, r1, a), r1[0]))                  # player 1 too
             self.assertTrue(is_protocol(open_loop(G, r1, a), G, r1, menu))
         self.assertFalse(is_protocol(open_loop(G, r1, always), G, r1, menu))
 
@@ -301,6 +320,13 @@ class FeasibilityAndWorldTests(unittest.TestCase):
         self.assertEqual((psi(ol), psi(ol_badP)), (ONE, ZERO))
         not_in_menu = open_loop(BASE, R1, (lambda y: dirac(not xw(y)), ANCHOR_CONST[1]))
         self.assertFalse(is_protocol(not_in_menu, BASE, R1, menu))
+        # menu action with a non-menu update; wrong player-1 replacement; correlated override
+        mixed = open_loop(BASE, R1, (ANCHOR_CONST[0], lambda y, a, x: dirac(not a[1])))
+        self.assertFalse(is_protocol(mixed, BASE, R1, menu))
+        wrong_r1 = closed_loop(BASE, (lambda y: dirac(False), R1[1]))
+        self.assertFalse(is_protocol(wrong_r1, BASE, R1, menu))
+        corr = cl.with_(joint_action=lambda y: {(True, True): ONE})
+        self.assertFalse(is_protocol(corr, BASE, R1, menu))
 
     def test_openloop_self_is_closed_loop(self):
         """Mirrors openLoop_self: the baseline opponent as 'anchor' gives CL."""
@@ -345,15 +371,28 @@ class ClockTests(unittest.TestCase):
 class DirectionVersusGapTests(unittest.TestCase):
 
     def test_v20_29_bounds_and_equality_cases_on_random_games(self):
-        """The two-sided bound is a metric identity; the substantive checks are
-        the equality clauses and openLoop_self on random product games."""
+        """The two-sided bound and the equality clauses are metric identities
+        (arithmetic sanity checks). The checks that can fail are: psi computed from
+        path laws equals an INDEPENDENT state-distribution iteration, openLoop_self,
+        and non-degeneracy (OL differs from CL somewhere; an equality case with a
+        nonzero effect is hit)."""
         rng = random.Random(20261017)
 
         def rlaw():
             p = F(rng.randint(0, 8), 8)
             return {True: p, False: 1 - p}
 
-        eq_cases = 0
+        eq_cases, ol_ne_cl, nonzero_eq = 0, 0, 0
+
+        def psi_by_distribution(G, y, horizon):
+            mu = {y: ONE}
+            for _ in range(horizon):
+                nxt = {}
+                for u, p in mu.items():
+                    for z, q in G.step(u).items():
+                        nxt[z] = nxt.get(z, ZERO) + p * q
+                mu = nxt
+            return sum((p for z, p in mu.items() if s2(z)), ZERO)
         for _ in range(60):
             tbl = {k: rlaw() for k in product(B, repeat=3)}
             tbl2 = {k: rlaw() for k in product(B, repeat=3)}
@@ -370,24 +409,31 @@ class DirectionVersusGapTests(unittest.TestCase):
                 dc, do, gap = abs(zc - z0), abs(zo - z0), abs(zc - zo)
                 self.assertLessEqual(abs(dc - do), gap)
                 self.assertLessEqual(gap, dc + do)
+                self.assertEqual(zc, psi_by_distribution(closed_loop(G, r), y, 3))
+                self.assertEqual(zo, psi_by_distribution(open_loop(G, r, anc), y, 3))
+                ol_ne_cl += zc != zo
                 if do == 0:
-                    self.assertEqual(gap, dc); eq_cases += 1
+                    self.assertEqual(gap, dc); eq_cases += 1; nonzero_eq += dc != 0
                 if dc == 0:
-                    self.assertEqual(gap, do); eq_cases += 1
+                    self.assertEqual(gap, do); eq_cases += 1; nonzero_eq += do != 0
                 self.assertEqual(psi(open_loop(G, r, (G.act2, G.up2)), y, 3), zc)
         self.assertGreater(eq_cases, 0)
+        self.assertGreater(ol_ne_cl, 100)
+        self.assertGreater(nonzero_eq, 0)
 
     def test_direction_not_determined_by_gap(self):
         """For the SAME protocol pair (CL vs OL with ANCHOR_CONST), Δ_CL > Δ_OL at
         one state and Δ_CL < Δ_OL at another; on B = {s1 = False} the margins
         differ and the uniform gap bounds their difference with equality."""
         cl, ol = closed_loop(BASE, R1), open_loop(BASE, R1, ANCHOR_CONST)
-        signs = set()
+        gaps_by_sign = {}
         for y in STATES:
             z0, zc, zo = psi(BASE, y), psi(cl, y), psi(ol, y)
             if abs(zc - z0) != abs(zo - z0):
-                signs.add(abs(zc - z0) > abs(zo - z0))
-        self.assertEqual(signs, {True, False})
+                gaps_by_sign.setdefault(abs(zc - z0) > abs(zo - z0), set()).add(abs(zc - zo))
+        self.assertEqual(set(gaps_by_sign), {True, False})
+        # the same gap value occurs with both signs: A does not determine the direction
+        self.assertTrue(gaps_by_sign[True] & gaps_by_sign[False])
         Bset = [y for y in STATES if not s1(y)]
         dcs = [abs(psi(cl, y) - psi(BASE, y)) for y in Bset]
         dos = [abs(psi(ol, y) - psi(BASE, y)) for y in Bset]

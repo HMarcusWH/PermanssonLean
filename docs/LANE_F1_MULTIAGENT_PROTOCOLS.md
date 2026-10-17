@@ -29,7 +29,7 @@ Lean makes both readings explicit.
    - The anchor therefore never reads player 1's private state, the world state or player 1's action.
    - Caveat: `S₀` is updated by the common `U₀`, which may read player 1's action. Exogeneity of `S₀` is a separate modelling obligation.
 
-Protocols never change `U₀` or `P`. A nonstationary, clocked anchor therefore needs the clock declared in the **baseline** `S₀`/`U₀`; the Python clock test builds it that way.
+Protocols never change `U₀` or `P`. A nonstationary, clocked anchor therefore needs its clock in a state coordinate the protocol can update: either the **baseline** `S₀`/`U₀` (the Python clock test builds it that way), or the anchor's **own** `S₂` through the anchor's own update, when `S₂` can hold the clock (at the cost of `S₂`'s baseline meaning).
 
 Typed action **feasibility** of anchors is not encoded in Lean. It is a property the menu must satisfy. The Python suite has a separate feasibility toy, independent of the F1.4 witness, which has no feasibility constraint.
 
@@ -63,11 +63,11 @@ Typed action **feasibility** of anchors is not encoded in Lean. It is a property
 | OL | read world state (`anchorWorld`) | **no** | 1 | `openLoopWorld_value` |
 
 - **MA1 (`closedLoop_ne_openLoop`, strict family).** `Δ_CL = 1`, `Δ_OL = 0`, `A = 1`.
-- **MA1 locus (`protocols_separate_after_reachable_state`).** At `y₀` the CL opponent and the strict anchor play the same law. At the CL state at time 1, which is **not** on the baseline orbit, they play different laws. The equality of the two property values at horizon 1 is checked in Python only.
+- **MA1 locus (`protocols_separate_after_reachable_state`).** The CL and baseline path laws from `y₀` are the Dirac masses at the stated orbits (conjuncts of the theorem). At `y₀` the CL opponent and the strict anchor play the same law. At the CL state at time 1, which is **not** on the baseline orbit, they play different laws. The equality of the two property values at horizon 1 is checked in Python only.
 - **Agreement (`closedLoop_eq_openLoopExtract`, strict family).** The gap is 0.
 - **State-feedback agreement (`closedLoop_eq_openLoopWorld`).** This is the same equality for `anchorWorld`. That anchor reads `x`, which equals player 1's last action, so it is not opponent-locked in the strict sense.
 - **MA2 (`anchors_agree_on_support_but_openLoop_differs`).**
-  - The strict `anchorConst` and the state-feedback `anchorWorld` **both coincide with the baseline opponent**: action kernels at every baseline-reachable state, and update kernels everywhere.
+  - The baseline path law from `y₀` is the Dirac mass at its orbit (a conjunct of the theorem), and the strict `anchorConst` and the state-feedback `anchorWorld` **both coincide with the baseline opponent**: action kernels at every state of that orbit, and update kernels everywhere.
   - Yet their OL values differ (0 vs 1).
   - So agreement with the baseline on baseline support does not identify the anchor off support.
   - The theorem also records which of the two anchors is strict.
@@ -88,16 +88,16 @@ Typed action **feasibility** of anchors is not encoded in Lean. It is a property
 - **Strictness classification.** Strict anchors are recognized, and the world-reading and baseline opponents are rejected.
 - **MA1.** The locus check: equal opponent laws at `y₀`, the off-orbit state at time 1, horizon-1 equality and horizon-2 separation.
 - **Agreement.** Both the strict and the state-feedback variant.
-- **MA2.** Both anchors are compared with the **baseline** opponent's action and update laws on support. The off-support state is shown reachable under CL.
-- **MA3.** An exact non-product argument; misrepresentation of coordination by the product of marginals (`1` vs `1/2`); and **shared-source correlation through `S₀`**, which gives coordination 1 with every kernel in product form.
-- **Feasibility (separate toy).** The menu builder keeps only anchors feasible on every OL-reachable state. Baseline and CL are feasible. The excluded anchor is not a protocol.
-- **Protocol membership predicate (`is_protocol`, mirroring `protocol_admissible_cases`).** It accepts CL and OL, rejects an edit of `P` (which also changes the OL value `1 → 0`), rejects a non-menu anchor, and rejects a clock added by editing `U₀` inside the intervention.
+- **MA2.** Both anchors are compared with the **baseline** opponent's action and update laws on support. The off-support state is shown reachable under CL and under each OL run.
+- **MA3.** A non-product check (a Bool×Bool law is a product iff it equals the product of its marginals); misrepresentation of coordination by the product of marginals (`1` vs `1/2`); and **shared-source correlation through `S₀`**, which gives coordination 1 with every kernel in product form.
+- **Feasibility (separate toy).** The menu builder keeps only anchors feasible on every OL-reachable state. Both players' actions under baseline, CL and every kept OL run are feasible. The excluded anchor is not a protocol.
+- **Protocol membership predicate (`is_protocol`, mirroring `protocol_admissible_cases`).** It accepts CL and OL. It rejects an edit of `P` (which also changes the OL value `1 → 0`), a non-menu anchor, a menu action paired with a non-menu update, a wrong player-1 replacement, a correlated joint-action override, and a clock added by editing `U₀` inside the intervention. Laws are compared as measures (explicit zero atoms dropped).
 - **`openLoop_self`.** Checked directly, and on random games.
 - **Clock.** The clock is declared in the baseline. `z₀`, `z_CL` and `z_OL` are unchanged. The clock-only anchor is strict and admissible. Its projected run visits the same unaugmented state at `t = 1` and `t = 2` with different successors, so no stationary kernel on the unaugmented state reproduces it.
-- **V20.29 on 60 random games × 8 states.** The two-sided bound is a metric identity. The substantive checks are the equality clauses `A = Δ_CL` when `Δ_OL = 0` (and conversely) and `openLoop_self`.
-- **Direction vs gap.** For the same protocol pair, the sign of `Δ_CL − Δ_OL` takes both values. On `B = {s₁ = false}` the margins differ (1 vs 0), and the uniform gap bounds their difference with equality.
+- **V20.29 on 60 random games × 8 states.** The two-sided bound and the equality clauses are metric identities (arithmetic sanity checks only). The checks that can fail are: the path-law value equals an independent state-distribution iteration, `openLoop_self`, and non-degeneracy (OL ≠ CL on many sampled states; an equality case with a nonzero effect is hit).
+- **Direction vs gap.** For the same protocol pair, the sign of `Δ_CL − Δ_OL` takes both values, at states with the **same** gap `A`. On `B = {s₁ = false}` the margins differ (1 vs 0), and the uniform gap bounds their difference with equality.
 
-The tests were mutation-checked. Breaking the strictness predicate, the protocol-membership predicate or `closed_loop` makes tests fail.
+Mutation checks: replacing the strictness predicate by `True`, dropping the `P`/`U₀` comparison in `is_protocol`, or making `closed_loop` change the opponent each make tests fail; the update half of the strictness predicate and the player-1/anchor-update halves of `is_protocol` have dedicated negative fixtures.
 
 ## Verification evidence (local)
 

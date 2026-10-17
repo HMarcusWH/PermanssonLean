@@ -21,7 +21,7 @@ pairs it with a COMMON world kernel `P` into a frozen `StrategicWorldModel`.
 This is a declared SUBCLASS: given the current joint state the joint action law
 is a product, so a state-conditional joint law such as the perfectly correlated
 `correlatedLaw` is not produced by any `TwoPlayerGenerator`
-(`ProtocolWitnesses.correlated_generator_not_product`). Correlation mediated by a
+(`correlated_generator_not_product` in `MultiAgent/ProtocolWitnesses.lean`). Correlation mediated by a
 shared `S₀` coordinate (e.g. a public coin drawn by `U₀` and read by both players)
 IS representable. Nothing here claims that games in general have independent
 action/update kernels.

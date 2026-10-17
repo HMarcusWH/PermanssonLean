@@ -272,15 +272,19 @@ theorem baseline_orbit_const (t : ℕ) : detOrbit (step s1 s1) y0 t = y0 := by
   | zero => rfl
   | succ t ih => rw [detOrbit_succ, ih]; rfl
 
-/-- **MA1 locus.** At `y₀` the CL opponent (the baseline opponent, kept by
+/-- **MA1 locus.** The CL and baseline path laws from `y₀` are the Dirac masses at
+the stated orbits; at `y₀` the CL opponent (the baseline opponent, kept by
 `closedLoop`) and the strict anchor play the same law; at the CL state at time 1
 — which is NOT on the baseline orbit — they play different laws. -/
 theorem protocols_separate_after_reachable_state :
-    (baseline.closedLoop extract).player2.action y0 = anchorConst.action y0 ∧
+    ((baseline.closedLoop extract).toModel world).pathLaw (Measure.dirac y0) =
+        Measure.dirac (detOrbit (step (fun _ => true) s1) y0) ∧
+      baselineModel.pathLaw (Measure.dirac y0) = Measure.dirac (detOrbit (step s1 s1) y0) ∧
+      (baseline.closedLoop extract).player2.action y0 = anchorConst.action y0 ∧
       detOrbit (step (fun _ => true) s1) y0 1 ∉ Set.range (detOrbit (step s1 s1) y0) ∧
       (baseline.closedLoop extract).player2.action (detOrbit (step (fun _ => true) s1) y0 1) ≠
         anchorConst.action (detOrbit (step (fun _ => true) s1) y0 1) := by
-  refine ⟨?_, ?_, ?_⟩
+  refine ⟨gen_pathLaw _ _ y0, gen_pathLaw _ _ y0, ?_, ?_, ?_⟩
   · change detK s1 y0 = detK (fun _ : Y => false) y0
     rw [detK_apply, detK_apply]; rfl
   · rintro ⟨t, ht⟩
@@ -303,12 +307,15 @@ theorem closedLoop_eq_openLoopWorld : protocolGap ψ JCL JOLworld y0 = 0 := by
   unfold protocolGap
   rw [closedLoop_value, openLoopWorld_value, dist_self]
 
-/-- **MA2.** The strict anchor `anchorConst` and the state-feedback anchor
-`anchorWorld` both coincide with the BASELINE opponent — action kernels at every
-baseline-reachable state from `y₀`, and update kernels everywhere — yet their OL
+/-- **MA2.** The baseline path law from `y₀` is the Dirac mass at the orbit
+`detOrbit (step s1 s1) y₀` (its support is that orbit). The strict anchor
+`anchorConst` and the state-feedback anchor `anchorWorld` both coincide with the
+BASELINE opponent — action kernels at every state of that orbit, and update
+kernels everywhere — yet their OL
 values differ: agreement with the baseline on baseline support does not identify
 the anchor (or the OL protocol) off support. -/
 theorem anchors_agree_on_support_but_openLoop_differs :
+    baselineModel.pathLaw (Measure.dirac y0) = Measure.dirac (detOrbit (step s1 s1) y0) ∧
     (∀ t, anchorConst.action (detOrbit (step s1 s1) y0 t) =
         baseline.player2.action (detOrbit (step s1 s1) y0 t)) ∧
       (∀ t, anchorWorld.action (detOrbit (step s1 s1) y0 t) =
@@ -318,7 +325,8 @@ theorem anchors_agree_on_support_but_openLoop_differs :
       IsStrictlyNonReactive anchorConst ∧ ¬ IsStrictlyNonReactive anchorWorld ∧
       intervenedPropertyValue ψ JOLconst.intervention y0 ≠
         intervenedPropertyValue ψ JOLworld.intervention y0 := by
-  refine ⟨fun t => ?_, fun t => ?_, rfl, rfl, anchorConst_strict, anchorWorld_not_strict, ?_⟩
+  refine ⟨gen_pathLaw _ _ y0, fun t => ?_, fun t => ?_, rfl, rfl, anchorConst_strict,
+    anchorWorld_not_strict, ?_⟩
   · rw [baseline_orbit_const]
     change detK (fun _ : Y => false) y0 = detK s1 y0
     rw [detK_apply, detK_apply]; rfl
