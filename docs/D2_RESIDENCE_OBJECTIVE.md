@@ -107,8 +107,8 @@ Lean 4.34.0 and pinned mathlib, all 51 declarations passed the three-axiom
 audit, all 17 exact tests passed, and the source firewall passed.
 
 This candidate incorporates main
-`22859775afb744a6dce89f73f47f816afb88bb23`, retaining C70, E1 and repaired
-F1. Fresh final-head synthetic-merge CI and review are pending; the earlier
+`9cf3410e9786b68f68d93c0684613329cdc9159e`, retaining C70, E1, repaired
+F1 and accepted conditional A3. Fresh final-head synthetic-merge CI and review are pending; the earlier
 focused result is evidence for that recorded source, not acceptance of this
 combined tree.
 
