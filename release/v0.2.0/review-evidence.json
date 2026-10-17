@@ -21,6 +21,48 @@
       "issue": "Every basename manifest.json was excluded rather than only the root inventory.",
       "resolution": "Only the exact root kit manifest is excluded; nested manifests are inventoried.",
       "independent_regression": "Unexpected nested manifest is covered or causes inventory mismatch."
+    },
+    {
+      "id": "R4",
+      "review_comment": "https://github.com/HMarcusWH/PermanssonLean/pull/76#discussion_r4303157924",
+      "issue": "The release checkout was not checked for protected-source changes.",
+      "resolution": "Both selected research cut and current release HEAD must preserve canonical baseline blobs, including authoritative C10 inputs.",
+      "independent_regression": "Protected release-HEAD mutation is rejected independently of an unchanged accepted source."
+    },
+    {
+      "id": "R5",
+      "review_comment": "https://github.com/HMarcusWH/PermanssonLean/pull/76#discussion_r4303157933",
+      "issue": "Compile and review receipts could be omitted or left stale.",
+      "resolution": "Final build and verification require both receipts, exact source/input/export bindings, successful captures and hashes of all four reviewed production scripts.",
+      "independent_regression": "Receipt omission and stale input/code bindings fail final validation."
+    },
+    {
+      "id": "R6",
+      "review_comment": "https://github.com/HMarcusWH/PermanssonLean/pull/76#discussion_r4303157938",
+      "issue": "Recorded main-merge provenance was unused.",
+      "resolution": "Every actual main merge must exist with expected base/source parents, equal the checked synthetic tree and belong to accepted source ancestry.",
+      "independent_regression": "Unrelated main-merge identities fail source provenance checks."
+    },
+    {
+      "id": "R7",
+      "review_comment": "https://github.com/HMarcusWH/PermanssonLean/pull/76#discussion_r4303157941",
+      "issue": "Scientific OPEN obligations could be deleted or promoted after rebuilding.",
+      "resolution": "Final release policy pins all 17 anchors/statuses, the complete approved manuscript bytes/semantics and all eight accepted scientific boundaries; drafts remain available.",
+      "independent_regression": "Deleted claims, promoted MA2, removed scientific limitations and altered accepted boundaries are rejected."
+    },
+    {
+      "id": "R8",
+      "review_comment": "https://github.com/HMarcusWH/PermanssonLean/pull/76#discussion_r4303157945",
+      "issue": "Archive metadata was not checked for determinism.",
+      "resolution": "Archive verification checks canonical timestamps, modes, creator, compression and all other entry metadata and empty archive comment.",
+      "independent_regression": "Eleven repacked metadata corruptions were rejected after repairing checksums."
+    },
+    {
+      "id": "R9",
+      "review_comment": "https://github.com/HMarcusWH/PermanssonLean/pull/76#discussion_r4303157949",
+      "issue": "Captured C10 proof contents could be internally invalid despite repaired hashes.",
+      "resolution": "The helper reuses authoritative structural and exact arithmetic validation, regenerates both Lean inputs and validates complete clean compiler/axiom captures without claiming a fresh Lean run.",
+      "independent_regression": "All seven original ZIPs pass; 20 rehashed invalid-content variants are rejected by the 21-test suite."
     }
   ],
   "validation": {
@@ -33,12 +75,20 @@
       "missing archive rejected"
     ],
     "preserved_c10_archives": 7,
-    "historical_canonical_blobs": 324
+    "historical_canonical_blobs": 340,
+    "c10_content_test_cases_passed": 21,
+    "durable_unittest_cases_passed": 28,
+    "durable_guard_methods_passed": 7,
+    "durable_rehashed_guard_mutations_rejected": 34,
+    "durable_guard_zip_metadata_mutations_rejected": 11,
+    "durable_test_command": "python -m unittest discover -s release/v0.2.0 -p 'test_*.py' -v",
+    "durable_unittest_seconds": 131.486
   },
   "scope": "Offline validation checks the captured GitHub receipts and actual local Git objects; it does not independently authenticate GitHub or replace Lean kernel checks. Scientific OPEN obligations remain explicit in the manuscript and acceptance evidence.",
   "reviewed_code_sha256": {
-    "build_release.py": "36cf79c698d75b4474ee3782e63deea02316350a84223ea8a4ed18f8d89b6bab",
-    "verify_release.py": "aec9670fa8c35a8ceedf02a41dd908bb62bb7db57c6f8df8fbd8e71c629dd103",
-    "package_release.py": "658e1ad0fe83aa902cef311d12fe40fbe8b0b255b4e0165d422661091a86e8d7"
+    "build_release.py": "a711fce840920846e9ffdd55b2580ebe358233ca7b432bffa78af315be69ffa6",
+    "verify_release.py": "4f7dbf04fe93e36a49b6db433f87069473677358028a81adecab7410d336b03b",
+    "package_release.py": "5e70a8aa65331408c1a15e83707cc023e5d0b0adae9bd470c3c28371f8b0d1b4",
+    "c10_archive_validation.py": "043c012270b20a1d12b545a1ffdc34561a9b0616bc2bb757f9b821a5bc06c482"
   }
 }

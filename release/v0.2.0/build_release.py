@@ -14,6 +14,7 @@ from pathlib import Path
 from verify_release import (BASELINE, SHA, blob, csv_row, digest, git, plain,
                             protected_snapshot, source_providers, strings,
                             tex_escape, validate_acceptance, validate_c10_archives, validate_manuscript,
+                            validate_supporting_evidence,
                             verify, require)
 
 STEM = "Permansson_Research_Companion_v0.2.0"
@@ -168,10 +169,10 @@ def pdf_document(data, revision, manuscript_hash, draft, output):
 
 
 def build(kit, draft, source):
-    root = kit.parents[1]
+    root = Path(git(kit, "rev-parse", "--show-toplevel").decode().strip())
     manuscript_path = kit / "manuscript.json"
     data = json.loads(manuscript_path.read_text(encoding="utf-8"))
-    pending = validate_manuscript(data, draft)
+    pending = validate_manuscript(data, draft, manuscript_path.read_bytes())
     evidence_path = kit / "acceptance-evidence.json"
     evidence = json.loads(evidence_path.read_text(encoding="utf-8")) if evidence_path.exists() else None
     revision = source or (evidence or {}).get("accepted_source_sha")
@@ -196,6 +197,7 @@ def build(kit, draft, source):
         writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(csv_rows)
+    validate_supporting_evidence(kit, revision, data, draft)
     files = [p for p in kit.rglob("*") if p.is_file() and p != kit / "manifest.json"
              and not any(x in {"__pycache__", "tmp"} for x in p.relative_to(kit).parts)]
     pending_line_endings = [path.relative_to(kit).as_posix() for path in files

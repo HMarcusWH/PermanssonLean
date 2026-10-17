@@ -36,6 +36,16 @@ manifest, and supplies no accepted-source assertion. A final build omits
 or unknown statuses. Scientific `OPEN` boundaries are valid content in a final
 companion and must state what remains unproved.
 
+Final mode enforces this reviewed v0.2.0 release policy: exactly 17 claim
+anchors and their approved statuses, including `F1.MA2 = OPEN`, the complete
+approved manuscript bytes and scientific content, and all eight scientific
+boundaries in the accepted evidence. These fixed policy pins prevent a rebuild
+from silently deleting assumptions or promoting an open obligation. Future
+final editorial or scientific changes require a deliberate reviewed policy
+revision and new matching receipts; this verifier does not authenticate them.
+Draft mode remains available for developing such changes without asserting
+final acceptance.
+
 Render the PDF using Poppler and inspect every page before publication:
 
 ```text
@@ -77,6 +87,8 @@ the evidence into the local Git object database. The verifier checks actual
 synthetic-merge parent order and provider-head ancestry. It requires the final
 selected source tree to equal X1's checked
 synthetic tree. X1's actual source head must contain every manuscript provider.
+Every recorded main merge must exist, have the expected base/source parents,
+match its checked synthetic tree and be an ancestor of the accepted source.
 These checks validate captured receipts; they do not independently contact
 GitHub or manufacture evidence.
 Root review must obtain those receipts directly from the actual jobs, logs and
@@ -90,6 +102,16 @@ nested digest, the source/base/synthetic/PR binding, and the specification hash
 against the canonical Git blob at that head. These are receipts for the
 original constructed six-state C10 golden, including when collected by X1's
 integration run; they are not numeric certificates for the X1 commons model.
+The content gate also reuses the original independent C10 structural and exact
+arithmetic checks, regenerates both Lean inputs, and verifies complete clean
+axiom/compiler captures. This is a consistency replay of captured evidence;
+it does not claim a fresh Lean execution. The accepted CI is the execution
+provenance.
+
+Final kits require `compile-evidence.json` and `review-evidence.json`. Their
+research source, manuscript, TeX, primary PDF and reviewed code hashes must
+match the actual shipped artifacts; successful compilation and visual-review
+results must be present. The reviewed code inventory includes the C10 helper.
 
 ## Preservation and integrity
 
@@ -104,6 +126,9 @@ New D2 modules are separate research additions.
 Historical verification archives, the original release JSON and paper
 verification manifest, `CITATION.cff`, and the original Lean verification
 inputs are also protected by their canonical baseline blobs.
+Both the selected research cut and the current checked-out release `HEAD`
+must preserve those blobs. The baseline C10 checker/evidence sources and
+regressions are protected alongside D0/D1 inputs.
 
 The manifest deliberately excludes its own hash, avoiding a self-reference
 cycle. Build intermediates under `tmp/` and Python caches are excluded.
@@ -134,3 +159,11 @@ deterministic archive `release/Permansson_v0.2.0_research-kit.zip` and its
 with fixed 17 October 2026 entry metadata. It lives outside the kit to avoid
 an archive/manifest hash cycle. The second command checks the archive and
 its digest without modifying them. Drafts cannot be packaged as accepted kits.
+Archive verification also checks the fixed timestamps, Unix modes, creator
+system, compression method and other canonical entry metadata.
+
+Run the durable release controls from the repository root with:
+
+```text
+python -m unittest discover -s release/v0.2.0 -p 'test_*.py' -v
+```

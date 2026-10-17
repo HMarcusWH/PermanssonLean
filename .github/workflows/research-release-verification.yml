@@ -39,3 +39,5 @@ jobs:
         run: python release/v0.2.0/verify_release.py
       - name: Verify every packaged byte and archive checksum
         run: python release/v0.2.0/package_release.py --verify
+      - name: Exercise independent archive and release mutation controls
+        run: python -m unittest discover -s release/v0.2.0 -p 'test_*.py' -v

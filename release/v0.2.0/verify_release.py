@@ -28,6 +28,19 @@ REQUIRED_FOCUSED = {
     "X1": {"X1 exact commons focused smoke"},
 }
 SHA = re.compile(r"^[0-9a-f]{40}$")
+APPROVED_MANUSCRIPT_SHA256 = "8022291f1ec19961578bdcb60f205fdec31057982bf9a78f6b9610bd3b184239"
+APPROVED_MANUSCRIPT_SEMANTIC_SHA256 = "45c7c572314448ceda52bd167c3ac2cb2a69d3853b35fd13dad10a2fdf3cab4a"
+APPROVED_BOUNDARIES_SHA256 = "780fb3ec0d45f97d2e48dcbd55825a6cd7cc3b10fbd4340b7d42c587ed663685"
+REVIEWED_CODE_FILES = {"build_release.py", "verify_release.py", "package_release.py", "c10_archive_validation.py"}
+REQUIRED_CLAIM_STATUSES = {
+    "R.SCOPE": "DEFINED", "CORE.IDENTITY": "FROZEN_PROVIDER",
+    "C69.RESTART": "ACCEPTED_PROVIDER", "C70.SWITCH": "ACCEPTED_PROVIDER",
+    "A2.FINITE": "ACCEPTED_PROVIDER", "E1.LINEAR": "ACCEPTED_PROVIDER",
+    "B2.SEQUENTIAL": "ACCEPTED_PROVIDER", "F1.PROTOCOL": "ACCEPTED_PROVIDER",
+    "F1.MA2": "OPEN", "A3.DUAL": "PROVED", "A3.SURVIVAL": "PROVED",
+    "D2.RESIDENCE": "PROVED", "D2.ORDER": "PROVED", "X1.MODEL": "PROVED",
+    "X1.NOEXACT": "PROVED", "X1.OCCUPATION": "PROVED", "X1.FINITEOUTPUT": "PROVED",
+}
 
 
 def require(condition, message):
@@ -37,6 +50,10 @@ def require(condition, message):
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def semantic_digest(data):
+    return digest(json.dumps(data, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8"))
 
 
 def git(root, *args):
@@ -63,7 +80,7 @@ def tree(root, revision):
 
 def protected_snapshot(root, revision):
     """Git blobs, never Windows working-file bytes, define historical preservation."""
-    base, current = tree(root, BASELINE), tree(root, revision)
+    base = tree(root, BASELINE)
     fixed = {"PermanssonLean.lean", "lean-toolchain", "lake-manifest.json", "lakefile.toml",
              "CITATION.cff", "docs/PAPER_VERIFICATION_MANIFEST.md", "docs/releases/v0.1.8.json"}
     whole_prefixes = ("PermanssonLean/", "paper/", "provenance/", "application/",
@@ -75,13 +92,16 @@ def protected_snapshot(root, revision):
                 (path.startswith("docs/") and name.startswith(("D0_", "D1_"))) or
                 (path.startswith("verification/research/") and
                  name.startswith(("d0_", "test_d0_", "test_d1_", "test_history_",
-                                  "test_nonstationary_", "test_bellman_", "test_controlled_"))))
+                                  "test_nonstationary_", "test_bellman_", "test_controlled_",
+                                  "c10_", "test_lane_c10"))))
 
     protected = {p for p in base if p in fixed or p.startswith(whole_prefixes) or baseline_solver(p)}
-    unexpected = {p for p in current if p not in base and (p in fixed or p.startswith(whole_prefixes))}
-    require(not unexpected, f"New files inside frozen trees: {sorted(unexpected)}")
-    changed = [p for p in sorted(protected) if current.get(p) != base[p]]
-    require(not changed, f"Historical protected blobs differ from {BASELINE}: {changed}")
+    for label, selected in (("selected research cut", revision), ("current release HEAD", "HEAD")):
+        current = tree(root, selected)
+        unexpected = {p for p in current if p not in base and (p in fixed or p.startswith(whole_prefixes))}
+        require(not unexpected, f"{label}: new files inside frozen trees: {sorted(unexpected)}")
+        changed = [p for p in sorted(protected) if current.get(p) != base[p]]
+        require(not changed, f"{label}: historical protected blobs differ from {BASELINE}: {changed}")
     ordered = sorted(protected)
     proc = subprocess.run(["git", "-C", str(root), "cat-file", "--batch"],
                           input="".join(base[p]["git_blob_sha1"] + "\n" for p in ordered).encode(),
@@ -110,7 +130,7 @@ def strings(value, field):
     return value
 
 
-def validate_manuscript(data, draft):
+def validate_manuscript(data, draft, source_bytes=None):
     for key in ("title", "subtitle", "author", "date", "version", "abstract"):
         require(isinstance(data.get(key), str), f"Manuscript {key} must be a string")
     require(data["version"] == "0.2.0" or (draft and data["version"] == "0.2.0-research-draft"),
@@ -144,6 +164,15 @@ def validate_manuscript(data, draft):
                 require(all(isinstance(provider.get(k), str) and provider[k]
                             for k in ("module", "declaration")), "Incomplete source provider")
     require(draft or not pending, f"Pending/unknown claim statuses require --draft: {pending}")
+    if not draft:
+        statuses = {claim["anchor"]: claim["status"] for section in data["sections"] for claim in section.get("claims", [])}
+        require(statuses == REQUIRED_CLAIM_STATUSES,
+                "Final manuscript must retain the exact 17 reviewed anchors/statuses, including OPEN F1.MA2")
+        require(semantic_digest(data) == APPROVED_MANUSCRIPT_SEMANTIC_SHA256,
+                "Final scientific contract differs from the reviewed manuscript; statements, assumptions, proofs and OPEN boundaries are frozen")
+        if source_bytes is not None:
+            require(digest(source_bytes) == APPROVED_MANUSCRIPT_SHA256,
+                    "Final manuscript bytes differ from the reviewed source")
     return pending
 
 
@@ -234,6 +263,8 @@ def validate_acceptance(root, evidence, revision, draft, manuscript=None):
     require(evidence.get("baseline_sha") == BASELINE, "Wrong preservation baseline")
     require(evidence.get("accepted_source_sha") == revision, "Evidence/source revision mismatch")
     require(evidence.get("acceptance_status") in {"accepted", "pass"}, "Research source acceptance is pending")
+    require(semantic_digest(evidence.get("open_boundaries")) == APPROVED_BOUNDARIES_SHA256,
+            "Accepted evidence must retain all eight reviewed scientific OPEN boundaries")
     receipts = evidence.get("receipts", [])
     require({r.get("anchor") for r in receipts} == ANCHORS and len(receipts) == len(ANCHORS),
             "Need one exact accepted receipt for each C69/C70/E1/F1/A3/D2/X1 anchor")
@@ -245,10 +276,18 @@ def validate_acceptance(root, evidence, revision, draft, manuscript=None):
         label = receipt["anchor"]
         require(receipt.get("pr") == PR_NUMBERS[label], f"{label}: receipt belongs to a different PR")
         require(receipt.get("acceptance_status") in {"accepted", "pass"}, f"{label}: acceptance is pending")
-        for key in ("source_sha", "base_sha", "synthetic_merge_sha"):
+        for key in ("source_sha", "base_sha", "synthetic_merge_sha", "main_merge_sha"):
             require(SHA.fullmatch(receipt.get(key, "")), f"{label}: invalid {key}")
         parents = git(root, "show", "-s", "--format=%P", receipt["synthetic_merge_sha"]).decode().split()
         require(parents == [receipt["base_sha"], receipt["source_sha"]], f"{label}: synthetic merge parents mismatch")
+        main_parents = git(root, "show", "-s", "--format=%P", receipt["main_merge_sha"]).decode().split()
+        require(main_parents == [receipt["base_sha"], receipt["source_sha"]], f"{label}: main merge parents mismatch")
+        require(git(root, "rev-parse", receipt["main_merge_sha"] + "^{tree}") ==
+                git(root, "rev-parse", receipt["synthetic_merge_sha"] + "^{tree}"),
+                f"{label}: main merge tree differs from checked synthetic tree")
+        require(subprocess.run(["git", "-C", str(root), "merge-base", "--is-ancestor",
+                                receipt["main_merge_sha"], revision], capture_output=True).returncode == 0,
+                f"{label}: recorded main merge is not in accepted source ancestry")
         require(subprocess.run(["git", "-C", str(root), "merge-base", "--is-ancestor",
                                 receipt["source_sha"], revision], capture_output=True).returncode == 0,
                 f"{label}: accepted source does not contain provider head")
@@ -332,6 +371,57 @@ def validate_c10_archives(kit, root, evidence, draft):
                     f"{anchor}: invalid C10 specification path")
             require(digest(blob(root, receipt["source_sha"], path)) == specification.get("sha256"),
                     f"{anchor}: C10 specification differs from canonical source blob")
+        from c10_archive_validation import validate_c10_archive
+        validate_c10_archive(archive, expected_source, root)
+
+
+def validate_supporting_evidence(kit, revision, manuscript, draft):
+    """Bind captured external validation to the exact shipped inputs and reviewed code."""
+    if draft:
+        return
+    from pypdf import PdfReader
+    for name in ("compile-evidence.json", "review-evidence.json"):
+        require((kit / name).is_file(), f"Final kit requires {name}")
+    compilation = json.loads((kit / "compile-evidence.json").read_text(encoding="utf-8"))
+    review = json.loads((kit / "review-evidence.json").read_text(encoding="utf-8"))
+    for name, receipt in (("compile", compilation), ("review", review)):
+        require(receipt.get("schema_version") == 1 and receipt.get("research_source_sha") == revision,
+                f"{name} evidence source/schema mismatch")
+    manuscript_hash = digest((kit / "manuscript.json").read_bytes())
+    tex_hash = digest((kit / "output/pdf/Permansson_Research_Companion_v0.2.0.tex").read_bytes())
+    pdf_path = kit / "output/pdf/Permansson_Research_Companion_v0.2.0.pdf"
+    require(compilation.get("manuscript_json_sha256") == manuscript_hash
+            and compilation.get("tex_sha256") == tex_hash, "Compile evidence manuscript/TeX hash mismatch")
+    primary = compilation.get("primary_pdf", {})
+    require(primary.get("sha256") == digest(pdf_path.read_bytes())
+            and primary.get("pages") == len(PdfReader(pdf_path).pages)
+            and str(primary.get("visual_review", "")).startswith("PASS:"),
+            "Compile evidence primary PDF hash/pages/visual result mismatch")
+    desktop = compilation.get("desktop_tex_compiler", {})
+    require(desktop.get("tool") == "Codex compile_latex_document"
+            and desktop.get("result") == "success" and desktop.get("input_sha256") == tex_hash,
+            "Desktop compile evidence is unsuccessful or bound to different TeX")
+    independent = compilation.get("independent_tex_compiler", {})
+    provider_count = sum(len(claim.get("providers", [])) for section in manuscript["sections"]
+                         for claim in section.get("claims", []))
+    require(independent.get("exit_code") == 0 and independent.get("input_sha256") == tex_hash
+            and independent.get("archive_checksum_verified") is True
+            and re.fullmatch(r"[0-9a-f]{64}", independent.get("official_archive_sha256", ""))
+            and re.fullmatch(r"[0-9a-f]{64}", independent.get("diagnostic_pdf_sha256", ""))
+            and independent.get("overfull_hboxes") == 0 and independent.get("underfull_boxes") == 0
+            and independent.get("provider_identifiers_present") == provider_count
+            and independent.get("provider_identifiers_missing") == []
+            and independent.get("repository_url_present") is True
+            and independent.get("accepted_snapshot_present") is True
+            and independent.get("draft_banner_present") is False
+            and str(independent.get("visual_review", "")).startswith("PASS:"),
+            "Independent compile/visual evidence is incomplete or bound to different TeX")
+    require(review.get("open_acceptance_findings") == [], "Review evidence has unresolved acceptance findings")
+    code = review.get("reviewed_code_sha256", {})
+    require(set(code) == REVIEWED_CODE_FILES, "Review evidence must cover every required release validator/exporter")
+    for name, expected in code.items():
+        require((kit / name).is_file() and digest((kit / name).read_bytes()) == expected,
+                f"Reviewed code hash mismatch: {name}")
 
 
 def tex_escape(text):
@@ -377,13 +467,13 @@ def narrative_strings(data):
 
 def verify(kit, allow_draft=False):
     from pypdf import PdfReader
-    root = kit.parents[1]
+    root = Path(git(kit, "rev-parse", "--show-toplevel").decode().strip())
     manifest = json.loads((kit / "manifest.json").read_text(encoding="utf-8"))
     require(manifest.get("mode") in {"draft", "final"}, "Unknown release mode")
     draft = manifest.get("mode") == "draft"
     require(allow_draft or not draft, "Draft artifact requires --allow-draft; it is not an accepted release")
     data = json.loads((kit / "manuscript.json").read_text(encoding="utf-8"))
-    validate_manuscript(data, draft)
+    validate_manuscript(data, draft, (kit / "manuscript.json").read_bytes())
     revision = manifest["selected_source_sha"]
     require(SHA.fullmatch(revision), "Invalid source revision")
     require(manifest.get("schema_version") == 1 and manifest.get("baseline_sha") == BASELINE, "Manifest schema/baseline mismatch")
@@ -418,8 +508,10 @@ def verify(kit, allow_draft=False):
                 "output/pdf/Permansson_Research_Companion_v0.2.0.pdf",
                 "output/pdf/theorem-map.json", "output/pdf/theorem-map.csv"}
     if not draft:
-        required.add("acceptance-evidence.json")
+        required |= {"acceptance-evidence.json", "compile-evidence.json", "review-evidence.json",
+                     "test_c10_archive_validation.py", "test_release_guards.py"} | REVIEWED_CODE_FILES
     require(required <= artifacts.keys(), "Manifest omitted required new artifacts")
+    validate_supporting_evidence(kit, revision, data, draft)
     manuscript_hash = digest((kit / "manuscript.json").read_bytes())
     require(manifest["manuscript_sha256"] == manuscript_hash, "Manuscript digest mismatch")
     require(manifest.get("acceptance_evidence_sha256") ==
