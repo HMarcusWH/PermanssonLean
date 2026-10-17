@@ -25,12 +25,14 @@ Later consumers still require verification against their own final merge base.
 | C69 / #69 | `d8a96a423f402fcbe791c6e114d169894739f944` | `54848efd002a0153641c9e340325dce857e1e5db` | `38905103071` / `3a11d5776772f87cc2160ca3222b1e34d1b3043c` |
 | C70 / #70 | `547d17e2fff8ab2136562dbb93562529bcda062e` | `24ea0836db5bb45c964b00121718613d843ce255` | `39035552321` / `775a1317cbe664d70ac2aebbc55e40e4811be2b3` |
 | E1 / #71 | `7ae2fab0b221a77e0a13ef83cedd6f8933569c26` | `2a2246ad851e2cdc435dcd0f98f259e1264541b3` | `39036276477` / `cfdf3386d2d5363f7187e2087310b7e1b152f752` |
+| F1 / #72 | `018e8fcfbaff1d53efa9467f65c34d91169606f2` | `22859775afb744a6dce89f73f47f816afb88bb23` | `39037392282` / `5c6e4eaea7bb3afc58fafd79bbef182336120e51` |
 
 Each listed run passed the full research build, three-axiom transitive audit,
 research regressions, direct imports, source firewall, original-core build,
 D0 golden regeneration, and PR-only C10 generation plus independent
 source-bound verification. Their observed declaration/test/module counts were
-respectively `4383/715/366`, `4442/727/370`, and `4499/747/375`.
+respectively `4383/715/366`, `4442/727/370`, `4499/747/375`, and
+`4733/764/380`.
 The original Lean, executable verification and both application OS jobs also
 passed. Independent source/spec reviews found no new blocker in the stated scopes.
 
@@ -45,8 +47,10 @@ Research run `39035866423` (`4617/732/371`, C10 source-bound PASS) and a fresh
 Codex review with no major findings; the original P1 thread is resolved with
 that evidence. **Strict MA2 remains OPEN/unfulfilled.** The broader reactive
 counterexample is not MA2; the new full-law obstruction is explicitly limited
-to the deterministic recording toy. This F1/C70/E1 combined tree needs fresh
-exact-head synthetic-merge CI before acceptance.
+to the deterministic recording toy. The final integrated source
+`018e8fcfbaff1d53efa9467f65c34d91169606f2` passed Research run
+`39037392282` against accepted E1 main, including source-bound C10, all other
+workflows and a fresh Codex review. PR #72 is merged at the SHA in the table.
 
 ## Status vocabulary
 
@@ -234,7 +238,7 @@ Source modules: `PermanssonResearch/RegimeExit/ShiftedPrefixStationarity.lean`,
 
 ---
 
-## C70 — C-Exit E: random-entry occupation and Proposition 4.2f (stacked on #69)
+## C70 — C-Exit E: random-entry occupation and Proposition 4.2f (merged #70)
 
 Lane document: [LANE_C_EXIT_RANDOM_ENTRY.md](LANE_C_EXIT_RANDOM_ENTRY.md).
 Source modules: `RegimeExit/OccupationPrefixDeletion.lean`, `RegimeExit/RandomEntryOccupation.lean`,
@@ -263,7 +267,8 @@ Source modules: `RegimeExit/OccupationPrefixDeletion.lean`, `RegimeExit/RandomEn
   9/13); non-prefix-invariant custom mode; post-intervention kernel mismatch (C69.5).
 - **Status.** PROVED (source level).
 - **Verification.** Local compile; `c70_axiom_audit.py` 37/37; 727/727 regressions.
-  CI pending (C70 PR).
+  Accepted source `547d17e2fff8ab2136562dbb93562529bcda062e`; full Research
+  run `39035552321` and all other workflows passed (snapshot above).
 - **Manuscript.** v0.2.0 §4.2, Prop. 4.2f proof (random entry, a.s.).
 
 ### C70.2 — in-probability convergence after random entry
@@ -307,7 +312,7 @@ Source modules: `RegimeExit/OccupationPrefixDeletion.lean`, `RegimeExit/RandomEn
 - **Verification.** As C70.1.
 - **Manuscript.** v0.2.0 Proposition 4.2f (full scoped statement) in §4.2 and §5.4.
 
-## E1 — approximate type-respecting quotients (branch `claude/zen-einstein-ub8zgr-e1`, stacked on #69)
+## E1 — approximate type-respecting quotients (merged #71)
 
 Lane document: [LANE_E1_APPROX_QUOTIENT.md](LANE_E1_APPROX_QUOTIENT.md). Modules:
 `Probability/EventTVCalculus.lean`, `Probability/CompProdPushforward.lean`,
@@ -328,9 +333,11 @@ CORE.P54 (`finitePrefixLaw`, `eventTotalVariation`), A2 (`TVLipschitzPrefixPrope
 CQ-1 (`ConstitutiveQuasi.pathLaw_finitePrefix_eq`),
 CORE.P52 (`abs_sInf_image_sub_sInf_image_le_of_uniform`), C69 shared lemma (moved to
 `Probability/CompProdPushforward.lean`). Consumers: X1, R. Manuscript: §7.4.3 (Thm 7.4c).
-Verification: local compile; `e1_axiom_audit.py` all declarations allowlisted (count in the PR); CI pending (E1 PR).
+Verification: accepted source `7ae2fab0b221a77e0a13ef83cedd6f8933569c26`;
+full Research run `39036276477`, E1 audit, source-bound C10 and all workflows
+passed (snapshot above).
 
-## F1 — multi-agent closed-loop versus opponent-locked protocols (branch `claude/zen-einstein-ub8zgr-f1`, stacked on #69)
+## F1 — multi-agent closed-loop versus opponent-locked protocols (merged #72)
 
 Lane document: [LANE_F1_MULTIAGENT_PROTOCOLS.md](LANE_F1_MULTIAGENT_PROTOCOLS.md). Modules:
 `StrategicWorld/DeterministicOrbit.lean`, `MultiAgent/ProductGame.lean`, `MultiAgent/Protocols.lean`,
@@ -355,19 +362,41 @@ Inputs (frozen v0.1.8 core unless noted): typed interventions (`InterventionFami
 (`pathLaw_existsUnique`, `pathLaw_spec`, `inducedKernel_apply`, `StrategicWorldModel.inducedKernel_isMarkov`).
 B2.1 is NOT used (V20.29 compares two intervened outputs and is proved directly). Consumers: X1, R. Manuscript: §5.4.3.
 Verification before correction: `b7e83c3` had 5/5 successful workflows and 111/111 declarations allowlisted.
-Corrected source: 17/17 local exact rational tests pass; pinned Lean, updated axiom audit and source-bound CI
-must be rerun before acceptance. See the lane document for the strict MA2 boundary and exact assumptions.
+Corrected accepted source: `018e8fcfbaff1d53efa9467f65c34d91169606f2`; 17/17
+focused exact tests, 126/126 F1 declarations allowlisted, full Research run
+`39037392282` (`4733/764/380`) including C10 source binding, all workflows and
+fresh review passed. Strict MA2 remains OPEN; see the lane document for assumptions.
 
-## A3 — contractive infinite-horizon robustness
+## A3 — contractive infinite-horizon robustness (branch `claude/zen-einstein-ub8zgr-a3`, PR #73 to `main`)
 
-| Anchor | Claim | Planned provider | Status |
+Lane document: [LANE_A3_CONTRACTIVE.md](LANE_A3_CONTRACTIVE.md). Modules:
+`Probability/KantorovichDual.lean`, `Probability/KantorovichTV.lean`,
+`Perturbation/ContractiveOccupation.lean`, `Perturbation/ContractiveAdversaries.lean`.
+All W₁ statements use the Kantorovich–Rubinstein DUAL form `W1DualLE` (measurable, bounded, 1-Lipschitz
+tests) on arbitrary pseudo-metric spaces; KR duality with the coupling form is NOT formalized.
+
+| Anchor | Claim | Provider | Status |
 |---|---|---|---|
-| A3.1 | `W_1(π, π̃) ≤ δ/(1-ρ)` under verified invariant laws, finite first moments, uniform `W_1` contraction `ρ<1` and one-step `W_1` defect `δ` (finite-state subclass first) | `Perturbation/ContractiveOccupation.lean`: `invariantLaw_wasserstein_le` | PROPOSED |
-| A3.2 | Margin bound `|κ̃ − κ| ≤ L_F L_h (δ_0/(1-ρ_0) + δ_J/(1-ρ_J))` when ψ factors through Lipschitz descriptor and Lipschitz functional of the deterministic occupation limit | `occupationMargin_robust` | PROPOSED |
-| A3.3 | Leakage counterexample: `K=δ_0`, `K̃=(1-ε)δ_0+εδ_1` flips `P_0(τ_{0}=∞)` from 1 to 0 for all ε>0 | `Perturbation/ContractiveAdversaries.lean` | PROPOSED |
-| A3.4 | No TV→W₁ substitution without proved diameter conversion | (firewall) | — |
+| A3.0 | Dual-W₁ calculus without Polish/standard-Borel hypotheses: monotone, symmetric, triangle, closed under limits; pointwise kernel defect ⇒ mixture defect; `L`-Lipschitz pushforward scales by `L`; finite first moments ⇒ finite bound | `W1DualLE`, `IsKRTest`, `W1DualLE.trans`, `W1DualLE.of_tendsto`, `W1DualLE.comp_of_forall`, `W1DualLE.map_lipschitz`, `W1DualLE.of_integrable_dist` | DEFINED (+ PROVED) |
+| A3.1 | Dual analogue of (V20.17): `W1DualLE π π̃ (δ/(1−ρ))` given invariance of both laws, uniform dual contraction `0 ≤ ρ < 1` of the ORIGINAL kernel, pointwise dual defect `δ` and a finite initial dual gap | `invariantLaw_wasserstein_le`, `ContractivePerturbation.w1_le` | PROVED (dual analogue); coupling-form obligation OPEN |
+| A3.2 | Conditional dual analogue of (V20.18): `\|κ̃ − κ\| ≤ L_F L_h (δ₀/(1−ρ₀) + δ_J/(1−ρ_J))` for the ORIGINAL frozen margins when `ψ(P_y) = F(h_#π)` for all four processes on `B₁` (hypothesis), `h` measurable `L_h`-Lipschitz, `F` `L_F`-Lipschitz for dual W₁ | `occupationMargin_robust`, `descriptorFunctional_dist_le` | PROVED (conditional dual analogue); coupling-form obligation OPEN |
+| A3.3 | Survival counterexample on actual models (`Unit × ℝ`): explicit `ContractivePerturbation` including invariant probability laws and finite gap, `ρ = 0`, defect `ε`, yet `P₀(τ_B = ∞)` is `1` vs `0` for every `ε ∈ (0,1]` | `model_invariant`, `leakPerturbation`, `bundled_survival_counterexample`, `contraction_does_not_transfer_survival` | Original survival theorem PROVED; new bundle PENDING pinned Lean/audit replay |
+| A3.4 | TV → W₁ only with a diameter factor: `dist ≤ D ⇒ W₁ ≤ D·TV`; on `ℝ` no constant converts TV into W₁ | `W1DualLE.of_eventTV`, `tv_does_not_control_w1_on_real` | PROVED |
+| A3.5 | Existence/uniqueness of invariant laws; contraction from Doeblin/Dobrushin; ergodic bridge `ψ(P_y) = F(h_#π)`; KR duality; bounded → all 1-Lipschitz tests | — | OPEN (hypotheses in A3.1–A3.2) |
 
-Inputs: A2, C-lane occupation (C2/C11). Consumers: X1, R. Manuscript: §5.4.1.
+Inputs: E1.0 (`abs_lintegral_toReal_sub_le_eventTotalVariation`, `eventTotalVariation_le_of_forall`,
+`abs_measureReal_sub_le_eventTotalVariation`); frozen `constitutiveMargin`, `constitutiveEffect_nonneg`,
+`baselinePropertyValue`, `intervenedPropertyValue`, `ConstitutiveComparisonSet.pathLawNontrivial`,
+`PermanssonLean/Regime/Perturbation.lean: abs_sInf_image_sub_sInf_image_le_of_uniform`; frozen survival
+machinery (`killedKernel_apply`, `survivalProbability_eq_killedSurvivalMass`, `killedSurvivalMass`,
+`survivesForeverSet_eq_iInter`, `survivesThroughSet_antitone`, `measurableSet_survivesThroughSet`) and
+`StrategicWorldModel.inducedKernel_apply`. A2 is NOT used (no primitive budget is converted; A3.4 shows why a TV
+budget cannot be substituted). Consumers: X1, R. Manuscript: §5.4.1.
+Verification: historical `f757b9e` compiled and passed `a3_axiom_audit.py` (50/50);
+the revised bundle adds three declarations and requires fresh exact-head Lean/audit and PR CI.
+Revised focused rational suite: 13/13 tests pass locally; compilation/audit remain PENDING.
+The rational tests now include sharp positive-margin transfer and destructive removal of
+either budget term, the geometric denominator, or the four-process factorization premise.
 
 ## D2 — reverse-solver regime-switching objectives (separate lane)
 

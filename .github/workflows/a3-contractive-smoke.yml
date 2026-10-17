@@ -1,0 +1,51 @@
+name: A3 contractive robustness focused smoke
+
+# Focused source-head gate for A3 (contractive W1 invariant-law and margin
+# robustness). It does NOT replace the full Research Lean workflow.
+
+on:
+  push:
+    branches: [claude/zen-einstein-ub8zgr-a3]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'PermanssonResearch/Probability/Kantorovich*.lean'
+      - 'PermanssonResearch/Perturbation/Contractive*.lean'
+      - 'verification/research/test_a3_contractive.py'
+      - 'verification/research/a3_axiom_audit.py'
+      - '.github/workflows/a3-contractive-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contractive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Exact rational contractive-robustness adversaries
+        run: python3 -m unittest discover -s verification/research -p 'test_a3_contractive.py' -v
+      - name: Compile A3 modules
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch.Probability.KantorovichDual PermanssonResearch.Probability.KantorovichTV PermanssonResearch.Perturbation.ContractiveOccupation PermanssonResearch.Perturbation.ContractiveAdversaries
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+      - name: Declaration-level transitive axiom audit of every A3 declaration
+        run: python3 verification/research/a3_axiom_audit.py
+      - name: Reject proof placeholders and custom axioms in A3 sources
+        run: |
+          if grep -n -E '(^|[^[:alnum:]_])(sorry|admit|native_decide)([^[:alnum:]_]|$)|^[[:space:]]*((private|protected|noncomputable|unsafe)[[:space:]]+)*axiom[[:space:]]' \
+              PermanssonResearch/Probability/Kantorovich*.lean PermanssonResearch/Perturbation/Contractive*.lean; then
+            echo 'Forbidden placeholder, native_decide or axiom in A3 sources'
+            exit 1
+          fi
+          echo 'A3 source firewall PASS'
