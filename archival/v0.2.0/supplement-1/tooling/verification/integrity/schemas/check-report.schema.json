@@ -6,7 +6,7 @@
   "properties": {
     "format": {"const": "Permansson.Hardening.Check.v1"},
     "schema_version": {"const": 1},
-    "check": {"enum": ["frozen-source-preservation", "release-export-integrity", "archive-reproducibility"]},
+    "check": {"enum": ["frozen-source-preservation", "release-export-integrity", "archive-reproducibility", "maintenance-Lean-scope"]},
     "status": {"enum": ["PASS", "FAIL", "BLOCKED"]},
     "error_code": {"type": ["string", "null"]},
     "context": {"type": "object"},

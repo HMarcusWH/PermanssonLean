@@ -841,6 +841,7 @@
       "verification.integrity.tests.test_context.ContextTests.test_local_cannot_fabricate_ci_event"
     ],
     "preservation": [
+      "verification.integrity.tests.test_preservation.PreservationTests.test_candidate_bound_maintenance_cli",
       "verification.integrity.tests.test_preservation.PreservationTests.test_protected_root_symlink_and_file_directory",
       "verification.integrity.tests.test_preservation.PreservationTests.test_empty_tree_closed_topology"
     ],
