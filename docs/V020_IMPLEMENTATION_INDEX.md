@@ -26,13 +26,14 @@ Later consumers still require verification against their own final merge base.
 | C70 / #70 | `547d17e2fff8ab2136562dbb93562529bcda062e` | `24ea0836db5bb45c964b00121718613d843ce255` | `39035552321` / `775a1317cbe664d70ac2aebbc55e40e4811be2b3` |
 | E1 / #71 | `7ae2fab0b221a77e0a13ef83cedd6f8933569c26` | `2a2246ad851e2cdc435dcd0f98f259e1264541b3` | `39036276477` / `cfdf3386d2d5363f7187e2087310b7e1b152f752` |
 | F1 / #72 | `018e8fcfbaff1d53efa9467f65c34d91169606f2` | `22859775afb744a6dce89f73f47f816afb88bb23` | `39037392282` / `5c6e4eaea7bb3afc58fafd79bbef182336120e51` |
+| A3 / #73 | `a977da54057837797ab1cea163f8bcec98cddb2d` | `9cf3410e9786b68f68d93c0684613329cdc9159e` | `39038951100` / `11c4baace0de6025709b0cdd637e99c255a70bc6` |
 
 Each listed run passed the full research build, three-axiom transitive audit,
 research regressions, direct imports, source firewall, original-core build,
 D0 golden regeneration, and PR-only C10 generation plus independent
 source-bound verification. Their observed declaration/test/module counts were
-respectively `4383/715/366`, `4442/727/370`, `4499/747/375`, and
-`4733/764/380`.
+respectively `4383/715/366`, `4442/727/370`, `4499/747/375`,
+`4733/764/380`, and `4861/777/384`.
 The original Lean, executable verification and both application OS jobs also
 passed. Independent source/spec reviews found no new blocker in the stated scopes.
 
@@ -402,13 +403,21 @@ either budget term, the geometric denominator, or the four-process factorization
 
 | Anchor | Claim | Planned provider | Status |
 |---|---|---|---|
-| D2.1 | Reach-by-horizon objective with exact Bellman evaluation on declared finite policy classes | `ReverseSolver/D2Reach.lean` | PROPOSED |
-| D2.2 | Reach-before-forbidden objective | `ReverseSolver/D2ReachAvoid.lean` | PROPOSED |
-| D2.3 | Reach-and-stay for declared finite duration (hit ≠ stay) | `ReverseSolver/D2ReachStay.lean` | PROPOSED |
-| D2.4 | Eventual switching under exact/bounded conditions, consuming C69.4 | `ReverseSolver/D2Switch.lean` | BLOCKED (merge of #69 and the C70 PR) |
-| D2.5 | `sup_π inf_K` vs `inf_K sup_π` separation witness; no rectangularity assumed | `ReverseSolver/D2MinimaxAdversaries.lean` | PROPOSED |
+| D2.1 | Reach-by-horizon under the existing finite, fully observed deterministic history class | `ReverseSolver.Residence.reachBeforeForbidden_optimal_and_attained` (D1 reuse) | IMPLEMENTED; exact-head verification pending |
+| D2.2 | Literal goal-before-forbidden event, unchanged D1 semantics | same; original `HistoryDependentTyped.typed_history_bellman_optimal_and_attained` | IMPLEMENTED; exact-head verification pending |
+| D2.3 | Any successful m-transition target residence run entered by T, completed by T+m; actual event probability, full-history recurrence and attainment | `ResidenceEvent` / `ResidenceValue`; [scope](D2_RESIDENCE_OBJECTIVE.md) | IMPLEMENTED; exact-head verification pending; efficient clock-policy reduction OPEN |
+| D2.4 | Eventual switching with all-future retention, consuming C69/C70 | unchanged `RegimeExit.switchRetainEvent_prob_ge`, `proposition_4_2f_almostSure`; `ReverseSolver.Residence.eventual_switch_event_semantics` | REUSED; combined final-head CI pending |
+| D2.5 | Committed randomization max-min=1/2 versus model-revealed-first min-max=1, fixed one-step timing | `ReverseSolver.Residence.robust_quantifier_order_separation` | IMPLEMENTED; exact-head verification pending; no robust dynamic recursion |
 
 Inputs: D0/D1, C69, C70. Must not mutate D0/D1 receipts.
+
+Verification: PR #74 source `7c3e7e450f11af9913d393757a52e37e7bb4f4fa`
+passed focused synthetic-merge run `39038337508` at
+`bc0dc18659e22745003cdb45f8a0968029129547`: all three D2 modules compiled,
+all 51 declarations passed the standard three-axiom audit, and 17 exact tests
+plus the source firewall passed. This candidate integrates main
+`22859775afb744a6dce89f73f47f816afb88bb23` (C70/E1/repaired F1); fresh
+combined-head full CI, PR-only C10 evidence and review remain pending.
 
 ## X1 — flagship economic-world MPE versus learning model
 

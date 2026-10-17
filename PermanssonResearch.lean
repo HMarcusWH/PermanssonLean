@@ -1,3 +1,6 @@
+import PermanssonResearch.ReverseSolver.ResidenceEvent
+import PermanssonResearch.ReverseSolver.ResidenceValue
+import PermanssonResearch.ReverseSolver.ResidenceContracts
 import PermanssonResearch.RegimeExit.CanonicalTailKernel
 import PermanssonResearch.RegimeExit.RestartSanity
 import PermanssonResearch.RegimeExit.StationaryTailLaw
