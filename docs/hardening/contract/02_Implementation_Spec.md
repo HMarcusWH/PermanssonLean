@@ -445,11 +445,17 @@ Each of the three jobs is independent, with its own checkout and no `needs` chai
 
 Do not fetch historical evidence from Actions in each job. The supplement carries it. F1/F2 require the accepted A objects, obtained through the checkout's full history or an explicit fixed-SHA preparation fetch. F3 proves its own historical objects come from the delivered bundle, not from the job's checkout.
 
+The candidate-bound archival job also verifies the committed publication-candidate ZIP and sidecar against every canonical inner supplement file at C, including both manifest files. It enforces the documented exact member inventory, bytes, modes and timestamps. Standalone replay without candidate Git authority reports this comparison as not applicable; it cannot satisfy this candidate-bound gate. Filesystem inventories must enforce fixed count, depth and aggregate-byte budgets during traversal before payload hashing, with separate streaming growth limits.
+
 On a genuine PR, the context checker must confirm checkout `HEAD=S`, actual parents `[B,H]`, repository identity and event PR number. For a push, confirm checkout `HEAD` equals the event's `after` SHA and the ref is main. Dispatch reports are marked diagnostic and cannot substitute for a required genuine-PR run.
 
 ### 11.3 Existing jobs and exact names
 
-Preserve existing Lean, Research Lean, executable verification and both Application contract OS jobs. The live observed required contexts are:
+Preserve existing Lean, Research Lean, executable verification and both Application contract OS jobs.
+
+Each existing job must run the genuine-event context preflight before its verification work using a full-history checkout, read-only permissions and disabled checkout credential persistence. Remove manual dispatch from these required-result workflows, retain PR/main-push handling, and check their reviewed profiles in the integrity workflow contract. Preserve the underlying verification commands and PR-only C10 source binding. Capture each actual job's source context; a same-name manual result or a result from H cannot replace proof execution on the genuine S.
+
+The live observed required contexts are:
 
 ```text
 build

@@ -603,6 +603,72 @@ class ArchiveInputTests(unittest.TestCase):
             write_manifest(root, value)
             self.reject("E_LIMIT", validate_manifest, root)
         self.reject("E_LIMIT", strict_json, b" " * (MAX_METADATA + 1))
+        from verification.archive import manifest as manifest_module
+        # Real unknown empty files exceed the actual production count ceiling.
+        # Their sizes are zero, so no size or aggregate guard masks this check.
+        with self.subTest(attack="many_unknown_empty_files"), tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            value = manifest_fixture(root)
+            write_manifest(root, value)
+            validate_manifest(root)
+            existing = len(list(root.iterdir()))
+            for number in range(manifest_module.MAX_FILES + 1 - existing):
+                (root / ("unknown-" + str(number) + ".txt")).write_bytes(b"")
+            with patch("verification.archive.manifest.file_record", side_effect=AssertionError("hash before count bound")) as hashed:
+                self.reject("E_LIMIT", validate_manifest, root)
+                hashed.assert_not_called()
+        # A private tiny aggregate budget avoids allocating hundreds of MiB;
+        # every real fixture payload is individually valid and ordinary UTF-8.
+        with self.subTest(attack="aggregate_small_files"), tempfile.TemporaryDirectory() as temporary, \
+             patch("verification.archive.manifest.MAX_TOTAL_BYTES", 12):
+            root = Path(temporary)
+            (root / "a.txt").write_bytes(b"abcdef")
+            (root / "b.txt").write_bytes(b"ghijkl")
+            self.assertEqual(12, sum(row["size"] for row in scan_files(root)))
+            (root / "c.txt").write_bytes(b"m")
+            with patch("verification.archive.manifest.file_record", side_effect=AssertionError("hash before aggregate bound")) as hashed:
+                self.reject("E_LIMIT", scan_files, root)
+                hashed.assert_not_called()
+        with self.subTest(attack="many_empty_directories"), tempfile.TemporaryDirectory() as temporary, \
+             patch("verification.archive.manifest.MAX_DIRECTORIES", 3):
+            root = Path(temporary)
+            for number in range(4):
+                (root / str(number)).mkdir()
+            with patch("verification.archive.manifest.file_record", side_effect=AssertionError("hash before directory bound")) as hashed:
+                self.reject("E_LIMIT", scan_files, root)
+                hashed.assert_not_called()
+        with self.subTest(attack="directory_depth"), tempfile.TemporaryDirectory() as temporary, \
+             patch("verification.archive.manifest.MAX_DIRECTORY_DEPTH", 2):
+            root = Path(temporary)
+            (root / "a/b/c").mkdir(parents=True)
+            self.reject("E_LIMIT", scan_files, root)
+        with self.subTest(attack="declared_count_before_scan"), tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            value = manifest_fixture(root)
+            value["files"] = [{"path": "unknown-" + str(i), "size": 0, "sha256": "a" * 64}
+                              for i in range(manifest_module.MAX_FILES + 1)]
+            write_manifest(root, value)
+            with patch("verification.archive.manifest.scan_files", side_effect=AssertionError("scan before declared count bound")):
+                self.reject("E_LIMIT", validate_manifest, root)
+        with self.subTest(attack="declared_aggregate_before_scan"), tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            value = manifest_fixture(root)
+            for row, size in zip(value["files"], (6, 6, 1)):
+                row["size"] = size
+            write_manifest(root, value)
+            with patch("verification.archive.manifest.MAX_TOTAL_BYTES", 12), \
+                 patch("verification.archive.manifest.scan_files", side_effect=AssertionError("scan before declared aggregate bound")):
+                self.reject("E_LIMIT", validate_manifest, root)
+        # Reparse metadata is exercised explicitly rather than claiming that a
+        # mocked directory entry is a real Windows junction execution.
+        from types import SimpleNamespace
+        with self.subTest(attack="Windows_reparse_directory_metadata"), tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            metadata = SimpleNamespace(st_mode=__import__("stat").S_IFDIR, st_file_attributes=0x400)
+            entry = SimpleNamespace(path=str(root / "junction"), stat=lambda **kwargs: metadata)
+            with patch("verification.archive.manifest.os.scandir") as scanned:
+                scanned.return_value.__enter__.return_value = [entry]
+                self.reject("E_MANIFEST_FORMAT", scan_files, root)
 
     def test_standalone_context_requires_actual_restore_before_pass(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -811,6 +877,144 @@ class GuideClosureTests(unittest.TestCase):
                                                            "--source-candidate", tooling_commit]))
             verify.assert_called_once_with("unused", "unused", require_isolation=True,
                                            source_repo=str(fixture.root), source_candidate=tooling_commit)
+
+
+class PublicationTests(unittest.TestCase):
+    def test_committed_publication_matches_verified_inner_objects(self):
+        from io import BytesIO
+        import stat
+        import struct
+        import zlib
+        from verification.archive.create_bundle import GUIDE_PATH, _snapshot_tooling
+        from verification.archive.publication import (SUPPLEMENT_PREFIX, ZIP_PATH, FIXED_TIME,
+                                                       validate_committed_publication)
+        from verification.archive.verify_bundle import validate_tooling
+        from verification.integrity.tests._fixtures import GitFixture
+
+        fixture = GitFixture()
+        self.addCleanup(fixture.close)
+        code = {b"verification/archive/verify_bundle.py": b"# fixture publication source\n",
+                b"verification/integrity/__init__.py": b"# fixture integrity source\n",
+                GUIDE_PATH.encode(): b"Canonical fixture guide\n"}
+        source = fixture.commit({path: ("100644", value) for path, value in code.items()})
+        for path, content in code.items():
+            target = fixture.root / path.decode()
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(content)
+
+        def zip_bytes(contents, *, symlink=False, duplicate=False):
+            buffer = BytesIO()
+            with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+                for i, (name, content) in enumerate(sorted(contents.items())):
+                    info = zipfile.ZipInfo(name, FIXED_TIME)
+                    info.create_system = 3
+                    info.compress_type = zipfile.ZIP_DEFLATED
+                    info.external_attr = ((stat.S_IFLNK | 0o777) if symlink and i == 0 else (stat.S_IFREG | 0o644)) << 16
+                    archive.writestr(info, content)
+                if duplicate:
+                    # A second central-directory member cannot be hidden by
+                    # repairing the publisher checksum.
+                    info = zipfile.ZipInfo(next(iter(sorted(contents))), FIXED_TIME)
+                    info.create_system = 3
+                    info.external_attr = (stat.S_IFREG | 0o644) << 16
+                    with __import__("warnings").catch_warnings():
+                        __import__("warnings").simplefilter("ignore", UserWarning)
+                        archive.writestr(info, contents[info.filename])
+            return buffer.getvalue()
+
+        def reject(function, *args, **kwargs):
+            with self.assertRaises(HardeningError) as caught:
+                function(*args, **kwargs)
+            self.assertEqual("E_PUBLICATION_INTEGRITY", caught.exception.code, str(caught.exception))
+            return caught.exception
+
+        with tempfile.TemporaryDirectory(prefix="permansson-publication-") as temporary:
+            supplement = Path(temporary) / "supplement"
+            supplement.mkdir()
+            tooling = _snapshot_tooling(fixture.repo, source, supplement)
+            manifest = manifest_fixture(supplement)
+            manifest["tooling"] = {"source_commit": source, "files": tooling}
+            write_manifest(supplement, manifest)
+            validate_manifest(supplement)
+            contents = {path.relative_to(supplement).as_posix(): path.read_bytes()
+                        for path in supplement.rglob("*") if path.is_file()}
+            good_zip = zip_bytes(contents)
+
+            def publish(payload, *, parent=source, extras=None):
+                changes = {SUPPLEMENT_PREFIX.encode() + name.encode(): ("100644", value)
+                           for name, value in contents.items()}
+                changes[ZIP_PATH.encode()] = ("100644", payload)
+                changes[(ZIP_PATH + ".sha256").encode()] = (
+                    "100644", (digest(payload) + "  " + Path(ZIP_PATH).name + "\n").encode())
+                changes.update(extras or {})
+                candidate = fixture.commit(changes, parent=parent)
+                fixture.repo.run("update-ref", "refs/heads/main", candidate)
+                return candidate
+
+            accepted_tree = fixture.repo.commit(fixture.accepted).tree
+            with patch("verification.archive.verify_bundle.__file__", str(fixture.root / "verification/archive/verify_bundle.py")), \
+                 patch("verification.archive.verify_bundle.ACCEPTED", fixture.accepted), \
+                 patch("verification.archive.verify_bundle.ACCEPTED_TREE", accepted_tree), \
+                 patch("verification.archive.publication.ACCEPTED", fixture.accepted), \
+                 patch("verification.archive.publication.ACCEPTED_TREE", accepted_tree):
+                def prior_stages(candidate, current_manifest=manifest):
+                    self.assertEqual(current_manifest, validate_manifest(supplement))
+                    validate_tooling(supplement, current_manifest,
+                                     source_repo=fixture.root, source_candidate=candidate)
+
+                with self.subTest(control="canonical_C_positive"):
+                    candidate = publish(good_zip)
+                    prior_stages(candidate)
+                    result = validate_committed_publication(fixture.repo, candidate, supplement, manifest)
+                    self.assertEqual("PASS", result["status"])
+                    self.assertEqual(len(contents), result["members"])
+                    self.assertTrue(result["verified_filesystem_matches_C"])
+
+                altered_contents = {**contents, "history.bundle": b"!" + contents["history.bundle"][1:]}
+                attacks = {"stale_payload_repaired_sidecar": zip_bytes(altered_contents),
+                           "unsafe_member": zip_bytes({("../" + name if i == 0 else name): value
+                                                       for i, (name, value) in enumerate(sorted(contents.items()))}),
+                           "symlink_member": zip_bytes(contents, symlink=True),
+                           "duplicate_member": zip_bytes(contents, duplicate=True)}
+                encrypted, bomb = bytearray(good_zip), bytearray(good_zip)
+                central = good_zip.index(b"PK\x01\x02")
+                struct.pack_into("<H", encrypted, 6, 1)
+                struct.pack_into("<H", encrypted, central + 8, 1)
+                struct.pack_into("<L", bomb, central + 24, MAX_BUNDLE + 1)
+                attacks.update(encrypted_member=bytes(encrypted), declared_size_bomb=bytes(bomb))
+                concealed = bytearray(attacks["duplicate_member"])
+                struct.pack_into("<2H", concealed, len(concealed) - 22 + 8, len(contents), len(contents))
+                attacks["concealed_duplicate_count"] = bytes(concealed)
+                corrupted = bytearray(good_zip)
+                name_size, extra_size = struct.unpack_from("<2H", corrupted, 26)
+                corrupted[30 + name_size + extra_size] = 7  # reserved raw-DEFLATE block type
+                attacks["corrupt_deflate_stream"] = bytes(corrupted)
+                for name, payload in attacks.items():
+                    with self.subTest(attack=name):
+                        candidate = publish(payload)  # both ZIP and publisher sidecar repaired in C
+                        prior_stages(candidate)
+                        if name == "concealed_duplicate_count":
+                            with patch("verification.archive.publication.zipfile.ZipFile", side_effect=AssertionError("unbounded parser invoked")):
+                                reject(validate_committed_publication, fixture.repo, candidate, supplement, manifest)
+                        else:
+                            error = reject(validate_committed_publication, fixture.repo, candidate, supplement, manifest)
+                            if name == "corrupt_deflate_stream":
+                                self.assertIsInstance(error.__cause__, zlib.error)
+
+                with self.subTest(attack="canonical_extra_inner_path"):
+                    candidate = publish(good_zip, extras={(SUPPLEMENT_PREFIX + "extra.txt").encode(): ("100644", b"extra")})
+                    prior_stages(candidate)
+                    reject(validate_committed_publication, fixture.repo, candidate, supplement, manifest)
+                with self.subTest(attack="filesystem_cannot_define_publication_authority"):
+                    candidate = publish(good_zip)
+                    (supplement / "history.bundle").write_bytes(b"altered filesystem fixture")
+                    altered = deepcopy(manifest)
+                    altered["files"] = scan_files(supplement)
+                    row = next(row for row in altered["files"] if row["path"] == "history.bundle")
+                    altered["bundle"].update(size=row["size"], sha256=row["sha256"])
+                    write_manifest(supplement, altered)
+                    prior_stages(candidate, altered)
+                    reject(validate_committed_publication, fixture.repo, candidate, supplement, altered)
 
 
 if __name__ == "__main__":

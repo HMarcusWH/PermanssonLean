@@ -16,6 +16,12 @@ MAX_BUNDLE = 256 * 1024 * 1024
 MAX_OBJECT = 128 * 1024 * 1024
 MAX_CLOSURE = 1024 * 1024 * 1024
 MAX_OBJECTS = 200_000
+# Fixed delivered-filesystem budgets, independent of Git object closure.
+# The normal supplement is far below these ceilings.
+MAX_FILES = 2048
+MAX_TOTAL_BYTES = 512 * 1024 * 1024
+MAX_DIRECTORIES = 2048
+MAX_DIRECTORY_DEPTH = 128
 SHA = re.compile(r"[0-9a-f]{40}\Z")
 SHA256 = re.compile(r"[0-9a-f]{64}\Z")
 SELF_FILES = {"archive-manifest.json", "archive-manifest.sha256"}
@@ -85,15 +91,21 @@ def read_bounded(path, limit=MAX_METADATA):
     return data
 
 
-def file_record(path, relative):
+def file_record(path, relative, *, expected_size=None):
     relative = safe_path(relative)
     path = Path(path)
-    if path.is_symlink() or not stat.S_ISREG(path.lstat().st_mode):
+    metadata = path.lstat()
+    if not stat.S_ISREG(metadata.st_mode) or _is_reparse(metadata):
         fail("E_MANIFEST_FORMAT", "Nonregular delivered payload: " + relative)
-    size = path.stat().st_size
+    size = metadata.st_size
     limit = MAX_BUNDLE if relative == "history.bundle" else MAX_METADATA
     if size > limit:
         fail("E_LIMIT", "Delivered payload exceeds budget: " + relative)
+    if expected_size is not None:
+        if size != expected_size:
+            fail("E_MANIFEST_FORMAT", "Delivered payload changed after metadata preflight: " + relative)
+        # A growing file cannot consume the budget reserved for later files.
+        limit = min(limit, expected_size)
     hasher = hashlib.sha256()
     observed_size = 0
     with path.open("rb") as stream:
@@ -107,25 +119,61 @@ def file_record(path, relative):
     return {"path": relative, "size": size, "sha256": hasher.hexdigest()}
 
 
+def _is_reparse(metadata):
+    return bool(getattr(metadata, "st_file_attributes", 0)
+                & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400))
+
+
 def scan_files(root):
     root = Path(root)
-    if root.is_symlink() or not root.is_dir():
+    try:
+        metadata = root.lstat()
+    except OSError:
         fail("E_MANIFEST_FORMAT", "Supplement must be a regular directory")
-    records = []
+    if not stat.S_ISDIR(metadata.st_mode) or _is_reparse(metadata):
+        fail("E_MANIFEST_FORMAT", "Supplement must be a regular directory")
+    # Walk entries incrementally: os.walk would first allocate an unbounded
+    # directory listing. Complete the bounded metadata pass before any hashing.
+    pending = [(root, 0)]
+    payloads = []
     folded = set()
-    for directory, dirs, files in os.walk(root, followlinks=False):
-        for name in dirs:
-            if (Path(directory) / name).is_symlink():
-                fail("E_MANIFEST_FORMAT", "Symlinked supplement directory")
-        for name in files:
-            path = Path(directory) / name
-            relative = path.relative_to(root).as_posix()
-            safe_path(relative)
-            if relative.casefold() in folded:
-                fail("E_MANIFEST_FORMAT", "Case-ambiguous delivered path")
-            folded.add(relative.casefold())
-            if relative not in SELF_FILES:
-                records.append(file_record(path, relative))
+    file_count = directory_count = total_bytes = 0
+    while pending:
+        directory, depth = pending.pop()
+        metadata = directory.lstat()
+        if not stat.S_ISDIR(metadata.st_mode) or _is_reparse(metadata):
+            fail("E_MANIFEST_FORMAT", "Nonregular delivered directory")
+        with os.scandir(directory) as entries:
+            for entry in entries:
+                path = Path(entry.path)
+                relative = safe_path(path.relative_to(root).as_posix())
+                metadata = entry.stat(follow_symlinks=False)
+                if _is_reparse(metadata):
+                    fail("E_MANIFEST_FORMAT", "Reparse-point delivered path: " + relative)
+                if stat.S_ISDIR(metadata.st_mode):
+                    directory_count += 1
+                    if directory_count > MAX_DIRECTORIES or depth + 1 > MAX_DIRECTORY_DEPTH:
+                        fail("E_LIMIT", "Delivered directory traversal exceeds its fixed budget")
+                    pending.append((path, depth + 1))
+                elif stat.S_ISREG(metadata.st_mode):
+                    file_count += 1
+                    if file_count > MAX_FILES:
+                        fail("E_LIMIT", "Delivered file count exceeds its fixed budget")
+                    limit = MAX_BUNDLE if relative == "history.bundle" else MAX_METADATA
+                    if metadata.st_size > limit:
+                        fail("E_LIMIT", "Delivered payload exceeds budget: " + relative)
+                    total_bytes += metadata.st_size
+                    if total_bytes > MAX_TOTAL_BYTES:
+                        fail("E_LIMIT", "Delivered aggregate bytes exceed their fixed budget")
+                    if relative not in SELF_FILES:
+                        payloads.append((path, relative, metadata.st_size))
+                else:
+                    fail("E_MANIFEST_FORMAT", "Nonregular delivered path: " + relative)
+                folded_path = relative.casefold()
+                if folded_path in folded:
+                    fail("E_MANIFEST_FORMAT", "Case-ambiguous delivered path")
+                folded.add(folded_path)
+    records = [file_record(path, relative, expected_size=size) for path, relative, size in payloads]
     return sorted(records, key=lambda row: row["path"])
 
 
@@ -148,7 +196,10 @@ def validate_manifest(root):
     rows = value["files"]
     if not isinstance(rows, list) or not rows:
         fail("E_MANIFEST_FORMAT", "Missing payload inventory")
+    if len(rows) > MAX_FILES:
+        fail("E_LIMIT", "Declared file count exceeds its fixed budget")
     names = set()
+    total_declared_bytes = 0
     for row in rows:
         if not isinstance(row, dict) or set(row) != {"path", "size", "sha256"}:
             fail("E_MANIFEST_FORMAT", "Malformed delivered payload record")
@@ -160,6 +211,9 @@ def validate_manifest(root):
             fail("E_MANIFEST_FORMAT", "Malformed payload digest or size")
         if row["size"] > (MAX_BUNDLE if name == "history.bundle" else MAX_METADATA):
             fail("E_LIMIT", "Declared payload exceeds fixed budget")
+        total_declared_bytes += row["size"]
+        if total_declared_bytes > MAX_TOTAL_BYTES:
+            fail("E_LIMIT", "Declared aggregate bytes exceed their fixed budget")
     observed = scan_files(root)
     if {row["path"] for row in observed} != names:
         fail("E_MANIFEST_FORMAT", "Missing or extra delivered payload")

@@ -21,6 +21,17 @@ require independently observed author identities, timestamps and exact UTF-8
 body hashes; repaired candidate acquisition and manifest hashes cannot replace
 those pins. These comments retain their original code-review/provenance role.
 
+The five existing required job contexts also bind their actual checkout to the
+genuine PR head/base/synthetic or main-push event before verification. Manual
+dispatch cannot supply those required results. Their reviewed workflow profiles
+are checked alongside the three integrity jobs; matching a job name alone is
+insufficient source evidence.
+
+Bound archive verification compares the committed publication-candidate ZIP,
+sidecar and complete inner supplement at the same candidate. Inventory scans
+enforce fixed aggregate traversal and byte budgets before hashing. Standalone
+replay retains its narrower accepted-artifact scope.
+
 ## Inputs and provenance
 
 The five user-supplied Markdown contracts are retained under `docs/hardening/contract/`. The linked complete ZIP, its registries and templates were not present locally. The convenience registries under `docs/hardening/registries/` are therefore explicitly derived from accepted Git objects and fixed R identities, rather than represented as copies of the missing package. Production authority is the accepted Git snapshot and fixed digest pins.

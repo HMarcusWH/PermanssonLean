@@ -825,6 +825,7 @@
   ],
   "controls": {
     "archive": [
+      "verification.archive.tests.test_archive.PublicationTests.test_committed_publication_matches_verified_inner_objects",
       "verification.archive.tests.test_archive.GuideClosureTests.test_guide_closure_canonical_and_standalone",
       "verification.archive.tests.test_archive.ArchiveInputTests.test_review_normalization_is_bound_to_source_pages",
       "verification.archive.tests.test_archive.ArchiveInputTests.test_unparsed_run_zip_cannot_replace_per_job_logs",
