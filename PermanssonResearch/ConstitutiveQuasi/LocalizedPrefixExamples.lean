@@ -180,8 +180,10 @@ noncomputable def initialScore : FinitePathProperty Bool 0 where
 theorem initialScore_point (b : Bool) :
     initialScore.fromKernel 0 (Kernel.id : Kernel Bool Bool) b =
       if b then 1 else 0 := by
-  simp [FinitePathProperty.fromKernel, FinitePathProperty.expected,
-    finitePrefixLaw, singletonPrefix, initialScore]
+  simp only [FinitePathProperty.fromKernel, FinitePathProperty.expected,
+    finitePrefixLaw, initialScore]
+  rw [Kernel.id_apply, integral_dirac]
+  rfl
 
 /-- Both laws are valid probability laws of the same actual trajectory kernel;
 only the initial state changes. This is the compiler mutant's positive control. -/
