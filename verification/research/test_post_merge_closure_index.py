@@ -146,7 +146,7 @@ class PostMergeIndexTests(unittest.TestCase):
                 with self.subTest(atlas_id=row['id'], path=dec['path'], declaration=dec['declaration']):
                     content = git_source(dec['path'])
                     self.assertEqual(sha(content), dec['source_sha256'])
-                    self.assertIn(dec['signature_header'].encode(), content)
+                    self.assertIn(dec['signature_header'].encode(), content.replace(b'\r\n', b'\n'))
 
     def test_ci_sources_and_local_artifacts_are_not_conflated(self):
         ci = self.index['CI']
