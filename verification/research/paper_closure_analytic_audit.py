@@ -37,6 +37,13 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def axiom_names(group):
+    # Full universe printing annotates constant names; it does not create a
+    # distinct axiom. Keep the actual constant identifier for allowlist checks.
+    plain = re.sub(r'\.\{[^}]*\}', '', group)
+    return sorted({x.strip() for x in plain.replace('\n', ' ').split(',') if x.strip()})
+
+
 def declarations(source):
     source = re.sub(r'/\-.*?\-/|--[^\n]*', '', source, flags=re.S)
     stack, result = [], []
@@ -51,6 +58,7 @@ def declarations(source):
 
 
 def main():
+    builder_sha256 = sha(Path(__file__))
     parser = argparse.ArgumentParser()
     parser.add_argument('--compiler')
     parser.add_argument('--output', default='research/paper_closures/analytic_receipt.json')
@@ -85,6 +93,8 @@ def main():
             artifact.parent.mkdir(parents=True, exist_ok=True)
             before = sha(path)
             start = time.time()
+            journal.write_text(json.dumps({'module': module, 'started': start,
+                               'status': 'RUNNING', 'source_sha256': before}) + '\n', encoding='utf-8')
             run = subprocess.run(command + ['-o', str(artifact), relative], cwd=ROOT,
                                  capture_output=True, encoding='utf-8', errors='replace', timeout=600)
             journal.with_suffix('.out').write_text(run.stdout + run.stderr, encoding='utf-8')
@@ -95,7 +105,7 @@ def main():
             if status['status'] != 'PASS':
                 raise RuntimeError('Compiler/source-stability check failed: ' + module)
             print('PASS', module, flush=True)
-        files[relative] = {'sha256': sha(path), 'compiler': status}
+        files[relative] = {'sha256': sha(path), 'artifact_sha256': sha(artifact), 'compiler': status}
         exports.extend(declarations(source))
     audit = ROOT / '.lake/closure-build/AnalyticAxiomAudit.lean'
     audit.write_text(''.join('import PermanssonResearch.' + m + '\n' for m in MODULES) +
@@ -107,14 +117,21 @@ def main():
     log.write_text(run.stdout + run.stderr, encoding='utf-8')
     reports = {}
     for name, group in re.findall(r"'([^']+)' depends on axioms:\s*\[([^\]]*)\]", run.stdout, re.S):
-        reports[name] = sorted({x.strip() for x in group.replace('\n', ' ').split(',') if x.strip()})
+        reports[name] = axiom_names(group)
     for name in re.findall(r"'([^']+)' does not depend on any axioms", run.stdout):
         reports[name] = []
     missing = sorted(set(exports) - set(reports))
     bad = {name: axioms for name, axioms in reports.items() if not set(axioms) <= ALLOW}
     if run.returncode or missing or bad:
         raise RuntimeError((run.returncode, missing, bad, str(log)))
+    for relative, record in files.items():
+        artifact = ROOT / '.lake/build/lib/lean' / relative.replace('.lean', '.olean')
+        if sha(ROOT / relative) != record['sha256'] or sha(artifact) != record['artifact_sha256']:
+            raise RuntimeError('Input or compiled artifact changed during audit: ' + relative)
+    if sha(Path(__file__)) != builder_sha256:
+        raise RuntimeError('Audit driver changed during execution')
     receipt = {'status': 'PASS', 'evidence_kind': 'LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT',
+               'receipt_builder_sha256': builder_sha256,
                'compiler': version.stdout.strip(), 'lean_toolchain': expected,
                'source_scope': files, 'declaration_count': len(exports), 'declarations': reports,
                'axiom_allowlist': sorted(ALLOW), 'compiler_returncode': run.returncode,
