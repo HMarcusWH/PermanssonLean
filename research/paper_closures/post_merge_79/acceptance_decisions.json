@@ -1,0 +1,666 @@
+{
+  "case_count": 45,
+  "cases": [
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "X1-N01"
+      ],
+      "id": "X-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "R2-A01: emitted-literal corruption is not stochasticity-preserving."
+      ],
+      "required_expected_result": "Kernel-checked equality; changed world/update/action row rejected",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "X1-N02"
+      ],
+      "id": "X-02",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Actual-kernel induction identifies each entry",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "X1-N03"
+      ],
+      "id": "X-03",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Original constitutiveMargin equalities and exact attainers",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "X1-N03"
+      ],
+      "id": "X-04",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "R2-A02: unique learner attainer removal is tested, not tied-equilibrium domain removal."
+      ],
+      "required_expected_result": "Lean proof fails at arithmetic/domain obligation; parser failure alone insufficient",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "X1-N01",
+        "X1-N02"
+      ],
+      "id": "X-05",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Typed kernel equality fails",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "X1-N03"
+      ],
+      "id": "X-06",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Rejected; leakage theorem remains unchanged",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "X1-S01"
+      ],
+      "id": "S-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Exact identity including terminal beta^N value",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "X1-S01"
+      ],
+      "id": "S-02",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Outside admitted information class; no verification theorem",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "F1-MA2"
+      ],
+      "id": "M-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Full counterfactual path laws equal under stated premises",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "F1-MA2",
+        "F1-P05"
+      ],
+      "id": "M-02",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "R2-A04: marked-versus-unmarked action-coupling distinction has no dedicated tracked countermodel."
+      ],
+      "required_expected_result": "Autonomy premise rejected; reactive witness not counted strict",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "F1-P01",
+        "F1-P02"
+      ],
+      "id": "F-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "R2-A03: asymmetric common/private-update swap fixture missing.",
+        "R2-I02: general measurable n=2 product identity is distinct from the finite full model/path recovery."
+      ],
+      "required_expected_result": "P inputs reindexed correctly, no assumed symmetry",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "F1-P03"
+      ],
+      "id": "F-02",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Projection/exogeneity fails",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "F1-P04"
+      ],
+      "id": "F-03",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "No feasible strict probability anchor",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "F1-P06"
+      ],
+      "id": "F-04",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Single-product claim fails; mediator mixture succeeds",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "F1-P07"
+      ],
+      "id": "F-05",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "R2-A05: positive exact SCM test is in the full suite, but not this 48-check route; dedicated positive Lean instantiation is absent."
+      ],
+      "required_expected_result": "Mediation not identified without sufficient premises",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "E1-G01"
+      ],
+      "id": "Q-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Geometric bound holds without claiming projection Markov",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "E1-G01"
+      ],
+      "id": "Q-02",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "ANA-03: direct projected theorem uses matched starts/homogeneous kernels; expanded projected adapter remains open."
+      ],
+      "required_expected_result": "Correct boundaries; mismatched unbudgeted starts rejected",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "A2-P01"
+      ],
+      "id": "Q-03",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "ANA-01: routed executable tests the old additive primitive budget, not product saturation."
+      ],
+      "required_expected_result": "Product mass proved, no independence assumption",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "A2-P02"
+      ],
+      "id": "Q-04",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "ANA-02: selected localized visit/original-margin/reporting integration missing."
+      ],
+      "required_expected_result": "Intervention defect charged rather than omitted",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "E1-P01",
+        "E1-P02"
+      ],
+      "id": "Q-05",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "ANA-04: generic discounted/whole-law results are proved; a quotient-native original-margin application must still supply its actual bindings."
+      ],
+      "required_expected_result": "No unqualified whole-path/Exact-GR transfer",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "A3-K01"
+      ],
+      "id": "A-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Finite dual equality checked; wrong supnorm test class rejected",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "A3-I01",
+        "A3-C01"
+      ],
+      "id": "A-02",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Missing strict contraction/uniqueness exposed",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "A3-P01"
+      ],
+      "id": "A-03",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Bounded-diameter conversion not applied",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "A3-F01"
+      ],
+      "id": "A-04",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Four-process wrapper unavailable, not silently three-process",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "A3-F01"
+      ],
+      "id": "A-05",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Property identity fails rather than being assumed",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "D2-R01",
+        "D2-P01"
+      ],
+      "id": "D-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Same literal-event value; deterministic augmented maximizer attains",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "D2-R01",
+        "D2-P02"
+      ],
+      "id": "D-02",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Exact event classification including word 1,0,1,1",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "D2-P03",
+        "D2-P04"
+      ],
+      "id": "D-03",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Declared precedence and separate risk monitor preserved",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "D2-P04"
+      ],
+      "id": "D-04",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Optimum17/20 atp1/2, unconstrained p1 infeasible",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "D2-P05"
+      ],
+      "id": "D-05",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "SR-A04: 9/100 versus1/100 boundary is scalar arithmetic rather than an instantiated committed-model path-law fixture."
+      ],
+      "required_expected_result": "Committed value.09 differs from rectangular.01",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "D2-P06"
+      ],
+      "id": "D-06",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "SR-A05: hidden-flag fixture uses different pure priors, not two reachable histories from one fixed initial law."
+      ],
+      "required_expected_result": "Full augmented belief required",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "D2-P07"
+      ],
+      "id": "D-07",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Infinite optimum determined by limit theorem, not one finite bound",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "D2-P08"
+      ],
+      "id": "D-08",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "SR-A02: concrete typed compatible-overlap and joint-only certified block fixture missing."
+      ],
+      "required_expected_result": "No admissible typed controlled row",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "D2-P09"
+      ],
+      "id": "D-09",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "SR-A01: concrete ExactClassFunctional and two-state5/6-versus1 regression missing."
+      ],
+      "required_expected_result": "Class identity retained; descriptor score aggregates correctly",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "C11-P01"
+      ],
+      "id": "C11-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Valid nonempty families accepted; n0 rejected",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "C11-P01"
+      ],
+      "id": "C11-02",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Existing checker rejects complete faulty output",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "C-P01"
+      ],
+      "id": "C-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "No unrestricted nonfinite occupation theorem",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "B-P01"
+      ],
+      "id": "B-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "SR-A02: generic compatible overlap proved; concrete typed positive/negative overlap fixtures missing."
+      ],
+      "required_expected_result": "Compatibility rejected; order dependence exposed",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "PENDING_STRENGTHENED_FIXTURE",
+      "atlas_ids": [
+        "B-P02"
+      ],
+      "id": "B-02",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [
+        "SR-A03: non-global-isomorphism positive local-margin transport fixture missing.",
+        "R2-C01: preserved OR/AND labels are correct for ablation margins."
+      ],
+      "required_expected_result": "No unique-minimum or monotonicity inference",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_WITH_STATED_LIMIT",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "X1-P01"
+      ],
+      "id": "XPLUS-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Correct source constructors and kappa1; no edit to old X1",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "APP-E01"
+      ],
+      "id": "E-01",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "Rank-one/scalar promotion rejected",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "APP-E02"
+      ],
+      "id": "E-02",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "No persistent witness transfer",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "APP-E03"
+      ],
+      "id": "E-03",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "No scalar shell reduction or unjustified inverse",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "APP-E04"
+      ],
+      "id": "E-04",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "No pseudoinverse positivity certificate or cancellation",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    },
+    {
+      "acceptance_decision": "ROUTED_EVIDENCE_SOURCE_CI_VERIFIED_NOT_INDEPENDENT_APPROVAL",
+      "atlas_ids": [
+        "APP-E05"
+      ],
+      "id": "E-05",
+      "original_candidate_status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST",
+      "remaining_caveats": [],
+      "required_expected_result": "No unqualified negative full-form conclusion",
+      "required_for_full_acceptance": true,
+      "round2_audited_status": "ROUTED_EVIDENCE_SUPPORTS_STATED_CASE",
+      "source_head": "a1f1a77a301178e33412595265e823a873fb7301"
+    }
+  ],
+  "claims_not_accepted": [
+    "17-check/679-reference census",
+    "external GitHub review approval",
+    "all 45 strengthened fixtures",
+    "empirical GR/PR identification"
+  ],
+  "format": "Permansson.PostPR79.AcceptanceDecisions.v1",
+  "forty_five_required": true,
+  "full_selected_programme_accepted": false,
+  "pending_ids": [
+    "X-01",
+    "X-04",
+    "M-02",
+    "F-01",
+    "F-05",
+    "Q-02",
+    "Q-03",
+    "Q-04",
+    "Q-05",
+    "D-05",
+    "D-06",
+    "D-08",
+    "D-09",
+    "B-01",
+    "B-02"
+  ],
+  "reference": {
+    "B": "39279799834ae536bda715dedecdc11a32bf6c82",
+    "H": "a1f1a77a301178e33412595265e823a873fb7301",
+    "M": "674c1b557d99ab080afb65a797a99cb5840eab62",
+    "S": "fa0441227aa8b245b384b01b32f3bfb43a897f07",
+    "tree": "b391f32f503f07bcfd7b29d8c24c1f9ad61eb19f"
+  },
+  "retired_owner_historical_digest": "539c0c5ee0641d9826b135d33b9e8fe6e01df49109584870ff7553d019b6c378",
+  "strict_release_gate": "FAIL_ON_ANY_PENDING_OR_UNVERIFIED_REQUIRED_ACCEPTANCE; this snapshot intentionally remains nonrelease",
+  "unverified_owner_digest_retired_from_authority": true
+}

@@ -1,0 +1,1826 @@
+{
+  "count": 256,
+  "counts": {
+    "CRLF": 4,
+    "LF_FINAL_CRLF": 16,
+    "LF_FINAL_TWO_CRLF": 1,
+    "RAW": 234,
+    "UNRESOLVED": 1
+  },
+  "format": "Permansson.PostPR79.ReceiptNormalization.v1",
+  "historical_mismatch_disposition": {
+    "canonical_sha256": "73d3a7c88c270317a0f708f543fa57915222da3538b9a01893f54282eaf2c103",
+    "explanation": "Published historical owner source digest was not reconstructed by raw history or newline variants. Preserve the historical receipt, never accept this digest as current-source attestation. Canonical source requires a fresh provenance binding and independent source-head CI.",
+    "published_sha256": "539c0c5ee0641d9826b135d33b9e8fe6e01df49109584870ff7553d019b6c378",
+    "source": "PermanssonResearch/EconomicWitness/ConstitutionCore.lean",
+    "status": "RETIRED_UNRECONCILED_OWNER_RECEIPT_BINDING"
+  },
+  "normalization_rule": {
+    "CRLF": "replace each LF with CRLF",
+    "LF_FINAL_CRLF": "replace last LF with CRLF",
+    "LF_FINAL_TWO_CRLF": "replace last two LF line endings with CRLF",
+    "RAW": "identity"
+  },
+  "records": [
+    {
+      "canonical_sha256": "07f20e818df7eb4362cad37d367eb9b63370f346c3c3721fd32b4544083d897c",
+      "classification": "RAW",
+      "published_sha256": "07f20e818df7eb4362cad37d367eb9b63370f346c3c3721fd32b4544083d897c",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Probability/ProjectedCommonSubkernel.lean"
+    },
+    {
+      "canonical_sha256": "28c69bccf4667c2aca09fc1294d9efe471d35a6a8ba7c376c32a2ce01ed54cba",
+      "classification": "RAW",
+      "published_sha256": "28c69bccf4667c2aca09fc1294d9efe471d35a6a8ba7c376c32a2ce01ed54cba",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Quotient/GeometricPrefix.lean"
+    },
+    {
+      "canonical_sha256": "26f7d49df5bb7e083544a15a59d5392bad31aeeab5cab908e965a24a0b83bf4c",
+      "classification": "RAW",
+      "published_sha256": "26f7d49df5bb7e083544a15a59d5392bad31aeeab5cab908e965a24a0b83bf4c",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Quotient/GeometricQuotient.lean"
+    },
+    {
+      "canonical_sha256": "b2929544c41fe5af75bb07c53f9a28f1b3d2ccc366430ec48716d756678a03e2",
+      "classification": "RAW",
+      "published_sha256": "b2929544c41fe5af75bb07c53f9a28f1b3d2ccc366430ec48716d756678a03e2",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Quotient/GeometricMargin.lean"
+    },
+    {
+      "canonical_sha256": "0d34452c4a2d571c5aa55960be13dd617b663bddaa76346c97ed778f22cf664c",
+      "classification": "RAW",
+      "published_sha256": "0d34452c4a2d571c5aa55960be13dd617b663bddaa76346c97ed778f22cf664c",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Probability/LocalizedHistoryTV.lean"
+    },
+    {
+      "canonical_sha256": "43dae187fef4703ef6f93a1086ed2f43b23f3e3d54be7b18236939c74d7f6baa",
+      "classification": "RAW",
+      "published_sha256": "43dae187fef4703ef6f93a1086ed2f43b23f3e3d54be7b18236939c74d7f6baa",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Probability/SummablePathScores.lean"
+    },
+    {
+      "canonical_sha256": "ecd7f10ba18879e898feb34671385bc0a20c29e6fc77c1f7caa4567c0e915ce9",
+      "classification": "RAW",
+      "published_sha256": "ecd7f10ba18879e898feb34671385bc0a20c29e6fc77c1f7caa4567c0e915ce9",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Probability/CouplingDualBound.lean"
+    },
+    {
+      "canonical_sha256": "93bb9b180a2061ac2d9f3989fa9e11aeabd64ad94607e6309bbaec7ba40709b7",
+      "classification": "RAW",
+      "published_sha256": "93bb9b180a2061ac2d9f3989fa9e11aeabd64ad94607e6309bbaec7ba40709b7",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Perturbation/DirectDualContraction.lean"
+    },
+    {
+      "canonical_sha256": "142d1a885638c3621ee14aacbd0e5375bff33806662b1226178422b456b60aee",
+      "classification": "CRLF",
+      "published_sha256": "368e99da4323b2d22ebac5f1ceb86e26b8845b565abe20d706347989ebd162ce",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Perturbation/PrimitiveProductTV.lean"
+    },
+    {
+      "canonical_sha256": "ce5dbcc322706ed5b4027b3138078c3ceb8b191d82bc4f5304672012ebf6fec4",
+      "classification": "RAW",
+      "published_sha256": "ce5dbcc322706ed5b4027b3138078c3ceb8b191d82bc4f5304672012ebf6fec4",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Perturbation/PrimitiveMetricBudget.lean"
+    },
+    {
+      "canonical_sha256": "c90bc6bf020f01f2bd515f458b0fdcf8c48a5acaa608003fae2ac11401e0fde6",
+      "classification": "RAW",
+      "published_sha256": "c90bc6bf020f01f2bd515f458b0fdcf8c48a5acaa608003fae2ac11401e0fde6",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/GrammarRobust/CompatibleOverlap.lean"
+    },
+    {
+      "canonical_sha256": "b0a2a95b83a945eae4e7fb7d37a9110351c44256feb377eac7e861c357138e9e",
+      "classification": "RAW",
+      "published_sha256": "b0a2a95b83a945eae4e7fb7d37a9110351c44256feb377eac7e861c357138e9e",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/GrammarRobust/OverlapKernelAssembly.lean"
+    },
+    {
+      "canonical_sha256": "5961213b9e2744b0aa2f9d6103db579a4e7e46beb56a9012f1c8c831c6857ebe",
+      "classification": "RAW",
+      "published_sha256": "5961213b9e2744b0aa2f9d6103db579a4e7e46beb56a9012f1c8c831c6857ebe",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/GrammarRobust/OverlapCanonicalBridge.lean"
+    },
+    {
+      "canonical_sha256": "07d6495112d3761118a6510026c878497d773270e10aee538f6e6e61385cb3cb",
+      "classification": "RAW",
+      "published_sha256": "07d6495112d3761118a6510026c878497d773270e10aee538f6e6e61385cb3cb",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/GrammarRobust/LowerSetTransport.lean"
+    },
+    {
+      "canonical_sha256": "e5b2bf9f8d48f25e83ad701a5e6b4b23286a2b2b944ba76143ca2b9abc45f8bd",
+      "classification": "RAW",
+      "published_sha256": "e5b2bf9f8d48f25e83ad701a5e6b4b23286a2b2b944ba76143ca2b9abc45f8bd",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/GrammarRobust/OriginalLowerSetTransport.lean"
+    },
+    {
+      "canonical_sha256": "3bd960cd530773a2efac8482ea326c43d004c9181cfa763aa5651f7536608e64",
+      "classification": "RAW",
+      "published_sha256": "3bd960cd530773a2efac8482ea326c43d004c9181cfa763aa5651f7536608e64",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/FeasibleAnchors.lean"
+    },
+    {
+      "canonical_sha256": "b547e44664bf1ab08482fde276b4448398d05ffe6be77b41da29b3c14739e777",
+      "classification": "RAW",
+      "published_sha256": "b547e44664bf1ab08482fde276b4448398d05ffe6be77b41da29b3c14739e777",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/CorrelatedMediator.lean"
+    },
+    {
+      "canonical_sha256": "2404c03891bb8912e73239e9b902ba76b7f02b656a659f7db8efeada63fabe3a",
+      "classification": "RAW",
+      "published_sha256": "2404c03891bb8912e73239e9b902ba76b7f02b656a659f7db8efeada63fabe3a",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/FiniteMediation.lean"
+    },
+    {
+      "canonical_sha256": "d16f5693027488555038686aabfd1c548e6dbe8665e8f19768a33eb60a403e5c",
+      "classification": "RAW",
+      "published_sha256": "d16f5693027488555038686aabfd1c548e6dbe8665e8f19768a33eb60a403e5c",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/AdaptiveGrammarControl.lean"
+    },
+    {
+      "canonical_sha256": "e09f3027088f643b7599c4a2861c42300e8bcf325982a66e93563a9fdb3d4787",
+      "classification": "RAW",
+      "published_sha256": "e09f3027088f643b7599c4a2861c42300e8bcf325982a66e93563a9fdb3d4787",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Specialized/SeamReduction.lean"
+    },
+    {
+      "canonical_sha256": "43f7f1b7842ab92c38f6e220dedbe9b449f713bd156f1013112f69c091b49336",
+      "classification": "RAW",
+      "published_sha256": "43f7f1b7842ab92c38f6e220dedbe9b449f713bd156f1013112f69c091b49336",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Specialized/FiniteDetection.lean"
+    },
+    {
+      "canonical_sha256": "91976bd49739c02dc057be780ed4bfcb9eef3d692123a3cbcd203c4a43a43e54",
+      "classification": "RAW",
+      "published_sha256": "91976bd49739c02dc057be780ed4bfcb9eef3d692123a3cbcd203c4a43a43e54",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Specialized/ShellSchur.lean"
+    },
+    {
+      "canonical_sha256": "c595d334a9049c85f404f5657d0e21eafee46b57b90879a6596cc40d5e980123",
+      "classification": "RAW",
+      "published_sha256": "c595d334a9049c85f404f5657d0e21eafee46b57b90879a6596cc40d5e980123",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Specialized/ShellResolvent.lean"
+    },
+    {
+      "canonical_sha256": "39e607f76735f7d01c65e29aed4ecebd7bca0857f96b5be08bdfb0e7faedb950",
+      "classification": "RAW",
+      "published_sha256": "39e607f76735f7d01c65e29aed4ecebd7bca0857f96b5be08bdfb0e7faedb950",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Specialized/SingularCompatibility.lean"
+    },
+    {
+      "canonical_sha256": "9c3704950798c4d9a542dcecad802883f3aa52743d58b23618e011386cdc9396",
+      "classification": "RAW",
+      "published_sha256": "9c3704950798c4d9a542dcecad802883f3aa52743d58b23618e011386cdc9396",
+      "receipt": "research/paper_closures/analytic_receipt.json",
+      "source": "PermanssonResearch/Specialized/GramSeparation.lean"
+    },
+    {
+      "canonical_sha256": "3f1d071ee625632b9ebcdeb9ac6ee3239246114f1fa4b16e065e092f990e7e59",
+      "classification": "RAW",
+      "published_sha256": "3f1d071ee625632b9ebcdeb9ac6ee3239246114f1fa4b16e065e092f990e7e59",
+      "receipt": "research/paper_closures/autonomy_ae_receipt.json",
+      "source": "PermanssonResearch/Probability/StandardBorelKernelEquality.lean"
+    },
+    {
+      "canonical_sha256": "5ebf7e7c42af56daf6db689838d7f6277facc12b37d49ff8e6a0e9095163d375",
+      "classification": "RAW",
+      "published_sha256": "5ebf7e7c42af56daf6db689838d7f6277facc12b37d49ff8e6a0e9095163d375",
+      "receipt": "research/paper_closures/autonomy_ae_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/AutonomousMeasurableKey.lean"
+    },
+    {
+      "canonical_sha256": "c390f1546a0f29481c8485946bd199c19db4714503f0a7e5ab73e6865c636b7a",
+      "classification": "RAW",
+      "published_sha256": "c390f1546a0f29481c8485946bd199c19db4714503f0a7e5ab73e6865c636b7a",
+      "receipt": "research/paper_closures/autonomy_ae_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/AutonomousInputMarginal.lean"
+    },
+    {
+      "canonical_sha256": "dbacd8f81d6a816446d283f17bdee9c9f2d2e1073b3c70863fcaeb36dc4a83f2",
+      "classification": "RAW",
+      "published_sha256": "dbacd8f81d6a816446d283f17bdee9c9f2d2e1073b3c70863fcaeb36dc4a83f2",
+      "receipt": "research/paper_closures/autonomy_ae_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/AutonomousAEComparison.lean"
+    },
+    {
+      "canonical_sha256": "c974a5bfa3f553f97f43427682ed9893b332299066e9e83dadc35dcae1135662",
+      "classification": "RAW",
+      "published_sha256": "c974a5bfa3f553f97f43427682ed9893b332299066e9e83dadc35dcae1135662",
+      "receipt": "research/paper_closures/autonomy_ae_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/AutonomousMarginalLaw.lean"
+    },
+    {
+      "canonical_sha256": "fce2b56884e35a7a08b2284132f2a0b18391783c7ae1f5a87c2933a3d80f19fc",
+      "classification": "RAW",
+      "published_sha256": "fce2b56884e35a7a08b2284132f2a0b18391783c7ae1f5a87c2933a3d80f19fc",
+      "receipt": "research/paper_closures/autonomy_ae_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/AutonomousAETransport.lean"
+    },
+    {
+      "canonical_sha256": "4bbece652236607d405af7d8cc03c536e16e3da04952c7abc90684776233f298",
+      "classification": "RAW",
+      "published_sha256": "4bbece652236607d405af7d8cc03c536e16e3da04952c7abc90684776233f298",
+      "receipt": "research/paper_closures/autonomy_ae_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/AutonomousAEMechanisms.lean"
+    },
+    {
+      "canonical_sha256": "c36d8c2651f11d8c045b5a48e3b2fa033fa6f906cc4f6fbeac9c7a3e000e45a2",
+      "classification": "RAW",
+      "published_sha256": "c36d8c2651f11d8c045b5a48e3b2fa033fa6f906cc4f6fbeac9c7a3e000e45a2",
+      "receipt": "research/paper_closures/autonomy_ae_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/AutonomousAEContinuumFixture.lean"
+    },
+    {
+      "canonical_sha256": "87df5fee54bb7c9f41a4a0c0e9e5986c4fadb2efca9865f1907f996369c09d85",
+      "classification": "RAW",
+      "published_sha256": "87df5fee54bb7c9f41a4a0c0e9e5986c4fadb2efca9865f1907f996369c09d85",
+      "receipt": "research/paper_closures/belief_fixture_receipt.json",
+      "source": "verification/research/BeliefObservationWitness.lean"
+    },
+    {
+      "canonical_sha256": "996f4cc294dae5807494cbbbb733ae246f4e79dcdba4febc8b1048e21a8cd946",
+      "classification": "RAW",
+      "published_sha256": "996f4cc294dae5807494cbbbb733ae246f4e79dcdba4febc8b1048e21a8cd946",
+      "receipt": "research/paper_closures/belief_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/BeliefKernel.lean"
+    },
+    {
+      "canonical_sha256": "06cebf53aba94f9958a40dbbd8166c8172c4b6ac02831fba3de31072c3d7e469",
+      "classification": "RAW",
+      "published_sha256": "06cebf53aba94f9958a40dbbd8166c8172c4b6ac02831fba3de31072c3d7e469",
+      "receipt": "research/paper_closures/belief_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/BeliefAlpha.lean"
+    },
+    {
+      "canonical_sha256": "3620313d0d0d7f8cd7b50b29081a88e3f56db0188bad8dfd5033c4971da14830",
+      "classification": "RAW",
+      "published_sha256": "3620313d0d0d7f8cd7b50b29081a88e3f56db0188bad8dfd5033c4971da14830",
+      "receipt": "research/paper_closures/belief_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/BeliefHistory.lean"
+    },
+    {
+      "canonical_sha256": "c8cc5f1f254b2116a909ca558cd83eaabaf186add380350cab7ee214ca4ce0cf",
+      "classification": "RAW",
+      "published_sha256": "c8cc5f1f254b2116a909ca558cd83eaabaf186add380350cab7ee214ca4ce0cf",
+      "receipt": "research/paper_closures/belief_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/BeliefFilter.lean"
+    },
+    {
+      "canonical_sha256": "cc5ab3d5ed778995dfd610b3d2f5b94225e0569747f6d4b79d3606ab5d558d95",
+      "classification": "RAW",
+      "published_sha256": "cc5ab3d5ed778995dfd610b3d2f5b94225e0569747f6d4b79d3606ab5d558d95",
+      "receipt": "research/paper_closures/belief_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/BeliefChronology.lean"
+    },
+    {
+      "canonical_sha256": "25a111ad8566c6dda4967c165279d9d1949808f079908114f891baa06acf3eb1",
+      "classification": "RAW",
+      "published_sha256": "25a111ad8566c6dda4967c165279d9d1949808f079908114f891baa06acf3eb1",
+      "receipt": "research/paper_closures/belief_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/BeliefMonitor.lean"
+    },
+    {
+      "canonical_sha256": "aa1b0035a71df0f759091b7e59ca7ce9084900d1ff892a3613771b339ea4d7b8",
+      "classification": "RAW",
+      "published_sha256": "aa1b0035a71df0f759091b7e59ca7ce9084900d1ff892a3613771b339ea4d7b8",
+      "receipt": "research/paper_closures/bounded_birkhoff_receipt.json",
+      "source": "PermanssonResearch/Probability/HopfMaximal.lean"
+    },
+    {
+      "canonical_sha256": "175dcfda26548683786a9891117d34b009100e5a16433ca72e0808f6fed1fb1b",
+      "classification": "RAW",
+      "published_sha256": "175dcfda26548683786a9891117d34b009100e5a16433ca72e0808f6fed1fb1b",
+      "receipt": "research/paper_closures/bounded_birkhoff_receipt.json",
+      "source": "PermanssonResearch/Probability/BoundedOrbitAverages.lean"
+    },
+    {
+      "canonical_sha256": "75bccad1ec34c03f97efc567c6ece422cfbcc73caeb29a74e6289aedf5269de0",
+      "classification": "RAW",
+      "published_sha256": "75bccad1ec34c03f97efc567c6ece422cfbcc73caeb29a74e6289aedf5269de0",
+      "receipt": "research/paper_closures/bounded_birkhoff_receipt.json",
+      "source": "PermanssonResearch/Probability/BoundedBirkhoff.lean"
+    },
+    {
+      "canonical_sha256": "39bed4cce3cbcbdc5d089183c81aa71bf2ce952bb23edb887dcfe8710e6e4217",
+      "classification": "RAW",
+      "published_sha256": "39bed4cce3cbcbdc5d089183c81aa71bf2ce952bb23edb887dcfe8710e6e4217",
+      "receipt": "research/paper_closures/bounded_birkhoff_receipt.json",
+      "source": "PermanssonResearch/Probability/InvariantSigma.lean"
+    },
+    {
+      "canonical_sha256": "3fea8b89022b3e17d58c68f08f0c3a8c1399db783e60b0bcadd4c19bf8811d09",
+      "classification": "RAW",
+      "published_sha256": "3fea8b89022b3e17d58c68f08f0c3a8c1399db783e60b0bcadd4c19bf8811d09",
+      "receipt": "research/paper_closures/bounded_birkhoff_receipt.json",
+      "source": "PermanssonResearch/Probability/BoundedBirkhoffConditional.lean"
+    },
+    {
+      "canonical_sha256": "54ab2be005e89244aba62c4c0689c55ddb2b9c40c13a4f282f50f4512a35dbe7",
+      "classification": "RAW",
+      "published_sha256": "54ab2be005e89244aba62c4c0689c55ddb2b9c40c13a4f282f50f4512a35dbe7",
+      "receipt": "research/paper_closures/bounded_birkhoff_receipt.json",
+      "source": "PermanssonResearch/Probability/BoundedBirkhoffRegression.lean"
+    },
+    {
+      "canonical_sha256": "05b3d35930065ea7505b41aac826f5533026435bd9e5f2e392a9024cbb346516",
+      "classification": "RAW",
+      "published_sha256": "05b3d35930065ea7505b41aac826f5533026435bd9e5f2e392a9024cbb346516",
+      "receipt": "research/paper_closures/compact_feller_fixture_receipt.json",
+      "source": "verification/research/CompactFellerWitness.lean"
+    },
+    {
+      "canonical_sha256": "6b132ea3ae4398626c194dad067021b66cf1ef3e0c56171aa581f6e9c7e471b4",
+      "classification": "RAW",
+      "published_sha256": "6b132ea3ae4398626c194dad067021b66cf1ef3e0c56171aa581f6e9c7e471b4",
+      "receipt": "research/paper_closures/compact_feller_receipt.json",
+      "source": "PermanssonResearch/Probability/BoundedSquareStrongLaw.lean"
+    },
+    {
+      "canonical_sha256": "3bbf388425a201c811d43d6d309c8a1a54d6577cad5d14fefd8c35592c5f4a61",
+      "classification": "RAW",
+      "published_sha256": "3bbf388425a201c811d43d6d309c8a1a54d6577cad5d14fefd8c35592c5f4a61",
+      "receipt": "research/paper_closures/compact_feller_receipt.json",
+      "source": "PermanssonResearch/Probability/BoundedInnovations.lean"
+    },
+    {
+      "canonical_sha256": "0c1a311af784a03305e447bf2308914399ac8224f38f3f5a0d014179cdf80b4f",
+      "classification": "RAW",
+      "published_sha256": "0c1a311af784a03305e447bf2308914399ac8224f38f3f5a0d014179cdf80b4f",
+      "receipt": "research/paper_closures/compact_feller_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/CanonicalBoundedInnovations.lean"
+    },
+    {
+      "canonical_sha256": "807aea7fb986702dd9972eb5c36dffe0ae4a8c2f6b4496e02a80dd3af4595bfe",
+      "classification": "RAW",
+      "published_sha256": "807aea7fb986702dd9972eb5c36dffe0ae4a8c2f6b4496e02a80dd3af4595bfe",
+      "receipt": "research/paper_closures/compact_feller_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/CompactFellerKernel.lean"
+    },
+    {
+      "canonical_sha256": "d05ed52a0f3dc947dec318a08a71b2647bea3a9ab34eea0ffac91fc717243039",
+      "classification": "RAW",
+      "published_sha256": "d05ed52a0f3dc947dec318a08a71b2647bea3a9ab34eea0ffac91fc717243039",
+      "receipt": "research/paper_closures/compact_feller_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/CompactFellerEmpirical.lean"
+    },
+    {
+      "canonical_sha256": "b0c70c23acd3908ef5905668c45536f45ad199a4ff0c774ebc8374b5e40edb94",
+      "classification": "RAW",
+      "published_sha256": "b0c70c23acd3908ef5905668c45536f45ad199a4ff0c774ebc8374b5e40edb94",
+      "receipt": "research/paper_closures/compact_feller_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/CompactFellerDistance.lean"
+    },
+    {
+      "canonical_sha256": "2d0b26a4d30457a9348d9d7593d881d50066c3b355fd0932ef3b7305a0bc531c",
+      "classification": "RAW",
+      "published_sha256": "2d0b26a4d30457a9348d9d7593d881d50066c3b355fd0932ef3b7305a0bc531c",
+      "receipt": "research/paper_closures/completeness_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/KRDualSeparation.lean"
+    },
+    {
+      "canonical_sha256": "fa525a440f1814c5d4442b7d368ed7774786a0fbdaa244a26eb54d6466c9ed5f",
+      "classification": "RAW",
+      "published_sha256": "fa525a440f1814c5d4442b7d368ed7774786a0fbdaa244a26eb54d6466c9ed5f",
+      "receipt": "research/paper_closures/completeness_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/GluedCouplingSequence.lean"
+    },
+    {
+      "canonical_sha256": "cd7181abe424e57cdd6283550864cb641ee91add994660beab545cfd0c17bbf3",
+      "classification": "RAW",
+      "published_sha256": "cd7181abe424e57cdd6283550864cb641ee91add994660beab545cfd0c17bbf3",
+      "receipt": "research/paper_closures/completeness_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/SummableStepLimit.lean"
+    },
+    {
+      "canonical_sha256": "1fca801d1b36d394674eb381d8bfb20b3f3196f53ce287eb2d38fb569c57bfe6",
+      "classification": "RAW",
+      "published_sha256": "1fca801d1b36d394674eb381d8bfb20b3f3196f53ce287eb2d38fb569c57bfe6",
+      "receipt": "research/paper_closures/completeness_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FirstMomentMetric.lean"
+    },
+    {
+      "canonical_sha256": "fa5d949f44d94abea58ea97d875467b165156a90c7dccd3969ace63cec986c64",
+      "classification": "RAW",
+      "published_sha256": "fa5d949f44d94abea58ea97d875467b165156a90c7dccd3969ace63cec986c64",
+      "receipt": "research/paper_closures/completeness_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/SummableTransportLimit.lean"
+    },
+    {
+      "canonical_sha256": "eb9bd0038c13a693c739101bba149135e128d2451ef69daa099b82ef27543246",
+      "classification": "RAW",
+      "published_sha256": "eb9bd0038c13a693c739101bba149135e128d2451ef69daa099b82ef27543246",
+      "receipt": "research/paper_closures/completeness_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FirstMomentCompleteness.lean"
+    },
+    {
+      "canonical_sha256": "19f303adfb5f8e8e82ce7026b34caf6821e5cc1b20f8e92f3d8fe5d6698cb21b",
+      "classification": "RAW",
+      "published_sha256": "19f303adfb5f8e8e82ce7026b34caf6821e5cc1b20f8e92f3d8fe5d6698cb21b",
+      "receipt": "research/paper_closures/completeness_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FirstMomentCompletenessRegression.lean"
+    },
+    {
+      "canonical_sha256": "55c9c9e26ca8ddbd81595ca5b47f6d5f72610d996c55316398b45922f3d30af6",
+      "classification": "RAW",
+      "published_sha256": "55c9c9e26ca8ddbd81595ca5b47f6d5f72610d996c55316398b45922f3d30af6",
+      "receipt": "research/paper_closures/discounted_initial_receipt.json",
+      "source": "PermanssonResearch/Probability/DiscountedInitialBudget.lean"
+    },
+    {
+      "canonical_sha256": "9e12008320798c57aefb615793fa3cf157655a76343803abe23dc8728a4f8079",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "e84ed3910e41931cfbc87030c03d0b0d2582d4a8acc8ce8e4f027f39942b3f7c",
+      "receipt": "research/paper_closures/economic_audit_receipt.json",
+      "source": "PermanssonResearch/EconomicWitness/Model.lean"
+    },
+    {
+      "canonical_sha256": "6c40feb1df8fe41fb47c2d621a882e4532052e2a66bdc9fac0a140ace7a78117",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "905e0ccb600b2e5a1e9e2230feab4025aaa6b0b19788d130853698f76d916052",
+      "receipt": "research/paper_closures/economic_audit_receipt.json",
+      "source": "PermanssonResearch/EconomicWitness/Incentives.lean"
+    },
+    {
+      "canonical_sha256": "4397952f4aa3ef0711dbee483b59da858f938d4dc7c967e48d6033686c120f6b",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "3537f28d5805a7a106f217244872e06e01a7b469ea3d0c969486ceae3978e163",
+      "receipt": "research/paper_closures/economic_audit_receipt.json",
+      "source": "PermanssonResearch/EconomicWitness/Geometry.lean"
+    },
+    {
+      "canonical_sha256": "a356c1b77f2c3451c562dcdf317aeb36409e099f487de0caf302fbb1b8a470a7",
+      "classification": "RAW",
+      "published_sha256": "a356c1b77f2c3451c562dcdf317aeb36409e099f487de0caf302fbb1b8a470a7",
+      "receipt": "research/paper_closures/economic_audit_receipt.json",
+      "source": "PermanssonResearch/EconomicWitness/FullStrategyTrace.lean"
+    },
+    {
+      "canonical_sha256": "21de62ad386d164a658886b67fa163d5c6e13855430346d8d6d4ed928f1b4746",
+      "classification": "LF_FINAL_TWO_CRLF",
+      "published_sha256": "87e56a9f8f9797561618b32e2da0b29643a9f795d05764af68b70807a40270a5",
+      "receipt": "research/paper_closures/economic_audit_receipt.json",
+      "source": "PermanssonResearch/EconomicWitness/ExactRegime.lean"
+    },
+    {
+      "canonical_sha256": "73d3a7c88c270317a0f708f543fa57915222da3538b9a01893f54282eaf2c103",
+      "classification": "UNRESOLVED",
+      "published_sha256": "539c0c5ee0641d9826b135d33b9e8fe6e01df49109584870ff7553d019b6c378",
+      "receipt": "research/paper_closures/economic_audit_receipt.json",
+      "source": "PermanssonResearch/EconomicWitness/ConstitutionCore.lean"
+    },
+    {
+      "canonical_sha256": "ac4bc0808102a469e3ba9dfb728b6eb1d9fe3e5cfa0243b36b1ac22194f7974a",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "bf5b46d0071440bb13faa44198e81472e9caa87e02312a8d111cebfacb444fee",
+      "receipt": "research/paper_closures/economic_audit_receipt.json",
+      "source": "PermanssonResearch/EconomicWitness/Constitution.lean"
+    },
+    {
+      "canonical_sha256": "4190777df9721df2dc1478c75d59b3568162356e2a3bcab0784a65f48c451fba",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "c5fc864b845575df0bbc97b2f6d33a4c9598d8dcd78344d083b4faa09f34798b",
+      "receipt": "research/paper_closures/economic_audit_receipt.json",
+      "source": "PermanssonResearch/EconomicWitness/Regression.lean"
+    },
+    {
+      "canonical_sha256": "1f3a48e3c8e57d1f5d14a9f4041db98d2a8335f2862b44d9f78ff61ce7823a85",
+      "classification": "RAW",
+      "published_sha256": "1f3a48e3c8e57d1f5d14a9f4041db98d2a8335f2862b44d9f78ff61ce7823a85",
+      "receipt": "research/paper_closures/finite_occupation_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FiniteInvariantConstructor.lean"
+    },
+    {
+      "canonical_sha256": "49b2c06448d1adf9db34365f30047fe9be8b822b4807ce7f2f0bd66a1f0d5748",
+      "classification": "RAW",
+      "published_sha256": "49b2c06448d1adf9db34365f30047fe9be8b822b4807ce7f2f0bd66a1f0d5748",
+      "receipt": "research/paper_closures/finite_occupation_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FiniteOccupationProperty.lean"
+    },
+    {
+      "canonical_sha256": "fd986fabeef6dd171d9d7fcd3b8a916145c5c437254165fda607dea1df040cf2",
+      "classification": "RAW",
+      "published_sha256": "fd986fabeef6dd171d9d7fcd3b8a916145c5c437254165fda607dea1df040cf2",
+      "receipt": "research/paper_closures/finite_occupation_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FiniteOccupationFactorization.lean"
+    },
+    {
+      "canonical_sha256": "e11346d2c0f75c1c38e5800f09e80fe524344319e669fc4406575daa3ee62b7b",
+      "classification": "RAW",
+      "published_sha256": "e11346d2c0f75c1c38e5800f09e80fe524344319e669fc4406575daa3ee62b7b",
+      "receipt": "research/paper_closures/finite_transport_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FiniteTransportSeparation.lean"
+    },
+    {
+      "canonical_sha256": "3bda14b9794e25d6eeb524657792ed8bb41612cd924a05d47a88d8794d3e1f80",
+      "classification": "RAW",
+      "published_sha256": "3bda14b9794e25d6eeb524657792ed8bb41612cd924a05d47a88d8794d3e1f80",
+      "receipt": "research/paper_closures/finite_transport_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FiniteKantorovichDuality.lean"
+    },
+    {
+      "canonical_sha256": "194d7185e903b00478f01ca871eceefc711814ce1f5ac9ba1eed824908bdb7c6",
+      "classification": "RAW",
+      "published_sha256": "194d7185e903b00478f01ca871eceefc711814ce1f5ac9ba1eed824908bdb7c6",
+      "receipt": "research/paper_closures/finite_transport_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FiniteTransportRegression.lean"
+    },
+    {
+      "canonical_sha256": "975e670667101a3599e088d843d0d23edc95b297edc4dac10872302d2a27837b",
+      "classification": "RAW",
+      "published_sha256": "975e670667101a3599e088d843d0d23edc95b297edc4dac10872302d2a27837b",
+      "receipt": "research/paper_closures/first_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FirstMomentQuantization.lean"
+    },
+    {
+      "canonical_sha256": "0f9e4f42240c7032fa2510ba189a9b45768d953794bd42c545ee621db0a6624c",
+      "classification": "RAW",
+      "published_sha256": "0f9e4f42240c7032fa2510ba189a9b45768d953794bd42c545ee621db0a6624c",
+      "receipt": "research/paper_closures/first_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FiniteLipschitzExtension.lean"
+    },
+    {
+      "canonical_sha256": "c6428fe30c617838916eb6b7c6f10d544970ccd1d1dcf01d42b69ea9f2b2f8dd",
+      "classification": "RAW",
+      "published_sha256": "c6428fe30c617838916eb6b7c6f10d544970ccd1d1dcf01d42b69ea9f2b2f8dd",
+      "receipt": "research/paper_closures/first_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FinitePartitionMeasure.lean"
+    },
+    {
+      "canonical_sha256": "36342322f7014e325123dfc64d19ab896f49cb3690b94f06960ab31db0c77669",
+      "classification": "RAW",
+      "published_sha256": "36342322f7014e325123dfc64d19ab896f49cb3690b94f06960ab31db0c77669",
+      "receipt": "research/paper_closures/first_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FinitePartitionCoupling.lean"
+    },
+    {
+      "canonical_sha256": "0fe9b650f209f09d6cdf040d5f8cede580bd15ce3d4478bf4d8811b73593da0e",
+      "classification": "RAW",
+      "published_sha256": "0fe9b650f209f09d6cdf040d5f8cede580bd15ce3d4478bf4d8811b73593da0e",
+      "receipt": "research/paper_closures/first_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FirstMomentKantorovichDuality.lean"
+    },
+    {
+      "canonical_sha256": "740584e2661342b36ef19dd7197d4138539f0b0ba4dc12511d87afa602537911",
+      "classification": "RAW",
+      "published_sha256": "740584e2661342b36ef19dd7197d4138539f0b0ba4dc12511d87afa602537911",
+      "receipt": "research/paper_closures/first_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FirstMomentTransportRegression.lean"
+    },
+    {
+      "canonical_sha256": "7711c2f3ad7ce9d05f655211b1045d2f355cd50a674c1aebc0caa6ee17839c5b",
+      "classification": "RAW",
+      "published_sha256": "7711c2f3ad7ce9d05f655211b1045d2f355cd50a674c1aebc0caa6ee17839c5b",
+      "receipt": "research/paper_closures/full_path_product_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/CylinderTotalVariation.lean"
+    },
+    {
+      "canonical_sha256": "471a561f008715d8794533fd84d50794a2b9f9cbbd078cc516ea5de8231706f9",
+      "classification": "RAW",
+      "published_sha256": "471a561f008715d8794533fd84d50794a2b9f9cbbd078cc516ea5de8231706f9",
+      "receipt": "research/paper_closures/full_path_product_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/DependentHistoryCommonMass.lean"
+    },
+    {
+      "canonical_sha256": "f802694a3d08aa1230bfbad95261358f0c236137f34f2eeb99651d6babd7be3e",
+      "classification": "RAW",
+      "published_sha256": "f802694a3d08aa1230bfbad95261358f0c236137f34f2eeb99651d6babd7be3e",
+      "receipt": "research/paper_closures/full_path_product_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FullPathProductTV.lean"
+    },
+    {
+      "canonical_sha256": "99e892f39e9374c42188c6f101e55bd20592e38fcfcb71c7d3f6aea8dad44ec0",
+      "classification": "RAW",
+      "published_sha256": "99e892f39e9374c42188c6f101e55bd20592e38fcfcb71c7d3f6aea8dad44ec0",
+      "receipt": "research/paper_closures/full_path_product_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FullPathProductRegression.lean"
+    },
+    {
+      "canonical_sha256": "b0b4b4e22d3b053f0d674adcb518fe0152ebe148401547a334b34ff51cff9b1b",
+      "classification": "RAW",
+      "published_sha256": "b0b4b4e22d3b053f0d674adcb518fe0152ebe148401547a334b34ff51cff9b1b",
+      "receipt": "research/paper_closures/infinite_safety_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyBellman.lean"
+    },
+    {
+      "canonical_sha256": "360bc29d1dcb49943a52def32845dd72c4cbb15ac9ebba69ee15de8836b33950",
+      "classification": "RAW",
+      "published_sha256": "360bc29d1dcb49943a52def32845dd72c4cbb15ac9ebba69ee15de8836b33950",
+      "receipt": "research/paper_closures/infinite_safety_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/BehavioralInfiniteLaw.lean"
+    },
+    {
+      "canonical_sha256": "91e70713c92a44023e08397aca59b9d9e035213fcad6f977c1f6995e7311e8a7",
+      "classification": "RAW",
+      "published_sha256": "91e70713c92a44023e08397aca59b9d9e035213fcad6f977c1f6995e7311e8a7",
+      "receipt": "research/paper_closures/infinite_safety_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyFiniteEvaluation.lean"
+    },
+    {
+      "canonical_sha256": "6a0b4617f41c27786a93c303311406e9ffa7d7653224b2e6b6a84855b4d34611",
+      "classification": "RAW",
+      "published_sha256": "6a0b4617f41c27786a93c303311406e9ffa7d7653224b2e6b6a84855b4d34611",
+      "receipt": "research/paper_closures/infinite_safety_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyPathSemantics.lean"
+    },
+    {
+      "canonical_sha256": "3b54f57a995bef2947b226b4cc5cf35e71043a6183822dda212af749ef3df8ef",
+      "classification": "RAW",
+      "published_sha256": "3b54f57a995bef2947b226b4cc5cf35e71043a6183822dda212af749ef3df8ef",
+      "receipt": "research/paper_closures/infinite_safety_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/GreatestControlledInvariant.lean"
+    },
+    {
+      "canonical_sha256": "c399aaab95f64c3a3d33d8f672815bd35c04ab96f99d35abe7984eaff2c75017",
+      "classification": "RAW",
+      "published_sha256": "c399aaab95f64c3a3d33d8f672815bd35c04ab96f99d35abe7984eaff2c75017",
+      "receipt": "research/paper_closures/infinite_safety_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyOptimality.lean"
+    },
+    {
+      "canonical_sha256": "4e4c34c224270881d20b904ca5177bbd811f37950d4f5184fbd6b191eba88785",
+      "classification": "RAW",
+      "published_sha256": "4e4c34c224270881d20b904ca5177bbd811f37950d4f5184fbd6b191eba88785",
+      "receipt": "research/paper_closures/infinite_safety_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyLeakage.lean"
+    },
+    {
+      "canonical_sha256": "b74e3a52809b0fee6011f19c2574808c298d2e5d1afd160050cec85efc7a245e",
+      "classification": "RAW",
+      "published_sha256": "b74e3a52809b0fee6011f19c2574808c298d2e5d1afd160050cec85efc7a245e",
+      "receipt": "research/paper_closures/infinite_safety_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyAudit.lean"
+    },
+    {
+      "canonical_sha256": "d574f9a53fca79cea5d74f124e6b7c80ab307122aa0ddfb772b4f76162ab5103",
+      "classification": "RAW",
+      "published_sha256": "d574f9a53fca79cea5d74f124e6b7c80ab307122aa0ddfb772b4f76162ab5103",
+      "receipt": "research/paper_closures/information_boundary_receipt.json",
+      "source": "PermanssonResearch/StrategicWorld/InformationBoundary.lean"
+    },
+    {
+      "canonical_sha256": "06a40a18f0823f8325ca168caf2086f1fa7213732185a4c861173fba3198c504",
+      "classification": "RAW",
+      "published_sha256": "06a40a18f0823f8325ca168caf2086f1fa7213732185a4c861173fba3198c504",
+      "receipt": "research/paper_closures/invariant_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FirstMomentKernel.lean"
+    },
+    {
+      "canonical_sha256": "76f1e2a6e7f0aae305e216da3c6c8242d84bce46d2479a2debbae623d53cf971",
+      "classification": "RAW",
+      "published_sha256": "76f1e2a6e7f0aae305e216da3c6c8242d84bce46d2479a2debbae623d53cf971",
+      "receipt": "research/paper_closures/invariant_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FirstMomentInvariant.lean"
+    },
+    {
+      "canonical_sha256": "3f3fdf7c13486b23e657b41dfbf9c1cbbfeddb8b4c881216c81a7c6cb19c585b",
+      "classification": "RAW",
+      "published_sha256": "3f3fdf7c13486b23e657b41dfbf9c1cbbfeddb8b4c881216c81a7c6cb19c585b",
+      "receipt": "research/paper_closures/invariant_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/GeneratedInvariantPerturbation.lean"
+    },
+    {
+      "canonical_sha256": "aad0636a4801a6c90dd775e78671cc866bdf0f8f4a1a0561f051d7f867603ff1",
+      "classification": "RAW",
+      "published_sha256": "aad0636a4801a6c90dd775e78671cc866bdf0f8f4a1a0561f051d7f867603ff1",
+      "receipt": "research/paper_closures/invariant_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FirstMomentInvariantRegression.lean"
+    },
+    {
+      "canonical_sha256": "3b95ae06a9eb3a6500cd6df23c291bbb865343a9fcb6508d0eca288bf74afb2a",
+      "classification": "RAW",
+      "published_sha256": "3b95ae06a9eb3a6500cd6df23c291bbb865343a9fcb6508d0eca288bf74afb2a",
+      "receipt": "research/paper_closures/measurable_nat_clock_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/MeasurableNatPrivateClock.lean"
+    },
+    {
+      "canonical_sha256": "ad1b1eae9afeaca7ba334dd545b8d14864af9a5a8c67c796f5f487f90acbec42",
+      "classification": "RAW",
+      "published_sha256": "ad1b1eae9afeaca7ba334dd545b8d14864af9a5a8c67c796f5f487f90acbec42",
+      "receipt": "research/paper_closures/measurable_nat_clock_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/MeasurableNatClockTransport.lean"
+    },
+    {
+      "canonical_sha256": "c793a3886ecc064e455b951c17c55d82699ef371ca4f2223dfaf6989a7a40bbe",
+      "classification": "RAW",
+      "published_sha256": "c793a3886ecc064e455b951c17c55d82699ef371ca4f2223dfaf6989a7a40bbe",
+      "receipt": "research/paper_closures/measurable_nat_clock_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/MeasurableNatClockFixture.lean"
+    },
+    {
+      "canonical_sha256": "36babffa63878708fb8289bedf06b617032bbfd2cba48c71bfb60a96358a7c7a",
+      "classification": "RAW",
+      "published_sha256": "36babffa63878708fb8289bedf06b617032bbfd2cba48c71bfb60a96358a7c7a",
+      "receipt": "research/paper_closures/measurable_product_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/MeasurableFiniteProduct.lean"
+    },
+    {
+      "canonical_sha256": "9894c87e9c92af3b16cfd26b7776c51c45a7bbf29bebfa01a97c58756fcc7117",
+      "classification": "RAW",
+      "published_sha256": "9894c87e9c92af3b16cfd26b7776c51c45a7bbf29bebfa01a97c58756fcc7117",
+      "receipt": "research/paper_closures/measurable_product_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/MeasurableProductProtocols.lean"
+    },
+    {
+      "canonical_sha256": "e5dcb8a80230bcdd563a584c103b268883c73ec425f2fe37e5e074d04a591c4d",
+      "classification": "RAW",
+      "published_sha256": "e5dcb8a80230bcdd563a584c103b268883c73ec425f2fe37e5e074d04a591c4d",
+      "receipt": "research/paper_closures/measurable_product_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/MeasurableProductRegression.lean"
+    },
+    {
+      "canonical_sha256": "4b72c5c639d6c2035f5c9fbbfde6464ed5fc63eedbd558c62f2941fe26b0be8f",
+      "classification": "RAW",
+      "published_sha256": "4b72c5c639d6c2035f5c9fbbfde6464ed5fc63eedbd558c62f2941fe26b0be8f",
+      "receipt": "research/paper_closures/metric_coupling_receipt.json",
+      "source": "PermanssonResearch/Perturbation/DobrushinContraction.lean"
+    },
+    {
+      "canonical_sha256": "8f7f022c08d2316e987204cfc59ff8ccd6d96d308974ae647f16afdc796bc08a",
+      "classification": "RAW",
+      "published_sha256": "8f7f022c08d2316e987204cfc59ff8ccd6d96d308974ae647f16afdc796bc08a",
+      "receipt": "research/paper_closures/metric_coupling_receipt.json",
+      "source": "PermanssonResearch/Probability/FiniteRowCoupling.lean"
+    },
+    {
+      "canonical_sha256": "158e0682132b3000c156a726cc0a699ed11e8348740aeddde39a15e58f10dd69",
+      "classification": "RAW",
+      "published_sha256": "158e0682132b3000c156a726cc0a699ed11e8348740aeddde39a15e58f10dd69",
+      "receipt": "research/paper_closures/metric_coupling_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FiniteSequentialCoupling.lean"
+    },
+    {
+      "canonical_sha256": "89f05d3181fe7ec42514bea73a168c6b844468adc7ae0add1ece922f92a6c4f3",
+      "classification": "RAW",
+      "published_sha256": "89f05d3181fe7ec42514bea73a168c6b844468adc7ae0add1ece922f92a6c4f3",
+      "receipt": "research/paper_closures/metric_coupling_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FiniteTypedRows.lean"
+    },
+    {
+      "canonical_sha256": "1305ca4e3ef1f805b9e8e9221c24267276486e46986f17712e180d27e6317b51",
+      "classification": "RAW",
+      "published_sha256": "1305ca4e3ef1f805b9e8e9221c24267276486e46986f17712e180d27e6317b51",
+      "receipt": "research/paper_closures/metric_coupling_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FinitePrimitiveMetric.lean"
+    },
+    {
+      "canonical_sha256": "23c924dc109ad8176b97588e6bfe1047054463a091d1f29da56131bee0763105",
+      "classification": "RAW",
+      "published_sha256": "23c924dc109ad8176b97588e6bfe1047054463a091d1f29da56131bee0763105",
+      "receipt": "research/paper_closures/metric_coupling_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FiniteStateMetricContraction.lean"
+    },
+    {
+      "canonical_sha256": "da71060fa87aebe1e69d6af12fc59a1f76af49f1bc6c179ac774fb392a2b486d",
+      "classification": "RAW",
+      "published_sha256": "da71060fa87aebe1e69d6af12fc59a1f76af49f1bc6c179ac774fb392a2b486d",
+      "receipt": "research/paper_closures/metric_coupling_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FiniteMetricProtocol.lean"
+    },
+    {
+      "canonical_sha256": "a3768fbc872e3a27cc9c0c850e684dfe9a79dec4437f155f69af18a7fda56086",
+      "classification": "RAW",
+      "published_sha256": "a3768fbc872e3a27cc9c0c850e684dfe9a79dec4437f155f69af18a7fda56086",
+      "receipt": "research/paper_closures/metric_coupling_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FiniteMetricCouplingFixture.lean"
+    },
+    {
+      "canonical_sha256": "504907d3a048d867824f3bfe1e3fed09f9510399ee12d49206c1b74a1812195d",
+      "classification": "RAW",
+      "published_sha256": "504907d3a048d867824f3bfe1e3fed09f9510399ee12d49206c1b74a1812195d",
+      "receipt": "research/paper_closures/multiagent_fixture_receipt.json",
+      "source": "verification/research/MultiAgentAsymmetry.lean"
+    },
+    {
+      "canonical_sha256": "b6ee0c45c610ffc74ae61f47bb5ae01a605db67a9ff6f5152e737f422ee36aeb",
+      "classification": "RAW",
+      "published_sha256": "b6ee0c45c610ffc74ae61f47bb5ae01a605db67a9ff6f5152e737f422ee36aeb",
+      "receipt": "research/paper_closures/multiagent_fixture_receipt.json",
+      "source": "verification/research/MultiAgentPrivateClock.lean"
+    },
+    {
+      "canonical_sha256": "754c3861aaecfe30661bceb76dd8a21570bc94396c79daab72776d61143c410d",
+      "classification": "RAW",
+      "published_sha256": "754c3861aaecfe30661bceb76dd8a21570bc94396c79daab72776d61143c410d",
+      "receipt": "research/paper_closures/multiagent_fixture_receipt.json",
+      "source": "verification/research/MultiAgentFiniteProduct.lean"
+    },
+    {
+      "canonical_sha256": "6c6f43bbed50b885c9988358ca1df5a00c6c781dc81316b52cc41e59cd6b8d9d",
+      "classification": "RAW",
+      "published_sha256": "6c6f43bbed50b885c9988358ca1df5a00c6c781dc81316b52cc41e59cd6b8d9d",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/AutonomousKey.lean"
+    },
+    {
+      "canonical_sha256": "668d6db254b00da02fc4d89b53ab5f459203de2e361d10513b9fb1940bdc427d",
+      "classification": "RAW",
+      "published_sha256": "668d6db254b00da02fc4d89b53ab5f459203de2e361d10513b9fb1940bdc427d",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/AutonomousSupportClosure.lean"
+    },
+    {
+      "canonical_sha256": "c294448f00c5c79d66a17684836616878258be7d2f7c8772ab7281b214c56c2f",
+      "classification": "RAW",
+      "published_sha256": "c294448f00c5c79d66a17684836616878258be7d2f7c8772ab7281b214c56c2f",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/StrictMA2Obstruction.lean"
+    },
+    {
+      "canonical_sha256": "0d101feb3a9d8e080d411560c8af2d8b0350e7e7ca1d91dc29fe92116cf84ab2",
+      "classification": "RAW",
+      "published_sha256": "0d101feb3a9d8e080d411560c8af2d8b0350e7e7ca1d91dc29fe92116cf84ab2",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/AutonomousMarkedKernel.lean"
+    },
+    {
+      "canonical_sha256": "b5afcdfc85241e5531a7f7f39fd740c4c735fa0ab9d29a3648e2f104145588a4",
+      "classification": "RAW",
+      "published_sha256": "b5afcdfc85241e5531a7f7f39fd740c4c735fa0ab9d29a3648e2f104145588a4",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/PlayerTwoProtocols.lean"
+    },
+    {
+      "canonical_sha256": "c35c5318c9f3e0459b22f1d4f946071c88fc4af37c4a8bf766b5015b0ec4252f",
+      "classification": "RAW",
+      "published_sha256": "c35c5318c9f3e0459b22f1d4f946071c88fc4af37c4a8bf766b5015b0ec4252f",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/PlayerSwapTransport.lean"
+    },
+    {
+      "canonical_sha256": "83845f1f26eb7c09c14e8cecdbd1bbf886219da403a610a1d7b4794731bbc8d6",
+      "classification": "RAW",
+      "published_sha256": "83845f1f26eb7c09c14e8cecdbd1bbf886219da403a610a1d7b4794731bbc8d6",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/PlayerSwapConstitution.lean"
+    },
+    {
+      "canonical_sha256": "c7a58fbc86cebda84e3162a1cd09d229651fc4966121f891dd7cb76ca403aa48",
+      "classification": "RAW",
+      "published_sha256": "c7a58fbc86cebda84e3162a1cd09d229651fc4966121f891dd7cb76ca403aa48",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/BehavioralAutonomy.lean"
+    },
+    {
+      "canonical_sha256": "0e99822e581d520e11a126ab1e94cc6b50d0eb5d82ab2d2735d9eb60d765c704",
+      "classification": "RAW",
+      "published_sha256": "0e99822e581d520e11a126ab1e94cc6b50d0eb5d82ab2d2735d9eb60d765c704",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/ChronologicalPathLaw.lean"
+    },
+    {
+      "canonical_sha256": "7dba9beb7591fa74ca8d00ff9e06db596dcd31d984d3b9bfc7f0b67a40280a72",
+      "classification": "RAW",
+      "published_sha256": "7dba9beb7591fa74ca8d00ff9e06db596dcd31d984d3b9bfc7f0b67a40280a72",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/PrivateClock.lean"
+    },
+    {
+      "canonical_sha256": "4633ec71712fc18d05a6006240342b448becf07636689da3d0800c7535e750f9",
+      "classification": "RAW",
+      "published_sha256": "4633ec71712fc18d05a6006240342b448becf07636689da3d0800c7535e750f9",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/PrivateClockTransport.lean"
+    },
+    {
+      "canonical_sha256": "77f2d8cea213bf39d7d2d9185f25d5ae2e2f8db59ae55762704ebe63a3801f2a",
+      "classification": "RAW",
+      "published_sha256": "77f2d8cea213bf39d7d2d9185f25d5ae2e2f8db59ae55762704ebe63a3801f2a",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/FiniteProductProtocols.lean"
+    },
+    {
+      "canonical_sha256": "f54d1c3a23714604298d38adc4518fbb1f9027941551a25a7ba3fa4f6b6ac6ec",
+      "classification": "RAW",
+      "published_sha256": "f54d1c3a23714604298d38adc4518fbb1f9027941551a25a7ba3fa4f6b6ac6ec",
+      "receipt": "research/paper_closures/multiagent_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/FiniteProductTwo.lean"
+    },
+    {
+      "canonical_sha256": "222456f3d213cb57771a00a4337fb0922e06ce719e9e2ad0d53cab5a060c4b3b",
+      "classification": "RAW",
+      "published_sha256": "222456f3d213cb57771a00a4337fb0922e06ce719e9e2ad0d53cab5a060c4b3b",
+      "receipt": "research/paper_closures/nat_private_clock_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/NatPrivateClock.lean"
+    },
+    {
+      "canonical_sha256": "7b37eb66384cd699ef57c76f1a93511b04b444657ca2f12672322e61ff0bf4ca",
+      "classification": "RAW",
+      "published_sha256": "7b37eb66384cd699ef57c76f1a93511b04b444657ca2f12672322e61ff0bf4ca",
+      "receipt": "research/paper_closures/nat_private_clock_receipt.json",
+      "source": "PermanssonResearch/MultiAgent/NatPrivateClockTransport.lean"
+    },
+    {
+      "canonical_sha256": "331e046fc13328a770d9e7ae2f473a84ae8f05d5158c7964b175a25d90e0e6d5",
+      "classification": "RAW",
+      "published_sha256": "331e046fc13328a770d9e7ae2f473a84ae8f05d5158c7964b175a25d90e0e6d5",
+      "receipt": "research/paper_closures/nat_private_clock_receipt.json",
+      "source": "verification/research/MultiAgentNatPrivateClock.lean"
+    },
+    {
+      "canonical_sha256": "5b1a5e06730d3455a57d814d614734ecaf98e06c0d67161d7d720d066ed5164c",
+      "classification": "RAW",
+      "published_sha256": "5b1a5e06730d3455a57d814d614734ecaf98e06c0d67161d7d720d066ed5164c",
+      "receipt": "research/paper_closures/nat_private_clock_receipt.json",
+      "source": "verification/research/audit_nat_private_clock.py"
+    },
+    {
+      "canonical_sha256": "3da7e231f1b4a6640e00f458cc3b5674107cc19c3f7213f9fbe341c3f1c4ce40",
+      "classification": "RAW",
+      "published_sha256": "3da7e231f1b4a6640e00f458cc3b5674107cc19c3f7213f9fbe341c3f1c4ce40",
+      "receipt": "research/paper_closures/nat_private_clock_receipt.json",
+      "source": "verification/research/test_paper_nat_private_clock_lean.py"
+    },
+    {
+      "canonical_sha256": "a30f2fdae0020ca9288d1f874b090d73bce64e2b6a7ccacc8fa2ff2a901169a4",
+      "classification": "RAW",
+      "published_sha256": "a30f2fdae0020ca9288d1f874b090d73bce64e2b6a7ccacc8fa2ff2a901169a4",
+      "receipt": "research/paper_closures/nat_private_clock_receipt.json",
+      "source": "verification/research/test_x1_paper_closure.py"
+    },
+    {
+      "canonical_sha256": "fc0c1985520f06219b9ab32d96f21decbf2150125e9df6cb1f99819a385b71ee",
+      "classification": "RAW",
+      "published_sha256": "fc0c1985520f06219b9ab32d96f21decbf2150125e9df6cb1f99819a385b71ee",
+      "receipt": "research/paper_closures/nonfinite_counterexample_audit_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/NonfiniteClock.lean"
+    },
+    {
+      "canonical_sha256": "3636356cb82a9d127a66fde6bc52fc819fd0ef1f6174d56292f421775e0e5dde",
+      "classification": "RAW",
+      "published_sha256": "3636356cb82a9d127a66fde6bc52fc819fd0ef1f6174d56292f421775e0e5dde",
+      "receipt": "research/paper_closures/nonfinite_counterexample_audit_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/GrowingBlockAverages.lean"
+    },
+    {
+      "canonical_sha256": "a9d23da8a799fb9c00d36c569e043a500f8158010ed5f2ae0e14df40968cd15e",
+      "classification": "RAW",
+      "published_sha256": "a9d23da8a799fb9c00d36c569e043a500f8158010ed5f2ae0e14df40968cd15e",
+      "receipt": "research/paper_closures/nonfinite_counterexample_audit_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/GrowingBlockCounterexample.lean"
+    },
+    {
+      "canonical_sha256": "008f5ae2bc6c309a4b491d8b0a0844de3316613e0d3ca4db6de11681dbf7fb10",
+      "classification": "RAW",
+      "published_sha256": "008f5ae2bc6c309a4b491d8b0a0844de3316613e0d3ca4db6de11681dbf7fb10",
+      "receipt": "research/paper_closures/private_control_stage_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/PrivateControlStageModel.lean"
+    },
+    {
+      "canonical_sha256": "5cc5fc7c353eaf568ecaddbaec36026444cfbef0168b21a5a7cd0874513ca6ab",
+      "classification": "RAW",
+      "published_sha256": "5cc5fc7c353eaf568ecaddbaec36026444cfbef0168b21a5a7cd0874513ca6ab",
+      "receipt": "research/paper_closures/private_control_stage_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/PrivateControlStageOptimizer.lean"
+    },
+    {
+      "canonical_sha256": "250b59afeb7650a833a775748fcb6c7ae546da8b33fa2981d581bd94067e0394",
+      "classification": "RAW",
+      "published_sha256": "250b59afeb7650a833a775748fcb6c7ae546da8b33fa2981d581bd94067e0394",
+      "receipt": "research/paper_closures/private_control_stage_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/PrivateControlStageFixture.lean"
+    },
+    {
+      "canonical_sha256": "f7fe141d19d646c2c4ecd303a07acd5cc57f30d0a623e474e99ed0cd7284975e",
+      "classification": "RAW",
+      "published_sha256": "f7fe141d19d646c2c4ecd303a07acd5cc57f30d0a623e474e99ed0cd7284975e",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/RegenerativeOperator.lean"
+    },
+    {
+      "canonical_sha256": "60ef07df3b8e53a134dd98e47169fc93eb93f8cd9388c8949741d1758b721214",
+      "classification": "RAW",
+      "published_sha256": "60ef07df3b8e53a134dd98e47169fc93eb93f8cd9388c8949741d1758b721214",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/RegenerativeMeasure.lean"
+    },
+    {
+      "canonical_sha256": "b78507f22d0bed256751542f6e207aefa20003911705960dbea5acf1611402c2",
+      "classification": "RAW",
+      "published_sha256": "b78507f22d0bed256751542f6e207aefa20003911705960dbea5acf1611402c2",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/RegenerativePoisson.lean"
+    },
+    {
+      "canonical_sha256": "80a8bdcd0852149e0ace35cabb4226b61401dcbcd9a649e67ca563ccded04f86",
+      "classification": "RAW",
+      "published_sha256": "80a8bdcd0852149e0ace35cabb4226b61401dcbcd9a649e67ca563ccded04f86",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/RegenerativeAverages.lean"
+    },
+    {
+      "canonical_sha256": "5a43a1b6e6cc8096d9a5dc748fbf92a352b1d7bd9f652159f3eae9936eef86a3",
+      "classification": "RAW",
+      "published_sha256": "5a43a1b6e6cc8096d9a5dc748fbf92a352b1d7bd9f652159f3eae9936eef86a3",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/RegenerativeWeakEmpirical.lean"
+    },
+    {
+      "canonical_sha256": "8c0a9f162f3b6d5eef1f3031ccf597b3b6831edbbeb85d232695be7c9bfbb321",
+      "classification": "RAW",
+      "published_sha256": "8c0a9f162f3b6d5eef1f3031ccf597b3b6831edbbeb85d232695be7c9bfbb321",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/RegenerativeData.lean"
+    },
+    {
+      "canonical_sha256": "83ce4183186200220101d23c43a67ccc03cf120889039ccf374c65e1ac54964e",
+      "classification": "RAW",
+      "published_sha256": "83ce4183186200220101d23c43a67ccc03cf120889039ccf374c65e1ac54964e",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/RegenerativeOccupationProperty.lean"
+    },
+    {
+      "canonical_sha256": "beb26444369608d104df0016ee9037176a4d6a5f8a9cfe2a1177a3f7b200d070",
+      "classification": "RAW",
+      "published_sha256": "beb26444369608d104df0016ee9037176a4d6a5f8a9cfe2a1177a3f7b200d070",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/RegenerativeCompactOccupation.lean"
+    },
+    {
+      "canonical_sha256": "5dc066a9625a9db254b9c7faf50cdae67bbb4fbe432a640182bffcace1610530",
+      "classification": "RAW",
+      "published_sha256": "5dc066a9625a9db254b9c7faf50cdae67bbb4fbe432a640182bffcace1610530",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/RegenerativeOccupationFactorization.lean"
+    },
+    {
+      "canonical_sha256": "4efe4080e66f1155ae68437dcc107553c6419950d8246a78b75506c73b7a3ca4",
+      "classification": "RAW",
+      "published_sha256": "4efe4080e66f1155ae68437dcc107553c6419950d8246a78b75506c73b7a3ca4",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/RegenerativeCompactFactorization.lean"
+    },
+    {
+      "canonical_sha256": "62249a82b586177d95abe23a8cdd0b01952f8db0ba5a9425067dda56aae3709e",
+      "classification": "RAW",
+      "published_sha256": "62249a82b586177d95abe23a8cdd0b01952f8db0ba5a9425067dda56aae3709e",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/RegenerativeRegression.lean"
+    },
+    {
+      "canonical_sha256": "30c08a994e8b231a3f8ff287f199650cf340475ccce33bdb71b6fe3525ae82d0",
+      "classification": "RAW",
+      "published_sha256": "30c08a994e8b231a3f8ff287f199650cf340475ccce33bdb71b6fe3525ae82d0",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/L1Maximal.lean"
+    },
+    {
+      "canonical_sha256": "5560bc57560296276cb77735868e2d78dd818744e48b222728532ab7c6323311",
+      "classification": "RAW",
+      "published_sha256": "5560bc57560296276cb77735868e2d78dd818744e48b222728532ab7c6323311",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/L1AverageApproximation.lean"
+    },
+    {
+      "canonical_sha256": "688dbbdf1af6ea4eaa1049fd3c7c164369ae64d5db09a4327780eaa5aed512db",
+      "classification": "RAW",
+      "published_sha256": "688dbbdf1af6ea4eaa1049fd3c7c164369ae64d5db09a4327780eaa5aed512db",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/L1Truncation.lean"
+    },
+    {
+      "canonical_sha256": "c35447eb5665ac6d269ad933a67ad36d3273545b3170b752306fa1944a54b737",
+      "classification": "RAW",
+      "published_sha256": "c35447eb5665ac6d269ad933a67ad36d3273545b3170b752306fa1944a54b737",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FirstMomentEmpirical.lean"
+    },
+    {
+      "canonical_sha256": "8a11c283f718cfd164257507d27e4e7380a47a0c4c4e32fcc0e660ac54b37fc0",
+      "classification": "RAW",
+      "published_sha256": "8a11c283f718cfd164257507d27e4e7380a47a0c4c4e32fcc0e660ac54b37fc0",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FirstMomentTopology.lean"
+    },
+    {
+      "canonical_sha256": "96db4fde9e686c209961322522ccf987a3ed797f839966c0aa19eb7aa085234d",
+      "classification": "RAW",
+      "published_sha256": "96db4fde9e686c209961322522ccf987a3ed797f839966c0aa19eb7aa085234d",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/FirstMomentOccupationProperty.lean"
+    },
+    {
+      "canonical_sha256": "5ca6397fb063b61dad502cc14b97de652cb754c41b896204a1ceda0706657f7b",
+      "classification": "RAW",
+      "published_sha256": "5ca6397fb063b61dad502cc14b97de652cb754c41b896204a1ceda0706657f7b",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FiniteQuantizationBound.lean"
+    },
+    {
+      "canonical_sha256": "b3b652f669a956778ed7e3dcac906cddef01d68d6e441f31f4d53143168719e5",
+      "classification": "RAW",
+      "published_sha256": "b3b652f669a956778ed7e3dcac906cddef01d68d6e441f31f4d53143168719e5",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/FirstMomentEmpiricalConvergence.lean"
+    },
+    {
+      "canonical_sha256": "986e380864aa5299c208cfcea9ced3a7dc65cdf2d6d92ff5b409dfae00c230fd",
+      "classification": "RAW",
+      "published_sha256": "986e380864aa5299c208cfcea9ced3a7dc65cdf2d6d92ff5b409dfae00c230fd",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/RegenerativeRenewalMass.lean"
+    },
+    {
+      "canonical_sha256": "9523e6fc680fab7761b0392a8eec3932b9cff72377d11ce6a21740079f5b1658",
+      "classification": "RAW",
+      "published_sha256": "9523e6fc680fab7761b0392a8eec3932b9cff72377d11ce6a21740079f5b1658",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/CanonicalShiftLaw.lean"
+    },
+    {
+      "canonical_sha256": "968618270943f8cf9537d3403d381ccc0fd681d03f85b4fccf3afab8850caf90",
+      "classification": "RAW",
+      "published_sha256": "968618270943f8cf9537d3403d381ccc0fd681d03f85b4fccf3afab8850caf90",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/RegenerativeMomentCondition.lean"
+    },
+    {
+      "canonical_sha256": "c55bc887e189c480f751247e67321eef8cbc34a9c99796135c5bc545e8a4f163",
+      "classification": "RAW",
+      "published_sha256": "c55bc887e189c480f751247e67321eef8cbc34a9c99796135c5bc545e8a4f163",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/CesaroShiftInvariant.lean"
+    },
+    {
+      "canonical_sha256": "f49d9c26836d85dc1273b86a5e81cb0c5306d1335abd1379caedf17b54aebdcf",
+      "classification": "RAW",
+      "published_sha256": "f49d9c26836d85dc1273b86a5e81cb0c5306d1335abd1379caedf17b54aebdcf",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/RegenerativeInitialTransfer.lean"
+    },
+    {
+      "canonical_sha256": "98a2aca982b72a83d8baf143e37e0a3140a9b43431057874d867cc4621e063fc",
+      "classification": "RAW",
+      "published_sha256": "98a2aca982b72a83d8baf143e37e0a3140a9b43431057874d867cc4621e063fc",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/RegenerativeIntegrableAverages.lean"
+    },
+    {
+      "canonical_sha256": "ea17902398bd94a3d799bae38ee4be9302b64b3d1727eeec3f4f5cabc853eb28",
+      "classification": "RAW",
+      "published_sha256": "ea17902398bd94a3d799bae38ee4be9302b64b3d1727eeec3f4f5cabc853eb28",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/RegenerativeDescriptorMoments.lean"
+    },
+    {
+      "canonical_sha256": "765e23d74c41394a4722b581b315a08460a3d14cb5aaa115aad87a918ccaafb8",
+      "classification": "RAW",
+      "published_sha256": "765e23d74c41394a4722b581b315a08460a3d14cb5aaa115aad87a918ccaafb8",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/RegenerativeDescriptorTails.lean"
+    },
+    {
+      "canonical_sha256": "1b667d393432bc8bb019648b9d6aa049d9d582dc0c0759e0388e93ded4de8b24",
+      "classification": "RAW",
+      "published_sha256": "1b667d393432bc8bb019648b9d6aa049d9d582dc0c0759e0388e93ded4de8b24",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/RegenerativeFirstMomentOccupation.lean"
+    },
+    {
+      "canonical_sha256": "61cc390b87458994719bb28b759b8367c8f8dc5decebaf1e8d75c48e658ae268",
+      "classification": "RAW",
+      "published_sha256": "61cc390b87458994719bb28b759b8367c8f8dc5decebaf1e8d75c48e658ae268",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean"
+    },
+    {
+      "canonical_sha256": "856c683e2501d5a74517d7800ef20d0e0ef5d39c36dade4a0db6f837026c93dd",
+      "classification": "RAW",
+      "published_sha256": "856c683e2501d5a74517d7800ef20d0e0ef5d39c36dade4a0db6f837026c93dd",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "source": "PermanssonResearch/Probability/RegenerativeMomentRegression.lean"
+    },
+    {
+      "canonical_sha256": "ddbc9578b3afd60a664ddc69f4812fd955b33cd174f945a7d21f2ac05141bf47",
+      "classification": "RAW",
+      "published_sha256": "ddbc9578b3afd60a664ddc69f4812fd955b33cd174f945a7d21f2ac05141bf47",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/PolytopeActive.lean"
+    },
+    {
+      "canonical_sha256": "d4157c0666c100f5f6c8b6441b17ec1bf154a823922bde75c8f6f0d1ef4f1f8e",
+      "classification": "RAW",
+      "published_sha256": "d4157c0666c100f5f6c8b6441b17ec1bf154a823922bde75c8f6f0d1ef4f1f8e",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/PolytopeRational.lean"
+    },
+    {
+      "canonical_sha256": "4985c7a94304b3f498c7a097107c162a43f381652fe411f2e3b73aeaa70ab5ec",
+      "classification": "RAW",
+      "published_sha256": "4985c7a94304b3f498c7a097107c162a43f381652fe411f2e3b73aeaa70ab5ec",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/PolytopeCompleteness.lean"
+    },
+    {
+      "canonical_sha256": "eb08ce92beb0cf33fea1d28d6363b3b56dd66c1cb39d406c97575c779ac08832",
+      "classification": "RAW",
+      "published_sha256": "eb08ce92beb0cf33fea1d28d6363b3b56dd66c1cb39d406c97575c779ac08832",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/PolytopeOptimizer.lean"
+    },
+    {
+      "canonical_sha256": "7b0a18b644a879fb30893cbfaf8d3141d5116605ce3c7826a1b1f7cd166caeef",
+      "classification": "RAW",
+      "published_sha256": "7b0a18b644a879fb30893cbfaf8d3141d5116605ce3c7826a1b1f7cd166caeef",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/PolytopeLinearProgram.lean"
+    },
+    {
+      "canonical_sha256": "5674d9644d37fa6bbcb7fe23325a2a5c9876692fe1a17677fed32433b2360544",
+      "classification": "RAW",
+      "published_sha256": "5674d9644d37fa6bbcb7fe23325a2a5c9876692fe1a17677fed32433b2360544",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/PolytopeRegression.lean"
+    },
+    {
+      "canonical_sha256": "a5008cc4a89abfc385fae5b85b4e851a04da3b364ce3253b7b3e462a7699154a",
+      "classification": "RAW",
+      "published_sha256": "a5008cc4a89abfc385fae5b85b4e851a04da3b364ce3253b7b3e462a7699154a",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FlowExpressions.lean"
+    },
+    {
+      "canonical_sha256": "ece4284ce2a56ded906808731c14ef4c44acd1cc656dc818bbda97f47ff2bf64",
+      "classification": "RAW",
+      "published_sha256": "ece4284ce2a56ded906808731c14ef4c44acd1cc656dc818bbda97f47ff2bf64",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyModel.lean"
+    },
+    {
+      "canonical_sha256": "1139698d044db18454590a42530676ca184e6d95634077b458d43e1d80ead40e",
+      "classification": "RAW",
+      "published_sha256": "1139698d044db18454590a42530676ca184e6d95634077b458d43e1d80ead40e",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyHistory.lean"
+    },
+    {
+      "canonical_sha256": "cca49d7b2c5cdd76953194017b6fcfccd5cbb5c63788b4979632f4f8ced2a974",
+      "classification": "RAW",
+      "published_sha256": "cca49d7b2c5cdd76953194017b6fcfccd5cbb5c63788b4979632f4f8ced2a974",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyReconstruction.lean"
+    },
+    {
+      "canonical_sha256": "dcfc6e0455c297a03f88c64067f048e0baf1b34c34734181d71a83e88a7651d8",
+      "classification": "RAW",
+      "published_sha256": "dcfc6e0455c297a03f88c64067f048e0baf1b34c34734181d71a83e88a7651d8",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyMarginals.lean"
+    },
+    {
+      "canonical_sha256": "559f6c2af4b3c28d22309eeacce625e5a301a64fa859e18edcd8aabd1b3d72ff",
+      "classification": "RAW",
+      "published_sha256": "559f6c2af4b3c28d22309eeacce625e5a301a64fa859e18edcd8aabd1b3d72ff",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyMonitor.lean"
+    },
+    {
+      "canonical_sha256": "c430c8f499d5ed8433cda4e7a3b4ad91cadc9a630ebf03720fbdeb04411008ab",
+      "classification": "RAW",
+      "published_sha256": "c430c8f499d5ed8433cda4e7a3b4ad91cadc9a630ebf03720fbdeb04411008ab",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyRiskFixture.lean"
+    },
+    {
+      "canonical_sha256": "2ab14f1570a460c59e53e98827a62eaa0561ad914686c09caf101edfdda00dac",
+      "classification": "RAW",
+      "published_sha256": "2ab14f1570a460c59e53e98827a62eaa0561ad914686c09caf101edfdda00dac",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FlowPolytopeEncoding.lean"
+    },
+    {
+      "canonical_sha256": "45c0b8b83ea91252fd1fe1b656d25a322551053871223ec7d8a635173d63f03b",
+      "classification": "RAW",
+      "published_sha256": "45c0b8b83ea91252fd1fe1b656d25a322551053871223ec7d8a635173d63f03b",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FlowPolytope.lean"
+    },
+    {
+      "canonical_sha256": "b443c8af7ee23a4f4a8dd837cb4481e42264186620d81b9ebc32ab44ef4997ea",
+      "classification": "RAW",
+      "published_sha256": "b443c8af7ee23a4f4a8dd837cb4481e42264186620d81b9ebc32ab44ef4997ea",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FlowPolicyOptimality.lean"
+    },
+    {
+      "canonical_sha256": "4b9a6ddaa60e29d97edbe0745058f1e8cdfb783e513d14d4609662d5969bfb1c",
+      "classification": "RAW",
+      "published_sha256": "4b9a6ddaa60e29d97edbe0745058f1e8cdfb783e513d14d4609662d5969bfb1c",
+      "receipt": "research/paper_closures/risk_lp_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FlowRiskWitness.lean"
+    },
+    {
+      "canonical_sha256": "f15e9702ea1c53ebc41b4a8d0309765aabf9d9b377d030c7ecc998839e4254be",
+      "classification": "RAW",
+      "published_sha256": "f15e9702ea1c53ebc41b4a8d0309765aabf9d9b377d030c7ecc998839e4254be",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FiniteMonitor.lean"
+    },
+    {
+      "canonical_sha256": "d2ec7e842f5c4cd0d60e08d7a3e29a3854b2f23a79cd6213a4f5fc1b06b8a5b3",
+      "classification": "RAW",
+      "published_sha256": "d2ec7e842f5c4cd0d60e08d7a3e29a3854b2f23a79cd6213a4f5fc1b06b8a5b3",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/BehavioralFinitePolicy.lean"
+    },
+    {
+      "canonical_sha256": "3330041fe9bbab41d43c6457bdf6b4e4a3bda9d4614b4fcebad21271a9a26903",
+      "classification": "RAW",
+      "published_sha256": "3330041fe9bbab41d43c6457bdf6b4e4a3bda9d4614b4fcebad21271a9a26903",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/MonitorOptimality.lean"
+    },
+    {
+      "canonical_sha256": "6ac56a22a602aae8d1d34a4ac1657edaa1ff7b37f3c3305c782b70ef152ec486",
+      "classification": "RAW",
+      "published_sha256": "6ac56a22a602aae8d1d34a4ac1657edaa1ff7b37f3c3305c782b70ef152ec486",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/ChronologicalFiniteLaw.lean"
+    },
+    {
+      "canonical_sha256": "578b9dd8ad78e869aa3c4e523ab6079d6107d9331157e6f97d4434208b35736d",
+      "classification": "RAW",
+      "published_sha256": "578b9dd8ad78e869aa3c4e523ab6079d6107d9331157e6f97d4434208b35736d",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/ChronologicalMonitorMeasure.lean"
+    },
+    {
+      "canonical_sha256": "663f5209d992b9944a700a6699671b47fde6e11a023e48a17b01be6f658ee310",
+      "classification": "RAW",
+      "published_sha256": "663f5209d992b9944a700a6699671b47fde6e11a023e48a17b01be6f658ee310",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/MonitorHistoryBridge.lean"
+    },
+    {
+      "canonical_sha256": "7b35a2d55c351350898f89860f4921964f2b0af655840df5f564b5ec1da328a3",
+      "classification": "RAW",
+      "published_sha256": "7b35a2d55c351350898f89860f4921964f2b0af655840df5f564b5ec1da328a3",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/ComputableFiniteMonitor.lean"
+    },
+    {
+      "canonical_sha256": "d09eb3931ee11cb4919e6019901f37e9e9b4e918df637c69c7b959702e9e1273",
+      "classification": "RAW",
+      "published_sha256": "d09eb3931ee11cb4919e6019901f37e9e9b4e918df637c69c7b959702e9e1273",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/CompactResidenceMonitor.lean"
+    },
+    {
+      "canonical_sha256": "dc4645ecbd138060b924796b63c431b25fcf34ed1f1e424cc8cf9163df93567c",
+      "classification": "RAW",
+      "published_sha256": "dc4645ecbd138060b924796b63c431b25fcf34ed1f1e424cc8cf9163df93567c",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/FirstEntryMonitor.lean"
+    },
+    {
+      "canonical_sha256": "2fe6ae7e4863ed165d1d348df6303cd4ae76eb6beeeb87f63e65ca6e8c9399e6",
+      "classification": "RAW",
+      "published_sha256": "2fe6ae7e4863ed165d1d348df6303cd4ae76eb6beeeb87f63e65ca6e8c9399e6",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/AvoidResidenceMonitor.lean"
+    },
+    {
+      "canonical_sha256": "151530c963e47509e95a6f6f5abf4a040e12bc3befa73fe1f2664cf117b4987e",
+      "classification": "RAW",
+      "published_sha256": "151530c963e47509e95a6f6f5abf4a040e12bc3befa73fe1f2664cf117b4987e",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/AvoidResidenceHistoryBridge.lean"
+    },
+    {
+      "canonical_sha256": "28a1b65bf2f2b9ea102670666d39f3c49ec647a9af08d1ea45a84927ad7d53ea",
+      "classification": "RAW",
+      "published_sha256": "28a1b65bf2f2b9ea102670666d39f3c49ec647a9af08d1ea45a84927ad7d53ea",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/MonitorEventOptimality.lean"
+    },
+    {
+      "canonical_sha256": "fe13e9b08f490fd6d6fbb930e0a27b42010f93b388401bd0c9526c562f08d0ae",
+      "classification": "RAW",
+      "published_sha256": "fe13e9b08f490fd6d6fbb930e0a27b42010f93b388401bd0c9526c562f08d0ae",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/ResidenceSpecializationOptimality.lean"
+    },
+    {
+      "canonical_sha256": "352703922717456d3fb42563b1fdf34bc3ba76699f20e51ab1ea31fc1100c450",
+      "classification": "RAW",
+      "published_sha256": "352703922717456d3fb42563b1fdf34bc3ba76699f20e51ab1ea31fc1100c450",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/SolverBoundaryWitnesses.lean"
+    },
+    {
+      "canonical_sha256": "0f370198eca4d5bed88c0301a8e61b13fa4e9b2bf4bedc0ebff3ac8c9c04ea3d",
+      "classification": "RAW",
+      "published_sha256": "0f370198eca4d5bed88c0301a8e61b13fa4e9b2bf4bedc0ebff3ac8c9c04ea3d",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceMatrix.lean"
+    },
+    {
+      "canonical_sha256": "256cf50633615318e6376545da8d0f997cc5e96175524199493ac4185eb151b6",
+      "classification": "RAW",
+      "published_sha256": "256cf50633615318e6376545da8d0f997cc5e96175524199493ac4185eb151b6",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceProbability.lean"
+    },
+    {
+      "canonical_sha256": "e2d4a77f3ca3c10fbf4a9fdd930248a41e286c22cbc4d210375db5e08afe31f7",
+      "classification": "RAW",
+      "published_sha256": "e2d4a77f3ca3c10fbf4a9fdd930248a41e286c22cbc4d210375db5e08afe31f7",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceClasses.lean"
+    },
+    {
+      "canonical_sha256": "a1fda222a29a0863803cbc5c7174d35a07858956a623b4bebbf56e391c172c15",
+      "classification": "RAW",
+      "published_sha256": "a1fda222a29a0863803cbc5c7174d35a07858956a623b4bebbf56e391c172c15",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceStationaryFamily.lean"
+    },
+    {
+      "canonical_sha256": "75eed4a75b3495f5bac94f961b6f03ef51fecc2403a7ea62f9468555c8fd2da3",
+      "classification": "RAW",
+      "published_sha256": "75eed4a75b3495f5bac94f961b6f03ef51fecc2403a7ea62f9468555c8fd2da3",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceExamples.lean"
+    },
+    {
+      "canonical_sha256": "7183a67015c400f787f995ce7035fc83600200946b60fce8afcedfcd6b8b9e73",
+      "classification": "RAW",
+      "published_sha256": "7183a67015c400f787f995ce7035fc83600200946b60fce8afcedfcd6b8b9e73",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceTypedBridge.lean"
+    },
+    {
+      "canonical_sha256": "62f5b0771d14292f8271e97257bbae95b5ea884e112af845b14338f847f69e34",
+      "classification": "RAW",
+      "published_sha256": "62f5b0771d14292f8271e97257bbae95b5ea884e112af845b14338f847f69e34",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/RectangularFiniteGame.lean"
+    },
+    {
+      "canonical_sha256": "0d0940034bf0e05195c2726bc330b6094fcf88ac1d47060b873fff5ba5e95c61",
+      "classification": "RAW",
+      "published_sha256": "0d0940034bf0e05195c2726bc330b6094fcf88ac1d47060b873fff5ba5e95c61",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/RectangularGameLaw.lean"
+    },
+    {
+      "canonical_sha256": "b06460b24795cd14ccd4d4ef6ffa5989d77b5c1245efb16da18d0c22c2bac156",
+      "classification": "RAW",
+      "published_sha256": "b06460b24795cd14ccd4d4ef6ffa5989d77b5c1245efb16da18d0c22c2bac156",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/StationaryOccupationObjective.lean"
+    },
+    {
+      "canonical_sha256": "839dd7bc58a7b3bfe5b0a2145069e1947fbcfbbeb697d147b230373c69b25bb6",
+      "classification": "RAW",
+      "published_sha256": "839dd7bc58a7b3bfe5b0a2145069e1947fbcfbbeb697d147b230373c69b25bb6",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/StationaryMenuOptimization.lean"
+    },
+    {
+      "canonical_sha256": "6fa1d7c510a57b7be0ad1fbc225894de060e9f071b091c4ebbb26c30a1bc014f",
+      "classification": "RAW",
+      "published_sha256": "6fa1d7c510a57b7be0ad1fbc225894de060e9f071b091c4ebbb26c30a1bc014f",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/RollingMonitorTable.lean"
+    },
+    {
+      "canonical_sha256": "1faaaeaac81a14e8929be767cf96db2932de3983bdd38c5b3181c471d744bf1d",
+      "classification": "RAW",
+      "published_sha256": "1faaaeaac81a14e8929be767cf96db2932de3983bdd38c5b3181c471d744bf1d",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/RollingResidenceTable.lean"
+    },
+    {
+      "canonical_sha256": "2c844fe5b4883e40e1e99c5ba6d43ce93f01ae91f7ddd818c35a0098b896af77",
+      "classification": "RAW",
+      "published_sha256": "2c844fe5b4883e40e1e99c5ba6d43ce93f01ae91f7ddd818c35a0098b896af77",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/InitialLawMonitor.lean"
+    },
+    {
+      "canonical_sha256": "bae839718a77a1cebef4e6e264e0842fbd16d964d3b39ad5578ac50367bcd9c0",
+      "classification": "RAW",
+      "published_sha256": "bae839718a77a1cebef4e6e264e0842fbd16d964d3b39ad5578ac50367bcd9c0",
+      "receipt": "research/paper_closures/solver_stationary_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/SolverClosureAudit.lean"
+    },
+    {
+      "canonical_sha256": "72b7223a5150102bb65f3c270eab036e2a02f8edabe43311c79d4c57749711f3",
+      "classification": "RAW",
+      "published_sha256": "72b7223a5150102bb65f3c270eab036e2a02f8edabe43311c79d4c57749711f3",
+      "receipt": "research/paper_closures/specialized_boundary_receipt.json",
+      "source": "PermanssonResearch/Specialized/BoundaryWitnesses.lean"
+    },
+    {
+      "canonical_sha256": "98bc99a8c47c13cc5afe4b86f62d57adf4cf59e9b206eee354ef33c16bedb7de",
+      "classification": "RAW",
+      "published_sha256": "98bc99a8c47c13cc5afe4b86f62d57adf4cf59e9b206eee354ef33c16bedb7de",
+      "receipt": "research/paper_closures/stationary_random_fixture_receipt.json",
+      "source": "verification/research/StationaryRandomWitness.lean"
+    },
+    {
+      "canonical_sha256": "01f087f113ed2776d6f66d5478ac08813bd56d2afbc25527613a2a736775058f",
+      "classification": "RAW",
+      "published_sha256": "01f087f113ed2776d6f66d5478ac08813bd56d2afbc25527613a2a736775058f",
+      "receipt": "research/paper_closures/stationary_random_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/StationaryCanonicalShift.lean"
+    },
+    {
+      "canonical_sha256": "0b362e8dfe715b029ad680c522ec95e4013813a9238a14122e0ded9c60e92805",
+      "classification": "RAW",
+      "published_sha256": "0b362e8dfe715b029ad680c522ec95e4013813a9238a14122e0ded9c60e92805",
+      "receipt": "research/paper_closures/stationary_random_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/StationaryConditionalLaw.lean"
+    },
+    {
+      "canonical_sha256": "d71d9f0f966f1f484aa845bd23cada060c2b8feda82c929ef88cfdb380b4f2e8",
+      "classification": "RAW",
+      "published_sha256": "d71d9f0f966f1f484aa845bd23cada060c2b8feda82c929ef88cfdb380b4f2e8",
+      "receipt": "research/paper_closures/stationary_random_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/CanonicalInitialAbsoluteContinuity.lean"
+    },
+    {
+      "canonical_sha256": "e2bbcc60547fffa5e2f47a6df53f5c4045fc8fb66797c34a84d205dddfa00f75",
+      "classification": "RAW",
+      "published_sha256": "e2bbcc60547fffa5e2f47a6df53f5c4045fc8fb66797c34a84d205dddfa00f75",
+      "receipt": "research/paper_closures/stationary_random_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/CanonicalInitialDensity.lean"
+    },
+    {
+      "canonical_sha256": "de339fc5474297ef4e71e7ba28f7ed96505a2d6e1bcebb49cd9e7e721370de0b",
+      "classification": "RAW",
+      "published_sha256": "de339fc5474297ef4e71e7ba28f7ed96505a2d6e1bcebb49cd9e7e721370de0b",
+      "receipt": "research/paper_closures/stationary_random_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/StationaryRandomOccupation.lean"
+    },
+    {
+      "canonical_sha256": "9e374c19a2854c053e5457b11702f757cfb2178f2f8c494e409b5dc5c758c7e2",
+      "classification": "RAW",
+      "published_sha256": "9e374c19a2854c053e5457b11702f757cfb2178f2f8c494e409b5dc5c758c7e2",
+      "receipt": "research/paper_closures/stationary_random_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/CountableEmpiricalWeak.lean"
+    },
+    {
+      "canonical_sha256": "b20e017023a642ad42321a794b0ea0857eb74447a01329c5a71d3b1c0bf8f506",
+      "classification": "RAW",
+      "published_sha256": "b20e017023a642ad42321a794b0ea0857eb74447a01329c5a71d3b1c0bf8f506",
+      "receipt": "research/paper_closures/stationary_random_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/StationaryConditionalInvariant.lean"
+    },
+    {
+      "canonical_sha256": "7a09b4036160b17ef24e364e451951ec01d37e5e654896bb100da75d8e18910a",
+      "classification": "RAW",
+      "published_sha256": "7a09b4036160b17ef24e364e451951ec01d37e5e654896bb100da75d8e18910a",
+      "receipt": "research/paper_closures/stationary_random_receipt.json",
+      "source": "PermanssonResearch/MultipleLimit/PolishStationaryRandomOccupation.lean"
+    },
+    {
+      "canonical_sha256": "d441a9b9b49154a030f7e0bd71aa6aefd68698d912dfd414d1a1a353268f4cdb",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "4e9a448bd6775a2de792eaa1bf381d6d3e6cd4dd5df906d8d06401ec6879200f",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "source": "PermanssonResearch/StrategicWorld/ActionTrace.lean"
+    },
+    {
+      "canonical_sha256": "6a9ba3f39bd6fa0d68054c13fda9964ff81773d2912642b4e68fd6cb48cb323d",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "1339d1916f19e626936bf9d724cc1dda11854a6d0567663faafcad6d8e2e97fb",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "source": "PermanssonResearch/StrategicWorld/ActionTraceCanonical.lean"
+    },
+    {
+      "canonical_sha256": "5ed56aa26299e13ead032320ef674d3184cc592414f406db57787ccbe874e0dd",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "4cad4442abfdee392cf8cad639632a8f74c4528b4bf81b4d2a98c3b4fafc99b8",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "source": "PermanssonResearch/StrategicWorld/ActionTraceStatePrefix.lean"
+    },
+    {
+      "canonical_sha256": "4e60bf3f9579bfa785d99e7f63dfc8b37a24aba1000b7a597dcc4d12c41bad54",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "05fe8cd10c0728e9d13bafb35e8a3f0bdc15b204eba20ac30aeee6b91889bcc3",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "source": "PermanssonResearch/StrategicWorld/ActionTraceInitialLaw.lean"
+    },
+    {
+      "canonical_sha256": "a42d6af0b3ecdd36742c5daf1861f1add821ea62f8271559187096f5efca7f00",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "3277fc0d0a65dc7b5832c92acbfb354c9107a71ba8bc3906a96cf1f31d8313d1",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "source": "PermanssonResearch/StrategicWorld/ActionTraceOriginalBridge.lean"
+    },
+    {
+      "canonical_sha256": "18c8867029bf65b63bc3f02ca5c84d8837983d1767137c600c918f51055528b7",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "86e6ea8f1d77eb8bc8f12cf1b2c7c361e11753cc42bb4cd101695d87d7331a8a",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "source": "PermanssonResearch/Games/DiscountedVerification.lean"
+    },
+    {
+      "canonical_sha256": "6252760219c99be64055c17b091059eba64ca1d4197dc6182a8c2ddb3288da3b",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "1ee9647f4891d1481b90039506565aaecfed61901dfe80f3df519bc0449a0886",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "source": "PermanssonResearch/Games/DiscountedTraceExpectation.lean"
+    },
+    {
+      "canonical_sha256": "ee27ac8502de1ffec64aebf900eeb38d9f3560c46ddafeebb6615097654ef034",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "55f197b0e2ea77dff49275a0180de3b59b5ccbb27dc8b4893a1b9deb4cf8300c",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "source": "PermanssonResearch/X1/FullStrategyCertificate.lean"
+    },
+    {
+      "canonical_sha256": "b0b4909441cfd5f54622d11d87e2bc54737a801917a5e5e29c36a73ef4021416",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "b76691379bba9246a59e78e6f25a0fb098b73f1bf09a7b3d25166a60852ba38a",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "source": "PermanssonResearch/X1/FullStrategyTrace.lean"
+    },
+    {
+      "canonical_sha256": "defb1f81e3575d79b3a8fd267eac1b2a4f7969530506638b4a093129976569b5",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "f0e457b1d0b086731a1d4b858c968546a6d753f9128ff5280ef549414d596f1a",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "source": "PermanssonResearch/X1/StrategyRegression.lean"
+    },
+    {
+      "canonical_sha256": "675d4530df8d8bf8b697ee60ab7282e684c71afbe0f4d0e3dd0dcf299d49ffd7",
+      "classification": "LF_FINAL_CRLF",
+      "published_sha256": "34c29e2fad65bffcfd635d1fc0ee5df31f99e50a54210543c8f405163040751d",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "source": "PermanssonResearch/X1/StrategyOriginalBridge.lean"
+    },
+    {
+      "canonical_sha256": "756f60dfa2b48dedc5fc8363c8813b2c2417437391c99c3f3073dad32b400221",
+      "classification": "RAW",
+      "published_sha256": "756f60dfa2b48dedc5fc8363c8813b2c2417437391c99c3f3073dad32b400221",
+      "receipt": "research/paper_closures/through_horizon_risk_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/ThroughHorizonRiskMonitor.lean"
+    },
+    {
+      "canonical_sha256": "39effcd41b1746a42e2fd784108051a86ffa307650c8b9b602880e79cc91d048",
+      "classification": "RAW",
+      "published_sha256": "39effcd41b1746a42e2fd784108051a86ffa307650c8b9b602880e79cc91d048",
+      "receipt": "research/paper_closures/through_horizon_risk_receipt.json",
+      "source": "PermanssonResearch/ReverseSolver/ThroughHorizonRiskFixture.lean"
+    },
+    {
+      "canonical_sha256": "e9e74f52381068e5894537b9c621c9d50bf0566a141f511f0a1e9f77401e120f",
+      "classification": "RAW",
+      "published_sha256": "e9e74f52381068e5894537b9c621c9d50bf0566a141f511f0a1e9f77401e120f",
+      "receipt": "research/paper_closures/x1_matrix_receipt.json",
+      "source": "PermanssonResearch/X1/ExactMatrixTables.lean"
+    },
+    {
+      "canonical_sha256": "d86c41bbf7a71ba0246e632e2ba94b8521e58b513787c1e5cabb3fcdf8046b3c",
+      "classification": "RAW",
+      "published_sha256": "d86c41bbf7a71ba0246e632e2ba94b8521e58b513787c1e5cabb3fcdf8046b3c",
+      "receipt": "research/paper_closures/x1_matrix_receipt.json",
+      "source": "research/paper_closures/spec/certificates/x1_exact_tables.json"
+    },
+    {
+      "canonical_sha256": "14073bf5d56171fce2fa13aae142290ef53947b854ceaf88fc3664113dd1f7b3",
+      "classification": "RAW",
+      "published_sha256": "14073bf5d56171fce2fa13aae142290ef53947b854ceaf88fc3664113dd1f7b3",
+      "receipt": "research/paper_closures/x1_matrix_receipt.json",
+      "source": "verification/research/generate_x1_matrix_tables.py"
+    },
+    {
+      "canonical_sha256": "afcf33608200a048f8c38b77f547b46664eb852b429253b20e5bce44db9ce3e4",
+      "classification": "RAW",
+      "published_sha256": "afcf33608200a048f8c38b77f547b46664eb852b429253b20e5bce44db9ce3e4",
+      "receipt": "research/paper_closures/x1_matrix_receipt.json",
+      "source": "verification/research/audit_x1_matrix_tables.py"
+    },
+    {
+      "canonical_sha256": "a30f2fdae0020ca9288d1f874b090d73bce64e2b6a7ccacc8fa2ff2a901169a4",
+      "classification": "RAW",
+      "published_sha256": "a30f2fdae0020ca9288d1f874b090d73bce64e2b6a7ccacc8fa2ff2a901169a4",
+      "receipt": "research/paper_closures/x1_matrix_receipt.json",
+      "source": "verification/research/test_x1_paper_closure.py"
+    },
+    {
+      "canonical_sha256": "49856ede357f1f24ad314d7c3be248bbf17605375338d2ffd5c7e691e91f6c44",
+      "classification": "RAW",
+      "published_sha256": "49856ede357f1f24ad314d7c3be248bbf17605375338d2ffd5c7e691e91f6c44",
+      "receipt": "research/paper_closures/x1_matrix_receipt.json",
+      "source": "verification/research/test_paper_x1_matrix_lean.py"
+    },
+    {
+      "canonical_sha256": "ba9cdc65de8104f8f522c7c0bfa2d3bce6cc923a79b4dbd65fe4975e369f41b3",
+      "classification": "RAW",
+      "published_sha256": "ba9cdc65de8104f8f522c7c0bfa2d3bce6cc923a79b4dbd65fe4975e369f41b3",
+      "receipt": "research/paper_closures/x1_matrix_receipt.json",
+      "source": "PermanssonResearch/X1/InterventionNumerics.lean"
+    },
+    {
+      "canonical_sha256": "fbc4c91fcf7379f0c12b0112213e04b9e6d0a378179807b758dc3f2e4bb48b4c",
+      "classification": "RAW",
+      "published_sha256": "fbc4c91fcf7379f0c12b0112213e04b9e6d0a378179807b758dc3f2e4bb48b4c",
+      "receipt": "research/paper_closures/x1_matrix_receipt.json",
+      "source": "PermanssonResearch/X1/InterventionNumericalBridge.lean"
+    },
+    {
+      "canonical_sha256": "50fbb2b833c5191631f2ec69c61e7f83b7c137c4af9b352465b85af6ea9a57dd",
+      "classification": "CRLF",
+      "published_sha256": "fbf7935af4892ed3a663aa5729fccbffa62b7b23bde9fee75bbc09e39e584cb4",
+      "receipt": "research/paper_closures/x1_matrix_receipt.json",
+      "source": "PermanssonResearch/X1/ExactTerminalTables.lean"
+    },
+    {
+      "canonical_sha256": "3a29e5a94da11489b6a920795d76cbdb9316b64002aaf04e6cf2442c9105d061",
+      "classification": "RAW",
+      "published_sha256": "3a29e5a94da11489b6a920795d76cbdb9316b64002aaf04e6cf2442c9105d061",
+      "receipt": "research/paper_closures/x1_matrix_receipt.json",
+      "source": "PermanssonResearch/X1/ExactMargins.lean"
+    },
+    {
+      "canonical_sha256": "ba9cdc65de8104f8f522c7c0bfa2d3bce6cc923a79b4dbd65fe4975e369f41b3",
+      "classification": "RAW",
+      "published_sha256": "ba9cdc65de8104f8f522c7c0bfa2d3bce6cc923a79b4dbd65fe4975e369f41b3",
+      "receipt": "research/paper_closures/x1_receipt.json",
+      "source": "PermanssonResearch/X1/InterventionNumerics.lean"
+    },
+    {
+      "canonical_sha256": "fbc4c91fcf7379f0c12b0112213e04b9e6d0a378179807b758dc3f2e4bb48b4c",
+      "classification": "RAW",
+      "published_sha256": "fbc4c91fcf7379f0c12b0112213e04b9e6d0a378179807b758dc3f2e4bb48b4c",
+      "receipt": "research/paper_closures/x1_receipt.json",
+      "source": "PermanssonResearch/X1/InterventionNumericalBridge.lean"
+    },
+    {
+      "canonical_sha256": "50fbb2b833c5191631f2ec69c61e7f83b7c137c4af9b352465b85af6ea9a57dd",
+      "classification": "CRLF",
+      "published_sha256": "fbf7935af4892ed3a663aa5729fccbffa62b7b23bde9fee75bbc09e39e584cb4",
+      "receipt": "research/paper_closures/x1_receipt.json",
+      "source": "PermanssonResearch/X1/ExactTerminalTables.lean"
+    },
+    {
+      "canonical_sha256": "3a29e5a94da11489b6a920795d76cbdb9316b64002aaf04e6cf2442c9105d061",
+      "classification": "RAW",
+      "published_sha256": "3a29e5a94da11489b6a920795d76cbdb9316b64002aaf04e6cf2442c9105d061",
+      "receipt": "research/paper_closures/x1_receipt.json",
+      "source": "PermanssonResearch/X1/ExactMargins.lean"
+    },
+    {
+      "canonical_sha256": "ba9cdc65de8104f8f522c7c0bfa2d3bce6cc923a79b4dbd65fe4975e369f41b3",
+      "classification": "RAW",
+      "published_sha256": "ba9cdc65de8104f8f522c7c0bfa2d3bce6cc923a79b4dbd65fe4975e369f41b3",
+      "receipt": "research/paper_closures/x1_receipt_four_mutations_historical.json",
+      "source": "PermanssonResearch/X1/InterventionNumerics.lean"
+    },
+    {
+      "canonical_sha256": "fbc4c91fcf7379f0c12b0112213e04b9e6d0a378179807b758dc3f2e4bb48b4c",
+      "classification": "RAW",
+      "published_sha256": "fbc4c91fcf7379f0c12b0112213e04b9e6d0a378179807b758dc3f2e4bb48b4c",
+      "receipt": "research/paper_closures/x1_receipt_four_mutations_historical.json",
+      "source": "PermanssonResearch/X1/InterventionNumericalBridge.lean"
+    },
+    {
+      "canonical_sha256": "50fbb2b833c5191631f2ec69c61e7f83b7c137c4af9b352465b85af6ea9a57dd",
+      "classification": "CRLF",
+      "published_sha256": "fbf7935af4892ed3a663aa5729fccbffa62b7b23bde9fee75bbc09e39e584cb4",
+      "receipt": "research/paper_closures/x1_receipt_four_mutations_historical.json",
+      "source": "PermanssonResearch/X1/ExactTerminalTables.lean"
+    },
+    {
+      "canonical_sha256": "3a29e5a94da11489b6a920795d76cbdb9316b64002aaf04e6cf2442c9105d061",
+      "classification": "RAW",
+      "published_sha256": "3a29e5a94da11489b6a920795d76cbdb9316b64002aaf04e6cf2442c9105d061",
+      "receipt": "research/paper_closures/x1_receipt_four_mutations_historical.json",
+      "source": "PermanssonResearch/X1/ExactMargins.lean"
+    }
+  ],
+  "reference": {
+    "B": "39279799834ae536bda715dedecdc11a32bf6c82",
+    "H": "a1f1a77a301178e33412595265e823a873fb7301",
+    "M": "674c1b557d99ab080afb65a797a99cb5840eab62",
+    "S": "fa0441227aa8b245b384b01b32f3bfb43a897f07",
+    "tree": "b391f32f503f07bcfd7b29d8c24c1f9ad61eb19f"
+  },
+  "status": "HISTORICAL_MISMATCH_DISCLOSED_AND_SOURCE_BINDING_RETIRED_NOT_SILENTLY_REPAIRED"
+}
