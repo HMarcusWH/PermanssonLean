@@ -1,0 +1,154 @@
+{
+  "format": "Permansson.A2P02.AcceptanceMatrix.v2",
+  "base": "674c1b557d99ab080afb65a797a99cb5840eab62",
+  "formal_status": "SOURCE_REVIEWED_COMPILER_PENDING",
+  "accepted": false,
+  "requirements": [
+    {
+      "id": "A2P02-01",
+      "requirement": "Bounded, measurable good-history majorant",
+      "source_targets": "goodHistoryMajorant_measurable; goodHistoryMajorant_le_one",
+      "unit_or_static_check": "test_majorant_has_classical_instance_and_explicit_upper_bound",
+      "acceptance_state": "COMPILE_REQUIRED"
+    },
+    {
+      "id": "A2P02-02",
+      "requirement": "Actual source-law bad-visit integral",
+      "source_targets": "goodHistory_lintegral_le",
+      "unit_or_static_check": "test_true_baseline_and_treatment_have_separate_visit_laws",
+      "acceptance_state": "COMPILE_REQUIRED"
+    },
+    {
+      "id": "A2P02-03",
+      "requirement": "Generic time-varying full-history TV and initial mismatch",
+      "source_targets": "historyEvolution_tv_le_goodVisits",
+      "unit_or_static_check": "test_initial_error_is_wired_into_actual_original_margin_output",
+      "acceptance_state": "COMPILE_REQUIRED"
+    },
+    {
+      "id": "A2P02-04",
+      "requirement": "Actual canonical point-start prefix induction",
+      "source_targets": "finitePrefixLaw_tv_le_averaged; finitePrefixLaw_tv_le_goodVisits",
+      "unit_or_static_check": "test_original_margin_definition_is_not_replaced",
+      "acceptance_state": "COMPILE_REQUIRED"
+    },
+    {
+      "id": "A2P02-05",
+      "requirement": "Actual canonical initial mixture, Dirac identity, data processing",
+      "source_targets": "canonicalPrefixKernel_apply; mixedFinitePrefixLaw_dirac; mixedFinitePrefixLaw_tv_le_initial",
+      "unit_or_static_check": "test_initial_error_is_wired_into_actual_original_margin_output",
+      "acceptance_state": "COMPILE_REQUIRED"
+    },
+    {
+      "id": "A2P02-06",
+      "requirement": "Localized plus initial uncertainty in actual bounded-score expectation",
+      "source_targets": "finitePathExpectation_abs_le_goodVisits_initial",
+      "unit_or_static_check": "test_initial_error_is_wired_into_actual_original_margin_output",
+      "acceptance_state": "COMPILE_REQUIRED"
+    },
+    {
+      "id": "A2P02-07",
+      "requirement": "Original two-sided output-error structure, whole unchanged comparison set",
+      "source_targets": "LocalizedProtocolErrors.toConstitutiveOutputErrors",
+      "unit_or_static_check": "test_original_margin_definition_is_not_replaced",
+      "acceptance_state": "COMPILE_REQUIRED"
+    },
+    {
+      "id": "A2P02-08",
+      "requirement": "Original margin and both correctly directed strict-positive consequences",
+      "source_targets": "LocalizedProtocolErrors.reportedMargin_abs_le; trueMargin_pos_of_reported; reportedMargin_pos_of_true",
+      "unit_or_static_check": "test_positive_corollaries_use_correct_abs_arms",
+      "acceptance_state": "COMPILE_REQUIRED"
+    },
+    {
+      "id": "A2P02-09",
+      "requirement": "Matched component AND target; each intervention preserves its own P",
+      "source_targets": "PrimitiveModelPair (existing provider); matchedPair",
+      "unit_or_static_check": "test_pair_matches_components_and_targets_without_shared_P_constraint",
+      "acceptance_state": "COMPILE_AND_STATEMENT_REVIEW_REQUIRED"
+    },
+    {
+      "id": "A2P02-10",
+      "requirement": "Positive typed Bool-by-Bool fixture on two-start basin",
+      "source_targets": "exactLocalizedErrors; reportedMargin_four_fifths; originalMargin_ge_three_fifths",
+      "unit_or_static_check": "test_correct_set_image_equality_direction",
+      "acceptance_state": "COMPILE_REQUIRED"
+    },
+    {
+      "id": "A2P02-11",
+      "requirement": "Zero-transition initial-error fixture",
+      "source_targets": "initialScore_point; initialMismatch_gap_one",
+      "unit_or_static_check": "test_mutants_are_unique_edits_to_actual_positive_fixture",
+      "acceptance_state": "COMPILE_REQUIRED"
+    },
+    {
+      "id": "A2P02-12",
+      "requirement": "Four actual semantic mutations fail after identical positive control passes",
+      "source_targets": "omit_baseline_reporting_error; omit_treated_reporting_error; wrong_reported_effect; omit_zero_horizon_initial_error",
+      "unit_or_static_check": "test_mutants_are_unique_edits_to_actual_positive_fixture",
+      "acceptance_state": "ACTUAL_COMPILER_REJECTION_REQUIRED"
+    },
+    {
+      "id": "A2P02-13",
+      "requirement": "Exact finite arithmetic, lawful inputs, reporting/domain/resource adversaries",
+      "source_targets": "verification/research/test_localized_prefix_exact.py",
+      "unit_or_static_check": "all exact-arithmetic tests",
+      "acceptance_state": "FINITE_ARITHMETIC_ONLY"
+    },
+    {
+      "id": "A2P02-14",
+      "requirement": "Fail-closed source, version, axiom, failure-mode, output policy",
+      "source_targets": "verification/research/test_localized_prefix_gate.py",
+      "unit_or_static_check": "all gate-policy tests (mock transcript tests are labelled)",
+      "acceptance_state": "UNIT_POLICY_ONLY"
+    },
+    {
+      "id": "A2P02-15",
+      "requirement": "Exact-base atomic-overlay installation, preservation and rollback",
+      "source_targets": "tools/apply_localized_build.py; localized_prefix_support.inspect_repo",
+      "unit_or_static_check": "tests/test_distribution.py (synthetic local Git fixtures)",
+      "acceptance_state": "SYNTHETIC_INSTALLATION_TESTS_ONLY"
+    },
+    {
+      "id": "A2P02-16",
+      "requirement": "All four direct imports; mandatory compiler test in unchanged Research CI discovery",
+      "source_targets": "PermanssonResearch.lean; test_localized_prefix_compiler.py",
+      "unit_or_static_check": "test_direct_import_wiring_or_valid_unapplied_patch; test_compiler_gate_is_installed_and_discovered",
+      "acceptance_state": "ACTUAL_CI_EXECUTION_REQUIRED"
+    },
+    {
+      "id": "A2P02-17",
+      "requirement": "Pinned compiler/dependencies; actual signatures and selected transitive axioms",
+      "source_targets": "localized_prefix_gate.py; source_before.json; AuditSignatures.lean; receipt.json",
+      "unit_or_static_check": "parse_version and parse_axioms policy tests",
+      "acceptance_state": "ACTUAL_COMPILER_AND_DEPENDENCY_CHECK_REQUIRED"
+    },
+    {
+      "id": "A2P02-18",
+      "requirement": "Full Research/default builds, original tests, global axiom audit and preservation workflows",
+      "source_targets": "existing .github/workflows/research-lean.yml and other required source-bound workflows",
+      "unit_or_static_check": "not run in this distribution environment",
+      "acceptance_state": "ACTUAL_REQUIRED_WORKFLOWS_PENDING"
+    },
+    {
+      "id": "A2P02-19",
+      "requirement": "Actual H/B/S/M evidence and exact final-head review, separate from local receipt",
+      "source_targets": "existing integrity.ci_context plus actual GitHub job/review records",
+      "unit_or_static_check": "no fabricated or inherited event values",
+      "acceptance_state": "REMOTE_ACCEPTANCE_PENDING"
+    },
+    {
+      "id": "A2P02-20",
+      "requirement": "No Exact-GR, empirical or broader-scope promotion",
+      "source_targets": "A2_P02_BUILD_SPEC.md; REVIEW_AND_CORRECTIONS.md",
+      "unit_or_static_check": "test_no_automatic_GR_or_empirical_promotion",
+      "acceptance_state": "STATEMENT_REVIEW_REQUIRED"
+    }
+  ],
+  "rules": [
+    "No compiler or missing dependency is a failure, never a skip/pass.",
+    "Unit tests and arithmetic checks do not satisfy a COMPILE requirement.",
+    "Acceptance records are additive observations. This preparation snapshot remains pending after a future build.",
+    "A local source digest is not an authenticated GitHub event, review, or empirical certificate."
+  ]
+}
