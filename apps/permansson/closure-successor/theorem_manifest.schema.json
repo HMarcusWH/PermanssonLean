@@ -1,0 +1,72 @@
+{
+  "$id": "https://hmwh.se/permannson/closure-successor/theorem-manifest.v0.1.0.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "complete_comparison": {
+      "const": [
+        1,
+        2
+      ]
+    },
+    "empirical_identification": {
+      "const": "NOT_IDENTIFIED"
+    },
+    "exact_GR_scope": {
+      "const": "CONSTRUCTED_SIX_STATE_WITNESS_ONLY"
+    },
+    "format": {
+      "const": "Permansson.C10.ClosureSuccessor.v0.1.0"
+    },
+    "input_sha256": {
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "lean_source_sha256": {
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "lean_status": {
+      "enum": [
+        "NOT_RUN",
+        "KERNEL_CHECKED"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "numeric",
+        "replay"
+      ]
+    },
+    "numeric_optimum": {
+      "type": "string"
+    },
+    "numeric_selected": {
+      "type": "string"
+    },
+    "numeric_status": {
+      "const": "VERIFIED_EXACT_RATIONAL"
+    },
+    "scientific_claims_verified": {
+      "const": false
+    },
+    "supported_profile": {
+      "const": "D0.C10.FROZEN_SIX_STATE"
+    }
+  },
+  "required": [
+    "format",
+    "mode",
+    "supported_profile",
+    "numeric_status",
+    "numeric_optimum",
+    "numeric_selected",
+    "lean_status",
+    "scientific_claims_verified",
+    "empirical_identification",
+    "exact_GR_scope",
+    "lean_source_sha256",
+    "input_sha256",
+    "complete_comparison"
+  ],
+  "title": "C10 source/Lean/numerical/scientific status separated",
+  "type": "object"
+}
