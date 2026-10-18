@@ -1,0 +1,419 @@
+{
+  "format": "Permansson.PaperAcceptanceRequirements.v1",
+  "count": 45,
+  "cases": [
+    {
+      "id": "X-01",
+      "atlas_ids": [
+        "X1-N01"
+      ],
+      "purpose": "Each of 8 literal matrices equals actual typed atoms at all 324 pairs",
+      "required_expected_result": "Kernel-checked equality; changed world/update/action row rejected",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "X-02",
+      "atlas_ids": [
+        "X1-N02"
+      ],
+      "purpose": "All 576 literal terminal entries satisfy initialization and successor equations",
+      "required_expected_result": "Actual-kernel induction identifies each entry",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "X-03",
+      "atlas_ids": [
+        "X1-N03"
+      ],
+      "purpose": "All 54 effect entries and six minima with complete start domain",
+      "required_expected_result": "Original constitutiveMargin equalities and exact attainers",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "X-04",
+      "atlas_ids": [
+        "X1-N03"
+      ],
+      "purpose": "Corrupt emitted Lean denominator or omit minimizing start",
+      "required_expected_result": "Lean proof fails at arithmetic/domain obligation; parser failure alone insufficient",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "X-05",
+      "atlas_ids": [
+        "X1-N01",
+        "X1-N02"
+      ],
+      "purpose": "Reset before action, use new rather than old world, swap action/update labels",
+      "required_expected_result": "Typed kernel equality fails",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "X-06",
+      "atlas_ids": [
+        "X1-N03"
+      ],
+      "purpose": "Promote positive margins to old Exact GR",
+      "required_expected_result": "Rejected; leakage theorem remains unchanged",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "S-01",
+      "atlas_ids": [
+        "X1-S01"
+      ],
+      "purpose": "Both-player exact advantage table and dynamic policy telescoping",
+      "required_expected_result": "Exact identity including terminal beta^N value",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "S-02",
+      "atlas_ids": [
+        "X1-S01"
+      ],
+      "purpose": "Current opponent action or future draw is available to deviation",
+      "required_expected_result": "Outside admitted information class; no verification theorem",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "M-01",
+      "atlas_ids": [
+        "F1-MA2"
+      ],
+      "purpose": "Stochastic strict anchors differing off reachable key support",
+      "required_expected_result": "Full counterfactual path laws equal under stated premises",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "M-02",
+      "atlas_ids": [
+        "F1-MA2",
+        "F1-P05"
+      ],
+      "purpose": "Endogenous common coordinate or missing update agreement",
+      "required_expected_result": "Autonomy premise rejected; reactive witness not counted strict",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "F-01",
+      "atlas_ids": [
+        "F1-P01",
+        "F1-P02"
+      ],
+      "purpose": "Asymmetric player swap and finite three-player reduction",
+      "required_expected_result": "P inputs reindexed correctly, no assumed symmetry",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "F-02",
+      "atlas_ids": [
+        "F1-P03"
+      ],
+      "purpose": "Clock never updated or driven by treated action",
+      "required_expected_result": "Projection/exogeneity fails",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "F-03",
+      "atlas_ids": [
+        "F1-P04"
+      ],
+      "purpose": "Two own-key-equal states with disjoint legal actions",
+      "required_expected_result": "No feasible strict probability anchor",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "F-04",
+      "atlas_ids": [
+        "F1-P06"
+      ],
+      "purpose": "Fair diagonal two-player joint law",
+      "required_expected_result": "Single-product claim fails; mediator mixture succeeds",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "F-05",
+      "atlas_ids": [
+        "F1-P07"
+      ],
+      "purpose": "Identical observed SCMs Y=M versus Y=T with M=T",
+      "required_expected_result": "Mediation not identified without sufficient premises",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "Q-01",
+      "atlas_ids": [
+        "E1-G01"
+      ],
+      "purpose": "Non-Markov fine projection with fine common-mass lift",
+      "required_expected_result": "Geometric bound holds without claiming projection Markov",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "Q-02",
+      "atlas_ids": [
+        "E1-G01"
+      ],
+      "purpose": "eta zero/one, T zero and mismatched initial laws",
+      "required_expected_result": "Correct boundaries; mismatched unbudgeted starts rejected",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "Q-03",
+      "atlas_ids": [
+        "A2-P01"
+      ],
+      "purpose": "Sequential correlated stage errors",
+      "required_expected_result": "Product mass proved, no independence assumption",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "Q-04",
+      "atlas_ids": [
+        "A2-P02"
+      ],
+      "purpose": "Counterfactual reaches a baseline-unvisited high-defect row",
+      "required_expected_result": "Intervention defect charged rather than omitted",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "Q-05",
+      "atlas_ids": [
+        "E1-P01",
+        "E1-P02"
+      ],
+      "purpose": "Fixed tiny leakage and infinite survival",
+      "required_expected_result": "No unqualified whole-path/Exact-GR transfer",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "A-01",
+      "atlas_ids": [
+        "A3-K01"
+      ],
+      "purpose": "Finite transport potentials, coupling and complementary equality",
+      "required_expected_result": "Finite dual equality checked; wrong supnorm test class rejected",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "A-02",
+      "atlas_ids": [
+        "A3-I01",
+        "A3-C01"
+      ],
+      "purpose": "Identity kernel or perturbation removing irreducibility",
+      "required_expected_result": "Missing strict contraction/uniqueness exposed",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "A-03",
+      "atlas_ids": [
+        "A3-P01"
+      ],
+      "purpose": "Unbounded metric with small TV but large mean-distance shift",
+      "required_expected_result": "Bounded-diameter conversion not applied",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "A-04",
+      "atlas_ids": [
+        "A3-F01"
+      ],
+      "purpose": "One of four kernels lacks stated occupation factorization",
+      "required_expected_result": "Four-process wrapper unavailable, not silently three-process",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "A-05",
+      "atlas_ids": [
+        "A3-F01"
+      ],
+      "purpose": "Time-zero/survival property inserted as occupation functional",
+      "required_expected_result": "Property identity fails rather than being assumed",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "D-01",
+      "atlas_ids": [
+        "D2-R01",
+        "D2-P01"
+      ],
+      "purpose": "All finite histories compared with monitor summary and behavioral mixtures",
+      "required_expected_result": "Same literal-event value; deterministic augmented maximizer attains",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "D-02",
+      "atlas_ids": [
+        "D2-R01",
+        "D2-P02"
+      ],
+      "purpose": "time zero, m=0, retry versus first entry, entry/completion deadline",
+      "required_expected_result": "Exact event classification including word 1,0,1,1",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "D-03",
+      "atlas_ids": [
+        "D2-P03",
+        "D2-P04"
+      ],
+      "purpose": "Danger at time zero, at success, and after success",
+      "required_expected_result": "Declared precedence and separate risk monitor preserved",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "D-04",
+      "atlas_ids": [
+        "D2-P04"
+      ],
+      "purpose": "4/5+p/10 success and p/10 risk <=1/20",
+      "required_expected_result": "Optimum17/20 atp1/2, unconstrained p1 infeasible",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "D-05",
+      "atlas_ids": [
+        "D2-P05"
+      ],
+      "purpose": "Static model pairs(.1,.9),(.9,.1)",
+      "required_expected_result": "Committed value.09 differs from rectangular.01",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "D-06",
+      "atlas_ids": [
+        "D2-P06"
+      ],
+      "purpose": "Same physical belief but different hidden completed flags",
+      "required_expected_result": "Full augmented belief required",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "D-07",
+      "atlas_ids": [
+        "D2-P07"
+      ],
+      "purpose": "Finite survival tends to zero under positive leakage",
+      "required_expected_result": "Infinite optimum determined by limit theorem, not one finite bound",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "D-08",
+      "atlas_ids": [
+        "D2-P08"
+      ],
+      "purpose": "Illegal/conflicting grammar block selected by controller",
+      "required_expected_result": "No admissible typed controlled row",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "D-09",
+      "atlas_ids": [
+        "D2-P09"
+      ],
+      "purpose": "Different physical classes share descriptor target",
+      "required_expected_result": "Class identity retained; descriptor score aggregates correctly",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "C11-01",
+      "atlas_ids": [
+        "C11-P01"
+      ],
+      "purpose": "Singleton, periodic, multi-class, nonpositive dimension",
+      "required_expected_result": "Valid nonempty families accepted; n0 rejected",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "C11-02",
+      "atlas_ids": [
+        "C11-P01"
+      ],
+      "purpose": "Missing/duplicate/nonbottom class or wrong all-state stationary vector",
+      "required_expected_result": "Existing checker rejects complete faulty output",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "C-01",
+      "atlas_ids": [
+        "C-P01"
+      ],
+      "purpose": "Growing-block countable chain and escaping mass",
+      "required_expected_result": "No unrestricted nonfinite occupation theorem",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "B-01",
+      "atlas_ids": [
+        "B-P01"
+      ],
+      "purpose": "Two overlapping patches prescribe opposite Dirac laws",
+      "required_expected_result": "Compatibility rejected; order dependence exposed",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "B-02",
+      "atlas_ids": [
+        "B-P02"
+      ],
+      "purpose": "Positive incomparable singletons and XOR",
+      "required_expected_result": "No unique-minimum or monotonicity inference",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "XPLUS-01",
+      "atlas_ids": [
+        "X1-P01"
+      ],
+      "purpose": "New model all original GR and grounded comparison fields",
+      "required_expected_result": "Correct source constructors and kappa1; no edit to old X1",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "E-01",
+      "atlas_ids": [
+        "APP-E01"
+      ],
+      "purpose": "Rank-two seam example with nonconstant diagonal",
+      "required_expected_result": "Rank-one/scalar promotion rejected",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "E-02",
+      "atlas_ids": [
+        "APP-E02"
+      ],
+      "purpose": "Approximation violates legal constraints or embedding changes form",
+      "required_expected_result": "No persistent witness transfer",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "E-03",
+      "atlas_ids": [
+        "APP-E03"
+      ],
+      "purpose": "Shell dimension2 or zero shift singular block",
+      "required_expected_result": "No scalar shell reduction or unjustified inverse",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "E-04",
+      "atlas_ids": [
+        "APP-E04"
+      ],
+      "purpose": "b not in rangeH, or Gamma0=0",
+      "required_expected_result": "No pseudoinverse positivity certificate or cancellation",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    },
+    {
+      "id": "E-05",
+      "atlas_ids": [
+        "APP-E05"
+      ],
+      "purpose": "Gram gap zero or positive summand masks negative block",
+      "required_expected_result": "No unqualified negative full-form conclusion",
+      "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+    }
+  ]
+}

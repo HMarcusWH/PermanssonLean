@@ -1,0 +1,14 @@
+{
+  "format": "Permansson.PaperSpec.ProductionCheck.v1",
+  "pdf_pages": 51,
+  "pdf_sha256": "59f7b8374c70722b8e757cedca5bb27c23b40bec2b6fd9d36461ed55dc87f319",
+  "latex_success": true,
+  "overfull_boxes": 0,
+  "missing_character_warnings": 0,
+  "underfull_boxes": 5,
+  "render_inspection": "All pages rendered in contact sheets; selected full-resolution pages inspected after layout changes.",
+  "mathematical_validation_boundary": "Paper derivations and 27 finite executable methods; no new Lean compilation or independent peer-review certification.",
+  "source_commit": "39279799834ae536bda715dedecdc11a32bf6c82",
+  "mapped_atlas_entries": 42,
+  "future_acceptance_requirements": 45
+}

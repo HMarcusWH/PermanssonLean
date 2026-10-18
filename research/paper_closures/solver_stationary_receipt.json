@@ -1,0 +1,468 @@
+{
+  "scope": "U05/U06 finite monitor and literal residence specializations; U07 C11 reference family; D-ROBUST realized-control rectangular game; D-CLASS stationary-menu occupation functional",
+  "status": "SCOPED_THEOREM_FORMALIZED",
+  "source_H": null,
+  "recording_head": "39279799834ae536bda715dedecdc11a32bf6c82",
+  "recording_worktree_dirty": true,
+  "base_B": "39279799834ae536bda715dedecdc11a32bf6c82",
+  "synthetic_S": null,
+  "eventual_merge_M": null,
+  "receipt_builder_sha256": "99e60476b21d9f7b02f621b5ce7c3956900c272c7ecc83c3e4d5056533b1136b",
+  "modules": [
+    {
+      "module": "PermanssonResearch.ReverseSolver.FiniteMonitor",
+      "source": "PermanssonResearch/ReverseSolver/FiniteMonitor.lean",
+      "source_sha256": "f15e9702ea1c53ebc41b4a8d0309765aabf9d9b377d030c7ecc998839e4254be",
+      "olean_sha256": "2cc27539f0a1943b67e6224a5dd06aba90f9ae2de6f45bc6ad05a8e86834c1ae",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FiniteMonitor",
+        "started": 1792287743.3900054,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 310.0923283100128
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.BehavioralFinitePolicy",
+      "source": "PermanssonResearch/ReverseSolver/BehavioralFinitePolicy.lean",
+      "source_sha256": "d2ec7e842f5c4cd0d60e08d7a3e29a3854b2f23a79cd6213a4f5fc1b06b8a5b3",
+      "olean_sha256": "ae2972d868fd3e64e31056ab252b819fae01d9c9cb749a54c6dd669948fbd600",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.BehavioralFinitePolicy",
+        "started": 1792284963.433597,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 93.64108729362488
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.MonitorOptimality",
+      "source": "PermanssonResearch/ReverseSolver/MonitorOptimality.lean",
+      "source_sha256": "3330041fe9bbab41d43c6457bdf6b4e4a3bda9d4614b4fcebad21271a9a26903",
+      "olean_sha256": "3909c7098a23560e742dbbc58b97d37cf386649092f51e974c4576fe62282d9b",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.MonitorOptimality",
+        "started": 1792285268.9168575,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 115.7599241733551
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.ChronologicalFiniteLaw",
+      "source": "PermanssonResearch/ReverseSolver/ChronologicalFiniteLaw.lean",
+      "source_sha256": "6ac56a22a602aae8d1d34a4ac1657edaa1ff7b37f3c3305c782b70ef152ec486",
+      "olean_sha256": "cd5f34cff9f1a3e5d9b0ab525991f0073d1d991386a4aea07cc9f23cba1dd274",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.ChronologicalFiniteLaw",
+        "started": 1792285268.930856,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 113.84984564781189
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.ChronologicalMonitorMeasure",
+      "source": "PermanssonResearch/ReverseSolver/ChronologicalMonitorMeasure.lean",
+      "source_sha256": "578b9dd8ad78e869aa3c4e523ab6079d6107d9331157e6f97d4434208b35736d",
+      "olean_sha256": "2b11c30e26ea26648cf434add5623ecafc27513c8e69653ec29c928878557006",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.ChronologicalMonitorMeasure",
+        "started": 1792286088.525682,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 108.91761207580566
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.MonitorHistoryBridge",
+      "source": "PermanssonResearch/ReverseSolver/MonitorHistoryBridge.lean",
+      "source_sha256": "663f5209d992b9944a700a6699671b47fde6e11a023e48a17b01be6f658ee310",
+      "olean_sha256": "ea4df26b07b715dc62a5b6e2c296c69ebbf3c1bd31d70bac4ab448a6f55d02f3",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.MonitorHistoryBridge",
+        "started": 1792284738.541412,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 78.57728242874146
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.ComputableFiniteMonitor",
+      "source": "PermanssonResearch/ReverseSolver/ComputableFiniteMonitor.lean",
+      "source_sha256": "7b35a2d55c351350898f89860f4921964f2b0af655840df5f564b5ec1da328a3",
+      "olean_sha256": "2378f4d9ca03ac121dddd0747d85dd0fcc37a5393e4a037805404128db0a79f2",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.ComputableFiniteMonitor",
+        "started": 1792285582.9312398,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 98.99448871612549
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.CompactResidenceMonitor",
+      "source": "PermanssonResearch/ReverseSolver/CompactResidenceMonitor.lean",
+      "source_sha256": "d09eb3931ee11cb4919e6019901f37e9e9b4e918df637c69c7b959702e9e1273",
+      "olean_sha256": "c495d955efd1a2639a9cbad6630617d232c3821270a09ab594d20477fa58abc5",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.CompactResidenceMonitor",
+        "started": 1792286057.3703713,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 107.97482180595398
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.FirstEntryMonitor",
+      "source": "PermanssonResearch/ReverseSolver/FirstEntryMonitor.lean",
+      "source_sha256": "dc4645ecbd138060b924796b63c431b25fcf34ed1f1e424cc8cf9163df93567c",
+      "olean_sha256": "45b74ffcd025519f1770e43a04bfdbca1f36f01d364d179a1f103e7db96850a9",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FirstEntryMonitor",
+        "started": 1792286016.3268418,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 101.54463124275208
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.AvoidResidenceMonitor",
+      "source": "PermanssonResearch/ReverseSolver/AvoidResidenceMonitor.lean",
+      "source_sha256": "2fe6ae7e4863ed165d1d348df6303cd4ae76eb6beeeb87f63e65ca6e8c9399e6",
+      "olean_sha256": "7a4037441d2d7c57e09923aaea927c664dfdcfabaa83f3db31101ad2a56c756f",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.AvoidResidenceMonitor",
+        "started": 1792285413.9655092,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 109.37964510917664
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.AvoidResidenceHistoryBridge",
+      "source": "PermanssonResearch/ReverseSolver/AvoidResidenceHistoryBridge.lean",
+      "source_sha256": "151530c963e47509e95a6f6f5abf4a040e12bc3befa73fe1f2664cf117b4987e",
+      "olean_sha256": "ceb4097eae38acd3015ec64e68ff5a3bfa68ca946e651ba38fc78802da905fc9",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.AvoidResidenceHistoryBridge",
+        "started": 1792285551.2430267,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 99.02456188201904
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.MonitorEventOptimality",
+      "source": "PermanssonResearch/ReverseSolver/MonitorEventOptimality.lean",
+      "source_sha256": "28a1b65bf2f2b9ea102670666d39f3c49ec647a9af08d1ea45a84927ad7d53ea",
+      "olean_sha256": "07f13cddbd237fb8e3204ad0b56a60edec825c8a81e96d2148bbdcc6c2a12496",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.MonitorEventOptimality",
+        "started": 1792285927.2993581,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 102.81030440330505
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.ResidenceSpecializationOptimality",
+      "source": "PermanssonResearch/ReverseSolver/ResidenceSpecializationOptimality.lean",
+      "source_sha256": "fe13e9b08f490fd6d6fbb930e0a27b42010f93b388401bd0c9526c562f08d0ae",
+      "olean_sha256": "40bc105a67e48917abe16357f8af8a64968b5e8de4eb5458f472dc669b71ca68",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.ResidenceSpecializationOptimality",
+        "started": 1792286191.8468924,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 114.1109344959259
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.SolverBoundaryWitnesses",
+      "source": "PermanssonResearch/ReverseSolver/SolverBoundaryWitnesses.lean",
+      "source_sha256": "352703922717456d3fb42563b1fdf34bc3ba76699f20e51ab1ea31fc1100c450",
+      "olean_sha256": "0ac4bde49787a30df49d1d60792a939396c2098af9472ad6a4d283d1de71a3b8",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.SolverBoundaryWitnesses",
+        "started": 1792285414.0656528,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 97.811039686203
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.C11ReferenceMatrix",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceMatrix.lean",
+      "source_sha256": "0f370198eca4d5bed88c0301a8e61b13fa4e9b2bf4bedc0ebff3ac8c9c04ea3d",
+      "olean_sha256": "9c609688bc6f3c5a2bf268d5154a014513ee635a86775b1de34a5c8506a8c7b5",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.C11ReferenceMatrix",
+        "started": 1792285656.0336814,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 95.75687670707703
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.C11ReferenceProbability",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceProbability.lean",
+      "source_sha256": "256cf50633615318e6376545da8d0f997cc5e96175524199493ac4185eb151b6",
+      "olean_sha256": "bfac9546b7d25f97688f53b52b8dec52e38963718cc32b057df57255f25a436f",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.C11ReferenceProbability",
+        "started": 1792286120.5049033,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 104.34033703804016
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.C11ReferenceClasses",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceClasses.lean",
+      "source_sha256": "e2d4a77f3ca3c10fbf4a9fdd930248a41e286c22cbc4d210375db5e08afe31f7",
+      "olean_sha256": "a7b26efb6e92eac22e4f757469618b4b46fdff47bf48dfdb0cca294b0ef3206c",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.C11ReferenceClasses",
+        "started": 1792289355.2671123,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 85.68152332305908
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.C11ReferenceStationaryFamily",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceStationaryFamily.lean",
+      "source_sha256": "a1fda222a29a0863803cbc5c7174d35a07858956a623b4bebbf56e391c172c15",
+      "olean_sha256": "d3eebd5ae75bdd0af62fc80857482181f1075732d60c11dd70669c87121527e9",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.C11ReferenceStationaryFamily",
+        "started": 1792289445.0349724,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 107.68286848068237
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.C11ReferenceExamples",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceExamples.lean",
+      "source_sha256": "75eed4a75b3495f5bac94f961b6f03ef51fecc2403a7ea62f9468555c8fd2da3",
+      "olean_sha256": "91185ca921ec1e8a9c5b3d16e9ce45acd139f782d35394fb05816ee2a7fa2b6e",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.C11ReferenceExamples",
+        "started": 1792289562.3793106,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 95.13883805274963
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.C11ReferenceTypedBridge",
+      "source": "PermanssonResearch/ReverseSolver/C11ReferenceTypedBridge.lean",
+      "source_sha256": "7183a67015c400f787f995ce7035fc83600200946b60fce8afcedfcd6b8b9e73",
+      "olean_sha256": "c9a6781be186f5809baa20b77517ac117a4e4afb881b9773c45c92511ad86da6",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.C11ReferenceTypedBridge",
+        "started": 1792289756.5533595,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 80.45528411865234
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.RectangularFiniteGame",
+      "source": "PermanssonResearch/ReverseSolver/RectangularFiniteGame.lean",
+      "source_sha256": "62f5b0771d14292f8271e97257bbae95b5ea884e112af845b14338f847f69e34",
+      "olean_sha256": "837723f05b977e2f52d02960b0e70b46492ddaa66eb0b539965ef141d409f7f0",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.RectangularFiniteGame",
+        "started": 1792286989.3280098,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 106.72897267341614
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.RectangularGameLaw",
+      "source": "PermanssonResearch/ReverseSolver/RectangularGameLaw.lean",
+      "source_sha256": "0d0940034bf0e05195c2726bc330b6094fcf88ac1d47060b873fff5ba5e95c61",
+      "olean_sha256": "26d04bab9bee7189d2b926325cee96cc3e9e518d83e6d97de6963084e9b97f3c",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.RectangularGameLaw",
+        "started": 1792288061.9643977,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 372.4407036304474
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.StationaryOccupationObjective",
+      "source": "PermanssonResearch/ReverseSolver/StationaryOccupationObjective.lean",
+      "source_sha256": "b06460b24795cd14ccd4d4ef6ffa5989d77b5c1245efb16da18d0c22c2bac156",
+      "olean_sha256": "13f197cf9ffb9d4f50562ced8cd274a0447676eb79fe4066e62dc399c002369c",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.StationaryOccupationObjective",
+        "started": 1792290012.553409,
+        "status": "PASS",
+        "command": [
+          "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\.tools\\lean-4.34.0-windows\\bin\\lake.EXE",
+          "env",
+          "lean",
+          "-o",
+          ".lake\\build\\lib\\lean\\PermanssonResearch\\ReverseSolver\\StationaryOccupationObjective.olean",
+          "PermanssonResearch\\ReverseSolver\\StationaryOccupationObjective.lean"
+        ],
+        "compiler_version": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+        "toolchain": "leanprover/lean4:v4.34.0",
+        "source_sha256_before": "b06460b24795cd14ccd4d4ef6ffa5989d77b5c1245efb16da18d0c22c2bac156",
+        "returncode": 0,
+        "elapsed": 53.44196319580078,
+        "source_sha256_after": "b06460b24795cd14ccd4d4ef6ffa5989d77b5c1245efb16da18d0c22c2bac156",
+        "olean_sha256": "13f197cf9ffb9d4f50562ced8cd274a0447676eb79fe4066e62dc399c002369c"
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.StationaryMenuOptimization",
+      "source": "PermanssonResearch/ReverseSolver/StationaryMenuOptimization.lean",
+      "source_sha256": "839dd7bc58a7b3bfe5b0a2145069e1947fbcfbbeb697d147b230373c69b25bb6",
+      "olean_sha256": "8ecf1ba80afddc7c75ee8c7a75f7b8352ae64958d58e77ee534995f550dca95e",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.StationaryMenuOptimization",
+        "started": 1792290157.6719007,
+        "status": "PASS",
+        "command": [
+          "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\.tools\\lean-4.34.0-windows\\bin\\lake.EXE",
+          "env",
+          "lean",
+          "-o",
+          ".lake\\build\\lib\\lean\\PermanssonResearch\\ReverseSolver\\StationaryMenuOptimization.olean",
+          "PermanssonResearch\\ReverseSolver\\StationaryMenuOptimization.lean"
+        ],
+        "compiler_version": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+        "toolchain": "leanprover/lean4:v4.34.0",
+        "source_sha256_before": "839dd7bc58a7b3bfe5b0a2145069e1947fbcfbbeb697d147b230373c69b25bb6",
+        "returncode": 0,
+        "elapsed": 45.88085985183716,
+        "source_sha256_after": "839dd7bc58a7b3bfe5b0a2145069e1947fbcfbbeb697d147b230373c69b25bb6",
+        "olean_sha256": "8ecf1ba80afddc7c75ee8c7a75f7b8352ae64958d58e77ee534995f550dca95e"
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.RollingMonitorTable",
+      "source": "PermanssonResearch/ReverseSolver/RollingMonitorTable.lean",
+      "source_sha256": "6fa1d7c510a57b7be0ad1fbc225894de060e9f071b091c4ebbb26c30a1bc014f",
+      "olean_sha256": "c3f0b0cbae6f60fc9def5a994aa20e785f2183e1e0c30c687ef1ec7c85e07586",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.RollingMonitorTable",
+        "started": 1792289918.8404398,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 84.09700560569763
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.RollingResidenceTable",
+      "source": "PermanssonResearch/ReverseSolver/RollingResidenceTable.lean",
+      "source_sha256": "1faaaeaac81a14e8929be767cf96db2932de3983bdd38c5b3181c471d744bf1d",
+      "olean_sha256": "d58d5d2ef8f472701dcf6335928095bb2148dd452215293db4d69e0099f15bd8",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.RollingResidenceTable",
+        "started": 1792290207.0733879,
+        "status": "PASS",
+        "command": [
+          "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\.tools\\lean-4.34.0-windows\\bin\\lake.EXE",
+          "env",
+          "lean",
+          "-o",
+          ".lake\\build\\lib\\lean\\PermanssonResearch\\ReverseSolver\\RollingResidenceTable.olean",
+          "PermanssonResearch\\ReverseSolver\\RollingResidenceTable.lean"
+        ],
+        "compiler_version": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+        "toolchain": "leanprover/lean4:v4.34.0",
+        "source_sha256_before": "1faaaeaac81a14e8929be767cf96db2932de3983bdd38c5b3181c471d744bf1d",
+        "returncode": 0,
+        "elapsed": 36.08895754814148,
+        "source_sha256_after": "1faaaeaac81a14e8929be767cf96db2932de3983bdd38c5b3181c471d744bf1d",
+        "olean_sha256": "d58d5d2ef8f472701dcf6335928095bb2148dd452215293db4d69e0099f15bd8"
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.InitialLawMonitor",
+      "source": "PermanssonResearch/ReverseSolver/InitialLawMonitor.lean",
+      "source_sha256": "2c844fe5b4883e40e1e99c5ba6d43ce93f01ae91f7ddd818c35a0098b896af77",
+      "olean_sha256": "87940bf8bd42e58fb4e73ab39e3ff8ee472af60d7a083d161b2a4bc819563240",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.InitialLawMonitor",
+        "started": 1792290497.7085087,
+        "status": "PASS",
+        "command": [
+          "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\.tools\\lean-4.34.0-windows\\bin\\lake.EXE",
+          "env",
+          "lean",
+          "-o",
+          ".lake\\build\\lib\\lean\\PermanssonResearch\\ReverseSolver\\InitialLawMonitor.olean",
+          "PermanssonResearch\\ReverseSolver\\InitialLawMonitor.lean"
+        ],
+        "compiler_version": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+        "toolchain": "leanprover/lean4:v4.34.0",
+        "source_sha256_before": "2c844fe5b4883e40e1e99c5ba6d43ce93f01ae91f7ddd818c35a0098b896af77",
+        "returncode": 0,
+        "elapsed": 35.09514880180359,
+        "source_sha256_after": "2c844fe5b4883e40e1e99c5ba6d43ce93f01ae91f7ddd818c35a0098b896af77",
+        "olean_sha256": "87940bf8bd42e58fb4e73ab39e3ff8ee472af60d7a083d161b2a4bc819563240"
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.SolverClosureAudit",
+      "source": "PermanssonResearch/ReverseSolver/SolverClosureAudit.lean",
+      "source_sha256": "bae839718a77a1cebef4e6e264e0842fbd16d964d3b39ad5578ac50367bcd9c0",
+      "olean_sha256": "b14a5f13327ec6bfd73751789e433316ce1e580fe837647bfca6fd3c15fc0250",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.SolverClosureAudit",
+        "started": 1792290629.4986591,
+        "status": "PASS",
+        "command": [
+          "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\.tools\\lean-4.34.0-windows\\bin\\lake.EXE",
+          "env",
+          "lean",
+          "-o",
+          ".lake\\build\\lib\\lean\\PermanssonResearch\\ReverseSolver\\SolverClosureAudit.olean",
+          "PermanssonResearch\\ReverseSolver\\SolverClosureAudit.lean"
+        ],
+        "compiler_version": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+        "toolchain": "leanprover/lean4:v4.34.0",
+        "source_sha256_before": "bae839718a77a1cebef4e6e264e0842fbd16d964d3b39ad5578ac50367bcd9c0",
+        "returncode": 0,
+        "elapsed": 67.80774307250977,
+        "source_sha256_after": "bae839718a77a1cebef4e6e264e0842fbd16d964d3b39ad5578ac50367bcd9c0",
+        "olean_sha256": "b14a5f13327ec6bfd73751789e433316ce1e580fe837647bfca6fd3c15fc0250"
+      }
+    }
+  ],
+  "signature_and_axiom_audit": {
+    "output": "research/paper_closures/solver_stationary_axioms.txt",
+    "sha256": "570f8335653df8cf8edfea1974628d14d8bce82bd5c34beb1302f659dbe7f9c9",
+    "axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "declarations_audited": 22
+  },
+  "selected_contracts": {
+    "D-MONITOR": "Normalized chronological real behavioral state/control law with arbitrary real initial law; monitor pushforward; upper bound and actual deterministic time/state/monitor attainer simultaneous over all initial states; executable rational reference value and fixed-order tie selection.",
+    "D-RESIDENCE": "Finite capped streak and completed flag; exact original entry-by-T event on horizon T+m; real behavioral optimum and actual deterministic HistoryPolicy probability bridge; array-backed backwards tables with exactly n by 2*(m+2) cells and lookup equivalence to the exact rational optimum.",
+    "D-FIRST": "Finite waiting/active/failed/succeeded phases; first-target-only literal block semantics and real behavioral optimum; retry counterexample.",
+    "D-AVOID": "Finite streak/success/failure state; danger precedence before success; danger after success retained; literal block semantics and real behavioral optimum plus actual HistoryPolicy probability bridge.",
+    "C11-REFERENCE": "Total rational Cramer family constructor on genuine computed bottom classes, without a certificate correctness premise; checker accepts every nonempty rational stochastic input.",
+    "D-ROBUST-realized-control": "Actual normalized chronological game law; real behavioral controller/nature histories; nature observes realized control and chooses a row independently at every node; deterministic time-state saddle strategies attain the rational max-min value.",
+    "D-CLASS": "Exact rational C10/C11 evaluation equals the expected predeclared bounded functional of the genuine random descriptor occupation limit; all admissible deterministic stationary state-feedback policies are enumerated and a lexicographically tie-broken exact maximizer attains the actual expectation optimum."
+  },
+  "residual_scope": [
+    "No arbitrary adaptive asymptotic policy theorem is asserted.",
+    "D-LP, D-BELIEF, D-SAFETY and D-BLOCK are not closed by the boundary witnesses in this module set.",
+    "The D-ROBUST private-control-draw stage maximin LP and whole-horizon hidden-model commitment are separate; only the realized-control-observing rectangular game is certified here.",
+    "The executable scalar recursion and array-backed backwards tables are certified; no formal runtime, memory, or bit-complexity theorem is claimed.",
+    "C-P01 nonfinite occupation contracts are separate from C11-REFERENCE."
+  ]
+}

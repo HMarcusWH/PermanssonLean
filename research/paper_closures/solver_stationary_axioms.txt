@@ -1,0 +1,273 @@
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it
+PermanssonResearch.ReverseSolver.FiniteMonitor.monitor_probability_eq_history_probability.{uC, uS} {C : Type uC}
+  [DecidableEq C] {n : ℕ} {S : Type uS} (sys : ControlledKernel.FiniteControlSystem C n) (M : ObservationMonitor n S)
+  (σ : HistoryDependent.HistoryPolicy sys) (N : ℕ) (x : Fin n) :
+  (HistoryDependent.prefixLaw sys σ N x N) (monitorEvent M N) =
+    ENNReal.ofReal
+      ↑(historyContinuation sys M σ N N 0 (PermanssonLean.ProbabilitySupport.singletonPrefix x) (M.initial x))
+PermanssonResearch.ReverseSolver.FiniteMonitor.monitor_value_dominates_behavioral_history.{uC, uS} {C : Type uC}
+  [DecidableEq C] [Fintype C] {n : ℕ} {S : Type uS} (sys : ControlledKernel.FiniteControlSystem C n) (M : Monitor C n S)
+  (σ : BehavioralPolicy sys) (r t : ℕ) (h : TraceHistory C n) (y : Fin n) (s : S) :
+  behavioralValue sys M σ r t h y s ≤ ↑(value sys M r t y s)
+PermanssonResearch.ReverseSolver.FiniteMonitor.monitor_deterministic_maximizer_attains.{uC, uS} {C : Type uC}
+  [DecidableEq C] {n : ℕ} {S : Type uS} (sys : ControlledKernel.FiniteControlSystem C n) (M : Monitor C n S) (N r t : ℕ)
+  (y : Fin n) (s : S) (horizon : t + r = N) :
+  deterministicValue sys M (deterministicMaximizer sys M N) r t y s = value sys M r t y s
+PermanssonResearch.ReverseSolver.FiniteMonitor.chronologicalLaw_monitor_optimal_and_attained.{uC, uS} {C : Type uC}
+  [DecidableEq C] [Fintype C] {n : ℕ} {S : Type uS} (sys : ControlledKernel.FiniteControlSystem C n) (M : Monitor C n S)
+  (N : ℕ) (y : Fin n) :
+  (∀ (σ : BehavioralPolicy sys),
+      ((chronologicalLaw sys σ N 0 (y, []) y).expectation fun xs =>
+          ↑(M.reward (run M 0 y (M.initial y) xs).1 (run M 0 y (M.initial y) xs).2)) ≤
+        ↑(value sys M N 0 y (M.initial y))) ∧
+    ∃ σ,
+      ((chronologicalLaw sys σ N 0 (y, []) y).expectation fun xs =>
+          ↑(M.reward (run M 0 y (M.initial y) xs).1 (run M 0 y (M.initial y) xs).2)) =
+        ↑(value sys M N 0 y (M.initial y))
+PermanssonResearch.ReverseSolver.FiniteMonitor.monitor_initialLaw_optimal_and_attained.{u_1, u_2} {C : Type u_1}
+  {S : Type u_2} [DecidableEq C] [Fintype C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n)
+  (M : Monitor C n S) (μ : FiniteProbabilityLaw (Fin n)) (N : ℕ) :
+  (∀ (σ : BehavioralPolicy sys),
+      (initialChronologicalLaw sys σ μ N).expectation (initialMonitorReward M) ≤
+        μ.expectation fun y => ↑(value sys M N 0 y (M.initial y))) ∧
+    (initialChronologicalLaw sys (realizedPolicy sys M (deterministicMaximizer sys M N)) μ N).expectation
+        (initialMonitorReward M) =
+      μ.expectation fun y => ↑(value sys M N 0 y (M.initial y))
+PermanssonResearch.ReverseSolver.FiniteMonitor.computedValue_eq_value.{uC, uS} {C : Type uC} [DecidableEq C] {n : ℕ}
+  {S : Type uS} (sys : ControlledKernel.FiniteControlSystem C n) (M : Monitor C n S) (r t : ℕ) (y : Fin n) (s : S) :
+  computedValue sys M r t y s = value sys M r t y s
+PermanssonResearch.ReverseSolver.FiniteMonitor.computedMaximizer_attains.{uC, uS} {C : Type uC} [DecidableEq C] {n : ℕ}
+  {S : Type uS} [LinearOrder C] (sys : ControlledKernel.FiniteControlSystem C n) (M : Monitor C n S) (N r t : ℕ)
+  (y : Fin n) (s : S) (hr : t + r = N) :
+  deterministicValue sys M (computedMaximizer sys M N) r t y s = computedValue sys M r t y s
+PermanssonResearch.ReverseSolver.FiniteMonitor.rollingMonitorTable_eq_value.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [DecidableEq C] {n q : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (M : Monitor C n S) (e : Fin q ≃ S)
+  (r t : ℕ) (y : Fin n) (s : S) : tableRead e (rollingMonitorTable sys M e r t) y s = value sys M r t y s
+PermanssonResearch.ReverseSolver.FiniteMonitor.rollingResidence_optimal_and_attained.{u_1} {C : Type u_1}
+  [DecidableEq C] [Fintype C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (G : Fin n → Prop)
+  [DecidablePred G] (m T : ℕ) (y : Fin n) :
+  (∀ (σ : BehavioralPolicy sys), behavioralResidenceProbability sys σ G m T y ≤ ↑(rollingResidenceValue sys G m T y)) ∧
+    ∃ σ, behavioralResidenceProbability sys σ G m T y = ↑(rollingResidenceValue sys G m T y)
+PermanssonResearch.ReverseSolver.FiniteMonitor.compactResidence_event_eq {n : ℕ} (G : Fin n → Prop) [DecidablePred G]
+  (m T : ℕ) : monitorEvent (compactResidenceMonitor G m) (T + m) = Residence.entryByResidenceEvent G m T
+PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralResidence_optimal_and_attained.{uC} {C : Type uC}
+  [DecidableEq C] [Fintype C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (G : Fin n → Prop)
+  [DecidablePred G] (m T : ℕ) (y : Fin n) :
+  (∀ (σ : BehavioralPolicy sys),
+      behavioralResidenceProbability sys σ G m T y ≤
+        ↑(value sys (compactResidenceMonitor G m).toMonitor (T + m) 0 y ((compactResidenceMonitor G m).initial y))) ∧
+    ∃ σ,
+      behavioralResidenceProbability sys σ G m T y =
+        ↑(value sys (compactResidenceMonitor G m).toMonitor (T + m) 0 y ((compactResidenceMonitor G m).initial y))
+PermanssonResearch.ReverseSolver.FiniteMonitor.firstEntryTest_iff_block.{u_1} {Y : Type u_1} (G : Y → Prop)
+  [DecidablePred G] (T m t : ℕ) (xs : List Y) :
+  firstEntryTest G T (m + 1) t xs = true ↔
+    ∃ pre block post,
+      xs = pre ++ block ++ post ∧ t + pre.length ≤ T ∧ (∀ z ∈ pre, ¬G z) ∧ block.length = m + 1 ∧ ∀ z ∈ block, G z
+PermanssonResearch.ReverseSolver.FiniteMonitor.firstRun_correct.{u_1} {Y : Type u_1} (G : Y → Prop) [DecidablePred G]
+  (T m t : ℕ) (q : FirstState m) (xs : List Y) :
+  decide (firstRun G T m t q xs = FirstState.succeeded) = firstCompletion G T m t q xs
+PermanssonResearch.ReverseSolver.FiniteMonitor.firstEntry_event_eq {n : ℕ} (G : Fin n → Prop) [DecidablePred G]
+  (T m N : ℕ) :
+  monitorEvent (firstEntryMonitor G T m) N = {h | firstEntryTest G T (m + 1) 0 (Residence.historyWord h) = true}
+PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralFirstEntry_optimal_and_attained.{uC} {C : Type uC}
+  [DecidableEq C] [Fintype C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (G : Fin n → Prop)
+  [DecidablePred G] (m T : ℕ) (y : Fin n) :
+  (∀ (σ : BehavioralPolicy sys),
+      behavioralFirstEntryProbability sys σ G m T y ≤
+        ↑(value sys (firstEntryMonitor G T m).toMonitor (T + m) 0 y ((firstEntryMonitor G T m).initial y))) ∧
+    ∃ σ,
+      behavioralFirstEntryProbability sys σ G m T y =
+        ↑(value sys (firstEntryMonitor G T m).toMonitor (T + m) 0 y ((firstEntryMonitor G T m).initial y))
+PermanssonResearch.ReverseSolver.FiniteMonitor.avoidScan_success_iff_block.{u_1} {Y : Type u_1} (G D : Y → Prop)
+  [DecidablePred G] [DecidablePred D] (m : ℕ) (xs : List Y) :
+  (avoidRun G D m ((0, false), false) xs).1.2 = true ↔
+    ∃ pre block post, xs = pre ++ block ++ post ∧ block.length = m + 1 ∧ (∀ z ∈ block, G z) ∧ ∀ z ∈ pre ++ block, ¬D z
+PermanssonResearch.ReverseSolver.FiniteMonitor.avoidResidence_event_eq {n : ℕ} (G D : Fin n → Prop) [DecidablePred G]
+  [DecidablePred D] (m T : ℕ) : monitorEvent (avoidResidenceMonitor G D m) (T + m) = beforeDangerResidenceEvent G D m T
+PermanssonResearch.ReverseSolver.FiniteMonitor.beforeDanger_history_probability_optimal_and_attained.{u_2}
+  {C : Type u_2} [DecidableEq C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (G D : Fin n → Prop)
+  [DecidablePred G] [DecidablePred D] (m T : ℕ) (x : Fin n) :
+  (∀ (σ : HistoryDependent.HistoryPolicy sys),
+      (HistoryDependent.prefixLaw sys σ (T + m) x (T + m)) (beforeDangerResidenceEvent G D m T) ≤
+        ENNReal.ofReal
+          ↑(value sys (avoidResidenceMonitor G D m).toMonitor (T + m) 0 x ((avoidResidenceMonitor G D m).initial x))) ∧
+    (HistoryDependent.prefixLaw sys (monitorHistoryMaximizer sys (avoidResidenceMonitor G D m)) (T + m) x (T + m))
+        (beforeDangerResidenceEvent G D m T) =
+      ENNReal.ofReal
+        ↑(value sys (avoidResidenceMonitor G D m).toMonitor (T + m) 0 x ((avoidResidenceMonitor G D m).initial x))
+PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralAvoidResidence_optimal_and_attained.{uC} {C : Type uC}
+  [DecidableEq C] [Fintype C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (G D : Fin n → Prop)
+  [DecidablePred G] [DecidablePred D] (m T : ℕ) (y : Fin n) :
+  (∀ (σ : BehavioralPolicy sys),
+      behavioralAvoidResidenceProbability sys σ G D m T y ≤
+        ↑(value sys (avoidResidenceMonitor G D m).toMonitor (T + m) 0 y ((avoidResidenceMonitor G D m).initial y))) ∧
+    ∃ σ,
+      behavioralAvoidResidenceProbability sys σ G D m T y =
+        ↑(value sys (avoidResidenceMonitor G D m).toMonitor (T + m) 0 y ((avoidResidenceMonitor G D m).initial y))
+PermanssonResearch.ReverseSolver.C11.referenceMatrix_det_ne_zero.{u_1} {Y : Type u_1} [Fintype Y] [DecidableEq Y]
+  [Nonempty Y] (P : Matrix Y Y ℚ) (hP : ∀ (x y : Y), 0 ≤ P x y) (hrow : ∀ (x : Y), ∑ y, P x y = 1)
+  (hirr : ∀ (x y : Y), Relation.ReflTransGen (fun a b => 0 < P a b) x y) : (C11.referenceMatrix P).det ≠ 0
+PermanssonResearch.ReverseSolver.C11.referenceWeights_probability.{u_1} {Y : Type u_1} [Fintype Y] [DecidableEq Y]
+  [Nonempty Y] (P : Matrix Y Y ℚ) (hP : ∀ (x y : Y), 0 ≤ P x y) (hrow : ∀ (x : Y), ∑ y, P x y = 1)
+  (hirr : ∀ (x y : Y), Relation.ReflTransGen (fun a b => 0 < P a b) x y) :
+  (∀ (y : Y), 0 ≤ C11.referenceWeights P y) ∧
+    ∑ y, C11.referenceWeights P y = 1 ∧ ∀ (y : Y), C11.referenceWeights P y = ∑ x, C11.referenceWeights P x * P x y
+PermanssonResearch.ReverseSolver.C11.referenceClassCandidate_conditions {n : ℕ} [NeZero n] (K : RationalMarkovMatrix n)
+  (C : Finset (Fin n)) (hC : C ∈ C10.bottomClasses K) :
+  C11.ClassStationaryConditions K (C11.referenceClassCandidate K C)
+PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily_check {n : ℕ} [NeZero n] (K : RationalMarkovMatrix n) :
+  C11.checkStationaryFamily K (C11.referenceStationaryFamily K) = true
+PermanssonResearch.ReverseSolver.C11.referenceClassCandidate_eq_native {n : ℕ} [NeZero n]
+  (K₀ K : RationalMarkovMatrix n) (C : Finset (Fin n)) (hC : C ∈ C10.bottomClasses K) :
+  C11.certifiedProbability K (C11.referenceClassCandidate K C) ⋯ =
+    PermanssonResearch.MultipleLimit.ClassStationarySelectionLaw.stationaryForSet
+      (FiniteStrategicRealization.rationalStrategicIntervention K₀ K).intervention.apply.inducedKernel
+      (C10.decodedClass C)
+PermanssonResearch.ReverseSolver.C11.referenceClassCandidate_positive {n : ℕ} [NeZero n] (K₀ K : RationalMarkovMatrix n)
+  (C : Finset (Fin n)) (hC : C ∈ C10.bottomClasses K) (x : Fin n) (hx : x ∈ C) :
+  0 < (C11.referenceClassCandidate K C).weights x
+PermanssonResearch.ReverseSolver.RectangularFiniteGame.gameMass_total_one.{uC, uΘ} {C : Type uC} {Θ : Type uΘ}
+  [DecidableEq C] [DecidableEq Θ] [Fintype C] [Fintype Θ] {n : ℕ} (G : RectangularFiniteGame.Game C Θ n)
+  (σ : RectangularFiniteGame.Controller G) (η : RectangularFiniteGame.Nature G) (r t : ℕ)
+  (h : RectangularFiniteGame.History C Θ n) (y : Fin n) :
+  (List.map (RectangularFiniteGame.gameMass G σ η t h y) (traceWords (C × Θ) n r)).sum = 1
+PermanssonResearch.ReverseSolver.RectangularFiniteGame.rectangular_game_actual_saddle.{uC, uΘ} {C : Type uC}
+  {Θ : Type uΘ} [DecidableEq C] [DecidableEq Θ] [Fintype C] [Fintype Θ] {n : ℕ} (G : RectangularFiniteGame.Game C Θ n)
+  (reward : Fin n → ℚ) (N : ℕ) (y : Fin n) :
+  (∀ (σ : RectangularFiniteGame.Controller G),
+      RectangularFiniteGame.gameExpectation G reward σ (RectangularFiniteGame.minimizingNature G reward N) N 0 (y, [])
+          y ≤
+        ↑(RectangularFiniteGame.value G reward N 0 y)) ∧
+    (∀ (η : RectangularFiniteGame.Nature G),
+        ↑(RectangularFiniteGame.value G reward N 0 y) ≤
+          RectangularFiniteGame.gameExpectation G reward (RectangularFiniteGame.maximizingController G reward N) η N 0
+            (y, []) y) ∧
+      RectangularFiniteGame.gameExpectation G reward (RectangularFiniteGame.maximizingController G reward N)
+          (RectangularFiniteGame.minimizingNature G reward N) N 0 (y, []) y =
+        ↑(RectangularFiniteGame.value G reward N 0 y)
+PermanssonResearch.ReverseSolver.RectangularFiniteGame.rectangular_game_law_saddle.{uC, uΘ} {C : Type uC} {Θ : Type uΘ}
+  [DecidableEq C] [DecidableEq Θ] [Fintype C] [Fintype Θ] {n : ℕ} (G : RectangularFiniteGame.Game C Θ n)
+  (reward : Fin n → ℚ) (N : ℕ) (y : Fin n) :
+  (∀ (σ : RectangularFiniteGame.Controller G),
+      RectangularFiniteGame.lawPayoff G reward σ (RectangularFiniteGame.minimizingNature G reward N) N y ≤
+        ↑(RectangularFiniteGame.value G reward N 0 y)) ∧
+    (∀ (η : RectangularFiniteGame.Nature G),
+        ↑(RectangularFiniteGame.value G reward N 0 y) ≤
+          RectangularFiniteGame.lawPayoff G reward (RectangularFiniteGame.maximizingController G reward N) η N y) ∧
+      RectangularFiniteGame.lawPayoff G reward (RectangularFiniteGame.maximizingController G reward N)
+          (RectangularFiniteGame.minimizingNature G reward N) N y =
+        ↑(RectangularFiniteGame.value G reward N 0 y)
+PermanssonResearch.ReverseSolver.StationaryOccupation.rationalObjective_eq_actual.{u_1} {n : ℕ} [NeZero n]
+  {H : Type u_1} [MeasurableSpace H] [TopologicalSpace H] [BorelSpace H]
+  (F : StationaryOccupation.ExactClassFunctional n H) (L : RationalMarkovMatrix n) (y : Fin n) :
+  ↑(StationaryOccupation.rationalObjective F L y) = StationaryOccupation.actualObjective F L y
+PermanssonResearch.MultipleLimit.FiniteOccupationRandomLaw.observedOccupationLimit_ae_correct.{u_1, u_2} {Y : Type u_1}
+  [MeasurableSpace Y] [Fintype Y] [MeasurableSingletonClass Y] [Nonempty Y] [DecidableEq Y] [TopologicalSpace Y]
+  [DiscreteTopology Y] [OpensMeasurableSpace Y] [StandardBorelSpace Y] (K : ProbabilityTheory.Kernel Y Y)
+  [ProbabilityTheory.IsMarkovKernel K] {H : Type u_2} [MeasurableSpace H] [TopologicalSpace H] [BorelSpace H]
+  (μ : MeasureTheory.ProbabilityMeasure Y) (h : Y → H) :
+  ∀ᵐ (w : ℕ → Y) ∂PermanssonResearch.MultipleLimit.FiniteCanonicalPath.canonicalPathLaw K ↑μ,
+    Filter.Tendsto
+      (fun n => (PermanssonResearch.MultipleLimit.FiniteStateOccupation.empiricalOccupation w (n + 1) ⋯).map h)
+      Filter.atTop (nhds (PermanssonResearch.MultipleLimit.FiniteOccupationRandomLaw.observedOccupationLimit K h w))
+PermanssonResearch.MultipleLimit.FiniteCanonicalPath.typed_pathLaw_eq_canonical.{uS, uX, uA} {S : Type uS} {X : Type uX}
+  {A : Type uA} [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
+  (M : PermanssonLean.StrategicWorldModel S X A) (μ : MeasureTheory.Measure (PermanssonLean.JointState S X))
+  [MeasureTheory.IsProbabilityMeasure μ] :
+  M.pathLaw μ = PermanssonResearch.MultipleLimit.FiniteCanonicalPath.canonicalPathLaw M.inducedKernel μ
+PermanssonResearch.ReverseSolver.StationaryOccupation.occupation_functional_integrable.{u_1} {n : ℕ} [NeZero n]
+  {H : Type u_1} [MeasurableSpace H] [TopologicalSpace H] [BorelSpace H]
+  (F : StationaryOccupation.ExactClassFunctional n H) (L : RationalMarkovMatrix n) (y : Fin n) :
+  MeasureTheory.Integrable
+    (fun w =>
+      F.functional
+        (PermanssonResearch.MultipleLimit.FiniteOccupationRandomLaw.observedOccupationLimit
+          (FiniteStrategicRealization.realizedModel L).inducedKernel F.descriptor w))
+    ((FiniteStrategicRealization.realizedModel L).pathLaw
+      (MeasureTheory.Measure.dirac (FiniteStrategicRealization.decode y)))
+PermanssonResearch.ReverseSolver.StationaryOccupation.equal_descriptor_laws_equal_values.{u_1} {n : ℕ} [NeZero n]
+  {H : Type u_1} [MeasurableSpace H] [TopologicalSpace H] [BorelSpace H]
+  (F : StationaryOccupation.ExactClassFunctional n H) (L : RationalMarkovMatrix n) (C D : Finset (Fin n))
+  (hC : C ∈ C10.bottomClasses L) (hD : D ∈ C10.bottomClasses L)
+  (he :
+    StationaryOccupation.nativeObservedClass L F.descriptor C =
+      StationaryOccupation.nativeObservedClass L F.descriptor D) :
+  F.evaluate L C = F.evaluate L D
+PermanssonResearch.ReverseSolver.StationaryOccupation.stationary_menu_actual_optimal_and_attained.{u_1, u_2}
+  {C : Type u_1} [Fintype C] [DecidableEq C] [LinearOrder C] {n : ℕ} [NeZero n] {H : Type u_2} [MeasurableSpace H]
+  [TopologicalSpace H] [BorelSpace H] (F : StationaryOccupation.ExactClassFunctional n H)
+  (sys : ControlledKernel.FiniteControlSystem C n) (y : Fin n) :
+  (∀ (π : ControlledKernel.StateFeedback sys),
+      StationaryOccupation.actualObjective F (ControlledKernel.feedbackMatrix sys π) y ≤
+        StationaryOccupation.actualObjective F
+          (ControlledKernel.feedbackMatrix sys (StationaryOccupation.computedStationaryPolicy F sys y)) y) ∧
+    StationaryOccupation.actualObjective F
+        (ControlledKernel.feedbackMatrix sys (StationaryOccupation.computedStationaryPolicy F sys y)) y =
+      ↑(StationaryOccupation.stationaryMaximum F sys y)
+'PermanssonResearch.ReverseSolver.FiniteMonitor.monitor_probability_eq_history_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.FiniteMonitor.chronologicalLaw_monitor_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.FiniteMonitor.monitor_initialLaw_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.FiniteMonitor.computedValue_eq_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.FiniteMonitor.computedMaximizer_attains' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.FiniteMonitor.rollingResidence_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralResidence_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralFirstEntry_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.FiniteMonitor.beforeDanger_history_probability_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralAvoidResidence_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.C11.referenceMatrix_det_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.C11.referenceWeights_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily_check' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.C11.referenceClassCandidate_eq_native' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.C11.referenceClassCandidate_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.C11.ReferenceExamples.periodic_reference_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.C11.ReferenceExamples.corrupted_stationary_receipt_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.RectangularFiniteGame.gameMass_total_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.RectangularFiniteGame.rectangular_game_law_saddle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.StationaryOccupation.rationalObjective_eq_actual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.FiniteOccupationRandomLaw.observedOccupationLimit_ae_correct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.StationaryOccupation.stationary_menu_actual_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
