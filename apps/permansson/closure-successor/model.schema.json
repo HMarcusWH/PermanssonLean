@@ -1,0 +1,220 @@
+{
+  "$id": "https://hmwh.se/permannson/closure-successor/model.v0.1.0.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Structural schema does not certify the six-state input: runtime additionally enforces byte-independent value equality to frozen typed source, complete menu, rational normalization and Lean replay.",
+  "properties": {
+    "baseline": {
+      "items": {
+        "items": {
+          "pattern": "^(0|[1-9][0-9]*)(/[1-9][0-9]*)?$",
+          "type": "string"
+        },
+        "maxItems": 6,
+        "minItems": 6,
+        "type": "array"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "type": "array"
+    },
+    "comparison": {
+      "const": [
+        1,
+        2
+      ]
+    },
+    "descriptor": {
+      "const": [
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "menu": {
+      "items": false,
+      "maxItems": 6,
+      "minItems": 6,
+      "prefixItems": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "const": "full"
+            },
+            "matrix": {
+              "items": {
+                "items": {
+                  "pattern": "^(0|[1-9][0-9]*)(/[1-9][0-9]*)?$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 6,
+                "type": "array"
+              },
+              "maxItems": 6,
+              "minItems": 6,
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "matrix"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "const": "half"
+            },
+            "matrix": {
+              "items": {
+                "items": {
+                  "pattern": "^(0|[1-9][0-9]*)(/[1-9][0-9]*)?$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 6,
+                "type": "array"
+              },
+              "maxItems": 6,
+              "minItems": 6,
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "matrix"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "const": "tiny"
+            },
+            "matrix": {
+              "items": {
+                "items": {
+                  "pattern": "^(0|[1-9][0-9]*)(/[1-9][0-9]*)?$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 6,
+                "type": "array"
+              },
+              "maxItems": 6,
+              "minItems": 6,
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "matrix"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "const": "identity"
+            },
+            "matrix": {
+              "items": {
+                "items": {
+                  "pattern": "^(0|[1-9][0-9]*)(/[1-9][0-9]*)?$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 6,
+                "type": "array"
+              },
+              "maxItems": 6,
+              "minItems": 6,
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "matrix"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "const": "u-only"
+            },
+            "matrix": {
+              "items": {
+                "items": {
+                  "pattern": "^(0|[1-9][0-9]*)(/[1-9][0-9]*)?$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 6,
+                "type": "array"
+              },
+              "maxItems": 6,
+              "minItems": 6,
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "matrix"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "const": "b-only"
+            },
+            "matrix": {
+              "items": {
+                "items": {
+                  "pattern": "^(0|[1-9][0-9]*)(/[1-9][0-9]*)?$",
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 6,
+                "type": "array"
+              },
+              "maxItems": 6,
+              "minItems": 6,
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "matrix"
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "array"
+    },
+    "n": {
+      "const": 6
+    }
+  },
+  "required": [
+    "n",
+    "baseline",
+    "descriptor",
+    "comparison",
+    "menu"
+  ],
+  "title": "C10 supported D0 six-state exact-rational wire input (structure only)",
+  "type": "object"
+}

@@ -1,0 +1,9 @@
+{
+  "application_status": "DRAFT__COMPILER_CI_PENDING",
+  "claim_boundary": "Only existing constructed six-state typed witness; not arbitrary JSON proof nor empirical identification",
+  "format": "Permansson.C10.ClosureSuccessor.v0.1.0",
+  "original_typed_proof": "PermanssonResearch.ReverseSolver.C10SixStateBridge",
+  "pin": "leanprover/lean4:v4.34.0",
+  "schema_version": "0.1.0",
+  "supported_model": "D0.C10.FROZEN_SIX_STATE"
+}
