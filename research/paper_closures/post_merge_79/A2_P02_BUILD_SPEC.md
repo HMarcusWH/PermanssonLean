@@ -220,3 +220,24 @@ In particular the unreconciled historical `EconomicWitness/ConstitutionCore.lean
 ## 9. Stop conditions for the coding agent
 
 Stop and report the actual diagnostic if the source base is different, any preserved byte changes, a dependency pin differs, a theorem requires an unplanned premise, a positive fixture fails, a false semantic mutant compiles, an axiom falls outside the allowlist, or a required workflow is skipped/failed. No automatic merge is authorized. Compilation fixes must update the source hash, patch, manifest, tests, specification and evidence; stale 43-test or interrupted-build records cannot certify revised files.
+
+### GitHub compiler diagnostic and correction (v3, 18 October 2026)
+
+The initial actual PR #80 head `f71a76032b169aac7bfe0694aa715339a94d4e05`
+was tested by the pinned **Research Lean** job
+[`39160284574`](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39160284574).
+The genuine source build FAILED at `GoodHistoryVisit.lean:73` because `mul_le_mul_left'`
+was not available in Lean 4.34.0 and left the ENNReal sum goal open.
+That run is a **negative compiler receipt**, not certification. Its later Research
+unit suite, global axiom audit and compiler-mutation gates were skipped.
+
+The successor proof uses `gcongr` on the actual probability bound `μ(E) ≤ 1`,
+then explicitly applies `add_le_add_right` and `add_le_add_left` to the original
+nonnegative integrated-visit and bad-history terms. No hypothesis, domain,
+statement, or mathematical budget was changed.
+
+Corrected source SHA-256: `c11201bac30e70cb44b3628b7971f8a6aea7a27e17098b38d1c69453e3b2f294`.
+The complete source patch and distribution manifest have been regenerated from
+corrected bytes. **Until positive source-head Lean compilation, 40-declaration
+transitive-axiom inspection and four semantic mutant rejections have all passed,
+A2-P02 remains NOT LEAN CERTIFIED and not accepted.**

@@ -69,8 +69,15 @@ theorem goodHistory_lintegral_le
         lintegral_indicator_const hE.compl]
       simp
     _ ≤ ENNReal.ofReal eta + ENNReal.ofReal v := by
-      have hprob : mu E ≤ 1 := prob_le_one
-      exact (add_le_add (mul_le_mul_left' hprob _) hvisit).trans_eq (by simp)
+      have hprob : mu E ≤ (1 : ℝ≥0∞) := prob_le_one
+      have hmul : ENNReal.ofReal eta * mu E ≤ ENNReal.ofReal eta * (1 : ℝ≥0∞) := by
+        gcongr <;> exact hprob
+      calc
+        ENNReal.ofReal eta * mu E + mu Eᶜ ≤
+            ENNReal.ofReal eta * 1 + mu Eᶜ := add_le_add_right hmul _
+        _ ≤ ENNReal.ofReal eta * 1 + ENNReal.ofReal v :=
+          add_le_add_left hvisit _
+        _ = ENNReal.ofReal eta + ENNReal.ofReal v := by simp
     _ = ENNReal.ofReal (eta + v) := (ENNReal.ofReal_add heta hv).symm
 
 /-- Given actual good-set row bounds and actual bad-visit masses, propagate
