@@ -181,8 +181,8 @@ theorem initialScore_point (b : Bool) :
     initialScore.fromKernel 0 (Kernel.id : Kernel Bool Bool) b =
       if b then 1 else 0 := by
   simp only [FinitePathProperty.fromKernel, FinitePathProperty.expected,
-    finitePrefixLaw, initialScore]
-  rw [Kernel.id_apply, integral_dirac]
+    finitePrefixLaw, initialScore, Kernel.partialTraj_zero,
+    Kernel.deterministic_apply, integral_dirac]
   rfl
 
 /-- Both laws are valid probability laws of the same actual trajectory kernel;
