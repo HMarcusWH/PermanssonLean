@@ -1,0 +1,335 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/Probability/HopfMaximal.lean": {
+      "sha256": "aa1b0035a71df0f759091b7e59ca7ce9084900d1ff892a3613771b339ea4d7b8",
+      "artifact_sha256": "15601b8e63f09174d569e292bcb741c184fc5b132ad435ef20b8b5f214340d84",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.HopfMaximal",
+        "started": 1792296991.7747803,
+        "elapsed": 53.4556827545166,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "aa1b0035a71df0f759091b7e59ca7ce9084900d1ff892a3613771b339ea4d7b8"
+      }
+    },
+    "PermanssonResearch/Probability/BoundedOrbitAverages.lean": {
+      "sha256": "175dcfda26548683786a9891117d34b009100e5a16433ca72e0808f6fed1fb1b",
+      "artifact_sha256": "e3ee0305fa61b1d5cf35f2348d3cbd561703d0dc4861262e031a920c719913c6",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.BoundedOrbitAverages",
+        "started": 1792297045.249537,
+        "elapsed": 48.38929009437561,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "175dcfda26548683786a9891117d34b009100e5a16433ca72e0808f6fed1fb1b"
+      }
+    },
+    "PermanssonResearch/Probability/BoundedBirkhoff.lean": {
+      "sha256": "75bccad1ec34c03f97efc567c6ece422cfbcc73caeb29a74e6289aedf5269de0",
+      "artifact_sha256": "b08e682c1046be852ff7bd9fb7d263f589750a915d28a6bb9dff43a6a83833bd",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.BoundedBirkhoff",
+        "started": 1792297093.6610892,
+        "elapsed": 55.92388939857483,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "75bccad1ec34c03f97efc567c6ece422cfbcc73caeb29a74e6289aedf5269de0"
+      }
+    },
+    "PermanssonResearch/Probability/InvariantSigma.lean": {
+      "sha256": "39bed4cce3cbcbdc5d089183c81aa71bf2ce952bb23edb887dcfe8710e6e4217",
+      "artifact_sha256": "69dfc205812dcf3cf12a36e9467d01b0b505f2e1f7ef8aa233a9b7ff1d146a47",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.InvariantSigma",
+        "started": 1792297149.60647,
+        "elapsed": 41.45174717903137,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "39bed4cce3cbcbdc5d089183c81aa71bf2ce952bb23edb887dcfe8710e6e4217"
+      }
+    },
+    "PermanssonResearch/Probability/BoundedBirkhoffConditional.lean": {
+      "sha256": "3fea8b89022b3e17d58c68f08f0c3a8c1399db783e60b0bcadd4c19bf8811d09",
+      "artifact_sha256": "5038798f0c6de5da41cab757f8c13d317b734e3ddd38db75e1de086b65da7fdd",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.BoundedBirkhoffConditional",
+        "started": 1792297191.0878835,
+        "elapsed": 49.28593397140503,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "3fea8b89022b3e17d58c68f08f0c3a8c1399db783e60b0bcadd4c19bf8811d09"
+      }
+    },
+    "PermanssonResearch/Probability/BoundedBirkhoffRegression.lean": {
+      "sha256": "54ab2be005e89244aba62c4c0689c55ddb2b9c40c13a4f282f50f4512a35dbe7",
+      "artifact_sha256": "6be69f58aec31eec3c5c052db51f3ed1f6f221686fbb7538a5646f988b5fffa1",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.BoundedBirkhoffRegression",
+        "started": 1792297240.3908179,
+        "elapsed": 49.82496476173401,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "54ab2be005e89244aba62c4c0689c55ddb2b9c40c13a4f282f50f4512a35dbe7"
+      }
+    }
+  },
+  "module_list": [
+    "Probability.HopfMaximal",
+    "Probability.BoundedOrbitAverages",
+    "Probability.BoundedBirkhoff",
+    "Probability.InvariantSigma",
+    "Probability.BoundedBirkhoffConditional",
+    "Probability.BoundedBirkhoffRegression"
+  ],
+  "declaration_count": 47,
+  "declarations": {
+    "PermanssonResearch.Probability.Hopf.positiveMax": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.partialSum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.partialSum_succ": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveMax_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveMax_le_succ": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveMax_monotone": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.partialSum_le_positiveMax": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveMax_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveMax_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.preserving_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.indicator_ge_difference": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.finite_maximal_integral_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.integral_nonneg_of_positive_partial_sums": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.upperAverage": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.average_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.upperAverage_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.average_abs_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.average_bddAbove": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.average_bddBelow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.upperAverage_abs_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.limsup_le_of_tendsto_sub": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.upperAverage_invariant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.integrable_of_abs_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.upperAverage_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positive_partial_sum_sub_upper": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.integral_upperAverage_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.upperAverage_neg_eq_neg_liminf": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.bounded_birkhoff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.invariantSigma": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.invariantSigma_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.measurableSet_invariantSigma": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.upperAverage_measurable_invariant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.invariant_set_average_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.invariant_set_upperAverage_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.upperAverage_ae_condExp": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.bounded_birkhoff_condExp": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.Regression.boolMeasurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.Regression.boolDiscrete": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.Regression.label": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.Regression.label_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.Regression.identity_average_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.Regression.identity_upperAverage": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.Regression.identity_limits_distinct": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.Regression.reset_not_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.Regression.reset_preserves": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.Regression.reset_conditional_time_average": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.Regression.reset": []
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "c8ecdd2886f2ed55e1e43ae6933981d1c18ad6bbdda03ae8847e6e13002bb28c",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/bounded_birkhoff_signatures_axioms.txt",
+    "sha256": "c8ecdd2886f2ed55e1e43ae6933981d1c18ad6bbdda03ae8847e6e13002bb28c"
+  }
+}

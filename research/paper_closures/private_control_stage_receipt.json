@@ -1,0 +1,353 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/ReverseSolver/PrivateControlStageModel.lean": {
+      "sha256": "008f5ae2bc6c309a4b491d8b0a0844de3316613e0d3ca4db6de11681dbf7fb10",
+      "artifact_sha256": "cf0f05ed1091a88fba29d6c77213ad4469e586b179dcdf2b32d6da59ba4ab99c",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.PrivateControlStageModel",
+        "started": 1792296163.8066049,
+        "elapsed": 59.4378879070282,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "008f5ae2bc6c309a4b491d8b0a0844de3316613e0d3ca4db6de11681dbf7fb10"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/PrivateControlStageOptimizer.lean": {
+      "sha256": "5cc5fc7c353eaf568ecaddbaec36026444cfbef0168b21a5a7cd0874513ca6ab",
+      "artifact_sha256": "656a4113bb900ef4f664389f3f02ce89d146c645fe567d3f0d6a06869bc6f5ea",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.PrivateControlStageOptimizer",
+        "started": 1792296223.2551045,
+        "elapsed": 62.620646476745605,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "5cc5fc7c353eaf568ecaddbaec36026444cfbef0168b21a5a7cd0874513ca6ab"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/PrivateControlStageFixture.lean": {
+      "sha256": "250b59afeb7650a833a775748fcb6c7ae546da8b33fa2981d581bd94067e0394",
+      "artifact_sha256": "f7c0661a033ed7c370aef8adb9aa4d57719af0c792421cd7b33ec58d8f784ece",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.PrivateControlStageFixture",
+        "started": 1792296285.8832624,
+        "elapsed": 59.0583770275116,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "250b59afeb7650a833a775748fcb6c7ae546da8b33fa2981d581bd94067e0394"
+      }
+    }
+  },
+  "module_list": [
+    "ReverseSolver.PrivateControlStageModel",
+    "ReverseSolver.PrivateControlStageOptimizer",
+    "ReverseSolver.PrivateControlStageFixture"
+  ],
+  "declaration_count": 59,
+  "declarations": {
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.upperPayoff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.le_upperPayoff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.minimizingNature": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.stageLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.actual_stage_expectation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.actual_nature_lower_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.actual_minimizing_nature": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.nonnegativeConstraint": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.simplexUpper": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.simplexLower": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.valueLower": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.natureConstraint": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.nonnegativeConstraint_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.simplexUpper_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.simplexLower_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.valueLower_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.natureConstraint_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.lowerVector": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.upperVector": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.feasibleRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.feasibleRow_value_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.stage_box_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.strategyVector": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.strategyVector_feasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.stageObjective": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage_ne_none": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage_returns": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_feasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.solutionRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_rational_simplex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_dominates_all_real_mixtures": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_value_attained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_isGreatest": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_actual_strategic_value": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.halfRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.stagePayoff_eq_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.all_real_mixtures_upper": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.half_value": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.half_actual_expectation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.pure_private_value": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.revealedControlLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.revealed_control_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.returned_value_half": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.solver_value_half": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.timing_and_randomization_boundary": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negativePayoff": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negative_private_value": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negative_solver_value": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "041e8064da3806ab557c6577d91ed3a41d7adfdbacffecca95bd4b9bdb4d1d74",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/private_control_stage_signatures_axioms.txt",
+    "sha256": "041e8064da3806ab557c6577d91ed3a41d7adfdbacffecca95bd4b9bdb4d1d74"
+  }
+}

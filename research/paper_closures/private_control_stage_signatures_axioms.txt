@@ -1,0 +1,505 @@
+PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) : ℚ
+'PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.upperPayoff.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) : ℚ
+'PermanssonResearch.ReverseSolver.PrivateControlStage.upperPayoff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff_le.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (θ : Θ) (c : C) :
+  LE.le.{0} (PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff.{u_1, u_2} Q) (Q θ c)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.le_upperPayoff.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (θ : Θ) (c : C) :
+  LE.le.{0} (Q θ c) (PermanssonResearch.ReverseSolver.PrivateControlStage.upperPayoff.{u_1, u_2} Q)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.le_upperPayoff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] (Q : Θ → C → ℚ) (p : PermanssonResearch.ActionTrace.Row.{u_1} C) (θ : Θ) : ℝ
+'PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.minimizingNature.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [Fintype.{u_2} Θ] [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ)
+  (p : PermanssonResearch.ActionTrace.Row.{u_1} C) : Θ
+'PermanssonResearch.ReverseSolver.PrivateControlStage.minimizingNature' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [Fintype.{u_2} Θ] [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ)
+  (p : PermanssonResearch.ActionTrace.Row.{u_1} C) : ℝ
+'PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue_le.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (p : PermanssonResearch.ActionTrace.Row.{u_1} C) (θ : Θ) :
+  LE.le.{0} (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{u_1, u_2} Q p)
+    (PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff.{u_1, u_2} Q p θ)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff_bounds.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (p : PermanssonResearch.ActionTrace.Row.{u_1} C) (θ : Θ) :
+  LE.le.{0} (↑(PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff.{u_1, u_2} Q))
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff.{u_1, u_2} Q p θ) ∧
+    LE.le.{0} (PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff.{u_1, u_2} Q p θ)
+      ↑(PermanssonResearch.ReverseSolver.PrivateControlStage.upperPayoff.{u_1, u_2} Q)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff_bounds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue_bounds.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (p : PermanssonResearch.ActionTrace.Row.{u_1} C) :
+  LE.le.{0} (↑(PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff.{u_1, u_2} Q))
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{u_1, u_2} Q p) ∧
+    LE.le.{0} (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{u_1, u_2} Q p)
+      ↑(PermanssonResearch.ReverseSolver.PrivateControlStage.upperPayoff.{u_1, u_2} Q)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue_bounds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.stageLaw.{u_1, u_2} {C : Type u_1} {Θ : Type u_2} [Fintype.{u_1} C]
+  [Fintype.{u_2} Θ] (p : PermanssonResearch.ActionTrace.Row.{u_1} C) (η : PermanssonResearch.ActionTrace.Row.{u_2} Θ) :
+  PermanssonResearch.ActionTrace.Row.{max u_1 u_2} (Prod.{u_2, u_1} Θ C)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.stageLaw' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.actual_stage_expectation.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (p : PermanssonResearch.ActionTrace.Row.{u_1} C)
+  (η : PermanssonResearch.ActionTrace.Row.{u_2} Θ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{max u_1 u_2}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.stageLaw.{u_1, u_2} p η) fun a => ↑(Q a.1 a.2))
+    (PermanssonResearch.ActionTrace.Row.expect.{u_2} η
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff.{u_1, u_2} Q p))
+'PermanssonResearch.ReverseSolver.PrivateControlStage.actual_stage_expectation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.actual_nature_lower_bound.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (p : PermanssonResearch.ActionTrace.Row.{u_1} C)
+  (η : PermanssonResearch.ActionTrace.Row.{u_2} Θ) :
+  LE.le.{0} (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{u_1, u_2} Q p)
+    (PermanssonResearch.ActionTrace.Row.expect.{max u_1 u_2}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.stageLaw.{u_1, u_2} p η) fun a => ↑(Q a.1 a.2))
+'PermanssonResearch.ReverseSolver.PrivateControlStage.actual_nature_lower_bound' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.actual_minimizing_nature.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (p : PermanssonResearch.ActionTrace.Row.{u_1} C) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{max u_1 u_2}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.stageLaw.{u_1, u_2} p
+        (PermanssonResearch.ActionTrace.Row.pure.{u_2}
+          (PermanssonResearch.ReverseSolver.PrivateControlStage.minimizingNature.{u_1, u_2} Q p)))
+      fun a => ↑(Q a.1 a.2))
+    (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{u_1, u_2} Q p)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.actual_minimizing_nature' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.nonnegativeConstraint.{u_1} {C : Type u_1} [LinearOrder.{u_1} C]
+  (c : C) : PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} (Option.{u_1} C)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.nonnegativeConstraint' depends on axioms: [propext,
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.simplexUpper.{u_1} {C : Type u_1} :
+  PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} (Option.{u_1} C)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.simplexUpper' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.simplexLower.{u_1} {C : Type u_1} :
+  PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} (Option.{u_1} C)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.simplexLower' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.valueLower.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) :
+  PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} (Option.{u_1} C)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.valueLower' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.natureConstraint.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  (Q : Θ → C → ℚ) (θ : Θ) : PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} (Option.{u_1} C)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.natureConstraint' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) :
+  List.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} (Option.{u_1} C))
+'PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.nonnegativeConstraint_iff.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] (x : Option.{u_1} C → ℝ) (c : C) :
+  PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.nonnegativeConstraint.{u_1} c) x ↔
+    LE.le.{0} 0 (x (Option.some.{u_1} c))
+'PermanssonResearch.ReverseSolver.PrivateControlStage.nonnegativeConstraint_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.simplexUpper_iff.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] (x : Option.{u_1} C → ℝ) :
+  PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1}
+      PermanssonResearch.ReverseSolver.PrivateControlStage.simplexUpper.{u_1} x ↔
+    LE.le.{0} (∑ c, x (Option.some.{u_1} c)) 1
+'PermanssonResearch.ReverseSolver.PrivateControlStage.simplexUpper_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.simplexLower_iff.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] (x : Option.{u_1} C → ℝ) :
+  PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1}
+      PermanssonResearch.ReverseSolver.PrivateControlStage.simplexLower.{u_1} x ↔
+    LE.le.{0} 1 (∑ c, x (Option.some.{u_1} c))
+'PermanssonResearch.ReverseSolver.PrivateControlStage.simplexLower_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.valueLower_iff.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (x : Option.{u_1} C → ℝ) :
+  PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.valueLower.{u_1, u_2} Q) x ↔
+    LE.le.{0} (↑(PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff.{u_1, u_2} Q)) (x Option.none.{u_1})
+'PermanssonResearch.ReverseSolver.PrivateControlStage.valueLower_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.natureConstraint_iff.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (θ : Θ) (x : Option.{u_1} C → ℝ) :
+  PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.natureConstraint.{u_1, u_2} Q θ) x ↔
+    LE.le.{0} (x Option.none.{u_1}) (∑ c, HMul.hMul.{0, 0, 0} (x (Option.some.{u_1} c)) ↑(Q θ c))
+'PermanssonResearch.ReverseSolver.PrivateControlStage.natureConstraint_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints_iff.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (x : Option.{u_1} C → ℝ) :
+  Membership.mem.{u_1, u_1}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+        (PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints.{u_1, u_2} Q))
+      x ↔
+    (∀ (c : C), LE.le.{0} 0 (x (Option.some.{u_1} c))) ∧
+      Eq.{1} (∑ c, x (Option.some.{u_1} c)) 1 ∧
+        LE.le.{0} (↑(PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff.{u_1, u_2} Q))
+            (x Option.none.{u_1}) ∧
+          ∀ (θ : Θ), LE.le.{0} (x Option.none.{u_1}) (∑ c, HMul.hMul.{0, 0, 0} (x (Option.some.{u_1} c)) ↑(Q θ c))
+'PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.lowerVector.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) : Option.{u_1} C → ℝ
+'PermanssonResearch.ReverseSolver.PrivateControlStage.lowerVector' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.upperVector.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) : Option.{u_1} C → ℝ
+'PermanssonResearch.ReverseSolver.PrivateControlStage.upperVector' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.feasibleRow.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (x : Option.{u_1} C → ℝ)
+  (hx :
+    Membership.mem.{u_1, u_1}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+        (PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints.{u_1, u_2} Q))
+      x) :
+  PermanssonResearch.ActionTrace.Row.{u_1} C
+'PermanssonResearch.ReverseSolver.PrivateControlStage.feasibleRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.feasibleRow_value_le.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (x : Option.{u_1} C → ℝ)
+  (hx :
+    Membership.mem.{u_1, u_1}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+        (PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints.{u_1, u_2} Q))
+      x)
+  (θ : Θ) :
+  LE.le.{0} (x Option.none.{u_1})
+    (PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff.{u_1, u_2} Q
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.feasibleRow.{u_1, u_2} Q x hx) θ)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.feasibleRow_value_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.stage_box_bounds.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (x : Option.{u_1} C → ℝ) :
+  Membership.mem.{u_1, u_1}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+        (PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints.{u_1, u_2} Q))
+      x →
+    LE.le.{u_1} (PermanssonResearch.ReverseSolver.PrivateControlStage.lowerVector.{u_1, u_2} Q) x ∧
+      LE.le.{u_1} x (PermanssonResearch.ReverseSolver.PrivateControlStage.upperVector.{u_1, u_2} Q)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.stage_box_bounds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.strategyVector.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [Fintype.{u_2} Θ] [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ)
+  (p : PermanssonResearch.ActionTrace.Row.{u_1} C) : Option.{u_1} C → ℝ
+'PermanssonResearch.ReverseSolver.PrivateControlStage.strategyVector' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.strategyVector_feasible.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (p : PermanssonResearch.ActionTrace.Row.{u_1} C) :
+  Membership.mem.{u_1, u_1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints.{u_1, u_2} Q))
+    (PermanssonResearch.ReverseSolver.PrivateControlStage.strategyVector.{u_1, u_2} Q p)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.strategyVector_feasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.stageObjective.{u_1} {C : Type u_1} : Option.{u_1} C → ℚ
+'PermanssonResearch.ReverseSolver.PrivateControlStage.stageObjective' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) : Option.{u_1} (Option.{u_1} C → ℚ)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage_ne_none.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) :
+  Ne.{u_1 + 1} (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{u_1, u_2} Q) Option.none.{u_1}
+'PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage_ne_none' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage_returns.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) :
+  ∃ q,
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{u_1, u_2} Q)
+      (Option.some.{u_1} q)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage_returns' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.returned_feasible.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (q : Option.{u_1} C → ℚ)
+  (hq :
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{u_1, u_2} Q)
+      (Option.some.{u_1} q)) :
+  Membership.mem.{u_1, u_1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints.{u_1, u_2} Q))
+    fun j => ↑(q j)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.returned_feasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.solutionRow.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (q : Option.{u_1} C → ℚ)
+  (hq :
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{u_1, u_2} Q)
+      (Option.some.{u_1} q)) :
+  PermanssonResearch.ActionTrace.Row.{u_1} C
+'PermanssonResearch.ReverseSolver.PrivateControlStage.solutionRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.returned_rational_simplex.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (q : Option.{u_1} C → ℚ)
+  (hq :
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{u_1, u_2} Q)
+      (Option.some.{u_1} q)) :
+  (∀ (c : C), LE.le.{0} 0 (q (Option.some.{u_1} c))) ∧ Eq.{1} (∑ c, q (Option.some.{u_1} c)) 1
+'PermanssonResearch.ReverseSolver.PrivateControlStage.returned_rational_simplex' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.returned_dominates_all_real_mixtures.{u_1, u_2} {C : Type u_1}
+  {Θ : Type u_2} [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (q : Option.{u_1} C → ℚ)
+  (hq :
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{u_1, u_2} Q)
+      (Option.some.{u_1} q))
+  (p : PermanssonResearch.ActionTrace.Row.{u_1} C) :
+  LE.le.{0} (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{u_1, u_2} Q p) ↑(q Option.none.{u_1})
+'PermanssonResearch.ReverseSolver.PrivateControlStage.returned_dominates_all_real_mixtures' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.returned_value_attained.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (q : Option.{u_1} C → ℚ)
+  (hq :
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{u_1, u_2} Q)
+      (Option.some.{u_1} q)) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{u_1, u_2} Q
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.solutionRow.{u_1, u_2} Q q hq))
+    ↑(q Option.none.{u_1})
+'PermanssonResearch.ReverseSolver.PrivateControlStage.returned_value_attained' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.returned_isGreatest.{u_1, u_2} {C : Type u_1} {Θ : Type u_2}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (q : Option.{u_1} C → ℚ)
+  (hq :
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{u_1, u_2} Q)
+      (Option.some.{u_1} q)) :
+  IsGreatest.{0}
+    (Set.range.{0, u_1 + 1} (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{u_1, u_2} Q))
+    ↑(q Option.none.{u_1})
+'PermanssonResearch.ReverseSolver.PrivateControlStage.returned_isGreatest' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.returned_actual_strategic_value.{u_1, u_2} {C : Type u_1}
+  {Θ : Type u_2} [Fintype.{u_1} C] [LinearOrder.{u_1} C] [Nonempty.{u_1 + 1} C] [Fintype.{u_2} Θ] [LinearOrder.{u_2} Θ]
+  [Nonempty.{u_2 + 1} Θ] (Q : Θ → C → ℚ) (q : Option.{u_1} C → ℚ)
+  (hq :
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{u_1, u_2} Q)
+      (Option.some.{u_1} q)) :
+  (∀ (η : PermanssonResearch.ActionTrace.Row.{u_2} Θ),
+      LE.le.{0} (↑(q Option.none.{u_1}))
+        (PermanssonResearch.ActionTrace.Row.expect.{max u_1 u_2}
+          (PermanssonResearch.ReverseSolver.PrivateControlStage.stageLaw.{u_1, u_2}
+            (PermanssonResearch.ReverseSolver.PrivateControlStage.solutionRow.{u_1, u_2} Q q hq) η)
+          fun a => ↑(Q a.1 a.2))) ∧
+    ∃ η,
+      Eq.{1}
+        (PermanssonResearch.ActionTrace.Row.expect.{max u_1 u_2}
+          (PermanssonResearch.ReverseSolver.PrivateControlStage.stageLaw.{u_1, u_2}
+            (PermanssonResearch.ReverseSolver.PrivateControlStage.solutionRow.{u_1, u_2} Q q hq) η)
+          fun a => ↑(Q a.1 a.2))
+        ↑(q Option.none.{u_1})
+'PermanssonResearch.ReverseSolver.PrivateControlStage.returned_actual_strategic_value' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff (θ c : Bool) : ℚ
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff' depends on axioms: [propext,
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.halfRow :
+  PermanssonResearch.ActionTrace.Row.{0} Bool
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.halfRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.stagePayoff_eq_mass
+  (p : PermanssonResearch.ActionTrace.Row.{0} Bool) (θ : Bool) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff.{0, 0}
+      PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff p θ)
+    (PermanssonResearch.ActionTrace.Row.mass.{0} p θ)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.stagePayoff_eq_mass' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.all_real_mixtures_upper
+  (p : PermanssonResearch.ActionTrace.Row.{0} Bool) :
+  LE.le.{0}
+    (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{0, 0}
+      PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff p)
+    (1 / 2)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.all_real_mixtures_upper' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.half_value :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{0, 0}
+      PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff
+      PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.halfRow)
+    (1 / 2)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.half_value' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.half_actual_expectation
+  (η : PermanssonResearch.ActionTrace.Row.{0} Bool) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{0}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.stageLaw.{0, 0}
+        PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.halfRow η)
+      fun a => ↑(PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff a.1 a.2))
+    (1 / 2)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.half_actual_expectation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.pure_private_value (c : Bool) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{0, 0}
+      PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff
+      (PermanssonResearch.ActionTrace.Row.pure.{0} c))
+    0
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.pure_private_value' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.revealedControlLaw
+  (p : PermanssonResearch.ActionTrace.Row.{0} Bool) : PermanssonResearch.ActionTrace.Row.{0} (Prod.{0, 0} Bool Bool)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.revealedControlLaw' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.revealed_control_zero
+  (p : PermanssonResearch.ActionTrace.Row.{0} Bool) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{0}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.revealedControlLaw p) fun a =>
+      ↑(PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff a.1 a.2))
+    0
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.revealed_control_zero' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.returned_value_half (q : Option.{0} Bool → ℚ)
+  (hq :
+    Eq.{1}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{0, 0}
+        PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff)
+      (Option.some.{0} q)) :
+  Eq.{1} (q Option.none.{0}) (1 / 2)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.returned_value_half' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.solver_value_half :
+  Eq.{1}
+    (Option.map.{0, 0} (fun q => q Option.none.{0})
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{0, 0}
+        PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff))
+    (Option.some.{0} (1 / 2))
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.solver_value_half' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.timing_and_randomization_boundary :
+  Eq.{1}
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{0, 0}
+        PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff
+        PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.halfRow)
+      (1 / 2) ∧
+    (∀ (c : Bool),
+        Eq.{1}
+          (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{0, 0}
+            PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff
+            (PermanssonResearch.ActionTrace.Row.pure.{0} c))
+          0) ∧
+      Eq.{1}
+        (PermanssonResearch.ActionTrace.Row.expect.{0}
+          (PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.revealedControlLaw
+            PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.halfRow)
+          fun a => ↑(PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff a.1 a.2))
+        0
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.timing_and_randomization_boundary' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negativePayoff : Bool → Bool → ℚ
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negativePayoff' depends on axioms: [propext,
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negative_private_value
+  (p : PermanssonResearch.ActionTrace.Row.{0} Bool) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue.{0, 0}
+      PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negativePayoff p)
+    (-7)
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negative_private_value' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negative_solver_value :
+  Eq.{1}
+    (Option.map.{0, 0} (fun q => q Option.none.{0})
+      (PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage.{0, 0}
+        PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negativePayoff))
+    (Option.some.{0} (-7))
+'PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negative_solver_value' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it

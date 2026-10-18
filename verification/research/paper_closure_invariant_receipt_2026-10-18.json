@@ -1,0 +1,159 @@
+{
+  "unit": "A-INVARIANT-first-moment",
+  "source_scope": [
+    "PermanssonResearch/Perturbation/FirstMomentKernel.lean",
+    "PermanssonResearch/Perturbation/FirstMomentInvariant.lean",
+    "PermanssonResearch/Perturbation/GeneratedInvariantPerturbation.lean",
+    "PermanssonResearch/Perturbation/FirstMomentInvariantRegression.lean"
+  ],
+  "source_sha256": {
+    "PermanssonResearch/Perturbation/FirstMomentKernel.lean": "06a40a18f0823f8325ca168caf2086f1fa7213732185a4c861173fba3198c504",
+    "PermanssonResearch/Perturbation/FirstMomentInvariant.lean": "76f1e2a6e7f0aae305e216da3c6c8242d84bce46d2479a2debbae623d53cf971",
+    "PermanssonResearch/Perturbation/GeneratedInvariantPerturbation.lean": "3f3fdf7c13486b23e657b41dfbf9c1cbbfeddb8b4c881216c81a7c6cb19c585b",
+    "PermanssonResearch/Perturbation/FirstMomentInvariantRegression.lean": "aad0636a4801a6c90dd775e78671cc866bdf0f8f4a1a0561f051d7f867603ff1"
+  },
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "declaration_count": 26,
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "declarations": {
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.PreservesFirstMoment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.preservesFirstMoment_of_drift": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.push": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.push_measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.push_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.iterateLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.iterate_push_measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.anchor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.push_contracting": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.exists_unique_invariant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.stationary": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.stationary_invariant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.invariant_geometric_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.actual_iterate_coupling_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.iterate_tendsto_invariant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.automatic_invariant_and_convergence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.generatedPerturbation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.generated_coupling_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_markov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_comp": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_preserves": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_global_contraction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_unique_invariant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_actual_stationary_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_all_initial_geometric_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "audit_source_sha256": "e01eec4543e978b6871ce146de767b5b188e5abee85b45eaaeba7bad29224c13",
+  "audit_stdout_sha256": "d2d4cbb9b5263973b95428eab7dbc93b97507609627a653842436902c60181c6",
+  "compiler_returncode": 0,
+  "status": "PASS",
+  "residual": "Constructed unique first-moment invariant laws for Markov kernels on complete separable Borel metric spaces preserving first moments and satisfying the original global all-probability-law IsW1Contraction with 0 <= rho < 1. A row-drift criterion derives moment preservation; actual kernel iterates obey geometric coupling-W1 bounds and converge in the constructed transport metric. Both original ContractivePerturbation invariant laws are constructed independently under their two contraction/moment hypotheses. Non-first-moment invariant laws and general occupation-property factorization/ergodic bridges are separate scope."
+}

@@ -1,7 +1,7 @@
 {
   "format": "Permansson.PaperClosureImplementationCrosswalk.v1",
   "reference_B": "39279799834ae536bda715dedecdc11a32bf6c82",
-  "recording_head": "f6810acc4671655457457c0e8a3c75cdcac4039d",
+  "recording_head": "899ee2bbe9ed2282d6253c1f4dda56fe69a17a0a",
   "recording_worktree_dirty": true,
   "target_count": 42,
   "overall_status": "IN_PROGRESS_NOT_ALL_42_CLOSED",
@@ -672,7 +672,7 @@
       "selected_scope_as_supplied": "Finite metric probabilities; larger complete separable Borel space with finite first moments and explicit finite quantization proof.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Genuine arbitrary-real finite transport duality and optimal finite coupling existence;39-declaration audit. Explicit measurable finite quantization, bounded Lipschitz extension and normalized restricted-cell product lifts prove literal original coupling-infimum/dual-supremum equality for all separable Borel pseudometric first-moment laws;72-declaration audit and infinite-ambient distance-three regression checked. First-moment completeness remains separate.",
+      "implementation_boundary_and_residual": "Genuine arbitrary-real finite transport duality and optimal finite coupling existence;39-declaration audit. Explicit measurable finite quantization, bounded Lipschitz extension and normalized restricted-cell product lifts prove literal original coupling-infimum/dual-supremum equality for all separable Borel pseudometric first-moment laws;72-declaration audit. Actual countable gluing and measurable summable-step limits establish the complete first-moment metric space;60-declaration audit. General optimal-plan attainment is not inferred.",
       "sources": [
         {
           "source": "PermanssonResearch/Probability/CouplingDualBound.lean",
@@ -862,6 +862,45 @@
           "artifact_fresh": true
         },
         {
+          "source": "PermanssonResearch/Probability/FirstMomentCompleteness.lean",
+          "sha256": "eb9bd0038c13a693c739101bba149135e128d2451ef69daa099b82ef27543246",
+          "named_exports": [
+            "PermanssonResearch.Probability.FirstMomentProbability.exists_coupling_cost_lt",
+            "PermanssonResearch.Probability.FirstMomentProbability.cauchySeq_has_limit",
+            "PermanssonResearch.Probability.FirstMomentProbability.completeSpace"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FirstMomentCompleteness",
+            "started": 1792295586.33334,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 72.32025742530823
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/FirstMomentCompletenessRegression.lean",
+          "sha256": "19f303adfb5f8e8e82ce7026b34caf6821e5cc1b20f8e92f3d8fe5d6698cb21b",
+          "named_exports": [
+            "PermanssonResearch.Probability.FirstMomentCompletenessRegression.realDirac",
+            "PermanssonResearch.Probability.FirstMomentCompletenessRegression.real_complete",
+            "PermanssonResearch.Probability.FirstMomentCompletenessRegression.real_dirac_distance_three",
+            "PermanssonResearch.Probability.FirstMomentCompletenessRegression.real_distinct_laws_not_zero",
+            "PermanssonResearch.Probability.FirstMomentCompletenessRegression.realDirac_lipschitz",
+            "PermanssonResearch.Probability.FirstMomentCompletenessRegression.geometric_dirac_tendsto",
+            "PermanssonResearch.Probability.FirstMomentCompletenessRegression.every_real_firstMoment_cauchy_has_actual_limit",
+            "PermanssonResearch.Probability.FirstMomentCompletenessRegression.zero_cost_glued_chain_is_constant"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FirstMomentCompletenessRegression",
+            "started": 1792295664.459075,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 74.24262809753418
+          },
+          "artifact_fresh": true
+        },
+        {
           "source": "PermanssonResearch/Probability/FirstMomentKantorovichDuality.lean",
           "sha256": "0fe9b650f209f09d6cdf040d5f8cede580bd15ce3d4478bf4d8811b73593da0e",
           "named_exports": [
@@ -878,6 +917,35 @@
             "status": "PASS",
             "returncode": 0,
             "elapsed": 91.33906674385071
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/FirstMomentMetric.lean",
+          "sha256": "1fca801d1b36d394674eb381d8bfb20b3f3196f53ce287eb2d38fb569c57bfe6",
+          "named_exports": [
+            "PermanssonResearch.Probability.FirstMomentProbability",
+            "PermanssonResearch.Probability.FirstMomentProbability.measure",
+            "PermanssonResearch.Probability.FirstMomentProbability.measure_probability",
+            "PermanssonResearch.Probability.FirstMomentProbability.ext",
+            "PermanssonResearch.Probability.FirstMomentProbability.distance",
+            "PermanssonResearch.Probability.FirstMomentProbability.dual_distance",
+            "PermanssonResearch.Probability.FirstMomentProbability.distance_le",
+            "PermanssonResearch.Probability.FirstMomentProbability.distance_nonneg",
+            "PermanssonResearch.Probability.FirstMomentProbability.distance_self",
+            "PermanssonResearch.Probability.FirstMomentProbability.distance_comm",
+            "PermanssonResearch.Probability.FirstMomentProbability.distance_triangle",
+            "PermanssonResearch.Probability.FirstMomentProbability.eq_of_distance_eq_zero",
+            "PermanssonResearch.Probability.FirstMomentProbability.metricSpace",
+            "PermanssonResearch.Probability.FirstMomentProbability.dist_eq_couplingW1",
+            "PermanssonResearch.Probability.FirstMomentProbability.w1DualLE_iff_dist_le"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FirstMomentMetric",
+            "started": 1792295358.6655772,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 62.76873016357422
           },
           "artifact_fresh": true
         },
@@ -944,7 +1012,7 @@
       "selected_scope_as_supplied": "Contraction preserving first-moment probabilities on a complete separable metric space; finite shortcut also specified.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Finite invariant construction/dual contraction profile checked. General first-moment complete-space construction remains open.",
+      "implementation_boundary_and_residual": "Actual Banach invariant constructor, first-moment uniqueness, original kernel-iterate geometric coupling bound and metric convergence on complete separable Borel metric spaces. Moment preservation has a derived row-drift criterion. The original perturbation bundle constructs both invariant laws independently;26-declaration audit. Contraction of the perturbed kernel is separately required when its law is generated automatically.",
       "sources": [
         {
           "source": "PermanssonResearch/Perturbation/FiniteInvariantConstructor.lean",
@@ -964,6 +1032,88 @@
             "status": "PASS",
             "returncode": 0,
             "elapsed": 61.70303201675415
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/FirstMomentInvariant.lean",
+          "sha256": "76f1e2a6e7f0aae305e216da3c6c8242d84bce46d2479a2debbae623d53cf971",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.anchor",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.push_contracting",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.exists_unique_invariant",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.stationary",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.stationary_invariant",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.invariant_geometric_bound",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.actual_iterate_coupling_bound",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.iterate_tendsto_invariant",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.automatic_invariant_and_convergence"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.FirstMomentInvariant",
+            "started": 1792296163.8006113,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 77.7059874534607
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/FirstMomentInvariantRegression.lean",
+          "sha256": "aad0636a4801a6c90dd775e78671cc866bdf0f8f4a1a0561f051d7f867603ff1",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset",
+            "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_markov",
+            "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_comp",
+            "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_preserves",
+            "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_global_contraction",
+            "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_unique_invariant",
+            "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_actual_stationary_law",
+            "PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_all_initial_geometric_bound"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.FirstMomentInvariantRegression",
+            "started": 1792296477.63151,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 64.69855642318726
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/FirstMomentKernel.lean",
+          "sha256": "06a40a18f0823f8325ca168caf2086f1fa7213732185a4c861173fba3198c504",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.PreservesFirstMoment",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.preservesFirstMoment_of_drift",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.push",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.push_measure",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.push_lipschitz",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.iterateLaw",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.iterate_push_measure"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.FirstMomentKernel",
+            "started": 1792295949.655801,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 80.55235171318054
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/GeneratedInvariantPerturbation.lean",
+          "sha256": "3f3fdf7c13486b23e657b41dfbf9c1cbbfeddb8b4c881216c81a7c6cb19c585b",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.generatedPerturbation",
+            "PermanssonResearch.Perturbation.FirstMomentInvariant.generated_coupling_bound"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.GeneratedInvariantPerturbation",
+            "started": 1792296299.709304,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 79.32020401954651
           },
           "artifact_fresh": true
         }
@@ -1118,6 +1268,37 @@
           "artifact_fresh": true
         },
         {
+          "source": "PermanssonResearch/ReverseSolver/BeliefMonitor.lean",
+          "sha256": "25a111ad8566c6dda4967c165279d9d1949808f079908114f891baa06acf3eb1",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Belief.CommonMenu",
+            "PermanssonResearch.ReverseSolver.Belief.monitoredTransition",
+            "PermanssonResearch.ReverseSolver.Belief.monitoredModel",
+            "PermanssonResearch.ReverseSolver.Belief.monitoredInitial",
+            "PermanssonResearch.ReverseSolver.Belief.monitoredReward",
+            "PermanssonResearch.ReverseSolver.Belief.monitor_transition_atom",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_physical_atom",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_control_permitted",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_control_world_fixed",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_control_update_fixed",
+            "PermanssonResearch.ReverseSolver.Belief.monitoredInitial_support",
+            "PermanssonResearch.ReverseSolver.Belief.physicalTrace",
+            "PermanssonResearch.ReverseSolver.Belief.monitor_run_on_support",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_integral_eq_trace_reward",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_initial_integral_eq_history",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_history_dominated",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_history_attained"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.BeliefMonitor",
+            "started": 1792294263.5740757,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 87.02961468696594
+          },
+          "artifact_fresh": true
+        },
+        {
           "source": "PermanssonResearch/ReverseSolver/ChronologicalMonitorMeasure.lean",
           "sha256": "578b9dd8ad78e869aa3c4e523ab6079d6107d9331157e6f97d4434208b35736d",
           "named_exports": [
@@ -1203,6 +1384,34 @@
             "status": "PASS",
             "returncode": 0,
             "elapsed": 310.0923283100128
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyMonitor.lean",
+          "sha256": "559f6c2af4b3c28d22309eeacce625e5a301a64fa859e18edcd8aabd1b3d72ff",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Occupancy.augmentedMatrix",
+            "PermanssonResearch.ReverseSolver.Occupancy.monitorSystem",
+            "PermanssonResearch.ReverseSolver.Occupancy.monitor_row_expect",
+            "PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent",
+            "PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent_decidable",
+            "PermanssonResearch.ReverseSolver.Occupancy.nextRow_consistent_expect",
+            "PermanssonResearch.ReverseSolver.Occupancy.monitorInitial",
+            "PermanssonResearch.ReverseSolver.Occupancy.historyLaw_consistent_expect",
+            "PermanssonResearch.ReverseSolver.Occupancy.actual_monitor_consistent",
+            "PermanssonResearch.ReverseSolver.Occupancy.physicalTrace",
+            "PermanssonResearch.ReverseSolver.Occupancy.physicalTrace_length",
+            "PermanssonResearch.ReverseSolver.Occupancy.consistent_eq_literal_run",
+            "PermanssonResearch.ReverseSolver.Occupancy.actual_monitor_literal_integral"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyMonitor",
+            "started": 1792296101.3107593,
+            "elapsed": 46.30826687812805,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "559f6c2af4b3c28d22309eeacce625e5a301a64fa859e18edcd8aabd1b3d72ff"
           },
           "artifact_fresh": true
         },
@@ -2227,8 +2436,484 @@
       "selected_scope_as_supplied": "Finite rational augmented occupancy polytope, behavioral policy reconstruction, exact vertex optimum and optional weak-dual certificate.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Boundary counterexample only. Exact rational occupancy-polytope solver, reconstruction and vertex optimum remain open.",
+      "implementation_boundary_and_residual": "Total exact rational active-subset/Gram/Cramer solver, actual real-vertex completeness, derived compact flow polytope, all-real full-history policy/flow equivalence and simultaneous legal x/d reconstruction. Returned actual controller attains risk-constrained optimum; none certifies infeasibility against the same policy class. Actual success17/20/risk1/20 fixture and221-declaration audit checked. Efficiency and optional dynamic dual checker remain separate.",
       "sources": [
+        {
+          "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyHistory.lean",
+          "sha256": "1139698d044db18454590a42530676ca184e6d95634077b458d43e1d80ead40e",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Occupancy.stepRow",
+            "PermanssonResearch.ReverseSolver.Occupancy.nextRow",
+            "PermanssonResearch.ReverseSolver.Occupancy.historyLaw",
+            "PermanssonResearch.ReverseSolver.Occupancy.nextRow_expect",
+            "PermanssonResearch.ReverseSolver.Occupancy.historyLaw_step_expect",
+            "PermanssonResearch.ReverseSolver.Occupancy.historyLaw_prefix_expect",
+            "PermanssonResearch.ReverseSolver.Occupancy.stateRow",
+            "PermanssonResearch.ReverseSolver.Occupancy.actionRow",
+            "PermanssonResearch.ReverseSolver.Occupancy.stateMass",
+            "PermanssonResearch.ReverseSolver.Occupancy.actionMass",
+            "PermanssonResearch.ReverseSolver.Occupancy.expect_indicator",
+            "PermanssonResearch.ReverseSolver.Occupancy.expect_sum",
+            "PermanssonResearch.ReverseSolver.Occupancy.expect_mul_const",
+            "PermanssonResearch.ReverseSolver.Occupancy.stateMass_eq_expect",
+            "PermanssonResearch.ReverseSolver.Occupancy.actionMass_eq_expect",
+            "PermanssonResearch.ReverseSolver.Occupancy.actionMass_supported",
+            "PermanssonResearch.ReverseSolver.Occupancy.actionMass_outflow",
+            "PermanssonResearch.ReverseSolver.Occupancy.stateMass_initial",
+            "PermanssonResearch.ReverseSolver.Occupancy.stateMass_step",
+            "PermanssonResearch.ReverseSolver.Occupancy.stateMass_inflow",
+            "PermanssonResearch.ReverseSolver.Occupancy.occupancies",
+            "PermanssonResearch.ReverseSolver.Occupancy.terminal_expect_eq_occupancy",
+            "PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure",
+            "PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure_probability",
+            "PermanssonResearch.ReverseSolver.Occupancy.actual_terminal_integral_eq_occupancy"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyHistory",
+            "started": 1792295940.0006351,
+            "elapsed": 55.97782349586487,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "1139698d044db18454590a42530676ca184e6d95634077b458d43e1d80ead40e"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyMarginals.lean",
+          "sha256": "dcfc6e0455c297a03f88c64067f048e0baf1b34c34734181d71a83e88a7651d8",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Occupancy.row_event_probability",
+            "PermanssonResearch.ReverseSolver.Occupancy.actual_state_probability",
+            "PermanssonResearch.ReverseSolver.Occupancy.actual_terminal_event_probability",
+            "PermanssonResearch.ReverseSolver.Occupancy.actualActionMeasure",
+            "PermanssonResearch.ReverseSolver.Occupancy.actualActionMeasure_probability",
+            "PermanssonResearch.ReverseSolver.Occupancy.actual_action_probability"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyMarginals",
+            "started": 1792296049.691733,
+            "elapsed": 51.599642753601074,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "dcfc6e0455c297a03f88c64067f048e0baf1b34c34734181d71a83e88a7651d8"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyModel.lean",
+          "sha256": "ece4284ce2a56ded906808731c14ef4c44acd1cc656dc818bbda97f47ff2bf64",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Occupancy.TimeSystem",
+            "PermanssonResearch.ReverseSolver.Occupancy.History",
+            "PermanssonResearch.ReverseSolver.Occupancy.History.zeroEquiv",
+            "PermanssonResearch.ReverseSolver.Occupancy.History.succEquiv",
+            "PermanssonResearch.ReverseSolver.Occupancy.historyFintype",
+            "PermanssonResearch.ReverseSolver.Occupancy.historyMeasurable",
+            "PermanssonResearch.ReverseSolver.Occupancy.historyDiscrete",
+            "PermanssonResearch.ReverseSolver.Occupancy.last",
+            "PermanssonResearch.ReverseSolver.Occupancy.historyPrefix",
+            "PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy",
+            "PermanssonResearch.ReverseSolver.Occupancy.matrixRow",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.state_total",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.state_le_one",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.action_le_state",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.action_le_one",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.action_zero_of_state_zero",
+            "PermanssonResearch.ReverseSolver.Occupancy.fallback",
+            "PermanssonResearch.ReverseSolver.Occupancy.fallback_permitted",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.markovControl",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.markovControl_supported",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.policy",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.state_mul_markovControl"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyModel",
+            "started": 1792295877.8460212,
+            "elapsed": 62.13061809539795,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "ece4284ce2a56ded906808731c14ef4c44acd1cc656dc818bbda97f47ff2bf64"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyMonitor.lean",
+          "sha256": "559f6c2af4b3c28d22309eeacce625e5a301a64fa859e18edcd8aabd1b3d72ff",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Occupancy.augmentedMatrix",
+            "PermanssonResearch.ReverseSolver.Occupancy.monitorSystem",
+            "PermanssonResearch.ReverseSolver.Occupancy.monitor_row_expect",
+            "PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent",
+            "PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent_decidable",
+            "PermanssonResearch.ReverseSolver.Occupancy.nextRow_consistent_expect",
+            "PermanssonResearch.ReverseSolver.Occupancy.monitorInitial",
+            "PermanssonResearch.ReverseSolver.Occupancy.historyLaw_consistent_expect",
+            "PermanssonResearch.ReverseSolver.Occupancy.actual_monitor_consistent",
+            "PermanssonResearch.ReverseSolver.Occupancy.physicalTrace",
+            "PermanssonResearch.ReverseSolver.Occupancy.physicalTrace_length",
+            "PermanssonResearch.ReverseSolver.Occupancy.consistent_eq_literal_run",
+            "PermanssonResearch.ReverseSolver.Occupancy.actual_monitor_literal_integral"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyMonitor",
+            "started": 1792296101.3107593,
+            "elapsed": 46.30826687812805,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "559f6c2af4b3c28d22309eeacce625e5a301a64fa859e18edcd8aabd1b3d72ff"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyReconstruction.lean",
+          "sha256": "cca49d7b2c5cdd76953194017b6fcfccd5cbb5c63788b4979632f4f8ced2a974",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Occupancy.actionMass_policy",
+            "PermanssonResearch.ReverseSolver.Occupancy.stateMass_policy_eq",
+            "PermanssonResearch.ReverseSolver.Occupancy.actionMass_policy_eq",
+            "PermanssonResearch.ReverseSolver.Occupancy.policy_realizes_flow",
+            "PermanssonResearch.ReverseSolver.Occupancy.reconstructed_terminal_expectation",
+            "PermanssonResearch.ReverseSolver.Occupancy.reconstructed_actual_terminal_integral",
+            "PermanssonResearch.ReverseSolver.Occupancy.exists_policy_realizing_flow",
+            "PermanssonResearch.ReverseSolver.Occupancy.actual_history_flow_equivalence",
+            "PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore",
+            "PermanssonResearch.ReverseSolver.Occupancy.flowTerminalScore",
+            "PermanssonResearch.ReverseSolver.Occupancy.actual_success_risk_range_eq_flow"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyReconstruction",
+            "started": 1792295995.9958174,
+            "elapsed": 53.68792200088501,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "cca49d7b2c5cdd76953194017b6fcfccd5cbb5c63788b4979632f4f8ced2a974"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/FiniteOccupancyRiskFixture.lean",
+          "sha256": "c430c8f499d5ed8433cda4e7a3b4ad91cadc9a630ebf03720fbdeb04411008ab",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.physicalMatrix",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.physicalSystem",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.monitor",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.enumeration",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.constantPolicy",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.success",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.danger",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.one_step_integral",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_success",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_danger",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.halfRow",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_mixing_risk_boundary",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.mixingFlow",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.reconstructed_mixing_scores",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.zero_mass_initial_actions",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.reconstructed_policy_legal_every_history"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyRiskFixture",
+            "started": 1792296147.6249845,
+            "elapsed": 51.38222408294678,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "c430c8f499d5ed8433cda4e7a3b4ad91cadc9a630ebf03720fbdeb04411008ab"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/FlowExpressions.lean",
+          "sha256": "a5008cc4a89abfc385fae5b85b4e851a04da3b364ce3253b7b3e462a7699154a",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.coordinate",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_coordinate",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_zero",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_add",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_sub",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_neg",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_smul",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_sum",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.equalityConstraints",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.constraint_holds",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.equalityConstraints_iff"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FlowExpressions",
+            "started": 1792295827.3299303,
+            "elapsed": 50.492772340774536,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "a5008cc4a89abfc385fae5b85b4e851a04da3b364ce3253b7b3e462a7699154a"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/FlowPolicyOptimality.lean",
+          "sha256": "b443c8af7ee23a4f4a8dd837cb4481e42264186620d81b9ebc32ab44ef4997ea",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore_eq_flowValue",
+            "PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore_reconstructed",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.vector_policy",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue_eq_evaluate",
+            "PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_none_iff_no_behavioral_policy",
+            "PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_some_actual_optimal"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FlowPolicyOptimality",
+            "started": 1792296324.933659,
+            "elapsed": 59.81817626953125,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "b443c8af7ee23a4f4a8dd837cb4481e42264186620d81b9ebc32ab44ef4997ea"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/FlowPolytope.lean",
+          "sha256": "45c0b8b83ea91252fd1fe1b656d25a322551053871223ec7d8a635173d63f03b",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.vector",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue",
+            "PermanssonResearch.ReverseSolver.Occupancy.flowFromVector",
+            "PermanssonResearch.ReverseSolver.Occupancy.flowFromVector_risk",
+            "PermanssonResearch.ReverseSolver.Occupancy.flowFromVector_vector",
+            "PermanssonResearch.ReverseSolver.Occupancy.Flow.vector_feasible",
+            "PermanssonResearch.ReverseSolver.Occupancy.flowPolytope_bounded",
+            "PermanssonResearch.ReverseSolver.Occupancy.flowPolytope_isCompact",
+            "PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow",
+            "PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_none_iff",
+            "PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_some_optimal"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FlowPolytope",
+            "started": 1792296264.5721905,
+            "elapsed": 60.33432149887085,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "45c0b8b83ea91252fd1fe1b656d25a322551053871223ec7d8a635173d63f03b"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/FlowPolytopeEncoding.lean",
+          "sha256": "2ab14f1570a460c59e53e98827a62eaa0561ad914686c09caf101edfdda00dac",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate",
+            "PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate",
+            "PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate",
+            "PermanssonResearch.ReverseSolver.Occupancy.stateExpression",
+            "PermanssonResearch.ReverseSolver.Occupancy.actionExpression",
+            "PermanssonResearch.ReverseSolver.Occupancy.outflowExpression",
+            "PermanssonResearch.ReverseSolver.Occupancy.inflowExpression",
+            "PermanssonResearch.ReverseSolver.Occupancy.terminalExpression",
+            "PermanssonResearch.ReverseSolver.Occupancy.evaluate_stateExpression",
+            "PermanssonResearch.ReverseSolver.Occupancy.evaluate_actionExpression",
+            "PermanssonResearch.ReverseSolver.Occupancy.evaluate_outflowExpression",
+            "PermanssonResearch.ReverseSolver.Occupancy.evaluate_inflowExpression",
+            "PermanssonResearch.ReverseSolver.Occupancy.evaluate_terminalExpression",
+            "PermanssonResearch.ReverseSolver.Occupancy.coordinateList",
+            "PermanssonResearch.ReverseSolver.Occupancy.mem_coordinateList",
+            "PermanssonResearch.ReverseSolver.Occupancy.forall_timeState",
+            "PermanssonResearch.ReverseSolver.Occupancy.forall_timeStateControl",
+            "PermanssonResearch.ReverseSolver.Occupancy.initialConstraints",
+            "PermanssonResearch.ReverseSolver.Occupancy.outflowConstraints",
+            "PermanssonResearch.ReverseSolver.Occupancy.inflowConstraints",
+            "PermanssonResearch.ReverseSolver.Occupancy.nonnegativeConstraints",
+            "PermanssonResearch.ReverseSolver.Occupancy.supportConstraints",
+            "PermanssonResearch.ReverseSolver.Occupancy.flowConstraints",
+            "PermanssonResearch.ReverseSolver.Occupancy.nonnegativeConstraints_iff",
+            "PermanssonResearch.ReverseSolver.Occupancy.initialConstraints_iff",
+            "PermanssonResearch.ReverseSolver.Occupancy.outflowConstraints_iff",
+            "PermanssonResearch.ReverseSolver.Occupancy.inflowConstraints_iff",
+            "PermanssonResearch.ReverseSolver.Occupancy.supportConstraints_iff",
+            "PermanssonResearch.ReverseSolver.Occupancy.flowConstraints_iff"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FlowPolytopeEncoding",
+            "started": 1792296199.02518,
+            "elapsed": 65.51839423179626,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "2ab14f1570a460c59e53e98827a62eaa0561ad914686c09caf101edfdda00dac"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/FlowRiskWitness.lean",
+          "sha256": "4b9a6ddaa60e29d97edbe0745058f1e8cdfb783e513d14d4609662d5969bfb1c",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.transition",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.reward",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.danger",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.one_step_actual",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_success_formula",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_danger_formula",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.coinRow",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.policy",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_half_attains",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.all_actual_feasible_success_le",
+            "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.full_risky_choice_is_infeasible"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.FlowRiskWitness",
+            "started": 1792296384.7832181,
+            "elapsed": 59.41442155838013,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "4b9a6ddaa60e29d97edbe0745058f1e8cdfb783e513d14d4609662d5969bfb1c"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/PolytopeActive.lean",
+          "sha256": "ddbc9578b3afd60a664ddc69f4812fd955b33cd174f945a7d21f2ac05141bf47",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.ExactPolytope.feasible",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.feasible_isClosed",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.feasible_convex",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.feasible_line_near_zero",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.extreme_active_kernel_zero",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.compact_exists_optimal_vertex"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.PolytopeActive",
+            "started": 1792295525.417553,
+            "elapsed": 48.81798696517944,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "ddbc9578b3afd60a664ddc69f4812fd955b33cd174f945a7d21f2ac05141bf47"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/PolytopeCompleteness.lean",
+          "sha256": "4985c7a94304b3f498c7a097107c162a43f381652fe411f2e3b73aeaa70ab5ec",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.ExactPolytope.cast_selectedGram",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.cast_gramRhs",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.extreme_eq_rationalCandidate",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible_iff_cast",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.every_vertex_is_enumerated",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates_nonempty_iff",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.exists_rational_optimal_candidate"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.PolytopeCompleteness",
+            "started": 1792295618.622089,
+            "elapsed": 52.988351583480835,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "4985c7a94304b3f498c7a097107c162a43f381652fe411f2e3b73aeaa70ab5ec"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/PolytopeLinearProgram.lean",
+          "sha256": "7b0a18b644a879fb30893cbfaf8d3141d5116605ce3c7826a1b1f7cd166caeef",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.listMatrix",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.listBounds",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible_eq",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible_isCompact",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_none_iff",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_some_feasible",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_some_optimal"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.PolytopeLinearProgram",
+            "started": 1792295724.5523145,
+            "elapsed": 48.66889405250549,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "7b0a18b644a879fb30893cbfaf8d3141d5116605ce3c7826a1b1f7cd166caeef"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/PolytopeOptimizer.lean",
+          "sha256": "eb08ce92beb0cf33fea1d28d6363b3b56dd66c1cb39d406c97575c779ac08832",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.ExactPolytope.activeSelections",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.activeSelections_complete",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidateList",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.mem_rationalCandidateList",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.realObjective",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.realObjective_apply",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_none_iff",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_some_feasible",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_some_optimal"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.PolytopeOptimizer",
+            "started": 1792295671.6264482,
+            "elapsed": 52.91687273979187,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "eb08ce92beb0cf33fea1d28d6363b3b56dd66c1cb39d406c97575c779ac08832"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/PolytopeRational.lean",
+          "sha256": "d4157c0666c100f5f6c8b6441b17ec1bf154a823922bde75c8f6f0d1ef4f1f8e",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.ExactPolytope.selectedRows",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram_kernel_iff",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.extreme_active_gram_det_ne_zero",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.gramRhs",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidate",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidate_equation",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasibleDecidable",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates_feasible"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.PolytopeRational",
+            "started": 1792295574.2657738,
+            "elapsed": 44.3379442691803,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "d4157c0666c100f5f6c8b6441b17ec1bf154a823922bde75c8f6f0d1ef4f1f8e"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/PolytopeRegression.lean",
+          "sha256": "5674d9644d37fa6bbcb7fe23325a2a5c9876692fe1a17677fed32433b2360544",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskMatrix",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskBounds",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_optimizer_half",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_success_at_half",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_deterministic_full_infeasible",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_negative_budget_infeasible",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.dependent_equalities_singleton",
+            "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.zero_dimensional_singleton"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.PolytopeRegression",
+            "started": 1792295773.2412083,
+            "elapsed": 54.06472373008728,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "5674d9644d37fa6bbcb7fe23325a2a5c9876692fe1a17677fed32433b2360544"
+          },
+          "artifact_fresh": true
+        },
         {
           "source": "PermanssonResearch/ReverseSolver/SolverBoundaryWitnesses.lean",
           "sha256": "352703922717456d3fb42563b1fdf34bc3ba76699f20e51ab1ea31fc1100c450",
@@ -2258,8 +2943,112 @@
       "selected_scope_as_supplied": "Finite rectangular perfect-information nature-after-control game; separately private-control-draw stage maximin LP.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Nature-after-realized-control rectangular game with actual normalized chronological law. Private-control-draw stage LP remains open.",
+      "implementation_boundary_and_residual": "Nature-after-realized-control rectangular dynamic game with actual normalized chronological law. Separate total rational private-draw stage LP dominates all real control mixtures, guarantees against every real mixed nature law, and has actual pure nature attainer;59-declaration audit. Matching/opposite timing distinction and negative-payoff floor checked. Whole-horizon model commitment is not row rectangularity.",
       "sources": [
+        {
+          "source": "PermanssonResearch/ReverseSolver/PrivateControlStageFixture.lean",
+          "sha256": "250b59afeb7650a833a775748fcb6c7ae546da8b33fa2981d581bd94067e0394",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.payoff",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.halfRow",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.stagePayoff_eq_mass",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.all_real_mixtures_upper",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.half_value",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.half_actual_expectation",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.pure_private_value",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.revealedControlLaw",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.revealed_control_zero",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.returned_value_half",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.solver_value_half",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.timing_and_randomization_boundary",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negativePayoff",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negative_private_value",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.MatchingFixture.negative_solver_value"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.PrivateControlStageFixture",
+            "started": 1792296285.8832624,
+            "elapsed": 59.0583770275116,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "250b59afeb7650a833a775748fcb6c7ae546da8b33fa2981d581bd94067e0394"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/PrivateControlStageModel.lean",
+          "sha256": "008f5ae2bc6c309a4b491d8b0a0844de3316613e0d3ca4db6de11681dbf7fb10",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.upperPayoff",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.lowerPayoff_le",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.le_upperPayoff",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.minimizingNature",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue_le",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.stagePayoff_bounds",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.privateValue_bounds",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.stageLaw",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.actual_stage_expectation",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.actual_nature_lower_bound",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.actual_minimizing_nature",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.nonnegativeConstraint",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.simplexUpper",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.simplexLower",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.valueLower",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.natureConstraint",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.nonnegativeConstraint_iff",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.simplexUpper_iff",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.simplexLower_iff",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.valueLower_iff",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.natureConstraint_iff",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.stageConstraints_iff"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.PrivateControlStageModel",
+            "started": 1792296163.8066049,
+            "elapsed": 59.4378879070282,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "008f5ae2bc6c309a4b491d8b0a0844de3316613e0d3ca4db6de11681dbf7fb10"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/PrivateControlStageOptimizer.lean",
+          "sha256": "5cc5fc7c353eaf568ecaddbaec36026444cfbef0168b21a5a7cd0874513ca6ab",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.lowerVector",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.upperVector",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.feasibleRow",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.feasibleRow_value_le",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.stage_box_bounds",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.strategyVector",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.strategyVector_feasible",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.stageObjective",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage_ne_none",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.solvePrivateStage_returns",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_feasible",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.solutionRow",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_rational_simplex",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_dominates_all_real_mixtures",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_value_attained",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_isGreatest",
+            "PermanssonResearch.ReverseSolver.PrivateControlStage.returned_actual_strategic_value"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.PrivateControlStageOptimizer",
+            "started": 1792296223.2551045,
+            "elapsed": 62.620646476745605,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "5cc5fc7c353eaf568ecaddbaec36026444cfbef0168b21a5a7cd0874513ca6ab"
+          },
+          "artifact_fresh": true
+        },
         {
           "source": "PermanssonResearch/ReverseSolver/RectangularFiniteGame.lean",
           "sha256": "62f5b0771d14292f8271e97257bbae95b5ea884e112af845b14338f847f69e34",
@@ -2348,9 +3137,210 @@
       "title": "Partial observation and belief-state reduction",
       "selected_scope_as_supplied": "Finite hidden augmented state including event monitors, common finite control menu, finite observations, alpha-vector optimality.",
       "acceptance_status": "NOT_ACCEPTED",
-      "implementation_status": "OPEN",
-      "implementation_boundary_and_residual": "Finite hidden augmented-state belief update, alpha-vector construction and optimality remain open.",
-      "sources": []
+      "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
+      "implementation_boundary_and_residual": "Finite full hidden augmented-state Bayes filter, zero-probability default, alpha-vector envelope and actual optimal observation-history law;116-declaration audit. Actual hidden monitor memory and literal physical/control chronology are retained. Hidden-state peek regression rejects information leakage. Arbitrary real finite argmax is mathematical attainment, without an executable real-number optimization claim.",
+      "sources": [
+        {
+          "source": "PermanssonResearch/ReverseSolver/BeliefAlpha.lean",
+          "sha256": "06cebf53aba94f9958a40dbbd8166c8172c4b6ac02831fba3de31072c3d7e469",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Belief.Tree",
+            "PermanssonResearch.ReverseSolver.Belief.tree_fintype",
+            "PermanssonResearch.ReverseSolver.Belief.tree_nonempty",
+            "PermanssonResearch.ReverseSolver.Belief.argmax",
+            "PermanssonResearch.ReverseSolver.Belief.argmax_spec",
+            "PermanssonResearch.ReverseSolver.Belief.finiteMax",
+            "PermanssonResearch.ReverseSolver.Belief.le_finiteMax",
+            "PermanssonResearch.ReverseSolver.Belief.finiteMax_le",
+            "PermanssonResearch.ReverseSolver.Belief.finiteMax_const",
+            "PermanssonResearch.ReverseSolver.Belief.Model.alpha",
+            "PermanssonResearch.ReverseSolver.Belief.Model.score",
+            "PermanssonResearch.ReverseSolver.Belief.Model.value",
+            "PermanssonResearch.ReverseSolver.Belief.Model.chosenControl",
+            "PermanssonResearch.ReverseSolver.Belief.Model.optimalTree",
+            "PermanssonResearch.ReverseSolver.Belief.Model.alpha_le_value",
+            "PermanssonResearch.ReverseSolver.Belief.Model.optimalTree_attains",
+            "PermanssonResearch.ReverseSolver.Belief.Model.alpha_envelope",
+            "PermanssonResearch.ReverseSolver.Belief.Model.linear_on_optimal_cell",
+            "PermanssonResearch.ReverseSolver.Belief.Model.value_convex"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.BeliefAlpha",
+            "started": 1792293223.7565198,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 85.5239942073822
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/BeliefChronology.lean",
+          "sha256": "cc5ab3d5ed778995dfd610b3d2f5b94225e0569747f6d4b79d3606ab5d558d95",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Belief.Samples.observable",
+            "PermanssonResearch.ReverseSolver.Belief.Model.wordContinuation",
+            "PermanssonResearch.ReverseSolver.Belief.Model.wordContinuation_nil",
+            "PermanssonResearch.ReverseSolver.Belief.Model.wordContinuation_cons",
+            "PermanssonResearch.ReverseSolver.Belief.Model.endpointSum",
+            "PermanssonResearch.ReverseSolver.Belief.Model.endpointSum_cons",
+            "PermanssonResearch.ReverseSolver.Belief.Model.endpointSum_eq_observedForward",
+            "PermanssonResearch.ReverseSolver.Belief.Model.chronological_endpoint_integral",
+            "PermanssonResearch.ReverseSolver.Belief.Model.chronological_filtered_endpoint",
+            "PermanssonResearch.ReverseSolver.Belief.Model.chronological_word_integral",
+            "PermanssonResearch.ReverseSolver.Belief.Model.actual_history_conditional"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.BeliefChronology",
+            "started": 1792294156.9794927,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 85.93552231788635
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/BeliefFilter.lean",
+          "sha256": "c8cc5f1f254b2116a909ca558cd83eaabaf186add380350cab7ee214ca4ce0cf",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Belief.Model.forwardStep",
+            "PermanssonResearch.ReverseSolver.Belief.Model.forward",
+            "PermanssonResearch.ReverseSolver.Belief.Model.filter",
+            "PermanssonResearch.ReverseSolver.Belief.Model.likelihood",
+            "PermanssonResearch.ReverseSolver.Belief.Model.forwardStep_scaled",
+            "PermanssonResearch.ReverseSolver.Belief.Model.forward_scaled",
+            "PermanssonResearch.ReverseSolver.Belief.Model.forward_belief_scaled",
+            "PermanssonResearch.ReverseSolver.Belief.Model.forward_belief",
+            "PermanssonResearch.ReverseSolver.Belief.Model.forward_total",
+            "PermanssonResearch.ReverseSolver.Belief.Model.filtered_conditional",
+            "PermanssonResearch.ReverseSolver.Belief.Model.zero_word_mass",
+            "PermanssonResearch.ReverseSolver.Belief.Model.actionWeight",
+            "PermanssonResearch.ReverseSolver.Belief.Model.observedForward",
+            "PermanssonResearch.ReverseSolver.Belief.Model.observedForward_eq_actionWeight",
+            "PermanssonResearch.ReverseSolver.Belief.Model.observed_filter_law",
+            "PermanssonResearch.ReverseSolver.Belief.Model.observed_word_probability"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.BeliefFilter",
+            "started": 1792293857.3271704,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 87.85268831253052
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/BeliefHistory.lean",
+          "sha256": "3620313d0d0d7f8cd7b50b29081a88e3f56db0188bad8dfd5033c4971da14830",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Belief.Behavioral",
+            "PermanssonResearch.ReverseSolver.Belief.ObservationPolicy",
+            "PermanssonResearch.ReverseSolver.Belief.ObservationPolicy.unfold",
+            "PermanssonResearch.ReverseSolver.Belief.Tree.behavioral",
+            "PermanssonResearch.ReverseSolver.Belief.Distribution.dot_sum",
+            "PermanssonResearch.ReverseSolver.Belief.Model.stateValue",
+            "PermanssonResearch.ReverseSolver.Belief.Model.expected",
+            "PermanssonResearch.ReverseSolver.Belief.Model.expected_succ",
+            "PermanssonResearch.ReverseSolver.Belief.Model.stateValue_one",
+            "PermanssonResearch.ReverseSolver.Belief.Model.stateValue_tree",
+            "PermanssonResearch.ReverseSolver.Belief.Model.expected_le_value",
+            "PermanssonResearch.ReverseSolver.Belief.Samples",
+            "PermanssonResearch.ReverseSolver.Belief.samples_fintype",
+            "PermanssonResearch.ReverseSolver.Belief.samples_measurable",
+            "PermanssonResearch.ReverseSolver.Belief.samples_singletons",
+            "PermanssonResearch.ReverseSolver.Belief.Model.sampleMass",
+            "PermanssonResearch.ReverseSolver.Belief.Model.terminal",
+            "PermanssonResearch.ReverseSolver.Belief.Model.conditionalMean",
+            "PermanssonResearch.ReverseSolver.Belief.Model.conditionalMean_eq_stateValue",
+            "PermanssonResearch.ReverseSolver.Belief.Model.sampleMass_nonneg",
+            "PermanssonResearch.ReverseSolver.Belief.Model.sampleMass_sum",
+            "PermanssonResearch.ReverseSolver.Belief.Model.chronologicalLaw",
+            "PermanssonResearch.ReverseSolver.Belief.Model.chronologicalMean_eq_expected",
+            "PermanssonResearch.ReverseSolver.Belief.Model.chronologicalIntegral_eq_expected",
+            "PermanssonResearch.ReverseSolver.Belief.Model.observationHistory_dominated",
+            "PermanssonResearch.ReverseSolver.Belief.Model.behavioralChronological_dominated",
+            "PermanssonResearch.ReverseSolver.Belief.Model.observationTree_attains"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.BeliefHistory",
+            "started": 1792293619.4590487,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 83.07512545585632
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/BeliefKernel.lean",
+          "sha256": "996f4cc294dae5807494cbbbb733ae246f4e79dcdba4febc8b1048e21a8cd946",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Belief.Distribution",
+            "PermanssonResearch.ReverseSolver.Belief.Distribution.pure",
+            "PermanssonResearch.ReverseSolver.Belief.Distribution.pmf",
+            "PermanssonResearch.ReverseSolver.Belief.Distribution.pmf_apply",
+            "PermanssonResearch.ReverseSolver.Belief.Distribution.dot",
+            "PermanssonResearch.ReverseSolver.Belief.Distribution.integral_eq_dot",
+            "PermanssonResearch.ReverseSolver.Belief.Distribution.mix",
+            "PermanssonResearch.ReverseSolver.Belief.Distribution.dot_mix",
+            "PermanssonResearch.ReverseSolver.Belief.Model",
+            "PermanssonResearch.ReverseSolver.Belief.Model.numerator",
+            "PermanssonResearch.ReverseSolver.Belief.Model.branchMass",
+            "PermanssonResearch.ReverseSolver.Belief.Model.numerator_nonneg",
+            "PermanssonResearch.ReverseSolver.Belief.Model.branchMass_nonneg",
+            "PermanssonResearch.ReverseSolver.Belief.Model.branchMass_sum",
+            "PermanssonResearch.ReverseSolver.Belief.Model.numerator_eq_zero_of_branch_zero",
+            "PermanssonResearch.ReverseSolver.Belief.Model.posterior",
+            "PermanssonResearch.ReverseSolver.Belief.Model.posterior_formula",
+            "PermanssonResearch.ReverseSolver.Belief.Model.posterior_zero",
+            "PermanssonResearch.ReverseSolver.Belief.Model.posterior_cancel",
+            "PermanssonResearch.ReverseSolver.Belief.Model.posterior_dot_cancel",
+            "PermanssonResearch.ReverseSolver.Belief.Model.jointStep",
+            "PermanssonResearch.ReverseSolver.Belief.Model.jointStep_atom",
+            "PermanssonResearch.ReverseSolver.Belief.Model.step",
+            "PermanssonResearch.ReverseSolver.Belief.Model.sum_flip_three",
+            "PermanssonResearch.ReverseSolver.Belief.Model.dot_step_numerator",
+            "PermanssonResearch.ReverseSolver.Belief.Model.dot_step"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.BeliefKernel",
+            "started": 1792292867.6510417,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 74.02075624465942
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/BeliefMonitor.lean",
+          "sha256": "25a111ad8566c6dda4967c165279d9d1949808f079908114f891baa06acf3eb1",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.Belief.CommonMenu",
+            "PermanssonResearch.ReverseSolver.Belief.monitoredTransition",
+            "PermanssonResearch.ReverseSolver.Belief.monitoredModel",
+            "PermanssonResearch.ReverseSolver.Belief.monitoredInitial",
+            "PermanssonResearch.ReverseSolver.Belief.monitoredReward",
+            "PermanssonResearch.ReverseSolver.Belief.monitor_transition_atom",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_physical_atom",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_control_permitted",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_control_world_fixed",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_control_update_fixed",
+            "PermanssonResearch.ReverseSolver.Belief.monitoredInitial_support",
+            "PermanssonResearch.ReverseSolver.Belief.physicalTrace",
+            "PermanssonResearch.ReverseSolver.Belief.monitor_run_on_support",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_integral_eq_trace_reward",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_initial_integral_eq_history",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_history_dominated",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_history_attained"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.BeliefMonitor",
+            "started": 1792294263.5740757,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 87.02961468696594
+          },
+          "artifact_fresh": true
+        }
+      ]
     },
     {
       "atlas_id": "D2-P07",
@@ -2859,9 +3849,319 @@
       "title": "General-state multiple-limit classification",
       "selected_scope_as_supplied": "Compact metric Feller cluster theorem, unique-invariant convergence, stationary/absolutely-continuous random-law extension.",
       "acceptance_status": "NOT_ACCEPTED",
-      "implementation_status": "OPEN",
-      "implementation_boundary_and_residual": "Compact Feller cluster, unique-invariant convergence and stationary/AC random-law extensions remain open.",
-      "sources": []
+      "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
+      "implementation_boundary_and_residual": "Actual all-initial compact metric Borel Feller empirical cluster invariance, invariant-family distance convergence, unique-invariant weak convergence and original occupation-mode adapter;88-declaration audit. Generic bounded pointwise ergodic convergence and actual invariant-sigma conditional-expectation identity derived, without invertibility/ergodicity;47-declaration audit. Stationary random-law, actual initial-law absolute-continuity transfer and noncompact extensions remain separate.",
+      "sources": [
+        {
+          "source": "PermanssonResearch/MultipleLimit/CanonicalBoundedInnovations.lean",
+          "sha256": "0c1a311af784a03305e447bf2308914399ac8224f38f3f5a0d014179cdf80b4f",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.past",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.coordinate_measurable",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.predict",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.predict_measurable",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.predict_bound",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.next_conditional",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.innovation",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.innovation_measurable",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.innovation_bound",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.innovation_centered",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.normalization",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.boundedProcess",
+            "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.canonical_innovation_strong_law"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations",
+            "started": 1792295739.9979277,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 80.84358787536621
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/CompactFellerDistance.lean",
+          "sha256": "b0c70c23acd3908ef5905668c45536f45ad199a4ff0c774ebc8374b5e40edb94",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.CompactFeller.weakFamilyDistance",
+            "PermanssonResearch.MultipleLimit.CompactFeller.weakFamilyDistance_continuous",
+            "PermanssonResearch.MultipleLimit.CompactFeller.weakFamilyDistance_zero",
+            "PermanssonResearch.MultipleLimit.CompactFeller.weakFamilyDistance_zero_iff",
+            "PermanssonResearch.MultipleLimit.CompactFeller.distance_tendsto_iff_clusters",
+            "PermanssonResearch.MultipleLimit.CompactFeller.singleton_distance_iff_tendsto",
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_invariant_distance_ae",
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_predeclared_family_distance_ae"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.CompactFellerDistance",
+            "started": 1792296593.6229959,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 75.19917297363281
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/CompactFellerEmpirical.lean",
+          "sha256": "d05ed52a0f3dc947dec318a08a71b2647bea3a9ab34eea0ffac91fc717243039",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_integral",
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_residual_telescope",
+            "PermanssonResearch.MultipleLimit.CompactFeller.endpoint_average_tendsto_zero",
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_residual_ae",
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_all_residuals_ae",
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_clusters_invariant_ae",
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_invariant_family_ae",
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_unique_invariant_ae",
+            "PermanssonResearch.MultipleLimit.CompactFeller.exists_invariant",
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_descriptor_family_ae",
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_descriptor_unique_ae",
+            "PermanssonResearch.MultipleLimit.CompactFeller.empirical_map",
+            "PermanssonResearch.MultipleLimit.CompactFeller.original_descriptor_empirical_eq",
+            "PermanssonResearch.MultipleLimit.CompactFeller.original_occupation_of_invariant_descriptor"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.CompactFellerEmpirical",
+            "started": 1792296283.3214161,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 79.28810501098633
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/CompactFellerKernel.lean",
+          "sha256": "807aea7fb986702dd9972eb5c36dffe0ae4a8c2f6b4496e02a80dd3af4595bfe",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.CompactFeller.IsFeller",
+            "PermanssonResearch.MultipleLimit.CompactFeller.operator",
+            "PermanssonResearch.MultipleLimit.CompactFeller.step",
+            "PermanssonResearch.MultipleLimit.CompactFeller.Invariant",
+            "PermanssonResearch.MultipleLimit.CompactFeller.invariant_iff_measure",
+            "PermanssonResearch.MultipleLimit.CompactFeller.continuousMap_integrable",
+            "PermanssonResearch.MultipleLimit.CompactFeller.integral_step",
+            "PermanssonResearch.MultipleLimit.CompactFeller.step_continuous",
+            "PermanssonResearch.MultipleLimit.CompactFeller.invariant_set_closed",
+            "PermanssonResearch.MultipleLimit.CompactFeller.residual",
+            "PermanssonResearch.MultipleLimit.CompactFeller.residual_eq_predict",
+            "PermanssonResearch.MultipleLimit.CompactFeller.residual_continuous",
+            "PermanssonResearch.MultipleLimit.CompactFeller.invariant_iff_residual_zero",
+            "PermanssonResearch.MultipleLimit.CompactFeller.integral_test_bound",
+            "PermanssonResearch.MultipleLimit.CompactFeller.residual_test_lipschitz",
+            "PermanssonResearch.MultipleLimit.CompactFeller.residual_tendsto_of_dense",
+            "PermanssonResearch.MultipleLimit.CompactFeller.cluster_invariant",
+            "PermanssonResearch.MultipleLimit.CompactFeller.tendsto_invariant_family",
+            "PermanssonResearch.MultipleLimit.CompactFeller.tendsto_unique_invariant"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.CompactFellerKernel",
+            "started": 1792296068.9306436,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 71.91241669654846
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/BoundedBirkhoff.lean",
+          "sha256": "75bccad1ec34c03f97efc567c6ece422cfbcc73caeb29a74e6289aedf5269de0",
+          "named_exports": [
+            "PermanssonResearch.Probability.Hopf.integrable_of_abs_bound",
+            "PermanssonResearch.Probability.Hopf.upperAverage_integrable",
+            "PermanssonResearch.Probability.Hopf.positive_partial_sum_sub_upper",
+            "PermanssonResearch.Probability.Hopf.integral_upperAverage_le",
+            "PermanssonResearch.Probability.Hopf.upperAverage_neg_eq_neg_liminf",
+            "PermanssonResearch.Probability.Hopf.bounded_birkhoff"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.BoundedBirkhoff",
+            "started": 1792297093.6610892,
+            "elapsed": 55.92388939857483,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "75bccad1ec34c03f97efc567c6ece422cfbcc73caeb29a74e6289aedf5269de0"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/BoundedBirkhoffConditional.lean",
+          "sha256": "3fea8b89022b3e17d58c68f08f0c3a8c1399db783e60b0bcadd4c19bf8811d09",
+          "named_exports": [
+            "PermanssonResearch.Probability.Hopf.invariant_set_average_integral",
+            "PermanssonResearch.Probability.Hopf.invariant_set_upperAverage_integral",
+            "PermanssonResearch.Probability.Hopf.upperAverage_ae_condExp",
+            "PermanssonResearch.Probability.Hopf.bounded_birkhoff_condExp"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.BoundedBirkhoffConditional",
+            "started": 1792297191.0878835,
+            "elapsed": 49.28593397140503,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "3fea8b89022b3e17d58c68f08f0c3a8c1399db783e60b0bcadd4c19bf8811d09"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/BoundedBirkhoffRegression.lean",
+          "sha256": "54ab2be005e89244aba62c4c0689c55ddb2b9c40c13a4f282f50f4512a35dbe7",
+          "named_exports": [
+            "PermanssonResearch.Probability.Hopf.Regression.boolMeasurable",
+            "PermanssonResearch.Probability.Hopf.Regression.boolDiscrete",
+            "PermanssonResearch.Probability.Hopf.Regression.label",
+            "PermanssonResearch.Probability.Hopf.Regression.label_bound",
+            "PermanssonResearch.Probability.Hopf.Regression.identity_average_tendsto",
+            "PermanssonResearch.Probability.Hopf.Regression.identity_upperAverage",
+            "PermanssonResearch.Probability.Hopf.Regression.identity_limits_distinct",
+            "PermanssonResearch.Probability.Hopf.Regression.reset",
+            "PermanssonResearch.Probability.Hopf.Regression.reset_not_injective",
+            "PermanssonResearch.Probability.Hopf.Regression.reset_preserves",
+            "PermanssonResearch.Probability.Hopf.Regression.reset_conditional_time_average"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.BoundedBirkhoffRegression",
+            "started": 1792297240.3908179,
+            "elapsed": 49.82496476173401,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "54ab2be005e89244aba62c4c0689c55ddb2b9c40c13a4f282f50f4512a35dbe7"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/BoundedInnovations.lean",
+          "sha256": "3bbf388425a201c811d43d6d309c8a1a54d6577cad5d14fefd8c35592c5f4a61",
+          "named_exports": [
+            "PermanssonResearch.Probability.BoundedInnovations.Process",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.total",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.total_zero",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.total_succ",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.measurable_total",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.time_lipschitz",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.total_bound",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.integrable_value",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.integrable_total",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.value_square_bound",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.integrable_value_square",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.integral_value_square_le",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.integrable_total_square",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.integrable_total_mul_value",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.bounded_past_cross_zero",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.total_next_cross_zero",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.second_moment_le_time",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.integral_value_zero",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.integral_total_zero",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.total_memLp_two",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.tail_le_time",
+            "PermanssonResearch.Probability.BoundedInnovations.Process.ae_strong_law"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.BoundedInnovations",
+            "started": 1792295530.344718,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 68.74529719352722
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/BoundedOrbitAverages.lean",
+          "sha256": "175dcfda26548683786a9891117d34b009100e5a16433ca72e0808f6fed1fb1b",
+          "named_exports": [
+            "PermanssonResearch.Probability.Hopf.upperAverage",
+            "PermanssonResearch.Probability.Hopf.average_measurable",
+            "PermanssonResearch.Probability.Hopf.upperAverage_measurable",
+            "PermanssonResearch.Probability.Hopf.average_abs_bound",
+            "PermanssonResearch.Probability.Hopf.average_bddAbove",
+            "PermanssonResearch.Probability.Hopf.average_bddBelow",
+            "PermanssonResearch.Probability.Hopf.upperAverage_abs_bound",
+            "PermanssonResearch.Probability.Hopf.limsup_le_of_tendsto_sub",
+            "PermanssonResearch.Probability.Hopf.upperAverage_invariant"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.BoundedOrbitAverages",
+            "started": 1792297045.249537,
+            "elapsed": 48.38929009437561,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "175dcfda26548683786a9891117d34b009100e5a16433ca72e0808f6fed1fb1b"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/BoundedSquareStrongLaw.lean",
+          "sha256": "6b132ea3ae4398626c194dad067021b66cf1ef3e0c56171aa581f6e9c7e471b4",
+          "named_exports": [
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.squareHorizon",
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.squareHorizon_pos",
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.square_reciprocal_summable",
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.normalizedSquare",
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.square_event_probability_bound",
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.square_eventually_small",
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.square_ae_tendsto_zero",
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.relativeSquareGap",
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.relativeSquareGap_tendsto_zero",
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.normalized_le_square_and_gap",
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.full_tendsto_of_square",
+            "PermanssonResearch.Probability.BoundedSquareStrongLaw.ae_strong_law"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.BoundedSquareStrongLaw",
+            "started": 1792295203.1726227,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 63.82070803642273
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/HopfMaximal.lean",
+          "sha256": "aa1b0035a71df0f759091b7e59ca7ce9084900d1ff892a3613771b339ea4d7b8",
+          "named_exports": [
+            "PermanssonResearch.Probability.Hopf.positiveMax",
+            "PermanssonResearch.Probability.Hopf.partialSum",
+            "PermanssonResearch.Probability.Hopf.partialSum_succ",
+            "PermanssonResearch.Probability.Hopf.positiveMax_nonneg",
+            "PermanssonResearch.Probability.Hopf.positiveMax_le_succ",
+            "PermanssonResearch.Probability.Hopf.positiveMax_monotone",
+            "PermanssonResearch.Probability.Hopf.partialSum_le_positiveMax",
+            "PermanssonResearch.Probability.Hopf.positiveMax_measurable",
+            "PermanssonResearch.Probability.Hopf.positiveMax_integrable",
+            "PermanssonResearch.Probability.Hopf.preserving_integral",
+            "PermanssonResearch.Probability.Hopf.indicator_ge_difference",
+            "PermanssonResearch.Probability.Hopf.finite_maximal_integral_nonneg",
+            "PermanssonResearch.Probability.Hopf.integral_nonneg_of_positive_partial_sums"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.HopfMaximal",
+            "started": 1792296991.7747803,
+            "elapsed": 53.4556827545166,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "aa1b0035a71df0f759091b7e59ca7ce9084900d1ff892a3613771b339ea4d7b8"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/InvariantSigma.lean",
+          "sha256": "39bed4cce3cbcbdc5d089183c81aa71bf2ce952bb23edb887dcfe8710e6e4217",
+          "named_exports": [
+            "PermanssonResearch.Probability.Hopf.invariantSigma",
+            "PermanssonResearch.Probability.Hopf.invariantSigma_le",
+            "PermanssonResearch.Probability.Hopf.measurableSet_invariantSigma",
+            "PermanssonResearch.Probability.Hopf.upperAverage_measurable_invariant"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.InvariantSigma",
+            "started": 1792297149.60647,
+            "elapsed": 41.45174717903137,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "39bed4cce3cbcbdc5d089183c81aa71bf2ce952bb23edb887dcfe8710e6e4217"
+          },
+          "artifact_fresh": true
+        }
+      ]
     },
     {
       "atlas_id": "B-P01",

@@ -1,0 +1,1301 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/ReverseSolver/PolytopeActive.lean": {
+      "sha256": "ddbc9578b3afd60a664ddc69f4812fd955b33cd174f945a7d21f2ac05141bf47",
+      "artifact_sha256": "28c9a263f7ff58702812f15ac9166e7f87b2d114680e1b047a8afbd74391afcb",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.PolytopeActive",
+        "started": 1792295525.417553,
+        "elapsed": 48.81798696517944,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "ddbc9578b3afd60a664ddc69f4812fd955b33cd174f945a7d21f2ac05141bf47"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/PolytopeRational.lean": {
+      "sha256": "d4157c0666c100f5f6c8b6441b17ec1bf154a823922bde75c8f6f0d1ef4f1f8e",
+      "artifact_sha256": "49ec796e7874af9a547db188076d73137b39d8fcc1b27750c88d8c19375317ba",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.PolytopeRational",
+        "started": 1792295574.2657738,
+        "elapsed": 44.3379442691803,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "d4157c0666c100f5f6c8b6441b17ec1bf154a823922bde75c8f6f0d1ef4f1f8e"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/PolytopeCompleteness.lean": {
+      "sha256": "4985c7a94304b3f498c7a097107c162a43f381652fe411f2e3b73aeaa70ab5ec",
+      "artifact_sha256": "a451b6d8b3be64891f1d9a458ce4ef8f5e90830e84e08928b4f7828d9ca2d093",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.PolytopeCompleteness",
+        "started": 1792295618.622089,
+        "elapsed": 52.988351583480835,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "4985c7a94304b3f498c7a097107c162a43f381652fe411f2e3b73aeaa70ab5ec"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/PolytopeOptimizer.lean": {
+      "sha256": "eb08ce92beb0cf33fea1d28d6363b3b56dd66c1cb39d406c97575c779ac08832",
+      "artifact_sha256": "5860cf4bedd02ad460caa7fb02b59595f48aff989fa1ef3ec10b8c1d5e897793",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.PolytopeOptimizer",
+        "started": 1792295671.6264482,
+        "elapsed": 52.91687273979187,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "eb08ce92beb0cf33fea1d28d6363b3b56dd66c1cb39d406c97575c779ac08832"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/PolytopeLinearProgram.lean": {
+      "sha256": "7b0a18b644a879fb30893cbfaf8d3141d5116605ce3c7826a1b1f7cd166caeef",
+      "artifact_sha256": "4461adac6ef74060e0c474b8863c20b089f476455920ae773bfb73fb1ecf4f57",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.PolytopeLinearProgram",
+        "started": 1792295724.5523145,
+        "elapsed": 48.66889405250549,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "7b0a18b644a879fb30893cbfaf8d3141d5116605ce3c7826a1b1f7cd166caeef"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/PolytopeRegression.lean": {
+      "sha256": "5674d9644d37fa6bbcb7fe23325a2a5c9876692fe1a17677fed32433b2360544",
+      "artifact_sha256": "01448eea249148220e267558a1bef84176d4ef3889d8021636fe497910d44c1c",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.PolytopeRegression",
+        "started": 1792295773.2412083,
+        "elapsed": 54.06472373008728,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "5674d9644d37fa6bbcb7fe23325a2a5c9876692fe1a17677fed32433b2360544"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/FlowExpressions.lean": {
+      "sha256": "a5008cc4a89abfc385fae5b85b4e851a04da3b364ce3253b7b3e462a7699154a",
+      "artifact_sha256": "d51757c1a17acc3432297e35d3e7d3b7155f502d8f1cc0164a30c44de65144b3",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FlowExpressions",
+        "started": 1792295827.3299303,
+        "elapsed": 50.492772340774536,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "a5008cc4a89abfc385fae5b85b4e851a04da3b364ce3253b7b3e462a7699154a"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/FiniteOccupancyModel.lean": {
+      "sha256": "ece4284ce2a56ded906808731c14ef4c44acd1cc656dc818bbda97f47ff2bf64",
+      "artifact_sha256": "0eb859641ca237f00f8e974900e8fc69c41c4f66ce9586b42198f75a90ba3808",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyModel",
+        "started": 1792295877.8460212,
+        "elapsed": 62.13061809539795,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "ece4284ce2a56ded906808731c14ef4c44acd1cc656dc818bbda97f47ff2bf64"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/FiniteOccupancyHistory.lean": {
+      "sha256": "1139698d044db18454590a42530676ca184e6d95634077b458d43e1d80ead40e",
+      "artifact_sha256": "ac13b66e19ff105054f7db85c0e57d4f41dacae90d9a898903142d6fa0733098",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyHistory",
+        "started": 1792295940.0006351,
+        "elapsed": 55.97782349586487,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "1139698d044db18454590a42530676ca184e6d95634077b458d43e1d80ead40e"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/FiniteOccupancyReconstruction.lean": {
+      "sha256": "cca49d7b2c5cdd76953194017b6fcfccd5cbb5c63788b4979632f4f8ced2a974",
+      "artifact_sha256": "e8cbef284356d87ff1f8beeb4bd8699c32074a8365aaca21753b6d3eb1715e3a",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyReconstruction",
+        "started": 1792295995.9958174,
+        "elapsed": 53.68792200088501,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "cca49d7b2c5cdd76953194017b6fcfccd5cbb5c63788b4979632f4f8ced2a974"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/FiniteOccupancyMarginals.lean": {
+      "sha256": "dcfc6e0455c297a03f88c64067f048e0baf1b34c34734181d71a83e88a7651d8",
+      "artifact_sha256": "80f9251f55fa27438dfe34bafa6b5a2571fdab233cc9bd917ef670de228d7cea",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyMarginals",
+        "started": 1792296049.691733,
+        "elapsed": 51.599642753601074,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "dcfc6e0455c297a03f88c64067f048e0baf1b34c34734181d71a83e88a7651d8"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/FiniteOccupancyMonitor.lean": {
+      "sha256": "559f6c2af4b3c28d22309eeacce625e5a301a64fa859e18edcd8aabd1b3d72ff",
+      "artifact_sha256": "a7ad30fe3d6aaf2e6400d85753dab7c2b9eb4407811021840ba894abb10a7db8",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyMonitor",
+        "started": 1792296101.3107593,
+        "elapsed": 46.30826687812805,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "559f6c2af4b3c28d22309eeacce625e5a301a64fa859e18edcd8aabd1b3d72ff"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/FiniteOccupancyRiskFixture.lean": {
+      "sha256": "c430c8f499d5ed8433cda4e7a3b4ad91cadc9a630ebf03720fbdeb04411008ab",
+      "artifact_sha256": "9b23b27fc3579956d1a761489eab8f025164341b5b1d9458594ee626197e1f79",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FiniteOccupancyRiskFixture",
+        "started": 1792296147.6249845,
+        "elapsed": 51.38222408294678,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "c430c8f499d5ed8433cda4e7a3b4ad91cadc9a630ebf03720fbdeb04411008ab"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/FlowPolytopeEncoding.lean": {
+      "sha256": "2ab14f1570a460c59e53e98827a62eaa0561ad914686c09caf101edfdda00dac",
+      "artifact_sha256": "2854aa8c8ea3ff2cda4a443643b04d9cb756ec9669d791366fa908857ee01cec",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FlowPolytopeEncoding",
+        "started": 1792296199.02518,
+        "elapsed": 65.51839423179626,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "2ab14f1570a460c59e53e98827a62eaa0561ad914686c09caf101edfdda00dac"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/FlowPolytope.lean": {
+      "sha256": "45c0b8b83ea91252fd1fe1b656d25a322551053871223ec7d8a635173d63f03b",
+      "artifact_sha256": "50807b05d1ded9c0a33c54d30208a058fbca08283e4fda5180abdc39f0849daf",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FlowPolytope",
+        "started": 1792296264.5721905,
+        "elapsed": 60.33432149887085,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "45c0b8b83ea91252fd1fe1b656d25a322551053871223ec7d8a635173d63f03b"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/FlowPolicyOptimality.lean": {
+      "sha256": "b443c8af7ee23a4f4a8dd837cb4481e42264186620d81b9ebc32ab44ef4997ea",
+      "artifact_sha256": "7f0850ea7835245062872993c5de7148bf8af300a90bea8d8be076075657fed2",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FlowPolicyOptimality",
+        "started": 1792296324.933659,
+        "elapsed": 59.81817626953125,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "b443c8af7ee23a4f4a8dd837cb4481e42264186620d81b9ebc32ab44ef4997ea"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/FlowRiskWitness.lean": {
+      "sha256": "4b9a6ddaa60e29d97edbe0745058f1e8cdfb783e513d14d4609662d5969bfb1c",
+      "artifact_sha256": "b8c41a4c0897064e56eda41526e1ad76ddfc8c79d9456bcbc1b4be4a17307e80",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.FlowRiskWitness",
+        "started": 1792296384.7832181,
+        "elapsed": 59.41442155838013,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "4b9a6ddaa60e29d97edbe0745058f1e8cdfb783e513d14d4609662d5969bfb1c"
+      }
+    }
+  },
+  "module_list": [
+    "ReverseSolver.PolytopeActive",
+    "ReverseSolver.PolytopeRational",
+    "ReverseSolver.PolytopeCompleteness",
+    "ReverseSolver.PolytopeOptimizer",
+    "ReverseSolver.PolytopeLinearProgram",
+    "ReverseSolver.PolytopeRegression",
+    "ReverseSolver.FlowExpressions",
+    "ReverseSolver.FiniteOccupancyModel",
+    "ReverseSolver.FiniteOccupancyHistory",
+    "ReverseSolver.FiniteOccupancyReconstruction",
+    "ReverseSolver.FiniteOccupancyMarginals",
+    "ReverseSolver.FiniteOccupancyMonitor",
+    "ReverseSolver.FiniteOccupancyRiskFixture",
+    "ReverseSolver.FlowPolytopeEncoding",
+    "ReverseSolver.FlowPolytope",
+    "ReverseSolver.FlowPolicyOptimality",
+    "ReverseSolver.FlowRiskWitness"
+  ],
+  "declaration_count": 221,
+  "declarations": {
+    "PermanssonResearch.ReverseSolver.ExactPolytope.feasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.feasible_isClosed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.feasible_convex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.feasible_line_near_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.extreme_active_kernel_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.compact_exists_optimal_vertex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.selectedRows": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram_kernel_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.extreme_active_gram_det_ne_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.gramRhs": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidate_equation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasibleDecidable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates_feasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.cast_selectedGram": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.cast_gramRhs": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.extreme_eq_rationalCandidate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible_iff_cast": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.every_vertex_is_enumerated": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates_nonempty_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.exists_rational_optimal_candidate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.activeSelections": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.activeSelections_complete": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidateList": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.mem_rationalCandidateList": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.realObjective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.realObjective_apply": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_none_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_some_feasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_some_optimal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible_isCompact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_none_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_some_feasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_some_optimal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskMatrix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskBounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_optimizer_half": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_success_at_half": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_deterministic_full_infeasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_negative_budget_infeasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.dependent_equalities_singleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.Regression.zero_dimensional_singleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.coordinate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_coordinate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_sub": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_neg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_smul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.constraint_holds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.equalityConstraints_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.TimeSystem": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.History.succEquiv": [
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.historyFintype": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.historyMeasurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.historyDiscrete": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.historyPrefix": [
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.matrixRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.state_total": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.state_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.action_le_state": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.action_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.action_zero_of_state_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.fallback": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.fallback_permitted": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.markovControl": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.markovControl_supported": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.policy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.state_mul_markovControl": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.stepRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.nextRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.historyLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.nextRow_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.historyLaw_step_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.historyLaw_prefix_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.stateRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actionRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.stateMass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actionMass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.expect_indicator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.expect_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.expect_mul_const": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.stateMass_eq_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actionMass_eq_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actionMass_supported": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actionMass_outflow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.stateMass_initial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.stateMass_step": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.stateMass_inflow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.occupancies": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.terminal_expect_eq_occupancy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actual_terminal_integral_eq_occupancy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actionMass_policy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.stateMass_policy_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actionMass_policy_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.policy_realizes_flow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.reconstructed_terminal_expectation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.reconstructed_actual_terminal_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.exists_policy_realizing_flow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actual_history_flow_equivalence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.flowTerminalScore": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actual_success_risk_range_eq_flow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.row_event_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actual_state_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actual_terminal_event_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actualActionMeasure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actualActionMeasure_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actual_action_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.augmentedMatrix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.monitorSystem": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.monitor_row_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent_decidable": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.nextRow_consistent_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.monitorInitial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.historyLaw_consistent_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actual_monitor_consistent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.physicalTrace": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.physicalTrace_length": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.consistent_eq_literal_run": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actual_monitor_literal_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.physicalMatrix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.physicalSystem": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.monitor": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.enumeration": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.constantPolicy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.success": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.danger": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.one_step_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_success": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_danger": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.halfRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_mixing_risk_boundary": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.mixingFlow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.reconstructed_mixing_scores": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.zero_mass_initial_actions": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.reconstructed_policy_legal_every_history": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.stateExpression": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actionExpression": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.outflowExpression": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.inflowExpression": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.terminalExpression": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.evaluate_stateExpression": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.evaluate_actionExpression": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.evaluate_outflowExpression": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.evaluate_inflowExpression": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.evaluate_terminalExpression": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.coordinateList": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.mem_coordinateList": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.forall_timeState": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.forall_timeStateControl": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.initialConstraints": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.outflowConstraints": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.inflowConstraints": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.nonnegativeConstraints": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.supportConstraints": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.flowConstraints": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.nonnegativeConstraints_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.initialConstraints_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.outflowConstraints_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.inflowConstraints_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.supportConstraints_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.flowConstraints_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.vector": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.flowFromVector": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.flowFromVector_risk": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.flowFromVector_vector": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.vector_feasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.flowPolytope_bounded": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.flowPolytope_isCompact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_none_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_some_optimal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore_eq_flowValue": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore_reconstructed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.vector_policy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue_eq_evaluate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_none_iff_no_behavioral_policy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_some_actual_optimal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.transition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.reward": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.danger": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.one_step_actual": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_success_formula": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_danger_formula": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.coinRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.policy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_half_attains": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.all_actual_feasible_success_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.full_risky_choice_is_infeasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint": [],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.listMatrix": [],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.listBounds": [],
+    "PermanssonResearch.ReverseSolver.ExactPolytope.equalityConstraints": [],
+    "PermanssonResearch.ReverseSolver.Occupancy.History": [],
+    "PermanssonResearch.ReverseSolver.Occupancy.History.zeroEquiv": [],
+    "PermanssonResearch.ReverseSolver.Occupancy.last": [],
+    "PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate": [],
+    "PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate": [],
+    "PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate": []
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "972e4f9a8ad95d608371ffb6b3926c13d86246b8d3d6f6ba95ecf2c45939669c",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/risk_lp_signatures_axioms.txt",
+    "sha256": "972e4f9a8ad95d608371ffb6b3926c13d86246b8d3d6f6ba95ecf2c45939669c"
+  }
+}

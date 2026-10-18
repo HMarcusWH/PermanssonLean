@@ -1,0 +1,164 @@
+'PermanssonResearch.Probability.integral_eq_of_dual_zero_lipschitz' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.measure_eq_of_w1DualLE_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.map_compProd_comap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.chainKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.chainKernel_markov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.lastCoordinate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.lastCoordinate_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.prefixKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.prefixKernel_markov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.law_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.prefix_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.marginal_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.pair_of_marginal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.marginal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.step_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.GluedCouplingSequence.integral_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.lintegral_tsum_ne_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.ae_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.tsum_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.integral_tsum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.step_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.limit_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.ae_summable_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.ae_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.ae_dist_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.tail_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.dist_limit_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.integral_dist_limit_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.SummableStepLimit.limit_firstMoment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.measure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.measure_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.ext' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.distance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.dual_distance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.distance_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.distance_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.distance_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.distance_comm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.distance_triangle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.eq_of_distance_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.metricSpace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.dist_eq_couplingW1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.w1DualLE_iff_dist_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.exists_limit_of_summable_couplings' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.exists_coupling_cost_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.cauchySeq_has_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentProbability.completeSpace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentCompletenessRegression.realDirac' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentCompletenessRegression.real_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentCompletenessRegression.real_dirac_distance_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentCompletenessRegression.real_distinct_laws_not_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentCompletenessRegression.realDirac_lipschitz' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentCompletenessRegression.geometric_dirac_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentCompletenessRegression.every_real_firstMoment_cauchy_has_actual_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FirstMomentCompletenessRegression.zero_cost_glued_chain_is_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

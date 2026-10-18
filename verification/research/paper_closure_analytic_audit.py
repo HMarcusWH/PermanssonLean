@@ -12,6 +12,9 @@ import subprocess
 import time
 
 ROOT = Path(__file__).resolve().parents[2]
+AUDIT_STEM = 'AnalyticAxiomAudit'
+SIGNATURES_BASENAME = 'analytic_signatures_axioms.txt'
+DEFAULT_OUTPUT = 'research/paper_closures/analytic_receipt.json'
 MODULES = [
     'Probability.ProjectedCommonSubkernel', 'Quotient.GeometricPrefix',
     'Quotient.GeometricQuotient', 'Quotient.GeometricMargin',
@@ -61,7 +64,7 @@ def main():
     builder_sha256 = sha(Path(__file__))
     parser = argparse.ArgumentParser()
     parser.add_argument('--compiler')
-    parser.add_argument('--output', default='research/paper_closures/analytic_receipt.json')
+    parser.add_argument('--output', default=DEFAULT_OUTPUT)
     parser.add_argument('--recheck', action='store_true', help='Recompile every scoped module')
     args = parser.parse_args()
     command = [args.compiler] if args.compiler else ['lake', 'env', 'lean']
@@ -107,7 +110,7 @@ def main():
             print('PASS', module, flush=True)
         files[relative] = {'sha256': sha(path), 'artifact_sha256': sha(artifact), 'compiler': status}
         exports.extend(declarations(source))
-    audit = ROOT / '.lake/closure-build/AnalyticAxiomAudit.lean'
+    audit = ROOT / ('.lake/closure-build/' + AUDIT_STEM + '.lean')
     audit.write_text(''.join('import PermanssonResearch.' + m + '\n' for m in MODULES) +
                      'set_option pp.universes true\nset_option pp.fullNames true\n' +
                      ''.join('#check ' + n + '\n#print axioms ' + n + '\n' for n in exports), encoding='utf-8')
@@ -133,14 +136,15 @@ def main():
     receipt = {'status': 'PASS', 'evidence_kind': 'LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT',
                'receipt_builder_sha256': builder_sha256,
                'compiler': version.stdout.strip(), 'lean_toolchain': expected,
-               'source_scope': files, 'declaration_count': len(exports), 'declarations': reports,
+               'source_scope': files, 'module_list': list(MODULES),
+               'declaration_count': len(exports), 'declarations': reports,
                'axiom_allowlist': sorted(ALLOW), 'compiler_returncode': run.returncode,
                'audit_stdout_sha256': sha(log),
                'residual': 'Scope and unfinished atlas obligations are recorded separately. '
                            'This receipt does not supply genuine PR-head/synthetic-merge CI evidence.'}
     destination = ROOT / args.output
     destination.parent.mkdir(parents=True, exist_ok=True)
-    signatures = destination.with_name('analytic_signatures_axioms.txt')
+    signatures = destination.with_name(SIGNATURES_BASENAME)
     signatures.write_text(run.stdout + run.stderr, encoding='utf-8')
     receipt['signature_and_axiom_output'] = {
         'path': signatures.relative_to(ROOT).as_posix(), 'sha256': sha(signatures)}

@@ -27,16 +27,31 @@ Kantorovich–Rubinstein duality and existence of an optimal finite coupling.
 For separable Borel pseudometric spaces, explicit measurable finite quantizers,
 bounded Lipschitz extensions and normalized restricted-cell product couplings
 prove equality of the original coupling infimum and original dual supremum for
-all first-moment probability laws. First-moment completeness remains a separate
-obligation. The robust
-game currently lets nature observe the realized control;
-the private-draw stage LP is a different target. Optional specialized algebra
+all first-moment probability laws. Actual conditional-kernel gluing and
+summable-step limits now prove completeness on complete separable Borel metric
+spaces. A Banach constructor gives the unique first-moment invariant law and
+geometric convergence for a moment-preserving contractive kernel. Both laws in
+the original perturbation bundle can be constructed independently.
+The robust dynamic game lets nature observe the realized control. A separate
+exact private-control stage LP proves the different maximin value before that
+draw is revealed. Optional specialized algebra
 keeps the actual model-to-feature identification as an explicit premise.
 
-Important remaining work includes the complete exact risk-constrained LP
-constructor, belief-state reduction, general-state multiple-limit classification, and the larger
-analytic transport profiles. A finite fixture or a compiler-checked weaker
-statement is never counted as a proof of these goals.
+The exact rational hard-risk solver enumerates active subsets, proves real
+vertex completeness, reconstructs actual legal control policies from flows,
+and optimizes against every real behavioral history policy. The finite belief
+layer proves normalized hidden-state filtering, alpha-vector attainment and
+optimality over observation-admissible histories, with full monitor memory
+hidden inside the belief state. The actual risk fixture has optimum `17/20`.
+
+For compact metric Borel state spaces, the actual all-initial Markov law has
+almost-sure invariant empirical cluster points; distance to the invariant
+family tends to zero, and uniqueness gives weak empirical convergence. The
+bounded pointwise ergodic theorem is derived from a Hopf maximal inequality,
+including actual conditional-expectation identification without invertibility
+or ergodicity. Stationary random-law and regenerative applications, non-atomic
+autonomy, and weighted primitive coupling profiles remain separate ongoing
+work. A finite fixture or a weaker statement is never counted as their proof.
 
 Infinite safety is proved for the actual canonical infinite law and every real
 full-history behavioral controller. One deterministic stationary controller
@@ -58,6 +73,13 @@ python verification/research/test_x1_paper_closure.py
 python verification/research/paper_closure_strategy_audit.py
 python verification/research/audit_multiagent_closure.py
 python verification/research/paper_closure_analytic_audit.py
+python verification/research/paper_closure_risk_lp_audit.py
+python verification/research/paper_closure_private_stage_audit.py
+python verification/research/paper_closure_completeness_audit.py
+python verification/research/paper_closure_invariant_audit.py
+python verification/research/audit_belief_closure.py
+python verification/research/audit_compact_feller.py
+python verification/research/paper_closure_birkhoff_audit.py
 ```
 
 Some audit drivers require local per-module diagnostic logs in

@@ -1,13 +1,13 @@
 {
   "status": "PASS",
   "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
-  "receipt_builder_sha256": "bbce671d9fe5dc00483450459b618cbd91c970011d5c25743995d734e730c455",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
   "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
   "lean_toolchain": "4.34.0",
   "source_scope": {
     "PermanssonResearch/Probability/ProjectedCommonSubkernel.lean": {
       "sha256": "07f20e818df7eb4362cad37d367eb9b63370f346c3c3721fd32b4544083d897c",
-      "artifact_sha256": "049ce06a905f414009426220860e9d1ce116d57d649da053ed9595d305211f41",
+      "artifact_sha256": "44f6ec7f829bd8e81a23d57334d53ccb5dd89b6969e50323a357e6994b4bce18",
       "compiler": {
         "module": "PermanssonResearch.Probability.ProjectedCommonSubkernel",
         "started": 1792291176.5418432,
@@ -19,7 +19,7 @@
     },
     "PermanssonResearch/Quotient/GeometricPrefix.lean": {
       "sha256": "28c69bccf4667c2aca09fc1294d9efe471d35a6a8ba7c376c32a2ce01ed54cba",
-      "artifact_sha256": "7211c857ae61caf7c3f8db9de0ebbac2dc9cee26942a7aa3a41e5e2a89acd176",
+      "artifact_sha256": "1630ddb69bbad2c4efe676db268b6261b5a7be269da6306a8d1e2cca18ce2f98",
       "compiler": {
         "module": "PermanssonResearch.Quotient.GeometricPrefix",
         "started": 1792291238.1207852,
@@ -31,7 +31,7 @@
     },
     "PermanssonResearch/Quotient/GeometricQuotient.lean": {
       "sha256": "26f7d49df5bb7e083544a15a59d5392bad31aeeab5cab908e965a24a0b83bf4c",
-      "artifact_sha256": "ff4bc1e0277b18242b7d23db51d8da8349433e2b5996a47ec5d023fadeb4d674",
+      "artifact_sha256": "674aa3987ce731de6688981387b6c45d45412ef2f6d7a0faa31f9a96f3cb0ec7",
       "compiler": {
         "module": "PermanssonResearch.Quotient.GeometricQuotient",
         "started": 1792291324.9073892,
@@ -43,7 +43,7 @@
     },
     "PermanssonResearch/Quotient/GeometricMargin.lean": {
       "sha256": "b2929544c41fe5af75bb07c53f9a28f1b3d2ccc366430ec48716d756678a03e2",
-      "artifact_sha256": "84f2e970fc7662ca331107cb04a80accb6540ffb30d824af237d907c4d7f6bf9",
+      "artifact_sha256": "ecef368918d324499588411bc6fad85fd72065f838abc987d4ac8c2dbc997734",
       "compiler": {
         "module": "PermanssonResearch.Quotient.GeometricMargin",
         "started": 1792291410.898694,
@@ -55,7 +55,7 @@
     },
     "PermanssonResearch/Probability/LocalizedHistoryTV.lean": {
       "sha256": "0d34452c4a2d571c5aa55960be13dd617b663bddaa76346c97ed778f22cf664c",
-      "artifact_sha256": "f18f59d701ad1e8e2b7b3e0ea7886a18b7c13ef7942ee1a251f5852134992d28",
+      "artifact_sha256": "414ce25b9e34f1f52295cd8c277ad59a6b2cb34c9133f5a4bd6d43e23c40324a",
       "compiler": {
         "module": "PermanssonResearch.Probability.LocalizedHistoryTV",
         "started": 1792291509.8215296,
@@ -67,7 +67,7 @@
     },
     "PermanssonResearch/Probability/SummablePathScores.lean": {
       "sha256": "43dae187fef4703ef6f93a1086ed2f43b23f3e3d54be7b18236939c74d7f6baa",
-      "artifact_sha256": "dbd4f35c9af39bf14c49c2ba370d7480cb56348531843396eb07ef8e5c6815a3",
+      "artifact_sha256": "88d70ccce710a813c4572cefcb8d990c60fa66050c6440dc550ec6f50864ba0e",
       "compiler": {
         "module": "PermanssonResearch.Probability.SummablePathScores",
         "started": 1792291605.2674754,
@@ -79,7 +79,7 @@
     },
     "PermanssonResearch/Probability/CouplingDualBound.lean": {
       "sha256": "ecd7f10ba18879e898feb34671385bc0a20c29e6fc77c1f7caa4567c0e915ce9",
-      "artifact_sha256": "e555c1e79993ccc610f3befded56d2f60945a69896153318e58b0eff6941cc8f",
+      "artifact_sha256": "356782ba9c27b241643177683aef78060a5544f3d25929eb5f99e30e43775a32",
       "compiler": {
         "module": "PermanssonResearch.Probability.CouplingDualBound",
         "started": 1792291697.7652307,
@@ -91,7 +91,7 @@
     },
     "PermanssonResearch/Perturbation/DirectDualContraction.lean": {
       "sha256": "93bb9b180a2061ac2d9f3989fa9e11aeabd64ad94607e6309bbaec7ba40709b7",
-      "artifact_sha256": "fff8d8bef51076d9e4c900182b6794225e9c86554a11c5bb08a4bc82ab97a00e",
+      "artifact_sha256": "97d2a7c9d4058db366c6d4020fb410482d55935e053398340136390c1ffee961",
       "compiler": {
         "module": "PermanssonResearch.Perturbation.DirectDualContraction",
         "started": 1792291777.8812299,
@@ -103,7 +103,7 @@
     },
     "PermanssonResearch/Perturbation/PrimitiveProductTV.lean": {
       "sha256": "368e99da4323b2d22ebac5f1ceb86e26b8845b565abe20d706347989ebd162ce",
-      "artifact_sha256": "5418156c47d974bee7ddc8b0d939f3da67f35fe6cd3bc0140d5942a86d7c4e46",
+      "artifact_sha256": "b80999e30bafd0f824fa94c05c362b9cf931ed826e534b44f603ec9533137795",
       "compiler": {
         "module": "PermanssonResearch.Perturbation.PrimitiveProductTV",
         "started": 1792291848.5940614,
@@ -115,7 +115,7 @@
     },
     "PermanssonResearch/Perturbation/PrimitiveMetricBudget.lean": {
       "sha256": "ce5dbcc322706ed5b4027b3138078c3ceb8b191d82bc4f5304672012ebf6fec4",
-      "artifact_sha256": "52eb9a0717f98dd5d2414e6c13551335918e341392487a9cb4e66c5639842d8e",
+      "artifact_sha256": "015eaae253a537dacf22f78aaa8d88cdc584832de7b437e9829a4255292ba2b6",
       "compiler": {
         "module": "PermanssonResearch.Perturbation.PrimitiveMetricBudget",
         "started": 1792291927.5844762,
@@ -127,7 +127,7 @@
     },
     "PermanssonResearch/GrammarRobust/CompatibleOverlap.lean": {
       "sha256": "c90bc6bf020f01f2bd515f458b0fdcf8c48a5acaa608003fae2ac11401e0fde6",
-      "artifact_sha256": "447c3f2d1d705eb0a96622fc51c8218226cfe6b21198dc521f1b3d67b48bd3d5",
+      "artifact_sha256": "43cc0e0aec7276661e44c7549d5c7da743083a010568ff7d040c2459c925abed",
       "compiler": {
         "module": "PermanssonResearch.GrammarRobust.CompatibleOverlap",
         "started": 1792292007.6607618,
@@ -139,7 +139,7 @@
     },
     "PermanssonResearch/GrammarRobust/OverlapKernelAssembly.lean": {
       "sha256": "b0a2a95b83a945eae4e7fb7d37a9110351c44256feb377eac7e861c357138e9e",
-      "artifact_sha256": "0cd5410e1ec13129f69d26d85e16dc2e533b6103a6da5f5a3b3102993572c959",
+      "artifact_sha256": "7638e9fbddabc213d99eae3075cc62de117b87ae3aa6a6724dcef68a8d93f251",
       "compiler": {
         "module": "PermanssonResearch.GrammarRobust.OverlapKernelAssembly",
         "started": 1792292062.180981,
@@ -151,7 +151,7 @@
     },
     "PermanssonResearch/GrammarRobust/OverlapCanonicalBridge.lean": {
       "sha256": "5961213b9e2744b0aa2f9d6103db579a4e7e46beb56a9012f1c8c831c6857ebe",
-      "artifact_sha256": "10dfdc29a8f9082db60c4fc6e323d9e9034bb7b6de627aa4f3efcc9cda65c5ad",
+      "artifact_sha256": "93dbdaf76bd7bdcdbbfe73c6cc415e8edfb4461bb3982662f5420b6a8a8280a6",
       "compiler": {
         "module": "PermanssonResearch.GrammarRobust.OverlapCanonicalBridge",
         "started": 1792292132.2710073,
@@ -163,7 +163,7 @@
     },
     "PermanssonResearch/GrammarRobust/LowerSetTransport.lean": {
       "sha256": "07d6495112d3761118a6510026c878497d773270e10aee538f6e6e61385cb3cb",
-      "artifact_sha256": "dcc4ed66b2bf46ba04a8651bd3a2a51916afa99f5ff17c5a1144c15ccda0e93b",
+      "artifact_sha256": "2ab245d0bc86b719e2bb7ae32fdd0442a7c129b82822bd4ca557b9d5d4cb4e35",
       "compiler": {
         "module": "PermanssonResearch.GrammarRobust.LowerSetTransport",
         "started": 1792292199.9170094,
@@ -175,7 +175,7 @@
     },
     "PermanssonResearch/GrammarRobust/OriginalLowerSetTransport.lean": {
       "sha256": "e5b2bf9f8d48f25e83ad701a5e6b4b23286a2b2b944ba76143ca2b9abc45f8bd",
-      "artifact_sha256": "0443475aa2d5a401e057b85893dbbaf4e9efe699ab17e65ae19c39d3ed720935",
+      "artifact_sha256": "392a88911756720906b65406b6da7eb37bfd9a61a21c41fd1971852e14d92524",
       "compiler": {
         "module": "PermanssonResearch.GrammarRobust.OriginalLowerSetTransport",
         "started": 1792292263.5753925,
@@ -187,7 +187,7 @@
     },
     "PermanssonResearch/MultiAgent/FeasibleAnchors.lean": {
       "sha256": "3bd960cd530773a2efac8482ea326c43d004c9181cfa763aa5651f7536608e64",
-      "artifact_sha256": "17560ff6fe33caea272b23b7e98b3b599192ba09ecdd2d403b795ffa5776022b",
+      "artifact_sha256": "ff191f8c83163d09caf93a344b2ab2d81ef16ed750e803745d018b53d7a0a68d",
       "compiler": {
         "module": "PermanssonResearch.MultiAgent.FeasibleAnchors",
         "started": 1792292337.3715231,
@@ -199,7 +199,7 @@
     },
     "PermanssonResearch/MultiAgent/CorrelatedMediator.lean": {
       "sha256": "b547e44664bf1ab08482fde276b4448398d05ffe6be77b41da29b3c14739e777",
-      "artifact_sha256": "e1719ebcf0b3f10a3c1575e99c5aeed47f77052d5620bca095d97c4f9b73cd75",
+      "artifact_sha256": "b3aea42ce5268a2f44c5f0bf4297ffeea72af9fa964fe90d0ac014dc2f03302f",
       "compiler": {
         "module": "PermanssonResearch.MultiAgent.CorrelatedMediator",
         "started": 1792292404.7309368,
@@ -211,7 +211,7 @@
     },
     "PermanssonResearch/MultiAgent/FiniteMediation.lean": {
       "sha256": "2404c03891bb8912e73239e9b902ba76b7f02b656a659f7db8efeada63fabe3a",
-      "artifact_sha256": "f964ceb2c628a31ed9addbd2215d43ff2b2640075b5112e15e16d67547d06fb3",
+      "artifact_sha256": "cb30d214f349841b58c74654814da3823d3ab8c3f3df2df64895fc4ec80d47dc",
       "compiler": {
         "module": "PermanssonResearch.MultiAgent.FiniteMediation",
         "started": 1792292470.9266012,
@@ -223,7 +223,7 @@
     },
     "PermanssonResearch/ReverseSolver/AdaptiveGrammarControl.lean": {
       "sha256": "d16f5693027488555038686aabfd1c548e6dbe8665e8f19768a33eb60a403e5c",
-      "artifact_sha256": "455171f4f31606a71247b8cbaecc45453f1d0bb2a93aacec46f8416c6959de0c",
+      "artifact_sha256": "9379e4c7179183f7296e8bab96650ab8d7beb6cb7d9fbe6451994b56f2604b1e",
       "compiler": {
         "module": "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl",
         "started": 1792292547.2991483,
@@ -235,7 +235,7 @@
     },
     "PermanssonResearch/Specialized/SeamReduction.lean": {
       "sha256": "e09f3027088f643b7599c4a2861c42300e8bcf325982a66e93563a9fdb3d4787",
-      "artifact_sha256": "f6940bff76519529236f52e07b4f83beb6c2797d445adeaa18e1b7d0c06693a6",
+      "artifact_sha256": "b28ab501badf488f6a635950cc24e89632e95d6389a0b6dae10164cf5c28410d",
       "compiler": {
         "module": "PermanssonResearch.Specialized.SeamReduction",
         "started": 1792292635.5870082,
@@ -247,7 +247,7 @@
     },
     "PermanssonResearch/Specialized/FiniteDetection.lean": {
       "sha256": "43f7f1b7842ab92c38f6e220dedbe9b449f713bd156f1013112f69c091b49336",
-      "artifact_sha256": "40cf67f67afb54deb90340f4b71613d36ef17e3fe5c3481acb1246ed52ad10f7",
+      "artifact_sha256": "e2cec6a4a84d5a24d0c8df1cde9e9651ee2a808534b150080edab969fe77eebb",
       "compiler": {
         "module": "PermanssonResearch.Specialized.FiniteDetection",
         "started": 1792292711.0747676,
@@ -259,7 +259,7 @@
     },
     "PermanssonResearch/Specialized/ShellSchur.lean": {
       "sha256": "91976bd49739c02dc057be780ed4bfcb9eef3d692123a3cbcd203c4a43a43e54",
-      "artifact_sha256": "98c2fe0cb8baf9208e6553d28868dc5e7f8fe611fd84dbfb97aa712a8255248e",
+      "artifact_sha256": "788c312205e84792c96f8e5ee86cab771cbe7b15c6b85bf629c8c1f8a50400b6",
       "compiler": {
         "module": "PermanssonResearch.Specialized.ShellSchur",
         "started": 1792292770.8166416,
@@ -271,7 +271,7 @@
     },
     "PermanssonResearch/Specialized/ShellResolvent.lean": {
       "sha256": "c595d334a9049c85f404f5657d0e21eafee46b57b90879a6596cc40d5e980123",
-      "artifact_sha256": "e1fef32c3012bd48c9f17874b9c6326a560e745dfe815b9da50d3911230c9a11",
+      "artifact_sha256": "105c189e9572a53c131c822ca5008b0f6408729250efff9e077826c5a0b907d2",
       "compiler": {
         "module": "PermanssonResearch.Specialized.ShellResolvent",
         "started": 1792293099.0088181,
@@ -283,7 +283,7 @@
     },
     "PermanssonResearch/Specialized/SingularCompatibility.lean": {
       "sha256": "39e607f76735f7d01c65e29aed4ecebd7bca0857f96b5be08bdfb0e7faedb950",
-      "artifact_sha256": "668aa01ef88ae7fe5ee736e4afbed20404f7d8938277d7283cd9cbe24440c452",
+      "artifact_sha256": "cf81633b0a269251f5e1563c8d0bed78e30cc5251e6377ace98387b8997286a3",
       "compiler": {
         "module": "PermanssonResearch.Specialized.SingularCompatibility",
         "started": 1792292838.547454,
@@ -295,7 +295,7 @@
     },
     "PermanssonResearch/Specialized/GramSeparation.lean": {
       "sha256": "9c3704950798c4d9a542dcecad802883f3aa52743d58b23618e011386cdc9396",
-      "artifact_sha256": "266538ed3bed5a1bc6dc52a138ccc2b06e9c661d41505f163aadb7288d4e3a73",
+      "artifact_sha256": "643da54ad50ed35e67e8b6c086b66a30d51e2400ff497d52a0969918639c229c",
       "compiler": {
         "module": "PermanssonResearch.Specialized.GramSeparation",
         "started": 1792292908.7218554,
@@ -306,6 +306,33 @@
       }
     }
   },
+  "module_list": [
+    "Probability.ProjectedCommonSubkernel",
+    "Quotient.GeometricPrefix",
+    "Quotient.GeometricQuotient",
+    "Quotient.GeometricMargin",
+    "Probability.LocalizedHistoryTV",
+    "Probability.SummablePathScores",
+    "Probability.CouplingDualBound",
+    "Perturbation.DirectDualContraction",
+    "Perturbation.PrimitiveProductTV",
+    "Perturbation.PrimitiveMetricBudget",
+    "GrammarRobust.CompatibleOverlap",
+    "GrammarRobust.OverlapKernelAssembly",
+    "GrammarRobust.OverlapCanonicalBridge",
+    "GrammarRobust.LowerSetTransport",
+    "GrammarRobust.OriginalLowerSetTransport",
+    "MultiAgent.FeasibleAnchors",
+    "MultiAgent.CorrelatedMediator",
+    "MultiAgent.FiniteMediation",
+    "ReverseSolver.AdaptiveGrammarControl",
+    "Specialized.SeamReduction",
+    "Specialized.FiniteDetection",
+    "Specialized.ShellSchur",
+    "Specialized.ShellResolvent",
+    "Specialized.SingularCompatibility",
+    "Specialized.GramSeparation"
+  ],
   "declaration_count": 213,
   "declarations": {
     "PermanssonResearch.Probability.liftProjectedDensity": [
