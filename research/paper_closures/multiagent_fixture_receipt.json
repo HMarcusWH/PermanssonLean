@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "fixtures": {
+    "MultiAgentAsymmetry": {
+      "status": "PASS",
+      "returncode": 0,
+      "elapsed": 67.15599999995902
+    },
+    "MultiAgentPrivateClock": {
+      "status": "PASS",
+      "returncode": 0,
+      "elapsed": 87.98500000004424
+    },
+    "MultiAgentFiniteProduct": {
+      "status": "PASS",
+      "returncode": 0,
+      "elapsed": 88.85899999999674
+    }
+  },
+  "source_sha256": {
+    "verification\\research\\MultiAgentAsymmetry.lean": "504907d3a048d867824f3bfe1e3fed09f9510399ee12d49206c1b74a1812195d",
+    "verification\\research\\MultiAgentPrivateClock.lean": "b6ee0c45c610ffc74ae61f47bb5ae01a605db67a9ff6f5152e737f422ee36aeb",
+    "verification\\research\\MultiAgentFiniteProduct.lean": "754c3861aaecfe30661bceb76dd8a21570bc94396c79daab72776d61143c410d"
+  },
+  "axiom_audit": {
+    "status": "PASS",
+    "returncode": 0,
+    "declarations": 170
+  }
+}

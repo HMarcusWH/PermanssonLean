@@ -6,6 +6,7 @@ genuine source-bound acceptance. This script never promotes a target to accepted
 import hashlib
 import json
 from pathlib import Path
+import re
 import subprocess
 
 from paper_closure_analytic_audit import declarations
@@ -24,8 +25,8 @@ TRACKS = {
                'Finite autonomous strict-subclass impossibility. Standard-Borel all-time AE extension remains open.'),
     'E1-G01': ('Probability/ProjectedCommonSubkernel Quotient/GeometricPrefix Quotient/GeometricQuotient',
                'Measurable common-mass profile with explicit countable-or-countably-generated instance; no projected Markov assumption.'),
-    'A3-K01': ('Probability/CouplingDualBound',
-               'Weak coupling-to-dual direction and genuine finite product coupling. Finite reverse duality, Polish quantization and completeness remain open.'),
+    'A3-K01': ('Probability/CouplingDualBound Probability/FiniteTransportSeparation Probability/FiniteKantorovichDuality Probability/FiniteTransportRegression Probability/FirstMoment* Probability/FiniteLipschitzExtension Probability/FinitePartition*',
+               'Genuine arbitrary-real finite transport duality and optimal finite coupling existence;39-declaration audit. Explicit measurable finite quantization, bounded Lipschitz extension and normalized restricted-cell product lifts prove literal original coupling-infimum/dual-supremum equality for all separable Borel pseudometric first-moment laws;72-declaration audit and infinite-ambient distance-three regression checked. First-moment completeness remains separate.'),
     'A3-I01': ('Perturbation/FiniteInvariantConstructor',
                'Finite invariant construction/dual contraction profile checked. General first-moment complete-space construction remains open.'),
     'A3-C01': ('Perturbation/DirectDualContraction',
@@ -69,7 +70,8 @@ TRACKS = {
     'D2-P05': ('ReverseSolver/Rectangular* ReverseSolver/SolverBoundaryWitnesses',
                'Nature-after-realized-control rectangular game with actual normalized chronological law. Private-control-draw stage LP remains open.'),
     'D2-P06': ('', 'Finite hidden augmented-state belief update, alpha-vector construction and optimality remain open.'),
-    'D2-P07': ('', 'Infinite safety optimum, stationary attainment and greatest controlled invariant construction remain open.'),
+    'D2-P07': ('ReverseSolver/InfiniteSafety* ReverseSolver/BehavioralInfiniteLaw ReverseSolver/GreatestControlledInvariant',
+               'Actual canonical infinite safety probability for all real full-history behavioral controllers; one deterministic stationary maximizer for all states; finite support pruning computes greatest controlled invariant set and exact probability-one region. Fixed-leakage finite-versus-infinite counterexample and15-declaration audit checked.'),
     'D2-P08': ('ReverseSolver/AdaptiveGrammarControl',
                'Actual admissible compatible alpha/P/U block menu with literal fixed world, certified rational atoms and full-history adaptive monitor optimum checked as a normalized coded finite law with an explicit measurable state equivalence. Rational atom typing is an explicit data certificate; no single frozen intervention is inferred.'),
     'D2-P09': ('ReverseSolver/StationaryOccupationObjective ReverseSolver/StationaryMenuOptimization',
@@ -98,6 +100,10 @@ TRACKS = {
 
 def main():
     spec = json.loads((ROOT / 'research/paper_closures/spec/registries/closure_contracts.json').read_text())
+    root_code = re.sub(r'/\-.*?\-/|--[^\n]*', '',
+                       (ROOT / 'PermanssonResearch.lean').read_text(), flags=re.S)
+    imported = {module for line in root_code.splitlines() if line.startswith('import ')
+                for module in line[7:].split()}
     assert set(TRACKS) == {row['atlas_id'] for row in spec['contracts']}
     rows = []
     for contract in spec['contracts']:
@@ -109,6 +115,8 @@ def main():
         for path in sorted(paths):
             relative = path.relative_to(ROOT).as_posix()
             module = relative.removesuffix('.lean').replace('/', '.')
+            if module not in imported:
+                continue
             log = ROOT / '.lake/closure-build' / (module + '.json')
             artifact = ROOT / '.lake/build/lib/lean' / relative.replace('.lean', '.olean')
             observation = json.loads(log.read_text()) if log.is_file() else None
@@ -119,7 +127,7 @@ def main():
         rows.append({'atlas_id': contract['atlas_id'], 'title': contract['title'],
                      'selected_scope_as_supplied': contract['selected_scope'],
                      'acceptance_status': 'NOT_ACCEPTED',
-                     'implementation_status': 'LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY' if paths else 'OPEN',
+                     'implementation_status': 'LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY' if sources else 'OPEN',
                      'implementation_boundary_and_residual': boundary, 'sources': sources})
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     dirty = bool(subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT))

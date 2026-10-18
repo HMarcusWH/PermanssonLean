@@ -1,0 +1,163 @@
+{
+  "scope": "D2-P07 D-SAFETY: actual infinite safety over all real full-history behavioral controllers",
+  "status": "THEOREM_FORMALIZED",
+  "source_H": null,
+  "synthetic_S": null,
+  "eventual_merge_M": null,
+  "recording_head": "d7f6f56454134abefe73fef55d0ee4d3f9606299",
+  "recording_worktree_dirty": true,
+  "base_B": "39279799834ae536bda715dedecdc11a32bf6c82",
+  "builder_sha256": "afcbc50a12450b5247f0e2af54840e6efb76809a47705befd4b391786492ca7a",
+  "compiler_helper_sha256": "99e60476b21d9f7b02f621b5ce7c3956900c272c7ecc83c3e4d5056533b1136b",
+  "modules": [
+    {
+      "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyBellman",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyBellman.lean",
+      "source_sha256": "b0b4b4e22d3b053f0d674adcb518fe0152ebe148401547a334b34ff51cff9b1b",
+      "olean_sha256": "2c15656281ac0de694dbb0df875dd843efb015f425a1921c88d9d8d70a82133c",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyBellman",
+        "started": 1792291035.390497,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 87.81573843955994
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.BehavioralInfiniteLaw",
+      "source": "PermanssonResearch/ReverseSolver/BehavioralInfiniteLaw.lean",
+      "source_sha256": "360bc29d1dcb49943a52def32845dd72c4cbb15ac9ebba69ee15de8836b33950",
+      "olean_sha256": "eba02691a153ab47ad72bdf65ae0119875a88bf5e4705f2082e62d4d610b0351",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.BehavioralInfiniteLaw",
+        "started": 1792291425.1143267,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 100.29887366294861
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyFiniteEvaluation",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyFiniteEvaluation.lean",
+      "source_sha256": "91e70713c92a44023e08397aca59b9d9e035213fcad6f977c1f6995e7311e8a7",
+      "olean_sha256": "f6781909847ba34900bedcb08010df8ce7a20d09f30b6ffc0ad252e8451dd24f",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyFiniteEvaluation",
+        "started": 1792291697.8210177,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 84.1731469631195
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyPathSemantics",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyPathSemantics.lean",
+      "source_sha256": "6a0b4617f41c27786a93c303311406e9ffa7d7653224b2e6b6a84855b4d34611",
+      "olean_sha256": "6ecde3a2d6cc2b89c1fc1ca00906519be21763b8c305b5d7e6d52cff8609c6e9",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyPathSemantics",
+        "started": 1792292132.9778917,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 74.07330560684204
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.GreatestControlledInvariant",
+      "source": "PermanssonResearch/ReverseSolver/GreatestControlledInvariant.lean",
+      "source_sha256": "3b54f57a995bef2947b226b4cc5cf35e71043a6183822dda212af749ef3df8ef",
+      "olean_sha256": "032f49cd77df3620a2aba08dddb8fa62f443445f3a65314afe24c5771ee929f5",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.GreatestControlledInvariant",
+        "started": 1792292424.7259467,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 91.48130774497986
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyOptimality",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyOptimality.lean",
+      "source_sha256": "c399aaab95f64c3a3d33d8f672815bd35c04ab96f99d35abe7984eaff2c75017",
+      "olean_sha256": "9694f3a092fceeb866527ee5dd4017cc30da979181b810bc4e17a5572790cfa6",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyOptimality",
+        "started": 1792292653.4179986,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 73.50628113746643
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyLeakage",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyLeakage.lean",
+      "source_sha256": "4e4c34c224270881d20b904ca5177bbd811f37950d4f5184fbd6b191eba88785",
+      "olean_sha256": "dc3d8f5f006b9af59ff285c2c65983089d21564173d811ed99508ddb459bbcae",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyLeakage",
+        "started": 1792292849.6191382,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 76.04195284843445
+      }
+    },
+    {
+      "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyAudit",
+      "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyAudit.lean",
+      "source_sha256": "b74e3a52809b0fee6011f19c2574808c298d2e5d1afd160050cec85efc7a245e",
+      "olean_sha256": "167b460f2ba4589f9e6f5175cb863b57f43444303265505efbf0dd019c339fdd",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.InfiniteSafetyAudit",
+        "started": 1792292936.9779668,
+        "status": "PASS",
+        "command": [
+          "C:/Users/macka/.codex/.chatgpt-projects/g-p-6a7dcd5280008191a543947c8a70779d/.tools/lean-4.34.0-windows/bin\\lake.EXE",
+          "env",
+          "lean",
+          "-o",
+          ".lake\\build\\lib\\lean\\PermanssonResearch\\ReverseSolver\\InfiniteSafetyAudit.olean",
+          "PermanssonResearch\\ReverseSolver\\InfiniteSafetyAudit.lean"
+        ],
+        "compiler_version": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+        "toolchain": "leanprover/lean4:v4.34.0",
+        "source_sha256_before": "b74e3a52809b0fee6011f19c2574808c298d2e5d1afd160050cec85efc7a245e",
+        "returncode": 0,
+        "elapsed": 55.54796528816223,
+        "source_sha256_after": "b74e3a52809b0fee6011f19c2574808c298d2e5d1afd160050cec85efc7a245e",
+        "olean_sha256": "167b460f2ba4589f9e6f5175cb863b57f43444303265505efbf0dd019c339fdd"
+      }
+    }
+  ],
+  "actual_path_law": "Normalized countable realized-control/physical-history kernel, canonical infinite trajectory, almost-sure chronological history consistency",
+  "event": "All physical states, including time zero, lie in G forever",
+  "policy_class": "Every real BehavioralPolicy on the complete realized control and state history",
+  "proved": [
+    "bounded decreasing finite values and actual convergence",
+    "limiting finite-sum/finite-max Bellman fixed point",
+    "all-behavioral actual infinite-event probability upper bound",
+    "one deterministic stationary selector attains simultaneously for every initial state",
+    "rational descending controlled-invariant iteration stabilizes by |G|",
+    "computed core equals the value-one set",
+    "fixed positive leakage tends to zero; actual 99/100 finite-survival example has zero infinite safety"
+  ],
+  "signature_and_axiom_audit": {
+    "output": "research/paper_closures/infinite_safety_axioms.txt",
+    "sha256": "a6153528f28f9faf28a2110feadf31f601b1b3b5f57757f50b8cfa83091a1c24",
+    "reports": 15,
+    "allowed_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "observed_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "boundaries": [
+    "Controlled-process theorem; no C70 frozen-intervention claim without an explicit typing/law bridge",
+    "The limiting real value and stationary argmax are mathematical noncomputable objects; the controlled-invariant iteration is exact rational and finite",
+    "No substitution of finite survival for infinite retention"
+  ]
+}

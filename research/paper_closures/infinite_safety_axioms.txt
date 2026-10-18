@@ -1,0 +1,94 @@
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it
+PermanssonResearch.ReverseSolver.InfiniteSafety.horizonValue_antitone.{u_1} {C : Type u_1} [DecidableEq C] {n : ℕ}
+  (sys : ControlledKernel.FiniteControlSystem C n) (G : Finset (Fin n)) (y : Fin n) :
+  Antitone fun k => horizonValue sys G k y
+PermanssonResearch.ReverseSolver.InfiniteSafety.horizonValue_tendsto.{u_1} {C : Type u_1} [DecidableEq C] {n : ℕ}
+  (sys : ControlledKernel.FiniteControlSystem C n) (G : Finset (Fin n)) (y : Fin n) :
+  Filter.Tendsto (fun k => horizonValue sys G k y) Filter.atTop (nhds (limitValue sys G y))
+PermanssonResearch.ReverseSolver.InfiniteSafety.limitValue_fixed_point.{u_1} {C : Type u_1} [DecidableEq C] {n : ℕ}
+  (sys : ControlledKernel.FiniteControlSystem C n) (G : Finset (Fin n)) (y : Fin n) :
+  limitValue sys G y = step sys G (limitValue sys G) y
+PermanssonResearch.ReverseSolver.InfiniteSafety.stationaryChoice_fixed_point.{u_1} {C : Type u_1} [DecidableEq C]
+  {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (G : Finset (Fin n)) (y : Fin n) (hy : y ∈ G) :
+  limitValue sys G y = rowScore sys (limitValue sys G) y ((stationaryPolicy sys G).choose y)
+PermanssonResearch.ReverseSolver.InfiniteSafety.pathLaw_ae_chronological.{u_1} {C : Type u_1} [DecidableEq C]
+  [Fintype C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (σ : FiniteMonitor.BehavioralPolicy sys)
+  (y : Fin n) : ∀ᵐ (w : ℕ → HistoryState C n) ∂pathLaw sys σ y, ∀ (t : ℕ), (w t).initial = y ∧ (w t).word.length = t
+PermanssonResearch.ReverseSolver.InfiniteSafety.pathLaw_safeThrough.{u_1} {C : Type u_1} [DecidableEq C] [Fintype C]
+  {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (σ : FiniteMonitor.BehavioralPolicy sys) (G : Finset (Fin n))
+  (y : Fin n) (N : ℕ) : (pathLaw sys σ y) (safeThrough G N) = ENNReal.ofReal (survival sys σ G N (initialHistory y))
+PermanssonResearch.ReverseSolver.InfiniteSafety.pathLaw_safeForever_eq_iInf.{u_1} {C : Type u_1} [DecidableEq C]
+  [Fintype C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (σ : FiniteMonitor.BehavioralPolicy sys)
+  (G : Finset (Fin n)) (y : Fin n) : (pathLaw sys σ y) (safeForever G) = ⨅ N, (pathLaw sys σ y) (safeThrough G N)
+PermanssonResearch.ReverseSolver.InfiniteSafety.infiniteSafety_mass_upper.{u_1} {C : Type u_1} [DecidableEq C]
+  [Fintype C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (σ : FiniteMonitor.BehavioralPolicy sys)
+  (G : Finset (Fin n)) (y : Fin n) : (pathLaw sys σ y) (safeForever G) ≤ ENNReal.ofReal (limitValue sys G y)
+PermanssonResearch.ReverseSolver.InfiniteSafety.deterministic_stationary_infinite_optimum.{u_1} {C : Type u_1}
+  [DecidableEq C] [Fintype C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (G : Finset (Fin n)) :
+  ∃ π,
+    ∀ (y : Fin n),
+      safetyProbability sys (stationaryBehavioral sys π) G y = limitValue sys G y ∧
+        ∀ (σ : FiniteMonitor.BehavioralPolicy sys), safetyProbability sys σ G y ≤ limitValue sys G y
+PermanssonResearch.ReverseSolver.InfiniteSafety.infiniteSafety_isGreatest.{u_1} {C : Type u_1} [DecidableEq C]
+  [Fintype C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (G : Finset (Fin n)) (y : Fin n) :
+  IsGreatest {p | ∃ σ, safetyProbability sys σ G y = p} (limitValue sys G y)
+PermanssonResearch.ReverseSolver.InfiniteSafety.invariantIterates_stable.{u_1} {C : Type u_1} [DecidableEq C] {n : ℕ}
+  (sys : ControlledKernel.FiniteControlSystem C n) (G : Finset (Fin n)) :
+  invariantIterates sys G (G.card + 1) = invariantIterates sys G G.card
+PermanssonResearch.ReverseSolver.InfiniteSafety.invariantCore_eq_valueOneSet.{u_1} {C : Type u_1} [DecidableEq C]
+  {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (G : Finset (Fin n)) :
+  invariantCore sys G = valueOneSet sys G
+PermanssonResearch.ReverseSolver.InfiniteSafety.invariantCore_iff_almostSureSafety.{u_1} {C : Type u_1} [DecidableEq C]
+  [Fintype C] {n : ℕ} (sys : ControlledKernel.FiniteControlSystem C n) (G : Finset (Fin n)) (y : Fin n) :
+  y ∈ invariantCore sys G ↔ ∃ σ, safetyProbability sys σ G y = 1
+PermanssonResearch.ReverseSolver.InfiniteSafety.fixed_leakage_tends_to_zero (ε : ℝ) (hε : 0 < ε) (hε1 : ε ≤ 1) :
+  Filter.Tendsto (fun k => (1 - ε) ^ k) Filter.atTop (nhds 0)
+PermanssonResearch.ReverseSolver.InfiniteSafety.high_actual_finite_survival_zero_infinite
+  (σ : FiniteMonitor.BehavioralPolicy leakageSystem) :
+  (pathLaw leakageSystem σ 0) (safeThrough leakageTarget 1) = ENNReal.ofReal (99 / 100) ∧
+    safetyProbability leakageSystem σ leakageTarget 0 = 0
+'PermanssonResearch.ReverseSolver.InfiniteSafety.horizonValue_antitone' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.horizonValue_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.limitValue_fixed_point' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.stationaryChoice_fixed_point' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.pathLaw_ae_chronological' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.pathLaw_safeThrough' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.pathLaw_safeForever_eq_iInf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.infiniteSafety_mass_upper' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.deterministic_stationary_infinite_optimum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.infiniteSafety_isGreatest' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.invariantIterates_stable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.invariantCore_eq_valueOneSet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.invariantCore_iff_almostSureSafety' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.fixed_leakage_tends_to_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.InfiniteSafety.high_actual_finite_survival_zero_infinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

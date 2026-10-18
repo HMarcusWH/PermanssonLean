@@ -22,17 +22,29 @@ its own original regime and strategic constitution gates.
 
 The finite strict-autonomy theorem proves an impossibility result for the
 declared autonomous subclass; it does not create strict MA2 separation. The
-coupling comparison is currently the weak direction; general finite and Polish
-Kantorovich–Rubinstein equality and first-moment completeness remain separate
-obligations. The robust game currently lets nature observe the realized control;
+finite coupling construction now proves both directions of the original
+Kantorovich–Rubinstein duality and existence of an optimal finite coupling.
+For separable Borel pseudometric spaces, explicit measurable finite quantizers,
+bounded Lipschitz extensions and normalized restricted-cell product couplings
+prove equality of the original coupling infimum and original dual supremum for
+all first-moment probability laws. First-moment completeness remains a separate
+obligation. The robust
+game currently lets nature observe the realized control;
 the private-draw stage LP is a different target. Optional specialized algebra
 keeps the actual model-to-feature identification as an explicit premise.
 
 Important remaining work includes the complete exact risk-constrained LP
-constructor, belief-state reduction, infinite safety and viability, adaptive
-grammar control, general-state multiple-limit classification, and the larger
+constructor, belief-state reduction, general-state multiple-limit classification, and the larger
 analytic transport profiles. A finite fixture or a compiler-checked weaker
 statement is never counted as a proof of these goals.
+
+Infinite safety is proved for the actual canonical infinite law and every real
+full-history behavioral controller. One deterministic stationary controller
+attains the optimum at every state. The finite support-pruning construction
+computes the greatest controlled invariant set, exactly the states with optimum
+one. A fixed-leakage example has positive finite safety and zero infinite safety.
+Adaptive grammar control is linked to the original admissible typed rows through
+explicit rational atom certificates and a measurable finite-state coding.
 
 Reproducible checks use the repository's existing Lean toolchain and pinned
 dependency manifest; no dependency update is required:

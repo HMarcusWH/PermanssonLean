@@ -1,0 +1,222 @@
+{
+  "unit": "A3-K01-finite",
+  "source_scope": [
+    "PermanssonResearch/Probability/FiniteTransportSeparation.lean",
+    "PermanssonResearch/Probability/FiniteKantorovichDuality.lean",
+    "PermanssonResearch/Probability/FiniteTransportRegression.lean"
+  ],
+  "source_sha256": {
+    "PermanssonResearch/Probability/FiniteTransportSeparation.lean": "e11346d2c0f75c1c38e5800f09e80fe524344319e669fc4406575daa3ee62b7b",
+    "PermanssonResearch/Probability/FiniteKantorovichDuality.lean": "3bda14b9794e25d6eeb524657792ed8bb41612cd924a05d47a88d8794d3e1f80",
+    "PermanssonResearch/Probability/FiniteTransportRegression.lean": "194d7185e903b00478f01ca871eceefc711814ce1f5ac9ba1eed824908bdb7c6"
+  },
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "declaration_count": 39,
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "declarations": {
+    "PermanssonResearch.Probability.FiniteTransport.Coordinates": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.summary": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.verticalRay": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.verticalRay_closed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.verticalRay_convex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.epigraph": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.epigraph_closed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.epigraph_convex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.summary_mem_epigraph": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.mem_epigraph_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.product_summary": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.pure_summary": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.functional_decomposition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.functional_vertical": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.exists_plan_of_dual": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.envelope": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.envelope_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.envelope_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.envelope_dominates": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.envelope_diagonal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.finite_isKRTest": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.potentials_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.exists_plan_of_w1DualLE": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.integral_singleton_test": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.first_marginal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.second_marginal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransport.exists_coupling_of_w1DualLE": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.finite_couplingW1_le_of_w1DualLE": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.finite_w1DualLE_iff_couplingW1_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.finite_exists_optimal_coupling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.krDualValues": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.finite_couplingW1_eq_dual_supremum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransportRegression.dirac_dual_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransportRegression.dirac_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransportRegression.equal_laws_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransportRegression.scaledMetric": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_bound_two_rejected": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "audit_source_sha256": "c8658afec850430c924b1592c0d701e783de014ec0917db90b5308c8ed6a1fdd",
+  "audit_stdout_sha256": "5384e1f2f8d52650cc4495608f3ff79078ac3201d92e81c92afa0bafdeb9fef4",
+  "compiler_returncode": 0,
+  "status": "PASS",
+  "residual": "Genuine finite-state KR identification on the given pseudometric, with measurable singletons and arbitrary probability laws. The transport plan, exact marginals and optimality are constructed; no transport duality or optimal-plan premise is used. General Polish transport duality, Wasserstein completion and nonfinite regeneration remain outside this finite theorem."
+}
