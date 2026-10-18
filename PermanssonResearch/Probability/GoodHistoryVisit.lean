@@ -74,7 +74,7 @@ theorem goodHistory_lintegral_le
         gcongr <;> exact hprob
       calc
         ENNReal.ofReal eta * mu E + mu Eᶜ ≤
-            ENNReal.ofReal eta * 1 + mu Eᶜ := add_le_add_right hmul _
+            ENNReal.ofReal eta * 1 + mu Eᶜ := add_le_add hmul (le_refl _)
         _ ≤ ENNReal.ofReal eta * 1 + ENNReal.ofReal v :=
           add_le_add (le_refl _) hvisit
         _ = ENNReal.ofReal eta + ENNReal.ofReal v := by simp
