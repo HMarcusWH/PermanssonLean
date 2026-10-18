@@ -1,0 +1,2168 @@
+PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} {I : Type u_1} {J : Type u_2} [Fintype.{u_2} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℝ) (b : I → ℝ) : Set.{u_2} (J → ℝ)
+'PermanssonResearch.ReverseSolver.ExactPolytope.feasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.feasible_isClosed.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [Fintype.{u_2} J] (A : Matrix.{u_1, u_2, 0} I J ℝ) (b : I → ℝ) :
+  IsClosed.{u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} A b)
+'PermanssonResearch.ReverseSolver.ExactPolytope.feasible_isClosed' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.feasible_convex.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [Fintype.{u_2} J] (A : Matrix.{u_1, u_2, 0} I J ℝ) (b : I → ℝ) :
+  Convex.{0, u_2} ℝ (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} A b)
+'PermanssonResearch.ReverseSolver.ExactPolytope.feasible_convex' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.feasible_line_near_zero.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [Fintype.{u_2} J] (A : Matrix.{u_1, u_2, 0} I J ℝ) (b : I → ℝ) (x : J → ℝ)
+  (hx : Membership.mem.{u_2, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} A b) x)
+  (z : J → ℝ) (hz : ∀ (i : I), Eq.{1} (dotProduct.{0, u_2} (A i) x) (b i) → Eq.{1} (dotProduct.{0, u_2} (A i) z) 0) :
+  ∀ᶠ (t : ℝ) in nhds.{0} 0,
+    Membership.mem.{u_2, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} A b)
+      (HAdd.hAdd.{u_2, u_2, u_2} x (HSMul.hSMul.{0, u_2, u_2} t z))
+'PermanssonResearch.ReverseSolver.ExactPolytope.feasible_line_near_zero' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.extreme_active_kernel_zero.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [Fintype.{u_2} J] (A : Matrix.{u_1, u_2, 0} I J ℝ) (b : I → ℝ) (x : J → ℝ)
+  (hx :
+    Membership.mem.{u_2, u_2}
+      (Set.extremePoints.{0, u_2} ℝ (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} A b)) x)
+  (z : J → ℝ) (hz : ∀ (i : I), Eq.{1} (dotProduct.{0, u_2} (A i) x) (b i) → Eq.{1} (dotProduct.{0, u_2} (A i) z) 0) :
+  Eq.{u_2 + 1} z 0
+'PermanssonResearch.ReverseSolver.ExactPolytope.extreme_active_kernel_zero' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.compact_exists_optimal_vertex.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [Fintype.{u_2} J] (A : Matrix.{u_1, u_2, 0} I J ℝ) (b : I → ℝ)
+  (hc : IsCompact.{u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} A b))
+  (hn : Set.Nonempty.{u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} A b))
+  (objective : ContinuousLinearMap.{0, 0, u_2, 0} (RingHom.id.{0} ℝ) (J → ℝ) ℝ) :
+  ∃ x,
+    Membership.mem.{u_2, u_2}
+        (Set.extremePoints.{0, u_2} ℝ (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} A b)) x ∧
+      ∀ (y : J → ℝ),
+        Membership.mem.{u_2, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} A b) y →
+          LE.le.{0} (objective y) (objective x)
+'PermanssonResearch.ReverseSolver.ExactPolytope.compact_exists_optimal_vertex' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.selectedRows.{u_1, u_2, u_3} {I : Type u_1} {J : Type u_2}
+  [DecidableEq.{u_1 + 1} I] {R : Type u_3} [Zero.{u_3} R] (A : Matrix.{u_1, u_2, u_3} I J R) (s : Finset.{u_1} I) :
+  Matrix.{u_1, u_2, u_3} I J R
+'PermanssonResearch.ReverseSolver.ExactPolytope.selectedRows' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram.{u_1, u_2, u_3} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] {R : Type u_3} [CommRing.{u_3} R] (A : Matrix.{u_1, u_2, u_3} I J R)
+  (s : Finset.{u_1} I) : Matrix.{u_2, u_2, u_3} J J R
+'PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram_kernel_iff.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℝ) (s : Finset.{u_1} I) (z : J → ℝ) :
+  Eq.{u_2 + 1}
+      (Matrix.mulVec.{0, u_2, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram.{u_1, u_2, 0} A s) z)
+      0 ↔
+    Eq.{u_1 + 1}
+      (Matrix.mulVec.{0, u_1, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.selectedRows.{u_1, u_2, 0} A s) z) 0
+'PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram_kernel_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.extreme_active_gram_det_ne_zero.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℝ) (b : I → ℝ) (x : J → ℝ)
+  (hx :
+    Membership.mem.{u_2, u_2}
+      (Set.extremePoints.{0, u_2} ℝ (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} A b)) x) :
+  Ne.{1}
+    (Matrix.det.{0, u_2}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram.{u_1, u_2, 0} A
+        {i | Eq.{1} (dotProduct.{0, u_2} (A i) x) (b i)}))
+    0
+'PermanssonResearch.ReverseSolver.ExactPolytope.extreme_active_gram_det_ne_zero' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.gramRhs.{u_1, u_2} {I : Type u_1} {J : Type u_2} [Fintype.{u_1} I]
+  [DecidableEq.{u_1 + 1} I] (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ) (s : Finset.{u_1} I) : J → ℚ
+'PermanssonResearch.ReverseSolver.ExactPolytope.gramRhs' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidate.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ) (s : Finset.{u_1} I) : J → ℚ
+'PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidate' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidate_equation.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ) (s : Finset.{u_1} I)
+  (hd :
+    Ne.{1} (Matrix.det.{0, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram.{u_1, u_2, 0} A s)) 0) :
+  Eq.{u_2 + 1}
+    (Matrix.mulVec.{0, u_2, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram.{u_1, u_2, 0} A s)
+      (PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidate.{u_1, u_2} A b s))
+    (PermanssonResearch.ReverseSolver.ExactPolytope.gramRhs.{u_1, u_2} A b s)
+'PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidate_equation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_2} J] (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ) (x : J → ℚ) : Prop
+'PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasibleDecidable.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [Fintype.{u_2} J] (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ) (x : J → ℚ) :
+  Decidable (PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible.{u_1, u_2} A b x)
+'PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasibleDecidable' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ) : Finset.{u_2} (J → ℚ)
+'PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates_feasible.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ) (x : J → ℚ)
+  (hx :
+    Membership.mem.{u_2, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates.{u_1, u_2} A b) x) :
+  PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible.{u_1, u_2} A b x
+'PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates_feasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.cast_selectedGram.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℚ) (s : Finset.{u_1} I) :
+  Eq.{u_2 + 1}
+    (Matrix.map.{0, 0, u_2, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram.{u_1, u_2, 0} A s)
+      fun a => ↑a)
+    (PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram.{u_1, u_2, 0} (fun i j => ↑(A i j)) s)
+'PermanssonResearch.ReverseSolver.ExactPolytope.cast_selectedGram' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.cast_gramRhs.{u_1, u_2} {I : Type u_1} {J : Type u_2} [Fintype.{u_1} I]
+  [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J] (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ)
+  (s : Finset.{u_1} I) (j : J) :
+  Eq.{1} (↑(PermanssonResearch.ReverseSolver.ExactPolytope.gramRhs.{u_1, u_2} A b s j))
+    (Matrix.mulVec.{0, u_2, u_1}
+      (Matrix.transpose.{0, u_1, u_2}
+        (PermanssonResearch.ReverseSolver.ExactPolytope.selectedRows.{u_1, u_2, 0} (fun i k => ↑(A i k)) s))
+      (fun i => ite.{1} (Membership.mem.{u_1, u_1} s i) (↑(b i)) 0) j)
+'PermanssonResearch.ReverseSolver.ExactPolytope.cast_gramRhs' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.extreme_eq_rationalCandidate.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ) (x : J → ℝ)
+  (hx :
+    Membership.mem.{u_2, u_2}
+      (Set.extremePoints.{0, u_2} ℝ
+        (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i)))
+      x) :
+  ∃ s,
+    Ne.{1} (Matrix.det.{0, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.selectedGram.{u_1, u_2, 0} A s)) 0 ∧
+      Eq.{u_2 + 1} (fun j => ↑(PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidate.{u_1, u_2} A b s j)) x
+'PermanssonResearch.ReverseSolver.ExactPolytope.extreme_eq_rationalCandidate' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible_iff_cast.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ) (x : J → ℚ) :
+  PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible.{u_1, u_2} A b x ↔
+    Membership.mem.{u_2, u_2}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i))
+      fun j => ↑(x j)
+'PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible_iff_cast' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.every_vertex_is_enumerated.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ) (x : J → ℝ)
+  (hx :
+    Membership.mem.{u_2, u_2}
+      (Set.extremePoints.{0, u_2} ℝ
+        (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i)))
+      x) :
+  ∃ q,
+    Membership.mem.{u_2, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates.{u_1, u_2} A b) q ∧
+      Eq.{u_2 + 1} (fun j => ↑(q j)) x
+'PermanssonResearch.ReverseSolver.ExactPolytope.every_vertex_is_enumerated' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates_nonempty_iff.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ)
+  (hc :
+    IsCompact.{u_2}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i))) :
+  Finset.Nonempty.{u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates.{u_1, u_2} A b) ↔
+    Set.Nonempty.{u_2}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i))
+'PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates_nonempty_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.exists_rational_optimal_candidate.{u_1, u_2} {I : Type u_1}
+  {J : Type u_2} [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J]
+  (A : Matrix.{u_1, u_2, 0} I J ℚ) (b : I → ℚ)
+  (hc :
+    IsCompact.{u_2}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i)))
+  (hn :
+    Set.Nonempty.{u_2}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i)))
+  (objective : ContinuousLinearMap.{0, 0, u_2, 0} (RingHom.id.{0} ℝ) (J → ℝ) ℝ) :
+  ∃ q,
+    Membership.mem.{u_2, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates.{u_1, u_2} A b) q ∧
+      ∀ (x : J → ℝ),
+        Membership.mem.{u_2, u_2}
+            (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i))
+            x →
+          LE.le.{0} (objective x) (objective fun j => ↑(q j))
+'PermanssonResearch.ReverseSolver.ExactPolytope.exists_rational_optimal_candidate' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.activeSelections.{u_1} {I : Type u_1} [Fintype.{u_1} I]
+  [LinearOrder.{u_1} I] : List.{u_1} (Finset.{u_1} I)
+'PermanssonResearch.ReverseSolver.ExactPolytope.activeSelections' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.activeSelections_complete.{u_1} {I : Type u_1} [Fintype.{u_1} I]
+  [LinearOrder.{u_1} I] (s : Finset.{u_1} I) :
+  Membership.mem.{u_1, u_1} PermanssonResearch.ReverseSolver.ExactPolytope.activeSelections.{u_1} s
+'PermanssonResearch.ReverseSolver.ExactPolytope.activeSelections_complete' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidateList.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [LinearOrder.{u_1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J] (A : Matrix.{u_1, u_2, 0} I J ℚ)
+  (b : I → ℚ) : List.{u_2} (J → ℚ)
+'PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidateList' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.mem_rationalCandidateList.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [LinearOrder.{u_1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J] (A : Matrix.{u_1, u_2, 0} I J ℚ)
+  (b : I → ℚ) (q : J → ℚ) :
+  Membership.mem.{u_2, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidateList.{u_1, u_2} A b) q ↔
+    Membership.mem.{u_2, u_2} (PermanssonResearch.ReverseSolver.ExactPolytope.rationalCandidates.{u_1, u_2} A b) q
+'PermanssonResearch.ReverseSolver.ExactPolytope.mem_rationalCandidateList' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [LinearOrder.{u_1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J] (A : Matrix.{u_1, u_2, 0} I J ℚ)
+  (b : I → ℚ) (c : J → ℚ) : Option.{u_2} (J → ℚ)
+'PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.realObjective.{u_2} {J : Type u_2} [Fintype.{u_2} J] (c : J → ℚ) :
+  ContinuousLinearMap.{0, 0, u_2, 0} (RingHom.id.{0} ℝ) (J → ℝ) ℝ
+'PermanssonResearch.ReverseSolver.ExactPolytope.realObjective' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.realObjective_apply.{u_2} {J : Type u_2} [Fintype.{u_2} J]
+  [DecidableEq.{u_2 + 1} J] (c : J → ℚ) (x : J → ℝ) :
+  Eq.{1} ((PermanssonResearch.ReverseSolver.ExactPolytope.realObjective.{u_2} c) x)
+    (∑ j, HMul.hMul.{0, 0, 0} (↑(c j)) (x j))
+'PermanssonResearch.ReverseSolver.ExactPolytope.realObjective_apply' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_none_iff.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [LinearOrder.{u_1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J] (A : Matrix.{u_1, u_2, 0} I J ℚ)
+  (b : I → ℚ) (c : J → ℚ)
+  (hc :
+    IsCompact.{u_2}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i))) :
+  Eq.{u_2 + 1} (PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational.{u_1, u_2} A b c) Option.none.{u_2} ↔
+    Eq.{u_2 + 1}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i))
+      EmptyCollection.emptyCollection.{u_2}
+'PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_none_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_some_feasible.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [LinearOrder.{u_1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J] (A : Matrix.{u_1, u_2, 0} I J ℚ)
+  (b : I → ℚ) (c q : J → ℚ)
+  (hq :
+    Eq.{u_2 + 1} (PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational.{u_1, u_2} A b c)
+      (Option.some.{u_2} q)) :
+  PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible.{u_1, u_2} A b q
+'PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_some_feasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_some_optimal.{u_1, u_2} {I : Type u_1} {J : Type u_2}
+  [Fintype.{u_1} I] [LinearOrder.{u_1} I] [Fintype.{u_2} J] [DecidableEq.{u_2 + 1} J] (A : Matrix.{u_1, u_2, 0} I J ℚ)
+  (b : I → ℚ) (c q : J → ℚ)
+  (hq :
+    Eq.{u_2 + 1} (PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational.{u_1, u_2} A b c)
+      (Option.some.{u_2} q))
+  (hc :
+    IsCompact.{u_2}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i)))
+  (x : J → ℝ) :
+  Membership.mem.{u_2, u_2}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{u_1, u_2} (fun i j => ↑(A i j)) fun i => ↑(b i)) x →
+    LE.le.{0} (∑ j, HMul.hMul.{0, 0, 0} (↑(c j)) (x j)) ↑(dotProduct.{0, u_2} c q)
+'PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational_some_optimal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_2} (J : Type u_2) : Type u_2
+'PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint' does not depend on any axioms
+PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  (a : PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J) (x : J → ℝ) : Prop
+'PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  (constraints : List.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J)) :
+  Set.{u_1} (J → ℝ)
+'PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.listMatrix.{u_1} {J : Type u_1}
+  (constraints : List.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J)) :
+  Matrix.{0, u_1, 0} (Fin (List.length.{u_1} constraints)) J ℚ
+'PermanssonResearch.ReverseSolver.ExactPolytope.listMatrix' does not depend on any axioms
+PermanssonResearch.ReverseSolver.ExactPolytope.listBounds.{u_1} {J : Type u_1}
+  (constraints : List.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J)) :
+  Fin (List.length.{u_1} constraints) → ℚ
+'PermanssonResearch.ReverseSolver.ExactPolytope.listBounds' does not depend on any axioms
+PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible_eq.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J]
+  (constraints : List.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J)) :
+  Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1} constraints)
+    (PermanssonResearch.ReverseSolver.ExactPolytope.feasible.{0, u_1}
+      (fun i j => ↑(PermanssonResearch.ReverseSolver.ExactPolytope.listMatrix.{u_1} constraints i j)) fun i =>
+      ↑(PermanssonResearch.ReverseSolver.ExactPolytope.listBounds.{u_1} constraints i))
+'PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible_isCompact.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J]
+  (constraints : List.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J)) (lo hi : J → ℝ)
+  (hb :
+    ∀ (x : J → ℝ),
+      Membership.mem.{u_1, u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1} constraints) x →
+        LE.le.{u_1} lo x ∧ LE.le.{u_1} x hi) :
+  IsCompact.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1} constraints)
+'PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible_isCompact' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J]
+  (constraints : List.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J)) (c : J → ℚ) :
+  Option.{u_1} (J → ℚ)
+'PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_none_iff.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J]
+  (constraints : List.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J)) (c : J → ℚ)
+  (lo hi : J → ℝ)
+  (hb :
+    ∀ (x : J → ℝ),
+      Membership.mem.{u_1, u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1} constraints) x →
+        LE.le.{u_1} lo x ∧ LE.le.{u_1} x hi) :
+  Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList.{u_1} constraints c) Option.none.{u_1} ↔
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1} constraints)
+      EmptyCollection.emptyCollection.{u_1}
+'PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_none_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_some_feasible.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J]
+  (constraints : List.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J)) (c q : J → ℚ)
+  (hq :
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList.{u_1} constraints c)
+      (Option.some.{u_1} q)) :
+  Membership.mem.{u_1, u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1} constraints) fun j =>
+    ↑(q j)
+'PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_some_feasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_some_optimal.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J]
+  (constraints : List.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J)) (c q : J → ℚ)
+  (hq :
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList.{u_1} constraints c)
+      (Option.some.{u_1} q))
+  (lo hi : J → ℝ)
+  (hb :
+    ∀ (x : J → ℝ),
+      Membership.mem.{u_1, u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1} constraints) x →
+        LE.le.{u_1} lo x ∧ LE.le.{u_1} x hi)
+  (x : J → ℝ) :
+  Membership.mem.{u_1, u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1} constraints) x →
+    LE.le.{0} (∑ j, HMul.hMul.{0, 0, 0} (↑(c j)) (x j)) ↑(dotProduct.{0, u_1} c q)
+'PermanssonResearch.ReverseSolver.ExactPolytope.optimizeList_some_optimal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskMatrix : Matrix.{0, 0, 0} (Fin 3) (Fin 1) ℚ
+'PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskMatrix' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskBounds : Fin 3 → ℚ
+'PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskBounds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_optimizer_half :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational.{0, 0}
+      PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskMatrix
+      PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskBounds
+      (Matrix.vecCons.{0} (1 / 10) Matrix.vecEmpty.{0}))
+    (Option.some.{0} (Matrix.vecCons.{0} (1 / 2) Matrix.vecEmpty.{0}))
+'PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_optimizer_half' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_success_at_half :
+  Eq.{1} (HAdd.hAdd.{0, 0, 0} (4 / 5) (HDiv.hDiv.{0, 0, 0} (1 / 2) 10)) (17 / 20)
+'PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_success_at_half' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_deterministic_full_infeasible :
+  ¬PermanssonResearch.ReverseSolver.ExactPolytope.rationalFeasible.{0, 0}
+      PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskMatrix
+      PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskBounds (Matrix.vecCons.{0} 1 Matrix.vecEmpty.{0})
+'PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_deterministic_full_infeasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_negative_budget_infeasible :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational.{0, 0}
+      PermanssonResearch.ReverseSolver.ExactPolytope.Regression.riskMatrix
+      (Matrix.vecCons.{0} 0 (Matrix.vecCons.{0} 1 (Matrix.vecCons.{0} (-1 / 20) Matrix.vecEmpty.{0})))
+      (Matrix.vecCons.{0} (1 / 10) Matrix.vecEmpty.{0}))
+    Option.none.{0}
+'PermanssonResearch.ReverseSolver.ExactPolytope.Regression.risk_negative_budget_infeasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.Regression.dependent_equalities_singleton :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational.{0, 0}
+      (Matrix.vecCons.{0} (Matrix.vecCons.{0} 1 Matrix.vecEmpty.{0})
+        (Matrix.vecCons.{0} (Matrix.vecCons.{0} (-1) Matrix.vecEmpty.{0})
+          (Matrix.vecCons.{0} (Matrix.vecCons.{0} 2 Matrix.vecEmpty.{0})
+            (Matrix.vecCons.{0} (Matrix.vecCons.{0} (-2) Matrix.vecEmpty.{0}) Matrix.vecEmpty.{0}))))
+      (Matrix.vecCons.{0} (1 / 2)
+        (Matrix.vecCons.{0} (-1 / 2) (Matrix.vecCons.{0} 1 (Matrix.vecCons.{0} (-1) Matrix.vecEmpty.{0}))))
+      (Matrix.vecCons.{0} 1 Matrix.vecEmpty.{0}))
+    (Option.some.{0} (Matrix.vecCons.{0} (1 / 2) Matrix.vecEmpty.{0}))
+'PermanssonResearch.ReverseSolver.ExactPolytope.Regression.dependent_equalities_singleton' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.Regression.zero_dimensional_singleton :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.optimizeRational.{0, 0} (fun i => Fin.elim0.{1} i)
+      (fun i => Fin.elim0.{1} i) fun i => Fin.elim0.{1} i)
+    (Option.some.{0} fun i => Fin.elim0.{1} i)
+'PermanssonResearch.ReverseSolver.ExactPolytope.Regression.zero_dimensional_singleton' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} {J : Type u_1} [Fintype.{u_1} J] (e : J → ℚ) (x : J → ℝ) :
+  ℝ
+'PermanssonResearch.ReverseSolver.ExactPolytope.evaluate' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.coordinate.{u_1} {J : Type u_1} [DecidableEq.{u_1 + 1} J] (j : J) : J → ℚ
+'PermanssonResearch.ReverseSolver.ExactPolytope.coordinate' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_coordinate.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J] (j : J) (x : J → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.coordinate.{u_1} j) x)
+    (x j)
+'PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_coordinate' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_zero.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J] (x : J → ℝ) : Eq.{1} (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} 0 x) 0
+'PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_zero' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_add.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J] (e f : J → ℚ) (x : J → ℝ) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} (HAdd.hAdd.{u_1, u_1, u_1} e f) x)
+    (HAdd.hAdd.{0, 0, 0} (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} e x)
+      (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} f x))
+'PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_add' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_sub.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J] (e f : J → ℚ) (x : J → ℝ) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} (HSub.hSub.{u_1, u_1, u_1} e f) x)
+    (HSub.hSub.{0, 0, 0} (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} e x)
+      (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} f x))
+'PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_sub' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_neg.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J] (e : J → ℚ) (x : J → ℝ) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} (Neg.neg.{u_1} e) x)
+    (Neg.neg.{0} (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} e x))
+'PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_neg' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_smul.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J] (a : ℚ) (e : J → ℚ) (x : J → ℝ) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} (HSMul.hSMul.{0, u_1, u_1} a e) x)
+    (HMul.hMul.{0, 0, 0} (↑a) (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} e x))
+'PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_smul' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_sum.{u_1, u_2} {J : Type u_1} {K : Type u_2} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J] [Fintype.{u_2} K] (e : K → J → ℚ) (x : J → ℝ) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} (∑ k, e k) x)
+    (∑ k, PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} (e k) x)
+'PermanssonResearch.ReverseSolver.ExactPolytope.evaluate_sum' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.equalityConstraints.{u_1} {J : Type u_1} (e : J → ℚ) (b : ℚ) :
+  List.{u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J)
+'PermanssonResearch.ReverseSolver.ExactPolytope.equalityConstraints' does not depend on any axioms
+PermanssonResearch.ReverseSolver.ExactPolytope.constraint_holds.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J] (a : PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J)
+  (x : J → ℝ) :
+  PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1} a x ↔
+    LE.le.{0}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1}
+        (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.coefficient.{u_1} a) x)
+      ↑(PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.bound.{u_1} a)
+'PermanssonResearch.ReverseSolver.ExactPolytope.constraint_holds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ExactPolytope.equalityConstraints_iff.{u_1} {J : Type u_1} [Fintype.{u_1} J]
+  [DecidableEq.{u_1 + 1} J] (e : J → ℚ) (b : ℚ) (x : J → ℝ) :
+  (∀ (a : PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1} J),
+      Membership.mem.{u_1, u_1} (PermanssonResearch.ReverseSolver.ExactPolytope.equalityConstraints.{u_1} e b) a →
+        PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1} a x) ↔
+    Eq.{1} (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1} e x) ↑b
+'PermanssonResearch.ReverseSolver.ExactPolytope.equalityConstraints_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_2} (C : Type u_2) [DecidableEq.{u_2 + 1} C] (n : ℕ) : Type u_2
+'PermanssonResearch.ReverseSolver.Occupancy.TimeSystem' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.History.{u_2} (C : Type u_2) (n : ℕ) : ℕ → Type u_2
+'PermanssonResearch.ReverseSolver.Occupancy.History' does not depend on any axioms
+PermanssonResearch.ReverseSolver.Occupancy.History.zeroEquiv.{u_1} {C : Type u_1} {n : ℕ} :
+  Equiv.{u_1 + 1, 1} (PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n 0) (Fin n)
+'PermanssonResearch.ReverseSolver.Occupancy.History.zeroEquiv' does not depend on any axioms
+PermanssonResearch.ReverseSolver.Occupancy.History.succEquiv.{u_1} {C : Type u_1} {n : ℕ} (t : ℕ) :
+  Equiv.{u_1 + 1, u_1 + 1} (PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n (HAdd.hAdd.{0, 0, 0} t 1))
+    (Prod.{u_1, u_1} (PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n t) (Prod.{u_1, 0} C (Fin n)))
+'PermanssonResearch.ReverseSolver.Occupancy.History.succEquiv' depends on axioms: [propext]
+PermanssonResearch.ReverseSolver.Occupancy.historyFintype.{u_1} {C : Type u_1} [Fintype.{u_1} C] {n : ℕ} (t : ℕ) :
+  Fintype.{u_1} (PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n t)
+'PermanssonResearch.ReverseSolver.Occupancy.historyFintype' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.historyMeasurable.{u_1} {C : Type u_1} {n : ℕ} (t : ℕ) :
+  MeasurableSpace.{u_1} (PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n t)
+'PermanssonResearch.ReverseSolver.Occupancy.historyMeasurable' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.historyDiscrete.{u_1} {C : Type u_1} {n : ℕ} (t : ℕ) :
+  DiscreteMeasurableSpace.{u_1} (PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n t)
+'PermanssonResearch.ReverseSolver.Occupancy.historyDiscrete' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} {C : Type u_1} {n : ℕ} (t : ℕ) :
+  PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n t → Fin n
+'PermanssonResearch.ReverseSolver.Occupancy.last' does not depend on any axioms
+PermanssonResearch.ReverseSolver.Occupancy.historyPrefix.{u_1} {C : Type u_1} {n : ℕ} (t : ℕ) :
+  PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n (HAdd.hAdd.{0, 0, 0} t 1) →
+    PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n t
+'PermanssonResearch.ReverseSolver.Occupancy.historyPrefix' depends on axioms: [propext]
+PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n) : Type u_1
+'PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.matrixRow.{u_1} {C : Type u_1} [DecidableEq.{u_1 + 1} C] {n : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n) (t : ℕ) (y : Fin n) (c : C) :
+  PermanssonResearch.ActionTrace.Row.{0} (Fin n)
+'PermanssonResearch.ReverseSolver.Occupancy.matrixRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} {C : Type u_1} [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C] {n : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (N : ℕ) : Type u_1
+'PermanssonResearch.ReverseSolver.Occupancy.Flow' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.state_total.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)} {N : ℕ}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (t : Fin (HAdd.hAdd.{0, 0, 0} N 1)) :
+  Eq.{1} (∑ y, PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F t y) 1
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.state_total' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.state_le_one.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)} {N : ℕ}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (t : Fin (HAdd.hAdd.{0, 0, 0} N 1)) (y : Fin n) :
+  LE.le.{0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F t y) 1
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.state_le_one' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.action_le_state.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)} {N : ℕ}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (t : Fin N) (y : Fin n) (c : C) :
+  LE.le.{0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.action.{u_1} F t y c)
+    (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F t.castSucc y)
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.action_le_state' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.action_le_one.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)} {N : ℕ}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (t : Fin N) (y : Fin n) (c : C) :
+  LE.le.{0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.action.{u_1} F t y c) 1
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.action_le_one' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.action_zero_of_state_zero.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)} {N : ℕ}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (t : Fin N) (y : Fin n)
+  (hy : Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F t.castSucc y) 0) (c : C) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.Flow.action.{u_1} F t y c) 0
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.action_zero_of_state_zero' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.fallback.{u_1} {C : Type u_1} [DecidableEq.{u_1 + 1} C] {n : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n) (t : ℕ) (y : Fin n) : C
+'PermanssonResearch.ReverseSolver.Occupancy.fallback' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.fallback_permitted.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n) (t : ℕ)
+  (y : Fin n) :
+  Membership.mem.{u_1, u_1} (PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.options.{u_1} sys t y)
+    (PermanssonResearch.ReverseSolver.Occupancy.fallback.{u_1} sys t y)
+'PermanssonResearch.ReverseSolver.Occupancy.fallback_permitted' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.markovControl.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)} {N : ℕ}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (t : ℕ) (y : Fin n) :
+  PermanssonResearch.ActionTrace.Row.{u_1} C
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.markovControl' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.markovControl_supported.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)} {N : ℕ}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (t : ℕ) (y : Fin n) (c : C)
+  (hc : c ∉ PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.options.{u_1} sys t y) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.mass.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.Flow.markovControl.{u_1} F t y) c)
+    0
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.markovControl_supported' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{u_1} {C : Type u_1} [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C]
+  {n : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)} {N : ℕ}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) :
+  PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.policy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.state_mul_markovControl.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)} {N : ℕ}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (t : Fin N) (y : Fin n) (c : C) :
+  Eq.{1}
+    (HMul.hMul.{0, 0, 0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F t.castSucc y)
+      (PermanssonResearch.ActionTrace.Row.mass.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.markovControl.{u_1} F (↑t) y) c))
+    (PermanssonResearch.ReverseSolver.Occupancy.Flow.action.{u_1} F t y c)
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.state_mul_markovControl' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.stepRow.{u_1} {C : Type u_1} [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C]
+  {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys) (t : ℕ)
+  (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n t) :
+  PermanssonResearch.ActionTrace.Row.{u_1} (Prod.{u_1, 0} C (Fin n))
+'PermanssonResearch.ReverseSolver.Occupancy.stepRow' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.nextRow.{u_1} {C : Type u_1} [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C]
+  {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys) (t : ℕ)
+  (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n t) :
+  PermanssonResearch.ActionTrace.Row.{u_1}
+    (PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n (HAdd.hAdd.{0, 0, 0} t 1))
+'PermanssonResearch.ReverseSolver.Occupancy.nextRow' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.historyLaw.{u_1} {C : Type u_1} [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C]
+  {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) :
+  PermanssonResearch.ActionTrace.Row.{u_1} (PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n t)
+'PermanssonResearch.ReverseSolver.Occupancy.historyLaw' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.nextRow_expect.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys) (t : ℕ)
+  (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n t)
+  (f : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n (HAdd.hAdd.{0, 0, 0} t 1) → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.nextRow.{u_1} sys σ t h) f)
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.control.{u_1} σ t h) fun c =>
+      PermanssonResearch.ActionTrace.Row.expect.{0}
+        (PermanssonResearch.ReverseSolver.Occupancy.matrixRow.{u_1} sys t
+          (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} t h) c)
+        fun z => f (PermanssonResearch.ReverseSolver.Occupancy.History.snoc.{u_1} h c z))
+'PermanssonResearch.ReverseSolver.Occupancy.nextRow_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.historyLaw_step_expect.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ)
+  (f : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n (HAdd.hAdd.{0, 0, 0} t 1) → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.historyLaw.{u_1} sys σ μ (HAdd.hAdd.{0, 0, 0} t 1)) f)
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.historyLaw.{u_1} sys σ μ t) fun h =>
+      PermanssonResearch.ActionTrace.Row.expect.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.control.{u_1} σ t h) fun c =>
+        PermanssonResearch.ActionTrace.Row.expect.{0}
+          (PermanssonResearch.ReverseSolver.Occupancy.matrixRow.{u_1} sys t
+            (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} t h) c)
+          fun z => f (PermanssonResearch.ReverseSolver.Occupancy.History.snoc.{u_1} h c z))
+'PermanssonResearch.ReverseSolver.Occupancy.historyLaw_step_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.historyLaw_prefix_expect.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ)
+  (f : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n t → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.historyLaw.{u_1} sys σ μ (HAdd.hAdd.{0, 0, 0} t 1)) fun h =>
+      f (PermanssonResearch.ReverseSolver.Occupancy.historyPrefix.{u_1} t h))
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.historyLaw.{u_1} sys σ μ t) f)
+'PermanssonResearch.ReverseSolver.Occupancy.historyLaw_prefix_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.stateRow.{u_1} {C : Type u_1} [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C]
+  {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) : PermanssonResearch.ActionTrace.Row.{0} (Fin n)
+'PermanssonResearch.ReverseSolver.Occupancy.stateRow' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actionRow.{u_1} {C : Type u_1} [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C]
+  {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) :
+  PermanssonResearch.ActionTrace.Row.{u_1} (Prod.{0, u_1} (Fin n) C)
+'PermanssonResearch.ReverseSolver.Occupancy.actionRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.stateMass.{u_1} {C : Type u_1} [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C]
+  {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) (y : Fin n) : ℝ
+'PermanssonResearch.ReverseSolver.Occupancy.stateMass' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actionMass.{u_1} {C : Type u_1} [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C]
+  {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) (y : Fin n) (c : C) : ℝ
+'PermanssonResearch.ReverseSolver.Occupancy.actionMass' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.expect_indicator.{u_2} {A : Type u_2} [Fintype.{u_2} A]
+  [DecidableEq.{u_2 + 1} A] (p : PermanssonResearch.ActionTrace.Row.{u_2} A) (a : A) :
+  Eq.{1} (PermanssonResearch.ActionTrace.Row.expect.{u_2} p fun b => ite.{1} (Eq.{u_2 + 1} b a) 1 0)
+    (PermanssonResearch.ActionTrace.Row.mass.{u_2} p a)
+'PermanssonResearch.ReverseSolver.Occupancy.expect_indicator' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.expect_sum.{u_2, u_3} {A : Type u_2} {B : Type u_3} [Fintype.{u_2} A]
+  [Fintype.{u_3} B] (p : PermanssonResearch.ActionTrace.Row.{u_2} A) (f : B → A → ℝ) :
+  Eq.{1} (PermanssonResearch.ActionTrace.Row.expect.{u_2} p fun a => ∑ b, f b a)
+    (∑ b, PermanssonResearch.ActionTrace.Row.expect.{u_2} p (f b))
+'PermanssonResearch.ReverseSolver.Occupancy.expect_sum' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.expect_mul_const.{u_2} {A : Type u_2} [Fintype.{u_2} A]
+  (p : PermanssonResearch.ActionTrace.Row.{u_2} A) (f : A → ℝ) (r : ℝ) :
+  Eq.{1} (PermanssonResearch.ActionTrace.Row.expect.{u_2} p fun a => HMul.hMul.{0, 0, 0} (f a) r)
+    (HMul.hMul.{0, 0, 0} (PermanssonResearch.ActionTrace.Row.expect.{u_2} p f) r)
+'PermanssonResearch.ReverseSolver.Occupancy.expect_mul_const' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.stateMass_eq_expect.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) (y : Fin n) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.stateMass.{u_1} sys σ μ t y)
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.historyLaw.{u_1} sys σ μ t) fun h =>
+      ite.{1} (Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} t h) y) 1 0)
+'PermanssonResearch.ReverseSolver.Occupancy.stateMass_eq_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actionMass_eq_expect.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) (y : Fin n) (c : C) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.actionMass.{u_1} sys σ μ t y c)
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.historyLaw.{u_1} sys σ μ t) fun h =>
+      ite.{1} (Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} t h) y)
+        (PermanssonResearch.ActionTrace.Row.mass.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.control.{u_1} σ t h) c)
+        0)
+'PermanssonResearch.ReverseSolver.Occupancy.actionMass_eq_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actionMass_supported.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) (y : Fin n) (c : C)
+  (hc : c ∉ PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.options.{u_1} sys t y) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.actionMass.{u_1} sys σ μ t y c) 0
+'PermanssonResearch.ReverseSolver.Occupancy.actionMass_supported' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actionMass_outflow.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) (y : Fin n) :
+  Eq.{1} (∑ c, PermanssonResearch.ReverseSolver.Occupancy.actionMass.{u_1} sys σ μ t y c)
+    (PermanssonResearch.ReverseSolver.Occupancy.stateMass.{u_1} sys σ μ t y)
+'PermanssonResearch.ReverseSolver.Occupancy.actionMass_outflow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.stateMass_initial.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (y : Fin n) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.stateMass.{u_1} sys σ μ 0 y)
+    (PermanssonResearch.ActionTrace.Row.mass.{0} μ y)
+'PermanssonResearch.ReverseSolver.Occupancy.stateMass_initial' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.stateMass_step.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) (z : Fin n) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.stateMass.{u_1} sys σ μ (HAdd.hAdd.{0, 0, 0} t 1) z)
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.historyLaw.{u_1} sys σ μ t) fun h =>
+      ∑ c,
+        HMul.hMul.{0, 0, 0}
+          (PermanssonResearch.ActionTrace.Row.mass.{u_1}
+            (PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.control.{u_1} σ t h) c)
+          ↑((PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.matrix.{u_1} sys t c).entry
+              (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} t h) z))
+'PermanssonResearch.ReverseSolver.Occupancy.stateMass_step' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.stateMass_inflow.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) (z : Fin n) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.stateMass.{u_1} sys σ μ (HAdd.hAdd.{0, 0, 0} t 1) z)
+    (∑ y,
+      ∑ c,
+        HMul.hMul.{0, 0, 0} (PermanssonResearch.ReverseSolver.Occupancy.actionMass.{u_1} sys σ μ t y c)
+          ↑((PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.matrix.{u_1} sys t c).entry y z))
+'PermanssonResearch.ReverseSolver.Occupancy.stateMass_inflow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1} {C : Type u_1} [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C]
+  {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (N : ℕ) :
+  PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N
+'PermanssonResearch.ReverseSolver.Occupancy.occupancies' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.terminal_expect_eq_occupancy.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (N : ℕ) (R : Fin n → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.historyLaw.{u_1} sys σ μ N) fun h =>
+      R (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N h))
+    (∑ y,
+      HMul.hMul.{0, 0, 0}
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1} sys σ μ N) (Fin.last N) y)
+        (R y))
+'PermanssonResearch.ReverseSolver.Occupancy.terminal_expect_eq_occupancy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (N : ℕ) :
+  MeasureTheory.Measure.{u_1} (PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n N)
+'PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure_probability.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (N : ℕ) :
+  MeasureTheory.IsProbabilityMeasure.{u_1}
+    (PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1} sys σ μ N)
+'PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure_probability' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actual_terminal_integral_eq_occupancy.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (N : ℕ) (R : Fin n → ℝ) :
+  Eq.{1}
+    (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n N),
+      R
+        (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N
+          h) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1} sys σ μ N)
+    (∑ y,
+      HMul.hMul.{0, 0, 0}
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1} sys σ μ N) (Fin.last N) y)
+        (R y))
+'PermanssonResearch.ReverseSolver.Occupancy.actual_terminal_integral_eq_occupancy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actionMass_policy.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (t : ℕ) (y : Fin n) (c : C) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.Occupancy.actionMass.{u_1} sys
+      (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{u_1} F) μ t y c)
+    (HMul.hMul.{0, 0, 0}
+      (PermanssonResearch.ReverseSolver.Occupancy.stateMass.{u_1} sys
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{u_1} F) μ t y)
+      (PermanssonResearch.ActionTrace.Row.mass.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.markovControl.{u_1} F t y) c))
+'PermanssonResearch.ReverseSolver.Occupancy.actionMass_policy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.stateMass_policy_eq.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (t : Fin (HAdd.hAdd.{0, 0, 0} N 1)) (y : Fin n) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.Occupancy.stateMass.{u_1} sys
+      (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{u_1} F) μ (↑t) y)
+    (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F t y)
+'PermanssonResearch.ReverseSolver.Occupancy.stateMass_policy_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actionMass_policy_eq.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (t : Fin N) (y : Fin n) (c : C) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.Occupancy.actionMass.{u_1} sys
+      (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{u_1} F) μ (↑t) y c)
+    (PermanssonResearch.ReverseSolver.Occupancy.Flow.action.{u_1} F t y c)
+'PermanssonResearch.ReverseSolver.Occupancy.actionMass_policy_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.policy_realizes_flow.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) :
+  (∀ (t : Fin (HAdd.hAdd.{0, 0, 0} N 1)) (y : Fin n),
+      Eq.{1}
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1} sys
+            (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{u_1} F) μ N)
+          t y)
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F t y)) ∧
+    ∀ (t : Fin N) (y : Fin n) (c : C),
+      Eq.{1}
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.action.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1} sys
+            (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{u_1} F) μ N)
+          t y c)
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.action.{u_1} F t y c)
+'PermanssonResearch.ReverseSolver.Occupancy.policy_realizes_flow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.reconstructed_terminal_expectation.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (R : Fin n → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.historyLaw.{u_1} sys
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{u_1} F) μ N)
+      fun h => R (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N h))
+    (∑ y, HMul.hMul.{0, 0, 0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F (Fin.last N) y) (R y))
+'PermanssonResearch.ReverseSolver.Occupancy.reconstructed_terminal_expectation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.reconstructed_actual_terminal_integral.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (R : Fin n → ℝ) :
+  Eq.{1}
+    (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n N),
+      R
+        (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N
+          h) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1} sys
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{u_1} F) μ N)
+    (∑ y, HMul.hMul.{0, 0, 0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F (Fin.last N) y) (R y))
+'PermanssonResearch.ReverseSolver.Occupancy.reconstructed_actual_terminal_integral' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.exists_policy_realizing_flow.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) :
+  ∃ σ,
+    (∀ (t : Fin (HAdd.hAdd.{0, 0, 0} N 1)) (y : Fin n),
+        Eq.{1}
+          (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1}
+            (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1} sys σ μ N) t y)
+          (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F t y)) ∧
+      (∀ (t : Fin N) (y : Fin n) (c : C),
+          Eq.{1}
+            (PermanssonResearch.ReverseSolver.Occupancy.Flow.action.{u_1}
+              (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1} sys σ μ N) t y c)
+            (PermanssonResearch.ReverseSolver.Occupancy.Flow.action.{u_1} F t y c)) ∧
+        ∀ (R : Fin n → ℝ),
+          Eq.{1}
+            (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n N),
+              R
+                (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N
+                  h) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1} sys σ μ N)
+            (∑ y,
+              HMul.hMul.{0, 0, 0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F (Fin.last N) y) (R y))
+'PermanssonResearch.ReverseSolver.Occupancy.exists_policy_realizing_flow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actual_history_flow_equivalence.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (N : ℕ) :
+  (∀ (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys),
+      ∃ F,
+        ∀ (R : Fin n → ℝ),
+          Eq.{1}
+            (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n N),
+              R
+                (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N
+                  h) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1} sys σ μ N)
+            (∑ y,
+              HMul.hMul.{0, 0, 0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F (Fin.last N) y)
+                (R y))) ∧
+    ∀ (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N),
+      ∃ σ,
+        ∀ (R : Fin n → ℝ),
+          Eq.{1}
+            (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C n N),
+              R
+                (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N
+                  h) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1} sys σ μ N)
+            (∑ y,
+              HMul.hMul.{0, 0, 0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1} F (Fin.last N) y) (R y))
+'PermanssonResearch.ReverseSolver.Occupancy.actual_history_flow_equivalence' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (N : ℕ) (R : Fin n → ℝ) : ℝ
+'PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.flowTerminalScore.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (R : Fin n → ℝ) : ℝ
+'PermanssonResearch.ReverseSolver.Occupancy.flowTerminalScore' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actual_success_risk_range_eq_flow.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (N : ℕ) (R D : Fin n → ℝ) :
+  Eq.{1}
+    (Set.range.{0, u_1 + 1} fun σ =>
+      Prod.mk.{0, 0} (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{u_1} sys σ μ N R)
+        (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{u_1} sys σ μ N D))
+    (Set.range.{0, u_1 + 1} fun F =>
+      Prod.mk.{0, 0} (PermanssonResearch.ReverseSolver.Occupancy.flowTerminalScore.{u_1} F R)
+        (PermanssonResearch.ReverseSolver.Occupancy.flowTerminalScore.{u_1} F D))
+'PermanssonResearch.ReverseSolver.Occupancy.actual_success_risk_range_eq_flow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.row_event_probability.{u_1} {A : Type u_1} [Fintype.{u_1} A]
+  [MeasurableSpace.{u_1} A] [MeasurableSingletonClass.{u_1} A] (p : PermanssonResearch.ActionTrace.Row.{u_1} A)
+  (P : A → Prop) [DecidablePred.{u_1 + 1} P] :
+  Eq.{1} ((PermanssonResearch.ActionTrace.Row.measure.{u_1} p) (Set.ofPred.{u_1} fun a => P a))
+    (ENNReal.ofReal (PermanssonResearch.ActionTrace.Row.expect.{u_1} p fun a => ite.{1} (P a) 1 0))
+'PermanssonResearch.ReverseSolver.Occupancy.row_event_probability' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actual_state_probability.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) (y : Fin n) :
+  Eq.{1}
+    ((PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1} sys σ μ t)
+      (Set.ofPred.{u_1} fun h => Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} t h) y))
+    (ENNReal.ofReal (PermanssonResearch.ReverseSolver.Occupancy.stateMass.{u_1} sys σ μ t y))
+'PermanssonResearch.ReverseSolver.Occupancy.actual_state_probability' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actual_terminal_event_probability.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (N : ℕ) (G : Finset.{0} (Fin n)) :
+  Eq.{1}
+    ((PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1} sys σ μ N)
+      (Set.ofPred.{u_1} fun h => Membership.mem.{0, 0} G (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N h)))
+    (ENNReal.ofReal
+      (∑ y ∈ G,
+        PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1} sys σ μ N) (Fin.last N) y))
+'PermanssonResearch.ReverseSolver.Occupancy.actual_terminal_event_probability' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actualActionMeasure.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} [MeasurableSpace.{u_1} C]
+  (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) : MeasureTheory.Measure.{u_1} (Prod.{0, u_1} (Fin n) C)
+'PermanssonResearch.ReverseSolver.Occupancy.actualActionMeasure' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actualActionMeasure_probability.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} [MeasurableSpace.{u_1} C]
+  (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) :
+  MeasureTheory.IsProbabilityMeasure.{u_1}
+    (PermanssonResearch.ReverseSolver.Occupancy.actualActionMeasure.{u_1} sys σ μ t)
+'PermanssonResearch.ReverseSolver.Occupancy.actualActionMeasure_probability' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actual_action_probability.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] {n : ℕ} [MeasurableSpace.{u_1} C] [MeasurableSingletonClass.{u_1} C]
+  (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (t : ℕ) (y : Fin n) (c : C) :
+  Eq.{1}
+    ((PermanssonResearch.ReverseSolver.Occupancy.actualActionMeasure.{u_1} sys σ μ t)
+      (Singleton.singleton.{u_1, u_1} (Prod.mk.{0, u_1} y c)))
+    (ENNReal.ofReal (PermanssonResearch.ReverseSolver.Occupancy.actionMass.{u_1} sys σ μ t y c))
+'PermanssonResearch.ReverseSolver.Occupancy.actual_action_probability' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.augmentedMatrix.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [DecidableEq.{u_1 + 1} C] [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {n m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_1} C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S)) (t : ℕ) (c : C) :
+  PermanssonResearch.ReverseSolver.RationalMarkovMatrix m
+'PermanssonResearch.ReverseSolver.Occupancy.augmentedMatrix' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [DecidableEq.{u_1 + 1} C] [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {n m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_1} C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S)) :
+  PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C m
+'PermanssonResearch.ReverseSolver.Occupancy.monitorSystem' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.monitor_row_expect.{u_1, u_2} {C : Type u_1} {S : Type u_2} [Fintype.{u_1} C]
+  [DecidableEq.{u_1 + 1} C] [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {n m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_1} C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S)) (t : ℕ) (i : Fin m) (c : C) (v : Fin m → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{0}
+      (PermanssonResearch.ReverseSolver.Occupancy.matrixRow.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys M e) t i c)
+      v)
+    (∑ z,
+      HMul.hMul.{0, 0, 0}
+        (↑((PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.matrix.{u_1} sys c).entry (e i).1 z))
+        (v
+          ((Equiv.symm.{1, u_2 + 1} e)
+            (Prod.mk.{0, u_2} z
+              (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.update.{u_1, u_2} M t (e i).2 (e i).1 c z)))))
+'PermanssonResearch.ReverseSolver.Occupancy.monitor_row_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent.{u_1, u_2} {C : Type u_1} {S : Type u_2} {n m : ℕ}
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S)) (t : ℕ) :
+  PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m t → Prop
+'PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent_decidable.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [DecidableEq.{u_2 + 1} S] {n m : ℕ} (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S)) (t : ℕ)
+  (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m t) :
+  Decidable (PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent.{u_1, u_2} M e t h)
+'PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent_decidable' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.nextRow_consistent_expect.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C] [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {n m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_1} C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S))
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys M e))
+  (t : ℕ) (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m t) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.nextRow.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys M e) σ t h)
+      fun h' =>
+      ite.{1} (PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent.{u_1, u_2} M e (HAdd.hAdd.{0, 0, 0} t 1) h')
+        1 0)
+    (ite.{1} (PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent.{u_1, u_2} M e t h) 1 0)
+'PermanssonResearch.ReverseSolver.Occupancy.nextRow_consistent_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2} {C : Type u_1} {S : Type u_2} {n m : ℕ}
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S)) (y : Fin n) :
+  PermanssonResearch.ActionTrace.Row.{0} (Fin m)
+'PermanssonResearch.ReverseSolver.Occupancy.monitorInitial' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.historyLaw_consistent_expect.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C] [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {n m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_1} C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S))
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys M e))
+  (y : Fin n) (N : ℕ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.historyLaw.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys M e) σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2} M e y) N)
+      fun h => ite.{1} (PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent.{u_1, u_2} M e N h) 1 0)
+    1
+'PermanssonResearch.ReverseSolver.Occupancy.historyLaw_consistent_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actual_monitor_consistent.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C] [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {n m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_1} C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S))
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys M e))
+  (y : Fin n) (N : ℕ) :
+  ∀ᵐ (h :
+    PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m
+      N) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys M e) σ
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2} M e y) N,
+    PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent.{u_1, u_2} M e N h
+'PermanssonResearch.ReverseSolver.Occupancy.actual_monitor_consistent' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} {C : Type u_1} {S : Type u_2} {n m : ℕ}
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S)) (t : ℕ) :
+  PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m t →
+    PermanssonResearch.ReverseSolver.FiniteMonitor.TraceHistory.{u_1} C n
+'PermanssonResearch.ReverseSolver.Occupancy.physicalTrace' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.physicalTrace_length.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C] [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {n m : ℕ}
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S)) (t : ℕ)
+  (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m t) :
+  Eq.{1} (List.length.{u_1} (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e t h).2) t
+'PermanssonResearch.ReverseSolver.Occupancy.physicalTrace_length' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.consistent_eq_literal_run.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C] [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {n m : ℕ}
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S)) (t : ℕ)
+  (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m t)
+  (hh : PermanssonResearch.ReverseSolver.Occupancy.monitorConsistent.{u_1, u_2} M e t h) :
+  Eq.{u_2 + 1} (e (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} t h))
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2} M 0
+      (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e t h).1
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{u_1, u_2} M
+        (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e t h).1)
+      (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e t h).2)
+'PermanssonResearch.ReverseSolver.Occupancy.consistent_eq_literal_run' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actual_monitor_literal_integral.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [Fintype.{u_1} C] [DecidableEq.{u_1 + 1} C] [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {n m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_1} C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) S))
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys M e))
+  (y : Fin n) (N : ℕ) (F : Prod.{0, u_2} (Fin n) S → ℝ) :
+  Eq.{1}
+    (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m N),
+      F
+        (e
+          (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N
+            h)) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys M e) σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2} M e y) N)
+    (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m N),
+      F
+        (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2} M 0
+          (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N h).1
+          (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{u_1, u_2} M
+            (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N h).1)
+          (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N
+              h).2) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys M e) σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2} M e y) N)
+'PermanssonResearch.ReverseSolver.Occupancy.actual_monitor_literal_integral' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.physicalMatrix (c : Bool) :
+  PermanssonResearch.ReverseSolver.RationalMarkovMatrix 2
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.physicalMatrix' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.physicalSystem :
+  PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{0} Bool 2
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.physicalSystem' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.monitor :
+  PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{0, 0} Bool 2 (Fin 2)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.monitor' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.enumeration : Equiv.{1, 1} (Fin 4) (Prod.{0, 0} (Fin 2) (Fin 2))
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.enumeration' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system :
+  PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{0} Bool 4
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial : PermanssonResearch.ActionTrace.Row.{0} (Fin 4)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.constantPolicy
+  (p : PermanssonResearch.ActionTrace.Row.{0} Bool) :
+  PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{0}
+    PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.constantPolicy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.success (i : Fin 4) : ℝ
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.success' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.danger (i : Fin 4) : ℝ
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.danger' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.one_step_integral
+  (p : PermanssonResearch.ActionTrace.Row.{0} Bool) (F : Prod.{0, 0} (Fin 2) (Fin 2) → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system
+      (PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.constantPolicy p)
+      PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial 1 fun i =>
+      F (PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.enumeration i))
+    (PermanssonResearch.ActionTrace.Row.expect.{0} p fun c =>
+      ∑ z,
+        HMul.hMul.{0, 0, 0} (↑((PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.physicalMatrix c).entry 0 z))
+          (F (Prod.mk.{0, 0} z (ite.{1} (Eq.{1} c Bool.true) 1 0))))
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.one_step_integral' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_success
+  (p : PermanssonResearch.ActionTrace.Row.{0} Bool) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system
+      (PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.constantPolicy p)
+      PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial 1
+      PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.success)
+    (PermanssonResearch.ActionTrace.Row.mass.{0} p Bool.true)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_success' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_danger (p : PermanssonResearch.ActionTrace.Row.{0} Bool) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system
+      (PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.constantPolicy p)
+      PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial 1
+      PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.danger)
+    (HDiv.hDiv.{0, 0, 0} (PermanssonResearch.ActionTrace.Row.mass.{0} p Bool.true) 2)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_danger' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.halfRow : PermanssonResearch.ActionTrace.Row.{0} Bool
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.halfRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_mixing_risk_boundary :
+  Eq.{1}
+      (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+        PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system
+        (PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.constantPolicy
+          PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.halfRow)
+        PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial 1
+        PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.success)
+      (1 / 2) ∧
+    Eq.{1}
+        (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+          PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system
+          (PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.constantPolicy
+            PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.halfRow)
+          PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial 1
+          PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.danger)
+        (1 / 4) ∧
+      LT.lt.{0} (1 / 4)
+          (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+            PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system
+            (PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.constantPolicy
+              (PermanssonResearch.ActionTrace.Row.pure.{0} Bool.true))
+            PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial 1
+            PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.danger) ∧
+        LT.lt.{0}
+          (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+            PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system
+            (PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.constantPolicy
+              (PermanssonResearch.ActionTrace.Row.pure.{0} Bool.false))
+            PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial 1
+            PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.success)
+          (1 / 2)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.actual_mixing_risk_boundary' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.mixingFlow :
+  PermanssonResearch.ReverseSolver.Occupancy.Flow.{0} PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system
+    PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial 1
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.mixingFlow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.reconstructed_mixing_scores :
+  Eq.{1}
+      (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+        PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{0}
+          PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.mixingFlow)
+        PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial 1
+        PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.success)
+      (1 / 2) ∧
+    Eq.{1}
+      (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+        PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{0}
+          PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.mixingFlow)
+        PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.initial 1
+        PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.danger)
+      (1 / 4)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.reconstructed_mixing_scores' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.zero_mass_initial_actions (j : Fin 4)
+  (hj :
+    Ne.{1} j
+      ((Equiv.symm.{1, 1} PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.enumeration) (Prod.mk.{0, 0} 0 0))) :
+  Eq.{1}
+      (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{0}
+        PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.mixingFlow 0 j)
+      0 ∧
+    ∀ (c : Bool),
+      Eq.{1}
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.action.{0}
+          PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.mixingFlow 0 j c)
+        0
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.zero_mass_initial_actions' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.reconstructed_policy_legal_every_history (t : ℕ)
+  (h : PermanssonResearch.ReverseSolver.Occupancy.History.{0} Bool 4 t) (c : Bool)
+  (hc :
+    c ∉
+      PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.options.{0}
+        PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.system t
+        (PermanssonResearch.ReverseSolver.Occupancy.last.{0} t h)) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.mass.{0}
+      (PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.control.{0}
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{0}
+          PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.mixingFlow)
+        t h)
+      c)
+    0
+'PermanssonResearch.ReverseSolver.Occupancy.RiskFixture.reconstructed_policy_legal_every_history' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_2} (C : Type u_2) (n N : ℕ) : Type u_2
+'PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate' does not depend on any axioms
+PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} {C : Type u_1} {n N : ℕ}
+  (t : Fin (HAdd.hAdd.{0, 0, 0} N 1)) (y : Fin n) :
+  PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N
+'PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate' does not depend on any axioms
+PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate.{u_1} {C : Type u_1} {n N : ℕ} (t : Fin N) (y : Fin n)
+  (c : C) : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N
+'PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate' does not depend on any axioms
+PermanssonResearch.ReverseSolver.Occupancy.stateExpression.{u_1} {C : Type u_1} [LinearOrder.{u_1} C] {n N : ℕ}
+  (t : Fin (HAdd.hAdd.{0, 0, 0} N 1)) (y : Fin n) :
+  PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℚ
+'PermanssonResearch.ReverseSolver.Occupancy.stateExpression' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actionExpression.{u_1} {C : Type u_1} [LinearOrder.{u_1} C] {n N : ℕ}
+  (t : Fin N) (y : Fin n) (c : C) : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℚ
+'PermanssonResearch.ReverseSolver.Occupancy.actionExpression' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.outflowExpression.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (t : Fin N) (y : Fin n) :
+  PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℚ
+'PermanssonResearch.ReverseSolver.Occupancy.outflowExpression' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.inflowExpression.{u_1} {C : Type u_1} [Fintype.{u_1} C] [LinearOrder.{u_1} C]
+  {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n) (t : Fin N) (z : Fin n) :
+  PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℚ
+'PermanssonResearch.ReverseSolver.Occupancy.inflowExpression' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.terminalExpression.{u_1} {C : Type u_1} [LinearOrder.{u_1} C] {n N : ℕ}
+  (reward : Fin n → ℚ) : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℚ
+'PermanssonResearch.ReverseSolver.Occupancy.terminalExpression' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.evaluate_stateExpression.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ)
+  (t : Fin (HAdd.hAdd.{0, 0, 0} N 1)) (y : Fin n) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.stateExpression.{u_1} t y) w)
+    (w (PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} t y))
+'PermanssonResearch.ReverseSolver.Occupancy.evaluate_stateExpression' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.evaluate_actionExpression.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ)
+  (t : Fin N) (y : Fin n) (c : C) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.actionExpression.{u_1} t y c) w)
+    (w (PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate.{u_1} t y c))
+'PermanssonResearch.ReverseSolver.Occupancy.evaluate_actionExpression' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.evaluate_outflowExpression.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ)
+  (t : Fin N) (y : Fin n) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.outflowExpression.{u_1} t y) w)
+    (HSub.hSub.{0, 0, 0} (∑ c, w (PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate.{u_1} t y c))
+      (w (PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} t.castSucc y)))
+'PermanssonResearch.ReverseSolver.Occupancy.evaluate_outflowExpression' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.evaluate_inflowExpression.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ) (t : Fin N) (z : Fin n) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.inflowExpression.{u_1} sys t z) w)
+    (HSub.hSub.{0, 0, 0} (w (PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} t.succ z))
+      (∑ y,
+        ∑ c,
+          HMul.hMul.{0, 0, 0}
+            (↑((PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.matrix.{u_1} sys (↑t) c).entry y z))
+            (w (PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate.{u_1} t y c))))
+'PermanssonResearch.ReverseSolver.Occupancy.evaluate_inflowExpression' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.evaluate_terminalExpression.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (reward : Fin n → ℚ)
+  (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.terminalExpression.{u_1} reward) w)
+    (∑ y,
+      HMul.hMul.{0, 0, 0} (↑(reward y))
+        (w (PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} (Fin.last N) y)))
+'PermanssonResearch.ReverseSolver.Occupancy.evaluate_terminalExpression' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.coordinateList.{u_2} (C : Type u_2) [Fintype.{u_2} C] [LinearOrder.{u_2} C]
+  (n N : ℕ) : List.{u_2} (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_2} C n N)
+'PermanssonResearch.ReverseSolver.Occupancy.coordinateList' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.mem_coordinateList.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (j : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N) :
+  Membership.mem.{u_1, u_1} (PermanssonResearch.ReverseSolver.Occupancy.coordinateList.{u_1} C n N) j
+'PermanssonResearch.ReverseSolver.Occupancy.mem_coordinateList' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.forall_timeState {n N : ℕ} (P : Prod.{0, 0} (Fin N) (Fin n) → Prop) :
+  (∀ (p : Prod.{0, 0} (Fin N) (Fin n)),
+      Membership.mem.{0, 0} (List.product.{0, 0} (List.finRange N) (List.finRange n)) p → P p) ↔
+    ∀ (t : Fin N) (y : Fin n), P (Prod.mk.{0, 0} t y)
+'PermanssonResearch.ReverseSolver.Occupancy.forall_timeState' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.forall_timeStateControl.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (P : Prod.{0, u_1} (Fin N) (Prod.{0, u_1} (Fin n) C) → Prop) :
+  (∀ (p : Prod.{0, u_1} (Fin N) (Prod.{0, u_1} (Fin n) C)),
+      Membership.mem.{u_1, u_1}
+          (List.product.{0, u_1} (List.finRange N)
+            (List.product.{0, u_1} (List.finRange n)
+              (Finset.sort.{u_1} Finset.univ.{u_1} fun x1 x2 => LE.le.{u_1} x1 x2)))
+          p →
+        P p) ↔
+    ∀ (t : Fin N) (y : Fin n) (c : C), P (Prod.mk.{0, u_1} t (Prod.mk.{0, u_1} y c))
+'PermanssonResearch.ReverseSolver.Occupancy.forall_timeStateControl' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.initialConstraints.{u_1} {C : Type u_1} [LinearOrder.{u_1} C] {n N : ℕ}
+  (μ : Fin n → ℚ) :
+  List.{u_1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N))
+'PermanssonResearch.ReverseSolver.Occupancy.initialConstraints' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.outflowConstraints.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} :
+  List.{u_1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N))
+'PermanssonResearch.ReverseSolver.Occupancy.outflowConstraints' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.inflowConstraints.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n) :
+  List.{u_1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N))
+'PermanssonResearch.ReverseSolver.Occupancy.inflowConstraints' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.nonnegativeConstraints.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} :
+  List.{u_1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N))
+'PermanssonResearch.ReverseSolver.Occupancy.nonnegativeConstraints' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.supportConstraints.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n) :
+  List.{u_1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N))
+'PermanssonResearch.ReverseSolver.Occupancy.supportConstraints' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.flowConstraints.{u_1} {C : Type u_1} [Fintype.{u_1} C] [LinearOrder.{u_1} C]
+  {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n) (μ danger : Fin n → ℚ) (ρ : ℚ) :
+  List.{u_1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N))
+'PermanssonResearch.ReverseSolver.Occupancy.flowConstraints' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.nonnegativeConstraints_iff.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ) :
+  (∀
+      (a :
+        PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N)),
+      Membership.mem.{u_1, u_1} PermanssonResearch.ReverseSolver.Occupancy.nonnegativeConstraints.{u_1} a →
+        PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1} a w) ↔
+    ∀ (j : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N), LE.le.{0} 0 (w j)
+'PermanssonResearch.ReverseSolver.Occupancy.nonnegativeConstraints_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.initialConstraints_iff.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (μ : Fin n → ℚ)
+  (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ) :
+  (∀
+      (a :
+        PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N)),
+      Membership.mem.{u_1, u_1} (PermanssonResearch.ReverseSolver.Occupancy.initialConstraints.{u_1} μ) a →
+        PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1} a w) ↔
+    ∀ (y : Fin n), Eq.{1} (w (PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} 0 y)) ↑(μ y)
+'PermanssonResearch.ReverseSolver.Occupancy.initialConstraints_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.outflowConstraints_iff.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ) :
+  (∀
+      (a :
+        PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N)),
+      Membership.mem.{u_1, u_1} PermanssonResearch.ReverseSolver.Occupancy.outflowConstraints.{u_1} a →
+        PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1} a w) ↔
+    ∀ (t : Fin N) (y : Fin n),
+      Eq.{1} (∑ c, w (PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate.{u_1} t y c))
+        (w (PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} t.castSucc y))
+'PermanssonResearch.ReverseSolver.Occupancy.outflowConstraints_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.inflowConstraints_iff.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ) :
+  (∀
+      (a :
+        PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N)),
+      Membership.mem.{u_1, u_1} (PermanssonResearch.ReverseSolver.Occupancy.inflowConstraints.{u_1} sys) a →
+        PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1} a w) ↔
+    ∀ (t : Fin N) (z : Fin n),
+      Eq.{1} (w (PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} t.succ z))
+        (∑ y,
+          ∑ c,
+            HMul.hMul.{0, 0, 0} (w (PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate.{u_1} t y c))
+              ↑((PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.matrix.{u_1} sys (↑t) c).entry y z))
+'PermanssonResearch.ReverseSolver.Occupancy.inflowConstraints_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.supportConstraints_iff.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ) :
+  (∀
+      (a :
+        PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N)),
+      Membership.mem.{u_1, u_1} (PermanssonResearch.ReverseSolver.Occupancy.supportConstraints.{u_1} sys) a →
+        PermanssonResearch.ReverseSolver.ExactPolytope.RationalConstraint.holds.{u_1} a w) ↔
+    ∀ (t : Fin N) (y : Fin n),
+      ∀ c ∉ PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.options.{u_1} sys (↑t) y,
+        LE.le.{0} (w (PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate.{u_1} t y c)) 0
+'PermanssonResearch.ReverseSolver.Occupancy.supportConstraints_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.flowConstraints_iff.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (μ danger : Fin n → ℚ) (ρ : ℚ) (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ) :
+  Membership.mem.{u_1, u_1}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.flowConstraints.{u_1} sys μ danger ρ))
+      w ↔
+    (∀ (j : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N), LE.le.{0} 0 (w j)) ∧
+      (∀ (y : Fin n), Eq.{1} (w (PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} 0 y)) ↑(μ y)) ∧
+        (∀ (t : Fin N) (y : Fin n),
+            Eq.{1} (∑ c, w (PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate.{u_1} t y c))
+              (w (PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} t.castSucc y))) ∧
+          (∀ (t : Fin N) (z : Fin n),
+              Eq.{1} (w (PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} t.succ z))
+                (∑ y,
+                  ∑ c,
+                    HMul.hMul.{0, 0, 0} (w (PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate.{u_1} t y c))
+                      ↑((PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.matrix.{u_1} sys (↑t) c).entry y z))) ∧
+            (∀ (t : Fin N) (y : Fin n),
+                ∀ c ∉ PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.options.{u_1} sys (↑t) y,
+                  LE.le.{0} (w (PermanssonResearch.ReverseSolver.Occupancy.actionCoordinate.{u_1} t y c)) 0) ∧
+              LE.le.{0}
+                (∑ y,
+                  HMul.hMul.{0, 0, 0} (↑(danger y))
+                    (w (PermanssonResearch.ReverseSolver.Occupancy.stateCoordinate.{u_1} (Fin.last N) y)))
+                ↑ρ
+'PermanssonResearch.ReverseSolver.Occupancy.flowConstraints_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow {n : ℕ} (μ : Fin n → ℚ)
+  (hμ : ∀ (y : Fin n), LE.le.{0} 0 (μ y)) (hμ1 : Eq.{1} (∑ y, μ y) 1) : PermanssonResearch.ActionTrace.Row.{0} (Fin n)
+'PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.vector.{u_1} {C : Type u_1} [Fintype.{u_1} C] [LinearOrder.{u_1} C]
+  {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) :
+  PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.vector' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (reward : Fin n → ℚ) : ℝ
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.flowFromVector.{u_1} {C : Type u_1} [Fintype.{u_1} C] [LinearOrder.{u_1} C]
+  {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n) (μ danger : Fin n → ℚ)
+  (hμ : ∀ (y : Fin n), LE.le.{0} 0 (μ y)) (hμ1 : Eq.{1} (∑ y, μ y) 1) (ρ : ℚ)
+  (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ)
+  (hw :
+    Membership.mem.{u_1, u_1}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.flowConstraints.{u_1} sys μ danger ρ))
+      w) :
+  PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys
+    (PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow μ hμ hμ1) N
+'PermanssonResearch.ReverseSolver.Occupancy.flowFromVector' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.flowFromVector_risk.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (μ danger : Fin n → ℚ) (hμ : ∀ (y : Fin n), LE.le.{0} 0 (μ y)) (hμ1 : Eq.{1} (∑ y, μ y) 1) (ρ : ℚ)
+  (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ)
+  (hw :
+    Membership.mem.{u_1, u_1}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.flowConstraints.{u_1} sys μ danger ρ))
+      w) :
+  LE.le.{0}
+    (PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.flowFromVector.{u_1} sys μ danger hμ hμ1 ρ w hw) danger)
+    ↑ρ
+'PermanssonResearch.ReverseSolver.Occupancy.flowFromVector_risk' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.flowFromVector_vector.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (μ danger : Fin n → ℚ) (hμ : ∀ (y : Fin n), LE.le.{0} 0 (μ y)) (hμ1 : Eq.{1} (∑ y, μ y) 1) (ρ : ℚ)
+  (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ)
+  (hw :
+    Membership.mem.{u_1, u_1}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.flowConstraints.{u_1} sys μ danger ρ))
+      w) :
+  Eq.{u_1 + 1}
+    (PermanssonResearch.ReverseSolver.Occupancy.Flow.vector.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.flowFromVector.{u_1} sys μ danger hμ hμ1 ρ w hw))
+    w
+'PermanssonResearch.ReverseSolver.Occupancy.flowFromVector_vector' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.vector_feasible.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  (μ danger : Fin n → ℚ) (hμ : ∀ (y : Fin n), LE.le.{0} 0 (μ y)) (hμ1 : Eq.{1} (∑ y, μ y) 1) (ρ : ℚ)
+  (F :
+    PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys
+      (PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow μ hμ hμ1) N)
+  (hr : LE.le.{0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue.{u_1} F danger) ↑ρ) :
+  Membership.mem.{u_1, u_1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.flowConstraints.{u_1} sys μ danger ρ))
+    (PermanssonResearch.ReverseSolver.Occupancy.Flow.vector.{u_1} F)
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.vector_feasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.flowPolytope_bounded.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (μ danger : Fin n → ℚ) (hμ : ∀ (y : Fin n), LE.le.{0} 0 (μ y)) (hμ1 : Eq.{1} (∑ y, μ y) 1) (ρ : ℚ)
+  (w : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℝ) :
+  Membership.mem.{u_1, u_1}
+      (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.flowConstraints.{u_1} sys μ danger ρ))
+      w →
+    LE.le.{u_1} 0 w ∧ LE.le.{u_1} w 1
+'PermanssonResearch.ReverseSolver.Occupancy.flowPolytope_bounded' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.flowPolytope_isCompact.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (μ danger : Fin n → ℚ) (hμ : ∀ (y : Fin n), LE.le.{0} 0 (μ y)) (hμ1 : Eq.{1} (∑ y, μ y) 1) (ρ : ℚ) :
+  IsCompact.{u_1}
+    (PermanssonResearch.ReverseSolver.ExactPolytope.listFeasible.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.flowConstraints.{u_1} sys μ danger ρ))
+'PermanssonResearch.ReverseSolver.Occupancy.flowPolytope_isCompact' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow.{u_1} {C : Type u_1} [Fintype.{u_1} C] [LinearOrder.{u_1} C]
+  {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n) (μ reward danger : Fin n → ℚ)
+  (ρ : ℚ) : Option.{u_1} (PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℚ)
+'PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_none_iff.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (μ reward danger : Fin n → ℚ) (hμ : ∀ (y : Fin n), LE.le.{0} 0 (μ y)) (hμ1 : Eq.{1} (∑ y, μ y) 1) (ρ : ℚ) :
+  Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow.{u_1} sys μ reward danger ρ)
+      Option.none.{u_1} ↔
+    ¬∃ F, LE.le.{0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue.{u_1} F danger) ↑ρ
+'PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_none_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_some_optimal.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (μ reward danger : Fin n → ℚ) (hμ : ∀ (y : Fin n), LE.le.{0} 0 (μ y)) (hμ1 : Eq.{1} (∑ y, μ y) 1) (ρ : ℚ)
+  (q : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℚ)
+  (hq :
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow.{u_1} sys μ reward danger ρ)
+      (Option.some.{u_1} q)) :
+  ∃ F,
+    (Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.Occupancy.Flow.vector.{u_1} F) fun j => ↑(q j)) ∧
+      LE.le.{0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue.{u_1} F danger) ↑ρ ∧
+        ∀
+          (G :
+            PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys
+              (PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow μ hμ hμ1) N),
+          LE.le.{0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue.{u_1} G danger) ↑ρ →
+            LE.le.{0} (PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue.{u_1} G reward)
+              (PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue.{u_1} F reward)
+'PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_some_optimal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore_eq_flowValue.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (σ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys)
+  (μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)) (N : ℕ) (R : Fin n → ℚ) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{u_1} sys σ μ N fun y => ↑(R y))
+    (PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1} sys σ μ N) R)
+'PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore_eq_flowValue' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore_reconstructed.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (R : Fin n → ℚ) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{u_1} sys
+      (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{u_1} F) μ N fun y => ↑(R y))
+    (PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue.{u_1} F R)
+'PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore_reconstructed' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.vector_policy.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) :
+  Eq.{u_1 + 1}
+    (PermanssonResearch.ReverseSolver.Occupancy.Flow.vector.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1} sys
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.policy.{u_1} F) μ N))
+    (PermanssonResearch.ReverseSolver.Occupancy.Flow.vector.{u_1} F)
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.vector_policy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue_eq_evaluate.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} {sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n}
+  {μ : PermanssonResearch.ActionTrace.Row.{0} (Fin n)}
+  (F : PermanssonResearch.ReverseSolver.Occupancy.Flow.{u_1} sys μ N) (R : Fin n → ℚ) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue.{u_1} F R)
+    (PermanssonResearch.ReverseSolver.ExactPolytope.evaluate.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.terminalExpression.{u_1} R)
+      (PermanssonResearch.ReverseSolver.Occupancy.Flow.vector.{u_1} F))
+'PermanssonResearch.ReverseSolver.Occupancy.Flow.terminalValue_eq_evaluate' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_none_iff_no_behavioral_policy.{u_1} {C : Type u_1}
+  [Fintype.{u_1} C] [LinearOrder.{u_1} C] {n N : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n) (μ reward danger : Fin n → ℚ)
+  (hμ : ∀ (y : Fin n), LE.le.{0} 0 (μ y)) (hμ1 : Eq.{1} (∑ y, μ y) 1) (ρ : ℚ) :
+  Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow.{u_1} sys μ reward danger ρ)
+      Option.none.{u_1} ↔
+    ¬∃ σ,
+        LE.le.{0}
+          (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{u_1} sys σ
+            (PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow μ hμ hμ1) N fun y => ↑(danger y))
+          ↑ρ
+'PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_none_iff_no_behavioral_policy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_some_actual_optimal.{u_1} {C : Type u_1} [Fintype.{u_1} C]
+  [LinearOrder.{u_1} C] {n N : ℕ} (sys : PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{u_1} C n)
+  (μ reward danger : Fin n → ℚ) (hμ : ∀ (y : Fin n), LE.le.{0} 0 (μ y)) (hμ1 : Eq.{1} (∑ y, μ y) 1) (ρ : ℚ)
+  (q : PermanssonResearch.ReverseSolver.Occupancy.FlowCoordinate.{u_1} C n N → ℚ)
+  (hq :
+    Eq.{u_1 + 1} (PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow.{u_1} sys μ reward danger ρ)
+      (Option.some.{u_1} q)) :
+  ∃ σ,
+    (Eq.{u_1 + 1}
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.vector.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1} sys σ
+            (PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow μ hμ hμ1) N))
+        fun j => ↑(q j)) ∧
+      LE.le.{0}
+          (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{u_1} sys σ
+            (PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow μ hμ hμ1) N fun y => ↑(danger y))
+          ↑ρ ∧
+        Eq.{1}
+            (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{u_1} sys σ
+              (PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow μ hμ hμ1) N fun y => ↑(reward y))
+            ↑(dotProduct.{0, u_1} (PermanssonResearch.ReverseSolver.Occupancy.terminalExpression.{u_1} reward) q) ∧
+          ∀ (τ : PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1} sys),
+            LE.le.{0}
+                (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{u_1} sys τ
+                  (PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow μ hμ hμ1) N fun y => ↑(danger y))
+                ↑ρ →
+              LE.le.{0}
+                (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{u_1} sys τ
+                  (PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow μ hμ hμ1) N fun y => ↑(reward y))
+                (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{u_1} sys σ
+                  (PermanssonResearch.ReverseSolver.Occupancy.rationalInitialRow μ hμ hμ1) N fun y => ↑(reward y))
+'PermanssonResearch.ReverseSolver.Occupancy.solveRiskFlow_some_actual_optimal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.transition (c : Bool) :
+  PermanssonResearch.ReverseSolver.RationalMarkovMatrix 3
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.transition' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system :
+  PermanssonResearch.ReverseSolver.Occupancy.TimeSystem.{0} Bool 3
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial : PermanssonResearch.ActionTrace.Row.{0} (Fin 3)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.reward : Fin 3 → ℚ
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.reward' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.danger : Fin 3 → ℚ
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.danger' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.one_step_actual
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system)
+  (R : Fin 3 → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system σ
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 R)
+    (PermanssonResearch.ActionTrace.Row.expect.{0}
+      (PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.control.{0} σ 0
+        (PermanssonResearch.ReverseSolver.Occupancy.History.initial.{0} 0))
+      fun c =>
+      PermanssonResearch.ActionTrace.Row.expect.{0}
+        (PermanssonResearch.ReverseSolver.Occupancy.matrixRow.{0}
+          PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system 0 0 c)
+        R)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.one_step_actual' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_success_formula
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system σ
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+      ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.reward y))
+    (HAdd.hAdd.{0, 0, 0} (4 / 5)
+      (HDiv.hDiv.{0, 0, 0}
+        (PermanssonResearch.ActionTrace.Row.mass.{0}
+          (PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.control.{0} σ 0
+            (PermanssonResearch.ReverseSolver.Occupancy.History.initial.{0} 0))
+          Bool.true)
+        10))
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_success_formula' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_danger_formula
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system σ
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+      ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.danger y))
+    (HDiv.hDiv.{0, 0, 0}
+      (PermanssonResearch.ActionTrace.Row.mass.{0}
+        (PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.control.{0} σ 0
+          (PermanssonResearch.ReverseSolver.Occupancy.History.initial.{0} 0))
+        Bool.true)
+      10)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_danger_formula' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.coinRow (p : ℝ) (hp : LE.le.{0} 0 p) (hp1 : LE.le.{0} p 1) :
+  PermanssonResearch.ActionTrace.Row.{0} Bool
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.coinRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.policy (p : ℝ) (hp : LE.le.{0} 0 p) (hp1 : LE.le.{0} p 1) :
+  PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{0}
+    PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.policy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_half_attains :
+  Eq.{1}
+      (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system
+        (PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.policy (1 / 2) ⋯ ⋯)
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+        ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.reward y))
+      (17 / 20) ∧
+    Eq.{1}
+      (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system
+        (PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.policy (1 / 2) ⋯ ⋯)
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+        ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.danger y))
+      (1 / 20)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_half_attains' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.all_actual_feasible_success_le
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system)
+  (hr :
+    LE.le.{0}
+      (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system σ
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+        ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.danger y))
+      (1 / 20)) :
+  LE.le.{0}
+    (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system σ
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+      ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.reward y))
+    (17 / 20)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.all_actual_feasible_success_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.full_risky_choice_is_infeasible
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system)
+  (hc :
+    Eq.{1}
+      (PermanssonResearch.ActionTrace.Row.mass.{0}
+        (PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.control.{0} σ 0
+          (PermanssonResearch.ReverseSolver.Occupancy.History.initial.{0} 0))
+        Bool.true)
+      1) :
+  LT.lt.{0} (1 / 20)
+    (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore.{0}
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system σ
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+      ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.danger y))
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.full_risky_choice_is_infeasible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it

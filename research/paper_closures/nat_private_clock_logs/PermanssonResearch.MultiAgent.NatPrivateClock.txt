@@ -1,0 +1,189 @@
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:41:8: warning: automatically included section variable(s) unused in theorem `PermanssonResearch.MultiAgent.NatPrivateClock.drop_lift`:
+  [MeasurableSpace S0]
+  [MeasurableSpace S1]
+  [MeasurableSpace S2]
+  [MeasurableSpace X]
+  [Countable S0]
+  [Countable S1]
+  [Countable S2]
+  [Fintype X]
+  [MeasurableSingletonClass S0]
+  [MeasurableSingletonClass S1]
+  [MeasurableSingletonClass S2]
+  [MeasurableSingletonClass X]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace
+  S0] [MeasurableSpace
+  S1] [MeasurableSpace
+  S2] [MeasurableSpace
+  X] [Countable
+  S0] [Countable
+  S1] [Countable
+  S2] [Fintype
+  X] [MeasurableSingletonClass
+  S0] [MeasurableSingletonClass S1] [MeasurableSingletonClass S2] [MeasurableSingletonClass X] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:43:8: warning: automatically included section variable(s) unused in theorem `PermanssonResearch.MultiAgent.NatPrivateClock.phase_lift`:
+  [MeasurableSpace S0]
+  [MeasurableSpace S1]
+  [MeasurableSpace S2]
+  [MeasurableSpace X]
+  [Countable S0]
+  [Countable S1]
+  [Countable S2]
+  [Fintype X]
+  [MeasurableSingletonClass S0]
+  [MeasurableSingletonClass S1]
+  [MeasurableSingletonClass S2]
+  [MeasurableSingletonClass X]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace
+  S0] [MeasurableSpace
+  S1] [MeasurableSpace
+  S2] [MeasurableSpace
+  X] [Countable
+  S0] [Countable
+  S1] [Countable
+  S2] [Fintype
+  X] [MeasurableSingletonClass
+  S0] [MeasurableSingletonClass S1] [MeasurableSingletonClass S2] [MeasurableSingletonClass X] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:45:8: warning: automatically included section variable(s) unused in theorem `PermanssonResearch.MultiAgent.NatPrivateClock.lift_drop`:
+  [MeasurableSpace S0]
+  [MeasurableSpace S1]
+  [MeasurableSpace S2]
+  [MeasurableSpace X]
+  [Countable S0]
+  [Countable S1]
+  [Countable S2]
+  [Fintype X]
+  [MeasurableSingletonClass S0]
+  [MeasurableSingletonClass S1]
+  [MeasurableSingletonClass S2]
+  [MeasurableSingletonClass X]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace
+  S0] [MeasurableSpace
+  S1] [MeasurableSpace
+  S2] [MeasurableSpace
+  X] [Countable
+  S0] [Countable
+  S1] [Countable
+  S2] [Fintype
+  X] [MeasurableSingletonClass
+  S0] [MeasurableSingletonClass S1] [MeasurableSingletonClass S2] [MeasurableSingletonClass X] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:57:24: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:58:24: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:69:4: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:74:4: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:84:24: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:98:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:129:69: warning: `if_true` has been deprecated: Use `ite_true` instead
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:127:12: warning: This simp argument is unused:
+  he
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:152:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:153:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:154:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:155:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:134:0: warning: automatically included section variable(s) unused in theorem `PermanssonResearch.MultiAgent.NatPrivateClock.product_transition_atom`:
+  [Countable S0]
+  [Countable S1]
+  [Countable S2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Countable S0] [Countable S1] [Countable S2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:187:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+PermanssonResearch\MultiAgent\NatPrivateClock.lean:202:14: warning: This simp argument is unused:
+  Ne.symm hu
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hu]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

@@ -1,0 +1,755 @@
+{
+  "unit": "U03",
+  "source_scope": [
+    "PermanssonResearch/StrategicWorld/ActionTrace.lean",
+    "PermanssonResearch/StrategicWorld/ActionTraceCanonical.lean",
+    "PermanssonResearch/StrategicWorld/ActionTraceStatePrefix.lean",
+    "PermanssonResearch/StrategicWorld/ActionTraceInitialLaw.lean",
+    "PermanssonResearch/StrategicWorld/ActionTraceOriginalBridge.lean",
+    "PermanssonResearch/Games/DiscountedVerification.lean",
+    "PermanssonResearch/Games/DiscountedTraceExpectation.lean",
+    "PermanssonResearch/X1/FullStrategyCertificate.lean",
+    "PermanssonResearch/X1/FullStrategyTrace.lean",
+    "PermanssonResearch/X1/StrategyRegression.lean",
+    "PermanssonResearch/X1/StrategyOriginalBridge.lean"
+  ],
+  "source_sha256": {
+    "PermanssonResearch/StrategicWorld/ActionTrace.lean": "4e9a448bd6775a2de792eaa1bf381d6d3e6cd4dd5df906d8d06401ec6879200f",
+    "PermanssonResearch/StrategicWorld/ActionTraceCanonical.lean": "1339d1916f19e626936bf9d724cc1dda11854a6d0567663faafcad6d8e2e97fb",
+    "PermanssonResearch/StrategicWorld/ActionTraceStatePrefix.lean": "4cad4442abfdee392cf8cad639632a8f74c4528b4bf81b4d2a98c3b4fafc99b8",
+    "PermanssonResearch/StrategicWorld/ActionTraceInitialLaw.lean": "05fe8cd10c0728e9d13bafb35e8a3f0bdc15b204eba20ac30aeee6b91889bcc3",
+    "PermanssonResearch/StrategicWorld/ActionTraceOriginalBridge.lean": "3277fc0d0a65dc7b5832c92acbfb354c9107a71ba8bc3906a96cf1f31d8313d1",
+    "PermanssonResearch/Games/DiscountedVerification.lean": "86e6ea8f1d77eb8bc8f12cf1b2c7c361e11753cc42bb4cd101695d87d7331a8a",
+    "PermanssonResearch/Games/DiscountedTraceExpectation.lean": "1ee9647f4891d1481b90039506565aaecfed61901dfe80f3df519bc0449a0886",
+    "PermanssonResearch/X1/FullStrategyCertificate.lean": "55f197b0e2ea77dff49275a0180de3b59b5ccbb27dc8b4893a1b9deb4cf8300c",
+    "PermanssonResearch/X1/FullStrategyTrace.lean": "b76691379bba9246a59e78e6f25a0fb098b73f1bf09a7b3d25166a60852ba38a",
+    "PermanssonResearch/X1/StrategyRegression.lean": "f0e457b1d0b086731a1d4b858c968546a6d753f9128ff5280ef549414d596f1a",
+    "PermanssonResearch/X1/StrategyOriginalBridge.lean": "34c29e2fad65bffcfd635d1fc0ee5df31f99e50a54210543c8f405163040751d"
+  },
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "declaration_count": 149,
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "declarations": {
+    "PermanssonResearch.ActionTrace.Row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.expect_const": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.expect_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.expect_sub": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.expect_mul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.expect_mono": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.abs_expect_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.bind": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.expect_bind": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.map": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.expect_map": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.pure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.expect_pure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.measure_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.measure_singleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.expect_eq_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.historyFintype": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.historyMeasurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.historyDiscrete": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Game": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.BehavioralPolicy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.step": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.next": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.next_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.law_prefix_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.law_step_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.nextKernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.nextKernel_markov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonicalLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonicalLaw_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.markovBehavior": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.stateStep": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.stateLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.state_marginal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonicalHistoryKernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonicalHistoryKernel_markov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonicalLaw_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonical_prefix_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonical_step_pair": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonical_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.states_last": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.markovPrefix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.baseline_state_prefix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.next_prefix_support": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonical_coherent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonical_state_prefix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonical_baseline_state_prefix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.ofMeasure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.Row.ofMeasure_measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.expected_verification_initial_measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.prefixFromIic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.prefixToIic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.snoc_finiteStatePrefix": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.measure_eq_of_finite_integrals": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.original_prefix_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.canonical_state_erasure_eq_original": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.Q": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.stageReward": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.stateValue": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.stageLoss": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.stage_balance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.finitePayoff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.finiteLoss": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.finite_performance_difference": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.stageLoss_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.finite_verification": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.stageReward_abs_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.stateValue_abs_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.terminal_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.summable_rewards": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.payoff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.finitePayoff_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.terminal_tendsto_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.discounted_verification": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.discounted_attainment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.Q_abs_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.stageLoss_abs_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.summable_losses": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.infinite_performance_difference": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.payoff_tail_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.pathReward": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.integral_pathReward": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.measurable_pathReward": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.pathReward_abs_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.path_reward_summable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.payoff_eq_expected_path_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.expected_discounted_verification": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.exact_advantage_table": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.reward_abs_le_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.value_abs_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.booleanRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.booleanRow_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.booleanRow_measure_eq_coin": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategyGame": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategyValue": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_physical_expect_actual": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_Q_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_exact_advantage": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.alternatingDeviation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.baselineBehavior": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_reward_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_value_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_bellman": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.baseline_behavior_bellman": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.full_behavioral_verification": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.baseline_behavior_attains": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.depletionExtractionProbability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.stageLoss_eq_depletion_extraction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.discountedDepletionExtraction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.exact_behavioral_performance_difference": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.exact_behavioral_performance_difference_start": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.alternatingDeviation_finite_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.depletionGame": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.depletionGame_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.depletionGame_canonical": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.depletionGame_reward_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.depletionGame_stageReward": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.depletionGame_payoff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.expected_exact_behavioral_performance_difference": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.StrategyRegression.pureStateDeviation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.StrategyRegression.all_pure_state_deviations": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.StrategyRegression.nonstationary_terminal_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.StrategyRegression.wrong_discount_rejected": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.StrategyRegression.altered_world_row_rejected": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.StrategyRegression.altered_reward_rejected": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.StrategyRegression.reward_cannot_factor_through_state_prefix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.StrategyRegression.history_restriction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.StrategyRegression.discounted_depletion_nonnegative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.StrategyRegression.performance_equality_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_bind_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_map_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.candidateOwnRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_boolMass_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_world_atom_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_ofReal_mass_term": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_actual_kernel_atom": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.equilibrium_stateStep_actual": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.baseline_trace_stateLaw_eq_original": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.History": [],
+    "PermanssonResearch.ActionTrace.historyDecidableEq": [],
+    "PermanssonResearch.ActionTrace.last": [],
+    "PermanssonResearch.ActionTrace.StatePrefix": [],
+    "PermanssonResearch.ActionTrace.states": [],
+    "PermanssonResearch.ActionTrace.statePath": [],
+    "PermanssonResearch.ActionTrace.TypedState": [],
+    "PermanssonResearch.ActionTrace.finiteStatePrefix": []
+  },
+  "audit_source_sha256": "a15594687dc7925f05972b5554acb923a322cf10c447d1a5dc9fbfb9a0f9fca8",
+  "audit_stdout_sha256": "18e8eb3b3b1f632d8814504583007e2c4f1967db0f282151ff83e30e84874844",
+  "compiler_returncode": 0,
+  "status": "PASS",
+  "residual": "Private random-seed behavioralization is represented by the behavioral-rule interface; risk-sensitive or opponent-correlated deviations are outside the selected information/payoff structure. No best-response or equilibrium uniqueness is claimed."
+}

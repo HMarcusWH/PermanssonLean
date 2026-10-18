@@ -1,0 +1,32 @@
+test_c11_cramer_families (__main__.ExactChecks.test_c11_cramer_families) ... ok
+test_delivered_candidate_table_validates (__main__.ExactChecks.test_delivered_candidate_table_validates) ... ok
+test_discounted_geometric_error_sum (__main__.ExactChecks.test_discounted_geometric_error_sum) ... ok
+test_each_54_supplied_effect_mutations_rejected (__main__.ExactChecks.test_each_54_supplied_effect_mutations_rejected) ... ok
+test_first_entry_differs_from_retry (__main__.ExactChecks.test_first_entry_differs_from_retry) ... ok
+test_gram_witness (__main__.ExactChecks.test_gram_witness) ... ok
+test_label_swap_rejected (__main__.ExactChecks.test_label_swap_rejected) ... ok
+test_missing_start_and_wrong_attainer_rejected (__main__.ExactChecks.test_missing_start_and_wrong_attainer_rejected) ... ok
+test_new_positive_economic_witness (__main__.ExactChecks.test_new_positive_economic_witness) ... ok
+test_primitive_product_saturation (__main__.ExactChecks.test_primitive_product_saturation) ... ok
+test_quotient_good_mass (__main__.ExactChecks.test_quotient_good_mass) ... ok
+test_residence_monitor_exhaustive (__main__.ExactChecks.test_residence_monitor_exhaustive) ... ok
+test_risk_constraint_exact (__main__.ExactChecks.test_risk_constraint_exact) ... ok
+test_robust_quantifiers_and_rectangularity (__main__.ExactChecks.test_robust_quantifiers_and_rectangularity) ... ok
+test_scalar_defect_seam (__main__.ExactChecks.test_scalar_defect_seam) ... ok
+test_singular_schur_compatibility (__main__.ExactChecks.test_singular_schur_compatibility) ... ok
+test_six_wrong_reported_minima_rejected (__main__.ExactChecks.test_six_wrong_reported_minima_rejected) ... ok
+test_stochastic_but_wrong_world_matrix_rejected (__main__.ExactChecks.test_stochastic_but_wrong_world_matrix_rejected) ... ok
+test_strict_autonomous_anchor_paths (__main__.ExactChecks.test_strict_autonomous_anchor_paths) ... ok
+test_wrong_horizon_and_table_value_rejected (__main__.ExactChecks.test_wrong_horizon_and_table_value_rejected) ... ok
+test_x1_72_terminal_values_stage_reconstruction (__main__.ExactChecks.test_x1_72_terminal_values_stage_reconstruction) ... ok
+test_x1_all_144_rows (__main__.ExactChecks.test_x1_all_144_rows) ... ok
+test_x1_all_432_table_step_equations (__main__.ExactChecks.test_x1_all_432_table_step_equations) ... ok
+test_x1_exact_advantages_both_players (__main__.ExactChecks.test_x1_exact_advantages_both_players) ... ok
+test_x1_leak_and_nonpromotion (__main__.ExactChecks.test_x1_leak_and_nonpromotion) ... ok
+test_x1_six_margins_and_attainers (__main__.ExactChecks.test_x1_six_margins_and_attainers) ... ok
+test_x1_update_simplification (__main__.ExactChecks.test_x1_update_simplification) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 1.970s
+
+OK

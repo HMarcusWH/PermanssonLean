@@ -1,0 +1,367 @@
+{
+  "format": "Permansson.PaperSources.v1",
+  "source_commit": "39279799834ae536bda715dedecdc11a32bf6c82",
+  "verification": "Canonical mathematical/paper subtree identities matched live reference; no fresh Lean run",
+  "sources": [
+    {
+      "id": "SRC-001",
+      "path": "PermanssonResearch/X1/Parameters.lean",
+      "bytes": 3857,
+      "git_blob_sha1": "65c65ee561a6a68ca8bbd4e0869129b6095b5e4e",
+      "sha256": "7b0d73b9ff9e7e6ecff579e9279cb95af87fbafd7b5a7c7d62500d9f88c57be0",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/X1/Parameters.lean"
+    },
+    {
+      "id": "SRC-002",
+      "path": "PermanssonResearch/X1/TypedModels.lean",
+      "bytes": 6987,
+      "git_blob_sha1": "2d57bc2e11f15f2862861aa8c63de9ce0712432a",
+      "sha256": "028502041bd93677e999ab8358f8b9f2090707ea1041ff716d1a912863345d60",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/X1/TypedModels.lean"
+    },
+    {
+      "id": "SRC-003",
+      "path": "PermanssonResearch/X1/Comparison.lean",
+      "bytes": 6831,
+      "git_blob_sha1": "3cebd836e1945834ed7a1cef33d2c7906d801442",
+      "sha256": "e0cb2b4fcbc0b650e2ec7a490a4e9a4ef24198796f8a2d2e6b93c3cd02f8f49a",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/X1/Comparison.lean"
+    },
+    {
+      "id": "SRC-004",
+      "path": "PermanssonResearch/X1/FiniteOutputs.lean",
+      "bytes": 5958,
+      "git_blob_sha1": "d709ba5729ae9164d7776088e18123f59f059169",
+      "sha256": "d136b3fbdb10fe01830b2a5c5ee077b3f76a00489b44222d6bb094414c22e899",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/X1/FiniteOutputs.lean"
+    },
+    {
+      "id": "SRC-005",
+      "path": "PermanssonResearch/X1/MPECertificate.lean",
+      "bytes": 4005,
+      "git_blob_sha1": "564bbd73a9de1c572a560c0a0a333ddf6982c22c",
+      "sha256": "75ed6dc5b66053dda6a1d442088c8cd58fbd1ea2451ec10db676edc861a0b3db",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/X1/MPECertificate.lean"
+    },
+    {
+      "id": "SRC-006",
+      "path": "PermanssonResearch/X1/OccupationNumerics.lean",
+      "bytes": 2751,
+      "git_blob_sha1": "31484fb175143c8cb885136192c39bccc7bf9ec5",
+      "sha256": "2bf425001204f40a42666a8ea5aaeb0ed70f3f0c860f9a5f95778e4ed6c0fa6b",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/X1/OccupationNumerics.lean"
+    },
+    {
+      "id": "SRC-007",
+      "path": "PermanssonResearch/X1/OccupationTargets.lean",
+      "bytes": 10933,
+      "git_blob_sha1": "a38358fc4af78ab5965d1f0ce291e169df6f43c9",
+      "sha256": "52ddb659818740f1bced7430d2a6f24cfcfff647c0539d20db744764f16f974f",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/X1/OccupationTargets.lean"
+    },
+    {
+      "id": "SRC-008",
+      "path": "PermanssonResearch/MultiAgent/Protocols.lean",
+      "bytes": 13583,
+      "git_blob_sha1": "ea38c5498e85c03d24c6cc6a553a5f33cde406f2",
+      "sha256": "52e79cf49ddea9bce52f0682cee7eff83bafce8310f085323fc3ef6df2e897fb",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/MultiAgent/Protocols.lean"
+    },
+    {
+      "id": "SRC-009",
+      "path": "PermanssonResearch/MultiAgent/ProductGame.lean",
+      "bytes": 5334,
+      "git_blob_sha1": "5b66e6b064a15cba9ad1f93e206951841d558716",
+      "sha256": "ab0e038b8c14544096053b8c13e6ffbf56aa630cf78c988f975eb438cf6d0bb4",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/MultiAgent/ProductGame.lean"
+    },
+    {
+      "id": "SRC-010",
+      "path": "PermanssonResearch/MultiAgent/ProtocolWitnesses.lean",
+      "bytes": 23569,
+      "git_blob_sha1": "6cdd059d1e3d86bdb39a5e984ae0aaf76b4c6d7c",
+      "sha256": "46918b82b857803ac614209141584435f03d08861a00ab0fce642d3a2d0bee8b",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/MultiAgent/ProtocolWitnesses.lean"
+    },
+    {
+      "id": "SRC-011",
+      "path": "PermanssonResearch/MultiAgent/AdaptationBound.lean",
+      "bytes": 7094,
+      "git_blob_sha1": "02ef258744fdfc87cfc16b14737f5f848ed302be",
+      "sha256": "9adc2c1ddc253632ae6936165fb782d5274285d162ad0c0b8f0681dd661fbf5c",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/MultiAgent/AdaptationBound.lean"
+    },
+    {
+      "id": "SRC-012",
+      "path": "PermanssonResearch/ReverseSolver/ResidenceEvent.lean",
+      "bytes": 7860,
+      "git_blob_sha1": "b7a7a1ff5207a9e3364eac14a98418ea4b036e0f",
+      "sha256": "05d60984340bd91eaaaccc323fb1016dcb4a395a878e4466b75312c8a32b5e2b",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/ReverseSolver/ResidenceEvent.lean"
+    },
+    {
+      "id": "SRC-013",
+      "path": "PermanssonResearch/ReverseSolver/ResidenceValue.lean",
+      "bytes": 17798,
+      "git_blob_sha1": "b0fd7b67c0b4e641f8683c301710ad0c7d736db8",
+      "sha256": "04cb6fd6ad4be148875c5ddd43edcf9ec7c81e4e7858fab690e58ba4af10f442",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/ReverseSolver/ResidenceValue.lean"
+    },
+    {
+      "id": "SRC-014",
+      "path": "PermanssonResearch/ReverseSolver/ResidenceContracts.lean",
+      "bytes": 5284,
+      "git_blob_sha1": "48738f671dbc2e9d5443ac50438898e5bd614ac5",
+      "sha256": "bb3cd86569cc52e9c9f7dce1a0d61f37dd4acc124a53b5a0a441cbf2a64532c2",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/ReverseSolver/ResidenceContracts.lean"
+    },
+    {
+      "id": "SRC-015",
+      "path": "PermanssonResearch/ReverseSolver/C11ClassStationaryCertificate.lean",
+      "bytes": 3453,
+      "git_blob_sha1": "d1e869ec5f9f45f28ecc0dede9e134c785269163",
+      "sha256": "0fddfb130f3bc190a090fc1fb6ed703c5499992e085b75533a708d3a9ac6edfd",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/ReverseSolver/C11ClassStationaryCertificate.lean"
+    },
+    {
+      "id": "SRC-016",
+      "path": "PermanssonResearch/ReverseSolver/C11StationaryFamily.lean",
+      "bytes": 3362,
+      "git_blob_sha1": "90fd9bc5f26de5c4e7b55f6b013df6d1ec48205f",
+      "sha256": "b3ee6937568cbdbf4f52b3f5afe8f3ec9d81e505afe9d7bcfea587e875e58ada",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/ReverseSolver/C11StationaryFamily.lean"
+    },
+    {
+      "id": "SRC-017",
+      "path": "PermanssonResearch/ReverseSolver/C11TypedStationaryBridge.lean",
+      "bytes": 8996,
+      "git_blob_sha1": "9d5d21990c65e00299ead39ecb4b615cf333b950",
+      "sha256": "fd7002c5c05465a14632fe1913ef533615a4d9f32f6dc78e38df10c95fa62ec2",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/ReverseSolver/C11TypedStationaryBridge.lean"
+    },
+    {
+      "id": "SRC-018",
+      "path": "PermanssonResearch/ReverseSolver/RationalCramerCertification.lean",
+      "bytes": 3104,
+      "git_blob_sha1": "80b4ac23dd41aef2844261a6f64c1b0a2b774451",
+      "sha256": "b087f7e922c4df49c7a3de9342ee7a8f11577644f6dec0f4fcd35f0612999e28",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/ReverseSolver/RationalCramerCertification.lean"
+    },
+    {
+      "id": "SRC-019",
+      "path": "PermanssonResearch/MultipleLimit/FiniteClassInvariantMeasure.lean",
+      "bytes": 6838,
+      "git_blob_sha1": "3493da344bec2d1597982f639f88eecac0e19d35",
+      "sha256": "8c085ca149d361571e1d70058f0e83edd11679bf471e4f2762a4c4719d2a392b",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/MultipleLimit/FiniteClassInvariantMeasure.lean"
+    },
+    {
+      "id": "SRC-020",
+      "path": "PermanssonResearch/Probability/KantorovichDual.lean",
+      "bytes": 9261,
+      "git_blob_sha1": "e837e75c82685010e79d75a3328d0a0dd77e547c",
+      "sha256": "c4d52330dfbcccba9cca3dd9b8476f02d579e8fad7c081652a9f1451a14dc187",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/Probability/KantorovichDual.lean"
+    },
+    {
+      "id": "SRC-021",
+      "path": "PermanssonResearch/Probability/KantorovichTV.lean",
+      "bytes": 7149,
+      "git_blob_sha1": "3f350c3ffac8ab1bd9e38e5820ba441bca276700",
+      "sha256": "ed28a9e3a712faf2dfae0c502bd4eff30c617ac22000d8b06d057d3bb9748f35",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/Probability/KantorovichTV.lean"
+    },
+    {
+      "id": "SRC-022",
+      "path": "PermanssonResearch/Probability/EventTVCalculus.lean",
+      "bytes": 11126,
+      "git_blob_sha1": "1bade8d87bd236859f36eadf7d8cb808ea890aa4",
+      "sha256": "d5eb3351e49ff70d003ebcee814ed31bb0a1ff96047bbde5f28d3378cbe9cc2e",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/Probability/EventTVCalculus.lean"
+    },
+    {
+      "id": "SRC-023",
+      "path": "PermanssonResearch/Perturbation/ContractiveOccupation.lean",
+      "bytes": 10222,
+      "git_blob_sha1": "0f10a84626786b705ac9075e53c05b0ed889bf2d",
+      "sha256": "7db647af38a0947b515b5328a9bc08f0f5d5605d97032ee5cc99408f5df64eeb",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/Perturbation/ContractiveOccupation.lean"
+    },
+    {
+      "id": "SRC-024",
+      "path": "PermanssonResearch/Perturbation/PrimitiveTV.lean",
+      "bytes": 15926,
+      "git_blob_sha1": "b03653ae05f014235cd9b6bbf712c9b9696e1b76",
+      "sha256": "d3dfd85617b25ce07cf48c89e15d189d4a81dca3943fe7237967960598ca117c",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/Perturbation/PrimitiveTV.lean"
+    },
+    {
+      "id": "SRC-025",
+      "path": "PermanssonResearch/Quotient/ApproxPrefix.lean",
+      "bytes": 12623,
+      "git_blob_sha1": "7247a08f724e3079e7c4472263e193cd4b598e17",
+      "sha256": "8c366abb0a3cca4148e8277520f3ca2468051738119c1c7e4146f1ed53909200",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/Quotient/ApproxPrefix.lean"
+    },
+    {
+      "id": "SRC-026",
+      "path": "PermanssonResearch/Quotient/ApproxMargin.lean",
+      "bytes": 18327,
+      "git_blob_sha1": "d26aad6f5d478673738367276ba6ec1f8b14022d",
+      "sha256": "742004ad5d0d6c4b7418b5117a7841bfcfdd608db472b151c13f8b4a75fd3c16",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonResearch/Quotient/ApproxMargin.lean"
+    },
+    {
+      "id": "SRC-027",
+      "path": "PermanssonLean/Probability/CommonPartKernel.lean",
+      "bytes": 13359,
+      "git_blob_sha1": "d24092b48188fd0286eeff17889d8e46f846c021",
+      "sha256": "ea2f9d03d22d8a22c007df37d99ba0b3e937d45d6917ef98d80b8ddb36fc7918",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonLean/Probability/CommonPartKernel.lean"
+    },
+    {
+      "id": "SRC-028",
+      "path": "PermanssonLean/Regime/ConstitutiveMargin.lean",
+      "bytes": 6191,
+      "git_blob_sha1": "05ca8cdea3d30e97fcdfe02466958ea8bfbde473",
+      "sha256": "320a9c42741df9c393c668661aae4c4d069a2603359caef96eeb0ee32bb1c740",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonLean/Regime/ConstitutiveMargin.lean"
+    },
+    {
+      "id": "SRC-029",
+      "path": "PermanssonLean/Regime/GeneratedRegime.lean",
+      "bytes": 5206,
+      "git_blob_sha1": "c14e5f64cb20db2e9a19022870271de2c7fe5764",
+      "sha256": "b0a5dd314b9a6e86dab2909228b62b7d5429035244adf5214363762541484217",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/PermanssonLean/Regime/GeneratedRegime.lean"
+    },
+    {
+      "id": "SRC-030",
+      "path": "docs/V020_IMPLEMENTATION_INDEX.md",
+      "bytes": 43168,
+      "git_blob_sha1": "23eb5ce38c31aa81f344fb68b71e64f9770767eb",
+      "sha256": "ca7d3830961033d92a399a11119ab0a6e0fd85d7d7ecebc4d8123a1390aa7dec",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/docs/V020_IMPLEMENTATION_INDEX.md"
+    },
+    {
+      "id": "SRC-031",
+      "path": "docs/PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md",
+      "bytes": 50438,
+      "git_blob_sha1": "47769865f3edda98cf992c873c0b4f26567ed418",
+      "sha256": "22a68197ae2fa8fb93fe230e59c346f5b65d15f32e6c6c8b4b48fde3459e4b05",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/docs/PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md"
+    },
+    {
+      "id": "SRC-032",
+      "path": "docs/LANE_X1_COMMONS.md",
+      "bytes": 13447,
+      "git_blob_sha1": "bb67cb9a3612f854cb85639c1fcb81b88b179a26",
+      "sha256": "99dc5de1f4015d541d77400b59abfcf5096f560b98778547e1139a070866462c",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/docs/LANE_X1_COMMONS.md"
+    },
+    {
+      "id": "SRC-033",
+      "path": "docs/D2_RESIDENCE_OBJECTIVE.md",
+      "bytes": 8389,
+      "git_blob_sha1": "8e41a295ed329f5634f40e45f671b3ae10c67e97",
+      "sha256": "9c7c0da6ba44da6699764bc706e5527dc5a3774e899d089c5d7769508487346e",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/docs/D2_RESIDENCE_OBJECTIVE.md"
+    },
+    {
+      "id": "SRC-034",
+      "path": "docs/LANE_F1_MULTIAGENT_PROTOCOLS.md",
+      "bytes": 16270,
+      "git_blob_sha1": "114af6d9abf83f86818e29357cdc95f453db19f7",
+      "sha256": "ba311053cf28f6047a35a7222077cb9276cc219c84d2a73f8739c66d2ca4b6d3",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/docs/LANE_F1_MULTIAGENT_PROTOCOLS.md"
+    },
+    {
+      "id": "SRC-035",
+      "path": "docs/LANE_A3_CONTRACTIVE.md",
+      "bytes": 10067,
+      "git_blob_sha1": "a1f2654fe5df03efc07fec81db948dba4e5d13a1",
+      "sha256": "65c6ad9743093fb3354e0d5d4e99f27ac59956e8930c8b71f8aea90be00a2fb6",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/docs/LANE_A3_CONTRACTIVE.md"
+    },
+    {
+      "id": "SRC-036",
+      "path": "docs/LANE_E1_APPROX_QUOTIENT.md",
+      "bytes": 10289,
+      "git_blob_sha1": "cf18c76ea8bb83680d315eefaca72971f4fc1c73",
+      "sha256": "2adc9258275662ae9138ba6044425e117c9829e5785163027d5b9873b5e30bee",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/docs/LANE_E1_APPROX_QUOTIENT.md"
+    },
+    {
+      "id": "SRC-037",
+      "path": "paper/supporting/specialized_theory/README.md",
+      "bytes": 2866,
+      "git_blob_sha1": "4a4c6f3bbc924f7ecbea6eb737e6ef7729838f91",
+      "sha256": "6db1548f36e6b90ad0ed9dc35038a7c639c754769a30690a41d82d9075a5b03f",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/paper/supporting/specialized_theory/README.md"
+    },
+    {
+      "id": "SRC-038",
+      "path": "verification/research/x1_commons.py",
+      "bytes": 8417,
+      "git_blob_sha1": "976621dbb63d19d00d050a5a3d2a99c5a50d15b8",
+      "sha256": "49a2fb7d7db550946a05a582177283f3858de1aed4a0af36d06ef9e657728b06",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/verification/research/x1_commons.py"
+    },
+    {
+      "id": "SRC-039",
+      "path": "verification/research/test_x1_commons.py",
+      "bytes": 12537,
+      "git_blob_sha1": "67355b53218266c78de2146eaca60becc1234ffa",
+      "sha256": "c0276efcf88cb34e02499a82ed648cd3610378edbece8087ed078493372aff40",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/verification/research/test_x1_commons.py"
+    },
+    {
+      "id": "SRC-040",
+      "path": "docs/x1/commons-calculation.json",
+      "bytes": 8589,
+      "git_blob_sha1": "4ee568ffd7d23d2066773dce1f8ae5481352dd38",
+      "sha256": "3c4b1c52c007668479dccae7cd73cd1faf928f9cdc80d6ad8b776cf4e529bf17",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/docs/x1/commons-calculation.json"
+    },
+    {
+      "id": "SRC-041",
+      "path": "paper/supporting/specialized_theory/Explicit_Gram_Witnesses_Off_Critical_Pair_Blocks_2026-08-25_v1_2_PROOFREAD.pdf",
+      "bytes": 409206,
+      "git_blob_sha1": "3fd1a9f739d9456335d76648fce18eb0a3e708c4",
+      "sha256": "c6c56d41cb4a0d2460175488b4f4776b3a9f206f3cf225c13a0bb7a7f8bae338",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/paper/supporting/specialized_theory/Explicit_Gram_Witnesses_Off_Critical_Pair_Blocks_2026-08-25_v1_2_PROOFREAD.pdf"
+    },
+    {
+      "id": "SRC-042",
+      "path": "paper/supporting/specialized_theory/Scalar_Defect_Reduction_Finite_Weil_CCM_Dictionaries_2026-08-30_v0_1_PROOFREAD.pdf",
+      "bytes": 425210,
+      "git_blob_sha1": "c5415765e8a657647fba9b175bad7030ca1d88eb",
+      "sha256": "b859a396294e9f0bed880d87de651a8122a79e2060068388910fc9d931cd974b",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/paper/supporting/specialized_theory/Scalar_Defect_Reduction_Finite_Weil_CCM_Dictionaries_2026-08-30_v0_1_PROOFREAD.pdf"
+    },
+    {
+      "id": "SRC-043",
+      "path": "paper/supporting/specialized_theory/Zero_Shift_Source_Rigidity_Weil_CCM_2026-09-10_v0_3.pdf",
+      "bytes": 466401,
+      "git_blob_sha1": "5ce1cb01b24c077c84ad210eaabb14fdfe825c06",
+      "sha256": "97e9bb826b42a058980e9f106b8fdabca9403802700b3556fa4fc97dcd16f7c3",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/paper/supporting/specialized_theory/Zero_Shift_Source_Rigidity_Weil_CCM_2026-09-10_v0_3.pdf"
+    },
+    {
+      "id": "SRC-044",
+      "path": "paper/supporting/specialized_theory/First_Bad_Cubic_Rigidity_Weil_CCM_2026-09-08_v0_2.pdf",
+      "bytes": 648414,
+      "git_blob_sha1": "aa5711f6b70ca93237b138150524bb6a18d01aba",
+      "sha256": "fe18d9cca3a0d40a9c50fcc07630d2bf17d5ba686ee5d89683edc7c4c8ffa4b9",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/paper/supporting/specialized_theory/First_Bad_Cubic_Rigidity_Weil_CCM_2026-09-08_v0_2.pdf"
+    },
+    {
+      "id": "SRC-045",
+      "path": "paper/supporting/specialized_theory/Persistent_Finite_Detection_Off_Critical_Zeros_Weil_CCM_2026-09-03_v0_2.pdf",
+      "bytes": 402389,
+      "git_blob_sha1": "28d9b8c56b728f16a640e92a7de87135f88c1162",
+      "sha256": "9719f0e020dcaf6325ab1d814bedabe2ac8c29bdf3b0f4c3c8e828f6f41abf66",
+      "url": "https://github.com/HMarcusWH/PermanssonLean/blob/39279799834ae536bda715dedecdc11a32bf6c82/paper/supporting/specialized_theory/Persistent_Finite_Detection_Off_Critical_Zeros_Weil_CCM_2026-09-03_v0_2.pdf"
+    }
+  ]
+}

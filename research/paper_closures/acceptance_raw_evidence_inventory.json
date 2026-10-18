@@ -1,0 +1,236 @@
+{
+  "format": "Permansson.RawAuditEvidenceInventory.v1",
+  "status": "PASS",
+  "interpretation": "Raw byte copies; audit source and compiler output have distinct hashes. No owner receipt was changed.",
+  "builder_sha256": "f5c801a37e31c6fb60056d44ec820842d75e6c48e93642564c2f70ae075ce029",
+  "durable_owner_receipts": [
+    {
+      "owner_path": "verification/research/paper_closure_completeness_receipt_2026-10-18.json",
+      "durable": "research/paper_closures/completeness_audit_receipt.json",
+      "sha256": "f3d50f72a1c28f34c3acac8d745ddc76c5c2ffd39f3e16d6927cea8d173e3825"
+    },
+    {
+      "owner_path": "verification/research/paper_closure_economic_receipt_2026-10-18.json",
+      "durable": "research/paper_closures/economic_audit_receipt.json",
+      "sha256": "27918e7f1bd89a29106183b7f558fc33f911d85d29d514bf7842da5966970f8b"
+    },
+    {
+      "owner_path": "verification/research/paper_closure_finite_occupation_receipt_2026-10-18.json",
+      "durable": "research/paper_closures/finite_occupation_audit_receipt.json",
+      "sha256": "fc81603f40316e3d96637e528624a26ca4f140736c9f83ed6ed4166b3f92d001"
+    },
+    {
+      "owner_path": "verification/research/paper_closure_finite_transport_receipt_2026-10-18.json",
+      "durable": "research/paper_closures/finite_transport_audit_receipt.json",
+      "sha256": "b926c0e8c748aa6dc46074f3c13b38f8df44df2a40e997ee322584ab2e91c098"
+    },
+    {
+      "owner_path": "verification/research/paper_closure_first_moment_receipt_2026-10-18.json",
+      "durable": "research/paper_closures/first_moment_audit_receipt.json",
+      "sha256": "9efbebea646749ab9dbeb7ff89f37995f37f5900469a0d1824405e2d7ba59d56"
+    },
+    {
+      "owner_path": "verification/research/paper_closure_full_path_product_receipt_2026-10-18.json",
+      "durable": "research/paper_closures/full_path_product_audit_receipt.json",
+      "sha256": "f6afa784a2c8b9ef03f08e1e59801fa568f43512908014a5ce670b6650bb4822"
+    },
+    {
+      "owner_path": "verification/research/paper_closure_invariant_receipt_2026-10-18.json",
+      "durable": "research/paper_closures/invariant_audit_receipt.json",
+      "sha256": "db70f2c082672634400b27516e5340f4caf035a64f078e853316524cd43d4d90"
+    },
+    {
+      "owner_path": "verification/research/paper_closure_nonfinite_counterexample_receipt_2026-10-18.json",
+      "durable": "research/paper_closures/nonfinite_counterexample_audit_receipt.json",
+      "sha256": "ac734a267f22475d0f0338366e05a326d6265d809fe484c56010e60f9bc903d3"
+    },
+    {
+      "owner_path": "verification/research/paper_closure_regenerative_moment_receipt_2026-10-18.json",
+      "durable": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "sha256": "b5c8ba2075dac0587282912b2275706f4afd0ff1d773930dd9001cfacc067650"
+    },
+    {
+      "owner_path": "verification/research/paper_closure_regenerative_receipt_2026-10-18.json",
+      "durable": "research/paper_closures/regenerative_audit_receipt.json",
+      "sha256": "4d104f72b602f3cfc364e63eea63b9ace72dfe05a49315117671a864327a2ee8"
+    },
+    {
+      "owner_path": "verification/research/paper_closure_strategy_receipt_2026-10-18.json",
+      "durable": "research/paper_closures/strategy_audit_receipt.json",
+      "sha256": "0d5351941e5452b34ca86b033dd058bca2bdcd6be987d575c34797d1be9b54b2"
+    }
+  ],
+  "audits": [
+    {
+      "unit": "economic",
+      "receipt": "research/paper_closures/economic_audit_receipt.json",
+      "receipt_sha256": "27918e7f1bd89a29106183b7f558fc33f911d85d29d514bf7842da5966970f8b",
+      "audit_source": {
+        "original": ".lake/closure-build/EconomicWitnessAxiomAudit.lean",
+        "durable": "research/paper_closures/economic_audit_source.lean.txt",
+        "sha256": "a83acd92fde5ccaccf8a6fc23857adf205ea67f918975bb409bed3064bff71bd"
+      },
+      "audit_stdout": {
+        "original": ".lake/closure-build/EconomicWitnessAxiomAudit.out",
+        "durable": "research/paper_closures/economic_signatures_axioms.txt",
+        "sha256": "588bafb97f172f3ae7d1725c5cb91717c94869611f6e3a2a433436a3959a8c6b"
+      },
+      "field_meanings": {
+        "audit_source_sha256": "generated Lean audit source bytes",
+        "audit_stdout_sha256": "compiler stdout/stderr bytes"
+      }
+    },
+    {
+      "unit": "finite_transport",
+      "receipt": "research/paper_closures/finite_transport_audit_receipt.json",
+      "receipt_sha256": "b926c0e8c748aa6dc46074f3c13b38f8df44df2a40e997ee322584ab2e91c098",
+      "audit_source": {
+        "original": ".lake/closure-build/FiniteTransportAxiomAudit.lean",
+        "durable": "research/paper_closures/finite_transport_audit_source.lean.txt",
+        "sha256": "c8658afec850430c924b1592c0d701e783de014ec0917db90b5308c8ed6a1fdd"
+      },
+      "audit_stdout": {
+        "original": ".lake/closure-build/FiniteTransportAxiomAudit.out",
+        "durable": "research/paper_closures/finite_transport_signatures_axioms.txt",
+        "sha256": "5384e1f2f8d52650cc4495608f3ff79078ac3201d92e81c92afa0bafdeb9fef4"
+      },
+      "field_meanings": {
+        "audit_source_sha256": "generated Lean audit source bytes",
+        "audit_stdout_sha256": "compiler stdout/stderr bytes"
+      }
+    },
+    {
+      "unit": "full_path_product",
+      "receipt": "research/paper_closures/full_path_product_audit_receipt.json",
+      "receipt_sha256": "f6afa784a2c8b9ef03f08e1e59801fa568f43512908014a5ce670b6650bb4822",
+      "audit_source": {
+        "original": ".lake/closure-build/FullPathProductAxiomAudit.lean",
+        "durable": "research/paper_closures/full_path_product_audit_source.lean.txt",
+        "sha256": "28042c41979bbce0bacedba2b78985cdbf9097403c29b5963939d4bca16dc0ea"
+      },
+      "audit_stdout": {
+        "original": ".lake/closure-build/FullPathProductAxiomAudit.out",
+        "durable": "research/paper_closures/full_path_product_signatures_axioms.txt",
+        "sha256": "12cfa29565ef544022caf07ec0b0d5a47919c4126fa0d528ab0f746dcb50dac4"
+      },
+      "field_meanings": {
+        "audit_source_sha256": "generated Lean audit source bytes",
+        "audit_stdout_sha256": "compiler stdout/stderr bytes"
+      }
+    },
+    {
+      "unit": "nonfinite_counterexample",
+      "receipt": "research/paper_closures/nonfinite_counterexample_audit_receipt.json",
+      "receipt_sha256": "ac734a267f22475d0f0338366e05a326d6265d809fe484c56010e60f9bc903d3",
+      "audit_source": {
+        "original": ".lake/closure-build/NonfiniteCounterexampleAxiomAudit.lean",
+        "durable": "research/paper_closures/nonfinite_counterexample_audit_source.lean.txt",
+        "sha256": "f409086ce78e911e154f91359c3d921389f99bf956216a9496edebc9decf3f08"
+      },
+      "audit_stdout": {
+        "original": ".lake/closure-build/NonfiniteCounterexampleAxiomAudit.out",
+        "durable": "research/paper_closures/nonfinite_counterexample_signatures_axioms.txt",
+        "sha256": "9627afb745b9a310564d5a3f09112682fc249bc6474646ba7a2139b7bf70c4a6"
+      },
+      "field_meanings": {
+        "audit_source_sha256": "generated Lean audit source bytes",
+        "audit_stdout_sha256": "compiler stdout/stderr bytes"
+      }
+    },
+    {
+      "unit": "regenerative",
+      "receipt": "research/paper_closures/regenerative_audit_receipt.json",
+      "receipt_sha256": "4d104f72b602f3cfc364e63eea63b9ace72dfe05a49315117671a864327a2ee8",
+      "audit_source": {
+        "original": ".lake/closure-build/RegenerativeFactorizationAxiomAudit.lean",
+        "durable": "research/paper_closures/regenerative_audit_source.lean.txt",
+        "sha256": "f9225f92c876ccbdf1a1dd00af93bdf9cdb6a7bcbfd6840ffde576cff23e5f56"
+      },
+      "audit_stdout": {
+        "original": ".lake/closure-build/RegenerativeFactorizationAxiomAudit.out",
+        "durable": "research/paper_closures/regenerative_signatures_axioms.txt",
+        "sha256": "98519a868fdfdcf5e87512107becfa9392933c61a7adaa352f4465ccf27c9a62"
+      },
+      "field_meanings": {
+        "audit_source_sha256": "generated Lean audit source bytes",
+        "audit_stdout_sha256": "compiler stdout/stderr bytes"
+      }
+    },
+    {
+      "unit": "regenerative_moment",
+      "receipt": "research/paper_closures/regenerative_moment_audit_receipt.json",
+      "receipt_sha256": "b5c8ba2075dac0587282912b2275706f4afd0ff1d773930dd9001cfacc067650",
+      "audit_source": {
+        "original": ".lake/closure-build/RegenerativeMomentAxiomAudit.lean",
+        "durable": "research/paper_closures/regenerative_moment_audit_source.lean.txt",
+        "sha256": "835662351f61d3db3f5f6d4e867fe575caadf1b364702daa90fdd8c4e632f2bf"
+      },
+      "audit_stdout": {
+        "original": ".lake/closure-build/RegenerativeMomentAxiomAudit.out",
+        "durable": "research/paper_closures/regenerative_moment_signatures_axioms.txt",
+        "sha256": "35f118e9dd18d591f6cb672b61eb59a76c05bee95bf0a722d4261fef4febe5fa"
+      },
+      "field_meanings": {
+        "audit_source_sha256": "generated Lean audit source bytes",
+        "audit_stdout_sha256": "compiler stdout/stderr bytes"
+      }
+    },
+    {
+      "unit": "strategy",
+      "receipt": "research/paper_closures/strategy_audit_receipt.json",
+      "receipt_sha256": "0d5351941e5452b34ca86b033dd058bca2bdcd6be987d575c34797d1be9b54b2",
+      "audit_source": {
+        "original": ".lake/closure-build/StrategyAxiomAudit.lean",
+        "durable": "research/paper_closures/strategy_audit_source.lean.txt",
+        "sha256": "a15594687dc7925f05972b5554acb923a322cf10c447d1a5dc9fbfb9a0f9fca8"
+      },
+      "audit_stdout": {
+        "original": ".lake/closure-build/StrategyAxiomAudit.out",
+        "durable": "research/paper_closures/strategy_signatures_axioms.txt",
+        "sha256": "18e8eb3b3b1f632d8814504583007e2c4f1967db0f282151ff83e30e84874844"
+      },
+      "field_meanings": {
+        "audit_source_sha256": "generated Lean audit source bytes",
+        "audit_stdout_sha256": "compiler stdout/stderr bytes"
+      }
+    },
+    {
+      "unit": "belief",
+      "receipt": "research/paper_closures/belief_receipt.json",
+      "receipt_sha256": "96fe037c15b69c969d801a5b98316c63326846409b8b170ab3999e367819cf03",
+      "audit_source": {
+        "original": ".lake/belief-paper-closure/axiom_audit.lean",
+        "durable": "research/paper_closures/belief_audit_source.lean.txt",
+        "sha256": "3337d2f41a2d91fc01baa1bb37865ce64ce2148d54b945f105d8164051e33926"
+      },
+      "audit_stdout": {
+        "original": ".lake/belief-paper-closure/axiom_audit.out",
+        "durable": "research/paper_closures/belief_signatures_axioms.txt",
+        "sha256": "3cb5d1ca85c56c037eef16e685f95f1e044088db74fb625084fda03281b8bb49"
+      },
+      "field_meanings": {
+        "audit_sha256": "generated Lean audit source bytes, not stdout"
+      },
+      "definition": "verification/research/audit_belief_closure.py assigns digest(audit) before invoking Lean"
+    },
+    {
+      "unit": "measurable_nat_clock",
+      "receipt": "research/paper_closures/measurable_nat_clock_receipt.json",
+      "receipt_sha256": "983196a2fde11fa993f1536727681dbbf57b5f8f2bfa1e8a9ae373281d9b17e5",
+      "audit_source": {
+        "original": ".lake/closure-build/MeasurableNatClockAxiomAudit.lean",
+        "durable": "research/paper_closures/measurable_nat_clock_audit_source.lean.txt",
+        "sha256": "af8ca81fa63785c0c7295badb837459754c675c069108f40467972366574d105"
+      },
+      "audit_stdout": {
+        "original": ".lake/closure-build/MeasurableNatClockAxiomAudit.out",
+        "durable": "research/paper_closures/measurable_nat_clock_audit_stdout.txt",
+        "sha256": "01326ffab56f05dedbb1249634bb73d41f0f46f41063d7a942a18ad31e9beea0"
+      },
+      "field_meanings": {
+        "audit_stdout_sha256": "compiler stdout/stderr bytes"
+      },
+      "audit_source_hash_origin": "Independent raw preservation; no audit-source hash field is claimed in the owner receipt"
+    }
+  ]
+}

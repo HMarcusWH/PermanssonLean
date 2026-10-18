@@ -1,0 +1,244 @@
+{
+  "unit": "Q-DISCOUNT-FULL-PRODUCT",
+  "source_scope": [
+    "PermanssonResearch/Probability/CylinderTotalVariation.lean",
+    "PermanssonResearch/Probability/DependentHistoryCommonMass.lean",
+    "PermanssonResearch/Probability/FullPathProductTV.lean",
+    "PermanssonResearch/Probability/FullPathProductRegression.lean"
+  ],
+  "source_sha256": {
+    "PermanssonResearch/Probability/CylinderTotalVariation.lean": "7711c2f3ad7ce9d05f655211b1045d2f355cd50a674c1aebc0caa6ee17839c5b",
+    "PermanssonResearch/Probability/DependentHistoryCommonMass.lean": "471a561f008715d8794533fd84d50794a2b9f9cbbd078cc516ea5de8231706f9",
+    "PermanssonResearch/Probability/FullPathProductTV.lean": "f802694a3d08aa1230bfbad95261358f0c236137f34f2eeb99651d6babd7be3e",
+    "PermanssonResearch/Probability/FullPathProductRegression.lean": "99e892f39e9374c42188c6f101e55bd20592e38fcfcb71c7d3f6aea8dad44ec0"
+  },
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "declaration_count": 43,
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "declarations": {
+    "PermanssonResearch.Probability.eventTotalVariation_le_of_generating_ring": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.path_eventTotalVariation_le_of_prefixes": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.DependentHistory.evolution": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.DependentHistory.evolution_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.DependentHistory.evolution_finite": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.DependentHistory.compProd_mono": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.DependentHistory.evolution_mono": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.DependentHistory.retained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.DependentHistory.retained_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.DependentHistory.retained_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.DependentHistory.common_mass_ge": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.DependentHistory.prefix_tv_le_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.retained_antitone": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.retained_multipliable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.retained_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.tprod_le_retained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.tprod_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.History": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.path_tv_le_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.zero_defect_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.unit_defect_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.constant_retained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.recurring_leak_retained_tendsto_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.recurring_leak_budget_tendsto_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.H": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.point": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.keep": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.keep_markov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.initial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.pointLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.initial_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.pointLaw_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.evolution_point": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.actual_prefix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.zero_defect_budget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.identical_actual_laws_bound_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.actual_initial_mismatch_bound_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.actual_initial_mismatch_exact_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.singleLeak": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.singleLeak_summable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.unit_defect_boundary_budget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.positive_recurring_defect_not_summable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProductRegression.recurring_leak_only_trivial_limit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "audit_source_sha256": "28042c41979bbce0bacedba2b78985cdbf9097403c29b5963939d4bca16dc0ea",
+  "audit_stdout_sha256": "12cfa29565ef544022caf07ec0b0d5a47919c4126fa0d528ab0f746dcb50dac4",
+  "compiler_returncode": 0,
+  "status": "PASS",
+  "residual": "Actual dependent history spaces H n, normalized time-varying kernels, and a finite common subkernel construct a common evolution dominated by both original evolutions. Its mass is bounded below by initial common mass times the finite retained product; no TV recurrence is assumed. Summable defects yield the genuine infinite product, and generating-ring event approximation extends the resulting prefix bound to the actual whole product laws. Literal equalities identifying their finite-coordinate marginals with the declared dependent evolutions remain explicit. Initial mismatch and zero/unit-defect boundaries are retained. A fixed positive recurring leak is not summable and its retained-mass budget tends only to one; no exact infinite-survival transfer is asserted."
+}

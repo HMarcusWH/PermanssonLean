@@ -1,0 +1,2587 @@
+PermanssonResearch.Probability.liftProjectedDensity.{u_1, u_2} {Y : Type u_1} {Z : Type u_2} [MeasurableSpace.{u_1} Y]
+  (q : Y → Z) (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y) [ProbabilityTheory.IsSFiniteKernel.{u_1, u_1} K]
+  (r : Y → Z → ENNReal) : ProbabilityTheory.Kernel.{u_1, u_1} Y Y
+'PermanssonResearch.Probability.liftProjectedDensity' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.measurable_liftProjectedDensity_weight.{u_1, u_2} {Y : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Z] {q : Y → Z} (hq : Measurable.{u_1, u_2} q) {r : Y → Z → ENNReal}
+  (hr : Measurable.{max u_2 u_1, 0} (Function.uncurry.{u_1, u_2, 1} r)) :
+  Measurable.{u_1, 0} (Function.uncurry.{u_1, u_1, 1} fun y z => r y (q z))
+'PermanssonResearch.Probability.measurable_liftProjectedDensity_weight' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.liftProjectedDensity_le.{u_1, u_2} {Y : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Z] {q : Y → Z} (hq : Measurable.{u_1, u_2} q)
+  (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y) [ProbabilityTheory.IsSFiniteKernel.{u_1, u_1} K] {r : Y → Z → ENNReal}
+  (hr : Measurable.{max u_2 u_1, 0} (Function.uncurry.{u_1, u_2, 1} r)) (hr1 : ∀ (y : Y) (z : Z), LE.le.{0} (r y z) 1) :
+  LE.le.{u_1} (PermanssonResearch.Probability.liftProjectedDensity.{u_1, u_2} q K r) K
+'PermanssonResearch.Probability.liftProjectedDensity_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.map_liftProjectedDensity.{u_1, u_2} {Y : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Z] {q : Y → Z} (hq : Measurable.{u_1, u_2} q)
+  (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y) [ProbabilityTheory.IsSFiniteKernel.{u_1, u_1} K] {r : Y → Z → ENNReal}
+  (hr : Measurable.{max u_2 u_1, 0} (Function.uncurry.{u_1, u_2, 1} r)) (y : Y) :
+  Eq.{u_2 + 1}
+    (MeasureTheory.Measure.map.{u_1, u_2} q ((PermanssonResearch.Probability.liftProjectedDensity.{u_1, u_2} q K r) y))
+    (MeasureTheory.Measure.withDensity.{u_2} (MeasureTheory.Measure.map.{u_1, u_2} q (K y)) (r y))
+'PermanssonResearch.Probability.map_liftProjectedDensity' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.clippedProjectedDensity.{u_1, u_2} {Y : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Z] [MeasurableSpace.CountableOrCountablyGenerated.{u_1, u_2} Y Z]
+  (M P : ProbabilityTheory.Kernel.{u_1, u_2} Y Z) : Y → Z → ENNReal
+'PermanssonResearch.Probability.clippedProjectedDensity' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.measurable_clippedProjectedDensity.{u_1, u_2} {Y : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Z] [MeasurableSpace.CountableOrCountablyGenerated.{u_1, u_2} Y Z]
+  (M P : ProbabilityTheory.Kernel.{u_1, u_2} Y Z) :
+  Measurable.{max u_2 u_1, 0}
+    (Function.uncurry.{u_1, u_2, 1} (PermanssonResearch.Probability.clippedProjectedDensity.{u_1, u_2} M P))
+'PermanssonResearch.Probability.measurable_clippedProjectedDensity' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.clippedProjectedDensity_le_one.{u_1, u_2} {Y : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Z] [MeasurableSpace.CountableOrCountablyGenerated.{u_1, u_2} Y Z]
+  (M P : ProbabilityTheory.Kernel.{u_1, u_2} Y Z) (y : Y) (z : Z) :
+  LE.le.{0} (PermanssonResearch.Probability.clippedProjectedDensity.{u_1, u_2} M P y z) 1
+'PermanssonResearch.Probability.clippedProjectedDensity_le_one' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.withDensity_clippedProjectedDensity.{u_1, u_2} {Y : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Z] [MeasurableSpace.CountableOrCountablyGenerated.{u_1, u_2} Y Z]
+  (M P : ProbabilityTheory.Kernel.{u_1, u_2} Y Z) [ProbabilityTheory.IsFiniteKernel.{u_1, u_2} M]
+  [ProbabilityTheory.IsFiniteKernel.{u_1, u_2} P] (hMP : LE.le.{max u_1 u_2} M P) (y : Y) :
+  Eq.{u_2 + 1}
+    (MeasureTheory.Measure.withDensity.{u_2} (P y)
+      (PermanssonResearch.Probability.clippedProjectedDensity.{u_1, u_2} M P y))
+    (M y)
+'PermanssonResearch.Probability.withDensity_clippedProjectedDensity' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.projected_subPrefix_le.{u_1, u_2} {Y : Type u_1} {Q : Type u_2} [MeasurableSpace.{u_1} Y]
+  [MeasurableSpace.{u_2} Q] {q : Y → Q} (hq : Measurable.{u_1, u_2} q) (R : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsFiniteKernel.{u_1, u_1} R] (Kbar : ProbabilityTheory.Kernel.{u_2, u_2} Q Q)
+  [ProbabilityTheory.IsMarkovKernel.{u_2, u_2} Kbar]
+  (hproj : ∀ (y : Y), LE.le.{u_2} (MeasureTheory.Measure.map.{u_1, u_2} q (R y)) (Kbar (q y))) (y : Y) (T : ℕ) :
+  LE.le.{u_2}
+    (MeasureTheory.Measure.map.{u_1, u_2} (PermanssonResearch.Quotient.prefixMap.{u_1, u_2} q T)
+      (PermanssonLean.ProbabilitySupport.finitePrefixLaw.{u_1} R y T))
+    (PermanssonLean.ProbabilitySupport.finitePrefixLaw.{u_2} Kbar (q y) T)
+'PermanssonResearch.Quotient.projected_subPrefix_le' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Quotient.approxQuotient_prefix_tv_le_geometric_of_subkernel.{u_1, u_2} {Y : Type u_1} {Q : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Q] {q : Y → Q} (hq : Measurable.{u_1, u_2} q)
+  (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y) [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K]
+  (Kbar : ProbabilityTheory.Kernel.{u_2, u_2} Q Q) [ProbabilityTheory.IsMarkovKernel.{u_2, u_2} Kbar]
+  (R : ProbabilityTheory.Kernel.{u_1, u_1} Y Y) [ProbabilityTheory.IsFiniteKernel.{u_1, u_1} R] (hRK : LE.le.{u_1} R K)
+  (hproj : ∀ (y : Y), LE.le.{u_2} (MeasureTheory.Measure.map.{u_1, u_2} q (R y)) (Kbar (q y))) {η : ℝ}
+  (hη0 : LE.le.{0} 0 η) (hη1 : LE.le.{0} η 1)
+  (hmass : ∀ (y : Y), LE.le.{0} (ENNReal.ofReal (HSub.hSub.{0, 0, 0} 1 η)) ((R y) Set.univ.{u_1})) (y : Y) (T : ℕ) :
+  LE.le.{0}
+    (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_2}
+      (MeasureTheory.Measure.map.{u_1, u_2} (PermanssonResearch.Quotient.prefixMap.{u_1, u_2} q T)
+        (PermanssonLean.ProbabilitySupport.finitePrefixLaw.{u_1} K y T))
+      (PermanssonLean.ProbabilitySupport.finitePrefixLaw.{u_2} Kbar (q y) T))
+    (HSub.hSub.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 η) T))
+'PermanssonResearch.Quotient.approxQuotient_prefix_tv_le_geometric_of_subkernel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.projectedCommonKernel.{u_1, u_2} {Y : Type u_1} {Q : Type u_2} [MeasurableSpace.{u_1} Y]
+  [MeasurableSpace.{u_2} Q] [MeasurableSpace.CountableOrCountablyGenerated.{u_1, u_2} Y Q] (q : Y → Q)
+  (hq : Measurable.{u_1, u_2} q) (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] (Kbar : ProbabilityTheory.Kernel.{u_2, u_2} Q Q)
+  [ProbabilityTheory.IsMarkovKernel.{u_2, u_2} Kbar] : ProbabilityTheory.Kernel.{u_1, u_1} Y Y
+'PermanssonResearch.Quotient.projectedCommonKernel' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Quotient.projectedCommonKernel_le.{u_1, u_2} {Y : Type u_1} {Q : Type u_2} [MeasurableSpace.{u_1} Y]
+  [MeasurableSpace.{u_2} Q] [MeasurableSpace.CountableOrCountablyGenerated.{u_1, u_2} Y Q] (q : Y → Q)
+  (hq : Measurable.{u_1, u_2} q) (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] (Kbar : ProbabilityTheory.Kernel.{u_2, u_2} Q Q)
+  [ProbabilityTheory.IsMarkovKernel.{u_2, u_2} Kbar] :
+  LE.le.{u_1} (PermanssonResearch.Quotient.projectedCommonKernel.{u_1, u_2} q hq K Kbar) K
+'PermanssonResearch.Quotient.projectedCommonKernel_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.projectedCommonKernel_isFinite.{u_1, u_2} {Y : Type u_1} {Q : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Q] [MeasurableSpace.CountableOrCountablyGenerated.{u_1, u_2} Y Q]
+  (q : Y → Q) (hq : Measurable.{u_1, u_2} q) (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] (Kbar : ProbabilityTheory.Kernel.{u_2, u_2} Q Q)
+  [ProbabilityTheory.IsMarkovKernel.{u_2, u_2} Kbar] :
+  ProbabilityTheory.IsFiniteKernel.{u_1, u_1} (PermanssonResearch.Quotient.projectedCommonKernel.{u_1, u_2} q hq K Kbar)
+'PermanssonResearch.Quotient.projectedCommonKernel_isFinite' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.map_projectedCommonKernel.{u_1, u_2} {Y : Type u_1} {Q : Type u_2} [MeasurableSpace.{u_1} Y]
+  [MeasurableSpace.{u_2} Q] [MeasurableSpace.CountableOrCountablyGenerated.{u_1, u_2} Y Q] (q : Y → Q)
+  (hq : Measurable.{u_1, u_2} q) (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] (Kbar : ProbabilityTheory.Kernel.{u_2, u_2} Q Q)
+  [ProbabilityTheory.IsMarkovKernel.{u_2, u_2} Kbar] (y : Y) :
+  Eq.{u_2 + 1}
+    (MeasureTheory.Measure.map.{u_1, u_2} q
+      ((PermanssonResearch.Quotient.projectedCommonKernel.{u_1, u_2} q hq K Kbar) y))
+    ((PermanssonLean.ProbabilitySupport.commonPartKernel.{u_1, u_2} (ProbabilityTheory.Kernel.map.{u_1, u_1, u_2} K q)
+        (ProbabilityTheory.Kernel.comap.{u_2, u_2, u_1} Kbar q hq))
+      y)
+'PermanssonResearch.Quotient.map_projectedCommonKernel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.projectedCommonKernel_map_le.{u_1, u_2} {Y : Type u_1} {Q : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Q] [MeasurableSpace.CountableOrCountablyGenerated.{u_1, u_2} Y Q]
+  (q : Y → Q) (hq : Measurable.{u_1, u_2} q) (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] (Kbar : ProbabilityTheory.Kernel.{u_2, u_2} Q Q)
+  [ProbabilityTheory.IsMarkovKernel.{u_2, u_2} Kbar] (y : Y) :
+  LE.le.{u_2}
+    (MeasureTheory.Measure.map.{u_1, u_2} q
+      ((PermanssonResearch.Quotient.projectedCommonKernel.{u_1, u_2} q hq K Kbar) y))
+    (Kbar (q y))
+'PermanssonResearch.Quotient.projectedCommonKernel_map_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.projectedCommonKernel_mass.{u_1, u_2} {Y : Type u_1} {Q : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Q] [MeasurableSpace.CountableOrCountablyGenerated.{u_1, u_2} Y Q]
+  (q : Y → Q) (hq : Measurable.{u_1, u_2} q) (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] (Kbar : ProbabilityTheory.Kernel.{u_2, u_2} Q Q)
+  [ProbabilityTheory.IsMarkovKernel.{u_2, u_2} Kbar] {η : ℝ}
+  (hdef : PermanssonResearch.Quotient.HasQuotientDefect.{u_1, u_2} q K Kbar η) (y : Y) :
+  LE.le.{0} (ENNReal.ofReal (HSub.hSub.{0, 0, 0} 1 η))
+    (((PermanssonResearch.Quotient.projectedCommonKernel.{u_1, u_2} q hq K Kbar) y) Set.univ.{u_1})
+'PermanssonResearch.Quotient.projectedCommonKernel_mass' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.approxQuotient_prefix_tv_le_geometric.{u_1, u_2} {Y : Type u_1} {Q : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Q] [MeasurableSpace.CountableOrCountablyGenerated.{u_1, u_2} Y Q]
+  {q : Y → Q} (hq : Measurable.{u_1, u_2} q) (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] (Kbar : ProbabilityTheory.Kernel.{u_2, u_2} Q Q)
+  [ProbabilityTheory.IsMarkovKernel.{u_2, u_2} Kbar] {η : ℝ} (hη0 : LE.le.{0} 0 η) (hη1 : LE.le.{0} η 1)
+  (hdef : PermanssonResearch.Quotient.HasQuotientDefect.{u_1, u_2} q K Kbar η) (y : Y) (T : ℕ) :
+  LE.le.{0}
+    (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_2}
+      (MeasureTheory.Measure.map.{u_1, u_2} (PermanssonResearch.Quotient.prefixMap.{u_1, u_2} q T)
+        (PermanssonLean.ProbabilitySupport.finitePrefixLaw.{u_1} K y T))
+      (PermanssonLean.ProbabilitySupport.finitePrefixLaw.{u_2} Kbar (q y) T))
+    (HSub.hSub.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 η) T))
+'PermanssonResearch.Quotient.approxQuotient_prefix_tv_le_geometric' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.geometricQuotient_value_dist_le.{u_1, u_2, u_3, u_4, u_5, u_6, u_7} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} {Sb : Type u_4} {Xb : Type u_5} {Ab : Type u_6} {Z : Type u_7} [MeasurableSpace.{u_1} S]
+  [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A] [MeasurableSpace.{u_4} Sb] [MeasurableSpace.{u_5} Xb]
+  [MeasurableSpace.{u_6} Ab] [MetricSpace.{u_7} Z]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max u_2 u_1, max u_5 u_4} (PermanssonLean.JointState.{u_1, u_2} S X)
+      (PermanssonLean.JointState.{u_4, u_5} Sb Xb)]
+  (Qc : PermanssonLean.TypeRespectingStateCompression.{u_1, u_2, u_4, u_5} S X Sb Xb) {T : ℕ}
+  (p :
+    PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.{max u_5 u_4, u_7}
+      (PermanssonLean.JointState.{u_4, u_5} Sb Xb) Z T)
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (Mbar : PermanssonLean.StrategicWorldModel.{u_4, u_5, u_6} Sb Xb Ab) {η : ℝ} (hη0 : LE.le.{0} 0 η)
+  (hη1 : LE.le.{0} η 1)
+  (hdef : PermanssonResearch.Quotient.ApproxKernelIntertwines.{u_1, u_2, u_3, u_4, u_5, u_6} Qc M Mbar η)
+  (y : PermanssonLean.JointState.{u_1, u_2} S X) :
+  LE.le.{0}
+    (Dist.dist.{u_7}
+      (PermanssonResearch.Quotient.projectedPrefixProperty.{u_1, u_2, u_4, u_5, u_7} Qc p
+        (PermanssonLean.RegimeSpecification.pathProbability.{u_1, u_2, u_3} M
+          (MeasureTheory.diracProba.{max u_1 u_2} y)))
+      (PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.toRegimeProperty.{max u_4 u_5, u_7} p
+        (PermanssonLean.RegimeSpecification.pathProbability.{u_4, u_5, u_6} Mbar
+          (MeasureTheory.diracProba.{max u_4 u_5}
+            (PermanssonLean.TypeRespectingStateCompression.stateMap.{u_1, u_2, u_4, u_5} Qc y)))))
+    (HMul.hMul.{0, 0, 0} (PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.constant.{max u_4 u_5, u_7} p)
+      (HSub.hSub.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 η) T)))
+'PermanssonResearch.Quotient.geometricQuotient_value_dist_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.geometricQuotient_effect_abs_le.{u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_10, u_11}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} {Sb : Type u_4} {Xb : Type u_5} {Ab : Type u_6} {Z : Type u_7}
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A] [MeasurableSpace.{u_4} Sb]
+  [MeasurableSpace.{u_5} Xb] [MeasurableSpace.{u_6} Ab] [MetricSpace.{u_7} Z]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max u_2 u_1, max u_5 u_4} (PermanssonLean.JointState.{u_1, u_2} S X)
+      (PermanssonLean.JointState.{u_4, u_5} Sb Xb)]
+  (Qc : PermanssonLean.TypeRespectingStateCompression.{u_1, u_2, u_4, u_5} S X Sb Xb) {T : ℕ}
+  (p :
+    PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.{max u_5 u_4, u_7}
+      (PermanssonLean.JointState.{u_4, u_5} Sb Xb) Z T)
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  {Mbar : PermanssonLean.StrategicWorldModel.{u_4, u_5, u_6} Sb Xb Ab} {Component : Type u_10}
+  {ComponentBar : Type u_11} {F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_10} M Component}
+  {Fbar : PermanssonLean.InterventionFamily.{u_4, u_5, u_6, u_11} Mbar ComponentBar}
+  (J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_10} F)
+  (Jbar : PermanssonLean.AdmissibleStrategicIntervention.{u_4, u_5, u_6, u_11} Fbar) {η₀ ηJ : ℝ} (h₀ : LE.le.{0} 0 η₀)
+  (h₀1 : LE.le.{0} η₀ 1) (hJ : LE.le.{0} 0 ηJ) (hJ1 : LE.le.{0} ηJ 1)
+  (hdef₀ : PermanssonResearch.Quotient.ApproxKernelIntertwines.{u_1, u_2, u_3, u_4, u_5, u_6} Qc M Mbar η₀)
+  (hdefJ :
+    PermanssonResearch.Quotient.ApproxKernelIntertwines.{u_1, u_2, u_3, u_4, u_5, u_6} Qc
+      (PermanssonLean.TypedIntervention.apply.{u_1, u_2, u_3, u_10}
+        (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_1, u_2, u_3, u_10} J))
+      (PermanssonLean.TypedIntervention.apply.{u_4, u_5, u_6, u_11}
+        (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_4, u_5, u_6, u_11} Jbar))
+      ηJ)
+  (y : PermanssonLean.JointState.{u_1, u_2} S X) :
+  LE.le.{0}
+    (abs.{0}
+      (HSub.hSub.{0, 0, 0}
+        (PermanssonLean.RegimeSpecification.constitutiveEffect.{u_1, u_2, u_3, u_7, u_10} M
+          (PermanssonResearch.Quotient.projectedPrefixProperty.{u_1, u_2, u_4, u_5, u_7} Qc p) J y)
+        (PermanssonLean.RegimeSpecification.constitutiveEffect.{u_4, u_5, u_6, u_7, u_11} Mbar
+          (PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.toRegimeProperty.{max u_4 u_5, u_7} p) Jbar
+          (PermanssonLean.TypeRespectingStateCompression.stateMap.{u_1, u_2, u_4, u_5} Qc y))))
+    (HMul.hMul.{0, 0, 0} (PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.constant.{max u_4 u_5, u_7} p)
+      (HAdd.hAdd.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 η₀) T))
+        (HSub.hSub.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 ηJ) T))))
+'PermanssonResearch.Quotient.geometricQuotient_effect_abs_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.geometricQuotient_margin_abs_le.{u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8, u_9, u_10, u_11}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} {Sb : Type u_4} {Xb : Type u_5} {Ab : Type u_6} {Z : Type u_7}
+  {H : Type u_8} {Hb : Type u_9} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSpace.{u_4} Sb] [MeasurableSpace.{u_5} Xb] [MeasurableSpace.{u_6} Ab] [MeasurableSpace.{u_8} H]
+  [MeasurableSpace.{u_9} Hb] [MetricSpace.{u_7} Z]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max u_2 u_1, max u_5 u_4} (PermanssonLean.JointState.{u_1, u_2} S X)
+      (PermanssonLean.JointState.{u_4, u_5} Sb Xb)]
+  (Qc : PermanssonLean.TypeRespectingStateCompression.{u_1, u_2, u_4, u_5} S X Sb Xb) {T : ℕ}
+  (p :
+    PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.{max u_5 u_4, u_7}
+      (PermanssonLean.JointState.{u_4, u_5} Sb Xb) Z T)
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  {Mbar : PermanssonLean.StrategicWorldModel.{u_4, u_5, u_6} Sb Xb Ab}
+  (spec : PermanssonLean.RegimeSpecification.{max u_2 u_1, u_8} (PermanssonLean.JointState.{u_1, u_2} S X) H)
+  (specBar : PermanssonLean.RegimeSpecification.{max u_5 u_4, u_9} (PermanssonLean.JointState.{u_4, u_5} Sb Xb) Hb)
+  {Component : Type u_10} {ComponentBar : Type u_11}
+  (F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_10} M Component)
+  (Fbar : PermanssonLean.InterventionFamily.{u_4, u_5, u_6, u_11} Mbar ComponentBar)
+  (B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.{u_1, u_2, u_3, u_8} M spec)
+  (B₁bar : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.{u_4, u_5, u_6, u_9} Mbar specBar)
+  (hB :
+    Eq.{max (u_4 + 1) (u_5 + 1)}
+      (PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.states.{u_4, u_5, u_6, u_9} B₁bar)
+      (Set.image.{max u_1 u_2, max u_4 u_5}
+        (PermanssonLean.TypeRespectingStateCompression.stateMap.{u_1, u_2, u_4, u_5} Qc)
+        (PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.states.{u_1, u_2, u_3, u_8} B₁)))
+  (J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_10} F)
+  (Jbar : PermanssonLean.AdmissibleStrategicIntervention.{u_4, u_5, u_6, u_11} Fbar) {η₀ ηJ : ℝ} (h₀ : LE.le.{0} 0 η₀)
+  (h₀1 : LE.le.{0} η₀ 1) (hJ : LE.le.{0} 0 ηJ) (hJ1 : LE.le.{0} ηJ 1)
+  (hdef₀ : PermanssonResearch.Quotient.ApproxKernelIntertwines.{u_1, u_2, u_3, u_4, u_5, u_6} Qc M Mbar η₀)
+  (hdefJ :
+    PermanssonResearch.Quotient.ApproxKernelIntertwines.{u_1, u_2, u_3, u_4, u_5, u_6} Qc
+      (PermanssonLean.TypedIntervention.apply.{u_1, u_2, u_3, u_10}
+        (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_1, u_2, u_3, u_10} J))
+      (PermanssonLean.TypedIntervention.apply.{u_4, u_5, u_6, u_11}
+        (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_4, u_5, u_6, u_11} Jbar))
+      ηJ) :
+  LE.le.{0}
+    (abs.{0}
+      (HSub.hSub.{0, 0, 0}
+        (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_1, u_2, u_3, u_8, u_7, u_10} M spec F
+          (PermanssonResearch.Quotient.projectedPrefixProperty.{u_1, u_2, u_4, u_5, u_7} Qc p) B₁ J)
+        (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_4, u_5, u_6, u_9, u_7, u_11} Mbar specBar Fbar
+          (PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.toRegimeProperty.{max u_4 u_5, u_7} p) B₁bar
+          Jbar)))
+    (HMul.hMul.{0, 0, 0} (PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.constant.{max u_4 u_5, u_7} p)
+      (HAdd.hAdd.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 η₀) T))
+        (HSub.hSub.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 ηJ) T))))
+'PermanssonResearch.Quotient.geometricQuotient_margin_abs_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.geometricQuotient_uniformPR_pair.{u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8, u_9, u_10, u_11}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} {Sb : Type u_4} {Xb : Type u_5} {Ab : Type u_6} {Z : Type u_7}
+  {H : Type u_8} {Hb : Type u_9} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSpace.{u_4} Sb] [MeasurableSpace.{u_5} Xb] [MeasurableSpace.{u_6} Ab] [MeasurableSpace.{u_8} H]
+  [MeasurableSpace.{u_9} Hb] [MetricSpace.{u_7} Z]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max u_2 u_1, max u_5 u_4} (PermanssonLean.JointState.{u_1, u_2} S X)
+      (PermanssonLean.JointState.{u_4, u_5} Sb Xb)]
+  [TopologicalSpace.{u_1} S] [TopologicalSpace.{u_2} X] [TopologicalSpace.{u_4} Sb] [TopologicalSpace.{u_5} Xb]
+  (Qc : PermanssonLean.TypeRespectingStateCompression.{u_1, u_2, u_4, u_5} S X Sb Xb) {T : ℕ}
+  (p :
+    PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.{max u_5 u_4, u_7}
+      (PermanssonLean.JointState.{u_4, u_5} Sb Xb) Z T)
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  {Mbar : PermanssonLean.StrategicWorldModel.{u_4, u_5, u_6} Sb Xb Ab}
+  (spec : PermanssonLean.RegimeSpecification.{max u_2 u_1, u_8} (PermanssonLean.JointState.{u_1, u_2} S X) H)
+  (specBar : PermanssonLean.RegimeSpecification.{max u_5 u_4, u_9} (PermanssonLean.JointState.{u_4, u_5} Sb Xb) Hb)
+  (m : MeasureTheory.Measure.{max u_2 u_1} (PermanssonLean.JointState.{u_1, u_2} S X))
+  (mbar : MeasureTheory.Measure.{max u_5 u_4} (PermanssonLean.JointState.{u_4, u_5} Sb Xb))
+  (hGR : PermanssonLean.RegimeSpecification.IsExactGeneratedRegime.{u_1, u_2, u_3, u_8} M spec m)
+  (hGRbar : PermanssonLean.RegimeSpecification.IsExactGeneratedRegime.{u_4, u_5, u_6, u_9} Mbar specBar mbar)
+  {Component : Type u_10} {ComponentBar : Type u_11}
+  (F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_10} M Component)
+  (Fbar : PermanssonLean.InterventionFamily.{u_4, u_5, u_6, u_11} Mbar ComponentBar)
+  (B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.{u_1, u_2, u_3, u_8} M spec)
+  (B₁bar : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.{u_4, u_5, u_6, u_9} Mbar specBar)
+  (hB :
+    Eq.{max (u_4 + 1) (u_5 + 1)}
+      (PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.states.{u_4, u_5, u_6, u_9} B₁bar)
+      (Set.image.{max u_1 u_2, max u_4 u_5}
+        (PermanssonLean.TypeRespectingStateCompression.stateMap.{u_1, u_2, u_4, u_5} Qc)
+        (PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.states.{u_1, u_2, u_3, u_8} B₁)))
+  (J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_10} F)
+  (Jbar : PermanssonLean.AdmissibleStrategicIntervention.{u_4, u_5, u_6, u_11} Fbar) {η₀ ηJ : ℝ} (h₀ : LE.le.{0} 0 η₀)
+  (h₀1 : LE.le.{0} η₀ 1) (hJ : LE.le.{0} 0 ηJ) (hJ1 : LE.le.{0} ηJ 1)
+  (hdef₀ : PermanssonResearch.Quotient.ApproxKernelIntertwines.{u_1, u_2, u_3, u_4, u_5, u_6} Qc M Mbar η₀)
+  (hdefJ :
+    PermanssonResearch.Quotient.ApproxKernelIntertwines.{u_1, u_2, u_3, u_4, u_5, u_6} Qc
+      (PermanssonLean.TypedIntervention.apply.{u_1, u_2, u_3, u_10}
+        (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_1, u_2, u_3, u_10} J))
+      (PermanssonLean.TypedIntervention.apply.{u_4, u_5, u_6, u_11}
+        (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_4, u_5, u_6, u_11} Jbar))
+      ηJ)
+  (hgap :
+    LT.lt.{0}
+      (HMul.hMul.{0, 0, 0} (PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.constant.{max u_4 u_5, u_7} p)
+        (HAdd.hAdd.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 η₀) T))
+          (HSub.hSub.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 ηJ) T))))
+      (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_1, u_2, u_3, u_8, u_7, u_10} M spec F
+        (PermanssonResearch.Quotient.projectedPrefixProperty.{u_1, u_2, u_4, u_5, u_7} Qc p) B₁ J)) :
+  PermanssonLean.RegimeSpecification.IsUniformGeneralizedPermanssonRegimeRelative.{u_1, u_2, u_3, u_8, u_7, u_10} M spec
+      m F (PermanssonResearch.Quotient.projectedPrefixProperty.{u_1, u_2, u_4, u_5, u_7} Qc p) B₁ J ∧
+    PermanssonLean.RegimeSpecification.IsUniformGeneralizedPermanssonRegimeRelative.{u_4, u_5, u_6, u_9, u_7, u_11} Mbar
+      specBar mbar Fbar
+      (PermanssonResearch.Perturbation.TVLipschitzPrefixProperty.toRegimeProperty.{max u_4 u_5, u_7} p) B₁bar Jbar
+'PermanssonResearch.Quotient.geometricQuotient_uniformPR_pair' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.margin_positive_pair_of_budget {a b e : ℝ} (he : LE.le.{0} 0 e)
+  (hab : LE.le.{0} (abs.{0} (HSub.hSub.{0, 0, 0} a b)) e) (hgap : LT.lt.{0} e a ∨ LT.lt.{0} e b) :
+  LT.lt.{0} 0 a ∧ LT.lt.{0} 0 b
+'PermanssonResearch.Quotient.margin_positive_pair_of_budget' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Quotient.grounded_uniformPR_pair_of_margin_budget.{u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8, u_9, u_10,
+    u_11, u_12, u_13}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} {Sb : Type u_4} {Xb : Type u_5} {Ab : Type u_6} {Z : Type u_7}
+  {H : Type u_8} {Hb : Type u_9} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSpace.{u_4} Sb] [MeasurableSpace.{u_5} Xb] [MeasurableSpace.{u_6} Ab] [MeasurableSpace.{u_8} H]
+  [MeasurableSpace.{u_9} Hb] [MetricSpace.{u_7} Z]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max u_2 u_1, max u_5 u_4} (PermanssonLean.JointState.{u_1, u_2} S X)
+      (PermanssonLean.JointState.{u_4, u_5} Sb Xb)]
+  {G : Type u_10} {Gb : Type u_11} {Component : Type u_12} {ComponentBar : Type u_13} [MeasurableSpace.{u_10} G]
+  [MeasurableSpace.{u_11} Gb] [TopologicalSpace.{u_1} S] [TopologicalSpace.{u_2} X] [TopologicalSpace.{u_4} Sb]
+  [TopologicalSpace.{u_5} Xb] (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (Mbar : PermanssonLean.StrategicWorldModel.{u_4, u_5, u_6} Sb Xb Ab)
+  (spec : PermanssonLean.RegimeSpecification.{max u_2 u_1, u_8} (PermanssonLean.JointState.{u_1, u_2} S X) H)
+  (specBar : PermanssonLean.RegimeSpecification.{max u_5 u_4, u_9} (PermanssonLean.JointState.{u_4, u_5} Sb Xb) Hb)
+  (m : MeasureTheory.Measure.{max u_2 u_1} (PermanssonLean.JointState.{u_1, u_2} S X))
+  (mbar : MeasureTheory.Measure.{max u_5 u_4} (PermanssonLean.JointState.{u_4, u_5} Sb Xb))
+  (F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_12} M Component)
+  (Fbar : PermanssonLean.InterventionFamily.{u_4, u_5, u_6, u_13} Mbar ComponentBar)
+  (ψ : PermanssonLean.RegimePropertyMap.{max u_2 u_1, u_7} (PermanssonLean.JointState.{u_1, u_2} S X) Z)
+  (ψbar : PermanssonLean.RegimePropertyMap.{max u_5 u_4, u_7} (PermanssonLean.JointState.{u_4, u_5} Sb Xb) Z)
+  (g : PermanssonLean.RegimeSpecification.GroundedRelevanceMap.{max u_1 u_2, u_8, u_10} spec G)
+  (gbar : PermanssonLean.RegimeSpecification.GroundedRelevanceMap.{max u_4 u_5, u_9, u_11} specBar Gb)
+  (B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.{u_1, u_2, u_3, u_8} M spec)
+  (B₁bar : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.{u_4, u_5, u_6, u_9} Mbar specBar)
+  (J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_12} F)
+  (Jbar : PermanssonLean.AdmissibleStrategicIntervention.{u_4, u_5, u_6, u_13} Fbar)
+  (hconfirm : PermanssonLean.RegimeSpecification.IsConfirmatoryGeneratedRegime.{u_1, u_2, u_3, u_8} M spec m)
+  (hconfirmBar :
+    PermanssonLean.RegimeSpecification.IsConfirmatoryGeneratedRegime.{u_4, u_5, u_6, u_9} Mbar specBar mbar)
+  (hground :
+    PermanssonLean.RegimeSpecification.IsGroundedPropertyRelative.{u_1, u_2, u_3, u_8, u_10, u_7, u_12} M spec F ψ g J)
+  (hgroundBar :
+    PermanssonLean.RegimeSpecification.IsGroundedPropertyRelative.{u_4, u_5, u_6, u_9, u_11, u_7, u_13} Mbar specBar
+      Fbar ψbar gbar Jbar)
+  {e : ℝ} (he : LE.le.{0} 0 e)
+  (hbudget :
+    LE.le.{0}
+      (abs.{0}
+        (HSub.hSub.{0, 0, 0}
+          (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_1, u_2, u_3, u_8, u_7, u_12} M spec F ψ B₁ J)
+          (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_4, u_5, u_6, u_9, u_7, u_13} Mbar specBar Fbar ψbar
+            B₁bar Jbar)))
+      e)
+  (hgap :
+    LT.lt.{0} e
+        (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_1, u_2, u_3, u_8, u_7, u_12} M spec F ψ B₁ J) ∨
+      LT.lt.{0} e
+        (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_4, u_5, u_6, u_9, u_7, u_13} Mbar specBar Fbar ψbar
+          B₁bar Jbar)) :
+  PermanssonLean.RegimeSpecification.IsGroundedConfirmatoryUniformPermanssonRegimeRelative.{u_1, u_2, u_3, u_8, u_10,
+        u_7, u_12}
+      M spec m F ψ g B₁ J ∧
+    PermanssonLean.RegimeSpecification.IsGroundedConfirmatoryUniformPermanssonRegimeRelative.{u_4, u_5, u_6, u_9, u_11,
+        u_7, u_13}
+      Mbar specBar mbar Fbar ψbar gbar B₁bar Jbar
+'PermanssonResearch.Quotient.grounded_uniformPR_pair_of_margin_budget' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.eventTV_compProd_averaged.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} H] [MeasurableSpace.{u_2} Z] (μ : MeasureTheory.Measure.{u_1} H)
+  [MeasureTheory.IsProbabilityMeasure.{u_1} μ] (K L : ProbabilityTheory.Kernel.{u_1, u_2} H Z)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_2} K] [ProbabilityTheory.IsMarkovKernel.{u_1, u_2} L] (d : H → ℝ)
+  (hd : Measurable.{u_1, 0} d) (hd0 : ∀ (h : H), LE.le.{0} 0 (d h)) {e : ℝ} (he : LE.le.{0} 0 e)
+  (hrows : ∀ (h : H), LE.le.{0} (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_2} (K h) (L h)) (d h))
+  (haverage : LE.le.{0} (∫⁻ (h : H), ENNReal.ofReal (d h) ∂μ) (ENNReal.ofReal e)) :
+  LE.le.{0}
+    (PermanssonLean.ProbabilitySupport.eventTotalVariation.{max u_2 u_1} (MeasureTheory.Measure.compProd.{u_1, u_2} μ K)
+      (MeasureTheory.Measure.compProd.{u_1, u_2} μ L))
+    e
+'PermanssonResearch.Probability.eventTV_compProd_averaged' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.historyEvolution.{u_1, u_2} {H : Type u_1} {Z : Type u_2} [MeasurableSpace.{u_1} H]
+  [MeasurableSpace.{u_2} Z] (μ : MeasureTheory.Measure.{u_1} H) (K : ℕ → ProbabilityTheory.Kernel.{u_1, u_2} H Z)
+  (append : ℕ → Prod.{u_1, u_2} H Z → H) : ℕ → MeasureTheory.Measure.{u_1} H
+'PermanssonResearch.Probability.historyEvolution' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.historyEvolution_isProbability.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} H] [MeasurableSpace.{u_2} Z] (μ : MeasureTheory.Measure.{u_1} H)
+  [MeasureTheory.IsProbabilityMeasure.{u_1} μ] (K : ℕ → ProbabilityTheory.Kernel.{u_1, u_2} H Z)
+  [∀ (n : ℕ), ProbabilityTheory.IsMarkovKernel.{u_1, u_2} (K n)] (append : ℕ → Prod.{u_1, u_2} H Z → H)
+  (hm : ∀ (n : ℕ), Measurable.{max u_1 u_2, u_1} (append n)) (n : ℕ) :
+  MeasureTheory.IsProbabilityMeasure.{u_1} (PermanssonResearch.Probability.historyEvolution.{u_1, u_2} μ K append n)
+'PermanssonResearch.Probability.historyEvolution_isProbability' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.historyEvolution_tv_le_sum.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} H] [MeasurableSpace.{u_2} Z] (μ ν : MeasureTheory.Measure.{u_1} H)
+  [MeasureTheory.IsProbabilityMeasure.{u_1} μ] [MeasureTheory.IsProbabilityMeasure.{u_1} ν]
+  (K L : ℕ → ProbabilityTheory.Kernel.{u_1, u_2} H Z) [∀ (n : ℕ), ProbabilityTheory.IsMarkovKernel.{u_1, u_2} (K n)]
+  [∀ (n : ℕ), ProbabilityTheory.IsMarkovKernel.{u_1, u_2} (L n)] (append : ℕ → Prod.{u_1, u_2} H Z → H)
+  (hm : ∀ (n : ℕ), Measurable.{max u_1 u_2, u_1} (append n)) (d : ℕ → H → ℝ) (hd : ∀ (n : ℕ), Measurable.{u_1, 0} (d n))
+  (hd0 : ∀ (n : ℕ) (h : H), LE.le.{0} 0 (d n h)) (e : ℕ → ℝ) (he : ∀ (n : ℕ), LE.le.{0} 0 (e n))
+  (hrows :
+    ∀ (n : ℕ) (h : H),
+      LE.le.{0} (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_2} ((K n) h) ((L n) h)) (d n h))
+  (haverage :
+    ∀ (n : ℕ),
+      LE.le.{0}
+        (∫⁻ (h : H), ENNReal.ofReal (d n h) ∂PermanssonResearch.Probability.historyEvolution.{u_1, u_2} μ K append n)
+        (ENNReal.ofReal (e n)))
+  {ε : ℝ} (hε : LE.le.{0} (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_1} μ ν) ε) (T : ℕ) :
+  LE.le.{0}
+    (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_1}
+      (PermanssonResearch.Probability.historyEvolution.{u_1, u_2} μ K append T)
+      (PermanssonResearch.Probability.historyEvolution.{u_1, u_2} ν L append T))
+    (Min.min.{0} 1 (HAdd.hAdd.{0, 0, 0} ε (∑ t ∈ Finset.range T, e t)))
+'PermanssonResearch.Probability.historyEvolution_tv_le_sum' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.bounded_score_integral_error.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  (μ ν : MeasureTheory.Measure.{u_1} Ω) [MeasureTheory.IsProbabilityMeasure.{u_1} μ]
+  [MeasureTheory.IsProbabilityMeasure.{u_1} ν] (g : Ω → ℝ) (hg : Measurable.{u_1, 0} g)
+  (hg0 : ∀ (ω : Ω), LE.le.{0} 0 (g ω)) (hg1 : ∀ (ω : Ω), LE.le.{0} (g ω) 1) :
+  LE.le.{0} (abs.{0} (HSub.hSub.{0, 0, 0} (∫ (ω : Ω), g ω ∂μ) (∫ (ω : Ω), g ω ∂ν)))
+    (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_1} μ ν)
+'PermanssonResearch.Probability.bounded_score_integral_error' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.summablePathScore.{u_1} {Ω : Type u_1} (w : ℕ → ℝ) (g : ℕ → Ω → ℝ) (ω : Ω) : ℝ
+'PermanssonResearch.Probability.summablePathScore' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.weighted_score_integrable.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  (μ : MeasureTheory.Measure.{u_1} Ω) [MeasureTheory.IsProbabilityMeasure.{u_1} μ] (w : ℕ → ℝ)
+  (hw : ∀ (n : ℕ), LE.le.{0} 0 (w n)) (g : ℕ → Ω → ℝ) (hg : ∀ (n : ℕ), Measurable.{u_1, 0} (g n))
+  (hg0 : ∀ (n : ℕ) (ω : Ω), LE.le.{0} 0 (g n ω)) (hg1 : ∀ (n : ℕ) (ω : Ω), LE.le.{0} (g n ω) 1) (n : ℕ) :
+  MeasureTheory.Integrable.{0, u_1} (fun ω => HMul.hMul.{0, 0, 0} (w n) (g n ω)) μ
+'PermanssonResearch.Probability.weighted_score_integrable' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.integral_summablePathScore.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  (μ : MeasureTheory.Measure.{u_1} Ω) [MeasureTheory.IsProbabilityMeasure.{u_1} μ] (w : ℕ → ℝ)
+  (hw : ∀ (n : ℕ), LE.le.{0} 0 (w n)) (hws : Summable.{0, 0} w) (g : ℕ → Ω → ℝ)
+  (hg : ∀ (n : ℕ), Measurable.{u_1, 0} (g n)) (hg0 : ∀ (n : ℕ) (ω : Ω), LE.le.{0} 0 (g n ω))
+  (hg1 : ∀ (n : ℕ) (ω : Ω), LE.le.{0} (g n ω) 1) :
+  Eq.{1} (∫ (ω : Ω), PermanssonResearch.Probability.summablePathScore.{u_1} w g ω ∂μ)
+    (∑' (n : ℕ), HMul.hMul.{0, 0, 0} (w n) (∫ (ω : Ω), g n ω ∂μ))
+'PermanssonResearch.Probability.integral_summablePathScore' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.summablePathScore_integral_error.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  (μ ν : MeasureTheory.Measure.{u_1} Ω) [MeasureTheory.IsProbabilityMeasure.{u_1} μ]
+  [MeasureTheory.IsProbabilityMeasure.{u_1} ν] (w : ℕ → ℝ) (hw : ∀ (n : ℕ), LE.le.{0} 0 (w n)) (hws : Summable.{0, 0} w)
+  (g : ℕ → Ω → ℝ) (hg : ∀ (n : ℕ), Measurable.{u_1, 0} (g n)) (hg0 : ∀ (n : ℕ) (ω : Ω), LE.le.{0} 0 (g n ω))
+  (hg1 : ∀ (n : ℕ) (ω : Ω), LE.le.{0} (g n ω) 1) (e : ℕ → ℝ) (he0 : ∀ (n : ℕ), LE.le.{0} 0 (e n))
+  (he1 : ∀ (n : ℕ), LE.le.{0} (e n) 1)
+  (herr : ∀ (n : ℕ), LE.le.{0} (abs.{0} (HSub.hSub.{0, 0, 0} (∫ (ω : Ω), g n ω ∂μ) (∫ (ω : Ω), g n ω ∂ν))) (e n)) :
+  LE.le.{0}
+    (abs.{0}
+      (HSub.hSub.{0, 0, 0} (∫ (ω : Ω), PermanssonResearch.Probability.summablePathScore.{u_1} w g ω ∂μ)
+        (∫ (ω : Ω), PermanssonResearch.Probability.summablePathScore.{u_1} w g ω ∂ν)))
+    (∑' (n : ℕ), HMul.hMul.{0, 0, 0} (w n) (e n))
+'PermanssonResearch.Probability.summablePathScore_integral_error' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.discounted_geometric_budget {β η : ℝ} (hβ0 : LE.le.{0} 0 β) (hβ1 : LT.lt.{0} β 1)
+  (hη0 : LE.le.{0} 0 η) (hη1 : LE.le.{0} η 1) :
+  Eq.{1}
+    (∑' (n : ℕ),
+      HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 β) (HPow.hPow.{0, 0, 0} β n))
+        (HSub.hSub.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 η) n)))
+    (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} β η)
+      (HSub.hSub.{0, 0, 0} 1 (HMul.hMul.{0, 0, 0} β (HSub.hSub.{0, 0, 0} 1 η))))
+'PermanssonResearch.Probability.discounted_geometric_budget' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.summable_output_score_error.{u_1, u_2} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {V : ℕ → Type u_2} [(n : ℕ) → MeasurableSpace.{u_2} (V n)] (μ ν : MeasureTheory.Measure.{u_1} Ω)
+  [MeasureTheory.IsProbabilityMeasure.{u_1} μ] [MeasureTheory.IsProbabilityMeasure.{u_1} ν] (output : (n : ℕ) → Ω → V n)
+  (ho : ∀ (n : ℕ), Measurable.{u_1, u_2} (output n)) (g : (n : ℕ) → V n → ℝ) (hg : ∀ (n : ℕ), Measurable.{u_2, 0} (g n))
+  (hg0 : ∀ (n : ℕ) (v : V n), LE.le.{0} 0 (g n v)) (hg1 : ∀ (n : ℕ) (v : V n), LE.le.{0} (g n v) 1) (w : ℕ → ℝ)
+  (hw : ∀ (n : ℕ), LE.le.{0} 0 (w n)) (hws : Summable.{0, 0} w) (e : ℕ → ℝ) (he0 : ∀ (n : ℕ), LE.le.{0} 0 (e n))
+  (he1 : ∀ (n : ℕ), LE.le.{0} (e n) 1)
+  (htv :
+    ∀ (n : ℕ),
+      LE.le.{0}
+        (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_2} (MeasureTheory.Measure.map.{u_1, u_2} (output n) μ)
+          (MeasureTheory.Measure.map.{u_1, u_2} (output n) ν))
+        (e n)) :
+  LE.le.{0}
+    (abs.{0}
+      (HSub.hSub.{0, 0, 0}
+        (∫ (ω : Ω), PermanssonResearch.Probability.summablePathScore.{u_1} w (fun n ω => g n (output n ω)) ω ∂μ)
+        (∫ (ω : Ω), PermanssonResearch.Probability.summablePathScore.{u_1} w (fun n ω => g n (output n ω)) ω ∂ν)))
+    (∑' (n : ℕ), HMul.hMul.{0, 0, 0} (w n) (e n))
+'PermanssonResearch.Probability.summable_output_score_error' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.IntegrableCoupling.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] (μ ν : MeasureTheory.Measure.{u_1} Y) : Type u_1
+'PermanssonResearch.Probability.IntegrableCoupling' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.IntegrableCoupling.cost.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] {μ ν : MeasureTheory.Measure.{u_1} Y}
+  (γ : PermanssonResearch.Probability.IntegrableCoupling.{u_1} μ ν) : ℝ
+'PermanssonResearch.Probability.IntegrableCoupling.cost' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.IntegrableCoupling.cost_nonneg.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] {μ ν : MeasureTheory.Measure.{u_1} Y}
+  (γ : PermanssonResearch.Probability.IntegrableCoupling.{u_1} μ ν) :
+  LE.le.{0} 0 (PermanssonResearch.Probability.IntegrableCoupling.cost.{u_1} γ)
+'PermanssonResearch.Probability.IntegrableCoupling.cost_nonneg' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.IntegrableCoupling.dual_bound.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] {μ ν : MeasureTheory.Measure.{u_1} Y}
+  (γ : PermanssonResearch.Probability.IntegrableCoupling.{u_1} μ ν) :
+  PermanssonResearch.Probability.W1DualLE.{u_1} μ ν (PermanssonResearch.Probability.IntegrableCoupling.cost.{u_1} γ)
+'PermanssonResearch.Probability.IntegrableCoupling.dual_bound' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.couplingCosts.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y] [MeasurableSpace.{u_1} Y]
+  (μ ν : MeasureTheory.Measure.{u_1} Y) : Set.{0} ℝ
+'PermanssonResearch.Probability.couplingCosts' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.couplingW1.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y] [MeasurableSpace.{u_1} Y]
+  (μ ν : MeasureTheory.Measure.{u_1} Y) : ℝ
+'PermanssonResearch.Probability.couplingW1' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.w1DualLE_couplingW1.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] (μ ν : MeasureTheory.Measure.{u_1} Y)
+  (hne : Nonempty.{u_1 + 1} (PermanssonResearch.Probability.IntegrableCoupling.{u_1} μ ν)) :
+  PermanssonResearch.Probability.W1DualLE.{u_1} μ ν (PermanssonResearch.Probability.couplingW1.{u_1} μ ν)
+'PermanssonResearch.Probability.w1DualLE_couplingW1' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.w1DualLE_of_couplingW1_le.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] (μ ν : MeasureTheory.Measure.{u_1} Y)
+  (hne : Nonempty.{u_1 + 1} (PermanssonResearch.Probability.IntegrableCoupling.{u_1} μ ν)) {c : ℝ}
+  (h : LE.le.{0} (PermanssonResearch.Probability.couplingW1.{u_1} μ ν) c) :
+  PermanssonResearch.Probability.W1DualLE.{u_1} μ ν c
+'PermanssonResearch.Probability.w1DualLE_of_couplingW1_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.finiteProductCoupling.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] [Finite.{u_1 + 1} Y] [MeasurableSingletonClass.{u_1} Y]
+  (μ ν : MeasureTheory.Measure.{u_1} Y) [MeasureTheory.IsProbabilityMeasure.{u_1} μ]
+  [MeasureTheory.IsProbabilityMeasure.{u_1} ν] : PermanssonResearch.Probability.IntegrableCoupling.{u_1} μ ν
+'PermanssonResearch.Probability.finiteProductCoupling' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.finite_w1DualLE_couplingW1.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] [Finite.{u_1 + 1} Y] [MeasurableSingletonClass.{u_1} Y]
+  (μ ν : MeasureTheory.Measure.{u_1} Y) [MeasureTheory.IsProbabilityMeasure.{u_1} μ]
+  [MeasureTheory.IsProbabilityMeasure.{u_1} ν] :
+  PermanssonResearch.Probability.W1DualLE.{u_1} μ ν (PermanssonResearch.Probability.couplingW1.{u_1} μ ν)
+'PermanssonResearch.Probability.finite_w1DualLE_couplingW1' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.kr_kernel_image_bounded.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] {f : Y → ℝ} (hf : PermanssonResearch.Probability.IsKRTest.{u_1} f) :
+  ∃ C, ∀ (x : Y), LE.le.{0} (abs.{0} (∫ (y : Y), f y ∂K x)) C
+'PermanssonResearch.Perturbation.kr_kernel_image_bounded' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.isW1Contraction_of_test_images.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] {ρ : ℝ} (hρ : LE.le.{0} 0 ρ)
+  (hrows :
+    ∀ (f : Y → ℝ),
+      PermanssonResearch.Probability.IsKRTest.{u_1} f →
+        ∀ (x y : Y),
+          LE.le.{0} (abs.{0} (HSub.hSub.{0, 0, 0} (∫ (z : Y), f z ∂K x) (∫ (z : Y), f z ∂K y)))
+            (HMul.hMul.{0, 0, 0} ρ (Dist.dist.{u_1} x y))) :
+  PermanssonResearch.Perturbation.IsW1Contraction.{u_1} K ρ
+'PermanssonResearch.Perturbation.isW1Contraction_of_test_images' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.constantKernel_isW1Contraction.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] (π : MeasureTheory.Measure.{u_1} Y) [MeasureTheory.IsProbabilityMeasure.{u_1} π] :
+  PermanssonResearch.Perturbation.IsW1Contraction.{u_1} (ProbabilityTheory.Kernel.const.{u_1, u_1} Y π) 0
+'PermanssonResearch.Perturbation.constantKernel_isW1Contraction' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.identityKernel_isW1Contraction.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] : PermanssonResearch.Perturbation.IsW1Contraction.{u_1} ProbabilityTheory.Kernel.id.{u_1} 1
+'PermanssonResearch.Perturbation.identityKernel_isW1Contraction' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.primitiveCommon_mass_ge_product.{uS, uX, uA} {S : Type uS} {X : Type uX} {A : Type uA}
+  [MeasurableSpace.{uS} S] [MeasurableSpace.{uX} X] [MeasurableSpace.{uA} A]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max uX uS, uA} (PermanssonLean.JointState.{uS, uX} S X) A]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max (max uA uX) uS, uX} (PermanssonLean.WorldInput.{uS, uX, uA} S X A)
+      X]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max (max uA uX) uS, uS}
+      (PermanssonLean.UpdateInput.{uS, uX, uA} S X A) S]
+  (M N : PermanssonLean.StrategicWorldModel.{uS, uX, uA} S X A) {δα δP δU : ℝ} (ha0 : LE.le.{0} 0 δα)
+  (ha1 : LE.le.{0} δα 1) (hp0 : LE.le.{0} 0 δP) (hp1 : LE.le.{0} δP 1) (hu0 : LE.le.{0} 0 δU) (hu1 : LE.le.{0} δU 1)
+  (ha :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{uA, max uS uX}
+      (PermanssonLean.StrategicGenerator.action.{uS, uX, uA}
+        (PermanssonLean.StrategicWorldModel.generator.{uS, uX, uA} M))
+      (PermanssonLean.StrategicGenerator.action.{uS, uX, uA}
+        (PermanssonLean.StrategicWorldModel.generator.{uS, uX, uA} N))
+      δα)
+  (hp :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{uX, max (max uA uS) uX}
+      (PermanssonLean.StrategicWorldModel.world.{uS, uX, uA} M)
+      (PermanssonLean.StrategicWorldModel.world.{uS, uX, uA} N) δP)
+  (hu :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{uS, max (max uA uS) uX}
+      (PermanssonLean.StrategicGenerator.update.{uS, uX, uA}
+        (PermanssonLean.StrategicWorldModel.generator.{uS, uX, uA} M))
+      (PermanssonLean.StrategicGenerator.update.{uS, uX, uA}
+        (PermanssonLean.StrategicWorldModel.generator.{uS, uX, uA} N))
+      δU)
+  (y : PermanssonLean.JointState.{uS, uX} S X) :
+  LE.le.{0}
+    (HMul.hMul.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} (ENNReal.ofReal (HSub.hSub.{0, 0, 0} 1 δU)) (ENNReal.ofReal (HSub.hSub.{0, 0, 0} 1 δP)))
+      (ENNReal.ofReal (HSub.hSub.{0, 0, 0} 1 δα)))
+    (((PermanssonResearch.Perturbation.commonInducedKernel.{uS, uX, uA} M N) y) Set.univ.{max uS uX})
+'PermanssonResearch.Perturbation.primitiveCommon_mass_ge_product' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.inducedKernel_tv_le_primitive_product.{uS, uX, uA} {S : Type uS} {X : Type uX}
+  {A : Type uA} [MeasurableSpace.{uS} S] [MeasurableSpace.{uX} X] [MeasurableSpace.{uA} A]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max uX uS, uA} (PermanssonLean.JointState.{uS, uX} S X) A]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max (max uA uX) uS, uX} (PermanssonLean.WorldInput.{uS, uX, uA} S X A)
+      X]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max (max uA uX) uS, uS}
+      (PermanssonLean.UpdateInput.{uS, uX, uA} S X A) S]
+  (M N : PermanssonLean.StrategicWorldModel.{uS, uX, uA} S X A) {δα δP δU : ℝ} (ha0 : LE.le.{0} 0 δα)
+  (ha1 : LE.le.{0} δα 1) (hp0 : LE.le.{0} 0 δP) (hp1 : LE.le.{0} δP 1) (hu0 : LE.le.{0} 0 δU) (hu1 : LE.le.{0} δU 1)
+  (ha :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{uA, max uS uX}
+      (PermanssonLean.StrategicGenerator.action.{uS, uX, uA}
+        (PermanssonLean.StrategicWorldModel.generator.{uS, uX, uA} M))
+      (PermanssonLean.StrategicGenerator.action.{uS, uX, uA}
+        (PermanssonLean.StrategicWorldModel.generator.{uS, uX, uA} N))
+      δα)
+  (hp :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{uX, max (max uA uS) uX}
+      (PermanssonLean.StrategicWorldModel.world.{uS, uX, uA} M)
+      (PermanssonLean.StrategicWorldModel.world.{uS, uX, uA} N) δP)
+  (hu :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{uS, max (max uA uS) uX}
+      (PermanssonLean.StrategicGenerator.update.{uS, uX, uA}
+        (PermanssonLean.StrategicWorldModel.generator.{uS, uX, uA} M))
+      (PermanssonLean.StrategicGenerator.update.{uS, uX, uA}
+        (PermanssonLean.StrategicWorldModel.generator.{uS, uX, uA} N))
+      δU) :
+  PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{max uS uX, max uS uX}
+    (PermanssonLean.StrategicWorldModel.inducedKernel.{uS, uX, uA} M)
+    (PermanssonLean.StrategicWorldModel.inducedKernel.{uS, uX, uA} N)
+    (HSub.hSub.{0, 0, 0} 1
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 δα) (HSub.hSub.{0, 0, 0} 1 δP))
+        (HSub.hSub.{0, 0, 0} 1 δU)))
+'PermanssonResearch.Perturbation.inducedKernel_tv_le_primitive_product' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.inducedKernel_w1DualLE_of_primitive_product.{u_1, u_2, u_3} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [PseudoMetricSpace.{u_1} S] [PseudoMetricSpace.{u_2} X]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max (max u_3 u_2) u_1, u_2}
+      (PermanssonLean.WorldInput.{u_1, u_2, u_3} S X A) X]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max (max u_3 u_2) u_1, u_1}
+      (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S]
+  (M N : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A) {D δα δP δU : ℝ} (hD0 : LE.le.{0} 0 D)
+  (hD : ∀ (y z : PermanssonLean.JointState.{u_1, u_2} S X), LE.le.{0} (Dist.dist.{max u_1 u_2} y z) D)
+  (ha0 : LE.le.{0} 0 δα) (ha1 : LE.le.{0} δα 1) (hp0 : LE.le.{0} 0 δP) (hp1 : LE.le.{0} δP 1) (hu0 : LE.le.{0} 0 δU)
+  (hu1 : LE.le.{0} δU 1)
+  (ha :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{u_3, max u_1 u_2}
+      (PermanssonLean.StrategicGenerator.action.{u_1, u_2, u_3}
+        (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} M))
+      (PermanssonLean.StrategicGenerator.action.{u_1, u_2, u_3}
+        (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} N))
+      δα)
+  (hp :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{u_2, max (max u_1 u_2) u_3}
+      (PermanssonLean.StrategicWorldModel.world.{u_1, u_2, u_3} M)
+      (PermanssonLean.StrategicWorldModel.world.{u_1, u_2, u_3} N) δP)
+  (hu :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{u_1, max (max u_1 u_2) u_3}
+      (PermanssonLean.StrategicGenerator.update.{u_1, u_2, u_3}
+        (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} M))
+      (PermanssonLean.StrategicGenerator.update.{u_1, u_2, u_3}
+        (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} N))
+      δU)
+  (y : PermanssonLean.JointState.{u_1, u_2} S X) :
+  PermanssonResearch.Probability.W1DualLE.{max u_1 u_2}
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M) y)
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} N) y)
+    (HMul.hMul.{0, 0, 0} D
+      (HSub.hSub.{0, 0, 0} 1
+        (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 δα) (HSub.hSub.{0, 0, 0} 1 δP))
+          (HSub.hSub.{0, 0, 0} 1 δU))))
+'PermanssonResearch.Perturbation.inducedKernel_w1DualLE_of_primitive_product' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.inducedLaw_w1DualLE_of_primitive_product.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [PseudoMetricSpace.{u_1} S] [PseudoMetricSpace.{u_2} X]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max (max u_3 u_2) u_1, u_2}
+      (PermanssonLean.WorldInput.{u_1, u_2, u_3} S X A) X]
+  [MeasurableSpace.CountableOrCountablyGenerated.{max (max u_3 u_2) u_1, u_1}
+      (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S]
+  (M N : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (μ : MeasureTheory.Measure.{max u_2 u_1} (PermanssonLean.JointState.{u_1, u_2} S X))
+  [MeasureTheory.IsProbabilityMeasure.{max u_1 u_2} μ] {D δα δP δU : ℝ} (hD0 : LE.le.{0} 0 D)
+  (hD : ∀ (y z : PermanssonLean.JointState.{u_1, u_2} S X), LE.le.{0} (Dist.dist.{max u_1 u_2} y z) D)
+  (ha0 : LE.le.{0} 0 δα) (ha1 : LE.le.{0} δα 1) (hp0 : LE.le.{0} 0 δP) (hp1 : LE.le.{0} δP 1) (hu0 : LE.le.{0} 0 δU)
+  (hu1 : LE.le.{0} δU 1)
+  (ha :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{u_3, max u_1 u_2}
+      (PermanssonLean.StrategicGenerator.action.{u_1, u_2, u_3}
+        (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} M))
+      (PermanssonLean.StrategicGenerator.action.{u_1, u_2, u_3}
+        (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} N))
+      δα)
+  (hp :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{u_2, max (max u_1 u_2) u_3}
+      (PermanssonLean.StrategicWorldModel.world.{u_1, u_2, u_3} M)
+      (PermanssonLean.StrategicWorldModel.world.{u_1, u_2, u_3} N) δP)
+  (hu :
+    PermanssonLean.ProbabilitySupport.HasUniformEventTVBound.{u_1, max (max u_1 u_2) u_3}
+      (PermanssonLean.StrategicGenerator.update.{u_1, u_2, u_3}
+        (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} M))
+      (PermanssonLean.StrategicGenerator.update.{u_1, u_2, u_3}
+        (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} N))
+      δU) :
+  PermanssonResearch.Probability.W1DualLE.{max u_1 u_2}
+    (MeasureTheory.Measure.bind.{max u_1 u_2, max u_1 u_2} μ
+      ⇑(PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M))
+    (MeasureTheory.Measure.bind.{max u_1 u_2, max u_1 u_2} μ
+      ⇑(PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} N))
+    (HMul.hMul.{0, 0, 0} D
+      (HSub.hSub.{0, 0, 0} 1
+        (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 δα) (HSub.hSub.{0, 0, 0} 1 δP))
+          (HSub.hSub.{0, 0, 0} 1 δU))))
+'PermanssonResearch.Perturbation.inducedLaw_w1DualLE_of_primitive_product' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.RowPatch.Compatible.{u_1, u_2} {I : Type u_1} {O : Type u_2} [MeasurableSpace.{u_1} I]
+  [MeasurableSpace.{u_2} O] (p q : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O) : Prop
+'PermanssonResearch.GrammarRobust.RowPatch.Compatible' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.RowPatch.Compatible.symm.{u_1, u_2} {I : Type u_1} {O : Type u_2}
+  [MeasurableSpace.{u_1} I] [MeasurableSpace.{u_2} O] {p q : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O}
+  (h : PermanssonResearch.GrammarRobust.RowPatch.Compatible.{u_1, u_2} p q) :
+  PermanssonResearch.GrammarRobust.RowPatch.Compatible.{u_1, u_2} q p
+'PermanssonResearch.GrammarRobust.RowPatch.Compatible.symm' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.applyCompatiblePatches.{u_1, u_2} {I : Type u_1} {O : Type u_2}
+  [MeasurableSpace.{u_1} I] [MeasurableSpace.{u_2} O]
+  (ps : List.{max u_2 u_1} (PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O))
+  (base : PermanssonLean.MarkovKernelReplacement.{u_1, u_2} I O) : PermanssonLean.MarkovKernelReplacement.{u_1, u_2} I O
+'PermanssonResearch.GrammarRobust.applyCompatiblePatches' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.applyCompatiblePatches_active.{u_1, u_2} {I : Type u_1} {O : Type u_2}
+  [MeasurableSpace.{u_1} I] [MeasurableSpace.{u_2} O]
+  (ps : List.{max u_2 u_1} (PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O))
+  (hcompat :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O),
+      Membership.mem.{max u_1 u_2, max u_1 u_2} ps p →
+        ∀ (q : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O),
+          Membership.mem.{max u_1 u_2, max u_1 u_2} ps q →
+            PermanssonResearch.GrammarRobust.RowPatch.Compatible.{u_1, u_2} p q)
+  (base : PermanssonLean.MarkovKernelReplacement.{u_1, u_2} I O)
+  (p : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O) (hp : Membership.mem.{max u_1 u_2, max u_1 u_2} ps p)
+  (x : I) (hx : Membership.mem.{u_1, u_1} (PermanssonResearch.GrammarRobust.RowPatch.region.{u_1, u_2} p) x) :
+  Eq.{u_2 + 1}
+    ((PermanssonLean.MarkovKernelReplacement.kernel.{u_1, u_2}
+        (PermanssonResearch.GrammarRobust.applyCompatiblePatches.{u_1, u_2} ps base))
+      x)
+    ((PermanssonResearch.GrammarRobust.RowPatch.replacement.{u_1, u_2} p) x)
+'PermanssonResearch.GrammarRobust.applyCompatiblePatches_active' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.applyCompatiblePatches_inactive.{u_1, u_2} {I : Type u_1} {O : Type u_2}
+  [MeasurableSpace.{u_1} I] [MeasurableSpace.{u_2} O]
+  (ps : List.{max u_2 u_1} (PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O))
+  (base : PermanssonLean.MarkovKernelReplacement.{u_1, u_2} I O) (x : I)
+  (hx :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O),
+      Membership.mem.{max u_1 u_2, max u_1 u_2} ps p →
+        x ∉ PermanssonResearch.GrammarRobust.RowPatch.region.{u_1, u_2} p) :
+  Eq.{u_2 + 1}
+    ((PermanssonLean.MarkovKernelReplacement.kernel.{u_1, u_2}
+        (PermanssonResearch.GrammarRobust.applyCompatiblePatches.{u_1, u_2} ps base))
+      x)
+    ((PermanssonLean.MarkovKernelReplacement.kernel.{u_1, u_2} base) x)
+'PermanssonResearch.GrammarRobust.applyCompatiblePatches_inactive' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.applyCompatiblePatches_eq_of_membership.{u_1, u_2} {I : Type u_1} {O : Type u_2}
+  [MeasurableSpace.{u_1} I] [MeasurableSpace.{u_2} O]
+  (ps qs : List.{max u_2 u_1} (PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O))
+  (hcompat :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O),
+      Membership.mem.{max u_1 u_2, max u_1 u_2} ps p →
+        ∀ (q : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O),
+          Membership.mem.{max u_1 u_2, max u_1 u_2} ps q →
+            PermanssonResearch.GrammarRobust.RowPatch.Compatible.{u_1, u_2} p q)
+  (hmembers :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O),
+      Membership.mem.{max u_1 u_2, max u_1 u_2} ps p ↔ Membership.mem.{max u_1 u_2, max u_1 u_2} qs p)
+  (base : PermanssonLean.MarkovKernelReplacement.{u_1, u_2} I O) :
+  Eq.{max (u_1 + 1) (u_2 + 1)}
+    (PermanssonLean.MarkovKernelReplacement.kernel.{u_1, u_2}
+      (PermanssonResearch.GrammarRobust.applyCompatiblePatches.{u_1, u_2} ps base))
+    (PermanssonLean.MarkovKernelReplacement.kernel.{u_1, u_2}
+      (PermanssonResearch.GrammarRobust.applyCompatiblePatches.{u_1, u_2} qs base))
+'PermanssonResearch.GrammarRobust.applyCompatiblePatches_eq_of_membership' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.applyCompatiblePatches_perm.{u_1, u_2} {I : Type u_1} {O : Type u_2}
+  [MeasurableSpace.{u_1} I] [MeasurableSpace.{u_2} O]
+  (ps qs : List.{max u_2 u_1} (PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O))
+  (hcompat :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O),
+      Membership.mem.{max u_1 u_2, max u_1 u_2} ps p →
+        ∀ (q : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O),
+          Membership.mem.{max u_1 u_2, max u_1 u_2} ps q →
+            PermanssonResearch.GrammarRobust.RowPatch.Compatible.{u_1, u_2} p q)
+  (hperm : List.Perm.{max u_1 u_2} ps qs) (base : PermanssonLean.MarkovKernelReplacement.{u_1, u_2} I O) :
+  Eq.{max (u_1 + 1) (u_2 + 1)}
+    (PermanssonLean.MarkovKernelReplacement.kernel.{u_1, u_2}
+      (PermanssonResearch.GrammarRobust.applyCompatiblePatches.{u_1, u_2} ps base))
+    (PermanssonLean.MarkovKernelReplacement.kernel.{u_1, u_2}
+      (PermanssonResearch.GrammarRobust.applyCompatiblePatches.{u_1, u_2} qs base))
+'PermanssonResearch.GrammarRobust.applyCompatiblePatches_perm' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.applyRowPatch_idempotent.{u_1, u_2} {I : Type u_1} {O : Type u_2}
+  [MeasurableSpace.{u_1} I] [MeasurableSpace.{u_2} O] (p : PermanssonResearch.GrammarRobust.RowPatch.{u_1, u_2} I O)
+  (base : PermanssonLean.MarkovKernelReplacement.{u_1, u_2} I O) :
+  Eq.{max (u_1 + 1) (u_2 + 1)}
+    (PermanssonLean.MarkovKernelReplacement.kernel.{u_1, u_2}
+      (PermanssonResearch.GrammarRobust.applyRowPatch.{u_1, u_2} p
+        (PermanssonResearch.GrammarRobust.applyRowPatch.{u_1, u_2} p base)))
+    (PermanssonLean.MarkovKernelReplacement.kernel.{u_1, u_2}
+      (PermanssonResearch.GrammarRobust.applyRowPatch.{u_1, u_2} p base))
+'PermanssonResearch.GrammarRobust.applyRowPatch_idempotent' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.overlapModel.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (actions :
+    List.{max u_3 u_2 u_1}
+      (PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A))
+  (updates :
+    List.{max (max u_3 u_2) u_1}
+      (PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+        (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S)) :
+  PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A
+'PermanssonResearch.GrammarRobust.overlapModel' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.overlapModel_world.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (actions :
+    List.{max u_3 u_2 u_1}
+      (PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A))
+  (updates :
+    List.{max (max u_3 u_2) u_1}
+      (PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+        (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S)) :
+  Eq.{max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)}
+    (PermanssonLean.StrategicWorldModel.world.{u_1, u_2, u_3}
+      (PermanssonResearch.GrammarRobust.overlapModel.{u_1, u_2, u_3} M actions updates))
+    (PermanssonLean.StrategicWorldModel.world.{u_1, u_2, u_3} M)
+'PermanssonResearch.GrammarRobust.overlapModel_world' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.overlapModel_eq_of_membership.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (as bs :
+    List.{max u_3 u_2 u_1}
+      (PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A))
+  (us vs :
+    List.{max (max u_3 u_2) u_1}
+      (PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+        (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S))
+  (ha :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} as p →
+        ∀
+          (q :
+            PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+          Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} as q →
+            PermanssonResearch.GrammarRobust.RowPatch.Compatible.{max u_1 u_2, u_3} p q)
+  (hu :
+    ∀
+      (p :
+        PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+          (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} us p →
+        ∀
+          (q :
+            PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+              (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+          Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} us q →
+            PermanssonResearch.GrammarRobust.RowPatch.Compatible.{max (max u_1 u_2) u_3, u_1} p q)
+  (hab :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} as p ↔
+        Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} bs p)
+  (huv :
+    ∀
+      (p :
+        PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+          (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} us p ↔
+        Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} vs p) :
+  Eq.{max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)} (PermanssonResearch.GrammarRobust.overlapModel.{u_1, u_2, u_3} M as us)
+    (PermanssonResearch.GrammarRobust.overlapModel.{u_1, u_2, u_3} M bs vs)
+'PermanssonResearch.GrammarRobust.overlapModel_eq_of_membership' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.overlapModel_pathLaw_eq_of_membership.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (as bs :
+    List.{max u_3 u_2 u_1}
+      (PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A))
+  (us vs :
+    List.{max (max u_3 u_2) u_1}
+      (PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+        (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S))
+  (ha :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} as p →
+        ∀
+          (q :
+            PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+          Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} as q →
+            PermanssonResearch.GrammarRobust.RowPatch.Compatible.{max u_1 u_2, u_3} p q)
+  (hu :
+    ∀
+      (p :
+        PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+          (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} us p →
+        ∀
+          (q :
+            PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+              (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+          Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} us q →
+            PermanssonResearch.GrammarRobust.RowPatch.Compatible.{max (max u_1 u_2) u_3, u_1} p q)
+  (hab :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} as p ↔
+        Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} bs p)
+  (huv :
+    ∀
+      (p :
+        PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+          (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} us p ↔
+        Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} vs p)
+  (μ : MeasureTheory.Measure.{max u_2 u_1} (PermanssonLean.JointState.{u_1, u_2} S X))
+  [MeasureTheory.IsProbabilityMeasure.{max u_1 u_2} μ] :
+  Eq.{max (u_1 + 1) (u_2 + 1)}
+    (PermanssonLean.StrategicWorldModel.pathLaw.{u_1, u_2, u_3}
+      (PermanssonResearch.GrammarRobust.overlapModel.{u_1, u_2, u_3} M as us) μ)
+    (PermanssonLean.StrategicWorldModel.pathLaw.{u_1, u_2, u_3}
+      (PermanssonResearch.GrammarRobust.overlapModel.{u_1, u_2, u_3} M bs vs) μ)
+'PermanssonResearch.GrammarRobust.overlapModel_pathLaw_eq_of_membership' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.PatchSelection.{u_6, u_7, u_8} (S : Type u_6) (X : Type u_7) (A : Type u_8)
+  [MeasurableSpace.{u_6} S] [MeasurableSpace.{u_7} X] [MeasurableSpace.{u_8} A] :
+  Type (max (max u_8 u_7 u_6) (max u_8 u_7) u_6)
+'PermanssonResearch.GrammarRobust.PatchSelection' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.overlapFamily.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (admitted : PermanssonResearch.GrammarRobust.PatchSelection.{u_1, u_2, u_3} S X A → Prop) :
+  PermanssonLean.InterventionFamily.{u_1, u_2, u_3, max (max u_3 u_2) u_1} M
+    (PermanssonResearch.GrammarRobust.PatchSelection.{u_1, u_2, u_3} S X A)
+'PermanssonResearch.GrammarRobust.overlapFamily' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.overlapIntervention.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (admitted : PermanssonResearch.GrammarRobust.PatchSelection.{u_1, u_2, u_3} S X A → Prop)
+  (b : PermanssonResearch.GrammarRobust.PatchSelection.{u_1, u_2, u_3} S X A) (hb : admitted b) :
+  PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, max (max u_1 u_2) u_3}
+    (PermanssonResearch.GrammarRobust.overlapFamily.{u_1, u_2, u_3} M admitted)
+'PermanssonResearch.GrammarRobust.overlapIntervention' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.overlapIntervention_apply.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (admitted : PermanssonResearch.GrammarRobust.PatchSelection.{u_1, u_2, u_3} S X A → Prop)
+  (b : PermanssonResearch.GrammarRobust.PatchSelection.{u_1, u_2, u_3} S X A) (hb : admitted b) :
+  Eq.{max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)}
+    (PermanssonLean.TypedIntervention.apply.{u_1, u_2, u_3, max (max u_1 u_2) u_3}
+      (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_1, u_2, u_3, max (max u_1 u_2) u_3}
+        (PermanssonResearch.GrammarRobust.overlapIntervention.{u_1, u_2, u_3} M admitted b hb)))
+    (PermanssonResearch.GrammarRobust.overlapModel.{u_1, u_2, u_3} M b.1 b.2)
+'PermanssonResearch.GrammarRobust.overlapIntervention_apply' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.overlapIntervention_effect_eq.{u_1, u_2, u_3, u_5} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} {Z : Type u_5} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MetricSpace.{u_5} Z] (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (admitted : PermanssonResearch.GrammarRobust.PatchSelection.{u_1, u_2, u_3} S X A → Prop)
+  (b c : PermanssonResearch.GrammarRobust.PatchSelection.{u_1, u_2, u_3} S X A) (hb : admitted b) (hc : admitted c)
+  (ha :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.1 p →
+        ∀
+          (q :
+            PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+          Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.1 q →
+            PermanssonResearch.GrammarRobust.RowPatch.Compatible.{max u_1 u_2, u_3} p q)
+  (hu :
+    ∀
+      (p :
+        PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+          (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.2 p →
+        ∀
+          (q :
+            PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+              (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+          Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.2 q →
+            PermanssonResearch.GrammarRobust.RowPatch.Compatible.{max (max u_1 u_2) u_3, u_1} p q)
+  (hac :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.1 p ↔
+        Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} c.1 p)
+  (huc :
+    ∀
+      (p :
+        PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+          (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.2 p ↔
+        Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} c.2 p)
+  (ψ : PermanssonLean.RegimePropertyMap.{max u_2 u_1, u_5} (PermanssonLean.JointState.{u_1, u_2} S X) Z)
+  (y : PermanssonLean.JointState.{u_1, u_2} S X) :
+  Eq.{1}
+    (PermanssonLean.RegimeSpecification.constitutiveEffect.{u_1, u_2, u_3, u_5, max (max u_1 u_2) u_3} M ψ
+      (PermanssonResearch.GrammarRobust.overlapIntervention.{u_1, u_2, u_3} M admitted b hb) y)
+    (PermanssonLean.RegimeSpecification.constitutiveEffect.{u_1, u_2, u_3, u_5, max (max u_1 u_2) u_3} M ψ
+      (PermanssonResearch.GrammarRobust.overlapIntervention.{u_1, u_2, u_3} M admitted c hc) y)
+'PermanssonResearch.GrammarRobust.overlapIntervention_effect_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.overlapIntervention_margin_eq.{u_1, u_2, u_3, u_4, u_5} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} {H : Type u_4} {Z : Type u_5} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [MeasurableSpace.{u_4} H] [MetricSpace.{u_5} Z]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (admitted : PermanssonResearch.GrammarRobust.PatchSelection.{u_1, u_2, u_3} S X A → Prop)
+  (b c : PermanssonResearch.GrammarRobust.PatchSelection.{u_1, u_2, u_3} S X A) (hb : admitted b) (hc : admitted c)
+  (ha :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.1 p →
+        ∀
+          (q :
+            PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+          Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.1 q →
+            PermanssonResearch.GrammarRobust.RowPatch.Compatible.{max u_1 u_2, u_3} p q)
+  (hu :
+    ∀
+      (p :
+        PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+          (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.2 p →
+        ∀
+          (q :
+            PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+              (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+          Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.2 q →
+            PermanssonResearch.GrammarRobust.RowPatch.Compatible.{max (max u_1 u_2) u_3, u_1} p q)
+  (hac :
+    ∀ (p : PermanssonResearch.GrammarRobust.RowPatch.{max u_2 u_1, u_3} (PermanssonLean.JointState.{u_1, u_2} S X) A),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.1 p ↔
+        Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} c.1 p)
+  (huc :
+    ∀
+      (p :
+        PermanssonResearch.GrammarRobust.RowPatch.{max (max u_3 u_2) u_1, u_1}
+          (PermanssonLean.UpdateInput.{u_1, u_2, u_3} S X A) S),
+      Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} b.2 p ↔
+        Membership.mem.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3} c.2 p)
+  (spec : PermanssonLean.RegimeSpecification.{max u_2 u_1, u_4} (PermanssonLean.JointState.{u_1, u_2} S X) H)
+  (ψ : PermanssonLean.RegimePropertyMap.{max u_2 u_1, u_5} (PermanssonLean.JointState.{u_1, u_2} S X) Z)
+  (B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.{u_1, u_2, u_3, u_4} M spec) :
+  Eq.{1}
+    (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_1, u_2, u_3, u_4, u_5, max (max u_1 u_2) u_3} M spec
+      (PermanssonResearch.GrammarRobust.overlapFamily.{u_1, u_2, u_3} M admitted) ψ B₁
+      (PermanssonResearch.GrammarRobust.overlapIntervention.{u_1, u_2, u_3} M admitted b hb))
+    (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_1, u_2, u_3, u_4, u_5, max (max u_1 u_2) u_3} M spec
+      (PermanssonResearch.GrammarRobust.overlapFamily.{u_1, u_2, u_3} M admitted) ψ B₁
+      (PermanssonResearch.GrammarRobust.overlapIntervention.{u_1, u_2, u_3} M admitted c hc))
+'PermanssonResearch.GrammarRobust.overlapIntervention_margin_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.IsMinimalPositive.{u_1} {P : Type u_1} [Preorder.{u_1} P] (positive : P → Prop)
+  (a : P) : Prop
+'PermanssonResearch.GrammarRobust.IsMinimalPositive' does not depend on any axioms
+PermanssonResearch.GrammarRobust.minimalPositive_iff_of_lowerSet_lifting.{u_1, u_2} {P : Type u_1} {Q : Type u_2}
+  [Preorder.{u_1} P] [Preorder.{u_2} Q] (f : P → Q) (p : P → Prop) (q : Q → Prop) (a : P)
+  (hmatch : ∀ (b : P), LE.le.{u_1} b a → (p b ↔ q (f b)))
+  (hstrict : ∀ (b : P), LT.lt.{u_1} b a → LT.lt.{u_2} (f b) (f a))
+  (hcover : ∀ (c : Q), LT.lt.{u_2} c (f a) → ∃ b, LT.lt.{u_1} b a ∧ Eq.{u_2 + 1} (f b) c) :
+  PermanssonResearch.GrammarRobust.IsMinimalPositive.{u_1} p a ↔
+    PermanssonResearch.GrammarRobust.IsMinimalPositive.{u_2} q (f a)
+'PermanssonResearch.GrammarRobust.minimalPositive_iff_of_lowerSet_lifting' does not depend on any axioms
+PermanssonResearch.GrammarRobust.exists_least_positive_of_finite_meet_closed.{u_1} {P : Type u_1}
+  [SemilatticeInf.{u_1} P] (s : Finset.{u_1} P) (hne : Finset.Nonempty.{u_1} s)
+  (hclosed :
+    ∀ (a : P),
+      Membership.mem.{u_1, u_1} s a → ∀ (b : P), Membership.mem.{u_1, u_1} s b → Membership.mem.{u_1, u_1} s (a ⊓ b)) :
+  ∃ a, Membership.mem.{u_1, u_1} s a ∧ ∀ (b : P), Membership.mem.{u_1, u_1} s b → LE.le.{u_1} a b
+'PermanssonResearch.GrammarRobust.exists_least_positive_of_finite_meet_closed' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.GrammarRobust.Coarsening.original_margin_minimal_iff_of_lower_coverage.{u_1, u_2, u_3, u_4, u_5, u_6,
+    u_7, u_8, u_9}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} {H : Type u_4} {Z : Type u_5} {IA : Type u_6} {IU : Type u_7}
+  {Fine : Type u_8} {Coarse : Type u_9} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSpace.{u_4} H] [TopologicalSpace.{u_1} S] [TopologicalSpace.{u_2} X] [MetricSpace.{u_5} Z]
+  [Fintype.{u_6} IA] [Fintype.{u_7} IU] [DecidableEq.{u_6 + 1} IA] [DecidableEq.{u_7 + 1} IU] [Fintype.{u_8} Fine]
+  [Fintype.{u_9} Coarse] [LinearOrder.{u_6} IA] [LinearOrder.{u_7} IU] [DecidableEq.{u_9 + 1} Coarse]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (bank : PermanssonResearch.GrammarRobust.AtomicBank.{u_1, u_2, u_3, u_6, u_7} M IA IU)
+  {fine : PermanssonResearch.GrammarRobust.PartitionGrammar.{u_6, u_7, u_8} IA IU Fine}
+  {coarse : PermanssonResearch.GrammarRobust.PartitionGrammar.{u_6, u_7, u_9} IA IU Coarse}
+  (ρ : PermanssonResearch.GrammarRobust.Coarsening.{u_6, u_7, u_8, u_9} fine coarse)
+  (spec : PermanssonLean.RegimeSpecification.{max u_2 u_1, u_4} (PermanssonLean.JointState.{u_1, u_2} S X) H)
+  (ψ : PermanssonLean.RegimePropertyMap.{max u_2 u_1, u_5} (PermanssonLean.JointState.{u_1, u_2} S X) Z)
+  (B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.{u_1, u_2, u_3, u_4} M spec)
+  (D : Finset.{u_9} Coarse) (hD : PermanssonResearch.GrammarRobust.PartitionGrammar.allowed.{u_6, u_7, u_9} coarse D)
+  (hcover :
+    ∀ (E : Finset.{u_8} Fine),
+      PermanssonResearch.GrammarRobust.PartitionGrammar.allowed.{u_6, u_7, u_8} fine E →
+        E ⊂ PermanssonResearch.GrammarRobust.Coarsening.lift.{u_6, u_7, u_8, u_9} ρ D →
+          ∃ C,
+            PermanssonResearch.GrammarRobust.PartitionGrammar.allowed.{u_6, u_7, u_9} coarse C ∧
+              C ⊂ D ∧ Eq.{u_8 + 1} (PermanssonResearch.GrammarRobust.Coarsening.lift.{u_6, u_7, u_8, u_9} ρ C) E) :
+  PermanssonResearch.GrammarRobust.IsMinimalAllowed.{u_6, u_7, u_9} coarse
+      (fun C =>
+        ∃ (hC : PermanssonResearch.GrammarRobust.PartitionGrammar.allowed.{u_6, u_7, u_9} coarse C),
+          LT.lt.{0} 0
+            (PermanssonResearch.GrammarRobust.blockMargin.{u_1, u_2, u_3, u_6, u_7, u_9, u_4, u_5} M bank coarse
+              (PermanssonResearch.GrammarRobust.AllowedBlock.mk.{u_6, u_7, u_9} C hC) spec ψ B₁))
+      D ↔
+    PermanssonResearch.GrammarRobust.IsMinimalAllowed.{u_6, u_7, u_8} fine
+      (fun E =>
+        ∃ (hE : PermanssonResearch.GrammarRobust.PartitionGrammar.allowed.{u_6, u_7, u_8} fine E),
+          LT.lt.{0} 0
+            (PermanssonResearch.GrammarRobust.blockMargin.{u_1, u_2, u_3, u_6, u_7, u_8, u_4, u_5} M bank fine
+              (PermanssonResearch.GrammarRobust.AllowedBlock.mk.{u_6, u_7, u_8} E hE) spec ψ B₁))
+      (PermanssonResearch.GrammarRobust.Coarsening.lift.{u_6, u_7, u_8, u_9} ρ D)
+'PermanssonResearch.GrammarRobust.Coarsening.original_margin_minimal_iff_of_lower_coverage' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.fibreLegal.{u_1, u_2, u_3} {Y : Type u_1} {Q : Type u_2} {A : Type u_3} (q : Y → Q)
+  (legal : Y → Set.{u_3} A) (k : Q) : Set.{u_3} A
+'PermanssonResearch.MultiAgent.fibreLegal' does not depend on any axioms
+PermanssonResearch.MultiAgent.measurableSet_fibreLegal.{u_1, u_2, u_3} {Y : Type u_1} {Q : Type u_2} {A : Type u_3}
+  [Countable.{u_1 + 1} Y] [MeasurableSpace.{u_3} A] (q : Y → Q) (legal : Y → Set.{u_3} A)
+  (hlegal : ∀ (y : Y), MeasurableSet.{u_3} (legal y)) (k : Q) :
+  MeasurableSet.{u_3} (PermanssonResearch.MultiAgent.fibreLegal.{u_1, u_2, u_3} q legal k)
+'PermanssonResearch.MultiAgent.measurableSet_fibreLegal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.keyLaw_feasible_iff.{u_1, u_2, u_3} {Y : Type u_1} {Q : Type u_2} {A : Type u_3}
+  [Countable.{u_1 + 1} Y] [MeasurableSpace.{u_2} Q] [MeasurableSpace.{u_3} A] (q : Y → Q) (legal : Y → Set.{u_3} A)
+  (hlegal : ∀ (y : Y), MeasurableSet.{u_3} (legal y)) (K : ProbabilityTheory.Kernel.{u_2, u_3} Q A)
+  [ProbabilityTheory.IsMarkovKernel.{u_2, u_3} K] :
+  (∀ (y : Y), Eq.{1} ((K (q y)) (legal y)) 1) ↔
+    ∀ (k : Q),
+      Membership.mem.{u_2, u_2} (Set.range.{u_2, u_1 + 1} q) k →
+        Eq.{1} ((K k) (PermanssonResearch.MultiAgent.fibreLegal.{u_1, u_2, u_3} q legal k)) 1
+'PermanssonResearch.MultiAgent.keyLaw_feasible_iff' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.exists_feasible_keyKernel_iff.{u_1, u_2, u_3} {Y : Type u_1} {Q : Type u_2} {A : Type u_3}
+  [Finite.{u_1 + 1} Y] [Finite.{u_2 + 1} Q] [MeasurableSpace.{u_2} Q] [MeasurableSingletonClass.{u_2} Q]
+  [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_3} A] [Finite.{u_3 + 1} A] (q : Y → Q)
+  (hq : Function.Surjective.{u_1 + 1, u_2 + 1} q) (legal : Y → Set.{u_3} A) :
+  (∃ K, ProbabilityTheory.IsMarkovKernel.{u_2, u_3} K ∧ ∀ (y : Y), Eq.{1} ((K (q y)) (legal y)) 1) ↔
+    ∀ (k : Q), Set.Nonempty.{u_3} (PermanssonResearch.MultiAgent.fibreLegal.{u_1, u_2, u_3} q legal k)
+'PermanssonResearch.MultiAgent.exists_feasible_keyKernel_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.strictAnchorOfKeyKernel.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1]
+  [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  (K : ProbabilityTheory.Kernel.{max u_3 u_1, u_6} (Prod.{u_1, u_3} S0 S2) A2)
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6} K] :
+  PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2
+'PermanssonResearch.MultiAgent.strictAnchorOfKeyKernel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.strictAnchorOfKeyKernel_strict.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2] (K : ProbabilityTheory.Kernel.{max u_3 u_1, u_6} (Prod.{u_1, u_3} S0 S2) A2)
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6} K] :
+  PermanssonResearch.MultiAgent.IsStrictlyNonReactive.{u_1, u_2, u_3, u_4, u_5, u_6}
+    (PermanssonResearch.MultiAgent.strictAnchorOfKeyKernel.{u_1, u_2, u_3, u_4, u_5, u_6} K)
+'PermanssonResearch.MultiAgent.strictAnchorOfKeyKernel_strict' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.exists_feasible_strictAnchor_iff.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2] [Finite.{u_1 + 1} S0] [Finite.{u_2 + 1} S1] [Finite.{u_3 + 1} S2] [Finite.{u_4 + 1} X]
+  [Finite.{u_6 + 1} A2] [MeasurableSingletonClass.{u_1} S0] [MeasurableSingletonClass.{u_2} S1]
+  [MeasurableSingletonClass.{u_3} S2] [MeasurableSingletonClass.{u_4} X] [MeasurableSingletonClass.{u_6} A2]
+  [Nonempty.{u_2 + 1} S1] [Nonempty.{u_4 + 1} X]
+  (legal :
+    PermanssonLean.JointState.{max (max u_3 u_2) u_1, u_4}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X →
+      Set.{u_6} A2) :
+  (∃ a,
+      PermanssonResearch.MultiAgent.IsStrictlyNonReactive.{u_1, u_2, u_3, u_4, u_5, u_6} a ∧
+        ∀
+          (y :
+            PermanssonLean.JointState.{max (max u_3 u_2) u_1, u_4}
+              (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X),
+          Eq.{1}
+            (((PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} a) y) (legal y))
+            1) ↔
+    ∀ (k : Prod.{u_1, u_3} S0 S2),
+      Set.Nonempty.{u_6}
+        (PermanssonResearch.MultiAgent.fibreLegal.{max (max (max u_4 u_3) u_2) u_1, max u_3 u_1, u_6}
+          PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4} legal k)
+'PermanssonResearch.MultiAgent.exists_feasible_strictAnchor_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.legalFibreMenu.{u_1, u_2, u_3} {Y : Type u_1} {Q : Type u_2} {A : Type u_3}
+  [Fintype.{u_1} Y] [Fintype.{u_3} A] [DecidableEq.{u_2 + 1} Q] (q : Y → Q) (legal : Y → Set.{u_3} A)
+  [hlegalDec : (y : Y) → DecidablePred.{u_3 + 1} (legal y)] (k : Q) : Finset.{u_3} A
+'PermanssonResearch.MultiAgent.legalFibreMenu' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.mem_legalFibreMenu.{u_1, u_2, u_3} {Y : Type u_1} {Q : Type u_2} {A : Type u_3}
+  [Fintype.{u_1} Y] [Fintype.{u_3} A] [LinearOrder.{u_3} A] [DecidableEq.{u_2 + 1} Q] (q : Y → Q)
+  (legal : Y → Set.{u_3} A) [hlegalDec : (y : Y) → DecidablePred.{u_3 + 1} (legal y)] (k : Q) (a : A) :
+  Membership.mem.{u_3, u_3} (PermanssonResearch.MultiAgent.legalFibreMenu.{u_1, u_2, u_3} q legal k) a ↔
+    Membership.mem.{u_3, u_3} (PermanssonResearch.MultiAgent.fibreLegal.{u_1, u_2, u_3} q legal k) a
+'PermanssonResearch.MultiAgent.mem_legalFibreMenu' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.legalFibreMenu_nonempty.{u_1, u_2, u_3} {Y : Type u_1} {Q : Type u_2} {A : Type u_3}
+  [Fintype.{u_1} Y] [Fintype.{u_3} A] [LinearOrder.{u_3} A] [DecidableEq.{u_2 + 1} Q] (q : Y → Q)
+  (legal : Y → Set.{u_3} A) [hlegalDec : (y : Y) → DecidablePred.{u_3 + 1} (legal y)] (k : Q)
+  (h : Set.Nonempty.{u_3} (PermanssonResearch.MultiAgent.fibreLegal.{u_1, u_2, u_3} q legal k)) :
+  Finset.Nonempty.{u_3} (PermanssonResearch.MultiAgent.legalFibreMenu.{u_1, u_2, u_3} q legal k)
+'PermanssonResearch.MultiAgent.legalFibreMenu_nonempty' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.leastFibreAction.{u_1, u_2, u_3} {Y : Type u_1} {Q : Type u_2} {A : Type u_3}
+  [Fintype.{u_1} Y] [Fintype.{u_3} A] [LinearOrder.{u_3} A] [DecidableEq.{u_2 + 1} Q] (q : Y → Q)
+  (legal : Y → Set.{u_3} A) [hlegalDec : (y : Y) → DecidablePred.{u_3 + 1} (legal y)] (k : Q)
+  (h : Set.Nonempty.{u_3} (PermanssonResearch.MultiAgent.fibreLegal.{u_1, u_2, u_3} q legal k)) : A
+'PermanssonResearch.MultiAgent.leastFibreAction' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.leastFibreAction_legal.{u_1, u_2, u_3} {Y : Type u_1} {Q : Type u_2} {A : Type u_3}
+  [Fintype.{u_1} Y] [Fintype.{u_3} A] [LinearOrder.{u_3} A] [DecidableEq.{u_2 + 1} Q] (q : Y → Q)
+  (legal : Y → Set.{u_3} A) [hlegalDec : (y : Y) → DecidablePred.{u_3 + 1} (legal y)] (k : Q)
+  (h : Set.Nonempty.{u_3} (PermanssonResearch.MultiAgent.fibreLegal.{u_1, u_2, u_3} q legal k)) :
+  Membership.mem.{u_3, u_3} (PermanssonResearch.MultiAgent.fibreLegal.{u_1, u_2, u_3} q legal k)
+    (PermanssonResearch.MultiAgent.leastFibreAction.{u_1, u_2, u_3} q legal k h)
+'PermanssonResearch.MultiAgent.leastFibreAction_legal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.leastFibreAction_le.{u_1, u_2, u_3} {Y : Type u_1} {Q : Type u_2} {A : Type u_3}
+  [Fintype.{u_1} Y] [Fintype.{u_3} A] [LinearOrder.{u_3} A] [DecidableEq.{u_2 + 1} Q] (q : Y → Q)
+  (legal : Y → Set.{u_3} A) [hlegalDec : (y : Y) → DecidablePred.{u_3 + 1} (legal y)] (k : Q)
+  (h : Set.Nonempty.{u_3} (PermanssonResearch.MultiAgent.fibreLegal.{u_1, u_2, u_3} q legal k)) (a : A)
+  (ha : Membership.mem.{u_3, u_3} (PermanssonResearch.MultiAgent.fibreLegal.{u_1, u_2, u_3} q legal k) a) :
+  LE.le.{u_3} (PermanssonResearch.MultiAgent.leastFibreAction.{u_1, u_2, u_3} q legal k h) a
+'PermanssonResearch.MultiAgent.leastFibreAction_le' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.mediatorProduct.{u_1, u_2} {I : Type u_1} [Fintype.{u_1} I] {A : I → Type u_2}
+  [(i : I) → DecidableEq.{u_2 + 1} (A i)] (a z : (i : I) → A i) : ℝ
+'PermanssonResearch.MultiAgent.mediatorProduct' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.mediatorProduct_eq_indicator.{u_1, u_2} {I : Type u_1} [Fintype.{u_1} I]
+  [DecidableEq.{u_1 + 1} I] {A : I → Type u_2} [(i : I) → Fintype.{u_2} (A i)] [(i : I) → DecidableEq.{u_2 + 1} (A i)]
+  (a z : (i : I) → A i) :
+  Eq.{1} (PermanssonResearch.MultiAgent.mediatorProduct.{u_1, u_2} a z) (ite.{1} (Eq.{max (u_1 + 1) (u_2 + 1)} a z) 1 0)
+'PermanssonResearch.MultiAgent.mediatorProduct_eq_indicator' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.mediator_mixture_eq.{u_1, u_2} {I : Type u_1} [Fintype.{u_1} I] [DecidableEq.{u_1 + 1} I]
+  {A : I → Type u_2} [(i : I) → Fintype.{u_2} (A i)] [(i : I) → DecidableEq.{u_2 + 1} (A i)] (γ : ((i : I) → A i) → ℝ)
+  (a : (i : I) → A i) :
+  Eq.{1} (∑ z, HMul.hMul.{0, 0, 0} (γ z) (PermanssonResearch.MultiAgent.mediatorProduct.{u_1, u_2} a z)) (γ a)
+'PermanssonResearch.MultiAgent.mediator_mixture_eq' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.mediatedAction.{u_3, u_4} {Y : Type u_3} {J : Type u_4} [MeasurableSpace.{u_3} Y]
+  [MeasurableSpace.{u_4} J] (γ : ProbabilityTheory.Kernel.{u_3, u_4} Y J) : ProbabilityTheory.Kernel.{u_3, u_4} Y J
+'PermanssonResearch.MultiAgent.mediatedAction' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.mediatedAction_eq.{u_3, u_4} {Y : Type u_3} {J : Type u_4} [MeasurableSpace.{u_3} Y]
+  [MeasurableSpace.{u_4} J] (γ : ProbabilityTheory.Kernel.{u_3, u_4} Y J) :
+  Eq.{max (u_3 + 1) (u_4 + 1)} (PermanssonResearch.MultiAgent.mediatedAction.{u_3, u_4} γ) γ
+'PermanssonResearch.MultiAgent.mediatedAction_eq' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.withMediatedActions.{u_3, u_4, u_5} {S : Type u_3} {X : Type u_4} {J : Type u_5}
+  [MeasurableSpace.{u_3} S] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} J]
+  (M : PermanssonLean.StrategicWorldModel.{u_3, u_4, u_5} S X J)
+  (γ : ProbabilityTheory.Kernel.{max u_4 u_3, u_5} (PermanssonLean.JointState.{u_3, u_4} S X) J)
+  [ProbabilityTheory.IsMarkovKernel.{max u_3 u_4, u_5} γ] : PermanssonLean.StrategicWorldModel.{u_3, u_4, u_5} S X J
+'PermanssonResearch.MultiAgent.withMediatedActions' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.withMediatedActions_action.{u_3, u_4, u_5} {S : Type u_3} {X : Type u_4} {J : Type u_5}
+  [MeasurableSpace.{u_3} S] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} J]
+  (M : PermanssonLean.StrategicWorldModel.{u_3, u_4, u_5} S X J)
+  (γ : ProbabilityTheory.Kernel.{max u_4 u_3, u_5} (PermanssonLean.JointState.{u_3, u_4} S X) J)
+  [ProbabilityTheory.IsMarkovKernel.{max u_3 u_4, u_5} γ] :
+  Eq.{max (max (u_3 + 1) (u_4 + 1)) (u_5 + 1)}
+    (PermanssonLean.StrategicGenerator.action.{u_3, u_4, u_5}
+      (PermanssonLean.StrategicWorldModel.generator.{u_3, u_4, u_5}
+        (PermanssonResearch.MultiAgent.withMediatedActions.{u_3, u_4, u_5} M γ)))
+    γ
+'PermanssonResearch.MultiAgent.withMediatedActions_action' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.withMediatedActions_world.{u_3, u_4, u_5} {S : Type u_3} {X : Type u_4} {J : Type u_5}
+  [MeasurableSpace.{u_3} S] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} J]
+  (M : PermanssonLean.StrategicWorldModel.{u_3, u_4, u_5} S X J)
+  (γ : ProbabilityTheory.Kernel.{max u_4 u_3, u_5} (PermanssonLean.JointState.{u_3, u_4} S X) J)
+  [ProbabilityTheory.IsMarkovKernel.{max u_3 u_4, u_5} γ] :
+  Eq.{max (max (u_3 + 1) (u_4 + 1)) (u_5 + 1)}
+    (PermanssonLean.StrategicWorldModel.world.{u_3, u_4, u_5}
+      (PermanssonResearch.MultiAgent.withMediatedActions.{u_3, u_4, u_5} M γ))
+    (PermanssonLean.StrategicWorldModel.world.{u_3, u_4, u_5} M)
+'PermanssonResearch.MultiAgent.withMediatedActions_world' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_6, u_7, u_8, u_9, u_10} (C : Type u_6) (T : Type u_7)
+  (M : Type u_8) (U : Type u_9) (V : Type u_10) [Fintype.{u_6} C] [Fintype.{u_7} T] [Fintype.{u_8} M] [Fintype.{u_9} U]
+  [Fintype.{u_10} V] : Type (max (max (max (max u_10 u_6) u_7) u_8) u_9)
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalAtom.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C) (t : T) (u : U)
+  (v : V) : ℝ
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalAtom' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediatorMass.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1} {T : Type u_2}
+  {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M] [Fintype.{u_4} U]
+  [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C) (t : T) (m : M) :
+  ℝ
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediatorMass' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.response.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1} {T : Type u_2}
+  {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M] [Fintype.{u_4} U]
+  [Fintype.{u_5} V] (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C)
+  (t : T) (m : M) : ℝ
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.response' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C) (t : T) (m : M) :
+  ℝ
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalNumerator.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C) (t : T) (m : M) :
+  ℝ
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalNumerator' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalOutcomeMass.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C) (t : T) (m : M)
+  (y : ℝ) : ℝ
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalOutcomeMass' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalOutcome.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C) (t : T) (m : M) :
+  ℝ
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalOutcome' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalMediator.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C) (t : T) (m : M) :
+  ℝ
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalMediator' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass_factor.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C) (t : T) (m : M) :
+  Eq.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass.{u_1, u_2, u_3, u_4, u_5} S c t m)
+    (HMul.hMul.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.covariate.{u_1, u_2, u_3, u_4, u_5} S c)
+        (PermanssonResearch.MultiAgent.FiniteMediation.SCM.assignment.{u_1, u_2, u_3, u_4, u_5} S c t))
+      (PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediatorMass.{u_1, u_2, u_3, u_4, u_5} S c t m))
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass_factor' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalNumerator_factor.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C) (t : T) (m : M) :
+  Eq.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalNumerator.{u_1, u_2, u_3, u_4, u_5} S c t m)
+    (HMul.hMul.{0, 0, 0}
+      (PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass.{u_1, u_2, u_3, u_4, u_5} S c t m)
+      (PermanssonResearch.MultiAgent.FiniteMediation.SCM.response.{u_1, u_2, u_3, u_4, u_5} S c t m))
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalNumerator_factor' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalOutcome_eq_response.{u_1, u_2, u_3, u_4, u_5}
+  {C : Type u_1} {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T]
+  [Fintype.{u_3} M] [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C) (t : T) (m : M)
+  (hpositive :
+    Ne.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass.{u_1, u_2, u_3, u_4, u_5} S c t m) 0) :
+  Eq.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalOutcome.{u_1, u_2, u_3, u_4, u_5} S c t m)
+    (PermanssonResearch.MultiAgent.FiniteMediation.SCM.response.{u_1, u_2, u_3, u_4, u_5} S c t m)
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalOutcome_eq_response' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalMediator_eq_mass.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (c : C) (t : T) (m : M)
+  (hpositive :
+    Ne.{1}
+      (HMul.hMul.{0, 0, 0} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.covariate.{u_1, u_2, u_3, u_4, u_5} S c)
+        (PermanssonResearch.MultiAgent.FiniteMediation.SCM.assignment.{u_1, u_2, u_3, u_4, u_5} S c t))
+      0) :
+  Eq.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalMediator.{u_1, u_2, u_3, u_4, u_5} S c t m)
+    (PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediatorMass.{u_1, u_2, u_3, u_4, u_5} S c t m)
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalMediator_eq_mass' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (t t' : T) : ℝ
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation_grouped.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (t t' : T) :
+  Eq.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation.{u_1, u_2, u_3, u_4, u_5} S t t')
+    (∑ c,
+      HMul.hMul.{0, 0, 0} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.covariate.{u_1, u_2, u_3, u_4, u_5} S c)
+        (∑ m,
+          HMul.hMul.{0, 0, 0}
+            (PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediatorMass.{u_1, u_2, u_3, u_4, u_5} S c t' m)
+            (PermanssonResearch.MultiAgent.FiniteMediation.SCM.response.{u_1, u_2, u_3, u_4, u_5} S c t m)))
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation_grouped' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediation_identification.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (t t' : T)
+  (houtcome :
+    ∀ (c : C) (m : M),
+      Ne.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass.{u_1, u_2, u_3, u_4, u_5} S c t m) 0)
+  (hassignment :
+    ∀ (c : C),
+      Ne.{1}
+        (HMul.hMul.{0, 0, 0} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.covariate.{u_1, u_2, u_3, u_4, u_5} S c)
+          (PermanssonResearch.MultiAgent.FiniteMediation.SCM.assignment.{u_1, u_2, u_3, u_4, u_5} S c t'))
+        0) :
+  Eq.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation.{u_1, u_2, u_3, u_4, u_5} S t t')
+    (∑ c,
+      HMul.hMul.{0, 0, 0} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.covariate.{u_1, u_2, u_3, u_4, u_5} S c)
+        (∑ m,
+          HMul.hMul.{0, 0, 0}
+            (PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalOutcome.{u_1, u_2, u_3, u_4, u_5} S c t m)
+            (PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalMediator.{u_1, u_2, u_3, u_4, u_5} S c t' m)))
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediation_identification' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.signed_effect_decomposition.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (t₁ t₀ : T) :
+  Eq.{1}
+    (HSub.hSub.{0, 0, 0}
+      (PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation.{u_1, u_2, u_3, u_4, u_5} S t₁ t₁)
+      (PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation.{u_1, u_2, u_3, u_4, u_5} S t₀ t₀))
+    (HAdd.hAdd.{0, 0, 0}
+      (HSub.hSub.{0, 0, 0}
+        (PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation.{u_1, u_2, u_3, u_4, u_5} S t₁ t₀)
+        (PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation.{u_1, u_2, u_3, u_4, u_5} S t₀ t₀))
+      (HSub.hSub.{0, 0, 0}
+        (PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation.{u_1, u_2, u_3, u_4, u_5} S t₁ t₁)
+        (PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation.{u_1, u_2, u_3, u_4, u_5} S t₁ t₀)))
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.signed_effect_decomposition' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediation_identification_on_support.{u_1, u_2, u_3, u_4, u_5}
+  {C : Type u_1} {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T]
+  [Fintype.{u_3} M] [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) (t t' : T)
+  (houtcome :
+    ∀ (c : C),
+      Ne.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.covariate.{u_1, u_2, u_3, u_4, u_5} S c) 0 →
+        ∀ (m : M),
+          Ne.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediatorMass.{u_1, u_2, u_3, u_4, u_5} S c t' m) 0 →
+            Ne.{1}
+              (PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass.{u_1, u_2, u_3, u_4, u_5} S c t m) 0)
+  (hassignment :
+    ∀ (c : C),
+      Ne.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.covariate.{u_1, u_2, u_3, u_4, u_5} S c) 0 →
+        Ne.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.assignment.{u_1, u_2, u_3, u_4, u_5} S c t') 0) :
+  Eq.{1} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation.{u_1, u_2, u_3, u_4, u_5} S t t')
+    (∑ c,
+      HMul.hMul.{0, 0, 0} (PermanssonResearch.MultiAgent.FiniteMediation.SCM.covariate.{u_1, u_2, u_3, u_4, u_5} S c)
+        (∑ m,
+          HMul.hMul.{0, 0, 0}
+            (PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalOutcome.{u_1, u_2, u_3, u_4, u_5} S c t m)
+            (PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalMediator.{u_1, u_2, u_3, u_4, u_5} S c t' m)))
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediation_identification_on_support' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalAtom_sum.{u_1, u_2, u_3, u_4, u_5} {C : Type u_1}
+  {T : Type u_2} {M : Type u_3} {U : Type u_4} {V : Type u_5} [Fintype.{u_1} C] [Fintype.{u_2} T] [Fintype.{u_3} M]
+  [Fintype.{u_4} U] [Fintype.{u_5} V] [DecidableEq.{u_3 + 1} M]
+  (S : PermanssonResearch.MultiAgent.FiniteMediation.SCM.{u_1, u_2, u_3, u_4, u_5} C T M U V) :
+  Eq.{1}
+    (∑ c,
+      ∑ t,
+        ∑ u,
+          ∑ v, PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalAtom.{u_1, u_2, u_3, u_4, u_5} S c t u v)
+    1
+'PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalAtom_sum' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.mediatedOutcome (_t m : Bool) : ℝ
+'PermanssonResearch.MultiAgent.FiniteMediation.mediatedOutcome' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.directOutcome (t _m : Bool) : ℝ
+'PermanssonResearch.MultiAgent.FiniteMediation.directOutcome' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.same_observed_structural_outcome (t : Bool) :
+  Eq.{1} (PermanssonResearch.MultiAgent.FiniteMediation.mediatedOutcome t t)
+    (PermanssonResearch.MultiAgent.FiniteMediation.directOutcome t t)
+'PermanssonResearch.MultiAgent.FiniteMediation.same_observed_structural_outcome' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.same_fair_observational_law (t m : Bool) (y : ℝ) :
+  Eq.{1} (ite.{1} (Eq.{1} m t ∧ Eq.{1} y (PermanssonResearch.MultiAgent.FiniteMediation.mediatedOutcome t m)) (1 / 2) 0)
+    (ite.{1} (Eq.{1} m t ∧ Eq.{1} y (PermanssonResearch.MultiAgent.FiniteMediation.directOutcome t m)) (1 / 2) 0)
+'PermanssonResearch.MultiAgent.FiniteMediation.same_fair_observational_law' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.different_joint_intervention :
+  Eq.{1} (PermanssonResearch.MultiAgent.FiniteMediation.mediatedOutcome Bool.true Bool.false) 0 ∧
+    Eq.{1} (PermanssonResearch.MultiAgent.FiniteMediation.directOutcome Bool.true Bool.false) 1
+'PermanssonResearch.MultiAgent.FiniteMediation.different_joint_intervention' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.counterexample_missing_positivity :
+  Eq.{1} (ite.{1} (Eq.{1} Bool.false Bool.true) (1 / 2) 0) 0
+'PermanssonResearch.MultiAgent.FiniteMediation.counterexample_missing_positivity' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM (useDirect : Bool) :
+  PermanssonResearch.MultiAgent.FiniteMediation.SCM.{0, 0, 0, 0, 0} Unit Bool Bool Unit Unit
+'PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_same_observational_law (c : Unit) (t m : Bool) (y : ℝ) :
+  Eq.{1}
+    (PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalOutcomeMass.{0, 0, 0, 0, 0}
+      (PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM Bool.false) c t m y)
+    (PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalOutcomeMass.{0, 0, 0, 0, 0}
+      (PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM Bool.true) c t m y)
+'PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_same_observational_law' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_different_joint_do :
+  Eq.{1}
+      (PermanssonResearch.MultiAgent.FiniteMediation.SCM.response.{0, 0, 0, 0, 0}
+        (PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM Bool.false) () Bool.true Bool.false)
+      0 ∧
+    Eq.{1}
+      (PermanssonResearch.MultiAgent.FiniteMediation.SCM.response.{0, 0, 0, 0, 0}
+        (PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM Bool.true) () Bool.true Bool.false)
+      1
+'PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_different_joint_do' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_positivity_failure :
+  Eq.{1}
+    (PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass.{0, 0, 0, 0, 0}
+      (PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM Bool.false) () Bool.true Bool.false)
+    0
+'PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_positivity_failure' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_5} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A) (C : Type u_5) [DecidableEq.{u_5 + 1} C] (n : ℕ) :
+  Type (max (max (max u_1 u_2) u_3) u_5)
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockModel.{u_1, u_2, u_3, u_4} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [DecidableEq.{u_4 + 1} C] {n : ℕ} (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n) (c : C) :
+  PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockModel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockIntervention.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n) (c : C) :
+  PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, max (max u_1 u_2) u_3}
+    (PermanssonResearch.GrammarRobust.overlapFamily.{u_1, u_2, u_3} M
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.admitted.{u_1, u_2, u_3, u_4} D))
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockIntervention' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockIntervention_apply.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n) (c : C) :
+  Eq.{max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)}
+    (PermanssonLean.TypedIntervention.apply.{u_1, u_2, u_3, max (max u_1 u_2) u_3}
+      (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_1, u_2, u_3, max (max u_1 u_2) u_3}
+        (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockIntervention.{u_1, u_2, u_3, u_4} M D c)))
+    (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockModel.{u_1, u_2, u_3, u_4} M D c)
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockIntervention_apply' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.block_preserves_world.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n) (c : C) :
+  Eq.{max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)}
+    (PermanssonLean.StrategicWorldModel.world.{u_1, u_2, u_3}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockModel.{u_1, u_2, u_3, u_4} M D c))
+    (PermanssonLean.StrategicWorldModel.world.{u_1, u_2, u_3} M)
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.block_preserves_world' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [DecidableEq.{u_4 + 1} C] {n : ℕ} (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n) :
+  PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_4} C n
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedRow.{u_1, u_2, u_3, u_4} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [DecidableEq.{u_4 + 1} C] {n : ℕ} (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n) (c : C)
+  (y z : Fin n) : ℝ
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedRow_eq.{u_1, u_2, u_3, u_4} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ} (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n) (c : C)
+  (y z : Fin n) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedRow.{u_1, u_2, u_3, u_4} M D c y z)
+    ↑((PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.matrix.{u_4}
+            (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D) c).entry
+        y z)
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedRow_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n)
+  (σ :
+    PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy.{u_4}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D)) :
+  ℕ →
+    PermanssonResearch.ReverseSolver.FiniteMonitor.TraceHistory.{u_4} C n →
+      Fin n → List.{u_4} (Prod.{u_4, 0} C (Fin n)) → ℝ
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass_eq.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n)
+  (σ :
+    PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy.{u_4}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D))
+  (t : ℕ) (h : PermanssonResearch.ReverseSolver.FiniteMonitor.TraceHistory.{u_4} C n) (y : Fin n)
+  (xs : List.{u_4} (Prod.{u_4, 0} C (Fin n))) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass.{u_1, u_2, u_3, u_4} M D σ t h y xs)
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.traceMass.{u_4}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D) σ t h y xs)
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass_nonnegative.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n)
+  (σ :
+    PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy.{u_4}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D))
+  (t : ℕ) (h : PermanssonResearch.ReverseSolver.FiniteMonitor.TraceHistory.{u_4} C n) (y : Fin n)
+  (xs : List.{u_4} (Prod.{u_4, 0} C (Fin n))) :
+  LE.le.{0} 0
+    (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass.{u_1, u_2, u_3, u_4} M D σ t h y xs)
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass_nonnegative' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass_total_one.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n)
+  (σ :
+    PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy.{u_4}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D))
+  (N t : ℕ) (h : PermanssonResearch.ReverseSolver.FiniteMonitor.TraceHistory.{u_4} C n) (y : Fin n) :
+  Eq.{1}
+    (List.sum.{0}
+      (List.map.{u_4, 0}
+        (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass.{u_1, u_2, u_3, u_4} M D σ t h y)
+        (PermanssonResearch.ReverseSolver.FiniteMonitor.traceWords.{u_4} C n N)))
+    1
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass_total_one' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedChronologicalLaw.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n)
+  (σ :
+    PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy.{u_4}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D))
+  (N t : ℕ) (h : PermanssonResearch.ReverseSolver.FiniteMonitor.TraceHistory.{u_4} C n) (y : Fin n) :
+  PermanssonResearch.ReverseSolver.FiniteMonitor.FiniteProbabilityLaw.{u_4} (List.{u_4} (Prod.{u_4, 0} C (Fin n)))
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedChronologicalLaw' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedChronologicalLaw_eq.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n)
+  (σ :
+    PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy.{u_4}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D))
+  (N t : ℕ) (h : PermanssonResearch.ReverseSolver.FiniteMonitor.TraceHistory.{u_4} C n) (y : Fin n) :
+  Eq.{u_4 + 1}
+    (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedChronologicalLaw.{u_1, u_2, u_3, u_4} M D σ N t h y)
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.chronologicalLaw.{u_4}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D) σ N t h y)
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedChronologicalLaw_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceExpectation.{u_1, u_2, u_3, u_4, u_5} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n) {Q : Type u_5}
+  (monitor : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_4, u_5} C n Q)
+  (σ :
+    PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy.{u_4}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D))
+  (N : ℕ) (y : Fin n) : ℝ
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceExpectation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceExpectation_eq.{u_1, u_2, u_3, u_4, u_5}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n) {Q : Type u_5}
+  (monitor : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_4, u_5} C n Q)
+  (σ :
+    PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy.{u_4}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D))
+  (N : ℕ) (y : Fin n) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceExpectation.{u_1, u_2, u_3, u_4, u_5} M D monitor
+      σ N y)
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.traceExpectation.{u_4, u_5}
+      (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D) monitor σ N 0
+      (Prod.mk.{0, u_4} y List.nil.{u_4}) y
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{u_4, u_5} monitor y))
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceExpectation_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.adaptive_block_optimal_and_attained.{u_1, u_2, u_3, u_4, u_5}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [DecidableEq.{u_4 + 1} C] [Fintype.{u_4} C] {n : ℕ}
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu.{u_1, u_2, u_3, u_4} M C n) {Q : Type u_5}
+  (monitor : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_4, u_5} C n Q) (N : ℕ) (y : Fin n) :
+  (∀
+      (σ :
+        PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy.{u_4}
+          (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D)),
+      LE.le.{0}
+        (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceExpectation.{u_1, u_2, u_3, u_4, u_5} M D
+          monitor σ N y)
+        ↑(PermanssonResearch.ReverseSolver.FiniteMonitor.value.{u_4, u_5}
+            (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D) monitor N 0 y
+            (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{u_4, u_5} monitor y))) ∧
+    ∃ σ,
+      Eq.{1}
+        (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceExpectation.{u_1, u_2, u_3, u_4, u_5} M D
+          monitor σ N y)
+        ↑(PermanssonResearch.ReverseSolver.FiniteMonitor.value.{u_4, u_5}
+            (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system.{u_1, u_2, u_3, u_4} M D) monitor N 0 y
+            (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{u_4, u_5} monitor y))
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.adaptive_block_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.seam.{u_1} {ι : Type u_1} (H : Matrix.{u_1, u_1, 0} ι ι ℝ) (p i j : ι) : ℝ
+'PermanssonResearch.Specialized.seam' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.quadratic.{u_1} {ι : Type u_1} [Fintype.{u_1} ι] (H : Matrix.{u_1, u_1, 0} ι ι ℝ)
+  (v : ι → ℝ) : ℝ
+'PermanssonResearch.Specialized.quadratic' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.seam_decomposition.{u_1} {ι : Type u_1} (H : Matrix.{u_1, u_1, 0} ι ι ℝ) (p : ι)
+  (hsym : ∀ (i j : ι), Eq.{1} (H i j) (H j i))
+  (hseam : ∀ (i j : ι), Eq.{1} (PermanssonResearch.Specialized.seam.{u_1} H p i j) 0) (i j : ι) :
+  Eq.{1} (H i j)
+    (HAdd.hAdd.{0, 0, 0} (HSub.hSub.{0, 0, 0} (H i p) (HDiv.hDiv.{0, 0, 0} (H p p) 2))
+      (HSub.hSub.{0, 0, 0} (H j p) (HDiv.hDiv.{0, 0, 0} (H p p) 2)))
+'PermanssonResearch.Specialized.seam_decomposition' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.seam_rank_le_two.{u_1} {ι : Type u_1} [Fintype.{u_1} ι] (H : Matrix.{u_1, u_1, 0} ι ι ℝ)
+  (p : ι) (hsym : ∀ (i j : ι), Eq.{1} (H i j) (H j i))
+  (hseam : ∀ (i j : ι), Eq.{1} (PermanssonResearch.Specialized.seam.{u_1} H p i j) 0) :
+  LE.le.{0} (Matrix.rank.{u_1, u_1, 0} H) 2
+'PermanssonResearch.Specialized.seam_rank_le_two' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.seam_constant_diagonal.{u_1} {ι : Type u_1} (H : Matrix.{u_1, u_1, 0} ι ι ℝ) (p : ι)
+  (δ : ℝ) (hsym : ∀ (i j : ι), Eq.{1} (H i j) (H j i))
+  (hseam : ∀ (i j : ι), Eq.{1} (PermanssonResearch.Specialized.seam.{u_1} H p i j) 0)
+  (hdiag : ∀ (i : ι), Eq.{1} (H i i) δ) (i j : ι) : Eq.{1} (H i j) δ
+'PermanssonResearch.Specialized.seam_constant_diagonal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.commonMode_rank_le_one.{u_1} {ι : Type u_1} [Fintype.{u_1} ι]
+  (H : Matrix.{u_1, u_1, 0} ι ι ℝ) (δ : ℝ) (h : ∀ (i j : ι), Eq.{1} (H i j) δ) :
+  LE.le.{0} (Matrix.rank.{u_1, u_1, 0} H) 1
+'PermanssonResearch.Specialized.commonMode_rank_le_one' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.nested_commonMode_scalar_consistent.{u_1, u_2} {ι : Type u_1} {κ : Type u_2}
+  (G : Matrix.{u_1, u_1, 0} ι ι ℝ) (H : Matrix.{u_2, u_2, 0} κ κ ℝ) (j : ι → κ) (p : ι) (δ ε : ℝ)
+  (hG : ∀ (i k : ι), Eq.{1} (G i k) δ) (hH : ∀ (i k : κ), Eq.{1} (H i k) ε)
+  (hpreserve : ∀ (i k : ι), Eq.{1} (H (j i) (j k)) (G i k)) : Eq.{1} δ ε
+'PermanssonResearch.Specialized.nested_commonMode_scalar_consistent' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.quadratic_commonMode.{u_1} {ι : Type u_1} [Fintype.{u_1} ι]
+  (H : Matrix.{u_1, u_1, 0} ι ι ℝ) (δ : ℝ) (h : ∀ (i j : ι), Eq.{1} (H i j) δ) (v : ι → ℝ) :
+  Eq.{1} (PermanssonResearch.Specialized.quadratic.{u_1} H v) (HMul.hMul.{0, 0, 0} δ (HPow.hPow.{0, 0, 0} (∑ i, v i) 2))
+'PermanssonResearch.Specialized.quadratic_commonMode' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.quadratic_sub.{u_1} {ι : Type u_1} [Fintype.{u_1} ι] (G H : Matrix.{u_1, u_1, 0} ι ι ℝ)
+  (v : ι → ℝ) :
+  Eq.{1} (PermanssonResearch.Specialized.quadratic.{u_1} (HSub.hSub.{u_1, u_1, u_1} G H) v)
+    (HSub.hSub.{0, 0, 0} (PermanssonResearch.Specialized.quadratic.{u_1} G v)
+      (PermanssonResearch.Specialized.quadratic.{u_1} H v))
+'PermanssonResearch.Specialized.quadratic_sub' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.featureQuadratic.{u_1, u_2} {ι : Type u_1} [Fintype.{u_1} ι] {Y : Type u_2}
+  [MeasurableSpace.{u_2} Y] (feature : PermanssonLean.RegimePropertyMap.{u_2, u_1} Y (Matrix.{u_1, u_1, 0} ι ι ℝ))
+  (v : ι → ℝ) : PermanssonLean.RegimePropertyMap.{u_2, 0} Y ℝ
+'PermanssonResearch.Specialized.featureQuadratic' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.constitutiveEffect_commonMode.{u_1, u_2, u_3, u_4, u_5} {ι : Type u_1} [Fintype.{u_1} ι]
+  {S : Type u_2} {X : Type u_3} {A : Type u_4} {Component : Type u_5} [MeasurableSpace.{u_2} S]
+  [MeasurableSpace.{u_3} X] [MeasurableSpace.{u_4} A] (M : PermanssonLean.StrategicWorldModel.{u_2, u_3, u_4} S X A)
+  {F : PermanssonLean.InterventionFamily.{u_2, u_3, u_4, u_5} M Component}
+  (J : PermanssonLean.AdmissibleStrategicIntervention.{u_2, u_3, u_4, u_5} F)
+  (feature :
+    PermanssonLean.RegimePropertyMap.{max u_3 u_2, u_1} (PermanssonLean.JointState.{u_2, u_3} S X)
+      (Matrix.{u_1, u_1, 0} ι ι ℝ))
+  (v : ι → ℝ) (y : PermanssonLean.JointState.{u_2, u_3} S X) (δ : ℝ)
+  (hfeature :
+    ∀ (i j : ι),
+      Eq.{1}
+        (HSub.hSub.{u_1, u_1, u_1}
+          (feature
+            (PermanssonLean.RegimeSpecification.pathProbability.{u_2, u_3, u_4} M
+              (MeasureTheory.diracProba.{max u_2 u_3} y)))
+          (feature
+            (PermanssonLean.RegimeSpecification.pathProbability.{u_2, u_3, u_4}
+              (PermanssonLean.TypedIntervention.apply.{u_2, u_3, u_4, u_5}
+                (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_2, u_3, u_4, u_5} J))
+              (MeasureTheory.diracProba.{max u_2 u_3} y)))
+          i j)
+        δ) :
+  Eq.{1}
+    (PermanssonLean.RegimeSpecification.constitutiveEffect.{u_2, u_3, u_4, 0, u_5} M
+      (PermanssonResearch.Specialized.featureQuadratic.{u_1, max u_2 u_3} feature v) J y)
+    (HMul.hMul.{0, 0, 0} (abs.{0} δ) (HPow.hPow.{0, 0, 0} (∑ i, v i) 2))
+'PermanssonResearch.Specialized.constitutiveEffect_commonMode' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.constitutiveMargin_commonMode.{u_1, u_2, u_3, u_4, u_5, u_6} {ι : Type u_1}
+  [Fintype.{u_1} ι] {S : Type u_2} {X : Type u_3} {A : Type u_4} {Component : Type u_5} {H : Type u_6}
+  [MeasurableSpace.{u_2} S] [MeasurableSpace.{u_3} X] [MeasurableSpace.{u_4} A] [MeasurableSpace.{u_6} H]
+  (M : PermanssonLean.StrategicWorldModel.{u_2, u_3, u_4} S X A)
+  (spec : PermanssonLean.RegimeSpecification.{max u_3 u_2, u_6} (PermanssonLean.JointState.{u_2, u_3} S X) H)
+  (F : PermanssonLean.InterventionFamily.{u_2, u_3, u_4, u_5} M Component)
+  (B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.{u_2, u_3, u_4, u_6} M spec)
+  (J : PermanssonLean.AdmissibleStrategicIntervention.{u_2, u_3, u_4, u_5} F)
+  (feature :
+    PermanssonLean.RegimePropertyMap.{max u_3 u_2, u_1} (PermanssonLean.JointState.{u_2, u_3} S X)
+      (Matrix.{u_1, u_1, 0} ι ι ℝ))
+  (v : ι → ℝ) (δ : PermanssonLean.JointState.{u_2, u_3} S X → ℝ)
+  (hfeature :
+    ∀ (y : PermanssonLean.JointState.{u_2, u_3} S X),
+      Membership.mem.{max u_2 u_3, max u_2 u_3}
+          (PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.states.{u_2, u_3, u_4, u_6} B₁) y →
+        ∀ (i j : ι),
+          Eq.{1}
+            (HSub.hSub.{u_1, u_1, u_1}
+              (feature
+                (PermanssonLean.RegimeSpecification.pathProbability.{u_2, u_3, u_4} M
+                  (MeasureTheory.diracProba.{max u_2 u_3} y)))
+              (feature
+                (PermanssonLean.RegimeSpecification.pathProbability.{u_2, u_3, u_4}
+                  (PermanssonLean.TypedIntervention.apply.{u_2, u_3, u_4, u_5}
+                    (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_2, u_3, u_4, u_5} J))
+                  (MeasureTheory.diracProba.{max u_2 u_3} y)))
+              i j)
+            (δ y)) :
+  Eq.{1}
+    (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_2, u_3, u_4, u_6, 0, u_5} M spec F
+      (PermanssonResearch.Specialized.featureQuadratic.{u_1, max u_2 u_3} feature v) B₁ J)
+    (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} (∑ i, v i) 2)
+      (InfSet.sInf.{0}
+        (Set.image.{max u_2 u_3, 0} (fun y => abs.{0} (δ y))
+          (PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.states.{u_2, u_3, u_4, u_6} B₁))))
+'PermanssonResearch.Specialized.constitutiveMargin_commonMode' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.quadratic_approximation_bound.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [NormedSpace.{0, u_1} ℝ E]
+  (B : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E (LinearMap.{0, 0, u_1, 0} (RingHom.id.{0} ℝ) E ℝ)) {C ε : ℝ}
+  (hC : LE.le.{0} 0 C)
+  (hbound :
+    ∀ (u v : E),
+      LE.le.{0} (abs.{0} ((B u) v))
+        (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} C (Norm.norm.{u_1} u)) (Norm.norm.{u_1} v)))
+  (p h : E) (happrox : LE.le.{0} (Norm.norm.{u_1} (HSub.hSub.{u_1, u_1, u_1} p h)) ε) :
+  LE.le.{0} (abs.{0} (HSub.hSub.{0, 0, 0} ((B p) p) ((B h) h)))
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} C ε) (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 (Norm.norm.{u_1} h)) ε))
+'PermanssonResearch.Specialized.quadratic_approximation_bound' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.negative_quadratic_of_approximation.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [NormedSpace.{0, u_1} ℝ E]
+  (B : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E (LinearMap.{0, 0, u_1, 0} (RingHom.id.{0} ℝ) E ℝ)) {C ε γ : ℝ}
+  (hC : LE.le.{0} 0 C)
+  (hbound :
+    ∀ (u v : E),
+      LE.le.{0} (abs.{0} ((B u) v))
+        (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} C (Norm.norm.{u_1} u)) (Norm.norm.{u_1} v)))
+  (p h : E) (happrox : LE.le.{0} (Norm.norm.{u_1} (HSub.hSub.{u_1, u_1, u_1} p h)) ε)
+  (hnegative : Eq.{1} ((B h) h) (Neg.neg.{0} γ))
+  (hsmall :
+    LT.lt.{0}
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} C ε)
+        (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 (Norm.norm.{u_1} h)) ε))
+      γ) :
+  LT.lt.{0} ((B p) p) 0
+'PermanssonResearch.Specialized.negative_quadratic_of_approximation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.exists_legal_negative_of_approximation.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [NormedSpace.{0, u_1} ℝ E]
+  (B : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E (LinearMap.{0, 0, u_1, 0} (RingHom.id.{0} ℝ) E ℝ)) {C : ℝ}
+  (hC : LE.le.{0} 0 C)
+  (hbound :
+    ∀ (u v : E),
+      LE.le.{0} (abs.{0} ((B u) v))
+        (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} C (Norm.norm.{u_1} u)) (Norm.norm.{u_1} v)))
+  (legal : ℕ → Set.{u_1} E) (h : E) (hnegative : LT.lt.{0} ((B h) h) 0)
+  (hlegal :
+    ∀ (ε : ℝ),
+      LT.lt.{0} 0 ε →
+        ∃ N p, Membership.mem.{u_1, u_1} (legal N) p ∧ LE.le.{0} (Norm.norm.{u_1} (HSub.hSub.{u_1, u_1, u_1} p h)) ε) :
+  ∃ N p, Membership.mem.{u_1, u_1} (legal N) p ∧ LT.lt.{0} ((B p) p) 0
+'PermanssonResearch.Specialized.exists_legal_negative_of_approximation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.negative_persists_under_embedding.{u_2, u_3} {V : Type u_2} {W : Type u_3} (Q : V → ℝ)
+  (R : W → ℝ) (j : V → W) (hpreserve : ∀ (v : V), Eq.{1} (R (j v)) (Q v)) (v : V) (hv : LT.lt.{0} (Q v) 0) :
+  LT.lt.{0} (R (j v)) 0
+'PermanssonResearch.Specialized.negative_persists_under_embedding' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.quadratic_two_control_bound.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [NormedSpace.{0, u_1} ℝ E]
+  (B : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E (LinearMap.{0, 0, u_1, 0} (RingHom.id.{0} ℝ) E ℝ)) (a b : E → ℝ)
+  (C : ℝ)
+  (hbound : ∀ (u v : E), LE.le.{0} (abs.{0} ((B u) v)) (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} C (a u)) (b v)))
+  (p h : E) :
+  LE.le.{0} (abs.{0} (HSub.hSub.{0, 0, 0} ((B p) p) ((B h) h)))
+    (HMul.hMul.{0, 0, 0} C
+      (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} (a (HSub.hSub.{u_1, u_1, u_1} p h)) (b h))
+        (HMul.hMul.{0, 0, 0} (a p) (b (HSub.hSub.{u_1, u_1, u_1} p h)))))
+'PermanssonResearch.Specialized.quadratic_two_control_bound' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.bilinearFeatureProperty.{u_1, u_2} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [NormedSpace.{0, u_1} ℝ E] {Y : Type u_2} [MeasurableSpace.{u_2} Y]
+  (feature :
+    PermanssonLean.RegimePropertyMap.{u_2, u_1} Y
+      (LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E (LinearMap.{0, 0, u_1, 0} (RingHom.id.{0} ℝ) E ℝ)))
+  (p : E) : PermanssonLean.RegimePropertyMap.{u_2, 0} Y ℝ
+'PermanssonResearch.Specialized.bilinearFeatureProperty' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.actual_effect_pos_of_legal_approximation.{u_1, u_2, u_3, u_4, u_5} {E : Type u_1}
+  [NormedAddCommGroup.{u_1} E] [NormedSpace.{0, u_1} ℝ E] {S : Type u_2} {X : Type u_3} {A : Type u_4}
+  {Component : Type u_5} [MeasurableSpace.{u_2} S] [MeasurableSpace.{u_3} X] [MeasurableSpace.{u_4} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_2, u_3, u_4} S X A)
+  {F : PermanssonLean.InterventionFamily.{u_2, u_3, u_4, u_5} M Component}
+  (J : PermanssonLean.AdmissibleStrategicIntervention.{u_2, u_3, u_4, u_5} F)
+  (feature :
+    PermanssonLean.RegimePropertyMap.{max u_3 u_2, u_1} (PermanssonLean.JointState.{u_2, u_3} S X)
+      (LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E (LinearMap.{0, 0, u_1, 0} (RingHom.id.{0} ℝ) E ℝ)))
+  (y : PermanssonLean.JointState.{u_2, u_3} S X) (legal : Set.{u_1} E) (p h : E)
+  (hp : Membership.mem.{u_1, u_1} legal p) {C ε γ : ℝ} (hC : LE.le.{0} 0 C)
+  (hbound :
+    ∀ (u v : E),
+      LE.le.{0}
+        (abs.{0}
+          (((HSub.hSub.{u_1, u_1, u_1}
+                (feature
+                  (PermanssonLean.RegimeSpecification.pathProbability.{u_2, u_3, u_4} M
+                    (MeasureTheory.diracProba.{max u_2 u_3} y)))
+                (feature
+                  (PermanssonLean.RegimeSpecification.pathProbability.{u_2, u_3, u_4}
+                    (PermanssonLean.TypedIntervention.apply.{u_2, u_3, u_4, u_5}
+                      (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_2, u_3, u_4, u_5} J))
+                    (MeasureTheory.diracProba.{max u_2 u_3} y))))
+              u)
+            v))
+        (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} C (Norm.norm.{u_1} u)) (Norm.norm.{u_1} v)))
+  (happrox : LE.le.{0} (Norm.norm.{u_1} (HSub.hSub.{u_1, u_1, u_1} p h)) ε)
+  (hnegative :
+    Eq.{1}
+      (((HSub.hSub.{u_1, u_1, u_1}
+            (feature
+              (PermanssonLean.RegimeSpecification.pathProbability.{u_2, u_3, u_4} M
+                (MeasureTheory.diracProba.{max u_2 u_3} y)))
+            (feature
+              (PermanssonLean.RegimeSpecification.pathProbability.{u_2, u_3, u_4}
+                (PermanssonLean.TypedIntervention.apply.{u_2, u_3, u_4, u_5}
+                  (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_2, u_3, u_4, u_5} J))
+                (MeasureTheory.diracProba.{max u_2 u_3} y))))
+          h)
+        h)
+      (Neg.neg.{0} γ))
+  (hsmall :
+    LT.lt.{0}
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} C ε)
+        (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 (Norm.norm.{u_1} h)) ε))
+      γ) :
+  LT.lt.{0} 0
+    (PermanssonLean.RegimeSpecification.constitutiveEffect.{u_2, u_3, u_4, 0, u_5} M
+      (PermanssonResearch.Specialized.bilinearFeatureProperty.{u_1, max u_2 u_3} feature p) J y)
+'PermanssonResearch.Specialized.actual_effect_pos_of_legal_approximation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.negativeShift.{u_1} {ι : Type u_1} [DecidableEq.{u_1 + 1} ι]
+  (H : Matrix.{u_1, u_1, 0} ι ι ℝ) (ell : ℝ) : Matrix.{u_1, u_1, 0} ι ι ℝ
+'PermanssonResearch.Specialized.negativeShift' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.negativeShift_posDef.{u_1} {ι : Type u_1} [Fintype.{u_1} ι] [DecidableEq.{u_1 + 1} ι]
+  (H : Matrix.{u_1, u_1, 0} ι ι ℝ) (hH : Matrix.PosSemidef.{u_1, 0} H) {ell : ℝ} (hell : LT.lt.{0} ell 0) :
+  Matrix.PosDef.{u_1, 0} (PermanssonResearch.Specialized.negativeShift.{u_1} H ell)
+'PermanssonResearch.Specialized.negativeShift_posDef' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.negativeShift_isUnit.{u_1} {ι : Type u_1} [Fintype.{u_1} ι] [DecidableEq.{u_1 + 1} ι]
+  (H : Matrix.{u_1, u_1, 0} ι ι ℝ) (hH : Matrix.PosSemidef.{u_1, 0} H) {ell : ℝ} (hell : LT.lt.{0} ell 0) :
+  IsUnit.{u_1} (PermanssonResearch.Specialized.negativeShift.{u_1} H ell)
+'PermanssonResearch.Specialized.negativeShift_isUnit' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.shellComplement.{u_1, u_2} {ι : Type u_1} {κ : Type u_2} [Fintype.{u_1} ι]
+  [DecidableEq.{u_1 + 1} ι] [DecidableEq.{u_2 + 1} κ] (H : Matrix.{u_1, u_1, 0} ι ι ℝ) (B : Matrix.{u_1, u_2, 0} ι κ ℝ)
+  (C : Matrix.{u_2, u_2, 0} κ κ ℝ) (ell : ℝ) : Matrix.{u_2, u_2, 0} κ κ ℝ
+'PermanssonResearch.Specialized.shellComplement' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.shell_determinant.{u_1, u_2} {ι : Type u_1} {κ : Type u_2} [Fintype.{u_1} ι]
+  [Fintype.{u_2} κ] [DecidableEq.{u_1 + 1} ι] [DecidableEq.{u_2 + 1} κ] (H : Matrix.{u_1, u_1, 0} ι ι ℝ)
+  (hH : Matrix.PosSemidef.{u_1, 0} H) (B : Matrix.{u_1, u_2, 0} ι κ ℝ) (C : Matrix.{u_2, u_2, 0} κ κ ℝ) {ell : ℝ}
+  (hell : LT.lt.{0} ell 0) :
+  Eq.{1}
+    (Matrix.det.{0, max u_1 u_2}
+      (Matrix.fromBlocks.{u_1, u_2, u_1, u_2, 0} (PermanssonResearch.Specialized.negativeShift.{u_1} H ell) B
+        (Matrix.transpose.{0, u_1, u_2} B) (PermanssonResearch.Specialized.negativeShift.{u_2} C ell)))
+    (HMul.hMul.{0, 0, 0} (Matrix.det.{0, u_1} (PermanssonResearch.Specialized.negativeShift.{u_1} H ell))
+      (Matrix.det.{0, u_2} (PermanssonResearch.Specialized.shellComplement.{u_1, u_2} H B C ell)))
+'PermanssonResearch.Specialized.shell_determinant' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.shell_equations_iff.{u_1, u_2} {ι : Type u_1} {κ : Type u_2} [Fintype.{u_1} ι]
+  [Fintype.{u_2} κ] [DecidableEq.{u_1 + 1} ι] [DecidableEq.{u_2 + 1} κ] (H : Matrix.{u_1, u_1, 0} ι ι ℝ)
+  (hH : Matrix.PosSemidef.{u_1, 0} H) (B : Matrix.{u_1, u_2, 0} ι κ ℝ) (C : Matrix.{u_2, u_2, 0} κ κ ℝ) {ell : ℝ}
+  (hell : LT.lt.{0} ell 0) (v : ι → ℝ) (w : κ → ℝ) :
+  Eq.{u_1 + 1}
+        (HAdd.hAdd.{u_1, u_1, u_1}
+          (Matrix.mulVec.{0, u_1, u_1} (PermanssonResearch.Specialized.negativeShift.{u_1} H ell) v)
+          (Matrix.mulVec.{0, u_1, u_2} B w))
+        0 ∧
+      Eq.{u_2 + 1}
+        (HAdd.hAdd.{u_2, u_2, u_2} (Matrix.mulVec.{0, u_2, u_1} (Matrix.transpose.{0, u_1, u_2} B) v)
+          (Matrix.mulVec.{0, u_2, u_2} (PermanssonResearch.Specialized.negativeShift.{u_2} C ell) w))
+        0 ↔
+    Eq.{u_1 + 1} v
+        (Neg.neg.{u_1}
+          (Matrix.mulVec.{0, u_1, u_1} (Inv.inv.{u_1} (PermanssonResearch.Specialized.negativeShift.{u_1} H ell))
+            (Matrix.mulVec.{0, u_1, u_2} B w))) ∧
+      Eq.{u_2 + 1} (Matrix.mulVec.{0, u_2, u_2} (PermanssonResearch.Specialized.shellComplement.{u_1, u_2} H B C ell) w)
+        0
+'PermanssonResearch.Specialized.shell_equations_iff' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.negative_eigenvector_has_nonzero_shell.{u_1, u_2} {ι : Type u_1} {κ : Type u_2}
+  [Fintype.{u_1} ι] [Fintype.{u_2} κ] [DecidableEq.{u_1 + 1} ι] [DecidableEq.{u_2 + 1} κ]
+  (H : Matrix.{u_1, u_1, 0} ι ι ℝ) (hH : Matrix.PosSemidef.{u_1, 0} H) (B : Matrix.{u_1, u_2, 0} ι κ ℝ)
+  (C : Matrix.{u_2, u_2, 0} κ κ ℝ) {ell : ℝ} (hell : LT.lt.{0} ell 0) (v : ι → ℝ) (w : κ → ℝ)
+  (heq :
+    Eq.{u_1 + 1}
+        (HAdd.hAdd.{u_1, u_1, u_1}
+          (Matrix.mulVec.{0, u_1, u_1} (PermanssonResearch.Specialized.negativeShift.{u_1} H ell) v)
+          (Matrix.mulVec.{0, u_1, u_2} B w))
+        0 ∧
+      Eq.{u_2 + 1}
+        (HAdd.hAdd.{u_2, u_2, u_2} (Matrix.mulVec.{0, u_2, u_1} (Matrix.transpose.{0, u_1, u_2} B) v)
+          (Matrix.mulVec.{0, u_2, u_2} (PermanssonResearch.Specialized.negativeShift.{u_2} C ell) w))
+        0)
+  (hne : Ne.{u_1 + 1} v 0 ∨ Ne.{u_2 + 1} w 0) : Ne.{u_2 + 1} w 0
+'PermanssonResearch.Specialized.negative_eigenvector_has_nonzero_shell' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.exists_first_bad (bad : ℕ → Prop) (hex : ∃ n, bad n) :
+  ∃ n, bad n ∧ ∀ (m : ℕ), LT.lt.{0} m n → ¬bad m
+'PermanssonResearch.Specialized.exists_first_bad' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.shiftedContinuous.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (ell : ℝ) :
+  ContinuousLinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E
+'PermanssonResearch.Specialized.shiftedContinuous' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.negativeShiftUnit.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+  (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {ell : ℝ} (hell : LT.lt.{0} ell 0) :
+  Units.{u_1} (ContinuousLinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+'PermanssonResearch.Specialized.negativeShiftUnit' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.shellResolvent.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (ell : ℝ) :
+  ContinuousLinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E
+'PermanssonResearch.Specialized.shellResolvent' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.shellResolvent_eq_genuine_inverse.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+  (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {ell : ℝ} (hell : LT.lt.{0} ell 0) (b : E) :
+  Eq.{u_1 + 1} ((PermanssonResearch.Specialized.shellResolvent.{u_1} H ell) b)
+    ((LinearEquiv.symm.{0, 0, u_1, u_1} (PermanssonResearch.Specialized.negativeResolventEquiv.{u_1} H hpos hell)) b)
+'PermanssonResearch.Specialized.shellResolvent_eq_genuine_inverse' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.shiftedContinuous_symmetric.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (hH : LinearMap.IsSymmetric.{0, u_1} H) (ell : ℝ) (x y : E) :
+  Eq.{1} (Inner.inner.{0, u_1} ℝ ((PermanssonResearch.Specialized.shiftedContinuous.{u_1} H ell) x) y)
+    (Inner.inner.{0, u_1} ℝ x ((PermanssonResearch.Specialized.shiftedContinuous.{u_1} H ell) y))
+'PermanssonResearch.Specialized.shiftedContinuous_symmetric' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.shellResolvent_solve.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+  (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {ell : ℝ} (hell : LT.lt.{0} ell 0) (b : E) :
+  Eq.{u_1 + 1}
+    ((PermanssonResearch.Specialized.shiftedContinuous.{u_1} H ell)
+      ((PermanssonResearch.Specialized.shellResolvent.{u_1} H ell) b))
+    b
+'PermanssonResearch.Specialized.shellResolvent_solve' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.shellResolvent_quadratic.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (hH : LinearMap.IsSymmetric.{0, u_1} H)
+  (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {ell : ℝ} (hell : LT.lt.{0} ell 0) (b : E) :
+  Eq.{1}
+    (Inner.inner.{0, u_1} ℝ b
+      ((PermanssonResearch.Specialized.shellResolvent.{u_1} H ell)
+        ((PermanssonResearch.Specialized.shellResolvent.{u_1} H ell) b)))
+    (HPow.hPow.{0, 0, 0} (Norm.norm.{u_1} ((PermanssonResearch.Specialized.shellResolvent.{u_1} H ell) b)) 2)
+'PermanssonResearch.Specialized.shellResolvent_quadratic' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.shellResolvent_hasDerivAt.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+  (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {ell : ℝ} (hell : LT.lt.{0} ell 0) :
+  HasDerivAt.{0, u_1} (PermanssonResearch.Specialized.shellResolvent.{u_1} H)
+    (HMul.hMul.{u_1, u_1, u_1} (PermanssonResearch.Specialized.shellResolvent.{u_1} H ell)
+      (PermanssonResearch.Specialized.shellResolvent.{u_1} H ell))
+    ell
+'PermanssonResearch.Specialized.shellResolvent_hasDerivAt' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.shellResponse.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (b : E) (ell : ℝ) : ℝ
+'PermanssonResearch.Specialized.shellResponse' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.shellResponse_hasDerivAt.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (hH : LinearMap.IsSymmetric.{0, u_1} H)
+  (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {ell : ℝ} (hell : LT.lt.{0} ell 0) (b : E) :
+  HasDerivAt.{0, 0} (PermanssonResearch.Specialized.shellResponse.{u_1} H b)
+    (HPow.hPow.{0, 0, 0} (Norm.norm.{u_1} ((PermanssonResearch.Specialized.shellResolvent.{u_1} H ell) b)) 2) ell
+'PermanssonResearch.Specialized.shellResponse_hasDerivAt' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.scalarShellSecular.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (b : E) (c ell : ℝ) : ℝ
+'PermanssonResearch.Specialized.scalarShellSecular' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.scalarShellSecular_hasDerivAt.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (hH : LinearMap.IsSymmetric.{0, u_1} H)
+  (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {ell : ℝ} (hell : LT.lt.{0} ell 0) (b : E) (c : ℝ) :
+  HasDerivAt.{0, 0} (PermanssonResearch.Specialized.scalarShellSecular.{u_1} H b c)
+    (HSub.hSub.{0, 0, 0} (-1)
+      (HPow.hPow.{0, 0, 0} (Norm.norm.{u_1} ((PermanssonResearch.Specialized.shellResolvent.{u_1} H ell) b)) 2))
+    ell
+'PermanssonResearch.Specialized.scalarShellSecular_hasDerivAt' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.scalarShellSecular_derivative_negative.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (hH : LinearMap.IsSymmetric.{0, u_1} H)
+  (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {ell : ℝ} (hell : LT.lt.{0} ell 0) (b : E) (c : ℝ) :
+  LT.lt.{0} (deriv.{0, 0} (PermanssonResearch.Specialized.scalarShellSecular.{u_1} H b c) ell) 0
+'PermanssonResearch.Specialized.scalarShellSecular_derivative_negative' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.symmetric_range_eq_kernel_orthogonal.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (hH : LinearMap.IsSymmetric.{0, u_1} H) :
+  Eq.{u_1 + 1} (LinearMap.range.{0, 0, u_1, u_1} H) (Submodule.orthogonal.{0, u_1} (LinearMap.ker.{0, 0, u_1, u_1} H))
+'PermanssonResearch.Specialized.symmetric_range_eq_kernel_orthogonal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.symmetric_preimage_iff.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (hH : LinearMap.IsSymmetric.{0, u_1} H) (b : E) :
+  (∃ x, Eq.{u_1 + 1} (H x) b) ↔ ∀ (z : E), Eq.{u_1 + 1} (H z) 0 → Eq.{1} (Inner.inner.{0, u_1} ℝ z b) 0
+'PermanssonResearch.Specialized.symmetric_preimage_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.preimages_differ_by_kernel.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) {x y b : E}
+  (hx : Eq.{u_1 + 1} (H x) b) (hy : Eq.{u_1 + 1} (H y) b) :
+  Membership.mem.{u_1, u_1} (LinearMap.ker.{0, 0, u_1, u_1} H) (HSub.hSub.{u_1, u_1, u_1} x y)
+'PermanssonResearch.Specialized.preimages_differ_by_kernel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.compatible_response_independent.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+  (hH : LinearMap.IsSymmetric.{0, u_1} H) {x y b : E} (hx : Eq.{u_1 + 1} (H x) b) (hy : Eq.{u_1 + 1} (H y) b) :
+  Eq.{1} (Inner.inner.{0, u_1} ℝ b x) (Inner.inner.{0, u_1} ℝ b y)
+'PermanssonResearch.Specialized.compatible_response_independent' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.singularBlockForm.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (b : E) (c : ℝ) (v : E)
+  (t : ℝ) : ℝ
+'PermanssonResearch.Specialized.singularBlockForm' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.singular_complete_square.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+  (hH : LinearMap.IsSymmetric.{0, u_1} H) {b x : E} (hx : Eq.{u_1 + 1} (H x) b) (c : ℝ) (v : E) (t : ℝ) :
+  Eq.{1} (PermanssonResearch.Specialized.singularBlockForm.{u_1} H b c v t)
+    (HAdd.hAdd.{0, 0, 0}
+      (Inner.inner.{0, u_1} ℝ (HAdd.hAdd.{u_1, u_1, u_1} v (HSMul.hSMul.{0, u_1, u_1} t x))
+        (H (HAdd.hAdd.{u_1, u_1, u_1} v (HSMul.hSMul.{0, u_1, u_1} t x))))
+      (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} c (Inner.inner.{0, u_1} ℝ b x)) (HPow.hPow.{0, 0, 0} t 2)))
+'PermanssonResearch.Specialized.singular_complete_square' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.singular_block_nonnegative_iff.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+  (hH : LinearMap.IsSymmetric.{0, u_1} H) (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {b x : E}
+  (hx : Eq.{u_1 + 1} (H x) b) (c : ℝ) :
+  (∀ (v : E) (t : ℝ), LE.le.{0} 0 (PermanssonResearch.Specialized.singularBlockForm.{u_1} H b c v t)) ↔
+    LE.le.{0} 0 (HSub.hSub.{0, 0, 0} c (Inner.inner.{0, u_1} ℝ b x))
+'PermanssonResearch.Specialized.singular_block_nonnegative_iff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.incompatible_kernel_negative.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (b : E) (c : ℝ) {z : E}
+  (hz : Eq.{u_1 + 1} (H z) 0) (hb : Ne.{1} (Inner.inner.{0, u_1} ℝ b z) 0) :
+  ∃ v, LT.lt.{0} (PermanssonResearch.Specialized.singularBlockForm.{u_1} H b c v 1) 0
+'PermanssonResearch.Specialized.incompatible_kernel_negative' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.shiftedOperator.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (ell : ℝ) :
+  LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E
+'PermanssonResearch.Specialized.shiftedOperator' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.shiftedOperator_injective.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+  (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {ell : ℝ} (hell : LT.lt.{0} ell 0) :
+  Function.Injective.{u_1 + 1, u_1 + 1} ⇑(PermanssonResearch.Specialized.shiftedOperator.{u_1} H ell)
+'PermanssonResearch.Specialized.shiftedOperator_injective' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.negativeResolventEquiv.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+  (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {ell : ℝ} (hell : LT.lt.{0} ell 0) :
+  LinearEquiv.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E
+'PermanssonResearch.Specialized.negativeResolventEquiv' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.negative_resolvent_kernel_projection.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] [FiniteDimensional.{0, u_1} ℝ E]
+  (H : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (hH : LinearMap.IsSymmetric.{0, u_1} H)
+  (hpos : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (H v))) {ell : ℝ} (hell : LT.lt.{0} ell 0) (b : E) :
+  Eq.{u_1 + 1}
+    (HSMul.hSMul.{0, u_1, u_1} (Neg.neg.{0} ell)
+      ((Submodule.orthogonalProjectionOnto.{0, u_1} (LinearMap.ker.{0, 0, u_1, u_1} H))
+        ((LinearEquiv.symm.{0, 0, u_1, u_1} (PermanssonResearch.Specialized.negativeResolventEquiv.{u_1} H hpos hell))
+          b)))
+    ((Submodule.orthogonalProjectionOnto.{0, u_1} (LinearMap.ker.{0, 0, u_1, u_1} H)) b)
+'PermanssonResearch.Specialized.negative_resolvent_kernel_projection' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.denominator_free_kernel_rigidity.{u_1, u_2} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] {F : Type u_2} [NormedAddCommGroup.{u_2} F] [InnerProductSpace.{0, u_2} ℝ F]
+  (Hp : LinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E) (Hm : LinearMap.{0, 0, u_2, u_2} (RingHom.id.{0} ℝ) F F)
+  (hp : LinearMap.IsSymmetric.{0, u_1} Hp) (hm : LinearMap.IsSymmetric.{0, u_2} Hm)
+  (D : LinearMap.{0, 0, u_1, u_2} (RingHom.id.{0} ℝ) E F) (Φ β : E → ℝ) (a d bm xm : F) (bp xp : E) {np nm : ℝ}
+  (hnp : LT.lt.{0} 0 np) (hnm : LT.lt.{0} 0 nm) (hxp : Eq.{u_1 + 1} (Hp xp) bp) (hxm : Eq.{u_2 + 1} (Hm xm) bm)
+  (hβ : ∀ (z : E), Eq.{1} (β z) (HDiv.hDiv.{0, 0, 0} (Inner.inner.{0, u_1} ℝ bp z) np)) (z : E)
+  (hz : Eq.{u_1 + 1} (Hp z) 0)
+  (hsource :
+    Eq.{u_2 + 1} (Hm (D z))
+      (HAdd.hAdd.{u_2, u_2, u_2} (HSMul.hSMul.{0, u_2, u_2} (β z) d) (HSMul.hSMul.{0, u_2, u_2} (Φ z) a)))
+  (hnorm : Eq.{1} (HDiv.hDiv.{0, 0, 0} (Inner.inner.{0, u_2} ℝ bm (D z)) nm) (HAdd.hAdd.{0, 0, 0} (β z) (Φ z))) :
+  Eq.{1} (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 (HDiv.hDiv.{0, 0, 0} (Inner.inner.{0, u_2} ℝ xm a) nm)) (Φ z)) 0
+'PermanssonResearch.Specialized.denominator_free_kernel_rigidity' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.source_vanishes_of_nonexceptional {Γ value : ℝ}
+  (h : Eq.{1} (HMul.hMul.{0, 0, 0} Γ value) 0) (hΓ : Ne.{1} Γ 0) : Eq.{1} value 0
+'PermanssonResearch.Specialized.source_vanishes_of_nonexceptional' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.zero_shift_source_response.{u_2} {F : Type u_2} [NormedAddCommGroup.{u_2} F]
+  [InnerProductSpace.{0, u_2} ℝ F] (Hm : LinearMap.{0, 0, u_2, u_2} (RingHom.id.{0} ℝ) F F)
+  (hm : LinearMap.IsSymmetric.{0, u_2} Hm) (a d bm xm w : F) {nm σp σm φ : ℝ} (hnm : LT.lt.{0} 0 nm)
+  (hxm : Eq.{u_2 + 1} (Hm xm) bm)
+  (hsource :
+    Eq.{u_2 + 1} (Hm w) (HAdd.hAdd.{u_2, u_2, u_2} (HSMul.hSMul.{0, u_2, u_2} σp d) (HSMul.hSMul.{0, u_2, u_2} φ a)))
+  (hnorm :
+    Eq.{1} (HDiv.hDiv.{0, 0, 0} (Inner.inner.{0, u_2} ℝ bm w) nm) (HSub.hSub.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} σp φ) σm)) :
+  Eq.{1} σm
+    (HAdd.hAdd.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 (HDiv.hDiv.{0, 0, 0} (Inner.inner.{0, u_2} ℝ xm d) nm)) σp)
+      (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 (HDiv.hDiv.{0, 0, 0} (Inner.inner.{0, u_2} ℝ xm a) nm)) φ))
+'PermanssonResearch.Specialized.zero_shift_source_response' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.gramGap.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (x y : E) : ℝ
+'PermanssonResearch.Specialized.gramGap' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.gramWitness.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (x y : E) : E
+'PermanssonResearch.Specialized.gramWitness' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.inner_gramWitness_left.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (x y : E) :
+  Eq.{1} (Inner.inner.{0, u_1} ℝ x (PermanssonResearch.Specialized.gramWitness.{u_1} x y)) 0
+'PermanssonResearch.Specialized.inner_gramWitness_left' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.inner_gramWitness_right.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (x y : E) :
+  Eq.{1} (Inner.inner.{0, u_1} ℝ y (PermanssonResearch.Specialized.gramWitness.{u_1} x y))
+    (PermanssonResearch.Specialized.gramGap.{u_1} x y)
+'PermanssonResearch.Specialized.inner_gramWitness_right' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.norm_gramWitness_sq.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (x y : E) :
+  Eq.{1} (HPow.hPow.{0, 0, 0} (Norm.norm.{u_1} (PermanssonResearch.Specialized.gramWitness.{u_1} x y)) 2)
+    (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} (Norm.norm.{u_1} x) 2) (PermanssonResearch.Specialized.gramGap.{u_1} x y))
+'PermanssonResearch.Specialized.norm_gramWitness_sq' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.gramGap_pos_norm_left.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] {x y : E} (hgap : LT.lt.{0} 0 (PermanssonResearch.Specialized.gramGap.{u_1} x y)) :
+  LT.lt.{0} 0 (HPow.hPow.{0, 0, 0} (Norm.norm.{u_1} x) 2)
+'PermanssonResearch.Specialized.gramGap_pos_norm_left' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.signedGram_witness_value.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (c : ℝ) (x y : E) :
+  Eq.{1}
+    (HMul.hMul.{0, 0, 0} c
+      (HSub.hSub.{0, 0, 0}
+        (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ x (PermanssonResearch.Specialized.gramWitness.{u_1} x y)) 2)
+        (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ y (PermanssonResearch.Specialized.gramWitness.{u_1} x y)) 2)))
+    (HMul.hMul.{0, 0, 0} (Neg.neg.{0} c) (HPow.hPow.{0, 0, 0} (PermanssonResearch.Specialized.gramGap.{u_1} x y) 2))
+'PermanssonResearch.Specialized.signedGram_witness_value' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.signedGram_witness_negative.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] {c : ℝ} (hc : LT.lt.{0} 0 c) (x y : E)
+  (hgap : LT.lt.{0} 0 (PermanssonResearch.Specialized.gramGap.{u_1} x y)) :
+  LT.lt.{0}
+    (HMul.hMul.{0, 0, 0} c
+      (HSub.hSub.{0, 0, 0}
+        (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ x (PermanssonResearch.Specialized.gramWitness.{u_1} x y)) 2)
+        (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ y (PermanssonResearch.Specialized.gramWitness.{u_1} x y)) 2)))
+    0
+'PermanssonResearch.Specialized.signedGram_witness_negative' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.gramWitness_ne_zero.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] {x y : E} (hgap : LT.lt.{0} 0 (PermanssonResearch.Specialized.gramGap.{u_1} x y)) :
+  Ne.{u_1 + 1} (PermanssonResearch.Specialized.gramWitness.{u_1} x y) 0
+'PermanssonResearch.Specialized.gramWitness_ne_zero' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.unitGramWitness.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (x y : E) : E
+'PermanssonResearch.Specialized.unitGramWitness' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.norm_unitGramWitness.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] {x y : E} (hgap : LT.lt.{0} 0 (PermanssonResearch.Specialized.gramGap.{u_1} x y)) :
+  Eq.{1} (Norm.norm.{u_1} (PermanssonResearch.Specialized.unitGramWitness.{u_1} x y)) 1
+'PermanssonResearch.Specialized.norm_unitGramWitness' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Specialized.gram_unit_rayleigh_value.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (c : ℝ) (x y : E)
+  (hgap : LT.lt.{0} 0 (PermanssonResearch.Specialized.gramGap.{u_1} x y)) :
+  Eq.{1}
+    (HMul.hMul.{0, 0, 0} c
+      (HSub.hSub.{0, 0, 0}
+        (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ x (PermanssonResearch.Specialized.unitGramWitness.{u_1} x y)) 2)
+        (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ y (PermanssonResearch.Specialized.unitGramWitness.{u_1} x y)) 2)))
+    (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} (Neg.neg.{0} c) (PermanssonResearch.Specialized.gramGap.{u_1} x y))
+      (HPow.hPow.{0, 0, 0} (Norm.norm.{u_1} x) 2))
+'PermanssonResearch.Specialized.gram_unit_rayleigh_value' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.gram_psd_evaluation_nonnegative.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] (P : ContinuousLinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+  (hP : ∀ (v : E), LE.le.{0} 0 (Inner.inner.{0, u_1} ℝ v (P v))) (x y : E) :
+  LE.le.{0} 0
+    (Inner.inner.{0, u_1} ℝ (PermanssonResearch.Specialized.gramWitness.{u_1} x y)
+      (P (PermanssonResearch.Specialized.gramWitness.{u_1} x y)))
+'PermanssonResearch.Specialized.gram_psd_evaluation_nonnegative' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.gram_operator_perturbation_negative.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] {c : ℝ} (hc : LT.lt.{0} 0 c) (x y : E)
+  (hgap : LT.lt.{0} 0 (PermanssonResearch.Specialized.gramGap.{u_1} x y))
+  (L : ContinuousLinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E)
+  (hL :
+    LT.lt.{0} (Norm.norm.{u_1} L)
+      (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} c (PermanssonResearch.Specialized.gramGap.{u_1} x y))
+        (HPow.hPow.{0, 0, 0} (Norm.norm.{u_1} x) 2))) :
+  LT.lt.{0}
+    (HAdd.hAdd.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} c
+        (HSub.hSub.{0, 0, 0}
+          (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ x (PermanssonResearch.Specialized.gramWitness.{u_1} x y)) 2)
+          (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ y (PermanssonResearch.Specialized.gramWitness.{u_1} x y)) 2)))
+      (Inner.inner.{0, u_1} ℝ (PermanssonResearch.Specialized.gramWitness.{u_1} x y)
+        (L (PermanssonResearch.Specialized.gramWitness.{u_1} x y))))
+    0
+'PermanssonResearch.Specialized.gram_operator_perturbation_negative' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.gram_additional_component_negative.{u_1} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] {c P : ℝ} (x y : E)
+  (hP :
+    LT.lt.{0} P (HMul.hMul.{0, 0, 0} c (HPow.hPow.{0, 0, 0} (PermanssonResearch.Specialized.gramGap.{u_1} x y) 2))) :
+  LT.lt.{0}
+    (HAdd.hAdd.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} c
+        (HSub.hSub.{0, 0, 0}
+          (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ x (PermanssonResearch.Specialized.gramWitness.{u_1} x y)) 2)
+          (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ y (PermanssonResearch.Specialized.gramWitness.{u_1} x y)) 2)))
+      P)
+    0
+'PermanssonResearch.Specialized.gram_additional_component_negative' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.operatorFeatureProperty.{u_1, u_2} {E : Type u_1} [NormedAddCommGroup.{u_1} E]
+  [InnerProductSpace.{0, u_1} ℝ E] {Y : Type u_2} [MeasurableSpace.{u_2} Y]
+  (feature :
+    PermanssonLean.RegimePropertyMap.{u_2, u_1} Y (ContinuousLinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E))
+  (w : E) : PermanssonLean.RegimePropertyMap.{u_2, 0} Y ℝ
+'PermanssonResearch.Specialized.operatorFeatureProperty' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.constitutiveEffect_gram_witness.{u_1, u_2, u_3, u_4, u_5} {E : Type u_1}
+  [NormedAddCommGroup.{u_1} E] [InnerProductSpace.{0, u_1} ℝ E] {S : Type u_2} {X : Type u_3} {A : Type u_4}
+  {Component : Type u_5} [MeasurableSpace.{u_2} S] [MeasurableSpace.{u_3} X] [MeasurableSpace.{u_4} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_2, u_3, u_4} S X A)
+  {F : PermanssonLean.InterventionFamily.{u_2, u_3, u_4, u_5} M Component}
+  (J : PermanssonLean.AdmissibleStrategicIntervention.{u_2, u_3, u_4, u_5} F)
+  (feature :
+    PermanssonLean.RegimePropertyMap.{max u_3 u_2, u_1} (PermanssonLean.JointState.{u_2, u_3} S X)
+      (ContinuousLinearMap.{0, 0, u_1, u_1} (RingHom.id.{0} ℝ) E E))
+  (y₀ : PermanssonLean.JointState.{u_2, u_3} S X) {c : ℝ} (hc : LT.lt.{0} 0 c) (x y : E)
+  (hgap : LT.lt.{0} 0 (PermanssonResearch.Specialized.gramGap.{u_1} x y))
+  (hrepresentation :
+    ∀ (v : E),
+      Eq.{1}
+        (Inner.inner.{0, u_1} ℝ v
+          ((HSub.hSub.{u_1, u_1, u_1}
+              (feature
+                (PermanssonLean.RegimeSpecification.pathProbability.{u_2, u_3, u_4} M
+                  (MeasureTheory.diracProba.{max u_2 u_3} y₀)))
+              (feature
+                (PermanssonLean.RegimeSpecification.pathProbability.{u_2, u_3, u_4}
+                  (PermanssonLean.TypedIntervention.apply.{u_2, u_3, u_4, u_5}
+                    (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_2, u_3, u_4, u_5} J))
+                  (MeasureTheory.diracProba.{max u_2 u_3} y₀))))
+            v))
+        (HMul.hMul.{0, 0, 0} c
+          (HSub.hSub.{0, 0, 0} (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ x v) 2)
+            (HPow.hPow.{0, 0, 0} (Inner.inner.{0, u_1} ℝ y v) 2)))) :
+  Eq.{1}
+    (PermanssonLean.RegimeSpecification.constitutiveEffect.{u_2, u_3, u_4, 0, u_5} M
+      (PermanssonResearch.Specialized.operatorFeatureProperty.{u_1, max u_2 u_3} feature
+        (PermanssonResearch.Specialized.gramWitness.{u_1} x y))
+      J y₀)
+    (HMul.hMul.{0, 0, 0} c (HPow.hPow.{0, 0, 0} (PermanssonResearch.Specialized.gramGap.{u_1} x y) 2))
+'PermanssonResearch.Specialized.constitutiveEffect_gram_witness' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it

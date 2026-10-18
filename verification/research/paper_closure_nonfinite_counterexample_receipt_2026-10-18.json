@@ -1,0 +1,189 @@
+{
+  "unit": "C-01",
+  "source_scope": [
+    "PermanssonResearch/MultipleLimit/NonfiniteClock.lean",
+    "PermanssonResearch/MultipleLimit/GrowingBlockAverages.lean",
+    "PermanssonResearch/MultipleLimit/GrowingBlockCounterexample.lean"
+  ],
+  "source_sha256": {
+    "PermanssonResearch/MultipleLimit/NonfiniteClock.lean": "fc0c1985520f06219b9ab32d96f21decbf2150125e9df6cb1f99819a385b71ee",
+    "PermanssonResearch/MultipleLimit/GrowingBlockAverages.lean": "3636356cb82a9d127a66fde6bc52fc819fd0ef1f6174d56292f421775e0e5dde",
+    "PermanssonResearch/MultipleLimit/GrowingBlockCounterexample.lean": "a9d23da8a799fb9c00d36c569e043a500f8158010ed5f2ae0e14df40968cd15e"
+  },
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "declaration_count": 33,
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "declarations": {
+    "PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_deterministic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.NonfiniteClock.clock": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.NonfiniteClock.clock_markov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.NonfiniteClock.clock_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.NonfiniteClock.empirical_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.NonfiniteClock.clock_singleton_frequency": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.NonfiniteClock.clock_singletons_tendsto_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.NonfiniteClock.clock_no_probability_weak_limit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_clock_no_weak_limit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.block_exists": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.block": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.block_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.label": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.value": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.label_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.value_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.difference_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.average": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.last_block_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.endpoint_error_tendsto_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.even_endpoints": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.odd_endpoints": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.averages_do_not_converge": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.positive_horizon_averages_do_not_converge": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.descriptor": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_continuous": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.score": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.score_descriptor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_empirical_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_occupations_do_not_converge": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_averages_fail": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_occupations_fail": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "audit_source_sha256": "f409086ce78e911e154f91359c3d921389f99bf956216a9496edebc9decf3f08",
+  "audit_stdout_sha256": "9627afb745b9a310564d5a3f09112682fc249bc6474646ba7a2139b7bf70c4a6",
+  "compiler_returncode": 0,
+  "status": "PASS",
+  "residual": "Two explicit nonfinite falsifiers on the actual homogeneous Nat-successor Markov chain, initialized at zero. Its original canonical trajectory law is proved equal to the Dirac law of the clock. Every singleton empirical mass tends to zero, ruling out every probability-valued weak limit. A fixed two-point descriptor with factorial growing blocks has average endpoint limits zero and one on even/odd blocks, so its actual canonical empirical averages and descriptor probability laws do not converge. These are countermodels to unrestricted nonfinite occupation assertions, not countermodels to the separately proved regenerative or stationary/AC profiles with their explicit hypotheses."
+}

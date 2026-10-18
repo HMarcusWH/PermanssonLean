@@ -1,0 +1,37 @@
+{
+  "format": "Permansson.AcceptanceInterfaceExecutions.v1",
+  "compiler_command": [
+    "lake",
+    "env",
+    "lean"
+  ],
+  "compiler_version": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "kind": "EXECUTED_FOUR_FACTOR_THEOREM_INTERFACE_GATE",
+  "interpretation": "Positive exact theorem application versus omission of only DJt; not a mathematical countermodel.",
+  "source_sha256": {
+    "PermanssonResearch/Perturbation/RegenerativeOccupationFactorization.lean": "5dc066a9625a9db254b9c7faf50cdae67bbb4fbe432a640182bffcace1610530",
+    "verification/research/paper_closure_acceptance_evidence.py": "96f9e757809154a058251772d38247a1995520b2fcaaabcf603b4a48018b7d4e"
+  },
+  "results": {
+    "positive_control": {
+      "status": "PASS",
+      "returncode": 0,
+      "invalid_diagnostics": [],
+      "elapsed": 35.5636932849884,
+      "fixture_sha256": "2c48dd3677d08e3770ba9063712fd04f12b09aba30b2c16b96c69b0d316d7b67",
+      "fixture": "import PermanssonResearch.Perturbation.RegenerativeOccupationFactorization\nimport PermanssonResearch.Perturbation.RegenerativeOccupationProperty\nimport PermanssonResearch.Perturbation.RegenerativeData\n\n/-! All four original typed path laws, with the same predeclared descriptor,\nnumeric limit functional and fallback, and the original full margin theorem. -/\n\nopen MeasureTheory ProbabilityTheory TopologicalSpace\nopen scoped NNReal BoundedContinuousFunction\nnamespace PermanssonResearch.AcceptanceFourFactors\nopen PermanssonResearch.Perturbation.RegenerativeFactorization\nopen PermanssonLean PermanssonLean.RegimeSpecification MultipleLimit.FiniteCanonicalPath\nopen PermanssonResearch.Probability\nopen PermanssonResearch.Perturbation.RegenerativeOccupationProperty\nset_option autoImplicit false\nattribute [local instance] StrategicWorldModel.inducedKernel_isMarkov\n\nvariable {S X A V : Type*}\nvariable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]\nvariable [MetricSpace S] [MetricSpace X] [BorelSpace S] [BorelSpace X]\nvariable [SeparableSpace S] [SeparableSpace X] [StandardBorelSpace S] [StandardBorelSpace X]\nvariable [Nonempty S] [Nonempty X]\nvariable [MetricSpace V] [MeasurableSpace V] [BorelSpace V] [SeparableSpace V]\n\ntheorem positive_control (M Mt : StrategicWorldModel S X A)\n    {FType FtType : Type*} (F : InterventionFamily M FType) (Ft : InterventionFamily Mt FtType)\n    (J : AdmissibleStrategicIntervention F) (Jt : AdmissibleStrategicIntervention Ft)\n    (D₀ : Data M.inducedKernel) (Dₜ : Data Mt.inducedKernel)\n    (DJ : Data J.intervention.apply.inducedKernel) (DJt : Data Jt.intervention.apply.inducedKernel)\n    {h : JointState S X → V} (hh : Continuous h) (fallback : ProbabilityMeasure V)\n    (Φ : ProbabilityMeasure V →ᵇ ℝ) (y : JointState S X) :\n    baselinePropertyValue (property h fallback Φ) M y = Φ (D₀.stationary.map h) ∧\n    intervenedPropertyValue (property h fallback Φ) J.intervention y = Φ (DJ.stationary.map h) ∧\n    baselinePropertyValue (property h fallback Φ) Mt y = Φ (Dₜ.stationary.map h) ∧\n    intervenedPropertyValue (property h fallback Φ) Jt.intervention y = Φ (DJt.stationary.map h) := by\n  exact four_actual_factorizations M Mt F Ft J Jt D₀ Dₜ DJ DJt hh fallback Φ y\nend PermanssonResearch.AcceptanceFourFactors\n",
+      "compiler_output": "warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it\n"
+    },
+    "missing_fourth_data": {
+      "status": "REJECTED_INTERFACE_GATE",
+      "returncode": 1,
+      "invalid_diagnostics": [],
+      "elapsed": 31.102579593658447,
+      "fixture_sha256": "20985d3c6661a9dd35d7e87819c4191978fd8add8b2fbbb6a4b8baa2e6a9bc59",
+      "fixture": "import PermanssonResearch.Perturbation.RegenerativeOccupationFactorization\nimport PermanssonResearch.Perturbation.RegenerativeOccupationProperty\nimport PermanssonResearch.Perturbation.RegenerativeData\n\n/-! All four original typed path laws, with the same predeclared descriptor,\nnumeric limit functional and fallback, and the original full margin theorem. -/\n\nopen MeasureTheory ProbabilityTheory TopologicalSpace\nopen scoped NNReal BoundedContinuousFunction\nnamespace PermanssonResearch.AcceptanceFourFactors\nopen PermanssonResearch.Perturbation.RegenerativeFactorization\nopen PermanssonLean PermanssonLean.RegimeSpecification MultipleLimit.FiniteCanonicalPath\nopen PermanssonResearch.Probability\nopen PermanssonResearch.Perturbation.RegenerativeOccupationProperty\nset_option autoImplicit false\nattribute [local instance] StrategicWorldModel.inducedKernel_isMarkov\n\nvariable {S X A V : Type*}\nvariable [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]\nvariable [MetricSpace S] [MetricSpace X] [BorelSpace S] [BorelSpace X]\nvariable [SeparableSpace S] [SeparableSpace X] [StandardBorelSpace S] [StandardBorelSpace X]\nvariable [Nonempty S] [Nonempty X]\nvariable [MetricSpace V] [MeasurableSpace V] [BorelSpace V] [SeparableSpace V]\n\ntheorem missing_fourth_data (M Mt : StrategicWorldModel S X A)\n    {FType FtType : Type*} (F : InterventionFamily M FType) (Ft : InterventionFamily Mt FtType)\n    (J : AdmissibleStrategicIntervention F) (Jt : AdmissibleStrategicIntervention Ft)\n    (D₀ : Data M.inducedKernel) (Dₜ : Data Mt.inducedKernel)\n    (DJ : Data J.intervention.apply.inducedKernel) (DJt : Data Jt.intervention.apply.inducedKernel)\n    {h : JointState S X → V} (hh : Continuous h) (fallback : ProbabilityMeasure V)\n    (Φ : ProbabilityMeasure V →ᵇ ℝ) (y : JointState S X) :\n    baselinePropertyValue (property h fallback Φ) M y = Φ (D₀.stationary.map h) ∧\n    intervenedPropertyValue (property h fallback Φ) J.intervention y = Φ (DJ.stationary.map h) ∧\n    baselinePropertyValue (property h fallback Φ) Mt y = Φ (Dₜ.stationary.map h) ∧\n    intervenedPropertyValue (property h fallback Φ) Jt.intervention y = Φ (DJt.stationary.map h) := by\n  exact four_actual_factorizations M Mt F Ft J Jt D₀ Dₜ DJ hh fallback Φ y\nend PermanssonResearch.AcceptanceFourFactors\n",
+      "compiler_output": "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\PermanssonLean-paper-closures\\.lake\\acceptance-evidence\\A04_missing_fourth_data.lean:36:59: error: Application type mismatch: The argument\n  hh\nhas type\n  Continuous h\nof sort `Prop` but is expected to have type\n  Data Jt.intervention.apply.inducedKernel\nof sort `Type (max u_1 u_2)` in the application\n  @four_actual_factorizations S X A ?m.238 inst✝¹⁶ inst✝¹⁵ inst✝¹⁴ ?m.242 ?m.243 ?m.244 ?m.245 ?m.246 ?m.247 ?m.248\n    ?m.249 ?m.250 ?m.251 ?m.252 ?m.253 ?m.254 ?m.255 M Mt FType FtType F Ft J Jt D₀ Dₜ DJ hh\nwarning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it\n"
+    }
+  },
+  "status": "PASS"
+}

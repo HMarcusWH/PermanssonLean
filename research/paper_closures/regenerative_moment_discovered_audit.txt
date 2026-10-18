@@ -1,0 +1,1 @@
+A-FACTOR-REGEN-MOMENT axiom/source audit PASS: 113 declarations; .lake/closure-build/unittest-regenerative-moment-receipt.json

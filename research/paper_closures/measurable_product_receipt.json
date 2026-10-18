@@ -1,0 +1,305 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/MultiAgent/MeasurableFiniteProduct.lean": {
+      "sha256": "36babffa63878708fb8289bedf06b617032bbfd2cba48c71bfb60a96358a7c7a",
+      "artifact_sha256": "45babfed2147fac73ebaf3c7cbda9afe1bf157be17a15b3ffe9d58a08aaa706d",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.MeasurableFiniteProduct",
+        "started": 1792298750.4066515,
+        "elapsed": 29.401638507843018,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "36babffa63878708fb8289bedf06b617032bbfd2cba48c71bfb60a96358a7c7a"
+      }
+    },
+    "PermanssonResearch/MultiAgent/MeasurableProductProtocols.lean": {
+      "sha256": "9894c87e9c92af3b16cfd26b7776c51c45a7bbf29bebfa01a97c58756fcc7117",
+      "artifact_sha256": "93f87e8cdc4989f0e034564987714b422df9dea02a06717f51b41354e67cce3f",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.MeasurableProductProtocols",
+        "started": 1792298779.8372173,
+        "elapsed": 25.986066341400146,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "9894c87e9c92af3b16cfd26b7776c51c45a7bbf29bebfa01a97c58756fcc7117"
+      }
+    },
+    "PermanssonResearch/MultiAgent/MeasurableProductRegression.lean": {
+      "sha256": "e5dcb8a80230bcdd563a584c103b268883c73ec425f2fe37e5e074d04a591c4d",
+      "artifact_sha256": "2dbfcf7f7843454e81b172a374458344a1cb5e5514e275f56b07994df6a67a10",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.MeasurableProductRegression",
+        "started": 1792298805.8457205,
+        "elapsed": 41.65046215057373,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "e5dcb8a80230bcdd563a584c103b268883c73ec425f2fe37e5e074d04a591c4d"
+      }
+    }
+  },
+  "module_list": [
+    "MultiAgent.MeasurableFiniteProduct",
+    "MultiAgent.MeasurableProductProtocols",
+    "MultiAgent.MeasurableProductRegression"
+  ],
+  "declaration_count": 48,
+  "declarations": {
+    "PermanssonResearch.MultiAgent.MeasurableProduct.measurable_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.productKernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_cylinder": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.actionKernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.actionKernel_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.privateUpdateKernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.privateUpdateKernel_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.assemble": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.model": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.action_apply": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.update_apply": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.actual_transition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.assemble_eq_finite": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.model_eq_finite": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.openLoop": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop_treated": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop_other": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.openLoop_treated": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.openLoop_other": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.protocolFamily": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.closedLoopIntervention": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.openLoopIntervention": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.protocol_world_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.original_margin_comparison": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.S": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.Y": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.A": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.component": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.baseline": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.anchors": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.replacement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.actionZeroCylinder": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl_action_zero_cylinder": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol_action_zero_cylinder": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.actual_action_laws_distinct": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.treatedCylinder": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl_treated_action": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol_treated_action": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.replacement_update": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.common_and_world_preserved": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.empty_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "9a2f0094291eca5114cce3e8f92135e92f3b2478afeea2e5a558152be00059f8",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/measurable_product_signatures_axioms.txt",
+    "sha256": "9a2f0094291eca5114cce3e8f92135e92f3b2478afeea2e5a558152be00059f8"
+  }
+}

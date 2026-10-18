@@ -1,0 +1,387 @@
+{
+  "unit": "A-KR-POLISH-first-moment",
+  "source_scope": [
+    "PermanssonResearch/Probability/FirstMomentQuantization.lean",
+    "PermanssonResearch/Probability/FiniteLipschitzExtension.lean",
+    "PermanssonResearch/Probability/FinitePartitionMeasure.lean",
+    "PermanssonResearch/Probability/FinitePartitionCoupling.lean",
+    "PermanssonResearch/Probability/FirstMomentKantorovichDuality.lean",
+    "PermanssonResearch/Probability/FirstMomentTransportRegression.lean"
+  ],
+  "source_sha256": {
+    "PermanssonResearch/Probability/FirstMomentQuantization.lean": "975e670667101a3599e088d843d0d23edc95b297edc4dac10872302d2a27837b",
+    "PermanssonResearch/Probability/FiniteLipschitzExtension.lean": "0f9e4f42240c7032fa2510ba189a9b45768d953794bd42c545ee621db0a6624c",
+    "PermanssonResearch/Probability/FinitePartitionMeasure.lean": "c6428fe30c617838916eb6b7c6f10d544970ccd1d1dcf01d42b69ea9f2b2f8dd",
+    "PermanssonResearch/Probability/FinitePartitionCoupling.lean": "36342322f7014e325123dfc64d19ab896f49cb3690b94f06960ab31db0c77669",
+    "PermanssonResearch/Probability/FirstMomentKantorovichDuality.lean": "0fe9b650f209f09d6cdf040d5f8cede580bd15ce3d4478bf4d8811b73593da0e",
+    "PermanssonResearch/Probability/FirstMomentTransportRegression.lean": "740584e2661342b36ef19dd7197d4138539f0b0ba4dc12511d87afa602537911"
+  },
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "declaration_count": 72,
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "declarations": {
+    "PermanssonResearch.Probability.FirstMomentQuantization.nearestIndex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.nearestIndex_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.nearest_distance_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.nearest_error_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.nearestIndex_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.boundedIndex": [
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.finiteIndex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.finiteIndex_val": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.finiteIndex_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.centers": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.centers_dense": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.center": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.quantizer": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.quantizer_eq_nearest": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.quantizer_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.error_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.error_le_first_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.error_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.error_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.error_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentQuantization.integral_error_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.raw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.raw_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.raw_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.raw_center": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.radius": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.radius_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.value_le_radius": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.extension": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.extension_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.extension_bounded": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.extension_center": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.extension_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.extension_isKRTest": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.integral_extension_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteLipschitzExtension.finite_pushforward_dual_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.cell_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.normalizedCell": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.normalizedCell_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.cell_mass_smul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.sum_cell_restrict": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.liftLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.liftLaw_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.liftLaw_first": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.liftLaw_second": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.weight_zero_of_left_cell_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.weight_zero_of_right_cell_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.normalizedCell_ae": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.centerCost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.error_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.centerCost_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.error_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.centerCost_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.distance_integrable_of_marginals": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.coupling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.liftLaw_centerCost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.cost_le_centerCost_and_errors": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.exists_finite_partition_coupling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentKR.exists_approximate_coupling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.firstMoment_couplingW1_le_of_w1DualLE": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.firstMoment_coupling_nonempty": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.firstMoment_w1DualLE_couplingW1": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.firstMoment_w1DualLE_iff_couplingW1_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.firstMoment_couplingW1_eq_dual_supremum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentTransportRegression.quantizer_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentTransportRegression.error_at_anchor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentTransportRegression.equal_firstMoment_laws_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentTransportRegression.real_dirac_distance_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentTransportRegression.real_bound_two_rejected": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FinitePartition.cell": []
+  },
+  "audit_source_sha256": "3c1b700a5ee562c729c2d96e76995522501e84eb1ea0fd16705a6b978f4ab50f",
+  "audit_stdout_sha256": "7505c3d1aab1190dae4d2e025443dc07444358b4c86433f76166adb49223fa89",
+  "compiler_returncode": 0,
+  "status": "PASS",
+  "residual": "Original coupling-infimum/KR-test supremum identification for arbitrary probability laws with finite first moments on a separable Borel pseudometric space; in particular the usual first-moment Polish metric profile. Quantizers, bounded finite extensions, normalized restricted-cell product lifts, exact marginals and cost integrability are constructed. General optimal-coupling attainment and actual first-moment-space completeness are separate from this infimum-identification theorem."
+}

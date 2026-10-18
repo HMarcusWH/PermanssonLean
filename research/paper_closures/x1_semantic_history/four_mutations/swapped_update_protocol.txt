@@ -1,0 +1,41 @@
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\swapped_update_protocol.lean:25:26: error: Tactic `rfl` failed: The left-hand side
+  (protocolModel m false true).generator.action
+is not definitionally equal to the right-hand side
+  if false = true then restrainAction else action m
+
+case false.true
+m : Mode
+⊢ (protocolModel m false true).generator.action = if false = true then restrainAction else action m
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\swapped_update_protocol.lean:29:26: error: Tactic `rfl` failed: The left-hand side
+  (protocolModel m false true).generator.update
+is not definitionally equal to the right-hand side
+  if true = true then resetUpdate else update m
+
+case false.true
+m : Mode
+⊢ (protocolModel m false true).generator.update = if true = true then resetUpdate else update m
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\swapped_update_protocol.lean:55:31: warning: This simp argument is unused:
+  sum_bool
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrainAction, Kernel.deterministic_apply, InterventionNumerics.rates, Fintype.sum_prod_type, boolMass]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\swapped_update_protocol.lean:89:23: warning: This simp argument is unused:
+  Measure.dirac_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Set.indicator, boolMass, mul_ite, add_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\swapped_update_protocol.lean:98:14: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\swapped_update_protocol.lean:121:2: error: Type mismatch
+  protocol_atom_eq m false true y z
+has type
+  ((protocolModel m false true).inducedKernel y) {z} =
+    ENNReal.ofReal ↑(InterventionNumerics.entry (learnerFlag m) false true y z)
+but is expected to have type
+  ((Jupdate m).intervention.apply.inducedKernel y) {z} =
+    ENNReal.ofReal ↑(InterventionNumerics.entry (learnerFlag m) false true y z)

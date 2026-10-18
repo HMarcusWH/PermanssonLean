@@ -1,0 +1,1064 @@
+{
+  "format": "Permansson.PaperClosureContracts.v1",
+  "source_commit": "39279799834ae536bda715dedecdc11a32bf6c82",
+  "scope": "42 source-atlas entries, explicit selected mathematical targets; all new formal statuses unverified",
+  "count": 42,
+  "topological_order": [
+    "X1-N01",
+    "X1-N02",
+    "X1-N03",
+    "X1-S01",
+    "F1-MA2",
+    "E1-G01",
+    "A3-K01",
+    "A3-C01",
+    "A3-I01",
+    "A3-F01",
+    "A3-P01",
+    "D2-R01",
+    "A2-P01",
+    "A2-P02",
+    "E1-P01",
+    "E1-P02",
+    "F1-P01",
+    "F1-P02",
+    "F1-P03",
+    "F1-P04",
+    "F1-P05",
+    "F1-P06",
+    "F1-P07",
+    "D2-P01",
+    "D2-P02",
+    "D2-P03",
+    "D2-P04",
+    "D2-P05",
+    "D2-P06",
+    "D2-P07",
+    "B-P01",
+    "D2-P08",
+    "C11-P01",
+    "D2-P09",
+    "C-P01",
+    "B-P02",
+    "X1-P01",
+    "APP-E01",
+    "APP-E02",
+    "APP-E03",
+    "APP-E04",
+    "APP-E05"
+  ],
+  "contracts": [
+    {
+      "atlas_id": "X1-N01",
+      "atlas_level": "I",
+      "title": "Actual intervention atom reification",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "The exact accepted two modes and baseline/action/update/joint variants; every pair of eighteen states.",
+      "chapter": "chapters/01_x1.md",
+      "paper_theorem_ids": [
+        "X-ATOM"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/X1/InterventionNumerics.lean",
+        "PermanssonResearch/X1/InterventionNumericalBridge.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "X1.TypedModels.inducedKernel_atom_entry proves baseline typed atoms; Comparison.lean defines Jaction/Jupdate/Jjoint",
+      "source_references_as_supplied": "PermanssonResearch/X1/TypedModels.lean; PermanssonResearch/X1/Comparison.lean",
+      "mandatory_hypotheses_as_supplied": "Identical physical P; alpha-P-U order; old-world learner update; reset affects next memory only.",
+      "acceptance_and_falsifiers": "Corrupt world row, old/new-world update order, action timing, reset, and intervention name; proof must be tied to typed J.",
+      "residual_scope": "None inside the fixed finite atom target; general intervention families are not claimed."
+    },
+    {
+      "atlas_id": "X1-N02",
+      "atlas_level": "I",
+      "title": "Finite-horizon rational reflection",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "All-horizon rational-to-actual terminal evaluation; checked literal tables at horizons zero through three.",
+      "chapter": "chapters/01_x1.md",
+      "paper_theorem_ids": [
+        "X-DP",
+        "X-TABLE"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/X1/InterventionNumericalBridge.lean",
+        "PermanssonResearch/X1/ExactTerminalTables.lean"
+      ],
+      "atlas_dependencies_as_supplied": "X1-N01",
+      "selected_build_dependencies": [
+        "X1-N01"
+      ],
+      "existing_foundation_as_supplied": "FiniteOutputs.lean proves primitiveTerminal_eq_kernelTerminal for baseline, and baselineProperty_eq_kernelTerminal for all typed models",
+      "source_references_as_supplied": "PermanssonResearch/X1/FiniteOutputs.lean",
+      "mandatory_hypotheses_as_supplied": "Same predeclared property P(X_3=true), terminal re-entry allowed; no killed-kernel substitution.",
+      "acceptance_and_falsifiers": "18-state exhaustive exact rational row checks; perturb one value / wrong horizon; compare to independent Python paths.",
+      "residual_scope": "No arbitrary external JSON decoder or approximate arithmetic correctness theorem."
+    },
+    {
+      "atlas_id": "X1-N03",
+      "atlas_level": "I",
+      "title": "All six original numerical margins",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Six original constitutiveMargin equalities on all nine starts with lower bounds and attaining starts.",
+      "chapter": "chapters/01_x1.md",
+      "paper_theorem_ids": [
+        "X-MARGIN"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/X1/ExactMargins.lean"
+      ],
+      "atlas_dependencies_as_supplied": "X1-N02",
+      "selected_build_dependencies": [
+        "X1-N02"
+      ],
+      "existing_foundation_as_supplied": "constitutiveEffect_eq_finiteEffect and constitutiveMargin_eq_finiteInf prove exact semantic correspondence",
+      "source_references_as_supplied": "PermanssonResearch/X1/FiniteOutputs.lean; docs/LANE_X1_COMMONS.md",
+      "mandatory_hypotheses_as_supplied": "Entire nine-start comparison B1; show lower bounds at all starts and attainment at a genuine start; no Exact-GR/PR promotion.",
+      "acceptance_and_falsifiers": "Exact negatives for dropping one start; show E all starts tie; learner minima q=(0,0) for action/joint, q=(2,2) for update.",
+      "residual_scope": "No Exact-GR/PR promotion; the old replete region remains leaky."
+    },
+    {
+      "atlas_id": "X1-S01",
+      "atlas_level": "I",
+      "title": "Unrestricted discounted-strategy verification",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Bounded finite discounted stochastic games, arbitrary nonanticipating behavioral unilateral deviations, independent current opponent draw.",
+      "chapter": "chapters/02_strategies.md",
+      "paper_theorem_ids": [
+        "S-TRACE",
+        "S-VERIFY",
+        "S-X1"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/StrategicWorld/ActionTrace.lean",
+        "PermanssonResearch/Games/DiscountedVerification.lean",
+        "PermanssonResearch/X1/FullStrategyCertificate.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "MPECertificate.lean proves both-player Bellman, pure/mixed one-shot, support; typed E uses same world",
+      "source_references_as_supplied": "PermanssonResearch/X1/MPECertificate.lean; docs/LANE_X1_COMMONS.md",
+      "mandatory_hypotheses_as_supplied": "Fix observed information incl state/action histories; bounded rewards, beta=9/10, opponent baseline fixed, off-equilibrium starts, stage payoff availability (actions not on state path).",
+      "acceptance_and_falsifiers": "Finite-horizon Bellman dominance telescopes; tail bound; optimality for every allowed policy and both players; failure of unbounded or clairvoyant strategies outside class.",
+      "residual_scope": "Clairvoyant/correlated-current-noise, risk-sensitive or strategic-world-changing deviations are excluded."
+    },
+    {
+      "atlas_id": "F1-MA2",
+      "atlas_level": "I",
+      "title": "Strict opponent-locked MA2 feasibility and resolution",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite autonomous strict anchors with full baseline-supported action/update agreement; separately standard-Borel all-time AE extension.",
+      "chapter": "chapters/03_autonomy.md",
+      "paper_theorem_ids": [
+        "M-DATA",
+        "M-AUTONOMY",
+        "M-CLOSURE",
+        "M-NOSEPARATION"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/MultiAgent/AutonomousKey.lean",
+        "PermanssonResearch/MultiAgent/AutonomousSupportClosure.lean",
+        "PermanssonResearch/MultiAgent/StrictMA2Obstruction.lean",
+        "PermanssonResearch/MultiAgent/AutonomousAEMechanisms.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "ProtocolWitnesses.lean proves broader nonstrict anchor example, strict MA1, and a deterministic-recording obstruction",
+      "source_references_as_supplied": "PermanssonResearch/MultiAgent/Protocols.lean; docs/LANE_F1_MULTIAGENT_PROTOCOLS.md",
+      "mandatory_hypotheses_as_supplied": "Anchor factorization through own S2 and permissible exogenous S0; common update cannot launder treated action; baseline-support agreement and reachable states exact.",
+      "acceptance_and_falsifiers": "Reject reactive anchorWorld, endogenous public clock, baseline-support undercoverage and inadmissible anchors; distinguish witness from impossibility proof.",
+      "residual_scope": "Impossibility is scoped to these exact information and agreement premises; arbitrary measurable targets and weaker agreement are not universally resolved."
+    },
+    {
+      "atlas_id": "E1-G01",
+      "atlas_level": "I",
+      "title": "Geometric projected-prefix TV envelope",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite spaces or measurable kernel common-mass and jointly measurable Radon-Nikodym lift profile; every fine row.",
+      "chapter": "chapters/04_robustness.md",
+      "paper_theorem_ids": [
+        "Q-LIFT",
+        "Q-GEOMETRIC"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Probability/ProjectedCommonSubkernel.lean",
+        "PermanssonResearch/Quotient/GeometricPrefix.lean",
+        "PermanssonResearch/Quotient/GeometricMargin.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "ApproxPrefix.lean proves TV_T<=min(1,T*eta); EventTVCalculus covers triangle/product operations",
+      "source_references_as_supplied": "PermanssonResearch/Quotient/ApproxPrefix.lean; docs/LANE_E1_APPROX_QUOTIENT.md",
+      "mandatory_hypotheses_as_supplied": "Defect bounds on every fine row incl counterfactual-reachable; typed q, matched starts; do not assume projected process is Markov.",
+      "acceptance_and_falsifiers": "Counterexample for non-Markov fine projection, eta=0/1, and vacuous horizons; prove common-mass measurability, not just analytic telescoping.",
+      "residual_scope": "Arbitrary measurable spaces without the stated density/common-kernel bridge remain outside the proof."
+    },
+    {
+      "atlas_id": "A3-K01",
+      "atlas_level": "I",
+      "title": "Coupling W1 = Lipschitz-dual bridge",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite metric probabilities; larger complete separable Borel space with finite first moments and explicit finite quantization proof.",
+      "chapter": "chapters/05_long_run.md",
+      "paper_theorem_ids": [
+        "A-KR-FIN",
+        "A-KR-POLISH"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Probability/FiniteKantorovichDuality.lean",
+        "PermanssonResearch/Probability/FirstMomentDuality.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "ContractiveOccupation.lean proves bounds for W1DualLE over bounded measurable 1-Lipschitz tests",
+      "source_references_as_supplied": "PermanssonResearch/Perturbation/ContractiveOccupation.lean; docs/LANE_A3_CONTRACTIVE.md",
+      "mandatory_hypotheses_as_supplied": "Add appropriate Polish/Radon/finite first-moment premises; handle unbounded metrics without silently requiring global sup-norm <=1.",
+      "acceptance_and_falsifiers": "Atomic finite examples; metric test classes; no false TV-to-W1 equivalence on unbounded metrics.",
+      "residual_scope": "No equality for arbitrary sigma-algebras, no implicit first moments or supnorm-one replacement."
+    },
+    {
+      "atlas_id": "A3-I01",
+      "atlas_level": "I",
+      "title": "Invariant-law existence and uniqueness",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Contraction preserving first-moment probabilities on a complete separable metric space; finite shortcut also specified.",
+      "chapter": "chapters/05_long_run.md",
+      "paper_theorem_ids": [
+        "A-COMPLETE",
+        "A-INVARIANT"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Probability/FirstMomentCompleteness.lean",
+        "PermanssonResearch/Perturbation/ContractiveInvariantConstruction.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [
+        "A3-K01",
+        "A3-C01"
+      ],
+      "existing_foundation_as_supplied": "Existing contraction assumes invariant pi and pi-tilde and finite initial dual gap",
+      "source_references_as_supplied": "docs/LANE_A3_CONTRACTIVE.md",
+      "mandatory_hypotheses_as_supplied": "No existence from invariance identity alone; decide whether both compared kernels contract or only baseline K does.",
+      "acceptance_and_falsifiers": "Identity/multiclass countermodels without hypotheses; chain convergence with independently established invariant law.",
+      "residual_scope": "Only uniqueness within the declared class; perturbed invariant uniqueness needs its own sufficient condition."
+    },
+    {
+      "atlas_id": "A3-C01",
+      "atlas_level": "I",
+      "title": "Primitive or sufficient-condition contraction certificates",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Direct bounded-Lipschitz row criterion giving the exact existing global dual predicate; finite Dobrushin and metric row-coupling certificates.",
+      "chapter": "chapters/05_long_run.md",
+      "paper_theorem_ids": [
+        "A-CONTRACT"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Perturbation/ContractionCertificates.lean"
+      ],
+      "atlas_dependencies_as_supplied": "A3-K01 for coupling interpretation",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "ContractivePerturbation assumes IsW1Contraction; current A3 proof does not derive it",
+      "source_references_as_supplied": "docs/V020_IMPLEMENTATION_INDEX.md#A3",
+      "mandatory_hypotheses_as_supplied": "TV contraction does not imply unqualified W1 contraction on unbounded metrics; include diameter or direct metric bound.",
+      "acceptance_and_falsifiers": "Small finite kernels that do/not contract; check rho<1 as proved data, not relabeled input.",
+      "residual_scope": "Does not need general KR for the direct dual result; unbounded metrics cannot silently use a TV coefficient."
+    },
+    {
+      "atlas_id": "A3-F01",
+      "atlas_level": "I",
+      "title": "Four genuine full-path ergodic factorizations",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Explicit occupation-limit functional, four actual finite unique-class kernels; separate regenerative Polish profile with added moment conditions.",
+      "chapter": "chapters/05_long_run.md",
+      "paper_theorem_ids": [
+        "A-FACTOR-FIN",
+        "A-FACTOR-REGEN"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Perturbation/OccupationPropertyFactorization.lean",
+        "PermanssonResearch/MultipleLimit/RegenerativeOccupation.lean"
+      ],
+      "atlas_dependencies_as_supplied": "A3-I01; appropriate occupation convergence",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "occupationMargin_robust assumes all four psi(pathLaw_y)=F(h_#pi) identities on B1",
+      "source_references_as_supplied": "PermanssonResearch/Perturbation/ContractiveOccupation.lean; docs/LANE_A3_CONTRACTIVE.md",
+      "mandatory_hypotheses_as_supplied": "Correct start quantifiers, measurable Lipschitz descriptor and property functional; do not infer path values from invariant laws without ergodicity.",
+      "acceptance_and_falsifiers": "Mixed-class and nonergodic counterexample; four-process exhaustive hypotheses and direct original property equality.",
+      "residual_scope": "Not factorization of every arbitrary preexisting property; regeneration/analytic prerequisites remain explicit."
+    },
+    {
+      "atlas_id": "A3-P01",
+      "atlas_level": "I",
+      "title": "Primitive metric kernel error to W1 defect",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Weighted product metric and conditional stage couplings with declared action/world/update errors and Lipschitz sensitivities.",
+      "chapter": "chapters/05_long_run.md",
+      "paper_theorem_ids": [
+        "A-PRIMITIVE"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Perturbation/PrimitiveMetricBounds.lean"
+      ],
+      "atlas_dependencies_as_supplied": "A3-K01 for coupling form; A2 primitive laws",
+      "selected_build_dependencies": [
+        "A3-C01"
+      ],
+      "existing_foundation_as_supplied": "A2 derives primitive row event-TV; KantorovichTV.lean ALREADY proves bounded-diameter dual W1 <= D*TV and unbounded-metric noncontrol; A3 assumes row W1DualLE defects",
+      "source_references_as_supplied": "docs/PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md",
+      "mandatory_hypotheses_as_supplied": "Changed P across compared models is model error, not a strategic intervention within each model; no universal TV to W1 on unbounded metrics.",
+      "acceptance_and_falsifiers": "Degenerate/large-diameter counterexamples, off-graph and unreachable baseline rows, stage-order mutation.",
+      "residual_scope": "Coupling interpretation uses KR when needed; bounded-diameter TV wrapper reuses existing theorem without that dependency."
+    },
+    {
+      "atlas_id": "D2-R01",
+      "atlas_level": "I",
+      "title": "Augmented-state residence Bellman sufficiency",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite fully observed known rational controlled process and literal retryable residence event.",
+      "chapter": "chapters/06_solver.md",
+      "paper_theorem_ids": [
+        "D-MONITOR",
+        "D-RESIDENCE"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ReverseSolver/FiniteMonitor.lean",
+        "PermanssonResearch/ReverseSolver/MonitorHistoryBridge.lean",
+        "PermanssonResearch/ReverseSolver/MonitorOptimality.lean",
+        "PermanssonResearch/ReverseSolver/ResidenceMonitor.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "ResidenceEvent and ResidenceValue prove literal path event and optimum over deterministic full-history policies",
+      "source_references_as_supplied": "PermanssonResearch/ReverseSolver/ResidenceEvent.lean; ResidenceValue.lean; docs/D2_RESIDENCE_OBJECTIVE.md",
+      "mandatory_hypotheses_as_supplied": "m transitions = m+1 observations; starting target counts; retries; entry vs completion deadline; no physical absorbing rewrite.",
+      "acceptance_and_falsifiers": "Hitting-vs-residence counterexample; time-zero, m=0, retrial, off-by-one, full-history equality and attainment.",
+      "residual_scope": "No physical absorption or arbitrary nonlinear objective; entry and completion deadlines remain distinct."
+    },
+    {
+      "atlas_id": "A2-P01",
+      "atlas_level": "II",
+      "title": "Sharper sequential primitive product TV",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Actual ordered primitive composition with measurable common kernels at each stage and uniform stage errors.",
+      "chapter": "chapters/04_robustness.md",
+      "paper_theorem_ids": [
+        "Q-PRIMITIVE"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Perturbation/PrimitiveProductTV.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [
+        "E1-G01"
+      ],
+      "existing_foundation_as_supplied": "A2 PrimitiveTV proves capped additive delta_alpha+delta_P+delta_U",
+      "source_references_as_supplied": "docs/LANE_A2_PRIMITIVE_TV.md; docs/FUTURE_THEORY_ROADMAP.md",
+      "mandatory_hypotheses_as_supplied": "Measurable overlap at each stage under actual alpha-P-U sequence; uniform row bounds.",
+      "acceptance_and_falsifiers": "Examples saturating product; nonindependent stages; preserve off-graph rows.",
+      "residual_scope": "The shared-mass lemmas are reused; no independence of error events is assumed."
+    },
+    {
+      "atlas_id": "A2-P02",
+      "atlas_level": "II",
+      "title": "Localized/initial-law and numerical-output budgets",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Nonstationary history-kernel hybrid with initial TV and expected every-step row defects; separate baseline/intervention visit budgets.",
+      "chapter": "chapters/04_robustness.md",
+      "paper_theorem_ids": [
+        "Q-LOCAL"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ConstitutiveQuasi/LocalizedPrefixError.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "CQ1 finite path/output model-error transport is proved under stated global hypotheses",
+      "source_references_as_supplied": "PermanssonResearch/ConstitutiveQuasi/PropertyErrors.lean; docs/FUTURE_THEORY_ROADMAP.md",
+      "mandatory_hypotheses_as_supplied": "Do not silently replace true model margins by approximate reported outputs; control visit probability and initial law mismatch explicitly.",
+      "acceptance_and_falsifiers": "Counterexample with unvisited baseline row becoming intervention-reachable; adversarial initial-law shifts.",
+      "residual_scope": "Empirical identification and arbitrary numerical uncertainty are not inferred from deterministic output-error ledgers."
+    },
+    {
+      "atlas_id": "E1-P01",
+      "atlas_level": "II",
+      "title": "Nonfinite/whole-path output transport",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Summable weighted bounded finite-prefix scores; full path TV only with summable sequential error or a separately proved common-mass limit.",
+      "chapter": "chapters/04_robustness.md",
+      "paper_theorem_ids": [
+        "Q-DISCOUNT"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Quotient/DiscountedOutputTransport.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [
+        "E1-G01"
+      ],
+      "existing_foundation_as_supplied": "ApproxMargin.lean covers finite-prefix TV-Lipschitz properties only",
+      "source_references_as_supplied": "docs/PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md#7",
+      "mandatory_hypotheses_as_supplied": "Non-Lipschitz tail/survival not stable under tiny TV errors; no automatic Exact-GR preservation.",
+      "acceptance_and_falsifiers": "Leakage counterexample; horizon dependence; missing property factorization.",
+      "residual_scope": "Generic tail/survival functionals under fixed positive defect are not stable."
+    },
+    {
+      "atlas_id": "E1-P02",
+      "atlas_level": "II",
+      "title": "Conditional regime transfer under approximate quotient",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Original-margin transport with independently proved Exact-GR, grounding, comparison and convergence prerequisites on both models.",
+      "chapter": "chapters/04_robustness.md",
+      "paper_theorem_ids": [
+        "Q-REGIME"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Quotient/ConditionalRegimeTransport.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [
+        "E1-G01"
+      ],
+      "existing_foundation_as_supplied": "Frozen theorem 7.4b handles exact matching; E1 approximate preserves scoped finite margins",
+      "source_references_as_supplied": "docs/LANE_E1_APPROX_QUOTIENT.md",
+      "mandatory_hypotheses_as_supplied": "No theorem can promote Exact GR merely from eta>0 and positive margin.",
+      "acceptance_and_falsifiers": "Two-state leakage falsifier, non-saturated region, hidden descriptor, nonliftable initial laws.",
+      "residual_scope": "Small approximate defect alone cannot transfer exact invariance or full PR status."
+    },
+    {
+      "atlas_id": "F1-P01",
+      "atlas_level": "II",
+      "title": "Swap treated player to player 2",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Player-two construction and coordinate reindexing with physical kernel inputs explicitly transported.",
+      "chapter": "chapters/03_autonomy.md",
+      "paper_theorem_ids": [
+        "F-SWAP"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/MultiAgent/PlayerSwap.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "TwoPlayerGenerator and protocolFamily treat player 1 only",
+      "source_references_as_supplied": "docs/LANE_F1_MULTIAGENT_PROTOCOLS.md",
+      "mandatory_hypotheses_as_supplied": "Product coordinate swap must respect P and common S0; no silent symmetry with asymmetric player input.",
+      "acceptance_and_falsifiers": "Asymmetric worlds and private-update regression.",
+      "residual_scope": "No symmetry assumption on the actual world or rewards."
+    },
+    {
+      "atlas_id": "F1-P02",
+      "atlas_level": "II",
+      "title": "General finite n-player product protocol",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite-index conditional-product action/update kernels and selected-player protocols.",
+      "chapter": "chapters/03_autonomy.md",
+      "paper_theorem_ids": [
+        "F-N"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/MultiAgent/FiniteProductGame.lean",
+        "PermanssonResearch/MultiAgent/FinitePlayerProtocols.lean"
+      ],
+      "atlas_dependencies_as_supplied": "F1-P01 optional",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "F1.1 encodes only two-player conditional product",
+      "source_references_as_supplied": "docs/LANE_F1_MULTIAGENT_PROTOCOLS.md",
+      "mandatory_hypotheses_as_supplied": "Subclassification explicitly product-conditional; correlated moves need separate treatment.",
+      "acceptance_and_falsifiers": "Reduce to n=2 and asymmetric n=3 examples, show same P and frozen update.",
+      "residual_scope": "Not all correlated games; countably infinite products are not this target."
+    },
+    {
+      "atlas_id": "F1-P03",
+      "atlas_level": "II",
+      "title": "Typed nonstationary/open-loop clock",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "A new typed common/private clock-augmented baseline with actual clock update and projection bridge.",
+      "chapter": "chapters/03_autonomy.md",
+      "paper_theorem_ids": [
+        "F-CLOCK"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/MultiAgent/ClockedAnchors.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "Current anchor clock is Python-only; original update input has no arbitrary time schedule",
+      "source_references_as_supplied": "docs/LANE_F1_MULTIAGENT_PROTOCOLS.md",
+      "mandatory_hypotheses_as_supplied": "No access to disallowed player-1/action/world channels in strict protocol; common clock only if exogenous.",
+      "acceptance_and_falsifiers": "Period-2 action witness; static-anchor false positive; excluded endogenous clock.",
+      "residual_scope": "An endogenous common clock is not strict; the frozen baseline is not altered."
+    },
+    {
+      "atlas_id": "F1-P04",
+      "atlas_level": "II",
+      "title": "Feasible opponent-anchor menus",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite feasible menus; all-state strict feasibility iff support in each own-key fibre intersection.",
+      "chapter": "chapters/03_autonomy.md",
+      "paper_theorem_ids": [
+        "F-FEAS"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/MultiAgent/AnchorFeasibility.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "F1 declared intervention families do not encode player-action feasibility",
+      "source_references_as_supplied": "docs/LANE_F1_MULTIAGENT_PROTOCOLS.md",
+      "mandatory_hypotheses_as_supplied": "Feasible graph measured and component-wise; nonempty menus.",
+      "acceptance_and_falsifiers": "Force illegal action and reject; all legal actions give an admitted anchor.",
+      "residual_scope": "General measurable selection and arbitrary nonrectangular joint constraints require separate statements."
+    },
+    {
+      "atlas_id": "F1-P05",
+      "atlas_level": "II",
+      "title": "General nonreactivity/exogeneity characterization",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "All-point-start/all-control projected or marked kernel autonomy iff the corresponding row factorization.",
+      "chapter": "chapters/03_autonomy.md",
+      "paper_theorem_ids": [
+        "F-LUMP"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/MultiAgent/BehavioralAutonomy.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "IsStrictlyNonReactive and IsExogenousCommon give a sufficient autonomous menu",
+      "source_references_as_supplied": "PermanssonResearch/MultiAgent/Protocols.lean",
+      "mandatory_hypotheses_as_supplied": "Do not equate local nonworld-reading with absence of endogenous S0 response.",
+      "acceptance_and_falsifiers": "Path through S0 encodes treated action; random shared-coin positive example.",
+      "residual_scope": "Structural causal exogeneity is not identified from one observed law or an unmarked state process."
+    },
+    {
+      "atlas_id": "F1-P06",
+      "atlas_level": "II",
+      "title": "Correlated nonproduct strategic generators",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite joint actions represented by an explicitly sampled mediator with declared information timing.",
+      "chapter": "chapters/03_autonomy.md",
+      "paper_theorem_ids": [
+        "F-CORR"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/MultiAgent/CorrelatedMediator.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "correlatedLaw_ne_prod proves chosen correlation not product-representable",
+      "source_references_as_supplied": "docs/LANE_F1_MULTIAGENT_PROTOCOLS.md",
+      "mandatory_hypotheses_as_supplied": "No universal factorization without sufficient latent variable/state.",
+      "acceptance_and_falsifiers": "A perfectly correlated Boolean law, independence falsifier, shared exogenous coin.",
+      "residual_scope": "The mediator law is not automatically exogenous or publicly observed."
+    },
+    {
+      "atlas_id": "F1-P07",
+      "atlas_level": "II",
+      "title": "Identified causal-adaptation decomposition",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite single-mediator SCM with conditional independent noises, treatment ignorability, consistency and positivity; explicit nonidentification example.",
+      "chapter": "chapters/03_autonomy.md",
+      "paper_theorem_ids": [
+        "F-CAUSE"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Causal/FiniteMediation.lean",
+        "PermanssonResearch/Causal/AdaptationNonidentification.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "AdaptationBound establishes a metric difference, not causal mediation",
+      "source_references_as_supplied": "docs/PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md#6",
+      "mandatory_hypotheses_as_supplied": "Require modularity, support, anchor legitimacy and observational regime; never rename protocol gap causal effect.",
+      "acceptance_and_falsifiers": "Distinct SCMs with same observed law but different mediation; compare intervention semantics.",
+      "residual_scope": "Dynamic adaptation requires a separate sequential SCM and identification bridge."
+    },
+    {
+      "atlas_id": "D2-P01",
+      "atlas_level": "II",
+      "title": "Randomized-history-policy sufficiency",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Known finite fully observed expected terminal monitor reward, real behavioral probabilities, deterministic time-state maximizer.",
+      "chapter": "chapters/06_solver.md",
+      "paper_theorem_ids": [
+        "D-MONITOR"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ReverseSolver/BehavioralFinitePolicy.lean",
+        "PermanssonResearch/ReverseSolver/MonitorOptimality.lean"
+      ],
+      "atlas_dependencies_as_supplied": "D2-R01 helpful",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "D2 currently optimizes over deterministic HistoryPolicy",
+      "source_references_as_supplied": "docs/D2_RESIDENCE_OBJECTIVE.md",
+      "mandatory_hypotheses_as_supplied": "Declare behavioral randomization model and independence; avoid robust minmax where mixing helps.",
+      "acceptance_and_falsifiers": "One-model finite expected reward vs model-uncertain robust counterexample.",
+      "residual_scope": "Does not extend deterministic sufficiency to risk-constrained or hidden-model robust objectives."
+    },
+    {
+      "atlas_id": "D2-P02",
+      "atlas_level": "II",
+      "title": "First-ever-entry residence semantics",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Literal first-ever-hit-and-stay event, fixed entry deadline, irreversible failure after interrupted first run.",
+      "chapter": "chapters/06_solver.md",
+      "paper_theorem_ids": [
+        "D-FIRST"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ReverseSolver/FirstEntryResidence.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [
+        "D2-R01"
+      ],
+      "existing_foundation_as_supplied": "D2 successful run may start at any attempted visit, not necessarily first hit",
+      "source_references_as_supplied": "docs/D2_RESIDENCE_OBJECTIVE.md",
+      "mandatory_hypotheses_as_supplied": "Time-zero entry, deadlines and no retries must be explicitly defined.",
+      "acceptance_and_falsifiers": "Initial hit followed by failure and later success rejected by first-entry objective.",
+      "residual_scope": "No substitution for the existing retryable event."
+    },
+    {
+      "atlas_id": "D2-P03",
+      "atlas_level": "II",
+      "title": "Combined reach/avoid/residence optimization",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finish a target run before any danger; danger precedence at ties; separate through-horizon risk monitor.",
+      "chapter": "chapters/06_solver.md",
+      "paper_theorem_ids": [
+        "D-AVOID"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ReverseSolver/AvoidResidence.lean"
+      ],
+      "atlas_dependencies_as_supplied": "D2-R01",
+      "selected_build_dependencies": [
+        "D2-R01"
+      ],
+      "existing_foundation_as_supplied": "D2 handles residence and separately reuses goal-before-forbidden",
+      "source_references_as_supplied": "docs/D2_RESIDENCE_OBJECTIVE.md",
+      "mandatory_hypotheses_as_supplied": "Freeze whether forbidden entry before/after success counts; no accidental absorbing dynamics.",
+      "acceptance_and_falsifiers": "Cases with forbidden crossing after partial residence and simultaneous target/forbidden memberships.",
+      "residual_scope": "Other post-success risk conventions require separately named events."
+    },
+    {
+      "atlas_id": "D2-P04",
+      "atlas_level": "II",
+      "title": "Hard risk-constrained optimal policy",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite rational augmented occupancy polytope, behavioral policy reconstruction, exact vertex optimum and optional weak-dual certificate.",
+      "chapter": "chapters/06_solver.md",
+      "paper_theorem_ids": [
+        "D-LP"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ReverseSolver/OccupancyRiskLP.lean",
+        "PermanssonResearch/ReverseSolver/RationalPolytopeVertices.lean"
+      ],
+      "atlas_dependencies_as_supplied": "D2-P03; D2-P01 may be needed",
+      "selected_build_dependencies": [
+        "D2-R01",
+        "D2-P01",
+        "D2-P03"
+      ],
+      "existing_foundation_as_supplied": "D2.ORDER proves a one-decision counterexample, not general constrained optimization",
+      "source_references_as_supplied": "docs/D2_RESIDENCE_OBJECTIVE.md",
+      "mandatory_hypotheses_as_supplied": "Hard risk is distinct from failure probability and value may require randomized controls.",
+      "acceptance_and_falsifiers": "Reject unconstrained optimizer with excess risk; rational admissible optimal policy.",
+      "residual_scope": "Polynomial efficiency is not proved; more general risk functionals require new state/convexity results."
+    },
+    {
+      "atlas_id": "D2-P05",
+      "atlas_level": "II",
+      "title": "Robust dynamic programming with quantified nature",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite rectangular perfect-information nature-after-control game; separately private-control-draw stage maximin LP.",
+      "chapter": "chapters/06_solver.md",
+      "paper_theorem_ids": [
+        "D-ROBUST"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ReverseSolver/RectangularRobustControl.lean",
+        "PermanssonResearch/ReverseSolver/PrivateDrawRobustStage.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [
+        "D2-R01",
+        "D2-P04"
+      ],
+      "existing_foundation_as_supplied": "D2.ORDER separates sup_pi inf_K from inf_K sup_pi in one-shot witness",
+      "source_references_as_supplied": "docs/D2_RESIDENCE_OBJECTIVE.md",
+      "mandatory_hypotheses_as_supplied": "Nature observation/order and model switching information explicitly modeled; avoid interchanging quantifiers.",
+      "acceptance_and_falsifiers": "One-decision minmax counterexample; nonrectangular uncertainty failing local Bellman.",
+      "residual_scope": "Static hidden model commitment is not rectangular; no generic max/min interchange."
+    },
+    {
+      "atlas_id": "D2-P06",
+      "atlas_level": "II",
+      "title": "Partial observation and belief-state reduction",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite hidden augmented state including event monitors, common finite control menu, finite observations, alpha-vector optimality.",
+      "chapter": "chapters/06_solver.md",
+      "paper_theorem_ids": [
+        "D-BELIEF"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ReverseSolver/FiniteObservationFilter.lean",
+        "PermanssonResearch/ReverseSolver/BeliefMonitorOptimality.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [
+        "D2-R01"
+      ],
+      "existing_foundation_as_supplied": "D1/D2 use fully observed states/histories",
+      "source_references_as_supplied": "docs/PERMANSSON_RESEARCH_ARCHITECTURE.md#7",
+      "mandatory_hypotheses_as_supplied": "Identifiability and policy access to observations; no future observations.",
+      "acceptance_and_falsifiers": "Two histories with same observation but different hidden state; compare belief-path laws.",
+      "residual_scope": "Arbitrary belief-dependent menus, empirical identification and general infinite-horizon POMDP theory are excluded."
+    },
+    {
+      "atlas_id": "D2-P07",
+      "atlas_level": "II",
+      "title": "Finite-to-infinite reach-and-stay or viability",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite controlled infinite-safety optimum and deterministic stationary attainment; greatest controlled invariant set.",
+      "chapter": "chapters/06_solver.md",
+      "paper_theorem_ids": [
+        "D-SAFETY"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ReverseSolver/InfiniteSafety.lean",
+        "PermanssonResearch/ReverseSolver/ControlledViability.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "Finite m residence theorem does not imply infinite persistence",
+      "source_references_as_supplied": "docs/D2_RESIDENCE_OBJECTIVE.md",
+      "mandatory_hypotheses_as_supplied": "Infinite stochastic leakage invalidates naive finite-horizon limit argument.",
+      "acceptance_and_falsifiers": "Tiny-leak chain with finite residence success but infinite survival zero.",
+      "residual_scope": "General nonfinite infinite retention or finite-horizon extrapolation is not supplied."
+    },
+    {
+      "atlas_id": "D2-P08",
+      "atlas_level": "II",
+      "title": "Grammar-block adaptive control",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite certified block menus and genuine time-dependent alpha/P/U-controlled law with fixed physical P.",
+      "chapter": "chapters/06_solver.md",
+      "paper_theorem_ids": [
+        "D-BLOCK"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ReverseSolver/GrammarBlockControl.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [
+        "D2-R01",
+        "B-P01"
+      ],
+      "existing_foundation_as_supplied": "D0/D1 action selection controls only; Lane B blocks have separate admissibility",
+      "source_references_as_supplied": "docs/PERMANSSON_RESEARCH_ARCHITECTURE.md#7",
+      "mandatory_hypotheses_as_supplied": "All block constraints and P preservation maintained; no implicit policy interpretation as fixed intervention.",
+      "acceptance_and_falsifiers": "Overlapping patches rejected; synergistic joint-only test.",
+      "residual_scope": "Overlapping incompatible patches and post-draw unauthorized control choice remain inadmissible."
+    },
+    {
+      "atlas_id": "D2-P09",
+      "atlas_level": "II",
+      "title": "Optimize class-entry or asymptotic observed family",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite menu of deterministic stationary policies, exact class absorption and stationary descriptor-limit scores.",
+      "chapter": "chapters/06_solver.md",
+      "paper_theorem_ids": [
+        "D-CLASS"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ReverseSolver/StationaryClassObjective.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [
+        "C11-P01"
+      ],
+      "existing_foundation_as_supplied": "C2/C5 have recurrent class and observed-family limit laws; D2 finite goal constraints",
+      "source_references_as_supplied": "docs/PERMANSSON_RESEARCH_ARCHITECTURE.md#7",
+      "mandatory_hypotheses_as_supplied": "Asymptotic law vs finite hitting; predeclare target family and supports.",
+      "acceptance_and_falsifiers": "Same descriptor target from distinct physical classes; class weights vs occupation share.",
+      "residual_scope": "All-history asymptotic synthesis, MEC/mean-payoff objectives remain a broader unproved target."
+    },
+    {
+      "atlas_id": "C11-P01",
+      "atlas_level": "II",
+      "title": "Total generic rational stationary reference solver",
+      "paper_status": "PAPER_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "All nonempty finite rational stochastic matrices; explicit Cramer stationary family for every genuine bottom class.",
+      "chapter": "chapters/07_stationary_families.md",
+      "paper_theorem_ids": [
+        "C11-REFERENCE",
+        "C11-NULL",
+        "C11-CHECK"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/ReverseSolver/C11ReferenceStationary.lean",
+        "PermanssonResearch/ReverseSolver/C11ReferenceCompleteness.lean",
+        "PermanssonResearch/ReverseSolver/C11ReferenceTypedBridge.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "C11 checkStationaryFamily_sound and Python Gaussian solver; C10 total Cramer theorem is ALREADY PROVED",
+      "source_references_as_supplied": "PermanssonResearch/ReverseSolver/C11StationaryFamily.lean; docs/LANE_C11_CLASS_STATIONARY_CERTIFICATION.md",
+      "mandatory_hypotheses_as_supplied": "Need constructive exact stationary vectors on each BSCC, rational linear-algebra nonsingularity and proof against genuine typed stationary measures.",
+      "acceptance_and_falsifiers": "Wrong class, duplicate, missing class, singular rows, periodic class and corrupted rational weights.",
+      "residual_scope": "No verified external parser or runtime scalability claim; C10 total absorption is already proved."
+    },
+    {
+      "atlas_id": "C-P01",
+      "atlas_level": "II",
+      "title": "General-state multiple-limit classification",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Compact metric Feller cluster theorem, unique-invariant convergence, stationary/absolutely-continuous random-law extension.",
+      "chapter": "chapters/07_stationary_families.md",
+      "paper_theorem_ids": [
+        "C-CLUSTER",
+        "C-RANDOM",
+        "C-FAMILY"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/MultipleLimit/CompactFellerOccupation.lean",
+        "PermanssonResearch/MultipleLimit/StationaryRandomOccupation.lean",
+        "PermanssonResearch/MultipleLimit/ClosedFamilyRecovery.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "C2–C5 finite canonical class limits/sharp family and original Exact-GR recovery are PROVED",
+      "source_references_as_supplied": "docs/FUTURE_THEORY_ROADMAP.md#C",
+      "mandatory_hypotheses_as_supplied": "No theorem guarantees occupational convergence in arbitrary measurable or infinite-state systems.",
+      "acceptance_and_falsifiers": "Growing-block nonconvergence, noncompact escaping mass and observed-collapse countermodels.",
+      "residual_scope": "Arbitrary nonfinite/measurable all-initial-law convergence is false; noncompact tightness and conditional-law hypotheses remain explicit."
+    },
+    {
+      "atlas_id": "B-P01",
+      "atlas_level": "II",
+      "title": "Overlapping and conflicting component blocks",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite measurable row patches agreeing on every active overlap; fixed P and original typed law bridge.",
+      "chapter": "chapters/08_grammar_economic.md",
+      "paper_theorem_ids": [
+        "B-OVERLAP",
+        "B-ORDER"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/GrammarRobust/CompatibleOverlap.lean",
+        "PermanssonResearch/GrammarRobust/OverlapKernelAssembly.lean",
+        "PermanssonResearch/GrammarRobust/OverlapCanonicalBridge.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "B1–B13 verified for disjoint physical atom banks, admissible finite block grammar",
+      "source_references_as_supplied": "docs/LANE_B_PARTITION_GRAMMAR_CONSTITUTION.md",
+      "mandatory_hypotheses_as_supplied": "Do not assume independently admissible components compose under overlap.",
+      "acceptance_and_falsifiers": "Same row patched two ways, order-dependence and infeasible joined blocks.",
+      "residual_scope": "Arbitrary conflicting patches require declared priority/order semantics rather than this commutative theorem."
+    },
+    {
+      "atlas_id": "B-P02",
+      "atlas_level": "II",
+      "title": "General grammar lattice / minimality transport",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Local strict lower-set mapping/lifting with matched positivity; unique least block only under finite positive meet closure.",
+      "chapter": "chapters/08_grammar_economic.md",
+      "paper_theorem_ids": [
+        "B-LOCAL-ORDER"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/GrammarRobust/LowerSetTransport.lean",
+        "PermanssonResearch/GrammarRobust/PositiveMeetClosure.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "Current B provides order-isomorphic and refinement-specific minimality preservation plus counterexamples",
+      "source_references_as_supplied": "docs/LANE_B_PARTITION_GRAMMAR_CONSTITUTION.md",
+      "mandatory_hypotheses_as_supplied": "Do not assume uniqueness of minimal block or arbitrary bijection preserving inclusion.",
+      "acceptance_and_falsifiers": "AND two incomparable minima, XOR nonmonotonicity, equal margins yet different subblock ordering.",
+      "residual_scope": "No arbitrary bijection or coarsening preserves minimality; positivity need not be monotone."
+    },
+    {
+      "atlas_id": "X1-P01",
+      "atlas_level": "II",
+      "title": "Separate genuine economic Exact-GR/PR positive witness",
+      "paper_status": "SCOPED_DERIVATION",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "New three-world two-player constructed economic model with fair safe baseline, collapse under extraction, beta three quarters.",
+      "chapter": "chapters/08_grammar_economic.md",
+      "paper_theorem_ids": [
+        "XPLUS",
+        "XPLUS-EQ",
+        "XPLUS-GR",
+        "XPLUS-PR"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/EconomicWitness/Model.lean",
+        "PermanssonResearch/EconomicWitness/Incentives.lean",
+        "PermanssonResearch/EconomicWitness/ExactRegime.lean",
+        "PermanssonResearch/EconomicWitness/Constitution.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [
+        "X1-S01"
+      ],
+      "existing_foundation_as_supplied": "X1 proves replete B leaks and h=x constant there; Lane B has other positive constructed regime witnesses",
+      "source_references_as_supplied": "PermanssonResearch/X1/Comparison.lean; docs/LANE_X1_COMMONS.md",
+      "mandatory_hypotheses_as_supplied": "Cannot repair the fixed X1 B merely with margin arithmetic; needs new model or an independently frozen new specification.",
+      "acceptance_and_falsifiers": "Leakage, descriptor degeneracy, invalid singleton B1 and chosen ex-post region counterexamples.",
+      "residual_scope": "Not original X1, not empirical calibration or authenticated preregistration; no learner comparison is asserted."
+    },
+    {
+      "atlas_id": "APP-E01",
+      "atlas_level": "III",
+      "title": "Scalar-defect transfer",
+      "paper_status": "CONDITIONAL_TRANSFER",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite real symmetric feature discrepancy with seam invisibility, plus constant diagonal for common rank one.",
+      "chapter": "chapters/09_specialized.md",
+      "paper_theorem_ids": [
+        "E-SCALAR"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Specialized/SeamReduction.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "Finite Weil–CCM scalar-defect working paper in paper/supporting/specialized_theory",
+      "source_references_as_supplied": "paper/supporting/specialized_theory/README.md",
+      "mandatory_hypotheses_as_supplied": "Requires explicit linear/quadratic rigidity assumptions; not universal GR/PR.",
+      "acceptance_and_falsifiers": "Counterexample without rigidity; direct equality with frozen typed interventions.",
+      "residual_scope": "Actual Permansson feature-matrix identification and source-specific complex variant remain separate."
+    },
+    {
+      "atlas_id": "APP-E02",
+      "atlas_level": "III",
+      "title": "Persistent finite detection transfer",
+      "paper_status": "CONDITIONAL_TRANSFER",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Continuous quadratic form, certified legal approximants and form-preserving nested embeddings.",
+      "chapter": "chapters/09_specialized.md",
+      "paper_theorem_ids": [
+        "E-DETECT"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Specialized/FiniteDetection.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "Finite off-critical zero detection working paper",
+      "source_references_as_supplied": "paper/supporting/specialized_theory/README.md",
+      "mandatory_hypotheses_as_supplied": "No blanket finite detection for discontinuous infinite objects.",
+      "acceptance_and_falsifiers": "Failure under poor nesting/continuity.",
+      "residual_scope": "Actual legal source approximation/feature bridge and existence of a strict witness must be supplied."
+    },
+    {
+      "atlas_id": "APP-E03",
+      "atlas_level": "III",
+      "title": "First-bad cubic quotient transfer",
+      "paper_status": "CONDITIONAL_TRANSFER",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite real self-adjoint predecessor PSD block, actual shell dimension, negative shift and Schur elimination.",
+      "chapter": "chapters/09_specialized.md",
+      "paper_theorem_ids": [
+        "E-SHELL"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Specialized/ShellSchur.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "First-bad cubic rigidity working paper",
+      "source_references_as_supplied": "paper/supporting/specialized_theory/README.md",
+      "mandatory_hypotheses_as_supplied": "Scalar only if quotient dimension equals one.",
+      "acceptance_and_falsifiers": "Higher-dimensional successor counterexample.",
+      "residual_scope": "One-dimensional cubic shell and actual source intertwining are not generic; no elimination of all first-bad states."
+    },
+    {
+      "atlas_id": "APP-E04",
+      "atlas_level": "III",
+      "title": "Singular compatibility transfer",
+      "paper_status": "CONDITIONAL_TRANSFER",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Finite symmetric range/kernel compatibility; explicit preimages and denominator-free source transport identities.",
+      "chapter": "chapters/09_specialized.md",
+      "paper_theorem_ids": [
+        "E-SINGULAR",
+        "E-SOURCE"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Specialized/SingularCompatibility.lean",
+        "PermanssonResearch/Specialized/ZeroShiftSourceTransfer.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "Zero-shift source rigidity working paper",
+      "source_references_as_supplied": "paper/supporting/specialized_theory/README.md",
+      "mandatory_hypotheses_as_supplied": "Do not apply unjustified inverse/pseudoinverse.",
+      "acceptance_and_falsifiers": "Singular matrix violating range inclusion.",
+      "residual_scope": "No unjustified inverse, no nonzero Gamma conclusion, and no automatic production-source identification."
+    },
+    {
+      "atlas_id": "APP-E05",
+      "atlas_level": "III",
+      "title": "Quadratic Gram-witness transfer",
+      "paper_status": "CONDITIONAL_TRANSFER",
+      "formal_status": "NOT_LEAN_VERIFIED",
+      "selected_scope": "Signed rank-one quadratic block with positive Gram gap and an explicit operator-norm perturbation threshold.",
+      "chapter": "chapters/09_specialized.md",
+      "paper_theorem_ids": [
+        "E-GRAM"
+      ],
+      "proposed_new_modules": [
+        "PermanssonResearch/Specialized/GramSeparation.lean"
+      ],
+      "atlas_dependencies_as_supplied": "",
+      "selected_build_dependencies": [],
+      "existing_foundation_as_supplied": "Explicit Gram witness working paper",
+      "source_references_as_supplied": "paper/supporting/specialized_theory/README.md",
+      "mandatory_hypotheses_as_supplied": "Requires Gram witness and class-specific quadratic assumptions.",
+      "acceptance_and_falsifiers": "Indefinite/non-rank-one counterexample.",
+      "residual_scope": "Other PSD summands can mask the witness; actual path-feature and legal-witness realization remain separate."
+    }
+  ]
+}

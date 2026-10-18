@@ -1,0 +1,624 @@
+{
+  "unit": "A-FACTOR-REGEN-MOMENT",
+  "source_scope": [
+    "PermanssonResearch/Probability/L1Maximal.lean",
+    "PermanssonResearch/Probability/L1AverageApproximation.lean",
+    "PermanssonResearch/Probability/L1Truncation.lean",
+    "PermanssonResearch/Probability/FirstMomentEmpirical.lean",
+    "PermanssonResearch/Probability/FirstMomentTopology.lean",
+    "PermanssonResearch/Perturbation/FirstMomentOccupationProperty.lean",
+    "PermanssonResearch/Probability/FiniteQuantizationBound.lean",
+    "PermanssonResearch/Probability/FirstMomentEmpiricalConvergence.lean",
+    "PermanssonResearch/Probability/RegenerativeRenewalMass.lean",
+    "PermanssonResearch/MultipleLimit/CanonicalShiftLaw.lean",
+    "PermanssonResearch/Probability/RegenerativeMomentCondition.lean",
+    "PermanssonResearch/Probability/CesaroShiftInvariant.lean",
+    "PermanssonResearch/MultipleLimit/RegenerativeInitialTransfer.lean",
+    "PermanssonResearch/MultipleLimit/RegenerativeIntegrableAverages.lean",
+    "PermanssonResearch/MultipleLimit/RegenerativeDescriptorMoments.lean",
+    "PermanssonResearch/MultipleLimit/RegenerativeDescriptorTails.lean",
+    "PermanssonResearch/MultipleLimit/RegenerativeFirstMomentOccupation.lean",
+    "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean",
+    "PermanssonResearch/Probability/RegenerativeMomentRegression.lean"
+  ],
+  "source_sha256": {
+    "PermanssonResearch/Probability/L1Maximal.lean": "30c08a994e8b231a3f8ff287f199650cf340475ccce33bdb71b6fe3525ae82d0",
+    "PermanssonResearch/Probability/L1AverageApproximation.lean": "5560bc57560296276cb77735868e2d78dd818744e48b222728532ab7c6323311",
+    "PermanssonResearch/Probability/L1Truncation.lean": "688dbbdf1af6ea4eaa1049fd3c7c164369ae64d5db09a4327780eaa5aed512db",
+    "PermanssonResearch/Probability/FirstMomentEmpirical.lean": "c35447eb5665ac6d269ad933a67ad36d3273545b3170b752306fa1944a54b737",
+    "PermanssonResearch/Probability/FirstMomentTopology.lean": "8a11c283f718cfd164257507d27e4e7380a47a0c4c4e32fcc0e660ac54b37fc0",
+    "PermanssonResearch/Perturbation/FirstMomentOccupationProperty.lean": "96db4fde9e686c209961322522ccf987a3ed797f839966c0aa19eb7aa085234d",
+    "PermanssonResearch/Probability/FiniteQuantizationBound.lean": "5ca6397fb063b61dad502cc14b97de652cb754c41b896204a1ceda0706657f7b",
+    "PermanssonResearch/Probability/FirstMomentEmpiricalConvergence.lean": "b3b652f669a956778ed7e3dcac906cddef01d68d6e441f31f4d53143168719e5",
+    "PermanssonResearch/Probability/RegenerativeRenewalMass.lean": "986e380864aa5299c208cfcea9ced3a7dc65cdf2d6d92ff5b409dfae00c230fd",
+    "PermanssonResearch/MultipleLimit/CanonicalShiftLaw.lean": "9523e6fc680fab7761b0392a8eec3932b9cff72377d11ce6a21740079f5b1658",
+    "PermanssonResearch/Probability/RegenerativeMomentCondition.lean": "968618270943f8cf9537d3403d381ccc0fd681d03f85b4fccf3afab8850caf90",
+    "PermanssonResearch/Probability/CesaroShiftInvariant.lean": "c55bc887e189c480f751247e67321eef8cbc34a9c99796135c5bc545e8a4f163",
+    "PermanssonResearch/MultipleLimit/RegenerativeInitialTransfer.lean": "f49d9c26836d85dc1273b86a5e81cb0c5306d1335abd1379caedf17b54aebdcf",
+    "PermanssonResearch/MultipleLimit/RegenerativeIntegrableAverages.lean": "98a2aca982b72a83d8baf143e37e0a3140a9b43431057874d867cc4621e063fc",
+    "PermanssonResearch/MultipleLimit/RegenerativeDescriptorMoments.lean": "ea17902398bd94a3d799bae38ee4be9302b64b3d1727eeec3f4f5cabc853eb28",
+    "PermanssonResearch/MultipleLimit/RegenerativeDescriptorTails.lean": "765e23d74c41394a4722b581b315a08460a3d14cb5aaa115aad87a918ccaafb8",
+    "PermanssonResearch/MultipleLimit/RegenerativeFirstMomentOccupation.lean": "1b667d393432bc8bb019648b9d6aa049d9d582dc0c0759e0388e93ded4de8b24",
+    "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean": "61cc390b87458994719bb28b759b8367c8f8dc5decebaf1e8d75c48e658ae268",
+    "PermanssonResearch/Probability/RegenerativeMomentRegression.lean": "856c683e2501d5a74517d7800ef20d0e0ef5d39c36dade4a0db6f837026c93dd"
+  },
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "declaration_count": 113,
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "declarations": {
+    "PermanssonResearch.Probability.Hopf.maximalEvent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.maximalEvent_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.maximal_integral_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.maximalEvent_measure_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.average_gt_mem_maximalEvent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.average_sub_abs_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.ae_average_limit_of_L1_approximation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveTruncation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveTruncation_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveTruncation_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveTruncation_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveTruncation_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveTruncation_L1": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.positiveTruncation_integral_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.Hopf.ae_nonnegative_average_limit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.finiteSample": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.integral_finiteSample": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.finiteSample_distance_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.finiteSample_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.empirical": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_stronglyMeasurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentProbability.bounded_integral_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentProbability.probability_continuous": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentOccupation.descriptorEmpirical": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentOccupation.descriptorEmpirical_stronglyMeasurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_stronglyMeasurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_probability_weakBorel_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_default": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_of_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentOccupation.property": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentOccupation.property_integrand_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentOccupation.property_factor_of_ae_empirical_limit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.cellIndicator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.cellIndicator_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.cellIndicator_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.quantized_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.centered_quantized_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.quantized_integral_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.distance_le_quantization": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_tendsto_of_quantized_averages": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FirstMomentEmpirical.ae_empirical_tendsto_of_quantized_averages": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeRenewal.comp_mono": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeRenewal.smul_mono_measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeRenewal.comp_mixture": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeRenewal.common": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeRenewal.common_finite": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeRenewal.common_le_orbit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeRenewal.common_le_invariant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeRenewal.common_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeRenewal.orbit_tv_le_pow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.CanonicalShift.prefix_zero_eq_map_eval": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.CanonicalShift.shift_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.CanonicalShift.iterated_shift_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.CanonicalShift.kernel_comp_tv_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.CanonicalShift.canonical_tv_le_initial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMoment.RewardCondition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMoment.integrable_law_of_rewardCondition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMoment.rewardCondition_of_integrable_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.CesaroShift.positiveAverage": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.CesaroShift.positive_shift_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.CesaroShift.positive_unshift_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.CesaroShift.positive_limit_shift_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.CesaroShift.average_limit_shift_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.CesaroShift.average_limit_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeTransfer.shifted_tv_le_pow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeTransfer.ae_shiftInvariant_transfer": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeIntegrable.integral_initial_coordinate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeIntegrable.stationary_nonnegative_integrable_averages": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeIntegrable.canonical_nonnegative_integrable_averages": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeIntegrable.canonical_nonnegative_rewardCondition_averages": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.target": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.target_measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.target_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.distance_averages": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.error_averages": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.cell_averages": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_le_distance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_integral_tendsto_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_averages": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.canonical_excess_tail_uniform": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.canonical_distance_tail_uniform": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeFirstMoment.canonical_descriptor_empirical_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeFirstMoment.canonical_descriptor_weak_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeFirstMoment.occupationLimit_ae": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.RegenerativeFirstMoment.canonical_property_factor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.StateBudget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.DescriptorBudget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.stateMoment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.descriptorTarget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.descriptorTarget_measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.model_property_factor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.four_actual_factorizations": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.generated_occupationMargin_robust": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.seed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.increment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.increment_markov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.residual_orbit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.resetWalk": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.resetWalk_markov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.resetWalk_mixture": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.distance_reward_condition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.invariant_atom_positive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.invariant_unbounded_support": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.targetLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.all_initial_actual_empirical_W1": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RegenerativeMomentRegression.all_initial_distance_tail_uniform": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "audit_source_sha256": "835662351f61d3db3f5f6d4e867fe575caadf1b364702daa90fdd8c4e632f2bf",
+  "audit_stdout_sha256": "35f118e9dd18d591f6cb672b61eb59a76c05bee95bf0a722d4261fef4febe5fa",
+  "compiler_returncode": 0,
+  "status": "PASS",
+  "residual": "Genuine homogeneous nonfinite regenerative kernels with 0 <= r < 1, measurable descriptors into a complete separable Borel metric space, and an explicit finite expected absolute regenerative descriptor reward. The geometric invariant descriptor law has a derived first moment; all-initial integrable nonnegative averages, uniform empirical excess-tail control, and actual empirical W1 convergence are proved, rather than assumed. The global kernel-independent P1 occupation limit/fallback selector is strongly measurable and its projection is weak-Borel measurable. It agrees with every actual P1 empirical limit; no claim is made for a merely weak limit whose first moments do not converge. The original four typed path-law factorizations and full constitutive-margin comparison retain the global original dual-Lipschitz functional predicate, shared full comparison set, baseline contractions and every-row defects. State first moments are derived from explicit state reward budgets. The real reset-and-increment regression has an unbounded identity descriptor and positive invariant atoms arbitrarily far away."
+}

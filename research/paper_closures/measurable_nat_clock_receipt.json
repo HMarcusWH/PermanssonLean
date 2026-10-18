@@ -1,0 +1,279 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/MultiAgent/MeasurableNatPrivateClock.lean": {
+      "sha256": "3b95ae06a9eb3a6500cd6df23c291bbb865343a9fcb6508d0eca288bf74afb2a",
+      "artifact_sha256": "119518b20aca0150157b27065142f909c1ccce27fe8f3b16c71a0c2131de9ef8",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock",
+        "started": 1792303244.0823913,
+        "elapsed": 25.992767333984375,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "3b95ae06a9eb3a6500cd6df23c291bbb865343a9fcb6508d0eca288bf74afb2a"
+      }
+    },
+    "PermanssonResearch/MultiAgent/MeasurableNatClockTransport.lean": {
+      "sha256": "ad1b1eae9afeaca7ba334dd545b8d14864af9a5a8c67c796f5f487f90acbec42",
+      "artifact_sha256": "7c65f7c3a578ac350f900c0fb446c76c862290f6b6d43962e28a4b1ea845c3bc",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.MeasurableNatClockTransport",
+        "started": 1792303270.0802846,
+        "elapsed": 35.41656541824341,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "ad1b1eae9afeaca7ba334dd545b8d14864af9a5a8c67c796f5f487f90acbec42"
+      }
+    },
+    "PermanssonResearch/MultiAgent/MeasurableNatClockFixture.lean": {
+      "sha256": "c793a3886ecc064e455b951c17c55d82699ef371ca4f2223dfaf6989a7a40bbe",
+      "artifact_sha256": "a8de8024d8b7d286ad58db820b288c17206c694e1d6c8b077552accc5a7b3ef9",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.MeasurableNatClockFixture",
+        "started": 1792303305.5017571,
+        "elapsed": 31.11036229133606,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "c793a3886ecc064e455b951c17c55d82699ef371ca4f2223dfaf6989a7a40bbe"
+      }
+    }
+  },
+  "module_list": [
+    "MultiAgent.MeasurableNatPrivateClock",
+    "MultiAgent.MeasurableNatClockTransport",
+    "MultiAgent.MeasurableNatClockFixture"
+  ],
+  "declaration_count": 51,
+  "declarations": {
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_liftStrategic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_lift": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_drop": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_phase": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_dropWorld": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_dropInput": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.selectKernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.playerOne": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor_action": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor_update": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.advancing_update": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_feasibility": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_exogeneity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_strictness": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.product_attach_clock": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.action_lift": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.update_lift": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.actual_row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.actual_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.openLoop_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.succ_iterate": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_scheduled_row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.protocol_world_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.player1": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.baseline": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.scheduled_actions_differ": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.strict_schedule": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.clocked_strict": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.clock_advances": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.stalled_clock_rejected": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.full_actual_real_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState": [],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.NewState": [],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.liftStrategic": [],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift": [],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop": [],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase": [],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropWorld": [],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropInput": [],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop_lift": [],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase_lift": []
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "01326ffab56f05dedbb1249634bb73d41f0f46f41063d7a942a18ad31e9beea0",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/measurable_nat_clock_signatures_axioms.txt",
+    "sha256": "01326ffab56f05dedbb1249634bb73d41f0f46f41063d7a942a18ad31e9beea0"
+  }
+}

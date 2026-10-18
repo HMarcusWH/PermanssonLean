@@ -1,0 +1,1326 @@
+PermanssonResearch.Probability.determiningSet.{u_2} {Z : Type u_2} [MeasurableSpace.{u_2} Z]
+  [StandardBorelSpace.{u_2} Z] (q : ℚ) : Set.{u_2} Z
+'PermanssonResearch.Probability.determiningSet' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.determiningSet_measurable.{u_2} {Z : Type u_2} [MeasurableSpace.{u_2} Z]
+  [StandardBorelSpace.{u_2} Z] (q : ℚ) : MeasurableSet.{u_2} (PermanssonResearch.Probability.determiningSet.{u_2} q)
+'PermanssonResearch.Probability.determiningSet_measurable' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.probability_eq_iff_determining.{u_2} {Z : Type u_2} [MeasurableSpace.{u_2} Z]
+  [StandardBorelSpace.{u_2} Z] (μ ν : MeasureTheory.Measure.{u_2} Z) [MeasureTheory.IsProbabilityMeasure.{u_2} μ]
+  [MeasureTheory.IsProbabilityMeasure.{u_2} ν] :
+  Eq.{u_2 + 1} μ ν ↔
+    ∀ (q : ℚ),
+      Eq.{1} (μ (PermanssonResearch.Probability.determiningSet.{u_2} q))
+        (ν (PermanssonResearch.Probability.determiningSet.{u_2} q))
+'PermanssonResearch.Probability.probability_eq_iff_determining' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.measurableSet_kernel_equality.{u_1, u_2} {Y : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Z] [StandardBorelSpace.{u_2} Z]
+  (K L : ProbabilityTheory.Kernel.{u_1, u_2} Y Z) [ProbabilityTheory.IsMarkovKernel.{u_1, u_2} K]
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_2} L] :
+  MeasurableSet.{u_1} (Set.ofPred.{u_1} fun y => Eq.{u_2 + 1} (K y) (L y))
+'PermanssonResearch.Probability.measurableSet_kernel_equality' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.kernel_ae_eq_of_determining.{u_1, u_2} {Y : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Z] [StandardBorelSpace.{u_2} Z]
+  (K L : ProbabilityTheory.Kernel.{u_1, u_2} Y Z) [ProbabilityTheory.IsMarkovKernel.{u_1, u_2} K]
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_2} L] (μ : MeasureTheory.Measure.{u_1} Y)
+  (h :
+    ∀ (q : ℚ),
+      ∀ᵐ (y : Y) ∂μ,
+        Eq.{1} ((K y) (PermanssonResearch.Probability.determiningSet.{u_2} q))
+          ((L y) (PermanssonResearch.Probability.determiningSet.{u_2} q))) :
+  ⇑K =ᵐ[μ] ⇑L
+'PermanssonResearch.Probability.kernel_ae_eq_of_determining' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.kernel_ae_eq_of_measurable_evaluations.{u_1, u_2} {Y : Type u_1} {Z : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Z] [StandardBorelSpace.{u_2} Z]
+  (K L : ProbabilityTheory.Kernel.{u_1, u_2} Y Z) [ProbabilityTheory.IsMarkovKernel.{u_1, u_2} K]
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_2} L] (μ : MeasureTheory.Measure.{u_1} Y)
+  (h : ∀ (s : Set.{u_2} Z), MeasurableSet.{u_2} s → ∀ᵐ (y : Y) ∂μ, Eq.{1} ((K y) s) ((L y) s)) : ⇑K =ᵐ[μ] ⇑L
+'PermanssonResearch.Probability.kernel_ae_eq_of_measurable_evaluations' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.strategicKey.{u_1, u_2, u_3} {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3}
+  (s : PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) : Prod.{u_1, u_3} S0 S2
+'PermanssonResearch.MultiAgent.Autonomous.strategicKey' does not depend on any axioms
+PermanssonResearch.MultiAgent.Autonomous.measurable_strategicKey.{u_1, u_2, u_3} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] :
+  Measurable.{max (max u_1 u_2) u_3, max u_1 u_3} PermanssonResearch.MultiAgent.Autonomous.strategicKey.{u_1, u_2, u_3}
+'PermanssonResearch.MultiAgent.Autonomous.measurable_strategicKey' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.map_product_update.{u_1, u_2, u_3} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2]
+  (μ0 : MeasureTheory.Measure.{u_1} S0) (μ1 : MeasureTheory.Measure.{u_2} S1) (μ2 : MeasureTheory.Measure.{u_3} S2)
+  [MeasureTheory.IsProbabilityMeasure.{u_1} μ0] [MeasureTheory.IsProbabilityMeasure.{u_2} μ1]
+  [MeasureTheory.IsProbabilityMeasure.{u_3} μ2] :
+  Eq.{max (u_1 + 1) (u_3 + 1)}
+    (MeasureTheory.Measure.map.{max (max u_3 u_2) u_1, max u_3 u_1}
+      PermanssonResearch.MultiAgent.Autonomous.strategicKey.{u_1, u_2, u_3}
+      (MeasureTheory.Measure.prod.{u_1, max u_2 u_3} μ0 (MeasureTheory.Measure.prod.{u_2, u_3} μ1 μ2)))
+    (MeasureTheory.Measure.prod.{u_1, u_3} μ0 μ2)
+'PermanssonResearch.MultiAgent.Autonomous.map_product_update' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.update_key.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (i : PermanssonResearch.MultiAgent.Autonomous.Input.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2) :
+  Eq.{max (u_1 + 1) (u_3 + 1)}
+    (MeasureTheory.Measure.map.{max (max u_3 u_2) u_1, max u_3 u_1}
+      PermanssonResearch.MultiAgent.Autonomous.strategicKey.{u_1, u_2, u_3}
+      ((PermanssonLean.StrategicGenerator.update.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toGenerator.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a)))
+        i))
+    (MeasureTheory.Measure.prod.{u_1, u_3}
+      ((PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} d)
+        (PermanssonResearch.MultiAgent.commonUpdateKey.{u_1, u_2, u_3, u_4, u_5, u_6} i))
+      ((PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} d)
+        (PermanssonResearch.MultiAgent.anchorUpdateKey.{u_1, u_2, u_3, u_4, u_5, u_6} i)))
+'PermanssonResearch.MultiAgent.Autonomous.Profile.update_key' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.keyUpdate.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a) :
+  ProbabilityTheory.Kernel.{max u_6 u_3 u_1, max u_3 u_1} (Prod.{max u_3 u_1, u_6} (Prod.{u_1, u_3} S0 S2) A2)
+    (Prod.{u_1, u_3} S0 S2)
+'PermanssonResearch.MultiAgent.Autonomous.Profile.keyUpdate' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a) :
+  ProbabilityTheory.Kernel.{max u_3 u_1, max u_3 u_1} (Prod.{u_1, u_3} S0 S2) (Prod.{u_1, u_3} S0 S2)
+'PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.keyUpdate_isMarkov.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} d)] :
+  ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, max u_1 u_3}
+    (PermanssonResearch.MultiAgent.Autonomous.Profile.keyUpdate.{u_1, u_2, u_3, u_4, u_5, u_6} d)
+'PermanssonResearch.MultiAgent.Autonomous.Profile.keyUpdate_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel_isMarkov.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} d)] :
+  ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, max u_1 u_3}
+    (PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel.{u_1, u_2, u_3, u_4, u_5, u_6} d)
+'PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel_apply.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  (q : Prod.{u_1, u_3} S0 S2) {E : Set.{max u_3 u_1} (Prod.{u_1, u_3} S0 S2)} (hE : MeasurableSet.{max u_1 u_3} E) :
+  Eq.{1} (((PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel.{u_1, u_2, u_3, u_4, u_5, u_6} d) q) E)
+    (∫⁻ (b : A2),
+      (MeasureTheory.Measure.prod.{u_1, u_3}
+          ((PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} d) q.1)
+          ((PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} d)
+            (Prod.mk.{max u_1 u_3, u_6} q b)))
+        E ∂(PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} d) q)
+'PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel_apply' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.actual_key_row.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (y : PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X) :
+  Eq.{max (u_1 + 1) (u_3 + 1)}
+    (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_3 u_1}
+      PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4}
+      ((PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P))
+        y))
+    ((PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel.{u_1, u_2, u_3, u_4, u_5, u_6} d)
+      (PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4} y))
+'PermanssonResearch.MultiAgent.Autonomous.Profile.actual_key_row' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.map_compProd_key.{u_1, u_2, u_3} {Y : Type u_1} {Q : Type u_2} {A : Type u_3}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Q] [MeasurableSpace.{u_3} A] (μ : MeasureTheory.Measure.{u_1} Y)
+  [MeasureTheory.SFinite.{u_1} μ] (q : Y → Q) (hq : Measurable.{u_1, u_2} q)
+  (L : ProbabilityTheory.Kernel.{u_2, u_3} Q A) [ProbabilityTheory.IsMarkovKernel.{u_2, u_3} L] :
+  Eq.{max (u_2 + 1) (u_3 + 1)}
+    (MeasureTheory.Measure.map.{max u_3 u_1, max u_3 u_2} (Prod.map.{u_1, u_2, u_3, u_3} q id.{u_3 + 1})
+      (MeasureTheory.Measure.compProd.{u_1, u_3} μ (ProbabilityTheory.Kernel.comap.{u_2, u_3, u_1} L q hq)))
+    (MeasureTheory.Measure.compProd.{u_2, u_3} (MeasureTheory.Measure.map.{u_1, u_2} q μ) L)
+'PermanssonResearch.MultiAgent.Autonomous.map_compProd_key' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.inputMark.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  (z :
+    Prod.{max (max (max u_4 u_3) u_2) u_1, max u_4 u_6 u_5}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X)
+      (Prod.{max u_6 u_5, u_4} (Prod.{u_5, u_6} A1 A2) X)) :
+  Prod.{max u_3 u_1, u_6} (Prod.{u_1, u_3} S0 S2) A2
+'PermanssonResearch.MultiAgent.Autonomous.inputMark' does not depend on any axioms
+PermanssonResearch.MultiAgent.Autonomous.measurable_inputMark.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2] :
+  Measurable.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, max (max u_1 u_3) u_6}
+    PermanssonResearch.MultiAgent.Autonomous.inputMark.{u_1, u_2, u_3, u_4, u_5, u_6}
+'PermanssonResearch.MultiAgent.Autonomous.measurable_inputMark' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.actual_actionWorld_mark.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (y : PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X) :
+  Eq.{u_6 + 1}
+    (MeasureTheory.Measure.map.{max (max u_4 u_5) u_6, u_6} (fun h => h.1.2)
+      ((PermanssonLean.StrategicWorldModel.actionWorldKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P))
+        y))
+    ((PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} d)
+      (PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4} y))
+'PermanssonResearch.MultiAgent.Autonomous.Profile.actual_actionWorld_mark' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.actual_input_marginal.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.SFinite.{max (max (max u_1 u_2) u_3) u_4} μ] :
+  Eq.{max (max (u_1 + 1) (u_3 + 1)) (u_6 + 1)}
+    (MeasureTheory.Measure.map.{max (max (max (max (max u_6 u_5) u_4) u_3) u_2) u_1, max (max u_6 u_3) u_1}
+      PermanssonResearch.MultiAgent.Autonomous.inputMark.{u_1, u_2, u_3, u_4, u_5, u_6}
+      (MeasureTheory.Measure.compProd.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6} μ
+        (PermanssonLean.StrategicWorldModel.actionWorldKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P))))
+    (MeasureTheory.Measure.compProd.{max u_3 u_1, u_6}
+      (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_3 u_1}
+        PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4} μ)
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} d))
+'PermanssonResearch.MultiAgent.Autonomous.Profile.actual_input_marginal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.actual_row_from_actionWorld.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (M :
+    PermanssonLean.StrategicWorldModel.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+      (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+  (y : PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X)
+  {E :
+    Set.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X)}
+  (hE : MeasurableSet.{max (max (max u_1 u_2) u_3) u_4} E) :
+  Eq.{1} (((PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6} M) y) E)
+    (∫⁻ (h : Prod.{max u_6 u_5, u_4} (Prod.{u_5, u_6} A1 A2) X),
+      ((PermanssonLean.StrategicGenerator.update.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+            (PermanssonLean.StrategicWorldModel.generator.{max (max u_1 u_2) u_3, u_4, max u_5 u_6} M))
+          (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+            (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} y h.1) h.2))
+        (Set.ofPred.{max (max u_1 u_2) u_3} fun s =>
+          Membership.mem.{max u_4 (max u_1 u_2) u_3, max (max (max u_1 u_2) u_3) u_4} E
+            (Prod.mk.{max (max u_1 u_2) u_3, u_4} s
+              h.2)) ∂(PermanssonLean.StrategicWorldModel.actionWorldKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6} M)
+        y)
+'PermanssonResearch.MultiAgent.Autonomous.actual_row_from_actionWorld' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.actual_rows_ae_of_primitive_agreement.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X]
+  [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.SFinite.{max (max (max u_1 u_2) u_3) u_4} μ]
+  (hA :
+    ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} a) =ᵐ[μ]
+      ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} b))
+  (hU :
+    ∀ᵐ (z :
+      Prod.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6}
+        (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X)
+        (Prod.{max u_5 u_6, u_4} (Prod.{u_5, u_6} A1 A2)
+          X)) ∂MeasureTheory.Measure.compProd.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6} μ
+        (PermanssonLean.StrategicWorldModel.actionWorldKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P)),
+      Eq.{u_3 + 1}
+        ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6} a)
+          (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+            (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} z.1 z.2.1) z.2.2))
+        ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6} b)
+          (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+            (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} z.1 z.2.1) z.2.2))) :
+  ⇑(PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P)) =ᵐ[μ]
+    ⇑(PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r b) P))
+'PermanssonResearch.MultiAgent.Autonomous.actual_rows_ae_of_primitive_agreement' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.stateLaw.{u_1} {Y : Type u_1} [MeasurableSpace.{u_1} Y]
+  (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y) (μ : MeasureTheory.Measure.{u_1} Y) : ℕ → MeasureTheory.Measure.{u_1} Y
+'PermanssonResearch.MultiAgent.Autonomous.stateLaw' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.stateLaw_isProbability.{u_1} {Y : Type u_1} [MeasurableSpace.{u_1} Y]
+  (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y) [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K]
+  (μ : MeasureTheory.Measure.{u_1} Y) [MeasureTheory.IsProbabilityMeasure.{u_1} μ] (n : ℕ) :
+  MeasureTheory.IsProbabilityMeasure.{u_1} (PermanssonResearch.MultiAgent.Autonomous.stateLaw.{u_1} K μ n)
+'PermanssonResearch.MultiAgent.Autonomous.stateLaw_isProbability' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.map_comp_of_rows.{u_1, u_2} {Y : Type u_1} {Q : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Q] (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  (L : ProbabilityTheory.Kernel.{u_2, u_2} Q Q) (μ : MeasureTheory.Measure.{u_1} Y) (q : Y → Q)
+  (hq : Measurable.{u_1, u_2} q)
+  (h : ∀ᵐ (y : Y) ∂μ, Eq.{u_2 + 1} (MeasureTheory.Measure.map.{u_1, u_2} q (K y)) (L (q y))) :
+  Eq.{u_2 + 1} (MeasureTheory.Measure.map.{u_1, u_2} q (MeasureTheory.Measure.bind.{u_1, u_1} μ ⇑K))
+    (MeasureTheory.Measure.bind.{u_2, u_2} (MeasureTheory.Measure.map.{u_1, u_2} q μ) ⇑L)
+'PermanssonResearch.MultiAgent.Autonomous.map_comp_of_rows' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.projected_stateLaw_eq.{u_1, u_2} {Y : Type u_1} {Q : Type u_2}
+  [MeasurableSpace.{u_1} Y] [MeasurableSpace.{u_2} Q] (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  (L : ProbabilityTheory.Kernel.{u_2, u_2} Q Q) (μ : MeasureTheory.Measure.{u_1} Y) (q : Y → Q)
+  (hq : Measurable.{u_1, u_2} q)
+  (h :
+    ∀ (n : ℕ),
+      ∀ᵐ (y : Y) ∂PermanssonResearch.MultiAgent.Autonomous.stateLaw.{u_1} K μ n,
+        Eq.{u_2 + 1} (MeasureTheory.Measure.map.{u_1, u_2} q (K y)) (L (q y)))
+  (n : ℕ) :
+  Eq.{u_2 + 1} (MeasureTheory.Measure.map.{u_1, u_2} q (PermanssonResearch.MultiAgent.Autonomous.stateLaw.{u_1} K μ n))
+    (PermanssonResearch.MultiAgent.Autonomous.stateLaw.{u_2} L (MeasureTheory.Measure.map.{u_1, u_2} q μ) n)
+'PermanssonResearch.MultiAgent.Autonomous.projected_stateLaw_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.actual_eval_zero.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (μ : MeasureTheory.Measure.{max u_2 u_1} (PermanssonLean.JointState.{u_1, u_2} S X))
+  [MeasureTheory.IsProbabilityMeasure.{max u_1 u_2} μ] :
+  Eq.{max (u_1 + 1) (u_2 + 1)}
+    (MeasureTheory.Measure.map.{max u_1 u_2, max u_1 u_2} (fun w => w 0)
+      (PermanssonLean.StrategicWorldModel.pathLaw.{u_1, u_2, u_3} M μ))
+    μ
+'PermanssonResearch.MultiAgent.Autonomous.actual_eval_zero' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.actual_eval_succ.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (μ : MeasureTheory.Measure.{max u_2 u_1} (PermanssonLean.JointState.{u_1, u_2} S X))
+  [MeasureTheory.IsProbabilityMeasure.{max u_1 u_2} μ] (n : ℕ) :
+  Eq.{max (u_1 + 1) (u_2 + 1)}
+    (MeasureTheory.Measure.map.{max u_1 u_2, max u_1 u_2} (fun w => w (HAdd.hAdd.{0, 0, 0} n 1))
+      (PermanssonLean.StrategicWorldModel.pathLaw.{u_1, u_2, u_3} M μ))
+    (MeasureTheory.Measure.bind.{max u_1 u_2, max u_1 u_2}
+      (MeasureTheory.Measure.map.{max u_1 u_2, max u_1 u_2} (fun w => w n)
+        (PermanssonLean.StrategicWorldModel.pathLaw.{u_1, u_2, u_3} M μ))
+      ⇑(PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M))
+'PermanssonResearch.MultiAgent.Autonomous.actual_eval_succ' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.stateLaw_eq_actual_marginal.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (μ : MeasureTheory.Measure.{max u_2 u_1} (PermanssonLean.JointState.{u_1, u_2} S X))
+  [MeasureTheory.IsProbabilityMeasure.{max u_1 u_2} μ] (n : ℕ) :
+  Eq.{max (u_1 + 1) (u_2 + 1)}
+    (PermanssonResearch.MultiAgent.Autonomous.stateLaw.{max u_1 u_2}
+      (PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M) μ n)
+    (MeasureTheory.Measure.map.{max u_1 u_2, max u_1 u_2} (fun w => w n)
+      (PermanssonLean.StrategicWorldModel.pathLaw.{u_1, u_2, u_3} M μ))
+'PermanssonResearch.MultiAgent.Autonomous.stateLaw_eq_actual_marginal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.pathLaw_eq_of_rows_ae.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [StandardBorelSpace.{u_1} S] [StandardBorelSpace.{u_2} X]
+  (M N : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (μ : MeasureTheory.Measure.{max u_2 u_1} (PermanssonLean.JointState.{u_1, u_2} S X))
+  [MeasureTheory.IsProbabilityMeasure.{max u_1 u_2} μ]
+  (h :
+    ∀ (n : ℕ),
+      ⇑(PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3}
+            M) =ᵐ[PermanssonResearch.MultiAgent.Autonomous.stateLaw.{max u_1 u_2}
+          (PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M) μ n]
+        ⇑(PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} N)) :
+  Eq.{max (u_1 + 1) (u_2 + 1)} (PermanssonLean.StrategicWorldModel.pathLaw.{u_1, u_2, u_3} M μ)
+    (PermanssonLean.StrategicWorldModel.pathLaw.{u_1, u_2, u_3} N μ)
+'PermanssonResearch.MultiAgent.Autonomous.pathLaw_eq_of_rows_ae' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.actual_actionWorld_rows_ae.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  (hA :
+    ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} a) =ᵐ[μ]
+      ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} b)) :
+  ⇑(PermanssonLean.StrategicWorldModel.actionWorldKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P)) =ᵐ[μ]
+    ⇑(PermanssonLean.StrategicWorldModel.actionWorldKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r b) P))
+'PermanssonResearch.MultiAgent.Autonomous.actual_actionWorld_rows_ae' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.actual_key_marginal.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  (n : ℕ) :
+  Eq.{max (u_1 + 1) (u_3 + 1)}
+    (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_3 u_1}
+      PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4}
+      (PermanssonResearch.MultiAgent.Autonomous.stateLaw.{max (max (max u_1 u_2) u_3) u_4}
+        (PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P))
+        μ n))
+    (PermanssonResearch.MultiAgent.Autonomous.stateLaw.{max u_1 u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel.{u_1, u_2, u_3, u_4, u_5, u_6} d)
+      (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_1 u_3}
+        PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4} μ)
+      n)
+'PermanssonResearch.MultiAgent.Autonomous.Profile.actual_key_marginal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.baseline_key_marginal.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.IsProbabilityMeasure.{max (max (max u_1 u_2) u_3) u_4} μ]
+  (hA :
+    ∀ (t : ℕ),
+      ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.player2.{u_1, u_2, u_3, u_4, u_5, u_6}
+              G)) =ᵐ[PermanssonResearch.MultiAgent.Autonomous.stateLaw.{max (max (max u_1 u_2) u_3) u_4}
+          (PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6} G P))
+          μ t]
+        ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} a))
+  (hU :
+    ∀ (t : ℕ),
+      ∀ᵐ (z :
+        Prod.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6}
+          (PermanssonLean.JointState.{max (max u_1 u_2) u_3, u_4}
+            (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X)
+          (Prod.{max u_5 u_6, u_4} (Prod.{u_5, u_6} A1 A2)
+            X)) ∂MeasureTheory.Measure.compProd.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6}
+          (PermanssonResearch.MultiAgent.Autonomous.stateLaw.{max (max (max u_1 u_2) u_3) u_4}
+            (PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+              (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6} G P))
+            μ t)
+          (PermanssonLean.StrategicWorldModel.actionWorldKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6} G P)),
+        Eq.{u_3 + 1}
+          ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6}
+              (PermanssonResearch.MultiAgent.TwoPlayerGenerator.player2.{u_1, u_2, u_3, u_4, u_5, u_6} G))
+            (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+              (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} z.1 z.2.1) z.2.2))
+          ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6} a)
+            (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+              (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} z.1 z.2.1) z.2.2)))
+  (n : ℕ) :
+  Eq.{max (u_1 + 1) (u_3 + 1)}
+    (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_3 u_1}
+      PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4}
+      (PermanssonResearch.MultiAgent.Autonomous.stateLaw.{max (max (max u_1 u_2) u_3) u_4}
+        (PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6} G P))
+        μ n))
+    (PermanssonResearch.MultiAgent.Autonomous.stateLaw.{max u_1 u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel.{u_1, u_2, u_3, u_4, u_5, u_6} d)
+      (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_1 u_3}
+        PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4} μ)
+      n)
+'PermanssonResearch.MultiAgent.Autonomous.Profile.baseline_key_marginal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.Profile.baseline_input_marginal.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (d : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} d)]
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.SFinite.{max (max (max u_1 u_2) u_3) u_4} μ]
+  (hA :
+    ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.player2.{u_1, u_2, u_3, u_4, u_5, u_6} G)) =ᵐ[μ]
+      ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} a)) :
+  Eq.{max (max (u_1 + 1) (u_3 + 1)) (u_6 + 1)}
+    (MeasureTheory.Measure.map.{max (max (max (max (max u_6 u_5) u_4) u_3) u_2) u_1, max (max u_6 u_3) u_1}
+      PermanssonResearch.MultiAgent.Autonomous.inputMark.{u_1, u_2, u_3, u_4, u_5, u_6}
+      (MeasureTheory.Measure.compProd.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6} μ
+        (PermanssonLean.StrategicWorldModel.actionWorldKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6} G P))))
+    (MeasureTheory.Measure.compProd.{max u_3 u_1, u_6}
+      (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_3 u_1}
+        PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4} μ)
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} d))
+'PermanssonResearch.MultiAgent.Autonomous.Profile.baseline_input_marginal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.primitive_factor_agreement.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  [StandardBorelSpace.{u_6} A2] [StandardBorelSpace.{u_3} S2]
+  (da : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  (db : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G b)
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.SFinite.{max (max (max u_1 u_2) u_3) u_4} μ]
+  (hAa :
+    ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.player2.{u_1, u_2, u_3, u_4, u_5, u_6} G)) =ᵐ[μ]
+      ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} a))
+  (hAb :
+    ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.player2.{u_1, u_2, u_3, u_4, u_5, u_6} G)) =ᵐ[μ]
+      ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} b))
+  (hUa :
+    ∀ᵐ (z :
+      Prod.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6}
+        (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X)
+        (Prod.{max u_5 u_6, u_4} (Prod.{u_5, u_6} A1 A2)
+          X)) ∂MeasureTheory.Measure.compProd.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6} μ
+        (PermanssonLean.StrategicWorldModel.actionWorldKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6} G P)),
+      Eq.{u_3 + 1}
+        ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.player2.{u_1, u_2, u_3, u_4, u_5, u_6} G))
+          (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+            (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} z.1 z.2.1) z.2.2))
+        ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6} a)
+          (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+            (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} z.1 z.2.1) z.2.2)))
+  (hUb :
+    ∀ᵐ (z :
+      Prod.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6}
+        (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X)
+        (Prod.{max u_5 u_6, u_4} (Prod.{u_5, u_6} A1 A2)
+          X)) ∂MeasureTheory.Measure.compProd.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6} μ
+        (PermanssonLean.StrategicWorldModel.actionWorldKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6} G P)),
+      Eq.{u_3 + 1}
+        ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.player2.{u_1, u_2, u_3, u_4, u_5, u_6} G))
+          (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+            (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} z.1 z.2.1) z.2.2))
+        ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6} b)
+          (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+            (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} z.1 z.2.1) z.2.2))) :
+  ⇑(PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6}
+          da) =ᵐ[MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_3 u_1}
+        PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4} μ]
+      ⇑(PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} db) ∧
+    ⇑(PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6}
+          da) =ᵐ[MeasureTheory.Measure.compProd.{max u_3 u_1, u_6}
+        (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_3 u_1}
+          PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4} μ)
+        (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+      ⇑(PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} db)
+'PermanssonResearch.MultiAgent.Autonomous.primitive_factor_agreement' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.actual_primitive_agreement_of_key_agreement.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X]
+  [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (da : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  (db : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G b)
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (ρ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.SFinite.{max (max (max u_1 u_2) u_3) u_4} ρ]
+  (ν : MeasureTheory.Measure.{max u_3 u_1} (Prod.{u_1, u_3} S0 S2))
+  (hkey :
+    Eq.{max (u_1 + 1) (u_3 + 1)}
+      (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_3 u_1}
+        PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4} ρ)
+      ν)
+  (hA :
+    ⇑(PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} da) =ᵐ[ν]
+      ⇑(PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} db))
+  (hU :
+    ⇑(PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6}
+          da) =ᵐ[MeasureTheory.Measure.compProd.{max u_1 u_3, u_6} ν
+        (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+      ⇑(PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} db)) :
+  ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} a) =ᵐ[ρ]
+      ⇑(PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} b) ∧
+    ∀ᵐ (z :
+      Prod.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6}
+        (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X)
+        (Prod.{max u_5 u_6, u_4} (Prod.{u_5, u_6} A1 A2)
+          X)) ∂MeasureTheory.Measure.compProd.{max (max (max u_1 u_2) u_3) u_4, max (max u_4 u_5) u_6} ρ
+        (PermanssonLean.StrategicWorldModel.actionWorldKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P)),
+      Eq.{u_3 + 1}
+        ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6} a)
+          (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+            (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} z.1 z.2.1) z.2.2))
+        ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6} b)
+          (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+            (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} z.1 z.2.1) z.2.2))
+'PermanssonResearch.MultiAgent.Autonomous.actual_primitive_agreement_of_key_agreement' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.baselineStateLaw.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1]
+  [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  (t : ℕ) :
+  MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+    (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X)
+'PermanssonResearch.MultiAgent.Autonomous.baselineStateLaw' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.baselineKeyLaw.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1]
+  [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  (t : ℕ) : MeasureTheory.Measure.{max u_3 u_1} (Prod.{u_1, u_3} S0 S2)
+'PermanssonResearch.MultiAgent.Autonomous.baselineKeyLaw' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X)) :
+  Prop
+'PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.baselineStateLaw_actual.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.IsProbabilityMeasure.{max (max (max u_1 u_2) u_3) u_4} μ] (t : ℕ) :
+  Eq.{max (max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)) (u_4 + 1)}
+    (PermanssonResearch.MultiAgent.Autonomous.baselineStateLaw.{u_1, u_2, u_3, u_4, u_5, u_6} G P μ t)
+    (MeasureTheory.Measure.map.{max (max (max u_1 u_2) u_3) u_4, max (max (max u_1 u_2) u_3) u_4} (fun w => w t)
+      (PermanssonLean.StrategicWorldModel.pathLaw.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6} G P) μ))
+'PermanssonResearch.MultiAgent.Autonomous.baselineStateLaw_actual' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.baseline_key_recursions.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (da : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  (db : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G b)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.IsProbabilityMeasure.{max (max (max u_1 u_2) u_3) u_4} μ]
+  (h : PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement.{u_1, u_2, u_3, u_4, u_5, u_6} G a b P μ) (t : ℕ) :
+  Eq.{max (u_1 + 1) (u_3 + 1)}
+      (PermanssonResearch.MultiAgent.Autonomous.baselineKeyLaw.{u_1, u_2, u_3, u_4, u_5, u_6} G P μ
+        (HAdd.hAdd.{0, 0, 0} t 1))
+      (MeasureTheory.Measure.bind.{max u_3 u_1, max u_1 u_3}
+        (PermanssonResearch.MultiAgent.Autonomous.baselineKeyLaw.{u_1, u_2, u_3, u_4, u_5, u_6} G P μ t)
+        ⇑(PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel.{u_1, u_2, u_3, u_4, u_5, u_6} da)) ∧
+    Eq.{max (u_1 + 1) (u_3 + 1)}
+      (PermanssonResearch.MultiAgent.Autonomous.baselineKeyLaw.{u_1, u_2, u_3, u_4, u_5, u_6} G P μ
+        (HAdd.hAdd.{0, 0, 0} t 1))
+      (MeasureTheory.Measure.bind.{max u_3 u_1, max u_1 u_3}
+        (PermanssonResearch.MultiAgent.Autonomous.baselineKeyLaw.{u_1, u_2, u_3, u_4, u_5, u_6} G P μ t)
+        ⇑(PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel.{u_1, u_2, u_3, u_4, u_5, u_6} db))
+'PermanssonResearch.MultiAgent.Autonomous.baseline_key_recursions' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.treated_key_marginals.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  (da : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  (db : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G b)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.IsProbabilityMeasure.{max (max (max u_1 u_2) u_3) u_4} μ]
+  (h : PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement.{u_1, u_2, u_3, u_4, u_5, u_6} G a b P μ)
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2) (t : ℕ) :
+  Eq.{max (u_1 + 1) (u_3 + 1)}
+      (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_3 u_1}
+        PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4}
+        (PermanssonResearch.MultiAgent.Autonomous.stateLaw.{max (max (max u_1 u_2) u_3) u_4}
+          (PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+              (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P))
+          μ t))
+      (PermanssonResearch.MultiAgent.Autonomous.baselineKeyLaw.{u_1, u_2, u_3, u_4, u_5, u_6} G P μ t) ∧
+    Eq.{max (u_1 + 1) (u_3 + 1)}
+      (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max u_3 u_1}
+        PermanssonResearch.MultiAgent.anchorKey.{u_1, u_2, u_3, u_4}
+        (PermanssonResearch.MultiAgent.Autonomous.stateLaw.{max (max (max u_1 u_2) u_3) u_4}
+          (PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+              (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r b) P))
+          μ t))
+      (PermanssonResearch.MultiAgent.Autonomous.baselineKeyLaw.{u_1, u_2, u_3, u_4, u_5, u_6} G P μ t)
+'PermanssonResearch.MultiAgent.Autonomous.treated_key_marginals' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.treated_rows_ae.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1]
+  [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  [StandardBorelSpace.{u_6} A2] [StandardBorelSpace.{u_3} S2]
+  (da : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  (db : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G b)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.IsProbabilityMeasure.{max (max (max u_1 u_2) u_3) u_4} μ]
+  (h : PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement.{u_1, u_2, u_3, u_4, u_5, u_6} G a b P μ)
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2) (t : ℕ) :
+  ⇑(PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a)
+          P)) =ᵐ[PermanssonResearch.MultiAgent.Autonomous.stateLaw.{max (max (max u_1 u_2) u_3) u_4}
+      (PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P))
+      μ t]
+    ⇑(PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r b) P))
+'PermanssonResearch.MultiAgent.Autonomous.treated_rows_ae' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ae_anchors_pathLaw_eq.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  [StandardBorelSpace.{u_1} S0] [StandardBorelSpace.{u_2} S1] [StandardBorelSpace.{u_3} S2] [StandardBorelSpace.{u_4} X]
+  [StandardBorelSpace.{u_6} A2]
+  (da : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  (db : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G b)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.IsProbabilityMeasure.{max (max (max u_1 u_2) u_3) u_4} μ]
+  (h : PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement.{u_1, u_2, u_3, u_4, u_5, u_6} G a b P μ)
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2) :
+  Eq.{max (max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)) (u_4 + 1)}
+    (PermanssonLean.StrategicWorldModel.pathLaw.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+      (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P)
+      μ)
+    (PermanssonLean.StrategicWorldModel.pathLaw.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+      (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r b) P)
+      μ)
+'PermanssonResearch.MultiAgent.Autonomous.ae_anchors_pathLaw_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ae_anchors_path_property_eq.{u_1, u_2, u_3, u_4, u_5, u_6, u_7} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  {a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2}
+  [StandardBorelSpace.{u_1} S0] [StandardBorelSpace.{u_2} S1] [StandardBorelSpace.{u_3} S2] [StandardBorelSpace.{u_4} X]
+  [StandardBorelSpace.{u_6} A2]
+  (da : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G a)
+  (db : PermanssonResearch.MultiAgent.Autonomous.Profile.{u_1, u_2, u_3, u_4, u_5, u_6} G b)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} da)]
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  [ProbabilityTheory.IsMarkovKernel.{max u_1 u_3, u_6}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  [ProbabilityTheory.IsMarkovKernel.{max (max u_1 u_3) u_6, u_3}
+      (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{u_1, u_2, u_3, u_4, u_5, u_6} db)]
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X))
+  [MeasureTheory.IsProbabilityMeasure.{max (max (max u_1 u_2) u_3) u_4} μ]
+  (h : PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement.{u_1, u_2, u_3, u_4, u_5, u_6} G a b P μ)
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2) {Z : Type u_7}
+  (ψ :
+    MeasureTheory.Measure.{max (max (max u_1 u_2) u_3) u_4}
+        (ℕ → PermanssonResearch.MultiAgent.Autonomous.State.{u_1, u_2, u_3, u_4} S0 S1 S2 X) →
+      Z) :
+  Eq.{u_7 + 1}
+    (ψ
+      (PermanssonLean.StrategicWorldModel.pathLaw.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r a) P)
+        μ))
+    (ψ
+      (PermanssonLean.StrategicWorldModel.pathLaw.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r b) P)
+        μ))
+'PermanssonResearch.MultiAgent.Autonomous.ae_anchors_path_property_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.Y : Type
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.Y' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.I : Type
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.I' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.signal (c : Bool) (q : Prod.{0, 0} ℝ Unit) : Bool
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.signal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.measurable_signal (c : Bool) :
+  Measurable.{0, 0} (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.signal c)
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.measurable_signal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.actionFactor (c : Bool) :
+  ProbabilityTheory.Kernel.{0, 0} (Prod.{0, 0} ℝ Unit) Bool
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.actionFactor' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor (c : Bool) :
+  PermanssonResearch.MultiAgent.PlayerTwoMechanism.{0, 0, 0, 0, 0, 0} ℝ Bool Unit Unit Unit Bool
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.player (record : Bool) :
+  PermanssonResearch.MultiAgent.PlayerOneMechanism.{0, 0, 0, 0, 0, 0} ℝ Bool Unit Unit Unit Bool
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.player' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game :
+  PermanssonResearch.MultiAgent.TwoPlayerGenerator.{0, 0, 0, 0, 0, 0} ℝ Bool Unit Unit Unit Bool
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world :
+  ProbabilityTheory.Kernel.{0, 0}
+    (PermanssonLean.WorldInput.{0, 0, 0} (PermanssonResearch.MultiAgent.GameState.{0, 0, 0} ℝ Bool Unit) Unit
+      (Prod.{0, 0} Unit Bool))
+    Unit
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world_isMarkov :
+  ProbabilityTheory.IsMarkovKernel.{0, 0} PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile (c : Bool) :
+  PermanssonResearch.MultiAgent.Autonomous.Profile.{0, 0, 0, 0, 0, 0}
+    PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game
+    (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor c)
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_common_isMarkov (c : Bool) :
+  ProbabilityTheory.IsMarkovKernel.{0, 0}
+    (PermanssonResearch.MultiAgent.Autonomous.Profile.common.{0, 0, 0, 0, 0, 0}
+      (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile c))
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_common_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_action_isMarkov (c : Bool) :
+  ProbabilityTheory.IsMarkovKernel.{0, 0}
+    (PermanssonResearch.MultiAgent.Autonomous.Profile.action.{0, 0, 0, 0, 0, 0}
+      (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile c))
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_action_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_update_isMarkov (c : Bool) :
+  ProbabilityTheory.IsMarkovKernel.{0, 0}
+    (PermanssonResearch.MultiAgent.Autonomous.Profile.update.{0, 0, 0, 0, 0, 0}
+      (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile c))
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_update_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialState (s : ℝ) :
+  PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.Y
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialState' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.measurable_initialState :
+  Measurable.{0, 0} PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialState
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.measurable_initialState' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw : MeasureTheory.Measure.{0} ℝ
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw_isProbability :
+  MeasureTheory.IsProbabilityMeasure.{0} PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw_isProbability' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw_nullSingleton :
+  MeasureTheory.NullSingletonClass.{0} PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw_nullSingleton' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw :
+  MeasureTheory.Measure.{0} PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.Y
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw_isProbability :
+  MeasureTheory.IsProbabilityMeasure.{0} PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw_isProbability' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw_nullSingleton :
+  MeasureTheory.NullSingletonClass.{0} PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw_nullSingleton' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initial_common_ne :
+  ∀ᵐ (y :
+    PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.Y) ∂PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw,
+    Ne.{1} y.1.1 0
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initial_common_ne' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.nextState (record c : Bool)
+  (y : PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.Y) :
+  PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.Y
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.nextState' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.actual_induced (record c : Bool)
+  (y : PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.Y) :
+  Eq.{1}
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{0, 0, 0}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{0, 0, 0, 0, 0, 0}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{0, 0, 0, 0, 0, 0}
+            PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game
+            (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.player record)
+            (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor c))
+          PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world))
+      y)
+    (MeasureTheory.Measure.dirac.{0} (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.nextState record c y))
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.actual_induced' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_stationary :
+  Eq.{1}
+    (MeasureTheory.Measure.bind.{0, 0} PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw
+      ⇑(PermanssonLean.StrategicWorldModel.inducedKernel.{0, 0, 0}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{0, 0, 0, 0, 0, 0}
+            PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game
+            PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world)))
+    PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_stationary' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_stateLaw (t : ℕ) :
+  Eq.{1}
+    (PermanssonResearch.MultiAgent.Autonomous.baselineStateLaw.{0, 0, 0, 0, 0, 0}
+      PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game
+      PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world
+      PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw t)
+    PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_stateLaw' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_agreement :
+  PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement.{0, 0, 0, 0, 0, 0}
+    PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game
+    (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.false)
+    (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.true)
+    PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world
+    PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_agreement' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.nonatomic_treated_pathLaw_eq
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{0, 0, 0, 0, 0, 0} ℝ Bool Unit Unit Unit Bool) :
+  Eq.{1}
+    (PermanssonLean.StrategicWorldModel.pathLaw.{0, 0, 0}
+      (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{0, 0, 0, 0, 0, 0}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{0, 0, 0, 0, 0, 0}
+          PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game r
+          (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.false))
+        PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world)
+      PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw)
+    (PermanssonLean.StrategicWorldModel.pathLaw.{0, 0, 0}
+      (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{0, 0, 0, 0, 0, 0}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{0, 0, 0, 0, 0, 0}
+          PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game r
+          (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.true))
+        PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world)
+      PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw)
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.nonatomic_treated_pathLaw_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchors_differ_at_zero :
+  Ne.{1}
+    ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{0, 0, 0, 0, 0, 0}
+        (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.false))
+      (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialState 0))
+    ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{0, 0, 0, 0, 0, 0}
+        (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.true))
+      (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialState 0))
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchors_differ_at_zero' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_violates_premise :
+  ¬PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement.{0, 0, 0, 0, 0, 0}
+      PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game
+      (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.false)
+      (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.true)
+      PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world
+      (MeasureTheory.Measure.dirac.{0} (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialState 0))
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_violates_premise' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_treated_pathLaw_ne :
+  Ne.{1}
+    (PermanssonLean.StrategicWorldModel.pathLaw.{0, 0, 0}
+      (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{0, 0, 0, 0, 0, 0}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{0, 0, 0, 0, 0, 0}
+          PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game
+          (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.player Bool.true)
+          (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.false))
+        PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world)
+      (MeasureTheory.Measure.dirac.{0} (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialState 0)))
+    (PermanssonLean.StrategicWorldModel.pathLaw.{0, 0, 0}
+      (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{0, 0, 0, 0, 0, 0}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{0, 0, 0, 0, 0, 0}
+          PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game
+          (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.player Bool.true)
+          (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.true))
+        PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world)
+      (MeasureTheory.Measure.dirac.{0} (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialState 0)))
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_treated_pathLaw_ne' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it

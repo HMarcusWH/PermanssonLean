@@ -1,0 +1,56 @@
+{
+  "modules": [
+    "AutonomousKey",
+    "AutonomousSupportClosure",
+    "StrictMA2Obstruction",
+    "AutonomousMarkedKernel",
+    "PlayerTwoProtocols",
+    "PlayerSwapTransport",
+    "PlayerSwapConstitution",
+    "BehavioralAutonomy",
+    "ChronologicalPathLaw",
+    "PrivateClock",
+    "PrivateClockTransport",
+    "FiniteProductProtocols",
+    "FiniteProductTwo"
+  ],
+  "source_sha256": {
+    "PermanssonResearch\\MultiAgent\\AutonomousKey.lean": "6c6f43bbed50b885c9988358ca1df5a00c6c781dc81316b52cc41e59cd6b8d9d",
+    "PermanssonResearch\\MultiAgent\\AutonomousSupportClosure.lean": "668d6db254b00da02fc4d89b53ab5f459203de2e361d10513b9fb1940bdc427d",
+    "PermanssonResearch\\MultiAgent\\StrictMA2Obstruction.lean": "c294448f00c5c79d66a17684836616878258be7d2f7c8772ab7281b214c56c2f",
+    "PermanssonResearch\\MultiAgent\\AutonomousMarkedKernel.lean": "0d101feb3a9d8e080d411560c8af2d8b0350e7e7ca1d91dc29fe92116cf84ab2",
+    "PermanssonResearch\\MultiAgent\\PlayerTwoProtocols.lean": "b5afcdfc85241e5531a7f7f39fd740c4c735fa0ab9d29a3648e2f104145588a4",
+    "PermanssonResearch\\MultiAgent\\PlayerSwapTransport.lean": "c35c5318c9f3e0459b22f1d4f946071c88fc4af37c4a8bf766b5015b0ec4252f",
+    "PermanssonResearch\\MultiAgent\\PlayerSwapConstitution.lean": "83845f1f26eb7c09c14e8cecdbd1bbf886219da403a610a1d7b4794731bbc8d6",
+    "PermanssonResearch\\MultiAgent\\BehavioralAutonomy.lean": "c7a58fbc86cebda84e3162a1cd09d229651fc4966121f891dd7cb76ca403aa48",
+    "PermanssonResearch\\MultiAgent\\ChronologicalPathLaw.lean": "0e99822e581d520e11a126ab1e94cc6b50d0eb5d82ab2d2735d9eb60d765c704",
+    "PermanssonResearch\\MultiAgent\\PrivateClock.lean": "7dba9beb7591fa74ca8d00ff9e06db596dcd31d984d3b9bfc7f0b67a40280a72",
+    "PermanssonResearch\\MultiAgent\\PrivateClockTransport.lean": "4633ec71712fc18d05a6006240342b448becf07636689da3d0800c7535e750f9",
+    "PermanssonResearch\\MultiAgent\\FiniteProductProtocols.lean": "77f2d8cea213bf39d7d2d9185f25d5ae2e2f8db59ae55762704ebe63a3801f2a",
+    "PermanssonResearch\\MultiAgent\\FiniteProductTwo.lean": "f54d1c3a23714604298d38adc4518fbb1f9027941551a25a7ba3fa4f6b6ac6ec"
+  },
+  "artifacts_current": {
+    "AutonomousKey": true,
+    "AutonomousSupportClosure": true,
+    "StrictMA2Obstruction": true,
+    "AutonomousMarkedKernel": true,
+    "PlayerTwoProtocols": true,
+    "PlayerSwapTransport": true,
+    "PlayerSwapConstitution": true,
+    "BehavioralAutonomy": true,
+    "ChronologicalPathLaw": true,
+    "PrivateClock": true,
+    "PrivateClockTransport": true,
+    "FiniteProductProtocols": true,
+    "FiniteProductTwo": true
+  },
+  "compiler_command": [
+    "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\.tools\\lean-4.34.0-windows\\bin\\lean.exe"
+  ],
+  "status": "PASS",
+  "returncode": 0,
+  "declarations": 170,
+  "elapsed": 100.46799999999348,
+  "missing": [],
+  "forbidden": {}
+}

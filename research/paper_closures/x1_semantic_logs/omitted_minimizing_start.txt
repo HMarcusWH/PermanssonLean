@@ -1,0 +1,2 @@
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\omitted_minimizing_start.lean:7:72: error: unsolved goals
+⊢ False

@@ -1,0 +1,1404 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/Probability/ProjectedCommonSubkernel.lean": {
+      "sha256": "07f20e818df7eb4362cad37d367eb9b63370f346c3c3721fd32b4544083d897c",
+      "artifact_sha256": "44f6ec7f829bd8e81a23d57334d53ccb5dd89b6969e50323a357e6994b4bce18",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.ProjectedCommonSubkernel",
+        "started": 1792291176.5418432,
+        "elapsed": 61.57369065284729,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "07f20e818df7eb4362cad37d367eb9b63370f346c3c3721fd32b4544083d897c"
+      }
+    },
+    "PermanssonResearch/Quotient/GeometricPrefix.lean": {
+      "sha256": "28c69bccf4667c2aca09fc1294d9efe471d35a6a8ba7c376c32a2ce01ed54cba",
+      "artifact_sha256": "1630ddb69bbad2c4efe676db268b6261b5a7be269da6306a8d1e2cca18ce2f98",
+      "compiler": {
+        "module": "PermanssonResearch.Quotient.GeometricPrefix",
+        "started": 1792291238.1207852,
+        "elapsed": 86.77907228469849,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "28c69bccf4667c2aca09fc1294d9efe471d35a6a8ba7c376c32a2ce01ed54cba"
+      }
+    },
+    "PermanssonResearch/Quotient/GeometricQuotient.lean": {
+      "sha256": "26f7d49df5bb7e083544a15a59d5392bad31aeeab5cab908e965a24a0b83bf4c",
+      "artifact_sha256": "674aa3987ce731de6688981387b6c45d45412ef2f6d7a0faa31f9a96f3cb0ec7",
+      "compiler": {
+        "module": "PermanssonResearch.Quotient.GeometricQuotient",
+        "started": 1792291324.9073892,
+        "elapsed": 85.95932579040527,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "26f7d49df5bb7e083544a15a59d5392bad31aeeab5cab908e965a24a0b83bf4c"
+      }
+    },
+    "PermanssonResearch/Quotient/GeometricMargin.lean": {
+      "sha256": "b2929544c41fe5af75bb07c53f9a28f1b3d2ccc366430ec48716d756678a03e2",
+      "artifact_sha256": "ecef368918d324499588411bc6fad85fd72065f838abc987d4ac8c2dbc997734",
+      "compiler": {
+        "module": "PermanssonResearch.Quotient.GeometricMargin",
+        "started": 1792291410.898694,
+        "elapsed": 98.91256594657898,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "b2929544c41fe5af75bb07c53f9a28f1b3d2ccc366430ec48716d756678a03e2"
+      }
+    },
+    "PermanssonResearch/Probability/LocalizedHistoryTV.lean": {
+      "sha256": "0d34452c4a2d571c5aa55960be13dd617b663bddaa76346c97ed778f22cf664c",
+      "artifact_sha256": "414ce25b9e34f1f52295cd8c277ad59a6b2cb34c9133f5a4bd6d43e23c40324a",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.LocalizedHistoryTV",
+        "started": 1792291509.8215296,
+        "elapsed": 95.42335081100464,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "0d34452c4a2d571c5aa55960be13dd617b663bddaa76346c97ed778f22cf664c"
+      }
+    },
+    "PermanssonResearch/Probability/SummablePathScores.lean": {
+      "sha256": "43dae187fef4703ef6f93a1086ed2f43b23f3e3d54be7b18236939c74d7f6baa",
+      "artifact_sha256": "88d70ccce710a813c4572cefcb8d990c60fa66050c6440dc550ec6f50864ba0e",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.SummablePathScores",
+        "started": 1792291605.2674754,
+        "elapsed": 92.47645592689514,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "43dae187fef4703ef6f93a1086ed2f43b23f3e3d54be7b18236939c74d7f6baa"
+      }
+    },
+    "PermanssonResearch/Probability/CouplingDualBound.lean": {
+      "sha256": "ecd7f10ba18879e898feb34671385bc0a20c29e6fc77c1f7caa4567c0e915ce9",
+      "artifact_sha256": "356782ba9c27b241643177683aef78060a5544f3d25929eb5f99e30e43775a32",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.CouplingDualBound",
+        "started": 1792291697.7652307,
+        "elapsed": 80.1104724407196,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "ecd7f10ba18879e898feb34671385bc0a20c29e6fc77c1f7caa4567c0e915ce9"
+      }
+    },
+    "PermanssonResearch/Perturbation/DirectDualContraction.lean": {
+      "sha256": "93bb9b180a2061ac2d9f3989fa9e11aeabd64ad94607e6309bbaec7ba40709b7",
+      "artifact_sha256": "97d2a7c9d4058db366c6d4020fb410482d55935e053398340136390c1ffee961",
+      "compiler": {
+        "module": "PermanssonResearch.Perturbation.DirectDualContraction",
+        "started": 1792291777.8812299,
+        "elapsed": 70.70343852043152,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "93bb9b180a2061ac2d9f3989fa9e11aeabd64ad94607e6309bbaec7ba40709b7"
+      }
+    },
+    "PermanssonResearch/Perturbation/PrimitiveProductTV.lean": {
+      "sha256": "368e99da4323b2d22ebac5f1ceb86e26b8845b565abe20d706347989ebd162ce",
+      "artifact_sha256": "b80999e30bafd0f824fa94c05c362b9cf931ed826e534b44f603ec9533137795",
+      "compiler": {
+        "module": "PermanssonResearch.Perturbation.PrimitiveProductTV",
+        "started": 1792291848.5940614,
+        "elapsed": 78.98221039772034,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "368e99da4323b2d22ebac5f1ceb86e26b8845b565abe20d706347989ebd162ce"
+      }
+    },
+    "PermanssonResearch/Perturbation/PrimitiveMetricBudget.lean": {
+      "sha256": "ce5dbcc322706ed5b4027b3138078c3ceb8b191d82bc4f5304672012ebf6fec4",
+      "artifact_sha256": "015eaae253a537dacf22f78aaa8d88cdc584832de7b437e9829a4255292ba2b6",
+      "compiler": {
+        "module": "PermanssonResearch.Perturbation.PrimitiveMetricBudget",
+        "started": 1792291927.5844762,
+        "elapsed": 80.07328486442566,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "ce5dbcc322706ed5b4027b3138078c3ceb8b191d82bc4f5304672012ebf6fec4"
+      }
+    },
+    "PermanssonResearch/GrammarRobust/CompatibleOverlap.lean": {
+      "sha256": "c90bc6bf020f01f2bd515f458b0fdcf8c48a5acaa608003fae2ac11401e0fde6",
+      "artifact_sha256": "43cc0e0aec7276661e44c7549d5c7da743083a010568ff7d040c2459c925abed",
+      "compiler": {
+        "module": "PermanssonResearch.GrammarRobust.CompatibleOverlap",
+        "started": 1792292007.6607618,
+        "elapsed": 54.51521706581116,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "c90bc6bf020f01f2bd515f458b0fdcf8c48a5acaa608003fae2ac11401e0fde6"
+      }
+    },
+    "PermanssonResearch/GrammarRobust/OverlapKernelAssembly.lean": {
+      "sha256": "b0a2a95b83a945eae4e7fb7d37a9110351c44256feb377eac7e861c357138e9e",
+      "artifact_sha256": "7638e9fbddabc213d99eae3075cc62de117b87ae3aa6a6724dcef68a8d93f251",
+      "compiler": {
+        "module": "PermanssonResearch.GrammarRobust.OverlapKernelAssembly",
+        "started": 1792292062.180981,
+        "elapsed": 70.08502531051636,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "b0a2a95b83a945eae4e7fb7d37a9110351c44256feb377eac7e861c357138e9e"
+      }
+    },
+    "PermanssonResearch/GrammarRobust/OverlapCanonicalBridge.lean": {
+      "sha256": "5961213b9e2744b0aa2f9d6103db579a4e7e46beb56a9012f1c8c831c6857ebe",
+      "artifact_sha256": "93dbdaf76bd7bdcdbbfe73c6cc415e8edfb4461bb3982662f5420b6a8a8280a6",
+      "compiler": {
+        "module": "PermanssonResearch.GrammarRobust.OverlapCanonicalBridge",
+        "started": 1792292132.2710073,
+        "elapsed": 67.63846802711487,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "5961213b9e2744b0aa2f9d6103db579a4e7e46beb56a9012f1c8c831c6857ebe"
+      }
+    },
+    "PermanssonResearch/GrammarRobust/LowerSetTransport.lean": {
+      "sha256": "07d6495112d3761118a6510026c878497d773270e10aee538f6e6e61385cb3cb",
+      "artifact_sha256": "2ab245d0bc86b719e2bb7ae32fdd0442a7c129b82822bd4ca557b9d5d4cb4e35",
+      "compiler": {
+        "module": "PermanssonResearch.GrammarRobust.LowerSetTransport",
+        "started": 1792292199.9170094,
+        "elapsed": 63.65087938308716,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "07d6495112d3761118a6510026c878497d773270e10aee538f6e6e61385cb3cb"
+      }
+    },
+    "PermanssonResearch/GrammarRobust/OriginalLowerSetTransport.lean": {
+      "sha256": "e5b2bf9f8d48f25e83ad701a5e6b4b23286a2b2b944ba76143ca2b9abc45f8bd",
+      "artifact_sha256": "392a88911756720906b65406b6da7eb37bfd9a61a21c41fd1971852e14d92524",
+      "compiler": {
+        "module": "PermanssonResearch.GrammarRobust.OriginalLowerSetTransport",
+        "started": 1792292263.5753925,
+        "elapsed": 73.78979110717773,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "e5b2bf9f8d48f25e83ad701a5e6b4b23286a2b2b944ba76143ca2b9abc45f8bd"
+      }
+    },
+    "PermanssonResearch/MultiAgent/FeasibleAnchors.lean": {
+      "sha256": "3bd960cd530773a2efac8482ea326c43d004c9181cfa763aa5651f7536608e64",
+      "artifact_sha256": "ff191f8c83163d09caf93a344b2ab2d81ef16ed750e803745d018b53d7a0a68d",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.FeasibleAnchors",
+        "started": 1792292337.3715231,
+        "elapsed": 67.35444974899292,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "3bd960cd530773a2efac8482ea326c43d004c9181cfa763aa5651f7536608e64"
+      }
+    },
+    "PermanssonResearch/MultiAgent/CorrelatedMediator.lean": {
+      "sha256": "b547e44664bf1ab08482fde276b4448398d05ffe6be77b41da29b3c14739e777",
+      "artifact_sha256": "b3aea42ce5268a2f44c5f0bf4297ffeea72af9fa964fe90d0ac014dc2f03302f",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.CorrelatedMediator",
+        "started": 1792292404.7309368,
+        "elapsed": 66.18900561332703,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "b547e44664bf1ab08482fde276b4448398d05ffe6be77b41da29b3c14739e777"
+      }
+    },
+    "PermanssonResearch/MultiAgent/FiniteMediation.lean": {
+      "sha256": "2404c03891bb8912e73239e9b902ba76b7f02b656a659f7db8efeada63fabe3a",
+      "artifact_sha256": "cb30d214f349841b58c74654814da3823d3ab8c3f3df2df64895fc4ec80d47dc",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.FiniteMediation",
+        "started": 1792292470.9266012,
+        "elapsed": 76.36569476127625,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "2404c03891bb8912e73239e9b902ba76b7f02b656a659f7db8efeada63fabe3a"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/AdaptiveGrammarControl.lean": {
+      "sha256": "d16f5693027488555038686aabfd1c548e6dbe8665e8f19768a33eb60a403e5c",
+      "artifact_sha256": "9379e4c7179183f7296e8bab96650ab8d7beb6cb7d9fbe6451994b56f2604b1e",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl",
+        "started": 1792292547.2991483,
+        "elapsed": 88.27774620056152,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "d16f5693027488555038686aabfd1c548e6dbe8665e8f19768a33eb60a403e5c"
+      }
+    },
+    "PermanssonResearch/Specialized/SeamReduction.lean": {
+      "sha256": "e09f3027088f643b7599c4a2861c42300e8bcf325982a66e93563a9fdb3d4787",
+      "artifact_sha256": "b28ab501badf488f6a635950cc24e89632e95d6389a0b6dae10164cf5c28410d",
+      "compiler": {
+        "module": "PermanssonResearch.Specialized.SeamReduction",
+        "started": 1792292635.5870082,
+        "elapsed": 75.48160815238953,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "e09f3027088f643b7599c4a2861c42300e8bcf325982a66e93563a9fdb3d4787"
+      }
+    },
+    "PermanssonResearch/Specialized/FiniteDetection.lean": {
+      "sha256": "43f7f1b7842ab92c38f6e220dedbe9b449f713bd156f1013112f69c091b49336",
+      "artifact_sha256": "e2cec6a4a84d5a24d0c8df1cde9e9651ee2a808534b150080edab969fe77eebb",
+      "compiler": {
+        "module": "PermanssonResearch.Specialized.FiniteDetection",
+        "started": 1792292711.0747676,
+        "elapsed": 59.73687267303467,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "43f7f1b7842ab92c38f6e220dedbe9b449f713bd156f1013112f69c091b49336"
+      }
+    },
+    "PermanssonResearch/Specialized/ShellSchur.lean": {
+      "sha256": "91976bd49739c02dc057be780ed4bfcb9eef3d692123a3cbcd203c4a43a43e54",
+      "artifact_sha256": "788c312205e84792c96f8e5ee86cab771cbe7b15c6b85bf629c8c1f8a50400b6",
+      "compiler": {
+        "module": "PermanssonResearch.Specialized.ShellSchur",
+        "started": 1792292770.8166416,
+        "elapsed": 67.72583055496216,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "91976bd49739c02dc057be780ed4bfcb9eef3d692123a3cbcd203c4a43a43e54"
+      }
+    },
+    "PermanssonResearch/Specialized/ShellResolvent.lean": {
+      "sha256": "c595d334a9049c85f404f5657d0e21eafee46b57b90879a6596cc40d5e980123",
+      "artifact_sha256": "105c189e9572a53c131c822ca5008b0f6408729250efff9e077826c5a0b907d2",
+      "compiler": {
+        "module": "PermanssonResearch.Specialized.ShellResolvent",
+        "started": 1792293099.0088181,
+        "elapsed": 58.46939992904663,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "c595d334a9049c85f404f5657d0e21eafee46b57b90879a6596cc40d5e980123"
+      }
+    },
+    "PermanssonResearch/Specialized/SingularCompatibility.lean": {
+      "sha256": "39e607f76735f7d01c65e29aed4ecebd7bca0857f96b5be08bdfb0e7faedb950",
+      "artifact_sha256": "cf81633b0a269251f5e1563c8d0bed78e30cc5251e6377ace98387b8997286a3",
+      "compiler": {
+        "module": "PermanssonResearch.Specialized.SingularCompatibility",
+        "started": 1792292838.547454,
+        "elapsed": 70.1672465801239,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "39e607f76735f7d01c65e29aed4ecebd7bca0857f96b5be08bdfb0e7faedb950"
+      }
+    },
+    "PermanssonResearch/Specialized/GramSeparation.lean": {
+      "sha256": "9c3704950798c4d9a542dcecad802883f3aa52743d58b23618e011386cdc9396",
+      "artifact_sha256": "643da54ad50ed35e67e8b6c086b66a30d51e2400ff497d52a0969918639c229c",
+      "compiler": {
+        "module": "PermanssonResearch.Specialized.GramSeparation",
+        "started": 1792292908.7218554,
+        "elapsed": 74.8036720752716,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "9c3704950798c4d9a542dcecad802883f3aa52743d58b23618e011386cdc9396"
+      }
+    }
+  },
+  "module_list": [
+    "Probability.ProjectedCommonSubkernel",
+    "Quotient.GeometricPrefix",
+    "Quotient.GeometricQuotient",
+    "Quotient.GeometricMargin",
+    "Probability.LocalizedHistoryTV",
+    "Probability.SummablePathScores",
+    "Probability.CouplingDualBound",
+    "Perturbation.DirectDualContraction",
+    "Perturbation.PrimitiveProductTV",
+    "Perturbation.PrimitiveMetricBudget",
+    "GrammarRobust.CompatibleOverlap",
+    "GrammarRobust.OverlapKernelAssembly",
+    "GrammarRobust.OverlapCanonicalBridge",
+    "GrammarRobust.LowerSetTransport",
+    "GrammarRobust.OriginalLowerSetTransport",
+    "MultiAgent.FeasibleAnchors",
+    "MultiAgent.CorrelatedMediator",
+    "MultiAgent.FiniteMediation",
+    "ReverseSolver.AdaptiveGrammarControl",
+    "Specialized.SeamReduction",
+    "Specialized.FiniteDetection",
+    "Specialized.ShellSchur",
+    "Specialized.ShellResolvent",
+    "Specialized.SingularCompatibility",
+    "Specialized.GramSeparation"
+  ],
+  "declaration_count": 213,
+  "declarations": {
+    "PermanssonResearch.Probability.liftProjectedDensity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.measurable_liftProjectedDensity_weight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.liftProjectedDensity_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.map_liftProjectedDensity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.clippedProjectedDensity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.measurable_clippedProjectedDensity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.clippedProjectedDensity_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.withDensity_clippedProjectedDensity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.projected_subPrefix_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.approxQuotient_prefix_tv_le_geometric_of_subkernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.projectedCommonKernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.projectedCommonKernel_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.projectedCommonKernel_isFinite": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.map_projectedCommonKernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.projectedCommonKernel_map_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.projectedCommonKernel_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.approxQuotient_prefix_tv_le_geometric": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.geometricQuotient_value_dist_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.geometricQuotient_effect_abs_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.geometricQuotient_margin_abs_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.geometricQuotient_uniformPR_pair": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.margin_positive_pair_of_budget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.grounded_uniformPR_pair_of_margin_budget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.eventTV_compProd_averaged": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.historyEvolution": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.historyEvolution_isProbability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.historyEvolution_tv_le_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.bounded_score_integral_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.summablePathScore": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.weighted_score_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.integral_summablePathScore": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.summablePathScore_integral_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.discounted_geometric_budget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.summable_output_score_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.IntegrableCoupling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.IntegrableCoupling.cost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.IntegrableCoupling.cost_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.IntegrableCoupling.dual_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.couplingCosts": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.couplingW1": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.w1DualLE_couplingW1": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.w1DualLE_of_couplingW1_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.finiteProductCoupling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.finite_w1DualLE_couplingW1": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.kr_kernel_image_bounded": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.isW1Contraction_of_test_images": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.constantKernel_isW1Contraction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.identityKernel_isW1Contraction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.primitiveCommon_mass_ge_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.inducedKernel_tv_le_primitive_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.inducedKernel_w1DualLE_of_primitive_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.inducedLaw_w1DualLE_of_primitive_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.RowPatch.Compatible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.RowPatch.Compatible.symm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.applyCompatiblePatches": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.applyCompatiblePatches_active": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.applyCompatiblePatches_inactive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.applyCompatiblePatches_eq_of_membership": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.applyCompatiblePatches_perm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.applyRowPatch_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.overlapModel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.overlapModel_world": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.overlapModel_eq_of_membership": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.overlapModel_pathLaw_eq_of_membership": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.PatchSelection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.overlapFamily": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.overlapIntervention": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.overlapIntervention_apply": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.overlapIntervention_effect_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.overlapIntervention_margin_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.exists_least_positive_of_finite_meet_closed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.Coarsening.original_margin_minimal_iff_of_lower_coverage": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.measurableSet_fibreLegal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.keyLaw_feasible_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.exists_feasible_keyKernel_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.strictAnchorOfKeyKernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.strictAnchorOfKeyKernel_strict": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.exists_feasible_strictAnchor_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.legalFibreMenu": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.mem_legalFibreMenu": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.legalFibreMenu_nonempty": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.leastFibreAction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.leastFibreAction_legal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.leastFibreAction_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.mediatorProduct": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.mediatorProduct_eq_indicator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.mediator_mixture_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.mediatedAction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.mediatedAction_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.withMediatedActions": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.withMediatedActions_action": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.withMediatedActions_world": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalAtom": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediatorMass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.response": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalNumerator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalOutcomeMass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalOutcome": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalMediator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalMass_factor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalNumerator_factor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalOutcome_eq_response": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.conditionalMediator_eq_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.nestedExpectation_grouped": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediation_identification": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.signed_effect_decomposition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.mediation_identification_on_support": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.SCM.observationalAtom_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.mediatedOutcome": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.directOutcome": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.same_observed_structural_outcome": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.same_fair_observational_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.different_joint_intervention": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.counterexample_missing_positivity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_same_observational_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_different_joint_do": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_positivity_failure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockModel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockIntervention": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.blockIntervention_apply": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.block_preserves_world": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedRow_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass_nonnegative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceMass_total_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedChronologicalLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedChronologicalLaw_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceExpectation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceExpectation_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.adaptive_block_optimal_and_attained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.seam": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.quadratic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.seam_decomposition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.seam_rank_le_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.seam_constant_diagonal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.commonMode_rank_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.nested_commonMode_scalar_consistent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.quadratic_commonMode": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.quadratic_sub": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.featureQuadratic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.constitutiveEffect_commonMode": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.constitutiveMargin_commonMode": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.quadratic_approximation_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.negative_quadratic_of_approximation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.exists_legal_negative_of_approximation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.negative_persists_under_embedding": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.quadratic_two_control_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.bilinearFeatureProperty": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.actual_effect_pos_of_legal_approximation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.negativeShift": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.negativeShift_posDef": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.negativeShift_isUnit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shellComplement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shell_determinant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shell_equations_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.negative_eigenvector_has_nonzero_shell": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.exists_first_bad": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shiftedContinuous": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.negativeShiftUnit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shellResolvent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shellResolvent_eq_genuine_inverse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shiftedContinuous_symmetric": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shellResolvent_solve": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shellResolvent_quadratic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shellResolvent_hasDerivAt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shellResponse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shellResponse_hasDerivAt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.scalarShellSecular": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.scalarShellSecular_hasDerivAt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.scalarShellSecular_derivative_negative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.symmetric_range_eq_kernel_orthogonal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.symmetric_preimage_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.preimages_differ_by_kernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.compatible_response_independent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.singularBlockForm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.singular_complete_square": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.singular_block_nonnegative_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.incompatible_kernel_negative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shiftedOperator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.shiftedOperator_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.negativeResolventEquiv": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.negative_resolvent_kernel_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.denominator_free_kernel_rigidity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.source_vanishes_of_nonexceptional": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.zero_shift_source_response": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.gramGap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.gramWitness": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.inner_gramWitness_left": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.inner_gramWitness_right": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.norm_gramWitness_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.gramGap_pos_norm_left": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.signedGram_witness_value": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.signedGram_witness_negative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.gramWitness_ne_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.unitGramWitness": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.norm_unitGramWitness": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.gram_unit_rayleigh_value": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.gram_psd_evaluation_nonnegative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.gram_operator_perturbation_negative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.gram_additional_component_negative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.operatorFeatureProperty": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.constitutiveEffect_gram_witness": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.IsMinimalPositive": [],
+    "PermanssonResearch.GrammarRobust.minimalPositive_iff_of_lowerSet_lifting": [],
+    "PermanssonResearch.MultiAgent.fibreLegal": []
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "4bcb28acc4352f2cf7a5944588970a0bbb32914dc0fc7ea0084184d9b429a47d",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/analytic_signatures_axioms.txt",
+    "sha256": "4bcb28acc4352f2cf7a5944588970a0bbb32914dc0fc7ea0084184d9b429a47d"
+  }
+}

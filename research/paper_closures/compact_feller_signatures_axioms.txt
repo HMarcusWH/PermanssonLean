@@ -1,0 +1,250 @@
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.squareHorizon' depends on axioms: [propext]
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.squareHorizon_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.square_reciprocal_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.normalizedSquare' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.square_event_probability_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.square_eventually_small' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.square_ae_tendsto_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.relativeSquareGap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.relativeSquareGap_tendsto_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.normalized_le_square_and_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.full_tendsto_of_square' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedSquareStrongLaw.ae_strong_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.total' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.total_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.total_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.measurable_total' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.time_lipschitz' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.total_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.integrable_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.integrable_total' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.value_square_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.integrable_value_square' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.integral_value_square_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.integrable_total_square' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.integrable_total_mul_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.bounded_past_cross_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.total_next_cross_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.second_moment_le_time' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.integral_value_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.integral_total_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.total_memLp_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.tail_le_time' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.BoundedInnovations.Process.ae_strong_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.past' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.coordinate_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.predict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.predict_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.predict_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.next_conditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.innovation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.innovation_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.innovation_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.innovation_centered' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.normalization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.boundedProcess' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalBoundedInnovations.canonical_innovation_strong_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.IsFeller' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.operator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.Invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.invariant_iff_measure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.continuousMap_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.integral_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.step_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.invariant_set_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.residual_eq_predict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.residual_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.invariant_iff_residual_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.integral_test_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.residual_test_lipschitz' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.residual_tendsto_of_dense' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.cluster_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.tendsto_invariant_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.tendsto_unique_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_residual_telescope' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.endpoint_average_tendsto_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_residual_ae' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_all_residuals_ae' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_clusters_invariant_ae' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_invariant_family_ae' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_unique_invariant_ae' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.exists_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_descriptor_family_ae' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_descriptor_unique_ae' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.original_descriptor_empirical_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.original_occupation_of_invariant_descriptor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.weakFamilyDistance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.weakFamilyDistance_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.weakFamilyDistance_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.weakFamilyDistance_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.distance_tendsto_iff_clusters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.singleton_distance_iff_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_invariant_distance_ae' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CompactFeller.empirical_predeclared_family_distance_ae' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

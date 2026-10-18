@@ -1,0 +1,965 @@
+PermanssonResearch.Perturbation.isW1Contraction_of_row_couplings.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] {ρ : ℝ} (hρ : LE.le.{0} 0 ρ)
+  (hrows :
+    ∀ (x y : Y),
+      ∃ γ,
+        LE.le.{0} (PermanssonResearch.Probability.IntegrableCoupling.cost.{u_1} γ)
+          (HMul.hMul.{0, 0, 0} ρ (Dist.dist.{u_1} x y))) :
+  PermanssonResearch.Perturbation.IsW1Contraction.{u_1} K ρ
+'PermanssonResearch.Perturbation.isW1Contraction_of_row_couplings' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.isW1Contraction_of_tv_rows.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] {D ell β : ℝ} (hD : LE.le.{0} 0 D) (hell : LT.lt.{0} 0 ell)
+  (hβ : LE.le.{0} 0 β) (hdiam : ∀ (x y : Y), LE.le.{0} (Dist.dist.{u_1} x y) D)
+  (hsep : ∀ (x y : Y), Ne.{u_1 + 1} x y → LE.le.{0} ell (Dist.dist.{u_1} x y))
+  (hrows : ∀ (x y : Y), LE.le.{0} (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_1} (K x) (K y)) β) :
+  PermanssonResearch.Perturbation.IsW1Contraction.{u_1} K (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} D β) ell)
+'PermanssonResearch.Perturbation.isW1Contraction_of_tv_rows' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.dobrushinCoefficient.{u_1} {Y : Type u_1} [MeasurableSpace.{u_1} Y] [Fintype.{u_1} Y]
+  [Nonempty.{u_1 + 1} Y] (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y) : ℝ
+'PermanssonResearch.Perturbation.dobrushinCoefficient' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.row_tv_le_dobrushin.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] [Fintype.{u_1} Y] [Nonempty.{u_1 + 1} Y] (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  (x y : Y) :
+  LE.le.{0} (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_1} (K x) (K y))
+    (PermanssonResearch.Perturbation.dobrushinCoefficient.{u_1} K)
+'PermanssonResearch.Perturbation.row_tv_le_dobrushin' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Perturbation.dobrushin_bounds.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] [Fintype.{u_1} Y] [Nonempty.{u_1 + 1} Y] (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] :
+  LE.le.{0} 0 (PermanssonResearch.Perturbation.dobrushinCoefficient.{u_1} K) ∧
+    LE.le.{0} (PermanssonResearch.Perturbation.dobrushinCoefficient.{u_1} K) 1
+'PermanssonResearch.Perturbation.dobrushin_bounds' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Perturbation.isW1Contraction_dobrushin.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] [Fintype.{u_1} Y] [Nonempty.{u_1 + 1} Y] [DecidableEq.{u_1 + 1} Y]
+  (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y) [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K]
+  (hmetric : ∀ (x y : Y), Eq.{1} (Dist.dist.{u_1} x y) (ite.{1} (Eq.{u_1 + 1} x y) 0 1)) :
+  PermanssonResearch.Perturbation.IsW1Contraction.{u_1} K (PermanssonResearch.Perturbation.dobrushinCoefficient.{u_1} K)
+'PermanssonResearch.Perturbation.isW1Contraction_dobrushin' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.doeblin_tv_rows.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] [Nonempty.{u_1 + 1} Y] (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] (reference : MeasureTheory.Measure.{u_1} Y)
+  [MeasureTheory.IsProbabilityMeasure.{u_1} reference] {ε : ℝ} (hε : LE.le.{0} 0 ε)
+  (hminor : ∀ (x : Y), LE.le.{u_1} (HSMul.hSMul.{0, u_1, u_1} (ENNReal.ofReal ε) reference) (K x)) (x y : Y) :
+  LE.le.{0} (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_1} (K x) (K y)) (HSub.hSub.{0, 0, 0} 1 ε)
+'PermanssonResearch.Perturbation.doeblin_tv_rows' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Perturbation.isW1Contraction_doeblin.{u_1} {Y : Type u_1} [PseudoMetricSpace.{u_1} Y]
+  [MeasurableSpace.{u_1} Y] [Nonempty.{u_1 + 1} Y] (K : ProbabilityTheory.Kernel.{u_1, u_1} Y Y)
+  [ProbabilityTheory.IsMarkovKernel.{u_1, u_1} K] (reference : MeasureTheory.Measure.{u_1} Y)
+  [MeasureTheory.IsProbabilityMeasure.{u_1} reference] {ε D ell : ℝ} (hε0 : LE.le.{0} 0 ε) (hε1 : LE.le.{0} ε 1)
+  (hD : LE.le.{0} 0 D) (hell : LT.lt.{0} 0 ell) (hdiam : ∀ (x y : Y), LE.le.{0} (Dist.dist.{u_1} x y) D)
+  (hsep : ∀ (x y : Y), Ne.{u_1 + 1} x y → LE.le.{0} ell (Dist.dist.{u_1} x y))
+  (hminor : ∀ (x : Y), LE.le.{u_1} (HSMul.hSMul.{0, u_1, u_1} (ENNReal.ofReal ε) reference) (K x)) :
+  PermanssonResearch.Perturbation.IsW1Contraction.{u_1} K
+    (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} D (HSub.hSub.{0, 0, 0} 1 ε)) ell)
+'PermanssonResearch.Perturbation.isW1Contraction_doeblin' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.finiteRow_eq_of_mass.{u_1} {Y : Type u_1} [Fintype.{u_1} Y]
+  (p q : PermanssonResearch.ActionTrace.Row.{u_1} Y)
+  (h :
+    ∀ (y : Y),
+      Eq.{1} (PermanssonResearch.ActionTrace.Row.mass.{u_1} p y) (PermanssonResearch.ActionTrace.Row.mass.{u_1} q y)) :
+  Eq.{u_1 + 1} p q
+'PermanssonResearch.Probability.finiteRow_eq_of_mass' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.finiteRow_eq_of_expect.{u_1} {Y : Type u_1} [Fintype.{u_1} Y]
+  (p q : PermanssonResearch.ActionTrace.Row.{u_1} Y)
+  (h :
+    ∀ (f : Y → ℝ),
+      Eq.{1} (PermanssonResearch.ActionTrace.Row.expect.{u_1} p f)
+        (PermanssonResearch.ActionTrace.Row.expect.{u_1} q f)) :
+  Eq.{u_1 + 1} p q
+'PermanssonResearch.Probability.finiteRow_eq_of_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.RowCoupling.{u_1} {Y : Type u_1} [Fintype.{u_1} Y]
+  (p q : PermanssonResearch.ActionTrace.Row.{u_1} Y) : Type u_1
+'PermanssonResearch.Probability.RowCoupling' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.RowCoupling.first_expect.{u_1} {Y : Type u_1} [Fintype.{u_1} Y]
+  {p q : PermanssonResearch.ActionTrace.Row.{u_1} Y} (g : PermanssonResearch.Probability.RowCoupling.{u_1} p q)
+  (f : Y → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1} (PermanssonResearch.Probability.RowCoupling.joint.{u_1} g) fun z =>
+      f z.1)
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1} p f)
+'PermanssonResearch.Probability.RowCoupling.first_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.RowCoupling.second_expect.{u_1} {Y : Type u_1} [Fintype.{u_1} Y]
+  {p q : PermanssonResearch.ActionTrace.Row.{u_1} Y} (g : PermanssonResearch.Probability.RowCoupling.{u_1} p q)
+  (f : Y → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1} (PermanssonResearch.Probability.RowCoupling.joint.{u_1} g) fun z =>
+      f z.2)
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1} q f)
+'PermanssonResearch.Probability.RowCoupling.second_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.RowCoupling.first_sum.{u_1} {Y : Type u_1} [Fintype.{u_1} Y]
+  {p q : PermanssonResearch.ActionTrace.Row.{u_1} Y} (g : PermanssonResearch.Probability.RowCoupling.{u_1} p q)
+  (y : Y) :
+  Eq.{1}
+    (∑ z,
+      PermanssonResearch.ActionTrace.Row.mass.{u_1} (PermanssonResearch.Probability.RowCoupling.joint.{u_1} g)
+        (Prod.mk.{u_1, u_1} y z))
+    (PermanssonResearch.ActionTrace.Row.mass.{u_1} p y)
+'PermanssonResearch.Probability.RowCoupling.first_sum' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.RowCoupling.second_sum.{u_1} {Y : Type u_1} [Fintype.{u_1} Y]
+  {p q : PermanssonResearch.ActionTrace.Row.{u_1} Y} (g : PermanssonResearch.Probability.RowCoupling.{u_1} p q)
+  (y : Y) :
+  Eq.{1}
+    (∑ z,
+      PermanssonResearch.ActionTrace.Row.mass.{u_1} (PermanssonResearch.Probability.RowCoupling.joint.{u_1} g)
+        (Prod.mk.{u_1, u_1} z y))
+    (PermanssonResearch.ActionTrace.Row.mass.{u_1} q y)
+'PermanssonResearch.Probability.RowCoupling.second_sum' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.RowCoupling.mapPair.{u_1, u_2} {Y : Type u_1} {Z : Type u_2} [Fintype.{u_1} Y]
+  [Fintype.{u_2} Z] {p q : PermanssonResearch.ActionTrace.Row.{u_1} Y}
+  (g : PermanssonResearch.Probability.RowCoupling.{u_1} p q) (f h : Y → Z) :
+  PermanssonResearch.Probability.RowCoupling.{u_2} (PermanssonResearch.ActionTrace.Row.map.{u_1, u_2} p f)
+    (PermanssonResearch.ActionTrace.Row.map.{u_1, u_2} q h)
+'PermanssonResearch.Probability.RowCoupling.mapPair' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.RowCoupling.bind.{u_1, u_2} {Y : Type u_1} {Z : Type u_2} [Fintype.{u_1} Y]
+  [Fintype.{u_2} Z] {p q : PermanssonResearch.ActionTrace.Row.{u_1} Y}
+  (g : PermanssonResearch.Probability.RowCoupling.{u_1} p q) (r s : Y → PermanssonResearch.ActionTrace.Row.{u_2} Z)
+  (h : (z : Prod.{u_1, u_1} Y Y) → PermanssonResearch.Probability.RowCoupling.{u_2} (r z.1) (s z.2)) :
+  PermanssonResearch.Probability.RowCoupling.{u_2} (PermanssonResearch.ActionTrace.Row.bind.{u_1, u_2} p r)
+    (PermanssonResearch.ActionTrace.Row.bind.{u_1, u_2} q s)
+'PermanssonResearch.Probability.RowCoupling.bind' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.RowCoupling.toCoupling.{u_1} {Y : Type u_1} [Fintype.{u_1} Y]
+  {p q : PermanssonResearch.ActionTrace.Row.{u_1} Y} [PseudoMetricSpace.{u_1} Y] [MeasurableSpace.{u_1} Y]
+  [MeasurableSingletonClass.{u_1} Y] [Nonempty.{u_1 + 1} Y] (g : PermanssonResearch.Probability.RowCoupling.{u_1} p q) :
+  PermanssonResearch.Probability.IntegrableCoupling.{u_1} (PermanssonResearch.ActionTrace.Row.measure.{u_1} p)
+    (PermanssonResearch.ActionTrace.Row.measure.{u_1} q)
+'PermanssonResearch.Probability.RowCoupling.toCoupling' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.RowCoupling.toCoupling_cost.{u_1} {Y : Type u_1} [Fintype.{u_1} Y]
+  {p q : PermanssonResearch.ActionTrace.Row.{u_1} Y} [PseudoMetricSpace.{u_1} Y] [MeasurableSpace.{u_1} Y]
+  [MeasurableSingletonClass.{u_1} Y] [Nonempty.{u_1 + 1} Y] (g : PermanssonResearch.Probability.RowCoupling.{u_1} p q) :
+  Eq.{1}
+    (PermanssonResearch.Probability.IntegrableCoupling.cost.{u_1}
+      (PermanssonResearch.Probability.RowCoupling.toCoupling.{u_1} g))
+    (PermanssonResearch.ActionTrace.Row.expect.{u_1} (PermanssonResearch.Probability.RowCoupling.joint.{u_1} g) fun z =>
+      Dist.dist.{u_1} z.1 z.2)
+'PermanssonResearch.Probability.RowCoupling.toCoupling_cost' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.RowCoupling.exists_of_w1DualLE.{u_1} {Y : Type u_1} [Fintype.{u_1} Y]
+  {p q : PermanssonResearch.ActionTrace.Row.{u_1} Y} [PseudoMetricSpace.{u_1} Y] [MeasurableSpace.{u_1} Y]
+  [MeasurableSingletonClass.{u_1} Y] [Nonempty.{u_1 + 1} Y] {δ : ℝ}
+  (hδ :
+    PermanssonResearch.Probability.W1DualLE.{u_1} (PermanssonResearch.ActionTrace.Row.measure.{u_1} p)
+      (PermanssonResearch.ActionTrace.Row.measure.{u_1} q) δ) :
+  ∃ g,
+    LE.le.{0}
+      (PermanssonResearch.ActionTrace.Row.expect.{u_1} (PermanssonResearch.Probability.RowCoupling.joint.{u_1} g)
+        fun z => Dist.dist.{u_1} z.1 z.2)
+      δ
+'PermanssonResearch.Probability.RowCoupling.exists_of_w1DualLE' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.inducedRow.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] (α : PermanssonResearch.ActionTrace.Row.{u_3} A)
+  (P : A → PermanssonResearch.ActionTrace.Row.{u_2} X) (U : A → X → PermanssonResearch.ActionTrace.Row.{u_1} S) :
+  PermanssonResearch.ActionTrace.Row.{max u_2 u_1} (Prod.{u_1, u_2} S X)
+'PermanssonResearch.Perturbation.FiniteSequential.inducedRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.sequentialCoupling.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  {α β : PermanssonResearch.ActionTrace.Row.{u_3} A} {P Q : A → PermanssonResearch.ActionTrace.Row.{u_2} X}
+  {U V : A → X → PermanssonResearch.ActionTrace.Row.{u_1} S} (gA : PermanssonResearch.Probability.RowCoupling.{u_3} α β)
+  (gP : (ab : Prod.{u_3, u_3} A A) → PermanssonResearch.Probability.RowCoupling.{u_2} (P ab.1) (Q ab.2))
+  (gU :
+    (ab : Prod.{u_3, u_3} A A) →
+      (xx : Prod.{u_2, u_2} X X) → PermanssonResearch.Probability.RowCoupling.{u_1} (U ab.1 xx.1) (V ab.2 xx.2)) :
+  PermanssonResearch.Probability.RowCoupling.{max u_2 u_1}
+    (PermanssonResearch.Perturbation.FiniteSequential.inducedRow.{u_1, u_2, u_3} α P U)
+    (PermanssonResearch.Perturbation.FiniteSequential.inducedRow.{u_1, u_2, u_3} β Q V)
+'PermanssonResearch.Perturbation.FiniteSequential.sequentialCoupling' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.sequential_expect.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  {α β : PermanssonResearch.ActionTrace.Row.{u_3} A} {P Q : A → PermanssonResearch.ActionTrace.Row.{u_2} X}
+  {U V : A → X → PermanssonResearch.ActionTrace.Row.{u_1} S} (gA : PermanssonResearch.Probability.RowCoupling.{u_3} α β)
+  (gP : (ab : Prod.{u_3, u_3} A A) → PermanssonResearch.Probability.RowCoupling.{u_2} (P ab.1) (Q ab.2))
+  (gU :
+    (ab : Prod.{u_3, u_3} A A) →
+      (xx : Prod.{u_2, u_2} X X) → PermanssonResearch.Probability.RowCoupling.{u_1} (U ab.1 xx.1) (V ab.2 xx.2))
+  (F : Prod.{max u_2 u_1, max u_2 u_1} (Prod.{u_1, u_2} S X) (Prod.{u_1, u_2} S X) → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{max u_1 u_2}
+      (PermanssonResearch.Probability.RowCoupling.joint.{max u_1 u_2}
+        (PermanssonResearch.Perturbation.FiniteSequential.sequentialCoupling.{u_1, u_2, u_3} gA gP gU))
+      F)
+    (PermanssonResearch.ActionTrace.Row.expect.{u_3} (PermanssonResearch.Probability.RowCoupling.joint.{u_3} gA)
+      fun ab =>
+      PermanssonResearch.ActionTrace.Row.expect.{u_2} (PermanssonResearch.Probability.RowCoupling.joint.{u_2} (gP ab))
+        fun xx =>
+        PermanssonResearch.ActionTrace.Row.expect.{u_1}
+          (PermanssonResearch.Probability.RowCoupling.joint.{u_1} (gU ab xx)) fun ss =>
+          F (Prod.mk.{max u_1 u_2, max u_1 u_2} (Prod.mk.{u_1, u_2} ss.1 xx.1) (Prod.mk.{u_1, u_2} ss.2 xx.2)))
+'PermanssonResearch.Perturbation.FiniteSequential.sequential_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.weightedDistance.{u_1, u_2} {S : Type u_1} {X : Type u_2}
+  [PseudoMetricSpace.{u_1} S] [PseudoMetricSpace.{u_2} X] (a b : NNReal) (y z : Prod.{u_1, u_2} S X) : ℝ
+'PermanssonResearch.Perturbation.FiniteSequential.weightedDistance' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.weightedMetric.{u_1, u_2} {S : Type u_1} {X : Type u_2}
+  [PseudoMetricSpace.{u_1} S] [PseudoMetricSpace.{u_2} X] (a b : NNReal) :
+  PseudoMetricSpace.{max u_2 u_1} (Prod.{u_1, u_2} S X)
+'PermanssonResearch.Perturbation.FiniteSequential.weightedMetric' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.metricBudget (a b LPa LUa LUx : NNReal) (δα δP δU : ℝ) : ℝ
+'PermanssonResearch.Perturbation.FiniteSequential.metricBudget' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.expect_affine.{u_4} {Y : Type u_4} [Fintype.{u_4} Y]
+  (p : PermanssonResearch.ActionTrace.Row.{u_4} Y) (u v : ℝ) (f : Y → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{u_4} p fun y => HAdd.hAdd.{0, 0, 0} u (HMul.hMul.{0, 0, 0} v (f y)))
+    (HAdd.hAdd.{0, 0, 0} u (HMul.hMul.{0, 0, 0} v (PermanssonResearch.ActionTrace.Row.expect.{u_4} p f)))
+'PermanssonResearch.Perturbation.FiniteSequential.expect_affine' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.sequential_weighted_cost.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [PseudoMetricSpace.{u_1} S]
+  [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A] {α β : PermanssonResearch.ActionTrace.Row.{u_3} A}
+  {P Q : A → PermanssonResearch.ActionTrace.Row.{u_2} X} {U V : A → X → PermanssonResearch.ActionTrace.Row.{u_1} S}
+  (gA : PermanssonResearch.Probability.RowCoupling.{u_3} α β)
+  (gP : (ab : Prod.{u_3, u_3} A A) → PermanssonResearch.Probability.RowCoupling.{u_2} (P ab.1) (Q ab.2))
+  (gU :
+    (ab : Prod.{u_3, u_3} A A) →
+      (xx : Prod.{u_2, u_2} X X) → PermanssonResearch.Probability.RowCoupling.{u_1} (U ab.1 xx.1) (V ab.2 xx.2))
+  (a b LPa LUa LUx : NNReal) (δα δP δU : ℝ)
+  (hA :
+    LE.le.{0}
+      (PermanssonResearch.ActionTrace.Row.expect.{u_3} (PermanssonResearch.Probability.RowCoupling.joint.{u_3} gA)
+        fun ab => Dist.dist.{u_3} ab.1 ab.2)
+      δα)
+  (hP :
+    ∀ (ab : Prod.{u_3, u_3} A A),
+      LE.le.{0}
+        (PermanssonResearch.ActionTrace.Row.expect.{u_2}
+          (PermanssonResearch.Probability.RowCoupling.joint.{u_2} (gP ab)) fun xx => Dist.dist.{u_2} xx.1 xx.2)
+        (HAdd.hAdd.{0, 0, 0} δP (HMul.hMul.{0, 0, 0} (↑LPa) (Dist.dist.{u_3} ab.1 ab.2))))
+  (hU :
+    ∀ (ab : Prod.{u_3, u_3} A A) (xx : Prod.{u_2, u_2} X X),
+      LE.le.{0}
+        (PermanssonResearch.ActionTrace.Row.expect.{u_1}
+          (PermanssonResearch.Probability.RowCoupling.joint.{u_1} (gU ab xx)) fun ss => Dist.dist.{u_1} ss.1 ss.2)
+        (HAdd.hAdd.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} δU (HMul.hMul.{0, 0, 0} (↑LUa) (Dist.dist.{u_3} ab.1 ab.2)))
+          (HMul.hMul.{0, 0, 0} (↑LUx) (Dist.dist.{u_2} xx.1 xx.2)))) :
+  LE.le.{0}
+    (PermanssonResearch.ActionTrace.Row.expect.{max u_1 u_2}
+      (PermanssonResearch.Probability.RowCoupling.joint.{max u_1 u_2}
+        (PermanssonResearch.Perturbation.FiniteSequential.sequentialCoupling.{u_1, u_2, u_3} gA gP gU))
+      fun yy => PermanssonResearch.Perturbation.FiniteSequential.weightedDistance.{u_1, u_2} a b yy.1 yy.2)
+    (PermanssonResearch.Perturbation.FiniteSequential.metricBudget a b LPa LUa LUx δα δP δU)
+'PermanssonResearch.Perturbation.FiniteSequential.sequential_weighted_cost' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.actionRow.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [Fintype.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSingletonClass.{u_3} A] (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (y : PermanssonLean.JointState.{u_1, u_2} S X) : PermanssonResearch.ActionTrace.Row.{u_3} A
+'PermanssonResearch.Perturbation.FiniteSequential.actionRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.worldRow.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [Fintype.{u_2} X] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSingletonClass.{u_2} X] (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (y : PermanssonLean.JointState.{u_1, u_2} S X) (c : A) : PermanssonResearch.ActionTrace.Row.{u_2} X
+'PermanssonResearch.Perturbation.FiniteSequential.worldRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.updateRow.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [Fintype.{u_1} S] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSingletonClass.{u_1} S] (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (y : PermanssonLean.JointState.{u_1, u_2} S X) (c : A) (x : X) : PermanssonResearch.ActionTrace.Row.{u_1} S
+'PermanssonResearch.Perturbation.FiniteSequential.updateRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.actionRow_measure.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [MeasurableSpace.{u_1} S]
+  [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S]
+  [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A) (y : PermanssonLean.JointState.{u_1, u_2} S X) :
+  Eq.{u_3 + 1}
+    (PermanssonResearch.ActionTrace.Row.measure.{u_3}
+      (PermanssonResearch.Perturbation.FiniteSequential.actionRow.{u_1, u_2, u_3} M y))
+    ((PermanssonLean.StrategicGenerator.action.{u_1, u_2, u_3}
+        (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} M))
+      y)
+'PermanssonResearch.Perturbation.FiniteSequential.actionRow_measure' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.worldRow_measure.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [MeasurableSpace.{u_1} S]
+  [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S]
+  [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A) (y : PermanssonLean.JointState.{u_1, u_2} S X)
+  (c : A) :
+  Eq.{u_2 + 1}
+    (PermanssonResearch.ActionTrace.Row.measure.{u_2}
+      (PermanssonResearch.Perturbation.FiniteSequential.worldRow.{u_1, u_2, u_3} M y c))
+    ((PermanssonLean.StrategicWorldModel.world.{u_1, u_2, u_3} M) (Prod.mk.{max u_1 u_2, u_3} y c))
+'PermanssonResearch.Perturbation.FiniteSequential.worldRow_measure' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.updateRow_measure.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [MeasurableSpace.{u_1} S]
+  [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S]
+  [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A) (y : PermanssonLean.JointState.{u_1, u_2} S X) (c : A)
+  (x : X) :
+  Eq.{u_1 + 1}
+    (PermanssonResearch.ActionTrace.Row.measure.{u_1}
+      (PermanssonResearch.Perturbation.FiniteSequential.updateRow.{u_1, u_2, u_3} M y c x))
+    ((PermanssonLean.StrategicGenerator.update.{u_1, u_2, u_3}
+        (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} M))
+      (Prod.mk.{max (max u_1 u_2) u_3, u_2} (Prod.mk.{max u_1 u_2, u_3} y c) x))
+'PermanssonResearch.Perturbation.FiniteSequential.updateRow_measure' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.typedRow.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2} {A : Type u_3}
+  [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X]
+  [MeasurableSingletonClass.{u_3} A] (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (y : PermanssonLean.JointState.{u_1, u_2} S X) :
+  PermanssonResearch.ActionTrace.Row.{max u_2 u_1} (PermanssonLean.JointState.{u_1, u_2} S X)
+'PermanssonResearch.Perturbation.FiniteSequential.typedRow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.typedRow_expect.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [MeasurableSpace.{u_1} S]
+  [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S]
+  [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A) (y : PermanssonLean.JointState.{u_1, u_2} S X)
+  (f : PermanssonLean.JointState.{u_1, u_2} S X → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{max u_1 u_2}
+      (PermanssonResearch.Perturbation.FiniteSequential.typedRow.{u_1, u_2, u_3} M y) f)
+    (∫ (c : A),
+      ∫ (x : X),
+        ∫ (s : S),
+          f
+            (Prod.mk.{u_1, u_2} s
+              x) ∂(PermanssonLean.StrategicGenerator.update.{u_1, u_2, u_3}
+              (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} M))
+            (Prod.mk.{max (max u_1 u_2) u_3, u_2} (Prod.mk.{max u_1 u_2, u_3} y c)
+              x) ∂(PermanssonLean.StrategicWorldModel.world.{u_1, u_2, u_3} M)
+          (Prod.mk.{max u_1 u_2, u_3} y
+            c) ∂(PermanssonLean.StrategicGenerator.action.{u_1, u_2, u_3}
+          (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} M))
+        y)
+'PermanssonResearch.Perturbation.FiniteSequential.typedRow_expect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.integral_inducedKernel_finite.{u_1, u_2, u_3} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [MeasurableSpace.{u_1} S]
+  [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S]
+  [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A) (y : PermanssonLean.JointState.{u_1, u_2} S X)
+  (f : PermanssonLean.JointState.{u_1, u_2} S X → ℝ) :
+  Eq.{1}
+    (∫ (z : PermanssonLean.JointState.{u_1, u_2} S X),
+      f z ∂(PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M) y)
+    (∫ (c : A),
+      ∫ (x : X),
+        ∫ (s : S),
+          f
+            (Prod.mk.{u_1, u_2} s
+              x) ∂(PermanssonLean.StrategicGenerator.update.{u_1, u_2, u_3}
+              (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} M))
+            (Prod.mk.{max (max u_1 u_2) u_3, u_2} (Prod.mk.{max u_1 u_2, u_3} y c)
+              x) ∂(PermanssonLean.StrategicWorldModel.world.{u_1, u_2, u_3} M)
+          (Prod.mk.{max u_1 u_2, u_3} y
+            c) ∂(PermanssonLean.StrategicGenerator.action.{u_1, u_2, u_3}
+          (PermanssonLean.StrategicWorldModel.generator.{u_1, u_2, u_3} M))
+        y)
+'PermanssonResearch.Perturbation.FiniteSequential.integral_inducedKernel_finite' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.typedRow_expect_induced.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [MeasurableSpace.{u_1} S]
+  [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S]
+  [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A) (y : PermanssonLean.JointState.{u_1, u_2} S X)
+  (f : PermanssonLean.JointState.{u_1, u_2} S X → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{max u_1 u_2}
+      (PermanssonResearch.Perturbation.FiniteSequential.typedRow.{u_1, u_2, u_3} M y) f)
+    (∫ (z : PermanssonLean.JointState.{u_1, u_2} S X),
+      f z ∂(PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M) y)
+'PermanssonResearch.Perturbation.FiniteSequential.typedRow_expect_induced' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.typedRow_measure.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [MeasurableSpace.{u_1} S]
+  [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S]
+  [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A) (y : PermanssonLean.JointState.{u_1, u_2} S X) :
+  Eq.{max (u_1 + 1) (u_2 + 1)}
+    (PermanssonResearch.ActionTrace.Row.measure.{max u_1 u_2}
+      (PermanssonResearch.Perturbation.FiniteSequential.typedRow.{u_1, u_2, u_3} M y))
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M) y)
+'PermanssonResearch.Perturbation.FiniteSequential.typedRow_measure' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [PseudoMetricSpace.{u_1} S] [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A]
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M N : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A) : Type
+'PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.budget.{u_1, u_2, u_3} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} [PseudoMetricSpace.{u_1} S] [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A]
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  {M N : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.{u_1, u_2, u_3} M N) (a b : NNReal) : ℝ
+'PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.budget' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.exists_sequential_plan.{u_1, u_2, u_3}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [PseudoMetricSpace.{u_1} S]
+  [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X]
+  [MeasurableSingletonClass.{u_3} A] {M N : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.{u_1, u_2, u_3} M N) (a b : NNReal)
+  (y : PermanssonLean.JointState.{u_1, u_2} S X) :
+  ∃ g,
+    LE.le.{0}
+      (PermanssonResearch.ActionTrace.Row.expect.{max u_1 u_2}
+        (PermanssonResearch.Probability.RowCoupling.joint.{max u_1 u_2} g) fun yy =>
+        PermanssonResearch.Perturbation.FiniteSequential.weightedDistance.{u_1, u_2} a b yy.1 yy.2)
+      (PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.budget.{u_1, u_2, u_3} D a b)
+'PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.exists_sequential_plan' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.exists_weighted_coupling.{u_1, u_2, u_3}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [PseudoMetricSpace.{u_1} S]
+  [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X]
+  [MeasurableSingletonClass.{u_3} A] {M N : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.{u_1, u_2, u_3} M N) (a b : NNReal)
+  (y : PermanssonLean.JointState.{u_1, u_2} S X) :
+  ∃ γ,
+    LE.le.{0} (PermanssonResearch.Probability.IntegrableCoupling.cost.{max u_1 u_2} γ)
+      (PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.budget.{u_1, u_2, u_3} D a b)
+'PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.exists_weighted_coupling' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.weighted_induced_bound.{u_1, u_2, u_3}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [PseudoMetricSpace.{u_1} S]
+  [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X]
+  [MeasurableSingletonClass.{u_3} A] {M N : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.{u_1, u_2, u_3} M N) (a b : NNReal)
+  (y : PermanssonLean.JointState.{u_1, u_2} S X) :
+  PermanssonResearch.Probability.W1DualLE.{max u_1 u_2}
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M) y)
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} N) y)
+    (PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.budget.{u_1, u_2, u_3} D a b)
+'PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.weighted_induced_bound' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.productDist_le_weighted.{u_1, u_2} {S : Type u_1} {X : Type u_2}
+  [Fintype.{u_1} S] [Fintype.{u_2} X] [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [PseudoMetricSpace.{u_1} S]
+  [PseudoMetricSpace.{u_2} X] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSingletonClass.{u_1} S]
+  [MeasurableSingletonClass.{u_2} X] (a b : NNReal) (ha : LT.lt.{0} 0 ↑a) (hb : LT.lt.{0} 0 ↑b)
+  (y z : Prod.{u_1, u_2} S X) :
+  LE.le.{0} (Dist.dist.{max u_1 u_2} y z)
+    (HDiv.hDiv.{0, 0, 0} (PermanssonResearch.Perturbation.FiniteSequential.weightedDistance.{u_1, u_2} a b y z)
+      (Min.min.{0} ↑a ↑b))
+'PermanssonResearch.Perturbation.FiniteSequential.productDist_le_weighted' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.original_induced_bound.{u_1, u_2, u_3}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [PseudoMetricSpace.{u_1} S]
+  [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X]
+  [MeasurableSingletonClass.{u_3} A] {M N : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.{u_1, u_2, u_3} M N) (a b : NNReal)
+  (ha : LT.lt.{0} 0 ↑a) (hb : LT.lt.{0} 0 ↑b) (y : PermanssonLean.JointState.{u_1, u_2} S X) :
+  PermanssonResearch.Probability.W1DualLE.{max u_1 u_2}
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M) y)
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} N) y)
+    (HDiv.hDiv.{0, 0, 0}
+      (PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.budget.{u_1, u_2, u_3} D a b)
+      (Min.min.{0} ↑a ↑b))
+'PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.original_induced_bound' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [PseudoMetricSpace.{u_1} S] [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A]
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  (dold : PermanssonLean.JointState.{u_1, u_2} S X → PermanssonLean.JointState.{u_1, u_2} S X → ℝ) : Type
+'PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor.{u_1, u_2, u_3} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [PseudoMetricSpace.{u_1} S] [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A]
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  {dold : PermanssonLean.JointState.{u_1, u_2} S X → PermanssonLean.JointState.{u_1, u_2} S X → ℝ}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.{u_1, u_2, u_3} M dold) (a b : NNReal) : ℝ
+'PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor_nonneg.{u_1, u_2, u_3} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [Nonempty.{u_1 + 1} S]
+  [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [PseudoMetricSpace.{u_1} S] [PseudoMetricSpace.{u_2} X]
+  [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  {dold : PermanssonLean.JointState.{u_1, u_2} S X → PermanssonLean.JointState.{u_1, u_2} S X → ℝ}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.{u_1, u_2, u_3} M dold) (a b : NNReal) :
+  LE.le.{0} 0 (PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor.{u_1, u_2, u_3} D a b)
+'PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor_nonneg' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.exists_sequential_plan.{u_1, u_2, u_3} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [Nonempty.{u_1 + 1} S]
+  [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [PseudoMetricSpace.{u_1} S] [PseudoMetricSpace.{u_2} X]
+  [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  {dold : PermanssonLean.JointState.{u_1, u_2} S X → PermanssonLean.JointState.{u_1, u_2} S X → ℝ}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.{u_1, u_2, u_3} M dold) (a b : NNReal)
+  (y z : PermanssonLean.JointState.{u_1, u_2} S X) :
+  ∃ g,
+    LE.le.{0}
+      (PermanssonResearch.ActionTrace.Row.expect.{max u_1 u_2}
+        (PermanssonResearch.Probability.RowCoupling.joint.{max u_1 u_2} g) fun yy =>
+        PermanssonResearch.Perturbation.FiniteSequential.weightedDistance.{u_1, u_2} a b yy.1 yy.2)
+      (HMul.hMul.{0, 0, 0}
+        (PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor.{u_1, u_2, u_3} D a b) (dold y z))
+'PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.exists_sequential_plan' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.exists_weighted_coupling.{u_1, u_2, u_3}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [PseudoMetricSpace.{u_1} S]
+  [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X]
+  [MeasurableSingletonClass.{u_3} A] {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  {dold : PermanssonLean.JointState.{u_1, u_2} S X → PermanssonLean.JointState.{u_1, u_2} S X → ℝ}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.{u_1, u_2, u_3} M dold) (a b : NNReal)
+  (y z : PermanssonLean.JointState.{u_1, u_2} S X) :
+  ∃ γ,
+    LE.le.{0} (PermanssonResearch.Probability.IntegrableCoupling.cost.{max u_1 u_2} γ)
+      (HMul.hMul.{0, 0, 0}
+        (PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor.{u_1, u_2, u_3} D a b) (dold y z))
+'PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.exists_weighted_coupling' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.weighted_isW1Contraction.{u_1, u_2, u_3}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [PseudoMetricSpace.{u_1} S]
+  [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X]
+  [MeasurableSingletonClass.{u_3} A] {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A} (a b : NNReal)
+  (D :
+    PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.{u_1, u_2, u_3} M
+      (PermanssonResearch.Perturbation.FiniteSequential.weightedDistance.{u_1, u_2} a b)) :
+  PermanssonResearch.Perturbation.IsW1Contraction.{max u_1 u_2}
+    (PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M)
+    (PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor.{u_1, u_2, u_3} D a b)
+'PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.weighted_isW1Contraction' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.original_isW1Contraction.{u_1, u_2, u_3}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [PseudoMetricSpace.{u_1} S]
+  [PseudoMetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X]
+  [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X]
+  [MeasurableSingletonClass.{u_3} A] {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A}
+  (D :
+    PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.{u_1, u_2, u_3} M fun y z =>
+      Dist.dist.{max u_1 u_2} y z)
+  (a b : NNReal) (ha : LT.lt.{0} 0 ↑a) (hb : LT.lt.{0} 0 ↑b) :
+  PermanssonResearch.Perturbation.IsW1Contraction.{max u_1 u_2}
+    (PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M)
+    (HDiv.hDiv.{0, 0, 0}
+      (PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor.{u_1, u_2, u_3} D a b)
+      (Min.min.{0} ↑a ↑b))
+'PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.original_isW1Contraction' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.{u_1, u_2, u_3, u_4} {S : Type u_1} {X : Type u_2}
+  {A : Type u_3} [MetricSpace.{u_1} S] [MetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S]
+  [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A] (M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A)
+  {Component : Type u_4} (F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_4} M Component)
+  (J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_4} F)
+  (pair : PermanssonResearch.Perturbation.PrimitiveModelPair.{u_1, u_2, u_3, u_4} M F J) : Type
+'PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rho0.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} [MetricSpace.{u_1} S] [MetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A]
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A} {Component : Type u_4}
+  {F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_4} M Component}
+  {J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_4} F}
+  {pair : PermanssonResearch.Perturbation.PrimitiveModelPair.{u_1, u_2, u_3, u_4} M F J}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.{u_1, u_2, u_3, u_4} M F J pair) : ℝ
+'PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rho0' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rhoJ.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} [MetricSpace.{u_1} S] [MetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A]
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A} {Component : Type u_4}
+  {F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_4} M Component}
+  {J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_4} F}
+  {pair : PermanssonResearch.Perturbation.PrimitiveModelPair.{u_1, u_2, u_3, u_4} M F J}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.{u_1, u_2, u_3, u_4} M F J pair) : ℝ
+'PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rhoJ' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.delta0.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} [MetricSpace.{u_1} S] [MetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A]
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A} {Component : Type u_4}
+  {F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_4} M Component}
+  {J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_4} F}
+  {pair : PermanssonResearch.Perturbation.PrimitiveModelPair.{u_1, u_2, u_3, u_4} M F J}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.{u_1, u_2, u_3, u_4} M F J pair) : ℝ
+'PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.delta0' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.deltaJ.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} [MetricSpace.{u_1} S] [MetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A]
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A} {Component : Type u_4}
+  {F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_4} M Component}
+  {J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_4} F}
+  {pair : PermanssonResearch.Perturbation.PrimitiveModelPair.{u_1, u_2, u_3, u_4} M F J}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.{u_1, u_2, u_3, u_4} M F J pair) : ℝ
+'PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.deltaJ' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.baselineData.{u_1, u_2, u_3, u_4} {S : Type u_1}
+  {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A] [Nonempty.{u_1 + 1} S]
+  [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [MetricSpace.{u_1} S] [MetricSpace.{u_2} X] [PseudoMetricSpace.{u_3} A]
+  [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A] [MeasurableSingletonClass.{u_1} S]
+  [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A} {Component : Type u_4}
+  {F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_4} M Component}
+  {J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_4} F}
+  {pair : PermanssonResearch.Perturbation.PrimitiveModelPair.{u_1, u_2, u_3, u_4} M F J}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.{u_1, u_2, u_3, u_4} M F J pair) :
+  PermanssonResearch.Perturbation.FiniteOccupationFactorization.ClassPerturbationData.{max u_1 u_2}
+    (PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3} M)
+    (PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3}
+      (PermanssonResearch.Perturbation.PrimitiveModelPair.approximate.{u_1, u_2, u_3, u_4} pair))
+'PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.baselineData' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.interventionData.{u_1, u_2, u_3, u_4}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [MetricSpace.{u_1} S] [MetricSpace.{u_2} X]
+  [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A} {Component : Type u_4}
+  {F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_4} M Component}
+  {J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_4} F}
+  {pair : PermanssonResearch.Perturbation.PrimitiveModelPair.{u_1, u_2, u_3, u_4} M F J}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.{u_1, u_2, u_3, u_4} M F J pair) :
+  PermanssonResearch.Perturbation.FiniteOccupationFactorization.ClassPerturbationData.{max u_1 u_2}
+    (PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3}
+      (PermanssonLean.TypedIntervention.apply.{u_1, u_2, u_3, u_4}
+        (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_1, u_2, u_3, u_4} J)))
+    (PermanssonLean.StrategicWorldModel.inducedKernel.{u_1, u_2, u_3}
+      (PermanssonLean.TypedIntervention.apply.{u_1, u_2, u_3, u_4}
+        (PermanssonLean.AdmissibleStrategicIntervention.intervention.{u_1, u_2, u_3, u_4}
+          (PermanssonResearch.Perturbation.PrimitiveModelPair.approximateIntervention.{u_1, u_2, u_3, u_4} pair))))
+'PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.interventionData' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.baseline_invariant_gap.{u_1, u_2, u_3, u_4}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [MetricSpace.{u_1} S] [MetricSpace.{u_2} X]
+  [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A} {Component : Type u_4}
+  {F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_4} M Component}
+  {J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_4} F}
+  {pair : PermanssonResearch.Perturbation.PrimitiveModelPair.{u_1, u_2, u_3, u_4} M F J}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.{u_1, u_2, u_3, u_4} M F J pair) :
+  PermanssonResearch.Probability.W1DualLE.{max u_1 u_2}
+    (PermanssonResearch.Perturbation.ContractivePerturbation.π.{max u_1 u_2}
+      (PermanssonResearch.Perturbation.FiniteOccupationFactorization.ClassPerturbationData.generated.{max u_1 u_2}
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.baselineData.{u_1, u_2, u_3, u_4} D)))
+    (PermanssonResearch.Perturbation.ContractivePerturbation.πt.{max u_1 u_2}
+      (PermanssonResearch.Perturbation.FiniteOccupationFactorization.ClassPerturbationData.generated.{max u_1 u_2}
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.baselineData.{u_1, u_2, u_3, u_4} D)))
+    (HDiv.hDiv.{0, 0, 0}
+      (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.delta0.{u_1, u_2, u_3, u_4} D)
+      (HSub.hSub.{0, 0, 0} 1
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rho0.{u_1, u_2, u_3, u_4} D)))
+'PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.baseline_invariant_gap' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.intervention_invariant_gap.{u_1, u_2, u_3, u_4}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [MetricSpace.{u_1} S] [MetricSpace.{u_2} X]
+  [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A} {Component : Type u_4}
+  {F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_4} M Component}
+  {J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_4} F}
+  {pair : PermanssonResearch.Perturbation.PrimitiveModelPair.{u_1, u_2, u_3, u_4} M F J}
+  (D : PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.{u_1, u_2, u_3, u_4} M F J pair) :
+  PermanssonResearch.Probability.W1DualLE.{max u_1 u_2}
+    (PermanssonResearch.Perturbation.ContractivePerturbation.π.{max u_1 u_2}
+      (PermanssonResearch.Perturbation.FiniteOccupationFactorization.ClassPerturbationData.generated.{max u_1 u_2}
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.interventionData.{u_1, u_2, u_3, u_4}
+          D)))
+    (PermanssonResearch.Perturbation.ContractivePerturbation.πt.{max u_1 u_2}
+      (PermanssonResearch.Perturbation.FiniteOccupationFactorization.ClassPerturbationData.generated.{max u_1 u_2}
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.interventionData.{u_1, u_2, u_3, u_4}
+          D)))
+    (HDiv.hDiv.{0, 0, 0}
+      (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.deltaJ.{u_1, u_2, u_3, u_4} D)
+      (HSub.hSub.{0, 0, 0} 1
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rhoJ.{u_1, u_2, u_3, u_4} D)))
+'PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.intervention_invariant_gap' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.original_occupationMargin.{u_1, u_2, u_3, u_4,
+    u_5, u_6}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} [Fintype.{u_1} S] [Fintype.{u_2} X] [Fintype.{u_3} A]
+  [Nonempty.{u_1 + 1} S] [Nonempty.{u_2 + 1} X] [Nonempty.{u_3 + 1} A] [MetricSpace.{u_1} S] [MetricSpace.{u_2} X]
+  [PseudoMetricSpace.{u_3} A] [MeasurableSpace.{u_1} S] [MeasurableSpace.{u_2} X] [MeasurableSpace.{u_3} A]
+  [MeasurableSingletonClass.{u_1} S] [MeasurableSingletonClass.{u_2} X] [MeasurableSingletonClass.{u_3} A]
+  {M : PermanssonLean.StrategicWorldModel.{u_1, u_2, u_3} S X A} {Component : Type u_4}
+  {F : PermanssonLean.InterventionFamily.{u_1, u_2, u_3, u_4} M Component}
+  {J : PermanssonLean.AdmissibleStrategicIntervention.{u_1, u_2, u_3, u_4} F}
+  {pair : PermanssonResearch.Perturbation.PrimitiveModelPair.{u_1, u_2, u_3, u_4} M F J} [DecidableEq.{u_1 + 1} S]
+  [DecidableEq.{u_2 + 1} X] [OpensMeasurableSpace.{u_1} S] [OpensMeasurableSpace.{u_2} X] [StandardBorelSpace.{u_1} S]
+  [StandardBorelSpace.{u_2} X] {H : Type u_5} {V : Type u_6} [MeasurableSpace.{u_5} H] [MetricSpace.{u_6} V]
+  [MeasurableSpace.{u_6} V] [BorelSpace.{u_6} V] [Fintype.{u_6} V]
+  (D : PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.{u_1, u_2, u_3, u_4} M F J pair)
+  (spec : PermanssonLean.RegimeSpecification.{max u_2 u_1, u_5} (PermanssonLean.JointState.{u_1, u_2} S X) H)
+  (B : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.{u_1, u_2, u_3, u_5} M spec)
+  (h : PermanssonLean.JointState.{u_1, u_2} S X → V) (hh : Measurable.{max u_1 u_2, u_6} h) {Lh : NNReal}
+  (hLh : LipschitzWith.{max u_1 u_2, u_6} Lh h) (fallback : MeasureTheory.ProbabilityMeasure.{u_6} V)
+  (Φ : MeasureTheory.Measure.{u_6} V → ℝ) (hcont : Continuous.{u_6, 0} fun q => Φ ↑q) {LF : ℝ}
+  (hΦ : PermanssonResearch.Perturbation.IsW1LipschitzFunctional.{u_6, 0} Φ LF) :
+  LE.le.{0}
+    (abs.{0}
+      (HSub.hSub.{0, 0, 0}
+        (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_1, u_2, u_3, u_5, 0, u_4}
+          (PermanssonResearch.Perturbation.PrimitiveModelPair.approximate.{u_1, u_2, u_3, u_4} pair) spec
+          (PermanssonResearch.Perturbation.PrimitiveModelPair.approximateFamily.{u_1, u_2, u_3, u_4} pair)
+          (PermanssonResearch.Perturbation.FiniteOccupationProperty.property.{max u_1 u_2, u_6} h fallback
+            (ContinuousMap.mk.{u_6, 0} (fun q => Φ ↑q) hcont))
+          (PermanssonResearch.Perturbation.PrimitiveModelPair.comparisonSet.{u_1, u_2, u_3, u_4, u_5} pair spec B)
+          (PermanssonResearch.Perturbation.PrimitiveModelPair.approximateIntervention.{u_1, u_2, u_3, u_4} pair))
+        (PermanssonLean.RegimeSpecification.constitutiveMargin.{u_1, u_2, u_3, u_5, 0, u_4} M spec F
+          (PermanssonResearch.Perturbation.FiniteOccupationProperty.property.{max u_1 u_2, u_6} h fallback
+            (ContinuousMap.mk.{u_6, 0} (fun q => Φ ↑q) hcont))
+          B J)))
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} LF ↑Lh)
+      (HAdd.hAdd.{0, 0, 0}
+        (HDiv.hDiv.{0, 0, 0}
+          (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.delta0.{u_1, u_2, u_3, u_4} D)
+          (HSub.hSub.{0, 0, 0} 1
+            (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rho0.{u_1, u_2, u_3, u_4} D)))
+        (HDiv.hDiv.{0, 0, 0}
+          (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.deltaJ.{u_1, u_2, u_3, u_4} D)
+          (HSub.hSub.{0, 0, 0} 1
+            (PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rhoJ.{u_1, u_2, u_3, u_4} D)))))
+'PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.original_occupationMargin' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.boolMetric : MetricSpace.{0} Bool
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.boolMetric' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.bool_dist (x y : Bool) :
+  Eq.{1} (Dist.dist.{0} x y) (ite.{1} (Eq.{1} x y) 0 1)
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.bool_dist' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model (c : Bool) :
+  PermanssonLean.StrategicWorldModel.{0, 0, 0} Bool Bool Bool
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.dirac_dual (x y : Bool) :
+  PermanssonResearch.Probability.W1DualLE.{0} (MeasureTheory.Measure.dirac.{0} x) (MeasureTheory.Measure.dirac.{0} y)
+    (Dist.dist.{0} x y)
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.dirac_dual' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.errors :
+  PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.{0, 0, 0}
+    (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model Bool.false)
+    (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model Bool.true)
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.errors' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.budget_five :
+  Eq.{1}
+    (PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.budget.{0, 0, 0}
+      PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.errors 2 3)
+    5
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.budget_five' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_weighted_defect
+  (y : PermanssonLean.JointState.{0, 0} Bool Bool) :
+  PermanssonResearch.Probability.W1DualLE.{0}
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{0, 0, 0}
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model Bool.false))
+      y)
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{0, 0, 0}
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model Bool.true))
+      y)
+    5
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_weighted_defect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model_induced (c : Bool)
+  (y : PermanssonLean.JointState.{0, 0} Bool Bool) :
+  Eq.{1}
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{0, 0, 0}
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model c))
+      y)
+    (MeasureTheory.Measure.dirac.{0} (Prod.mk.{0, 0} c c))
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model_induced' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.weighted_distance_five :
+  Eq.{1}
+    (PermanssonResearch.Perturbation.FiniteSequential.weightedDistance.{0, 0} 2 3 (Prod.mk.{0, 0} Bool.false Bool.false)
+      (Prod.mk.{0, 0} Bool.true Bool.true))
+    5
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.weighted_distance_five' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_weighted_coupling_cost
+  (y : PermanssonLean.JointState.{0, 0} Bool Bool) :
+  ∃ γ, Eq.{1} (PermanssonResearch.Probability.IntegrableCoupling.cost.{0} γ) 5
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_weighted_coupling_cost' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.stateBounds (c : Bool)
+  (dold : PermanssonLean.JointState.{0, 0} Bool Bool → PermanssonLean.JointState.{0, 0} Bool Bool → ℝ) :
+  PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.{0, 0, 0}
+    (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model c) dold
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.stateBounds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.factor_zero (c : Bool)
+  (dold : PermanssonLean.JointState.{0, 0} Bool Bool → PermanssonLean.JointState.{0, 0} Bool Bool → ℝ) :
+  Eq.{1}
+    (PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor.{0, 0, 0}
+      (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.stateBounds c dold) 2 3)
+    0
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.factor_zero' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.original_contraction_zero (c : Bool) :
+  PermanssonResearch.Perturbation.IsW1Contraction.{0}
+    (PermanssonLean.StrategicWorldModel.inducedKernel.{0, 0, 0}
+      (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model c))
+    0
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.original_contraction_zero' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.weighted_contraction_zero (c : Bool) :
+  PermanssonResearch.Perturbation.IsW1Contraction.{0}
+    (PermanssonLean.StrategicWorldModel.inducedKernel.{0, 0, 0}
+      (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model c))
+    0
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.weighted_contraction_zero' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.strict_metric_gate (c : Bool) :
+  LT.lt.{0}
+    (HDiv.hDiv.{0, 0, 0}
+      (PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor.{0, 0, 0}
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.stateBounds c fun y z => Dist.dist.{0} y z) 2 3)
+      (Min.min.{0} 2 3))
+    1
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.strict_metric_gate' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldModel (c : Bool) :
+  PermanssonLean.StrategicWorldModel.{0, 0, 0} Bool Bool Bool
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldModel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldErrors :
+  PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.{0, 0, 0}
+    (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldModel Bool.false)
+    (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldModel Bool.true)
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldErrors' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.world_budget_five :
+  Eq.{1}
+    (PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.budget.{0, 0, 0}
+      PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldErrors 2 3)
+    5
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.world_budget_five' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_world_weighted_defect
+  (y : PermanssonLean.JointState.{0, 0} Bool Bool) :
+  PermanssonResearch.Probability.W1DualLE.{0}
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{0, 0, 0}
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldModel Bool.false))
+      y)
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{0, 0, 0}
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldModel Bool.true))
+      y)
+    5
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_world_weighted_defect' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.world_model_induced (c : Bool)
+  (y : PermanssonLean.JointState.{0, 0} Bool Bool) :
+  Eq.{1}
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{0, 0, 0}
+        (PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldModel c))
+      y)
+    (MeasureTheory.Measure.dirac.{0} (Prod.mk.{0, 0} c c))
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.world_model_induced' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_world_weighted_cost
+  (y : PermanssonLean.JointState.{0, 0} Bool Bool) :
+  ∃ γ, Eq.{1} (PermanssonResearch.Probability.IntegrableCoupling.cost.{0} γ) 5
+'PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_world_weighted_cost' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it

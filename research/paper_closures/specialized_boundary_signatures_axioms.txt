@@ -1,0 +1,47 @@
+PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm (x : ℝ) : ℝ
+'PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.BoundaryWitnesses.changedForm (x : ℝ) : ℝ
+'PermanssonResearch.Specialized.BoundaryWitnesses.changedForm' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.BoundaryWitnesses.changed_embedding_loses_negativity :
+  LT.lt.{0} (PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm 1) 0 ∧
+    ¬LT.lt.{0} (PermanssonResearch.Specialized.BoundaryWitnesses.changedForm 1) 0 ∧
+      ¬∀ (x : ℝ),
+          Eq.{1} (PermanssonResearch.Specialized.BoundaryWitnesses.changedForm (id.{1} x))
+            (PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm x)
+'PermanssonResearch.Specialized.BoundaryWitnesses.changed_embedding_loses_negativity' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.BoundaryWitnesses.exact_but_illegal_approximant :
+  Eq.{1} (Norm.norm.{0} (HSub.hSub.{0, 0, 0} 1 1)) 0 ∧
+    LT.lt.{0} (PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm 1) 0 ∧
+      1 ∉ Singleton.singleton.{0, 0} 0 ∧
+        ¬∃ p,
+            Membership.mem.{0, 0} (Singleton.singleton.{0, 0} 0) p ∧
+              LT.lt.{0} (PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm p) 0
+'PermanssonResearch.Specialized.BoundaryWitnesses.exact_but_illegal_approximant' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.BoundaryWitnesses.shell : Matrix.{0, 0, 0} (Fin 2) (Fin 2) ℝ
+'PermanssonResearch.Specialized.BoundaryWitnesses.shell' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.BoundaryWitnesses.dimension_two_retains_second_equation :
+  have S :=
+    PermanssonResearch.Specialized.shellComplement.{0, 0} 0 0 PermanssonResearch.Specialized.BoundaryWitnesses.shell
+      (-1);
+  Eq.{1} (S 0 0) 0 ∧
+    Eq.{1} (Matrix.mulVec.{0, 0, 0} S (Matrix.vecCons.{0} 0 (Matrix.vecCons.{0} 1 Matrix.vecEmpty.{0})) 0) 0 ∧
+      Eq.{1} (Matrix.mulVec.{0, 0, 0} S (Matrix.vecCons.{0} 0 (Matrix.vecCons.{0} 1 Matrix.vecEmpty.{0})) 1) 1 ∧
+        Ne.{1} (Matrix.mulVec.{0, 0, 0} S (Matrix.vecCons.{0} 0 (Matrix.vecCons.{0} 1 Matrix.vecEmpty.{0}))) 0
+'PermanssonResearch.Specialized.BoundaryWitnesses.dimension_two_retains_second_equation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Specialized.BoundaryWitnesses.zero_shift_does_not_supply_inverse :
+  ¬IsUnit.{0} (PermanssonResearch.Specialized.negativeShift.{0} 0 0)
+'PermanssonResearch.Specialized.BoundaryWitnesses.zero_shift_does_not_supply_inverse' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]

@@ -1,0 +1,311 @@
+PermanssonResearch.Probability.Hopf.positiveMax.{u_1} {Ω : Type u_1} (T : Ω → Ω) (f : Ω → ℝ) : ℕ → Ω → ℝ
+'PermanssonResearch.Probability.Hopf.positiveMax' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.partialSum.{u_1} {Ω : Type u_1} (T : Ω → Ω) (f : Ω → ℝ) (n : ℕ) (ω : Ω) : ℝ
+'PermanssonResearch.Probability.Hopf.partialSum' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.partialSum_succ.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (n : ℕ) (ω : Ω) :
+  Eq.{1} (PermanssonResearch.Probability.Hopf.partialSum.{u_1} T f (HAdd.hAdd.{0, 0, 0} n 1) ω)
+    (HAdd.hAdd.{0, 0, 0} (f ω) (PermanssonResearch.Probability.Hopf.partialSum.{u_1} T f n (T ω)))
+'PermanssonResearch.Probability.Hopf.partialSum_succ' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.positiveMax_nonneg.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (n : ℕ) (ω : Ω) : LE.le.{0} 0 (PermanssonResearch.Probability.Hopf.positiveMax.{u_1} T f n ω)
+'PermanssonResearch.Probability.Hopf.positiveMax_nonneg' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.positiveMax_le_succ.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (n : ℕ) (ω : Ω) :
+  LE.le.{0} (PermanssonResearch.Probability.Hopf.positiveMax.{u_1} T f n ω)
+    (PermanssonResearch.Probability.Hopf.positiveMax.{u_1} T f (HAdd.hAdd.{0, 0, 0} n 1) ω)
+'PermanssonResearch.Probability.Hopf.positiveMax_le_succ' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.positiveMax_monotone.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (ω : Ω) : Monotone.{0, 0} fun n => PermanssonResearch.Probability.Hopf.positiveMax.{u_1} T f n ω
+'PermanssonResearch.Probability.Hopf.positiveMax_monotone' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.partialSum_le_positiveMax.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (n : ℕ) (ω : Ω) :
+  LE.le.{0} (PermanssonResearch.Probability.Hopf.partialSum.{u_1} T f n ω)
+    (PermanssonResearch.Probability.Hopf.positiveMax.{u_1} T f n ω)
+'PermanssonResearch.Probability.Hopf.partialSum_le_positiveMax' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.positiveMax_measurable.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (hT : Measurable.{u_1, u_1} T) (hf : Measurable.{u_1, 0} f) (n : ℕ) :
+  Measurable.{u_1, 0} (PermanssonResearch.Probability.Hopf.positiveMax.{u_1} T f n)
+'PermanssonResearch.Probability.Hopf.positiveMax_measurable' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.positiveMax_integrable.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {μ : MeasureTheory.Measure.{u_1} Ω} {T : Ω → Ω} {f : Ω → ℝ} (hT : MeasureTheory.MeasurePreserving.{u_1, u_1} T μ μ)
+  (hf : MeasureTheory.Integrable.{0, u_1} f μ) (n : ℕ) :
+  MeasureTheory.Integrable.{0, u_1} (PermanssonResearch.Probability.Hopf.positiveMax.{u_1} T f n) μ
+'PermanssonResearch.Probability.Hopf.positiveMax_integrable' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.preserving_integral.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {μ : MeasureTheory.Measure.{u_1} Ω} {T : Ω → Ω} {f : Ω → ℝ} (hT : MeasureTheory.MeasurePreserving.{u_1, u_1} T μ μ)
+  (hg : Measurable.{u_1, 0} f) : Eq.{1} (∫ (ω : Ω), f (T ω) ∂μ) (∫ (ω : Ω), f ω ∂μ)
+'PermanssonResearch.Probability.Hopf.preserving_integral' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.indicator_ge_difference.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (n : ℕ) (ω : Ω) :
+  LE.le.{0}
+    (HSub.hSub.{0, 0, 0} (PermanssonResearch.Probability.Hopf.positiveMax.{u_1} T f n ω)
+      (PermanssonResearch.Probability.Hopf.positiveMax.{u_1} T f n (T ω)))
+    (Set.indicator.{u_1, 0}
+      (Set.ofPred.{u_1} fun ω => LT.lt.{0} 0 (PermanssonResearch.Probability.Hopf.positiveMax.{u_1} T f n ω)) f ω)
+'PermanssonResearch.Probability.Hopf.indicator_ge_difference' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.finite_maximal_integral_nonneg.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {μ : MeasureTheory.Measure.{u_1} Ω} {T : Ω → Ω} {f : Ω → ℝ} (hT : MeasureTheory.MeasurePreserving.{u_1, u_1} T μ μ)
+  (hf : Measurable.{u_1, 0} f) (hfi : MeasureTheory.Integrable.{0, u_1} f μ) (n : ℕ) :
+  LE.le.{0} 0
+    (∫ (ω : Ω),
+      Set.indicator.{u_1, 0}
+        (Set.ofPred.{u_1} fun ω => LT.lt.{0} 0 (PermanssonResearch.Probability.Hopf.positiveMax.{u_1} T f n ω)) f ω ∂μ)
+'PermanssonResearch.Probability.Hopf.finite_maximal_integral_nonneg' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.integral_nonneg_of_positive_partial_sums.{u_1} {Ω : Type u_1}
+  [MeasurableSpace.{u_1} Ω] {μ : MeasureTheory.Measure.{u_1} Ω} {T : Ω → Ω} {f : Ω → ℝ}
+  (hT : MeasureTheory.MeasurePreserving.{u_1, u_1} T μ μ) (hf : Measurable.{u_1, 0} f)
+  (hfi : MeasureTheory.Integrable.{0, u_1} f μ)
+  (hpos : ∀ (ω : Ω), ∃ n, LT.lt.{0} 0 (PermanssonResearch.Probability.Hopf.partialSum.{u_1} T f n ω)) :
+  LE.le.{0} 0 (∫ (ω : Ω), f ω ∂μ)
+'PermanssonResearch.Probability.Hopf.integral_nonneg_of_positive_partial_sums' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.upperAverage.{u_1} {Ω : Type u_1} (T : Ω → Ω) (f : Ω → ℝ) (ω : Ω) : ℝ
+'PermanssonResearch.Probability.Hopf.upperAverage' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.average_measurable.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (hT : Measurable.{u_1, u_1} T) (hf : Measurable.{u_1, 0} f) (n : ℕ) :
+  Measurable.{u_1, 0} (birkhoffAverage.{0, u_1, 0} ℝ T f n)
+'PermanssonResearch.Probability.Hopf.average_measurable' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.upperAverage_measurable.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (hT : Measurable.{u_1, u_1} T) (hf : Measurable.{u_1, 0} f) :
+  Measurable.{u_1, 0} (PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T f)
+'PermanssonResearch.Probability.Hopf.upperAverage_measurable' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.average_abs_bound.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (M : ℝ) (hM : LE.le.{0} 0 M) (hf : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) (n : ℕ) (ω : Ω) :
+  LE.le.{0} (abs.{0} (birkhoffAverage.{0, u_1, 0} ℝ T f n ω)) M
+'PermanssonResearch.Probability.Hopf.average_abs_bound' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.average_bddAbove.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (M : ℝ) (hM : LE.le.{0} 0 M) (hf : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) (ω : Ω) :
+  Filter.IsBoundedUnder.{0, 0} (fun x1 x2 => LE.le.{0} x1 x2) Filter.atTop.{0} fun n =>
+    birkhoffAverage.{0, u_1, 0} ℝ T f n ω
+'PermanssonResearch.Probability.Hopf.average_bddAbove' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.average_bddBelow.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (M : ℝ) (hM : LE.le.{0} 0 M) (hf : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) (ω : Ω) :
+  Filter.IsBoundedUnder.{0, 0} (fun x1 x2 => GE.ge.{0} x1 x2) Filter.atTop.{0} fun n =>
+    birkhoffAverage.{0, u_1, 0} ℝ T f n ω
+'PermanssonResearch.Probability.Hopf.average_bddBelow' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.upperAverage_abs_bound.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (M : ℝ) (hM : LE.le.{0} 0 M) (hf : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) (ω : Ω) :
+  LE.le.{0} (abs.{0} (PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T f ω)) M
+'PermanssonResearch.Probability.Hopf.upperAverage_abs_bound' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.limsup_le_of_tendsto_sub {u v : ℕ → ℝ} (M : ℝ)
+  (hu : ∀ (n : ℕ), LE.le.{0} (abs.{0} (u n)) M) (hv : ∀ (n : ℕ), LE.le.{0} (abs.{0} (v n)) M)
+  (hd : Filter.Tendsto.{0, 0} (fun n => HSub.hSub.{0, 0, 0} (u n) (v n)) Filter.atTop.{0} (nhds.{0} 0)) :
+  LE.le.{0} (Filter.limsup.{0, 0} u Filter.atTop.{0}) (Filter.limsup.{0, 0} v Filter.atTop.{0})
+'PermanssonResearch.Probability.Hopf.limsup_le_of_tendsto_sub' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.upperAverage_invariant.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω] {T : Ω → Ω}
+  {f : Ω → ℝ} (M : ℝ) (hM : LE.le.{0} 0 M) (hf : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) (ω : Ω) :
+  Eq.{1} (PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T f (T ω))
+    (PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T f ω)
+'PermanssonResearch.Probability.Hopf.upperAverage_invariant' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.integrable_of_abs_bound.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {μ : MeasureTheory.Measure.{u_1} Ω} [MeasureTheory.IsProbabilityMeasure.{u_1} μ] {f : Ω → ℝ}
+  (hf : Measurable.{u_1, 0} f) (M : ℝ) (hb : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) :
+  MeasureTheory.Integrable.{0, u_1} f μ
+'PermanssonResearch.Probability.Hopf.integrable_of_abs_bound' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.upperAverage_integrable.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {μ : MeasureTheory.Measure.{u_1} Ω} [MeasureTheory.IsProbabilityMeasure.{u_1} μ] {T : Ω → Ω} {f : Ω → ℝ}
+  (hT : Measurable.{u_1, u_1} T) (hf : Measurable.{u_1, 0} f) (M : ℝ) (hM : LE.le.{0} 0 M)
+  (hb : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) :
+  MeasureTheory.Integrable.{0, u_1} (PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T f) μ
+'PermanssonResearch.Probability.Hopf.upperAverage_integrable' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.positive_partial_sum_sub_upper.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {T : Ω → Ω} {f : Ω → ℝ} (M : ℝ) (hM : LE.le.{0} 0 M) (hb : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) {ε : ℝ}
+  (hε : LT.lt.{0} 0 ε) (ω : Ω) :
+  ∃ n,
+    LT.lt.{0} 0
+      (PermanssonResearch.Probability.Hopf.partialSum.{u_1} T
+        (HSub.hSub.{u_1, u_1, u_1} f fun ω =>
+          HSub.hSub.{0, 0, 0} (PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T f ω) ε)
+        n ω)
+'PermanssonResearch.Probability.Hopf.positive_partial_sum_sub_upper' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.integral_upperAverage_le.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {μ : MeasureTheory.Measure.{u_1} Ω} [MeasureTheory.IsProbabilityMeasure.{u_1} μ] {T : Ω → Ω} {f : Ω → ℝ}
+  (hT : MeasureTheory.MeasurePreserving.{u_1, u_1} T μ μ) (hf : Measurable.{u_1, 0} f) (M : ℝ) (hM : LE.le.{0} 0 M)
+  (hb : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) :
+  LE.le.{0} (∫ (ω : Ω), PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T f ω ∂μ) (∫ (ω : Ω), f ω ∂μ)
+'PermanssonResearch.Probability.Hopf.integral_upperAverage_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.upperAverage_neg_eq_neg_liminf.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {T : Ω → Ω} {f : Ω → ℝ} (M : ℝ) (hM : LE.le.{0} 0 M) (hb : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) (ω : Ω) :
+  Eq.{1} (PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T (Neg.neg.{u_1} f) ω)
+    (Neg.neg.{0} (Filter.liminf.{0, 0} (fun n => birkhoffAverage.{0, u_1, 0} ℝ T f n ω) Filter.atTop.{0}))
+'PermanssonResearch.Probability.Hopf.upperAverage_neg_eq_neg_liminf' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.bounded_birkhoff.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {μ : MeasureTheory.Measure.{u_1} Ω} [MeasureTheory.IsProbabilityMeasure.{u_1} μ] {T : Ω → Ω} {f : Ω → ℝ}
+  (hT : MeasureTheory.MeasurePreserving.{u_1, u_1} T μ μ) (hf : Measurable.{u_1, 0} f) (M : ℝ) (hM : LE.le.{0} 0 M)
+  (hb : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) :
+  ∀ᵐ (ω : Ω) ∂μ,
+    Filter.Tendsto.{0, 0} (fun n => birkhoffAverage.{0, u_1, 0} ℝ T f n ω) Filter.atTop.{0}
+      (nhds.{0} (PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T f ω))
+'PermanssonResearch.Probability.Hopf.bounded_birkhoff' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.invariantSigma.{u_1} {Ω : Type u_1} [mΩ : MeasurableSpace.{u_1} Ω] (T : Ω → Ω) :
+  MeasurableSpace.{u_1} Ω
+'PermanssonResearch.Probability.Hopf.invariantSigma' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.invariantSigma_le.{u_1} {Ω : Type u_1} [mΩ : MeasurableSpace.{u_1} Ω] (T : Ω → Ω) :
+  LE.le.{u_1} (PermanssonResearch.Probability.Hopf.invariantSigma.{u_1} T) mΩ
+'PermanssonResearch.Probability.Hopf.invariantSigma_le' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.measurableSet_invariantSigma.{u_1} {Ω : Type u_1} [mΩ : MeasurableSpace.{u_1} Ω]
+  {T : Ω → Ω} {s : Set.{u_1} Ω} :
+  MeasurableSet.{u_1} s ↔ MeasurableSet.{u_1} s ∧ Eq.{u_1 + 1} (Set.preimage.{u_1, u_1} T s) s
+'PermanssonResearch.Probability.Hopf.measurableSet_invariantSigma' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.upperAverage_measurable_invariant.{u_1} {Ω : Type u_1}
+  [mΩ : MeasurableSpace.{u_1} Ω] {T : Ω → Ω} {f : Ω → ℝ} (hT : Measurable.{u_1, u_1} T) (hf : Measurable.{u_1, 0} f)
+  (M : ℝ) (hM : LE.le.{0} 0 M) (hb : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) :
+  Measurable.{u_1, 0} (PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T f)
+'PermanssonResearch.Probability.Hopf.upperAverage_measurable_invariant' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.invariant_set_average_integral.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {μ : MeasureTheory.Measure.{u_1} Ω} [MeasureTheory.IsProbabilityMeasure.{u_1} μ] {T : Ω → Ω} {f : Ω → ℝ}
+  (hT : MeasureTheory.MeasurePreserving.{u_1, u_1} T μ μ) (hf : Measurable.{u_1, 0} f)
+  (hfi : MeasureTheory.Integrable.{0, u_1} f μ) {s : Set.{u_1} Ω} (hs : MeasurableSet.{u_1} s) {n : ℕ}
+  (hn : Ne.{1} n 0) : Eq.{1} (∫ (ω : Ω) in s, birkhoffAverage.{0, u_1, 0} ℝ T f n ω ∂μ) (∫ (ω : Ω) in s, f ω ∂μ)
+'PermanssonResearch.Probability.Hopf.invariant_set_average_integral' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.invariant_set_upperAverage_integral.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {μ : MeasureTheory.Measure.{u_1} Ω} [MeasureTheory.IsProbabilityMeasure.{u_1} μ] {T : Ω → Ω} {f : Ω → ℝ}
+  (hT : MeasureTheory.MeasurePreserving.{u_1, u_1} T μ μ) (hf : Measurable.{u_1, 0} f) (M : ℝ) (hM : LE.le.{0} 0 M)
+  (hb : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) {s : Set.{u_1} Ω} (hs : MeasurableSet.{u_1} s) :
+  Eq.{1} (∫ (ω : Ω) in s, PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T f ω ∂μ) (∫ (ω : Ω) in s, f ω ∂μ)
+'PermanssonResearch.Probability.Hopf.invariant_set_upperAverage_integral' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.upperAverage_ae_condExp.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {μ : MeasureTheory.Measure.{u_1} Ω} [MeasureTheory.IsProbabilityMeasure.{u_1} μ] {T : Ω → Ω} {f : Ω → ℝ}
+  (hT : MeasureTheory.MeasurePreserving.{u_1, u_1} T μ μ) (hf : Measurable.{u_1, 0} f) (M : ℝ) (hM : LE.le.{0} 0 M)
+  (hb : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) :
+  PermanssonResearch.Probability.Hopf.upperAverage.{u_1} T f =ᵐ[μ]
+    MeasureTheory.condExp.{u_1, 0} (PermanssonResearch.Probability.Hopf.invariantSigma.{u_1} T) μ f
+'PermanssonResearch.Probability.Hopf.upperAverage_ae_condExp' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.bounded_birkhoff_condExp.{u_1} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {μ : MeasureTheory.Measure.{u_1} Ω} [MeasureTheory.IsProbabilityMeasure.{u_1} μ] {T : Ω → Ω} {f : Ω → ℝ}
+  (hT : MeasureTheory.MeasurePreserving.{u_1, u_1} T μ μ) (hf : Measurable.{u_1, 0} f) (M : ℝ) (hM : LE.le.{0} 0 M)
+  (hb : ∀ (ω : Ω), LE.le.{0} (abs.{0} (f ω)) M) :
+  ∀ᵐ (ω : Ω) ∂μ,
+    Filter.Tendsto.{0, 0} (fun n => birkhoffAverage.{0, u_1, 0} ℝ T f n ω) Filter.atTop.{0}
+      (nhds.{0} (MeasureTheory.condExp.{u_1, 0} (PermanssonResearch.Probability.Hopf.invariantSigma.{u_1} T) μ f ω))
+'PermanssonResearch.Probability.Hopf.bounded_birkhoff_condExp' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.Regression.boolMeasurable : MeasurableSpace.{0} Bool
+'PermanssonResearch.Probability.Hopf.Regression.boolMeasurable' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.Regression.boolDiscrete : DiscreteMeasurableSpace.{0} Bool
+'PermanssonResearch.Probability.Hopf.Regression.boolDiscrete' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.Regression.label (b : Bool) : ℝ
+'PermanssonResearch.Probability.Hopf.Regression.label' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.Regression.label_bound (b : Bool) :
+  LE.le.{0} (abs.{0} (PermanssonResearch.Probability.Hopf.Regression.label b)) 1
+'PermanssonResearch.Probability.Hopf.Regression.label_bound' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.Regression.identity_average_tendsto (b : Bool) :
+  Filter.Tendsto.{0, 0}
+    (fun n => birkhoffAverage.{0, 0, 0} ℝ id.{1} PermanssonResearch.Probability.Hopf.Regression.label n b)
+    Filter.atTop.{0} (nhds.{0} (PermanssonResearch.Probability.Hopf.Regression.label b))
+'PermanssonResearch.Probability.Hopf.Regression.identity_average_tendsto' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.Regression.identity_upperAverage (b : Bool) :
+  Eq.{1}
+    (PermanssonResearch.Probability.Hopf.upperAverage.{0} id.{1} PermanssonResearch.Probability.Hopf.Regression.label b)
+    (PermanssonResearch.Probability.Hopf.Regression.label b)
+'PermanssonResearch.Probability.Hopf.Regression.identity_upperAverage' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.Regression.identity_limits_distinct :
+  Ne.{1}
+    (PermanssonResearch.Probability.Hopf.upperAverage.{0} id.{1} PermanssonResearch.Probability.Hopf.Regression.label
+      Bool.true)
+    (PermanssonResearch.Probability.Hopf.upperAverage.{0} id.{1} PermanssonResearch.Probability.Hopf.Regression.label
+      Bool.false)
+'PermanssonResearch.Probability.Hopf.Regression.identity_limits_distinct' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.Regression.reset : Bool → Bool
+'PermanssonResearch.Probability.Hopf.Regression.reset' does not depend on any axioms
+PermanssonResearch.Probability.Hopf.Regression.reset_not_injective :
+  ¬Function.Injective.{1, 1} PermanssonResearch.Probability.Hopf.Regression.reset
+'PermanssonResearch.Probability.Hopf.Regression.reset_not_injective' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.Regression.reset_preserves :
+  MeasureTheory.MeasurePreserving.{0, 0} PermanssonResearch.Probability.Hopf.Regression.reset
+    (MeasureTheory.Measure.dirac.{0} Bool.false) (MeasureTheory.Measure.dirac.{0} Bool.false)
+'PermanssonResearch.Probability.Hopf.Regression.reset_preserves' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.Hopf.Regression.reset_conditional_time_average :
+  ∀ᵐ (b : Bool) ∂MeasureTheory.Measure.dirac.{0} Bool.false,
+    Filter.Tendsto.{0, 0}
+      (fun n =>
+        birkhoffAverage.{0, 0, 0} ℝ PermanssonResearch.Probability.Hopf.Regression.reset
+          PermanssonResearch.Probability.Hopf.Regression.label n b)
+      Filter.atTop.{0}
+      (nhds.{0}
+        (MeasureTheory.condExp.{0, 0}
+          (PermanssonResearch.Probability.Hopf.invariantSigma.{0} PermanssonResearch.Probability.Hopf.Regression.reset)
+          (MeasureTheory.Measure.dirac.{0} Bool.false) PermanssonResearch.Probability.Hopf.Regression.label b))
+'PermanssonResearch.Probability.Hopf.Regression.reset_conditional_time_average' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it

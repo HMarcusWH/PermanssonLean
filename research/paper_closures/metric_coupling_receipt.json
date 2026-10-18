@@ -1,0 +1,550 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/Perturbation/DobrushinContraction.lean": {
+      "sha256": "4b72c5c639d6c2035f5c9fbbfde6464ed5fc63eedbd558c62f2941fe26b0be8f",
+      "artifact_sha256": "082de6f6b798931775ca720ee1979a622c81fc0b52cef32056b3c21c28e7cde3",
+      "compiler": {
+        "module": "PermanssonResearch.Perturbation.DobrushinContraction",
+        "started": 1792298237.025878,
+        "elapsed": 45.85545492172241,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "4b72c5c639d6c2035f5c9fbbfde6464ed5fc63eedbd558c62f2941fe26b0be8f"
+      }
+    },
+    "PermanssonResearch/Probability/FiniteRowCoupling.lean": {
+      "sha256": "8f7f022c08d2316e987204cfc59ff8ccd6d96d308974ae647f16afdc796bc08a",
+      "artifact_sha256": "64c8d1370bca21f52f996f99dadcea85d2b5dbe8e63dfae7e393fb7e9209c0fa",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.FiniteRowCoupling",
+        "started": 1792298282.8875577,
+        "elapsed": 47.208937883377075,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "8f7f022c08d2316e987204cfc59ff8ccd6d96d308974ae647f16afdc796bc08a"
+      }
+    },
+    "PermanssonResearch/Perturbation/FiniteSequentialCoupling.lean": {
+      "sha256": "158e0682132b3000c156a726cc0a699ed11e8348740aeddde39a15e58f10dd69",
+      "artifact_sha256": "3166b4ab5b60b6cab8c6f130e9a15d68c92ac06a7bbd83ed1096a379086a76f6",
+      "compiler": {
+        "module": "PermanssonResearch.Perturbation.FiniteSequentialCoupling",
+        "started": 1792298330.1006057,
+        "elapsed": 46.008708477020264,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "158e0682132b3000c156a726cc0a699ed11e8348740aeddde39a15e58f10dd69"
+      }
+    },
+    "PermanssonResearch/Perturbation/FiniteTypedRows.lean": {
+      "sha256": "89f05d3181fe7ec42514bea73a168c6b844468adc7ae0add1ece922f92a6c4f3",
+      "artifact_sha256": "b6ac1c81c8b0c2bf82368b5410a28f20099ce40bb08eb4105d9045c30d577629",
+      "compiler": {
+        "module": "PermanssonResearch.Perturbation.FiniteTypedRows",
+        "started": 1792298376.1143079,
+        "elapsed": 35.804131269454956,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "89f05d3181fe7ec42514bea73a168c6b844468adc7ae0add1ece922f92a6c4f3"
+      }
+    },
+    "PermanssonResearch/Perturbation/FinitePrimitiveMetric.lean": {
+      "sha256": "1305ca4e3ef1f805b9e8e9221c24267276486e46986f17712e180d27e6317b51",
+      "artifact_sha256": "df8128a70aebd8be8c546c933644ccafba6fc7d87541bd021f2fa18dfc75beec",
+      "compiler": {
+        "module": "PermanssonResearch.Perturbation.FinitePrimitiveMetric",
+        "started": 1792297714.9935231,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 62.74134635925293,
+        "source_sha256": "1305ca4e3ef1f805b9e8e9221c24267276486e46986f17712e180d27e6317b51"
+      }
+    },
+    "PermanssonResearch/Perturbation/FiniteStateMetricContraction.lean": {
+      "sha256": "23c924dc109ad8176b97588e6bfe1047054463a091d1f29da56131bee0763105",
+      "artifact_sha256": "3359f585f77d334f7dc3cd73bfeb7bd73b7ab89c19b46d7d97bec192182ac898",
+      "compiler": {
+        "module": "PermanssonResearch.Perturbation.FiniteStateMetricContraction",
+        "started": 1792297804.3350508,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 70.45128202438354,
+        "source_sha256": "23c924dc109ad8176b97588e6bfe1047054463a091d1f29da56131bee0763105"
+      }
+    },
+    "PermanssonResearch/Perturbation/FiniteMetricProtocol.lean": {
+      "sha256": "da71060fa87aebe1e69d6af12fc59a1f76af49f1bc6c179ac774fb392a2b486d",
+      "artifact_sha256": "041b686b3f0266df58ece10094f43134876ce2ed607b6b0c7e2772ad6c1b61db",
+      "compiler": {
+        "module": "PermanssonResearch.Perturbation.FiniteMetricProtocol",
+        "started": 1792297901.811404,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 57.94802665710449,
+        "source_sha256": "da71060fa87aebe1e69d6af12fc59a1f76af49f1bc6c179ac774fb392a2b486d"
+      }
+    },
+    "PermanssonResearch/Perturbation/FiniteMetricCouplingFixture.lean": {
+      "sha256": "a3768fbc872e3a27cc9c0c850e684dfe9a79dec4437f155f69af18a7fda56086",
+      "artifact_sha256": "d03cc02e07a8937d9068cdb0138049422f55f319a1a3c47f0646fc80a29bdfcb",
+      "compiler": {
+        "module": "PermanssonResearch.Perturbation.FiniteMetricCouplingFixture",
+        "started": 1792298156.4202125,
+        "status": "PASS",
+        "returncode": 0,
+        "elapsed": 64.05070734024048,
+        "source_sha256": "a3768fbc872e3a27cc9c0c850e684dfe9a79dec4437f155f69af18a7fda56086"
+      }
+    }
+  },
+  "module_list": [
+    "Perturbation.DobrushinContraction",
+    "Probability.FiniteRowCoupling",
+    "Perturbation.FiniteSequentialCoupling",
+    "Perturbation.FiniteTypedRows",
+    "Perturbation.FinitePrimitiveMetric",
+    "Perturbation.FiniteStateMetricContraction",
+    "Perturbation.FiniteMetricProtocol",
+    "Perturbation.FiniteMetricCouplingFixture"
+  ],
+  "declaration_count": 84,
+  "declarations": {
+    "PermanssonResearch.Perturbation.isW1Contraction_of_row_couplings": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.isW1Contraction_of_tv_rows": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.dobrushinCoefficient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.row_tv_le_dobrushin": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.dobrushin_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.isW1Contraction_dobrushin": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.doeblin_tv_rows": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.isW1Contraction_doeblin": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.finiteRow_eq_of_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.finiteRow_eq_of_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RowCoupling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RowCoupling.first_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RowCoupling.second_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RowCoupling.first_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RowCoupling.second_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RowCoupling.mapPair": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RowCoupling.bind": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RowCoupling.toCoupling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RowCoupling.toCoupling_cost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.RowCoupling.exists_of_w1DualLE": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.inducedRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.sequentialCoupling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.sequential_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.weightedDistance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.weightedMetric": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.metricBudget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.expect_affine": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.sequential_weighted_cost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.actionRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.worldRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.updateRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.actionRow_measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.worldRow_measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.updateRow_measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.typedRow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.typedRow_expect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.integral_inducedKernel_finite": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.typedRow_expect_induced": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.typedRow_measure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.budget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.exists_sequential_plan": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.exists_weighted_coupling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.weighted_induced_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.productDist_le_weighted": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.original_induced_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.exists_sequential_plan": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.exists_weighted_coupling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.weighted_isW1Contraction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.original_isW1Contraction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rho0": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rhoJ": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.delta0": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.deltaJ": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.baselineData": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.interventionData": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.baseline_invariant_gap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.intervention_invariant_gap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.original_occupationMargin": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.boolMetric": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.bool_dist": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.dirac_dual": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.errors": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.budget_five": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_weighted_defect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model_induced": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.weighted_distance_five": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_weighted_coupling_cost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.stateBounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.factor_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.original_contraction_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.weighted_contraction_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.strict_metric_gate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldModel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldErrors": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.world_budget_five": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_world_weighted_defect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.world_model_induced": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_world_weighted_cost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "afe0d9b021cf12dcac577da33d41e57b633105d4b08b5d9fdb18504643d20de6",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/metric_coupling_signatures_axioms.txt",
+    "sha256": "afe0d9b021cf12dcac577da33d41e57b633105d4b08b5d9fdb18504643d20de6"
+  }
+}

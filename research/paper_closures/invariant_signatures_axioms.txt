@@ -1,0 +1,74 @@
+'PermanssonResearch.Perturbation.FirstMomentInvariant.PreservesFirstMoment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.preservesFirstMoment_of_drift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.push' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.push_measure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.push_lipschitz' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.iterateLaw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.iterate_push_measure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.anchor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.push_contracting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.exists_unique_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.stationary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.stationary_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.invariant_geometric_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.actual_iterate_coupling_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.iterate_tendsto_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.automatic_invariant_and_convergence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.generatedPerturbation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariant.generated_coupling_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_markov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_comp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_preserves' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_global_contraction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_unique_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_actual_stationary_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.FirstMomentInvariantRegression.reset_all_initial_geometric_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,109 @@
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\nat-private-clock-closure\axiom_audit.lean:52:38: warning: This simp argument is unused:
+  bernoulliMeasure_real_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [schedule, Kernel.const_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\nat-private-clock-closure\axiom_audit.lean:91:6: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\nat-private-clock-closure\axiom_audit.lean:129:50: warning: This simp argument is unused:
+  Measure.dirac_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [treatedClock, Kernel.deterministic_apply, zeroClock, NatPrivateClock.phase] at hm
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'PermanssonResearch.MultiAgent.NatPrivateClock.OldState' does not depend on any axioms
+'PermanssonResearch.MultiAgent.NatPrivateClock.NewState' does not depend on any axioms
+'PermanssonResearch.MultiAgent.NatPrivateClock.lift' does not depend on any axioms
+'PermanssonResearch.MultiAgent.NatPrivateClock.drop' does not depend on any axioms
+'PermanssonResearch.MultiAgent.NatPrivateClock.phase' does not depend on any axioms
+'PermanssonResearch.MultiAgent.NatPrivateClock.dropWorld' does not depend on any axioms
+'PermanssonResearch.MultiAgent.NatPrivateClock.dropInput' does not depend on any axioms
+'PermanssonResearch.MultiAgent.NatPrivateClock.drop_lift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.phase_lift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.lift_drop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.rows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.playerOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.anchor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.generator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.physical' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.physical_isMarkov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.phase_update' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.inherited_feasibility' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.inducedKernel_atom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.product_transition_atom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.advancing_update' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.actual_atom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.protocol_world_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.measurable_drop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.inherited_exogeneity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.inherited_strictness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.actual_row' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.scheduledKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.scheduledKernel_isMarkov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.actual_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.openLoop_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.succ_iterate' depends on axioms: [propext, Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.natural_scheduled_row' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.natural_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatPrivateClock.natural_openLoop_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.schedule' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.baseline' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.physical' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.start' does not depend on any axioms
+'PermanssonResearch.MultiAgent.NatClockTests.rate_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.action_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.schedule_nonperiodic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.schedule_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.baseline_exogenous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.zeroClock' does not depend on any axioms
+'PermanssonResearch.MultiAgent.NatClockTests.treatedClock' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultiAgent.NatClockTests.treated_clock_not_strict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

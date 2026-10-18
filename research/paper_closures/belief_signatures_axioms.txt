@@ -1,0 +1,242 @@
+'PermanssonResearch.ReverseSolver.Belief.Distribution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Distribution.pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Distribution.pmf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Distribution.pmf_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Distribution.dot' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Distribution.integral_eq_dot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Distribution.mix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Distribution.dot_mix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.branchMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.numerator_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.branchMass_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.branchMass_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.numerator_eq_zero_of_branch_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.posterior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.posterior_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.posterior_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.posterior_cancel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.posterior_dot_cancel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.jointStep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.jointStep_atom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.sum_flip_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.dot_step_numerator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.dot_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Tree' does not depend on any axioms
+'PermanssonResearch.ReverseSolver.Belief.tree_fintype' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.tree_nonempty' depends on axioms: [Classical.choice]
+'PermanssonResearch.ReverseSolver.Belief.argmax' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.argmax_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.finiteMax' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.le_finiteMax' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.finiteMax_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.finiteMax_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.alpha' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.chosenControl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.optimalTree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.alpha_le_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.optimalTree_attains' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.alpha_envelope' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.linear_on_optimal_cell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.value_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Behavioral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.ObservationPolicy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.ObservationPolicy.unfold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Tree.behavioral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Distribution.dot_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.stateValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.expected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.expected_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.stateValue_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.stateValue_tree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.expected_le_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Samples' does not depend on any axioms
+'PermanssonResearch.ReverseSolver.Belief.samples_fintype' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.samples_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.samples_singletons' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.sampleMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.terminal' does not depend on any axioms
+'PermanssonResearch.ReverseSolver.Belief.Model.conditionalMean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.conditionalMean_eq_stateValue' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.sampleMass_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.sampleMass_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.chronologicalLaw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.chronologicalMean_eq_expected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.chronologicalIntegral_eq_expected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.observationHistory_dominated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.behavioralChronological_dominated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.observationTree_attains' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.forwardStep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.forward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.filter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.likelihood' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.forwardStep_scaled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.forward_scaled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.forward_belief_scaled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.forward_belief' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.forward_total' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.filtered_conditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.zero_word_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.actionWeight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.observedForward' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.observedForward_eq_actionWeight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.observed_filter_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.observed_word_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Samples.observable' does not depend on any axioms
+'PermanssonResearch.ReverseSolver.Belief.Model.wordContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.wordContinuation_nil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.wordContinuation_cons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.endpointSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.endpointSum_cons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.endpointSum_eq_observedForward' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.chronological_endpoint_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.chronological_filtered_endpoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.chronological_word_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.Model.actual_history_conditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.CommonMenu' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitoredTransition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitoredModel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitoredInitial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitoredReward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitor_transition_atom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitored_physical_atom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitored_control_permitted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitored_control_world_fixed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitored_control_update_fixed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitoredInitial_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.physicalTrace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitor_run_on_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitored_integral_eq_trace_reward' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitored_initial_integral_eq_history' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitored_history_dominated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ReverseSolver.Belief.monitored_history_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

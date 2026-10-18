@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "fixture": {
+    "status": "PASS",
+    "returncode": 0,
+    "elapsed": 57.34399999998277
+  },
+  "source_sha256": {
+    "verification\\research\\BeliefObservationWitness.lean": "87df5fee54bb7c9f41a4a0c0e9e5986c4fadb2efca9865f1907f996369c09d85"
+  },
+  "axiom_audit": {
+    "status": "PASS",
+    "returncode": 0,
+    "declarations": 116
+  },
+  "changed_during_check": false
+}

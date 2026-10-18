@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/Specialized/BoundaryWitnesses.lean": {
+      "sha256": "72b7223a5150102bb65f3c270eab036e2a02f8edabe43311c79d4c57749711f3",
+      "artifact_sha256": "650df1ed86028f680e94d77492355c63cfb95765301bc81ebc83322d27a71306",
+      "compiler": {
+        "module": "PermanssonResearch.Specialized.BoundaryWitnesses",
+        "started": 1792300019.2995286,
+        "elapsed": 44.78177762031555,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "72b7223a5150102bb65f3c270eab036e2a02f8edabe43311c79d4c57749711f3"
+      }
+    }
+  },
+  "module_list": [
+    "Specialized.BoundaryWitnesses"
+  ],
+  "declaration_count": 7,
+  "declarations": {
+    "PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.BoundaryWitnesses.changedForm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.BoundaryWitnesses.changed_embedding_loses_negativity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.BoundaryWitnesses.exact_but_illegal_approximant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.BoundaryWitnesses.shell": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.BoundaryWitnesses.dimension_two_retains_second_equation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.BoundaryWitnesses.zero_shift_does_not_supply_inverse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "57e18536ec09b37d824e6c8ca19f4beb4addc2f1081b11053fa49d71f84d21c0",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/specialized_boundary_signatures_axioms.txt",
+    "sha256": "57e18536ec09b37d824e6c8ca19f4beb4addc2f1081b11053fa49d71f84d21c0"
+  }
+}

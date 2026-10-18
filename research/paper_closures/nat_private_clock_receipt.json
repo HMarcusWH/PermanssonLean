@@ -1,0 +1,110 @@
+{
+  "status": "PASS",
+  "source_sha256": {
+    "PermanssonResearch/MultiAgent/NatPrivateClock.lean": "222456f3d213cb57771a00a4337fb0922e06ce719e9e2ad0d53cab5a060c4b3b",
+    "PermanssonResearch/MultiAgent/NatPrivateClockTransport.lean": "7b37eb66384cd699ef57c76f1a93511b04b444657ca2f12672322e61ff0bf4ca",
+    "verification/research/MultiAgentNatPrivateClock.lean": "331e046fc13328a770d9e7ae2f473a84ae8f05d5158c7964b175a25d90e0e6d5",
+    "verification/research/audit_nat_private_clock.py": "5b1a5e06730d3455a57d814d614734ecaf98e06c0d67161d7d720d066ed5164c",
+    "verification/research/test_paper_nat_private_clock_lean.py": "3da7e231f1b4a6640e00f458cc3b5674107cc19c3f7213f9fbe341c3f1c4ce40",
+    "verification/research/test_x1_paper_closure.py": "a30f2fdae0020ca9288d1f874b090d73bce64e2b6a7ccacc8fa2ff2a901169a4"
+  },
+  "modules": [
+    "PermanssonResearch.MultiAgent.NatPrivateClock",
+    "PermanssonResearch.MultiAgent.NatPrivateClockTransport"
+  ],
+  "scope": "Countable measurable strategic coordinates S0/S1/S2 with measurable singletons; finite measurable X/A1/A2; actual unbounded private clock Nat with successor update and arbitrary declared Nat-indexed anchors. No arbitrary measurable-coordinate extension is claimed here.",
+  "compiler_command": [
+    "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\.tools\\lean-4.34.0-windows\\bin\\lean.exe"
+  ],
+  "positive_controls": {
+    "PermanssonResearch.MultiAgent.NatPrivateClock": {
+      "status": "PASS",
+      "returncode": 0,
+      "elapsed": 42.21900000004098
+    },
+    "PermanssonResearch.MultiAgent.NatPrivateClockTransport": {
+      "status": "PASS",
+      "returncode": 0,
+      "elapsed": 32.125
+    },
+    "fixture": {
+      "status": "PASS",
+      "returncode": 0,
+      "elapsed": 31.21899999998277
+    }
+  },
+  "mutations": {
+    "frozen_clock": {
+      "status": "REJECTED",
+      "returncode": 1,
+      "expected_proof_failure": "unsolved goals\ncase right\n\u22a2 False",
+      "invalid_diagnostics": [],
+      "elapsed": 39.57799999997951,
+      "mutation_sha256": "faaf2c0c6886a4c75d931cb6426e6c387baf43af1f02c52c58c9d6c78047cbab"
+    }
+  },
+  "compiled_artifacts": {
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/NatPrivateClock.olean": "3c40831919fba1f7d75d888bd59d06684da538d888565d97b0dd2915ba498334",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/NatPrivateClockTransport.olean": "2b6869c788afb0b2af9be776553265e66419d2b614ad1cb9d2644648bc088ffd"
+  },
+  "axiom_audit": {
+    "status": "PASS",
+    "returncode": 0,
+    "elapsed": 33.43700000003446,
+    "declarations": 49,
+    "declaration_names": [
+      "PermanssonResearch.MultiAgent.NatPrivateClock.OldState",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.NewState",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.lift",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.drop",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.phase",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.dropWorld",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.dropInput",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.drop_lift",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.phase_lift",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.lift_drop",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.rows",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.playerOne",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.anchor",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.generator",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.physical",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.physical_isMarkov",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.phase_update",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.inherited_feasibility",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.inducedKernel_atom",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.product_transition_atom",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.advancing_update",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.actual_atom",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.protocol_world_eq",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.measurable_drop",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.inherited_exogeneity",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.inherited_strictness",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.actual_row",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.scheduledKernel",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.scheduledKernel_isMarkov",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.actual_projection",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.openLoop_projection",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.succ_iterate",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.natural_scheduled_row",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.natural_projection",
+      "PermanssonResearch.MultiAgent.NatPrivateClock.natural_openLoop_projection",
+      "PermanssonResearch.MultiAgent.NatClockTests.one",
+      "PermanssonResearch.MultiAgent.NatClockTests.rate",
+      "PermanssonResearch.MultiAgent.NatClockTests.schedule",
+      "PermanssonResearch.MultiAgent.NatClockTests.baseline",
+      "PermanssonResearch.MultiAgent.NatClockTests.physical",
+      "PermanssonResearch.MultiAgent.NatClockTests.start",
+      "PermanssonResearch.MultiAgent.NatClockTests.rate_injective",
+      "PermanssonResearch.MultiAgent.NatClockTests.action_rate",
+      "PermanssonResearch.MultiAgent.NatClockTests.schedule_nonperiodic",
+      "PermanssonResearch.MultiAgent.NatClockTests.schedule_strict",
+      "PermanssonResearch.MultiAgent.NatClockTests.baseline_exogenous",
+      "PermanssonResearch.MultiAgent.NatClockTests.zeroClock",
+      "PermanssonResearch.MultiAgent.NatClockTests.treatedClock",
+      "PermanssonResearch.MultiAgent.NatClockTests.treated_clock_not_strict"
+    ],
+    "missing": [],
+    "forbidden": {}
+  },
+  "changed_files": []
+}

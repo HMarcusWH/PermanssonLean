@@ -1,0 +1,5 @@
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\corrupt_denominator.lean:13:82: error: unsolved goals
+tableBridge :
+  InterventionNumerics.terminal false false false 1 ((0, 0), false) =
+    InterventionNumerics.table false false false 1 ((0, 0), false)
+⊢ False

@@ -1,0 +1,361 @@
+{
+  "format": "Permansson.AcceptanceExactExecutions.v1",
+  "kind": "INDEPENDENT_EXACT_PYTHON",
+  "source_sha256": {
+    "verification/research/c10_exact_execution.py": "1519ace5b7d9b1db5edaa7bc7f5200c60c838e6ec35bf77e59f909deb0d799fb",
+    "verification/research/c10_golden.py": "e2bbbc50ca58c3472fa05c6ff2ccca77ef5ad2e21422d636c8fe6cb73469b35b",
+    "verification/research/c10_verify_receipt.py": "873b525038675cee68ff1ac1a658a5327f6e9aa39a839607070a6a1ee6ef9fa6",
+    "verification/research/c11_stationary_execution.py": "3a57d3cdbb2a5b5875f93b47b431dce59c5714b90d339e0cf8e211eae54e2ae2",
+    "verification/research/c11_verify_stationary.py": "0a0e35c26f10ac11847953708c6baec413aee206cd333fff47414f57cf906285",
+    "verification/research/paper_closure_acceptance_cases.py": "f0e306841a9d2518ba6760aeadf450c701542db4a37b26226109a9b7be7ddd33",
+    "verification/research/paper_closure_acceptance_evidence.py": "96f9e757809154a058251772d38247a1995520b2fcaaabcf603b4a48018b7d4e",
+    "verification/research/paper_closure_analytic_audit.py": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+    "verification/research/test_a2_primitive_tv.py": "f63f964399aa2807f1134aa37153e2d0da6e0bb0a7b5d710bc8b3df9cabce853",
+    "verification/research/test_a3_contractive.py": "fe520e05d6eaeea6b25e7baf3705d3e3903aaf8c4257f3aed79f400d64fbfa25",
+    "verification/research/test_d2_residence.py": "cddf57d85d9129daf52c539f3d93eed89e589261a30e8feeabb6020f98304465",
+    "verification/research/test_e1_approx_quotient.py": "d8c9022cf5e245aa0c1a2a1c8270bf63c21a2f54b353c9bf0e0ce511650325f3",
+    "verification/research/test_f1_multiagent_protocols.py": "7ffad8a848b426409eb09f587228c09b50e65b1ac6acf5db693a0bb6f7a0745c",
+    "verification/research/test_lane_c11_stationary.py": "1dd3b304e3eefd430eb3a9dd7447a7f754e2127dfc03aade3710974c819ded37",
+    "verification/research/test_monitor_stationary_closures.py": "852acd0dba0283df5e6ab96b963fa6f387a668a30091354486204072a0caeefd",
+    "verification/research/test_paper_closure_boundaries.py": "3af13dcb25fc4e5a5deffb155ac6df697af456581e3f11cc9c2fc52581805279"
+  },
+  "tests": {
+    "self:test_bad_clocks_fail_the_declared_projection": {
+      "status": "PASS",
+      "test_id": "__main__.AdditionalExactChecks.test_bad_clocks_fail_the_declared_projection",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_bad_clocks_fail_the_declared_projection (__main__.AdditionalExactChecks.test_bad_clocks_fail_the_declared_projection) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "self:test_danger_after_success_remains_a_separate_risk": {
+      "status": "PASS",
+      "test_id": "__main__.AdditionalExactChecks.test_danger_after_success_remains_a_separate_risk",
+      "tests_run": 1,
+      "elapsed": 0.001956939697265625,
+      "output": "test_danger_after_success_remains_a_separate_risk (__main__.AdditionalExactChecks.test_danger_after_success_remains_a_separate_risk) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n"
+    },
+    "self:test_geometric_endpoints_and_initial_error": {
+      "status": "PASS",
+      "test_id": "__main__.AdditionalExactChecks.test_geometric_endpoints_and_initial_error",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_geometric_endpoints_and_initial_error (__main__.AdditionalExactChecks.test_geometric_endpoints_and_initial_error) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "self:test_incomparable_minima_and_xor": {
+      "status": "PASS",
+      "test_id": "__main__.AdditionalExactChecks.test_incomparable_minima_and_xor",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_incomparable_minima_and_xor (__main__.AdditionalExactChecks.test_incomparable_minima_and_xor) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "self:test_opposite_overlap_order_dependence": {
+      "status": "PASS",
+      "test_id": "__main__.AdditionalExactChecks.test_opposite_overlap_order_dependence",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_opposite_overlap_order_dependence (__main__.AdditionalExactChecks.test_opposite_overlap_order_dependence) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "self:test_supnorm_changes_the_transport_test_class": {
+      "status": "PASS",
+      "test_id": "__main__.AdditionalExactChecks.test_supnorm_changes_the_transport_test_class",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_supnorm_changes_the_transport_test_class (__main__.AdditionalExactChecks.test_supnorm_changes_the_transport_test_class) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_a2_primitive_tv:test_a2_08_post_intervention_reachable_row": {
+      "status": "PASS",
+      "test_id": "test_a2_primitive_tv.A2PrimitiveTests.test_a2_08_post_intervention_reachable_row",
+      "tests_run": 1,
+      "elapsed": 0.0009992122650146484,
+      "output": "test_a2_08_post_intervention_reachable_row (test_a2_primitive_tv.A2PrimitiveTests.test_a2_08_post_intervention_reachable_row) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n"
+    },
+    "test_a2_primitive_tv:test_a2_12_arbitrarily_small_leak_breaks_exact_invariance": {
+      "status": "PASS",
+      "test_id": "test_a2_primitive_tv.A2PrimitiveTests.test_a2_12_arbitrarily_small_leak_breaks_exact_invariance",
+      "tests_run": 1,
+      "elapsed": 0.004000425338745117,
+      "output": "test_a2_12_arbitrarily_small_leak_breaks_exact_invariance (test_a2_primitive_tv.A2PrimitiveTests.test_a2_12_arbitrarily_small_leak_breaks_exact_invariance) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n"
+    },
+    "test_a2_primitive_tv:test_a2_15_seeded_exact_rational_primitive_rows": {
+      "status": "PASS",
+      "test_id": "test_a2_primitive_tv.A2PrimitiveTests.test_a2_15_seeded_exact_rational_primitive_rows",
+      "tests_run": 1,
+      "elapsed": 0.052613258361816406,
+      "output": "test_a2_15_seeded_exact_rational_primitive_rows (test_a2_primitive_tv.A2PrimitiveTests.test_a2_15_seeded_exact_rational_primitive_rows) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.054s\n\nOK\n"
+    },
+    "test_a3_contractive:test_four_process_factorization_cannot_be_deleted": {
+      "status": "PASS",
+      "test_id": "test_a3_contractive.LeakageTests.test_four_process_factorization_cannot_be_deleted",
+      "tests_run": 1,
+      "elapsed": 0.001001596450805664,
+      "output": "test_four_process_factorization_cannot_be_deleted (test_a3_contractive.LeakageTests.test_four_process_factorization_cannot_be_deleted)\nDestructive overclaim control: use forever survival in place of a ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_a3_contractive:test_no_contraction_no_bound": {
+      "status": "PASS",
+      "test_id": "test_a3_contractive.InvariantPerturbationTests.test_no_contraction_no_bound",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_no_contraction_no_bound (test_a3_contractive.InvariantPerturbationTests.test_no_contraction_no_bound)\nrho = 1 (identity kernel): every law is invariant; no finite bound. ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_a3_contractive:test_unbounded_no_conversion": {
+      "status": "PASS",
+      "test_id": "test_a3_contractive.ConversionTests.test_unbounded_no_conversion",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_unbounded_no_conversion (test_a3_contractive.ConversionTests.test_unbounded_no_conversion)\nMirrors tv_does_not_control_w1_on_real: TV = eps, W1 = eps * n. ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_d2_residence:test_entry_deadline_and_completion_deadline_differ": {
+      "status": "PASS",
+      "test_id": "test_d2_residence.ResidenceSemanticsTests.test_entry_deadline_and_completion_deadline_differ",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_entry_deadline_and_completion_deadline_differ (test_d2_residence.ResidenceSemanticsTests.test_entry_deadline_and_completion_deadline_differ) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_d2_residence:test_product_clock_and_history_values_agree": {
+      "status": "PASS",
+      "test_id": "test_d2_residence.CanonicalPathAndControlTests.test_product_clock_and_history_values_agree",
+      "tests_run": 1,
+      "elapsed": 0.0039691925048828125,
+      "output": "test_product_clock_and_history_values_agree (test_d2_residence.CanonicalPathAndControlTests.test_product_clock_and_history_values_agree) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n"
+    },
+    "test_d2_residence:test_risk_budget_changes_optimum": {
+      "status": "PASS",
+      "test_id": "test_d2_residence.RobustAndRiskTests.test_risk_budget_changes_optimum",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_risk_budget_changes_optimum (test_d2_residence.RobustAndRiskTests.test_risk_budget_changes_optimum) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_e1_approx_quotient:test_baseline_only_certificate_insufficient": {
+      "status": "PASS",
+      "test_id": "test_e1_approx_quotient.MarginTests.test_baseline_only_certificate_insufficient",
+      "tests_run": 1,
+      "elapsed": 0.00099945068359375,
+      "output": "test_baseline_only_certificate_insufficient (test_e1_approx_quotient.MarginTests.test_baseline_only_certificate_insufficient)\nExactly lumpable baseline (η₀ = 0) but a non-lumpable matched ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n"
+    },
+    "test_e1_approx_quotient:test_geometric_bound_numeric_only": {
+      "status": "PASS",
+      "test_id": "test_e1_approx_quotient.LeakageTests.test_geometric_bound_numeric_only",
+      "tests_run": 1,
+      "elapsed": 0.012696504592895508,
+      "output": "test_geometric_bound_numeric_only (test_e1_approx_quotient.LeakageTests.test_geometric_bound_numeric_only)\nE1.5 (geometric bound) is OPEN in Lean; here it is only observed ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nOK\n"
+    },
+    "test_e1_approx_quotient:test_initial_law_lift_is_needed": {
+      "status": "PASS",
+      "test_id": "test_e1_approx_quotient.NonMarkovProjectionTests.test_initial_law_lift_is_needed",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_initial_law_lift_is_needed (test_e1_approx_quotient.NonMarkovProjectionTests.test_initial_law_lift_is_needed)\nη = 0 (exact lumpability) but the coarse start is not the image of ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_e1_approx_quotient:test_positive_quotient_margin_not_exact_gr": {
+      "status": "PASS",
+      "test_id": "test_e1_approx_quotient.MarginTests.test_positive_quotient_margin_not_exact_gr",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_positive_quotient_margin_not_exact_gr (test_e1_approx_quotient.MarginTests.test_positive_quotient_margin_not_exact_gr)\nPositive margins ABOVE the V20.34 budget transfer in both directions ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_e1_approx_quotient:test_projection_is_not_markov_from_one_start": {
+      "status": "PASS",
+      "test_id": "test_e1_approx_quotient.NonMarkovProjectionTests.test_projection_is_not_markov_from_one_start",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_projection_is_not_markov_from_one_start (test_e1_approx_quotient.NonMarkovProjectionTests.test_projection_is_not_markov_from_one_start)\nSame fine start 0, same current coarse value b, different coarse ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_f1_multiagent_protocols:test_declared_state_feedback_anchors_differ_off_support_not_strict_ma2": {
+      "status": "PASS",
+      "test_id": "test_f1_multiagent_protocols.AnchorIdentificationTests.test_declared_state_feedback_anchors_differ_off_support_not_strict_ma2",
+      "tests_run": 1,
+      "elapsed": 0.0020225048065185547,
+      "output": "test_declared_state_feedback_anchors_differ_off_support_not_strict_ma2 (test_f1_multiagent_protocols.AnchorIdentificationTests.test_declared_state_feedback_anchors_differ_off_support_not_strict_ma2)\nMirrors declared_anchors_agree_on_support_but_openLoop_differs. ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nOK\n"
+    },
+    "test_f1_multiagent_protocols:test_endogenous_common_state_is_not_opponent_locked": {
+      "status": "PASS",
+      "test_id": "test_f1_multiagent_protocols.AnchorIdentificationTests.test_endogenous_common_state_is_not_opponent_locked",
+      "tests_run": 1,
+      "elapsed": 0.009714603424072266,
+      "output": "test_endogenous_common_state_is_not_opponent_locked (test_f1_multiagent_protocols.AnchorIdentificationTests.test_endogenous_common_state_is_not_opponent_locked)\nA factorized anchor can still respond via s0 <- a1. Baseline-support ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nOK\n"
+    },
+    "test_f1_multiagent_protocols:test_infeasible_anchor_excluded_separate_toy": {
+      "status": "PASS",
+      "test_id": "test_f1_multiagent_protocols.FeasibilityAndWorldTests.test_infeasible_anchor_excluded_separate_toy",
+      "tests_run": 1,
+      "elapsed": 0.0011785030364990234,
+      "output": "test_infeasible_anchor_excluded_separate_toy (test_f1_multiagent_protocols.FeasibilityAndWorldTests.test_infeasible_anchor_excluded_separate_toy)\nSEPARATE toy (the F1.4 Boolean witness has no feasibility constraint): ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n"
+    },
+    "test_f1_multiagent_protocols:test_ma3_correlated_law_not_product_exact": {
+      "status": "PASS",
+      "test_id": "test_f1_multiagent_protocols.ProductSubclassTests.test_ma3_correlated_law_not_product_exact",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_ma3_correlated_law_not_product_exact (test_f1_multiagent_protocols.ProductSubclassTests.test_ma3_correlated_law_not_product_exact)\nA Bool x Bool probability law is a product iff it equals the product of ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_f1_multiagent_protocols:test_nonstationary_anchor_needs_clock_in_baseline": {
+      "status": "PASS",
+      "test_id": "test_f1_multiagent_protocols.ClockTests.test_nonstationary_anchor_needs_clock_in_baseline",
+      "tests_run": 1,
+      "elapsed": 0.011153221130371094,
+      "output": "test_nonstationary_anchor_needs_clock_in_baseline (test_f1_multiagent_protocols.ClockTests.test_nonstationary_anchor_needs_clock_in_baseline)\nThe clock must be declared in the BASELINE S0/U0 (protocols never change ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nOK\n"
+    },
+    "test_f1_multiagent_protocols:test_strict_autonomous_off_support_difference_stochastic_crosscheck": {
+      "status": "PASS",
+      "test_id": "test_f1_multiagent_protocols.AnchorIdentificationTests.test_strict_autonomous_off_support_difference_stochastic_crosscheck",
+      "tests_run": 1,
+      "elapsed": 0.009070873260498047,
+      "output": "test_strict_autonomous_off_support_difference_stochastic_crosscheck (test_f1_multiagent_protocols.AnchorIdentificationTests.test_strict_autonomous_off_support_difference_stochastic_crosscheck)\nAdditional finite stochastic cross-check; the Lean obstruction is ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nOK\n"
+    },
+    "test_lane_c11_stationary:test_01_one_state": {
+      "status": "PASS",
+      "test_id": "test_lane_c11_stationary.C11StationaryTests.test_01_one_state",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_01_one_state (test_lane_c11_stationary.C11StationaryTests.test_01_one_state) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_lane_c11_stationary:test_02_periodic_alternation": {
+      "status": "PASS",
+      "test_id": "test_lane_c11_stationary.C11StationaryTests.test_02_periodic_alternation",
+      "tests_run": 1,
+      "elapsed": 0.002668142318725586,
+      "output": "test_02_periodic_alternation (test_lane_c11_stationary.C11StationaryTests.test_02_periodic_alternation) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nOK\n"
+    },
+    "test_lane_c11_stationary:test_04_two_absorbers_and_transient_split": {
+      "status": "PASS",
+      "test_id": "test_lane_c11_stationary.C11StationaryTests.test_04_two_absorbers_and_transient_split",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_04_two_absorbers_and_transient_split (test_lane_c11_stationary.C11StationaryTests.test_04_two_absorbers_and_transient_split) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_lane_c11_stationary:test_07_forged_share_after_hash_repair": {
+      "status": "PASS",
+      "test_id": "test_lane_c11_stationary.C11StationaryTests.test_07_forged_share_after_hash_repair",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_07_forged_share_after_hash_repair (test_lane_c11_stationary.C11StationaryTests.test_07_forged_share_after_hash_repair) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_lane_c11_stationary:test_08_forged_balance_after_hash_repair": {
+      "status": "PASS",
+      "test_id": "test_lane_c11_stationary.C11StationaryTests.test_08_forged_balance_after_hash_repair",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_08_forged_balance_after_hash_repair (test_lane_c11_stationary.C11StationaryTests.test_08_forged_balance_after_hash_repair) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_lane_c11_stationary:test_09_missing_extra_and_duplicate_classes": {
+      "status": "PASS",
+      "test_id": "test_lane_c11_stationary.C11StationaryTests.test_09_missing_extra_and_duplicate_classes",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_09_missing_extra_and_duplicate_classes (test_lane_c11_stationary.C11StationaryTests.test_09_missing_extra_and_duplicate_classes) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_lane_c11_stationary:test_10_negative_offclass_and_wrong_mass": {
+      "status": "PASS",
+      "test_id": "test_lane_c11_stationary.C11StationaryTests.test_10_negative_offclass_and_wrong_mass",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_10_negative_offclass_and_wrong_mass (test_lane_c11_stationary.C11StationaryTests.test_10_negative_offclass_and_wrong_mass) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_lane_c11_stationary:test_13_zero_and_resource_limits": {
+      "status": "PASS",
+      "test_id": "test_lane_c11_stationary.C11StationaryTests.test_13_zero_and_resource_limits",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_13_zero_and_resource_limits (test_lane_c11_stationary.C11StationaryTests.test_13_zero_and_resource_limits) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_lane_c11_stationary:test_16_same_length_duplicate_replaces_missing_class": {
+      "status": "PASS",
+      "test_id": "test_lane_c11_stationary.C11StationaryTests.test_16_same_length_duplicate_replaces_missing_class",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_16_same_length_duplicate_replaces_missing_class (test_lane_c11_stationary.C11StationaryTests.test_16_same_length_duplicate_replaces_missing_class) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_monitor_stationary_closures:test_all_short_physical_words": {
+      "status": "PASS",
+      "test_id": "test_monitor_stationary_closures.LiteralEventTests.test_all_short_physical_words",
+      "tests_run": 1,
+      "elapsed": 0.007311105728149414,
+      "output": "test_all_short_physical_words (test_monitor_stationary_closures.LiteralEventTests.test_all_short_physical_words) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n"
+    },
+    "test_monitor_stationary_closures:test_retry_first_and_danger_boundaries": {
+      "status": "PASS",
+      "test_id": "test_monitor_stationary_closures.LiteralEventTests.test_retry_first_and_danger_boundaries",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_retry_first_and_danger_boundaries (test_monitor_stationary_closures.LiteralEventTests.test_retry_first_and_danger_boundaries) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_paper_closure_boundaries:test_common_mode_is_not_identity_and_zero_sum_is_invisible": {
+      "status": "PASS",
+      "test_id": "test_paper_closure_boundaries.ClosureBoundaryTests.test_common_mode_is_not_identity_and_zero_sum_is_invisible",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_common_mode_is_not_identity_and_zero_sum_is_invisible (test_paper_closure_boundaries.ClosureBoundaryTests.test_common_mode_is_not_identity_and_zero_sum_is_invisible) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_paper_closure_boundaries:test_embedding_without_form_preservation_loses_negative_witness": {
+      "status": "PASS",
+      "test_id": "test_paper_closure_boundaries.ClosureBoundaryTests.test_embedding_without_form_preservation_loses_negative_witness",
+      "tests_run": 1,
+      "elapsed": 0.0010001659393310547,
+      "output": "test_embedding_without_form_preservation_loses_negative_witness (test_paper_closure_boundaries.ClosureBoundaryTests.test_embedding_without_form_preservation_loses_negative_witness) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_paper_closure_boundaries:test_exact_approximant_can_violate_legal_carrier": {
+      "status": "PASS",
+      "test_id": "test_paper_closure_boundaries.ClosureBoundaryTests.test_exact_approximant_can_violate_legal_carrier",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_exact_approximant_can_violate_legal_carrier (test_paper_closure_boundaries.ClosureBoundaryTests.test_exact_approximant_can_violate_legal_carrier) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_paper_closure_boundaries:test_nonempty_state_menus_can_have_empty_key_intersection": {
+      "status": "PASS",
+      "test_id": "test_paper_closure_boundaries.ClosureBoundaryTests.test_nonempty_state_menus_can_have_empty_key_intersection",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_nonempty_state_menus_can_have_empty_key_intersection (test_paper_closure_boundaries.ClosureBoundaryTests.test_nonempty_state_menus_can_have_empty_key_intersection) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_paper_closure_boundaries:test_observed_mediation_does_not_identify_joint_intervention": {
+      "status": "PASS",
+      "test_id": "test_paper_closure_boundaries.ClosureBoundaryTests.test_observed_mediation_does_not_identify_joint_intervention",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_observed_mediation_does_not_identify_joint_intervention (test_paper_closure_boundaries.ClosureBoundaryTests.test_observed_mediation_does_not_identify_joint_intervention) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_paper_closure_boundaries:test_positive_component_can_mask_gram_negative_direction": {
+      "status": "PASS",
+      "test_id": "test_paper_closure_boundaries.ClosureBoundaryTests.test_positive_component_can_mask_gram_negative_direction",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_positive_component_can_mask_gram_negative_direction (test_paper_closure_boundaries.ClosureBoundaryTests.test_positive_component_can_mask_gram_negative_direction) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_paper_closure_boundaries:test_seam_invisibility_can_have_rank_two": {
+      "status": "PASS",
+      "test_id": "test_paper_closure_boundaries.ClosureBoundaryTests.test_seam_invisibility_can_have_rank_two",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_seam_invisibility_can_have_rank_two (test_paper_closure_boundaries.ClosureBoundaryTests.test_seam_invisibility_can_have_rank_two) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_paper_closure_boundaries:test_singular_missing_preimage_produces_negative_vector": {
+      "status": "PASS",
+      "test_id": "test_paper_closure_boundaries.ClosureBoundaryTests.test_singular_missing_preimage_produces_negative_vector",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_singular_missing_preimage_produces_negative_vector (test_paper_closure_boundaries.ClosureBoundaryTests.test_singular_missing_preimage_produces_negative_vector) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_paper_closure_boundaries:test_source_exceptional_branch_does_not_force_vanishing": {
+      "status": "PASS",
+      "test_id": "test_paper_closure_boundaries.ClosureBoundaryTests.test_source_exceptional_branch_does_not_force_vanishing",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_source_exceptional_branch_does_not_force_vanishing (test_paper_closure_boundaries.ClosureBoundaryTests.test_source_exceptional_branch_does_not_force_vanishing) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_paper_closure_boundaries:test_two_dimensional_shell_needs_second_equation": {
+      "status": "PASS",
+      "test_id": "test_paper_closure_boundaries.ClosureBoundaryTests.test_two_dimensional_shell_needs_second_equation",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_two_dimensional_shell_needs_second_equation (test_paper_closure_boundaries.ClosureBoundaryTests.test_two_dimensional_shell_needs_second_equation) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "test_paper_closure_boundaries:test_zero_shift_does_not_invert_psd_singular_core": {
+      "status": "PASS",
+      "test_id": "test_paper_closure_boundaries.ClosureBoundaryTests.test_zero_shift_does_not_invert_psd_singular_core",
+      "tests_run": 1,
+      "elapsed": 0.0,
+      "output": "test_zero_shift_does_not_invert_psd_singular_core (test_paper_closure_boundaries.ClosureBoundaryTests.test_zero_shift_does_not_invert_psd_singular_core) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    }
+  },
+  "status": "PASS"
+}

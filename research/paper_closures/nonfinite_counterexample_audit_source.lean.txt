@@ -1,0 +1,36 @@
+import PermanssonResearch.MultipleLimit.NonfiniteClock
+import PermanssonResearch.MultipleLimit.GrowingBlockAverages
+import PermanssonResearch.MultipleLimit.GrowingBlockCounterexample
+#print axioms PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_deterministic
+#print axioms PermanssonResearch.MultipleLimit.NonfiniteClock.clock
+#print axioms PermanssonResearch.MultipleLimit.NonfiniteClock.clock_markov
+#print axioms PermanssonResearch.MultipleLimit.NonfiniteClock.clock_law
+#print axioms PermanssonResearch.MultipleLimit.NonfiniteClock.empirical_integral
+#print axioms PermanssonResearch.MultipleLimit.NonfiniteClock.clock_singleton_frequency
+#print axioms PermanssonResearch.MultipleLimit.NonfiniteClock.clock_singletons_tendsto_zero
+#print axioms PermanssonResearch.MultipleLimit.NonfiniteClock.clock_no_probability_weak_limit
+#print axioms PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_clock_no_weak_limit
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.block_exists
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.block
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.block_eq
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.label
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.value
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.label_bounds
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.value_bounds
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.difference_bound
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.average
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.last_block_error
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.endpoint_error_tendsto_zero
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.even_endpoints
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.odd_endpoints
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.averages_do_not_converge
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.positive_horizon_averages_do_not_converge
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.descriptor
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_measurable
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_continuous
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.score
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.score_descriptor
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_empirical_integral
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_occupations_do_not_converge
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_averages_fail
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_occupations_fail
