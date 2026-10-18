@@ -1,4 +1,11 @@
 {
+  "receipt_version": 2,
+  "driver_sha256": "a30f2fdae0020ca9288d1f874b090d73bce64e2b6a7ccacc8fa2ff2a901169a4",
+  "verification_sha256": {
+    "verification/research/test_x1_paper_closure.py": "a30f2fdae0020ca9288d1f874b090d73bce64e2b6a7ccacc8fa2ff2a901169a4",
+    "verification/research/test_paper_x1_lean_closure.py": "1287e3d5820252779847b7b746fcedb7f5c334db3b6cd951f736cf52061e049c"
+  },
+  "previous_receipt_archive": ".lake\\x1-paper-closure\\history\\1792300788848523000-c2c7e2c65378",
   "compiler_command": [
     "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\.tools\\lean-4.34.0-windows\\bin\\lean.exe"
   ],
@@ -12,27 +19,41 @@
     "InterventionNumerics": {
       "status": "PASS",
       "returncode": 0,
-      "elapsed": 81.14100000000326,
-      "control_sha256": "ba9cdc65de8104f8f522c7c0bfa2d3bce6cc923a79b4dbd65fe4975e369f41b3"
+      "elapsed": 49.01600000000326,
+      "control_sha256": "ba9cdc65de8104f8f522c7c0bfa2d3bce6cc923a79b4dbd65fe4975e369f41b3",
+      "input_source": "PermanssonResearch\\X1\\InterventionNumerics.lean",
+      "recompiled_original_artifact": ".lake/build/lib/lean/PermanssonResearch/X1/InterventionNumerics.olean"
     },
     "InterventionNumericalBridge": {
       "status": "PASS",
       "returncode": 0,
-      "elapsed": 72.57800000003772,
-      "control_sha256": "fbc4c91fcf7379f0c12b0112213e04b9e6d0a378179807b758dc3f2e4bb48b4c"
+      "elapsed": 42.86000000004424,
+      "control_sha256": "fbc4c91fcf7379f0c12b0112213e04b9e6d0a378179807b758dc3f2e4bb48b4c",
+      "input_source": "PermanssonResearch\\X1\\InterventionNumericalBridge.lean",
+      "recompiled_original_artifact": ".lake/build/lib/lean/PermanssonResearch/X1/InterventionNumericalBridge.olean"
     },
     "ExactTerminalTables": {
       "status": "PASS",
       "returncode": 0,
-      "elapsed": 88.56300000002375,
-      "control_sha256": "fbf7935af4892ed3a663aa5729fccbffa62b7b23bde9fee75bbc09e39e584cb4"
+      "elapsed": 65.75,
+      "control_sha256": "fbf7935af4892ed3a663aa5729fccbffa62b7b23bde9fee75bbc09e39e584cb4",
+      "input_source": "PermanssonResearch\\X1\\ExactTerminalTables.lean",
+      "recompiled_original_artifact": ".lake/build/lib/lean/PermanssonResearch/X1/ExactTerminalTables.olean"
     },
     "ExactMargins": {
       "status": "PASS",
       "returncode": 0,
-      "elapsed": 74.06199999997625,
-      "control_sha256": "3a29e5a94da11489b6a920795d76cbdb9316b64002aaf04e6cf2442c9105d061"
+      "elapsed": 41.73500000004424,
+      "control_sha256": "3a29e5a94da11489b6a920795d76cbdb9316b64002aaf04e6cf2442c9105d061",
+      "input_source": "PermanssonResearch\\X1\\ExactMargins.lean",
+      "recompiled_original_artifact": ".lake/build/lib/lean/PermanssonResearch/X1/ExactMargins.olean"
     }
+  },
+  "compiled_artifacts": {
+    ".lake/build/lib/lean/PermanssonResearch/X1/InterventionNumerics.olean": "5511d2cc700fa8124d63a06f20fe44dc803e83afae9a1057e205532a47c1e705",
+    ".lake/build/lib/lean/PermanssonResearch/X1/InterventionNumericalBridge.olean": "4d3ffd50845c1e43c0f580fc43c9511554746f2e8a0ee01e3c5e339bd30d5a0f",
+    ".lake/build/lib/lean/PermanssonResearch/X1/ExactTerminalTables.olean": "329fcd65a6d773dd8f32145a6851234b467518d4a61ad41cb343d10d9ec90fd0",
+    ".lake/build/lib/lean/PermanssonResearch/X1/ExactMargins.olean": "32e732d7d11b8c63ddbb4d8415738a939552d691c0b01e0b2aaeb2b99ec90921"
   },
   "mutations": {
     "corrupt_terminal_literal": {
@@ -40,32 +61,64 @@
       "returncode": 1,
       "expected_proof_failure": "Tactic `decide` proved that the proposition\n  \u2200 (learner restrain reset : Bool) (y : Y), table learner restrain reset 0 y = indicator y.2\nis false",
       "invalid_diagnostics": [],
-      "elapsed": 78.60899999999674,
-      "mutation_sha256": "d6518a608d12430979145f518de195fe1583a6880cb64a184c15a9c8301b99f7"
+      "elapsed": 60.20299999997951,
+      "mutation_sha256": "b72ba15d07c646c94291d8c48412d86f3eb91f6ed4067335c16260c892bc0629"
     },
     "wrong_world_probability": {
       "status": "REJECTED",
       "returncode": 1,
       "expected_proof_failure": "'change' tactic failed",
       "invalid_diagnostics": [],
-      "elapsed": 88.93800000002375,
-      "mutation_sha256": "77de653edbdbad453e3ced1c1d77038b7c9ffcc57c9a9167d20a69e4a7c0562e"
+      "elapsed": 46.71899999998277,
+      "mutation_sha256": "7160c9eba7dd913d4fb9d63a5a5239906a4ea68bc563d81f3f93df6b19a2cd8d"
     },
     "new_world_learning": {
       "status": "REJECTED",
       "returncode": 1,
       "expected_proof_failure": "'change' tactic failed",
       "invalid_diagnostics": [],
-      "elapsed": 89.09299999999348,
-      "mutation_sha256": "eb9711e5c6dc11be3f7d1b744449bcc7f17f933e320c171dcedd70004245d7a9"
+      "elapsed": 37.98399999999674,
+      "mutation_sha256": "0aff80bbb4d7b71fb1e956dd35f5caa8507c2da7865500ba441ca848f053e4fc"
     },
     "swapped_update_protocol": {
       "status": "REJECTED",
       "returncode": 1,
       "expected_proof_failure": "Tactic `rfl` failed",
       "invalid_diagnostics": [],
-      "elapsed": 70.73399999999674,
-      "mutation_sha256": "511e629632db111b83d22c137454b631c54e2cb5620810ea5a25d2e68de037a9"
+      "elapsed": 37.34400000004098,
+      "mutation_sha256": "1b5c58aee645e663c9caec3174cbcb2eefe57b78a434b6bf60fa26816ab5521f"
+    },
+    "wrong_terminal_horizon": {
+      "status": "REJECTED",
+      "returncode": 1,
+      "expected_proof_failure": "unsolved goals\n\u22a2 False",
+      "invalid_diagnostics": [],
+      "elapsed": 40.88999999995576,
+      "mutation_sha256": "29cec558677632bb50e8eb5421c42fcb8c920f07f49590d8f8a97893fd347e29"
+    },
+    "corrupt_denominator": {
+      "status": "REJECTED",
+      "returncode": 1,
+      "expected_proof_failure": "unsolved goals\ntableBridge :\n  InterventionNumerics.terminal false false false 1 ((0, 0), false) =\n    InterventionNumerics.table false false false 1 ((0, 0), false)\n\u22a2 False",
+      "invalid_diagnostics": [],
+      "elapsed": 51.39100000000326,
+      "mutation_sha256": "0eeee26e176742fc34b33d029b49be0d002acabfda659623545a7bdb8fdce9e6"
+    },
+    "reset_before_action": {
+      "status": "REJECTED",
+      "returncode": 1,
+      "expected_proof_failure": "unsolved goals\n\u22a2 False",
+      "invalid_diagnostics": [],
+      "elapsed": 37.375,
+      "mutation_sha256": "3f18355dc3065f87ddd037932d955c5509932197888dd42cef95eea5aa17d02d"
+    },
+    "omitted_minimizing_start": {
+      "status": "REJECTED",
+      "returncode": 1,
+      "expected_proof_failure": "unsolved goals\n\u22a2 False",
+      "invalid_diagnostics": [],
+      "elapsed": 46.40700000000652,
+      "mutation_sha256": "2d05eb00108252e1cb1322a06cdd2db0c6eff11a4a7e3faf2228a54821dfb193"
     }
   },
   "axiom_audit": {
@@ -75,5 +128,6 @@
     "missing": [],
     "forbidden": {}
   },
-  "status": "PASS"
+  "status": "PASS",
+  "changed_files": []
 }

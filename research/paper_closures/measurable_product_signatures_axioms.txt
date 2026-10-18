@@ -1,0 +1,630 @@
+PermanssonResearch.MultiAgent.MeasurableProduct.measurable_product.{uI, u_1, u_2} {I : Type uI} [Fintype.{uI} I]
+  {Y : Type u_1} [MeasurableSpace.{u_1} Y] {Z : I → Type u_2} [(i : I) → MeasurableSpace.{u_2} (Z i)]
+  (κ : (i : I) → ProbabilityTheory.Kernel.{u_1, u_2} Y (Z i))
+  [∀ (i : I), ProbabilityTheory.IsMarkovKernel.{u_1, u_2} (κ i)] :
+  Measurable.{u_1, max u_2 uI} fun y => MeasureTheory.Measure.pi.{uI, u_2} fun i => (κ i) y
+'PermanssonResearch.MultiAgent.MeasurableProduct.measurable_product' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.productKernel.{uI, u_1, u_2} {I : Type uI} [Fintype.{uI} I]
+  {Y : Type u_1} [MeasurableSpace.{u_1} Y] {Z : I → Type u_2} [(i : I) → MeasurableSpace.{u_2} (Z i)]
+  (κ : (i : I) → ProbabilityTheory.Kernel.{u_1, u_2} Y (Z i))
+  [∀ (i : I), ProbabilityTheory.IsMarkovKernel.{u_1, u_2} (κ i)] :
+  ProbabilityTheory.Kernel.{u_1, max uI u_2} Y ((i : I) → Z i)
+'PermanssonResearch.MultiAgent.MeasurableProduct.productKernel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_isMarkov.{uI, u_1, u_2} {I : Type uI} [Fintype.{uI} I]
+  {Y : Type u_1} [MeasurableSpace.{u_1} Y] {Z : I → Type u_2} [(i : I) → MeasurableSpace.{u_2} (Z i)]
+  (κ : (i : I) → ProbabilityTheory.Kernel.{u_1, u_2} Y (Z i))
+  [∀ (i : I), ProbabilityTheory.IsMarkovKernel.{u_1, u_2} (κ i)] :
+  ProbabilityTheory.IsMarkovKernel.{u_1, max u_2 uI}
+    (PermanssonResearch.MultiAgent.MeasurableProduct.productKernel.{uI, u_1, u_2} κ)
+'PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_cylinder.{uI, u_1, u_2} {I : Type uI} [Fintype.{uI} I]
+  {Y : Type u_1} [MeasurableSpace.{u_1} Y] {Z : I → Type u_2} [(i : I) → MeasurableSpace.{u_2} (Z i)]
+  (κ : (i : I) → ProbabilityTheory.Kernel.{u_1, u_2} Y (Z i))
+  [∀ (i : I), ProbabilityTheory.IsMarkovKernel.{u_1, u_2} (κ i)] (y : Y) (E : (i : I) → Set.{u_2} (Z i)) :
+  Eq.{1}
+    (((PermanssonResearch.MultiAgent.MeasurableProduct.productKernel.{uI, u_1, u_2} κ) y)
+      (Set.pi.{uI, u_2} Set.univ.{uI} E))
+    (∏ i, ((κ i) y) (E i))
+'PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_cylinder' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.actionKernel.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) :
+  ProbabilityTheory.Kernel.{max uX (max uS u0) uI, max uA uI}
+    (PermanssonLean.JointState.{max (max uS u0) uI, uX}
+      (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X)
+    ((i : I) → A i)
+'PermanssonResearch.MultiAgent.MeasurableProduct.actionKernel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.actionKernel_isMarkov.{uI, u0, uS, uX, uA} {I : Type uI}
+  [Fintype.{uI} I] {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) :
+  ProbabilityTheory.IsMarkovKernel.{max (max (max uX uS) u0) uI, max uA uI}
+    (PermanssonResearch.MultiAgent.MeasurableProduct.actionKernel.{uI, u0, uS, uX, uA} G)
+'PermanssonResearch.MultiAgent.MeasurableProduct.actionKernel_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.privateUpdateKernel.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) :
+  ProbabilityTheory.Kernel.{max (max (max uA uI) uX) (max uS u0) uI, max uI uS}
+    (PermanssonLean.UpdateInput.{max (max uS u0) uI, uX, max uA uI}
+      (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i))
+    ((i : I) → S i)
+'PermanssonResearch.MultiAgent.MeasurableProduct.privateUpdateKernel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.privateUpdateKernel_isMarkov.{uI, u0, uS, uX, uA} {I : Type uI}
+  [Fintype.{uI} I] {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) :
+  ProbabilityTheory.IsMarkovKernel.{max (max (max (max uA uX) uS) u0) uI, max uS uI}
+    (PermanssonResearch.MultiAgent.MeasurableProduct.privateUpdateKernel.{uI, u0, uS, uX, uA} G)
+'PermanssonResearch.MultiAgent.MeasurableProduct.privateUpdateKernel_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.assemble.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) :
+  PermanssonLean.StrategicGenerator.{max (max uS u0) uI, uX, max uA uI}
+    (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i)
+'PermanssonResearch.MultiAgent.MeasurableProduct.assemble' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.model.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I] {S0 : Type u0}
+  {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0] [(i : I) → MeasurableSpace.{uS} (S i)]
+  [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max uA uI) uX) (max uS u0) uI, uX}
+      (PermanssonLean.WorldInput.{max (max uS u0) uI, uX, max uA uI}
+        (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i))
+      X)
+  [hP : ProbabilityTheory.IsMarkovKernel.{max (max (max (max u0 uA) uI) uS) uX, uX} P] :
+  PermanssonLean.StrategicWorldModel.{max (max uS u0) uI, uX, max uA uI}
+    (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i)
+'PermanssonResearch.MultiAgent.MeasurableProduct.model' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.action_apply.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A)
+  (y :
+    PermanssonLean.JointState.{max (max uS u0) uI, uX}
+      (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X) :
+  Eq.{max (uA + 1) (uI + 1)}
+    ((PermanssonLean.StrategicGenerator.action.{max (max u0 uI) uS, uX, max uA uI}
+        (PermanssonResearch.MultiAgent.MeasurableProduct.assemble.{uI, u0, uS, uX, uA} G))
+      y)
+    (MeasureTheory.Measure.pi.{uI, uA} fun i =>
+      (PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.action.{uI, u0, uS, uX, uA}
+          (PermanssonResearch.MultiAgent.FiniteProduct.Generator.component.{uI, u0, uS, uX, uA} G i))
+        y)
+'PermanssonResearch.MultiAgent.MeasurableProduct.action_apply' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.update_apply.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A)
+  (v :
+    PermanssonLean.UpdateInput.{max (max uS u0) uI, uX, max uA uI}
+      (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i)) :
+  Eq.{max (max (u0 + 1) (uI + 1)) (uS + 1)}
+    ((PermanssonLean.StrategicGenerator.update.{max (max u0 uI) uS, uX, max uA uI}
+        (PermanssonResearch.MultiAgent.MeasurableProduct.assemble.{uI, u0, uS, uX, uA} G))
+      v)
+    (MeasureTheory.Measure.prod.{u0, max uS uI}
+      ((PermanssonResearch.MultiAgent.FiniteProduct.Generator.common.{uI, u0, uS, uX, uA} G) v)
+      (MeasureTheory.Measure.pi.{uI, uS} fun i =>
+        (PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.update.{uI, u0, uS, uX, uA}
+            (PermanssonResearch.MultiAgent.FiniteProduct.Generator.component.{uI, u0, uS, uX, uA} G i))
+          v))
+'PermanssonResearch.MultiAgent.MeasurableProduct.update_apply' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.actual_transition.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max uA uI) uX) (max uS u0) uI, uX}
+      (PermanssonLean.WorldInput.{max (max uS u0) uI, uX, max uA uI}
+        (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max u0 uA) uI) uS) uX, uX} P]
+  (y :
+    PermanssonLean.JointState.{max (max uS u0) uI, uX}
+      (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X)
+  {E :
+    Set.{max uX (max uS u0) uI}
+      (PermanssonLean.JointState.{max (max uS u0) uI, uX}
+        (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X)}
+  (hE : MeasurableSet.{max (max (max u0 uI) uS) uX} E) :
+  Eq.{1}
+    (((PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u0 uI) uS, uX, max uA uI}
+          (PermanssonResearch.MultiAgent.MeasurableProduct.model.{uI, u0, uS, uX, uA} G P))
+        y)
+      E)
+    (∫⁻ (a : (i : I) → A i),
+      ∫⁻ (x : X),
+        (MeasureTheory.Measure.prod.{u0, max uS uI}
+            ((PermanssonResearch.MultiAgent.FiniteProduct.Generator.common.{uI, u0, uS, uX, uA} G)
+              (Prod.mk.{max (max (max (max u0 uA) uI) uS) uX, uX} (Prod.mk.{max (max (max u0 uI) uS) uX, max uA uI} y a)
+                x))
+            (MeasureTheory.Measure.pi.{uI, uS} fun i =>
+              (PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.update.{uI, u0, uS, uX, uA}
+                  (PermanssonResearch.MultiAgent.FiniteProduct.Generator.component.{uI, u0, uS, uX, uA} G i))
+                (Prod.mk.{max (max (max (max u0 uA) uI) uS) uX, uX}
+                  (Prod.mk.{max (max (max u0 uI) uS) uX, max uA uI} y a) x)))
+          (Set.ofPred.{max (max u0 uI) uS} fun s =>
+            Membership.mem.{max uX (max u0 uI) uS, max (max (max u0 uI) uS) uX} E
+              (Prod.mk.{max (max u0 uI) uS, uX} s
+                x)) ∂P
+          (Prod.mk.{max (max (max u0 uI) uS) uX, max uA uI} y
+            a) ∂MeasureTheory.Measure.pi.{uI, uA} fun i =>
+        (PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.action.{uI, u0, uS, uX, uA}
+            (PermanssonResearch.MultiAgent.FiniteProduct.Generator.component.{uI, u0, uS, uX, uA} G i))
+          y)
+'PermanssonResearch.MultiAgent.MeasurableProduct.actual_transition' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.assemble_eq_finite.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  [DecidableEq.{uI + 1} I] [Fintype.{u0} S0] [(i : I) → Fintype.{uS} (S i)] [Fintype.{uX} X]
+  [(i : I) → Fintype.{uA} (A i)] [MeasurableSingletonClass.{u0} S0] [∀ (i : I), MeasurableSingletonClass.{uS} (S i)]
+  [MeasurableSingletonClass.{uX} X] [∀ (i : I), MeasurableSingletonClass.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) :
+  Eq.{max (max (max (max (u0 + 1) (uA + 1)) (uI + 1)) (uS + 1)) (uX + 1)}
+    (PermanssonResearch.MultiAgent.MeasurableProduct.assemble.{uI, u0, uS, uX, uA} G)
+    (PermanssonResearch.MultiAgent.FiniteProduct.Generator.toGenerator.{uI, u0, uS, uX, uA} G)
+'PermanssonResearch.MultiAgent.MeasurableProduct.assemble_eq_finite' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.model_eq_finite.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  [DecidableEq.{uI + 1} I] [Fintype.{u0} S0] [(i : I) → Fintype.{uS} (S i)] [Fintype.{uX} X]
+  [(i : I) → Fintype.{uA} (A i)] [MeasurableSingletonClass.{u0} S0] [∀ (i : I), MeasurableSingletonClass.{uS} (S i)]
+  [MeasurableSingletonClass.{uX} X] [∀ (i : I), MeasurableSingletonClass.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max uA uI) uX) (max uS u0) uI, uX}
+      (PermanssonLean.WorldInput.{max (max uS u0) uI, uX, max uA uI}
+        (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max u0 uA) uI) uS) uX, uX} P] :
+  Eq.{max (max (max (max (u0 + 1) (uA + 1)) (uI + 1)) (uS + 1)) (uX + 1)}
+    (PermanssonResearch.MultiAgent.MeasurableProduct.model.{uI, u0, uS, uX, uA} G P)
+    (PermanssonResearch.MultiAgent.FiniteProduct.Generator.toModel.{uI, u0, uS, uX, uA} G P)
+'PermanssonResearch.MultiAgent.MeasurableProduct.model_eq_finite' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop.{uI, u0, uS, uX, uA} {I : Type uI} [DecidableEq.{uI + 1} I]
+  {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) (i : I)
+  (r : PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A i) :
+  PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A
+'PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.openLoop.{uI, u0, uS, uX, uA} {I : Type uI} [DecidableEq.{uI + 1} I]
+  {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) (i : I)
+  (r : PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A i)
+  (anchor : (j : I) → PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A j) :
+  PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A
+'PermanssonResearch.MultiAgent.MeasurableProduct.openLoop' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop_treated.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  [DecidableEq.{uI + 1} I] {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) (i : I)
+  (r : PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A i) :
+  Eq.{max (max (max (max (u0 + 1) (uA + 1)) (uI + 1)) (uS + 1)) (uX + 1)}
+    (PermanssonResearch.MultiAgent.FiniteProduct.Generator.component.{uI, u0, uS, uX, uA}
+      (PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop.{uI, u0, uS, uX, uA} G i r) i)
+    r
+'PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop_treated' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop_other.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  [DecidableEq.{uI + 1} I] {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) (i j : I)
+  (h : Ne.{uI + 1} j i) (r : PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A i) :
+  Eq.{max (max (max (max (u0 + 1) (uA + 1)) (uI + 1)) (uS + 1)) (uX + 1)}
+    (PermanssonResearch.MultiAgent.FiniteProduct.Generator.component.{uI, u0, uS, uX, uA}
+      (PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop.{uI, u0, uS, uX, uA} G i r) j)
+    (PermanssonResearch.MultiAgent.FiniteProduct.Generator.component.{uI, u0, uS, uX, uA} G j)
+'PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop_other' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.openLoop_treated.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  [DecidableEq.{uI + 1} I] {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) (i : I)
+  (r : PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A i)
+  (anchor : (j : I) → PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A j) :
+  Eq.{max (max (max (max (u0 + 1) (uA + 1)) (uI + 1)) (uS + 1)) (uX + 1)}
+    (PermanssonResearch.MultiAgent.FiniteProduct.Generator.component.{uI, u0, uS, uX, uA}
+      (PermanssonResearch.MultiAgent.MeasurableProduct.openLoop.{uI, u0, uS, uX, uA} G i r anchor) i)
+    r
+'PermanssonResearch.MultiAgent.MeasurableProduct.openLoop_treated' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.openLoop_other.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  [DecidableEq.{uI + 1} I] {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A) (i j : I)
+  (h : Ne.{uI + 1} j i) (r : PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A i)
+  (anchor : (j : I) → PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A j) :
+  Eq.{max (max (max (max (u0 + 1) (uA + 1)) (uI + 1)) (uS + 1)) (uX + 1)}
+    (PermanssonResearch.MultiAgent.FiniteProduct.Generator.component.{uI, u0, uS, uX, uA}
+      (PermanssonResearch.MultiAgent.MeasurableProduct.openLoop.{uI, u0, uS, uX, uA} G i r anchor) j)
+    (anchor j)
+'PermanssonResearch.MultiAgent.MeasurableProduct.openLoop_other' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.protocolFamily.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  [DecidableEq.{uI + 1} I] {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max uA uI) uX) (max uS u0) uI, uX}
+      (PermanssonLean.WorldInput.{max (max uS u0) uI, uX, max uA uI}
+        (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max u0 uA) uI) uS) uX, uX} P] (i : I)
+  (r : PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A i)
+  (anchors :
+    Set.{max (max (max (max u0 uA) uI) uS) uX}
+      ((j : I) → PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A j)) :
+  PermanssonLean.InterventionFamily.{max (max uS u0) uI, uX, max uA uI, 0}
+    (PermanssonResearch.MultiAgent.MeasurableProduct.model.{uI, u0, uS, uX, uA} G P)
+    PermanssonResearch.MultiAgent.Protocol
+'PermanssonResearch.MultiAgent.MeasurableProduct.protocolFamily' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.closedLoopIntervention.{uI, u0, uS, uX, uA} {I : Type uI}
+  [Fintype.{uI} I] [DecidableEq.{uI + 1} I] {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA}
+  [MeasurableSpace.{u0} S0] [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X]
+  [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max uA uI) uX) (max uS u0) uI, uX}
+      (PermanssonLean.WorldInput.{max (max uS u0) uI, uX, max uA uI}
+        (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max u0 uA) uI) uS) uX, uX} P] (i : I)
+  (r : PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A i)
+  (anchors :
+    Set.{max (max (max (max u0 uA) uI) uS) uX}
+      ((j : I) → PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A j)) :
+  PermanssonLean.AdmissibleStrategicIntervention.{max (max u0 uI) uS, uX, max uA uI, 0}
+    (PermanssonResearch.MultiAgent.MeasurableProduct.protocolFamily.{uI, u0, uS, uX, uA} G P i r anchors)
+'PermanssonResearch.MultiAgent.MeasurableProduct.closedLoopIntervention' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.openLoopIntervention.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  [DecidableEq.{uI + 1} I] {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max uA uI) uX) (max uS u0) uI, uX}
+      (PermanssonLean.WorldInput.{max (max uS u0) uI, uX, max uA uI}
+        (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max u0 uA) uI) uS) uX, uX} P] (i : I)
+  (r : PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A i)
+  (anchors :
+    Set.{max (max (max (max u0 uA) uI) uS) uX}
+      ((j : I) → PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A j))
+  (a : (j : I) → PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A j)
+  (ha : Membership.mem.{max (max (max (max u0 uA) uI) uS) uX, max (max (max (max u0 uA) uI) uS) uX} anchors a) :
+  PermanssonLean.AdmissibleStrategicIntervention.{max (max u0 uI) uS, uX, max uA uI, 0}
+    (PermanssonResearch.MultiAgent.MeasurableProduct.protocolFamily.{uI, u0, uS, uX, uA} G P i r anchors)
+'PermanssonResearch.MultiAgent.MeasurableProduct.openLoopIntervention' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.protocol_world_eq.{uI, u0, uS, uX, uA} {I : Type uI} [Fintype.{uI} I]
+  [DecidableEq.{uI + 1} I] {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA} [MeasurableSpace.{u0} S0]
+  [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X] [(i : I) → MeasurableSpace.{uA} (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max uA uI) uX) (max uS u0) uI, uX}
+      (PermanssonLean.WorldInput.{max (max uS u0) uI, uX, max uA uI}
+        (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max u0 uA) uI) uS) uX, uX} P] (i : I)
+  (r : PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A i)
+  (anchors :
+    Set.{max (max (max (max u0 uA) uI) uS) uX}
+      ((j : I) → PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A j))
+  (J :
+    PermanssonLean.AdmissibleStrategicIntervention.{max (max u0 uI) uS, uX, max uA uI, 0}
+      (PermanssonResearch.MultiAgent.MeasurableProduct.protocolFamily.{uI, u0, uS, uX, uA} G P i r anchors)) :
+  Eq.{max (max (max (max (u0 + 1) (uA + 1)) (uI + 1)) (uS + 1)) (uX + 1)}
+    (PermanssonLean.StrategicWorldModel.world.{max (max u0 uI) uS, uX, max uA uI}
+      (PermanssonLean.TypedIntervention.apply.{max (max u0 uI) uS, uX, max uA uI, 0}
+        (PermanssonLean.AdmissibleStrategicIntervention.intervention.{max (max u0 uI) uS, uX, max uA uI, 0} J)))
+    P
+'PermanssonResearch.MultiAgent.MeasurableProduct.protocol_world_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.original_margin_comparison.{uI, u0, uS, uX, uA, u_1, u_2} {I : Type uI}
+  [Fintype.{uI} I] [DecidableEq.{uI + 1} I] {S0 : Type u0} {S : I → Type uS} {X : Type uX} {A : I → Type uA}
+  [MeasurableSpace.{u0} S0] [(i : I) → MeasurableSpace.{uS} (S i)] [MeasurableSpace.{uX} X]
+  [(i : I) → MeasurableSpace.{uA} (A i)] {H : Type u_1} {Z : Type u_2} [MeasurableSpace.{u_1} H] [MetricSpace.{u_2} Z]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator.{uI, u0, uS, uX, uA} S0 S X A)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max uA uI) uX) (max uS u0) uI, uX}
+      (PermanssonLean.WorldInput.{max (max uS u0) uI, uX, max uA uI}
+        (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X ((i : I) → A i))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max u0 uA) uI) uS) uX, uX} P] (i : I)
+  (r : PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A i)
+  (anchors :
+    Set.{max (max (max (max u0 uA) uI) uS) uX}
+      ((j : I) → PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A j))
+  (a : (j : I) → PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{uI, u0, uS, uX, uA} S0 S X A j)
+  (ha : Membership.mem.{max (max (max (max u0 uA) uI) uS) uX, max (max (max (max u0 uA) uI) uS) uX} anchors a)
+  (spec :
+    PermanssonLean.RegimeSpecification.{max uX (max uS u0) uI, u_1}
+      (PermanssonLean.JointState.{max (max uS u0) uI, uX}
+        (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X)
+      H)
+  (ψ :
+    PermanssonLean.RegimePropertyMap.{max uX (max uS u0) uI, u_2}
+      (PermanssonLean.JointState.{max (max uS u0) uI, uX}
+        (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X)
+      Z)
+  (B :
+    PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.{max (max uS u0) uI, uX, max uA uI, u_1}
+      (PermanssonResearch.MultiAgent.MeasurableProduct.model.{uI, u0, uS, uX, uA} G P) spec)
+  (δ : ℝ)
+  (hδ :
+    ∀
+      (y :
+        PermanssonLean.JointState.{max (max u0 uI) uS, uX}
+          (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState.{uI, u0, uS} S0 S) X),
+      Membership.mem.{max (max (max u0 uI) uS) uX, max (max (max u0 uI) uS) uX}
+          (PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet.states.{max (max u0 uI) uS, uX, max uA uI, u_1}
+            B)
+          y →
+        LE.le.{0}
+          (PermanssonResearch.MultiAgent.protocolGap.{max (max u0 uI) uS, uX, max uA uI, u_2, 0} ψ
+            (PermanssonResearch.MultiAgent.MeasurableProduct.closedLoopIntervention.{uI, u0, uS, uX, uA} G P i r
+              anchors)
+            (PermanssonResearch.MultiAgent.MeasurableProduct.openLoopIntervention.{uI, u0, uS, uX, uA} G P i r anchors a
+              ha)
+            y)
+          δ) :
+  LE.le.{0}
+    (abs.{0}
+      (HSub.hSub.{0, 0, 0}
+        (PermanssonLean.RegimeSpecification.constitutiveMargin.{max (max uS u0) uI, uX, max uA uI, u_1, u_2, 0}
+          (PermanssonResearch.MultiAgent.MeasurableProduct.model.{uI, u0, uS, uX, uA} G P) spec
+          (PermanssonResearch.MultiAgent.MeasurableProduct.protocolFamily.{uI, u0, uS, uX, uA} G P i r anchors) ψ B
+          (PermanssonResearch.MultiAgent.MeasurableProduct.closedLoopIntervention.{uI, u0, uS, uX, uA} G P i r anchors))
+        (PermanssonLean.RegimeSpecification.constitutiveMargin.{max (max uS u0) uI, uX, max uA uI, u_1, u_2, 0}
+          (PermanssonResearch.MultiAgent.MeasurableProduct.model.{uI, u0, uS, uX, uA} G P) spec
+          (PermanssonResearch.MultiAgent.MeasurableProduct.protocolFamily.{uI, u0, uS, uX, uA} G P i r anchors) ψ B
+          (PermanssonResearch.MultiAgent.MeasurableProduct.openLoopIntervention.{uI, u0, uS, uX, uA} G P i r anchors a
+            ha))))
+    δ
+'PermanssonResearch.MultiAgent.MeasurableProduct.original_margin_comparison' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_two.{u_1, u_2} {Y : Type u_1} [MeasurableSpace.{u_1} Y]
+  {Z : Fin 2 → Type u_2} [(i : Fin 2) → MeasurableSpace.{u_2} (Z i)]
+  (κ : (i : Fin 2) → ProbabilityTheory.Kernel.{u_1, u_2} Y (Z i))
+  [∀ (i : Fin 2), ProbabilityTheory.IsMarkovKernel.{u_1, u_2} (κ i)] (y : Y) :
+  Eq.{u_2 + 1}
+    (MeasureTheory.Measure.map.{u_2, u_2} (⇑(MeasurableEquiv.piFinTwo.{u_2} Z))
+      ((PermanssonResearch.MultiAgent.MeasurableProduct.productKernel.{0, u_1, u_2} κ) y))
+    (MeasureTheory.Measure.prod.{u_2, u_2} ((κ 0) y) ((κ 1) y))
+'PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_two' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.S : Type
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.S' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.Y : Type
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.Y' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.A : Type
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.A' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.component (i : Fin 3) (a u : ℝ) :
+  PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{0, 0, 0, 0, 0} Unit (fun x => ℝ) Unit (fun x => ℝ) i
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.component' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.baseline :
+  PermanssonResearch.MultiAgent.FiniteProduct.Generator.{0, 0, 0, 0, 0} Unit (fun x => ℝ) Unit fun x => ℝ
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.baseline' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.anchors (i : Fin 3) :
+  PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{0, 0, 0, 0, 0} Unit (fun x => ℝ) Unit (fun x => ℝ) i
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.anchors' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.replacement :
+  PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.{0, 0, 0, 0, 0} Unit (fun x => ℝ) Unit (fun x => ℝ) 1
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.replacement' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl :
+  PermanssonResearch.MultiAgent.FiniteProduct.Generator.{0, 0, 0, 0, 0} Unit (fun x => ℝ) Unit fun x => ℝ
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol :
+  PermanssonResearch.MultiAgent.FiniteProduct.Generator.{0, 0, 0, 0, 0} Unit (fun x => ℝ) Unit fun x => ℝ
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical :
+  ProbabilityTheory.Kernel.{0, 0}
+    (PermanssonLean.WorldInput.{0, 0, 0} (Prod.{0, 0} Unit PermanssonResearch.MultiAgent.MeasurableProduct.Regression.S)
+      Unit PermanssonResearch.MultiAgent.MeasurableProduct.Regression.A)
+    Unit
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical_isMarkov :
+  ProbabilityTheory.IsMarkovKernel.{0, 0} PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.actionZeroCylinder :
+  Set.{0} PermanssonResearch.MultiAgent.MeasurableProduct.Regression.A
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.actionZeroCylinder' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl_action_zero_cylinder
+  (y : PermanssonResearch.MultiAgent.MeasurableProduct.Regression.Y) :
+  Eq.{1}
+    (((PermanssonLean.StrategicGenerator.action.{0, 0, 0}
+          (PermanssonResearch.MultiAgent.MeasurableProduct.assemble.{0, 0, 0, 0, 0}
+            PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl))
+        y)
+      PermanssonResearch.MultiAgent.MeasurableProduct.Regression.actionZeroCylinder)
+    1
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl_action_zero_cylinder' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol_action_zero_cylinder
+  (y : PermanssonResearch.MultiAgent.MeasurableProduct.Regression.Y) :
+  Eq.{1}
+    (((PermanssonLean.StrategicGenerator.action.{0, 0, 0}
+          (PermanssonResearch.MultiAgent.MeasurableProduct.assemble.{0, 0, 0, 0, 0}
+            PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol))
+        y)
+      PermanssonResearch.MultiAgent.MeasurableProduct.Regression.actionZeroCylinder)
+    0
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol_action_zero_cylinder' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.actual_action_laws_distinct
+  (y : PermanssonResearch.MultiAgent.MeasurableProduct.Regression.Y) :
+  Ne.{1}
+    ((PermanssonLean.StrategicGenerator.action.{0, 0, 0}
+        (PermanssonResearch.MultiAgent.MeasurableProduct.assemble.{0, 0, 0, 0, 0}
+          PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl))
+      y)
+    ((PermanssonLean.StrategicGenerator.action.{0, 0, 0}
+        (PermanssonResearch.MultiAgent.MeasurableProduct.assemble.{0, 0, 0, 0, 0}
+          PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol))
+      y)
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.actual_action_laws_distinct' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.treatedCylinder :
+  Set.{0} PermanssonResearch.MultiAgent.MeasurableProduct.Regression.A
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.treatedCylinder' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl_treated_action
+  (y : PermanssonResearch.MultiAgent.MeasurableProduct.Regression.Y) :
+  Eq.{1}
+    (((PermanssonLean.StrategicGenerator.action.{0, 0, 0}
+          (PermanssonResearch.MultiAgent.MeasurableProduct.assemble.{0, 0, 0, 0, 0}
+            PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl))
+        y)
+      PermanssonResearch.MultiAgent.MeasurableProduct.Regression.treatedCylinder)
+    1
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl_treated_action' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol_treated_action
+  (y : PermanssonResearch.MultiAgent.MeasurableProduct.Regression.Y) :
+  Eq.{1}
+    (((PermanssonLean.StrategicGenerator.action.{0, 0, 0}
+          (PermanssonResearch.MultiAgent.MeasurableProduct.assemble.{0, 0, 0, 0, 0}
+            PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol))
+        y)
+      PermanssonResearch.MultiAgent.MeasurableProduct.Regression.treatedCylinder)
+    1
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol_treated_action' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.replacement_update
+  (v :
+    PermanssonLean.UpdateInput.{0, 0, 0} (Prod.{0, 0} Unit PermanssonResearch.MultiAgent.MeasurableProduct.Regression.S)
+      Unit PermanssonResearch.MultiAgent.MeasurableProduct.Regression.A) :
+  Eq.{1}
+      (((PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.update.{0, 0, 0, 0, 0}
+            (PermanssonResearch.MultiAgent.FiniteProduct.Generator.component.{0, 0, 0, 0, 0}
+              PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl 1))
+          v)
+        (Singleton.singleton.{0, 0} 20))
+      1 ∧
+    Eq.{1}
+      (((PermanssonResearch.MultiAgent.FiniteProduct.Mechanism.update.{0, 0, 0, 0, 0}
+            (PermanssonResearch.MultiAgent.FiniteProduct.Generator.component.{0, 0, 0, 0, 0}
+              PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol 1))
+          v)
+        (Singleton.singleton.{0, 0} 20))
+      1
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.replacement_update' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.common_and_world_preserved :
+  Eq.{1}
+      (PermanssonResearch.MultiAgent.FiniteProduct.Generator.common.{0, 0, 0, 0, 0}
+        PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl)
+      (PermanssonResearch.MultiAgent.FiniteProduct.Generator.common.{0, 0, 0, 0, 0}
+        PermanssonResearch.MultiAgent.MeasurableProduct.Regression.baseline) ∧
+    Eq.{1}
+        (PermanssonResearch.MultiAgent.FiniteProduct.Generator.common.{0, 0, 0, 0, 0}
+          PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol)
+        (PermanssonResearch.MultiAgent.FiniteProduct.Generator.common.{0, 0, 0, 0, 0}
+          PermanssonResearch.MultiAgent.MeasurableProduct.Regression.baseline) ∧
+      Eq.{1}
+          (PermanssonLean.StrategicWorldModel.world.{0, 0, 0}
+            (PermanssonResearch.MultiAgent.MeasurableProduct.model.{0, 0, 0, 0, 0}
+              PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl
+              PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical))
+          PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical ∧
+        Eq.{1}
+          (PermanssonLean.StrategicWorldModel.world.{0, 0, 0}
+            (PermanssonResearch.MultiAgent.MeasurableProduct.model.{0, 0, 0, 0, 0}
+              PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol
+              PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical))
+          PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.common_and_world_preserved' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableProduct.Regression.empty_product.{u_1, u_2} {D : Type u_1}
+  [MeasurableSpace.{u_1} D] {Z : Fin 0 → Type u_2} [(i : Fin 0) → MeasurableSpace.{u_2} (Z i)]
+  (κ : (i : Fin 0) → ProbabilityTheory.Kernel.{u_1, u_2} D (Z i))
+  [∀ (i : Fin 0), ProbabilityTheory.IsMarkovKernel.{u_1, u_2} (κ i)] (d : D) :
+  Eq.{u_2 + 1} ((PermanssonResearch.MultiAgent.MeasurableProduct.productKernel.{0, u_1, u_2} κ) d)
+    (MeasureTheory.Measure.dirac.{u_2} fun i => Fin.elim0.{u_2 + 1} i)
+'PermanssonResearch.MultiAgent.MeasurableProduct.Regression.empty_product' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it

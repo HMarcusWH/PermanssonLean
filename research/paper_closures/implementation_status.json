@@ -1,10 +1,10 @@
 {
   "format": "Permansson.PaperClosureImplementationCrosswalk.v1",
   "reference_B": "39279799834ae536bda715dedecdc11a32bf6c82",
-  "recording_head": "899ee2bbe9ed2282d6253c1f4dda56fe69a17a0a",
+  "recording_head": "17f380e94f4858c455a85b57d3a576c076c9d667",
   "recording_worktree_dirty": true,
   "target_count": 42,
-  "overall_status": "IN_PROGRESS_NOT_ALL_42_CLOSED",
+  "overall_status": "SELECTED_IMPLEMENTATIONS_RECORDED_BROADER_ATLAS_SCOPED",
   "acceptance_boundary": "Local proof observations do not certify all mathematical coverage, PR-head/synthetic-merge CI, or independent statement-scope acceptance.",
   "targets": [
     {
@@ -13,8 +13,24 @@
       "selected_scope_as_supplied": "The exact accepted two modes and baseline/action/update/joint variants; every pair of eighteen states.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "All eight fixed actual typed kernels; no general intervention-family extension.",
+      "implementation_boundary_and_residual": "All eight fixed actual typed kernels and2592 supplied literal matrix entries; source-bound eight-declaration matrix audit and corrupted-literal semantic rejection. No general intervention-family extension.",
       "sources": [
+        {
+          "source": "PermanssonResearch/X1/ExactMatrixTables.lean",
+          "sha256": "e9e74f52381068e5894537b9c621c9d50bf0566a141f511f0a1e9f77401e120f",
+          "named_exports": [
+            "PermanssonResearch.X1.InterventionNumerics.matrixData",
+            "PermanssonResearch.X1.InterventionNumerics.matrix",
+            "PermanssonResearch.X1.InterventionNumerics.baseline_corner_literal",
+            "PermanssonResearch.X1.InterventionNumerics.matrix_eq_entry",
+            "PermanssonResearch.X1.InterventionNumerics.stateIndex_surjective",
+            "PermanssonResearch.X1.InterventionNumerics.matrix_nonneg",
+            "PermanssonResearch.X1.InterventionNumerics.matrix_sum_one",
+            "PermanssonResearch.X1.InterventionNumerics.matrix_atom_eq"
+          ],
+          "local_compiler_observation": null,
+          "artifact_fresh": true
+        },
         {
           "source": "PermanssonResearch/X1/InterventionNumericalBridge.lean",
           "sha256": "fbc4c91fcf7379f0c12b0112213e04b9e6d0a378179807b758dc3f2e4bb48b4c",
@@ -184,7 +200,7 @@
       "selected_scope_as_supplied": "Bounded finite discounted stochastic games, arbitrary nonanticipating behavioral unilateral deviations, independent current opponent draw.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Complete observed nonanticipating histories; independent current opponent draw; both-player literal original full-law adapter and current149-declaration audit.",
+      "implementation_boundary_and_residual": "Complete observed nonanticipating histories; independent current opponent draw; both-player literal original full-law adapter, actual fair-matching separation and no-copy information boundary.",
       "sources": [
         {
           "source": "PermanssonResearch/Games/DiscountedTraceExpectation.lean",
@@ -383,6 +399,27 @@
           "artifact_fresh": true
         },
         {
+          "source": "PermanssonResearch/StrategicWorld/InformationBoundary.lean",
+          "sha256": "d574f9a53fca79cea5d74f124e6b7c80ab307122aa0ddfb772b4f76162ab5103",
+          "named_exports": [
+            "PermanssonResearch.ActionTrace.InformationBoundary.fair",
+            "PermanssonResearch.ActionTrace.InformationBoundary.independent_fair_matching",
+            "PermanssonResearch.ActionTrace.InformationBoundary.peeked_fair_matching",
+            "PermanssonResearch.ActionTrace.InformationBoundary.actual_step_fair_matching",
+            "PermanssonResearch.ActionTrace.InformationBoundary.no_unobserved_draw_copy",
+            "PermanssonResearch.ActionTrace.InformationBoundary.observed_history_cannot_copy_next_state"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.StrategicWorld.InformationBoundary",
+            "started": 1792300549.2511485,
+            "elapsed": 77.77590918540955,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "d574f9a53fca79cea5d74f124e6b7c80ab307122aa0ddfb772b4f76162ab5103"
+          },
+          "artifact_fresh": true
+        },
+        {
           "source": "PermanssonResearch/X1/FullStrategyCertificate.lean",
           "sha256": "55f197b0e2ea77dff49275a0180de3b59b5ccbb27dc8b4893a1b9deb4cf8300c",
           "named_exports": [
@@ -497,8 +534,137 @@
       "selected_scope_as_supplied": "Finite autonomous strict anchors with full baseline-supported action/update agreement; separately standard-Borel all-time AE extension.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Finite autonomous strict-subclass impossibility. Standard-Borel all-time AE extension remains open.",
+      "implementation_boundary_and_residual": "Finite autonomous strict-subclass impossibility and standard-Borel all-time AE extension for every stationary treated mechanism. Primitive opponent-action and update agreement is required under actual baseline time/input laws, retaining the realized opponent action. Nonatomic continuum and exceptional-point counterexamples checked;78-declaration audit. History-dependent treated mechanisms remain separate.",
       "sources": [
+        {
+          "source": "PermanssonResearch/MultiAgent/AutonomousAEComparison.lean",
+          "sha256": "dbacd8f81d6a816446d283f17bdee9c9f2d2e1073b3c70863fcaeb36dc4a83f2",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.Autonomous.actual_row_from_actionWorld",
+            "PermanssonResearch.MultiAgent.Autonomous.actual_rows_ae_of_primitive_agreement"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.AutonomousAEComparison",
+            "started": 1792299543.4433274,
+            "elapsed": 38.553367137908936,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "dbacd8f81d6a816446d283f17bdee9c9f2d2e1073b3c70863fcaeb36dc4a83f2"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/AutonomousAEContinuumFixture.lean",
+          "sha256": "c36d8c2651f11d8c045b5a48e3b2fa033fa6f906cc4f6fbeac9c7a3e000e45a2",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.Y",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.I",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.signal",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.measurable_signal",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.actionFactor",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.player",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world_isMarkov",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_common_isMarkov",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_action_isMarkov",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_update_isMarkov",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialState",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.measurable_initialState",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw_isProbability",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw_nullSingleton",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw_isProbability",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw_nullSingleton",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initial_common_ne",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.nextState",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.actual_induced",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_stationary",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_stateLaw",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_agreement",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.nonatomic_treated_pathLaw_eq",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchors_differ_at_zero",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_violates_premise",
+            "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_treated_pathLaw_ne"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.AutonomousAEContinuumFixture",
+            "started": 1792299699.8851252,
+            "elapsed": 33.375325202941895,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "c36d8c2651f11d8c045b5a48e3b2fa033fa6f906cc4f6fbeac9c7a3e000e45a2"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/AutonomousAEMechanisms.lean",
+          "sha256": "4bbece652236607d405af7d8cc03c536e16e3da04952c7abc90684776233f298",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.Autonomous.baselineStateLaw",
+            "PermanssonResearch.MultiAgent.Autonomous.baselineKeyLaw",
+            "PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement",
+            "PermanssonResearch.MultiAgent.Autonomous.baselineStateLaw_actual",
+            "PermanssonResearch.MultiAgent.Autonomous.baseline_key_recursions",
+            "PermanssonResearch.MultiAgent.Autonomous.treated_key_marginals",
+            "PermanssonResearch.MultiAgent.Autonomous.treated_rows_ae",
+            "PermanssonResearch.MultiAgent.Autonomous.ae_anchors_pathLaw_eq",
+            "PermanssonResearch.MultiAgent.Autonomous.ae_anchors_path_property_eq"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.AutonomousAEMechanisms",
+            "started": 1792299664.3196692,
+            "elapsed": 35.546284437179565,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "4bbece652236607d405af7d8cc03c536e16e3da04952c7abc90684776233f298"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/AutonomousAETransport.lean",
+          "sha256": "fce2b56884e35a7a08b2284132f2a0b18391783c7ae1f5a87c2933a3d80f19fc",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.Autonomous.actual_actionWorld_rows_ae",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.actual_key_marginal",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.baseline_key_marginal",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.baseline_input_marginal",
+            "PermanssonResearch.MultiAgent.Autonomous.primitive_factor_agreement",
+            "PermanssonResearch.MultiAgent.Autonomous.actual_primitive_agreement_of_key_agreement"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.AutonomousAETransport",
+            "started": 1792299623.0958352,
+            "elapsed": 41.20356822013855,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "fce2b56884e35a7a08b2284132f2a0b18391783c7ae1f5a87c2933a3d80f19fc"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/AutonomousInputMarginal.lean",
+          "sha256": "c390f1546a0f29481c8485946bd199c19db4714503f0a7e5ab73e6865c636b7a",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.Autonomous.map_compProd_key",
+            "PermanssonResearch.MultiAgent.Autonomous.inputMark",
+            "PermanssonResearch.MultiAgent.Autonomous.measurable_inputMark",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.actual_actionWorld_mark",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.actual_input_marginal"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.AutonomousInputMarginal",
+            "started": 1792299505.4509027,
+            "elapsed": 37.966079235076904,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "c390f1546a0f29481c8485946bd199c19db4714503f0a7e5ab73e6865c636b7a"
+          },
+          "artifact_fresh": true
+        },
         {
           "source": "PermanssonResearch/MultiAgent/AutonomousKey.lean",
           "sha256": "6c6f43bbed50b885c9988358ca1df5a00c6c781dc81316b52cc41e59cd6b8d9d",
@@ -525,6 +691,29 @@
           "artifact_fresh": true
         },
         {
+          "source": "PermanssonResearch/MultiAgent/AutonomousMarginalLaw.lean",
+          "sha256": "c974a5bfa3f553f97f43427682ed9893b332299066e9e83dadc35dcae1135662",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.Autonomous.stateLaw",
+            "PermanssonResearch.MultiAgent.Autonomous.stateLaw_isProbability",
+            "PermanssonResearch.MultiAgent.Autonomous.map_comp_of_rows",
+            "PermanssonResearch.MultiAgent.Autonomous.projected_stateLaw_eq",
+            "PermanssonResearch.MultiAgent.Autonomous.actual_eval_zero",
+            "PermanssonResearch.MultiAgent.Autonomous.actual_eval_succ",
+            "PermanssonResearch.MultiAgent.Autonomous.stateLaw_eq_actual_marginal",
+            "PermanssonResearch.MultiAgent.Autonomous.pathLaw_eq_of_rows_ae"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.AutonomousMarginalLaw",
+            "started": 1792299582.0210974,
+            "elapsed": 41.055180072784424,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "c974a5bfa3f553f97f43427682ed9893b332299066e9e83dadc35dcae1135662"
+          },
+          "artifact_fresh": true
+        },
+        {
           "source": "PermanssonResearch/MultiAgent/AutonomousMarkedKernel.lean",
           "sha256": "0d101feb3a9d8e080d411560c8af2d8b0350e7e7ca1d91dc29fe92116cf84ab2",
           "named_exports": [
@@ -538,6 +727,31 @@
             "status": "PASS",
             "returncode": 0,
             "elapsed": 137.64997148513794
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/AutonomousMeasurableKey.lean",
+          "sha256": "5ebf7e7c42af56daf6db689838d7f6277facc12b37d49ff8e6a0e9095163d375",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.Autonomous.strategicKey",
+            "PermanssonResearch.MultiAgent.Autonomous.measurable_strategicKey",
+            "PermanssonResearch.MultiAgent.Autonomous.map_product_update",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.update_key",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.keyUpdate",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.keyUpdate_isMarkov",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel_isMarkov",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel_apply",
+            "PermanssonResearch.MultiAgent.Autonomous.Profile.actual_key_row"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.AutonomousMeasurableKey",
+            "started": 1792299466.0690205,
+            "elapsed": 39.35554575920105,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "5ebf7e7c42af56daf6db689838d7f6277facc12b37d49ff8e6a0e9095163d375"
           },
           "artifact_fresh": true
         },
@@ -901,6 +1115,44 @@
           "artifact_fresh": true
         },
         {
+          "source": "PermanssonResearch/Probability/FirstMomentEmpirical.lean",
+          "sha256": "c35447eb5665ac6d269ad933a67ad36d3273545b3170b752306fa1944a54b737",
+          "named_exports": [
+            "PermanssonResearch.Probability.FirstMomentEmpirical.finiteSample",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.integral_finiteSample",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.finiteSample_distance_le",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.finiteSample_lipschitz",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.empirical",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_probability",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_integral",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_stronglyMeasurable"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FirstMomentEmpirical",
+            "started": 1792301290.5461566,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 48.217366218566895
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/FirstMomentEmpiricalConvergence.lean",
+          "sha256": "b3b652f669a956778ed7e3dcac906cddef01d68d6e441f31f4d53143168719e5",
+          "named_exports": [
+            "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_tendsto_of_quantized_averages",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.ae_empirical_tendsto_of_quantized_averages"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FirstMomentEmpiricalConvergence",
+            "started": 1792301805.5394604,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 51.72861981391907
+          },
+          "artifact_fresh": true
+        },
+        {
           "source": "PermanssonResearch/Probability/FirstMomentKantorovichDuality.lean",
           "sha256": "0fe9b650f209f09d6cdf040d5f8cede580bd15ce3d4478bf4d8811b73593da0e",
           "named_exports": [
@@ -986,6 +1238,22 @@
           "artifact_fresh": true
         },
         {
+          "source": "PermanssonResearch/Probability/FirstMomentTopology.lean",
+          "sha256": "8a11c283f718cfd164257507d27e4e7380a47a0c4c4e32fcc0e660ac54b37fc0",
+          "named_exports": [
+            "PermanssonResearch.Probability.FirstMomentProbability.bounded_integral_lipschitz",
+            "PermanssonResearch.Probability.FirstMomentProbability.probability_continuous"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FirstMomentTopology",
+            "started": 1792301390.9409678,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 38.0322208404541
+          },
+          "artifact_fresh": true
+        },
+        {
           "source": "PermanssonResearch/Probability/FirstMomentTransportRegression.lean",
           "sha256": "740584e2661342b36ef19dd7197d4138539f0b0ba4dc12511d87afa602537911",
           "named_exports": [
@@ -1012,7 +1280,7 @@
       "selected_scope_as_supplied": "Contraction preserving first-moment probabilities on a complete separable metric space; finite shortcut also specified.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Actual Banach invariant constructor, first-moment uniqueness, original kernel-iterate geometric coupling bound and metric convergence on complete separable Borel metric spaces. Moment preservation has a derived row-drift criterion. The original perturbation bundle constructs both invariant laws independently;26-declaration audit. Contraction of the perturbed kernel is separately required when its law is generated automatically.",
+      "implementation_boundary_and_residual": "Actual Banach invariant constructor, first-moment uniqueness, original kernel-iterate geometric coupling bound and metric convergence on complete separable Borel metric spaces. Moment preservation has a derived row-drift criterion. The two-kernel Banach wrapper supplies both strict contraction gates;26-declaration audit. Separate regenerative wrappers construct perturbed invariant laws without a perturbed-contraction premise.",
       "sources": [
         {
           "source": "PermanssonResearch/Perturbation/FiniteInvariantConstructor.lean",
@@ -1102,6 +1370,30 @@
           "artifact_fresh": true
         },
         {
+          "source": "PermanssonResearch/Perturbation/FirstMomentOccupationProperty.lean",
+          "sha256": "96db4fde9e686c209961322522ccf987a3ed797f839966c0aa19eb7aa085234d",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.descriptorEmpirical",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.descriptorEmpirical_stronglyMeasurable",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_stronglyMeasurable",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_probability_weakBorel_measurable",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_default",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_of_tendsto",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.property",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.property_integrand_integrable",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.property_factor_of_ae_empirical_limit"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.FirstMomentOccupationProperty",
+            "started": 1792301469.8027556,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 51.15253305435181
+          },
+          "artifact_fresh": true
+        },
+        {
           "source": "PermanssonResearch/Perturbation/GeneratedInvariantPerturbation.lean",
           "sha256": "3f3fdf7c13486b23e657b41dfbf9c1cbbfeddb8b4c881216c81a7c6cb19c585b",
           "named_exports": [
@@ -1125,7 +1417,7 @@
       "selected_scope_as_supplied": "Direct bounded-Lipschitz row criterion giving the exact existing global dual predicate; finite Dobrushin and metric row-coupling certificates.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Exact global test-image criterion; constant refresh and identity examples. Dobrushin and metric row-coupling certificate interfaces remain separate.",
+      "implementation_boundary_and_residual": "Exact global test-image criterion, finite Dobrushin/Doeblin contraction and metric stage-coupling certificates. Weighted-state and original product-max metrics are distinguished by the positive minimum-weight conversion. Four strict numeric gates independently generate all four invariant laws.",
       "sources": [
         {
           "source": "PermanssonResearch/Perturbation/DirectDualContraction.lean",
@@ -1145,6 +1437,76 @@
             "source_sha256": "93bb9b180a2061ac2d9f3989fa9e11aeabd64ad94607e6309bbaec7ba40709b7"
           },
           "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/DobrushinContraction.lean",
+          "sha256": "4b72c5c639d6c2035f5c9fbbfde6464ed5fc63eedbd558c62f2941fe26b0be8f",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.isW1Contraction_of_row_couplings",
+            "PermanssonResearch.Perturbation.isW1Contraction_of_tv_rows",
+            "PermanssonResearch.Perturbation.dobrushinCoefficient",
+            "PermanssonResearch.Perturbation.row_tv_le_dobrushin",
+            "PermanssonResearch.Perturbation.dobrushin_bounds",
+            "PermanssonResearch.Perturbation.isW1Contraction_dobrushin",
+            "PermanssonResearch.Perturbation.doeblin_tv_rows",
+            "PermanssonResearch.Perturbation.isW1Contraction_doeblin"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.DobrushinContraction",
+            "started": 1792298237.025878,
+            "elapsed": 45.85545492172241,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "4b72c5c639d6c2035f5c9fbbfde6464ed5fc63eedbd558c62f2941fe26b0be8f"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/FiniteMetricProtocol.lean",
+          "sha256": "da71060fa87aebe1e69d6af12fc59a1f76af49f1bc6c179ac774fb392a2b486d",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rho0",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.rhoJ",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.delta0",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.deltaJ",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.baselineData",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.interventionData",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.baseline_invariant_gap",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.intervention_invariant_gap",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricProtocolBounds.original_occupationMargin"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.FiniteMetricProtocol",
+            "started": 1792297901.811404,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 57.94802665710449,
+            "source_sha256": "da71060fa87aebe1e69d6af12fc59a1f76af49f1bc6c179ac774fb392a2b486d"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/FiniteStateMetricContraction.lean",
+          "sha256": "23c924dc109ad8176b97588e6bfe1047054463a091d1f29da56131bee0763105",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds",
+            "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor",
+            "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.factor_nonneg",
+            "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.exists_sequential_plan",
+            "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.exists_weighted_coupling",
+            "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.weighted_isW1Contraction",
+            "PermanssonResearch.Perturbation.FiniteSequential.StateMetricBounds.original_isW1Contraction"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.FiniteStateMetricContraction",
+            "started": 1792297804.3350508,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 70.45128202438354,
+            "source_sha256": "23c924dc109ad8176b97588e6bfe1047054463a091d1f29da56131bee0763105"
+          },
+          "artifact_fresh": true
         }
       ]
     },
@@ -1154,8 +1516,163 @@
       "selected_scope_as_supplied": "Explicit occupation-limit functional, four actual finite unique-class kernels; separate regenerative Polish profile with added moment conditions.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Finite kernel-independent actual occupation functional and four-kernel adapter checked. Nonfinite regenerative profile remains open.",
+      "implementation_boundary_and_residual": "Finite kernel-independent occupation functional plus nonfinite geometric regeneration. Constructed invariant, Poisson resolvent and bounded-innovation strong law give all-initial bounded averages and noncompact weak empirical convergence;87-declaration audit. An explicit expected absolute regenerative reward series supplies descriptor first moments. Derived L1 maximal approximation, actual stationary shift preservation and regenerated common-mass transfer give all-initial integrable nonnegative averages. Countable quantizer errors/cell averages give genuine empirical W1 convergence and uniform excess-tail control. A fixed global P1-valued limit/fallback and bounded continuous functional supply all four actual original path factorizations and full margin adapter. The original global dual-Lipschitz functional and baseline contraction gates remain explicit; arbitrary frozen properties and an unrestricted weak-only selector are not inferred.",
       "sources": [
+        {
+          "source": "PermanssonResearch/MultipleLimit/CanonicalShiftLaw.lean",
+          "sha256": "9523e6fc680fab7761b0392a8eec3932b9cff72377d11ce6a21740079f5b1658",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.CanonicalShift.prefix_zero_eq_map_eval",
+            "PermanssonResearch.MultipleLimit.CanonicalShift.shift_law",
+            "PermanssonResearch.MultipleLimit.CanonicalShift.iterated_shift_law",
+            "PermanssonResearch.MultipleLimit.CanonicalShift.kernel_comp_tv_le",
+            "PermanssonResearch.MultipleLimit.CanonicalShift.canonical_tv_le_initial"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.CanonicalShiftLaw",
+            "started": 1792301153.2227077,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 40.59180688858032
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/RegenerativeAverages.lean",
+          "sha256": "80a8bdcd0852149e0ace35cabb4226b61401dcbcd9a649e67ca563ccded04f86",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.Regenerative.sum_poisson_identity",
+            "PermanssonResearch.MultipleLimit.Regenerative.endpoint_average_tendsto_zero",
+            "PermanssonResearch.MultipleLimit.Regenerative.averages_of_bounded_poisson",
+            "PermanssonResearch.MultipleLimit.Regenerative.canonical_regenerative_averages"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.RegenerativeAverages",
+            "started": 1792297446.5322073,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 33.277655363082886
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/RegenerativeDescriptorMoments.lean",
+          "sha256": "ea17902398bd94a3d799bae38ee4be9302b64b3d1727eeec3f4f5cabc853eb28",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.target",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.target_measure",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.target_integral",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.distance_averages",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.error_averages",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments.cell_averages"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.RegenerativeDescriptorMoments",
+            "started": 1792301882.83811,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 41.22823882102966
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/RegenerativeDescriptorTails.lean",
+          "sha256": "765e23d74c41394a4722b581b315a08460a3d14cb5aaa115aad87a918ccaafb8",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_nonneg",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_le_distance",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_measurable",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_integrable",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_integral_tendsto_zero",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.tail_averages",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.canonical_excess_tail_uniform",
+            "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails.canonical_distance_tail_uniform"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.RegenerativeDescriptorTails",
+            "started": 1792302623.7638235,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 36.998966217041016
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/RegenerativeFirstMomentOccupation.lean",
+          "sha256": "1b667d393432bc8bb019648b9d6aa049d9d582dc0c0759e0388e93ded4de8b24",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.RegenerativeFirstMoment.canonical_descriptor_empirical_tendsto",
+            "PermanssonResearch.MultipleLimit.RegenerativeFirstMoment.canonical_descriptor_weak_tendsto",
+            "PermanssonResearch.MultipleLimit.RegenerativeFirstMoment.occupationLimit_ae",
+            "PermanssonResearch.MultipleLimit.RegenerativeFirstMoment.canonical_property_factor"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.RegenerativeFirstMomentOccupation",
+            "started": 1792302189.3352046,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 48.638691425323486
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/RegenerativeInitialTransfer.lean",
+          "sha256": "f49d9c26836d85dc1273b86a5e81cb0c5306d1335abd1379caedf17b54aebdcf",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.RegenerativeTransfer.shifted_tv_le_pow",
+            "PermanssonResearch.MultipleLimit.RegenerativeTransfer.ae_shiftInvariant_transfer"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.RegenerativeInitialTransfer",
+            "started": 1792301521.3210614,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 48.040128231048584
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/RegenerativeIntegrableAverages.lean",
+          "sha256": "98a2aca982b72a83d8baf143e37e0a3140a9b43431057874d867cc4621e063fc",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.RegenerativeIntegrable.integral_initial_coordinate",
+            "PermanssonResearch.MultipleLimit.RegenerativeIntegrable.stationary_nonnegative_integrable_averages",
+            "PermanssonResearch.MultipleLimit.RegenerativeIntegrable.canonical_nonnegative_integrable_averages",
+            "PermanssonResearch.MultipleLimit.RegenerativeIntegrable.canonical_nonnegative_rewardCondition_averages"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.RegenerativeIntegrableAverages",
+            "started": 1792301641.2361877,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 32.240620613098145
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/RegenerativeWeakEmpirical.lean",
+          "sha256": "5a43a1b6e6cc8096d9a5dc748fbf92a352b1d7bd9f652159f3eae9936eef86a3",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.Regenerative.empirical_integral",
+            "PermanssonResearch.MultipleLimit.Regenerative.basisCell",
+            "PermanssonResearch.MultipleLimit.Regenerative.basisFamily",
+            "PermanssonResearch.MultipleLimit.Regenerative.basisCell_open",
+            "PermanssonResearch.MultipleLimit.Regenerative.basisFamily_pi",
+            "PermanssonResearch.MultipleLimit.Regenerative.basisFamily_measurable",
+            "PermanssonResearch.MultipleLimit.Regenerative.basisFamily_neighborhoods",
+            "PermanssonResearch.MultipleLimit.Regenerative.empirical_weak_of_all_bounded_averages",
+            "PermanssonResearch.MultipleLimit.Regenerative.canonical_regenerative_empirical"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.RegenerativeWeakEmpirical",
+            "started": 1792297594.2019274,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 61.86605525016785
+          },
+          "artifact_fresh": true
+        },
         {
           "source": "PermanssonResearch/Perturbation/FiniteOccupationFactorization.lean",
           "sha256": "fd986fabeef6dd171d9d7fcd3b8a916145c5c437254165fda607dea1df040cf2",
@@ -1205,6 +1722,471 @@
             "elapsed": 84.7484118938446
           },
           "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/FirstMomentOccupationProperty.lean",
+          "sha256": "96db4fde9e686c209961322522ccf987a3ed797f839966c0aa19eb7aa085234d",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.descriptorEmpirical",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.descriptorEmpirical_stronglyMeasurable",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_stronglyMeasurable",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_probability_weakBorel_measurable",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_default",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.occupationLimit_of_tendsto",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.property",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.property_integrand_integrable",
+            "PermanssonResearch.Perturbation.FirstMomentOccupation.property_factor_of_ae_empirical_limit"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.FirstMomentOccupationProperty",
+            "started": 1792301469.8027556,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 51.15253305435181
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/RegenerativeCompactFactorization.lean",
+          "sha256": "4efe4080e66f1155ae68437dcc107553c6419950d8246a78b75506c73b7a3ca4",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.RegenerativeCompactFactorization.model_property_factor",
+            "PermanssonResearch.Perturbation.RegenerativeCompactFactorization.four_actual_factorizations"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.RegenerativeCompactFactorization",
+            "started": 1792298390.5928895,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 48.80510640144348
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/RegenerativeCompactOccupation.lean",
+          "sha256": "beb26444369608d104df0016ee9037176a4d6a5f8a9cfe2a1177a3f7b200d070",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.RegenerativeCompactOccupation.probability_completelyMetrizable",
+            "PermanssonResearch.Perturbation.RegenerativeCompactOccupation.occupationLimit",
+            "PermanssonResearch.Perturbation.RegenerativeCompactOccupation.descriptorEmpirical_stronglyMeasurable",
+            "PermanssonResearch.Perturbation.RegenerativeCompactOccupation.occupationLimit_stronglyMeasurable",
+            "PermanssonResearch.Perturbation.RegenerativeCompactOccupation.occupationLimit_default",
+            "PermanssonResearch.Perturbation.RegenerativeCompactOccupation.occupationLimit_of_tendsto",
+            "PermanssonResearch.Perturbation.RegenerativeCompactOccupation.numericLimit_eq_functional_lawLimit",
+            "PermanssonResearch.Perturbation.RegenerativeCompactOccupation.property",
+            "PermanssonResearch.Perturbation.RegenerativeCompactOccupation.property_integrand_integrable",
+            "PermanssonResearch.Perturbation.RegenerativeCompactOccupation.occupationLimit_ae_regenerative",
+            "PermanssonResearch.Perturbation.RegenerativeCompactOccupation.property_factor_regenerative"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.RegenerativeCompactOccupation",
+            "started": 1792298322.6946268,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 62.50598192214966
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/RegenerativeData.lean",
+          "sha256": "8c0a9f162f3b6d5eef1f3031ccf597b3b6831edbbeb85d232695be7c9bfbb321",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.RegenerativeFactorization.Data",
+            "PermanssonResearch.Perturbation.RegenerativeFactorization.Data.ofEpsilon",
+            "PermanssonResearch.Perturbation.RegenerativeFactorization.Data.stationary",
+            "PermanssonResearch.Perturbation.RegenerativeFactorization.Data.stationary_invariant",
+            "PermanssonResearch.Perturbation.RegenerativeFactorization.generatedPerturbation",
+            "PermanssonResearch.Perturbation.RegenerativeFactorization.generated_coupling_bound"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.RegenerativeData",
+            "started": 1792297743.9231088,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 59.939818382263184
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean",
+          "sha256": "61cc390b87458994719bb28b759b8367c8f8dc5decebaf1e8d75c48e658ae268",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.StateBudget",
+            "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.DescriptorBudget",
+            "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.stateMoment",
+            "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.descriptorTarget",
+            "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.descriptorTarget_measure",
+            "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.model_property_factor",
+            "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.four_actual_factorizations",
+            "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.generated_occupationMargin_robust"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.RegenerativeFirstMomentFactorization",
+            "started": 1792302238.081677,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 51.234930992126465
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/RegenerativeOccupationFactorization.lean",
+          "sha256": "5dc066a9625a9db254b9c7faf50cdae67bbb4fbe432a640182bffcace1610530",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.RegenerativeFactorization.model_property_factor",
+            "PermanssonResearch.Perturbation.RegenerativeFactorization.four_actual_factorizations",
+            "PermanssonResearch.Perturbation.RegenerativeFactorization.generated_occupationMargin_robust"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.RegenerativeOccupationFactorization",
+            "started": 1792298257.7841692,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 60.41792273521423
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/RegenerativeOccupationProperty.lean",
+          "sha256": "83ce4183186200220101d23c43a67ccc03cf120889039ccf374c65e1ac54964e",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.RegenerativeOccupationProperty.descriptorEmpirical",
+            "PermanssonResearch.Perturbation.RegenerativeOccupationProperty.descriptorEmpirical_continuous",
+            "PermanssonResearch.Perturbation.RegenerativeOccupationProperty.numericLimit",
+            "PermanssonResearch.Perturbation.RegenerativeOccupationProperty.numericLimit_default",
+            "PermanssonResearch.Perturbation.RegenerativeOccupationProperty.numericLimit_stronglyMeasurable",
+            "PermanssonResearch.Perturbation.RegenerativeOccupationProperty.numericLimit_of_descriptor_tendsto",
+            "PermanssonResearch.Perturbation.RegenerativeOccupationProperty.numericLimit_abs_bound",
+            "PermanssonResearch.Perturbation.RegenerativeOccupationProperty.property",
+            "PermanssonResearch.Perturbation.RegenerativeOccupationProperty.property_integrand_integrable",
+            "PermanssonResearch.Perturbation.RegenerativeOccupationProperty.descriptorEmpirical_eq_map",
+            "PermanssonResearch.Perturbation.RegenerativeOccupationProperty.property_factor_regenerative"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.RegenerativeOccupationProperty",
+            "started": 1792298121.4891977,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 50.293203353881836
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/CesaroShiftInvariant.lean",
+          "sha256": "c55bc887e189c480f751247e67321eef8cbc34a9c99796135c5bc545e8a4f163",
+          "named_exports": [
+            "PermanssonResearch.Probability.CesaroShift.positiveAverage",
+            "PermanssonResearch.Probability.CesaroShift.positive_shift_identity",
+            "PermanssonResearch.Probability.CesaroShift.positive_unshift_identity",
+            "PermanssonResearch.Probability.CesaroShift.positive_limit_shift_iff",
+            "PermanssonResearch.Probability.CesaroShift.average_limit_shift_iff",
+            "PermanssonResearch.Probability.CesaroShift.average_limit_measurable"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.CesaroShiftInvariant",
+            "started": 1792301413.146483,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 40.37604832649231
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/FiniteQuantizationBound.lean",
+          "sha256": "5ca6397fb063b61dad502cc14b97de652cb754c41b896204a1ceda0706657f7b",
+          "named_exports": [
+            "PermanssonResearch.Probability.FirstMomentEmpirical.cellIndicator",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.cellIndicator_measurable",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.cellIndicator_integrable",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.quantized_integrable",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.centered_quantized_integral",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.quantized_integral_error",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.distance_le_quantization"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FiniteQuantizationBound",
+            "started": 1792301587.8942587,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 37.41666603088379
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/FirstMomentEmpirical.lean",
+          "sha256": "c35447eb5665ac6d269ad933a67ad36d3273545b3170b752306fa1944a54b737",
+          "named_exports": [
+            "PermanssonResearch.Probability.FirstMomentEmpirical.finiteSample",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.integral_finiteSample",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.finiteSample_distance_le",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.finiteSample_lipschitz",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.empirical",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_probability",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_integral",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_stronglyMeasurable"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FirstMomentEmpirical",
+            "started": 1792301290.5461566,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 48.217366218566895
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/FirstMomentEmpiricalConvergence.lean",
+          "sha256": "b3b652f669a956778ed7e3dcac906cddef01d68d6e441f31f4d53143168719e5",
+          "named_exports": [
+            "PermanssonResearch.Probability.FirstMomentEmpirical.empirical_tendsto_of_quantized_averages",
+            "PermanssonResearch.Probability.FirstMomentEmpirical.ae_empirical_tendsto_of_quantized_averages"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FirstMomentEmpiricalConvergence",
+            "started": 1792301805.5394604,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 51.72861981391907
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/FirstMomentTopology.lean",
+          "sha256": "8a11c283f718cfd164257507d27e4e7380a47a0c4c4e32fcc0e660ac54b37fc0",
+          "named_exports": [
+            "PermanssonResearch.Probability.FirstMomentProbability.bounded_integral_lipschitz",
+            "PermanssonResearch.Probability.FirstMomentProbability.probability_continuous"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FirstMomentTopology",
+            "started": 1792301390.9409678,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 38.0322208404541
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/L1AverageApproximation.lean",
+          "sha256": "5560bc57560296276cb77735868e2d78dd818744e48b222728532ab7c6323311",
+          "named_exports": [
+            "PermanssonResearch.Probability.Hopf.ae_average_limit_of_L1_approximation"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.L1AverageApproximation",
+            "started": 1792300867.587195,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 50.72307801246643
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/L1Maximal.lean",
+          "sha256": "30c08a994e8b231a3f8ff287f199650cf340475ccce33bdb71b6fe3525ae82d0",
+          "named_exports": [
+            "PermanssonResearch.Probability.Hopf.maximalEvent",
+            "PermanssonResearch.Probability.Hopf.maximalEvent_measurable",
+            "PermanssonResearch.Probability.Hopf.maximal_integral_nonneg",
+            "PermanssonResearch.Probability.Hopf.maximalEvent_measure_bound",
+            "PermanssonResearch.Probability.Hopf.average_gt_mem_maximalEvent",
+            "PermanssonResearch.Probability.Hopf.average_sub_abs_le"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.L1Maximal",
+            "started": 1792300520.050217,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 74.70618319511414
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/L1Truncation.lean",
+          "sha256": "688dbbdf1af6ea4eaa1049fd3c7c164369ae64d5db09a4327780eaa5aed512db",
+          "named_exports": [
+            "PermanssonResearch.Probability.Hopf.positiveTruncation",
+            "PermanssonResearch.Probability.Hopf.positiveTruncation_measurable",
+            "PermanssonResearch.Probability.Hopf.positiveTruncation_bound",
+            "PermanssonResearch.Probability.Hopf.positiveTruncation_integrable",
+            "PermanssonResearch.Probability.Hopf.positiveTruncation_tendsto",
+            "PermanssonResearch.Probability.Hopf.positiveTruncation_L1",
+            "PermanssonResearch.Probability.Hopf.positiveTruncation_integral_tendsto",
+            "PermanssonResearch.Probability.Hopf.ae_nonnegative_average_limit"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.L1Truncation",
+            "started": 1792301001.5709789,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 50.49849772453308
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/RegenerativeMeasure.lean",
+          "sha256": "60ef07df3b8e53a134dd98e47169fc93eb93f8cd9388c8949741d1758b721214",
+          "named_exports": [
+            "PermanssonResearch.Probability.Regenerative.orbitLaw",
+            "PermanssonResearch.Probability.Regenerative.orbitLaw_probability",
+            "PermanssonResearch.Probability.Regenerative.integral_orbitLaw",
+            "PermanssonResearch.Probability.Regenerative.geometric_weight_sum",
+            "PermanssonResearch.Probability.Regenerative.law",
+            "PermanssonResearch.Probability.Regenerative.law_probability",
+            "PermanssonResearch.Probability.Regenerative.probabilityLaw",
+            "PermanssonResearch.Probability.Regenerative.integral_law"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.RegenerativeMeasure",
+            "started": 1792297102.2788959,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 71.74592208862305
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/RegenerativeMomentCondition.lean",
+          "sha256": "968618270943f8cf9537d3403d381ccc0fd681d03f85b4fccf3afab8850caf90",
+          "named_exports": [
+            "PermanssonResearch.Probability.RegenerativeMoment.RewardCondition",
+            "PermanssonResearch.Probability.RegenerativeMoment.integrable_law_of_rewardCondition",
+            "PermanssonResearch.Probability.RegenerativeMoment.rewardCondition_of_integrable_law"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.RegenerativeMomentCondition",
+            "started": 1792301297.8223212,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 45.471901416778564
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/RegenerativeMomentRegression.lean",
+          "sha256": "856c683e2501d5a74517d7800ef20d0e0ef5d39c36dade4a0db6f837026c93dd",
+          "named_exports": [
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.seed",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.increment",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.increment_markov",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.residual_orbit",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.resetWalk",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.resetWalk_markov",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.resetWalk_mixture",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.distance_reward_condition",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.invariant_atom_positive",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.invariant_unbounded_support",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.targetLaw",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.all_initial_actual_empirical_W1",
+            "PermanssonResearch.Probability.RegenerativeMomentRegression.all_initial_distance_tail_uniform"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.RegenerativeMomentRegression",
+            "started": 1792302660.878442,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 36.202704668045044
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/RegenerativeOperator.lean",
+          "sha256": "f7fe141d19d646c2c4ecd303a07acd5cc57f30d0a623e474e99ed0cd7284975e",
+          "named_exports": [
+            "PermanssonResearch.Probability.Regenerative.applyTest",
+            "PermanssonResearch.Probability.Regenerative.iterateTest",
+            "PermanssonResearch.Probability.Regenerative.applyTest_measurable",
+            "PermanssonResearch.Probability.Regenerative.applyTest_abs_bound",
+            "PermanssonResearch.Probability.Regenerative.iterateTest_measurable",
+            "PermanssonResearch.Probability.Regenerative.iterateTest_abs_bound",
+            "PermanssonResearch.Probability.Regenerative.iterateTest_shift",
+            "PermanssonResearch.Probability.Regenerative.resolvent",
+            "PermanssonResearch.Probability.Regenerative.weighted_bound",
+            "PermanssonResearch.Probability.Regenerative.weighted_summable",
+            "PermanssonResearch.Probability.Regenerative.resolvent_measurable",
+            "PermanssonResearch.Probability.Regenerative.resolvent_abs_bound",
+            "PermanssonResearch.Probability.Regenerative.bounded_integrable",
+            "PermanssonResearch.Probability.Regenerative.integral_resolvent",
+            "PermanssonResearch.Probability.Regenerative.applyTest_resolvent",
+            "PermanssonResearch.Probability.Regenerative.resolvent_equation",
+            "PermanssonResearch.Probability.Regenerative.resolvent_shift"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.RegenerativeOperator",
+            "started": 1792296872.4680617,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 60.69408822059631
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/RegenerativePoisson.lean",
+          "sha256": "b78507f22d0bed256751542f6e207aefa20003911705960dbea5acf1611402c2",
+          "named_exports": [
+            "PermanssonResearch.Probability.Regenerative.IsMixture",
+            "PermanssonResearch.Probability.Regenerative.applyTest_mixture",
+            "PermanssonResearch.Probability.Regenerative.resolvent_applyTest",
+            "PermanssonResearch.Probability.Regenerative.poisson_equation",
+            "PermanssonResearch.Probability.Regenerative.integral_law_applyTest",
+            "PermanssonResearch.Probability.Regenerative.integral_comp_law",
+            "PermanssonResearch.Probability.Regenerative.law_invariant"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.RegenerativePoisson",
+            "started": 1792297278.6878772,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 64.61467742919922
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/RegenerativeRegression.lean",
+          "sha256": "62249a82b586177d95abe23a8cdd0b01952f8db0ba5a9425067dda56aae3709e",
+          "named_exports": [
+            "PermanssonResearch.Probability.RegenerativeRegression.identity_residual_law",
+            "PermanssonResearch.Probability.RegenerativeRegression.seed",
+            "PermanssonResearch.Probability.RegenerativeRegression.halfReset",
+            "PermanssonResearch.Probability.RegenerativeRegression.halfReset_markov",
+            "PermanssonResearch.Probability.RegenerativeRegression.halfReset_mixture",
+            "PermanssonResearch.Probability.RegenerativeRegression.halfReset_geometric_law",
+            "PermanssonResearch.Probability.RegenerativeRegression.halfReset_all_initial_weak",
+            "PermanssonResearch.Probability.RegenerativeRegression.halfReset_all_bounded_measurable_averages",
+            "PermanssonResearch.Probability.RegenerativeRegression.false_reset_decomposition_rejected"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.RegenerativeRegression",
+            "started": 1792298810.6498845,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 54.12588405609131
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/RegenerativeRenewalMass.lean",
+          "sha256": "986e380864aa5299c208cfcea9ced3a7dc65cdf2d6d92ff5b409dfae00c230fd",
+          "named_exports": [
+            "PermanssonResearch.Probability.RegenerativeRenewal.comp_mono",
+            "PermanssonResearch.Probability.RegenerativeRenewal.smul_mono_measure",
+            "PermanssonResearch.Probability.RegenerativeRenewal.comp_mixture",
+            "PermanssonResearch.Probability.RegenerativeRenewal.common",
+            "PermanssonResearch.Probability.RegenerativeRenewal.common_finite",
+            "PermanssonResearch.Probability.RegenerativeRenewal.common_le_orbit",
+            "PermanssonResearch.Probability.RegenerativeRenewal.common_le_invariant",
+            "PermanssonResearch.Probability.RegenerativeRenewal.common_mass",
+            "PermanssonResearch.Probability.RegenerativeRenewal.orbit_tv_le_pow"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.RegenerativeRenewalMass",
+            "started": 1792300999.13977,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 50.877264738082886
+          },
+          "artifact_fresh": true
         }
       ]
     },
@@ -1214,8 +2196,115 @@
       "selected_scope_as_supplied": "Weighted product metric and conditional stage couplings with declared action/world/update errors and Lipschitz sensitivities.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Bounded-diameter actual primitive certificate only. Weighted metric sensitivities and conditional metric stage couplings remain open.",
+      "implementation_boundary_and_residual": "Actual finite conditional couplings in the literal alpha/P/U order, exact marginals and propagated weighted metric sensitivities. Derived budget is a*deltaU+(b+a*LUx)*deltaP+(a*LUa+(b+a*LUx)*LPa)*deltaAlpha. Original product-max conversion and nonzero weighted fixtures retained; combined metric audit84 declarations. This finite implementation is within the supplied primitive-metric scope.",
       "sources": [
+        {
+          "source": "PermanssonResearch/Perturbation/FiniteMetricCouplingFixture.lean",
+          "sha256": "a3768fbc872e3a27cc9c0c850e684dfe9a79dec4437f155f69af18a7fda56086",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.boolMetric",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.bool_dist",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.dirac_dual",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.errors",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.budget_five",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_weighted_defect",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.model_induced",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.weighted_distance_five",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_weighted_coupling_cost",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.stateBounds",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.factor_zero",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.original_contraction_zero",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.weighted_contraction_zero",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.strict_metric_gate",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldModel",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.worldErrors",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.world_budget_five",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_world_weighted_defect",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.world_model_induced",
+            "PermanssonResearch.Perturbation.FiniteSequential.MetricFixture.actual_world_weighted_cost"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.FiniteMetricCouplingFixture",
+            "started": 1792298156.4202125,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 64.05070734024048,
+            "source_sha256": "a3768fbc872e3a27cc9c0c850e684dfe9a79dec4437f155f69af18a7fda56086"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/FinitePrimitiveMetric.lean",
+          "sha256": "1305ca4e3ef1f805b9e8e9221c24267276486e46986f17712e180d27e6317b51",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds",
+            "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.budget",
+            "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.exists_sequential_plan",
+            "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.exists_weighted_coupling",
+            "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.weighted_induced_bound",
+            "PermanssonResearch.Perturbation.FiniteSequential.productDist_le_weighted",
+            "PermanssonResearch.Perturbation.FiniteSequential.PrimitiveMetricBounds.original_induced_bound"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.FinitePrimitiveMetric",
+            "started": 1792297714.9935231,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 62.74134635925293,
+            "source_sha256": "1305ca4e3ef1f805b9e8e9221c24267276486e46986f17712e180d27e6317b51"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/FiniteSequentialCoupling.lean",
+          "sha256": "158e0682132b3000c156a726cc0a699ed11e8348740aeddde39a15e58f10dd69",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FiniteSequential.inducedRow",
+            "PermanssonResearch.Perturbation.FiniteSequential.sequentialCoupling",
+            "PermanssonResearch.Perturbation.FiniteSequential.sequential_expect",
+            "PermanssonResearch.Perturbation.FiniteSequential.weightedDistance",
+            "PermanssonResearch.Perturbation.FiniteSequential.weightedMetric",
+            "PermanssonResearch.Perturbation.FiniteSequential.metricBudget",
+            "PermanssonResearch.Perturbation.FiniteSequential.expect_affine",
+            "PermanssonResearch.Perturbation.FiniteSequential.sequential_weighted_cost"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.FiniteSequentialCoupling",
+            "started": 1792298330.1006057,
+            "elapsed": 46.008708477020264,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "158e0682132b3000c156a726cc0a699ed11e8348740aeddde39a15e58f10dd69"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Perturbation/FiniteTypedRows.lean",
+          "sha256": "89f05d3181fe7ec42514bea73a168c6b844468adc7ae0add1ece922f92a6c4f3",
+          "named_exports": [
+            "PermanssonResearch.Perturbation.FiniteSequential.actionRow",
+            "PermanssonResearch.Perturbation.FiniteSequential.worldRow",
+            "PermanssonResearch.Perturbation.FiniteSequential.updateRow",
+            "PermanssonResearch.Perturbation.FiniteSequential.actionRow_measure",
+            "PermanssonResearch.Perturbation.FiniteSequential.worldRow_measure",
+            "PermanssonResearch.Perturbation.FiniteSequential.updateRow_measure",
+            "PermanssonResearch.Perturbation.FiniteSequential.typedRow",
+            "PermanssonResearch.Perturbation.FiniteSequential.typedRow_expect",
+            "PermanssonResearch.Perturbation.FiniteSequential.integral_inducedKernel_finite",
+            "PermanssonResearch.Perturbation.FiniteSequential.typedRow_expect_induced",
+            "PermanssonResearch.Perturbation.FiniteSequential.typedRow_measure"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Perturbation.FiniteTypedRows",
+            "started": 1792298376.1143079,
+            "elapsed": 35.804131269454956,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "89f05d3181fe7ec42514bea73a168c6b844468adc7ae0add1ece922f92a6c4f3"
+          },
+          "artifact_fresh": true
+        },
         {
           "source": "PermanssonResearch/Perturbation/PrimitiveMetricBudget.lean",
           "sha256": "ce5dbcc322706ed5b4027b3138078c3ceb8b191d82bc4f5304672012ebf6fec4",
@@ -1230,6 +2319,33 @@
             "status": "PASS",
             "returncode": 0,
             "source_sha256": "ce5dbcc322706ed5b4027b3138078c3ceb8b191d82bc4f5304672012ebf6fec4"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/FiniteRowCoupling.lean",
+          "sha256": "8f7f022c08d2316e987204cfc59ff8ccd6d96d308974ae647f16afdc796bc08a",
+          "named_exports": [
+            "PermanssonResearch.Probability.finiteRow_eq_of_mass",
+            "PermanssonResearch.Probability.finiteRow_eq_of_expect",
+            "PermanssonResearch.Probability.RowCoupling",
+            "PermanssonResearch.Probability.RowCoupling.first_expect",
+            "PermanssonResearch.Probability.RowCoupling.second_expect",
+            "PermanssonResearch.Probability.RowCoupling.first_sum",
+            "PermanssonResearch.Probability.RowCoupling.second_sum",
+            "PermanssonResearch.Probability.RowCoupling.mapPair",
+            "PermanssonResearch.Probability.RowCoupling.bind",
+            "PermanssonResearch.Probability.RowCoupling.toCoupling",
+            "PermanssonResearch.Probability.RowCoupling.toCoupling_cost",
+            "PermanssonResearch.Probability.RowCoupling.exists_of_w1DualLE"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FiniteRowCoupling",
+            "started": 1792298282.8875577,
+            "elapsed": 47.208937883377075,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "8f7f022c08d2316e987204cfc59ff8ccd6d96d308974ae647f16afdc796bc08a"
           },
           "artifact_fresh": true
         }
@@ -1612,6 +2728,35 @@
             "olean_sha256": "d58d5d2ef8f472701dcf6335928095bb2148dd452215293db4d69e0099f15bd8"
           },
           "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/ThroughHorizonRiskMonitor.lean",
+          "sha256": "756f60dfa2b48dedc5fc8363c8813b2c2417437391c99c3f3073dad32b400221",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest_iff",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.run_withRisk",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_literal",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_time",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.original_reward_preserved",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.successScore",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore_bounds",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_integral_eq_literal",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_integral_eq_occupancy",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_probability_eq_occupancy",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_success_integral_eq_original"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.ThroughHorizonRiskMonitor",
+            "started": 1792302363.4002109,
+            "elapsed": 30.486252784729004,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "756f60dfa2b48dedc5fc8363c8813b2c2417437391c99c3f3073dad32b400221"
+          },
+          "artifact_fresh": true
         }
       ]
     },
@@ -1677,8 +2822,126 @@
       "selected_scope_as_supplied": "Summable weighted bounded finite-prefix scores; full path TV only with summable sequential error or a separately proved common-mass limit.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Summable bounded output-score integrals and geometric scalar budget. Infinite-product full-TV extension is open; survival is not inferred.",
+      "implementation_boundary_and_residual": "Summable bounded output-score integrals and exact normalized discount budgets, including initial mismatch and time-zero weight;4-declaration initial-budget audit. Constructed dependent-history common mass retains initial mismatch and time-varying finite products; summable defects give a genuine infinite product. Actual infinite laws are linked by literal prefix marginal identifications, and generating-cylinder algebra approximation proves full-path event TV;43-declaration audit. Fixed recurring positive leakage is nonsummable and its finite budget tends to1; survival transfer is not inferred.",
       "sources": [
+        {
+          "source": "PermanssonResearch/Probability/CylinderTotalVariation.lean",
+          "sha256": "7711c2f3ad7ce9d05f655211b1045d2f355cd50a674c1aebc0caa6ee17839c5b",
+          "named_exports": [
+            "PermanssonResearch.Probability.eventTotalVariation_le_of_generating_ring",
+            "PermanssonResearch.Probability.path_eventTotalVariation_le_of_prefixes"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.CylinderTotalVariation",
+            "started": 1792299890.7220798,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 42.772982597351074
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/DependentHistoryCommonMass.lean",
+          "sha256": "471a561f008715d8794533fd84d50794a2b9f9cbbd078cc516ea5de8231706f9",
+          "named_exports": [
+            "PermanssonResearch.Probability.DependentHistory.evolution",
+            "PermanssonResearch.Probability.DependentHistory.evolution_probability",
+            "PermanssonResearch.Probability.DependentHistory.evolution_finite",
+            "PermanssonResearch.Probability.DependentHistory.compProd_mono",
+            "PermanssonResearch.Probability.DependentHistory.evolution_mono",
+            "PermanssonResearch.Probability.DependentHistory.retained",
+            "PermanssonResearch.Probability.DependentHistory.retained_nonneg",
+            "PermanssonResearch.Probability.DependentHistory.retained_le_one",
+            "PermanssonResearch.Probability.DependentHistory.common_mass_ge",
+            "PermanssonResearch.Probability.DependentHistory.prefix_tv_le_product"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.DependentHistoryCommonMass",
+            "started": 1792300148.100427,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 52.87723207473755
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/DiscountedInitialBudget.lean",
+          "sha256": "55c9c9e26ca8ddbd81595ca5b47f6d5f72610d996c55316398b45922f3d30af6",
+          "named_exports": [
+            "PermanssonResearch.Probability.discounted_geometric_budget_initial",
+            "PermanssonResearch.Probability.initial_geometric_error_bounds",
+            "PermanssonResearch.Probability.discounted_output_score_error_initial",
+            "PermanssonResearch.Probability.zero_row_defect_retains_initial_budget"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.DiscountedInitialBudget",
+            "started": 1792301763.1042485,
+            "elapsed": 51.20794939994812,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "55c9c9e26ca8ddbd81595ca5b47f6d5f72610d996c55316398b45922f3d30af6"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/FullPathProductRegression.lean",
+          "sha256": "99e892f39e9374c42188c6f101e55bd20592e38fcfcb71c7d3f6aea8dad44ec0",
+          "named_exports": [
+            "PermanssonResearch.Probability.FullPathProductRegression.H",
+            "PermanssonResearch.Probability.FullPathProductRegression.point",
+            "PermanssonResearch.Probability.FullPathProductRegression.keep",
+            "PermanssonResearch.Probability.FullPathProductRegression.keep_markov",
+            "PermanssonResearch.Probability.FullPathProductRegression.initial",
+            "PermanssonResearch.Probability.FullPathProductRegression.pointLaw",
+            "PermanssonResearch.Probability.FullPathProductRegression.initial_probability",
+            "PermanssonResearch.Probability.FullPathProductRegression.pointLaw_probability",
+            "PermanssonResearch.Probability.FullPathProductRegression.evolution_point",
+            "PermanssonResearch.Probability.FullPathProductRegression.actual_prefix",
+            "PermanssonResearch.Probability.FullPathProductRegression.zero_defect_budget",
+            "PermanssonResearch.Probability.FullPathProductRegression.identical_actual_laws_bound_zero",
+            "PermanssonResearch.Probability.FullPathProductRegression.actual_initial_mismatch_bound_one",
+            "PermanssonResearch.Probability.FullPathProductRegression.actual_initial_mismatch_exact_one",
+            "PermanssonResearch.Probability.FullPathProductRegression.singleLeak",
+            "PermanssonResearch.Probability.FullPathProductRegression.singleLeak_summable",
+            "PermanssonResearch.Probability.FullPathProductRegression.unit_defect_boundary_budget",
+            "PermanssonResearch.Probability.FullPathProductRegression.positive_recurring_defect_not_summable",
+            "PermanssonResearch.Probability.FullPathProductRegression.recurring_leak_only_trivial_limit"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FullPathProductRegression",
+            "started": 1792300542.1361334,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 79.71469593048096
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/Probability/FullPathProductTV.lean",
+          "sha256": "f802694a3d08aa1230bfbad95261358f0c236137f34f2eeb99651d6babd7be3e",
+          "named_exports": [
+            "PermanssonResearch.Probability.FullPathProduct.retained_antitone",
+            "PermanssonResearch.Probability.FullPathProduct.retained_multipliable",
+            "PermanssonResearch.Probability.FullPathProduct.retained_tendsto",
+            "PermanssonResearch.Probability.FullPathProduct.tprod_le_retained",
+            "PermanssonResearch.Probability.FullPathProduct.tprod_bounds",
+            "PermanssonResearch.Probability.FullPathProduct.History",
+            "PermanssonResearch.Probability.FullPathProduct.path_tv_le_product",
+            "PermanssonResearch.Probability.FullPathProduct.zero_defect_product",
+            "PermanssonResearch.Probability.FullPathProduct.unit_defect_product",
+            "PermanssonResearch.Probability.FullPathProduct.constant_retained",
+            "PermanssonResearch.Probability.FullPathProduct.recurring_leak_retained_tendsto_zero",
+            "PermanssonResearch.Probability.FullPathProduct.recurring_leak_budget_tendsto_one"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Probability.FullPathProductTV",
+            "started": 1792300384.3880773,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 45.51835584640503
+          },
+          "artifact_fresh": true
+        },
         {
           "source": "PermanssonResearch/Probability/SummablePathScores.lean",
           "sha256": "43dae187fef4703ef6f93a1086ed2f43b23f3e3d54be7b18236939c74d7f6baa",
@@ -1740,7 +3003,7 @@
       "selected_scope_as_supplied": "Player-two construction and coordinate reindexing with physical kernel inputs explicitly transported.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Actual asymmetric coordinate pullback, original full laws and original paired margins. Comparison and property matching remain explicit.",
+      "implementation_boundary_and_residual": "Measurable-general direct player-two CL/OL construction. Finite-space asymmetric coordinate pullback, actual original full laws and original paired margins follow the supplied finite-sum swap profile. Comparison and property matching remain explicit.",
       "sources": [
         {
           "source": "PermanssonResearch/MultiAgent/PlayerSwapConstitution.lean",
@@ -1835,7 +3098,7 @@
       "selected_scope_as_supplied": "Finite-index conditional-product action/update kernels and selected-player protocols.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Actual finite-coordinate product kernels, selected-player protocols and n=2 original-law reduction checked. Arbitrary measurable coordinates remain separate.",
+      "implementation_boundary_and_residual": "Finite index with arbitrary measurable coordinate/input spaces, actual Giry-measurable product kernels, selected-player protocols and generic measurable binary-product equivalence. Actual three-player real-coordinate regression distinguishes closed/open-loop anchors, preserves physical/common kernels and checks empty-index normalization;48-declaration audit.",
       "sources": [
         {
           "source": "PermanssonResearch/MultiAgent/FiniteProductProtocols.lean",
@@ -1906,6 +3169,195 @@
             "elapsed": 70.57065629959106
           },
           "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/MeasurableFiniteProduct.lean",
+          "sha256": "36babffa63878708fb8289bedf06b617032bbfd2cba48c71bfb60a96358a7c7a",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.MeasurableProduct.measurable_product",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.productKernel",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_isMarkov",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_cylinder",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.actionKernel",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.actionKernel_isMarkov",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.privateUpdateKernel",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.privateUpdateKernel_isMarkov",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.assemble",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.model",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.action_apply",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.update_apply",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.actual_transition",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.assemble_eq_finite",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.model_eq_finite"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.MeasurableFiniteProduct",
+            "started": 1792298750.4066515,
+            "elapsed": 29.401638507843018,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "36babffa63878708fb8289bedf06b617032bbfd2cba48c71bfb60a96358a7c7a"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/MeasurableNatClockFixture.lean",
+          "sha256": "c793a3886ecc064e455b951c17c55d82699ef371ca4f2223dfaf6989a7a40bbe",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.player1",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.baseline",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world_isMarkov",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.scheduled_actions_differ",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.strict_schedule",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.clocked_strict",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.clock_advances",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.stalled_clock_rejected",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.full_actual_real_projection"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.MeasurableNatClockFixture",
+            "started": 1792303305.5017571,
+            "elapsed": 31.11036229133606,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "c793a3886ecc064e455b951c17c55d82699ef371ca4f2223dfaf6989a7a40bbe"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/MeasurableNatClockTransport.lean",
+          "sha256": "ad1b1eae9afeaca7ba334dd545b8d14864af9a5a8c67c796f5f487f90acbec42",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.product_attach_clock",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.action_lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.update_lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.actual_row",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel_isMarkov",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.actual_projection",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.openLoop_projection",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.succ_iterate",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_scheduled_row",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_projection",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.protocol_world_eq"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.MeasurableNatClockTransport",
+            "started": 1792303270.0802846,
+            "elapsed": 35.41656541824341,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "ad1b1eae9afeaca7ba334dd545b8d14864af9a5a8c67c796f5f487f90acbec42"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/MeasurableNatPrivateClock.lean",
+          "sha256": "3b95ae06a9eb3a6500cd6df23c291bbb865343a9fcb6508d0eca288bf74afb2a",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.NewState",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.liftStrategic",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropWorld",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropInput",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_liftStrategic",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_drop",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_phase",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_dropWorld",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_dropInput",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop_lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase_lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.selectKernel",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.playerOne",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor_action",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor_update",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical_isMarkov",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.advancing_update",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_feasibility",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_exogeneity",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_strictness"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock",
+            "started": 1792303244.0823913,
+            "elapsed": 25.992767333984375,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "3b95ae06a9eb3a6500cd6df23c291bbb865343a9fcb6508d0eca288bf74afb2a"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/MeasurableProductProtocols.lean",
+          "sha256": "9894c87e9c92af3b16cfd26b7776c51c45a7bbf29bebfa01a97c58756fcc7117",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.openLoop",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop_treated",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.closedLoop_other",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.openLoop_treated",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.openLoop_other",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.protocolFamily",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.closedLoopIntervention",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.openLoopIntervention",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.protocol_world_eq",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.original_margin_comparison",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.productKernel_two"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.MeasurableProductProtocols",
+            "started": 1792298779.8372173,
+            "elapsed": 25.986066341400146,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "9894c87e9c92af3b16cfd26b7776c51c45a7bbf29bebfa01a97c58756fcc7117"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/MeasurableProductRegression.lean",
+          "sha256": "e5dcb8a80230bcdd563a584c103b268883c73ec425f2fe37e5e074d04a591c4d",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.S",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.Y",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.A",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.component",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.baseline",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.anchors",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.replacement",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.physical_isMarkov",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.actionZeroCylinder",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl_action_zero_cylinder",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol_action_zero_cylinder",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.actual_action_laws_distinct",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.treatedCylinder",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.cl_treated_action",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.ol_treated_action",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.replacement_update",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.common_and_world_preserved",
+            "PermanssonResearch.MultiAgent.MeasurableProduct.Regression.empty_product"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.MeasurableProductRegression",
+            "started": 1792298805.8457205,
+            "elapsed": 41.65046215057373,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "e5dcb8a80230bcdd563a584c103b268883c73ec425f2fe37e5e074d04a591c4d"
+          },
+          "artifact_fresh": true
         }
       ]
     },
@@ -1915,7 +3367,7 @@
       "selected_scope_as_supplied": "A new typed common/private clock-augmented baseline with actual clock update and projection bridge.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Actually updated private clock and canonical infinite-law projection bridge checked.",
+      "implementation_boundary_and_residual": "Actually updated finite-phase and genuine natural-number private clocks, with arbitrary declared Nat anchor schedules. General measurable countable schedule selection and whole-measure product transport remove original-coordinate finiteness/countability assumptions. Literal action/world/update rows, clock successor, inherited strictness/exogeneity/feasibility and original chronological full infinite-law projection retain the a(t+n) schedule from fixed initial clock t. A real-coordinate nonperiodic fixture checks the general profile. Frozen original baselines are not silently enlarged.",
       "sources": [
         {
           "source": "PermanssonResearch/MultiAgent/ChronologicalPathLaw.lean",
@@ -1939,6 +3391,165 @@
             "status": "PASS",
             "returncode": 0,
             "elapsed": 40.067224979400635
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/MeasurableNatClockFixture.lean",
+          "sha256": "c793a3886ecc064e455b951c17c55d82699ef371ca4f2223dfaf6989a7a40bbe",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.player1",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.baseline",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world_isMarkov",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.scheduled_actions_differ",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.strict_schedule",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.clocked_strict",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.clock_advances",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.stalled_clock_rejected",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.full_actual_real_projection"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.MeasurableNatClockFixture",
+            "started": 1792303305.5017571,
+            "elapsed": 31.11036229133606,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "c793a3886ecc064e455b951c17c55d82699ef371ca4f2223dfaf6989a7a40bbe"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/MeasurableNatClockTransport.lean",
+          "sha256": "ad1b1eae9afeaca7ba334dd545b8d14864af9a5a8c67c796f5f487f90acbec42",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.product_attach_clock",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.action_lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.update_lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.actual_row",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel_isMarkov",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.actual_projection",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.openLoop_projection",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.succ_iterate",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_scheduled_row",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_projection",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.protocol_world_eq"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.MeasurableNatClockTransport",
+            "started": 1792303270.0802846,
+            "elapsed": 35.41656541824341,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "ad1b1eae9afeaca7ba334dd545b8d14864af9a5a8c67c796f5f487f90acbec42"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/MeasurableNatPrivateClock.lean",
+          "sha256": "3b95ae06a9eb3a6500cd6df23c291bbb865343a9fcb6508d0eca288bf74afb2a",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.NewState",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.liftStrategic",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropWorld",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropInput",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_liftStrategic",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_drop",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_phase",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_dropWorld",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_dropInput",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop_lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase_lift",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.selectKernel",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.playerOne",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor_action",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor_update",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical_isMarkov",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.advancing_update",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_feasibility",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_exogeneity",
+            "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_strictness"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock",
+            "started": 1792303244.0823913,
+            "elapsed": 25.992767333984375,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "3b95ae06a9eb3a6500cd6df23c291bbb865343a9fcb6508d0eca288bf74afb2a"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/NatPrivateClock.lean",
+          "sha256": "222456f3d213cb57771a00a4337fb0922e06ce719e9e2ad0d53cab5a060c4b3b",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.NatPrivateClock.OldState",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.NewState",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.lift",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.drop",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.phase",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.dropWorld",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.dropInput",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.drop_lift",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.phase_lift",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.lift_drop",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.rows",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.playerOne",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.anchor",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.generator",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.physical",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.physical_isMarkov",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.phase_update",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.inherited_feasibility",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.inducedKernel_atom",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.product_transition_atom",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.advancing_update",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.actual_atom",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.protocol_world_eq"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.NatPrivateClock",
+            "started": 1792301938.5224018,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 44.66803169250488
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultiAgent/NatPrivateClockTransport.lean",
+          "sha256": "7b37eb66384cd699ef57c76f1a93511b04b444657ca2f12672322e61ff0bf4ca",
+          "named_exports": [
+            "PermanssonResearch.MultiAgent.NatPrivateClock.measurable_drop",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.inherited_exogeneity",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.inherited_strictness",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.actual_row",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.scheduledKernel",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.scheduledKernel_isMarkov",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.actual_projection",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.openLoop_projection",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.succ_iterate",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.natural_scheduled_row",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.natural_projection",
+            "PermanssonResearch.MultiAgent.NatPrivateClock.natural_openLoop_projection"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultiAgent.NatPrivateClockTransport",
+            "started": 1792302328.7846732,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 40.47912311553955
           },
           "artifact_fresh": true
         },
@@ -2360,7 +3971,7 @@
       "selected_scope_as_supplied": "Finish a target run before any danger; danger precedence at ties; separate through-horizon risk monitor.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Literal completion before danger, danger precedence, original deterministic-law and behavioral-optimum bridges.",
+      "implementation_boundary_and_residual": "Literal completion before danger, danger precedence, original deterministic-law and behavioral-optimum bridges. A separate ever-danger flag continues after completed success; its actual through-horizon event probability equals the occupancy LP terminal linear risk score for every admitted real history controller. Time-zero, tied and after-success danger are distinguished.",
       "sources": [
         {
           "source": "PermanssonResearch/ReverseSolver/AvoidResidenceHistoryBridge.lean",
@@ -2425,6 +4036,56 @@
             "status": "PASS",
             "returncode": 0,
             "elapsed": 114.1109344959259
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/ThroughHorizonRiskFixture.lean",
+          "sha256": "39effcd41b1746a42e2fd784108051a86ffa307650c8b9b602880e79cc91d048",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureSuccess",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_at_zero_counts",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_after_completed_success_counts",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.simultaneous_target_danger_counts",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.failure_and_danger_are_not_complements"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.ThroughHorizonRiskFixture",
+            "started": 1792302393.892757,
+            "elapsed": 26.863348722457886,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "39effcd41b1746a42e2fd784108051a86ffa307650c8b9b602880e79cc91d048"
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/ReverseSolver/ThroughHorizonRiskMonitor.lean",
+          "sha256": "756f60dfa2b48dedc5fc8363c8813b2c2417437391c99c3f3073dad32b400221",
+          "named_exports": [
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest_iff",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.run_withRisk",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_literal",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_time",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.original_reward_preserved",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.successScore",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore_bounds",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_integral_eq_literal",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_integral_eq_occupancy",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_probability_eq_occupancy",
+            "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_success_integral_eq_original"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.ReverseSolver.ThroughHorizonRiskMonitor",
+            "started": 1792302363.4002109,
+            "elapsed": 30.486252784729004,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "756f60dfa2b48dedc5fc8363c8813b2c2417437391c99c3f3073dad32b400221"
           },
           "artifact_fresh": true
         }
@@ -3850,7 +5511,7 @@
       "selected_scope_as_supplied": "Compact metric Feller cluster theorem, unique-invariant convergence, stationary/absolutely-continuous random-law extension.",
       "acceptance_status": "NOT_ACCEPTED",
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
-      "implementation_boundary_and_residual": "Actual all-initial compact metric Borel Feller empirical cluster invariance, invariant-family distance convergence, unique-invariant weak convergence and original occupation-mode adapter;88-declaration audit. Generic bounded pointwise ergodic convergence and actual invariant-sigma conditional-expectation identity derived, without invertibility/ergodicity;47-declaration audit. Stationary random-law, actual initial-law absolute-continuity transfer and noncompact extensions remain separate.",
+      "implementation_boundary_and_residual": "Actual all-initial compact Feller cluster/unique-invariant weak convergence;88-declaration audit. Bounded pointwise ergodic and invariant-sigma conditional-expectation identity without invertibility/ergodicity;47-declaration audit. Actual standard-Borel conditional random invariant law, compact/noncompact second-countable metric stationary weak empirical limits and exact whole-path initial Radon-Nikodym formula;68-declaration audit. Genuine homogeneous countable clock escaping-mass and fixed-descriptor growing-block nonconvergence;33-declaration audit. No unrestricted nonfinite occupation theorem or integrable-unbounded Birkhoff extension is inferred.",
       "sources": [
         {
           "source": "PermanssonResearch/MultipleLimit/CanonicalBoundedInnovations.lean",
@@ -3876,6 +5537,44 @@
             "status": "PASS",
             "returncode": 0,
             "elapsed": 80.84358787536621
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/CanonicalInitialAbsoluteContinuity.lean",
+          "sha256": "d71d9f0f966f1f484aa845bd23cada060c2b8feda82c929ef88cfdb380b4f2e8",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.CanonicalInitial.pathLaw_absolutelyContinuous",
+            "PermanssonResearch.MultipleLimit.CanonicalInitial.pathLaw_ae_transfer"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.CanonicalInitialAbsoluteContinuity",
+            "started": 1792297965.8941145,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 60.339685916900635
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/CanonicalInitialDensity.lean",
+          "sha256": "e2bbcc60547fffa5e2f47a6df53f5c4045fc8fb66797c34a84d205dddfa00f75",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.CanonicalInitial.composition_withDensity",
+            "PermanssonResearch.MultipleLimit.CanonicalInitial.pointPathKernel",
+            "PermanssonResearch.MultipleLimit.CanonicalInitial.pointPathKernel_isMarkov",
+            "PermanssonResearch.MultipleLimit.CanonicalInitial.pointPathKernel_apply",
+            "PermanssonResearch.MultipleLimit.CanonicalInitial.pathLaw_eq_point_comp",
+            "PermanssonResearch.MultipleLimit.CanonicalInitial.pointPathKernel_initial",
+            "PermanssonResearch.MultipleLimit.CanonicalInitial.pathLaw_eq_withDensity",
+            "PermanssonResearch.MultipleLimit.CanonicalInitial.pathLaw_rnDeriv"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.CanonicalInitialDensity",
+            "started": 1792298131.43046,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 55.14454460144043
           },
           "artifact_fresh": true
         },
@@ -3959,6 +5658,223 @@
             "status": "PASS",
             "returncode": 0,
             "elapsed": 71.91241669654846
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/CountableEmpiricalWeak.lean",
+          "sha256": "9e374c19a2854c053e5457b11702f757cfb2178f2f8c494e409b5dc5c758c7e2",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.CountableEmpirical.empirical_integral",
+            "PermanssonResearch.MultipleLimit.CountableEmpirical.basisCell",
+            "PermanssonResearch.MultipleLimit.CountableEmpirical.basisFamily",
+            "PermanssonResearch.MultipleLimit.CountableEmpirical.basisCell_open",
+            "PermanssonResearch.MultipleLimit.CountableEmpirical.basisFamily_pi",
+            "PermanssonResearch.MultipleLimit.CountableEmpirical.basisFamily_measurable",
+            "PermanssonResearch.MultipleLimit.CountableEmpirical.basisFamily_neighborhoods",
+            "PermanssonResearch.MultipleLimit.CountableEmpirical.weak_of_all_bounded_averages",
+            "PermanssonResearch.MultipleLimit.CountableEmpirical.empirical_continuous"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.CountableEmpiricalWeak",
+            "started": 1792298487.7410383,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 32.9348578453064
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/GrowingBlockAverages.lean",
+          "sha256": "3636356cb82a9d127a66fde6bc52fc819fd0ef1f6174d56292f421775e0e5dde",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.GrowingBlock.block_exists",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.block",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.block_eq",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.label",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.value",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.label_bounds",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.value_bounds",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.difference_bound",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.average",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.last_block_error",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.endpoint_error_tendsto_zero",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.even_endpoints",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.odd_endpoints",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.averages_do_not_converge",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.positive_horizon_averages_do_not_converge"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.GrowingBlockAverages",
+            "started": 1792299573.2802045,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 47.93435287475586
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/GrowingBlockCounterexample.lean",
+          "sha256": "a9d23da8a799fb9c00d36c569e043a500f8158010ed5f2ae0e14df40968cd15e",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.GrowingBlock.descriptor",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_measurable",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_continuous",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.score",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.score_descriptor",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_empirical_integral",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_occupations_do_not_converge",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_averages_fail",
+            "PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_occupations_fail"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.GrowingBlockCounterexample",
+            "started": 1792299621.3312058,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 52.84440064430237
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/NonfiniteClock.lean",
+          "sha256": "fc0c1985520f06219b9ab32d96f21decbf2150125e9df6cb1f99819a385b71ee",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_deterministic",
+            "PermanssonResearch.MultipleLimit.NonfiniteClock.clock",
+            "PermanssonResearch.MultipleLimit.NonfiniteClock.clock_markov",
+            "PermanssonResearch.MultipleLimit.NonfiniteClock.clock_law",
+            "PermanssonResearch.MultipleLimit.NonfiniteClock.empirical_integral",
+            "PermanssonResearch.MultipleLimit.NonfiniteClock.clock_singleton_frequency",
+            "PermanssonResearch.MultipleLimit.NonfiniteClock.clock_singletons_tendsto_zero",
+            "PermanssonResearch.MultipleLimit.NonfiniteClock.clock_no_probability_weak_limit",
+            "PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_clock_no_weak_limit"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.NonfiniteClock",
+            "started": 1792299426.7780485,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 49.71030306816101
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/PolishStationaryRandomOccupation.lean",
+          "sha256": "7a09b4036160b17ef24e364e451951ec01d37e5e654896bb100da75d8e18910a",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.PolishStationaryRandom.empirical_tendsto_randomLaw",
+            "PermanssonResearch.MultipleLimit.PolishStationaryRandom.randomLaw_aemeasurable_weakBorel",
+            "PermanssonResearch.MultipleLimit.PolishStationaryRandom.exists_measurable_random_limit",
+            "PermanssonResearch.MultipleLimit.PolishStationaryRandom.empirical_tendsto_randomLaw_of_initial_ac",
+            "PermanssonResearch.MultipleLimit.PolishStationaryRandom.descriptor_random_limit",
+            "PermanssonResearch.MultipleLimit.PolishStationaryRandom.descriptor_random_family"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.PolishStationaryRandomOccupation",
+            "started": 1792298653.0344627,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 34.694544315338135
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/StationaryCanonicalShift.lean",
+          "sha256": "01f087f113ed2776d6f66d5478ac08813bd56d2afbc25527613a2a736775058f",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.shift",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.measurable_shift",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.shift_iterate_zero",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.canonical_prefix_zero",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.canonical_eval_zero",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.append",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.measurable_append",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.append_pair",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.HasTransitionPair",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.prefix_maps_eq",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.measure_eq_of_prefix_maps",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.dropPrefix",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.measurable_dropPrefix",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.shifted_transition",
+            "PermanssonResearch.MultipleLimit.StationaryCanonical.shift_measurePreserving"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.StationaryCanonicalShift",
+            "started": 1792297576.1292524,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 56.886332273483276
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/StationaryConditionalInvariant.lean",
+          "sha256": "b20e017023a642ad42321a794b0ea0857eb74447a01329c5a71d3b1c0bf8f506",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.average",
+            "PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.endpoint_tendsto",
+            "PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.telescope",
+            "PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.conditional_predict_integral",
+            "PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.ambientKernel",
+            "PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.ambientKernel_isMarkov",
+            "PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.ambientKernel_apply",
+            "PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.composed_kernel_ae_eq",
+            "PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.randomLaw_invariant_ae"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.StationaryConditionalInvariant",
+            "started": 1792298578.0762327,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 43.94270443916321
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/StationaryConditionalLaw.lean",
+          "sha256": "0b362e8dfe715b029ad680c522ec95e4013813a9238a14122e0ded9c60e92805",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.StationaryConditional.invariantSpace",
+            "PermanssonResearch.MultipleLimit.StationaryConditional.conditionalKernel",
+            "PermanssonResearch.MultipleLimit.StationaryConditional.conditionalKernel_isMarkov",
+            "PermanssonResearch.MultipleLimit.StationaryConditional.randomLaw",
+            "PermanssonResearch.MultipleLimit.StationaryConditional.randomLaw_measurable_invariant",
+            "PermanssonResearch.MultipleLimit.StationaryConditional.randomLaw_measurable",
+            "PermanssonResearch.MultipleLimit.StationaryConditional.conditional_integral",
+            "PermanssonResearch.MultipleLimit.StationaryConditional.state_average_eq_birkhoff",
+            "PermanssonResearch.MultipleLimit.StationaryConditional.state_average_tendsto"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.StationaryConditionalLaw",
+            "started": 1792297898.1900244,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 58.57259917259216
+          },
+          "artifact_fresh": true
+        },
+        {
+          "source": "PermanssonResearch/MultipleLimit/StationaryRandomOccupation.lean",
+          "sha256": "de339fc5474297ef4e71e7ba28f7ed96505a2d6e1bcebb49cd9e7e721370de0b",
+          "named_exports": [
+            "PermanssonResearch.MultipleLimit.StationaryRandom.integral_difference_bound",
+            "PermanssonResearch.MultipleLimit.StationaryRandom.integral_tendsto_of_dense",
+            "PermanssonResearch.MultipleLimit.StationaryRandom.empirical_tendsto_randomLaw",
+            "PermanssonResearch.MultipleLimit.StationaryRandom.randomLaw_invariant_ae",
+            "PermanssonResearch.MultipleLimit.StationaryRandom.empirical_continuous",
+            "PermanssonResearch.MultipleLimit.StationaryRandom.randomLaw_aemeasurable_weakBorel",
+            "PermanssonResearch.MultipleLimit.StationaryRandom.measurable_weakBorel_version",
+            "PermanssonResearch.MultipleLimit.StationaryRandom.empirical_tendsto_randomLaw_of_initial_ac",
+            "PermanssonResearch.MultipleLimit.StationaryRandom.exists_measurable_random_limit",
+            "PermanssonResearch.MultipleLimit.StationaryRandom.descriptor_random_family"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.MultipleLimit.StationaryRandomOccupation",
+            "started": 1792298414.3046453,
+            "status": "PASS",
+            "returncode": 0,
+            "elapsed": 53.80714702606201
           },
           "artifact_fresh": true
         },
@@ -4540,6 +6456,28 @@
       "implementation_boundary_and_residual": "Legal quantitative approximation, two source controls, persistence and actual feature-effect wrapper. Source legality/dictionary bridge remains explicit.",
       "sources": [
         {
+          "source": "PermanssonResearch/Specialized/BoundaryWitnesses.lean",
+          "sha256": "72b7223a5150102bb65f3c270eab036e2a02f8edabe43311c79d4c57749711f3",
+          "named_exports": [
+            "PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.changedForm",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.changed_embedding_loses_negativity",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.exact_but_illegal_approximant",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.shell",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.dimension_two_retains_second_equation",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.zero_shift_does_not_supply_inverse"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Specialized.BoundaryWitnesses",
+            "started": 1792300019.2995286,
+            "elapsed": 44.78177762031555,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "72b7223a5150102bb65f3c270eab036e2a02f8edabe43311c79d4c57749711f3"
+          },
+          "artifact_fresh": true
+        },
+        {
           "source": "PermanssonResearch/Specialized/FiniteDetection.lean",
           "sha256": "43f7f1b7842ab92c38f6e220dedbe9b449f713bd156f1013112f69c091b49336",
           "named_exports": [
@@ -4571,6 +6509,28 @@
       "implementation_status": "LOCAL_IMPLEMENTATION_WITH_EXPLICIT_BOUNDARY",
       "implementation_boundary_and_residual": "Finite PSD negative shift, genuine inverse, determinant and two-way shell equations with actual shell dimension; genuine arbitrary-core resolvent and scalar-shell derivative. Source hierarchy adapters remain explicit.",
       "sources": [
+        {
+          "source": "PermanssonResearch/Specialized/BoundaryWitnesses.lean",
+          "sha256": "72b7223a5150102bb65f3c270eab036e2a02f8edabe43311c79d4c57749711f3",
+          "named_exports": [
+            "PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.changedForm",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.changed_embedding_loses_negativity",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.exact_but_illegal_approximant",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.shell",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.dimension_two_retains_second_equation",
+            "PermanssonResearch.Specialized.BoundaryWitnesses.zero_shift_does_not_supply_inverse"
+          ],
+          "local_compiler_observation": {
+            "module": "PermanssonResearch.Specialized.BoundaryWitnesses",
+            "started": 1792300019.2995286,
+            "elapsed": 44.78177762031555,
+            "status": "PASS",
+            "returncode": 0,
+            "source_sha256": "72b7223a5150102bb65f3c270eab036e2a02f8edabe43311c79d4c57749711f3"
+          },
+          "artifact_fresh": true
+        },
         {
           "source": "PermanssonResearch/Specialized/ShellResolvent.lean",
           "sha256": "c595d334a9049c85f404f5657d0e21eafee46b57b90879a6596cc40d5e980123",

@@ -1,0 +1,99 @@
+'PermanssonResearch.Probability.FiniteTransport.Coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.summary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.verticalRay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.verticalRay_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.verticalRay_convex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.epigraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.epigraph_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.epigraph_convex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.summary_mem_epigraph' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.mem_epigraph_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.product_summary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.pure_summary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.functional_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.functional_vertical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.exists_plan_of_dual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.envelope_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.envelope_lipschitz' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.envelope_dominates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.envelope_diagonal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.finite_isKRTest' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.potentials_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.exists_plan_of_w1DualLE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.integral_singleton_test' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.first_marginal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.second_marginal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransport.exists_coupling_of_w1DualLE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.finite_couplingW1_le_of_w1DualLE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.finite_w1DualLE_iff_couplingW1_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.finite_exists_optimal_coupling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.krDualValues' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.finite_couplingW1_eq_dual_supremum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransportRegression.dirac_dual_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransportRegression.dirac_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransportRegression.equal_laws_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransportRegression.scaledMetric' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_bound_two_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

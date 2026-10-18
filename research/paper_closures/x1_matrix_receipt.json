@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "module": "PermanssonResearch.X1.ExactMatrixTables",
+  "matrix_count": 8,
+  "entries_per_matrix": 324,
+  "literal_entries": 2592,
+  "source_sha256": {
+    "PermanssonResearch/X1/ExactMatrixTables.lean": "e9e74f52381068e5894537b9c621c9d50bf0566a141f511f0a1e9f77401e120f",
+    "research/paper_closures/spec/certificates/x1_exact_tables.json": "d86c41bbf7a71ba0246e632e2ba94b8521e58b513787c1e5cabb3fcdf8046b3c",
+    "verification/research/generate_x1_matrix_tables.py": "14073bf5d56171fce2fa13aae142290ef53947b854ceaf88fc3664113dd1f7b3",
+    "verification/research/audit_x1_matrix_tables.py": "afcf33608200a048f8c38b77f547b46664eb852b429253b20e5bce44db9ce3e4",
+    "verification/research/test_x1_paper_closure.py": "a30f2fdae0020ca9288d1f874b090d73bce64e2b6a7ccacc8fa2ff2a901169a4",
+    "verification/research/test_paper_x1_matrix_lean.py": "49856ede357f1f24ad314d7c3be248bbf17605375338d2ffd5c7e691e91f6c44",
+    "PermanssonResearch/X1/InterventionNumerics.lean": "ba9cdc65de8104f8f522c7c0bfa2d3bce6cc923a79b4dbd65fe4975e369f41b3",
+    "PermanssonResearch/X1/InterventionNumericalBridge.lean": "fbc4c91fcf7379f0c12b0112213e04b9e6d0a378179807b758dc3f2e4bb48b4c",
+    "PermanssonResearch/X1/ExactTerminalTables.lean": "fbf7935af4892ed3a663aa5729fccbffa62b7b23bde9fee75bbc09e39e584cb4",
+    "PermanssonResearch/X1/ExactMargins.lean": "3a29e5a94da11489b6a920795d76cbdb9316b64002aaf04e6cf2442c9105d061"
+  },
+  "compiler_command": [
+    "C:\\Users\\macka\\.codex\\.chatgpt-projects\\g-p-6a7dcd5280008191a543947c8a70779d\\.tools\\lean-4.34.0-windows\\bin\\lean.exe"
+  ],
+  "exact_certificate_rendering": true,
+  "positive_control": {
+    "status": "PASS",
+    "returncode": 0,
+    "elapsed": 53.54700000002049,
+    "control_sha256": "e9e74f52381068e5894537b9c621c9d50bf0566a141f511f0a1e9f77401e120f"
+  },
+  "mutations": {
+    "corrupt_matrix_literal": {
+      "status": "REJECTED",
+      "returncode": 1,
+      "expected_proof_failure": "unsolved goals\n\u22a2 False",
+      "invalid_diagnostics": [],
+      "elapsed": 61.13999999995576,
+      "mutation_sha256": "be446ab114961ec749149a9a754cf858cd8601a70ce1860b2b6338f240efeeeb"
+    }
+  },
+  "axiom_audit": {
+    "status": "PASS",
+    "returncode": 0,
+    "declarations": 8,
+    "declaration_names": [
+      "PermanssonResearch.X1.InterventionNumerics.matrixData",
+      "PermanssonResearch.X1.InterventionNumerics.matrix",
+      "PermanssonResearch.X1.InterventionNumerics.baseline_corner_literal",
+      "PermanssonResearch.X1.InterventionNumerics.matrix_eq_entry",
+      "PermanssonResearch.X1.InterventionNumerics.stateIndex_surjective",
+      "PermanssonResearch.X1.InterventionNumerics.matrix_nonneg",
+      "PermanssonResearch.X1.InterventionNumerics.matrix_sum_one",
+      "PermanssonResearch.X1.InterventionNumerics.matrix_atom_eq"
+    ],
+    "missing": [],
+    "forbidden": {},
+    "elapsed": 50.98500000004424
+  },
+  "compiled_artifacts": {
+    ".lake/build/lib/lean/PermanssonResearch/X1/ExactMatrixTables.olean": "8fc8122c0f67d715d462d48ec1a96d1b59c385bfe882a0583fdc1f842420f370",
+    ".lake/build/lib/lean/PermanssonResearch/X1/InterventionNumerics.olean": "5511d2cc700fa8124d63a06f20fe44dc803e83afae9a1057e205532a47c1e705",
+    ".lake/build/lib/lean/PermanssonResearch/X1/InterventionNumericalBridge.olean": "4d3ffd50845c1e43c0f580fc43c9511554746f2e8a0ee01e3c5e339bd30d5a0f",
+    ".lake/build/lib/lean/PermanssonResearch/X1/ExactTerminalTables.olean": "329fcd65a6d773dd8f32145a6851234b467518d4a61ad41cb343d10d9ec90fd0",
+    ".lake/build/lib/lean/PermanssonResearch/X1/ExactMargins.olean": "32e732d7d11b8c63ddbb4d8415738a939552d691c0b01e0b2aaeb2b99ec90921"
+  },
+  "changed_files": []
+}

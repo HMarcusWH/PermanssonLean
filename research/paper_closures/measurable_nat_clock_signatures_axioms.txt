@@ -1,0 +1,682 @@
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4} : Type (max (max (max u_3 u_2) u_1) u_4)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState' does not depend on any axioms
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.NewState.{u_1, u_2, u_3, u_4} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4} : Type (max (max (max u_3 u_2) u_1) u_4)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.NewState' does not depend on any axioms
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.liftStrategic.{u_1, u_2, u_3} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} (t : ℕ) (s : PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) :
+  PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 (Prod.{u_3, 0} S2 ℕ)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.liftStrategic' does not depend on any axioms
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{u_1, u_2, u_3, u_4} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4} (t : ℕ)
+  (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4}) :
+  PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.NewState.{u_1, u_2, u_3, u_4}
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift' does not depend on any axioms
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop.{u_1, u_2, u_3, u_4} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4}
+  (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.NewState.{u_1, u_2, u_3, u_4}) :
+  PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4}
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop' does not depend on any axioms
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase.{u_1, u_2, u_3, u_4} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4}
+  (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.NewState.{u_1, u_2, u_3, u_4}) : ℕ
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase' does not depend on any axioms
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropWorld.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  (i :
+    PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+      (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 (Prod.{u_3, 0} S2 ℕ)) X (Prod.{u_5, u_6} A1 A2)) :
+  PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+    (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropWorld' does not depend on any axioms
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropInput.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  (i :
+    PermanssonLean.UpdateInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+      (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 (Prod.{u_3, 0} S2 ℕ)) X (Prod.{u_5, u_6} A1 A2)) :
+  PermanssonLean.UpdateInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+    (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropInput' does not depend on any axioms
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_liftStrategic.{u_1, u_2, u_3} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2]
+  (t : ℕ) :
+  Measurable.{max (max u_1 u_2) u_3, max (max u_1 u_2) u_3}
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.liftStrategic.{u_1, u_2, u_3} t)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_liftStrategic' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_lift.{u_1, u_2, u_3, u_4} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1]
+  [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] (t : ℕ) :
+  Measurable.{max (max (max u_1 u_2) u_3) u_4, max (max (max u_1 u_2) u_3) u_4}
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{u_1, u_2, u_3, u_4} t)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_lift' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_drop.{u_1, u_2, u_3, u_4} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1]
+  [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] :
+  Measurable.{max (max (max u_1 u_2) u_3) u_4, max (max (max u_1 u_2) u_3) u_4}
+    PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop.{u_1, u_2, u_3, u_4}
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_drop' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_phase.{u_1, u_2, u_3, u_4} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1]
+  [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] :
+  Measurable.{max (max (max u_1 u_2) u_3) u_4, 0}
+    PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase.{u_1, u_2, u_3, u_4}
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_phase' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_dropWorld.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X]
+  [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2] :
+  Measurable.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6}
+    PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropWorld.{u_1, u_2, u_3, u_4, u_5, u_6}
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_dropWorld' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_dropInput.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X]
+  [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2] :
+  Measurable.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6}
+    PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropInput.{u_1, u_2, u_3, u_4, u_5, u_6}
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.measurable_dropInput' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop_lift.{u_1, u_2, u_3, u_4} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2]
+  [MeasurableSpace.{u_4} X] (t : ℕ)
+  (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4}) :
+  Eq.{max (max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)) (u_4 + 1)}
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop.{u_1, u_2, u_3, u_4}
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{u_1, u_2, u_3, u_4} t y))
+    y
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop_lift' does not depend on any axioms
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase_lift.{u_1, u_2, u_3, u_4} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2]
+  [MeasurableSpace.{u_4} X] (t : ℕ)
+  (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4}) :
+  Eq.{1}
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase.{u_1, u_2, u_3, u_4}
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{u_1, u_2, u_3, u_4} t y))
+    t
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase_lift' does not depend on any axioms
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.selectKernel.{u_7, u_8, u_9} {Y : Type u_7} {Z : Type u_8}
+  {W : Type u_9} [MeasurableSpace.{u_7} Y] [MeasurableSpace.{u_8} Z] [MeasurableSpace.{u_9} W]
+  (κ : ℕ → ProbabilityTheory.Kernel.{u_7, u_8} Y Z) (τ : W → ℕ) (f : W → Y) (hτ : Measurable.{u_9, 0} τ)
+  (hf : Measurable.{u_9, u_7} f) : ProbabilityTheory.Kernel.{u_9, u_8} W Z
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.selectKernel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.playerOne.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2) :
+  PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 (Prod.{u_3, 0} S2 ℕ) X A1 A2
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.playerOne' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) :
+  PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 (Prod.{u_3, 0} S2 ℕ) X A1 A2
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor_action.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.NewState.{u_1, u_2, u_3, u_4}) :
+  Eq.{u_6 + 1}
+    ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6}
+        (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor.{u_1, u_2, u_3, u_4, u_5, u_6} a next))
+      y)
+    ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6}
+        (a (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase.{u_1, u_2, u_3, u_4} y)))
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop.{u_1, u_2, u_3, u_4} y))
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor_action' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor_update.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ)
+  (i :
+    PermanssonLean.UpdateInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+      (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 (Prod.{u_3, 0} S2 ℕ)) X (Prod.{u_5, u_6} A1 A2)) :
+  Eq.{u_3 + 1}
+    ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6}
+        (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor.{u_1, u_2, u_3, u_4, u_5, u_6} a next))
+      i)
+    (MeasureTheory.Measure.map.{u_3, u_3}
+      (fun s =>
+        Prod.mk.{u_3, 0} s
+          (next (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase.{u_1, u_2, u_3, u_4} i.1.1)))
+      ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (a (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase.{u_1, u_2, u_3, u_4} i.1.1)))
+        (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.dropInput.{u_1, u_2, u_3, u_4, u_5, u_6} i)))
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor_update' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) :
+  PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 (Prod.{u_3, 0} S2 ℕ) X A1 A2
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X) :
+  ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+    (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+      (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 (Prod.{u_3, 0} S2 ℕ)) X (Prod.{u_5, u_6} A1 A2))
+    X
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical_isMarkov.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P] :
+  ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_6 u_5) u_4) u_3) u_2) u_1, u_4}
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical.{u_1, u_2, u_3, u_4, u_5, u_6} P)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.advancing_update.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (i :
+    PermanssonLean.UpdateInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+      (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 (Prod.{u_3, 0} S2 ℕ)) X (Prod.{u_5, u_6} A1 A2)) :
+  Eq.{1}
+    (((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor.{u_1, u_2, u_3, u_4, u_5, u_6} a Nat.succ))
+        i)
+      (SProd.sprod.{u_3, 0, u_3} Set.univ.{u_3}
+        (Singleton.singleton.{0, 0}
+          (HAdd.hAdd.{0, 0, 0}
+            (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase.{u_1, u_2, u_3, u_4} i.1.1) 1))))
+    1
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.advancing_update' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_feasibility.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X]
+  [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ)
+  (legal : ℕ → PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4} → Set.{u_6} A2)
+  (h :
+    ∀ (t : ℕ)
+      (y :
+        PermanssonLean.JointState.{max (max u_3 u_2) u_1, u_4}
+          (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X),
+      Eq.{1}
+        (((PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6} (a t)) y) (legal t y))
+        1)
+  (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.NewState.{u_1, u_2, u_3, u_4}) :
+  Eq.{1}
+    (((PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor.{u_1, u_2, u_3, u_4, u_5, u_6} a next))
+        y)
+      (legal (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase.{u_1, u_2, u_3, u_4} y)
+        (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop.{u_1, u_2, u_3, u_4} y)))
+    1
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_feasibility' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_exogeneity.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X]
+  [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) (hG : PermanssonResearch.MultiAgent.IsExogenousCommon.{u_1, u_2, u_3, u_4, u_5, u_6} G) :
+  PermanssonResearch.MultiAgent.IsExogenousCommon.{u_1, u_2, u_3, u_4, u_5, u_6}
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator.{u_1, u_2, u_3, u_4, u_5, u_6} G a next)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_exogeneity' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_strictness.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X]
+  [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ)
+  (ha : ∀ (t : ℕ), PermanssonResearch.MultiAgent.IsStrictlyNonReactive.{u_1, u_2, u_3, u_4, u_5, u_6} (a t)) :
+  PermanssonResearch.MultiAgent.IsStrictlyNonReactive.{u_1, u_2, u_3, u_4, u_5, u_6}
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor.{u_1, u_2, u_3, u_4, u_5, u_6} a next)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_strictness' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.product_attach_clock.{u_1, u_2, u_3} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2]
+  (μ0 : MeasureTheory.Measure.{u_1} S0) (μ1 : MeasureTheory.Measure.{u_2} S1) (μ2 : MeasureTheory.Measure.{u_3} S2)
+  [MeasureTheory.IsProbabilityMeasure.{u_1} μ0] [MeasureTheory.IsProbabilityMeasure.{u_2} μ1]
+  [MeasureTheory.IsProbabilityMeasure.{u_3} μ2] (t : ℕ) :
+  Eq.{max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)}
+    (MeasureTheory.Measure.prod.{u_1, max u_2 u_3} μ0
+      (MeasureTheory.Measure.prod.{u_2, u_3} μ1
+        (MeasureTheory.Measure.map.{u_3, u_3} (fun s => Prod.mk.{u_3, 0} s t) μ2)))
+    (MeasureTheory.Measure.map.{max (max u_3 u_2) u_1, max (max u_3 u_2) u_1}
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.liftStrategic.{u_1, u_2, u_3} t)
+      (MeasureTheory.Measure.prod.{u_1, max u_2 u_3} μ0 (MeasureTheory.Measure.prod.{u_2, u_3} μ1 μ2)))
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.product_attach_clock' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.action_lift.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) (t : ℕ) (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4}) :
+  Eq.{max (u_5 + 1) (u_6 + 1)}
+    ((PermanssonLean.StrategicGenerator.action.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toGenerator.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator.{u_1, u_2, u_3, u_4, u_5, u_6} G a next)))
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{u_1, u_2, u_3, u_4} t y))
+    ((PermanssonLean.StrategicGenerator.action.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toGenerator.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.player1.{u_1, u_2, u_3, u_4, u_5, u_6} G) (a t))))
+      y)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.action_lift' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.update_lift.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) (t : ℕ) (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4})
+  (b : Prod.{u_5, u_6} A1 A2) (x : X) :
+  Eq.{max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)}
+    ((PermanssonLean.StrategicGenerator.update.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toGenerator.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator.{u_1, u_2, u_3, u_4, u_5, u_6} G a next)))
+      (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+        (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{u_1, u_2, u_3, u_4} t y) b)
+        x))
+    (MeasureTheory.Measure.map.{max (max u_3 u_2) u_1, max (max u_3 u_2) u_1}
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.liftStrategic.{u_1, u_2, u_3} (next t))
+      ((PermanssonLean.StrategicGenerator.update.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toGenerator.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G
+              (PermanssonResearch.MultiAgent.TwoPlayerGenerator.player1.{u_1, u_2, u_3, u_4, u_5, u_6} G) (a t))))
+        (Prod.mk.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4}
+          (Prod.mk.{max (max (max u_1 u_2) u_3) u_4, max u_5 u_6} y b) x)))
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.update_lift' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.actual_row.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) (t : ℕ) (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4}) :
+  Eq.{max (max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)) (u_4 + 1)}
+    (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max (max (max u_4 u_3) u_2) u_1}
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{u_1, u_2, u_3, u_4} (next t))
+      ((PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G
+              (PermanssonResearch.MultiAgent.TwoPlayerGenerator.player1.{u_1, u_2, u_3, u_4, u_5, u_6} G) (a t))
+            P))
+        y))
+    ((PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator.{u_1, u_2, u_3, u_4, u_5, u_6} G a next)
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical.{u_1, u_2, u_3, u_4, u_5, u_6} P)))
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{u_1, u_2, u_3, u_4} t y))
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.actual_row' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) (t n : ℕ) :
+  ProbabilityTheory.Kernel.{max (max (max u_4 u_3) u_2) u_1, max (max (max u_4 u_3) u_2) u_1}
+    PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4}
+    PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4}
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel_isMarkov.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X]
+  [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) (t n : ℕ) :
+  ProbabilityTheory.IsMarkovKernel.{max (max (max u_4 u_3) u_2) u_1, max (max (max u_4 u_3) u_2) u_1}
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel.{u_1, u_2, u_3, u_4, u_5, u_6} G P a next t
+      n)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.actual_projection.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) (t : ℕ)
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4})
+  [MeasureTheory.IsProbabilityMeasure.{max (max (max u_1 u_2) u_3) u_4} μ] :
+  Eq.{max (max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)) (u_4 + 1)}
+    (MeasureTheory.Measure.map.{max (max (max u_1 u_2) u_3) u_4, max (max (max u_1 u_2) u_3) u_4}
+      (fun w n => PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop.{u_1, u_2, u_3, u_4} (w n))
+      (PermanssonLean.StrategicWorldModel.pathLaw.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator.{u_1, u_2, u_3, u_4, u_5, u_6} G a next)
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical.{u_1, u_2, u_3, u_4, u_5, u_6} P))
+        (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max (max (max u_1 u_2) u_3) u_4}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{u_1, u_2, u_3, u_4} t) μ)))
+    (PermanssonResearch.MultiAgent.Chronological.law.{max (max u_3 u_2) u_1, u_4}
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel.{u_1, u_2, u_3, u_4, u_5, u_6} G P a next
+        t)
+      μ)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.actual_projection' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.openLoop_projection.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X]
+  [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (a b : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) (r : PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (t : ℕ)
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4})
+  [MeasureTheory.IsProbabilityMeasure.{max (max (max u_1 u_2) u_3) u_4} μ] :
+  Eq.{max (max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)) (u_4 + 1)}
+    (MeasureTheory.Measure.map.{max (max (max u_1 u_2) u_3) u_4, max (max (max u_1 u_2) u_3) u_4}
+      (fun w n => PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop.{u_1, u_2, u_3, u_4} (w n))
+      (PermanssonLean.StrategicWorldModel.pathLaw.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6}
+            (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator.{u_1, u_2, u_3, u_4, u_5, u_6} G a next)
+            (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.playerOne.{u_1, u_2, u_3, u_4, u_5, u_6} r)
+            (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor.{u_1, u_2, u_3, u_4, u_5, u_6} b next))
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical.{u_1, u_2, u_3, u_4, u_5, u_6} P))
+        (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max (max (max u_1 u_2) u_3) u_4}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{u_1, u_2, u_3, u_4} t) μ)))
+    (PermanssonResearch.MultiAgent.Chronological.law.{max (max u_3 u_2) u_1, u_4}
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel.{u_1, u_2, u_3, u_4, u_5, u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.closedLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G r) P b next t)
+      μ)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.openLoop_projection' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.succ_iterate (t n : ℕ) :
+  Eq.{1} (Nat.iterate.{1} Nat.succ n t) (HAdd.hAdd.{0, 0, 0} t n)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.succ_iterate' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_scheduled_row.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X]
+  [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2) (t n : ℕ) :
+  Eq.{max (max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)) (u_4 + 1)}
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel.{u_1, u_2, u_3, u_4, u_5, u_6} G P a
+      Nat.succ t n)
+    (PermanssonLean.StrategicWorldModel.inducedKernel.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+      (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6} G
+          (PermanssonResearch.MultiAgent.TwoPlayerGenerator.player1.{u_1, u_2, u_3, u_4, u_5, u_6} G)
+          (a (HAdd.hAdd.{0, 0, 0} t n)))
+        P))
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_scheduled_row' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_projection.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6}
+  [MeasurableSpace.{u_1} S0] [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X]
+  [MeasurableSpace.{u_5} A1] [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2) (t : ℕ)
+  (μ :
+    MeasureTheory.Measure.{max (max (max u_4 u_3) u_2) u_1}
+      PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{u_1, u_2, u_3, u_4})
+  [MeasureTheory.IsProbabilityMeasure.{max (max (max u_1 u_2) u_3) u_4} μ] :
+  Eq.{max (max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)) (u_4 + 1)}
+    (MeasureTheory.Measure.map.{max (max (max u_1 u_2) u_3) u_4, max (max (max u_1 u_2) u_3) u_4}
+      (fun w n => PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop.{u_1, u_2, u_3, u_4} (w n))
+      (PermanssonLean.StrategicWorldModel.pathLaw.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator.{u_1, u_2, u_3, u_4, u_5, u_6} G a
+            Nat.succ)
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical.{u_1, u_2, u_3, u_4, u_5, u_6} P))
+        (MeasureTheory.Measure.map.{max (max (max u_4 u_3) u_2) u_1, max (max (max u_1 u_2) u_3) u_4}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{u_1, u_2, u_3, u_4} t) μ)))
+    (PermanssonResearch.MultiAgent.Chronological.law.{max (max u_3 u_2) u_1, u_4}
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel.{u_1, u_2, u_3, u_4, u_5, u_6} G P a
+        Nat.succ t)
+      μ)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_projection' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.protocol_world_eq.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace.{u_1} S0]
+  [MeasurableSpace.{u_2} S1] [MeasurableSpace.{u_3} S2] [MeasurableSpace.{u_4} X] [MeasurableSpace.{u_5} A1]
+  [MeasurableSpace.{u_6} A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel.{max (max (max u_6 u_5) u_4) (max u_3 u_2) u_1, u_4}
+      (PermanssonLean.WorldInput.{max (max u_3 u_2) u_1, u_4, max u_6 u_5}
+        (PermanssonResearch.MultiAgent.GameState.{u_1, u_2, u_3} S0 S1 S2) X (Prod.{u_5, u_6} A1 A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel.{max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6, u_4} P]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ)
+  (r :
+    PermanssonResearch.MultiAgent.PlayerOneMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 (Prod.{u_3, 0} S2 ℕ) X A1 A2)
+  (b :
+    PermanssonResearch.MultiAgent.PlayerTwoMechanism.{u_1, u_2, u_3, u_4, u_5, u_6} S0 S1 (Prod.{u_3, 0} S2 ℕ) X A1
+      A2) :
+  Eq.{max (max (max (max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)) (u_4 + 1)) (u_5 + 1)) (u_6 + 1)}
+    (PermanssonLean.StrategicWorldModel.world.{max (max u_1 u_2) u_3, u_4, max u_5 u_6}
+      (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{u_1, u_2, u_3, u_4, u_5, u_6}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.openLoop.{u_1, u_2, u_3, u_4, u_5, u_6}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator.{u_1, u_2, u_3, u_4, u_5, u_6} G a next) r
+          b)
+        (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical.{u_1, u_2, u_3, u_4, u_5, u_6} P)))
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical.{u_1, u_2, u_3, u_4, u_5, u_6} P)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.protocol_world_eq' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.player1 :
+  PermanssonResearch.MultiAgent.PlayerOneMechanism.{0, 0, 0, 0, 0, 0} ℝ ℝ ℝ ℝ ℝ ℝ
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.player1' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule (t : ℕ) :
+  PermanssonResearch.MultiAgent.PlayerTwoMechanism.{0, 0, 0, 0, 0, 0} ℝ ℝ ℝ ℝ ℝ ℝ
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.baseline :
+  PermanssonResearch.MultiAgent.TwoPlayerGenerator.{0, 0, 0, 0, 0, 0} ℝ ℝ ℝ ℝ ℝ ℝ
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.baseline' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world :
+  ProbabilityTheory.Kernel.{0, 0}
+    (PermanssonLean.WorldInput.{0, 0, 0} (PermanssonResearch.MultiAgent.GameState.{0, 0, 0} ℝ ℝ ℝ) ℝ (Prod.{0, 0} ℝ ℝ))
+    ℝ
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world_isMarkov :
+  ProbabilityTheory.IsMarkovKernel.{0, 0} PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world_isMarkov' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.scheduled_actions_differ (t u : ℕ)
+  (htu : Ne.{1} t u) (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{0, 0, 0, 0}) :
+  Ne.{1}
+    ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{0, 0, 0, 0, 0, 0}
+        (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule t))
+      y)
+    ((PermanssonResearch.MultiAgent.PlayerTwoMechanism.action.{0, 0, 0, 0, 0, 0}
+        (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule u))
+      y)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.scheduled_actions_differ' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.strict_schedule (t : ℕ) :
+  PermanssonResearch.MultiAgent.IsStrictlyNonReactive.{0, 0, 0, 0, 0, 0}
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule t)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.strict_schedule' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.clocked_strict :
+  PermanssonResearch.MultiAgent.IsStrictlyNonReactive.{0, 0, 0, 0, 0, 0}
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor.{0, 0, 0, 0, 0, 0}
+      PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule Nat.succ)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.clocked_strict' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.clock_advances
+  (i :
+    PermanssonLean.UpdateInput.{0, 0, 0} (PermanssonResearch.MultiAgent.GameState.{0, 0, 0} ℝ ℝ (Prod.{0, 0} ℝ ℕ)) ℝ
+      (Prod.{0, 0} ℝ ℝ)) :
+  Eq.{1}
+    (((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{0, 0, 0, 0, 0, 0}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor.{0, 0, 0, 0, 0, 0}
+            PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule Nat.succ))
+        i)
+      (SProd.sprod.{0, 0, 0} Set.univ.{0}
+        (Singleton.singleton.{0, 0}
+          (HAdd.hAdd.{0, 0, 0} (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase.{0, 0, 0, 0} i.1.1) 1))))
+    1
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.clock_advances' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.stalled_clock_rejected (t : ℕ)
+  (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{0, 0, 0, 0}) :
+  Eq.{1}
+    (((PermanssonResearch.MultiAgent.PlayerTwoMechanism.update.{0, 0, 0, 0, 0, 0}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor.{0, 0, 0, 0, 0, 0}
+            PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule Nat.succ))
+        (Prod.mk.{0, 0}
+          (Prod.mk.{0, 0} (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{0, 0, 0, 0} t y)
+            (Prod.mk.{0, 0} 0 0))
+          0))
+      (SProd.sprod.{0, 0, 0} Set.univ.{0} (Singleton.singleton.{0, 0} t)))
+    0
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.stalled_clock_rejected' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.full_actual_real_projection (t : ℕ)
+  (μ : MeasureTheory.Measure.{0} PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState.{0, 0, 0, 0})
+  [MeasureTheory.IsProbabilityMeasure.{0} μ] :
+  Eq.{1}
+    (MeasureTheory.Measure.map.{0, 0}
+      (fun w n => PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop.{0, 0, 0, 0} (w n))
+      (PermanssonLean.StrategicWorldModel.pathLaw.{0, 0, 0}
+        (PermanssonResearch.MultiAgent.TwoPlayerGenerator.toModel.{0, 0, 0, 0, 0, 0}
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator.{0, 0, 0, 0, 0, 0}
+            PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.baseline
+            PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule Nat.succ)
+          (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical.{0, 0, 0, 0, 0, 0}
+            PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world))
+        (MeasureTheory.Measure.map.{0, 0} (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift.{0, 0, 0, 0} t)
+          μ)))
+    (PermanssonResearch.MultiAgent.Chronological.law.{0, 0}
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel.{0, 0, 0, 0, 0, 0}
+        PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.baseline
+        PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.world
+        PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule Nat.succ t)
+      μ)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.full_actual_real_projection' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it

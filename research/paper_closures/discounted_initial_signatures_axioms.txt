@@ -1,0 +1,67 @@
+PermanssonResearch.Probability.discounted_geometric_budget_initial {β η ε : ℝ} (hβ0 : LE.le.{0} 0 β)
+  (hβ1 : LT.lt.{0} β 1) (hη0 : LE.le.{0} 0 η) (hη1 : LE.le.{0} η 1) :
+  Eq.{1}
+    (∑' (n : ℕ),
+      HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 β) (HPow.hPow.{0, 0, 0} β n))
+        (HSub.hSub.{0, 0, 0} 1
+          (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 ε) (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 η) n))))
+    (HSub.hSub.{0, 0, 0} 1
+      (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 ε) (HSub.hSub.{0, 0, 0} 1 β))
+        (HSub.hSub.{0, 0, 0} 1 (HMul.hMul.{0, 0, 0} β (HSub.hSub.{0, 0, 0} 1 η)))))
+'PermanssonResearch.Probability.discounted_geometric_budget_initial' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.initial_geometric_error_bounds {η ε : ℝ} (hη0 : LE.le.{0} 0 η) (hη1 : LE.le.{0} η 1)
+  (hε0 : LE.le.{0} 0 ε) (hε1 : LE.le.{0} ε 1) (n : ℕ) :
+  LE.le.{0} 0
+      (HSub.hSub.{0, 0, 0} 1
+        (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 ε) (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 η) n))) ∧
+    LE.le.{0}
+      (HSub.hSub.{0, 0, 0} 1
+        (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 ε) (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 η) n)))
+      1
+'PermanssonResearch.Probability.initial_geometric_error_bounds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.discounted_output_score_error_initial.{u_1, u_2} {Ω : Type u_1} [MeasurableSpace.{u_1} Ω]
+  {V : ℕ → Type u_2} [(n : ℕ) → MeasurableSpace.{u_2} (V n)] (μ ν : MeasureTheory.Measure.{u_1} Ω)
+  [MeasureTheory.IsProbabilityMeasure.{u_1} μ] [MeasureTheory.IsProbabilityMeasure.{u_1} ν] (output : (n : ℕ) → Ω → V n)
+  (ho : ∀ (n : ℕ), Measurable.{u_1, u_2} (output n)) (g : (n : ℕ) → V n → ℝ) (hg : ∀ (n : ℕ), Measurable.{u_2, 0} (g n))
+  (hg0 : ∀ (n : ℕ) (v : V n), LE.le.{0} 0 (g n v)) (hg1 : ∀ (n : ℕ) (v : V n), LE.le.{0} (g n v) 1) {β η ε : ℝ}
+  (hβ0 : LE.le.{0} 0 β) (hβ1 : LT.lt.{0} β 1) (hη0 : LE.le.{0} 0 η) (hη1 : LE.le.{0} η 1) (hε0 : LE.le.{0} 0 ε)
+  (hε1 : LE.le.{0} ε 1)
+  (htv :
+    ∀ (n : ℕ),
+      LE.le.{0}
+        (PermanssonLean.ProbabilitySupport.eventTotalVariation.{u_2} (MeasureTheory.Measure.map.{u_1, u_2} (output n) μ)
+          (MeasureTheory.Measure.map.{u_1, u_2} (output n) ν))
+        (HSub.hSub.{0, 0, 0} 1
+          (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 ε) (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 η) n)))) :
+  LE.le.{0}
+    (abs.{0}
+      (HSub.hSub.{0, 0, 0}
+        (∫ (ω : Ω),
+          PermanssonResearch.Probability.summablePathScore.{u_1}
+            (fun n => HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 β) (HPow.hPow.{0, 0, 0} β n))
+            (fun n ω => g n (output n ω)) ω ∂μ)
+        (∫ (ω : Ω),
+          PermanssonResearch.Probability.summablePathScore.{u_1}
+            (fun n => HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 β) (HPow.hPow.{0, 0, 0} β n))
+            (fun n ω => g n (output n ω)) ω ∂ν)))
+    (HSub.hSub.{0, 0, 0} 1
+      (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 ε) (HSub.hSub.{0, 0, 0} 1 β))
+        (HSub.hSub.{0, 0, 0} 1 (HMul.hMul.{0, 0, 0} β (HSub.hSub.{0, 0, 0} 1 η)))))
+'PermanssonResearch.Probability.discounted_output_score_error_initial' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.Probability.zero_row_defect_retains_initial_budget {β ε : ℝ} (hβ0 : LE.le.{0} 0 β)
+  (hβ1 : LT.lt.{0} β 1) :
+  Eq.{1}
+    (∑' (n : ℕ),
+      HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 β) (HPow.hPow.{0, 0, 0} β n))
+        (HSub.hSub.{0, 0, 0} 1
+          (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 ε) (HPow.hPow.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 0) n))))
+    ε
+'PermanssonResearch.Probability.zero_row_defect_retains_initial_budget' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]

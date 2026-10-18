@@ -1,0 +1,17 @@
+PermanssonResearch\X1\InterventionNumericalBridge.lean:55:31: warning: This simp argument is unused:
+  sum_bool
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrainAction, Kernel.deterministic_apply, InterventionNumerics.rates, Fintype.sum_prod_type, boolMass]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+PermanssonResearch\X1\InterventionNumericalBridge.lean:89:23: warning: This simp argument is unused:
+  Measure.dirac_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Set.indicator, boolMass, mul_ite, add_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+PermanssonResearch\X1\InterventionNumericalBridge.lean:98:14: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`

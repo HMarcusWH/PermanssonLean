@@ -1,0 +1,645 @@
+{
+  "format": "Permansson.AcceptanceImportedDeclarations.v1",
+  "kind": "CURRENT_SOURCE_AND_IMPORTED_ARTIFACT_SIGNATURE_AXIOM_AUDIT",
+  "status": "PASS",
+  "returncode": 0,
+  "elapsed": 25.918575525283813,
+  "source_sha256": {
+    "PermanssonResearch/X1/InterventionNumericalBridge.lean": "fbc4c91fcf7379f0c12b0112213e04b9e6d0a378179807b758dc3f2e4bb48b4c",
+    "PermanssonResearch/X1/ExactMatrixTables.lean": "e9e74f52381068e5894537b9c621c9d50bf0566a141f511f0a1e9f77401e120f",
+    "PermanssonResearch/X1/ExactTerminalTables.lean": "fbf7935af4892ed3a663aa5729fccbffa62b7b23bde9fee75bbc09e39e584cb4",
+    "PermanssonResearch/X1/ExactMargins.lean": "3a29e5a94da11489b6a920795d76cbdb9316b64002aaf04e6cf2442c9105d061",
+    "PermanssonResearch/X1/Comparison.lean": "687e157b001238b40ec708ac5b3d3d6cc165963be0ca6e99d9c41d16113d0f80",
+    "PermanssonResearch/Games/DiscountedVerification.lean": "86e6ea8f1d77eb8bc8f12cf1b2c7c361e11753cc42bb4cd101695d87d7331a8a",
+    "PermanssonResearch/X1/FullStrategyCertificate.lean": "55f197b0e2ea77dff49275a0180de3b59b5ccbb27dc8b4893a1b9deb4cf8300c",
+    "PermanssonResearch/X1/StrategyRegression.lean": "f0e457b1d0b086731a1d4b858c968546a6d753f9128ff5280ef549414d596f1a",
+    "PermanssonResearch/StrategicWorld/ActionTrace.lean": "4e9a448bd6775a2de792eaa1bf381d6d3e6cd4dd5df906d8d06401ec6879200f",
+    "PermanssonResearch/StrategicWorld/InformationBoundary.lean": "d574f9a53fca79cea5d74f124e6b7c80ab307122aa0ddfb772b4f76162ab5103",
+    "PermanssonResearch/MultiAgent/StrictMA2Obstruction.lean": "c294448f00c5c79d66a17684836616878258be7d2f7c8772ab7281b214c56c2f",
+    "PermanssonResearch/MultiAgent/AutonomousAEMechanisms.lean": "4bbece652236607d405af7d8cc03c536e16e3da04952c7abc90684776233f298",
+    "PermanssonResearch/MultiAgent/AutonomousAEContinuumFixture.lean": "c36d8c2651f11d8c045b5a48e3b2fa033fa6f906cc4f6fbeac9c7a3e000e45a2",
+    "PermanssonResearch/MultiAgent/PlayerSwapTransport.lean": "c35c5318c9f3e0459b22f1d4f946071c88fc4af37c4a8bf766b5015b0ec4252f",
+    "PermanssonResearch/MultiAgent/FiniteProductTwo.lean": "f54d1c3a23714604298d38adc4518fbb1f9027941551a25a7ba3fa4f6b6ac6ec",
+    "PermanssonResearch/MultiAgent/PrivateClockTransport.lean": "4633ec71712fc18d05a6006240342b448becf07636689da3d0800c7535e750f9",
+    "PermanssonResearch/MultiAgent/NatPrivateClockTransport.lean": "7b37eb66384cd699ef57c76f1a93511b04b444657ca2f12672322e61ff0bf4ca",
+    "PermanssonResearch/MultiAgent/MeasurableNatPrivateClock.lean": "3b95ae06a9eb3a6500cd6df23c291bbb865343a9fcb6508d0eca288bf74afb2a",
+    "PermanssonResearch/MultiAgent/MeasurableNatClockTransport.lean": "ad1b1eae9afeaca7ba334dd545b8d14864af9a5a8c67c796f5f487f90acbec42",
+    "PermanssonResearch/MultiAgent/MeasurableNatClockFixture.lean": "c793a3886ecc064e455b951c17c55d82699ef371ca4f2223dfaf6989a7a40bbe",
+    "PermanssonResearch/MultiAgent/FeasibleAnchors.lean": "3bd960cd530773a2efac8482ea326c43d004c9181cfa763aa5651f7536608e64",
+    "PermanssonResearch/MultiAgent/CorrelatedMediator.lean": "b547e44664bf1ab08482fde276b4448398d05ffe6be77b41da29b3c14739e777",
+    "PermanssonResearch/MultiAgent/FiniteMediation.lean": "2404c03891bb8912e73239e9b902ba76b7f02b656a659f7db8efeada63fabe3a",
+    "PermanssonResearch/Quotient/GeometricQuotient.lean": "26f7d49df5bb7e083544a15a59d5392bad31aeeab5cab908e965a24a0b83bf4c",
+    "PermanssonResearch/Probability/DiscountedInitialBudget.lean": "55c9c9e26ca8ddbd81595ca5b47f6d5f72610d996c55316398b45922f3d30af6",
+    "PermanssonResearch/Perturbation/PrimitiveProductTV.lean": "368e99da4323b2d22ebac5f1ceb86e26b8845b565abe20d706347989ebd162ce",
+    "PermanssonResearch/Probability/FullPathProductTV.lean": "f802694a3d08aa1230bfbad95261358f0c236137f34f2eeb99651d6babd7be3e",
+    "PermanssonResearch/Probability/LocalizedHistoryTV.lean": "0d34452c4a2d571c5aa55960be13dd617b663bddaa76346c97ed778f22cf664c",
+    "PermanssonResearch/Quotient/GeometricMargin.lean": "b2929544c41fe5af75bb07c53f9a28f1b3d2ccc366430ec48716d756678a03e2",
+    "PermanssonResearch/ReverseSolver/InfiniteSafetyLeakage.lean": "4e4c34c224270881d20b904ca5177bbd811f37950d4f5184fbd6b191eba88785",
+    "PermanssonResearch/Probability/FiniteKantorovichDuality.lean": "3bda14b9794e25d6eeb524657792ed8bb41612cd924a05d47a88d8794d3e1f80",
+    "PermanssonResearch/Probability/FiniteTransportRegression.lean": "194d7185e903b00478f01ca871eceefc711814ce1f5ac9ba1eed824908bdb7c6",
+    "PermanssonResearch/Perturbation/FirstMomentInvariant.lean": "76f1e2a6e7f0aae305e216da3c6c8242d84bce46d2479a2debbae623d53cf971",
+    "PermanssonResearch/Probability/KantorovichTV.lean": "13f2886d03252ce8068028c9212900093babaf8337c9ed882845f710b8426086",
+    "PermanssonResearch/Perturbation/RegenerativeOccupationFactorization.lean": "5dc066a9625a9db254b9c7faf50cdae67bbb4fbe432a640182bffcace1610530",
+    "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean": "61cc390b87458994719bb28b759b8367c8f8dc5decebaf1e8d75c48e658ae268",
+    "PermanssonResearch/Perturbation/ContractiveAdversaries.lean": "ba3458a8d261338c091248cf709a9798cbaa6cec522e4b5b8e3f70f5b8fbb0cd",
+    "PermanssonResearch/ReverseSolver/MonitorEventOptimality.lean": "28a1b65bf2f2b9ea102670666d39f3c49ec647a9af08d1ea45a84927ad7d53ea",
+    "PermanssonResearch/ReverseSolver/MonitorHistoryBridge.lean": "663f5209d992b9944a700a6699671b47fde6e11a023e48a17b01be6f658ee310",
+    "PermanssonResearch/ReverseSolver/FirstEntryMonitor.lean": "dc4645ecbd138060b924796b63c431b25fcf34ed1f1e424cc8cf9163df93567c",
+    "PermanssonResearch/ReverseSolver/AvoidResidenceMonitor.lean": "2fe6ae7e4863ed165d1d348df6303cd4ae76eb6beeeb87f63e65ca6e8c9399e6",
+    "PermanssonResearch/ReverseSolver/ResidenceSpecializationOptimality.lean": "fe13e9b08f490fd6d6fbb930e0a27b42010f93b388401bd0c9526c562f08d0ae",
+    "PermanssonResearch/ReverseSolver/ThroughHorizonRiskMonitor.lean": "756f60dfa2b48dedc5fc8363c8813b2c2417437391c99c3f3073dad32b400221",
+    "PermanssonResearch/ReverseSolver/ThroughHorizonRiskFixture.lean": "39effcd41b1746a42e2fd784108051a86ffa307650c8b9b602880e79cc91d048",
+    "PermanssonResearch/ReverseSolver/FlowRiskWitness.lean": "4b9a6ddaa60e29d97edbe0745058f1e8cdfb783e513d14d4609662d5969bfb1c",
+    "PermanssonResearch/ReverseSolver/SolverBoundaryWitnesses.lean": "352703922717456d3fb42563b1fdf34bc3ba76699f20e51ab1ea31fc1100c450",
+    "PermanssonResearch/ReverseSolver/BeliefMonitor.lean": "25a111ad8566c6dda4967c165279d9d1949808f079908114f891baa06acf3eb1",
+    "PermanssonResearch/ReverseSolver/InfiniteSafetyOptimality.lean": "c399aaab95f64c3a3d33d8f672815bd35c04ab96f99d35abe7984eaff2c75017",
+    "PermanssonResearch/ReverseSolver/AdaptiveGrammarControl.lean": "d16f5693027488555038686aabfd1c548e6dbe8665e8f19768a33eb60a403e5c",
+    "PermanssonResearch/ReverseSolver/C11ReferenceExamples.lean": "75eed4a75b3495f5bac94f961b6f03ef51fecc2403a7ea62f9468555c8fd2da3",
+    "PermanssonResearch/ReverseSolver/StationaryOccupationObjective.lean": "b06460b24795cd14ccd4d4ef6ffa5989d77b5c1245efb16da18d0c22c2bac156",
+    "PermanssonResearch/ReverseSolver/StationaryMenuOptimization.lean": "839dd7bc58a7b3bfe5b0a2145069e1947fbcfbbeb697d147b230373c69b25bb6",
+    "PermanssonResearch/ReverseSolver/C11ReferenceStationaryFamily.lean": "a1fda222a29a0863803cbc5c7174d35a07858956a623b4bebbf56e391c172c15",
+    "PermanssonResearch/MultipleLimit/NonfiniteClock.lean": "fc0c1985520f06219b9ab32d96f21decbf2150125e9df6cb1f99819a385b71ee",
+    "PermanssonResearch/MultipleLimit/GrowingBlockCounterexample.lean": "a9d23da8a799fb9c00d36c569e043a500f8158010ed5f2ae0e14df40968cd15e",
+    "PermanssonResearch/GrammarRobust/CompatibleOverlap.lean": "c90bc6bf020f01f2bd515f458b0fdcf8c48a5acaa608003fae2ac11401e0fde6",
+    "PermanssonResearch/GrammarRobust/LowerSetTransport.lean": "07d6495112d3761118a6510026c878497d773270e10aee538f6e6e61385cb3cb",
+    "PermanssonResearch/EconomicWitness/ExactRegime.lean": "87e56a9f8f9797561618b32e2da0b29643a9f795d05764af68b70807a40270a5",
+    "PermanssonResearch/EconomicWitness/Constitution.lean": "bf5b46d0071440bb13faa44198e81472e9caa87e02312a8d111cebfacb444fee",
+    "PermanssonResearch/EconomicWitness/Regression.lean": "c5fc864b845575df0bbc97b2f6d33a4c9598d8dcd78344d083b4faa09f34798b",
+    "PermanssonResearch/Specialized/SeamReduction.lean": "e09f3027088f643b7599c4a2861c42300e8bcf325982a66e93563a9fdb3d4787",
+    "PermanssonResearch/Specialized/BoundaryWitnesses.lean": "72b7223a5150102bb65f3c270eab036e2a02f8edabe43311c79d4c57749711f3",
+    "PermanssonResearch/Specialized/SingularCompatibility.lean": "39e607f76735f7d01c65e29aed4ecebd7bca0857f96b5be08bdfb0e7faedb950",
+    "PermanssonResearch/Specialized/GramSeparation.lean": "9c3704950798c4d9a542dcecad802883f3aa52743d58b23618e011386cdc9396",
+    "verification/research/paper_closure_acceptance_evidence.py": "96f9e757809154a058251772d38247a1995520b2fcaaabcf603b4a48018b7d4e",
+    "verification/research/paper_closure_acceptance_cases.py": "f0e306841a9d2518ba6760aeadf450c701542db4a37b26226109a9b7be7ddd33"
+  },
+  "compiled_artifacts": {
+    ".lake/build/lib/lean/PermanssonResearch/X1/InterventionNumericalBridge.olean": "4d3ffd50845c1e43c0f580fc43c9511554746f2e8a0ee01e3c5e339bd30d5a0f",
+    ".lake/build/lib/lean/PermanssonResearch/X1/ExactMatrixTables.olean": "0e0b43e4c09e1b9b0146f51f38c44839f2fd044906ded47ba8503f98c3da4c4d",
+    ".lake/build/lib/lean/PermanssonResearch/X1/ExactTerminalTables.olean": "329fcd65a6d773dd8f32145a6851234b467518d4a61ad41cb343d10d9ec90fd0",
+    ".lake/build/lib/lean/PermanssonResearch/X1/ExactMargins.olean": "32e732d7d11b8c63ddbb4d8415738a939552d691c0b01e0b2aaeb2b99ec90921",
+    ".lake/build/lib/lean/PermanssonResearch/X1/Comparison.olean": "6522a9c0a6e6932ef379969f49b0d92ca858363eb842c21ae70b0a1db98b0799",
+    ".lake/build/lib/lean/PermanssonResearch/Games/DiscountedVerification.olean": "ee781fc6165474ff5c10661c8443d43d6d21cd23f9dd62937a7b3156111490c1",
+    ".lake/build/lib/lean/PermanssonResearch/X1/FullStrategyCertificate.olean": "d3a3272e94ad9fb021aa66d8be36b8577efe65e47735a17316eb6506d2759693",
+    ".lake/build/lib/lean/PermanssonResearch/X1/StrategyRegression.olean": "89e27e89034e85bba91b803263b3ca94b68c35c5cabd50f59d4ddf2167df3fe1",
+    ".lake/build/lib/lean/PermanssonResearch/StrategicWorld/ActionTrace.olean": "9f3eac0e32b32f622b6b25e103fce0bdf0bbfd0634fc01ae9a4e0f73f476f92c",
+    ".lake/build/lib/lean/PermanssonResearch/StrategicWorld/InformationBoundary.olean": "fc10a04e1f59c9c2e51f36c47e8ad7b5cd55e36bbd139b411be4ac586c61919c",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/StrictMA2Obstruction.olean": "61daca21b617f3594b2f2267cea127d84ec02a995c855b4e5375ec7028a88ace",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/AutonomousAEMechanisms.olean": "f4db2990980b5c4a727fd4c4a83fb28fd5ec1d2ef48a36bfb5758ee2c4543978",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/AutonomousAEContinuumFixture.olean": "067a2db59d55dd8aefc235d4ffff81be0947bdb8f9c21b2af985f728400a5ce1",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/PlayerSwapTransport.olean": "863f252702a970f47ca4c5633c22fc5ed54d5a3c2b7288363b9fc685cc1289dd",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/FiniteProductTwo.olean": "85d4c38e23debadd21330325e8389a7dadb199a5380323c32a603590ac98e7f3",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/PrivateClockTransport.olean": "f8dc3c933c349d165bf618f2e4f9bf350194700dcdaf61d34d0499b0c75cd6dc",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/NatPrivateClockTransport.olean": "b41015fbfa7b3e78d1e606b58de5e24d43ec9751a748ab58114fa46fc52c7169",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/MeasurableNatPrivateClock.olean": "610a3c6e44b7897bd741c574eff74dc25950a7bcd0a6be0dcc57d0815e15f10f",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/MeasurableNatClockTransport.olean": "bbda190f05ee4c740edd3e94befa90f2255e99858e91dc86799091f5e3fdf58e",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/MeasurableNatClockFixture.olean": "447a62c58e77fb7b512fe9dfb0107db47bba1916eab50ce7d320622a561dfccb",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/FeasibleAnchors.olean": "ff191f8c83163d09caf93a344b2ab2d81ef16ed750e803745d018b53d7a0a68d",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/CorrelatedMediator.olean": "b3aea42ce5268a2f44c5f0bf4297ffeea72af9fa964fe90d0ac014dc2f03302f",
+    ".lake/build/lib/lean/PermanssonResearch/MultiAgent/FiniteMediation.olean": "cb30d214f349841b58c74654814da3823d3ab8c3f3df2df64895fc4ec80d47dc",
+    ".lake/build/lib/lean/PermanssonResearch/Quotient/GeometricQuotient.olean": "674aa3987ce731de6688981387b6c45d45412ef2f6d7a0faa31f9a96f3cb0ec7",
+    ".lake/build/lib/lean/PermanssonResearch/Probability/DiscountedInitialBudget.olean": "8edbfc0c40dd3dc4c4bb6a33883acec832cc7ddb1ec0f80c9cd2aca6a825e9ed",
+    ".lake/build/lib/lean/PermanssonResearch/Perturbation/PrimitiveProductTV.olean": "b80999e30bafd0f824fa94c05c362b9cf931ed826e534b44f603ec9533137795",
+    ".lake/build/lib/lean/PermanssonResearch/Probability/FullPathProductTV.olean": "e6002a901f7eb3ff30806fad621dd33eba4600871b46faa2fda168bc663d53dd",
+    ".lake/build/lib/lean/PermanssonResearch/Probability/LocalizedHistoryTV.olean": "414ce25b9e34f1f52295cd8c277ad59a6b2cb34c9133f5a4bd6d43e23c40324a",
+    ".lake/build/lib/lean/PermanssonResearch/Quotient/GeometricMargin.olean": "ecef368918d324499588411bc6fad85fd72065f838abc987d4ac8c2dbc997734",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/InfiniteSafetyLeakage.olean": "8cf5516df53ba3af143f41cb86cd905524eb7221b2ec4a0f4818a27efa4f0a6b",
+    ".lake/build/lib/lean/PermanssonResearch/Probability/FiniteKantorovichDuality.olean": "886c218cec3af6c400b061084b60fe19353dde6b24e8826f6f2d848834bb963f",
+    ".lake/build/lib/lean/PermanssonResearch/Probability/FiniteTransportRegression.olean": "968acdd19268a5725a94308e924d89f0940391fd1f8b3df582dc55704579fb6a",
+    ".lake/build/lib/lean/PermanssonResearch/Perturbation/FirstMomentInvariant.olean": "8e678ebd3e7f0284ad873005dd96d17746653f9acba94e5b0d1268b043379423",
+    ".lake/build/lib/lean/PermanssonResearch/Probability/KantorovichTV.olean": "6b0c843118bcfb4e1eb45b551f52dc4bf8a2f5c5c11b78386cbb180896be4b27",
+    ".lake/build/lib/lean/PermanssonResearch/Perturbation/RegenerativeOccupationFactorization.olean": "cc5cc166503989475fa0a3c0f25c5c981bd7808df71c634fa6ad00edd3d1a3b8",
+    ".lake/build/lib/lean/PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.olean": "e08ac9e63b3ce89504c25cf231b49e6f899e36170f0f023defb7b7f364b7edf8",
+    ".lake/build/lib/lean/PermanssonResearch/Perturbation/ContractiveAdversaries.olean": "7c4ec0e0dfcd09816484ca8db4608b519108bb2805d177c12f05a0198d552371",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/MonitorEventOptimality.olean": "ef21d31d8ddbba3bd747ccc56f0050ef7dc95a751908a319ac8a9d5cd84b2fd6",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/MonitorHistoryBridge.olean": "f8d99c4e3a57c36d3f24f0d34940d64508cb81a9fac766a782041efa6b052a9f",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/FirstEntryMonitor.olean": "607d5adbb0f9ddee99ca1b9cbbaf6ea710dd25c641d5a41ae0222e9db06c7450",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/AvoidResidenceMonitor.olean": "bfbf6f67903280f4ea76b4dbc7fd306d3923dbfccd75a8bb8f933159926c2d3e",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/ResidenceSpecializationOptimality.olean": "eab617a99e1865aa37a8b9c611b3a9f3a934999e5605201682fcb8ef4a06e0df",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/ThroughHorizonRiskMonitor.olean": "b3067ece022b41dd621a747072fbbfc57f911bb26d12172c9b3cc797e02596c5",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/ThroughHorizonRiskFixture.olean": "1ed931deab56b8d3d2fd2e6ac49ba5fddae4b0fb2bfad0e899b6cd05432d6e26",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/FlowRiskWitness.olean": "2abc17413426dfd4c99d3501a1f2d5dd659aec46b00d65c5175981cee35ad416",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/SolverBoundaryWitnesses.olean": "f88d9cdcf63adb15fbdc961eb184651eca41458bfe0c3e13283abc0bf188d35a",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/BeliefMonitor.olean": "28a6f078b8b763df3d2b58973321ba16407b68dd6bd2a39e328680c748182334",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/InfiniteSafetyOptimality.olean": "e72429b1bcde744a2660fd0dc493af0e2d712fb753c5fbdcb4c91fa22221dd11",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/AdaptiveGrammarControl.olean": "9379e4c7179183f7296e8bab96650ab8d7beb6cb7d9fbe6451994b56f2604b1e",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/C11ReferenceExamples.olean": "4faf3695bf87e1ff85cb0301531044a8cd028c7f38a4078f6977f655bef643d2",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/StationaryOccupationObjective.olean": "86b68ba700496af446c4da71d313ecd84429f5554f66beddbf154482c3275d0e",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/StationaryMenuOptimization.olean": "e1040dbdc57778342c320ad46f8e91dead505d73b2f3b5468b451c4b30654cbc",
+    ".lake/build/lib/lean/PermanssonResearch/ReverseSolver/C11ReferenceStationaryFamily.olean": "3210557f0d176295ca206e6e72f87b7d51c557a57b9d607957e35d116779bcd5",
+    ".lake/build/lib/lean/PermanssonResearch/MultipleLimit/NonfiniteClock.olean": "00953c40438b8a1905fa861391374c0d73aeda77464004484b7f480f880e7661",
+    ".lake/build/lib/lean/PermanssonResearch/MultipleLimit/GrowingBlockCounterexample.olean": "ff282d6d17b65c2be2953eb289361565afb58846e9708bcaf4fb0a36a6e41ba4",
+    ".lake/build/lib/lean/PermanssonResearch/GrammarRobust/CompatibleOverlap.olean": "43cc0e0aec7276661e44c7549d5c7da743083a010568ff7d040c2459c925abed",
+    ".lake/build/lib/lean/PermanssonResearch/GrammarRobust/LowerSetTransport.olean": "2ab245d0bc86b719e2bb7ae32fdd0442a7c129b82822bd4ca557b9d5d4cb4e35",
+    ".lake/build/lib/lean/PermanssonResearch/EconomicWitness/ExactRegime.olean": "4570230114d9bd2a12b8e9d9e59dba09432281a639432479aa87707bb0abe586",
+    ".lake/build/lib/lean/PermanssonResearch/EconomicWitness/Constitution.olean": "749f289da8e60015820d5edc2ef36b4fc636cefffe24a18c4d12e9816ea168fd",
+    ".lake/build/lib/lean/PermanssonResearch/EconomicWitness/Regression.olean": "786e43ad1513ce71db2e0e61b07c8c9bedeb609b67433c4195ae0c24ee52df16",
+    ".lake/build/lib/lean/PermanssonResearch/Specialized/SeamReduction.olean": "b28ab501badf488f6a635950cc24e89632e95d6389a0b6dae10164cf5c28410d",
+    ".lake/build/lib/lean/PermanssonResearch/Specialized/BoundaryWitnesses.olean": "538c0cc68def1369bc755d167cd2c22af511a856de1aae1e850b8e850a539989",
+    ".lake/build/lib/lean/PermanssonResearch/Specialized/SingularCompatibility.olean": "cf81633b0a269251f5e1563c8d0bed78e30cc5251e6377ace98387b8997286a3",
+    ".lake/build/lib/lean/PermanssonResearch/Specialized/GramSeparation.olean": "643da54ad50ed35e67e8b6c086b66a30d51e2400ff497d52a0969918639c229c"
+  },
+  "declarations": {
+    "PermanssonResearch.ActionTrace.BehavioralPolicy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.InformationBoundary.actual_step_fair_matching": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.InformationBoundary.no_unobserved_draw_copy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.InformationBoundary.observed_history_cannot_copy_next_state": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.InformationBoundary.peeked_fair_matching": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.DiscountedVerification.finite_performance_difference": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.EconomicWitness.Regression.baseline_leak_not_original_exactGR": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.EconomicWitness.original_confirmatoryGR": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.EconomicWitness.original_exactGR": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.EconomicWitness.original_grounded_confirmatory_uniformPR": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.applyCompatiblePatches_perm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.GrammarRobust.exists_least_positive_of_finite_meet_closed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_violates_premise": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ae_anchors_pathLaw_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.strict_anchors_pathLaw_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_different_joint_do": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_positivity_failure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_same_observational_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.FiniteProduct.Two.actual_pathLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.stalled_clock_rejected": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.advancing_update": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_strictness": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_scheduled_row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.NatPrivateClock.inherited_strictness": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.NatPrivateClock.natural_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.NatPrivateClock.natural_scheduled_row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.PlayerSwap.actual_pathLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.PrivateClock.actual_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.exists_feasible_strictAnchor_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.mediator_mixture_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_occupations_fail": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_clock_no_weak_limit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.ContractiveLeak.contraction_does_not_transfer_survival": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FirstMomentInvariant.exists_unique_invariant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.RegenerativeFactorization.four_actual_factorizations": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.RegenerativeMomentFactorization.four_actual_factorizations": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.inducedKernel_tv_le_primitive_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.primitiveCommon_mass_ge_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_bound_two_rejected": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.FullPathProduct.path_tv_le_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.discounted_geometric_budget_initial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.finite_couplingW1_eq_dual_supremum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.historyEvolution_tv_le_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.tv_does_not_control_w1_on_real": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.zero_row_defect_retains_initial_budget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.approxQuotient_prefix_tv_le_geometric": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Quotient.geometricQuotient_margin_abs_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.adaptive_block_optimal_and_attained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Belief.monitored_history_attained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.C11.ReferenceExamples.corrupted_stationary_receipt_rejected": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.C11.ReferenceExamples.periodic_family_accepted": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.C11.ReferenceExamples.physical_classes_remain_distinct": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.C11.ReferenceExamples.zero_dimension_reference_rejected": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily_check": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralAvoidResidence_optimal_and_attained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralResidence_optimal_and_attained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.FiniteMonitor.danger_after_success_does_not_undo": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.FiniteMonitor.danger_precedes_simultaneous_success": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.FiniteMonitor.firstEntry_event_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.FiniteMonitor.first_entry_retry_counterexample": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.FiniteMonitor.monitor_history_probability_optimal_and_attained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.InfiniteSafety.deterministic_stationary_infinite_optimum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.InfiniteSafety.high_actual_finite_survival_zero_infinite": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_half_attains": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.all_actual_feasible_success_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.full_risky_choice_is_infeasible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.SolverBoundaryWitnesses.whole_model_commitment_strictly_exceeds_rectangular": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.StationaryOccupation.equal_descriptor_laws_equal_values": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.StationaryOccupation.stationary_menu_actual_optimal_and_attained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_probability_eq_occupancy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_success_integral_eq_original": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_after_completed_success_counts": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_at_zero_counts": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.failure_and_danger_are_not_complements": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_time": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.simultaneous_target_danger_counts": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.BoundaryWitnesses.changed_embedding_loses_negativity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.BoundaryWitnesses.dimension_two_retains_second_equation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.BoundaryWitnesses.exact_but_illegal_approximant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.BoundaryWitnesses.zero_shift_does_not_supply_inverse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.gram_additional_component_negative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.incompatible_kernel_negative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.seam_constant_diagonal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.seam_rank_le_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.signedGram_witness_negative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Specialized.source_vanishes_of_nonexceptional": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.InterventionNumerics.matrix_atom_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.InterventionNumerics.table_step": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.InterventionNumerics.table_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.StrategyRegression.nonstationary_terminal_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.attainingStart_mem": [
+      "propext"
+    ],
+    "PermanssonResearch.X1.component_original_margin": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.effects_eq_candidates": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.exactEffect_attained": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.exactEffect_lower": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.original_property_eq_table": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.protocol_atom_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.replete_not_exactGR": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.X1.strategy_exact_advantage": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "missing": [],
+  "forbidden": {},
+  "stable_during_check": true,
+  "output": "research/paper_closures/acceptance_selected_signatures_axioms.txt",
+  "output_sha256": "ee744554117e9f1e236bbd3848c50f181e5a75e3dc0980a861e6aec16e8d9aea",
+  "boundary": "Checks actual imported constants and records current source/artifact hashes; does not replace owners' full source recompilation or genuine PR CI."
+}

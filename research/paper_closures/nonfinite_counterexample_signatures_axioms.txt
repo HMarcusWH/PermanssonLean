@@ -1,0 +1,73 @@
+'PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_deterministic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.NonfiniteClock.clock' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.NonfiniteClock.clock_markov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.NonfiniteClock.clock_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.NonfiniteClock.empirical_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.NonfiniteClock.clock_singleton_frequency' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.NonfiniteClock.clock_singletons_tendsto_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.NonfiniteClock.clock_no_probability_weak_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_clock_no_weak_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.block_exists' depends on axioms: [propext, Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.block' depends on axioms: [propext, Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.block_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.label' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.label_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.value_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.difference_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.average' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.last_block_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.endpoint_error_tendsto_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.even_endpoints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.odd_endpoints' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.averages_do_not_converge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.positive_horizon_averages_do_not_converge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.descriptor' depends on axioms: [propext, Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.score_descriptor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_empirical_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.descriptor_occupations_do_not_converge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_averages_fail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_occupations_fail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

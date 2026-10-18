@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/StrategicWorld/InformationBoundary.lean": {
+      "sha256": "d574f9a53fca79cea5d74f124e6b7c80ab307122aa0ddfb772b4f76162ab5103",
+      "artifact_sha256": "30641e661d2ec54de54d3be1f19baca582451c9a82362b175ab0db13a84e61ea",
+      "compiler": {
+        "module": "PermanssonResearch.StrategicWorld.InformationBoundary",
+        "started": 1792300549.2511485,
+        "elapsed": 77.77590918540955,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "d574f9a53fca79cea5d74f124e6b7c80ab307122aa0ddfb772b4f76162ab5103"
+      }
+    }
+  },
+  "module_list": [
+    "StrategicWorld.InformationBoundary"
+  ],
+  "declaration_count": 6,
+  "declarations": {
+    "PermanssonResearch.ActionTrace.InformationBoundary.fair": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.InformationBoundary.independent_fair_matching": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.InformationBoundary.peeked_fair_matching": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.InformationBoundary.actual_step_fair_matching": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.InformationBoundary.no_unobserved_draw_copy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ActionTrace.InformationBoundary.observed_history_cannot_copy_next_state": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "b39f7099d48cd6d00ad24680966cc5533eb685d5791366f44db2d977499cd72b",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/information_boundary_signatures_axioms.txt",
+    "sha256": "b39f7099d48cd6d00ad24680966cc5533eb685d5791366f44db2d977499cd72b"
+  }
+}

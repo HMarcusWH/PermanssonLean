@@ -1,0 +1,37 @@
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\new_world_learning.lean:55:31: warning: This simp argument is unused:
+  sum_bool
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrainAction, Kernel.deterministic_apply, InterventionNumerics.rates, Fintype.sum_prod_type, boolMass]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\new_world_learning.lean:63:6: error: 'change' tactic failed, pattern
+  (update m) ((y, a), x) = Measure.dirac (OccupationNumerics.next (learnerFlag m) y a)
+is not definitionally equal to target
+  (if false = true then resetUpdate else update m) ((y, a), x) =
+    Measure.dirac (InterventionNumerics.next (learnerFlag m) false (y.1, x) a)
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\new_world_learning.lean:85:82: error: unsolved goals
+case false
+m : Mode
+r u : Bool
+y : Y
+a : Action
+qz : Memory
+⊢ (if InterventionNumerics.next (learnerFlag m) u (y.1, false) a = qz then ENNReal.ofReal (1 - ↑(pRep y.2 a)) else 0) =
+    if InterventionNumerics.next (learnerFlag m) u y a = qz then ENNReal.ofReal (1 - ↑(pRep y.2 a)) else 0
+
+case true
+m : Mode
+r u : Bool
+y : Y
+a : Action
+qz : Memory
+⊢ (if InterventionNumerics.next (learnerFlag m) u (y.1, true) a = qz then ENNReal.ofReal ↑(pRep y.2 a) else 0) =
+    if InterventionNumerics.next (learnerFlag m) u y a = qz then ENNReal.ofReal ↑(pRep y.2 a) else 0
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\new_world_learning.lean:89:23: warning: This simp argument is unused:
+  Measure.dirac_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Set.indicator, boolMass, mul_ite, add_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

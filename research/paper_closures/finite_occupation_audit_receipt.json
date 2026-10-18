@@ -1,0 +1,172 @@
+{
+  "unit": "A3-I01-finite/A3-F01-finite",
+  "source_scope": [
+    "PermanssonResearch/Perturbation/FiniteInvariantConstructor.lean",
+    "PermanssonResearch/Perturbation/FiniteOccupationProperty.lean",
+    "PermanssonResearch/Perturbation/FiniteOccupationFactorization.lean"
+  ],
+  "source_sha256": {
+    "PermanssonResearch/Perturbation/FiniteInvariantConstructor.lean": "1f3a48e3c8e57d1f5d14a9f4041db98d2a8335f2862b44d9f78ff61ce7823a85",
+    "PermanssonResearch/Perturbation/FiniteOccupationProperty.lean": "49b2c06448d1adf9db34365f30047fe9be8b822b4807ce7f2f0bd66a1f0d5748",
+    "PermanssonResearch/Perturbation/FiniteOccupationFactorization.lean": "fd986fabeef6dd171d9d7fcd3b8a916145c5c437254165fda607dea1df040cf2"
+  },
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "declaration_count": 29,
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "declarations": {
+    "PermanssonResearch.Perturbation.FiniteInvariantConstructor.eq_of_dual_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteInvariantConstructor.finite_dual_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteInvariantConstructor.exists_unique_invariant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteInvariantConstructor.iterateLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteInvariantConstructor.iterateLaw_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteInvariantConstructor.geometric_dual_convergence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteInvariantConstructor.eventually_arbitrarily_small_dual_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.probability_completelyMetrizable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.descriptorEmpirical": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.descriptorEmpirical_stronglyMeasurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.occupationLimit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.occupationLimit_stronglyMeasurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.occupationLimit_weakBorel_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.occupationLimit_default": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.occupationLimit_of_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.descriptorEmpirical_eq_map": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.occupationLimit_ae_unique_class": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.property": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.property_integrand_stronglyMeasurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.property_integrand_integrable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationProperty.property_factor_unique_class": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationFactorization.classPerturbation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationFactorization.ClassPerturbationData": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationFactorization.ClassPerturbationData.generated": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationFactorization.recurrentClass_unique_of_contraction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationFactorization.dataOfBothContractions": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationFactorization.model_property_factor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationFactorization.four_actual_factorizations": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Perturbation.FiniteOccupationFactorization.generated_occupationMargin_robust": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "audit_source_sha256": "46fd74c59c5309cb26c20e52a845a8f75648f5c2124ecef4b47591a0e661b9ae",
+  "audit_stdout_sha256": "f63fedfbfed35745dd23df9b56363d5096fff8026483689593e6c44347d1d1b8",
+  "compiler_returncode": 0,
+  "status": "PASS",
+  "residual": "Finite actual metric spaces only. The invariant-constructor contraction and geometric bound use the original W1DualLE predicate; this does not itself identify coupling W1 with that predicate. The generated four-factorization margin theorem covers the explicit continuous occupation-limit functional property subclass and requires one actual recurrent class for each of the four kernels. It makes no factorization claim for survival, time-zero or arbitrary frozen properties. General Polish transport duality, completeness and nonfinite regeneration are separate obligations."
+}

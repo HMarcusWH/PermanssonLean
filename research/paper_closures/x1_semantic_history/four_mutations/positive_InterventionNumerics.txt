@@ -1,0 +1,14 @@
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\positive_InterventionNumerics.lean:72:31: warning: This simp argument is unused:
+  sum_bool
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Fintype.sum_prod_type, boolMass, mul_ite]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\macka\.codex\.chatgpt-projects\g-p-6a7dcd5280008191a543947c8a70779d\PermanssonLean-paper-closures\.lake\x1-paper-closure\positive_InterventionNumerics.lean:79:31: warning: This simp argument is unused:
+  sum_bool
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Fintype.sum_prod_type, boolMass]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

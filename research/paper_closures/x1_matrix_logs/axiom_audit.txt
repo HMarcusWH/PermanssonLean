@@ -1,0 +1,12 @@
+'PermanssonResearch.X1.InterventionNumerics.matrixData' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.InterventionNumerics.matrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.InterventionNumerics.baseline_corner_literal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.InterventionNumerics.matrix_eq_entry' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.InterventionNumerics.stateIndex_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.InterventionNumerics.matrix_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.InterventionNumerics.matrix_sum_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.InterventionNumerics.matrix_atom_eq' depends on axioms: [propext, Classical.choice, Quot.sound]

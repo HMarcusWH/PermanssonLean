@@ -1,0 +1,47 @@
+PermanssonResearch.ActionTrace.InformationBoundary.fair : PermanssonResearch.ActionTrace.Row.{0} Bool
+'PermanssonResearch.ActionTrace.InformationBoundary.fair' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ActionTrace.InformationBoundary.independent_fair_matching
+  (p : PermanssonResearch.ActionTrace.Row.{0} Bool) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{0} p fun a =>
+      PermanssonResearch.ActionTrace.Row.expect.{0} PermanssonResearch.ActionTrace.InformationBoundary.fair fun b =>
+        ite.{1} (Eq.{1} a b) 1 0)
+    (1 / 2)
+'PermanssonResearch.ActionTrace.InformationBoundary.independent_fair_matching' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ActionTrace.InformationBoundary.peeked_fair_matching :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{0} PermanssonResearch.ActionTrace.InformationBoundary.fair fun b =>
+      ite.{1} (Eq.{1} b b) 1 0)
+    1
+'PermanssonResearch.ActionTrace.InformationBoundary.peeked_fair_matching' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ActionTrace.InformationBoundary.actual_step_fair_matching {Y : Type} [Fintype.{0} Y]
+  (G : PermanssonResearch.ActionTrace.Game.{0} Y Bool) (σ : PermanssonResearch.ActionTrace.BehavioralPolicy.{0} Y Bool)
+  (n : ℕ) (h : PermanssonResearch.ActionTrace.History.{0} Y (Prod.{0, 0} Bool Bool) n)
+  (hf :
+    Eq.{1} (PermanssonResearch.ActionTrace.Game.opponent.{0} G (PermanssonResearch.ActionTrace.last.{0} n h))
+      PermanssonResearch.ActionTrace.InformationBoundary.fair) :
+  Eq.{1}
+    (PermanssonResearch.ActionTrace.Row.expect.{0} (PermanssonResearch.ActionTrace.step.{0} G σ n h) fun z =>
+      ite.{1} (Eq.{1} z.1.1 z.1.2) 1 0)
+    (1 / 2)
+'PermanssonResearch.ActionTrace.InformationBoundary.actual_step_fair_matching' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ActionTrace.InformationBoundary.no_unobserved_draw_copy {Y : Type} [Fintype.{0} Y] (n : ℕ)
+  (h : PermanssonResearch.ActionTrace.History.{0} Y (Prod.{0, 0} Bool Bool) n) :
+  ¬∃ σ, ∀ (b : Bool), Eq.{1} (σ n h) (PermanssonResearch.ActionTrace.Row.pure.{0} b)
+'PermanssonResearch.ActionTrace.InformationBoundary.no_unobserved_draw_copy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ActionTrace.InformationBoundary.observed_history_cannot_copy_next_state {Y : Type} [Fintype.{0} Y]
+  (n : ℕ) (h : PermanssonResearch.ActionTrace.History.{0} Y (Prod.{0, 0} Bool Bool) n) :
+  ¬∃ σ, ∀ (nextState : Bool), Eq.{1} (σ n h) (PermanssonResearch.ActionTrace.Row.pure.{0} nextState)
+'PermanssonResearch.ActionTrace.InformationBoundary.observed_history_cannot_copy_next_state' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]

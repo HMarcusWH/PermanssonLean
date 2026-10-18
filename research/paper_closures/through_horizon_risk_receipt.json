@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/ReverseSolver/ThroughHorizonRiskMonitor.lean": {
+      "sha256": "756f60dfa2b48dedc5fc8363c8813b2c2417437391c99c3f3073dad32b400221",
+      "artifact_sha256": "2b271c264c2f8f5d0b981ea3ebb86296619986e92706c09036476c04230a6fc5",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.ThroughHorizonRiskMonitor",
+        "started": 1792302363.4002109,
+        "elapsed": 30.486252784729004,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "756f60dfa2b48dedc5fc8363c8813b2c2417437391c99c3f3073dad32b400221"
+      }
+    },
+    "PermanssonResearch/ReverseSolver/ThroughHorizonRiskFixture.lean": {
+      "sha256": "39effcd41b1746a42e2fd784108051a86ffa307650c8b9b602880e79cc91d048",
+      "artifact_sha256": "dc47f31397eb404c66dc799c4f34b58030a77f60c26685192ee0d50b45b65dfd",
+      "compiler": {
+        "module": "PermanssonResearch.ReverseSolver.ThroughHorizonRiskFixture",
+        "started": 1792302393.892757,
+        "elapsed": 26.863348722457886,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "39effcd41b1746a42e2fd784108051a86ffa307650c8b9b602880e79cc91d048"
+      }
+    }
+  },
+  "module_list": [
+    "ReverseSolver.ThroughHorizonRiskMonitor",
+    "ReverseSolver.ThroughHorizonRiskFixture"
+  ],
+  "declaration_count": 20,
+  "declarations": {
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest_iff": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.run_withRisk": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_literal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_time": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.original_reward_preserved": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.successScore": [
+      "Quot.sound"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_integral_eq_literal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_integral_eq_occupancy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_probability_eq_occupancy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_success_integral_eq_original": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureSuccess": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_at_zero_counts": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_after_completed_success_counts": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.simultaneous_target_danger_counts": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.failure_and_danger_are_not_complements": [
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest": [],
+    "PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk": []
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "5d8fc3dafb536386bcc05e1d5330243a8e50ffcd1a4801ba868aa028f7ec5782",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/through_horizon_risk_signatures_axioms.txt",
+    "sha256": "5d8fc3dafb536386bcc05e1d5330243a8e50ffcd1a4801ba868aa028f7ec5782"
+  }
+}

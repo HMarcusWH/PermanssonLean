@@ -1,0 +1,146 @@
+'PermanssonResearch.EconomicWitness.World' does not depend on any axioms
+'PermanssonResearch.EconomicWitness.Action' does not depend on any axioms
+'PermanssonResearch.EconomicWitness.Player' does not depend on any axioms
+'PermanssonResearch.EconomicWitness.Y' does not depend on any axioms
+'PermanssonResearch.EconomicWitness.fairRow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.worldRow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.world' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.world_markov' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.baselineAction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.unitUpdate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.model' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.assemble' depends on axioms: [propext]
+'PermanssonResearch.EconomicWitness.ownAction' depends on axioms: [propext]
+'PermanssonResearch.EconomicWitness.reward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.strategyGame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.baselineBehavior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.region' depends on axioms: [propext]
+'PermanssonResearch.EconomicWitness.target' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.specification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.world_restraint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.world_collapse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.actual_physical_expect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.exact_advantage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.pure_bellman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.reward_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.value_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.baseline_bellman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.full_behavioral_optimality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.baseline_attainment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.expected_behavioral_optimality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.altered_reward_rejected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.reference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.region_eq_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.original_assumption41' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.induced_atom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.original_exact_invariance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.descriptorLaw_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.original_descriptor_nondegenerate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.grounding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.target_two_positive_atoms' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.expected_behavioral_optimality_initial_measure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.baselineRow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.baseline_stateStep_actual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.baseline_trace_stateLaw_eq_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.stateTarget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.stateTarget_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.realTransition_entry' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.baseline_survival' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.baseline_paths_functioning' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.empirical_collapse_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.empirical_push_functioning' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.empirical_vector_target' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.descriptor_occupation_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.original_limiting_occupation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.original_exactGR' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.original_confirmatoryGR' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.extractionAction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.extractionAction_markov' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.extractionIntervention' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.intervention_world_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.intervention_update_fixed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.treatedModel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.intervention_applied' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.comparisonSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.survivalProperty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.baseline_value_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.intervened_region_mass_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.intervened_value_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.effect_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.original_constitutive_margin_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.original_uniform_constitution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.worldSurvivalProperty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.worldSurvival_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.survival_grounded_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.original_grounded_property' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.original_grounded_confirmatory_uniformPR' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.world_replacement_not_strategic' depends on axioms: [propext]
+'PermanssonResearch.EconomicWitness.Regression.singleton_comparison_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.constantDescriptorSpec' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.constant_descriptor_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.badObserve' depends on axioms: [propext]
+'PermanssonResearch.EconomicWitness.Regression.absent_off_region_relevance_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.both_comparison_effects' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.profitable_extraction_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.leakyRow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.leakyWorld' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.leakyWorld_markov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.leakyModel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.baseline_leak_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.EconomicWitness.Regression.baseline_leak_not_original_exactGR' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

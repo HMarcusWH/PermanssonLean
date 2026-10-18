@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/Probability/DiscountedInitialBudget.lean": {
+      "sha256": "55c9c9e26ca8ddbd81595ca5b47f6d5f72610d996c55316398b45922f3d30af6",
+      "artifact_sha256": "0eee12be56bfa40770757541113fbd31376ddab6a95943a77cc59399bdc79242",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.DiscountedInitialBudget",
+        "started": 1792301763.1042485,
+        "elapsed": 51.20794939994812,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "55c9c9e26ca8ddbd81595ca5b47f6d5f72610d996c55316398b45922f3d30af6"
+      }
+    }
+  },
+  "module_list": [
+    "Probability.DiscountedInitialBudget"
+  ],
+  "declaration_count": 4,
+  "declarations": {
+    "PermanssonResearch.Probability.discounted_geometric_budget_initial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.initial_geometric_error_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.discounted_output_score_error_initial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.zero_row_defect_retains_initial_budget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "8348875b652ed3889ad59b6f609ddc6f3e88633a0fdf5a0c246aa90699308675",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/discounted_initial_signatures_axioms.txt",
+    "sha256": "8348875b652ed3889ad59b6f609ddc6f3e88633a0fdf5a0c246aa90699308675"
+  }
+}

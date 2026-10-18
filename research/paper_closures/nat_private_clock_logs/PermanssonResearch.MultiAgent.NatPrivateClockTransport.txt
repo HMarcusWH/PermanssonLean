@@ -1,0 +1,26 @@
+PermanssonResearch\MultiAgent\NatPrivateClockTransport.lean:160:0: warning: automatically included section variable(s) unused in theorem `PermanssonResearch.MultiAgent.NatPrivateClock.natural_scheduled_row`:
+  [Countable S0]
+  [Countable S1]
+  [Countable S2]
+  [Fintype X]
+  [Fintype A1]
+  [Fintype A2]
+  [MeasurableSingletonClass S0]
+  [MeasurableSingletonClass S1]
+  [MeasurableSingletonClass S2]
+  [MeasurableSingletonClass X]
+  [MeasurableSingletonClass A1]
+  [MeasurableSingletonClass A2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Countable
+  S0] [Countable
+  S1] [Countable
+  S2] [Fintype
+  X] [Fintype
+  A1] [Fintype
+  A2] [MeasurableSingletonClass
+  S0] [MeasurableSingletonClass
+  S1] [MeasurableSingletonClass
+  S2] [MeasurableSingletonClass X] [MeasurableSingletonClass A1] [MeasurableSingletonClass A2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`

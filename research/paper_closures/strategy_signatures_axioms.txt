@@ -1,0 +1,209 @@
+'PermanssonResearch.ActionTrace.Row' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.expect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.expect_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.expect_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.expect_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.expect_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.expect_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.abs_expect_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.bind' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.expect_bind' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.expect_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.expect_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.measure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.measure_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.measure_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.expect_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.History' does not depend on any axioms
+'PermanssonResearch.ActionTrace.historyFintype' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.historyDecidableEq' does not depend on any axioms
+'PermanssonResearch.ActionTrace.historyMeasurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.historyDiscrete' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.last' does not depend on any axioms
+'PermanssonResearch.ActionTrace.Game' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.BehavioralPolicy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.next' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.next_expect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.law_prefix_expect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.law_step_expect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.nextKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.nextKernel_markov' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.canonicalLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.canonicalLaw_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.markovBehavior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.stateStep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.stateLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.state_marginal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.canonicalHistoryKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.canonicalHistoryKernel_markov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ActionTrace.canonicalLaw_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.canonical_prefix_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.canonical_step_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.canonical_expect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.StatePrefix' does not depend on any axioms
+'PermanssonResearch.ActionTrace.states' does not depend on any axioms
+'PermanssonResearch.ActionTrace.states_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.markovPrefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.baseline_state_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.next_prefix_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.canonical_coherent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.statePath' does not depend on any axioms
+'PermanssonResearch.ActionTrace.canonical_state_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.canonical_baseline_state_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ActionTrace.Row.ofMeasure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.Row.ofMeasure_measure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.expected_verification_initial_measure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ActionTrace.TypedState' does not depend on any axioms
+'PermanssonResearch.ActionTrace.finiteStatePrefix' does not depend on any axioms
+'PermanssonResearch.ActionTrace.prefixFromIic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.prefixToIic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.snoc_finiteStatePrefix' depends on axioms: [propext, Quot.sound]
+'PermanssonResearch.ActionTrace.measure_eq_of_finite_integrals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.ActionTrace.original_prefix_expect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.ActionTrace.canonical_state_erasure_eq_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.Q' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.stageReward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.stateValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.stageLoss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.stage_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.finitePayoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.finiteLoss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.finite_performance_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.stageLoss_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.finite_verification' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.stageReward_abs_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.stateValue_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.terminal_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.summable_rewards' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.payoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.finitePayoff_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.terminal_tendsto_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.discounted_verification' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.discounted_attainment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.Q_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.stageLoss_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.summable_losses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.infinite_performance_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.payoff_tail_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.pathReward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.integral_pathReward' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.measurable_pathReward' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.pathReward_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.DiscountedVerification.path_reward_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.payoff_eq_expected_path_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.DiscountedVerification.expected_discounted_verification' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.exact_advantage_table' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.reward_abs_le_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.value_abs_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.booleanRow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.booleanRow_expect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.booleanRow_measure_eq_coin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategyGame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategyValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategy_physical_expect_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategy_Q_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategy_exact_advantage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.alternatingDeviation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.baselineBehavior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategy_reward_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategy_value_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategy_bellman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.baseline_behavior_bellman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.full_behavioral_verification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.baseline_behavior_attains' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.depletionExtractionProbability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.stageLoss_eq_depletion_extraction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.discountedDepletionExtraction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.exact_behavioral_performance_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.exact_behavioral_performance_difference_start' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.alternatingDeviation_finite_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.depletionGame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.depletionGame_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.depletionGame_canonical' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.depletionGame_reward_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.depletionGame_stageReward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.depletionGame_payoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.expected_exact_behavioral_performance_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.StrategyRegression.pureStateDeviation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.StrategyRegression.all_pure_state_deviations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.StrategyRegression.nonstationary_terminal_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.StrategyRegression.wrong_discount_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.StrategyRegression.altered_world_row_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.StrategyRegression.altered_reward_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.StrategyRegression.reward_cannot_factor_through_state_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.StrategyRegression.history_restriction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.StrategyRegression.discounted_depletion_nonnegative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.StrategyRegression.performance_equality_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.X1.strategy_bind_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategy_map_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.candidateOwnRow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategy_boolMass_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategy_world_atom_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategy_ofReal_mass_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.strategy_actual_kernel_atom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.equilibrium_stateStep_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.X1.baseline_trace_stateLaw_eq_original' depends on axioms: [propext, Classical.choice, Quot.sound]

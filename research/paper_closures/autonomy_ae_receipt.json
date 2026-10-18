@@ -1,0 +1,512 @@
+{
+  "status": "PASS",
+  "evidence_kind": "LOCAL_COMPILER_AND_TRANSITIVE_AXIOM_AUDIT",
+  "receipt_builder_sha256": "25db61bb01b4b41b3533a46df5b71942c4e7cf8d81ffa4411c8791a915dcdfdf",
+  "compiler": "Lean (version 4.34.0, x86_64-w64-windows-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)",
+  "lean_toolchain": "4.34.0",
+  "source_scope": {
+    "PermanssonResearch/Probability/StandardBorelKernelEquality.lean": {
+      "sha256": "3f1d071ee625632b9ebcdeb9ac6ee3239246114f1fa4b16e065e092f990e7e59",
+      "artifact_sha256": "f7a24e7d212879e3adc6f12d491c5c51b6cc731362eebd2281a0e7d06bb32c9f",
+      "compiler": {
+        "module": "PermanssonResearch.Probability.StandardBorelKernelEquality",
+        "started": 1792299432.897294,
+        "elapsed": 33.15643930435181,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "3f1d071ee625632b9ebcdeb9ac6ee3239246114f1fa4b16e065e092f990e7e59"
+      }
+    },
+    "PermanssonResearch/MultiAgent/AutonomousMeasurableKey.lean": {
+      "sha256": "5ebf7e7c42af56daf6db689838d7f6277facc12b37d49ff8e6a0e9095163d375",
+      "artifact_sha256": "92844cd705dc643a99b311d0f639893557e736f5199c39039d751150076851dd",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.AutonomousMeasurableKey",
+        "started": 1792299466.0690205,
+        "elapsed": 39.35554575920105,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "5ebf7e7c42af56daf6db689838d7f6277facc12b37d49ff8e6a0e9095163d375"
+      }
+    },
+    "PermanssonResearch/MultiAgent/AutonomousInputMarginal.lean": {
+      "sha256": "c390f1546a0f29481c8485946bd199c19db4714503f0a7e5ab73e6865c636b7a",
+      "artifact_sha256": "96d93e403ee601c7ffb3946ce6f6d82111be198e4cd6fb1aeefdb1c0e8f84e00",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.AutonomousInputMarginal",
+        "started": 1792299505.4509027,
+        "elapsed": 37.966079235076904,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "c390f1546a0f29481c8485946bd199c19db4714503f0a7e5ab73e6865c636b7a"
+      }
+    },
+    "PermanssonResearch/MultiAgent/AutonomousAEComparison.lean": {
+      "sha256": "dbacd8f81d6a816446d283f17bdee9c9f2d2e1073b3c70863fcaeb36dc4a83f2",
+      "artifact_sha256": "d4b862f5122458edc7d291e4fec7524470284073bf6910246015f156d1cbc223",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.AutonomousAEComparison",
+        "started": 1792299543.4433274,
+        "elapsed": 38.553367137908936,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "dbacd8f81d6a816446d283f17bdee9c9f2d2e1073b3c70863fcaeb36dc4a83f2"
+      }
+    },
+    "PermanssonResearch/MultiAgent/AutonomousMarginalLaw.lean": {
+      "sha256": "c974a5bfa3f553f97f43427682ed9893b332299066e9e83dadc35dcae1135662",
+      "artifact_sha256": "a757d64513549c30db503fce07bba07d5db62171c79c80e29890347bde458c42",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.AutonomousMarginalLaw",
+        "started": 1792299582.0210974,
+        "elapsed": 41.055180072784424,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "c974a5bfa3f553f97f43427682ed9893b332299066e9e83dadc35dcae1135662"
+      }
+    },
+    "PermanssonResearch/MultiAgent/AutonomousAETransport.lean": {
+      "sha256": "fce2b56884e35a7a08b2284132f2a0b18391783c7ae1f5a87c2933a3d80f19fc",
+      "artifact_sha256": "dfa756280b5dbb48c9fe9c250c474a4d44edfd18542e27e6545f56c7816f218a",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.AutonomousAETransport",
+        "started": 1792299623.0958352,
+        "elapsed": 41.20356822013855,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "fce2b56884e35a7a08b2284132f2a0b18391783c7ae1f5a87c2933a3d80f19fc"
+      }
+    },
+    "PermanssonResearch/MultiAgent/AutonomousAEMechanisms.lean": {
+      "sha256": "4bbece652236607d405af7d8cc03c536e16e3da04952c7abc90684776233f298",
+      "artifact_sha256": "99a66fc0d7bf086ea75ca3addf92f4e2bad2f4431571602d0a34d19683436dce",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.AutonomousAEMechanisms",
+        "started": 1792299664.3196692,
+        "elapsed": 35.546284437179565,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "4bbece652236607d405af7d8cc03c536e16e3da04952c7abc90684776233f298"
+      }
+    },
+    "PermanssonResearch/MultiAgent/AutonomousAEContinuumFixture.lean": {
+      "sha256": "c36d8c2651f11d8c045b5a48e3b2fa033fa6f906cc4f6fbeac9c7a3e000e45a2",
+      "artifact_sha256": "4392416a7af18a14e0974cc8bb9363d7579983125d57d7ecf91fed8d91d30ef9",
+      "compiler": {
+        "module": "PermanssonResearch.MultiAgent.AutonomousAEContinuumFixture",
+        "started": 1792299699.8851252,
+        "elapsed": 33.375325202941895,
+        "status": "PASS",
+        "returncode": 0,
+        "source_sha256": "c36d8c2651f11d8c045b5a48e3b2fa033fa6f906cc4f6fbeac9c7a3e000e45a2"
+      }
+    }
+  },
+  "module_list": [
+    "Probability.StandardBorelKernelEquality",
+    "MultiAgent.AutonomousMeasurableKey",
+    "MultiAgent.AutonomousInputMarginal",
+    "MultiAgent.AutonomousAEComparison",
+    "MultiAgent.AutonomousMarginalLaw",
+    "MultiAgent.AutonomousAETransport",
+    "MultiAgent.AutonomousAEMechanisms",
+    "MultiAgent.AutonomousAEContinuumFixture"
+  ],
+  "declaration_count": 78,
+  "declarations": {
+    "PermanssonResearch.Probability.determiningSet": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.determiningSet_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.probability_eq_iff_determining": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.measurableSet_kernel_equality": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.kernel_ae_eq_of_determining": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.Probability.kernel_ae_eq_of_measurable_evaluations": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.measurable_strategicKey": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.map_product_update": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.update_key": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.keyUpdate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.keyUpdate_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.keyKernel_apply": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.actual_key_row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.map_compProd_key": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.measurable_inputMark": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.actual_actionWorld_mark": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.actual_input_marginal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.actual_row_from_actionWorld": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.actual_rows_ae_of_primitive_agreement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.stateLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.stateLaw_isProbability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.map_comp_of_rows": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.projected_stateLaw_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.actual_eval_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.actual_eval_succ": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.stateLaw_eq_actual_marginal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.pathLaw_eq_of_rows_ae": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.actual_actionWorld_rows_ae": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.actual_key_marginal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.baseline_key_marginal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.Profile.baseline_input_marginal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.primitive_factor_agreement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.actual_primitive_agreement_of_key_agreement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.baselineStateLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.baselineKeyLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.baselineStateLaw_actual": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.baseline_key_recursions": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.treated_key_marginals": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.treated_rows_ae": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ae_anchors_pathLaw_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ae_anchors_path_property_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.Y": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.I": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.signal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.measurable_signal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.actionFactor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.player": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_common_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_action_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.profile_update_isMarkov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialState": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.measurable_initialState": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw_isProbability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.commonLaw_nullSingleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw_isProbability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialLaw_nullSingleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initial_common_ne": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.nextState": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.actual_induced": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_stationary": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_stateLaw": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.baseline_agreement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.nonatomic_treated_pathLaw_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchors_differ_at_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_violates_premise": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_treated_pathLaw_ne": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PermanssonResearch.MultiAgent.Autonomous.strategicKey": [],
+    "PermanssonResearch.MultiAgent.Autonomous.inputMark": []
+  },
+  "axiom_allowlist": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "compiler_returncode": 0,
+  "audit_stdout_sha256": "51d39c2bfbbf83b881e6e70d0246129d1471217f6688fd861a50ea25cae2d241",
+  "residual": "Scope and unfinished atlas obligations are recorded separately. This receipt does not supply genuine PR-head/synthetic-merge CI evidence.",
+  "signature_and_axiom_output": {
+    "path": "research/paper_closures/autonomy_ae_signatures_axioms.txt",
+    "sha256": "51d39c2bfbbf83b881e6e70d0246129d1471217f6688fd861a50ea25cae2d241"
+  }
+}

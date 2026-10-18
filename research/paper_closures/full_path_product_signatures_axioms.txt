@@ -1,0 +1,119 @@
+'PermanssonResearch.Probability.eventTotalVariation_le_of_generating_ring' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.path_eventTotalVariation_le_of_prefixes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.DependentHistory.evolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.DependentHistory.evolution_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.DependentHistory.evolution_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.DependentHistory.compProd_mono' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.DependentHistory.evolution_mono' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.DependentHistory.retained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.DependentHistory.retained_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.DependentHistory.retained_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.DependentHistory.common_mass_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.DependentHistory.prefix_tv_le_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.retained_antitone' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.retained_multipliable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.retained_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.tprod_le_retained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.tprod_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.History' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.path_tv_le_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.zero_defect_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.unit_defect_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.constant_retained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.recurring_leak_retained_tendsto_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProduct.recurring_leak_budget_tendsto_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.H' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.point' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.keep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.keep_markov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.initial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.pointLaw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.initial_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.pointLaw_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.evolution_point' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.actual_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.zero_defect_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.identical_actual_laws_bound_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.actual_initial_mismatch_bound_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.actual_initial_mismatch_exact_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.singleLeak' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.singleLeak_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.unit_defect_boundary_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.positive_recurring_defect_not_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.FullPathProductRegression.recurring_leak_only_trivial_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

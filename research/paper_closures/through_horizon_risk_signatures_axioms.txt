@@ -1,0 +1,340 @@
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest {n : ℕ} (D : Fin n → Prop) [DecidablePred.{1} D]
+  (xs : List.{0} (Fin n)) : Bool
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest' does not depend on any axioms
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest_iff {n : ℕ} (D : Fin n → Prop) [DecidablePred.{1} D]
+  (xs : List.{0} (Fin n)) :
+  Eq.{1} (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest D xs) Bool.true ↔
+    ∃ z, Membership.mem.{0, 0} xs z ∧ D z
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest_iff' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} {C : Type u_1} {S : Type u_2} {n : ℕ}
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S) (D : Fin n → Prop)
+  [DecidablePred.{1} D] : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n (Prod.{u_2, 0} S Bool)
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk' does not depend on any axioms
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.run_withRisk.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [DecidableEq.{u_1 + 1} C] [Fintype.{u_1} C] {n : ℕ}
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S) (D : Fin n → Prop) [DecidablePred.{1} D]
+  (t : ℕ) (y : Fin n) (s : S) (b : Bool) (xs : List.{u_1} (Prod.{u_1, 0} C (Fin n))) :
+  Eq.{u_2 + 1}
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2}
+      (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) t y (Prod.mk.{u_2, 0} s b) xs)
+    (Prod.mk.{0, u_2} (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2} M t y s xs).1
+      (Prod.mk.{u_2, 0} (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2} M t y s xs).2
+        (b ||
+          PermanssonResearch.ReverseSolver.ThroughHorizonRisk.dangerTest D (List.map.{u_1, 0} Prod.snd.{u_1, 0} xs))))
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.run_withRisk' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_literal.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [DecidableEq.{u_1 + 1} C] [Fintype.{u_1} C] {n : ℕ}
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S) (D : Fin n → Prop) [DecidablePred.{1} D]
+  (y : Fin n) (xs : List.{u_1} (Prod.{u_1, 0} C (Fin n))) :
+  Eq.{1}
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2}
+            (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) 0 y
+            (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{u_1, u_2}
+              (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) y)
+            xs).2.2
+      Bool.true ↔
+    ∃ z, Membership.mem.{0, 0} (List.cons.{0} y (List.map.{u_1, 0} Prod.snd.{u_1, 0} xs)) z ∧ D z
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_literal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_time.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [DecidableEq.{u_1 + 1} C] [Fintype.{u_1} C] {n : ℕ}
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S) (D : Fin n → Prop) [DecidablePred.{1} D]
+  (N : ℕ) (y : Fin n) (xs : List.{u_1} (Prod.{u_1, 0} C (Fin n))) (hlen : Eq.{1} (List.length.{u_1} xs) N) :
+  Eq.{1}
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2}
+            (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) 0 y
+            (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{u_1, u_2}
+              (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) y)
+            xs).2.2
+      Bool.true ↔
+    ∃ t,
+      ∃ (ht : LT.lt.{0} t (List.length.{0} (List.cons.{0} y (List.map.{u_1, 0} Prod.snd.{u_1, 0} xs)))),
+        LE.le.{0} t N ∧ D (GetElem.getElem.{0, 0, 0} (List.cons.{0} y (List.map.{u_1, 0} Prod.snd.{u_1, 0} xs)) t ht)
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_time' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.original_reward_preserved.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [DecidableEq.{u_1 + 1} C] [Fintype.{u_1} C] {n : ℕ}
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S) (D : Fin n → Prop) [DecidablePred.{1} D]
+  (t : ℕ) (y : Fin n) (s : S) (b : Bool) (xs : List.{u_1} (Prod.{u_1, 0} C (Fin n))) :
+  Eq.{1}
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.reward.{u_1, u_2}
+      (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D)
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2}
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) t y (Prod.mk.{u_2, 0} s b) xs).1
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2}
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) t y (Prod.mk.{u_2, 0} s b)
+          xs).2)
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.reward.{u_1, u_2} M
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2} M t y s xs).1
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2} M t y s xs).2)
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.original_reward_preserved' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore.{u_2} {S : Type u_2} {n m : ℕ}
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) (Prod.{u_2, 0} S Bool))) (j : Fin m) : ℚ
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.successScore.{u_1, u_2} {C : Type u_1} {S : Type u_2} {n m : ℕ}
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S)
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) (Prod.{u_2, 0} S Bool))) (j : Fin m) : ℚ
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.successScore' depends on axioms: [Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore_bounds.{u_2} {S : Type u_2} {n : ℕ} [Fintype.{u_2} S]
+  [DecidableEq.{u_2 + 1} S] {m : ℕ} (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) (Prod.{u_2, 0} S Bool)))
+  (j : Fin m) :
+  LE.le.{0} 0 (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore.{u_2} e j) ∧
+    LE.le.{0} (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore.{u_2} e j) 1
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore_bounds' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_integral_eq_literal.{u_1, u_2} {C : Type u_1}
+  {S : Type u_2} [DecidableEq.{u_1 + 1} C] [Fintype.{u_1} C] {n : ℕ} [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_1} C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S) (D : Fin n → Prop) [DecidablePred.{1} D]
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) (Prod.{u_2, 0} S Bool)))
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+        (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e))
+  (y : Fin n) (N : ℕ) :
+  Eq.{1}
+    (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m N),
+      ↑(PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore.{u_2} e
+          (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N
+            h)) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e)
+        σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2}
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e y)
+        N)
+    (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m N),
+      ite.{1}
+        (∃ z,
+          Membership.mem.{0, 0}
+              (List.cons.{0} (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N h).1
+                (List.map.{u_1, 0} Prod.snd.{u_1, 0}
+                  (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N h).2))
+              z ∧
+            D z)
+        1
+        0 ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e)
+        σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2}
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e y)
+        N)
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_integral_eq_literal' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_integral_eq_occupancy.{u_1, u_2} {C : Type u_1}
+  {S : Type u_2} [DecidableEq.{u_1 + 1} C] [Fintype.{u_1} C] {n : ℕ} [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_1} C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S) (D : Fin n → Prop) [DecidablePred.{1} D]
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) (Prod.{u_2, 0} S Bool)))
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+        (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e))
+  (y : Fin n) (N : ℕ) :
+  Eq.{1}
+    (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m N),
+      ↑(PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore.{u_2} e
+          (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N
+            h)) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e)
+        σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2}
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e y)
+        N)
+    (∑ j,
+      HMul.hMul.{0, 0, 0} (↑(PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore.{u_2} e j))
+        (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1}
+          (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1}
+            (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+              (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e)
+            σ
+            (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2}
+              (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e y)
+            N)
+          (Fin.last N) j))
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_integral_eq_occupancy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_probability_eq_occupancy.{u_1, u_2} {C : Type u_1}
+  {S : Type u_2} [DecidableEq.{u_1 + 1} C] [Fintype.{u_1} C] {n : ℕ} [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_1} C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S) (D : Fin n → Prop) [DecidablePred.{1} D]
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) (Prod.{u_2, 0} S Bool)))
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+        (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e))
+  (y : Fin n) (N : ℕ) :
+  Eq.{1}
+    ((PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e)
+        σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2}
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e y)
+        N)
+      (Set.ofPred.{u_1} fun h =>
+        ∃ z,
+          Membership.mem.{0, 0}
+              (List.cons.{0} (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N h).1
+                (List.map.{u_1, 0} Prod.snd.{u_1, 0}
+                  (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N h).2))
+              z ∧
+            D z))
+    (ENNReal.ofReal
+      (∑ j,
+        HMul.hMul.{0, 0, 0} (↑(PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore.{u_2} e j))
+          (PermanssonResearch.ReverseSolver.Occupancy.Flow.state.{u_1}
+            (PermanssonResearch.ReverseSolver.Occupancy.occupancies.{u_1}
+              (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+                (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e)
+              σ
+              (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2}
+                (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e y)
+              N)
+            (Fin.last N) j)))
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_probability_eq_occupancy' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_success_integral_eq_original.{u_1, u_2} {C : Type u_1}
+  {S : Type u_2} [DecidableEq.{u_1 + 1} C] [Fintype.{u_1} C] {n : ℕ} [Fintype.{u_2} S] [DecidableEq.{u_2 + 1} S] {m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem.{u_1} C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{u_1, u_2} C n S) (D : Fin n → Prop) [DecidablePred.{1} D]
+  (e : Equiv.{1, u_2 + 1} (Fin m) (Prod.{0, u_2} (Fin n) (Prod.{u_2, 0} S Bool)))
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy.{u_1}
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+        (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e))
+  (y : Fin n) (N : ℕ) :
+  Eq.{1}
+    (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m N),
+      ↑(PermanssonResearch.ReverseSolver.ThroughHorizonRisk.successScore.{u_1, u_2} M e
+          (PermanssonResearch.ReverseSolver.Occupancy.last.{u_1} N
+            h)) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e)
+        σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2}
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e y)
+        N)
+    (∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History.{u_1} C m N),
+      ↑(PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.reward.{u_1, u_2} M
+          (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2} M 0
+              (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N h).1
+              (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{u_1, u_2} M
+                (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N h).1)
+              (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N h).2).1
+          (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{u_1, u_2} M 0
+              (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N h).1
+              (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{u_1, u_2} M
+                (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N h).1)
+              (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace.{u_1, u_2} e N
+                  h).2).2) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure.{u_1}
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem.{u_1, u_2} sys
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e)
+        σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial.{u_1, u_2}
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{u_1, u_2} M D) e y)
+        N)
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_success_integral_eq_original' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureSuccess :
+  PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{0, 0} Unit 2
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.AvoidState 0)
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureSuccess' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor :
+  PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.{0, 0} Unit 2
+    (Prod.{0, 0} (PermanssonResearch.ReverseSolver.FiniteMonitor.AvoidState 0) Bool)
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_at_zero_counts :
+  Eq.{1}
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{0, 0}
+            PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0 1
+            (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{0, 0}
+              PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 1)
+            List.nil.{0}).2.2
+      Bool.true ∧
+    Eq.{1}
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{0, 0}
+                PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0 1
+                (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{0, 0}
+                  PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 1)
+                List.nil.{0}).2.1.1.2
+      Bool.false
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_at_zero_counts' depends on axioms: [propext, Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_after_completed_success_counts :
+  Eq.{1}
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{0, 0}
+                PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0 0
+                (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{0, 0}
+                  PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0)
+                (List.cons.{0} (Prod.mk.{0, 0} () 1) List.nil.{0})).2.1.1.2
+      Bool.true ∧
+    Eq.{1}
+        (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{0, 0}
+              PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0 0
+              (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{0, 0}
+                PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0)
+              (List.cons.{0} (Prod.mk.{0, 0} () 1) List.nil.{0})).2.2
+        Bool.true ∧
+      Eq.{1}
+        (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.reward.{0, 0}
+          PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor
+          (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{0, 0}
+              PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0 0
+              (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{0, 0}
+                PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0)
+              (List.cons.{0} (Prod.mk.{0, 0} () 1) List.nil.{0})).1
+          (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{0, 0}
+              PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0 0
+              (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{0, 0}
+                PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0)
+              (List.cons.{0} (Prod.mk.{0, 0} () 1) List.nil.{0})).2)
+        1
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_after_completed_success_counts' depends on axioms: [propext,
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.simultaneous_target_danger_counts :
+  have M :=
+    PermanssonResearch.ReverseSolver.FiniteMonitor.ObservationMonitor.toMonitor.{0, 0}
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.avoidResidenceMonitor (fun z => Eq.{1} z 0) (fun z => Eq.{1} z 0)
+        0);
+  have Q := PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{0, 0} M fun z => Eq.{1} z 0;
+  Eq.{1}
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{0, 0} Q 0 0
+                (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{0, 0} Q 0) List.nil.{0}).2.1.1.2
+      Bool.false ∧
+    Eq.{1}
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{0, 0} Q 0 0
+            (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{0, 0} Q 0) List.nil.{0}).2.2
+      Bool.true
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.simultaneous_target_danger_counts' depends on axioms: [propext,
+ Quot.sound.{u}]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.failure_and_danger_are_not_complements :
+  have M :=
+    PermanssonResearch.ReverseSolver.FiniteMonitor.ObservationMonitor.toMonitor.{0, 0}
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.avoidResidenceMonitor (fun z => Eq.{1} z 0) (fun x => False) 1);
+  have Q := PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk.{0, 0} M fun x => False;
+  Eq.{1}
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{0, 0} Q 0 1
+                (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{0, 0} Q 1)
+                (List.cons.{0} (Prod.mk.{0, 0} () 1) List.nil.{0})).2.1.1.2
+      Bool.false ∧
+    Eq.{1}
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.run.{0, 0} Q 0 1
+            (PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor.initial.{0, 0} Q 1)
+            (List.cons.{0} (Prod.mk.{0, 0} () 1) List.nil.{0})).2.2
+      Bool.false
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.failure_and_danger_are_not_complements' depends on axioms: [propext,
+ Quot.sound.{u}]
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it

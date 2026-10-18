@@ -25,6 +25,34 @@ class ClosureBoundaryTests(unittest.TestCase):
         self.assertEqual(2 * (-4) + 7, -1)
         self.assertFalse(any(0 * x == 1 for x in range(-20, 21)))
 
+    def test_exact_approximant_can_violate_legal_carrier(self):
+        legal, source, approximant = {Q(0)}, Q(1), Q(1)
+        form = lambda x: -x*x
+        self.assertEqual(abs(approximant-source), 0)
+        self.assertLess(form(approximant), 0)
+        self.assertNotIn(approximant, legal)
+        self.assertFalse(any(form(p) < 0 for p in legal))
+
+    def test_embedding_without_form_preservation_loses_negative_witness(self):
+        source, target = lambda x: -x*x, lambda x: x*x
+        embedding = lambda x: x
+        self.assertLess(source(Q(1)), 0)
+        self.assertGreaterEqual(target(embedding(Q(1))), 0)
+        self.assertNotEqual(target(embedding(Q(1))), source(Q(1)))
+
+    def test_two_dimensional_shell_needs_second_equation(self):
+        # H=0, B=0, C=diag(-1,0), ell=-1: actual Schur shell diag(0,1).
+        shell, vector = ((Q(0), Q(0)), (Q(0), Q(1))), (Q(0), Q(1))
+        image = tuple(sum(shell[i][j]*vector[j] for j in range(2))
+                      for i in range(2))
+        self.assertEqual(image[0], 0)
+        self.assertNotEqual(image, (0, 0))
+
+    def test_zero_shift_does_not_invert_psd_singular_core(self):
+        core, shift = Q(0), Q(0)
+        self.assertEqual(core-shift, 0)
+        self.assertFalse(any((core-shift)*x == 1 for x in range(-20, 21)))
+
     def test_source_exceptional_branch_does_not_force_vanishing(self):
         gamma, source = Q(0), Q(1)
         self.assertEqual(gamma * source, 0)

@@ -1,0 +1,1185 @@
+PermanssonResearch.ActionTrace.BehavioralPolicy.{u} (Y A : Type u) [Fintype A] : Type u
+'PermanssonResearch.ActionTrace.BehavioralPolicy' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.ActionTrace.InformationBoundary.actual_step_fair_matching {Y : Type} [Fintype Y]
+  (G : PermanssonResearch.ActionTrace.Game Y Bool) (σ : PermanssonResearch.ActionTrace.BehavioralPolicy Y Bool) (n : ℕ)
+  (h : PermanssonResearch.ActionTrace.History Y (Bool × Bool) n)
+  (hf :
+    G.opponent (PermanssonResearch.ActionTrace.last n h) = PermanssonResearch.ActionTrace.InformationBoundary.fair) :
+  ((PermanssonResearch.ActionTrace.step G σ n h).expect fun z => if z.1.1 = z.1.2 then 1 else 0) = 1 / 2
+'PermanssonResearch.ActionTrace.InformationBoundary.actual_step_fair_matching' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ActionTrace.InformationBoundary.no_unobserved_draw_copy {Y : Type} [Fintype Y] (n : ℕ)
+  (h : PermanssonResearch.ActionTrace.History Y (Bool × Bool) n) :
+  ¬∃ σ, ∀ (b : Bool), σ n h = PermanssonResearch.ActionTrace.Row.pure b
+'PermanssonResearch.ActionTrace.InformationBoundary.no_unobserved_draw_copy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ActionTrace.InformationBoundary.observed_history_cannot_copy_next_state {Y : Type} [Fintype Y]
+  (n : ℕ) (h : PermanssonResearch.ActionTrace.History Y (Bool × Bool) n) :
+  ¬∃ σ, ∀ (nextState : Bool), σ n h = PermanssonResearch.ActionTrace.Row.pure nextState
+'PermanssonResearch.ActionTrace.InformationBoundary.observed_history_cannot_copy_next_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ActionTrace.InformationBoundary.peeked_fair_matching :
+  (PermanssonResearch.ActionTrace.InformationBoundary.fair.expect fun b => if b = b then 1 else 0) = 1
+'PermanssonResearch.ActionTrace.InformationBoundary.peeked_fair_matching' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.DiscountedVerification.finite_performance_difference.{u} {Y A : Type u} [Fintype Y] [Fintype A]
+  (G : PermanssonResearch.ActionTrace.Game Y A) (σ : PermanssonResearch.ActionTrace.BehavioralPolicy Y A)
+  (μ : PermanssonResearch.ActionTrace.Row Y) (V : Y → ℝ) (n : ℕ) :
+  PermanssonResearch.DiscountedVerification.finitePayoff G σ μ n +
+        PermanssonResearch.DiscountedVerification.finiteLoss G σ μ V n +
+      G.discount ^ n * PermanssonResearch.DiscountedVerification.stateValue G σ μ V n =
+    μ.expect V
+'PermanssonResearch.DiscountedVerification.finite_performance_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.EconomicWitness.Regression.baseline_leak_not_original_exactGR :
+  ¬PermanssonLean.RegimeSpecification.IsExactGeneratedRegime PermanssonResearch.EconomicWitness.Regression.leakyModel
+      PermanssonResearch.EconomicWitness.specification PermanssonResearch.EconomicWitness.reference
+'PermanssonResearch.EconomicWitness.Regression.baseline_leak_not_original_exactGR' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.EconomicWitness.original_confirmatoryGR :
+  PermanssonLean.RegimeSpecification.IsConfirmatoryGeneratedRegime PermanssonResearch.EconomicWitness.model
+    PermanssonResearch.EconomicWitness.specification PermanssonResearch.EconomicWitness.reference
+'PermanssonResearch.EconomicWitness.original_confirmatoryGR' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.EconomicWitness.original_exactGR :
+  PermanssonLean.RegimeSpecification.IsExactGeneratedRegime PermanssonResearch.EconomicWitness.model
+    PermanssonResearch.EconomicWitness.specification PermanssonResearch.EconomicWitness.reference
+'PermanssonResearch.EconomicWitness.original_exactGR' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.EconomicWitness.original_grounded_confirmatory_uniformPR :
+  PermanssonLean.RegimeSpecification.IsGroundedConfirmatoryUniformPermanssonRegimeRelative
+    PermanssonResearch.EconomicWitness.model PermanssonResearch.EconomicWitness.specification
+    PermanssonResearch.EconomicWitness.reference PermanssonResearch.EconomicWitness.family
+    PermanssonResearch.EconomicWitness.survivalProperty PermanssonResearch.EconomicWitness.grounding
+    PermanssonResearch.EconomicWitness.comparisonSet PermanssonResearch.EconomicWitness.extractionIntervention
+'PermanssonResearch.EconomicWitness.original_grounded_confirmatory_uniformPR' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.GrammarRobust.applyCompatiblePatches_perm.{u_1, u_2} {I : Type u_1} {O : Type u_2}
+  [MeasurableSpace I] [MeasurableSpace O] (ps qs : List (PermanssonResearch.GrammarRobust.RowPatch I O))
+  (hcompat : ∀ p ∈ ps, ∀ q ∈ ps, p.Compatible q) (hperm : ps.Perm qs)
+  (base : PermanssonLean.MarkovKernelReplacement I O) :
+  (PermanssonResearch.GrammarRobust.applyCompatiblePatches ps base).kernel =
+    (PermanssonResearch.GrammarRobust.applyCompatiblePatches qs base).kernel
+'PermanssonResearch.GrammarRobust.applyCompatiblePatches_perm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.GrammarRobust.exists_least_positive_of_finite_meet_closed.{u_1} {P : Type u_1} [SemilatticeInf P]
+  (s : Finset P) (hne : s.Nonempty) (hclosed : ∀ a ∈ s, ∀ b ∈ s, a ⊓ b ∈ s) : ∃ a ∈ s, ∀ b ∈ s, a ≤ b
+'PermanssonResearch.GrammarRobust.exists_least_positive_of_finite_meet_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_violates_premise :
+  ¬PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement
+      PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.game
+      (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.false)
+      (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.anchor Bool.true)
+      PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.world
+      (MeasureTheory.Measure.dirac (PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.initialState 0))
+'PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_violates_premise' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.Autonomous.ae_anchors_pathLaw_eq.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace S0]
+  [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2]
+  {G : PermanssonResearch.MultiAgent.TwoPlayerGenerator S0 S1 S2 X A1 A2}
+  {a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism S0 S1 S2 X A1 A2} [StandardBorelSpace S0]
+  [StandardBorelSpace S1] [StandardBorelSpace S2] [StandardBorelSpace X] [StandardBorelSpace A2]
+  (da : PermanssonResearch.MultiAgent.Autonomous.Profile G a)
+  (db : PermanssonResearch.MultiAgent.Autonomous.Profile G b) [ProbabilityTheory.IsMarkovKernel da.common]
+  [ProbabilityTheory.IsMarkovKernel da.action] [ProbabilityTheory.IsMarkovKernel da.update]
+  [ProbabilityTheory.IsMarkovKernel db.common] [ProbabilityTheory.IsMarkovKernel db.action]
+  [ProbabilityTheory.IsMarkovKernel db.update]
+  (P :
+    ProbabilityTheory.Kernel (PermanssonLean.WorldInput (PermanssonResearch.MultiAgent.GameState S0 S1 S2) X (A1 × A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel P]
+  (μ : MeasureTheory.Measure (PermanssonResearch.MultiAgent.Autonomous.State S0 S1 S2 X))
+  [MeasureTheory.IsProbabilityMeasure μ] (h : PermanssonResearch.MultiAgent.Autonomous.BaselineAEAgreement G a b P μ)
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism S0 S1 S2 X A1 A2) :
+  ((G.openLoop r a).toModel P).pathLaw μ = ((G.openLoop r b).toModel P).pathLaw μ
+'PermanssonResearch.MultiAgent.Autonomous.ae_anchors_pathLaw_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.Autonomous.strict_anchors_pathLaw_eq.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace S0]
+  [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2] [Fintype S0]
+  [Fintype S1] [Fintype S2] [Fintype X] [Fintype A1] [Fintype A2] [MeasurableSingletonClass S0]
+  [MeasurableSingletonClass S1] [MeasurableSingletonClass S2] [MeasurableSingletonClass X] [MeasurableSingletonClass A1]
+  [MeasurableSingletonClass A2] (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel (PermanssonLean.WorldInput (PermanssonResearch.MultiAgent.GameState S0 S1 S2) X (A1 × A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel P]
+  (μ : MeasureTheory.Measure (PermanssonResearch.MultiAgent.Autonomous.State S0 S1 S2 X))
+  [MeasureTheory.IsProbabilityMeasure μ] (a b : PermanssonResearch.MultiAgent.PlayerTwoMechanism S0 S1 S2 X A1 A2)
+  (hG : PermanssonResearch.MultiAgent.IsExogenousCommon G) (ha : PermanssonResearch.MultiAgent.IsStrictlyNonReactive a)
+  (hb : PermanssonResearch.MultiAgent.IsStrictlyNonReactive b)
+  (haa :
+    PermanssonResearch.MultiAgent.Autonomous.BaselineAgreement G P
+      (PermanssonResearch.MultiAgent.Autonomous.baselineSupport G P μ) a)
+  (hbb :
+    PermanssonResearch.MultiAgent.Autonomous.BaselineAgreement G P
+      (PermanssonResearch.MultiAgent.Autonomous.baselineSupport G P μ) b)
+  (r : PermanssonResearch.MultiAgent.PlayerOneMechanism S0 S1 S2 X A1 A2) :
+  ((G.openLoop r a).toModel P).pathLaw μ = ((G.openLoop r b).toModel P).pathLaw μ
+'PermanssonResearch.MultiAgent.Autonomous.strict_anchors_pathLaw_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_different_joint_do :
+  (PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM Bool.false).response () Bool.true Bool.false = 0 ∧
+    (PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM Bool.true).response () Bool.true Bool.false = 1
+'PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_different_joint_do' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_positivity_failure :
+  (PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM Bool.false).observationalMass () Bool.true
+      Bool.false =
+    0
+'PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_positivity_failure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_same_observational_law (c : Unit) (t m : Bool) (y : ℝ) :
+  (PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM Bool.false).observationalOutcomeMass c t m y =
+    (PermanssonResearch.MultiAgent.FiniteMediation.nonidentificationSCM Bool.true).observationalOutcomeMass c t m y
+'PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_same_observational_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.FiniteProduct.Two.actual_pathLaw.{u_1, u_2, u_3, u_4} {S0 : Type u_1} {X : Type u_2}
+  {S : Fin 2 → Type u_3} {A : Fin 2 → Type u_4} [MeasurableSpace S0] [MeasurableSpace X]
+  [(i : Fin 2) → MeasurableSpace (S i)] [(i : Fin 2) → MeasurableSpace (A i)] [Fintype S0] [Fintype X]
+  [(i : Fin 2) → Fintype (S i)] [(i : Fin 2) → Fintype (A i)] [MeasurableSingletonClass S0] [MeasurableSingletonClass X]
+  [∀ (i : Fin 2), MeasurableSingletonClass (S i)] [∀ (i : Fin 2), MeasurableSingletonClass (A i)]
+  (G : PermanssonResearch.MultiAgent.FiniteProduct.Generator S0 S X A)
+  (P :
+    ProbabilityTheory.Kernel
+      (PermanssonLean.WorldInput (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState S0 S) X
+        ((i : Fin 2) → A i))
+      X)
+  [ProbabilityTheory.IsMarkovKernel P]
+  (μ :
+    MeasureTheory.Measure
+      (PermanssonLean.JointState (PermanssonResearch.MultiAgent.FiniteProduct.StrategicState S0 S) X))
+  [MeasureTheory.IsProbabilityMeasure μ] :
+  MeasureTheory.Measure.map PermanssonResearch.MultiAgent.FiniteProduct.Two.compression.pathMap
+      ((G.toModel P).pathLaw μ) =
+    ((PermanssonResearch.MultiAgent.FiniteProduct.Two.binary G).toModel
+          (PermanssonResearch.MultiAgent.FiniteProduct.Two.physical P)).pathLaw
+      (MeasureTheory.Measure.map PermanssonResearch.MultiAgent.FiniteProduct.Two.state μ)
+'PermanssonResearch.MultiAgent.FiniteProduct.Two.actual_pathLaw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.stalled_clock_rejected (t : ℕ)
+  (y : PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState) :
+  ((PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor
+            PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.schedule Nat.succ).update
+        ((PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift t y, 0, 0), 0))
+      (Set.univ ×ˢ {t}) =
+    0
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.stalled_clock_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.advancing_update.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace S0]
+  [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism S0 S1 S2 X A1 A2)
+  (i : PermanssonLean.UpdateInput (PermanssonResearch.MultiAgent.GameState S0 S1 (S2 × ℕ)) X (A1 × A2)) :
+  ((PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor a Nat.succ).update i)
+      (Set.univ ×ˢ {PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.phase i.1.1 + 1}) =
+    1
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.advancing_update' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_strictness.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace S0]
+  [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2]
+  (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism S0 S1 S2 X A1 A2) (next : ℕ → ℕ)
+  (ha : ∀ (t : ℕ), PermanssonResearch.MultiAgent.IsStrictlyNonReactive (a t)) :
+  PermanssonResearch.MultiAgent.IsStrictlyNonReactive
+    (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.anchor a next)
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_strictness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_projection.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace S0]
+  [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel (PermanssonLean.WorldInput (PermanssonResearch.MultiAgent.GameState S0 S1 S2) X (A1 × A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel P] (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism S0 S1 S2 X A1 A2)
+  (t : ℕ) (μ : MeasureTheory.Measure PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.OldState)
+  [MeasureTheory.IsProbabilityMeasure μ] :
+  MeasureTheory.Measure.map (fun w n => PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.drop (w n))
+      (((PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.generator G a Nat.succ).toModel
+            (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.physical P)).pathLaw
+        (MeasureTheory.Measure.map (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.lift t) μ)) =
+    PermanssonResearch.MultiAgent.Chronological.law
+      (PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel G P a Nat.succ t) μ
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_scheduled_row.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S0 : Type u_1} {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace S0]
+  [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel (PermanssonLean.WorldInput (PermanssonResearch.MultiAgent.GameState S0 S1 S2) X (A1 × A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel P] (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism S0 S1 S2 X A1 A2)
+  (t n : ℕ) :
+  PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.scheduledKernel G P a Nat.succ t n =
+    ((G.openLoop G.player1 (a (t + n))).toModel P).inducedKernel
+'PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_scheduled_row' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.NatPrivateClock.inherited_strictness.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace S0]
+  [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2] [Countable S0]
+  [Countable S1] [Countable S2] [Fintype X] [Fintype A1] [Fintype A2] [MeasurableSingletonClass S0]
+  [MeasurableSingletonClass S1] [MeasurableSingletonClass S2] [MeasurableSingletonClass X] [MeasurableSingletonClass A1]
+  [MeasurableSingletonClass A2] (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism S0 S1 S2 X A1 A2)
+  (next : ℕ → ℕ) (ha : ∀ (t : ℕ), PermanssonResearch.MultiAgent.IsStrictlyNonReactive (a t)) :
+  PermanssonResearch.MultiAgent.IsStrictlyNonReactive (PermanssonResearch.MultiAgent.NatPrivateClock.anchor a next)
+'PermanssonResearch.MultiAgent.NatPrivateClock.inherited_strictness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.NatPrivateClock.natural_projection.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace S0]
+  [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2] [Countable S0]
+  [Countable S1] [Countable S2] [Fintype X] [Fintype A1] [Fintype A2] [MeasurableSingletonClass S0]
+  [MeasurableSingletonClass S1] [MeasurableSingletonClass S2] [MeasurableSingletonClass X] [MeasurableSingletonClass A1]
+  [MeasurableSingletonClass A2] (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel (PermanssonLean.WorldInput (PermanssonResearch.MultiAgent.GameState S0 S1 S2) X (A1 × A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel P] (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism S0 S1 S2 X A1 A2)
+  (t : ℕ) (μ : MeasureTheory.Measure PermanssonResearch.MultiAgent.NatPrivateClock.OldState)
+  [MeasureTheory.IsProbabilityMeasure μ] :
+  MeasureTheory.Measure.map (fun w n => PermanssonResearch.MultiAgent.NatPrivateClock.drop (w n))
+      (((PermanssonResearch.MultiAgent.NatPrivateClock.generator G a Nat.succ).toModel
+            (PermanssonResearch.MultiAgent.NatPrivateClock.physical P)).pathLaw
+        (MeasureTheory.Measure.map (PermanssonResearch.MultiAgent.NatPrivateClock.lift t) μ)) =
+    PermanssonResearch.MultiAgent.Chronological.law
+      (PermanssonResearch.MultiAgent.NatPrivateClock.scheduledKernel G P a Nat.succ t) μ
+'PermanssonResearch.MultiAgent.NatPrivateClock.natural_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.NatPrivateClock.natural_scheduled_row.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace S0]
+  [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2] [Countable S0]
+  [Countable S1] [Countable S2] [Fintype X] [Fintype A1] [Fintype A2] [MeasurableSingletonClass S0]
+  [MeasurableSingletonClass S1] [MeasurableSingletonClass S2] [MeasurableSingletonClass X] [MeasurableSingletonClass A1]
+  [MeasurableSingletonClass A2] (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel (PermanssonLean.WorldInput (PermanssonResearch.MultiAgent.GameState S0 S1 S2) X (A1 × A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel P] (a : ℕ → PermanssonResearch.MultiAgent.PlayerTwoMechanism S0 S1 S2 X A1 A2)
+  (t n : ℕ) :
+  PermanssonResearch.MultiAgent.NatPrivateClock.scheduledKernel G P a Nat.succ t n =
+    ((G.openLoop G.player1 (a (t + n))).toModel P).inducedKernel
+'PermanssonResearch.MultiAgent.NatPrivateClock.natural_scheduled_row' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.PlayerSwap.actual_pathLaw.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1} {S1 : Type u_2}
+  {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace S0] [MeasurableSpace S1]
+  [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2] [Fintype S0] [Fintype S1]
+  [Fintype S2] [Fintype X] [Fintype A1] [Fintype A2] [MeasurableSingletonClass S0] [MeasurableSingletonClass S1]
+  [MeasurableSingletonClass S2] [MeasurableSingletonClass X] [MeasurableSingletonClass A1] [MeasurableSingletonClass A2]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel (PermanssonLean.WorldInput (PermanssonResearch.MultiAgent.GameState S0 S1 S2) X (A1 × A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel P]
+  (μ : MeasureTheory.Measure (PermanssonLean.JointState (PermanssonResearch.MultiAgent.GameState S0 S1 S2) X))
+  [MeasureTheory.IsProbabilityMeasure μ] :
+  MeasureTheory.Measure.map PermanssonResearch.MultiAgent.PlayerSwap.compression.pathMap ((G.toModel P).pathLaw μ) =
+    ((PermanssonResearch.MultiAgent.PlayerSwap.generator G).toModel
+          (PermanssonResearch.MultiAgent.PlayerSwap.physical P)).pathLaw
+      (MeasureTheory.Measure.map PermanssonResearch.MultiAgent.PlayerSwap.state μ)
+'PermanssonResearch.MultiAgent.PlayerSwap.actual_pathLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.MultiAgent.PrivateClock.actual_projection.{u_1, u_2, u_3, u_4, u_5, u_6, u_7} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} {T : Type u_7} [MeasurableSpace S0]
+  [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2]
+  [MeasurableSpace T] [Fintype S0] [Fintype S1] [Fintype S2] [Fintype X] [Fintype A1] [Fintype A2] [Fintype T]
+  [MeasurableSingletonClass S0] [MeasurableSingletonClass S1] [MeasurableSingletonClass S2] [MeasurableSingletonClass X]
+  [MeasurableSingletonClass A1] [MeasurableSingletonClass A2] [MeasurableSingletonClass T]
+  (G : PermanssonResearch.MultiAgent.TwoPlayerGenerator S0 S1 S2 X A1 A2)
+  (P :
+    ProbabilityTheory.Kernel (PermanssonLean.WorldInput (PermanssonResearch.MultiAgent.GameState S0 S1 S2) X (A1 × A2))
+      X)
+  [ProbabilityTheory.IsMarkovKernel P] (a : T → PermanssonResearch.MultiAgent.PlayerTwoMechanism S0 S1 S2 X A1 A2)
+  (next : T → T) (t : T) (μ : MeasureTheory.Measure PermanssonResearch.MultiAgent.PrivateClock.OldState)
+  [MeasureTheory.IsProbabilityMeasure μ] :
+  MeasureTheory.Measure.map (fun w n => PermanssonResearch.MultiAgent.PrivateClock.drop (w n))
+      (((PermanssonResearch.MultiAgent.PrivateClock.generator G a next).toModel
+            (PermanssonResearch.MultiAgent.PrivateClock.physical P)).pathLaw
+        (MeasureTheory.Measure.map (PermanssonResearch.MultiAgent.PrivateClock.lift t) μ)) =
+    PermanssonResearch.MultiAgent.Chronological.law
+      (PermanssonResearch.MultiAgent.PrivateClock.scheduledKernel G P a next t) μ
+'PermanssonResearch.MultiAgent.PrivateClock.actual_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.exists_feasible_strictAnchor_iff.{u_1, u_2, u_3, u_4, u_5, u_6} {S0 : Type u_1}
+  {S1 : Type u_2} {S2 : Type u_3} {X : Type u_4} {A1 : Type u_5} {A2 : Type u_6} [MeasurableSpace S0]
+  [MeasurableSpace S1] [MeasurableSpace S2] [MeasurableSpace X] [MeasurableSpace A1] [MeasurableSpace A2] [Finite S0]
+  [Finite S1] [Finite S2] [Finite X] [Finite A2] [MeasurableSingletonClass S0] [MeasurableSingletonClass S1]
+  [MeasurableSingletonClass S2] [MeasurableSingletonClass X] [MeasurableSingletonClass A2] [Nonempty S1] [Nonempty X]
+  (legal : PermanssonLean.JointState (PermanssonResearch.MultiAgent.GameState S0 S1 S2) X → Set A2) :
+  (∃ a,
+      PermanssonResearch.MultiAgent.IsStrictlyNonReactive a ∧
+        ∀ (y : PermanssonLean.JointState (PermanssonResearch.MultiAgent.GameState S0 S1 S2) X),
+          (a.action y) (legal y) = 1) ↔
+    ∀ (k : S0 × S2), (PermanssonResearch.MultiAgent.fibreLegal PermanssonResearch.MultiAgent.anchorKey legal k).Nonempty
+'PermanssonResearch.MultiAgent.exists_feasible_strictAnchor_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultiAgent.mediator_mixture_eq.{u_1, u_2} {I : Type u_1} [Fintype I] [DecidableEq I]
+  {A : I → Type u_2} [(i : I) → Fintype (A i)] [(i : I) → DecidableEq (A i)] (γ : ((i : I) → A i) → ℝ)
+  (a : (i : I) → A i) : ∑ z, γ z * PermanssonResearch.MultiAgent.mediatorProduct a z = γ a
+'PermanssonResearch.MultiAgent.mediator_mixture_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_occupations_fail :
+  ∀ᵐ (w :
+    ℕ →
+      ℕ) ∂PermanssonResearch.MultipleLimit.FiniteCanonicalPath.canonicalPathLaw
+      PermanssonResearch.MultipleLimit.NonfiniteClock.clock (MeasureTheory.Measure.dirac 0),
+    ¬∃ π,
+        Filter.Tendsto
+          (fun n =>
+            PermanssonResearch.MultipleLimit.FiniteStateOccupation.empiricalOccupation
+              (fun t => PermanssonResearch.MultipleLimit.GrowingBlock.descriptor (w t)) (n + 1) ⋯)
+          Filter.atTop (nhds π)
+'PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_occupations_fail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_clock_no_weak_limit :
+  ∀ᵐ (w :
+    ℕ →
+      ℕ) ∂PermanssonResearch.MultipleLimit.FiniteCanonicalPath.canonicalPathLaw
+      PermanssonResearch.MultipleLimit.NonfiniteClock.clock (MeasureTheory.Measure.dirac 0),
+    ¬∃ π,
+        Filter.Tendsto (fun n => PermanssonResearch.MultipleLimit.FiniteStateOccupation.empiricalOccupation w (n + 1) ⋯)
+          Filter.atTop (nhds π)
+'PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_clock_no_weak_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Perturbation.ContractiveLeak.contraction_does_not_transfer_survival {ε : ℝ} (hε : 0 < ε)
+  (hε1 : ε ≤ 1) :
+  PermanssonResearch.Perturbation.IsW1Contraction
+      (PermanssonResearch.Perturbation.ContractiveLeak.model
+          PermanssonResearch.Perturbation.ContractiveLeak.fineLaw).inducedKernel
+      0 ∧
+    PermanssonResearch.Perturbation.IsW1Contraction
+        (PermanssonResearch.Perturbation.ContractiveLeak.model
+            (PermanssonResearch.Perturbation.ContractiveLeak.leakLaw ε)).inducedKernel
+        0 ∧
+      (∀ (y : PermanssonLean.JointState Unit ℝ),
+          PermanssonResearch.Probability.W1DualLE
+            ((PermanssonResearch.Perturbation.ContractiveLeak.model
+                  PermanssonResearch.Perturbation.ContractiveLeak.fineLaw).inducedKernel
+              y)
+            ((PermanssonResearch.Perturbation.ContractiveLeak.model
+                  (PermanssonResearch.Perturbation.ContractiveLeak.leakLaw ε)).inducedKernel
+              y)
+            ε) ∧
+        PermanssonLean.RegimeSpecification.survivalForeverProbability
+              (PermanssonResearch.Perturbation.ContractiveLeak.model
+                PermanssonResearch.Perturbation.ContractiveLeak.fineLaw)
+              PermanssonResearch.Perturbation.ContractiveLeak.specZero
+              PermanssonResearch.Perturbation.ContractiveLeak.y0 =
+            1 ∧
+          PermanssonLean.RegimeSpecification.survivalForeverProbability
+              (PermanssonResearch.Perturbation.ContractiveLeak.model
+                (PermanssonResearch.Perturbation.ContractiveLeak.leakLaw ε))
+              PermanssonResearch.Perturbation.ContractiveLeak.specZero
+              PermanssonResearch.Perturbation.ContractiveLeak.y0 =
+            0
+'PermanssonResearch.Perturbation.ContractiveLeak.contraction_does_not_transfer_survival' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Perturbation.FirstMomentInvariant.exists_unique_invariant.{u_1} {Y : Type u_1} [MetricSpace Y]
+  [CompleteSpace Y] [MeasurableSpace Y] [BorelSpace Y] [TopologicalSpace.SeparableSpace Y]
+  (K : ProbabilityTheory.Kernel Y Y) [ProbabilityTheory.IsMarkovKernel K] (y₀ : Y)
+  (hM : PermanssonResearch.Perturbation.FirstMomentInvariant.PreservesFirstMoment K y₀) {ρ : ℝ} (hρ0 : 0 ≤ ρ)
+  (hρ1 : ρ < 1) (hK : PermanssonResearch.Perturbation.IsW1Contraction K ρ) : ∃! π, K.Invariant π.measure
+'PermanssonResearch.Perturbation.FirstMomentInvariant.exists_unique_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Perturbation.RegenerativeFactorization.four_actual_factorizations.{u_1, u_2, u_3, u_4, u_5, u_6}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} {V : Type u_4} [MeasurableSpace S] [MeasurableSpace X]
+  [MeasurableSpace A] [MetricSpace S] [MetricSpace X] [BorelSpace S] [BorelSpace X] [TopologicalSpace.SeparableSpace S]
+  [TopologicalSpace.SeparableSpace X] [StandardBorelSpace S] [StandardBorelSpace X] [Nonempty S] [Nonempty X]
+  [MetricSpace V] [MeasurableSpace V] [BorelSpace V] [TopologicalSpace.SeparableSpace V]
+  (M Mt : PermanssonLean.StrategicWorldModel S X A) {FType : Type u_5} {FtType : Type u_6}
+  (F : PermanssonLean.InterventionFamily M FType) (Ft : PermanssonLean.InterventionFamily Mt FtType)
+  (J : PermanssonLean.AdmissibleStrategicIntervention F) (Jt : PermanssonLean.AdmissibleStrategicIntervention Ft)
+  (D₀ : PermanssonResearch.Perturbation.RegenerativeFactorization.Data M.inducedKernel)
+  (Dₜ : PermanssonResearch.Perturbation.RegenerativeFactorization.Data Mt.inducedKernel)
+  (DJ : PermanssonResearch.Perturbation.RegenerativeFactorization.Data J.intervention.apply.inducedKernel)
+  (DJt : PermanssonResearch.Perturbation.RegenerativeFactorization.Data Jt.intervention.apply.inducedKernel)
+  {h : PermanssonLean.JointState S X → V} (hh : Continuous h) (fallback : MeasureTheory.ProbabilityMeasure V)
+  (Φ : BoundedContinuousFunction (MeasureTheory.ProbabilityMeasure V) ℝ) (y : PermanssonLean.JointState S X) :
+  PermanssonLean.RegimeSpecification.baselinePropertyValue
+        (PermanssonResearch.Perturbation.RegenerativeOccupationProperty.property h fallback Φ) M y =
+      Φ (D₀.stationary.map h) ∧
+    PermanssonLean.RegimeSpecification.intervenedPropertyValue
+          (PermanssonResearch.Perturbation.RegenerativeOccupationProperty.property h fallback Φ) J.intervention y =
+        Φ (DJ.stationary.map h) ∧
+      PermanssonLean.RegimeSpecification.baselinePropertyValue
+            (PermanssonResearch.Perturbation.RegenerativeOccupationProperty.property h fallback Φ) Mt y =
+          Φ (Dₜ.stationary.map h) ∧
+        PermanssonLean.RegimeSpecification.intervenedPropertyValue
+            (PermanssonResearch.Perturbation.RegenerativeOccupationProperty.property h fallback Φ) Jt.intervention y =
+          Φ (DJt.stationary.map h)
+'PermanssonResearch.Perturbation.RegenerativeFactorization.four_actual_factorizations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Perturbation.RegenerativeMomentFactorization.four_actual_factorizations.{u_1, u_2, u_3, u_4, u_5,
+    u_6}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} {V : Type u_4} [MeasurableSpace S] [MeasurableSpace X]
+  [MeasurableSpace A] [MetricSpace S] [MetricSpace X] [BorelSpace S] [BorelSpace X] [TopologicalSpace.SeparableSpace S]
+  [TopologicalSpace.SeparableSpace X] [StandardBorelSpace S] [StandardBorelSpace X] [Nonempty S] [Nonempty X]
+  [MetricSpace V] [CompleteSpace V] [MeasurableSpace V] [BorelSpace V] [TopologicalSpace.SeparableSpace V] [Nonempty V]
+  (M Mt : PermanssonLean.StrategicWorldModel S X A) {FType : Type u_5} {FtType : Type u_6}
+  (F : PermanssonLean.InterventionFamily M FType) (Ft : PermanssonLean.InterventionFamily Mt FtType)
+  (J : PermanssonLean.AdmissibleStrategicIntervention F) (Jt : PermanssonLean.AdmissibleStrategicIntervention Ft)
+  (D₀ : PermanssonResearch.Perturbation.RegenerativeFactorization.Data M.inducedKernel)
+  (Dₜ : PermanssonResearch.Perturbation.RegenerativeFactorization.Data Mt.inducedKernel)
+  (DJ : PermanssonResearch.Perturbation.RegenerativeFactorization.Data J.intervention.apply.inducedKernel)
+  (DJt : PermanssonResearch.Perturbation.RegenerativeFactorization.Data Jt.intervention.apply.inducedKernel)
+  (h : PermanssonLean.JointState S X → V) (hh : Measurable h) (v₀ : V)
+  (hb₀ : PermanssonResearch.Perturbation.RegenerativeMomentFactorization.DescriptorBudget D₀ h v₀)
+  (hbₜ : PermanssonResearch.Perturbation.RegenerativeMomentFactorization.DescriptorBudget Dₜ h v₀)
+  (hbJ : PermanssonResearch.Perturbation.RegenerativeMomentFactorization.DescriptorBudget DJ h v₀)
+  (hbJt : PermanssonResearch.Perturbation.RegenerativeMomentFactorization.DescriptorBudget DJt h v₀)
+  (fallback : PermanssonResearch.Probability.FirstMomentProbability v₀)
+  (Φ : BoundedContinuousFunction (PermanssonResearch.Probability.FirstMomentProbability v₀) ℝ)
+  (y : PermanssonLean.JointState S X) :
+  PermanssonLean.RegimeSpecification.baselinePropertyValue
+        (PermanssonResearch.Perturbation.FirstMomentOccupation.property v₀ h fallback Φ) M y =
+      Φ (PermanssonResearch.Perturbation.RegenerativeMomentFactorization.descriptorTarget D₀ h hh v₀ hb₀) ∧
+    PermanssonLean.RegimeSpecification.intervenedPropertyValue
+          (PermanssonResearch.Perturbation.FirstMomentOccupation.property v₀ h fallback Φ) J.intervention y =
+        Φ (PermanssonResearch.Perturbation.RegenerativeMomentFactorization.descriptorTarget DJ h hh v₀ hbJ) ∧
+      PermanssonLean.RegimeSpecification.baselinePropertyValue
+            (PermanssonResearch.Perturbation.FirstMomentOccupation.property v₀ h fallback Φ) Mt y =
+          Φ (PermanssonResearch.Perturbation.RegenerativeMomentFactorization.descriptorTarget Dₜ h hh v₀ hbₜ) ∧
+        PermanssonLean.RegimeSpecification.intervenedPropertyValue
+            (PermanssonResearch.Perturbation.FirstMomentOccupation.property v₀ h fallback Φ) Jt.intervention y =
+          Φ (PermanssonResearch.Perturbation.RegenerativeMomentFactorization.descriptorTarget DJt h hh v₀ hbJt)
+'PermanssonResearch.Perturbation.RegenerativeMomentFactorization.four_actual_factorizations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Perturbation.inducedKernel_tv_le_primitive_product.{uS, uX, uA} {S : Type uS} {X : Type uX}
+  {A : Type uA} [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
+  [MeasurableSpace.CountableOrCountablyGenerated (PermanssonLean.JointState S X) A]
+  [MeasurableSpace.CountableOrCountablyGenerated (PermanssonLean.WorldInput S X A) X]
+  [MeasurableSpace.CountableOrCountablyGenerated (PermanssonLean.UpdateInput S X A) S]
+  (M N : PermanssonLean.StrategicWorldModel S X A) {δα δP δU : ℝ} (ha0 : 0 ≤ δα) (ha1 : δα ≤ 1) (hp0 : 0 ≤ δP)
+  (hp1 : δP ≤ 1) (hu0 : 0 ≤ δU) (hu1 : δU ≤ 1)
+  (ha : PermanssonLean.ProbabilitySupport.HasUniformEventTVBound M.generator.action N.generator.action δα)
+  (hp : PermanssonLean.ProbabilitySupport.HasUniformEventTVBound M.world N.world δP)
+  (hu : PermanssonLean.ProbabilitySupport.HasUniformEventTVBound M.generator.update N.generator.update δU) :
+  PermanssonLean.ProbabilitySupport.HasUniformEventTVBound M.inducedKernel N.inducedKernel
+    (1 - (1 - δα) * (1 - δP) * (1 - δU))
+'PermanssonResearch.Perturbation.inducedKernel_tv_le_primitive_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Perturbation.primitiveCommon_mass_ge_product.{uS, uX, uA} {S : Type uS} {X : Type uX} {A : Type uA}
+  [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A]
+  [MeasurableSpace.CountableOrCountablyGenerated (PermanssonLean.JointState S X) A]
+  [MeasurableSpace.CountableOrCountablyGenerated (PermanssonLean.WorldInput S X A) X]
+  [MeasurableSpace.CountableOrCountablyGenerated (PermanssonLean.UpdateInput S X A) S]
+  (M N : PermanssonLean.StrategicWorldModel S X A) {δα δP δU : ℝ} (ha0 : 0 ≤ δα) (ha1 : δα ≤ 1) (hp0 : 0 ≤ δP)
+  (hp1 : δP ≤ 1) (hu0 : 0 ≤ δU) (hu1 : δU ≤ 1)
+  (ha : PermanssonLean.ProbabilitySupport.HasUniformEventTVBound M.generator.action N.generator.action δα)
+  (hp : PermanssonLean.ProbabilitySupport.HasUniformEventTVBound M.world N.world δP)
+  (hu : PermanssonLean.ProbabilitySupport.HasUniformEventTVBound M.generator.update N.generator.update δU)
+  (y : PermanssonLean.JointState S X) :
+  ENNReal.ofReal (1 - δU) * ENNReal.ofReal (1 - δP) * ENNReal.ofReal (1 - δα) ≤
+    ((PermanssonResearch.Perturbation.commonInducedKernel M N) y) Set.univ
+'PermanssonResearch.Perturbation.primitiveCommon_mass_ge_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_bound_two_rejected :
+  ¬PermanssonResearch.Probability.W1DualLE (MeasureTheory.Measure.dirac Bool.false)
+      (MeasureTheory.Measure.dirac Bool.true) 2
+'PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_bound_two_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_exact :
+  PermanssonResearch.Probability.couplingW1 (MeasureTheory.Measure.dirac Bool.false)
+      (MeasureTheory.Measure.dirac Bool.true) =
+    3
+'PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Probability.FullPathProduct.path_tv_le_product.{u} {X : ℕ → Type u} [(n : ℕ) → MeasurableSpace (X n)]
+  (P Q : MeasureTheory.Measure ((n : ℕ) → X n)) [MeasureTheory.IsProbabilityMeasure P]
+  [MeasureTheory.IsProbabilityMeasure Q]
+  (μ ν ξ : MeasureTheory.Measure (PermanssonResearch.Probability.FullPathProduct.History X 0))
+  [MeasureTheory.IsProbabilityMeasure μ] [MeasureTheory.IsProbabilityMeasure ν]
+  (K L R :
+    (n : ℕ) →
+      ProbabilityTheory.Kernel (PermanssonResearch.Probability.FullPathProduct.History X n)
+        (PermanssonResearch.Probability.FullPathProduct.History X (n + 1)))
+  [∀ (n : ℕ), ProbabilityTheory.IsMarkovKernel (K n)] [∀ (n : ℕ), ProbabilityTheory.IsMarkovKernel (L n)]
+  [∀ (n : ℕ), ProbabilityTheory.IsFiniteKernel (R n)]
+  (hP :
+    ∀ (n : ℕ),
+      MeasureTheory.Measure.map (Finset.Iic n).restrict P =
+        PermanssonResearch.Probability.DependentHistory.evolution μ K n)
+  (hQ :
+    ∀ (n : ℕ),
+      MeasureTheory.Measure.map (Finset.Iic n).restrict Q =
+        PermanssonResearch.Probability.DependentHistory.evolution ν L n)
+  (hξμ : ξ ≤ μ) (hξν : ξ ≤ ν) (hRK : ∀ (n : ℕ), R n ≤ K n) (hRL : ∀ (n : ℕ), R n ≤ L n) (η : ℕ → ℝ)
+  (hη0 : ∀ (n : ℕ), 0 ≤ η n) (hη1 : ∀ (n : ℕ), η n ≤ 1) (hsum : Summable η)
+  (hmass :
+    ∀ (n : ℕ) (h : PermanssonResearch.Probability.FullPathProduct.History X n),
+      ENNReal.ofReal (1 - η n) ≤ ((R n) h) Set.univ)
+  {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1) (hξmass : ENNReal.ofReal (1 - ε) ≤ ξ Set.univ) :
+  PermanssonLean.ProbabilitySupport.eventTotalVariation P Q ≤ 1 - (1 - ε) * ∏' (t : ℕ), (1 - η t)
+'PermanssonResearch.Probability.FullPathProduct.path_tv_le_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Probability.discounted_geometric_budget_initial {β η ε : ℝ} (hβ0 : 0 ≤ β) (hβ1 : β < 1) (hη0 : 0 ≤ η)
+  (hη1 : η ≤ 1) : ∑' (n : ℕ), (1 - β) * β ^ n * (1 - (1 - ε) * (1 - η) ^ n) = 1 - (1 - ε) * (1 - β) / (1 - β * (1 - η))
+'PermanssonResearch.Probability.discounted_geometric_budget_initial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Probability.finite_couplingW1_eq_dual_supremum.{u_1} {Y : Type u_1} [Finite Y] [PseudoMetricSpace Y]
+  [MeasurableSpace Y] [MeasurableSingletonClass Y] (μ ν : MeasureTheory.Measure Y)
+  [MeasureTheory.IsProbabilityMeasure μ] [MeasureTheory.IsProbabilityMeasure ν] :
+  PermanssonResearch.Probability.couplingW1 μ ν = SupSet.sSup (PermanssonResearch.Probability.krDualValues μ ν)
+'PermanssonResearch.Probability.finite_couplingW1_eq_dual_supremum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Probability.historyEvolution_tv_le_sum.{u_1, u_2} {H : Type u_1} {Z : Type u_2} [MeasurableSpace H]
+  [MeasurableSpace Z] (μ ν : MeasureTheory.Measure H) [MeasureTheory.IsProbabilityMeasure μ]
+  [MeasureTheory.IsProbabilityMeasure ν] (K L : ℕ → ProbabilityTheory.Kernel H Z)
+  [∀ (n : ℕ), ProbabilityTheory.IsMarkovKernel (K n)] [∀ (n : ℕ), ProbabilityTheory.IsMarkovKernel (L n)]
+  (append : ℕ → H × Z → H) (hm : ∀ (n : ℕ), Measurable (append n)) (d : ℕ → H → ℝ) (hd : ∀ (n : ℕ), Measurable (d n))
+  (hd0 : ∀ (n : ℕ) (h : H), 0 ≤ d n h) (e : ℕ → ℝ) (he : ∀ (n : ℕ), 0 ≤ e n)
+  (hrows : ∀ (n : ℕ) (h : H), PermanssonLean.ProbabilitySupport.eventTotalVariation ((K n) h) ((L n) h) ≤ d n h)
+  (haverage :
+    ∀ (n : ℕ),
+      ∫⁻ (h : H), ENNReal.ofReal (d n h) ∂PermanssonResearch.Probability.historyEvolution μ K append n ≤
+        ENNReal.ofReal (e n))
+  {ε : ℝ} (hε : PermanssonLean.ProbabilitySupport.eventTotalVariation μ ν ≤ ε) (T : ℕ) :
+  PermanssonLean.ProbabilitySupport.eventTotalVariation (PermanssonResearch.Probability.historyEvolution μ K append T)
+      (PermanssonResearch.Probability.historyEvolution ν L append T) ≤
+    Min.min 1 (ε + ∑ t ∈ Finset.range T, e t)
+'PermanssonResearch.Probability.historyEvolution_tv_le_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.Probability.tv_does_not_control_w1_on_real {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) (C : ℝ) :
+  ∃ n,
+    PermanssonLean.ProbabilitySupport.eventTotalVariation (MeasureTheory.Measure.dirac 0)
+          (PermanssonResearch.Probability.tailMix ε ↑n) ≤
+        ε ∧
+      ¬PermanssonResearch.Probability.W1DualLE (MeasureTheory.Measure.dirac 0)
+          (PermanssonResearch.Probability.tailMix ε ↑n) (C * ε)
+'PermanssonResearch.Probability.tv_does_not_control_w1_on_real' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Probability.zero_row_defect_retains_initial_budget {β ε : ℝ} (hβ0 : 0 ≤ β) (hβ1 : β < 1) :
+  ∑' (n : ℕ), (1 - β) * β ^ n * (1 - (1 - ε) * (1 - 0) ^ n) = ε
+'PermanssonResearch.Probability.zero_row_defect_retains_initial_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Quotient.approxQuotient_prefix_tv_le_geometric.{u_1, u_2} {Y : Type u_1} {Q : Type u_2}
+  [MeasurableSpace Y] [MeasurableSpace Q] [MeasurableSpace.CountableOrCountablyGenerated Y Q] {q : Y → Q}
+  (hq : Measurable q) (K : ProbabilityTheory.Kernel Y Y) [ProbabilityTheory.IsMarkovKernel K]
+  (Kbar : ProbabilityTheory.Kernel Q Q) [ProbabilityTheory.IsMarkovKernel Kbar] {η : ℝ} (hη0 : 0 ≤ η) (hη1 : η ≤ 1)
+  (hdef : PermanssonResearch.Quotient.HasQuotientDefect q K Kbar η) (y : Y) (T : ℕ) :
+  PermanssonLean.ProbabilitySupport.eventTotalVariation
+      (MeasureTheory.Measure.map (PermanssonResearch.Quotient.prefixMap q T)
+        (PermanssonLean.ProbabilitySupport.finitePrefixLaw K y T))
+      (PermanssonLean.ProbabilitySupport.finitePrefixLaw Kbar (q y) T) ≤
+    1 - (1 - η) ^ T
+'PermanssonResearch.Quotient.approxQuotient_prefix_tv_le_geometric' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Quotient.geometricQuotient_margin_abs_le.{u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8, u_9, u_10, u_11}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} {Sb : Type u_4} {Xb : Type u_5} {Ab : Type u_6} {Z : Type u_7}
+  {H : Type u_8} {Hb : Type u_9} [MeasurableSpace S] [MeasurableSpace X] [MeasurableSpace A] [MeasurableSpace Sb]
+  [MeasurableSpace Xb] [MeasurableSpace Ab] [MeasurableSpace H] [MeasurableSpace Hb] [MetricSpace Z]
+  [MeasurableSpace.CountableOrCountablyGenerated (PermanssonLean.JointState S X) (PermanssonLean.JointState Sb Xb)]
+  (Qc : PermanssonLean.TypeRespectingStateCompression S X Sb Xb) {T : ℕ}
+  (p : PermanssonResearch.Perturbation.TVLipschitzPrefixProperty (PermanssonLean.JointState Sb Xb) Z T)
+  {M : PermanssonLean.StrategicWorldModel S X A} {Mbar : PermanssonLean.StrategicWorldModel Sb Xb Ab}
+  (spec : PermanssonLean.RegimeSpecification (PermanssonLean.JointState S X) H)
+  (specBar : PermanssonLean.RegimeSpecification (PermanssonLean.JointState Sb Xb) Hb) {Component : Type u_10}
+  {ComponentBar : Type u_11} (F : PermanssonLean.InterventionFamily M Component)
+  (Fbar : PermanssonLean.InterventionFamily Mbar ComponentBar)
+  (B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet M spec)
+  (B₁bar : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet Mbar specBar)
+  (hB : B₁bar.states = Qc.stateMap '' B₁.states) (J : PermanssonLean.AdmissibleStrategicIntervention F)
+  (Jbar : PermanssonLean.AdmissibleStrategicIntervention Fbar) {η₀ ηJ : ℝ} (h₀ : 0 ≤ η₀) (h₀1 : η₀ ≤ 1) (hJ : 0 ≤ ηJ)
+  (hJ1 : ηJ ≤ 1) (hdef₀ : PermanssonResearch.Quotient.ApproxKernelIntertwines Qc M Mbar η₀)
+  (hdefJ : PermanssonResearch.Quotient.ApproxKernelIntertwines Qc J.intervention.apply Jbar.intervention.apply ηJ) :
+  |PermanssonLean.RegimeSpecification.constitutiveMargin M spec F
+          (PermanssonResearch.Quotient.projectedPrefixProperty Qc p) B₁ J -
+        PermanssonLean.RegimeSpecification.constitutiveMargin Mbar specBar Fbar p.toRegimeProperty B₁bar Jbar| ≤
+    p.constant * (1 - (1 - η₀) ^ T + (1 - (1 - ηJ) ^ T))
+'PermanssonResearch.Quotient.geometricQuotient_margin_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.adaptive_block_optimal_and_attained.{u_1, u_2, u_3, u_4, u_5}
+  {S : Type u_1} {X : Type u_2} {A : Type u_3} {C : Type u_4} [MeasurableSpace S] [MeasurableSpace X]
+  [MeasurableSpace A] [DecidableEq C] [Fintype C] {n : ℕ} (M : PermanssonLean.StrategicWorldModel S X A)
+  (D : PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu M C n) {Q : Type u_5}
+  (monitor : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor C n Q) (N : ℕ) (y : Fin n) :
+  (∀
+      (σ :
+        PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy
+          (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system M D)),
+      PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceExpectation M D monitor σ N y ≤
+        ↑(PermanssonResearch.ReverseSolver.FiniteMonitor.value
+            (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system M D) monitor N 0 y (monitor.initial y))) ∧
+    ∃ σ,
+      PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedTraceExpectation M D monitor σ N y =
+        ↑(PermanssonResearch.ReverseSolver.FiniteMonitor.value
+            (PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.system M D) monitor N 0 y (monitor.initial y))
+'PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.adaptive_block_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.Belief.monitored_history_attained.{u_1, u_2, u_3, u_4} {C : Type u_1} {D : Type u_2}
+  {S : Type u_3} {O : Type u_4} [DecidableEq C] [Fintype D] [Fintype S] [Fintype O] {n : ℕ} [Nonempty D]
+  [MeasurableSpace S] [MeasurableSingletonClass S]
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem C n)
+  (η : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor C n S)
+  (menu : PermanssonResearch.ReverseSolver.Belief.CommonMenu sys D)
+  (obs : ℕ → Fin n × S → D → PermanssonResearch.ReverseSolver.Belief.Distribution O)
+  (default : PermanssonResearch.ReverseSolver.Belief.Distribution (Fin n × S))
+  (μ : PermanssonResearch.ReverseSolver.Belief.Distribution (Fin n)) (r t : ℕ) :
+  ∫ (q : (Fin n × S) × PermanssonResearch.ReverseSolver.Belief.Samples (Fin n × S) D O r),
+      PermanssonResearch.ReverseSolver.Belief.monitoredReward η
+        (PermanssonResearch.ReverseSolver.FiniteMonitor.run η t q.1.1 (η.initial q.1.1)
+          (PermanssonResearch.ReverseSolver.Belief.physicalTrace sys menu r
+            q.2)) ∂((PermanssonResearch.ReverseSolver.Belief.monitoredModel sys η menu obs default).chronologicalLaw r t
+            (PermanssonResearch.ReverseSolver.Belief.monitoredInitial η μ)
+            (PermanssonResearch.ReverseSolver.Belief.Tree.behavioral r
+              ((PermanssonResearch.ReverseSolver.Belief.monitoredModel sys η menu obs default).optimalTree
+                (PermanssonResearch.ReverseSolver.Belief.monitoredReward η) r t
+                (PermanssonResearch.ReverseSolver.Belief.monitoredInitial η μ)))).pmf.toMeasure =
+    (PermanssonResearch.ReverseSolver.Belief.monitoredModel sys η menu obs default).value
+      (PermanssonResearch.ReverseSolver.Belief.monitoredReward η) r t
+      (PermanssonResearch.ReverseSolver.Belief.monitoredInitial η μ)
+'PermanssonResearch.ReverseSolver.Belief.monitored_history_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.C11.ReferenceExamples.corrupted_stationary_receipt_rejected :
+  PermanssonResearch.ReverseSolver.C11.checkClassStationary
+      PermanssonResearch.ReverseSolver.C11.ReferenceExamples.periodic
+      PermanssonResearch.ReverseSolver.C11.ReferenceExamples.corruptedPeriodic =
+    Bool.false
+'PermanssonResearch.ReverseSolver.C11.ReferenceExamples.corrupted_stationary_receipt_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.C11.ReferenceExamples.periodic_family_accepted :
+  PermanssonResearch.ReverseSolver.C11.checkStationaryFamily
+      PermanssonResearch.ReverseSolver.C11.ReferenceExamples.periodic
+      (PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily
+        PermanssonResearch.ReverseSolver.C11.ReferenceExamples.periodic) =
+    Bool.true
+'PermanssonResearch.ReverseSolver.C11.ReferenceExamples.periodic_family_accepted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.C11.ReferenceExamples.physical_classes_remain_distinct :
+  (PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily
+          PermanssonResearch.ReverseSolver.C11.ReferenceExamples.twoAbsorbing).length =
+      2 ∧
+    List.map (fun r => ∑ x, r.weights x * if (fun x => Bool.true) x = Bool.true then 1 else 0)
+        (PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily
+          PermanssonResearch.ReverseSolver.C11.ReferenceExamples.twoAbsorbing) =
+      [1, 1]
+'PermanssonResearch.ReverseSolver.C11.ReferenceExamples.physical_classes_remain_distinct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.C11.ReferenceExamples.zero_dimension_reference_rejected :
+  PermanssonResearch.ReverseSolver.C11.checkStationaryFamily
+      PermanssonResearch.ReverseSolver.C11.ReferenceExamples.empty
+      (PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily
+        PermanssonResearch.ReverseSolver.C11.ReferenceExamples.empty) =
+    Bool.false
+'PermanssonResearch.ReverseSolver.C11.ReferenceExamples.zero_dimension_reference_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily_check {n : ℕ} [NeZero n]
+  (K : PermanssonResearch.ReverseSolver.RationalMarkovMatrix n) :
+  PermanssonResearch.ReverseSolver.C11.checkStationaryFamily K
+      (PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily K) =
+    Bool.true
+'PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily_check' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralAvoidResidence_optimal_and_attained.{uC} {C : Type uC}
+  [DecidableEq C] [Fintype C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem C n)
+  (G D : Fin n → Prop) [DecidablePred G] [DecidablePred D] (m T : ℕ) (y : Fin n) :
+  (∀ (σ : PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy sys),
+      PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralAvoidResidenceProbability sys σ G D m T y ≤
+        ↑(PermanssonResearch.ReverseSolver.FiniteMonitor.value sys
+            (PermanssonResearch.ReverseSolver.FiniteMonitor.avoidResidenceMonitor G D m).toMonitor (T + m) 0 y
+            ((PermanssonResearch.ReverseSolver.FiniteMonitor.avoidResidenceMonitor G D m).initial y))) ∧
+    ∃ σ,
+      PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralAvoidResidenceProbability sys σ G D m T y =
+        ↑(PermanssonResearch.ReverseSolver.FiniteMonitor.value sys
+            (PermanssonResearch.ReverseSolver.FiniteMonitor.avoidResidenceMonitor G D m).toMonitor (T + m) 0 y
+            ((PermanssonResearch.ReverseSolver.FiniteMonitor.avoidResidenceMonitor G D m).initial y))
+'PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralAvoidResidence_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralResidence_optimal_and_attained.{uC} {C : Type uC}
+  [DecidableEq C] [Fintype C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem C n)
+  (G : Fin n → Prop) [DecidablePred G] (m T : ℕ) (y : Fin n) :
+  (∀ (σ : PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy sys),
+      PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralResidenceProbability sys σ G m T y ≤
+        ↑(PermanssonResearch.ReverseSolver.FiniteMonitor.value sys
+            (PermanssonResearch.ReverseSolver.FiniteMonitor.compactResidenceMonitor G m).toMonitor (T + m) 0 y
+            ((PermanssonResearch.ReverseSolver.FiniteMonitor.compactResidenceMonitor G m).initial y))) ∧
+    ∃ σ,
+      PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralResidenceProbability sys σ G m T y =
+        ↑(PermanssonResearch.ReverseSolver.FiniteMonitor.value sys
+            (PermanssonResearch.ReverseSolver.FiniteMonitor.compactResidenceMonitor G m).toMonitor (T + m) 0 y
+            ((PermanssonResearch.ReverseSolver.FiniteMonitor.compactResidenceMonitor G m).initial y))
+'PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralResidence_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.FiniteMonitor.danger_after_success_does_not_undo :
+  (PermanssonResearch.ReverseSolver.FiniteMonitor.avoidRun (fun b => b = Bool.true) (fun b => b = Bool.false) 0
+          ((0, Bool.false), Bool.false) [Bool.true, Bool.false]).1.2 =
+    Bool.true
+'PermanssonResearch.ReverseSolver.FiniteMonitor.danger_after_success_does_not_undo' depends on axioms: [propext,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.FiniteMonitor.danger_precedes_simultaneous_success :
+  (PermanssonResearch.ReverseSolver.FiniteMonitor.avoidRun (fun b => b = Bool.true) (fun b => b = Bool.true) 0
+          ((0, Bool.false), Bool.false) [Bool.true]).1.2 =
+    Bool.false
+'PermanssonResearch.ReverseSolver.FiniteMonitor.danger_precedes_simultaneous_success' depends on axioms: [propext,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.FiniteMonitor.firstEntry_event_eq {n : ℕ} (G : Fin n → Prop) [DecidablePred G]
+  (T m N : ℕ) :
+  PermanssonResearch.ReverseSolver.FiniteMonitor.monitorEvent
+      (PermanssonResearch.ReverseSolver.FiniteMonitor.firstEntryMonitor G T m) N =
+    {h |
+      PermanssonResearch.ReverseSolver.FiniteMonitor.firstEntryTest G T (m + 1) 0
+          (PermanssonResearch.ReverseSolver.Residence.historyWord h) =
+        Bool.true}
+'PermanssonResearch.ReverseSolver.FiniteMonitor.firstEntry_event_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.FiniteMonitor.first_entry_retry_counterexample :
+  PermanssonResearch.ReverseSolver.Residence.hasRun (fun z => z = Bool.true) 2
+        [Bool.true, Bool.false, Bool.true, Bool.true] =
+      Bool.true ∧
+    PermanssonResearch.ReverseSolver.FiniteMonitor.firstEntryTest (fun z => z = Bool.true) 2 2 0
+          [Bool.true, Bool.false, Bool.true, Bool.true] =
+        Bool.false ∧
+      PermanssonResearch.ReverseSolver.FiniteMonitor.firstRun (fun z => z = Bool.true) 2 1 0
+          PermanssonResearch.ReverseSolver.FiniteMonitor.FirstState.waiting
+          [Bool.true, Bool.false, Bool.true, Bool.true] =
+        PermanssonResearch.ReverseSolver.FiniteMonitor.FirstState.failed
+'PermanssonResearch.ReverseSolver.FiniteMonitor.first_entry_retry_counterexample' depends on axioms: [propext,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.FiniteMonitor.monitor_history_probability_optimal_and_attained.{uC, uS} {C : Type uC}
+  [DecidableEq C] {n : ℕ} {S : Type uS}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.ObservationMonitor n S) (N : ℕ) (x : Fin n) :
+  (∀ (σ : PermanssonResearch.ReverseSolver.HistoryDependent.HistoryPolicy sys),
+      (PermanssonResearch.ReverseSolver.HistoryDependent.prefixLaw sys σ N x N)
+          (PermanssonResearch.ReverseSolver.FiniteMonitor.monitorEvent M N) ≤
+        ENNReal.ofReal ↑(PermanssonResearch.ReverseSolver.FiniteMonitor.value sys M.toMonitor N 0 x (M.initial x))) ∧
+    (PermanssonResearch.ReverseSolver.HistoryDependent.prefixLaw sys
+          (PermanssonResearch.ReverseSolver.FiniteMonitor.monitorHistoryMaximizer sys M) N x N)
+        (PermanssonResearch.ReverseSolver.FiniteMonitor.monitorEvent M N) =
+      ENNReal.ofReal ↑(PermanssonResearch.ReverseSolver.FiniteMonitor.value sys M.toMonitor N 0 x (M.initial x))
+'PermanssonResearch.ReverseSolver.FiniteMonitor.monitor_history_probability_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.InfiniteSafety.deterministic_stationary_infinite_optimum.{u_1} {C : Type u_1}
+  [DecidableEq C] [Fintype C] {n : ℕ} (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem C n)
+  (G : Finset (Fin n)) :
+  ∃ π,
+    ∀ (y : Fin n),
+      PermanssonResearch.ReverseSolver.InfiniteSafety.safetyProbability sys
+            (PermanssonResearch.ReverseSolver.InfiniteSafety.stationaryBehavioral sys π) G y =
+          PermanssonResearch.ReverseSolver.InfiniteSafety.limitValue sys G y ∧
+        ∀ (σ : PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy sys),
+          PermanssonResearch.ReverseSolver.InfiniteSafety.safetyProbability sys σ G y ≤
+            PermanssonResearch.ReverseSolver.InfiniteSafety.limitValue sys G y
+'PermanssonResearch.ReverseSolver.InfiniteSafety.deterministic_stationary_infinite_optimum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.InfiniteSafety.high_actual_finite_survival_zero_infinite
+  (σ :
+    PermanssonResearch.ReverseSolver.FiniteMonitor.BehavioralPolicy
+      PermanssonResearch.ReverseSolver.InfiniteSafety.leakageSystem) :
+  (PermanssonResearch.ReverseSolver.InfiniteSafety.pathLaw PermanssonResearch.ReverseSolver.InfiniteSafety.leakageSystem
+          σ 0)
+        (PermanssonResearch.ReverseSolver.InfiniteSafety.safeThrough
+          PermanssonResearch.ReverseSolver.InfiniteSafety.leakageTarget 1) =
+      ENNReal.ofReal (99 / 100) ∧
+    PermanssonResearch.ReverseSolver.InfiniteSafety.safetyProbability
+        PermanssonResearch.ReverseSolver.InfiniteSafety.leakageSystem σ
+        PermanssonResearch.ReverseSolver.InfiniteSafety.leakageTarget 0 =
+      0
+'PermanssonResearch.ReverseSolver.InfiniteSafety.high_actual_finite_survival_zero_infinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_half_attains :
+  (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system
+        (PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.policy (1 / 2) ⋯ ⋯)
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+        ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.reward y)) =
+      17 / 20 ∧
+    (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system
+        (PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.policy (1 / 2) ⋯ ⋯)
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+        ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.danger y)) =
+      1 / 20
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_half_attains' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.all_actual_feasible_success_le
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system)
+  (hr :
+    (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system σ
+        PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+        ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.danger y)) ≤
+      1 / 20) :
+  (PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system σ
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+      ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.reward y)) ≤
+    17 / 20
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.all_actual_feasible_success_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.full_risky_choice_is_infeasible
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system)
+  (hc : (σ.control 0 (PermanssonResearch.ReverseSolver.Occupancy.History.initial 0)).mass Bool.true = 1) :
+  1 / 20 <
+    PermanssonResearch.ReverseSolver.Occupancy.actualTerminalScore
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.system σ
+      PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.initial 1 fun y =>
+      ↑(PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.danger y)
+'PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.full_risky_choice_is_infeasible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.SolverBoundaryWitnesses.whole_model_commitment_strictly_exceeds_rectangular :
+  Min.min (1 / 10 * (9 / 10)) (9 / 10 * (1 / 10)) = 9 / 100 ∧
+    Min.min (1 / 10) (9 / 10) * Min.min (9 / 10) (1 / 10) = 1 / 100 ∧ 1 / 100 < 9 / 100
+'PermanssonResearch.ReverseSolver.SolverBoundaryWitnesses.whole_model_commitment_strictly_exceeds_rectangular' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.StationaryOccupation.equal_descriptor_laws_equal_values.{u_1} {n : ℕ} [NeZero n]
+  {H : Type u_1} [MeasurableSpace H] [TopologicalSpace H] [BorelSpace H]
+  (F : PermanssonResearch.ReverseSolver.StationaryOccupation.ExactClassFunctional n H)
+  (L : PermanssonResearch.ReverseSolver.RationalMarkovMatrix n) (C D : Finset (Fin n))
+  (hC : C ∈ PermanssonResearch.ReverseSolver.C10.bottomClasses L)
+  (hD : D ∈ PermanssonResearch.ReverseSolver.C10.bottomClasses L)
+  (he :
+    PermanssonResearch.ReverseSolver.StationaryOccupation.nativeObservedClass L F.descriptor C =
+      PermanssonResearch.ReverseSolver.StationaryOccupation.nativeObservedClass L F.descriptor D) :
+  F.evaluate L C = F.evaluate L D
+'PermanssonResearch.ReverseSolver.StationaryOccupation.equal_descriptor_laws_equal_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.StationaryOccupation.stationary_menu_actual_optimal_and_attained.{u_1, u_2}
+  {C : Type u_1} [Fintype C] [DecidableEq C] [LinearOrder C] {n : ℕ} [NeZero n] {H : Type u_2} [MeasurableSpace H]
+  [TopologicalSpace H] [BorelSpace H]
+  (F : PermanssonResearch.ReverseSolver.StationaryOccupation.ExactClassFunctional n H)
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem C n) (y : Fin n) :
+  (∀ (π : PermanssonResearch.ReverseSolver.ControlledKernel.StateFeedback sys),
+      PermanssonResearch.ReverseSolver.StationaryOccupation.actualObjective F
+          (PermanssonResearch.ReverseSolver.ControlledKernel.feedbackMatrix sys π) y ≤
+        PermanssonResearch.ReverseSolver.StationaryOccupation.actualObjective F
+          (PermanssonResearch.ReverseSolver.ControlledKernel.feedbackMatrix sys
+            (PermanssonResearch.ReverseSolver.StationaryOccupation.computedStationaryPolicy F sys y))
+          y) ∧
+    PermanssonResearch.ReverseSolver.StationaryOccupation.actualObjective F
+        (PermanssonResearch.ReverseSolver.ControlledKernel.feedbackMatrix sys
+          (PermanssonResearch.ReverseSolver.StationaryOccupation.computedStationaryPolicy F sys y))
+        y =
+      ↑(PermanssonResearch.ReverseSolver.StationaryOccupation.stationaryMaximum F sys y)
+'PermanssonResearch.ReverseSolver.StationaryOccupation.stationary_menu_actual_optimal_and_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_probability_eq_occupancy.{u_1, u_2} {C : Type u_1}
+  {S : Type u_2} [DecidableEq C] [Fintype C] {n : ℕ} [Fintype S] [DecidableEq S] {m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor C n S) (D : Fin n → Prop) [DecidablePred D]
+  (e : Fin m ≃ Fin n × S × Bool)
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem sys
+        (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D) e))
+  (y : Fin n) (N : ℕ) :
+  (PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem sys
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D) e)
+        σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D) e y)
+        N)
+      {h |
+        ∃
+          z ∈
+            (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace e N h).1 ::
+              List.map Prod.snd (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace e N h).2,
+          D z} =
+    ENNReal.ofReal
+      (∑ j,
+        ↑(PermanssonResearch.ReverseSolver.ThroughHorizonRisk.riskScore e j) *
+          (PermanssonResearch.ReverseSolver.Occupancy.occupancies
+                (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem sys
+                  (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D) e)
+                σ
+                (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial
+                  (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D) e y)
+                N).state
+            (Fin.last N) j)
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_probability_eq_occupancy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_success_integral_eq_original.{u_1, u_2} {C : Type u_1}
+  {S : Type u_2} [DecidableEq C] [Fintype C] {n : ℕ} [Fintype S] [DecidableEq S] {m : ℕ}
+  (sys : PermanssonResearch.ReverseSolver.ControlledKernel.FiniteControlSystem C n)
+  (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor C n S) (D : Fin n → Prop) [DecidablePred D]
+  (e : Fin m ≃ Fin n × S × Bool)
+  (σ :
+    PermanssonResearch.ReverseSolver.Occupancy.BehavioralPolicy
+      (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem sys
+        (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D) e))
+  (y : Fin n) (N : ℕ) :
+  ∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History C m N),
+      ↑(PermanssonResearch.ReverseSolver.ThroughHorizonRisk.successScore M e
+          (PermanssonResearch.ReverseSolver.Occupancy.last N
+            h)) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem sys
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D) e)
+        σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D) e y)
+        N =
+    ∫ (h : PermanssonResearch.ReverseSolver.Occupancy.History C m N),
+      ↑(M.reward
+          (PermanssonResearch.ReverseSolver.FiniteMonitor.run M 0
+              (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace e N h).1
+              (M.initial (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace e N h).1)
+              (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace e N h).2).1
+          (PermanssonResearch.ReverseSolver.FiniteMonitor.run M 0
+              (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace e N h).1
+              (M.initial (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace e N h).1)
+              (PermanssonResearch.ReverseSolver.Occupancy.physicalTrace e N
+                  h).2).2) ∂PermanssonResearch.ReverseSolver.Occupancy.actualHistoryMeasure
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorSystem sys
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D) e)
+        σ
+        (PermanssonResearch.ReverseSolver.Occupancy.monitorInitial
+          (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D) e y)
+        N
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_success_integral_eq_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_after_completed_success_counts :
+  (PermanssonResearch.ReverseSolver.FiniteMonitor.run PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor
+                0 0 (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor.initial 0) [((), 1)]).2.1.1.2 =
+      Bool.true ∧
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.run
+              PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0 0
+              (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor.initial 0) [((), 1)]).2.2 =
+        Bool.true ∧
+      PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor.reward
+          (PermanssonResearch.ReverseSolver.FiniteMonitor.run
+              PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0 0
+              (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor.initial 0) [((), 1)]).1
+          (PermanssonResearch.ReverseSolver.FiniteMonitor.run
+              PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0 0
+              (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor.initial 0) [((), 1)]).2 =
+        1
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_after_completed_success_counts' depends on axioms: [propext,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_at_zero_counts :
+  (PermanssonResearch.ReverseSolver.FiniteMonitor.run PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor
+            0 1 (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor.initial 1) []).2.2 =
+      Bool.true ∧
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.run
+                PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor 0 1
+                (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.fixtureMonitor.initial 1) []).2.1.1.2 =
+      Bool.false
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_at_zero_counts' depends on axioms: [propext, Quot.sound]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.failure_and_danger_are_not_complements :
+  have M :=
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.avoidResidenceMonitor (fun z => z = 0) (fun x => False)
+        1).toMonitor;
+  have Q := PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M fun x => False;
+  (PermanssonResearch.ReverseSolver.FiniteMonitor.run Q 0 1 (Q.initial 1) [((), 1)]).2.1.1.2 = Bool.false ∧
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.run Q 0 1 (Q.initial 1) [((), 1)]).2.2 = Bool.false
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.failure_and_danger_are_not_complements' depends on axioms: [propext,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_time.{u_1, u_2} {C : Type u_1} {S : Type u_2}
+  [DecidableEq C] [Fintype C] {n : ℕ} (M : PermanssonResearch.ReverseSolver.FiniteMonitor.Monitor C n S)
+  (D : Fin n → Prop) [DecidablePred D] (N : ℕ) (y : Fin n) (xs : List (C × Fin n)) (hlen : xs.length = N) :
+  (PermanssonResearch.ReverseSolver.FiniteMonitor.run (PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D)
+            0 y ((PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M D).initial y) xs).2.2 =
+      Bool.true ↔
+    ∃ t, ∃ (ht : t < (y :: List.map Prod.snd xs).length), t ≤ N ∧ D (y :: List.map Prod.snd xs)[t]
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_time' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.ReverseSolver.ThroughHorizonRisk.simultaneous_target_danger_counts :
+  have M :=
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.avoidResidenceMonitor (fun z => z = 0) (fun z => z = 0)
+        0).toMonitor;
+  have Q := PermanssonResearch.ReverseSolver.ThroughHorizonRisk.withRisk M fun z => z = 0;
+  (PermanssonResearch.ReverseSolver.FiniteMonitor.run Q 0 0 (Q.initial 0) []).2.1.1.2 = Bool.false ∧
+    (PermanssonResearch.ReverseSolver.FiniteMonitor.run Q 0 0 (Q.initial 0) []).2.2 = Bool.true
+'PermanssonResearch.ReverseSolver.ThroughHorizonRisk.simultaneous_target_danger_counts' depends on axioms: [propext,
+ Quot.sound]
+PermanssonResearch.Specialized.BoundaryWitnesses.changed_embedding_loses_negativity :
+  PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm 1 < 0 ∧
+    ¬PermanssonResearch.Specialized.BoundaryWitnesses.changedForm 1 < 0 ∧
+      ¬∀ (x : ℝ),
+          PermanssonResearch.Specialized.BoundaryWitnesses.changedForm (id x) =
+            PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm x
+'PermanssonResearch.Specialized.BoundaryWitnesses.changed_embedding_loses_negativity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Specialized.BoundaryWitnesses.dimension_two_retains_second_equation :
+  have S :=
+    PermanssonResearch.Specialized.shellComplement 0 0 PermanssonResearch.Specialized.BoundaryWitnesses.shell (-1);
+  S 0 0 = 0 ∧ S.mulVec ![0, 1] 0 = 0 ∧ S.mulVec ![0, 1] 1 = 1 ∧ S.mulVec ![0, 1] ≠ 0
+'PermanssonResearch.Specialized.BoundaryWitnesses.dimension_two_retains_second_equation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Specialized.BoundaryWitnesses.exact_but_illegal_approximant :
+  ‖1 - 1‖ = 0 ∧
+    PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm 1 < 0 ∧
+      1 ∉ {0} ∧ ¬∃ p ∈ {0}, PermanssonResearch.Specialized.BoundaryWitnesses.negativeForm p < 0
+'PermanssonResearch.Specialized.BoundaryWitnesses.exact_but_illegal_approximant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Specialized.BoundaryWitnesses.zero_shift_does_not_supply_inverse :
+  ¬IsUnit (PermanssonResearch.Specialized.negativeShift 0 0)
+'PermanssonResearch.Specialized.BoundaryWitnesses.zero_shift_does_not_supply_inverse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Specialized.gram_additional_component_negative.{u_1} {E : Type u_1} [NormedAddCommGroup E]
+  [InnerProductSpace ℝ E] {c P : ℝ} (x y : E) (hP : P < c * PermanssonResearch.Specialized.gramGap x y ^ 2) :
+  c *
+        (Inner.inner ℝ x (PermanssonResearch.Specialized.gramWitness x y) ^ 2 -
+          Inner.inner ℝ y (PermanssonResearch.Specialized.gramWitness x y) ^ 2) +
+      P <
+    0
+'PermanssonResearch.Specialized.gram_additional_component_negative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.Specialized.incompatible_kernel_negative.{u_1} {E : Type u_1} [NormedAddCommGroup E]
+  [InnerProductSpace ℝ E] (H : E →ₗ[ℝ] E) (b : E) (c : ℝ) {z : E} (hz : H z = 0) (hb : Inner.inner ℝ b z ≠ 0) :
+  ∃ v, PermanssonResearch.Specialized.singularBlockForm H b c v 1 < 0
+'PermanssonResearch.Specialized.incompatible_kernel_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.Specialized.seam_constant_diagonal.{u_1} {ι : Type u_1} (H : Matrix ι ι ℝ) (p : ι) (δ : ℝ)
+  (hsym : ∀ (i j : ι), H i j = H j i) (hseam : ∀ (i j : ι), PermanssonResearch.Specialized.seam H p i j = 0)
+  (hdiag : ∀ (i : ι), H i i = δ) (i j : ι) : H i j = δ
+'PermanssonResearch.Specialized.seam_constant_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.Specialized.seam_rank_le_two.{u_1} {ι : Type u_1} [Fintype ι] (H : Matrix ι ι ℝ) (p : ι)
+  (hsym : ∀ (i j : ι), H i j = H j i) (hseam : ∀ (i j : ι), PermanssonResearch.Specialized.seam H p i j = 0) :
+  H.rank ≤ 2
+'PermanssonResearch.Specialized.seam_rank_le_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.Specialized.signedGram_witness_negative.{u_1} {E : Type u_1} [NormedAddCommGroup E]
+  [InnerProductSpace ℝ E] {c : ℝ} (hc : 0 < c) (x y : E) (hgap : 0 < PermanssonResearch.Specialized.gramGap x y) :
+  c *
+      (Inner.inner ℝ x (PermanssonResearch.Specialized.gramWitness x y) ^ 2 -
+        Inner.inner ℝ y (PermanssonResearch.Specialized.gramWitness x y) ^ 2) <
+    0
+'PermanssonResearch.Specialized.signedGram_witness_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.Specialized.source_vanishes_of_nonexceptional {Γ value : ℝ} (h : Γ * value = 0) (hΓ : Γ ≠ 0) :
+  value = 0
+'PermanssonResearch.Specialized.source_vanishes_of_nonexceptional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.X1.InterventionNumerics.matrix_atom_eq (m : PermanssonResearch.X1.Mode) (r u : Bool)
+  (y z : PermanssonResearch.X1.Y) :
+  ((PermanssonResearch.X1.protocolModel m r u).inducedKernel y) {z} =
+    ENNReal.ofReal ↑(PermanssonResearch.X1.InterventionNumerics.matrix (PermanssonResearch.X1.learnerFlag m) r u y z)
+'PermanssonResearch.X1.InterventionNumerics.matrix_atom_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.X1.InterventionNumerics.table_step (learner restrain reset : Bool) (t : Fin 3)
+  (y : PermanssonResearch.X1.Y) :
+  PermanssonResearch.X1.InterventionNumerics.table learner restrain reset ⟨↑t + 1, ⋯⟩ y =
+    ∑ z,
+      PermanssonResearch.X1.InterventionNumerics.entry learner restrain reset y z *
+        PermanssonResearch.X1.InterventionNumerics.table learner restrain reset ⟨↑t, ⋯⟩ z
+'PermanssonResearch.X1.InterventionNumerics.table_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.X1.InterventionNumerics.table_zero (learner restrain reset : Bool) (y : PermanssonResearch.X1.Y) :
+  PermanssonResearch.X1.InterventionNumerics.table learner restrain reset 0 y = PermanssonResearch.X1.indicator y.2
+'PermanssonResearch.X1.InterventionNumerics.table_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.X1.StrategyRegression.nonstationary_terminal_identity (m : PermanssonResearch.X1.Mode)
+  (i : PermanssonResearch.X1.Player) (y : PermanssonResearch.X1.Y) (n : ℕ) :
+  PermanssonResearch.DiscountedVerification.finitePayoff (PermanssonResearch.X1.strategyGame m i)
+          PermanssonResearch.X1.alternatingDeviation (PermanssonResearch.ActionTrace.Row.pure y) n +
+        PermanssonResearch.DiscountedVerification.finiteLoss (PermanssonResearch.X1.strategyGame m i)
+          PermanssonResearch.X1.alternatingDeviation (PermanssonResearch.ActionTrace.Row.pure y)
+          (PermanssonResearch.X1.strategyValue i) n +
+      (9 / 10) ^ n *
+        PermanssonResearch.DiscountedVerification.stateValue (PermanssonResearch.X1.strategyGame m i)
+          PermanssonResearch.X1.alternatingDeviation (PermanssonResearch.ActionTrace.Row.pure y)
+          (PermanssonResearch.X1.strategyValue i) n =
+    ↑(PermanssonResearch.X1.value i y.2)
+'PermanssonResearch.X1.StrategyRegression.nonstationary_terminal_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PermanssonResearch.X1.attainingStart_mem (learner : Bool) (c : PermanssonResearch.X1.Component) :
+  PermanssonResearch.X1.attainingStart learner c ∈ PermanssonResearch.X1.comparisonStarts
+'PermanssonResearch.X1.attainingStart_mem' depends on axioms: [propext]
+PermanssonResearch.X1.component_original_margin (m : PermanssonResearch.X1.Mode) (c : PermanssonResearch.X1.Component) :
+  PermanssonLean.RegimeSpecification.constitutiveMargin (PermanssonResearch.X1.model m)
+      (PermanssonResearch.X1.specification m) (PermanssonResearch.X1.family m) PermanssonResearch.X1.property
+      (PermanssonResearch.X1.comparisonSet m) (PermanssonResearch.X1.componentIntervention m c) =
+    ↑(PermanssonResearch.X1.exactMargin (PermanssonResearch.X1.learnerFlag m) c)
+'PermanssonResearch.X1.component_original_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.X1.effects_eq_candidates (learner : Bool) (c : PermanssonResearch.X1.Component)
+  (q : PermanssonResearch.X1.Memory) :
+  PermanssonResearch.X1.exactEffect learner c (q, Bool.true) = PermanssonResearch.X1.candidateEffect learner c q
+'PermanssonResearch.X1.effects_eq_candidates' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.X1.exactEffect_attained (learner : Bool) (c : PermanssonResearch.X1.Component) :
+  PermanssonResearch.X1.exactEffect learner c (PermanssonResearch.X1.attainingStart learner c) =
+    PermanssonResearch.X1.exactMargin learner c
+'PermanssonResearch.X1.exactEffect_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.X1.exactEffect_lower (learner : Bool) (c : PermanssonResearch.X1.Component)
+  (y : PermanssonResearch.X1.Y) :
+  y ∈ PermanssonResearch.X1.comparisonStarts →
+    PermanssonResearch.X1.exactMargin learner c ≤ PermanssonResearch.X1.exactEffect learner c y
+'PermanssonResearch.X1.exactEffect_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.X1.original_property_eq_table (m : PermanssonResearch.X1.Mode) (r u : Bool)
+  (y : PermanssonResearch.X1.Y) :
+  PermanssonLean.RegimeSpecification.baselinePropertyValue PermanssonResearch.X1.property
+      (PermanssonResearch.X1.protocolModel m r u) y =
+    ↑(PermanssonResearch.X1.InterventionNumerics.table (PermanssonResearch.X1.learnerFlag m) r u 3 y)
+'PermanssonResearch.X1.original_property_eq_table' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.X1.protocol_atom_eq (m : PermanssonResearch.X1.Mode) (r u : Bool) (y z : PermanssonResearch.X1.Y) :
+  ((PermanssonResearch.X1.protocolModel m r u).inducedKernel y) {z} =
+    ENNReal.ofReal ↑(PermanssonResearch.X1.InterventionNumerics.entry (PermanssonResearch.X1.learnerFlag m) r u y z)
+'PermanssonResearch.X1.protocol_atom_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.X1.replete_not_exactGR (m : PermanssonResearch.X1.Mode)
+  (spec : PermanssonLean.RegimeSpecification PermanssonResearch.X1.Y Bool)
+  (hregion : spec.region = PermanssonResearch.X1.region) (reference : MeasureTheory.Measure PermanssonResearch.X1.Y) :
+  ¬PermanssonLean.RegimeSpecification.IsExactGeneratedRegime (PermanssonResearch.X1.model m) spec reference
+'PermanssonResearch.X1.replete_not_exactGR' depends on axioms: [propext, Classical.choice, Quot.sound]
+PermanssonResearch.X1.strategy_exact_advantage (m : PermanssonResearch.X1.Mode) (i : PermanssonResearch.X1.Player)
+  (y : PermanssonResearch.X1.Y) (a : Bool) :
+  PermanssonResearch.X1.strategyValue i y -
+      PermanssonResearch.DiscountedVerification.Q (PermanssonResearch.X1.strategyGame m i)
+        (PermanssonResearch.X1.strategyValue i) y a =
+    if y.2 = Bool.false ∧ a = Bool.true then 9 / 211 else 0
+'PermanssonResearch.X1.strategy_exact_advantage' depends on axioms: [propext, Classical.choice, Quot.sound]
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it

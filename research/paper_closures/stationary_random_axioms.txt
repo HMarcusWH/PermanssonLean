@@ -1,0 +1,198 @@
+'PermanssonResearch.MultipleLimit.StationaryCanonical.shift' does not depend on any axioms
+'PermanssonResearch.MultipleLimit.StationaryCanonical.measurable_shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.shift_iterate_zero' depends on axioms: [propext, Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.canonical_prefix_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.canonical_eval_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.measurable_append' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.append_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.HasTransitionPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.prefix_maps_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.measure_eq_of_prefix_maps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.dropPrefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.measurable_dropPrefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.shifted_transition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryCanonical.shift_measurePreserving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditional.invariantSpace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditional.conditionalKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditional.conditionalKernel_isMarkov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditional.randomLaw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditional.randomLaw_measurable_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditional.randomLaw_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditional.conditional_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditional.state_average_eq_birkhoff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditional.state_average_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalInitial.pathLaw_absolutelyContinuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalInitial.pathLaw_ae_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalInitial.composition_withDensity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalInitial.pointPathKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalInitial.pointPathKernel_isMarkov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalInitial.pointPathKernel_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalInitial.pathLaw_eq_point_comp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalInitial.pointPathKernel_initial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalInitial.pathLaw_eq_withDensity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CanonicalInitial.pathLaw_rnDeriv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryRandom.integral_difference_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryRandom.integral_tendsto_of_dense' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryRandom.empirical_tendsto_randomLaw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryRandom.randomLaw_invariant_ae' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryRandom.empirical_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryRandom.randomLaw_aemeasurable_weakBorel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryRandom.measurable_weakBorel_version' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryRandom.empirical_tendsto_randomLaw_of_initial_ac' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryRandom.exists_measurable_random_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryRandom.descriptor_random_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CountableEmpirical.empirical_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CountableEmpirical.basisCell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CountableEmpirical.basisFamily' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CountableEmpirical.basisCell_open' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CountableEmpirical.basisFamily_pi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CountableEmpirical.basisFamily_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CountableEmpirical.basisFamily_neighborhoods' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CountableEmpirical.weak_of_all_bounded_averages' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.CountableEmpirical.empirical_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.average' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.endpoint_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.telescope' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.conditional_predict_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.ambientKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.ambientKernel_isMarkov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.ambientKernel_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.composed_kernel_ae_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.StationaryConditionalInvariant.randomLaw_invariant_ae' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.PolishStationaryRandom.empirical_tendsto_randomLaw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.PolishStationaryRandom.randomLaw_aemeasurable_weakBorel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.PolishStationaryRandom.exists_measurable_random_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.PolishStationaryRandom.empirical_tendsto_randomLaw_of_initial_ac' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.PolishStationaryRandom.descriptor_random_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.PolishStationaryRandom.descriptor_random_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

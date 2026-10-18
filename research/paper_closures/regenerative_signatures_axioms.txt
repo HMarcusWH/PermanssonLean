@@ -1,0 +1,231 @@
+'PermanssonResearch.Probability.Regenerative.applyTest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.Regenerative.iterateTest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.Regenerative.applyTest_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.applyTest_abs_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.iterateTest_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.iterateTest_abs_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.iterateTest_shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.resolvent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.Regenerative.weighted_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.Regenerative.weighted_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.resolvent_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.resolvent_abs_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.bounded_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.integral_resolvent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.applyTest_resolvent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.resolvent_equation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.resolvent_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.Regenerative.orbitLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.Regenerative.orbitLaw_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.integral_orbitLaw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.geometric_weight_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.Regenerative.law_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.Regenerative.probabilityLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.Regenerative.integral_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.Regenerative.IsMixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.Regenerative.applyTest_mixture' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.resolvent_applyTest' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.poisson_equation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.integral_law_applyTest' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.integral_comp_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.Regenerative.law_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.sum_poisson_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.endpoint_average_tendsto_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.averages_of_bounded_poisson' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.canonical_regenerative_averages' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.empirical_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.basisCell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.basisFamily' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.basisCell_open' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.basisFamily_pi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.basisFamily_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.basisFamily_neighborhoods' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.empirical_weak_of_all_bounded_averages' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.MultipleLimit.Regenerative.canonical_regenerative_empirical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeFactorization.Data' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeFactorization.Data.ofEpsilon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeFactorization.Data.stationary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeFactorization.Data.stationary_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeFactorization.generatedPerturbation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeFactorization.generated_coupling_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeOccupationProperty.descriptorEmpirical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeOccupationProperty.descriptorEmpirical_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeOccupationProperty.numericLimit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeOccupationProperty.numericLimit_default' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeOccupationProperty.numericLimit_stronglyMeasurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeOccupationProperty.numericLimit_of_descriptor_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeOccupationProperty.numericLimit_abs_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeOccupationProperty.property' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeOccupationProperty.property_integrand_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeOccupationProperty.descriptorEmpirical_eq_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeOccupationProperty.property_factor_regenerative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactOccupation.probability_completelyMetrizable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactOccupation.occupationLimit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactOccupation.descriptorEmpirical_stronglyMeasurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactOccupation.occupationLimit_stronglyMeasurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactOccupation.occupationLimit_default' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactOccupation.occupationLimit_of_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactOccupation.numericLimit_eq_functional_lawLimit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactOccupation.property' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactOccupation.property_integrand_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactOccupation.occupationLimit_ae_regenerative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactOccupation.property_factor_regenerative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeFactorization.model_property_factor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeFactorization.four_actual_factorizations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeFactorization.generated_occupationMargin_robust' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactFactorization.model_property_factor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Perturbation.RegenerativeCompactFactorization.four_actual_factorizations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.RegenerativeRegression.identity_residual_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.RegenerativeRegression.seed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PermanssonResearch.Probability.RegenerativeRegression.halfReset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.RegenerativeRegression.halfReset_markov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.RegenerativeRegression.halfReset_mixture' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.RegenerativeRegression.halfReset_geometric_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.RegenerativeRegression.halfReset_all_initial_weak' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.RegenerativeRegression.halfReset_all_bounded_measurable_averages' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PermanssonResearch.Probability.RegenerativeRegression.false_reset_decomposition_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -48,16 +48,32 @@ class MutationDiagnosticClassification(unittest.TestCase):
                 self.assertEqual(driver.classify_mutation("wrong_world_probability", 1,
                     f"error: {message}\nerror: Tactic `change` failed")["status"], "INVALID_TEST")
 
+    def test_finite_semantic_failures_require_false_proposition(self):
+        for name in ("wrong_terminal_horizon", "reset_before_action",
+                     "omitted_minimizing_start", "corrupt_denominator"):
+            with self.subTest(mutation=name):
+                self.assertEqual(driver.classify_mutation(name, 1,
+                    "error: Tactic `decide` proved that the proposition\n  1 = 2\nis false")["status"],
+                    "REJECTED")
+                self.assertEqual(driver.classify_mutation(name, 1,
+                    "error: unsolved goals")["status"], "UNEXPECTED_DIAGNOSTIC")
+                self.assertEqual(driver.classify_mutation(name, 1,
+                    "error: unsolved goals\n⊢ False")["status"], "REJECTED")
+                self.assertEqual(driver.classify_mutation(name, 1,
+                    "error: Tactic `decide` failed for proposition\n"
+                    "because its Decidable instance did not reduce to isTrue or isFalse")["status"],
+                    "UNEXPECTED_DIAGNOSTIC")
+
 
 class X1LeanClosure(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.receipt_path = driver.ROOT / ".lake/x1-paper-closure/receipt.json"
-        cls.receipt_path.unlink(missing_ok=True)
         timeout = int(os.environ.get("PERMANSSON_X1_CHECK_TIMEOUT", "600"))
+        checks = len(driver.MODULES) + len(driver.EXPECTED_PROOF_FAILURES) + 1
         command = [sys.executable, str(Path(driver.__file__).resolve()), "--timeout", str(timeout)]
         cls.driver_run = subprocess.run(command, cwd=driver.ROOT, capture_output=True, text=True,
-                                 encoding="utf-8", timeout=9*timeout+120)
+                                 encoding="utf-8", timeout=checks*timeout+120)
         scratch = cls.receipt_path.parent
         scratch.mkdir(parents=True, exist_ok=True)
         (scratch / "unittest_driver.out").write_text(cls.driver_run.stdout + cls.driver_run.stderr, encoding="utf-8")
@@ -91,6 +107,31 @@ class X1LeanClosure(unittest.TestCase):
     def test_swapped_update_protocol(self):
         self._mutation("swapped_update_protocol")
 
+    def test_wrong_terminal_horizon(self):
+        self._mutation("wrong_terminal_horizon")
+
+    def test_reset_before_action(self):
+        self._mutation("reset_before_action")
+
+    def test_omitted_minimizing_start(self):
+        self._mutation("omitted_minimizing_start")
+
+    def test_corrupt_denominator(self):
+        self._mutation("corrupt_denominator")
+
+    def test_current_unchanged_sources_and_artifacts(self):
+        self.assertEqual(self.receipt.get("receipt_version"), 2)
+        self.assertEqual(self.receipt.get("changed_files"), [])
+        artifacts = self.receipt.get("compiled_artifacts", {})
+        self.assertEqual(len(artifacts), len(driver.MODULES))
+        self.assertEqual(driver.changed_files(artifacts), [])
+        self.assertEqual(driver.changed_files(self.receipt["source_sha256"]), [])
+        self.assertEqual(driver.changed_files(self.receipt["verification_sha256"]), [])
+        for name, result in self.receipt["positive_controls"].items():
+            with self.subTest(module=name):
+                self.assertEqual(result["control_sha256"],
+                    self.receipt["source_sha256"][f"PermanssonResearch/X1/{name}.lean"])
+
     def test_transitive_axioms(self):
         audit = self.receipt["axiom_audit"]
         self.assertEqual(audit.get("status"), "PASS", str(self.receipt_path))
@@ -101,6 +142,7 @@ class X1LeanClosure(unittest.TestCase):
     def test_complete_validated_receipt(self):
         self.assertEqual(self.driver_run.returncode, 0, str(self.receipt_path))
         self.assertEqual(self.receipt["status"], "PASS")
+        self.assertEqual(set(self.receipt["mutations"]), set(driver.EXPECTED_PROOF_FAILURES))
 
 
 if __name__ == "__main__":
