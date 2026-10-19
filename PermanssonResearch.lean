@@ -611,7 +611,6 @@ import PermanssonResearch.ReverseSolver.PrivateControlStageOptimizer
 
 import PermanssonResearch.MultiAgent.MeasurableFiniteProduct
 import PermanssonResearch.MultiAgent.MeasurableProductProtocols
-import PermanssonResearch.MultiAgent.MeasurableProductTwo
 import PermanssonResearch.MultiAgent.MeasurableProductRegression
 import PermanssonResearch.MultipleLimit.RegenerativeAverages
 import PermanssonResearch.MultipleLimit.RegenerativeWeakEmpirical
@@ -687,12 +686,14 @@ import PermanssonResearch.ReverseSolver.ThroughHorizonRiskMonitor
 import PermanssonResearch.Specialized.BoundaryWitnesses
 import PermanssonResearch.StrategicWorld.InformationBoundary
 import PermanssonResearch.X1.ExactMatrixTables
+import PermanssonResearch.X1.TiedStartDomainFixture
 import PermanssonResearch.Probability.GoodHistoryVisit
 import PermanssonResearch.Probability.LocalizedFinitePrefix
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixError
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixExamples
 import PermanssonResearch.Quotient.NonstationaryProjectedTransport
 import PermanssonResearch.MultiAgent.PositiveMediationWitness
+import PermanssonResearch.MultiAgent.MeasurableProductTwo
 
 /-!
 # PermanssonResearch
