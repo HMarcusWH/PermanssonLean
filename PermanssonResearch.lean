@@ -167,7 +167,6 @@ import PermanssonResearch.GrammarRobust.RelabelingOrderWitness
 import PermanssonResearch.GrammarRobust.InvalidBijectionWitness
 import PermanssonResearch.GrammarRobust.AlternativeBankWitness
 import PermanssonResearch.GrammarRobust.BooleanMinimalityCases
-import PermanssonResearch.GrammarRobust.LocalOrderPositiveFixture
 import PermanssonResearch.GrammarRobust.AdversarialAdmission
 import PermanssonResearch.GrammarRobust.RelabelingWitness
 import PermanssonResearch.GrammarRobust.BooleanEffects
@@ -687,12 +686,14 @@ import PermanssonResearch.ReverseSolver.ThroughHorizonRiskMonitor
 import PermanssonResearch.Specialized.BoundaryWitnesses
 import PermanssonResearch.StrategicWorld.InformationBoundary
 import PermanssonResearch.X1.ExactMatrixTables
+import PermanssonResearch.X1.TiedStartDomainFixture
 import PermanssonResearch.Probability.GoodHistoryVisit
 import PermanssonResearch.Probability.LocalizedFinitePrefix
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixError
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixExamples
 import PermanssonResearch.Quotient.NonstationaryProjectedTransport
 import PermanssonResearch.MultiAgent.PositiveMediationWitness
+import PermanssonResearch.GrammarRobust.LocalOrderPositiveFixture
 
 /-!
 # PermanssonResearch
