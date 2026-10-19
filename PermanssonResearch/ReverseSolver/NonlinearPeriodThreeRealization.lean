@@ -78,7 +78,9 @@ theorem period_three_world_fixed (p q : State → Bool) :
     (typedModel p).world = (typedModel q).world := rfl
 
 theorem period_three_update_fixed (p q : State → Bool) :
-    (typedModel p).generator.update = (typedModel q).generator.update := rfl
+    (typedModel p).generator.update = (typedModel q).generator.update := by
+  change phaseUpdate = phaseUpdate
+  rfl
 
 /-- A singleton atom of the genuine typed induced kernel, not a proposed table. -/
 theorem induced_kernel_singleton (policy : State → Bool) (y z : State) :
@@ -88,6 +90,9 @@ theorem induced_kernel_singleton (policy : State → Bool) (y z : State) :
     (typedModel policy) y (measurableSet_singleton z)]
   simp [typedModel, actionKernel, physicalWorld, phaseUpdate,
     nextState, Kernel.deterministic_apply, Measure.dirac_apply']
+  by_cases h : (nextPhase y.1, policy y) = z
+  · simp [Set.indicator, h]
+  · simp [Set.indicator, h]
 
 /-- The explicit rational row is a theorem target, not an assumed kernel. -/
 def rationalAtom (policy : State → Bool) (y z : State) : ℚ :=
@@ -124,6 +129,7 @@ theorem phase_aware_not_phase_blind (policy : Bool → Bool) :
   have h0 := congrArg (fun f : State → Bool => f (0, false)) h
   have h2 := congrArg (fun f : State → Bool => f (2, false)) h
   simp [phaseAwarePolicy, phaseBlindPolicy] at h0 h2
-  exact h0 (h2.symm)
+  rw [h0] at h2
+  cases h2
 
 end PermanssonResearch.ReverseSolver.NonlinearPeriodThree
