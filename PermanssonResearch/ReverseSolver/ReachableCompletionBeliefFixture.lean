@@ -65,14 +65,14 @@ theorem both_histories_reachable_in_one_law :
   · calc
       _ = Model.actionWeight policy 0 [] [(false, ())] *
             model.likelihood 0 initial [(false, ())] := by
-        convert (model.chronological_word_integral policy 0 [] initial [(false, ())]) using 1 <;>
-          simp [List.length_cons, List.length_nil, Nat.zero_add] <;> rfl
+        simpa only [List.length_singleton] using
+          (model.chronological_word_integral policy 0 [] initial [(false, ())])
       _ = 1 / 2 := both_observable_words_positive.1
   · calc
       _ = Model.actionWeight policy 0 [] [(true, ())] *
             model.likelihood 0 initial [(true, ())] := by
-        convert (model.chronological_word_integral policy 0 [] initial [(true, ())]) using 1 <;>
-          simp [List.length_cons, List.length_nil, Nat.zero_add] <;> rfl
+        simpa only [List.length_singleton] using
+          (model.chronological_word_integral policy 0 [] initial [(true, ())])
       _ = 1 / 2 := both_observable_words_positive.2
 
 /-- Same physical observation and fixed initial law, but different hidden
