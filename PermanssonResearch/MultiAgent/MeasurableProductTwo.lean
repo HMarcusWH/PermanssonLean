@@ -142,7 +142,7 @@ theorem action_map_two (G : Generator S0 S X A)
   rw [action_apply, TwoPlayerGenerator.toGenerator_action_apply]
   -- The binary action rows are comaps through the coordinate inverse;
   -- their input is propositionally, not definitionally, the original state.
-  simpa only [binary, Kernel.comap_apply, inverse_state] using
+  simpa only [productKernel, binary, Kernel.comap_apply, inverse_state] using
     (productKernel_two (fun i => (G.component i).action) y)
 
 end PermanssonResearch.MultiAgent.MeasurableProduct.Two
