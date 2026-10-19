@@ -21,6 +21,7 @@ namespace PermanssonResearch.GrammarRobust.JointOnlyCertified
 open PermanssonResearch.GrammarRobust
 open PermanssonResearch.GrammarRobust.BooleanModel
 open PermanssonResearch.GrammarRobust.BooleanBaseline
+open PermanssonResearch.GrammarRobust.BooleanPersistence
 open PermanssonResearch.GrammarRobust.BooleanEffects
 open PermanssonResearch.GrammarRobust.BooleanMinimalityCases
 open PermanssonResearch.GrammarRobust.BooleanOneStepEvents
@@ -39,7 +40,8 @@ theorem original_or_joint_only :
     blockMargin baseline bank fine (fineBlock ∅) spec
         (propertyAtOne orP) comparison = 0 := by
   exact ⟨or_joint_margin_one, or_singleton_margins_zero.1,
-    or_singleton_margins_zero.2, fine_empty_margin_zero _⟩
+    or_singleton_margins_zero.2,
+    fine_empty_margin_zero (propertyAtOne orP)⟩
 
 /-- Admission and minimality refer to the actual partition-grammar carrier,
 not to an inferred downward-closed collection of raw labels. -/
