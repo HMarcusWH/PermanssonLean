@@ -1,5 +1,6 @@
 import PermanssonResearch.Probability.DependentHistoryCommonMass
 import PermanssonResearch.Probability.CompProdPushforward
+import Mathlib.Probability.Kernel.Composition.Lemmas
 import Mathlib.Tactic
 
 /-!
