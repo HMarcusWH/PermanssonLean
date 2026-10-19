@@ -51,7 +51,7 @@ private theorem projected_compProd_step {n : ℕ}
       ((ρ ⊗ₘ R).map Prod.snd).map q1 =
         (ρ ⊗ₘ R.map q1).map Prod.snd := by
     rw [Measure.map_map hq1 measurable_snd,
-      ← Measure.compProd_map hq1,
+      Measure.compProd_map hq1,
       Measure.map_map measurable_snd (measurable_id.prodMap hq1)]
     rfl
   have hcoarse :
