@@ -20,6 +20,7 @@ namespace PermanssonResearch.GrammarRobust.JointOnlyCertified
 
 open PermanssonResearch.GrammarRobust
 open PermanssonResearch.GrammarRobust.BooleanModel
+open PermanssonResearch.GrammarRobust.BooleanBaseline
 open PermanssonResearch.GrammarRobust.BooleanEffects
 open PermanssonResearch.GrammarRobust.BooleanMinimalityCases
 open PermanssonResearch.GrammarRobust.BooleanOneStepEvents
