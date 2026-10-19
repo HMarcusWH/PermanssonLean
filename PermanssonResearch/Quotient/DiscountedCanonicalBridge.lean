@@ -47,6 +47,8 @@ theorem canonical_measure_marginal_evolution
         ((evolution μ (fun _ => K) n ⊗ₘ K).map Prod.snd)
       apply Measure.ext
       intro E hE
+      haveI : IsProbabilityMeasure (evolution μ (fun _ => K) n) :=
+        evolution_probability μ (fun _ => K) n
       rw [Measure.bind_apply hE (Kernel.aemeasurable _)]
       rw [Measure.map_apply measurable_snd hE]
       rw [Measure.compProd_apply (hE.preimage measurable_snd)]
