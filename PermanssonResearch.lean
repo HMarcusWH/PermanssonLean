@@ -167,6 +167,7 @@ import PermanssonResearch.GrammarRobust.RelabelingOrderWitness
 import PermanssonResearch.GrammarRobust.InvalidBijectionWitness
 import PermanssonResearch.GrammarRobust.AlternativeBankWitness
 import PermanssonResearch.GrammarRobust.BooleanMinimalityCases
+import PermanssonResearch.GrammarRobust.JointOnlyCertifiedFixture
 import PermanssonResearch.GrammarRobust.AdversarialAdmission
 import PermanssonResearch.GrammarRobust.RelabelingWitness
 import PermanssonResearch.GrammarRobust.BooleanEffects
@@ -691,7 +692,7 @@ import PermanssonResearch.Probability.LocalizedFinitePrefix
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixError
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixExamples
 import PermanssonResearch.Quotient.NonstationaryProjectedTransport
-import PermanssonResearch.GrammarRobust.JointOnlyCertifiedFixture
+import PermanssonResearch.MultiAgent.PositiveMediationWitness
 
 /-!
 # PermanssonResearch
