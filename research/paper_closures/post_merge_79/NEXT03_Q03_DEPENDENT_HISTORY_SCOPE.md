@@ -1,0 +1,7 @@
+# NEXT-03 / Q-03 — conditional three-stage history saturation
+
+The original generic `DependentHistoryCommonMass` source is kept unchanged. This additive fixture explicitly constructs an eight-path dependent-history probability law. After the first failure, every subsequent transition is forced to failure. Conditional surviving-history errors are exactly 1/10, 1/5 and 1/4. The actual all-survival atom is 27/50 and the discrepancy from a reference law concentrated on all-survival is 23/50.
+
+The Lean file proves normalization of both complete finite path laws, the exact all-survival atom and a half-L1 value of 23/50. The independent Python test enumerates every one of 256 measurable subsets and confirms the supremum event-TV and half-L1 coincide at 23/50. Python tests alone do not prove the Lean theorem.
+
+**Boundary:** This is a finite construction and nonvacuous conditional survival witness. It does not construct a general measurable common subkernel for a different infinite path law, does not assume independent stage errors, does not infer an original constitutive margin or Exact GR, and does not change the original A2-P01 theorem. The direct Lean `eventTotalVariation` embedding theorem remains distinct and may require another adapter. Do not mark the full Q-03 acceptance gate complete merely because the finite scalar or Python tests pass. Source-head Lean compiler and axiom audits are required.
