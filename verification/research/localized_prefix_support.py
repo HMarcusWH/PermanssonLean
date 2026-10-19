@@ -40,6 +40,21 @@ NEW_FILES = LIBRARIES + (
     "research/paper_closures/post_merge_79/A2_P02_ACCEPTANCE_MATRIX.json",
 )
 ALLOWED_CHANGED = frozenset(NEW_FILES + ("PermanssonResearch.lean",))
+
+# Compiler-accepted PR80 mathematical source blobs. A later additive PR may
+# extend the root, but cannot silently swap the certified closure proof terms.
+# Altering one of these requires a separately reviewed source-identity update.
+ACCEPTED_A2_PROOF_BLOBS = {
+    "PermanssonResearch/Probability/GoodHistoryVisit.lean":
+        "24ee31695ce76f16bec5b7b318afd4b1af4c9c17",
+    "PermanssonResearch/Probability/LocalizedFinitePrefix.lean":
+        "d40bc59c0fe107a632c1ed7588e5b51a0fa0e3ba",
+    "PermanssonResearch/ConstitutiveQuasi/LocalizedPrefixError.lean":
+        "296a1ce4b6edbffb474f0d5a4bc63504c9b91a1b",
+    "PermanssonResearch/ConstitutiveQuasi/LocalizedPrefixExamples.lean":
+        "4942c414be31c2afb3169c872d5fdedb3073b299",
+}
+
 MANIFEST = "MANIFEST_SHA256.json"
 
 
@@ -255,47 +270,90 @@ def inspect_repo(repo: Path, *, pristine: bool = False) -> dict[str, Any]:
         if not branch or branch in {"main", "master"}:
             raise GuardError("installation requires a named feature branch, not detached/main/master")
         if status: raise GuardError("installation requires a clean worktree and index")
+    if status:
+        raise GuardError("source worktree or index is dirty")
+    old = parse_tree(git_bytes(repo, "ls-tree", "-r", "-z", BASE))
+    current = parse_tree(git_bytes(repo, "ls-tree", "-r", "-z", "HEAD"))
+    if set(old) - set(current):
+        raise GuardError("original provider path deleted")
+    added = set(current) - set(old)
+    if pristine and added:
+        raise GuardError("installer requires exact PR79 base")
+    if not pristine and set(NEW_FILES) - added:
+        raise GuardError("missing A2-P02 modules or verifier in HEAD")
+    if not pristine:
+        for rel, oid in ACCEPTED_A2_PROOF_BLOBS.items():
+            if current.get(rel) != ("100644", oid):
+                raise GuardError(f"accepted A2-P02 mathematical provider identity changed: {rel}")
+    modified_base = {rel for rel in old if old[rel] != current[rel]}
+    if modified_base - {"PermanssonResearch.lean"}:
+        raise GuardError(f"original provider objects changed: {sorted(modified_base - {'PermanssonResearch.lean'})}")
+    if pristine and modified_base:
+        raise GuardError("installer requires exact original provider tree")
     for revision_args in (("diff", "--name-only", "-z", BASE, "HEAD"),
                           ("diff", "--cached", "--name-only", "-z", BASE)):
         changed = {p.decode("utf-8") for p in git_bytes(repo, *revision_args).split(b"\0") if p}
-        if changed - ALLOWED_CHANGED:
-            raise GuardError(f"HEAD/index changes preserved paths: {sorted(changed - ALLOWED_CHANGED)}")
-    old = parse_tree(git_bytes(repo, "ls-tree", "-r", "-z", BASE))
+        if changed - (added | {"PermanssonResearch.lean"}):
+            raise GuardError(f"original provider paths modified: {sorted(changed - added - {'PermanssonResearch.lean'})}")
     original_root = git_bytes(repo, "show", f"{BASE}:PermanssonResearch.lean")
     if blob_sha(original_root) != ROOT_BLOB:
         raise GuardError("baseline Research root blob mismatch")
     expected_root = original_root if pristine else rewrite_root(original_root)
+    actual_root = read_member(repo, "PermanssonResearch.lean")
+    # The compiler contract is stable under additive *committed* research PRs.
+    # Remove only their direct-import lines; all original root bytes must match.
+    root_without_successors = actual_root
+    if not pristine:
+        successor_modules = {p for p in added
+            if p.startswith("PermanssonResearch/") and p.endswith(".lean")}
+        for rel in sorted(successor_modules):
+            module = rel.removesuffix(".lean").replace("/", ".")
+            imp = ("import " + module + "\n").encode("utf-8")
+            if imp in expected_root:
+                continue
+            if root_without_successors.count(imp) != 1:
+                raise GuardError(f"successor import absent or duplicated: {module}")
+            root_without_successors = root_without_successors.replace(imp, b"", 1)
+    if root_without_successors != expected_root:
+        raise GuardError("Research root changed beyond original A2 imports plus additive direct imports")
     snapshots: dict[str, dict[str, Any]] = {}
     for rel, (mode, oid) in old.items():
         data = read_member(repo, rel)
+        if blob_sha(data) != current[rel][1]:
+            raise GuardError(f"worktree disagrees with HEAD blob: {rel}")
         if rel == "PermanssonResearch.lean":
-            if data != expected_root: raise GuardError("Research root differs from the exact import-only change")
+            if data != actual_root:
+                raise GuardError("Research root changed during source verification")
         elif blob_sha(data) != oid:
             raise GuardError(f"preserved baseline file changed: {rel}")
         if os.name != "nt" and bool(safe_path(repo, rel).stat().st_mode & 0o111) != (mode == "100755"):
             raise GuardError(f"preserved executable mode changed: {rel}")
         snapshots[rel] = {"sha256": sha256(data), "bytes": len(data), "git_mode": mode}
-    for rel in NEW_FILES:
+    for rel in (NEW_FILES if pristine else sorted(added)):
         dest = safe_path(repo, rel, allow_missing=True)
         if pristine:
-            if dest.exists(): raise GuardError(f"new destination already exists: {rel}")
+            if dest.exists():
+                raise GuardError(f"installer destination already exists: {rel}")
         else:
+            mode, oid = current[rel]
             data = read_member(repo, rel)
-            if os.name != "nt" and bool(dest.stat().st_mode & 0o111):
-                raise GuardError(f"new source has unexpected executable mode: {rel}")
-            snapshots[rel] = {"sha256": sha256(data), "bytes": len(data), "git_mode": "100644"}
+            if blob_sha(data) != oid:
+                raise GuardError(f"new file disagrees with HEAD blob: {rel}")
+            if os.name != "nt" and bool(dest.stat().st_mode & 0o111) != (mode == "100755"):
+                raise GuardError(f"new source executable mode differs from HEAD: {rel}")
+            snapshots[rel] = {"sha256": sha256(data), "bytes": len(data), "git_mode": mode}
     listed = {p.decode("utf-8") for p in git_bytes(repo, "ls-files", "-z", "--cached",
                                                   "--others", "--exclude-standard").split(b"\0") if p}
-    allowed = set(old) if pristine else set(old) | set(NEW_FILES)
-    if listed - allowed:
-        raise GuardError(f"unexpected tracked/untracked paths: {sorted(listed - allowed)}")
+    allowed = set(old) if pristine else set(current)
+    if listed != allowed:
+        raise GuardError(f"tracked/untracked paths differ from HEAD: {sorted(listed ^ allowed)}")
     # Ignored extra source files must not evade direct-import coverage.
     actual_research = {p.relative_to(repo).as_posix() for p in (repo / "PermanssonResearch").rglob("*.lean")}
     expected_research = {p for p in allowed if p.startswith("PermanssonResearch/") and p.endswith(".lean")}
     if actual_research != expected_research:
         raise GuardError("unexpected or absent research Lean modules")
     if not pristine:
-        root_code = lean_code(expected_root.decode("utf-8"))
+        root_code = lean_code(actual_root.decode("utf-8"))
         imports = [line.strip()[7:] for line in root_code.splitlines() if line.strip().startswith("import ")]
         for path in expected_research:
             module = path.removesuffix(".lean").replace("/", ".")
