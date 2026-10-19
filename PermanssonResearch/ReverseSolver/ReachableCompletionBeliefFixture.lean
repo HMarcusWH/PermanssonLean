@@ -61,17 +61,18 @@ theorem both_histories_reachable_in_one_law :
     (∫ q, (if Samples.observable 1 q.2 = [(true, ())] then (1 : ℝ) else 0)
       ∂(model.chronologicalLaw 1 0 initial (policy.unfold 1 0 [])).pmf.toMeasure) =
         1 / 2 := by
+  classical
   constructor
   · calc
       _ = Model.actionWeight policy 0 [] [(false, ())] *
             model.likelihood 0 initial [(false, ())] := by
-        simpa only [List.length_singleton] using
+        simpa [List.length_singleton] using
           (model.chronological_word_integral policy 0 [] initial [(false, ())])
       _ = 1 / 2 := both_observable_words_positive.1
   · calc
       _ = Model.actionWeight policy 0 [] [(true, ())] *
             model.likelihood 0 initial [(true, ())] := by
-        simpa only [List.length_singleton] using
+        simpa [List.length_singleton] using
           (model.chronological_word_integral policy 0 [] initial [(true, ())])
       _ = 1 / 2 := both_observable_words_positive.2
 
