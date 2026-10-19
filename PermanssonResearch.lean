@@ -693,6 +693,7 @@ import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixError
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixExamples
 import PermanssonResearch.Quotient.NonstationaryProjectedTransport
 import PermanssonResearch.MultiAgent.PositiveMediationWitness
+import PermanssonResearch.MultiAgent.AsymmetricCommonSwapFixture
 
 /-!
 # PermanssonResearch
