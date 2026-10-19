@@ -1,0 +1,15 @@
+\section{Pinned dependencies and release boundary}
+Historical planning base is
+\code{3931e4dccafb47b3cdf70177c0cf337102c90731}
+with tree
+\code{0ffd313dcd5efd1cf90a85ee458024b1b28cd3f8}.
+Original Lean toolchain is version 4.34.0 with pinned manifest;
+do not update. The eventual release must execute
+\code{lake build PermanssonResearch}, \code{lake build},
+all old and new tests, the axiom and import audits, independent semantic
+mutants, and the full 45-case acceptance scripts. The reviewed source
+H, true synthetic merge S, and merged M must be recorded separately.
+The LaTeX manuscript must compile, be rendered and visually inspected;
+a PDF-to-text extraction is insufficient. No paper outputs, release
+receipts, external peer review, source-bound archive, or publication
+are certified by this working source.

@@ -1,0 +1,26 @@
+\section{P--06: Native strategic phase and nonlinear occupation}
+\textbf{Status: native atoms under compilation; full occupation pending.}
+One native strategic-world model uses phase memory $S=\mathrm{Fin}\,3$,
+physical world $X=\mathrm{Bool}$, action $A=\mathrm{Bool}$ and the
+\emph{same} primitives $P((p,x),a)=\delta_a$ and
+$U((p,x),a,x')=\delta_{(p+1)\bmod3}$ under all compared controllers.
+The phase-aware policy selects $a=(p\neq2)$ and from $(0,F)$ generates
+$(0,F)\to(1,T)\to(2,T)\to(0,F)$.
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[node distance=17mm]
+\node[obj] (a) {$(0,F)$};\node[obj,right=of a] (b) {$(1,T)$};
+\node[obj,right=of b] (c) {$(2,T)$};
+\draw[arr] (a)--(b);\draw[arr] (b)--(c);
+\draw[arr] (c) to[bend left=45] (a);
+\end{tikzpicture}
+\caption{The native three-phase cycle with projected Bool true mass $2/3$.}
+\end{figure}
+The proposed original nonlinear objective is the \emph{expectation}
+of $F(\nu)=1-|\nu(\{T\})-2/3|$ evaluated on the genuine pathwise
+empirical occupation-limit law, not $F$ of its barycenter.
+The selected comparison is only over four deterministic \emph{phase-blind}
+physical feedbacks $\pi:\mathrm{Bool}\to\mathrm{Bool}$; the proposed maximum
+is $5/6$, versus $1$ for phase-aware policy. A stationary randomized
+Bool-only controller with $\Pr(a=T)=2/3$ can also attain $1$, so
+no unrestricted stationary or all-history dominance is claimed.
+This time-aware controller is itself stationary on augmented $S\times X$.
