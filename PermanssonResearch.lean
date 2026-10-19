@@ -696,6 +696,7 @@ import PermanssonResearch.MultiAgent.PositiveMediationWitness
 import PermanssonResearch.MultiAgent.AsymmetricCommonSwapFixture
 import PermanssonResearch.Probability.DependentThreeStageSaturation
 import PermanssonResearch.MultiAgent.MarkedCouplingCountermodel
+import PermanssonResearch.GrammarRobust.LocalOrderPositiveFixture
 
 /-!
 # PermanssonResearch
