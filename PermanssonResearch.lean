@@ -687,10 +687,12 @@ import PermanssonResearch.Specialized.BoundaryWitnesses
 import PermanssonResearch.StrategicWorld.InformationBoundary
 import PermanssonResearch.X1.ExactMatrixTables
 import PermanssonResearch.Probability.GoodHistoryVisit
+import PermanssonResearch.Probability.DependentThreeStageSaturation
 import PermanssonResearch.Probability.LocalizedFinitePrefix
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixError
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixExamples
-import PermanssonResearch.Probability.DependentThreeStageSaturation
+import PermanssonResearch.Quotient.NonstationaryProjectedTransport
+import PermanssonResearch.MultiAgent.PositiveMediationWitness
 
 /-!
 # PermanssonResearch
