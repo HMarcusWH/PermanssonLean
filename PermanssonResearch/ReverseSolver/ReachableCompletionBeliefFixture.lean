@@ -43,12 +43,12 @@ def policy : ObservationPolicy Bool Unit where
 /-- Conditional on choosing either action, the next observable Unit readout
 has probability one. Actual historical mass also includes the 1/2 action. -/
 theorem both_observable_words_positive :
-    (actionWeight policy 0 [] [(false, ())] *
+    (Model.actionWeight policy 0 [] [(false, ())] *
         model.likelihood 0 initial [(false, ())] = 1 / 2) ∧
-    (actionWeight policy 0 [] [(true, ())] *
+    (Model.actionWeight policy 0 [] [(true, ())] *
         model.likelihood 0 initial [(true, ())] = 1 / 2) := by
   constructor <;>
-    norm_num [actionWeight, Model.likelihood, Model.branchMass,
+    norm_num [Model.actionWeight, Model.likelihood, Model.branchMass,
       Model.numerator, policy, fairActions, model, initial,
       Distribution.pure, Fintype.sum_bool]
 
@@ -62,10 +62,18 @@ theorem both_histories_reachable_in_one_law :
       ∂(model.chronologicalLaw 1 0 initial (policy.unfold 1 0 [])).pmf.toMeasure) =
         1 / 2 := by
   constructor
-  · rw [model.chronological_word_integral policy 0 [] initial [(false, ())]]
-    exact both_observable_words_positive.1
-  · rw [model.chronological_word_integral policy 0 [] initial [(true, ())]]
-    exact both_observable_words_positive.2
+  · calc
+      _ = Model.actionWeight policy 0 [] [(false, ())] *
+            model.likelihood 0 initial [(false, ())] := by
+        simpa only [List.length_cons, List.length_nil] using
+          (model.chronological_word_integral policy 0 [] initial [(false, ())])
+      _ = 1 / 2 := both_observable_words_positive.1
+  · calc
+      _ = Model.actionWeight policy 0 [] [(true, ())] *
+            model.likelihood 0 initial [(true, ())] := by
+        simpa only [List.length_cons, List.length_nil] using
+          (model.chronological_word_integral policy 0 [] initial [(true, ())])
+      _ = 1 / 2 := both_observable_words_positive.2
 
 /-- Same physical observation and fixed initial law, but different hidden
 completed-flag beliefs. Both posteriors are conditional on POSITIVE events. -/
