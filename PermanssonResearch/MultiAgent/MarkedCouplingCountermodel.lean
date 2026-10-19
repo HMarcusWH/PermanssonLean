@@ -20,7 +20,7 @@ namespace PermanssonResearch.MultiAgent.MarkedCouplingCountermodel
 open PermanssonResearch.ReverseSolver.FiniteMonitor
 
 /-- Two normalized actual joint atoms: key/action perfectly aligned. -/
-def aligned : FiniteProbabilityLaw (Bool × Bool) where
+noncomputable def aligned : FiniteProbabilityLaw (Bool × Bool) where
   support := Finset.univ
   atom p := if p.1 = p.2 then (1/2 : ℝ) else 0
   nonnegative := by intro p; split <;> norm_num
@@ -29,7 +29,7 @@ def aligned : FiniteProbabilityLaw (Bool × Bool) where
     norm_num [Fintype.sum_prod_type, Fintype.sum_bool]
 
 /-- A second normalized joint law with exactly opposite action coupling. -/
-def crossed : FiniteProbabilityLaw (Bool × Bool) where
+noncomputable def crossed : FiniteProbabilityLaw (Bool × Bool) where
   support := Finset.univ
   atom p := if p.1 ≠ p.2 then (1/2 : ℝ) else 0
   nonnegative := by intro p; split <;> norm_num
