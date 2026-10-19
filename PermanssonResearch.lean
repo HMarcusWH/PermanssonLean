@@ -691,6 +691,7 @@ import PermanssonResearch.Probability.LocalizedFinitePrefix
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixError
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixExamples
 import PermanssonResearch.Quotient.NonstationaryProjectedTransport
+import PermanssonResearch.MultiAgent.MeasurableProductTwo
 
 /-!
 # PermanssonResearch
