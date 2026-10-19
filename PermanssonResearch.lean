@@ -701,6 +701,7 @@ import PermanssonResearch.GrammarRobust.BooleanOverlapFixture
 import PermanssonResearch.ReverseSolver.ReachableCompletionBeliefFixture
 import PermanssonResearch.ReverseSolver.NonlinearOccupationBoundaryFixture
 import PermanssonResearch.Quotient.DiscountedProjectedOutputs
+import PermanssonResearch.ReverseSolver.CommittedVsRectangularPathFixture
 
 /-!
 # PermanssonResearch
