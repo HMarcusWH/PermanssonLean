@@ -10,7 +10,11 @@ SOURCE = ROOT / "PermanssonResearch/GrammarRobust/JointOnlyCertifiedFixture.lean
 CONTROL = """import PermanssonResearch.GrammarRobust.JointOnlyCertifiedFixture
 open PermanssonResearch.GrammarRobust
 open PermanssonResearch.GrammarRobust.BooleanModel
+open PermanssonResearch.GrammarRobust.BooleanBaseline
+open PermanssonResearch.GrammarRobust.BooleanPersistence
 open PermanssonResearch.GrammarRobust.BooleanEffects
+open PermanssonResearch.GrammarRobust.BooleanMinimalityCases
+open PermanssonResearch.GrammarRobust.BooleanOneStepEvents
 open PermanssonLean
 open PermanssonLean.RegimeSpecification
 
