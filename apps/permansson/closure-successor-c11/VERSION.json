@@ -1,0 +1,1 @@
+{"format":"Permansson.C11.ClosureSuccessor.v0.2.0","supported_states":[1,2,3,4,5,6],"provider":"C11StationaryFamily","scope":"REIFIED_FINITE_RATIONAL_C11","scientific_claims_verified":false,"empirical_identification":"NOT_IDENTIFIED","dependencies":"pinned Lean4.34.0 and original C11 exact producer/checker/emitter"}
