@@ -699,6 +699,7 @@ import PermanssonResearch.MultiAgent.MarkedCouplingCountermodel
 import PermanssonResearch.GrammarRobust.LocalOrderPositiveFixture
 import PermanssonResearch.GrammarRobust.BooleanOverlapFixture
 import PermanssonResearch.ReverseSolver.ReachableCompletionBeliefFixture
+import PermanssonResearch.ReverseSolver.NonlinearOccupationBoundaryFixture
 
 /-!
 # PermanssonResearch
