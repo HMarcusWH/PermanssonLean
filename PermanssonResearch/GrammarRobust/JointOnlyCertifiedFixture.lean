@@ -22,6 +22,7 @@ open PermanssonResearch.GrammarRobust
 open PermanssonResearch.GrammarRobust.BooleanModel
 open PermanssonResearch.GrammarRobust.BooleanEffects
 open PermanssonResearch.GrammarRobust.BooleanMinimalityCases
+open PermanssonResearch.GrammarRobust.BooleanOneStepEvents
 open PermanssonLean
 open PermanssonLean.RegimeSpecification
 
