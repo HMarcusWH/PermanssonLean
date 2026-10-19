@@ -64,7 +64,7 @@ theorem compatible_order_independent :
   have hc : ∀ p ∈ [selectedFalse, wideFalse], ∀ q ∈ [selectedFalse, wideFalse],
       p.Compatible q := by
     intro p hp q hq
-    simp only [List.mem_cons, List.mem_singleton] at hp hq
+    simp at hp hq
     rcases hp with rfl | rfl
     · rcases hq with rfl | rfl
       · intro x hx hy; rfl
