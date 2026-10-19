@@ -140,10 +140,9 @@ theorem action_map_two (G : Generator S0 S X A)
   letI : ∀ i, IsMarkovKernel (G.component i).action :=
     fun i => (G.component i).action_isMarkov
   rw [action_apply, TwoPlayerGenerator.toGenerator_action_apply]
-  change (Measure.pi (fun i => (G.component i).action y)).map
-    (MeasurableEquiv.piFinTwo A) =
-      ((G.component 0).action y).prod ((G.component 1).action y)
-  simpa only [productKernel] using
+  -- The binary action rows are comaps through the coordinate inverse;
+  -- their input is propositionally, not definitionally, the original state.
+  simpa only [binary, Kernel.comap_apply, inverse_state] using
     (productKernel_two (fun i => (G.component i).action) y)
 
 end PermanssonResearch.MultiAgent.MeasurableProduct.Two
