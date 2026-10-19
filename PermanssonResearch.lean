@@ -702,6 +702,7 @@ import PermanssonResearch.ReverseSolver.ReachableCompletionBeliefFixture
 import PermanssonResearch.ReverseSolver.NonlinearOccupationBoundaryFixture
 import PermanssonResearch.Quotient.DiscountedProjectedOutputs
 import PermanssonResearch.ReverseSolver.CommittedVsRectangularPathFixture
+import PermanssonResearch.GrammarRobust.JointOnlyCertifiedFixture
 
 /-!
 # PermanssonResearch
