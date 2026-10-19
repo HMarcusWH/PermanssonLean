@@ -690,6 +690,8 @@ import PermanssonResearch.Probability.GoodHistoryVisit
 import PermanssonResearch.Probability.LocalizedFinitePrefix
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixError
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixExamples
+import PermanssonResearch.Quotient.NonstationaryProjectedTransport
+import PermanssonResearch.MultiAgent.PositiveMediationWitness
 import PermanssonResearch.MultiAgent.MarkedCouplingCountermodel
 
 /-!
