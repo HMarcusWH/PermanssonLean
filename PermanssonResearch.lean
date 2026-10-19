@@ -611,6 +611,7 @@ import PermanssonResearch.ReverseSolver.PrivateControlStageOptimizer
 
 import PermanssonResearch.MultiAgent.MeasurableFiniteProduct
 import PermanssonResearch.MultiAgent.MeasurableProductProtocols
+import PermanssonResearch.MultiAgent.MeasurableProductTwo
 import PermanssonResearch.MultiAgent.MeasurableProductRegression
 import PermanssonResearch.MultipleLimit.RegenerativeAverages
 import PermanssonResearch.MultipleLimit.RegenerativeWeakEmpirical
@@ -691,7 +692,7 @@ import PermanssonResearch.Probability.LocalizedFinitePrefix
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixError
 import PermanssonResearch.ConstitutiveQuasi.LocalizedPrefixExamples
 import PermanssonResearch.Quotient.NonstationaryProjectedTransport
-import PermanssonResearch.MultiAgent.MeasurableProductTwo
+import PermanssonResearch.MultiAgent.PositiveMediationWitness
 
 /-!
 # PermanssonResearch
