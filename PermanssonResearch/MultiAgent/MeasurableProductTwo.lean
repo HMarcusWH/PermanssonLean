@@ -56,6 +56,8 @@ theorem measurable_state :
 
 theorem measurable_inverseState :
     Measurable (inverseState (S0 := S0) (S := S) (X := X)) := by
+  have hsymm : Measurable ((MeasurableEquiv.piFinTwo S).symm) :=
+    (MeasurableEquiv.piFinTwo S).symm.measurable
   unfold inverseState
   fun_prop
 
@@ -71,25 +73,34 @@ def inverseInput
 
 theorem measurable_inverseWorld :
     Measurable (inverseWorld (S0 := S0) (S := S) (X := X) (A := A)) := by
+  have hstate : Measurable (inverseState (S0 := S0) (S := S) (X := X)) :=
+    measurable_inverseState
+  have hsymm : Measurable ((MeasurableEquiv.piFinTwo A).symm) :=
+    (MeasurableEquiv.piFinTwo A).symm.measurable
   unfold inverseWorld
   fun_prop
 
 theorem measurable_inverseInput :
     Measurable (inverseInput (S0 := S0) (S := S) (X := X) (A := A)) := by
+  have hworld : Measurable (inverseWorld (S0 := S0) (S := S) (X := X) (A := A)) :=
+    measurable_inverseWorld
   unfold inverseInput
   fun_prop
 
 @[simp] theorem inverse_world_at_original
     (y : JointState (StrategicState S0 S) X) (a : ∀ i, A i) :
     inverseWorld (state y, (MeasurableEquiv.piFinTwo A) a) = (y, a) := by
-  simp [inverseWorld]
+  change (inverseState (state y),
+      (MeasurableEquiv.piFinTwo A).symm ((MeasurableEquiv.piFinTwo A) a)) = (y, a)
+  rw [inverse_state, (MeasurableEquiv.piFinTwo A).symm_apply_apply]
 
 @[simp] theorem inverse_input_at_original
     (y : JointState (StrategicState S0 S) X)
     (a : ∀ i, A i) (x : X) :
     inverseInput ((state y, (MeasurableEquiv.piFinTwo A) a), x) =
       ((y, a), x) := by
-  simp [inverseInput]
+  change (inverseWorld (state y, (MeasurableEquiv.piFinTwo A) a), x) = ((y, a), x)
+  rw [inverse_world_at_original]
 
 /-- Binary generator on the actual two-player coordinates. Common update,
 private updates and physical world rows are all read through their COMPLETE
@@ -129,7 +140,10 @@ theorem action_map_two (G : Generator S0 S X A)
   letI : ∀ i, IsMarkovKernel (G.component i).action :=
     fun i => (G.component i).action_isMarkov
   rw [action_apply, TwoPlayerGenerator.toGenerator_action_apply]
-  simpa [binary, Kernel.comap_apply, inverse_state] using
+  change (Measure.pi (fun i => (G.component i).action y)).map
+    (MeasurableEquiv.piFinTwo A) =
+      ((G.component 0).action y).prod ((G.component 1).action y)
+  simpa only [productKernel] using
     (productKernel_two (fun i => (G.component i).action) y)
 
 end PermanssonResearch.MultiAgent.MeasurableProduct.Two
