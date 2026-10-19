@@ -39,8 +39,8 @@ theorem all_original_equilibrium_action_starts_tie (y : Y)
 
 /-- The omitted domain still has exactly the same NUMERICAL infimum. -/
 theorem omitted_domain_same_numeric_inf :
-    sInf (exactEffect false .action '' omittedTiedStart) =
-      exactMargin false .action := by
+    sInf ((fun z : ℚ => (z : ℝ)) '' (exactEffect false .action '' omittedTiedStart)) =
+      (exactMargin false .action : ℝ) := by
   have heq : exactEffect false .action '' omittedTiedStart =
       {exactMargin false .action} := by
     ext a
