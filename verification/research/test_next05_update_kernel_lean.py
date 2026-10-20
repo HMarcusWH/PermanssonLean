@@ -39,6 +39,15 @@ PROBE = (
     "    (((binary G).toGenerator).update).comap forwardUpdate "
     "measurable_forwardUpdate :=\n"
     "  update_kernel_map_two G\n"
+    "example (G : Generator ℝ (fun _ : Fin 2 => ℝ) ℝ "
+    "(fun _ : Fin 2 => Bool))\n"
+    "    (P : Kernel (WorldInput (StrategicState ℝ (fun _ : Fin 2 => ℝ)) "
+    "ℝ (∀ _ : Fin 2, Bool)) ℝ) [IsMarkovKernel P] :\n"
+    "  KernelIntertwines "
+    "(compression_two (S0 := ℝ) (S := fun _ : Fin 2 => ℝ) (X := ℝ))\n"
+    "    (model G P).inducedKernel\n"
+    "    ((binary G).toModel (physical P)).inducedKernel :=\n"
+    "  induced_kernel_intertwines_two G P\n"
 )
 FORBIDDEN = re.compile(
     r"unknown (module|identifier|constant|tactic)|file not found|"
@@ -97,6 +106,72 @@ class MeasurableKernelCompiler(unittest.TestCase):
                                                   "application type mismatch")),
                 output
             )
+
+
+    def test_well_typed_false_joint_world_state_is_rejected(self):
+        """A real kernel goal with the *wrong* next-row input must not compile.
+
+        The separate Fraction fixture witnesses world-sensitive physical rows;
+        the source theorem must not be used with a different physical input.
+        This is a semantic-goal rejection, not the intended type firewall.
+        """
+        self.assertIsNotNone(shutil.which("lake"), "pinned Lean/Lake required")
+        mutant = (
+            f"import {MODULE}\\n"
+            "open PermanssonLean\\n"
+            "open PermanssonResearch.MultiAgent.FiniteProduct\\n"
+            "open PermanssonResearch.MultiAgent.MeasurableProduct\\n"
+            "open PermanssonResearch.MultiAgent.MeasurableProduct.Two\\n"
+            "example (G : Generator Bool (fun _ : Fin 2 => Bool) Bool "
+            "(fun _ : Fin 2 => Bool))\\n"
+            "    (P : Kernel (WorldInput (StrategicState Bool "
+            "(fun _ : Fin 2 => Bool)) Bool (∀ _ : Fin 2, Bool)) Bool) "
+            "[IsMarkovKernel P]\\n"
+            "    (y : JointState (StrategicState Bool "
+            "(fun _ : Fin 2 => Bool)) Bool) :\\n"
+            "  ((model G P).inducedKernel y).map state =\\n"
+            "    ((binary G).toModel (physical P)).inducedKernel "
+            "((state y).1, !(state y).2) := by\\n"
+            "  exact induced_row_map_two G P y\\n"
+        )
+        with tempfile.TemporaryDirectory(prefix="next05falsekernel_",
+                                           dir=ROOT / ".lake") as tmp:
+            ret, output = run_lean(mutant, "FalseWorldRow.lean", Path(tmp))
+            self.assertNotEqual(ret, 0, "wrong input row proof was accepted")
+            self.assertIsNone(FORBIDDEN.search(output), output)
+            self.assertTrue(any(s in output.lower() for s in
+                                ("type mismatch", "unsolved goals",
+                                 "application type mismatch")), output)
+
+    def test_joint_state_map_cannot_map_strategic_update_output(self):
+        """TYPE firewall only: its rejection must not count as a semantic mutant."""
+        self.assertIsNotNone(shutil.which("lake"), "pinned Lean/Lake required")
+        wrong = (
+            f"import {MODULE}\\n"
+            "open PermanssonLean\\n"
+            "open PermanssonResearch.MultiAgent.FiniteProduct\\n"
+            "open PermanssonResearch.MultiAgent.MeasurableProduct\\n"
+            "open PermanssonResearch.MultiAgent.MeasurableProduct.Two\\n"
+            "example (G : Generator Bool (fun _ : Fin 2 => Bool) Bool "
+            "(fun _ : Fin 2 => Bool))\\n"
+            "    (v : UpdateInput (StrategicState Bool "
+            "(fun _ : Fin 2 => Bool)) Bool (∀ _ : Fin 2, Bool)) :\\n"
+            "  ((assemble G).update v).map "
+            "(state (S0 := Bool) (S := fun _ : Fin 2 => Bool) "
+            "(X := Bool)) = ((assemble G).update v) := by\\n"
+            "  rfl\\n"
+        )
+        with tempfile.TemporaryDirectory(prefix="next05typefirewall_",
+                                           dir=ROOT / ".lake") as tmp:
+            ret, output = run_lean(wrong, "WrongOutputType.lean", Path(tmp))
+            self.assertNotEqual(ret, 0, "joint map type firewall failed")
+            self.assertFalse(re.search(r"unknown module|file not found|failed to import|"
+                                       r"unexpected token|parser error|out of memory|"
+                                       r"maximum heartbeat|timed out", output, re.I),
+                             output)
+            self.assertTrue(any(s in output.lower() for s in
+                                ("type mismatch", "application type mismatch",
+                                 "function expected")), output)
 
 
 if __name__ == "__main__":
