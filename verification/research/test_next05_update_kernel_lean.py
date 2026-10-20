@@ -24,9 +24,12 @@ PROBE = (
     "#check action_kernel_map_two\n"
     "#check world_kernel_pullback_two\n"
     "#check update_kernel_map_two\n"
+    "#check induced_row_map_two\n"
+    "#check induced_kernel_intertwines_two\n"
     "#check compression_two\n"
     "#print axioms update_map_two\n"
     "#print axioms update_kernel_map_two\n"
+    "#print axioms induced_kernel_intertwines_two\n"
     "#print axioms action_kernel_map_two\n"
     "#print axioms compression_two_state\n"
     "example (G : Generator ℝ (fun _ : Fin 2 => ℝ) ℝ "
@@ -62,10 +65,10 @@ class MeasurableKernelCompiler(unittest.TestCase):
             self.assertEqual(ret, 0, stdout)
             self.assertNotIn("sorryAx", stdout)
             for name in ("update_map_two", "update_kernel_map_two",
-                         "compression_two", "action_kernel_map_two"):
+                         "induced_kernel_intertwines_two", "compression_two", "action_kernel_map_two"):
                 self.assertIn(name, stdout)
             axiom_sets = re.findall(r"depends on axioms:\s*\[([^\]]*)\]", stdout)
-            self.assertGreaterEqual(len(axiom_sets), 4, stdout)
+            self.assertGreaterEqual(len(axiom_sets), 5, stdout)
             for names in axiom_sets:
                 actual = {v.strip() for v in names.split(",") if v.strip()}
                 self.assertLessEqual(actual, AXIOM_ALLOWLIST, stdout)
