@@ -22,4 +22,22 @@ class Tests(unittest.TestCase):
                 self.assertLessEqual({x.strip() for x in axioms.split(",") if x.strip()},
                                      {"propext","Quot.sound","Classical.choice"},out)
             self.assertNotIn("sorryAx",out)
+    def test_wrong_discounted_certificate_is_semantically_rejected(self):
+        self.assertTrue(shutil.which("lake"),"Lean/Lake unavailable")
+        with tempfile.TemporaryDirectory(dir=ROOT/".lake") as d:
+            f=pathlib.Path(d)/"WrongBudget.lean"
+            f.write_text("import PermanssonResearch.Quotient.DiscountedOriginalMarginExamples\n"+
+                "open PermanssonResearch.Quotient.DiscountedOriginalMargin\n"+
+                "example : (∑' n : ℕ, (1-(1/3:ℝ))*(1/3:ℝ)^n*"+
+                "(1-(1-(1/5:ℝ))*(1-(1/4:ℝ))^n)) = (14/45:ℝ) := by\n"+
+                "  exact exact_thirteen_fortyfive_budget\n")
+            p=subprocess.run(["lake","env","lean",str(f)],cwd=ROOT,
+                             text=True,capture_output=True,timeout=600)
+            out=p.stdout+p.stderr
+            self.assertNotEqual(p.returncode,0,"false budget accepted")
+            self.assertFalse(re.search("unknown module|failed to import|parser error|"+
+                "out of memory|timed out|maximum heartbeat",out,re.I),out)
+            self.assertTrue("type mismatch" in out.lower() or
+                            "unsolved goals" in out.lower(),out)
+
 if __name__=="__main__":unittest.main()
