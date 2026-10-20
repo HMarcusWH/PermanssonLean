@@ -14,7 +14,7 @@ class Tests(unittest.TestCase):
         defects=[Q(1,10),Q(1,5),Q(1,4)]
         retained=Q(1)
         for d in defects: retained*=1-d
-        self.assertEqual(retained,Q(27,50)*Q(3,4))
+        self.assertEqual(retained,Q(27,50))
         self.assertNotEqual(retained,(1-defects[-1])**3)
     def test_original_full_set_minimum(self):
         effects={0:Q(1,8),1:Q(3,8),2:Q(1,2)}
