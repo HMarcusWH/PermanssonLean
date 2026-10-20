@@ -22,4 +22,21 @@ class Tests(unittest.TestCase):
                 self.assertLessEqual({x.strip() for x in ax.split(",") if x.strip()},
                                     {"propext","Quot.sound","Classical.choice"},out)
             self.assertNotIn("sorryAx",out)
+    def test_false_native_nonlinear_score_is_rejected(self):
+        self.assertTrue(shutil.which("lake"),"Pinned Lean required")
+        with tempfile.TemporaryDirectory(dir=ROOT/".lake") as d:
+            f=pathlib.Path(d)/"FalseScore.lean"
+            f.write_text("import PermanssonResearch.ReverseSolver.NonlinearPolicyClassComparison\n"+
+             "open PermanssonResearch.ReverseSolver.NonlinearPeriodThree\n"+
+             "example : booleanRationalScore (1/2) = (1:ℚ) := by\n"+
+             "  exact classwise_barycenter_invalid.2\n")
+            p=subprocess.run(["lake","env","lean",str(f)],cwd=ROOT,
+                             capture_output=True,text=True,timeout=600)
+            out=p.stdout+p.stderr
+            self.assertNotEqual(p.returncode,0,"false nonlinear score accepted")
+            self.assertFalse(re.search("unknown module|failed to import|parser error|"+
+              "out of memory|timed out|maximum heartbeat",out,re.I),out)
+            self.assertTrue("type mismatch" in out.lower() or
+                            "unsolved goals" in out.lower(),out)
+
 if __name__=="__main__":unittest.main()
