@@ -1,0 +1,32 @@
+\section{P--05: Measurable two-player reconstruction}
+\textbf{Status: complete source law recovery remains open.}
+The original strategic state is $S_0\times\prod_{i\in\mathrm{Fin}\,2}S_i$.
+The binary target is $S_0\times(S_0^{\rm priv}\times S_1^{\rm priv})$,
+with joint states formed by adjoining $X$. Distinct measurable maps
+$\phi_S$, $\phi_A$, $\phi_Y$, $\phi_{\rm WorldInput}$ and
+$\phi_{\rm UpdateInput}$ are mandatory. The update kernel outputs
+strategic state $S$, not joint state $Y$, and must preserve separately
+conditioned common/private updates:
+\[
+(\phi_S)_\#U_G(y,a,x')
+=U_{\rm bin}(\phi_Y(y),\phi_A(a),x').
+\]
+Together with physical input pullback and action product mapping,
+the target is $K_{\rm bin}\circ\phi_Y=(\phi_Y)_\#K_{\rm orig}$
+on \emph{every measurable event}, then complete canonical path-law
+transport for every initial law and both legal CL/OL intervention families.
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[node distance=10mm]
+\node[obj] (s) {$S_{\rm orig}$}; \node[obj,right=of s] (sb) {$S_{\rm binary}$};
+\node[obj,below=of s] (a) {$A_{\rm orig}$};
+\node[obj,right=of a] (ab) {$A_{\rm binary}$};
+\node[obj,below=of a] (y) {$Y_{\rm orig}$};
+\node[obj,right=of y] (yb) {$Y_{\rm binary}$};
+\draw[arr] (s)--node[above] {$\phi_S$} (sb);
+\draw[arr] (a)--node[above] {$\phi_A$} (ab);
+\draw[arr] (y)--node[above] {$\phi_Y$} (yb);
+\end{tikzpicture}
+\caption{The update output uses $\phi_S$, not $\phi_Y$; inputs retain
+both action and realized next-world state.}
+\end{figure}
+This concerns the declared conditional-product subclass only.

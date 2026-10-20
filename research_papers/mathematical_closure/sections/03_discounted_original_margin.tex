@@ -1,0 +1,35 @@
+\section{P--04: Discounted output to original constitutive margin}
+\textbf{Status: P--04.1 canonical marginal bridge Lean-checked; original whole-path constitutive-margin closure still pending.}
+The scoped theorem \code{canonical_nth_marginal_eq_evolution} concerns
+the genuine canonical time-$n$ marginal, not the full property or a
+closed original constitutive margin.
+For typed compression $q:Y\to\bar Y$ and fixed $0\le\beta<1$, the original
+whole-path score is $\Phi(w)=(1-\beta)\sum_{n\ge0}\beta^n g_n(w_n)$,
+with fixed measurable $0\le g_n\le1$.
+Baseline and intervention must each use their \emph{actual canonical law}.
+The required chronological retained-mass envelope on every original
+comparison start $y\in B_1$ is
+\[
+E_s(y)=\sum_{n\ge0}(1-\beta)\beta^n
+\left(1-(1-\varepsilon_s(y))\prod_{t<n}(1-\eta_{s,t}(y))\right)
+,\quad s\in\{0,J\}.
+\]
+Matched Dirac starts have $\varepsilon_s(y)=0$; a distinct general
+initial-law result must retain possible nonzero $\varepsilon$.
+Uniform $E_0\le e_0$ and $E_J\le e_J$ and the exact equality
+$\bar B_1=q(B_1)$ are required for the original-margin conclusion
+$|\kappa-\bar\kappa|\le e_0+e_J$, with any reporting errors $b_0,b_J$
+recorded separately.
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[node distance=10mm]
+\node[obj] (f) {Fine canonical\\base / intervention};
+\node[obj,right=of f] (q) {$q^{\mathbb N}$\\typed projection};
+\node[obj,right=of q] (g) {Coarse canonical\\base / intervention};
+\node[obj,below=of q] (m) {Original $B_1$ margin\\two-sided $e_0,e_J$};
+\draw[arr] (f)--(q);\draw[arr] (q)--(g);
+\draw[arr] (f)|-(m);\draw[arr] (g)|-(m);
+\end{tikzpicture}
+\caption{Both baseline and intervention output laws must transport to
+the original full-$B_1$ margin API; diagram is not a proof receipt.}
+\end{figure}
+A positive numerical margin does not by itself imply Exact GR/PR.

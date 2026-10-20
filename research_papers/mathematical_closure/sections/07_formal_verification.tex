@@ -1,0 +1,23 @@
+\section{Compiler, acceptance and source provenance}
+Every new theorem must have compiled \code{#check} and
+\code{#print axioms}, exact statement and source hash, independent
+positive/negative semantic checks, and actual B/H/S/M source/CI
+provenance. The trusted axiom allowlist is \code{propext},
+\code{Classical.choice}, \code{Quot.sound}. Python rational checks
+are separate implementation evidence, not Lean proofs.
+\begin{table}[htbp]\centering\small
+\begin{tabularx}{\linewidth}{@{}lXl@{}}\toprule
+Lane&Completion gate&Manuscript status\\\midrule
+P--04&Scoped time marginals checked; original margin open&Partial\\
+P--05&Measurable full protocol/path&Pending\\
+P--06&Native kernel checked; occupation theorem open&Partial\\
+P--AUDIT&45 case-by-case checks&Pending\\
+P--PAPER&Full release, source hashes, visual inspection&Pending\\
+P--INT&True H/B/S/M and independent review&Pending\\\bottomrule
+\end{tabularx}
+\caption{Scoped Lean results do not constitute complete P--04/P--06
+programme acceptance, manuscript approval, or empirical regime certification.}
+\end{table}
+The historical PR79 source receipts cannot be silently rewritten.
+Draft manuscript, archival publication, operational release and
+independent academic review are different events.

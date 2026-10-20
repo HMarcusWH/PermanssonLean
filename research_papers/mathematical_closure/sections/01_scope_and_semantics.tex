@@ -1,0 +1,26 @@
+\section{Original typed semantics}
+The original v0.1.8 framework \citep{PRT2026} defines the joint state
+$Y=S\times X$, action selection $\alpha$, physical world transition $P$,
+and strategic update $U$. Its induced Markov kernel has the ordered meaning
+\[
+K((s,x),d(s',x'))=
+\int_A\alpha(da\mid s,x)\,P(dx'\mid s,x,a)\,
+U(ds'\mid s,x,a,x').
+\]
+A strategic intervention changes an admissible strategic mechanism while
+preserving the physical $P$ \emph{within the model}. Generated Regimes
+require their separately certified ex-ante persistence, descriptor and
+occupation semantics. A Permansson Regime additionally requires original
+strategic constitution on the certified comparison set.
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[node distance=10mm]
+\node[obj] (y) {$Y_t$}; \node[obj,right=of y] (a) {$\alpha,A_t$};
+\node[obj,right=of a] (p) {$P,X_{t+1}$};
+\node[obj,right=of p] (u) {$U,S_{t+1}$};
+\node[obj,right=of u] (z) {$Y_{t+1}$};
+\draw[arr] (y)--(a);\draw[arr] (a)--(p);
+\draw[arr] (p)--(u);\draw[arr] (u)--(z);
+\end{tikzpicture}
+\caption{The actual $\alpha\to P\to U$ chronology; $P$ remains fixed
+under admissible within-model strategic intervention.}
+\end{figure}
