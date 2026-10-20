@@ -1,6 +1,12 @@
 # Permansson C11 closure successor v0.2.0
 
-This is a **new** explicit C11 application slice beside (not a rewrite of) the already accepted C10 v0.1.0 successor and the frozen original `application/` directory. It reuses the repo's exact C11 stationary producer, independent checker and genuine finite Lean proof generator.
+This is a separately versioned C11 application slice beside (not a rewrite
+of) the [merged C10 v0.1.0 implementation](../closure-successor/README.md)
+and the frozen original `application/` directory. It reuses the repository's
+exact C11 stationary producer, independent checker and genuine finite Lean
+proof generator. This statement does **not** promote C10 to a formally accepted
+application release: its current `VERSION.json` still records
+`DRAFT__COMPILER_CI_PENDING`, requiring separate reconciliation.
 
 ## Supported inputs
 

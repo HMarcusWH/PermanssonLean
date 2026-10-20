@@ -41,6 +41,20 @@ NEW_FILES = LIBRARIES + (
 )
 ALLOWED_CHANGED = frozenset(NEW_FILES + ("PermanssonResearch.lean",))
 
+# Explicit review-only Markdown surfaces. These five documentation pages may
+# evolve without altering a PR79 mathematical/source provider. The allowlist
+# does not cover other docs, release artifacts, theorem statements, workflows,
+# applications or historical proof receipts. Every allowed document still must
+# match the checked-out Git HEAD blob, preserve 100644 mode, and be valid LF
+# UTF-8 text; the PR change remains subject to review and CI.
+REVIEWABLE_DOCUMENTATION = frozenset({
+    "README.md",
+    "docs/README.md",
+    "docs/RESEARCH_BUILD.md",
+    "apps/permansson/closure-successor/README.md",
+    "apps/permansson/closure-successor-c11/README.md",
+})
+
 # Compiler-accepted PR80 mathematical source blobs. A later additive PR may
 # extend the root, but cannot silently swap the certified closure proof terms.
 # Altering one of these requires a separately reviewed source-identity update.
@@ -249,6 +263,33 @@ def parse_tree(raw: bytes) -> dict[str, tuple[str, str]]:
     return out
 
 
+def validated_baseline_changes(
+    old: dict[str, tuple[str, str]],
+    current: dict[str, tuple[str, str]],
+    *,
+    pristine: bool = False,
+) -> set[str]:
+    """Only the research root or five named Markdown files may change.
+
+    This does not relax the byte-identity check for any original mathematical
+    provider or any release, archive, proof receipt, workflow, pin or checker.
+    """
+    removed = set(old) - set(current)
+    if removed:
+        raise GuardError(f"original provider path deleted: {sorted(removed)}")
+    modified = {path for path, original in old.items()
+                if current[path] != original}
+    if pristine and modified:
+        raise GuardError("installer requires exact original provider tree")
+    forbidden = modified - REVIEWABLE_DOCUMENTATION - {"PermanssonResearch.lean"}
+    if forbidden:
+        raise GuardError(f"original provider objects changed: {sorted(forbidden)}")
+    for path in modified & REVIEWABLE_DOCUMENTATION:
+        if old[path][0] != "100644" or current[path][0] != "100644":
+            raise GuardError(f"documentation mode changed: {path}")
+    return modified
+
+
 def inspect_repo(repo: Path, *, pristine: bool = False) -> dict[str, Any]:
     """Check canonical baseline bytes and the exact authorized changed surface.
 
@@ -274,8 +315,7 @@ def inspect_repo(repo: Path, *, pristine: bool = False) -> dict[str, Any]:
         raise GuardError("source worktree or index is dirty")
     old = parse_tree(git_bytes(repo, "ls-tree", "-r", "-z", BASE))
     current = parse_tree(git_bytes(repo, "ls-tree", "-r", "-z", "HEAD"))
-    if set(old) - set(current):
-        raise GuardError("original provider path deleted")
+    modified_base = validated_baseline_changes(old, current, pristine=pristine)
     added = set(current) - set(old)
     if pristine and added:
         raise GuardError("installer requires exact PR79 base")
@@ -285,16 +325,12 @@ def inspect_repo(repo: Path, *, pristine: bool = False) -> dict[str, Any]:
         for rel, oid in ACCEPTED_A2_PROOF_BLOBS.items():
             if current.get(rel) != ("100644", oid):
                 raise GuardError(f"accepted A2-P02 mathematical provider identity changed: {rel}")
-    modified_base = {rel for rel in old if old[rel] != current[rel]}
-    if modified_base - {"PermanssonResearch.lean"}:
-        raise GuardError(f"original provider objects changed: {sorted(modified_base - {'PermanssonResearch.lean'})}")
-    if pristine and modified_base:
-        raise GuardError("installer requires exact original provider tree")
+    permitted = REVIEWABLE_DOCUMENTATION | {"PermanssonResearch.lean"}
     for revision_args in (("diff", "--name-only", "-z", BASE, "HEAD"),
                           ("diff", "--cached", "--name-only", "-z", BASE)):
         changed = {p.decode("utf-8") for p in git_bytes(repo, *revision_args).split(b"\0") if p}
-        if changed - (added | {"PermanssonResearch.lean"}):
-            raise GuardError(f"original provider paths modified: {sorted(changed - added - {'PermanssonResearch.lean'})}")
+        if changed - (added | permitted):
+            raise GuardError(f"original provider paths modified: {sorted(changed - added - permitted)}")
     original_root = git_bytes(repo, "show", f"{BASE}:PermanssonResearch.lean")
     if blob_sha(original_root) != ROOT_BLOB:
         raise GuardError("baseline Research root blob mismatch")
@@ -324,6 +360,15 @@ def inspect_repo(repo: Path, *, pristine: bool = False) -> dict[str, Any]:
         if rel == "PermanssonResearch.lean":
             if data != actual_root:
                 raise GuardError("Research root changed during source verification")
+        elif rel in modified_base and rel in REVIEWABLE_DOCUMENTATION:
+            # The preceding worktree-to-HEAD check still binds each Markdown
+            # byte to the exact branch commit. Never normalize arbitrary data.
+            if b"\r" in data or not data.endswith(b"\n"):
+                raise GuardError(f"noncanonical Markdown bytes: {rel}")
+            try:
+                data.decode("utf-8", "strict")
+            except UnicodeDecodeError as exc:
+                raise GuardError(f"invalid Markdown UTF-8: {rel}") from exc
         elif blob_sha(data) != oid:
             raise GuardError(f"preserved baseline file changed: {rel}")
         if os.name != "nt" and bool(safe_path(repo, rel).stat().st_mode & 0o111) != (mode == "100755"):
