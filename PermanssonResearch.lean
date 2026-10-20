@@ -707,6 +707,7 @@ import PermanssonResearch.MultiAgent.MeasurableProductTwo
 import PermanssonResearch.MultiAgent.MeasurableProductTwoUpdate
 import PermanssonResearch.MultiAgent.MeasurableProductTwoKernel
 import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeRealization
+import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeCanonical
 import PermanssonResearch.Quotient.DiscountedCanonicalBridge
 
 /-!
