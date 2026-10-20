@@ -9,9 +9,11 @@ Source definitions are the genuine arbitrary-measurable conditional-product
 generator. All pushforwards use the correct output type; no finite state
 assumptions or singleton-event theorem appears here.
 
-The remaining actual induced-kernel intertwining must follow from these
-component identities through alpha → P → U. Until that proof is compiled,
-this module is a scoped intermediate and is NOT P-05.1 acceptance.
+The induced-kernel intertwining below follows from these component
+identities through the actual alpha → P → U integration on every measurable
+joint-state event; no finite singleton argument is used. Source-bound CI,
+negative proof checks, review and integration remain separate from the
+mathematical theorem, and the CL/OL/full path-law P-05.2 is still open.
 -/
 
 open MeasureTheory ProbabilityTheory Set
