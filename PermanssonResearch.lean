@@ -705,6 +705,7 @@ import PermanssonResearch.ReverseSolver.CommittedVsRectangularPathFixture
 import PermanssonResearch.GrammarRobust.JointOnlyCertifiedFixture
 import PermanssonResearch.MultiAgent.MeasurableProductTwo
 import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeRealization
+import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeCanonical
 import PermanssonResearch.Quotient.DiscountedCanonicalBridge
 
 /-!

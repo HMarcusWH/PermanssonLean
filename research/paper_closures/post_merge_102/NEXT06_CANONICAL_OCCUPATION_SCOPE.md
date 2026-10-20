@@ -32,3 +32,21 @@ No exact GR/PR or empirical classification follows from this witness.
 Verification: independent Python exact finite arithmetic complements the
 Lean theorem and must never be relabeled as a Lean proof. CI/axiom and
 semantic-mutant receipts must be bound to their actual source heads.
+
+## NEXT-06.2 canonical-limit substage (draft, pending compiler)
+
+Using the genuine native model (phase `Fin 3`, physical `Bool`),
+`NonlinearPeriodThreeCanonical.lean` proposes
+`native_inducedKernel_eq_deterministic` as a finite-state equality to the
+actual `nextState` Dirac kernel, and
+`native_actual_occupation_ae_limit` as a specialization of the already
+proved true canonical a.s. empirical occupation theorem to the original
+typed `StrategicWorldModel.pathLaw`. No strategic/world quotient is used.
+
+This **does not** discharge the class identity, exact `1/3` weights,
+physical `2/3` true occupation, actual nonlinear expected score, complete
+four-policy `5/6` theorem, randomized tie boundary or historical D-09
+multichain acceptance. All remain required for P-06.2 full closure.
+
+Build source base: `6bc86eaa71fb26a5e86e2d7ffd88e4c1af4f0760`. No certification or publication claim
+until source HEAD, synthetic merge, compiler axioms and negative tests pass.
