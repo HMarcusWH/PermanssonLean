@@ -114,26 +114,25 @@ theorem original_margin_transport_two
     (Fbar : InterventionFamily ((binary G).toModel (physical P)) Cbar)
     (B₁ : ConstitutiveComparisonSet (MeasurableProduct.model G P) spec)
     (Bbar₁ : ConstitutiveComparisonSet ((binary G).toModel (physical P)) specBar)
-    (Q := compression_two (S0 := S0) (S := S) (X := X))
-    (hB : Bbar₁.states = Q.stateMap '' B₁.states)
+    (hB : Bbar₁.states = (compression_two (S0 := S0) (S := S) (X := X)).stateMap '' B₁.states)
     (J : AdmissibleStrategicIntervention F)
     (Jbar : AdmissibleStrategicIntervention Fbar)
-    (hJ : KernelIntertwines Q J.intervention.apply.inducedKernel
+    (hJ : KernelIntertwines (compression_two (S0 := S0) (S := S) (X := X)) J.intervention.apply.inducedKernel
       Jbar.intervention.apply.inducedKernel)
     (ψbar : RegimePropertyMap
       (JointState (GameState S0 (S 0) (S 1)) X) Z) :
     constitutiveMargin (MeasurableProduct.model G P) spec F
-      (pullbackWholePathProperty Q ψbar) B₁ J =
+      (pullbackWholePathProperty (compression_two (S0 := S0) (S := S) (X := X)) ψbar) B₁ J =
       constitutiveMargin ((binary G).toModel (physical P)) specBar Fbar
         ψbar Bbar₁ Jbar := by
   have heffect (y : JointState (FiniteProduct.StrategicState S0 S) X) :
       constitutiveEffect (MeasurableProduct.model G P)
-        (pullbackWholePathProperty Q ψbar) J y =
+        (pullbackWholePathProperty (compression_two (S0 := S0) (S := S) (X := X)) ψbar) J y =
       constitutiveEffect ((binary G).toModel (physical P))
-        ψbar Jbar (Q.stateMap y) := by
+        ψbar Jbar ((compression_two (S0 := S0) (S := S) (X := X)).stateMap y) := by
     unfold constitutiveEffect
     rw [baseline_whole_path_property_two G P ψbar y]
-    rw [intervention_whole_path_property_two Q J Jbar hJ ψbar y]
+    rw [intervention_whole_path_property_two (compression_two (S0 := S0) (S := S) (X := X)) J Jbar hJ ψbar y]
   unfold constitutiveMargin
   rw [hB, ← Set.image_comp]
   exact congrArg (fun f : Set ℝ => sInf f)
