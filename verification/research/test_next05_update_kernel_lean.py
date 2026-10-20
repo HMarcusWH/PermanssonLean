@@ -117,22 +117,22 @@ class MeasurableKernelCompiler(unittest.TestCase):
         """
         self.assertIsNotNone(shutil.which("lake"), "pinned Lean/Lake required")
         mutant = (
-            f"import {MODULE}\\n"
-            "open PermanssonLean\\n"
-            "open PermanssonResearch.MultiAgent.FiniteProduct\\n"
-            "open PermanssonResearch.MultiAgent.MeasurableProduct\\n"
-            "open PermanssonResearch.MultiAgent.MeasurableProduct.Two\\n"
+            f"import {MODULE}\n"
+            "open PermanssonLean\n"
+            "open PermanssonResearch.MultiAgent.FiniteProduct\n"
+            "open PermanssonResearch.MultiAgent.MeasurableProduct\n"
+            "open PermanssonResearch.MultiAgent.MeasurableProduct.Two\n"
             "example (G : Generator Bool (fun _ : Fin 2 => Bool) Bool "
-            "(fun _ : Fin 2 => Bool))\\n"
+            "(fun _ : Fin 2 => Bool))\n"
             "    (P : Kernel (WorldInput (StrategicState Bool "
             "(fun _ : Fin 2 => Bool)) Bool (∀ _ : Fin 2, Bool)) Bool) "
-            "[IsMarkovKernel P]\\n"
+            "[IsMarkovKernel P]\n"
             "    (y : JointState (StrategicState Bool "
-            "(fun _ : Fin 2 => Bool)) Bool) :\\n"
-            "  ((model G P).inducedKernel y).map state =\\n"
+            "(fun _ : Fin 2 => Bool)) Bool) :\n"
+            "  ((model G P).inducedKernel y).map state =\n"
             "    ((binary G).toModel (physical P)).inducedKernel "
-            "((state y).1, !(state y).2) := by\\n"
-            "  exact induced_row_map_two G P y\\n"
+            "((state y).1, !(state y).2) := by\n"
+            "  exact induced_row_map_two G P y\n"
         )
         with tempfile.TemporaryDirectory(prefix="next05falsekernel_",
                                            dir=ROOT / ".lake") as tmp:
@@ -147,19 +147,19 @@ class MeasurableKernelCompiler(unittest.TestCase):
         """TYPE firewall only: its rejection must not count as a semantic mutant."""
         self.assertIsNotNone(shutil.which("lake"), "pinned Lean/Lake required")
         wrong = (
-            f"import {MODULE}\\n"
-            "open PermanssonLean\\n"
-            "open PermanssonResearch.MultiAgent.FiniteProduct\\n"
-            "open PermanssonResearch.MultiAgent.MeasurableProduct\\n"
-            "open PermanssonResearch.MultiAgent.MeasurableProduct.Two\\n"
+            f"import {MODULE}\n"
+            "open PermanssonLean\n"
+            "open PermanssonResearch.MultiAgent.FiniteProduct\n"
+            "open PermanssonResearch.MultiAgent.MeasurableProduct\n"
+            "open PermanssonResearch.MultiAgent.MeasurableProduct.Two\n"
             "example (G : Generator Bool (fun _ : Fin 2 => Bool) Bool "
-            "(fun _ : Fin 2 => Bool))\\n"
+            "(fun _ : Fin 2 => Bool))\n"
             "    (v : UpdateInput (StrategicState Bool "
-            "(fun _ : Fin 2 => Bool)) Bool (∀ _ : Fin 2, Bool)) :\\n"
+            "(fun _ : Fin 2 => Bool)) Bool (∀ _ : Fin 2, Bool)) :\n"
             "  ((assemble G).update v).map "
             "(state (S0 := Bool) (S := fun _ : Fin 2 => Bool) "
-            "(X := Bool)) = ((assemble G).update v) := by\\n"
-            "  rfl\\n"
+            "(X := Bool)) = ((assemble G).update v) := by\n"
+            "  rfl\n"
         )
         with tempfile.TemporaryDirectory(prefix="next05typefirewall_",
                                            dir=ROOT / ".lake") as tmp:
