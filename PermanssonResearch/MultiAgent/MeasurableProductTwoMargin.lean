@@ -37,7 +37,7 @@ theorem pushInitial_dirac_two
     Q.pushInitial (diracProba y) = diracProba (Q.stateMap y) := by
   apply ProbabilityMeasure.toMeasure_injective
   change (Measure.dirac y).map Q.stateMap = Measure.dirac (Q.stateMap y)
-  rw [Measure.map_dirac y]
+  rw [Measure.map_dirac' Q.stateMap_measurable]
 
 /-- Entire-path property map: the original fine path is evaluated by the
 same frozen coarse descriptor/property through the actual Q.pathMap. -/
