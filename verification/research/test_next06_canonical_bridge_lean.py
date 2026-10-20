@@ -37,7 +37,9 @@ class NativeCanonicalCompiler(unittest.TestCase):
             self.assertEqual(cp.returncode, 0, msg)
             self.assertNotIn("sorryAx", msg)
             self.assertIn("native_actual_occupation_ae_limit", msg)
-            for axlist in re.findall(r"depends on axioms:\s*\[([^\]]*)\]", msg):
+            reported = re.findall(r"depends on axioms:\s*\[([^\]]*)\]", msg)
+            self.assertTrue(reported, "axiom audit output must be present: " + msg)
+            for axlist in reported:
                 self.assertLessEqual(set(x.strip() for x in axlist.split(",") if x.strip()),
                                      ALLOWED, msg)
 
