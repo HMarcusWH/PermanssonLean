@@ -44,15 +44,17 @@ def inverseStrategicMap (s : GameState S0 (S 0) (S 1)) :
 
 @[simp] theorem inverse_strategicMap (s : StrategicState S0 S) :
     inverseStrategicMap (strategicMap s) = s := by
-  cases s with
-  | mk common private =>
-    simp [inverseStrategicMap, strategicMap]
+  rcases s with ⟨common, priv⟩
+  change (common, (MeasurableEquiv.piFinTwo S).symm
+    ((MeasurableEquiv.piFinTwo S) priv)) = (common, priv)
+  rw [(MeasurableEquiv.piFinTwo S).symm_apply_apply]
 
 @[simp] theorem strategicMap_inverse (s : GameState S0 (S 0) (S 1)) :
     strategicMap (inverseStrategicMap s) = s := by
-  cases s with
-  | mk common private =>
-    simp [inverseStrategicMap, strategicMap]
+  rcases s with ⟨common, priv⟩
+  change (common, (MeasurableEquiv.piFinTwo S)
+    ((MeasurableEquiv.piFinTwo S).symm priv)) = (common, priv)
+  simp
 
 theorem measurable_strategicMap :
     Measurable (strategicMap (S0 := S0) (S := S)) := by
@@ -89,21 +91,25 @@ theorem common_update_pullback_two
       G.common ((y,a),x') := by
   simp only [binary, Kernel.comap_apply, inverse_input_at_original]
 
-/-- Both player-specific private updates preserve their own coordinate,
-their common arguments, both actions and the realized next-world state. -/
-theorem private_update_pullback_two
+/-- Player zero's private update retains all realized physical inputs. -/
+theorem private0_update_pullback_two
     (G : Generator S0 S X A)
     (y : JointState (StrategicState S0 S) X)
-    (a : ∀ i, A i) (x' : X) (i : Fin 2) :
-    (if i = 0 then (binary G).player1.update
-       ((state y,(MeasurableEquiv.piFinTwo A) a),x')
-     else (binary G).player2.update
-       ((state y,(MeasurableEquiv.piFinTwo A) a),x')) =
-    (if i = 0 then (G.component 0).update ((y,a),x')
-     else (G.component 1).update ((y,a),x')) := by
-  fin_cases i <;>
-    simp only [binary, Kernel.comap_apply, inverse_input_at_original, dite_true, dite_false]
-    <;> simp
+    (a : ∀ i, A i) (x' : X) :
+    (binary G).player1.update
+      ((state y,(MeasurableEquiv.piFinTwo A) a),x') =
+    (G.component 0).update ((y,a),x') := by
+  simp only [binary, Kernel.comap_apply, inverse_input_at_original]
+
+/-- Player one's private update is separately typed in S 1, not S 0. -/
+theorem private1_update_pullback_two
+    (G : Generator S0 S X A)
+    (y : JointState (StrategicState S0 S) X)
+    (a : ∀ i, A i) (x' : X) :
+    (binary G).player2.update
+      ((state y,(MeasurableEquiv.piFinTwo A) a),x') =
+    (G.component 1).update ((y,a),x') := by
+  simp only [binary, Kernel.comap_apply, inverse_input_at_original]
 
 /-- Full original common/private update measure pushed by φS equals the
 reconstructed binary strategic-output update on all measurable events.
@@ -143,6 +149,6 @@ theorem update_map_two
     _ = ((binary G).toGenerator).update
           ((state y,(MeasurableEquiv.piFinTwo A) a),x') := by
           rw [TwoPlayerGenerator.toGenerator_update_apply]
-          simp only [binary, Kernel.comap_apply, inverse_input_at_original]
+          simp only [binary, Kernel.comap_apply, inverse_input_at_original, v]
 
 end PermanssonResearch.MultiAgent.MeasurableProduct.Two
