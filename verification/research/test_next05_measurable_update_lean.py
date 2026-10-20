@@ -19,7 +19,8 @@ class MeasurableUpdateLean(unittest.TestCase):
                "#check update_map_two\n"
                "#check world_pullback_two\n"
                "#check common_update_pullback_two\n"
-               "#check private_update_pullback_two\n"
+               "#check private0_update_pullback_two\n"
+               "#check private1_update_pullback_two\n"
                "#print axioms update_map_two\n"
                "#print axioms world_pullback_two\n")
         with tempfile.TemporaryDirectory(prefix="next05upd_",dir=ROOT/".lake") as t:
