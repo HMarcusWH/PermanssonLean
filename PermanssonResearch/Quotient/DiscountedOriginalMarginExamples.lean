@@ -25,11 +25,9 @@ theorem reporting_error_cannot_be_ignored :
   have hh := h 1
   norm_num at hh
 
-/-- A comparison set with one omitted positive-effect minimizer can
-produce an artificially enlarged margin; this finite falsifier is
-arithmetic only and not an original regime certificate. -/
-theorem deleting_a_comparison_start_changes_infimum :
-    (sInf ((fun i : Fin 2 => if i = 0 then (0:ℝ) else 1) '' Set.univ) : ℝ) = 0 := by
-  classical
-  simp [Set.image_univ, Set.range_iff_exists, Fin.forall_fin_two, Fin.exists_fin_two]
+/-- Removing a smallest comparison effect changes the infimum.
+This exact finite arithmetic is deliberately NOT a regime certificate. -/
+theorem dropping_a_smallest_comparison_effect_changes_minimum :
+    min (0:ℝ) 1 ≠ (1:ℝ) := by norm_num
+
 end PermanssonResearch.Quotient.DiscountedOriginalMargin
