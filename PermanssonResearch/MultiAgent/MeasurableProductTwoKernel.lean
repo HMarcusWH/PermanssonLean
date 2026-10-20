@@ -93,7 +93,9 @@ theorem action_kernel_map_two (G : Generator S0 S X A) :
       (((binary G).toGenerator).action).comap state measurable_state := by
   apply Kernel.ext
   intro y
-  simpa only [Kernel.map_apply, Kernel.comap_apply] using action_map_two G y
+  rw [Kernel.map_apply _ (MeasurableEquiv.piFinTwo A).measurable,
+    Kernel.comap_apply]
+  exact action_map_two G y
 
 /-- Actual physical world kernel, at all inputs, with no action symmetry. -/
 theorem world_kernel_pullback_two
@@ -113,8 +115,9 @@ theorem update_kernel_map_two (G : Generator S0 S X A) :
   apply Kernel.ext
   intro v
   rcases v with ⟨⟨y, a⟩, x⟩
-  simpa only [Kernel.map_apply, Kernel.comap_apply, forwardUpdate, forwardWorld] using
-    update_map_two G y a x
+  rw [Kernel.map_apply _ measurable_strategicMap,
+    Kernel.comap_apply]
+  simpa only [forwardUpdate, forwardWorld] using update_map_two G y a x
 
 
 /-- The inner alpha-to-world-to-update expression is a genuine measurable
@@ -181,7 +184,12 @@ theorem induced_row_map_two (G : Generator S0 S X A)
         μ {s : GameState S0 (S 0) (S 1) | (s, x) ∈ E})
       (update_map_two G y a x)
     rw [Measure.map_apply measurable_strategicMap (hsection x)] at hm
-    simpa only [MF, MB, state, strategicMap] using hm
+    change ((assemble G).update ((y, a), x))
+        (strategicMap ⁻¹' {s : GameState S0 (S 0) (S 1) | (s, x) ∈ E}) =
+      ((binary G).toGenerator).update
+        ((state y, (MeasurableEquiv.piFinTwo A) a), x)
+        {s : GameState S0 (S 0) (S 1) | (s, x) ∈ E}
+    exact hm
   have hrow (a : ∀ i, A i) :
       (∫⁻ x, MF.generator.update ((y, a), x)
         {s : StrategicState S0 S | state (s, x) ∈ E} ∂MF.world (y, a)) =
@@ -239,7 +247,9 @@ theorem induced_kernel_intertwines_two (G : Generator S0 S X A)
   unfold KernelIntertwines
   apply Kernel.ext
   intro y
-  simpa only [Kernel.map_apply, Kernel.comap_apply, compression_two_state] using
-    induced_row_map_two G P y
+  rw [Kernel.map_apply _ (compression_two
+    (S0 := S0) (S := S) (X := X)).stateMap_measurable,
+    Kernel.comap_apply]
+  simpa only [compression_two_state] using induced_row_map_two G P y
 
 end PermanssonResearch.MultiAgent.MeasurableProduct.Two
