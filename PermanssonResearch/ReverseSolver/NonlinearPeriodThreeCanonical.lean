@@ -28,6 +28,7 @@ open PermanssonResearch.MultipleLimit.FiniteOccupationRandomLaw
 open PermanssonResearch.MultipleLimit.FiniteStateOccupation
 
 set_option autoImplicit false
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 
 /-- A useful *derived* deterministic joint-state kernel, not a replacement
 for the genuine physical P or strategic update U. -/
@@ -46,7 +47,7 @@ theorem native_inducedKernel_eq_deterministic (policy : State → Bool) :
   intro z
   rw [induced_kernel_singleton]
   simp [nextStateKernel, Kernel.deterministic_apply,
-    Measure.dirac_apply']
+    Measure.dirac_apply', Pi.single_apply]
 
 /-- Same native induced stochastic process for every physical controller,
 with actual infinite original pathLaw and genuine empirical weak limit.
@@ -60,8 +61,6 @@ theorem native_actual_occupation_ae_limit
           empiricalOccupation w (n+1) (Nat.succ_pos n))
         atTop (𝓝 (physicalOccupationLimit
           (typedModel policy).inducedKernel w)) := by
-  letI : IsMarkovKernel (typedModel policy).inducedKernel :=
-    StrategicWorldModel.inducedKernel_isMarkov (typedModel policy)
   rw [typed_pathLaw_eq_canonical (typedModel policy) μ.toMeasure]
   exact physicalOccupationLimit_ae_correct
     (typedModel policy).inducedKernel μ
