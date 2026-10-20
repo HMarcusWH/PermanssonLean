@@ -128,7 +128,7 @@ theorem discounted_original_margin_positive_of_gap
   have hh := discounted_original_margin_abs_le Qc spec specBar F Fbar
     B₁ Bbar₁ hB J Jbar β g ε₀ εJ hε₀ hεJ hbase htreat
   rw [abs_le] at hh
-  linarith [hh.1]
+  linarith [hh.2]
 
 /-- Numerical reporting uncertainty is NOT baked into the original
 true constitutive margin. Each layer is an additional inequality. -/
