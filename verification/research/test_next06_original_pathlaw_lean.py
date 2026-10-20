@@ -17,7 +17,9 @@ class Check(unittest.TestCase):
             out=c.stdout+c.stderr
             self.assertEqual(c.returncode,0,out)
             for n in NAMES:self.assertIn(n,out)
-            for ax in re.findall(r"depends on axioms:\\s*\\[([^\\]]*)\\]",out):
+            axiom_sets = re.findall(r"depends on axioms:\s*\[([^\]]*)\]",out)
+            self.assertGreaterEqual(len(axiom_sets), 1, "missing axiom audit records: "+out)
+            for ax in axiom_sets:
                 self.assertLessEqual({s.strip() for s in ax.split(",") if s.strip()},
                      {"propext","Classical.choice","Quot.sound"},out)
 if __name__=="__main__":unittest.main()

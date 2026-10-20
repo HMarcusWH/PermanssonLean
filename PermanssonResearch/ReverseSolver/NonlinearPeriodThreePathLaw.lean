@@ -17,6 +17,7 @@ namespace PermanssonResearch.ReverseSolver.NonlinearPeriodThree
 open PermanssonLean
 open PermanssonResearch.StrategicWorld
 open PermanssonResearch.MultipleLimit.FiniteOccupationRandomLaw
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 set_option autoImplicit false
 
 /-- The recursive phase-state orbit is exactly the generic iterator used
