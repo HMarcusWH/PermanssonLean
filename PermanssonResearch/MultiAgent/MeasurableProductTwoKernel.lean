@@ -250,6 +250,12 @@ theorem induced_kernel_intertwines_two (G : Generator S0 S X A)
   rw [Kernel.map_apply _ (compression_two
     (S0 := S0) (S := S) (X := X)).stateMap_measurable,
     Kernel.comap_apply]
-  simpa only [compression_two_state] using induced_row_map_two G P y
+  have hstateEq :
+      (compression_two (S0 := S0) (S := S) (X := X)).stateMap =
+        (state (S0 := S0) (S := S) (X := X)) := by
+    funext z
+    exact compression_two_state z
+  rw [hstateEq]
+  exact induced_row_map_two G P y
 
 end PermanssonResearch.MultiAgent.MeasurableProduct.Two
