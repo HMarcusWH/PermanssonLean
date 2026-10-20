@@ -709,6 +709,8 @@ import PermanssonResearch.MultiAgent.MeasurableProductTwoKernel
 import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeRealization
 import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeCanonical
 import PermanssonResearch.Quotient.DiscountedCanonicalBridge
+import PermanssonResearch.Quotient.DiscountedOriginalMargin
+import PermanssonResearch.Quotient.DiscountedOriginalMarginExamples
 
 /-!
 # PermanssonResearch
