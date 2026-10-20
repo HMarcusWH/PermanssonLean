@@ -26,6 +26,22 @@ The input is limited to 128 KiB. Duplicate JSON keys, JSON floats and nonfinite 
 
 The CLI emits `numeric_receipt.json`, `C10ReifiedGolden.lean` and `lean.stdout.txt`/`lean.stderr.txt` (replay mode), plus `result.json`. The GitHub Research test `test_c10_app_successor_compiler.py` executes actual Lean. Negative tests ensure fake successful compiler exits without the correct axiom reports and unsupported model changes **fail**.
 
+## Version and adjacent C11 implementation
+
+The [C11 stationary-family successor](../closure-successor-c11/README.md) has now
+been implemented **separately**. It supports a different, finite-rational
+stationary-kernel profile; it does not enlarge this C10 CLI's allowed six-state
+strategic-intervention inputs or retrospectively modify C10's theorem.
+
+The checked-in [C10 version record](VERSION.json) retains
+`application_status: DRAFT__COMPILER_CI_PENDING`. PR #86 and later merged-main
+Research CI provide compiler-backed evidence for the implementation; the status
+field remains **unreconciled** and must not be silently described as formal
+application acceptance or changed by a documentation-only update.
+
 ## Not included
 
-No C11 general periodic/multichain interface yet, no arbitrary user-provided structural model theorem, no full external raw JSON decoder correctness theorem, no empirical identification, and no authority to certify operational action. Add C11 only after this first slice's source-head and synthetic-merge CI passes. Do not rewrite the original `application/` directory or the accepted release.
+No arbitrary user-provided structural model theorem, no full external raw JSON
+decoder correctness theorem, no empirical identification, and no authority to
+certify operational action. Do not rewrite the original `application/`
+directory or the accepted research companion.

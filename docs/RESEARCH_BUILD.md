@@ -5,6 +5,55 @@
 [Current formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
 
+## Verified integrated checkpoint — 19 October 2026
+
+**Main:** [`3931e4dccafb47b3cdf70177c0cf337102c90731`](https://github.com/HMarcusWH/PermanssonLean/commit/3931e4dccafb47b3cdf70177c0cf337102c90731),
+PR [#102](https://github.com/HMarcusWH/PermanssonLean/pull/102) merged. This is an
+**exact-source historical checkpoint**, not a live dashboard or a new research release.
+At this source, the original 64-module core remains frozen; all **646** research
+`.lean` files are directly imported by `PermanssonResearch.lean`.
+
+The six configured post-merge `main` workflows all passed for this exact source:
+[Original Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39330505437),
+[Research Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39330505589),
+[Application contract](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39330505114),
+[Executable verification](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39330505207),
+[Research integrity](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39330505373),
+and [Integrity portability](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39330505416).
+The inspected Research Lean run reports **1,093 passing research test methods**,
+complete root-import coverage, pinned Lean compilation and transitive-axiom
+checks. Neither a test count nor a checked declaration count is a theorem count.
+
+| Milestone | Integrated disposition and limit |
+|---|---|
+| [#76](https://github.com/HMarcusWH/PermanssonLean/pull/76) | Accepted **v0.2.0 companion** at earlier research source `5822cdff0fc360d9e368e10ff5f7576c3141a1b3`; **not** an automatic release of later proof closures |
+| [#79](https://github.com/HMarcusWH/PermanssonLean/pull/79) | Added 233 research Lean modules addressing 42 **selected, assumption-scoped** paper closure contracts; did not establish every unrestricted atlas aspiration |
+| [#80](https://github.com/HMarcusWH/PermanssonLean/pull/80), [#87](https://github.com/HMarcusWH/PermanssonLean/pull/87) | Added localized good-history/visit and original-margin reporting-error bridges and repaired additive-source proof verification |
+| [#81](https://github.com/HMarcusWH/PermanssonLean/pull/81) | Added source/CI evidence reconciliation and **historical** 45-case acceptance index; no retroactive blanket acceptance of later PRs. Alternative PR #82 closed without merging. |
+| [Selected merged #83–#101](https://github.com/HMarcusWH/PermanssonLean/pulls?q=is%3Apr+is%3Aclosed) | Strengthened proof adversaries, projected-law transport, solver/model boundary fixtures and C10/C11 CLIs. PR #91 was closed without merging (superseded by #92); do not treat all numbers in this range as merges. |
+| [#102](https://github.com/HMarcusWH/PermanssonLean/pull/102) | First arbitrary-measurable binary coordinate/action transport slice; full update-kernel and all-initial/full-path recovery remains to be connected |
+
+The [C10 six-state replay CLI](../apps/permansson/closure-successor/README.md)
+and [C11 finite stationary replay CLI](../apps/permansson/closure-successor-c11/README.md)
+are distinct from the original **draft v0.1.0 reporting Application Standard**.
+The C10 `VERSION.json` still carries `DRAFT__COMPILER_CI_PENDING`; this document
+reports compiler-backed source CI **without changing that version-status record**.
+Neither replay tool establishes empirical identification, external causal
+validity, or Exact GR/PR status for arbitrary submitted models.
+
+**Still conditional/open:** the old X1 replete region remains leaky; the strict
+multi-agent autonomy result does not settle every generalized MA2 target;
+all-time and approximate transport results retain their finite, first-moment,
+common-mass, information or property-factorization hypotheses. The complete
+measurable two-player transport and further application adapters remain scoped
+follow-up work. Negative countermodels and proof hypotheses must not be removed
+from the statements they qualify.
+
+The older status sections below preserve **dated snapshots**. Labels such as
+"current", "draft", and "not merged" in their historical context describe the
+named 15–17 October commit only. They do **not** supersede the integrated
+19 October checkpoint or rewrite the archived CI/review evidence.
+
 ## C-Exit D (PR #69) — unconditional restart (16 October 2026)
 
 **Main:** `6191a1acbf00867042a21c8e6c4a532af43017bc` (PR #68 merged; PRs #1–#68 merged).
