@@ -49,6 +49,7 @@ theorem closed_loop_world_frozen
     (anchors : Set (∀ j, FiniteProduct.Mechanism S0 S X A j)) :
     (MeasurableProduct.closedLoopIntervention G P i r anchors).intervention.apply.world = P := by
   rw [closed_loop_application]
+  rfl
 
 theorem open_loop_world_frozen
     (G : FiniteProduct.Generator S0 S X A)
@@ -60,6 +61,7 @@ theorem open_loop_world_frozen
     (ha : anchor ∈ anchors) :
     (MeasurableProduct.openLoopIntervention G P i r anchors anchor ha).intervention.apply.world = P := by
   rw [open_loop_application]
+  rfl
 
 theorem closed_loop_kernel_two
     (G : FiniteProduct.Generator S0 S X A)
