@@ -17,6 +17,7 @@ MODULE = "PermanssonResearch.MultiAgent.MeasurableProductTwoKernel"
 PROBE = (
     f"import {MODULE}\n"
     "open PermanssonLean\n"
+    "open ProbabilityTheory\n"
     "open PermanssonResearch.MultiAgent.FiniteProduct\n"
     "open PermanssonResearch.MultiAgent.MeasurableProduct\n"
     "open PermanssonResearch.MultiAgent.MeasurableProduct.Two\n"
@@ -52,7 +53,8 @@ PROBE = (
 FORBIDDEN = re.compile(
     r"unknown (module|identifier|constant|tactic)|file not found|"
     r"failed to import|unexpected token|parser error|out of memory|"
-    r"maximum heartbeat|timed out|object file|failed to synthesize", re.I
+    r"maximum heartbeat|timed out|object file|failed to synthesize|"
+    r"invalid binder annotation|type is not a class instance", re.I
 )
 AXIOM_ALLOWLIST = {"Classical.choice", "Quot.sound", "propext"}
 
@@ -119,6 +121,7 @@ class MeasurableKernelCompiler(unittest.TestCase):
         mutant = (
             f"import {MODULE}\n"
             "open PermanssonLean\n"
+    "open ProbabilityTheory\n"
             "open PermanssonResearch.MultiAgent.FiniteProduct\n"
             "open PermanssonResearch.MultiAgent.MeasurableProduct\n"
             "open PermanssonResearch.MultiAgent.MeasurableProduct.Two\n"
@@ -149,6 +152,7 @@ class MeasurableKernelCompiler(unittest.TestCase):
         wrong = (
             f"import {MODULE}\n"
             "open PermanssonLean\n"
+    "open ProbabilityTheory\n"
             "open PermanssonResearch.MultiAgent.FiniteProduct\n"
             "open PermanssonResearch.MultiAgent.MeasurableProduct\n"
             "open PermanssonResearch.MultiAgent.MeasurableProduct.Two\n"
