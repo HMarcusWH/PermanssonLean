@@ -116,4 +116,130 @@ theorem update_kernel_map_two (G : Generator S0 S X A) :
   simpa only [Kernel.map_apply, Kernel.comap_apply, forwardUpdate, forwardWorld] using
     update_map_two G y a x
 
+
+/-- The inner alpha-to-world-to-update expression is a genuine measurable
+function of the realized action. Use the *actual* conditional kernels, not a
+new hand-picked action probability or an atomwise finite restriction. -/
+private theorem measurable_native_inner
+    {S' X' A' : Type*} [MeasurableSpace S']
+    [MeasurableSpace X'] [MeasurableSpace A']
+    (M : StrategicWorldModel S' X' A')
+    (y : JointState S' X')
+    {E : Set (JointState S' X')} (hE : MeasurableSet E) :
+    Measurable (fun a : A' =>
+      ∫⁻ x, M.generator.update ((y, a), x)
+          {s : S' | (s, x) ∈ E} ∂M.world (y, a)) := by
+  letI : IsMarkovKernel M.world := M.world_isMarkov
+  letI : IsMarkovKernel M.generator.update := M.generator.update_isMarkov
+  let κ : Kernel A' X' :=
+    M.world.comap (fun a => (y, a)) (by fun_prop)
+  let η : Kernel (A' × X') S' :=
+    M.generator.update.comap (fun ax => ((y, ax.1), ax.2)) (by fun_prop)
+  let R : Set (X' × S') := {z | (z.2, z.1) ∈ E}
+  have hR : MeasurableSet R :=
+    hE.preimage (measurable_snd.prodMk measurable_fst)
+  have hm : Measurable (fun a : A' => (κ ⊗ₖ η) a R) :=
+    Kernel.measurable_coe _ hR
+  have heq :
+      (fun a : A' => (κ ⊗ₖ η) a R) =
+      (fun a : A' => ∫⁻ x, M.generator.update ((y, a), x)
+          {s : S' | (s, x) ∈ E} ∂M.world (y, a)) := by
+    funext a
+    rw [Kernel.compProd_apply hR κ η a]
+    rfl
+  rw [heq] at hm
+  exact hm
+
+/-- Native alpha-P-U transition law, not just equality of component kernels.
+Every measurable joint event is transported through the true physical world
+law, the complete common/private strategic update, and both action rows. -/
+theorem induced_row_map_two (G : Generator S0 S X A)
+    (P : Kernel (WorldInput (StrategicState S0 S) X (∀ i, A i)) X)
+    [IsMarkovKernel P]
+    (y : JointState (StrategicState S0 S) X) :
+    ((model G P).inducedKernel y).map state =
+      ((binary G).toModel (physical P)).inducedKernel (state y) := by
+  letI : IsMarkovKernel (physical P) := physical_isMarkov P
+  let MF := model G P
+  let MB := (binary G).toModel (physical P)
+  apply Measure.ext
+  intro E hE
+  have hstate : Measurable (state (S0 := S0) (S := S) (X := X)) :=
+    measurable_state
+  have hpre : MeasurableSet (state ⁻¹' E) := hE.preimage hstate
+  have hsection (x : X) :
+      MeasurableSet {s : GameState S0 (S 0) (S 1) | (s, x) ∈ E} :=
+    hE.preimage (measurable_id.prodMk measurable_const)
+  have hinner (a : ∀ i, A i) (x : X) :
+      MF.generator.update ((y, a), x)
+        {s : StrategicState S0 S | state (s, x) ∈ E} =
+      MB.generator.update
+        ((state y, (MeasurableEquiv.piFinTwo A) a), x)
+        {s : GameState S0 (S 0) (S 1) | (s, x) ∈ E} := by
+    have hm := congrArg
+      (fun μ : Measure (GameState S0 (S 0) (S 1)) =>
+        μ {s : GameState S0 (S 0) (S 1) | (s, x) ∈ E})
+      (update_map_two G y a x)
+    rw [Measure.map_apply measurable_strategicMap (hsection x)] at hm
+    simpa only [MF, MB, state, strategicMap] using hm
+  have hrow (a : ∀ i, A i) :
+      (∫⁻ x, MF.generator.update ((y, a), x)
+        {s : StrategicState S0 S | state (s, x) ∈ E} ∂MF.world (y, a)) =
+      (∫⁻ x, MB.generator.update
+        ((state y, (MeasurableEquiv.piFinTwo A) a), x)
+        {s : GameState S0 (S 0) (S 1) | (s, x) ∈ E}
+        ∂MB.world (state y, (MeasurableEquiv.piFinTwo A) a)) := by
+    change (∫⁻ x, MF.generator.update ((y, a), x)
+        {s : StrategicState S0 S | state (s, x) ∈ E} ∂P (y, a)) = _
+    rw [show MB.world (state y, (MeasurableEquiv.piFinTwo A) a) = P (y, a) from
+      world_pullback_two P y a]
+    exact lintegral_congr fun x => hinner a x
+  have hmeas :
+      Measurable (fun ab : A 0 × A 1 =>
+        ∫⁻ x, MB.generator.update ((state y, ab), x)
+          {s : GameState S0 (S 0) (S 1) | (s, x) ∈ E}
+          ∂MB.world (state y, ab)) :=
+    measurable_native_inner MB (state y) hE
+  calc
+    ((MF.inducedKernel y).map state) E =
+        ∫⁻ a, ∫⁻ x, MF.generator.update ((y, a), x)
+          {s : StrategicState S0 S | state (s, x) ∈ E}
+          ∂MF.world (y, a) ∂MF.generator.action y := by
+      rw [Measure.map_apply hstate hE]
+      rw [StrategicWorldModel.inducedKernel_apply MF y hpre]
+      rfl
+    _ = ∫⁻ a, (fun ab : A 0 × A 1 =>
+          ∫⁻ x, MB.generator.update ((state y, ab), x)
+            {s : GameState S0 (S 0) (S 1) | (s, x) ∈ E}
+            ∂MB.world (state y, ab)) ((MeasurableEquiv.piFinTwo A) a)
+            ∂MF.generator.action y :=
+      lintegral_congr fun a => hrow a
+    _ = ∫⁻ ab, ∫⁻ x, MB.generator.update ((state y, ab), x)
+          {s : GameState S0 (S 0) (S 1) | (s, x) ∈ E}
+          ∂MB.world (state y, ab)
+          ∂(MF.generator.action y).map (MeasurableEquiv.piFinTwo A) := by
+      exact (lintegral_map hmeas (MeasurableEquiv.piFinTwo A).measurable).symm
+    _ = ∫⁻ ab, ∫⁻ x, MB.generator.update ((state y, ab), x)
+          {s : GameState S0 (S 0) (S 1) | (s, x) ∈ E}
+          ∂MB.world (state y, ab) ∂MB.generator.action (state y) := by
+      rw [show (MF.generator.action y).map (MeasurableEquiv.piFinTwo A) =
+        MB.generator.action (state y) from action_map_two G y]
+    _ = MB.inducedKernel (state y) E :=
+      (StrategicWorldModel.inducedKernel_apply MB (state y) hE).symm
+
+/-- Full original type-respecting kernel intertwining, without atomwise
+finite enumeration or additional independent physical-error premises. -/
+theorem induced_kernel_intertwines_two (G : Generator S0 S X A)
+    (P : Kernel (WorldInput (StrategicState S0 S) X (∀ i, A i)) X)
+    [IsMarkovKernel P] :
+    KernelIntertwines
+      (compression_two (S0 := S0) (S := S) (X := X))
+      (model G P).inducedKernel
+      ((binary G).toModel (physical P)).inducedKernel := by
+  unfold KernelIntertwines
+  apply Kernel.ext
+  intro y
+  simpa only [Kernel.map_apply, Kernel.comap_apply, compression_two_state] using
+    induced_row_map_two G P y
+
 end PermanssonResearch.MultiAgent.MeasurableProduct.Two
