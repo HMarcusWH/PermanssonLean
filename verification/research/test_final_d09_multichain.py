@@ -35,7 +35,11 @@ class D09Classwise(unittest.TestCase):
 
     def test_compiled_distinct_physical_classes_and_nonlinear_lemma(self):
         names = ("physically_distinct_classes_with_shared_descriptor",
-                 "nonlinear_classwise_aggregation_not_barycenter")
+                 "nonlinear_classwise_aggregation_not_barycenter",
+                 "actual_two_absorbing_full_path_mixture",
+                 "exact_two_absorbing_rational_scores",
+                 "actual_equal_weight_original_scores",
+                 "actual_multichain_classwise_differs_from_barycenter")
         rc, out = compile_lean("\n".join(
             "#check "+name+"\n#print axioms "+name for name in names))
         self.assertEqual(rc, 0, out)
