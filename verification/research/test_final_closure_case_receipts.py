@@ -31,6 +31,7 @@ class DetachedCaseReceiptTests(unittest.TestCase):
             "axiom.log": b"Test.Scope.genuine depends on axioms: []\n",
             "positive.log": b"test_meaningful_mutant ... ok\n",
             "negative.log": b"Test.Scope.genuine: error: unsolved goals\n",
+            "mutant.lean": b"namespace Test.Scope\ntheorem genuine : False := by trivial\nend Test.Scope\n",
         }
         self.bundle = root / "evidence.zip"
         self.save()
@@ -61,8 +62,11 @@ class DetachedCaseReceiptTests(unittest.TestCase):
         self.negative = dict(self.test,
             id="n", log_member="negative.log",
             log_sha256=sha(self.logs["negative.log"]),
-            mutant_source_sha256="d"*64, outcome="REJECTED_SEMANTIC",
-            compiler_exit_code=1)
+            mutant_source_sha256=sha(self.logs["mutant.lean"]),
+            mutant_source_member="mutant.lean",
+            original_lean_source_path="Proof.lean",
+            original_lean_source_sha256=sha((self.repo/"Proof.lean").read_bytes()),
+            outcome="REJECTED_SEMANTIC", compiler_exit_code=1)
         self.ledger = {"cases": [
             {"case_id": "C-%02d" % i,
              "required_expected_result": "Requirement %d" % i}
