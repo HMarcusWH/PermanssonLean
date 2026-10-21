@@ -735,6 +735,8 @@ import PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture
 
 import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeClassGeometry
 
+import PermanssonResearch.ReverseSolver.NonlinearPhaseBlindClassGeometry
+
 /-!
 # PermanssonResearch
 
