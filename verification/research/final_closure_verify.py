@@ -11,7 +11,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-from final_closure_authenticate import verify_source
+from final_closure_authenticate import verify_source, AuthenticationError
 import post_merge_102_verify as historical_audit
 import re
 import subprocess
@@ -144,7 +144,10 @@ def audit() -> dict:
 def strict(receipts: dict, scope: str, manifest: dict | None) -> dict:
     summary = audit()
     # Caller-supplied 'authenticated': true cannot promote a receipt.
-    verify_source(receipts)
+    try:
+        verify_source(receipts)
+    except AuthenticationError as exc:
+        raise GateError(str(exc)) from exc
     b, h, s, m = (receipts.get(k) for k in
                   ("base_sha", "head_sha", "synthetic_sha", "merged_main_sha"))
     for label, value in (("B", b), ("H", h), ("S", s), ("M", m)):
