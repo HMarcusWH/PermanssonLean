@@ -69,8 +69,7 @@ private theorem false_cycle_closed (p : Bool → Bool) (hf : p false = false) :
   have hb : b = false := by simpa [falseCycle] using hy
   subst b
   change (nextState (phaseBlindPolicy p) (falseState i)).2 = false
-  rw [false_next p hf i]
-  rfl
+  rw [false_next p hf i] <;> rfl
 
 private theorem false_cycle_comm (p : Bool → Bool) (hf : p false = false)
     (i : Phase) :
