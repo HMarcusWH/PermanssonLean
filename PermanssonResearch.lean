@@ -722,6 +722,9 @@ import PermanssonResearch.MultiAgent.MeasurableProductTwoMatchedProtocols
 
 import PermanssonResearch.MultiAgent.MeasurableProductTwoOriginalMarginClosure
 
+import PermanssonResearch.Quotient.DiscountedCanonicalSourceWitness
+import PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure
+
 /-!
 # PermanssonResearch
 
