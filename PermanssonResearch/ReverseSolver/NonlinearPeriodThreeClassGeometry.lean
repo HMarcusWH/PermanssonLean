@@ -210,7 +210,8 @@ theorem phase_aware_invariant_physical_true_mass
     rw [ProbabilityMeasure.toMeasure_map]
     rw [Measure.map_apply (by fun_prop) (measurableSet_singleton true)]
     rw [hset]
-    rw [sum_measure_singleton]
+    -- Expand the finite set measure into its singleton sum before taking real parts.
+    rw [← (sum_measure_singleton (μ := π.toMeasure) (s := s))]
     rw [ENNReal.toReal_sum (fun y hy => measure_ne_top π.toMeasure _)]
     rfl
   rw [hmass]
