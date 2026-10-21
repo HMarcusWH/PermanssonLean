@@ -27,6 +27,7 @@ def fixture(merged=False):
         "user": {"login": "author"},
         "head": {"sha": H}, "base": {"sha": "f"*40 if merged else B},
         "merge_commit_sha": M if merged else S,
+        "merged_at": "2026-10-21T18:00:00Z" if merged else None,
     }
     reviews = [{
         "id": 88, "state": "APPROVED", "submitted_at": "2026-10-21T17:00:00Z",
@@ -84,6 +85,8 @@ class AuthenticationV2Tests(unittest.TestCase):
                 return pr
             if path == "/pulls/113/reviews?per_page=100":
                 return reviews
+            if path == "/issues/113/comments?per_page=100":
+                return []
             if path.startswith("/commits/") and path.endswith("/check-runs?per_page=100"):
                 sha = path.split("/")[2]
                 return {"check_runs": integrated if sha == M else checks}
@@ -154,6 +157,32 @@ class AuthenticationV2Tests(unittest.TestCase):
             reviews[0]["state"] = "COMMENTED"
         with self.assertRaises(auth.AuthenticationError):
             self.run_gate(mutate=mutate)
+
+
+    def test_scholarly_review_has_real_merged_pdf_and_all_pages(self):
+        receipts, pr, checks, integrated, reviews = fixture(True)
+        record = {
+            "head_sha": H, "merged_main_sha": M,
+            "pdf_sha256": "f"*64,
+            "pages": {"page-1.png": "a"*64, "page-2.png": "b"*64},
+            "approved_claim_ids": ["Q1"],
+            "all_pages_visually_inspected": True,
+            "scholarly_review": "APPROVED",
+        }
+        comments = [{
+            "id": 910, "user": {"login": "external_scholar"},
+            "created_at": "2026-10-21T19:00:00Z",
+            "body": auth.SCHOLARLY_PREFIX + " " + json.dumps(record),
+        }]
+        with mock.patch.object(auth, "live", return_value=comments):
+            got = auth.authentic_scholarly_attestations(pr, H, M)
+            self.assertEqual(got[0]["pages"], record["pages"])
+            comments[0]["user"]["login"] = "author"
+            self.assertEqual(auth.authentic_scholarly_attestations(pr, H, M), [])
+            comments[0]["user"]["login"] = "external_scholar"
+            comments[0]["created_at"] = "2026-10-21T17:00:00Z"
+            self.assertEqual(auth.authentic_scholarly_attestations(pr, H, M), [])
+
 
 
 if __name__ == "__main__":
