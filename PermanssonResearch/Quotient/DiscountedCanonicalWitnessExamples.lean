@@ -8,7 +8,7 @@ closed-form model-output envelopes. They do not establish Exact GR or
 identify the physical source kernels for an arbitrary outside model.
 -/
 namespace PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples
-open PermanssonResearch.Quotient.DiscountedOriginalMarginExamples
+open PermanssonResearch.Quotient.DiscountedOriginalMargin
 open PermanssonResearch.Probability
 
 theorem correct_frozen_discounted_budget :
