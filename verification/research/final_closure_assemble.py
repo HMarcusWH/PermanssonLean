@@ -61,7 +61,6 @@ def assemble(head: str, synthetic: str, *, compiler_candidate: Path,
         negative = dict(row)
         negative.pop("CI_binding", None)
         negative.pop("review_status", None)
-        negative.pop("original_lean_source_sha256", None) if False else None
         negative["check_run_id"] = checks["research"]["id"]
         negatives.append(negative)
         positive = dict(negative)
