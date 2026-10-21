@@ -30,28 +30,7 @@ def verify(manifest:Path,strict:bool=False,*,source_receipts:Path|None=None,appr
         h,p=line.split("  ",1)
         require(sha(out/p)==h,f"checksum mismatch: {p}")
     if strict:
-        require(source_receipts is not None and approved_manifest is not None,
-                "strict release requires authenticated source and approved claim manifests")
-        require(d.get("status") == "APPROVED_SOURCE_BOUND",
-                "draft PDF/build receipt cannot be approved by a status claim")
-        require(d.get("visual_inspection") == "SIGNED_OFF" and
-                d.get("independent_review") == "RECEIVED" and
-                d.get("source_ci_validation") == "VERIFIED_MAIN",
-                "actual reviews, final main CI and PDF inspection missing")
-        check_dir = Path(__file__).resolve().parents[2] / "verification/research"
-        sys.path.insert(0, str(check_dir))
-        from final_closure_verify import strict as verify_mathematical_acceptance
-        receipts = json.loads(source_receipts.read_bytes())
-        approved = json.loads(approved_manifest.read_bytes())
-        result = verify_mathematical_acceptance(
-            receipts, "scoped-release-strict", approved)
-        require(d.get("source_commit_sha") == result["source"] and
-                d.get("source_commit_sha") == approved.get("source_commit_sha"),
-                "PDF artifact does not match independently accepted merged source")
-        require(sorted(d.get("claims", [])) == sorted(approved.get("claims", [])),
-                "rendered paper's actual claims differ from signed inventory")
-        require(d.get("pdf_sha256") == sha(out/"Permansson_Mathematical_Closure.pdf"),
-                "accepted PDF checksum changed after inspection")
+        raise ValueError("draft artifact cannot be approved; use --approved-seal and genuine external review")
     return {"integrity":"PASS","accepted":False if not strict else True,
             "pdf_pages":d.get("pdf_page_count"),"source_files":len(d["source_tree_files"])}
 def main(argv=None):
@@ -60,8 +39,39 @@ def main(argv=None):
     ap.add_argument("--strict",action="store_true")
     ap.add_argument("--source-receipts",type=Path)
     ap.add_argument("--approved-manifest",type=Path)
+    ap.add_argument("--approved-seal",type=Path,
+                    help="immutable approved ZIP, independently source/PDF authenticated")
+    ap.add_argument("--bundle",type=Path)
     a=ap.parse_args(argv)
-    try:print(json.dumps(verify(a.manifest,a.strict,source_receipts=a.source_receipts,approved_manifest=a.approved_manifest),indent=2));return 0
+    try:
+        if a.approved_seal:
+            require(a.source_receipts and a.approved_manifest and a.bundle,
+                    "approved verification requires detached source/review and diagnostic bundle")
+            from seal_approved import verify_approved_archive
+            checkdir=Path(__file__).resolve().parents[2]/"verification/research"
+            sys.path.insert(0,str(checkdir))
+            from final_closure_verify import strict as strict_closure
+            # The approved seal cannot rely solely on a cached green flag.
+            approved=json.loads(a.approved_manifest.read_bytes())
+            receipts=json.loads(a.source_receipts.read_bytes())
+            with zipfile.ZipFile(a.approved_seal) as z:
+                seal=json.loads(z.read("approved_seal.json"))
+            verify_approved_archive(a.approved_seal,seal)
+            outcome=strict_closure(receipts,"scoped-release-strict",approved,
+                                   bundle_path=a.bundle)
+            require(seal["source_commit_sha"]==outcome["source"] and
+                    seal["head_sha"]==outcome["frozen_head"] and
+                    seal["pdf_sha256"]==approved["pdf_sha256"] and
+                    seal["pdf_pages"]==approved["pdf_pages"] and
+                    seal["claims"]==approved["claims"],
+                    "sealed reviewed claims or PDF source does not match live authentication")
+            print(json.dumps({"integrity":"PASS","accepted":True,
+                              "source":outcome["source"],"scope":"SCOPED_ONLY"},indent=2))
+            return 0
+        print(json.dumps(verify(a.manifest,a.strict,
+              source_receipts=a.source_receipts,
+              approved_manifest=a.approved_manifest),indent=2))
+        return 0
     except (OSError,ValueError,KeyError,zipfile.BadZipFile) as e:
         print("NOT ACCEPTED:",e,file=sys.stderr);return 2
 if __name__=="__main__":raise SystemExit(main())
