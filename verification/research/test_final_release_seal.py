@@ -81,8 +81,10 @@ class ApprovedSealByteTests(unittest.TestCase):
         import shutil
         shutil.copytree(first, second)
         for name in reproduce.FILES:
-            (first/name).write_bytes(b"identical")
-            (second/name).write_bytes(b"identical")
+            payload = (json.dumps(self.manifest).encode()
+                       if name == "manifest.lock.json" else b"identical")
+            (first/name).write_bytes(payload)
+            (second/name).write_bytes(payload)
         data = reproduce.compare_artifacts(first, second)
         self.assertEqual(data["status"], "REPRODUCIBLE_DRAFT_ONLY")
         (second/"Permansson_Mathematical_Closure.pdf").write_bytes(b"different")
