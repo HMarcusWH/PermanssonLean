@@ -3,7 +3,7 @@
 
 An audit PASS means a complete and truthful candidate snapshot, not theorem
 acceptance. Strict modes require a *separately authenticated* final-head,
-synthetic-merge, merged-main and independent reviewer record. No network calls.
+synthetic-merge, merged-main and independent reviewer record. Offline audit needs no network; strict modes authenticate live GitHub CI/review and local Git objects.
 """
 from __future__ import annotations
 
@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+from final_closure_authenticate import verify_source
 import re
 import subprocess
 import sys
@@ -136,8 +137,8 @@ def audit() -> dict:
 
 def strict(receipts: dict, scope: str, manifest: dict | None) -> dict:
     summary = audit()
-    check(receipts.get("authenticated") is True,
-          "no independently authenticated source-bound receipts")
+    # Caller-supplied 'authenticated': true cannot promote a receipt.
+    verify_source(receipts)
     b, h, s, m = (receipts.get(k) for k in
                   ("base_sha", "head_sha", "synthetic_sha", "merged_main_sha"))
     for label, value in (("B", b), ("H", h), ("S", s), ("M", m)):
