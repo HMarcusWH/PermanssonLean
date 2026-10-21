@@ -279,16 +279,19 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
                       row.get("path") == owners[cid]["path"]
                       for row in proof_rows),
                   "claim source owner not bound: " + cid)
-        # Manuscript and PDF approval are independent of source CI. The
-        # approved PDF's literal checksum must appear in a genuine exact-H
-        # non-author review body, not just in a caller's self-assertion.
+        # Scientific manuscript review happens AFTER real M and signed PDF
+        # inspection. A postmerge non-author GitHub attestation must bind the
+        # literal PDF, all rendered page hashes and the approved claim set.
         pdf_hash = manifest.get("pdf_sha256")
-        check(isinstance(pdf_hash, str) and SHA256.fullmatch(pdf_hash),
-              "approved paper PDF checksum absent")
+        pages = manifest.get("pdf_pages")
+        check(isinstance(pdf_hash, str) and SHA256.fullmatch(pdf_hash) and
+              isinstance(pages, dict) and bool(pages),
+              "approved PDF checksum and complete page hashes absent")
         check(any(s.get("pdf_sha256") == pdf_hash and
-                  s.get("manuscript_approved") is True
-                  for s in provenance["review_scopes"].values()),
-              "independent scholarly PDF scope/byte review absent")
+                  s.get("pages") == pages and
+                  set(s.get("claim_ids", [])) == set(claim_ids)
+                  for s in provenance["scholarly_reviews"]),
+              "postmerge independent manuscript/page review absent")
         check(bool(manifest.get("accepted_claim_receipts")) and
               bool(manifest.get("scientific_limitations")) and
               manifest.get("empirical_identification_status") == "NOT_ESTABLISHED",
