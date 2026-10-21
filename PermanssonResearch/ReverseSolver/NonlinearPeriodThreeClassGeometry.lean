@@ -145,9 +145,8 @@ theorem native_selected_communicatingClass :
     exact reachedCycle_closed
   have hHit : HasRecurrentHit nativeK w := by
     refine ⟨0, ?_⟩
-    change nativeOrbit phaseAwarePolicy 0 ∈ RecurrentStates nativeK
-    rw [native_cycle_state_zero]
-    exact h0recurrent
+    change start ∈ RecurrentStates nativeK
+    simpa only [native_cycle_state_zero] using h0recurrent
   have hfirst : firstRecurrentState nativeK w ∈ reachedCycle := by
     change w (firstRecurrentIndex nativeK w) ∈ reachedCycle
     exact native_phase_orbit_in_reachedCycle _
