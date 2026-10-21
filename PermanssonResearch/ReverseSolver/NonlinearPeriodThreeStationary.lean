@@ -105,9 +105,16 @@ theorem phase_aware_invariant_weights
     nextState, phaseAwarePolicy, nextPhase, start] at h0 h1 h2 h3 h4 h5
   simp only [Fintype.sum_prod_type, Fin.sum_univ_three,
     Fintype.sum_bool] at hsum
-  change v start = _ ∧ v (1,true) = _ ∧ v (2,true) = _ ∧
+  -- Normalize the designated starting state before solving the six equations.
+  change v (0, false) = _ ∧ v (1,true) = _ ∧ v (2,true) = _ ∧
     v (0,true) = _ ∧ v (1,false) = _ ∧ v (2,false) = _
-  repeat' constructor <;> linarith [h0, h1, h2, h3, h4, h5, hsum]
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+  · linarith [h0, h1, h2, h3, h4, h5, hsum]
+  · linarith [h0, h1, h2, h3, h4, h5, hsum]
+  · linarith [h0, h1, h2, h3, h4, h5, hsum]
+  · linarith [h3]
+  · linarith [h4]
+  · linarith [h5]
 
 
 end PermanssonResearch.ReverseSolver.NonlinearPeriodThree
