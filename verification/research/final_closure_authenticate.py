@@ -114,6 +114,29 @@ REVIEW_PREFIX = "PERMANSSON-REVIEW-V2:"
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
 
+def receipt_payload_digest(receipts):
+    """Digest exact proof/case/claim overlay excluding unknown future review IDs.
+
+    The reviewer can attest this digest before they submit the GitHub review;
+    adding its real review ID to the detached overlay afterward does not
+    change the reviewed mathematical/evidence decisions.
+    """
+    import hashlib
+    fields = ("compiler_axiom_receipts", "positive_test_receipts",
+              "semantic_negative_receipts", "case_decisions", "claim_decisions")
+    payload = {}
+    for name in fields:
+        rows = receipts.get(name, [])
+        demand(isinstance(rows, list), "invalid case/claim review payload")
+        payload[name] = [
+            {k: v for k, v in row.items() if k != "review_id"}
+            for row in rows if isinstance(row, dict)]
+        demand(len(payload[name]) == len(rows), "malformed review payload")
+    raw = json.dumps(payload, sort_keys=True, ensure_ascii=False,
+                     separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(raw).hexdigest()
+
+
 def authenticated_checks(head_sha):
     """GitHub check-run ids, not Actions workflow run ids."""
     response = live("/commits/" + head_sha + "/check-runs?per_page=100")
@@ -135,7 +158,8 @@ def authenticated_checks(head_sha):
     return checks_by_name
 
 
-def authenticate_scoped_reviews(head_sha, author, bundle_sha256, refs):
+def authenticate_scoped_reviews(head_sha, author, bundle_sha256, refs,
+                                expected_payload_sha256):
     """Parse per-case/claim decisions from exact-H non-author GitHub approvals.
 
     These scopes are authentic review-body content from GitHub, not the
@@ -168,15 +192,21 @@ def authenticate_scoped_reviews(head_sha, author, bundle_sha256, refs):
             raise AuthenticationError("reviewer attestation is not valid JSON") from exc
         demand(isinstance(claim, dict) and
                claim.get("head_sha") == head_sha and
-               claim.get("evidence_bundle_sha256") == bundle_sha256,
-               "reviewer's bundle/head does not match")
+               claim.get("evidence_bundle_sha256") == bundle_sha256 and
+               claim.get("receipt_payload_sha256") == expected_payload_sha256,
+               "reviewer's bundle/head/evidence payload does not match")
         cases = claim.get("cases", {})
         ids = claim.get("claims", [])
         demand(isinstance(cases, dict) and isinstance(ids, list) and
                len(ids) == len(set(ids)) and
                set(cases.values()) <= {"VERIFIED_SELECTED_SCOPE", "VERIFIED_NEGATIVE"},
                "malformed explicit case/claim decisions")
-        scopes[rid] = {"cases": cases, "claims": ids, "reviewer": user}
+        pdf_sha = claim.get("pdf_sha256")
+        demand(pdf_sha is None or (isinstance(pdf_sha, str) and
+               SHA256.fullmatch(pdf_sha)), "invalid signed paper digest")
+        scopes[rid] = {"cases": cases, "claims": ids, "reviewer": user,
+                       "pdf_sha256": pdf_sha,
+                       "manuscript_approved": claim.get("manuscript_approved") is True}
     return scopes
 
 
@@ -214,7 +244,8 @@ def verify_premerge(receipts, *, require_independent_review=True):
         scopes = authenticate_scoped_reviews(
             h, (pr.get("user") or {}).get("login"),
             receipts.get("evidence_bundle_sha256"),
-            receipts.get("independent_source_reviews", []))
+            receipts.get("independent_source_reviews", []),
+            receipt_payload_digest(receipts))
         demand(bool(scopes), "independent exact-H GitHub review/scope absent")
     return {"B": b, "H": h, "S": s, "M": None,
             "checks": checks, "review_scopes": scopes}
@@ -258,7 +289,8 @@ def verify_merged_v2(receipts):
     scopes = authenticate_scoped_reviews(
         h, (pr.get("user") or {}).get("login"),
         receipts.get("evidence_bundle_sha256"),
-        receipts.get("independent_source_reviews", []))
+        receipts.get("independent_source_reviews", []),
+        receipt_payload_digest(receipts))
     demand(bool(scopes), "missing authenticated independent exact-H scope reviews")
     return {"B": b, "H": h, "S": s, "M": m,
             "checks": frozen, "integrated_checks": integrated,
