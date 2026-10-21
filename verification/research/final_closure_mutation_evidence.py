@@ -111,6 +111,8 @@ def produce(head: str, *, true_source: Path, mutant: Path, test_path: Path,
     negative_log = (negative.stdout + "\n" + negative.stderr).encode("utf-8")
     (out / positive_name).write_bytes(positive_log)
     (out / negative_name).write_bytes(negative_log)
+    mutant_name = prefix + ".mutant.lean"
+    (out / mutant_name).write_bytes(mutant_bytes)
     return {
         "id": prefix, "head_sha": head,
         "test_path": str(test.relative_to(ROOT)).replace("\\", "/"),
@@ -118,7 +120,9 @@ def produce(head: str, *, true_source: Path, mutant: Path, test_path: Path,
         "source_sha256": hash_bytes(test_bytes),
         "case_ids": [case_id], "claim_ids": claim_ids,
         "mutant_source_sha256": hash_bytes(mutant_bytes),
+        "mutant_source_member": mutant_name,
         "original_lean_source_sha256": hash_bytes(original_bytes),
+        "original_lean_source_path": str(source.relative_to(ROOT)).replace("\\", "/"),
         "positive_control": {
             "compiled": True, "exit_code": 0, "lean_toolchain": "4.34.0",
             "log_member": positive_name, "log_sha256": hash_bytes(positive_log),
