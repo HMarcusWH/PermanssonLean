@@ -1,0 +1,329 @@
+{
+  "claims": [
+    {
+      "accepted": false,
+      "claim_id": "Q1",
+      "declarations": [
+        {
+          "declaration": "PermanssonResearch.Quotient.DiscountedCanonicalSourceWitness.canonical_discounted_output_error",
+          "header_present": true,
+          "path": "PermanssonResearch/Quotient/DiscountedCanonicalSourceWitness.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        }
+      ],
+      "independent_review_receipts": [],
+      "original_case_links": [
+        "Q-05"
+      ],
+      "primary_path": "PermanssonResearch/Quotient/DiscountedCanonicalSourceWitness.lean",
+      "scope_exclusions": [],
+      "source_status": "SOURCE_PRESENT_REVIEW_PENDING",
+      "test_source_candidates": [
+        "verification/research/test_final04_source_lean.py"
+      ]
+    },
+    {
+      "accepted": false,
+      "claim_id": "Q2",
+      "declarations": [
+        {
+          "declaration": "PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure.actual_canonical_discounted_original_margin",
+          "header_present": true,
+          "path": "PermanssonResearch/Quotient/DiscountedCanonicalMarginClosure.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        }
+      ],
+      "independent_review_receipts": [],
+      "original_case_links": [
+        "Q-05"
+      ],
+      "primary_path": "PermanssonResearch/Quotient/DiscountedCanonicalMarginClosure.lean",
+      "scope_exclusions": [
+        "Source PointWitness and full B1 premise must actually be discharged"
+      ],
+      "source_status": "SOURCE_PRESENT_REVIEW_PENDING",
+      "test_source_candidates": [
+        "verification/research/test_final04_source_lean.py"
+      ]
+    },
+    {
+      "accepted": false,
+      "claim_id": "Q3",
+      "declarations": [
+        {
+          "declaration": "PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.SourceBoundExactWitness.exactKernelPointWitness",
+          "header_present": true,
+          "path": "PermanssonResearch/Quotient/DiscountedCanonicalWitnessExamples.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        }
+      ],
+      "independent_review_receipts": [],
+      "original_case_links": [
+        "Q-05"
+      ],
+      "primary_path": "PermanssonResearch/Quotient/DiscountedCanonicalWitnessExamples.lean",
+      "scope_exclusions": [],
+      "source_status": "SOURCE_PRESENT_REVIEW_PENDING",
+      "test_source_candidates": [
+        "verification/research/test_final04_canonical_output.py"
+      ]
+    },
+    {
+      "accepted": false,
+      "claim_id": "M1",
+      "declarations": [
+        {
+          "declaration": "PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_kernel_two",
+          "header_present": true,
+          "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedProtocols.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_kernel_two",
+          "header_present": true,
+          "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedProtocols.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        }
+      ],
+      "independent_review_receipts": [],
+      "original_case_links": [
+        "F-01",
+        "Q-05"
+      ],
+      "primary_path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedProtocols.lean",
+      "scope_exclusions": [
+        "Conditional-product subclass only; no unrestricted correlated generator"
+      ],
+      "source_status": "SOURCE_PRESENT_REVIEW_PENDING",
+      "test_source_candidates": [
+        "verification/research/test_final05_measurable_lean.py"
+      ]
+    },
+    {
+      "accepted": false,
+      "claim_id": "M2",
+      "declarations": [
+        {
+          "declaration": "PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_loop_original_margin",
+          "header_present": true,
+          "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_loop_original_margin",
+          "header_present": true,
+          "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        }
+      ],
+      "independent_review_receipts": [],
+      "original_case_links": [
+        "F-01",
+        "Q-05"
+      ],
+      "primary_path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+      "scope_exclusions": [],
+      "source_status": "SOURCE_PRESENT_REVIEW_PENDING",
+      "test_source_candidates": [
+        "verification/research/test_final05_measurable_lean.py"
+      ]
+    },
+    {
+      "accepted": false,
+      "claim_id": "M3",
+      "declarations": [
+        {
+          "declaration": "PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_worlds_both_frozen",
+          "header_present": true,
+          "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedExamples.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.MultiAgent.FinalMatchedAsymmetry.wrong_asymmetric_input_change_is_detectable",
+          "header_present": true,
+          "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedExamples.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        }
+      ],
+      "independent_review_receipts": [],
+      "original_case_links": [
+        "F-01",
+        "Q-05"
+      ],
+      "primary_path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedExamples.lean",
+      "scope_exclusions": [],
+      "source_status": "SOURCE_PRESENT_REVIEW_PENDING",
+      "test_source_candidates": [
+        "verification/research/test_final05_matched_protocols.py"
+      ]
+    },
+    {
+      "accepted": false,
+      "claim_id": "N1",
+      "declarations": [
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.phase_aware_invariant_weights",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeStationary.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_aware_actual_true_mass",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeClassGeometry.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        }
+      ],
+      "independent_review_receipts": [],
+      "original_case_links": [
+        "D-09"
+      ],
+      "primary_path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeStationary.lean",
+      "scope_exclusions": [],
+      "source_status": "SOURCE_PRESENT_REVIEW_PENDING",
+      "test_source_candidates": [
+        "verification/research/test_final06_native_class_lean.py"
+      ]
+    },
+    {
+      "accepted": false,
+      "claim_id": "N2",
+      "declarations": [
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_aware_actual_score_one",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeExpectedScore.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_blind_actual_le_five_sixths",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearPhaseBlindClassGeometry.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_blind_actual_attained",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearPhaseBlindClassGeometry.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_actual_phase_aware_strictly_beats_phase_blind",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearPhaseBlindClassGeometry.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        }
+      ],
+      "independent_review_receipts": [],
+      "original_case_links": [
+        "D-09"
+      ],
+      "primary_path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeExpectedScore.lean",
+      "scope_exclusions": [
+        "No unrestricted randomized/history-dependent policy optimality",
+        "Augmented-state stationary policy is not phase-blind"
+      ],
+      "source_status": "SOURCE_PRESENT_REVIEW_PENDING",
+      "test_source_candidates": [
+        "verification/research/test_final06_phaseblind_original.py",
+        "verification/research/test_final06_actual_score_lean.py"
+      ]
+    },
+    {
+      "accepted": false,
+      "claim_id": "N3",
+      "declarations": [
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.booleanClassFunctional",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.boolean_rational_objective_eq_actual",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        }
+      ],
+      "independent_review_receipts": [],
+      "original_case_links": [
+        "D-09"
+      ],
+      "primary_path": "PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean",
+      "scope_exclusions": [],
+      "source_status": "SOURCE_PRESENT_REVIEW_PENDING",
+      "test_source_candidates": [
+        "verification/research/test_final06_c11_evaluator.py"
+      ]
+    },
+    {
+      "accepted": false,
+      "claim_id": "D8",
+      "declarations": [
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_admits_both_components",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_rejects_joint",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_row_normalized",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        }
+      ],
+      "independent_review_receipts": [],
+      "original_case_links": [
+        "D-08"
+      ],
+      "primary_path": "PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean",
+      "scope_exclusions": [],
+      "source_status": "SOURCE_PRESENT_REVIEW_PENDING",
+      "test_source_candidates": [
+        "verification/research/test_final_d08_admission.py"
+      ]
+    },
+    {
+      "accepted": false,
+      "claim_id": "D9",
+      "declarations": [
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_two_absorbing_full_path_mixture",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_multichain_classwise_differs_from_barycenter",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        }
+      ],
+      "independent_review_receipts": [],
+      "original_case_links": [
+        "D-09"
+      ],
+      "primary_path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+      "scope_exclusions": [
+        "Current half-versus-five-sixths multichain witness cannot by itself discharge historical five-sixths-versus-one test"
+      ],
+      "source_status": "SOURCE_PRESENT_REVIEW_PENDING",
+      "test_source_candidates": [
+        "verification/research/test_final_d09_multichain.py"
+      ]
+    }
+  ],
+  "count": 11,
+  "format": "Permansson.FinalClosureQualifiedClaims.v1",
+  "source_baseline_sha": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+  "status": "UNREVIEWED_SOURCE_CANDIDATES"
+}
