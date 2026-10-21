@@ -54,6 +54,7 @@ open PermanssonResearch.GrammarRobust.BooleanBaseline
 open PermanssonResearch.GrammarRobust.BooleanDynamics
 open PermanssonResearch.GrammarRobust.AdversarialAdmission
 open PermanssonResearch.ReverseSolver.AdaptiveGrammarControl
+open PermanssonResearch.ReverseSolver.ControlledKernel
 
 set_option autoImplicit false
 
@@ -76,7 +77,7 @@ def atomRow (target : Fin 4) : RationalMarkovMatrix 4 where
 
 theorem dirac_atom_exact (dest : Y) (y z : Fin 4) :
     (Measure.dirac dest) {stateIndex z} =
-      ENNReal.ofReal (atomRow (stateIndex.symm dest)).entry y z := by
+      ENNReal.ofReal ((atomRow (stateIndex.symm dest)).entry y z : ℝ) := by
   by_cases hz : stateIndex z = dest
   · have htarget : z = stateIndex.symm dest := by
       apply stateIndex.injective
@@ -201,11 +202,11 @@ noncomputable def restrictedCertifiedMenu : CertifiedMenu baseline (Fin 2) 4 whe
     intro c y z
     fin_cases c
     · change actionSourceModel.inducedKernel (stateIndex y) {stateIndex z} =
-        ENNReal.ofReal (atomRow (stateIndex.symm actionDest)).entry y z
+        ENNReal.ofReal ((atomRow (stateIndex.symm actionDest)).entry y z : ℝ)
       rw [actionSourceModel_induced]
       exact dirac_atom_exact actionDest y z
     · change updateSourceModel.inducedKernel (stateIndex y) {stateIndex z} =
-        ENNReal.ofReal (atomRow (stateIndex.symm updateDest)).entry y z
+        ENNReal.ofReal ((atomRow (stateIndex.symm updateDest)).entry y z : ℝ)
       rw [updateSourceModel_induced]
       exact dirac_atom_exact updateDest y z
 
