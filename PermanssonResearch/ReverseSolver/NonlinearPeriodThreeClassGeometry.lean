@@ -28,6 +28,7 @@ open PermanssonResearch.MultipleLimit.RecurrentClassDecomposition
 open PermanssonResearch.MultipleLimit.CanonicalClassSelector
 open PermanssonResearch.MultipleLimit.ClassStationarySelectionLaw
 open PermanssonResearch.MultipleLimit.FiniteOccupationRandomLaw
+open PermanssonResearch.MultipleLimit.FiniteKernelInvariantUniqueness
 
 attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 set_option autoImplicit false
