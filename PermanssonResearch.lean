@@ -720,6 +720,8 @@ import PermanssonResearch.Quotient.DiscountedOriginalMarginExamples
 
 import PermanssonResearch.MultiAgent.MeasurableProductTwoMatchedProtocols
 
+import PermanssonResearch.MultiAgent.MeasurableProductTwoOriginalMarginClosure
+
 /-!
 # PermanssonResearch
 
