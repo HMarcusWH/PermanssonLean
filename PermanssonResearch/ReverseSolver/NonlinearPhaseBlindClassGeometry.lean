@@ -210,7 +210,12 @@ private theorem physical_true_mass_eq_sum (π : ProbabilityMeasure State) :
   rw [← (sum_measure_singleton (μ := π.toMeasure) (s := s))]
   rw [ENNReal.toReal_sum (fun i hi => measure_ne_top π.toMeasure _)]
   change (∑ y ∈ s, realPointMass π y) = ∑ i : Phase, realPointMass π (i,true)
-  simp [s,Fintype.sum_prod_type,Fintype.sum_bool]
+  -- A filtered product sum must be expanded before product summation.
+  -- Use the same finite-product identity as C11ObservedStationary.
+  unfold s
+  rw [Finset.sum_filter]
+  rw [Fintype.sum_prod_type]
+  simp [Fintype.sum_bool]
 
 private theorem blind_real_transition (p : Bool → Bool) (y z : State) :
     realTransition (blindKernel p) y z =
