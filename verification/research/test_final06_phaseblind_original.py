@@ -66,10 +66,17 @@ class NativePhaseBlindOriginalTests(unittest.TestCase):
         self.assertNotIn("sorryAx",out)
 
     def test_false_unrestricted_optimum_is_rejected_mathematically(self):
+        # Keep the false claim in the actual original score semantics, but
+        # rewrite by the proved attainable value before the negative step.
+        # A direct failed `exact` can exhaust whnf heartbeats while trying to
+        # compare the unfolded infinite-path objective, which is NOT a
+        # mathematical rejection. Here Lean reaches a literal false equality.
         rc,out=lean_check(
           "example : nativeExpectedNonlinearScore\n"
           "  (phaseBlindPolicy alternatingFeedback) = (1 : ℝ) := by\n"
-          "  exact native_phase_blind_actual_attained\n")
+          "  rw [native_phase_blind_actual_attained]\n"
+          "  have hneq : (5 / 6 : ℝ) ≠ 1 := by norm_num\n"
+          "  exact hneq\n")
         self.assertNotEqual(rc,0,"false deterministic optimality was accepted")
         self.assertNotRegex(out.lower(),
           r"unknown (module|identifier)|failed to import|parser error|out of memory|timed out")
