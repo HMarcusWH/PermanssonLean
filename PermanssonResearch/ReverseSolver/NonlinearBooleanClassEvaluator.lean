@@ -57,7 +57,8 @@ theorem certified_boolean_score_exact
   unfold booleanProbabilityScore booleanRationalScore
     NonlinearOccupationBoundary.score
   rw [hmass]
-  norm_cast
+  simp only [Rat.cast_sub, Rat.cast_abs, Rat.cast_one, Rat.cast_div,
+    Rat.cast_ofNat]
 
 /-- The actual score is uniformly bounded because Bool probabilities are
 in [0,1]. This is proved from the original probability measure, not
