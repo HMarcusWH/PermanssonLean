@@ -5,6 +5,7 @@ import unittest
 
 import final_closure_case_map as cases
 import final_closure_claim_map as claims
+import final_closure_obligations_report as report
 from final_closure_case_receipts import EvidenceError, statement_header
 
 
@@ -51,6 +52,12 @@ class OriginalSourceMapTests(unittest.TestCase):
                             for d in byid["M3"]["declarations"]))
         self.assertTrue(any(".SourceBoundExactWitness." in d["declaration"]
                             for d in byid["Q3"]["declarations"]))
+
+    def test_acceptance_obligations_report_is_deterministic_and_not_approved(self):
+        text = report.render()
+        self.assertEqual(report.OUTPUT.read_text(encoding="utf-8"), text)
+        self.assertIn("pending: 15; partial scope: 30", text)
+        self.assertIn("NOT ACCEPTED", text)
 
     def test_declared_local_name_outside_namespace_is_not_enough(self):
         source = ("namespace A.B\n"
