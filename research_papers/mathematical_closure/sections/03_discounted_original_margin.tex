@@ -1,5 +1,5 @@
 \section{P--04: Discounted output to original constitutive margin}
-\textbf{Status: P--04.1 canonical marginal bridge Lean-checked; original whole-path constitutive-margin closure still pending.}
+\textbf{Status: canonical marginal and conditional whole-path original-margin adapters exist; actual separate source-bound witnesses require final verification.}
 The scoped theorem \code{canonical_nth_marginal_eq_evolution} concerns
 the genuine canonical time-$n$ marginal, not the full property or a
 closed original constitutive margin.
@@ -33,3 +33,17 @@ recorded separately.
 the original full-$B_1$ margin API; diagram is not a proof receipt.}
 \end{figure}
 A positive numerical margin does not by itself imply Exact GR/PR.
+
+
+\paragraph{Source-specific witness.}
+The final integration distinguishes the real baseline witness
+$(K_0,\bar K_0,R_0,\eta_0)$ from the real treated witness
+$(K_J,\bar K_J,R_J,\eta_J)$. Each subkernel must be dominated on all
+required source states and its projected row must be dominated by the
+proper \emph{coarse} kernel; neither is an assumed TV number. Each
+point-initialized original comparison starts from its actual Dirac law,
+so the initial mismatch vanishes only for that matching construction.
+The two model-output bounds must then be used through the unchanged
+original \texttt{HasConstitutiveOutputErrors} and full-$B_1$
+\texttt{constitutiveMargin} API. Positive leakage still defeats an Exact
+GR transfer regardless of how small the discounted error becomes.
