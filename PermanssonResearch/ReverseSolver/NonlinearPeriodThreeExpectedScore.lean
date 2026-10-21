@@ -30,8 +30,12 @@ theorem actual_phase_blind_score_le_of_class_identification
           (booleanRationalScore (nativePhaseBlindTailShare policy) : ℝ)) :
     nativeExpectedNonlinearScore (phaseBlindPolicy policy) ≤ 5/6 := by
   rw [native_expected_score_eq_actual_orbit, hclass]
-  norm_cast
-  exact native_phase_blind_tail_score_le_five_sixths policy
+  have hbound : booleanRationalScore (nativePhaseBlindTailShare policy) ≤ (5/6 : ℚ) :=
+    native_phase_blind_tail_score_le_five_sixths policy
+  have hr : ((booleanRationalScore (nativePhaseBlindTailShare policy) : ℚ) : ℝ) ≤
+      (((5/6 : ℚ) : ℝ)) := by
+    exact_mod_cast hbound
+  simpa only [show (((5/6 : ℚ) : ℝ)) = (5/6 : ℝ) by norm_num] using hr
 
 theorem actual_restricted_gap_of_identified_classes
     (htrue :
