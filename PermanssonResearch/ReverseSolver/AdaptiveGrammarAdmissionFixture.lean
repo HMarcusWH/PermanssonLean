@@ -89,13 +89,13 @@ theorem dirac_atom_exact (dest : Y) (y z : Fin 4) :
       simpa using congrArg stateIndex h
     simp [atomRow, hz, htarget, Measure.dirac_apply']
 
-def actionSelection : PatchSelection Bool Bool Bool :=
+noncomputable def actionSelection : PatchSelection Bool Bool Bool :=
   ([(bank.action (0 : Fin 1))], [])
 
-def updateSelection : PatchSelection Bool Bool Bool :=
+noncomputable def updateSelection : PatchSelection Bool Bool Bool :=
   ([], [(bank.update (0 : Fin 1))])
 
-def chosen : Fin 2 → PatchSelection Bool Bool Bool
+noncomputable def chosen : Fin 2 → PatchSelection Bool Bool Bool
   | 0 => actionSelection
   | 1 => updateSelection
 
@@ -139,7 +139,8 @@ theorem actionSourceModel_induced (y : Y) :
   intro E hE
   rw [StrategicWorldModel.inducedKernel_apply actionSourceModel y hE]
   rw [hAlpha, hUpdate]
-  rw [overlapModel_world]
+  have hWorld : actionSourceModel.world = worldCopy := rfl
+  rw [hWorld]
   simp [actionFalse, updateTrue, baseline, worldCopy,
     Kernel.deterministic_apply, Measure.dirac_apply, actionDest]
   by_cases hmem : (true,false) ∈ E <;> simp [hmem]
@@ -160,7 +161,8 @@ theorem updateSourceModel_induced (y : Y) :
   intro E hE
   rw [StrategicWorldModel.inducedKernel_apply updateSourceModel y hE]
   rw [hAlpha, hUpdate]
-  rw [overlapModel_world]
+  have hWorld : updateSourceModel.world = worldCopy := rfl
+  rw [hWorld]
   simp [actionTrue, updateFalse, baseline, worldCopy,
     Kernel.deterministic_apply, Measure.dirac_apply, updateDest]
   by_cases hmem : (false,true) ∈ E <;> simp [hmem]
@@ -211,8 +213,8 @@ noncomputable def restrictedCertifiedMenu : CertifiedMenu baseline (Fin 2) 4 whe
       exact dirac_atom_exact updateDest y z
 
 theorem actual_restricted_menu_admits_both_components :
-    restrictedCertifiedMenu.selection_admitted (0 : Fin 2) ∧
-    restrictedCertifiedMenu.selection_admitted (1 : Fin 2) :=
+    restrictedCertifiedMenu.admitted (restrictedCertifiedMenu.selection (0 : Fin 2)) ∧
+    restrictedCertifiedMenu.admitted (restrictedCertifiedMenu.selection (1 : Fin 2)) :=
   ⟨restrictedCertifiedMenu.selection_admitted 0,
    restrictedCertifiedMenu.selection_admitted 1⟩
 

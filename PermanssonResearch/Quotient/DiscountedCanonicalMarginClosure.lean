@@ -118,7 +118,15 @@ theorem actual_canonical_discounted_original_margin
     have hb := huniform0 y hy
     unfold baselinePropertyValue projectedDiscountedProperty
       discountedWholePathProperty
-    exact le_trans (by simpa only [Real.dist_eq] using hw) hb
+    rw [Real.dist_eq]
+    change
+      |(∫ w, summablePathScore (fun n => (1-β)*β^n)
+          (fun n w => g n (w n)) w
+          ∂((M.pathLaw (Measure.dirac y)).map Qc.pathMap)) -
+        ∫ w, summablePathScore (fun n => (1-β)*β^n)
+          (fun n w => g n (w n)) w
+          ∂(Mbar.pathLaw (Measure.dirac (Qc.stateMap y)))| ≤ e0
+    exact hw.trans hb
   · intro y hy
     have hw := point_witness_output Qc J.intervention.apply
       Jbar.intervention.apply (WJ y hy) y g
@@ -126,6 +134,14 @@ theorem actual_canonical_discounted_original_margin
     have hb := huniformJ y hy
     unfold intervenedPropertyValue projectedDiscountedProperty
       discountedWholePathProperty
-    exact le_trans (by simpa only [Real.dist_eq] using hw) hb
+    rw [Real.dist_eq]
+    change
+      |(∫ w, summablePathScore (fun n => (1-β)*β^n)
+          (fun n w => g n (w n)) w
+          ∂((J.intervention.apply.pathLaw (Measure.dirac y)).map Qc.pathMap)) -
+        ∫ w, summablePathScore (fun n => (1-β)*β^n)
+          (fun n w => g n (w n)) w
+          ∂(Jbar.intervention.apply.pathLaw (Measure.dirac (Qc.stateMap y)))| ≤ eJ
+    exact hw.trans hb
 
 end PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure

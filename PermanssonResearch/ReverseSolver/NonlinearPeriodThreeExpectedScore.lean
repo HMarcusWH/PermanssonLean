@@ -10,6 +10,7 @@ is asserted from finite-orbit arithmetic; those must be discharged.
 open MeasureTheory ProbabilityTheory
 namespace PermanssonResearch.ReverseSolver.NonlinearPeriodThree
 open PermanssonResearch.MultipleLimit.FiniteOccupationRandomLaw
+attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
 
 theorem actual_phase_aware_score_one_of_canonical_true_mass
     (htrue :
@@ -29,7 +30,8 @@ theorem actual_phase_blind_score_le_of_class_identification
           (booleanRationalScore (nativePhaseBlindTailShare policy) : ℝ)) :
     nativeExpectedNonlinearScore (phaseBlindPolicy policy) ≤ 5/6 := by
   rw [native_expected_score_eq_actual_orbit, hclass]
-  exact_mod_cast native_phase_blind_tail_score_le_five_sixths policy
+  norm_cast
+  exact native_phase_blind_tail_score_le_five_sixths policy
 
 theorem actual_restricted_gap_of_identified_classes
     (htrue :
