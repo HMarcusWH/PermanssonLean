@@ -29,4 +29,13 @@ class Final04CompilerTests(unittest.TestCase):
           "open PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure",
           ("canonical_discounted_output_error","point_witness_output",
            "actual_canonical_discounted_original_margin"))
+    def test_actual_kernel_witness_examples_and_axioms(self):
+        check_module(self,
+          "PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples",
+          "PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples\n"
+          "open PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.SourceBoundExactWitness",
+          ("correct_frozen_discounted_budget", "wrong_frozen_discounted_budget",
+           "exactKernelPointWitness", "exactKernelPointWitness_retained_one",
+           "identity_canonical_full_path"))
+
 if __name__=="__main__":unittest.main()
