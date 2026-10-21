@@ -141,6 +141,83 @@ def audit() -> dict:
             "audit": "PASS_WITH_DECLARED_PENDING"}
 
 
+
+def verify_claim_source_receipts(receipts: dict, source_head: str) -> set[str]:
+    """Bind claimed Lean theorems and false-semantic mutants to actual bytes.
+
+    Live GitHub's successful Research Lean check is separately authenticated
+    by verify_source(). Here we prevent a caller from substituting unrelated
+    statements, stale files, or a parser failure as an accepted theorem test.
+    """
+    proofs = receipts.get("compiler_axiom_receipts", [])
+    negatives = receipts.get("semantic_negative_receipts", [])
+    check(isinstance(proofs, list) and bool(proofs) and
+          isinstance(negatives, list) and bool(negatives),
+          "missing theorem proofs or semantic negative evidence")
+    verified = set()
+    for row in proofs:
+        check(isinstance(row, dict), "malformed theorem receipt")
+        path = secure_path(row.get("path", ""))
+        check(path.is_file() and path.suffix == ".lean",
+              "theorem receipt does not refer to an existing Lean module")
+        check(digest(path) == row.get("source_sha256") and
+              row.get("head_sha") == source_head,
+              "unbound Lean source or stale proof head: " + str(path))
+        name = row.get("declaration")
+        check(isinstance(name, str) and bool(name) and
+              re.fullmatch(r"[A-Za-z0-9_'.]+", name),
+              "invalid Lean declaration name")
+        local = name.rsplit(".", 1)[-1]
+        pattern = (r"(?m)^\s*(?:private\s+|protected\s+)?"
+                   r"(?:(?:noncomputable|unsafe)\s+)?"
+                   r"(?:theorem|lemma|def)\s+" + re.escape(local) + r"(?=\W)")
+        content = path.read_text(encoding="utf-8")
+        match = re.search(pattern, content)
+        check(match is not None, "claimed theorem declaration absent: " + name)
+        end = content.find(":=", match.end())
+        check(end > match.end(), "missing theorem statement separator: " + name)
+        statement = content[match.start():end].strip()
+        check(hashlib.sha256(statement.encode("utf-8")).hexdigest() ==
+              row.get("statement_sha256"),
+              "theorem statement hash does not bind to full source: " + name)
+        axioms = row.get("transitive_axioms")
+        check(isinstance(axioms, list) and
+              set(axioms) <= {"propext", "Classical.choice", "Quot.sound"},
+              "unreviewed transitive theorem axiom: " + name)
+        check(row.get("compiler_result") == "PASS" and
+              row.get("compiler_check") == "research",
+              "theorem not established by source-bound Research Lean CI")
+        verified.add(name)
+    for row in negatives:
+        check(isinstance(row, dict), "malformed semantic-negative receipt")
+        path = secure_path(row.get("test_path", ""))
+        check(path.is_file() and path.suffix == ".py" and
+              path.name.startswith("test_") and
+              digest(path) == row.get("source_sha256"),
+              "negative test is missing, stale or not a test module")
+        check(row.get("head_sha") == source_head and
+              row.get("outcome") == "REJECTED_SEMANTIC",
+              "negative mutant not explicitly rejected as a false theorem")
+        name = row.get("test_name")
+        check(isinstance(name, str) and
+              re.search(r"(?m)^\s*def\s+" + re.escape(name) + r"\(",
+                        path.read_text(encoding="utf-8")) is not None,
+              "named negative test absent from bound source")
+        log_path = row.get("log_path", "")
+        log_file = secure_path(log_path)
+        check(log_file.is_file() and digest(log_file) == row.get("log_sha256"),
+              "negative test has no independently retained exact diagnostic log")
+        diagnostics = log_file.read_text(encoding="utf-8", errors="replace").lower()
+        check(("type mismatch" in diagnostics or
+               "unsolved goals" in diagnostics or
+               "application type mismatch" in diagnostics) and
+              not any(x in diagnostics for x in
+                      ("unknown module", "failed to import",
+                       "parser error", "out of memory", "timed out")),
+              "negative test passed for an invalid/non-semantic failure")
+    return verified
+
+
 def strict(receipts: dict, scope: str, manifest: dict | None) -> dict:
     summary = audit()
     # Caller-supplied 'authenticated': true cannot promote a receipt.
@@ -169,6 +246,7 @@ def strict(receipts: dict, scope: str, manifest: dict | None) -> dict:
     check(receipts.get("trusted_axioms") ==
           ["Classical.choice", "Quot.sound", "propext"],
           "unexpected or omitted trusted axiom")
+    actually_verified = verify_claim_source_receipts(receipts, h)
     if scope == "full45-strict":
         check(summary["pending"] == 0, "at least one original case still pending")
     else:
@@ -181,6 +259,23 @@ def strict(receipts: dict, scope: str, manifest: dict | None) -> dict:
         approved = manifest.get("approved_manuscript_claims", [])
         check(bool(claims) and claims == approved,
               "manuscript claim inventory mismatch")
+        inventory = read_json(NEW / "claim_inventory.json")
+        scoped = read_json(NEW / "theorem_crosswalk.json")
+        accepted = {c["id"] for c in inventory["claims"]
+                    if c.get("accepted") is True}
+        crosswalk = {c["id"]: c for c in scoped["closure_additions"]}
+        check(set(claims) <= accepted and set(claims) <= crosswalk.keys(),
+              "manuscript cites unaccepted or unknown theorem claims")
+        for cid in claims:
+            source = crosswalk[cid]
+            path = secure_path(source["path"])
+            check(source.get("status") == "VERIFIED_SELECTED_SCOPE" and
+                  path.is_file() and digest(path) == source.get("source_sha256"),
+                  "accepted paper claim not tied to actual accepted source: " + cid)
+            declarations = source.get("actual_declarations", [])
+            check(declarations and all(name in actually_verified
+                                       for name in declarations),
+                  "claimed theorem not compiled and checked: " + cid)
         check(bool(manifest.get("accepted_claim_receipts") and
                    manifest.get("scientific_limitations") and
                    manifest.get("empirical_identification_status")),
