@@ -251,6 +251,60 @@ def verify_premerge(receipts, *, require_independent_review=True):
             "checks": checks, "review_scopes": scopes}
 
 
+SCHOLARLY_PREFIX = "PERMANSSON-SCHOLARLY-V2:"
+
+
+def authentic_scholarly_attestations(pr, head_sha, merged_sha):
+    """Postmerge external scientific/PDF review from genuine GitHub comments.
+
+    A machine can authenticate who authored this attestation, what they
+    explicitly signed off, and the exact bytes. It cannot independently
+    assess that the reviewer's mathematical reasoning was correct.
+    """
+    merged_at = pr.get("merged_at")
+    demand(isinstance(merged_at, str) and bool(merged_at),
+           "scholarly approval requires completed genuine GitHub merge")
+    author = (pr.get("user") or {}).get("login")
+    comments = live("/issues/113/comments?per_page=100")
+    demand(isinstance(comments, list), "invalid GitHub manuscript reviews")
+    results = []
+    for comment in comments:
+        reviewer = (comment.get("user") or {}).get("login")
+        stamp = comment.get("created_at")
+        if not reviewer or reviewer == author or not stamp or stamp < merged_at:
+            continue
+        lines = [l.strip() for l in (comment.get("body") or "").splitlines()
+                 if l.strip().startswith(SCHOLARLY_PREFIX)]
+        demand(len(lines) <= 1, "ambiguous publication attestations")
+        if not lines:
+            continue
+        try:
+            data = json.loads(lines[0][len(SCHOLARLY_PREFIX):].strip())
+        except (TypeError, ValueError) as exc:
+            raise AuthenticationError("invalid scholarly approval JSON") from exc
+        if (not isinstance(data, dict) or
+            data.get("head_sha") != head_sha or
+            data.get("merged_main_sha") != merged_sha):
+            continue
+        pdf = data.get("pdf_sha256")
+        pages = data.get("pages")
+        claim_ids = data.get("approved_claim_ids")
+        demand(isinstance(pdf, str) and SHA256.fullmatch(pdf) and
+               isinstance(pages, dict) and bool(pages) and
+               all(isinstance(n, str) and n.startswith("page-") and
+                   isinstance(h, str) and SHA256.fullmatch(h)
+                   for n, h in pages.items()) and
+               isinstance(claim_ids, list) and
+               len(claim_ids) == len(set(claim_ids)) and
+               data.get("scholarly_review") == "APPROVED" and
+               data.get("all_pages_visually_inspected") is True,
+               "scholarly PDF attestation lacks real page/claim scope")
+        results.append({"id": comment.get("id"), "reviewer": reviewer,
+                        "pdf_sha256": pdf, "pages": pages,
+                        "claim_ids": claim_ids, "merged_main_sha": merged_sha})
+    return results
+
+
 def verify_merged_v2(receipts):
     """Genuine ordered merge M and integrated main CI; no squash/rebase."""
     b, h, s, m = (receipts.get(x) for x in
@@ -292,6 +346,7 @@ def verify_merged_v2(receipts):
         receipts.get("independent_source_reviews", []),
         receipt_payload_digest(receipts))
     demand(bool(scopes), "missing authenticated independent exact-H scope reviews")
+    scholarly = authentic_scholarly_attestations(pr, h, m)
     return {"B": b, "H": h, "S": s, "M": m,
             "checks": frozen, "integrated_checks": integrated,
-            "review_scopes": scopes}
+            "review_scopes": scopes, "scholarly_reviews": scholarly}
