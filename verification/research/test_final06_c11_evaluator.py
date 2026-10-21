@@ -25,8 +25,9 @@ def compile_lean(body):
 class C11BooleanEvaluator(unittest.TestCase):
     def test_named_compiler_and_transitive_axioms(self):
         names = (
-            "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.booleanClassFunctionalFromCertifiedEvaluation",
-            "PermanssonResearch.ReverseSolver.StationaryOccupation.rationalObjective_eq_actual",
+            "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.booleanClassFunctional",
+            "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.boolean_rational_objective_eq_actual",
+            "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.certified_boolean_score_exact",
             "PermanssonResearch.ReverseSolver.C11.ReferenceExamples.corrupted_stationary_receipt_rejected",
         )
         rc, out = compile_lean("\n".join(

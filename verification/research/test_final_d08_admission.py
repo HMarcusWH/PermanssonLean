@@ -29,7 +29,12 @@ def lean(body):
 class D08Admission(unittest.TestCase):
     def test_positive_signatures_and_axioms(self):
         names = ("forbidden_joint_not_in_restricted_menu",
-                 "admitted_block_row_normalized", "restricted_joint_rejected")
+                 "admitted_block_row_normalized",
+                 "ConcreteRestrictedBoolean.restrictedCertifiedMenu",
+                 "ConcreteRestrictedBoolean.actual_restricted_menu_admits_both_components",
+                 "ConcreteRestrictedBoolean.actual_restricted_menu_rejects_joint",
+                 "ConcreteRestrictedBoolean.actual_restricted_menu_row_normalized",
+                 "restricted_joint_rejected")
         rc, output = lean("\n".join(
             "#check " + name + "\n#print axioms " + name for name in names))
         self.assertEqual(rc, 0, output)
