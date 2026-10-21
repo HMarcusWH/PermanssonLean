@@ -39,7 +39,10 @@ def genuine_shape():
     }]
     receipts = {
         "base_sha": B, "head_sha": H, "synthetic_sha": S,
-        "merged_main_sha": M, "source_bound_ci": checked,
+        "merged_main_sha": M, "source_bound_ci": [
+            {"name": x["name"], "id": x["id"], "head_sha": x["head_sha"]}
+            for x in checked
+        ],
         "independent_source_reviews": [{"id": 42}],
     }
     return receipts, pr, checked, reviews
