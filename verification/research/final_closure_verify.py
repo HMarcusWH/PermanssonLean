@@ -11,7 +11,11 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-from final_closure_authenticate import verify_source, AuthenticationError
+from final_closure_authenticate import verify_source, verify_merged_v2, AuthenticationError
+from final_closure_case_receipts import (
+    FORMAT as DETACHED_FORMAT, EvidenceError,
+    load_detached_bundle, effective_acceptance,
+)
 import post_merge_102_verify as historical_audit
 import re
 import subprocess
@@ -116,14 +120,13 @@ def audit() -> dict:
               f"changed historical case definition: {cid}")
         check(row["proof_declarations"] == prevmap[cid]["proof_declarations"],
               f"historical theorem statement/source pin mutated: {cid}")
-        if row["decision"] in VERIFIED:
-            check(bool(row.get("proof_declarations") and
-                       row.get("positive_tests") and row.get("negative_tests") and
-                       row.get("ci_receipts") and row.get("review_receipts")),
-                  f"unearned accepted case: {cid}")
-        else:
-            check(bool(row.get("remaining_obligations")),
-                  f"unresolved case with no requirements: {cid}")
+        # A tracked source candidate cannot contain future exact-H reviewer
+        # approvals. Approved decisions are DETACHED and authenticated live.
+        # Nonempty strings or locally forged receipt arrays never suffice.
+        check(row["decision"] not in VERIFIED,
+              f"source-embedded acceptance bypasses detached review: {cid}")
+        check(bool(row.get("remaining_obligations")),
+              f"unresolved case with no requirements: {cid}")
     for c in cross["closure_additions"]:
         path = secure_path(c["path"])
         check(c["id"] in {e["id"] for e in inv["claims"]},
@@ -218,72 +221,80 @@ def verify_claim_source_receipts(receipts: dict, source_head: str) -> set[str]:
     return verified
 
 
-def strict(receipts: dict, scope: str, manifest: dict | None) -> dict:
+def strict(receipts: dict, scope: str, manifest: dict | None,
+           *, bundle_path: Path | str | None = None) -> dict:
+    """Calculate EFFECTIVE reviewed cases/claims; never trust source JSON flags.
+
+    The detached bundle is an external post-freeze artifact. Real signed
+    GitHub check runs and independently authored exact-H review scopes are
+    authenticated anew against live GitHub and local genuine Git objects.
+    """
     summary = audit()
-    # Caller-supplied 'authenticated': true cannot promote a receipt.
+    check(scope in {"full45-strict", "scoped-release-strict"},
+          "unknown strict acceptance scope")
+    check(isinstance(receipts, dict) and
+          receipts.get("format") == DETACHED_FORMAT,
+          "canonical detached receipt v2 required; old flags cannot promote")
+    check(receipts.get("phase") == "postmerge_acceptance",
+          "postmerge strict acceptance requires actual M")
     try:
-        verify_source(receipts)
-    except AuthenticationError as exc:
-        raise GateError(str(exc)) from exc
-    b, h, s, m = (receipts.get(k) for k in
-                  ("base_sha", "head_sha", "synthetic_sha", "merged_main_sha"))
-    for label, value in (("B", b), ("H", h), ("S", s), ("M", m)):
-        check(isinstance(value, str) and bool(SHA40.fullmatch(value)),
-              f"missing real {label} Git object")
-    check(b == BASE, "wrong base for final build")
-    check(bool(receipts.get("actual_synthetic_parents") == [b, h]),
-          "synthetic merge parent order not established")
-    check(bool(receipts.get("actual_merged_parents") == [b, h]) or
-          bool(receipts.get("verified_rebased_merge_parent_chain")),
-          "merged main parent evidence absent")
-    check(receipts.get("merged_tree_sha") == receipts.get("synthetic_tree_sha") and
-          bool(receipts.get("merged_tree_sha")), "different integrated trees")
-    check(bool(receipts.get("source_bound_ci") and
-               receipts.get("compiler_axiom_receipts") and
-               receipts.get("semantic_negative_receipts") and
-               receipts.get("independent_source_reviews")),
-          "missing source-bound theorem/CI/review evidence")
-    check(receipts.get("trusted_axioms") ==
-          ["Classical.choice", "Quot.sound", "propext"],
-          "unexpected or omitted trusted axiom")
-    actually_verified = verify_claim_source_receipts(receipts, h)
-    if scope == "full45-strict":
-        check(summary["pending"] == 0, "at least one original case still pending")
-    else:
-        check(manifest is not None, "missing scoped-release manifest")
-        check(manifest.get("status") == "APPROVED_SOURCE_BOUND",
-              "release is a draft, not independently accepted")
-        check(manifest.get("source_commit_sha") == m,
-              "paper manifest does not bind final merged source")
-        claims = manifest.get("claims", [])
-        approved = manifest.get("approved_manuscript_claims", [])
-        check(bool(claims) and claims == approved,
-              "manuscript claim inventory mismatch")
+        provenance = verify_merged_v2(receipts)
+        external = bundle_path or receipts.get("evidence_bundle_path")
+        check(bool(external), "missing external immutable diagnostic bundle")
+        members = load_detached_bundle(external,
+                                       receipts.get("evidence_bundle_sha256"))
+        decisions = read_json(NEW / "acceptance_decisions.json")
         inventory = read_json(NEW / "claim_inventory.json")
-        scoped = read_json(NEW / "theorem_crosswalk.json")
-        accepted = {c["id"] for c in inventory["claims"]
-                    if c.get("accepted") is True}
-        crosswalk = {c["id"]: c for c in scoped["closure_additions"]}
-        check(set(claims) <= accepted and set(claims) <= crosswalk.keys(),
-              "manuscript cites unaccepted or unknown theorem claims")
-        for cid in claims:
-            source = crosswalk[cid]
-            path = secure_path(source["path"])
-            check(source.get("status") == "VERIFIED_SELECTED_SCOPE" and
-                  path.is_file() and digest(path) == source.get("source_sha256"),
-                  "accepted paper claim not tied to actual accepted source: " + cid)
-            declarations = source.get("actual_declarations", [])
-            check(declarations and all(name in actually_verified
-                                       for name in declarations),
-                  "claimed theorem not compiled and checked: " + cid)
-        check(bool(manifest.get("accepted_claim_receipts") and
-                   manifest.get("scientific_limitations") and
-                   manifest.get("empirical_identification_status")),
-              "missing claim certificates or scientific limits")
-        check(bool(receipts.get("manuscript_review") and
-                   receipts.get("pdf_visual_inspection")),
-              "missing manuscript/PDF review")
-    return {**summary, "strict": scope, "source": m}
+        result = effective_acceptance(
+            receipts, head=provenance["H"], case_ledger=decisions,
+            claims=inventory["claims"], members=members,
+            accepted_checks=provenance["checks"],
+            approved_review_scopes=provenance["review_scopes"])
+    except (AuthenticationError, EvidenceError, OSError) as exc:
+        raise GateError(str(exc)) from exc
+
+    if scope == "full45-strict":
+        check(result["accepted_case_count"] == 45 and
+              result["pending_case_count"] == 0,
+              "full45 still has unaccepted original case(s)")
+    else:
+        check(isinstance(manifest, dict) and
+              manifest.get("status") == "APPROVED_SOURCE_BOUND",
+              "scoped paper is not genuinely accepted")
+        check(manifest.get("source_commit_sha") == provenance["M"],
+              "paper manifest is not bound to the real merged M")
+        claim_ids = manifest.get("claims", [])
+        approved = manifest.get("approved_manuscript_claims", [])
+        check(isinstance(claim_ids, list) and bool(claim_ids) and
+              len(claim_ids) == len(set(claim_ids)) and
+              claim_ids == approved and
+              set(claim_ids) <= set(result["effective_claims"]),
+              "manuscript uses unreviewed or missing claim")
+        cross = read_json(NEW / "theorem_crosswalk.json")
+        owners = {r["id"]: r for r in cross["closure_additions"]}
+        proof_rows = receipts.get("compiler_axiom_receipts", [])
+        for cid in claim_ids:
+            check(cid in owners and
+                  any(cid in row.get("claim_ids", []) and
+                      row.get("path") == owners[cid]["path"]
+                      for row in proof_rows),
+                  "claim source owner not bound: " + cid)
+        # Manuscript and PDF approval are independent of source CI. The
+        # approved PDF's literal checksum must appear in a genuine exact-H
+        # non-author review body, not just in a caller's self-assertion.
+        pdf_hash = manifest.get("pdf_sha256")
+        check(isinstance(pdf_hash, str) and SHA256.fullmatch(pdf_hash),
+              "approved paper PDF checksum absent")
+        check(any(s.get("pdf_sha256") == pdf_hash and
+                  s.get("manuscript_approved") is True
+                  for s in provenance["review_scopes"].values()),
+              "independent scholarly PDF scope/byte review absent")
+        check(bool(manifest.get("accepted_claim_receipts")) and
+              bool(manifest.get("scientific_limitations")) and
+              manifest.get("empirical_identification_status") == "NOT_ESTABLISHED",
+              "claim/limitation boundaries missing or empirical proof invented")
+    return {**summary, **result, "strict": scope,
+            "source": provenance["M"], "frozen_head": provenance["H"]}
 
 
 def main(argv=None) -> int:
@@ -292,6 +303,8 @@ def main(argv=None) -> int:
                                       "scoped-release-strict"), default="audit")
     ap.add_argument("--receipts", type=Path)
     ap.add_argument("--manifest", type=Path)
+    ap.add_argument("--bundle", type=Path,
+                    help="externally retained hash-bound exact-H diagnostic archive")
     args = ap.parse_args(argv)
     try:
         if args.mode == "audit":
@@ -300,8 +313,8 @@ def main(argv=None) -> int:
             check(args.receipts is not None, "strict mode requires authenticated receipts")
             receipts = read_json(args.receipts)
             manifest = read_json(args.manifest) if args.manifest else None
-            out = strict(receipts, args.mode, manifest)
-    except (GateError, KeyError, OSError, ValueError) as exc:
+            out = strict(receipts, args.mode, manifest, bundle_path=args.bundle)
+    except (GateError, EvidenceError, KeyError, OSError, ValueError) as exc:
         print(f"NOT ACCEPTED: {exc}", file=sys.stderr)
         return 2
     print(json.dumps(out, indent=2, sort_keys=True))
