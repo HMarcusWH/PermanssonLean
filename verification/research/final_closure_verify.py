@@ -12,6 +12,7 @@ import hashlib
 import json
 from pathlib import Path
 from final_closure_authenticate import verify_source
+import post_merge_102_verify as historical_audit
 import re
 import subprocess
 import sys
@@ -65,6 +66,9 @@ def current_git_head() -> str | None:
 
 
 def audit() -> dict:
+    # Keep the original 124-provider historical SHA and case-source checks
+    # as an independent precondition; never replace a preserved audit.
+    historical_audit.validate_audit()
     decisions = read_json(NEW / "acceptance_decisions.json")
     cross = read_json(NEW / "theorem_crosswalk.json")
     inv = read_json(NEW / "claim_inventory.json")
@@ -110,6 +114,8 @@ def audit() -> dict:
         check(row["historical_contract_ids"] ==
               prevmap[cid]["historical_contract_ids"],
               f"changed historical case definition: {cid}")
+        check(row["proof_declarations"] == prevmap[cid]["proof_declarations"],
+              f"historical theorem statement/source pin mutated: {cid}")
         if row["decision"] in VERIFIED:
             check(bool(row.get("proof_declarations") and
                        row.get("positive_tests") and row.get("negative_tests") and
