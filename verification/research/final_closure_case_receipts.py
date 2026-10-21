@@ -225,9 +225,19 @@ def validate_test_receipt(row: dict, head: str, members: dict[str, bytes],
         demand(row.get("outcome") == "REJECTED_SEMANTIC" and
                row.get("compiler_exit_code") not in (None, 0) and
                isinstance(row.get("mutant_source_sha256"), str) and
-               SHA256_RE.fullmatch(row["mutant_source_sha256"]) and
-               row["mutant_source_sha256"] != row["source_sha256"],
+               SHA256_RE.fullmatch(row["mutant_source_sha256"]),
                "nonsemantic or missing false mutant")
+        mutated = member_bytes(members, row.get("mutant_source_member"),
+                               row["mutant_source_sha256"])
+        original_file = exact_source(row.get("original_lean_source_path"))
+        original = original_file.read_bytes()
+        demand(digest(original) == row.get("original_lean_source_sha256") and
+               digest(mutated) != digest(original) and
+               [line for line in mutated.decode("utf-8").splitlines()
+                if line.startswith("import ")] ==
+               [line for line in original.decode("utf-8").splitlines()
+                if line.startswith("import ")],
+               "mutant bytes not a source-bound semantic variation")
         demand(any(fragment in s for fragment in SEMANTIC_DIAGNOSTICS) and
                "error:" in s and
                not any(fragment in s for fragment in INVALID_DIAGNOSTICS),
