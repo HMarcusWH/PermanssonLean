@@ -51,7 +51,7 @@ noncomputable def exactKernelPointWitness
       StrategicWorldModel.inducedKernel_isMarkov M
     infer_instance
   R_sub := le_rfl
-  R_projected := hK
+  R_projected := le_of_eq hK
   eta := fun _ => 0
   eta_nonneg := by intro n; norm_num
   eta_le_one := by intro n; norm_num
