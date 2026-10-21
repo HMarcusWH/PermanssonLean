@@ -107,7 +107,7 @@ theorem phase_aware_invariant_weights
     Fintype.sum_bool] at hsum
   change v start = _ ∧ v (1,true) = _ ∧ v (2,true) = _ ∧
     v (0,true) = _ ∧ v (1,false) = _ ∧ v (2,false) = _
-  constructor <;> linarith [h0, h1, h2, h3, h4, h5, hsum]
+  repeat' constructor <;> linarith [h0, h1, h2, h3, h4, h5, hsum]
 
 
 end PermanssonResearch.ReverseSolver.NonlinearPeriodThree
