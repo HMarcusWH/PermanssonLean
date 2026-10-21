@@ -1,4 +1,5 @@
 import PermanssonResearch.Quotient.DiscountedCanonicalBridge
+import PermanssonLean.Quotient.PathLaw
 import PermanssonResearch.Quotient.DiscountedProjectedOutputs
 import Mathlib.Tactic
 
@@ -15,7 +16,10 @@ open scoped ENNReal ProbabilityTheory
 
 namespace PermanssonResearch.Quotient.DiscountedCanonicalSourceWitness
 open PermanssonLean
+open PermanssonLean.RegimeSpecification
 open PermanssonResearch.Probability
+open PermanssonResearch.Probability.DependentHistory
+open PermanssonResearch.Quotient.DiscountedCanonicalBridge
 open PermanssonResearch.Quotient.DiscountedProjected
 
 set_option autoImplicit false
