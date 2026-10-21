@@ -78,6 +78,12 @@ theorem canonical_discounted_output_error
     hξμ hξν (fun _ => hRK) (fun _ => hproj)
     η hη0 hη1 hmass hε0 hε1 hξmass
     hbase htarget g hg hg0 hg1 hβ0 hβ1
-  simpa only [DiscountedProjected.projectedPath, TypeRespectingStateCompression.pathMap] using h
+  have hmap :
+      (DiscountedProjected.projectedPath (fun _ : ℕ => Qc.stateMap) :
+        (ℕ → JointState S X) → (ℕ → JointState Sb Xb)) = Qc.pathMap := by
+    funext w n
+    rfl
+  rw [hmap] at h
+  exact h
 
 end PermanssonResearch.Quotient.DiscountedCanonicalSourceWitness
