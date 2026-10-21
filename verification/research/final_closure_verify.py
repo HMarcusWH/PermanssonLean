@@ -146,79 +146,16 @@ def audit() -> dict:
 
 
 def verify_claim_source_receipts(receipts: dict, source_head: str) -> set[str]:
-    """Bind claimed Lean theorems and false-semantic mutants to actual bytes.
+    """Legacy v1 proof-receipt API intentionally DISABLED for acceptance.
 
-    Live GitHub's successful Research Lean check is separately authenticated
-    by verify_source(). Here we prevent a caller from substituting unrelated
-    statements, stale files, or a parser failure as an accepted theorem test.
+    The old source-name/digest and diagnostic text checks were insufficient
+    for case-specific acceptance and external bundle provenance. Always use
+    the read-only authenticated v2 strict() gate with exact head, CI, tested
+    mutant bytes and independent scope review.
     """
-    proofs = receipts.get("compiler_axiom_receipts", [])
-    negatives = receipts.get("semantic_negative_receipts", [])
-    check(isinstance(proofs, list) and bool(proofs) and
-          isinstance(negatives, list) and bool(negatives),
-          "missing theorem proofs or semantic negative evidence")
-    verified = set()
-    for row in proofs:
-        check(isinstance(row, dict), "malformed theorem receipt")
-        path = secure_path(row.get("path", ""))
-        check(path.is_file() and path.suffix == ".lean",
-              "theorem receipt does not refer to an existing Lean module")
-        check(digest(path) == row.get("source_sha256") and
-              row.get("head_sha") == source_head,
-              "unbound Lean source or stale proof head: " + str(path))
-        name = row.get("declaration")
-        check(isinstance(name, str) and bool(name) and
-              re.fullmatch(r"[A-Za-z0-9_'.]+", name),
-              "invalid Lean declaration name")
-        local = name.rsplit(".", 1)[-1]
-        pattern = (r"(?m)^\s*(?:private\s+|protected\s+)?"
-                   r"(?:(?:noncomputable|unsafe)\s+)?"
-                   r"(?:theorem|lemma|def)\s+" + re.escape(local) + r"(?=\W)")
-        content = path.read_text(encoding="utf-8")
-        match = re.search(pattern, content)
-        check(match is not None, "claimed theorem declaration absent: " + name)
-        end = content.find(":=", match.end())
-        check(end > match.end(), "missing theorem statement separator: " + name)
-        statement = content[match.start():end].strip()
-        check(hashlib.sha256(statement.encode("utf-8")).hexdigest() ==
-              row.get("statement_sha256"),
-              "theorem statement hash does not bind to full source: " + name)
-        axioms = row.get("transitive_axioms")
-        check(isinstance(axioms, list) and
-              set(axioms) <= {"propext", "Classical.choice", "Quot.sound"},
-              "unreviewed transitive theorem axiom: " + name)
-        check(row.get("compiler_result") == "PASS" and
-              row.get("compiler_check") == "research",
-              "theorem not established by source-bound Research Lean CI")
-        verified.add(name)
-    for row in negatives:
-        check(isinstance(row, dict), "malformed semantic-negative receipt")
-        path = secure_path(row.get("test_path", ""))
-        check(path.is_file() and path.suffix == ".py" and
-              path.name.startswith("test_") and
-              digest(path) == row.get("source_sha256"),
-              "negative test is missing, stale or not a test module")
-        check(row.get("head_sha") == source_head and
-              row.get("outcome") == "REJECTED_SEMANTIC",
-              "negative mutant not explicitly rejected as a false theorem")
-        name = row.get("test_name")
-        check(isinstance(name, str) and
-              re.search(r"(?m)^\s*def\s+" + re.escape(name) + r"\(",
-                        path.read_text(encoding="utf-8")) is not None,
-              "named negative test absent from bound source")
-        log_path = row.get("log_path", "")
-        log_file = secure_path(log_path)
-        check(log_file.is_file() and digest(log_file) == row.get("log_sha256"),
-              "negative test has no independently retained exact diagnostic log")
-        diagnostics = log_file.read_text(encoding="utf-8", errors="replace").lower()
-        check(("type mismatch" in diagnostics or
-               "unsolved goals" in diagnostics or
-               "application type mismatch" in diagnostics) and
-              not any(x in diagnostics for x in
-                      ("unknown module", "failed to import",
-                       "parser error", "out of memory", "timed out")),
-              "negative test passed for an invalid/non-semantic failure")
-    return verified
+    raise GateError(
+        "legacy free-form proof receipt verification retired; "
+        "use detached authenticated v2 receipt bundle and strict()")
 
 
 def strict(receipts: dict, scope: str, manifest: dict | None,
