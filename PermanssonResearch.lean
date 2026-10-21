@@ -733,6 +733,8 @@ import PermanssonResearch.ReverseSolver.NonlinearBooleanClassEvaluator
 import PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture
 import PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture
 
+import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeClassGeometry
+
 /-!
 # PermanssonResearch
 
