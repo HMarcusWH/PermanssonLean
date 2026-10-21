@@ -103,10 +103,10 @@ theorem actual_canonical_discounted_original_margin
     (hg0 : ∀ n z, 0 ≤ g n z) (hg1 : ∀ n z, g n z ≤ 1)
     (hβ0 : 0 ≤ β) (hβ1 : β < 1)
     (e0 eJ : ℝ) (he0 : 0 ≤ e0) (heJ : 0 ≤ eJ)
-    (huniform0 : ∀ y ∈ B₁.states,
-      (∑' n, (1-β)*β^n*(1-retained (W0 y ‹y ∈ B₁.states›).eta n)) ≤ e0)
-    (huniformJ : ∀ y ∈ B₁.states,
-      (∑' n, (1-β)*β^n*(1-retained (WJ y ‹y ∈ B₁.states›).eta n)) ≤ eJ) :
+    (huniform0 : ∀ y (hy : y ∈ B₁.states),
+      (∑' n, (1-β)*β^n*(1-retained (W0 y hy).eta n)) ≤ e0)
+    (huniformJ : ∀ y (hy : y ∈ B₁.states),
+      (∑' n, (1-β)*β^n*(1-retained (WJ y hy).eta n)) ≤ eJ) :
     |constitutiveMargin M spec F (projectedDiscountedProperty Qc β g) B₁ J -
       constitutiveMargin Mbar specBar Fbar
         (discountedWholePathProperty β g) Bbar₁ Jbar| ≤ e0+eJ := by
