@@ -73,7 +73,9 @@ class NativePhaseBlindOriginalTests(unittest.TestCase):
         # mathematical rejection. Here Lean reaches a literal false equality.
         rc,out=lean_check(
           "example : nativeExpectedNonlinearScore\n"
-          "  (phaseBlindPolicy alternatingFeedback) = (1 : ℝ) := by\n"
+          "  (phaseBlindPolicy\n"
+          "    PermanssonResearch.ReverseSolver.NonlinearOccupationBoundary.alternatingFeedback)\n"
+          "    = (1 : ℝ) := by\n"
           "  rw [native_phase_blind_actual_attained]\n"
           "  have hneq : (5 / 6 : ℝ) ≠ 1 := by norm_num\n"
           "  exact hneq\n")
