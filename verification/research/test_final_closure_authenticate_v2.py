@@ -48,6 +48,9 @@ def fixture(merged=False):
             for c in integrated],
         "independent_source_reviews": [{"id": 88}],
     }
+    attestation = json.loads(reviews[0]["body"].split(auth.REVIEW_PREFIX, 1)[1])
+    attestation["receipt_payload_sha256"] = auth.receipt_payload_digest(receipts)
+    reviews[0]["body"] = auth.REVIEW_PREFIX + " " + json.dumps(attestation, sort_keys=True)
     return receipts, pr, checks, integrated, reviews
 
 
