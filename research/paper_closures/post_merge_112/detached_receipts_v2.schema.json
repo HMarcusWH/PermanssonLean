@@ -329,7 +329,11 @@
           "compiler_exit_code",
           "log_member",
           "log_sha256",
-          "check_run_id"
+          "check_run_id",
+          "mutant_source_member",
+          "mutant_source_sha256",
+          "original_lean_source_path",
+          "original_lean_source_sha256"
         ],
         "properties": {
           "id": {
@@ -412,6 +416,18 @@
             "pattern": "^[0-9a-f]{64}$"
           },
           "mutant_source_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "mutant_source_member": {
+            "type": "string",
+            "minLength": 1
+          },
+          "original_lean_source_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "original_lean_source_sha256": {
             "type": "string",
             "pattern": "^[0-9a-f]{64}$"
           }
@@ -585,5 +601,40 @@
         ]
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "phase": {
+            "const": "premerge_review"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "merged_main_sha": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "phase": {
+            "const": "postmerge_acceptance"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "merged_main_sha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          }
+        }
+      }
+    }
+  ]
 }
