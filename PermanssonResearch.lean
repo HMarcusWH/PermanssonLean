@@ -718,6 +718,8 @@ import PermanssonResearch.Quotient.DiscountedCanonicalBridge
 import PermanssonResearch.Quotient.DiscountedOriginalMargin
 import PermanssonResearch.Quotient.DiscountedOriginalMarginExamples
 
+import PermanssonResearch.MultiAgent.MeasurableProductTwoMatchedProtocols
+
 /-!
 # PermanssonResearch
 
