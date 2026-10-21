@@ -204,7 +204,7 @@ private theorem physical_true_mass_eq_sum (π : ProbabilityMeasure State) :
     simp [s]
   rw [ProbabilityMeasure.toMeasure_map]
   rw [Measure.map_apply (by fun_prop) (measurableSet_singleton true), hs]
-  rw [sum_measure_singleton]
+  rw [← (sum_measure_singleton (μ := π.toMeasure) (s := s))]
   rw [ENNReal.toReal_sum (fun i hi => measure_ne_top π.toMeasure _)]
   change (∑ y ∈ s, realPointMass π y) = ∑ i : Phase, realPointMass π (i,true)
   simp [s,Fintype.sum_prod_type,Fintype.sum_bool]
