@@ -1,0 +1,34 @@
+{
+  "format": "Permansson.MathematicalClosure.Candidate.v1",
+  "status": "DRAFT_NOT_ACCEPTED",
+  "release_id": "PERMANSSON-MATH-CLOSURE-1",
+  "source_baseline_sha": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+  "source_commit_sha": null,
+  "claims": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "M1",
+    "M2",
+    "M3",
+    "N1",
+    "N2",
+    "N3",
+    "D8",
+    "D9"
+  ],
+  "approved_manuscript_claims": [],
+  "accepted_claim_receipts": [],
+  "source_ci_receipts": [],
+  "review_receipts": [],
+  "scientific_limitations": [
+    "No empirical Exact GR/PR certification",
+    "No unrestricted policy optimality",
+    "No Exact GR transport from approximate quotient",
+    "No full 45-case claim absent strict acceptance"
+  ],
+  "empirical_identification_status": "NOT_ESTABLISHED",
+  "paper_source_directory": "research_papers/mathematical_closure",
+  "review_status": "NOT_INDEPENDENTLY_REVIEWED",
+  "build_status": "DRAFT"
+}
