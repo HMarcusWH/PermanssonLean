@@ -1,0 +1,18 @@
+{
+  "format": "Permansson.FinalClosureSourceReceiptTemplate.v1",
+  "source_baseline_sha": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+  "source_baseline_tree": "1bd1c31a67d28c97b82d6234d6c013b31336a0fd",
+  "branch": "research/final-mathematical-closure",
+  "pr_number": 113,
+  "branch_head_sha": null,
+  "pr_synthetic_merge_sha": null,
+  "post_merge_main_sha": null,
+  "ci_receipts": [],
+  "proof_statements": [],
+  "preservation_receipts": [],
+  "status": "TEMPLATE_AWAITING_REAL_HEAD_AND_REVIEWS",
+  "historical_receipt_limits": {
+    "original_17_679_census": "UNVERIFIED_DO_NOT_CITE",
+    "constitution_core": "RETIRED_UNRECONCILED_OWNER_RECEIPT_BINDING"
+  }
+}
