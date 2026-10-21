@@ -44,6 +44,8 @@ private theorem false_next (p : Bool → Bool) (hf : p false = false)
     (i : Phase) :
     nextState (phaseBlindPolicy p) (falseState i) = falseState (i+1) := by
   simp [falseState, nextState, phaseBlindPolicy, hf]
+  -- The remaining phase increment is a finite identity in Fin 3.
+  fin_cases i <;> decide
 
 private theorem false_cycle_edge (p : Bool → Bool) (hf : p false = false)
     (i : Phase) :
@@ -66,7 +68,9 @@ private theorem false_cycle_closed (p : Bool → Bool) (hf : p false = false) :
   rcases y with ⟨i,b⟩
   have hb : b = false := by simpa [falseCycle] using hy
   subst b
-  simp [falseCycle, false_next p hf, falseState]
+  change (nextState (phaseBlindPolicy p) (falseState i)).2 = false
+  rw [false_next p hf i]
+  rfl
 
 private theorem false_cycle_comm (p : Bool → Bool) (hf : p false = false)
     (i : Phase) :
@@ -255,7 +259,7 @@ private theorem blind_invariant_true_mass
     linarith [hsum,h0,h1,h2,h3,h4,h5]
   · simp [Fintype.sum_prod_type,Fin.sum_univ_three,Fintype.sum_bool,
       nextState,phaseBlindPolicy,nextPhase,hf,ht] at h0 h1 h2 h3 h4 h5
-    simp only [ht, Bool.true_eq_true, ite_true]
+    simp [ht]
     linarith [hsum,h0,h1,h2,h3,h4,h5]
 
 /-- Actual original canonical expected nonlinear score for the
