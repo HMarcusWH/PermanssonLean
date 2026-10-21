@@ -79,7 +79,9 @@ class NativePhaseBlindOriginalTests(unittest.TestCase):
           "  exact hneq\n")
         self.assertNotEqual(rc,0,"false deterministic optimality was accepted")
         self.assertNotRegex(out.lower(),
-          r"unknown (module|identifier)|failed to import|parser error|out of memory|timed out")
+          r"unknown (module|identifier)|failed to import|parser error|"
+          r"out of memory|timed out|deterministic.*timeout|"
+          r"maximum number of heartbeats|maximum recursion depth")
         self.assertRegex(out.lower(),r"type mismatch|unsolved goals|application type mismatch")
 
 if __name__=="__main__":
