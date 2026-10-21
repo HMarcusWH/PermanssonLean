@@ -1,4 +1,4 @@
-import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeStationary
+import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeClassGeometry
 import PermanssonResearch.ReverseSolver.NonlinearBooleanClassFunctional
 import Mathlib.Tactic
 
@@ -53,5 +53,11 @@ theorem actual_restricted_gap_of_identified_classes
   rw [actual_phase_aware_score_one_of_canonical_true_mass htrue]
   have hb := actual_phase_blind_score_le_of_class_identification policy (hclasses policy)
   linarith
+
+theorem native_phase_aware_actual_score_one :
+    nativeExpectedNonlinearScore phaseAwarePolicy = 1 :=
+  actual_phase_aware_score_one_of_canonical_true_mass
+    native_phase_aware_actual_true_mass
+
 
 end PermanssonResearch.ReverseSolver.NonlinearPeriodThree

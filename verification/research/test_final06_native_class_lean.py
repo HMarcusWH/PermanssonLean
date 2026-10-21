@@ -20,6 +20,9 @@ CLAIMS = (
     "native_phase_orbit_in_reachedCycle",
     "native_selected_communicatingClass",
     "native_actual_occupation_equals_reached_stationary",
+    "phase_aware_invariant_weights",
+    "phase_aware_invariant_physical_true_mass",
+    "native_phase_aware_actual_true_mass",
 )
 
 def compile_lean(code):

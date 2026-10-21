@@ -15,6 +15,7 @@ NAMES = (
     "native_phase_orbit_is_cycle",
     "native_three_phase_true_share",
     "actual_phase_aware_score_one_of_canonical_true_mass",
+    "native_phase_aware_actual_score_one",
     "actual_phase_blind_score_le_of_class_identification",
     "actual_restricted_gap_of_identified_classes",
 )

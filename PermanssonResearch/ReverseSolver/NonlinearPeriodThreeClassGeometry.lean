@@ -185,4 +185,53 @@ theorem native_actual_occupation_equals_reached_stationary :
   unfold physicalOccupationLimit
   rw [native_selected_communicatingClass]
 
+
+/-- For any invariant measure on the native phase-aware strategic model,
+the *actual physical projection* has true-mass exactly 2/3.
+The calculation uses finite singleton masses on all six original states,
+not a scored stationary barycenter or retyped physical world. -/
+theorem phase_aware_invariant_physical_true_mass
+    (π : ProbabilityMeasure State)
+    (hInv : Kernel.Invariant nativeK π.toMeasure) :
+    ((π.map Prod.snd).toMeasure ({true} : Set Bool)).toReal = (2/3 : ℝ) := by
+  classical
+  obtain ⟨h0,h1,h2,h3,h4,h5⟩ :=
+    phase_aware_invariant_weights π hInv
+  let s : Finset State := {(0,true), (1,true), (2,true)}
+  have hset : (Prod.snd ⁻¹' ({true} : Set Bool) : Set State) =
+      (↑s : Set State) := by
+    ext y
+    rcases y with ⟨phase,b⟩
+    fin_cases phase <;> cases b <;> simp [s]
+  have hmass :
+      ((π.map Prod.snd).toMeasure ({true} : Set Bool)).toReal =
+        ∑ y ∈ s, realPointMass π y := by
+    rw [ProbabilityMeasure.toMeasure_map]
+    rw [Measure.map_apply (by fun_prop) (measurableSet_singleton true)]
+    rw [hset]
+    rw [sum_measure_singleton]
+    rw [ENNReal.toReal_sum (fun y hy => measure_ne_top π.toMeasure _)]
+    rfl
+  rw [hmass]
+  have hsum :
+      (∑ y ∈ s, realPointMass π y) =
+        realPointMass π (0,true) +
+        realPointMass π (1,true) +
+        realPointMass π (2,true) := by
+    simp [s, add_assoc, add_left_comm, add_comm]
+  rw [hsum, h3, h1, h2]
+  norm_num
+
+/-- The canonical selector is proved to enter the *real reached class*
+above. Combined with its authentic invariant-law certificate, this yields
+the original expected Boolean true-state mass 2/3 without hypotheses. -/
+theorem native_phase_aware_actual_true_mass :
+    (((physicalOccupationLimit nativeK
+      (nativeOrbit phaseAwarePolicy)).map Prod.snd).toMeasure
+      ({true} : Set Bool)).toReal = (2/3 : ℝ) := by
+  rw [native_actual_occupation_equals_reached_stationary]
+  exact phase_aware_invariant_physical_true_mass
+    (stationaryForSet nativeK reachedCycle)
+    (stationaryForSet_spec nativeK reachedCycle_recurrent).1
+
 end PermanssonResearch.ReverseSolver.NonlinearPeriodThree
