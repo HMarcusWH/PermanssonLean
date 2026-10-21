@@ -34,6 +34,14 @@ def build(out:Path,engine:str,render:bool)->dict:
     out.mkdir(parents=True,exist_ok=True)
     work=out/"_texwork"; work.mkdir(exist_ok=True)
     env=os.environ.copy()
+    # Bind timestamps to the authentic source commit, not wall-clock build time.
+    source_date_epoch=run(["git","show","-s","--format=%ct","HEAD"],ROOT).strip()
+    if not source_date_epoch.isdigit():
+        raise ValueError("authentic source commit epoch unavailable")
+    env["SOURCE_DATE_EPOCH"]=source_date_epoch
+    env["FORCE_SOURCE_DATE"]="1"
+    env["TZ"]="UTC"
+    env["LC_ALL"]="C"
     env["TEXINPUTS"]=str(PAPER)+os.pathsep+env.get("TEXINPUTS","")
     env["BIBINPUTS"]=str(PAPER)+os.pathsep+env.get("BIBINPUTS","")
     cmd=[compiler,"-halt-on-error","-interaction=nonstopmode","-file-line-error",
@@ -41,7 +49,14 @@ def build(out:Path,engine:str,render:bool)->dict:
     logs=[run(cmd,PAPER,env)]
     if shutil.which("bibtex"): logs.append(run(["bibtex","main"],work,env))
     logs += [run(cmd,PAPER,env),run(cmd,PAPER,env)]
-    (out/"latex_build.log").write_text("\n".join(logs))
+    # The original LaTeX log contains transient output-root paths; preserve
+    # diagnostics while replacing only those root locations deterministically.
+    normalized="\n".join(logs)
+    for actual,label in ((str(work.resolve()),"<TEX_WORK>"),
+                         (str(out.resolve()),"<OUTPUT_ROOT>"),
+                         (str(PAPER.resolve()),"<MANUSCRIPT_ROOT>")):
+        normalized=normalized.replace(actual,label)
+    (out/"latex_build.log").write_text(normalized)
     pdf=work/"main.pdf"
     if not pdf.is_file() or not pdf.read_bytes().startswith(b"%PDF-"):
         raise RuntimeError("no valid PDF from TeX")
@@ -59,7 +74,8 @@ def build(out:Path,engine:str,render:bool)->dict:
              for p in SRC}
     m=json.loads((RELEASE/"manifest.json").read_text())
     data={"format":"Permansson.MathClosure.BuildReceipt.v1","status":"DRAFT_NOT_ACCEPTED",
-          "mode":"DRAFT","source_commit_sha":git_head(),"source_tree_files":sources,
+          "mode":"DRAFT","source_commit_sha":git_head(),
+          "source_date_epoch":source_date_epoch,"source_tree_files":sources,
           "pdf_sha256":sha((out/"Permansson_Mathematical_Closure.pdf").read_bytes()),
           "tex_sha256":sha((out/"Permansson_Mathematical_Closure.tex").read_bytes()),
           "latex_log_sha256":sha((out/"latex_build.log").read_bytes()),
