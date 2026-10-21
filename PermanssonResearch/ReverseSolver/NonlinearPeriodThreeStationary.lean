@@ -39,7 +39,7 @@ noncomputable def exactCycleLaw : ProbabilityMeasure State :=
   (uniformFinProbability 3 (by norm_num)).map canonicalCycleState
 
 theorem native_three_phase_true_share :
-    (((if (canonicalCycleState 0).2 then (1:ℚ) else 0) +
+    ((if (canonicalCycleState 0).2 then (1:ℚ) else 0) +
       (if (canonicalCycleState 1).2 then (1:ℚ) else 0) +
       (if (canonicalCycleState 2).2 then (1:ℚ) else 0))/3 = 2/3 := by
   decide

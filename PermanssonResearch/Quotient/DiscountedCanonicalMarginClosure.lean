@@ -17,6 +17,7 @@ namespace PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure
 open PermanssonLean
 open PermanssonLean.RegimeSpecification
 open PermanssonResearch.Probability
+open PermanssonResearch.Probability.DependentHistory
 open PermanssonResearch.Quotient.DiscountedCanonicalSourceWitness
 open PermanssonResearch.Quotient.DiscountedOriginalMargin
 
