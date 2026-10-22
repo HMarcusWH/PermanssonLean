@@ -232,7 +232,25 @@ def git_head():
         raise CompleteCompilerError("untrusted Git HEAD") from exc
 
 
-def export_all(head: str, output: Path):
+def inventory_digest(entries: list[dict]) -> str:
+    """Bind all shards to exactly the same sorted source-owner map."""
+    raw = json.dumps(entries, ensure_ascii=False, sort_keys=True,
+                     separators=(",", ":")).encode("utf-8")
+    return sha(raw)
+
+
+def shard_indices(total: int, shard_index: int, shard_count: int):
+    if (type(total) is not int or total < 1 or
+        type(shard_index) is not int or
+        type(shard_count) is not int or
+        not 1 <= shard_count <= 16 or
+        not 0 <= shard_index < shard_count or shard_count > total):
+        raise CompleteCompilerError("invalid compiler shard configuration")
+    return [idx for idx in range(total) if idx % shard_count == shard_index]
+
+
+def export_all(head: str, output: Path, *,
+               shard_index: int = 0, shard_count: int = 1):
     require(isinstance(head, str) and SHA40.fullmatch(head) and
             git_head() == head, "compiler checkout differs from requested H")
     output = output.resolve()
@@ -240,10 +258,13 @@ def export_all(head: str, output: Path):
             "compiler logs must be detached from the reviewed checkout")
     manifest = required_inventory()
     require(len(manifest) > 11, "original proof dependency graph is missing")
+    selected_indices = shard_indices(len(manifest), shard_index, shard_count)
+    manifest_digest = inventory_digest(manifest)
     output.mkdir(parents=True, exist_ok=False)
     (output / "axiom_logs").mkdir()
     receipts = []
-    for idx, required in enumerate(manifest):
+    for idx in selected_indices:
+        required = manifest[idx]
         src = (ROOT / required["path"]).resolve()
         module = required["path"][:-5].replace("/", ".")
         declaration = required["declaration"]
@@ -267,7 +288,8 @@ def export_all(head: str, output: Path):
         member = f"axiom_logs/all_{idx:04}.log"
         (output / member).write_bytes(data)
         receipts.append({
-            "id": f"all:{idx:04}", "head_sha": head,
+            "id": f"all:{idx:04}", "inventory_index": idx,
+            "head_sha": head,
             "path": required["path"],
             "declaration": declaration,
             "case_ids": required["case_ids"],
@@ -286,6 +308,9 @@ def export_all(head: str, output: Path):
         "status": "COMPILER_ONLY_UNREVIEWED",
         "head_sha": head,
         "proof_count": len(receipts),
+        "inventory_count": len(manifest),
+        "inventory_sha256": manifest_digest,
+        "shard_index": shard_index, "shard_count": shard_count,
         "case_count": 45, "claim_count": 11,
         "compiler_axiom_receipts": receipts,
         "independent_review": False,
@@ -302,6 +327,8 @@ def main(argv=None):
     ap.add_argument("--head", required=True)
     ap.add_argument("--output", required=True, type=Path)
     ap.add_argument("--inventory-only", action="store_true")
+    ap.add_argument("--shard-index", type=int, default=0)
+    ap.add_argument("--shard-count", type=int, default=1)
     args = ap.parse_args(argv)
     try:
         if args.inventory_only:
@@ -312,10 +339,13 @@ def main(argv=None):
                 "cases": len({cid for row in plan for cid in row["case_ids"]}),
                 "claims": len({cid for row in plan for cid in row["claim_ids"]}),
                 "declarations": plan,
+                "inventory_sha256": inventory_digest(plan),
             }
             print(json.dumps(output, indent=2, sort_keys=True))
         else:
-            out = export_all(args.head, args.output)
+            out = export_all(args.head, args.output,
+                             shard_index=args.shard_index,
+                             shard_count=args.shard_count)
             print(json.dumps({"head": out["head_sha"],
                               "proof_targets": out["proof_count"],
                               "status": out["status"]}))
