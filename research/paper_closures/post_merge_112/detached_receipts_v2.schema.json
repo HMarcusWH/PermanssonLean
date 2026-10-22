@@ -143,8 +143,15 @@
             "pattern": "^[0-9a-f]{40}$"
           },
           "check_run_id": {
-            "type": "integer",
-            "minimum": 1
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "path": {
             "type": "string",
@@ -223,7 +230,8 @@
           "compiler_exit_code",
           "log_member",
           "log_sha256",
-          "check_run_id"
+          "check_run_id",
+          "claim_ids"
         ],
         "properties": {
           "id": {
@@ -235,8 +243,15 @@
             "pattern": "^[0-9a-f]{40}$"
           },
           "check_run_id": {
-            "type": "integer",
-            "minimum": 1
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "test_path": {
             "type": "string",
@@ -308,6 +323,14 @@
           "mutant_source_sha256": {
             "type": "string",
             "pattern": "^[0-9a-f]{64}$"
+          },
+          "claim_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         }
       }
@@ -333,7 +356,8 @@
           "mutant_source_member",
           "mutant_source_sha256",
           "original_lean_source_path",
-          "original_lean_source_sha256"
+          "original_lean_source_sha256",
+          "claim_ids"
         ],
         "properties": {
           "id": {
@@ -345,8 +369,15 @@
             "pattern": "^[0-9a-f]{40}$"
           },
           "check_run_id": {
-            "type": "integer",
-            "minimum": 1
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "test_path": {
             "type": "string",
@@ -430,6 +461,14 @@
           "original_lean_source_sha256": {
             "type": "string",
             "pattern": "^[0-9a-f]{64}$"
+          },
+          "claim_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         }
       }
@@ -632,6 +671,36 @@
           "merged_main_sha": {
             "type": "string",
             "pattern": "^[0-9a-f]{40}$"
+          },
+          "compiler_axiom_receipts": {
+            "items": {
+              "properties": {
+                "check_run_id": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            }
+          },
+          "positive_test_receipts": {
+            "items": {
+              "properties": {
+                "check_run_id": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            }
+          },
+          "semantic_negative_receipts": {
+            "items": {
+              "properties": {
+                "check_run_id": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            }
           }
         }
       }
