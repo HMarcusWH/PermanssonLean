@@ -74,6 +74,7 @@ def assemble(head: str, synthetic: str, *, compiler_candidate: Path,
         positive["log_sha256"] = negative["positive_control"]["log_sha256"]
         for key in ("mutant_source_member", "mutant_source_sha256",
                     "original_lean_source_sha256",
+                    "original_lean_source_member",
                     "original_lean_source_path"):
             positive.pop(key, None)
         positives.append(positive)
@@ -81,7 +82,8 @@ def assemble(head: str, synthetic: str, *, compiler_candidate: Path,
         if row["axiom_log_member"] not in evidence:
             raise EvidenceError("compiler axiom log not sealed into evidence bundle")
     for row in negatives:
-        for key in ("log_member", "mutant_source_member"):
+        for key in ("log_member", "mutant_source_member",
+                    "original_lean_source_member"):
             if row[key] not in evidence:
                 raise EvidenceError("semantic mutant source/log missing from bundle")
     out = {
