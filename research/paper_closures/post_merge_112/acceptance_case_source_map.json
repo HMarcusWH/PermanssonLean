@@ -297,10 +297,17 @@
           "path": "verification/research/test_next03_tied_start_lean.py",
           "role": "SEMANTIC_NEGATIVE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_X_04_original_source_positive",
+          "path": "verification/research/test_final_closure_missing_original_positives.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_next03_tied_start_lean.py"
+        "verification/research/test_next03_tied_start_lean.py",
+        "verification/research/test_final_closure_missing_original_positives.py"
       ]
     },
     {
@@ -400,10 +407,17 @@
           "path": "verification/research/test_paper_x1_lean_closure.py",
           "role": "SEMANTIC_NEGATIVE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_X_05_original_source_positive",
+          "path": "verification/research/test_final_closure_missing_original_positives.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_paper_x1_lean_closure.py"
+        "verification/research/test_paper_x1_lean_closure.py",
+        "verification/research/test_final_closure_missing_original_positives.py"
       ]
     },
     {
@@ -480,11 +494,18 @@
           "path": "verification/research/test_e1_approx_quotient.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_X_06_original_source_positive",
+          "path": "verification/research/test_final_closure_missing_original_positives.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_x1_commons.py",
-        "verification/research/test_e1_approx_quotient.py"
+        "verification/research/test_e1_approx_quotient.py",
+        "verification/research/test_final_closure_missing_original_positives.py"
       ]
     },
     {
@@ -1126,11 +1147,18 @@
           "path": "verification/research/test_f1_multiagent_protocols.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_F_03_original_source_positive",
+          "path": "verification/research/test_final_closure_missing_original_positives.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_closure_boundaries.py",
-        "verification/research/test_f1_multiagent_protocols.py"
+        "verification/research/test_f1_multiagent_protocols.py",
+        "verification/research/test_final_closure_missing_original_positives.py"
       ]
     },
     {
@@ -2307,10 +2335,17 @@
           "path": "verification/research/test_a3_contractive.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_A_05_original_source_positive",
+          "path": "verification/research/test_final_closure_missing_original_positives.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_a3_contractive.py"
+        "verification/research/test_a3_contractive.py",
+        "verification/research/test_final_closure_missing_original_positives.py"
       ]
     },
     {
@@ -3582,10 +3617,17 @@
           "path": "verification/research/test_lane_c11_stationary.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_C11_02_original_source_positive",
+          "path": "verification/research/test_final_closure_missing_original_positives.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_lane_c11_stationary.py"
+        "verification/research/test_lane_c11_stationary.py",
+        "verification/research/test_final_closure_missing_original_positives.py"
       ]
     },
     {
@@ -3794,11 +3836,18 @@
           "path": "verification/research/test_lane_b2_sequential_effects.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_B_01_original_source_positive",
+          "path": "verification/research/test_final_closure_missing_original_positives.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_next06_overlap_lean.py",
-        "verification/research/test_lane_b2_sequential_effects.py"
+        "verification/research/test_lane_b2_sequential_effects.py",
+        "verification/research/test_final_closure_missing_original_positives.py"
       ]
     },
     {
@@ -4093,10 +4142,17 @@
           "path": "verification/research/test_paper_closure_boundaries.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_E_02_original_source_positive",
+          "path": "verification/research/test_final_closure_missing_original_positives.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_paper_closure_boundaries.py"
+        "verification/research/test_paper_closure_boundaries.py",
+        "verification/research/test_final_closure_missing_original_positives.py"
       ]
     },
     {
@@ -4165,10 +4221,17 @@
           "path": "verification/research/test_paper_closure_boundaries.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_E_03_original_source_positive",
+          "path": "verification/research/test_final_closure_missing_original_positives.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_paper_closure_boundaries.py"
+        "verification/research/test_paper_closure_boundaries.py",
+        "verification/research/test_final_closure_missing_original_positives.py"
       ]
     },
     {
@@ -4245,10 +4308,17 @@
           "path": "verification/research/test_paper_closure_boundaries.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_E_04_original_source_positive",
+          "path": "verification/research/test_final_closure_missing_original_positives.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_paper_closure_boundaries.py"
+        "verification/research/test_paper_closure_boundaries.py",
+        "verification/research/test_final_closure_missing_original_positives.py"
       ]
     },
     {

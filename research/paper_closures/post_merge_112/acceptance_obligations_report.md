@@ -15,16 +15,16 @@ This report is derived from unchanged original criteria and source mappings. It 
 | X-01 | PENDING | Kernel-checked equality; changed world/update/action row rejected | 3 | verification/research/test_next03_stochastic_lean.py, verification/research/test_paper_x1_matrix_lean.py |
 | X-02 | PARTIAL_SCOPE | Actual-kernel induction identifies each entry | 4 | verification/research/test_paper_x1_lean_closure.py, verification/research/test_x1_commons.py |
 | X-03 | PARTIAL_SCOPE | Original constitutiveMargin equalities and exact attainers | 5 | verification/research/test_paper_x1_lean_closure.py, verification/research/test_x1_commons.py |
-| X-04 | PENDING | Lean proof fails at arithmetic/domain obligation; parser failure alone insufficient | 5 | verification/research/test_next03_tied_start_lean.py |
-| X-05 | PARTIAL_SCOPE | Typed kernel equality fails | 7 | verification/research/test_paper_x1_lean_closure.py |
-| X-06 | PARTIAL_SCOPE | Rejected; leakage theorem remains unchanged | 5 | verification/research/test_x1_commons.py, verification/research/test_e1_approx_quotient.py |
+| X-04 | PENDING | Lean proof fails at arithmetic/domain obligation; parser failure alone insufficient | 5 | verification/research/test_next03_tied_start_lean.py, verification/research/test_final_closure_missing_original_positives.py |
+| X-05 | PARTIAL_SCOPE | Typed kernel equality fails | 7 | verification/research/test_paper_x1_lean_closure.py, verification/research/test_final_closure_missing_original_positives.py |
+| X-06 | PARTIAL_SCOPE | Rejected; leakage theorem remains unchanged | 5 | verification/research/test_x1_commons.py, verification/research/test_e1_approx_quotient.py, verification/research/test_final_closure_missing_original_positives.py |
 | S-01 | PARTIAL_SCOPE | Exact identity including terminal beta^N value | 6 | verification/research/test_paper_strategy_economic_lean.py |
 | S-02 | PARTIAL_SCOPE | Outside admitted information class; no verification theorem | 6 | verification/research/test_paper_information_lean.py, verification/research/test_d2_residence.py |
 | M-01 | PARTIAL_SCOPE | Full counterfactual path laws equal under stated premises | 5 | verification/research/test_paper_autonomy_ae_lean.py, verification/research/test_f1_multiagent_protocols.py |
 | M-02 | PENDING | Autonomy premise rejected; reactive witness not counted strict | 7 | verification/research/test_next03_m02_marked_coupling.py, verification/research/test_m02_marked_actual_source_lean.py |
 | F-01 | PENDING | P inputs reindexed correctly, no assumed symmetry | 8 | verification/research/test_next03_asymmetric_common_swap_lean.py, verification/research/test_final05_measurable_lean.py |
 | F-02 | PARTIAL_SCOPE | Projection/exogeneity fails | 5 | verification/research/test_paper_measurable_clock_lean.py, verification/research/test_f1_multiagent_protocols.py |
-| F-03 | PARTIAL_SCOPE | No feasible strict probability anchor | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_f1_multiagent_protocols.py |
+| F-03 | PARTIAL_SCOPE | No feasible strict probability anchor | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_f1_multiagent_protocols.py, verification/research/test_final_closure_missing_original_positives.py |
 | F-04 | PARTIAL_SCOPE | Single-product claim fails; mediator mixture succeeds | 3 | verification/research/test_f1_multiagent_protocols.py |
 | F-05 | PENDING | Mediation not identified without sufficient premises | 5 | verification/research/test_next03_positive_mediation.py, verification/research/test_paper_closure_boundaries.py |
 | Q-01 | PARTIAL_SCOPE | Geometric bound holds without claiming projection Markov | 6 | verification/research/test_e1_approx_quotient.py |
@@ -36,7 +36,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | A-02 | PARTIAL_SCOPE | Missing strict contraction/uniqueness exposed | 13 | verification/research/test_paper_invariant_lean.py, verification/research/test_a3_contractive.py |
 | A-03 | PARTIAL_SCOPE | Bounded-diameter conversion not applied | 7 | verification/research/test_a3_contractive.py |
 | A-04 | PARTIAL_SCOPE | Four-process wrapper unavailable, not silently three-process | 8 | verification/research/test_a3_contractive.py, verification/research/test_paper_strategy_economic_lean.py |
-| A-05 | PARTIAL_SCOPE | Property identity fails rather than being assumed | 8 | verification/research/test_a3_contractive.py |
+| A-05 | PARTIAL_SCOPE | Property identity fails rather than being assumed | 8 | verification/research/test_a3_contractive.py, verification/research/test_final_closure_missing_original_positives.py |
 | D-01 | PARTIAL_SCOPE | Same literal-event value; deterministic augmented maximizer attains | 11 | verification/research/test_d2_residence.py |
 | D-02 | PARTIAL_SCOPE | Exact event classification including word 1,0,1,1 | 10 | verification/research/test_d2_residence.py, verification/research/test_monitor_stationary_closures.py |
 | D-03 | PARTIAL_SCOPE | Declared precedence and separate risk monitor preserved | 16 | verification/research/test_monitor_stationary_closures.py, verification/research/test_paper_through_risk_lean.py |
@@ -47,15 +47,15 @@ This report is derived from unchanged original criteria and source mappings. It 
 | D-08 | PENDING | No admissible typed controlled row | 5 | verification/research/test_final_d08_admission.py, verification/research/test_next06_d08_joint_only_compiler.py |
 | D-09 | PENDING | Class identity retained; descriptor score aggregates correctly | 7 | verification/research/test_final_d09_multichain.py, verification/research/test_final06_phaseblind_original.py |
 | C11-01 | PARTIAL_SCOPE | Valid nonempty families accepted; n0 rejected | 7 | verification/research/test_lane_c11_stationary.py |
-| C11-02 | PARTIAL_SCOPE | Existing checker rejects complete faulty output | 7 | verification/research/test_lane_c11_stationary.py |
+| C11-02 | PARTIAL_SCOPE | Existing checker rejects complete faulty output | 7 | verification/research/test_lane_c11_stationary.py, verification/research/test_final_closure_missing_original_positives.py |
 | C-01 | PARTIAL_SCOPE | No unrestricted nonfinite occupation theorem | 11 | verification/research/test_paper_nonfinite_counterexample_lean.py |
-| B-01 | PENDING | Compatibility rejected; order dependence exposed | 6 | verification/research/test_next06_overlap_lean.py, verification/research/test_lane_b2_sequential_effects.py |
+| B-01 | PENDING | Compatibility rejected; order dependence exposed | 6 | verification/research/test_next06_overlap_lean.py, verification/research/test_lane_b2_sequential_effects.py, verification/research/test_final_closure_missing_original_positives.py |
 | B-02 | PENDING | No unique-minimum or monotonicity inference | 3 | verification/research/test_lane_b2_sequential_effects.py, verification/research/test_b02_actual_original_margin_lean.py |
 | XPLUS-01 | PARTIAL_SCOPE | Correct source constructors and kappa1; no edit to old X1 | 4 | verification/research/test_paper_strategy_economic_lean.py, verification/research/test_x1_commons.py |
 | E-01 | PARTIAL_SCOPE | Rank-one/scalar promotion rejected | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_paper_specialized_boundary_lean.py |
-| E-02 | PARTIAL_SCOPE | No persistent witness transfer | 4 | verification/research/test_paper_closure_boundaries.py |
-| E-03 | PARTIAL_SCOPE | No scalar shell reduction or unjustified inverse | 4 | verification/research/test_paper_closure_boundaries.py |
-| E-04 | PARTIAL_SCOPE | No pseudoinverse positivity certificate or cancellation | 5 | verification/research/test_paper_closure_boundaries.py |
+| E-02 | PARTIAL_SCOPE | No persistent witness transfer | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py |
+| E-03 | PARTIAL_SCOPE | No scalar shell reduction or unjustified inverse | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py |
+| E-04 | PARTIAL_SCOPE | No pseudoinverse positivity certificate or cancellation | 5 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py |
 | E-05 | PARTIAL_SCOPE | No unqualified negative full-form conclusion | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_paper_specialized_boundary_lean.py |
 
 ## Fifteen case-specific historical objections
@@ -96,7 +96,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 
 ## Executable-route gaps (unreviewed; not acceptance)
 
-- Missing selected positive controls: 10 of 45.
+- Missing selected positive controls: 0 of 45.
 - Missing selected semantic false-mutant routes: 34 of 45.
 - Passing scope-boundary checks do **not** discharge the mandatory compiler-negative evidence obligation.
 - A selected method still requires source relevance, actual exact-head execution, intact logs, authenticated check-run attribution and independent approval.
@@ -106,16 +106,16 @@ This report is derived from unchanged original criteria and source mappings. It 
 | X-01 | 1 | 1 | 0 |
 | X-02 | 1 | 2 | 0 |
 | X-03 | 2 | 0 | 0 |
-| X-04 | 0 | 1 | 0 |
-| X-05 | 0 | 3 | 0 |
-| X-06 | 0 | 0 | 2 |
+| X-04 | 1 | 1 | 0 |
+| X-05 | 1 | 3 | 0 |
+| X-06 | 1 | 0 | 2 |
 | S-01 | 1 | 0 | 0 |
 | S-02 | 1 | 0 | 1 |
 | M-01 | 2 | 0 | 0 |
 | M-02 | 2 | 1 | 1 |
 | F-01 | 2 | 1 | 0 |
 | F-02 | 1 | 0 | 1 |
-| F-03 | 0 | 0 | 2 |
+| F-03 | 1 | 0 | 2 |
 | F-04 | 1 | 0 | 1 |
 | F-05 | 1 | 0 | 1 |
 | Q-01 | 1 | 0 | 1 |
@@ -127,7 +127,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | A-02 | 1 | 0 | 1 |
 | A-03 | 1 | 0 | 1 |
 | A-04 | 1 | 0 | 1 |
-| A-05 | 0 | 0 | 2 |
+| A-05 | 1 | 0 | 2 |
 | D-01 | 2 | 0 | 0 |
 | D-02 | 1 | 0 | 1 |
 | D-03 | 2 | 0 | 0 |
@@ -138,15 +138,15 @@ This report is derived from unchanged original criteria and source mappings. It 
 | D-08 | 1 | 1 | 0 |
 | D-09 | 3 | 1 | 0 |
 | C11-01 | 1 | 0 | 1 |
-| C11-02 | 0 | 0 | 2 |
+| C11-02 | 1 | 0 | 2 |
 | C-01 | 1 | 0 | 0 |
-| B-01 | 0 | 1 | 1 |
+| B-01 | 1 | 1 | 1 |
 | B-02 | 2 | 1 | 1 |
 | XPLUS-01 | 1 | 0 | 1 |
 | E-01 | 1 | 0 | 1 |
-| E-02 | 0 | 0 | 2 |
-| E-03 | 0 | 0 | 2 |
-| E-04 | 0 | 0 | 2 |
+| E-02 | 1 | 0 | 2 |
+| E-03 | 1 | 0 | 2 |
+| E-04 | 1 | 0 | 2 |
 | E-05 | 1 | 0 | 1 |
 
 ## Closure protocol

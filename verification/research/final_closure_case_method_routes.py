@@ -60,6 +60,11 @@ METHOD_ROUTES = {
       "test_next03_tied_start_lean.py",
       "test_lean_false_original_domain_mutation",
       "SEMANTIC_NEGATIVE"
+    ],
+    [
+      "test_final_closure_missing_original_positives.py",
+      "test_X_04_original_source_positive",
+      "COMPILER_SOURCE"
     ]
   ],
   "X-05": [
@@ -77,6 +82,11 @@ METHOD_ROUTES = {
       "test_paper_x1_lean_closure.py",
       "test_swapped_update_protocol",
       "SEMANTIC_NEGATIVE"
+    ],
+    [
+      "test_final_closure_missing_original_positives.py",
+      "test_X_05_original_source_positive",
+      "COMPILER_SOURCE"
     ]
   ],
   "X-06": [
@@ -89,6 +99,11 @@ METHOD_ROUTES = {
       "test_e1_approx_quotient.py",
       "test_positive_quotient_margin_not_exact_gr",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_final_closure_missing_original_positives.py",
+      "test_X_06_original_source_positive",
+      "COMPILER_SOURCE"
     ]
   ],
   "S-01": [
@@ -183,6 +198,11 @@ METHOD_ROUTES = {
       "test_f1_multiagent_protocols.py",
       "test_infeasible_anchor_excluded_separate_toy",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_final_closure_missing_original_positives.py",
+      "test_F_03_original_source_positive",
+      "COMPILER_SOURCE"
     ]
   ],
   "F-04": [
@@ -357,6 +377,11 @@ METHOD_ROUTES = {
       "test_a3_contractive.py",
       "test_four_process_factorization_cannot_be_deleted",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_final_closure_missing_original_positives.py",
+      "test_A_05_original_source_positive",
+      "COMPILER_SOURCE"
     ]
   ],
   "D-01": [
@@ -499,6 +524,11 @@ METHOD_ROUTES = {
       "test_lane_c11_stationary.py",
       "test_09_missing_extra_and_duplicate_classes",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_final_closure_missing_original_positives.py",
+      "test_C11_02_original_source_positive",
+      "COMPILER_SOURCE"
     ]
   ],
   "C-01": [
@@ -518,6 +548,11 @@ METHOD_ROUTES = {
       "test_lane_b2_sequential_effects.py",
       "test_14_invalid_order_or_noncommuting_patch",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_final_closure_missing_original_positives.py",
+      "test_B_01_original_source_positive",
+      "COMPILER_SOURCE"
     ]
   ],
   "B-02": [
@@ -576,6 +611,11 @@ METHOD_ROUTES = {
       "test_paper_closure_boundaries.py",
       "test_embedding_without_form_preservation_loses_negative_witness",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_final_closure_missing_original_positives.py",
+      "test_E_02_original_source_positive",
+      "COMPILER_SOURCE"
     ]
   ],
   "E-03": [
@@ -588,6 +628,11 @@ METHOD_ROUTES = {
       "test_paper_closure_boundaries.py",
       "test_zero_shift_does_not_invert_psd_singular_core",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_final_closure_missing_original_positives.py",
+      "test_E_03_original_source_positive",
+      "COMPILER_SOURCE"
     ]
   ],
   "E-04": [
@@ -600,6 +645,11 @@ METHOD_ROUTES = {
       "test_paper_closure_boundaries.py",
       "test_source_exceptional_branch_does_not_force_vanishing",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_final_closure_missing_original_positives.py",
+      "test_E_04_original_source_positive",
+      "COMPILER_SOURCE"
     ]
   ],
   "E-05": [
