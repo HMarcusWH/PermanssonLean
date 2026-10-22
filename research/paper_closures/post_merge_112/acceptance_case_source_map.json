@@ -1613,11 +1613,18 @@
           "path": "verification/research/test_a2_primitive_tv.py",
           "role": "EXACT_CHECK",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_Q_03_false_independent_error_mass",
+          "path": "verification/research/test_final_actual_product_reporting_false_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_next03_dependent_three_stage.py",
-        "verification/research/test_a2_primitive_tv.py"
+        "verification/research/test_a2_primitive_tv.py",
+        "verification/research/test_final_actual_product_reporting_false_lean.py"
       ]
     },
     {
@@ -1672,11 +1679,18 @@
           "path": "verification/research/test_next04_original_margin.py",
           "role": "EXACT_CHECK",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_Q_04_false_zero_intervention_report_error",
+          "path": "verification/research/test_final_actual_product_reporting_false_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_localized_prefix_compiler.py",
-        "verification/research/test_next04_original_margin.py"
+        "verification/research/test_next04_original_margin.py",
+        "verification/research/test_final_actual_product_reporting_false_lean.py"
       ]
     },
     {

@@ -313,6 +313,11 @@ METHOD_ROUTES = {
       "test_a2_primitive_tv.py",
       "test_a2_15_seeded_exact_rational_primitive_rows",
       "EXACT_CHECK"
+    ],
+    [
+      "test_final_actual_product_reporting_false_lean.py",
+      "test_Q_03_false_independent_error_mass",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "Q-04": [
@@ -325,6 +330,11 @@ METHOD_ROUTES = {
       "test_next04_original_margin.py",
       "test_both_error_sides",
       "EXACT_CHECK"
+    ],
+    [
+      "test_final_actual_product_reporting_false_lean.py",
+      "test_Q_04_false_zero_intervention_report_error",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "Q-05": [

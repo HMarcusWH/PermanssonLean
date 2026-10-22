@@ -29,8 +29,8 @@ This report is derived from unchanged original criteria and source mappings. It 
 | F-05 | PENDING | Mediation not identified without sufficient premises | 5 | verification/research/test_next03_positive_mediation.py, verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_more_false_semantics_lean.py |
 | Q-01 | PARTIAL_SCOPE | Geometric bound holds without claiming projection Markov | 6 | verification/research/test_e1_approx_quotient.py |
 | Q-02 | PENDING | Correct boundaries; mismatched unbudgeted starts rejected | 6 | verification/research/test_next04_projection_arithmetic.py, verification/research/test_final_closure_more_false_semantics_lean.py |
-| Q-03 | PENDING | Product mass proved, no independence assumption | 3 | verification/research/test_next03_dependent_three_stage.py, verification/research/test_a2_primitive_tv.py |
-| Q-04 | PENDING | Intervention defect charged rather than omitted | 2 | verification/research/test_localized_prefix_compiler.py, verification/research/test_next04_original_margin.py |
+| Q-03 | PENDING | Product mass proved, no independence assumption | 3 | verification/research/test_next03_dependent_three_stage.py, verification/research/test_a2_primitive_tv.py, verification/research/test_final_actual_product_reporting_false_lean.py |
+| Q-04 | PENDING | Intervention defect charged rather than omitted | 2 | verification/research/test_localized_prefix_compiler.py, verification/research/test_next04_original_margin.py, verification/research/test_final_actual_product_reporting_false_lean.py |
 | Q-05 | PENDING | No unqualified whole-path/Exact-GR transfer | 10 | verification/research/test_final04_source_lean.py, verification/research/test_next04_original_margin_lean.py, verification/research/test_next04_projection_arithmetic.py, verification/research/test_q05_nonidentity_source_fixture.py, verification/research/test_q05_actual_source_lean.py, verification/research/test_q05_original_margin_adapter_lean.py, verification/research/test_q05_actual_atom_closure_lean.py |
 | A-01 | PARTIAL_SCOPE | Finite dual equality checked; wrong supnorm test class rejected | 6 | verification/research/test_paper_metric_coupling_lean.py, verification/research/test_a3_contractive.py |
 | A-02 | PARTIAL_SCOPE | Missing strict contraction/uniqueness exposed | 13 | verification/research/test_paper_invariant_lean.py, verification/research/test_a3_contractive.py |
@@ -97,7 +97,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 ## Executable-route gaps (unreviewed; not acceptance)
 
 - Missing selected positive controls: 0 of 45.
-- Missing selected semantic false-mutant routes: 19 of 45.
+- Missing selected semantic false-mutant routes: 17 of 45.
 - Passing scope-boundary checks do **not** discharge the mandatory compiler-negative evidence obligation.
 - A selected method still requires source relevance, actual exact-head execution, intact logs, authenticated check-run attribution and independent approval.
 
@@ -120,8 +120,8 @@ This report is derived from unchanged original criteria and source mappings. It 
 | F-05 | 1 | 1 | 1 |
 | Q-01 | 1 | 0 | 1 |
 | Q-02 | 1 | 1 | 1 |
-| Q-03 | 2 | 0 | 0 |
-| Q-04 | 2 | 0 | 0 |
+| Q-03 | 2 | 1 | 0 |
+| Q-04 | 2 | 1 | 0 |
 | Q-05 | 5 | 3 | 2 |
 | A-01 | 2 | 0 | 0 |
 | A-02 | 1 | 0 | 1 |
