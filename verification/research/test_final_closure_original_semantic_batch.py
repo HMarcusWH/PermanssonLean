@@ -142,6 +142,7 @@ class FrozenOriginalCaseMutations(unittest.TestCase):
              "C11-01", "C11-02", "XPLUS-01",
              "S-02", "Q-01", "A-01",
              "A-04", "A-05",
+             }
         )
         seen = set()
         for cid, entry in batch.SPECS.items():
