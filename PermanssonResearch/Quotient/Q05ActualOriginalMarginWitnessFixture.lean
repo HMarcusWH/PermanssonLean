@@ -304,6 +304,37 @@ def commonTrueMass (treated strategic : Bool) : ℚ :=
 def commonFalseMass (treated strategic : Bool) : ℚ :=
   min (1-fineActionRate treated strategic) (1-coarseActionRate treated)
 
+/-- The actual finite Bernoulli atomwise common mass is pointwise dominated
+by BOTH source action rows, for BOTH protocols and EVERY fine strategic row. -/
+theorem commonTrueMass_le_fine (t s : Bool) :
+    commonTrueMass t s ≤ fineActionRate t s := by
+  exact min_le_left _ _
+
+theorem commonTrueMass_le_coarse (t s : Bool) :
+    commonTrueMass t s ≤ coarseActionRate t := by
+  exact min_le_right _ _
+
+theorem commonFalseMass_le_fine (t s : Bool) :
+    commonFalseMass t s ≤ 1-fineActionRate t s := by
+  exact min_le_left _ _
+
+theorem commonFalseMass_le_coarse (t s : Bool) :
+    commonFalseMass t s ≤ 1-coarseActionRate t := by
+  exact min_le_right _ _
+
+/-- This is the exact algebraic component of the all-event kernel
+domination; source-specific induced-kernel atom identities are still
+required for the final verified PointWitness. -/
+theorem commonMass_dominated_every_source (t s : Bool) :
+    commonTrueMass t s ≤ fineActionRate t s ∧
+    commonTrueMass t s ≤ coarseActionRate t ∧
+    commonFalseMass t s ≤ 1-fineActionRate t s ∧
+    commonFalseMass t s ≤ 1-coarseActionRate t := by
+  exact ⟨commonTrueMass_le_fine t s,
+         commonTrueMass_le_coarse t s,
+         commonFalseMass_le_fine t s,
+         commonFalseMass_le_coarse t s⟩
+
 theorem commonTrueMass_nonneg (t s : Bool) :
     (0 : ℝ) ≤ (commonTrueMass t s : ℝ) := by
   cases t <;> cases s <;>
