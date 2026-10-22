@@ -64,7 +64,7 @@ theorem no_feasible_original_strict_anchor :
     (X := Unit) (A1 := Unit) (A2 := Bool) legal).mp h
   have hnonempty := hf (((), ()) : OwnKey)
   rw [legal_fibre_empty_at_genuine_key] at hnonempty
-  exact Set.not_nonempty_empty hnonempty
+  simpa using hnonempty
 
 theorem all_pointwise_menus_nonempty_but_global_anchor_impossible :
     (∀ y : Y, (legal y).Nonempty) ∧
