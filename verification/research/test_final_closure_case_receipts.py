@@ -242,5 +242,51 @@ class DetachedCaseReceiptTests(unittest.TestCase):
             self.check(o)
 
 
+    def test_original_provider_archive_missing_or_tampered_is_rejected(self):
+        original_log = dict(self.logs)
+        for attack in ("missing", "mutated", "wrong_member"):
+            with self.subTest(attack=attack):
+                self.logs = dict(original_log)
+                overlay = copy.deepcopy(self.overlay)
+                if attack == "missing":
+                    self.logs.pop("original.lean")
+                elif attack == "mutated":
+                    self.logs["original.lean"] = b"altered source bytes"
+                else:
+                    overlay["semantic_negative_receipts"][0][
+                        "original_lean_source_member"] = "mutant.lean"
+                self.save()
+                with self.assertRaises(gate.EvidenceError):
+                    self.check(overlay)
+        self.logs = original_log
+        self.save()
+
+    def test_replacing_original_or_appending_axiom_not_accepted(self):
+        original_log = dict(self.logs)
+        for attack in ("replacement", "new_axiom", "new_sorry"):
+            with self.subTest(attack=attack):
+                self.logs = dict(original_log)
+                overlay = copy.deepcopy(self.overlay)
+                if attack == "replacement":
+                    fake = (b"namespace Test.Scope\n"
+                            b"theorem genuine : False := by trivial\n"
+                            b"end Test.Scope\n")
+                elif attack == "new_axiom":
+                    fake = self.logs["original.lean"] + (
+                        b"\naxiom extra : False\n"
+                        b"example : False := extra\n")
+                else:
+                    fake = self.logs["original.lean"] + (
+                        b"\nexample : False := by sorry\n")
+                self.logs["mutant.lean"] = fake
+                overlay["semantic_negative_receipts"][0][
+                    "mutant_source_sha256"] = sha(fake)
+                self.save()
+                with self.assertRaises(gate.EvidenceError):
+                    self.check(overlay)
+        self.logs = original_log
+        self.save()
+
+
 if __name__ == "__main__":
     unittest.main()
