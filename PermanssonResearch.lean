@@ -740,6 +740,10 @@ import PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture
 import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeClassGeometry
 import PermanssonResearch.ReverseSolver.NonlinearPhaseBlindClassGeometry
 
+import PermanssonResearch.Games.S02InformationBoundaryCountermodel
+import PermanssonResearch.Quotient.Q01NonLumpableProjectionCountermodel
+import PermanssonResearch.Probability.A01SupnormClassCountermodel
+
 /-!
 # PermanssonResearch
 
