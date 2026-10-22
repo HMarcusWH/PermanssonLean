@@ -131,5 +131,55 @@ class MutantEvidenceTests(unittest.TestCase):
             self.assertFalse(out.exists())
 
 
+    def test_true_original_provider_bytes_are_retained_in_detached_logs(self):
+        # Compiler results are mocked; Git tracked bytes are NOT mocked.
+        with tempfile.TemporaryDirectory(prefix="pr113-both-bytes-") as td:
+            base = Path(td)
+            repo = base / "repo"
+            repo.mkdir()
+            subprocess.run(["git", "init", "-q"], cwd=repo, check=True)
+            source = repo / "PermanssonResearch" / "Actual.lean"
+            source.parent.mkdir()
+            original = (b"import Mathlib.Tactic\n"
+                        b"theorem original : True := by trivial\n")
+            source.write_bytes(original)
+            test = repo / "verification" / "research" / "test_actual.py"
+            test.parent.mkdir(parents=True)
+            test.write_text("def test_original_mutation():\n    pass\n")
+            subprocess.run(["git", "add", "."], cwd=repo, check=True)
+            subprocess.run([
+                "git", "-c", "user.name=ClosureAudit",
+                "-c", "user.email=audit@example.invalid",
+                "commit", "-qm", "frozen provider"
+            ], cwd=repo, check=True)
+            head = subprocess.check_output(
+                ["git", "rev-parse", "HEAD"], cwd=repo,
+                text=True).strip()
+            mutant = base / "false.lean"
+            false_bytes = original + b"\nexample : False := by trivial\n"
+            mutant.write_bytes(false_bytes)
+            out = base / "detached"
+            def compile_fixture(path):
+                return (result(1, "error: type mismatch")
+                        if path == mutant else result(0, "clean Lean source"))
+            with (
+                mock.patch.object(m, "ROOT", repo),
+                mock.patch.object(m, "git_head", return_value=head),
+                mock.patch.object(m.shutil, "which", return_value="/fake/lake"),
+                mock.patch.object(m, "lean_result", side_effect=compile_fixture),
+            ):
+                record = m.produce(
+                    head, true_source=source, mutant=mutant,
+                    test_path=test, test_name="test_original_mutation",
+                    case_id="X-01", claim_ids=[], out=out)
+            preserved = out / record["original_lean_source_member"]
+            self.assertEqual(preserved.read_bytes(), original)
+            self.assertEqual(
+                record["original_lean_source_sha256"], m.hash_bytes(original))
+            self.assertEqual(
+                (out / record["mutant_source_member"]).read_bytes(), false_bytes)
+            self.assertIsNone(record["check_run_id"])
+
+
 if __name__ == "__main__":
     unittest.main()
