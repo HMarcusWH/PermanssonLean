@@ -2977,11 +2977,18 @@
           "path": "verification/research/test_paper_risk_lp_lean.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_D_04_false_hard_risk_budget_accepts_p_one",
+          "path": "verification/research/test_final_original_risk_belief_false_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_d2_residence.py",
-        "verification/research/test_paper_risk_lp_lean.py"
+        "verification/research/test_paper_risk_lp_lean.py",
+        "verification/research/test_final_original_risk_belief_false_lean.py"
       ]
     },
     {
@@ -3197,10 +3204,17 @@
           "path": "verification/research/test_next06_reachable_completion_belief.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_D_06_false_same_readout_identifies_completion",
+          "path": "verification/research/test_final_original_risk_belief_false_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_next06_reachable_completion_belief.py"
+        "verification/research/test_next06_reachable_completion_belief.py",
+        "verification/research/test_final_original_risk_belief_false_lean.py"
       ]
     },
     {

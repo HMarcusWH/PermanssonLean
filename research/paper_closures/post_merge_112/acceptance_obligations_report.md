@@ -40,9 +40,9 @@ This report is derived from unchanged original criteria and source mappings. It 
 | D-01 | PARTIAL_SCOPE | Same literal-event value; deterministic augmented maximizer attains | 11 | verification/research/test_d2_residence.py |
 | D-02 | PARTIAL_SCOPE | Exact event classification including word 1,0,1,1 | 10 | verification/research/test_d2_residence.py, verification/research/test_monitor_stationary_closures.py, verification/research/test_final_original_chronological_false_lean.py |
 | D-03 | PARTIAL_SCOPE | Declared precedence and separate risk monitor preserved | 16 | verification/research/test_monitor_stationary_closures.py, verification/research/test_paper_through_risk_lean.py, verification/research/test_final_original_chronological_false_lean.py |
-| D-04 | PARTIAL_SCOPE | Optimum17/20 atp1/2, unconstrained p1 infeasible | 10 | verification/research/test_d2_residence.py, verification/research/test_paper_risk_lp_lean.py |
+| D-04 | PARTIAL_SCOPE | Optimum17/20 atp1/2, unconstrained p1 infeasible | 10 | verification/research/test_d2_residence.py, verification/research/test_paper_risk_lp_lean.py, verification/research/test_final_original_risk_belief_false_lean.py |
 | D-05 | PENDING | Committed value.09 differs from rectangular.01 | 9 | verification/research/test_next06_committed_path_law.py, verification/research/test_final_original_chronological_false_lean.py |
-| D-06 | PENDING | Full augmented belief required | 7 | verification/research/test_next06_reachable_completion_belief.py |
+| D-06 | PENDING | Full augmented belief required | 7 | verification/research/test_next06_reachable_completion_belief.py, verification/research/test_final_original_risk_belief_false_lean.py |
 | D-07 | PARTIAL_SCOPE | Infinite optimum determined by limit theorem, not one finite bound | 9 | verification/research/test_paper_infinite_safety_lean.py, verification/research/test_d2_residence.py |
 | D-08 | PENDING | No admissible typed controlled row | 5 | verification/research/test_final_d08_admission.py, verification/research/test_next06_d08_joint_only_compiler.py |
 | D-09 | PENDING | Class identity retained; descriptor score aggregates correctly | 7 | verification/research/test_final_d09_multichain.py, verification/research/test_final06_phaseblind_original.py |
@@ -97,7 +97,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 ## Executable-route gaps (unreviewed; not acceptance)
 
 - Missing selected positive controls: 0 of 45.
-- Missing selected semantic false-mutant routes: 21 of 45.
+- Missing selected semantic false-mutant routes: 19 of 45.
 - Passing scope-boundary checks do **not** discharge the mandatory compiler-negative evidence obligation.
 - A selected method still requires source relevance, actual exact-head execution, intact logs, authenticated check-run attribution and independent approval.
 
@@ -131,9 +131,9 @@ This report is derived from unchanged original criteria and source mappings. It 
 | D-01 | 2 | 0 | 0 |
 | D-02 | 1 | 1 | 1 |
 | D-03 | 2 | 1 | 0 |
-| D-04 | 2 | 0 | 0 |
+| D-04 | 2 | 1 | 0 |
 | D-05 | 1 | 1 | 1 |
-| D-06 | 1 | 0 | 1 |
+| D-06 | 1 | 1 | 1 |
 | D-07 | 2 | 0 | 0 |
 | D-08 | 1 | 1 | 0 |
 | D-09 | 3 | 1 | 0 |

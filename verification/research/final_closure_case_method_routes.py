@@ -500,6 +500,11 @@ METHOD_ROUTES = {
       "test_paper_risk_lp_lean.py",
       "test_actual_solver_signatures_and_transitive_axioms",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_final_original_risk_belief_false_lean.py",
+      "test_D_04_false_hard_risk_budget_accepts_p_one",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "D-05": [
@@ -529,6 +534,11 @@ METHOD_ROUTES = {
       "test_next06_reachable_completion_belief.py",
       "test_same_physical_readout_does_not_identify_completion",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_final_original_risk_belief_false_lean.py",
+      "test_D_06_false_same_readout_identifies_completion",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "D-07": [
