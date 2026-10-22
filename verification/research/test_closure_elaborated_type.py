@@ -26,7 +26,7 @@ class ElaboratedCompilerTypeTests(unittest.TestCase):
             log + log,
             log.replace("Demo.foo", "Other.foo"),
             log.replace("KIND=theorem", "KIND=invented"),
-            log.replace("TYPE=Expr.forallE", "TYPE= "),
+            log.replace("TYPE=Expr.forallE (x : Type u) (more := x)", "TYPE= "),
         ):
             with self.subTest(invalid=invalid[-50:]), self.assertRaises(et.TypeEvidenceError):
                 et.compiled_type_record(invalid, "Demo.foo")
