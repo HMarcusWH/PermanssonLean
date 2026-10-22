@@ -5,6 +5,7 @@ semantic truth, genuine CI attribution, or independent scholarly review.
 """
 from pathlib import Path
 import json
+import os
 import subprocess
 import tempfile
 import types
@@ -109,6 +110,50 @@ class LegacyEvidenceContract(unittest.TestCase):
             (event / "unexpected.txt").write_text("smuggled evidence")
             with self.assertRaises(MutationEvidenceError):
                 legacy.test_observations(root)
+
+    def test_group_only_compiler_event_cannot_credit_specific_method(self):
+        with tempfile.TemporaryDirectory(prefix="pr113-setup-") as td:
+            root = Path(td)
+            with mock.patch.dict(os.environ, {
+                    "PR113_CASE_ID": "X-02",
+                    "PR113_SELECTED_METHOD": "test_first,test_second"}):
+                hook._record(
+                    str(root), ["lake", "env", "lean", "source.lean"],
+                    "source.lean", b"example : False := by trivial",
+                    outcome=types.SimpleNamespace(
+                        returncode=1, stdout="error: type mismatch",
+                        stderr=""))
+            observed = legacy.test_observations(
+                root, expected_case="X-02",
+                expected_methods="test_first,test_second")
+            self.assertEqual(len(observed), 1)
+            self.assertTrue(observed[0]["method_attribution_ambiguous"])
+            self.assertFalse(observed[0]["possible_semantic_diagnostic"])
+
+    def test_active_unittest_method_replaces_group_only_context(self):
+        with tempfile.TemporaryDirectory(prefix="pr113-method-") as td:
+            raw_subprocess_run = subprocess.run
+            raw_unittest_run = unittest.TestCase.run
+            try:
+                with mock.patch.dict(os.environ, {
+                    "PR113_CAPTURE_DIR": td,
+                    "PR113_SELECTED_METHOD": "test_first,test_second"
+                }):
+                    hook.install()
+                    class MethodFixture(unittest.TestCase):
+                        def test_first(self):
+                            self.assertEqual(
+                                os.environ.get("PR113_SELECTED_METHOD"),
+                                "test_first")
+                    outcome = unittest.TestResult()
+                    MethodFixture("test_first").run(outcome)
+                    self.assertTrue(outcome.wasSuccessful())
+                    self.assertEqual(
+                        os.environ.get("PR113_SELECTED_METHOD"),
+                        "test_first,test_second")
+            finally:
+                subprocess.run = raw_subprocess_run
+                unittest.TestCase.run = raw_unittest_run
 
     def test_unexecuted_and_unreviewed_cannot_become_case_acceptance(self):
         with tempfile.TemporaryDirectory(prefix="pr113-legacy-payload-") as td:
