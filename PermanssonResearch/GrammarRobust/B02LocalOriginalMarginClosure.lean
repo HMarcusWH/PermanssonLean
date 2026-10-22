@@ -176,7 +176,7 @@ theorem original_local_minimality_without_global_isomorphism :
     exact htransport.mp coarse_original_OR_minimal
   · exact actualCoarsening_not_global_injective
 
-/-- This result is a local positive theorem, not a grant to admit the
+/-- This result is local and does not authorize including the
 excluded singleton patches or an unrestricted minimality transfer. -/
 theorem false_extra_admission_rejected :
     ¬ fullOrEmptyFine.allowed ({0} : Finset (Fin 2)) :=
