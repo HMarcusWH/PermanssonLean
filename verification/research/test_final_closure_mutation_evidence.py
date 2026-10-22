@@ -1,6 +1,7 @@
 """Mutation-evidence logic tests (compiler results mocked; not real proof receipts)."""
 from pathlib import Path
 import tempfile
+import subprocess
 import types
 import unittest
 
@@ -50,6 +51,36 @@ class MutantEvidenceTests(unittest.TestCase):
             second = base/"two.zip"
             self.assertEqual(m.seal_logs(logs, first), m.seal_logs(logs, second))
             self.assertEqual(first.read_bytes(), second.read_bytes())
+
+
+    def test_git_blob_binding_refuses_dirty_and_untracked_source(self):
+        with tempfile.TemporaryDirectory(prefix="pr113-git-bound-") as td:
+            root = Path(td)
+            subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+            source = root / "proof.lean"
+            original = b"import Mathlib.Tactic\\ntheorem fact : True := by trivial\\n"
+            source.write_bytes(original)
+            subprocess.run(["git", "add", "proof.lean"], cwd=root, check=True)
+            subprocess.run([
+                "git", "-c", "user.name=ClosureAudit",
+                "-c", "user.email=audit@example.invalid",
+                "commit", "-qm", "source"
+            ], cwd=root, check=True)
+            head = subprocess.check_output(
+                ["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
+            self.assertEqual(
+                m.committed_file_bytes(head, source, root=root), original)
+            untracked = root / "untracked.lean"
+            untracked.write_bytes(original)
+            with self.assertRaises(m.MutationEvidenceError):
+                m.committed_file_bytes(head, untracked, root=root)
+            source.write_bytes(original + b"-- false local alteration\\n")
+            with self.assertRaises(m.MutationEvidenceError):
+                m.committed_file_bytes(head, source, root=root)
+            source.unlink()
+            source.symlink_to(untracked)
+            with self.assertRaises(m.MutationEvidenceError):
+                m.committed_file_bytes(head, source, root=root)
 
 
 if __name__ == "__main__":
