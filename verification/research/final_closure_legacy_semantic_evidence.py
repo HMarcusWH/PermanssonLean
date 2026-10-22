@@ -200,6 +200,38 @@ def test_observations(directory, *, expected_case=None, expected_methods=None):
     return results
 
 
+def legacy_provider_candidates(row, false_source: bytes) -> list[str]:
+    """Name-only replay suggestions from the frozen original declaration map.
+
+    This is deliberately NOT a proof relevance judgment or an import-graph
+    inference. A candidate is eligible only when the actual captured source
+    explicitly imports that precise declared original provider module.
+    """
+    if not isinstance(false_source, bytes):
+        return []
+    try:
+        lines = false_source.decode("utf-8").splitlines()
+    except UnicodeDecodeError:
+        return []
+    imported = set()
+    for line in lines:
+        words = line.strip().split()
+        if words and words[0] == "import":
+            imported.update(words[1:])
+    paths = {
+        entry.get("path") for entry in
+        (row.get("historical_proof_declarations", []) +
+         row.get("new_claim_source_candidates", []))
+        if isinstance(entry, dict)
+    }
+    return sorted(
+        path for path in paths
+        if isinstance(path, str) and
+        path.startswith("PermanssonResearch/") and
+        path.endswith(".lean") and
+        ".".join(Path(path).with_suffix("").parts) in imported)
+
+
 def covered_semantic_methods(methods, events):
     """Require one source-retained semantic negative for EACH selected method.
 
@@ -259,6 +291,13 @@ def run_case(head, case_id, row, output, timeout):
             events = test_observations(
                 capture, expected_case=case_id,
                 expected_methods=",".join(methods))
+            for event in events:
+                raw_source = capture / event["observation_id"] / "source.lean"
+                event["original_provider_candidates_unreviewed"] = (
+                    legacy_provider_candidates(row, raw_source.read_bytes())
+                    if event.get("possible_semantic_diagnostic") and
+                       raw_source.is_file() and not raw_source.is_symlink()
+                    else [])
             covered, missing = covered_semantic_methods(methods, events)
             record = {
                 "format": "Permansson.LegacyCaseTestExecutionCandidate.v1",
