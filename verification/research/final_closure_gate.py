@@ -20,9 +20,11 @@ from final_closure_case_receipts import (
 from final_closure_verify import (
     GateError, NEW, read_json, strict,
 )
+from final_closure_schema import validate_overlay
 
 
 def premerge(receipts: dict, bundle: Path):
+    validate_overlay(receipts)
     if receipts.get("format") != FORMAT or \
        receipts.get("phase") != "premerge_review" or \
        receipts.get("merged_main_sha") is not None:

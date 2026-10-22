@@ -17,6 +17,7 @@ from final_closure_authenticate import (
 from final_closure_case_receipts import (
     ROOT, FORMAT, EvidenceError, load_detached_bundle,
 )
+from final_closure_schema import validate_overlay
 
 
 def sha(raw: bytes) -> str:
@@ -52,7 +53,8 @@ def assemble(head: str, synthetic: str, *, compiler_candidate: Path,
         copy = dict(row)
         copy.pop("CI_binding", None)
         copy.pop("independent_review", None)
-        copy["check_run_id"] = checks["research"]["id"]
+        # CI passed at H, but did NOT necessarily execute this detached probe.
+        copy["check_run_id"] = None
         compiler.append(copy)
     negatives, positives = [], []
     for row in mutants:
@@ -61,7 +63,8 @@ def assemble(head: str, synthetic: str, *, compiler_candidate: Path,
         negative = dict(row)
         negative.pop("CI_binding", None)
         negative.pop("review_status", None)
-        negative["check_run_id"] = checks["research"]["id"]
+        # A matching CI check alone never authenticates local mutation logs.
+        negative["check_run_id"] = None
         negatives.append(negative)
         positive = dict(negative)
         positive["id"] = "positive:" + negative["id"]
@@ -102,6 +105,7 @@ def assemble(head: str, synthetic: str, *, compiler_candidate: Path,
         "independent_source_reviews": [],
         "trusted_axioms": ["Classical.choice", "Quot.sound", "propext"],
     }
+    validate_overlay(out)
     return out
 
 

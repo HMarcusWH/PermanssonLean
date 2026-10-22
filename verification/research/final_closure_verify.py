@@ -16,6 +16,7 @@ from final_closure_case_receipts import (
     FORMAT as DETACHED_FORMAT, EvidenceError,
     load_detached_bundle, effective_acceptance,
 )
+from final_closure_schema import validate_overlay
 import post_merge_102_verify as historical_audit
 import re
 import subprocess
@@ -166,6 +167,10 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
     GitHub check runs and independently authored exact-H review scopes are
     authenticated anew against live GitHub and local genuine Git objects.
     """
+    try:
+        validate_overlay(receipts)
+    except EvidenceError as exc:
+        raise GateError(str(exc)) from exc
     summary = audit()
     check(scope in {"full45-strict", "scoped-release-strict"},
           "unknown strict acceptance scope")

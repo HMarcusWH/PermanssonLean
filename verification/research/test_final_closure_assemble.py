@@ -22,6 +22,14 @@ class AssemblyTests(unittest.TestCase):
                 "compiler_axiom_receipts": [{
                     "id": "p1", "head_sha": "a"*40,
                     "compiler_result": "PASS",
+                    "path": "PermanssonResearch/Simple.lean",
+                    "declaration": "Example.foo",
+                    "source_sha256": "0"*64,
+                    "statement_sha256": "1"*64,
+                    "transitive_axioms": [],
+                    "compiler_check": "research",
+                    "axiom_log_sha256": "2"*64,
+                    "case_ids": ["Q-05"], "claim_ids": ["Q1"],
                     "axiom_log_member": "axiom_logs/p1.log",
                     "check_run_id": None,
                     "CI_binding": "PENDING_REAL_CHECK_RUN_ID_ON_FROZEN_H",
@@ -56,8 +64,8 @@ class AssemblyTests(unittest.TestCase):
             self.assertEqual(value["case_decisions"], [])
             self.assertEqual(value["claim_decisions"], [])
             self.assertEqual(value["independent_source_reviews"], [])
-            self.assertEqual(value["compiler_axiom_receipts"][0]["check_run_id"],
-                             checks["research"]["id"])
+            self.assertIsNone(value["compiler_axiom_receipts"][0]["check_run_id"])
+            self.assertTrue(value["source_bound_ci"])
 
     def test_wrong_synthetic_parents_fail_before_evidence_promotion(self):
         with tempfile.TemporaryDirectory() as folder:
