@@ -131,7 +131,10 @@
           "axiom_log_member",
           "axiom_log_sha256",
           "case_ids",
-          "claim_ids"
+          "claim_ids",
+          "elaborated_type_sha256",
+          "declaration_kind",
+          "universe_params_repr"
         ],
         "properties": {
           "id": {
@@ -209,6 +212,26 @@
               "type": "string",
               "minLength": 1
             }
+          },
+          "elaborated_type_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "declaration_kind": {
+            "enum": [
+              "axiom",
+              "definition",
+              "theorem",
+              "opaque",
+              "quotient",
+              "inductive",
+              "constructor",
+              "recursor"
+            ]
+          },
+          "universe_params_repr": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }

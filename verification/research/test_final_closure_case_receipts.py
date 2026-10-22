@@ -9,6 +9,7 @@ from unittest import mock
 import zipfile
 
 import final_closure_case_receipts as gate
+from closure_elaborated_type import elaborated_type_sha256
 
 H = "a" * 40
 sha = lambda raw: hashlib.sha256(raw).hexdigest()
@@ -28,7 +29,12 @@ class DetachedCaseReceiptTests(unittest.TestCase):
         (self.repo / "test_actual.py").write_text(
             "def test_meaningful_mutant():\n    assert True\n")
         self.logs = {
-            "axiom.log": b"Test.Scope.genuine depends on axioms: []\n",
+            "axiom.log": (
+                b"PERMANSSON_ELABORATED_TYPE_V1_BEGIN\n"
+                b"NAME=Test.Scope.genuine\nKIND=theorem\nUNIVERSES=[]\n"
+                b"TYPE=Expr.const `True []\n"
+                b"PERMANSSON_ELABORATED_TYPE_V1_END\n"
+                b"Test.Scope.genuine depends on axioms: []\n"),
             "positive.log": b"test_meaningful_mutant ... ok\n",
             "negative.log": b"Test.Scope.genuine: error: unsolved goals\n",
             "mutant.lean": b"namespace Test.Scope\ntheorem genuine : False := by trivial\nend Test.Scope\n",
@@ -41,6 +47,14 @@ class DetachedCaseReceiptTests(unittest.TestCase):
             "declaration": "Test.Scope.genuine",
             "source_sha256": sha((self.repo / "Proof.lean").read_bytes()),
             "statement_sha256": sha(b"theorem genuine : True"),
+            "elaborated_type_sha256": elaborated_type_sha256({
+                "declaration": "Test.Scope.genuine",
+                "declaration_kind": "theorem",
+                "universe_params_repr": "[]",
+                "type_expr_repr": "Expr.const `True []",
+            }),
+            "declaration_kind": "theorem",
+            "universe_params_repr": "[]",
             "transitive_axioms": [], "compiler_check": "research",
             "compiler_result": "PASS", "check_run_id": 42,
             "axiom_log_member": "axiom.log",
@@ -152,7 +166,7 @@ class DetachedCaseReceiptTests(unittest.TestCase):
     def test_wrong_head_source_header_and_namespace_rejected(self):
         for key, value in [("head_sha", "b"*40),
                            ("source_sha256", "0"*64),
-                           ("statement_sha256", "0"*64),
+                           ("elaborated_type_sha256", "0"*64),
                            ("declaration", "Other.Scope.genuine")]:
             with self.subTest(key=key):
                 o = copy.deepcopy(self.overlay)

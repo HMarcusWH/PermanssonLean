@@ -1,6 +1,7 @@
 """Source/axiom evidence exporter mocks are logic tests, not Lean certificates."""
 from pathlib import Path
 import json
+import re
 import tempfile
 import types
 import unittest
@@ -95,8 +96,14 @@ class LeanEvidenceTests(unittest.TestCase):
             self.addCleanup(lambda: __import__("shutil").rmtree(
                 external, ignore_errors=True))
             def fake_compiler(probe):
-                decl = probe.read_text().split("#check ")[1].splitlines()[0]
-                output = f"{decl} : True\n{decl} depends on axioms: []\n"
+                decl = re.search(r"let nm : Name := `([^\n]+)", probe.read_text()).group(1)
+                output = (
+                    "PERMANSSON_ELABORATED_TYPE_V1_BEGIN\n"
+                    f"NAME={decl}\nKIND=theorem\nUNIVERSES=[]\n"
+                    "TYPE=Expr.const `True []\n"
+                    "PERMANSSON_ELABORATED_TYPE_V1_END\n"
+                    f"{decl} depends on axioms: []\n"
+                )
                 return types.SimpleNamespace(
                     returncode=0, stdout=output, stderr="")
             with mock.patch.object(e, "ROOT", base), \

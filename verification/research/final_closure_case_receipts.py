@@ -14,6 +14,9 @@ from pathlib import Path, PurePosixPath
 import re
 import stat
 import zipfile
+from closure_elaborated_type import (
+    compiled_type_record, elaborated_type_sha256, TypeEvidenceError,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 FORMAT = "Permansson.FinalClosureDetachedReceipts.v2"
@@ -208,9 +211,8 @@ def validate_compiler_receipt(row: dict, head: str, members: dict[str, bytes],
            digest(source.read_bytes()) == row.get("source_sha256"),
            "compiler receipt does not bind source bytes")
     declaration = row.get("declaration")
-    header = statement_header(source.read_text(encoding="utf-8"), declaration)
-    demand(digest(header.encode("utf-8")) == row.get("statement_sha256"),
-           "compiler receipt binds wrong theorem statement")
+    # The source excerpt is display metadata only. It may be truncated at
+    # named arguments containing ':='; kernel elaboration is authoritative.
     axioms = row.get("transitive_axioms")
     demand(isinstance(axioms, list) and len(axioms) == len(set(axioms)) and
            set(axioms) <= TRUSTED_AXIOMS, "bad or unreviewed transitive axiom")
@@ -224,6 +226,15 @@ def validate_compiler_receipt(row: dict, head: str, members: dict[str, bytes],
     stdout = data.decode("utf-8", errors="replace")
     demand(declaration in stdout and "sorryAx" not in stdout and
            "error:" not in stdout.lower(), "invalid axiom source diagnostic")
+    try:
+        compiled = compiled_type_record(stdout, declaration)
+        source_type_sha = elaborated_type_sha256(compiled)
+    except TypeEvidenceError as exc:
+        raise EvidenceError(str(exc)) from exc
+    demand(row.get("elaborated_type_sha256") == source_type_sha and
+           row.get("declaration_kind") == compiled["declaration_kind"] and
+           row.get("universe_params_repr") == compiled["universe_params_repr"],
+           "compiler elaborated-type identity mismatch")
     observed = parse_target_axioms(stdout, declaration)
     demand(observed == axioms, "target axioms do not match retained log")
     cases = row.get("case_ids")

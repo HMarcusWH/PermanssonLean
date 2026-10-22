@@ -17,6 +17,9 @@ import subprocess
 import tempfile
 
 from final_closure_case_receipts import statement_header, parse_target_axioms, EvidenceError
+from closure_elaborated_type import (
+    lean_probe, compiled_type_record, elaborated_type_sha256, TypeEvidenceError,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 MAP = ROOT / "research/paper_closures/post_merge_112/claim_declaration_map.json"
@@ -117,9 +120,7 @@ def candidate_records(head: str, out: Path) -> dict:
             source = src.read_text(encoding="utf-8")
             header = statement_header(source, declaration)
             module = row["path"].removesuffix(".lean").replace("/", ".")
-            code = ("import " + module + "\n"
-                    "#check " + declaration + "\n"
-                    "#print axioms " + declaration + "\n")
+            code = lean_probe(module, declaration)
             # Compile from a temporary source under the configured Lean path.
             with tempfile.TemporaryDirectory(
                     prefix="closure-proof-", dir=ROOT / ".lake") as temp:
@@ -132,6 +133,10 @@ def candidate_records(head: str, out: Path) -> dict:
                     "Lean #check/#print axioms failed: " + declaration +
                     "\n" + log.decode("utf-8", "replace")[-700:])
             axioms = parse_axioms(log.decode("utf-8"), declaration)
+            try:
+                compiled = compiled_type_record(log.decode("utf-8"), declaration)
+            except TypeEvidenceError as exc:
+                raise CompilerEvidenceError(str(exc)) from exc
             member = f"axiom_logs/{claim['claim_id']}_{idx}.log"
             (out / member).write_bytes(log)
             outputs.append({
@@ -140,7 +145,11 @@ def candidate_records(head: str, out: Path) -> dict:
                 "head_sha": head, "path": row["path"],
                 "declaration": declaration,
                 "source_sha256": sha256(src.read_bytes()),
+                # Display-only lexical excerpt; NEVER authoritative theorem type.
                 "statement_sha256": sha256(header.encode("utf-8")),
+                "elaborated_type_sha256": elaborated_type_sha256(compiled),
+                "declaration_kind": compiled["declaration_kind"],
+                "universe_params_repr": compiled["universe_params_repr"],
                 "transitive_axioms": axioms,
                 "axiom_log_member": member,
                 "axiom_log_sha256": sha256(log),
