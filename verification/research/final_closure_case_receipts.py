@@ -107,7 +107,25 @@ def statement_header(source: str, qualified: str) -> str:
     following = DECL_RE.search(source, match.end())
     limit = following.start() if following else len(source)
     stop = source.find(":=", match.end(), limit)
-    demand(stop >def load_detached_bundle(path: str | Path, expected_sha256: str):
+    demand(stop >def parse_target_axioms(log: str, declaration: str) -> list[str]:
+    """Parse one target-qualified compiler record, never an unrelated last list."""
+    demand(isinstance(log, str) and isinstance(declaration, str) and
+           re.fullmatch(r"[A-Za-z0-9_'.]+", declaration) is not None,
+           "invalid target axiom record")
+    list_pat = re.compile(
+        r"([A-Za-z0-9_'.]+) depends on axioms:\\s*\\[([^\\]]*)\\]")
+    zero_pat = re.compile(
+        r"([A-Za-z0-9_'.]+) does not depend on any axioms")
+    records = [(m.group(1), m.group(2)) for m in list_pat.finditer(log)]
+    records += [(m.group(1), "") for m in zero_pat.finditer(log)]
+    demand(len(records) == 1 and records[0][0] == declaration,
+           "missing, ambiguous or wrong-target compiler axiom output")
+    names = [x.strip() for x in records[0][1].split(",") if x.strip()]
+    demand(len(set(names)) == len(names) and set(names) <= TRUSTED_AXIOMS,
+           "untrusted or duplicate transitive axiom")
+    return names
+
+def load_detached_bundle(path: str | Path, expected_sha256: str):
     """Verify and parse the exact hashed ZIP bytes with aggregate resource bounds.
 
     All metadata are checked before decompression. Never reopen the potentially
@@ -205,11 +223,8 @@ def validate_compiler_receipt(row: dict, head: str, members: dict[str, bytes],
     stdout = data.decode("utf-8", errors="replace")
     demand(declaration in stdout and "sorryAx" not in stdout and
            "error:" not in stdout.lower(), "invalid axiom source diagnostic")
-    # Print axioms MUST be a real observed record, not a caller-made allowlist.
-    lists = re.findall(r"depends on axioms:\s*\[([^\]]*)\]", stdout)
-    demand(bool(lists), "missing compiler axiom output")
-    parsed = set(x.strip() for x in lists[-1].split(",") if x.strip())
-    demand(parsed == set(axioms), "axiom list does not match the retained log")
+    observed = parse_target_axioms(stdout, declaration)
+    demand(observed == axioms, "target axioms do not match retained log")
     cases = row.get("case_ids")
     claims = row.get("claim_ids")
     demand(isinstance(cases, list) and isinstance(claims, list) and

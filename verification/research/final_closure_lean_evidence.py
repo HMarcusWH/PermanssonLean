@@ -16,7 +16,7 @@ import shutil
 import subprocess
 import tempfile
 
-from final_closure_case_receipts import statement_header, TRUSTED_AXIOMS
+from final_closure_case_receipts import statement_header, parse_target_axioms, EvidenceError
 
 ROOT = Path(__file__).resolve().parents[2]
 MAP = ROOT / "research/paper_closures/post_merge_112/claim_declaration_map.json"
@@ -54,21 +54,14 @@ def run_probe(path: Path):
 
 
 def parse_axioms(log: str, declaration: str) -> list[str]:
-    low = log.lower()
-    if any(word in low for word in BAD):
-        raise CompilerEvidenceError("untrusted/failed compiler output: " + declaration)
+    if any(word in log.lower() for word in BAD):
+        raise CompilerEvidenceError("failed or untrusted compiler output: " + declaration)
     if declaration not in log:
         raise CompilerEvidenceError("wrong compiled Lean declaration: " + declaration)
-    lists = AXIOM_LIST.findall(log)
-    if len(lists) == 1:
-        names = [x.strip() for x in lists[0].split(",") if x.strip()]
-    elif not lists and re.search(r"does not depend on any axioms", log):
-        names = []
-    else:
-        raise CompilerEvidenceError("missing or ambiguous axiom record: " + declaration)
-    if len(names) != len(set(names)) or not set(names) <= TRUSTED_AXIOMS:
-        raise CompilerEvidenceError("unreviewed proof axioms: " + declaration)
-    return names
+    try:
+        return parse_target_axioms(log, declaration)
+    except EvidenceError as exc:
+        raise CompilerEvidenceError(str(exc)) from exc
 
 
 def candidate_records(head: str, out: Path) -> dict:

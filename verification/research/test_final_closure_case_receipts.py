@@ -160,6 +160,16 @@ class DetachedCaseReceiptTests(unittest.TestCase):
                 with self.assertRaises(gate.EvidenceError):
                     self.check(o)
 
+    def test_wrong_target_axiom_list_rejected(self):
+        self.logs["axiom.log"] = (
+            b"Test.Scope.genuine : True\n"
+            b"Other.Scope.genuine depends on axioms: []\n")
+        self.save()
+        o = copy.deepcopy(self.overlay)
+        o["compiler_axiom_receipts"][0]["axiom_log_sha256"] = sha(self.logs["axiom.log"])
+        with self.assertRaises(gate.EvidenceError):
+            self.check(o)
+
     def test_bad_compiler_diagnostics_not_semantic(self):
         warnings = [
             b"error: unknown identifier false\nunsolved goals",

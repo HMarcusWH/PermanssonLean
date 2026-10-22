@@ -26,6 +26,18 @@ class LeanEvidenceTests(unittest.TestCase):
                 with self.assertRaises(e.CompilerEvidenceError):
                     e.parse_axioms(output, "Demo.foo")
 
+    def test_unrelated_last_axiom_record_never_replaces_target(self):
+        for output in (
+            "Demo.foo : True\nOther.foo depends on axioms: []\n",
+            "Demo.foo depends on axioms: []\nOther.foo depends on axioms: []\n",
+            "Demo.foo depends on axioms: []\nDemo.foo does not depend on any axioms\n",
+        ):
+            with self.subTest(output=output), self.assertRaises(e.CompilerEvidenceError):
+                e.parse_axioms(output, "Demo.foo")
+        self.assertEqual(e.parse_axioms(
+            "Demo.foo : True\nDemo.foo does not depend on any axioms\n",
+            "Demo.foo"), [])
+
     def test_missing_or_wrong_head_never_emits_certificate(self):
         with tempfile.TemporaryDirectory() as root:
             with mock.patch.object(e, "ROOT", Path(root)), \
