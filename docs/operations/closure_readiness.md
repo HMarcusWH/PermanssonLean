@@ -35,6 +35,20 @@ control. A standalone imported false probe has different semantics and
 requires a separate reviewed, typed validation/receipt adapter before its
 result may participate in effective mathematical acceptance. The legacy
 observation records are intentionally incompatible with that accepted receipt.
+A candidate-only bridge `final_closure_legacy_replay.py` now accepts one
+individually attributable captured false method, demands a provider from its
+original frozen theorem map, appends the false assertion to *unchanged tracked*
+Lean provider bytes, recompiles the positive and negative sides with real pinned
+Lean, and retains both sources and logs. Failed or ambiguous replays stay open
+obligations. The replay output deliberately has no accepted CI check-run ID,
+no independent review and no release authority.
+
+The detached negative receipt schema now requires
+`original_lean_source_member` in addition to the original source digest.
+The strict source validator checks that the archived original matches the
+checkout, that the mutation is an append-only extension, and that no import,
+axiom, `sorry`, or `admit` has been injected. A hash-only reference to the
+mutable checkout no longer suffices.
 
 The separate four-shard `pr113-all-case-compiler.yml` workflow enumerates
 the selected original 45-case and 11-claim theorem support. It must compile
