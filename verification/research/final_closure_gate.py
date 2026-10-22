@@ -21,9 +21,10 @@ from final_closure_verify import (
     GateError, NEW, read_json, strict,
 )
 from final_closure_schema import validate_overlay
+from final_closure_full_contract import require_full_source
 
 
-def premerge(receipts: dict, bundle: Path):
+def premerge(receipts: dict, bundle: Path, *, full: bool = False):
     validate_overlay(receipts)
     if receipts.get("format") != FORMAT or \
        receipts.get("phase") != "premerge_review" or \
@@ -38,10 +39,16 @@ def premerge(receipts: dict, bundle: Path):
         claims=inventory["claims"], members=members,
         accepted_checks=provenance["checks"],
         approved_review_scopes=provenance["review_scopes"])
-    if verified["accepted_case_count"] + verified["accepted_claim_count"] == 0:
-        raise GateError("no exact source-scope case or claim independently reviewed")
-    return {**verified,
-            "gate": "PREMERGE_REVIEWED_CANDIDATE",
+    if full:
+        full_result = require_full_source(
+            verified, decisions, inventory["claims"])
+    else:
+        if verified["accepted_case_count"] + verified["accepted_claim_count"] == 0:
+            raise GateError("no exact source-scope case or claim independently reviewed")
+        full_result = {}
+    return {**verified, **full_result,
+            "gate": "PREMERGE_FULL_SOURCE_READY" if full else
+                    "PREMERGE_REVIEWED_CANDIDATE",
             "source_head": provenance["H"],
             "synthetic_sha": provenance["S"],
             "merged_main_sha": None,
@@ -52,7 +59,7 @@ def premerge(receipts: dict, bundle: Path):
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--phase",
-                        choices=("premerge", "full45-strict",
+                        choices=("premerge", "premerge-full", "full45-strict",
                                  "scoped-release-strict"),
                         required=True)
     parser.add_argument("--receipts", type=Path, required=True)
@@ -61,8 +68,9 @@ def main(argv=None):
     opts = parser.parse_args(argv)
     try:
         receipts = json.loads(opts.receipts.read_bytes())
-        if opts.phase == "premerge":
-            result = premerge(receipts, opts.bundle)
+        if opts.phase in ("premerge", "premerge-full"):
+            result = premerge(receipts, opts.bundle,
+                              full=opts.phase == "premerge-full")
         else:
             manifest = (
                 json.loads(opts.approved_manifest.read_bytes())
