@@ -155,6 +155,33 @@ class LegacyEvidenceContract(unittest.TestCase):
                 subprocess.run = raw_subprocess_run
                 unittest.TestCase.run = raw_unittest_run
 
+    def test_each_selected_legacy_method_requires_own_false_diagnostic(self):
+        selected = ("test_one", "test_two")
+        observed = [{
+            "method_observed_unverified": "test_one",
+            "possible_semantic_diagnostic": True,
+            "method_attribution_ambiguous": False,
+        }]
+        covered, missing = legacy.covered_semantic_methods(selected, observed)
+        self.assertEqual(covered, ["test_one"])
+        self.assertEqual(missing, ["test_two"])
+        observed.append({
+            "method_observed_unverified": "test_one,test_two",
+            "possible_semantic_diagnostic": False,
+            "method_attribution_ambiguous": True,
+        })
+        self.assertEqual(legacy.covered_semantic_methods(
+            selected, observed)[1], ["test_two"])
+        observed.append({
+            "method_observed_unverified": "test_two",
+            "possible_semantic_diagnostic": True,
+            "method_attribution_ambiguous": False,
+        })
+        self.assertEqual(legacy.covered_semantic_methods(
+            selected, observed), (["test_one", "test_two"], []))
+        with self.assertRaises(MutationEvidenceError):
+            legacy.covered_semantic_methods(("test_one", "test_one"), observed)
+
     def test_unexecuted_and_unreviewed_cannot_become_case_acceptance(self):
         with tempfile.TemporaryDirectory(prefix="pr113-legacy-payload-") as td:
             target = Path(td) / "sample.json"
