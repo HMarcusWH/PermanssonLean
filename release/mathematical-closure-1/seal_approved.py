@@ -12,6 +12,7 @@ import importlib.util
 import json
 from pathlib import Path
 import shutil
+import stat
 import sys
 import zipfile
 
@@ -176,7 +177,26 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
 def verify_approved_archive(archive: Path, manifest: dict):
     if not archive.is_file():
         raise SealError("approved archive missing")
+    if archive.is_symlink() or archive.stat().st_size > 64*1024*1024:
+        raise SealError("approved ZIP path or size unsafe")
     with zipfile.ZipFile(archive) as z:
+        infos = z.infolist()
+        if len(infos) > 128 or sum(i.file_size for i in infos) > 128*1024*1024:
+            raise SealError("approved ZIP expanded member bound exceeded")
+        seen = set()
+        for info in infos:
+            mode = info.external_attr >> 16
+            low = info.filename.casefold()
+            if (low in seen or
+                info.filename.startswith("/") or
+                ".." in info.filename.split("/") or
+                "\\" in info.filename or
+                (mode != 0 and not stat.S_ISREG(mode)) or
+                info.is_dir() or
+                info.file_size > 48*1024*1024 or
+                info.flag_bits & 1):
+                raise SealError("unsafe or nonportable approved ZIP member")
+            seen.add(low)
         if z.testzip() is not None:
             raise SealError("approved archive CRC mismatch")
         names = z.namelist()
