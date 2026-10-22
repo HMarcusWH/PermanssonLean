@@ -66,7 +66,7 @@ def prepare_approved_manifest(draft_directory: Path, approved: dict):
 
 
 def seal(draft_directory: Path, approved: dict, receipts: dict,
-         evidence_bundle: Path, output: Path):
+         evidence_bundle: Path, output: Path, *, full: bool = False):
     if output.resolve().is_relative_to(ROOT.resolve()):
         raise SealError("release archive output must be detached from checkout")
     if output.resolve().is_relative_to(draft_directory.resolve()):
@@ -74,8 +74,14 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
     # Baseline source integrity is always checked, even before authenticity.
     draft_verifier.verify(draft_directory / "manifest.lock.json")
     draft, pages = prepare_approved_manifest(draft_directory, approved)
-    result = strict_acceptance(receipts, "scoped-release-strict", approved,
+    accepted_scope = "full-release-strict" if full else "scoped-release-strict"
+    result = strict_acceptance(receipts, accepted_scope, approved,
                                bundle_path=evidence_bundle)
+    if full and (result.get("accepted_case_count") != 45 or
+                 result.get("accepted_claim_count") != 11 or
+                 result.get("status") !=
+                     "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY"):
+        raise SealError("full-release seal lacks the exact effective 45+11 certificate")
     if draft.get("source_commit_sha") != result["source"]:
         raise SealError("PDF was not built from genuine merged commit M")
     manifest = {
@@ -93,7 +99,7 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
         "review_binding": "AUTHENTICATED_LIVE_EXACT_H_SOURCE_AND_POSTMERGE_SCHOLARLY",
         "accepted_case_count": result["accepted_case_count"],
         "accepted_claim_count": result["accepted_claim_count"],
-        "full45_claimed": False,
+        "full45_claimed": full,
     }
     output.mkdir(parents=True, exist_ok=True)
     members = {
@@ -161,12 +167,14 @@ def main(argv=None):
     ap.add_argument("--source-receipts", required=True, type=Path)
     ap.add_argument("--bundle", required=True, type=Path)
     ap.add_argument("--out", required=True, type=Path)
+    ap.add_argument("--full", action="store_true",
+                    help="require the complete full-release-strict certificate")
     args = ap.parse_args(argv)
     try:
         approved = json.loads(args.approved_claim_manifest.read_text())
         receipts = json.loads(args.source_receipts.read_text())
         outcome = seal(args.draft_dir, approved, receipts,
-                       args.bundle, args.out)
+                       args.bundle, args.out, full=args.full)
     except (OSError, ValueError, KeyError, zipfile.BadZipFile) as exc:
         print("APPROVED SEAL BLOCKED:", exc)
         return 2
