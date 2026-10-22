@@ -306,6 +306,12 @@
           "header_present": true,
           "path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
           "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_mixed_nonlinear_half_not_barycenter",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
         }
       ],
       "independent_review_receipts": [],

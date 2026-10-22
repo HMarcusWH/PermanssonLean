@@ -46,6 +46,8 @@ class OriginalSourceMapTests(unittest.TestCase):
         byid = {c["claim_id"]: c for c in data["claims"]}
         self.assertTrue(any("NonlinearPhaseBlindClassGeometry.lean" in d["path"]
                             for d in byid["N2"]["declarations"]))
+        self.assertTrue(any("actual_mixed_nonlinear_half_not_barycenter" in d["declaration"]
+                            for d in byid["D9"]["declarations"]))
         self.assertTrue(any(".ConcreteRestrictedBoolean." in d["declaration"]
                             for d in byid["D8"]["declarations"]))
         self.assertTrue(any(".FinalMatchedAsymmetry." in d["declaration"]

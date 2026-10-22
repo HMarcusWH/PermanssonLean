@@ -65,7 +65,9 @@ SUPPORT = {
     "D9": [("ReverseSolver/NonlinearMultichainAggregationFixture.lean",
             NS_D+"NonlinearMultichainAggregationFixture.actual_two_absorbing_full_path_mixture"),
            ("ReverseSolver/NonlinearMultichainAggregationFixture.lean",
-            NS_D+"NonlinearMultichainAggregationFixture.actual_multichain_classwise_differs_from_barycenter")],
+            NS_D+"NonlinearMultichainAggregationFixture.actual_multichain_classwise_differs_from_barycenter"),
+           ("ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+            NS_D+"NonlinearMultichainAggregationFixture.actual_mixed_nonlinear_half_not_barycenter")],
 }
 TEST_CANDIDATES = {
     "Q1": ["test_final04_source_lean.py"],
