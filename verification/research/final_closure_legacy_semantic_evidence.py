@@ -200,6 +200,22 @@ def test_observations(directory, *, expected_case=None, expected_methods=None):
     return results
 
 
+def covered_semantic_methods(methods, events):
+    """Require one source-retained semantic negative for EACH selected method.
+
+    A successful unittest class can run several methods; one failed assertion
+    is not evidence that the other selected methods were actually falsified.
+    Class setup/unattributed diagnostics were already marked ineligible.
+    """
+    planned = set(methods)
+    if not planned or len(planned) != len(methods):
+        raise MutationEvidenceError("empty or duplicate selected semantic methods")
+    found = {event.get("method_observed_unverified")
+             for event in events if event.get("possible_semantic_diagnostic")
+             and not event.get("method_attribution_ambiguous")}
+    return sorted(planned & found), sorted(planned - found)
+
+
 def run_case(head, case_id, row, output, timeout):
     grouped = selected_methods(head, row)
     case_dir = output / case_id
@@ -243,6 +259,7 @@ def run_case(head, case_id, row, output, timeout):
             events = test_observations(
                 capture, expected_case=case_id,
                 expected_methods=",".join(methods))
+            covered, missing = covered_semantic_methods(methods, events)
             record = {
                 "format": "Permansson.LegacyCaseTestExecutionCandidate.v1",
                 "case_id": case_id,
@@ -260,9 +277,10 @@ def run_case(head, case_id, row, output, timeout):
                 "compiler_observations_count": len(events),
                 "possible_semantic_observations": sum(
                     bool(e["possible_semantic_diagnostic"]) for e in events),
+                "semantic_methods_with_candidate": covered,
+                "semantic_methods_missing_candidate": missing,
                 "status": "EXECUTED_UNREVIEWED_NOT_AUTHENTICATED"
-                          if rc == 0 and any(e["possible_semantic_diagnostic"]
-                                             for e in events)
+                          if rc == 0 and not missing
                           else "INCOMPLETE_OR_UNVERIFIABLE_UNREVIEWED",
                 "independent_review": False,
                 "ci_check_run_id": None,
