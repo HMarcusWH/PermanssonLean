@@ -40,8 +40,9 @@ def premerge(receipts: dict, bundle: Path, *, full: bool = False):
         accepted_checks=provenance["checks"],
         approved_review_scopes=provenance["review_scopes"])
     if full:
+        source_map = read_json(NEW/"acceptance_case_source_map.json")
         full_result = require_full_source(
-            verified, decisions, inventory["claims"])
+            verified, decisions, inventory["claims"], source_map)
     else:
         if verified["accepted_case_count"] + verified["accepted_claim_count"] == 0:
             raise GateError("no exact source-scope case or claim independently reviewed")
