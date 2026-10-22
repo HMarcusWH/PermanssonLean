@@ -17,7 +17,7 @@ from final_closure_case_receipts import (
     load_detached_bundle, effective_acceptance,
 )
 from final_closure_schema import validate_overlay
-from final_closure_full_contract import require_full_release
+from final_closure_full_contract import require_full_release, require_complete_obligation_receipts
 import post_merge_102_verify as historical_audit
 import re
 import subprocess
@@ -242,10 +242,13 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
               "claim/limitation boundaries missing or empirical proof invented")
     if scope == "full-release-strict":
         try:
+            original_map = read_json(NEW / "acceptance_case_source_map.json")
             full_result = require_full_release(
                 result, decisions, inventory["claims"],
-                read_json(NEW / "acceptance_case_source_map.json"),
-                manifest, provenance)
+                original_map, manifest, provenance)
+            full_result.update(require_complete_obligation_receipts(
+                receipts, original_map,
+                read_json(NEW / "claim_declaration_map.json")))
         except EvidenceError as exc:
             raise GateError(str(exc)) from exc
     return {**summary, **result, **full_result, "strict": scope,

@@ -21,7 +21,7 @@ from final_closure_verify import (
     GateError, NEW, read_json, strict,
 )
 from final_closure_schema import validate_overlay
-from final_closure_full_contract import require_full_source
+from final_closure_full_contract import require_full_source, require_complete_obligation_receipts
 
 
 def premerge(receipts: dict, bundle: Path, *, full: bool = False):
@@ -43,6 +43,9 @@ def premerge(receipts: dict, bundle: Path, *, full: bool = False):
         source_map = read_json(NEW/"acceptance_case_source_map.json")
         full_result = require_full_source(
             verified, decisions, inventory["claims"], source_map)
+        claim_map = read_json(NEW/"claim_declaration_map.json")
+        full_result.update(require_complete_obligation_receipts(
+            receipts, source_map, claim_map))
     else:
         if verified["accepted_case_count"] + verified["accepted_claim_count"] == 0:
             raise GateError("no exact source-scope case or claim independently reviewed")

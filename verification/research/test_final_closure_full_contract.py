@@ -160,7 +160,9 @@ class FullScopeContractTests(unittest.TestCase):
         }
         provenance = {"H": "a"*40, "S": "c"*40,
                       "checks": {}, "review_scopes": {}}
-        with mock.patch.object(gate, "validate_overlay"), \
+        with mock.patch.object(gate, "require_complete_obligation_receipts",
+                               return_value={"receipt_contract": "MOCK_ONLY"}), \
+             mock.patch.object(gate, "validate_overlay"), \
              mock.patch.object(gate, "verify_premerge",
                                return_value=provenance), \
              mock.patch.object(gate, "load_detached_bundle",
@@ -168,7 +170,7 @@ class FullScopeContractTests(unittest.TestCase):
              mock.patch.object(gate, "effective_acceptance",
                                return_value=evidence), \
              mock.patch.object(gate, "read_json",
-                               side_effect=[cases, {"claims": claims}, selection]):
+                               side_effect=[cases, {"claims": claims}, selection, {"claims": []}]):
             status = gate.premerge(receipt, None, full=True)
         self.assertEqual(status["gate"], "PREMERGE_FULL_SOURCE_READY")
         self.assertFalse(status["merge_authorized"])
