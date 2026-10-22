@@ -2672,11 +2672,18 @@
           "path": "verification/research/test_monitor_stationary_closures.py",
           "role": "EXACT_CHECK",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_D_02_false_retryable_residence_word",
+          "path": "verification/research/test_final_original_chronological_false_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_d2_residence.py",
-        "verification/research/test_monitor_stationary_closures.py"
+        "verification/research/test_monitor_stationary_closures.py",
+        "verification/research/test_final_original_chronological_false_lean.py"
       ]
     },
     {
@@ -2842,11 +2849,18 @@
           "path": "verification/research/test_paper_through_risk_lean.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_D_03_false_danger_after_success_revokes_it",
+          "path": "verification/research/test_final_original_chronological_false_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_monitor_stationary_closures.py",
-        "verification/research/test_paper_through_risk_lean.py"
+        "verification/research/test_paper_through_risk_lean.py",
+        "verification/research/test_final_original_chronological_false_lean.py"
       ]
     },
     {
@@ -3078,10 +3092,17 @@
           "path": "verification/research/test_next06_committed_path_law.py",
           "role": "EXACT_CHECK",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_D_05_false_committed_rectangular_path_law_equality",
+          "path": "verification/research/test_final_original_chronological_false_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_next06_committed_path_law.py"
+        "verification/research/test_next06_committed_path_law.py",
+        "verification/research/test_final_original_chronological_false_lean.py"
       ]
     },
     {

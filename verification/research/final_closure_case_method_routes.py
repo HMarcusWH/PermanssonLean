@@ -466,6 +466,11 @@ METHOD_ROUTES = {
       "test_monitor_stationary_closures.py",
       "test_all_short_physical_words",
       "EXACT_CHECK"
+    ],
+    [
+      "test_final_original_chronological_false_lean.py",
+      "test_D_02_false_retryable_residence_word",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "D-03": [
@@ -478,6 +483,11 @@ METHOD_ROUTES = {
       "test_paper_through_risk_lean.py",
       "test_actual_history_risk_flag_and_transitive_axioms",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_final_original_chronological_false_lean.py",
+      "test_D_03_false_danger_after_success_revokes_it",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "D-04": [
@@ -502,6 +512,11 @@ METHOD_ROUTES = {
       "test_next06_committed_path_law.py",
       "test_committed_model_identity_persists_between_stages",
       "EXACT_CHECK"
+    ],
+    [
+      "test_final_original_chronological_false_lean.py",
+      "test_D_05_false_committed_rectangular_path_law_equality",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "D-06": [
