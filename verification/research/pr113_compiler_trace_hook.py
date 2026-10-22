@@ -107,7 +107,11 @@ def install():
         try:
             result = original_run(*args, **kwargs)
         except BaseException as exc:
-            _record(directory, command, path, source, error=exc)
+            # CalledProcessError/TimeoutExpired may carry the compiler's raw
+            # stdout/stderr even though no CompletedProcess was returned.
+            # Preserve those bytes; the collector still rejects invalid
+            # exception/non-mathematical outcomes.
+            _record(directory, command, path, source, outcome=exc, error=exc)
             raise
         _record(directory, command, path, source, outcome=result)
         return result
