@@ -287,6 +287,16 @@ METHOD_ROUTES = {
       "test_q05_actual_source_lean.py",
       "test_wrong_original_effect_cannot_compile",
       "SEMANTIC_NEGATIVE"
+    ],
+    [
+      "test_q05_original_margin_adapter_lean.py",
+      "test_exact_original_margin_type_and_axiom_dependencies",
+      "COMPILER_SOURCE"
+    ],
+    [
+      "test_q05_original_margin_adapter_lean.py",
+      "test_unproved_source_domination_cannot_be_ignored",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "A-01": [

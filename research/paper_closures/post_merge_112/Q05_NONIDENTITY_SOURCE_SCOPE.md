@@ -66,3 +66,28 @@ verifies that its defect exceeds `η`.
 common-mass machinery, frozen original `PermanssonLean/`, and the old
 negative X1 exact-GR result are reused unchanged. This fixture neither
 supersedes nor proves them.
+
+
+## Conditional original-API integration
+
+The concrete research module
+`PermanssonResearch/Quotient/Q05ActualOriginalMarginAdapter.lean`
+now constructs `sourcePointWitness` for the genuinely typed baseline and
+treatment models **conditional on** `VerifiedSourceDomination`. That record
+states two required kernel inequalities for **each** side: the common
+subkernel is dominated by the actual fine induced kernel, and its
+type-respecting projection is dominated by the actual coarse induced kernel.
+
+The module also supplies a fixed measurable Bool-world score, separate
+admitted intervention world-fixity, and a conditional
+`original_margin_of_verified_source_domination` using the genuine original
+`constitutiveMargin` on the entire two-start `B₁`. The exact
+`1/41 + 1/41 = 2/41` envelope comes from the source finite-retention
+kernel, not an assumed numerical TV error.
+
+**NOT CLOSED:** `VerifiedSourceDomination` must be proved from the
+actual `alpha -> P -> U` induced kernels, and the standalone rational
+values `19/90` and `1/5` must still be identified with the two
+whole-canonical-path original constitutive margins. Until those proofs
+compile with exact-head provenance and receive independent review, the
+conditional theorem is not a complete Q-05 acceptance certificate.

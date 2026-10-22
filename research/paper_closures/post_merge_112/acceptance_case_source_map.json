@@ -1750,6 +1750,18 @@
           "path": "verification/research/test_q05_actual_source_lean.py",
           "role": "SEMANTIC_NEGATIVE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_exact_original_margin_type_and_axiom_dependencies",
+          "path": "verification/research/test_q05_original_margin_adapter_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_unproved_source_domination_cannot_be_ignored",
+          "path": "verification/research/test_q05_original_margin_adapter_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
@@ -1757,7 +1769,8 @@
         "verification/research/test_next04_original_margin_lean.py",
         "verification/research/test_next04_projection_arithmetic.py",
         "verification/research/test_q05_nonidentity_source_fixture.py",
-        "verification/research/test_q05_actual_source_lean.py"
+        "verification/research/test_q05_actual_source_lean.py",
+        "verification/research/test_q05_original_margin_adapter_lean.py"
       ]
     },
     {
