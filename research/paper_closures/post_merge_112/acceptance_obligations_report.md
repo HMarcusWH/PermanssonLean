@@ -31,7 +31,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | Q-02 | PENDING | Correct boundaries; mismatched unbudgeted starts rejected | 6 | verification/research/test_next04_projection_arithmetic.py |
 | Q-03 | PENDING | Product mass proved, no independence assumption | 3 | verification/research/test_next03_dependent_three_stage.py, verification/research/test_a2_primitive_tv.py |
 | Q-04 | PENDING | Intervention defect charged rather than omitted | 2 | verification/research/test_localized_prefix_compiler.py, verification/research/test_next04_original_margin.py |
-| Q-05 | PENDING | No unqualified whole-path/Exact-GR transfer | 10 | verification/research/test_final04_source_lean.py, verification/research/test_next04_original_margin_lean.py, verification/research/test_next04_projection_arithmetic.py, verification/research/test_q05_nonidentity_source_fixture.py |
+| Q-05 | PENDING | No unqualified whole-path/Exact-GR transfer | 10 | verification/research/test_final04_source_lean.py, verification/research/test_next04_original_margin_lean.py, verification/research/test_next04_projection_arithmetic.py, verification/research/test_q05_nonidentity_source_fixture.py, verification/research/test_q05_actual_source_lean.py |
 | A-01 | PARTIAL_SCOPE | Finite dual equality checked; wrong supnorm test class rejected | 6 | verification/research/test_paper_metric_coupling_lean.py, verification/research/test_a3_contractive.py |
 | A-02 | PARTIAL_SCOPE | Missing strict contraction/uniqueness exposed | 13 | verification/research/test_paper_invariant_lean.py, verification/research/test_a3_contractive.py |
 | A-03 | PARTIAL_SCOPE | Bounded-diameter conversion not applied | 7 | verification/research/test_a3_contractive.py |

@@ -1719,13 +1719,26 @@
           "path": "verification/research/test_q05_nonidentity_source_fixture.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_actual_typed_primitive_models_and_axioms",
+          "path": "verification/research/test_q05_actual_source_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_wrong_original_effect_cannot_compile",
+          "path": "verification/research/test_q05_actual_source_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_final04_source_lean.py",
         "verification/research/test_next04_original_margin_lean.py",
         "verification/research/test_next04_projection_arithmetic.py",
-        "verification/research/test_q05_nonidentity_source_fixture.py"
+        "verification/research/test_q05_nonidentity_source_fixture.py",
+        "verification/research/test_q05_actual_source_lean.py"
       ]
     },
     {

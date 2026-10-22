@@ -18,7 +18,7 @@ class OriginalMethodRoutes(unittest.TestCase):
                             r["test_method_candidates"] and
                             r["effective_accepted"] is False
                             for r in rows))
-        self.assertEqual(sum(len(r["test_method_candidates"]) for r in rows), 91)
+        self.assertEqual(sum(len(r["test_method_candidates"]) for r in rows), 93)
         self.assertEqual(source["status"], "UNREVIEWED_CANDIDATE_ONLY")
         selected = routes.validated_routes([r["case_id"] for r in rows])
         for row in rows:

@@ -262,6 +262,16 @@ METHOD_ROUTES = {
       "test_q05_nonidentity_source_fixture.py",
       "test_baseline_only_witness_misses_treatment_reachable_state",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_q05_actual_source_lean.py",
+      "test_actual_typed_primitive_models_and_axioms",
+      "COMPILER_SOURCE"
+    ],
+    [
+      "test_q05_actual_source_lean.py",
+      "test_wrong_original_effect_cannot_compile",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "A-01": [
