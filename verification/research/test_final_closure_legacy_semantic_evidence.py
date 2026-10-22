@@ -93,6 +93,23 @@ class LegacyEvidenceContract(unittest.TestCase):
             with self.assertRaises(MutationEvidenceError):
                 legacy.test_observations(root)
 
+    def test_cross_case_method_and_extra_compiler_member_rejected(self):
+        with tempfile.TemporaryDirectory(prefix="pr113-cross-case-") as td:
+            root = Path(td)
+            hook._record(str(root), ["lake", "env", "lean", "probe.lean"],
+                         "probe.lean", b"example : False := by trivial",
+                         outcome=types.SimpleNamespace(
+                             returncode=1, stdout="error: unsolved goals",
+                             stderr=""))
+            with self.assertRaises(MutationEvidenceError):
+                legacy.test_observations(root, expected_case="X-01")
+            with self.assertRaises(MutationEvidenceError):
+                legacy.test_observations(root, expected_methods="test_original")
+            event = next(root.glob("event-*"))
+            (event / "unexpected.txt").write_text("smuggled evidence")
+            with self.assertRaises(MutationEvidenceError):
+                legacy.test_observations(root)
+
     def test_unexecuted_and_unreviewed_cannot_become_case_acceptance(self):
         with tempfile.TemporaryDirectory(prefix="pr113-legacy-payload-") as td:
             target = Path(td) / "sample.json"
