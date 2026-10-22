@@ -44,6 +44,68 @@ structure VerifiedSourceDomination where
       (coarseModel t).inducedKernel.comap
         compression.stateMap compression.stateMap_measurable
 
+/-- For a genuinely finite state carrier, eventwise domination is entailed
+by domination of EVERY singleton atom; no special event is skipped. -/
+theorem finiteMeasureLeOfAtoms
+    {Z : Type*} [Fintype Z] [MeasurableSpace Z]
+    [MeasurableSingletonClass Z]
+    (μ ν : Measure Z)
+    (hatom : ∀ z : Z, μ {z} ≤ ν {z}) : μ ≤ ν := by
+  classical
+  apply Measure.le_iff.mpr
+  intro E hE
+  let selected : Finset Z := Finset.univ.filter (fun z => z ∈ E)
+  have hselected : (selected : Set Z) = E := by
+    ext z
+    simp [selected]
+  calc
+    μ E = μ (selected : Set Z) := by rw [hselected]
+    _ = ∑ z ∈ selected, μ {z} :=
+      (Measure.sum_measure_singleton).symm
+    _ ≤ ∑ z ∈ selected, ν {z} :=
+      Finset.sum_le_sum (fun z _ => hatom z)
+    _ = ν (selected : Set Z) :=
+      Measure.sum_measure_singleton
+    _ = ν E := by rw [hselected]
+
+/-- An exact original-kernel atom contract: every fine atom AND every
+projected coarse atom must dominate its actual common source row. Unlike a
+norm bound, it is an all-state, all-atom, both-protocol specification. -/
+structure VerifiedSourceAtomDomination where
+  fine : ∀ (t : Bool) (y z : FineState),
+    (commonSourceKernel t) y {z} ≤
+      (fineModel t).inducedKernel y {z}
+  projected : ∀ (t : Bool) (y : FineState) (z : CoarseState),
+    ((commonSourceKernel t) y).map compression.stateMap {z} ≤
+      (coarseModel t).inducedKernel (compression.stateMap y) {z}
+
+/-- Complete row domination follows from the source's actual finite atom
+inequalities. This avoids treating a few sampled histories or a positive
+reported total-variation estimate as full kernel order. -/
+theorem sourceDominationOfAtoms
+    (h : VerifiedSourceAtomDomination) : VerifiedSourceDomination := by
+  refine ⟨?_, ?_⟩
+  · intro t
+    change ∀ y, (commonSourceKernel t) y ≤ (fineModel t).inducedKernel y
+    intro y
+    exact finiteMeasureLeOfAtoms _ _ (h.fine t y)
+  · intro t
+    change ∀ y,
+      ((commonSourceKernel t).map compression.stateMap) y ≤
+        ((coarseModel t).inducedKernel.comap
+          compression.stateMap compression.stateMap_measurable) y
+    intro y
+    rw [Kernel.map_apply _ compression.stateMap_measurable,
+        Kernel.comap_apply]
+    exact finiteMeasureLeOfAtoms _ _ (h.projected t y)
+
+/-- Once the eight finite-row atom obligations are discharged, their
+ALL-event consequences provide the genuine original PointWitness. -/
+noncomputable def sourcePointWitnessOfAtoms
+    (h : VerifiedSourceAtomDomination) (t : Bool) :
+    PointWitness compression (fineModel t) (coarseModel t) :=
+  sourcePointWitness (sourceDominationOfAtoms h) t
+
 /-- All the other PointWitness fields are derived from the source, not assumed.
 The two domination premises above are the precise open mathematical tasks. -/
 noncomputable def sourcePointWitness
