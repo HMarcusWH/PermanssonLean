@@ -190,6 +190,7 @@ end PermanssonResearch.MultipleLimit.GrowingBlock
         "method": "test_D_07_finite_survival_does_not_imply_infinite_safety",
         "body": """
 namespace PermanssonResearch.ReverseSolver.InfiniteSafety
+open ControlledKernel FiniteMonitor
 example : limitValue leakageSystem leakageTarget 0 = (99 : ℝ) / 100 := by
   exact leakage_limitValue
 end PermanssonResearch.ReverseSolver.InfiniteSafety
