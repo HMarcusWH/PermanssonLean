@@ -597,10 +597,17 @@
           "path": "verification/research/test_paper_strategy_economic_lean.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_S_01_no_terminal_correction_is_false",
+          "path": "verification/research/test_pr113_semantic_second_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_paper_strategy_economic_lean.py"
+        "verification/research/test_paper_strategy_economic_lean.py",
+        "verification/research/test_pr113_semantic_second_candidates.py"
       ]
     },
     {
@@ -766,11 +773,18 @@
           "path": "verification/research/test_f1_multiagent_protocols.py",
           "role": "EXACT_CHECK",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_M_01_null_key_is_not_free_initial_support",
+          "path": "verification/research/test_pr113_semantic_second_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_autonomy_ae_lean.py",
-        "verification/research/test_f1_multiagent_protocols.py"
+        "verification/research/test_f1_multiagent_protocols.py",
+        "verification/research/test_pr113_semantic_second_candidates.py"
       ]
     },
     {
@@ -2123,11 +2137,18 @@
           "path": "verification/research/test_a3_contractive.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_A_02_identity_kernel_is_not_strictly_contractive",
+          "path": "verification/research/test_pr113_semantic_second_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_invariant_lean.py",
-        "verification/research/test_a3_contractive.py"
+        "verification/research/test_a3_contractive.py",
+        "verification/research/test_pr113_semantic_second_candidates.py"
       ]
     },
     {
@@ -2572,10 +2593,17 @@
           "path": "verification/research/test_d2_residence.py",
           "role": "EXACT_CHECK",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_D_01_hitting_is_not_residence",
+          "path": "verification/research/test_pr113_semantic_second_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_d2_residence.py"
+        "verification/research/test_d2_residence.py",
+        "verification/research/test_pr113_semantic_second_candidates.py"
       ]
     },
     {
@@ -3664,10 +3692,17 @@
           "path": "verification/research/test_lane_c11_stationary.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_C11_01_zero_dimensional_family_is_rejected",
+          "path": "verification/research/test_pr113_semantic_second_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_lane_c11_stationary.py"
+        "verification/research/test_lane_c11_stationary.py",
+        "verification/research/test_pr113_semantic_second_candidates.py"
       ]
     },
     {
@@ -3766,11 +3801,18 @@
           "path": "verification/research/test_final_closure_missing_original_positives.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_C11_02_corrupted_stationary_report_is_rejected",
+          "path": "verification/research/test_pr113_semantic_second_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_lane_c11_stationary.py",
-        "verification/research/test_final_closure_missing_original_positives.py"
+        "verification/research/test_final_closure_missing_original_positives.py",
+        "verification/research/test_pr113_semantic_second_candidates.py"
       ]
     },
     {
@@ -4159,11 +4201,18 @@
           "path": "verification/research/test_x1_commons.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_XPLUS_01_constructed_original_margin_is_not_zero",
+          "path": "verification/research/test_pr113_semantic_second_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_strategy_economic_lean.py",
-        "verification/research/test_x1_commons.py"
+        "verification/research/test_x1_commons.py",
+        "verification/research/test_pr113_semantic_second_candidates.py"
       ]
     },
     {
