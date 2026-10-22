@@ -966,6 +966,12 @@
           "path": "verification/research/test_final05_measurable_lean.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_source_bound_non_dirac_asymmetric_whole_path",
+          "path": "verification/research/test_next03_asymmetric_common_swap_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [

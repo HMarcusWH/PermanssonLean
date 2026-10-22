@@ -154,6 +154,11 @@ METHOD_ROUTES = {
       "test_final05_measurable_lean.py",
       "test_matched_asymmetric_source_witnesses",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_next03_asymmetric_common_swap_lean.py",
+      "test_source_bound_non_dirac_asymmetric_whole_path",
+      "COMPILER_SOURCE"
     ]
   ],
   "F-02": [
