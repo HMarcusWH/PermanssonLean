@@ -69,6 +69,68 @@ class FullScopeContractTests(unittest.TestCase):
         with self.assertRaises(EvidenceError):
             full.require_full_source(evidence, cases, claims, selection)
 
+    def test_full_release_conjunction_uses_authenticated_external_artifacts(self):
+        evidence, cases, claims, selection = valid_inputs()
+        pdf = "d"*64
+        pages = {"page-1.png": "1"*64, "page-2.png": "2"*64}
+        ids = sorted(full.ORIGINAL_CLAIMS)
+        manifest = {
+            "status": "APPROVED_SOURCE_BOUND",
+            "source_commit_sha": "f"*40,
+            "claims": ids, "approved_manuscript_claims": ids,
+            "accepted_claim_receipts": [
+                {"claim_id": cid, "receipt_sha256": "a"*64} for cid in ids],
+            "pdf_sha256": pdf, "pdf_pages": pages, "pdf_page_count": 2,
+            "empirical_identification_status": "NOT_ESTABLISHED",
+            "scientific_limitations": ["No empirical GR/PR certificate"],
+            "reproduction_evidence_sha256": "b"*64,
+            "archive_evidence_sha256": "c"*64,
+        }
+        provenance = {
+            "M": "f"*40,
+            "scholarly_reviews": [
+                {"pdf_sha256": pdf, "pages": pages, "claim_ids": ids}],
+            "reproduction_evidence": {
+                "status": "TWO_CLEAN_SOURCE_BUILDS",
+                "source_commit_sha": "f"*40,
+                "pdf_sha256": pdf, "artifact_sha256": "b"*64,
+                "authenticated_ci_artifact": True},
+            "archive_evidence": {
+                "status": "COMPLETE_ARCHIVE_REPLAY",
+                "source_commit_sha": "f"*40,
+                "pdf_sha256": pdf, "artifact_sha256": "c"*64,
+                "authenticated_ci_artifact": True},
+        }
+        # This is explicitly a synthetic contract graph. The real provenance
+        # authenticator cannot yet issue these artifacts; no release is claimed.
+        success = full.require_full_release(
+            evidence, cases, claims, selection, manifest, provenance)
+        self.assertEqual(success["status"],
+                         "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY")
+        for defect in ("10claims", "44cases", "no_scholarly", "no_repro",
+                       "no_archive", "wrong_pdf_count", "wrong_merged_m"):
+            import copy
+            e, m, p = copy.deepcopy(evidence), copy.deepcopy(manifest), copy.deepcopy(provenance)
+            if defect == "10claims":
+                e["effective_claims"].pop()
+                e["accepted_claim_count"] = 10
+            elif defect == "44cases":
+                e["effective_cases"].pop("C-45")
+                e["accepted_case_count"] = 44
+                e["pending_case_count"] = 1
+            elif defect == "no_scholarly":
+                p["scholarly_reviews"] = []
+            elif defect == "no_repro":
+                p["reproduction_evidence"] = None
+            elif defect == "no_archive":
+                p["archive_evidence"] = None
+            elif defect == "wrong_pdf_count":
+                m["pdf_page_count"] = 1
+            else:
+                m["source_commit_sha"] = "e"*40
+            with self.subTest(defect=defect), self.assertRaises(EvidenceError):
+                full.require_full_release(e, cases, claims, selection, m, p)
+
     def test_premerge_full_gates_full_review_and_requires_no_future_M(self):
         evidence, cases, claims, selection = valid_inputs()
         receipt = {
