@@ -1,0 +1,79 @@
+name: PR113 Clean Paper Rebuild Candidate
+
+on:
+  push:
+    branches:
+      - research/final-mathematical-closure
+    paths:
+      - 'release/mathematical-closure-1/**'
+      - 'research_papers/mathematical_closure/**'
+      - '.github/workflows/pr113-clean-paper-rebuild.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  clean-paper-rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Install independent TeX/PDF render dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
+            texlive-latex-base texlive-latex-recommended \
+            texlive-latex-extra texlive-pictures \
+            texlive-fonts-recommended poppler-utils
+      - name: Rebuild exact H from two separate no-hardlink source clones
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 release/mathematical-closure-1/reproduce_clean_sources.py \
+            --source-head "$GITHUB_SHA" \
+            --out "$RUNNER_TEMP/perm-clean-rebuild"
+      - name: Attach honest execution identity, NOT approval
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          out = Path(os.environ["RUNNER_TEMP"]) / "perm-clean-rebuild"
+          report = json.loads((out/"reproduction_receipt.json").read_text())
+          assert report["status"] == "REPRODUCIBLE_DRAFT_ONLY"
+          assert report["source_commit_sha"] == os.environ["GITHUB_SHA"]
+          assert report["independent_source_roots"] == 2
+          identity = {
+              "format": "Permansson.CICleanRebuildCandidate.v1",
+              "status": "EXECUTED_DRAFT_ONLY_NO_SCHOLARLY_REVIEW",
+              "source_head": os.environ["GITHUB_SHA"],
+              "github_repository": os.environ["GITHUB_REPOSITORY"],
+              "github_workflow": os.environ["GITHUB_WORKFLOW"],
+              "github_run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "github_run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "github_job": os.environ["GITHUB_JOB"],
+              "pdf_sha256": report["pdf_sha256"],
+              "archive_sha256": report["archive_sha256"],
+              "authenticated_ci_artifact": False,
+              "scientific_release_approved": False,
+          }
+          assert identity["github_repository"] == "HMarcusWH/PermanssonLean"
+          assert identity["github_job"] == "clean-paper-rebuild"
+          (out/"ci_execution_identity.json").write_text(
+              json.dumps(identity, sort_keys=True, indent=2)+"\n")
+          PY
+      - name: Retain both genuine draft source-root outputs for independent verification
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-clean-paper-rebuild-draft
+          path: ${{ runner.temp }}/perm-clean-rebuild/
+          retention-days: 30
+          if-no-files-found: error
