@@ -55,6 +55,28 @@ class OriginalSourceMapTests(unittest.TestCase):
         self.assertTrue(any(".SourceBoundExactWitness." in d["declaration"]
                             for d in byid["Q3"]["declarations"]))
 
+    def test_mandatory_claim_support_coverage(self):
+        byid = {c["claim_id"]: c for c in claims.generate()["claims"]}
+        required = {
+            "Q2": {"point_witness_output"},
+            "Q3": {"correct_frozen_discounted_budget",
+                   "wrong_frozen_discounted_budget"},
+            "M2": {"matched_closed_loop_all_initial_paths",
+                   "matched_open_loop_all_initial_paths"},
+            "M3": {"matched_open_worlds_both_frozen"},
+            "N2": {"actual_restricted_gap_of_identified_classes"},
+            "N3": {"certified_boolean_score_exact", "boolean_score_bounded"},
+            "D9": {"physically_distinct_classes_with_shared_descriptor",
+                   "actual_mixed_initial_nonlinear_expectation",
+                   "exact_two_absorbing_rational_scores"},
+        }
+        for cid, names in required.items():
+            with self.subTest(cid=cid):
+                actual = {d["declaration"].rsplit(".", 1)[-1]
+                          for d in byid[cid]["declarations"]}
+                self.assertTrue(names <= actual)
+                self.assertFalse(byid[cid]["accepted"])
+
     def test_acceptance_obligations_report_is_deterministic_and_not_approved(self):
         text = report.render()
         self.assertEqual(report.OUTPUT.read_text(encoding="utf-8"), text)

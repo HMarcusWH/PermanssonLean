@@ -31,6 +31,12 @@
           "header_present": true,
           "path": "PermanssonResearch/Quotient/DiscountedCanonicalMarginClosure.lean",
           "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure.point_witness_output",
+          "header_present": true,
+          "path": "PermanssonResearch/Quotient/DiscountedCanonicalMarginClosure.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
         }
       ],
       "independent_review_receipts": [],
@@ -52,6 +58,18 @@
       "declarations": [
         {
           "declaration": "PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.SourceBoundExactWitness.exactKernelPointWitness",
+          "header_present": true,
+          "path": "PermanssonResearch/Quotient/DiscountedCanonicalWitnessExamples.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.correct_frozen_discounted_budget",
+          "header_present": true,
+          "path": "PermanssonResearch/Quotient/DiscountedCanonicalWitnessExamples.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.wrong_frozen_discounted_budget",
           "header_present": true,
           "path": "PermanssonResearch/Quotient/DiscountedCanonicalWitnessExamples.lean",
           "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
@@ -114,6 +132,18 @@
           "header_present": true,
           "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
           "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_loop_all_initial_paths",
+          "header_present": true,
+          "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_loop_all_initial_paths",
+          "header_present": true,
+          "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
         }
       ],
       "independent_review_receipts": [],
@@ -140,6 +170,12 @@
         },
         {
           "declaration": "PermanssonResearch.MultiAgent.FinalMatchedAsymmetry.wrong_asymmetric_input_change_is_detectable",
+          "header_present": true,
+          "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedExamples.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_worlds_both_frozen",
           "header_present": true,
           "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedExamples.lean",
           "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
@@ -212,6 +248,12 @@
           "header_present": true,
           "path": "PermanssonResearch/ReverseSolver/NonlinearPhaseBlindClassGeometry.lean",
           "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.actual_restricted_gap_of_identified_classes",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeExpectedScore.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
         }
       ],
       "independent_review_receipts": [],
@@ -241,6 +283,18 @@
         },
         {
           "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.boolean_rational_objective_eq_actual",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.certified_boolean_score_exact",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.boolean_score_bounded",
           "header_present": true,
           "path": "PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean",
           "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
@@ -309,6 +363,24 @@
         },
         {
           "declaration": "PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_mixed_nonlinear_half_not_barycenter",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.physically_distinct_classes_with_shared_descriptor",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_mixed_initial_nonlinear_expectation",
+          "header_present": true,
+          "path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+          "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"
+        },
+        {
+          "declaration": "PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.exact_two_absorbing_rational_scores",
           "header_present": true,
           "path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
           "review_status": "PENDING_AXIOMS_SEMANTIC_AND_INDEPENDENT_SCOPE"

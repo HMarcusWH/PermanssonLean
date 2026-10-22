@@ -83,16 +83,16 @@ This report is derived from unchanged original criteria and source mappings. It 
 | Claim | Owner source | Fully qualified declaration count | Status |
 |---|---|---:|---|
 | Q1 | PermanssonResearch/Quotient/DiscountedCanonicalSourceWitness.lean | 1 | SOURCE_PRESENT_REVIEW_PENDING |
-| Q2 | PermanssonResearch/Quotient/DiscountedCanonicalMarginClosure.lean | 1 | SOURCE_PRESENT_REVIEW_PENDING |
-| Q3 | PermanssonResearch/Quotient/DiscountedCanonicalWitnessExamples.lean | 1 | SOURCE_PRESENT_REVIEW_PENDING |
+| Q2 | PermanssonResearch/Quotient/DiscountedCanonicalMarginClosure.lean | 2 | SOURCE_PRESENT_REVIEW_PENDING |
+| Q3 | PermanssonResearch/Quotient/DiscountedCanonicalWitnessExamples.lean | 3 | SOURCE_PRESENT_REVIEW_PENDING |
 | M1 | PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedProtocols.lean | 2 | SOURCE_PRESENT_REVIEW_PENDING |
-| M2 | PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean | 2 | SOURCE_PRESENT_REVIEW_PENDING |
-| M3 | PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedExamples.lean | 2 | SOURCE_PRESENT_REVIEW_PENDING |
+| M2 | PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean | 4 | SOURCE_PRESENT_REVIEW_PENDING |
+| M3 | PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedExamples.lean | 3 | SOURCE_PRESENT_REVIEW_PENDING |
 | N1 | PermanssonResearch/ReverseSolver/NonlinearPeriodThreeStationary.lean | 2 | SOURCE_PRESENT_REVIEW_PENDING |
-| N2 | PermanssonResearch/ReverseSolver/NonlinearPeriodThreeExpectedScore.lean | 4 | SOURCE_PRESENT_REVIEW_PENDING |
-| N3 | PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean | 2 | SOURCE_PRESENT_REVIEW_PENDING |
+| N2 | PermanssonResearch/ReverseSolver/NonlinearPeriodThreeExpectedScore.lean | 5 | SOURCE_PRESENT_REVIEW_PENDING |
+| N3 | PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean | 4 | SOURCE_PRESENT_REVIEW_PENDING |
 | D8 | PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean | 3 | SOURCE_PRESENT_REVIEW_PENDING |
-| D9 | PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean | 2 | SOURCE_PRESENT_REVIEW_PENDING |
+| D9 | PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean | 6 | SOURCE_PRESENT_REVIEW_PENDING |
 
 ## Closure protocol
 
