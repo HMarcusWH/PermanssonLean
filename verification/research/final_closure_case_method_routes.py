@@ -252,6 +252,16 @@ METHOD_ROUTES = {
       "test_next04_projection_arithmetic.py",
       "test_repeated_tiny_leaks_do_not_justify_exact_invariance",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_q05_nonidentity_source_fixture.py",
+      "test_exact_canonical_discounted_values_for_both_original_starts",
+      "EXACT_CHECK"
+    ],
+    [
+      "test_q05_nonidentity_source_fixture.py",
+      "test_baseline_only_witness_misses_treatment_reachable_state",
+      "SCOPE_BOUNDARY"
     ]
   ],
   "A-01": [
