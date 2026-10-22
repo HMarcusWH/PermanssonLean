@@ -17,6 +17,7 @@ from final_closure_case_receipts import (
     load_detached_bundle, effective_acceptance,
 )
 from final_closure_schema import validate_overlay
+from final_closure_full_contract import require_full_release
 import post_merge_102_verify as historical_audit
 import re
 import subprocess
@@ -172,7 +173,7 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
     except EvidenceError as exc:
         raise GateError(str(exc)) from exc
     summary = audit()
-    check(scope in {"full45-strict", "scoped-release-strict"},
+    check(scope in {"full45-strict", "scoped-release-strict", "full-release-strict"},
           "unknown strict acceptance scope")
     check(isinstance(receipts, dict) and
           receipts.get("format") == DETACHED_FORMAT,
@@ -195,6 +196,7 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
     except (AuthenticationError, EvidenceError, OSError) as exc:
         raise GateError(str(exc)) from exc
 
+    full_result = {}
     if scope == "full45-strict":
         check(result["accepted_case_count"] == 45 and
               result["pending_case_count"] == 0,
@@ -238,14 +240,23 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
               bool(manifest.get("scientific_limitations")) and
               manifest.get("empirical_identification_status") == "NOT_ESTABLISHED",
               "claim/limitation boundaries missing or empirical proof invented")
-    return {**summary, **result, "strict": scope,
+    if scope == "full-release-strict":
+        try:
+            full_result = require_full_release(
+                result, decisions, inventory["claims"],
+                read_json(NEW / "acceptance_case_source_map.json"),
+                manifest, provenance)
+        except EvidenceError as exc:
+            raise GateError(str(exc)) from exc
+    return {**summary, **result, **full_result, "strict": scope,
             "source": provenance["M"], "frozen_head": provenance["H"]}
 
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=("audit", "full45-strict",
-                                      "scoped-release-strict"), default="audit")
+                                      "scoped-release-strict",
+                                      "full-release-strict"), default="audit")
     ap.add_argument("--receipts", type=Path)
     ap.add_argument("--manifest", type=Path)
     ap.add_argument("--bundle", type=Path,

@@ -61,7 +61,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--phase",
                         choices=("premerge", "premerge-full", "full45-strict",
-                                 "scoped-release-strict"),
+                                 "scoped-release-strict",
+                                 "full-release-strict"),
                         required=True)
     parser.add_argument("--receipts", type=Path, required=True)
     parser.add_argument("--bundle", type=Path, required=True)
