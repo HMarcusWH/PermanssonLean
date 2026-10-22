@@ -42,6 +42,36 @@ def git_head() -> str:
     return p.stdout.strip()
 
 
+def committed_file_bytes(head: str, file: Path, *, root: Path = ROOT) -> bytes:
+    """Require the actual committed Git blob and reject local substitution.
+
+    Matching rev-parse HEAD alone does not establish the source file bytes.
+    Clean compiler products and independent execution remain separate gates.
+    """
+    root = root.resolve()
+    if not SHA40.fullmatch(head):
+        raise MutationEvidenceError("invalid frozen source commit identity")
+    if file.is_symlink() or not file.is_file():
+        raise MutationEvidenceError("source symlink or missing file")
+    target = file.resolve()
+    if not target.is_relative_to(root):
+        raise MutationEvidenceError("source escapes frozen checkout")
+    relative = target.relative_to(root).as_posix()
+    if not relative or ":" in relative:
+        raise MutationEvidenceError("unsupported tracked source path")
+    try:
+        record = subprocess.run(
+            ["git", "cat-file", "blob", f"{head}:{relative}"],
+            cwd=root, capture_output=True, timeout=30)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise MutationEvidenceError("committed source unavailable") from exc
+    if record.returncode:
+        raise MutationEvidenceError("source not tracked at frozen Git head")
+    actual = target.read_bytes()
+    if actual != record.stdout:
+        raise MutationEvidenceError("source bytes differ from frozen Git blob")
+    return actual
+
 def lean_result(source: Path):
     try:
         return subprocess.run(["lake", "env", "lean", str(source)],
@@ -83,6 +113,8 @@ def produce(head: str, *, true_source: Path, mutant: Path, test_path: Path,
         raise MutationEvidenceError("stale or synthetic Git HEAD")
     if out.resolve().is_relative_to(ROOT.resolve()):
         raise MutationEvidenceError("detached evidence must be out of the source tree")
+    if true_source.is_symlink() or test_path.is_symlink():
+        raise MutationEvidenceError("symlink source/test cannot certify")
     source = true_source.resolve()
     test = test_path.resolve()
     if (not source.is_relative_to(ROOT.resolve()) or
@@ -90,13 +122,13 @@ def produce(head: str, *, true_source: Path, mutant: Path, test_path: Path,
         not source.is_file() or source.suffix != ".lean" or
         not test.is_file() or test.suffix != ".py"):
         raise MutationEvidenceError("source/test must be genuine repo files")
-    test_bytes = test.read_bytes()
+    test_bytes = committed_file_bytes(head, test)
     if not re.search(r"(?m)^\s*def\s+" + re.escape(test_name) + r"\(",
                      test_bytes.decode("utf-8")):
         raise MutationEvidenceError("test name not defined by source")
     if not case_id or not isinstance(claim_ids, list):
         raise MutationEvidenceError("case/review ownership missing")
-    original_bytes = source.read_bytes()
+    original_bytes = committed_file_bytes(head, source)
     mutant_bytes = mutant.read_bytes()
     if not shutil.which("lake"):
         raise MutationEvidenceError("pinned Lean required, cannot skip")
