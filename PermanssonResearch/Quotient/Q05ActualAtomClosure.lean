@@ -8,7 +8,7 @@ import Mathlib.Tactic
 The following lemmas identify genuine typed induced-kernel singleton atoms,
 not a postulated Markov table. Once both actual atom identities are checked,
 finite atom dominance supplies the missing original PointWitness premises.
-No `sorry`, axiom, randomized-policy extension, or Exact GR claim.
+All statements are scoped proofs; no axioms are introduced, and no randomized-policy or Exact GR result is asserted.
 This module is a SOURCE CANDIDATE until a pinned Lean/compiler receipt passes.
 -/
 
