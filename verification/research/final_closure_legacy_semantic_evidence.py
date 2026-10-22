@@ -121,7 +121,7 @@ def assert_clean_checkout():
         raise MutationEvidenceError("Git source or selected test tree is dirty")
 
 
-def test_observations(directory):
+def test_observations(directory, *, expected_case=None, expected_methods=None):
     events = sorted(directory.glob("event-*/observation.json"))
     if len(events) > MAX_EVENT_COUNT:
         raise MutationEvidenceError("unbounded Lean capture event count")
@@ -135,6 +135,16 @@ def test_observations(directory):
         meta = json.loads(raw)
         if meta.get("format") != "Permansson.LegacyLeanCompilerObservation.v1":
             raise MutationEvidenceError("wrong compiler observation schema")
+        if (expected_case is not None and
+                meta.get("case_id_unverified") != expected_case):
+            raise MutationEvidenceError("cross-case compiler observation substituted")
+        if (expected_methods is not None and
+                meta.get("selected_method_unverified") != expected_methods):
+            raise MutationEvidenceError("cross-method compiler observation substituted")
+        allowed_members = {"observation.json", "source.lean", "stdout.log", "stderr.log"}
+        if (any(p.is_symlink() for p in root.iterdir()) or
+                any(p.name not in allowed_members for p in root.iterdir())):
+            raise MutationEvidenceError("unsafe or unexpected compiler observation member")
         total += len(raw)
         for label, field in (("source.lean", "source_sha256"),
                              ("stdout.log", "stdout_sha256"),
@@ -217,7 +227,9 @@ def run_case(head, case_id, row, output, timeout):
                 raise MutationEvidenceError("original unittest stdout/stderr over limit")
             (target / "test_stdout.log").write_bytes(stdout)
             (target / "test_stderr.log").write_bytes(stderr)
-            events = test_observations(capture)
+            events = test_observations(
+                capture, expected_case=case_id,
+                expected_methods=",".join(methods))
             record = {
                 "format": "Permansson.LegacyCaseTestExecutionCandidate.v1",
                 "case_id": case_id,
