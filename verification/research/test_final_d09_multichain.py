@@ -39,7 +39,10 @@ class D09Classwise(unittest.TestCase):
                  "actual_two_absorbing_full_path_mixture",
                  "exact_two_absorbing_rational_scores",
                  "actual_equal_weight_original_scores",
-                 "actual_multichain_classwise_differs_from_barycenter")
+                 "actual_multichain_classwise_differs_from_barycenter",
+                 "actual_mixed_initial_nonlinear_expectation",
+                 "actual_equal_mixture_original_nonlinear_score",
+                 "actual_mixed_nonlinear_half_not_barycenter")
         rc, out = compile_lean("\n".join(
             "#check "+name+"\n#print axioms "+name for name in names))
         self.assertEqual(rc, 0, out)
@@ -60,6 +63,22 @@ class D09Classwise(unittest.TestCase):
         self.assertNotRegex(out.lower(),
             r"unknown (module|identifier)|failed to import|parser error|out of memory|timed out")
         self.assertRegex(out.lower(), r"type mismatch|unsolved goals")
+
+
+    def test_wrong_single_mixed_canonical_score_cannot_be_five_sixths(self):
+        rc, out = compile_lean(
+            "open MeasureTheory\n"
+            "example :\n"
+            "  (∫ w, actualNonlinearPathScore w\n"
+            "    ∂(PermanssonResearch.ReverseSolver.FiniteStrategicRealization.realizedModel\n"
+            "       PermanssonResearch.ReverseSolver.C11.ReferenceExamples.twoAbsorbing).pathLaw\n"
+            "       equalWeightInitialLaw.toMeasure) = (5/6 : ℝ) := by\n"
+            "  exact actual_mixed_nonlinear_half_not_barycenter.1\n")
+        self.assertNotEqual(rc, 0, "incorrect mixed-law score was proved")
+        self.assertNotRegex(out.lower(),
+            r"unknown (module|identifier)|failed to import|parser error|out of memory|timed out")
+        self.assertRegex(out.lower(), r"type mismatch|unsolved goals")
+
 
 
 if __name__ == "__main__":
