@@ -14,7 +14,7 @@ the geometric-prefix theorem requires a projected Markov hypothesis.
 namespace PermanssonResearch.Quotient.Q01NonLumpable
 set_option autoImplicit false
 
-def observed (x : Fin 3) : Bool := x = 1
+def observed (x : Fin 3) : Bool := x == 1
 
 def fineStep (x : Fin 3) : Fin 3 :=
   if x = 0 then 1 else 0
