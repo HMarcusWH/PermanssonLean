@@ -345,6 +345,34 @@ example :
 end PermanssonResearch.Probability.A01SupnormClass
 """,
     },
+    "A-04": {
+        "source": "PermanssonResearch/Perturbation/A04FourOutputNecessityCountermodel.lean",
+        "test_path": "verification/research/test_pr113_semantic_factorization_candidates.py",
+        "method": "test_A_04_missing_fourth_output_changes_margin",
+        "body": """
+namespace PermanssonResearch.Perturbation.A04FourOutputNecessity
+example :
+    ∃ f : ℝ → ℝ → ℝ → ℝ,
+      ∀ base treated perturbedBase perturbedTreated : ℝ,
+        f base treated perturbedBase =
+          marginDifference base treated perturbedBase perturbedTreated := by
+  exact no_general_three_output_margin_formula
+end PermanssonResearch.Perturbation.A04FourOutputNecessity
+""",
+    },
+    "A-05": {
+        "source": "PermanssonResearch/Perturbation/A05SurvivalOccupationCountermodel.lean",
+        "test_path": "verification/research/test_pr113_semantic_factorization_candidates.py",
+        "method": "test_A_05_stationary_mass_is_not_forever_survival",
+        "body": """
+namespace PermanssonResearch.ReverseSolver.InfiniteSafety.A05OccupationBoundary
+example :
+    limitValue constantSystem safe 0 =
+      ((stationaryWeight (0 : Fin 2) : ℚ) : ℝ) := by
+  exact cannot_replace_full_path_survival_by_stationary_mass
+end PermanssonResearch.ReverseSolver.InfiniteSafety.A05OccupationBoundary
+""",
+    },
 }
 
 
