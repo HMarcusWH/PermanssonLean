@@ -94,7 +94,6 @@ This report is derived from unchanged original criteria and source mappings. It 
 | D8 | PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean | 3 | SOURCE_PRESENT_REVIEW_PENDING |
 | D9 | PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean | 6 | SOURCE_PRESENT_REVIEW_PENDING |
 
-
 ## Executable-route gaps (unreviewed; not acceptance)
 
 - Missing selected positive controls: 10 of 45.
