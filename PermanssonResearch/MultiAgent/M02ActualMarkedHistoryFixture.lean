@@ -73,9 +73,9 @@ next common/private opponent state of the original one-step history law. -/
 noncomputable def markedLaw (twist : Bool) (y : Y) :
     Measure (Bool × (Unit × Bool)) :=
   ((((game.openLoop (player false) (strictAnchor twist)).toModel world)
-    .oneStepHistoryKernel y).map
-      (opponentMark (S0 := Unit) (S1 := Unit) (S2 := Bool)
-        (X := Unit) (A1 := Bool) (A2 := Bool)))
+      .oneStepHistoryKernel y).map
+    (opponentMark (S0 := Unit) (S1 := Unit) (S2 := Bool)
+      (X := Unit) (A1 := Bool) (A2 := Bool)))
 
 theorem markedLaw_actual_source_atom (twist : Bool) (y : Y) (b k : Bool) :
     markedLaw twist y {(b, ((), k))} =
