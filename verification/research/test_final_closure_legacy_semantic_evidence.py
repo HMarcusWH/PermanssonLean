@@ -182,6 +182,27 @@ class LegacyEvidenceContract(unittest.TestCase):
         with self.assertRaises(MutationEvidenceError):
             legacy.covered_semantic_methods(("test_one", "test_one"), observed)
 
+    def test_replay_source_suggestions_require_original_declared_imports(self):
+        row = {
+            "historical_proof_declarations": [
+                {"path": "PermanssonResearch/X1/Actual.lean"}
+            ],
+            "new_claim_source_candidates": [
+                {"path": "PermanssonResearch/X1/Related.lean"}
+            ],
+        }
+        captured = (
+            b"import PermanssonResearch.X1.Actual Mathlib.Tactic\n"
+            b"example : False := by trivial\n")
+        self.assertEqual(
+            legacy.legacy_provider_candidates(row, captured),
+            ["PermanssonResearch/X1/Actual.lean"])
+        self.assertEqual(legacy.legacy_provider_candidates(
+            row, b"import PermanssonResearch.X1.Unrelated\n"
+                 b"example : False := by trivial\n"), [])
+        self.assertEqual(legacy.legacy_provider_candidates(
+            row, b"\xff\xfe"), [])
+
     def test_unexecuted_and_unreviewed_cannot_become_case_acceptance(self):
         with tempfile.TemporaryDirectory(prefix="pr113-legacy-payload-") as td:
             target = Path(td) / "sample.json"
