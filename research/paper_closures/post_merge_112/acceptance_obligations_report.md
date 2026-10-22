@@ -17,7 +17,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | X-03 | PARTIAL_SCOPE | Original constitutiveMargin equalities and exact attainers | 5 | verification/research/test_paper_x1_lean_closure.py, verification/research/test_x1_commons.py |
 | X-04 | PENDING | Lean proof fails at arithmetic/domain obligation; parser failure alone insufficient | 5 | verification/research/test_next03_tied_start_lean.py, verification/research/test_final_closure_missing_original_positives.py |
 | X-05 | PARTIAL_SCOPE | Typed kernel equality fails | 7 | verification/research/test_paper_x1_lean_closure.py, verification/research/test_final_closure_missing_original_positives.py |
-| X-06 | PARTIAL_SCOPE | Rejected; leakage theorem remains unchanged | 5 | verification/research/test_x1_commons.py, verification/research/test_e1_approx_quotient.py, verification/research/test_final_closure_missing_original_positives.py |
+| X-06 | PARTIAL_SCOPE | Rejected; leakage theorem remains unchanged | 5 | verification/research/test_x1_commons.py, verification/research/test_e1_approx_quotient.py, verification/research/test_final_closure_missing_original_positives.py, verification/research/test_final_closure_existing_false_semantics_lean.py |
 | S-01 | PARTIAL_SCOPE | Exact identity including terminal beta^N value | 6 | verification/research/test_paper_strategy_economic_lean.py |
 | S-02 | PARTIAL_SCOPE | Outside admitted information class; no verification theorem | 6 | verification/research/test_paper_information_lean.py, verification/research/test_d2_residence.py |
 | M-01 | PARTIAL_SCOPE | Full counterfactual path laws equal under stated premises | 5 | verification/research/test_paper_autonomy_ae_lean.py, verification/research/test_f1_multiagent_protocols.py |
@@ -53,9 +53,9 @@ This report is derived from unchanged original criteria and source mappings. It 
 | B-02 | PENDING | No unique-minimum or monotonicity inference | 3 | verification/research/test_lane_b2_sequential_effects.py, verification/research/test_b02_actual_original_margin_lean.py, verification/research/test_b02_local_nonisomorphic_margin_lean.py |
 | XPLUS-01 | PARTIAL_SCOPE | Correct source constructors and kappa1; no edit to old X1 | 4 | verification/research/test_paper_strategy_economic_lean.py, verification/research/test_x1_commons.py |
 | E-01 | PARTIAL_SCOPE | Rank-one/scalar promotion rejected | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_paper_specialized_boundary_lean.py |
-| E-02 | PARTIAL_SCOPE | No persistent witness transfer | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py |
-| E-03 | PARTIAL_SCOPE | No scalar shell reduction or unjustified inverse | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py |
-| E-04 | PARTIAL_SCOPE | No pseudoinverse positivity certificate or cancellation | 5 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py |
+| E-02 | PARTIAL_SCOPE | No persistent witness transfer | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py, verification/research/test_final_closure_existing_false_semantics_lean.py |
+| E-03 | PARTIAL_SCOPE | No scalar shell reduction or unjustified inverse | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py, verification/research/test_final_closure_existing_false_semantics_lean.py |
+| E-04 | PARTIAL_SCOPE | No pseudoinverse positivity certificate or cancellation | 5 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py, verification/research/test_final_closure_existing_false_semantics_lean.py |
 | E-05 | PARTIAL_SCOPE | No unqualified negative full-form conclusion | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_paper_specialized_boundary_lean.py |
 
 ## Fifteen case-specific historical objections
@@ -97,7 +97,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 ## Executable-route gaps (unreviewed; not acceptance)
 
 - Missing selected positive controls: 0 of 45.
-- Missing selected semantic false-mutant routes: 34 of 45.
+- Missing selected semantic false-mutant routes: 29 of 45.
 - Passing scope-boundary checks do **not** discharge the mandatory compiler-negative evidence obligation.
 - A selected method still requires source relevance, actual exact-head execution, intact logs, authenticated check-run attribution and independent approval.
 
@@ -105,10 +105,10 @@ This report is derived from unchanged original criteria and source mappings. It 
 |---|---:|---:|---:|
 | X-01 | 1 | 1 | 0 |
 | X-02 | 1 | 2 | 0 |
-| X-03 | 2 | 0 | 0 |
+| X-03 | 2 | 1 | 0 |
 | X-04 | 1 | 1 | 0 |
 | X-05 | 1 | 3 | 0 |
-| X-06 | 1 | 0 | 2 |
+| X-06 | 1 | 1 | 2 |
 | S-01 | 1 | 0 | 0 |
 | S-02 | 1 | 0 | 1 |
 | M-01 | 2 | 0 | 0 |
@@ -144,9 +144,9 @@ This report is derived from unchanged original criteria and source mappings. It 
 | B-02 | 3 | 2 | 1 |
 | XPLUS-01 | 1 | 0 | 1 |
 | E-01 | 1 | 0 | 1 |
-| E-02 | 1 | 0 | 2 |
-| E-03 | 1 | 0 | 2 |
-| E-04 | 1 | 0 | 2 |
+| E-02 | 1 | 1 | 2 |
+| E-03 | 1 | 1 | 2 |
+| E-04 | 1 | 1 | 2 |
 | E-05 | 1 | 0 | 1 |
 
 ## Closure protocol

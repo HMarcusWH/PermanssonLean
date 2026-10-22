@@ -53,6 +53,11 @@ METHOD_ROUTES = {
       "test_x1_commons.py",
       "test_prospective_full_region_infima_check_every_start",
       "EXACT_CHECK"
+    ],
+    [
+      "test_paper_x1_lean_closure.py",
+      "test_omitted_minimizing_start",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "X-04": [
@@ -104,6 +109,11 @@ METHOD_ROUTES = {
       "test_final_closure_missing_original_positives.py",
       "test_X_06_original_source_positive",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_final_closure_existing_false_semantics_lean.py",
+      "test_X_06_false_exact_gr_under_real_leakage",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "S-01": [
@@ -646,6 +656,11 @@ METHOD_ROUTES = {
       "test_final_closure_missing_original_positives.py",
       "test_E_02_original_source_positive",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_final_closure_existing_false_semantics_lean.py",
+      "test_E_02_false_legal_negative_witness_from_illegal_approximation",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "E-03": [
@@ -663,6 +678,11 @@ METHOD_ROUTES = {
       "test_final_closure_missing_original_positives.py",
       "test_E_03_original_source_positive",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_final_closure_existing_false_semantics_lean.py",
+      "test_E_03_false_two_dimensional_shell_collapse",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "E-04": [
@@ -680,6 +700,11 @@ METHOD_ROUTES = {
       "test_final_closure_missing_original_positives.py",
       "test_E_04_original_source_positive",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_final_closure_existing_false_semantics_lean.py",
+      "test_E_04_false_zero_shift_inverse",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "E-05": [

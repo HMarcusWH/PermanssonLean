@@ -220,6 +220,12 @@
           "path": "verification/research/test_x1_commons.py",
           "role": "EXACT_CHECK",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_omitted_minimizing_start",
+          "path": "verification/research/test_paper_x1_lean_closure.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
@@ -500,12 +506,19 @@
           "path": "verification/research/test_final_closure_missing_original_positives.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_X_06_false_exact_gr_under_real_leakage",
+          "path": "verification/research/test_final_closure_existing_false_semantics_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_x1_commons.py",
         "verification/research/test_e1_approx_quotient.py",
-        "verification/research/test_final_closure_missing_original_positives.py"
+        "verification/research/test_final_closure_missing_original_positives.py",
+        "verification/research/test_final_closure_existing_false_semantics_lean.py"
       ]
     },
     {
@@ -4187,11 +4200,18 @@
           "path": "verification/research/test_final_closure_missing_original_positives.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_E_02_false_legal_negative_witness_from_illegal_approximation",
+          "path": "verification/research/test_final_closure_existing_false_semantics_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_closure_boundaries.py",
-        "verification/research/test_final_closure_missing_original_positives.py"
+        "verification/research/test_final_closure_missing_original_positives.py",
+        "verification/research/test_final_closure_existing_false_semantics_lean.py"
       ]
     },
     {
@@ -4266,11 +4286,18 @@
           "path": "verification/research/test_final_closure_missing_original_positives.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_E_03_false_two_dimensional_shell_collapse",
+          "path": "verification/research/test_final_closure_existing_false_semantics_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_closure_boundaries.py",
-        "verification/research/test_final_closure_missing_original_positives.py"
+        "verification/research/test_final_closure_missing_original_positives.py",
+        "verification/research/test_final_closure_existing_false_semantics_lean.py"
       ]
     },
     {
@@ -4353,11 +4380,18 @@
           "path": "verification/research/test_final_closure_missing_original_positives.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_E_04_false_zero_shift_inverse",
+          "path": "verification/research/test_final_closure_existing_false_semantics_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_closure_boundaries.py",
-        "verification/research/test_final_closure_missing_original_positives.py"
+        "verification/research/test_final_closure_missing_original_positives.py",
+        "verification/research/test_final_closure_existing_false_semantics_lean.py"
       ]
     },
     {
