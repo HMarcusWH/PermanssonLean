@@ -11,6 +11,7 @@ DECLS = (
     "fine_world_fixed", "coarse_world_fixed",
     "admitted_fine_world_fixed", "admitted_coarse_world_fixed",
     "twoStartDomain_has_distinct_starts",
+    "entire_original_comparison_domain",
     "compression_noninjective",
     "actual_two_start_effects", "exact_margin_gap",
     "both_sides_every_strategic_row",
