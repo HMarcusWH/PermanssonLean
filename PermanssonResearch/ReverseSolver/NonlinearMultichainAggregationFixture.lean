@@ -103,4 +103,102 @@ theorem actual_multichain_classwise_differs_from_barycenter :
   rw [actual_equal_weight_original_scores]
   norm_num [booleanRationalScore, NonlinearOccupationBoundary.score]
 
+
+/-- The nonlinear integrand acts on the true infinite canonical path and
+evaluates its selected physical stationary class, not the stationary
+barycenter of a pair of point starts. -/
+noncomputable def actualNonlinearPathScore
+    (w : ℕ → JointState Unit (Fin 2)) : ℝ :=
+  (booleanClassFunctional observedPhysicalBool).functional
+    (observedOccupationLimit
+      (realizedModel twoAbsorbing).inducedKernel
+      (booleanClassFunctional observedPhysicalBool).descriptor w)
+
+theorem actualNonlinearPathScore_integrable
+    (y : JointState Unit (Fin 2)) :
+    Integrable actualNonlinearPathScore
+      ((realizedModel twoAbsorbing).pathLaw (Measure.dirac y)) := by
+  rcases y with ⟨s, x⟩
+  cases s
+  exact occupation_functional_integrable
+    (booleanClassFunctional observedPhysicalBool) twoAbsorbing x
+
+/-- Genuine initial-source-to-entire-path integration for every mixed law.
+The finite affine decomposition follows from the ORIGINAL typed canonical
+path law, not a separately stipulated probability distribution. -/
+theorem actual_mixed_initial_nonlinear_expectation
+    (μ : ProbabilityMeasure (JointState Unit (Fin 2))) :
+    (∫ w, actualNonlinearPathScore w
+      ∂(realizedModel twoAbsorbing).pathLaw μ.toMeasure) =
+      ∑ y : JointState Unit (Fin 2),
+        (μ.toMeasure {y}).toReal *
+          (∫ w, actualNonlinearPathScore w
+            ∂(realizedModel twoAbsorbing).pathLaw (Measure.dirac y)) := by
+  rw [actual_two_absorbing_full_path_mixture μ]
+  have hint (y : JointState Unit (Fin 2)) :
+      Integrable actualNonlinearPathScore
+        (μ.toMeasure {y} •
+          (realizedModel twoAbsorbing).pathLaw (Measure.dirac y)) := by
+    have hle : μ.toMeasure {y} ≤ μ.toMeasure Set.univ :=
+      measure_mono (Set.subset_univ _)
+    have htop : μ.toMeasure {y} ≠ ⊤ := by
+      rw [measure_univ] at hle
+      exact ne_top_of_le_ne_top (by norm_num : (1 : ℝ≥0∞) ≠ ⊤) hle
+    exact (actualNonlinearPathScore_integrable y).smul_measure htop
+  have h := integral_finsetSum_measure
+    (s := (Finset.univ : Finset (JointState Unit (Fin 2))))
+    (f := actualNonlinearPathScore)
+    (μ := fun y => μ.toMeasure {y} •
+      (realizedModel twoAbsorbing).pathLaw (Measure.dirac y))
+    (by intro y _; exact hint y)
+  simpa only [Finset.sum_univ, integral_smul_measure, smul_eq_mul] using h
+
+/-- The fifty-fifty initial law is explicitly a genuine probability measure
+on the original TWO PHYSICAL absorbing states. -/
+noncomputable def equalWeightInitialLaw :
+    ProbabilityMeasure (JointState Unit (Fin 2)) :=
+  ⟨((1/2 : ℝ≥0∞) • Measure.dirac (decode (0 : Fin 2))) +
+      ((1/2 : ℝ≥0∞) • Measure.dirac (decode (1 : Fin 2))), by
+    constructor
+    simp [Measure.add_apply, Measure.smul_apply]
+    norm_num⟩
+
+theorem equalWeightInitialLaw_singleton (y : JointState Unit (Fin 2)) :
+    (equalWeightInitialLaw.toMeasure {y}).toReal = (1/2 : ℝ) := by
+  rcases y with ⟨s, x⟩
+  cases s
+  fin_cases x <;>
+    norm_num [equalWeightInitialLaw, Measure.add_apply, Measure.smul_apply,
+      Measure.dirac_apply']
+
+/-- The single mixed-initial ORIGINAL infinite path law produces a classwise
+mean. This is not evaluating F on an averaged descriptor law. -/
+theorem actual_equal_mixture_original_nonlinear_score :
+    (∫ w, actualNonlinearPathScore w
+      ∂(realizedModel twoAbsorbing).pathLaw equalWeightInitialLaw.toMeasure) =
+      (actualObjective (booleanClassFunctional observedPhysicalBool)
+        twoAbsorbing (0 : Fin 2) +
+       actualObjective (booleanClassFunctional observedPhysicalBool)
+        twoAbsorbing (1 : Fin 2)) / 2 := by
+  rw [actual_mixed_initial_nonlinear_expectation]
+  simp [Fintype.sum_prod_type, Fin.sum_univ_two,
+    equalWeightInitialLaw_singleton, actualNonlinearPathScore,
+    actualObjective]
+  ring
+
+/-- Exact mixed-initial score one-half, unequal to scoring the barycenter
+five-sixths; the constant-descriptor class-identity control remains separate. -/
+theorem actual_mixed_nonlinear_half_not_barycenter :
+    (∫ w, actualNonlinearPathScore w
+      ∂(realizedModel twoAbsorbing).pathLaw equalWeightInitialLaw.toMeasure) =
+        (1/2 : ℝ) ∧
+    (∫ w, actualNonlinearPathScore w
+      ∂(realizedModel twoAbsorbing).pathLaw equalWeightInitialLaw.toMeasure) ≠
+        ((booleanRationalScore (1/2 : ℚ) : ℚ) : ℝ) := by
+  constructor
+  · rw [actual_equal_mixture_original_nonlinear_score]
+    exact actual_equal_weight_original_scores
+  · rw [actual_equal_mixture_original_nonlinear_score]
+    exact actual_multichain_classwise_differs_from_barycenter
+
 end PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture
