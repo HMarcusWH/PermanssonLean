@@ -152,6 +152,63 @@ example : dist (0 : ℝ) (1/10) ≤ 0 := by
   exact cannot_omit_treatment_report_error
 """,
     },
+    "A-03": {
+        "source": "PermanssonResearch/Probability/KantorovichTV.lean",
+        "test_path": "verification/research/test_pr113_semantic_boundary_candidates.py",
+        "method": "test_A_03_unbounded_TV_does_not_bound_W1",
+        "body": """
+namespace PermanssonResearch.Probability
+open PermanssonLean.ProbabilitySupport
+example {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) (C : ℝ) :
+    ¬ ∃ n : ℕ, (haveI := tailMix_isProbability hε.le hε1 n
+      eventTotalVariation (Measure.dirac (0 : ℝ)) (tailMix ε n) ≤ ε) ∧
+      ¬ W1DualLE (Measure.dirac (0 : ℝ)) (tailMix ε n) (C * ε) := by
+  exact tv_does_not_control_w1_on_real hε hε1 C
+end PermanssonResearch.Probability
+""",
+    },
+    "C-01": {
+        "source": "PermanssonResearch/MultipleLimit/GrowingBlockCounterexample.lean",
+        "test_path": "verification/research/test_pr113_semantic_boundary_candidates.py",
+        "method": "test_C_01_bounded_descriptor_occupation_nonconvergence",
+        "body": """
+namespace PermanssonResearch.MultipleLimit.GrowingBlock
+open PermanssonResearch.MultipleLimit.FiniteStateOccupation
+open Filter MeasureTheory
+open scoped Topology
+example :
+    ∃ π : ProbabilityMeasure (Fin 2),
+      Tendsto (fun n => empiricalOccupation descriptor (n+1) (Nat.succ_pos n))
+        atTop (𝓝 π) := by
+  exact descriptor_occupations_do_not_converge
+end PermanssonResearch.MultipleLimit.GrowingBlock
+""",
+    },
+    "D-07": {
+        "source": "PermanssonResearch/ReverseSolver/InfiniteSafetyLeakage.lean",
+        "test_path": "verification/research/test_pr113_semantic_boundary_candidates.py",
+        "method": "test_D_07_finite_survival_does_not_imply_infinite_safety",
+        "body": """
+namespace PermanssonResearch.ReverseSolver.InfiniteSafety
+example : limitValue leakageSystem leakageTarget 0 = (99 : ℝ) / 100 := by
+  exact leakage_limitValue
+end PermanssonResearch.ReverseSolver.InfiniteSafety
+""",
+    },
+    "E-01": {
+        "source": "PermanssonResearch/Specialized/SeamReduction.lean",
+        "test_path": "verification/research/test_pr113_semantic_boundary_candidates.py",
+        "method": "test_E_01_seam_invisibility_does_not_force_rank_one",
+        "body": """
+namespace PermanssonResearch.Specialized
+example (H : Matrix (Fin 2) (Fin 2) ℝ) (p : Fin 2)
+    (hsym : ∀ i j, H i j = H j i)
+    (hseam : ∀ i j, seam H p i j = 0) :
+    H.rank ≤ 1 := by
+  exact seam_rank_le_two H p hsym hseam
+end PermanssonResearch.Specialized
+""",
+    },
 }
 
 
