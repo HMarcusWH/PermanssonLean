@@ -76,3 +76,89 @@ def require_full_source(result: dict, case_ledger: dict,
         "claim_ids": sorted(ORIGINAL_CLAIMS),
         "not_yet_release": True,
     }
+
+
+def require_full_release(result: dict, case_ledger: dict, claims: list[dict],
+                         case_map: dict, manifest: dict,
+                         provenance: dict) -> dict:
+    """Conjoin full math, scholarly PDF, real M and authenticated build/archive.
+
+    Provenance MUST be built from external authenticated CI and scholarly
+    attestations, not copied from caller-supplied manifest flags. At present
+    authentication does not provide reproduction/archive evidence: until
+    ENG-08 is wired, this gate intentionally remains closed.
+    """
+    import re
+    source = require_full_source(result, case_ledger, claims, case_map)
+    if not isinstance(manifest, dict) or not isinstance(provenance, dict):
+        raise EvidenceError("full release lacks reviewed manuscript/provenance")
+    merged = provenance.get("M")
+    if not isinstance(merged, str) or not re.fullmatch(r"[0-9a-f]{40}", merged):
+        raise EvidenceError("actual merged M is unavailable")
+    if manifest.get("status") != "APPROVED_SOURCE_BOUND" or \
+       manifest.get("source_commit_sha") != merged:
+        raise EvidenceError("source-faithful approved M manuscript missing")
+    published = manifest.get("claims")
+    reviewed = manifest.get("approved_manuscript_claims")
+    if not isinstance(published, list) or \
+       published != reviewed or len(published) != 11 or \
+       len(set(published)) != 11 or set(published) != ORIGINAL_CLAIMS:
+        raise EvidenceError("paper is not approved for exactly all 11 claims")
+    accepted = manifest.get("accepted_claim_receipts")
+    if not isinstance(accepted, list) or len(accepted) != 11 or \
+       any(not isinstance(r, dict) or
+           not isinstance(r.get("claim_id"), str) or
+           not re.fullmatch(r"[0-9a-f]{64}",
+                            str(r.get("receipt_sha256", "")))
+           for r in accepted) or \
+       {r["claim_id"] for r in accepted} != ORIGINAL_CLAIMS:
+        raise EvidenceError("full paper has incomplete accepted-claim receipts")
+    pdf = manifest.get("pdf_sha256")
+    pages = manifest.get("pdf_pages")
+    if not isinstance(pdf, str) or not re.fullmatch(r"[0-9a-f]{64}", pdf) or \
+       not isinstance(pages, dict) or not pages or \
+       any(not re.fullmatch(r"page-[0-9]+[.]png", name) or
+           not isinstance(dig, str) or
+           not re.fullmatch(r"[0-9a-f]{64}", dig)
+           for name, dig in pages.items()):
+        raise EvidenceError("complete exact PDF page digests are missing")
+    numbered = sorted(int(name[5:-4]) for name in pages)
+    if numbered != list(range(1, len(pages)+1)):
+        raise EvidenceError("full PDF pages are missing or duplicated")
+    if manifest.get("pdf_page_count") != len(pages):
+        raise EvidenceError("PDF page count does not match full render")
+    if manifest.get("empirical_identification_status") != "NOT_ESTABLISHED" or \
+       not manifest.get("scientific_limitations"):
+        raise EvidenceError("paper has unsupported empirical or scope claims")
+    reviews = provenance.get("scholarly_reviews", [])
+    if not isinstance(reviews, list) or not any(
+        isinstance(s, dict) and s.get("pdf_sha256") == pdf and
+        s.get("pages") == pages and
+        set(s.get("claim_ids", [])) == ORIGINAL_CLAIMS
+        for s in reviews
+    ):
+        raise EvidenceError("independent exact-PDF review is missing")
+
+    # The final artifact receipts are produced by an independent authenticator,
+    # never by copying JSON values from the candidate release manifest.
+    for label, kind in (("reproduction", "TWO_CLEAN_SOURCE_BUILDS"),
+                        ("archive", "COMPLETE_ARCHIVE_REPLAY")):
+        expected = manifest.get(label + "_evidence_sha256")
+        signed = provenance.get(label + "_evidence")
+        if (not isinstance(expected, str) or
+            not re.fullmatch(r"[0-9a-f]{64}", expected) or
+            not isinstance(signed, dict) or
+            signed.get("status") != kind or
+            signed.get("source_commit_sha") != merged or
+            signed.get("pdf_sha256") != pdf or
+            signed.get("artifact_sha256") != expected or
+            signed.get("authenticated_ci_artifact") is not True):
+            raise EvidenceError("authenticated " + label + " evidence missing")
+    return {
+        **source,
+        "status": "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY",
+        "actual_merged_main_sha": merged,
+        "pdf_sha256": pdf,
+        "pdf_page_count": len(pages),
+        "not_yet_release": False,
+    }
