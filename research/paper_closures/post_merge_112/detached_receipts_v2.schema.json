@@ -570,6 +570,8 @@
           "id",
           "claim_id",
           "proof_ids",
+          "positive_ids",
+          "negative_ids",
           "review_id"
         ],
         "properties": {
@@ -592,6 +594,24 @@
           "review_id": {
             "type": "integer",
             "minimum": 1
+          },
+          "positive_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "negative_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         }
       }

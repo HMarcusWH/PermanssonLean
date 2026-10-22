@@ -373,6 +373,18 @@ def effective_acceptance(overlay: dict, *, head: str, case_ledger: dict,
         demand(isinstance(ids, list) and bool(ids) and
                all(i in proofs and cid in proof_rows[i]["claim_ids"] for i in ids),
                "claim declaration not source bound")
+        for key, records, raw in (
+            ("positive_ids", positives, pos_rows),
+            ("negative_ids", negatives, neg_rows),
+        ):
+            references = row.get(key)
+            demand(isinstance(references, list) and bool(references) and
+                   len(references) == len(set(references)) and
+                   all(ref in records and
+                       cid in raw[ref].get("claim_ids", ())
+                       for ref in references),
+                   "claim lacks individual executed positive/negative evidence: " +
+                   str(cid) + "/" + key)
         rid = row.get("review_id")
         demand(cid in approved_review_scopes.get(rid, {}).get("claims", ()),
                "claim lacks independent exact-H scope review")

@@ -296,6 +296,19 @@ def require_complete_obligation_receipts(
 
     for cid, required in claims.items():
         prs = ids(claimed[cid], "proof_ids", proof, "claim_ids", cid)
+        ps = ids(claimed[cid], "positive_ids", positive, "claim_ids", cid)
+        ns = ids(claimed[cid], "negative_ids", negative, "claim_ids", cid)
+        selected_paths = required.get("test_source_candidates")
+        if (not isinstance(selected_paths, list) or not selected_paths or
+            len(selected_paths) != len(set(selected_paths)) or
+            not all(isinstance(path, str) and
+                    path.startswith("verification/research/test_") and
+                    path.endswith(".py") for path in selected_paths)):
+            raise EvidenceError("claim lacks frozen selected test sources: " + cid)
+        if not any(row.get("test_path") in selected_paths for row in ps.values()):
+            raise EvidenceError("claim lacks source-selected positive: " + cid)
+        if not any(row.get("test_path") in selected_paths for row in ns.values()):
+            raise EvidenceError("claim lacks source-selected semantic negative: " + cid)
         actual = {proof_identity(p) for p in prs.values()}
         expected = required.get("declarations")
         if not isinstance(expected, list) or not expected:
