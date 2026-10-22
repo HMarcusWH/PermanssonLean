@@ -2373,11 +2373,18 @@
           "path": "verification/research/test_paper_strategy_economic_lean.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_A_04_missing_fourth_output_changes_margin",
+          "path": "verification/research/test_pr113_semantic_factorization_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_a3_contractive.py",
-        "verification/research/test_paper_strategy_economic_lean.py"
+        "verification/research/test_paper_strategy_economic_lean.py",
+        "verification/research/test_pr113_semantic_factorization_candidates.py"
       ]
     },
     {
@@ -2484,11 +2491,18 @@
           "path": "verification/research/test_final_closure_missing_original_positives.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_A_05_stationary_mass_is_not_forever_survival",
+          "path": "verification/research/test_pr113_semantic_factorization_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_a3_contractive.py",
-        "verification/research/test_final_closure_missing_original_positives.py"
+        "verification/research/test_final_closure_missing_original_positives.py",
+        "verification/research/test_pr113_semantic_factorization_candidates.py"
       ]
     },
     {
