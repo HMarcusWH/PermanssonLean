@@ -90,7 +90,7 @@ def discounted_values(side, fine):
     for y in states:
         dist = step(side, y)
         assert sum(dist.values(), F(0)) == 1
-        matrix.append([(F(y == nxt) if False else F(int(y == nxt)))
+        matrix.append([F(int(y == nxt))
                        - BETA * dist.get(nxt, F(0))
                        for nxt in states])
         world = y[1] if fine else y
