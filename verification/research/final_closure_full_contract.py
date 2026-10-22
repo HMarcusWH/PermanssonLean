@@ -182,3 +182,138 @@ def require_full_release(result: dict, case_ledger: dict, claims: list[dict],
         "pdf_page_count": len(pages),
         "not_yet_release": False,
     }
+
+
+def require_complete_obligation_receipts(
+    overlay: dict, case_map: dict, claim_map: dict
+) -> dict:
+    """Full-release receipt-set coverage, not mere case/claim labels.
+
+    Every historical declaration must be present with the *correct source
+    path and declaration name*. Every declared supporting theorem for each
+    new claim is required; one theorem tagged with eleven owner IDs does not
+    suffice. Case-specific positive and semantic-negative tests must be
+    drawn from the frozen named-method route list. All referenced individual
+    receipts must already have passed source/compiler/CI validation in
+    effective_acceptance() before calling this.
+    """
+    if not all(isinstance(x, dict) for x in (overlay, case_map, claim_map)):
+        raise EvidenceError("complete obligation inputs must be dictionaries")
+    case_list = case_map.get("cases")
+    claim_list = claim_map.get("claims")
+    if (not isinstance(case_list, list) or len(case_list) != 45 or
+        not isinstance(claim_list, list) or len(claim_list) != 11):
+        raise EvidenceError("canonical 45/11 source map unavailable")
+    def by_unique_id(rows, key, name):
+        if not isinstance(rows, list) or any(not isinstance(x, dict)
+                                             for x in rows):
+            raise EvidenceError("malformed " + name)
+        result = {}
+        for row in rows:
+            rid = row.get(key)
+            if not isinstance(rid, str) or not rid or rid in result:
+                raise EvidenceError("duplicate/invalid " + name + " identifier")
+            result[rid] = row
+        return result
+    cases = by_unique_id(case_list, "case_id", "case-source")
+    claims = by_unique_id(claim_list, "claim_id", "claim-source")
+    decisions = by_unique_id(overlay.get("case_decisions"), "case_id", "case-decision")
+    claimed = by_unique_id(overlay.get("claim_decisions"), "claim_id", "claim-decision")
+    proof = by_unique_id(overlay.get("compiler_axiom_receipts"), "id", "proof")
+    positive = by_unique_id(overlay.get("positive_test_receipts"), "id", "positive")
+    negative = by_unique_id(overlay.get("semantic_negative_receipts"), "id", "negative")
+    if (set(cases) != set(decisions) or
+        set(claims) != set(claimed) or
+        set(claims) != ORIGINAL_CLAIMS):
+        raise EvidenceError("45 original/11 claim decisions incomplete or substituted")
+
+    def ids(row, key, records, owner_key, owner):
+        values = row.get(key)
+        if not isinstance(values, list) or not values or \
+           len(values) != len(set(values)):
+            raise EvidenceError("missing/duplicate " + key + " for " + owner)
+        for value in values:
+            if value not in records or owner not in records[value].get(owner_key, []):
+                raise EvidenceError("borrowed/unknown " + key + " for " + owner)
+        return {value: records[value] for value in values}
+
+    def proof_identity(p):
+        path = p.get("path")
+        decl = p.get("declaration")
+        if not isinstance(path, str) or not isinstance(decl, str):
+            raise EvidenceError("untyped compiler proof identity")
+        return (path, decl)
+
+    for cid, original in cases.items():
+        chosen = decisions[cid]
+        prs = ids(chosen, "proof_ids", proof, "case_ids", cid)
+        ps = ids(chosen, "positive_ids", positive, "case_ids", cid)
+        ns = ids(chosen, "negative_ids", negative, "case_ids", cid)
+        expected = original.get("historical_proof_declarations")
+        if not isinstance(expected, list) or not expected:
+            raise EvidenceError("original theorem inventory absent for " + cid)
+        actual = {proof_identity(p) for p in prs.values()}
+        for row in expected:
+            if not isinstance(row, dict):
+                raise EvidenceError("malformed historical proof pin: " + cid)
+            path, name = row.get("path"), row.get("name")
+            if (not isinstance(path, str) or not isinstance(name, str) or
+                not any(p == path and
+                        (decl == name or decl.endswith("." + name))
+                        for p, decl in actual)):
+                raise EvidenceError(
+                    "missing original source declaration for " + cid +
+                    ": " + str(path) + "/" + str(name))
+        routes = original.get("test_method_candidates")
+        if not isinstance(routes, list) or not routes:
+            raise EvidenceError("missing required method routes: " + cid)
+        registry = {
+            (x.get("path"), x.get("method"), x.get("role"))
+            for x in routes if isinstance(x, dict)
+        }
+        if len(registry) != len(routes):
+            raise EvidenceError("ambiguous method route registry: " + cid)
+        def admissible(row, permitted):
+            return any(
+                (row.get("test_path"), row.get("test_name"), role) in registry
+                for role in permitted
+            )
+        if not any(admissible(p, {"COMPILER_SOURCE", "EXACT_CHECK"})
+                   for p in ps.values()):
+            raise EvidenceError("original case lacks route-selected positive: " + cid)
+        if not any(admissible(n, {"SEMANTIC_NEGATIVE", "SCOPE_BOUNDARY"})
+                   for n in ns.values()):
+            raise EvidenceError("original case lacks semantic negative route: " + cid)
+        # Scoped source links are mandatory; no arbitrary proof can
+        # silently replace a newly introduced case-linked theorem owner.
+        for link in original.get("new_claim_source_candidates", []):
+            if not isinstance(link, dict):
+                raise EvidenceError("malformed case-linked claim source")
+            path = link.get("path")
+            if not isinstance(path, str) or not any(p[0] == path for p in actual):
+                raise EvidenceError(
+                    "missing case-linked claim source: " + cid + "/" + str(path))
+
+    for cid, required in claims.items():
+        prs = ids(claimed[cid], "proof_ids", proof, "claim_ids", cid)
+        actual = {proof_identity(p) for p in prs.values()}
+        expected = required.get("declarations")
+        if not isinstance(expected, list) or not expected:
+            raise EvidenceError("claim has no explicit required support: " + cid)
+        expected_pairs = set()
+        for entry in expected:
+            if not isinstance(entry, dict):
+                raise EvidenceError("malformed support declaration: " + cid)
+            p, d = entry.get("path"), entry.get("declaration")
+            if not isinstance(p, str) or not isinstance(d, str):
+                raise EvidenceError("unqualified supporting theorem: " + cid)
+            expected_pairs.add((p, d))
+        if not expected_pairs <= actual:
+            raise EvidenceError("claim omits supporting compiler theorem(s): " + cid)
+
+    return {
+        "receipt_contract": "ALL_45_HISTORICAL_AND_ALL_11_COMPLETE",
+        "cases_covered": 45,
+        "claims_covered": 11,
+        "review_and_ci_still_required": True,
+    }
