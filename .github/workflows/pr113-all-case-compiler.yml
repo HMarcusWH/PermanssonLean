@@ -1,0 +1,99 @@
+name: PR113 All-Case Compiler Candidate
+
+on:
+  push:
+    branches: [research/final-mathematical-closure]
+    paths:
+      - '.github/workflows/pr113-all-case-compiler.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inventory-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Bind genuine branch checkout and resolve ALL historical theorem names
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$GITHUB_REPOSITORY" = "HMarcusWH/PermanssonLean"
+          mkdir -p "$RUNNER_TEMP/all-case-inventory"
+          python3 verification/research/final_closure_complete_lean_evidence.py \
+            --head "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/not-written" \
+            --inventory-only \
+            > "$RUNNER_TEMP/all-case-inventory/inventory.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          inv = json.loads((Path(os.environ["RUNNER_TEMP"]) /
+              "all-case-inventory/inventory.json").read_text())
+          assert inv["cases"] == 45 and inv["claims"] == 11
+          assert inv["proof_targets"] > 11
+          assert len(inv["declarations"]) == inv["proof_targets"]
+          assert inv["status"] == "SOURCE_CANDIDATE_UNREVIEWED"
+          print("All-case compile candidates:", inv["proof_targets"])
+          PY
+      - name: Preserve source inventory candidate
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-all-case-owner-inventory
+          path: ${{ runner.temp }}/all-case-inventory/
+          retention-days: 30
+          if-no-files-found: error
+
+  compiler-shard:
+    needs: inventory-preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Build pinned research library before theorem probes
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Execute original 45-case and 11-claim assigned compiler shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          python3 verification/research/final_closure_complete_lean_evidence.py \
+            --head "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/complete-shard" \
+            --shard-index "${{ matrix.shard }}" --shard-count 4
+      - name: Preserve unreviewed theorem type and axiom logs
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-compiler-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/complete-shard/
+          retention-days: 30
+          if-no-files-found: error
