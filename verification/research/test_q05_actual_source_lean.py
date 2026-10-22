@@ -17,6 +17,12 @@ DECLS = (
     "both_sides_every_strategic_row",
     "discounted_defect_budget", "two_sided_original_margin_bound",
     "treatment_reaches_other_strategic_state",
+    "commonMass_normalization",
+    "commonSourceKernel_mass",
+    "commonEta_retention",
+    "commonSourceKernel_retention",
+    "commonEta_discounted_budget",
+    "commonSourceKernel_not_exact",
 )
 
 
@@ -60,6 +66,22 @@ class ActualQ05SourceCompiler(unittest.TestCase):
             self.assertNotIn(invalid, output)
         self.assertTrue("type mismatch" in output or "application type mismatch" in output,
                         output[-2500:])
+
+
+    def test_false_claim_common_kernel_is_markov_rejected(self):
+        source = (
+            f"import {MOD}\n"
+            f"open {MOD}\n"
+            "example : commonSourceKernel false (false,false) Set.univ = 1 := by\n"
+            "  exact commonSourceKernel_not_exact false (false,false)\n"
+        )
+        run = compile_text(source)
+        log = (run.stdout + run.stderr).lower()
+        self.assertNotEqual(run.returncode, 0, log[-3000:])
+        for invalid in ("unknown identifier", "unknown module", "failed to import",
+                        "sorryax", "maximum number of heartbeats", "unexpected token"):
+            self.assertNotIn(invalid, log)
+        self.assertTrue("type mismatch" in log or "has type" in log, log[-2500:])
 
 
 if __name__ == "__main__":

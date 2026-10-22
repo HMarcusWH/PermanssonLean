@@ -1,6 +1,7 @@
 import PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure
 import PermanssonResearch.X1.TypedModels
 import PermanssonResearch.ConstitutiveQuasi.ComparisonTransport
+import PermanssonResearch.Probability.DiscountedInitialBudget
 import Mathlib.Tactic
 
 /-!
