@@ -26,7 +26,6 @@ from closure_elaborated_type import (
 )
 from final_closure_case_receipts import parse_target_axioms, EvidenceError
 from final_closure_lean_evidence import run_probe, parse_axioms
-from x1_axiom_audit import declarations as lexical_declarations
 
 ROOT = Path(__file__).resolve().parents[2]
 SNAP = ROOT / "research/paper_closures/post_merge_112"
@@ -52,6 +51,90 @@ def load(path: Path):
     return obj
 
 
+
+LEAN_NAME = r"[A-Za-z_][A-Za-z0-9_']*"
+DECLARATION = re.compile(
+    r"^[ \t]*(?:(?:protected|private|noncomputable|unsafe|partial|opaque)\s+)*"
+    r"(?:theorem|lemma|def|abbrev|structure|inductive|class|instance)\s+"
+    r"(" + LEAN_NAME + r")(?![A-Za-z0-9_'])"
+)
+PREFIX = re.compile(
+    r"^[ \t]*(?P<flags>(?:(?:protected|private|noncomputable|unsafe|partial|opaque)\s+)*)"
+    r"(?:theorem|lemma|def|abbrev|structure|inductive|class|instance)\s+"
+)
+OPEN_NAMESPACE = re.compile(r"^[ \t]*namespace[ \t]+([A-Za-z0-9_.']+)(?:\s|$)")
+CLOSE_SCOPE = re.compile(r"^[ \t]*end(?:[ \t]+([A-Za-z0-9_.']+))?(?:\s|$)")
+
+
+def addressable_declarations(source: str):
+    """Find only ordinary qualified Lean owner candidates.
+
+    Other modules may legitimately have private local lemmas, anonymous
+    instances or proof-local helpers. These must NOT invalidate an unrelated
+    pinned public declaration. Private names are excluded because Lean mangles
+    their exported identifiers; requests for such a source pin fail closed.
+    Comments are hidden before interpreting scope or theorem declarations.
+    Compiler elaboration, not this index, remains authoritative.
+    """
+    if not isinstance(source, str):
+        raise CompleteCompilerError("invalid original source text")
+    stack = []
+    found = []
+    block_depth = 0
+    for original in source.splitlines():
+        # Lean permits nested block comments. Mask comments, preserving
+        # all noncomment text only when outside comment blocks.
+        line = []
+        pos = 0
+        while pos < len(original):
+            ahead = original[pos:pos+2]
+            if ahead == "/-":
+                block_depth += 1
+                pos += 2
+            elif block_depth and ahead == "-/":
+                block_depth -= 1
+                pos += 2
+            elif block_depth:
+                pos += 1
+            elif ahead == "--":
+                break
+            else:
+                line.append(original[pos])
+                pos += 1
+        clean = "".join(line).strip()
+        if not clean:
+            continue
+        opened = OPEN_NAMESPACE.match(clean)
+        if opened:
+            stack.append(opened.group(1))
+            continue
+        closed = CLOSE_SCOPE.match(clean)
+        if closed:
+            name = closed.group(1)
+            if stack and (
+                name == stack[-1] or
+                name == stack[-1].split(".")[-1] or
+                name == ".".join(stack)
+            ):
+                if name == ".".join(stack):
+                    stack.clear()
+                else:
+                    stack.pop()
+            continue
+        declaration = DECLARATION.match(clean)
+        if declaration:
+            prefix = PREFIX.match(clean)
+            if prefix is not None and "private" in prefix.group("flags").split():
+                continue
+            local = declaration.group(1)
+            found.append(".".join(stack + [local]) if stack else local)
+    if block_depth != 0:
+        raise CompleteCompilerError("unterminated Lean source comment")
+    if len(found) != len(set(found)):
+        raise CompleteCompilerError("duplicate public declaration source name")
+    return found
+
+
 def source_declarations(root: Path, relative: str, cache: dict):
     if relative not in cache:
         require(isinstance(relative, str) and
@@ -64,12 +147,7 @@ def source_declarations(root: Path, relative: str, cache: dict):
         require(src.is_relative_to(root.resolve()) and
                 src.is_file() and not src.is_symlink(),
                 "missing/hijacked original Lean module: " + relative)
-        try:
-            fqns = lexical_declarations(src.read_text(encoding="utf-8"))
-        except SystemExit as exc:
-            raise CompleteCompilerError(
-                "unaddressable private/anonymous declaration in " + relative) from exc
-        require(len(fqns) == len(set(fqns)), "ambiguous Lean declarations in " + relative)
+        fqns = addressable_declarations(src.read_text(encoding="utf-8"))
         cache[relative] = (src, fqns)
     return cache[relative]
 
