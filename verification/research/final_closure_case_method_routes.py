@@ -121,6 +121,11 @@ METHOD_ROUTES = {
       "test_paper_strategy_economic_lean.py",
       "test_source_bound_transitive_axioms",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_pr113_semantic_second_candidates.py",
+      "test_S_01_no_terminal_correction_is_false",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "S-02": [
@@ -145,6 +150,11 @@ METHOD_ROUTES = {
       "test_f1_multiagent_protocols.py",
       "test_strict_autonomous_off_support_difference_stochastic_crosscheck",
       "EXACT_CHECK"
+    ],
+    [
+      "test_pr113_semantic_second_candidates.py",
+      "test_M_01_null_key_is_not_free_initial_support",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "M-02": [
@@ -411,6 +421,11 @@ METHOD_ROUTES = {
       "test_a3_contractive.py",
       "test_no_contraction_no_bound",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_pr113_semantic_second_candidates.py",
+      "test_A_02_identity_kernel_is_not_strictly_contractive",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "A-03": [
@@ -469,6 +484,11 @@ METHOD_ROUTES = {
       "test_d2_residence.py",
       "test_product_clock_and_history_values_agree",
       "EXACT_CHECK"
+    ],
+    [
+      "test_pr113_semantic_second_candidates.py",
+      "test_D_01_hitting_is_not_residence",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "D-02": [
@@ -617,6 +637,11 @@ METHOD_ROUTES = {
       "test_lane_c11_stationary.py",
       "test_13_zero_and_resource_limits",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_pr113_semantic_second_candidates.py",
+      "test_C11_01_zero_dimensional_family_is_rejected",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "C11-02": [
@@ -634,6 +659,11 @@ METHOD_ROUTES = {
       "test_final_closure_missing_original_positives.py",
       "test_C11_02_original_source_positive",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_pr113_semantic_second_candidates.py",
+      "test_C11_02_corrupted_stationary_report_is_rejected",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "C-01": [
@@ -707,6 +737,11 @@ METHOD_ROUTES = {
       "test_x1_commons.py",
       "test_leaking_region_not_exact_gr_and_persistence_decay",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_pr113_semantic_second_candidates.py",
+      "test_XPLUS_01_constructed_original_margin_is_not_zero",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "E-01": [
