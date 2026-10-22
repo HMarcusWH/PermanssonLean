@@ -44,7 +44,7 @@ def attestation(folder: Path, *, head: str, env: dict) -> dict:
     need(SHA40.fullmatch(tree) is not None, "invalid source tree identity")
     need(env.get("GITHUB_ACTIONS") == "true" and
          env.get("GITHUB_REPOSITORY") == "HMarcusWH/PermanssonLean" and
-         env.get("GITHUB_EVENT_NAME") in {"workflow_dispatch", "pull_request"} and
+         env.get("GITHUB_EVENT_NAME") in {"workflow_dispatch", "push"} and
          env.get("GITHUB_SHA") == head,
          "untrusted runner/repository/event/source identity")
     rid = env.get("GITHUB_RUN_ID", "")
