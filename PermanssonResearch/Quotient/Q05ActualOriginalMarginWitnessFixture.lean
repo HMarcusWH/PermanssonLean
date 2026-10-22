@@ -97,6 +97,53 @@ def compression : TypeRespectingStateCompression Bool Bool Unit Bool where
     exact ⟨false, by cases z; rfl⟩
   world_surjective := Function.surjective_id
 
+/-- Frozen admitted joint strategic intervention, not a model-swapping label. -/
+inductive FamilyComponent | joint
+
+noncomputable def fineFamily :
+    InterventionFamily (fineModel false) FamilyComponent where
+  targetOf
+    | .joint => .jointStrategic
+  admissible
+    | .joint, r => r = (fineModel true).generator
+
+noncomputable def coarseFamily :
+    InterventionFamily (coarseModel false) FamilyComponent where
+  targetOf
+    | .joint => .jointStrategic
+  admissible
+    | .joint, r => r = (coarseModel true).generator
+
+noncomputable def fineJ : AdmissibleStrategicIntervention fineFamily where
+  intervention := ⟨.joint, (fineModel true).generator⟩
+  accepted := rfl
+  strategic := InterventionTarget.isStrategic_jointStrategic
+
+noncomputable def coarseJ : AdmissibleStrategicIntervention coarseFamily where
+  intervention := ⟨.joint, (coarseModel true).generator⟩
+  accepted := rfl
+  strategic := InterventionTarget.isStrategic_jointStrategic
+
+/-- This is the actual intervention grammar's world preservation lemma. -/
+theorem admitted_fine_world_fixed :
+    fineJ.intervention.apply.world = (fineModel false).world := fineJ.world_eq
+
+theorem admitted_coarse_world_fixed :
+    coarseJ.intervention.apply.world = (coarseModel false).world := coarseJ.world_eq
+
+/-- The original predeclared two-state comparison domain, not one random
+singleton path law. A genuine full ConstitutiveComparisonSet must additionally
+carry a chosen regime specification and the corresponding source law. -/
+def twoStartDomain : Set FineState := {(false, false), (false, true)}
+
+theorem twoStartDomain_contains_both :
+    (false, false) ∈ twoStartDomain ∧
+    (false, true) ∈ twoStartDomain := by
+  simp [twoStartDomain]
+
+theorem twoStartDomain_has_distinct_starts :
+    (false, false) ≠ (false, true) := by decide
+
 theorem compression_preserves_world (y : FineState) :
     (compression.stateMap y).2 = y.2 := rfl
 
