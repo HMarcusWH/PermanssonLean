@@ -93,10 +93,94 @@ class AuthenticationV2Tests(unittest.TestCase):
             raise AssertionError("unexpected GitHub endpoint " + path)
 
         with mock.patch.object(auth, "git", side_effect=git), \
-             mock.patch.object(auth, "live", side_effect=live):
+             mock.patch.object(auth, "live", side_effect=live), \
+             mock.patch.object(auth, "reviewer_authorized",
+                               side_effect=lambda name, role: name in
+                                   ("external", "external_scholar")):
             if merged:
                 return auth.verify_merged_v2(receipts)
             return auth.verify_premerge(receipts)
+
+    def test_paginated_checks_latest_failure_overrides_green(self):
+        rows = [
+            {"name": name, "head_sha": H, "id": i + 1,
+             "status": "completed", "conclusion": "success",
+             "app": {"slug": "github-actions"}}
+            for i, name in enumerate(sorted(auth.REQUIRED))
+        ]
+        # Fill page 1 with unrelated valid jobs so the later trusted check
+        # can only be found on page two.
+        page1 = rows + [
+            {"name": f"other_{i}", "head_sha": H, "id": i + 300,
+             "status": "completed", "conclusion": "success",
+             "app": {"slug": "github-actions"}}
+            for i in range(100 - len(rows))
+        ]
+        failure = dict(rows[0], id=99999, conclusion="failure")
+        def live(path):
+            if path.endswith("&page=2"):
+                return {"check_runs": [failure]}
+            if path.endswith("?per_page=100"):
+                return {"check_runs": page1}
+            raise AssertionError(path)
+        with mock.patch.object(auth, "live", side_effect=live):
+            with self.assertRaises(auth.AuthenticationError):
+                auth.authenticated_checks(H)
+        with mock.patch.object(auth, "live", return_value={"check_runs": rows}):
+            self.assertEqual(len(auth.authenticated_checks(H)), len(auth.REQUIRED))
+
+    def test_authority_policy_unconfigured_denies_non_author(self):
+        with mock.patch.object(auth, "REVIEWER_POLICY") as target:
+            target.read_text.return_value = json.dumps({
+                "format": "Permansson.ReviewerAuthority.v1",
+                "status": "UNCONFIGURED",
+                "source_reviewers": [{"login": "external",
+                                      "approved_by": "HMarcusWH",
+                                      "independence_disclosed": True}],
+                "scholarly_reviewers": [],
+            })
+            self.assertFalse(auth.reviewer_authorized("external", "source"))
+            target.read_text.return_value = json.dumps({
+                "format": "Permansson.ReviewerAuthority.v1",
+                "status": "OWNER_AUTHORIZED",
+                "source_reviewers": [{"login": "external",
+                                      "approved_by": "HMarcusWH",
+                                      "independence_disclosed": True}],
+                "scholarly_reviewers": [],
+            })
+            self.assertTrue(auth.reviewer_authorized("external", "source"))
+            self.assertFalse(auth.reviewer_authorized("external", "scholarly"))
+
+    def test_revoked_review_does_not_survive_later_changes_requested(self):
+        def bad(r, p, c, i, reviews, ps, pm, ts):
+            new = dict(reviews[0], id=89, state="CHANGES_REQUESTED",
+                       submitted_at="2026-10-21T17:01:00Z")
+            reviews.append(new)
+        with self.assertRaises(auth.AuthenticationError):
+            self.run_gate(mutate=bad)
+
+    def test_review_on_page_two_is_authenticated(self):
+        receipts, pr, checks, integrated, reviews = fixture()
+        page1 = [
+            {"id": i + 1000, "state": "COMMENTED",
+             "submitted_at": "2026-10-21T16:00:00Z",
+             "commit_id": H, "user": {"login": f"other_{i}"},
+             "body": ""}
+            for i in range(100)
+        ]
+        def live(path):
+            if path == "/pulls/113/reviews?per_page=100":
+                return page1
+            if path == "/pulls/113/reviews?per_page=100&page=2":
+                return reviews
+            raise AssertionError(path)
+        with mock.patch.object(auth, "live", side_effect=live), \
+             mock.patch.object(auth, "reviewer_authorized", return_value=True):
+            scopes = auth.authenticate_scoped_reviews(
+                H, "author", BUNDLE,
+                receipts["independent_source_reviews"],
+                auth.receipt_payload_digest(receipts))
+            self.assertIn(88, scopes)
 
     def test_valid_mocked_premerge_review_scopes(self):
         outcome = self.run_gate()
@@ -174,7 +258,9 @@ class AuthenticationV2Tests(unittest.TestCase):
             "created_at": "2026-10-21T19:00:00Z",
             "body": auth.SCHOLARLY_PREFIX + " " + json.dumps(record),
         }]
-        with mock.patch.object(auth, "live", return_value=comments):
+        with mock.patch.object(auth, "live", return_value=comments), \
+             mock.patch.object(auth, "reviewer_authorized",
+                               side_effect=lambda name, role: name == "external_scholar"):
             got = auth.authentic_scholarly_attestations(pr, H, M)
             self.assertEqual(got[0]["pages"], record["pages"])
             comments[0]["user"]["login"] = "author"
