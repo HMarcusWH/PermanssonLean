@@ -50,10 +50,13 @@ class SemanticShardingTests(unittest.TestCase):
                     "detached_bundle_sha256": "d" * 64,
                     "mutation_record": {"original_lean_source_sha256": "e" * 64},
                 }
-            with mock.patch.object(all_cases, "git_head", return_value=H), \\
-                 mock.patch.object(all_cases.subprocess, "check_output",
-                                   return_value=T + "\\n"), \\
-                 mock.patch.object(all_cases.batch, "run_one", side_effect=fake_run):
+            with (
+                mock.patch.object(all_cases, "git_head", return_value=H),
+                mock.patch.object(all_cases.subprocess, "check_output",
+                                  return_value=T),
+                mock.patch.object(all_cases.batch, "run_one",
+                                  side_effect=fake_run),
+            ):
                 out_record = all_cases.run_exact_shard(H, 0, 25, out)
             manifest = json.loads(
                 (out / "unreviewed_shard_manifest.json").read_text())
