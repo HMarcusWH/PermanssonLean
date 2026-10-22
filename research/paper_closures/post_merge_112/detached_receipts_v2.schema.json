@@ -380,6 +380,7 @@
           "mutant_source_sha256",
           "original_lean_source_path",
           "original_lean_source_sha256",
+          "original_lean_source_member",
           "claim_ids"
         ],
         "properties": {
@@ -492,6 +493,10 @@
               "type": "string",
               "minLength": 1
             }
+          },
+          "original_lean_source_member": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }
