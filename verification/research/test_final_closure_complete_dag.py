@@ -47,8 +47,17 @@ def mocked_graph():
                              "declaration": decl, "claim_ids": [cid],
                              "case_ids": []})
             refs.append(proofid)
-        claims.append({"claim_id": cid, "declarations": decls})
-        claim_decisions.append({"claim_id": cid, "proof_ids": refs})
+        claims.append({"claim_id": cid, "declarations": decls,
+                       "test_source_candidates": [path]})
+        positives.append({"id": "claim-positive-" + cid, "test_path": path,
+                          "test_name": "test_positive",
+                          "case_ids": ["C-01"], "claim_ids": [cid]})
+        negatives.append({"id": "claim-negative-" + cid, "test_path": path,
+                          "test_name": "test_false",
+                          "case_ids": ["C-01"], "claim_ids": [cid]})
+        claim_decisions.append({"claim_id": cid, "proof_ids": refs,
+                                "positive_ids": ["claim-positive-" + cid],
+                                "negative_ids": ["claim-negative-" + cid]})
     overlay = {
         "compiler_axiom_receipts": compiler,
         "positive_test_receipts": positives,
@@ -111,6 +120,26 @@ class CompleteObligationReceiptTests(unittest.TestCase):
         b["cases"][3]["test_method_candidates"][1]["role"] = "SCOPE_BOUNDARY"
         with self.assertRaisesRegex(EvidenceError, "semantic negative route"):
             full.require_complete_obligation_receipts(a, b, c)
+
+    def test_claim_controls_and_ownership_are_mandatory(self):
+        for mode in ("missing_positive", "missing_negative",
+                     "wrong_owner", "unselected", "borrowed"):
+            overlay, cases, claims = mocked_graph()
+            row = next(x for x in overlay["claim_decisions"] if x["claim_id"] == "D9")
+            mutant = next(x for x in overlay["semantic_negative_receipts"]
+                          if x["id"] == "claim-negative-D9")
+            if mode == "missing_positive":
+                row["positive_ids"].clear()
+            elif mode == "missing_negative":
+                row["negative_ids"].clear()
+            elif mode == "wrong_owner":
+                mutant["claim_ids"] = ["Q1"]
+            elif mode == "unselected":
+                mutant["test_path"] = "verification/research/test_unrelated.py"
+            else:
+                row["negative_ids"] = ["claim-negative-Q1"]
+            with self.subTest(mode=mode), self.assertRaises(EvidenceError):
+                full.require_complete_obligation_receipts(overlay, cases, claims)
 
     def test_claim_cannot_borrow_one_proof_from_another_owner(self):
         a, b, c = mocked_graph()
