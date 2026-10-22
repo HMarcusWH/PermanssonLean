@@ -470,6 +470,11 @@ METHOD_ROUTES = {
       "test_paper_strategy_economic_lean.py",
       "test_source_bound_transitive_axioms",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_pr113_semantic_factorization_candidates.py",
+      "test_A_04_missing_fourth_output_changes_margin",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "A-05": [
@@ -487,6 +492,11 @@ METHOD_ROUTES = {
       "test_final_closure_missing_original_positives.py",
       "test_A_05_original_source_positive",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_pr113_semantic_factorization_candidates.py",
+      "test_A_05_stationary_mass_is_not_forever_survival",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "D-01": [
