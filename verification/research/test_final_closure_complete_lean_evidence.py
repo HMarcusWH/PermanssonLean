@@ -86,6 +86,54 @@ class AllCaseCompilerManifestTests(unittest.TestCase):
             self.assertEqual(own["claim_ids"], ["Q1"])
             self.assertEqual(len(got), 54)
 
+    def test_unrelated_private_lemmas_and_anonymous_instances_are_ignored(self):
+        with tempfile.TemporaryDirectory() as td:
+            cases, claims = synthetic_source(td)
+            original = (Path(td)/P).read_text(encoding="utf-8")
+            (Path(td)/P).write_text(
+                "namespace NonPublic\n"
+                "private theorem hidden : True := by trivial\n"
+                "instance : Inhabited Unit := ⟨()⟩\n"
+                "/- namespace Spoof\n"
+                "theorem historical_0 : False := by contradiction\n"
+                "-/\n"
+                "-- theorem historical_0 : False := by contradiction\n"
+                "end NonPublic\n" + original)
+            result = combined.required_inventory(
+                root=Path(td), case_map=cases, claim_map=claims)
+            self.assertEqual(len(result), 56)
+            self.assertEqual({r["declaration"] for r in result
+                              if "C-01" in r["case_ids"]},
+                             {"Demo.historical_0"})
+
+    def test_targeting_private_lemma_cannot_resolve(self):
+        with tempfile.TemporaryDirectory() as td:
+            cases, claims = synthetic_source(td)
+            source = Path(td)/P
+            source.write_text(
+                "namespace Demo\n"
+                "private theorem secret : True := by trivial\n"
+                "end Demo\n" + source.read_text(encoding="utf-8"))
+            cases["cases"][0]["historical_proof_declarations"][0]["name"] = "secret"
+            with self.assertRaisesRegex(combined.CompleteCompilerError,
+                                        "unresolved"):
+                combined.required_inventory(
+                    root=Path(td), case_map=cases, claim_map=claims)
+
+    def test_nested_comments_cannot_supply_fake_declaration(self):
+        masked = (
+            "namespace Outer\n"
+            "/- test\n"
+            "/- namespace Fake\n"
+            "theorem fabricated : True := by trivial -/\n"
+            "still hidden -/\n"
+            "theorem real : True := by trivial\n"
+            "end Outer\n"
+        )
+        self.assertEqual(combined.addressable_declarations(masked), ["Outer.real"])
+        with self.assertRaisesRegex(combined.CompleteCompilerError, "unterminated"):
+            combined.addressable_declarations("namespace Foo\n/- never ends")
+
     def test_namespace_ambiguity_never_assumes_theorem(self):
         with tempfile.TemporaryDirectory() as td:
             cases, claims = synthetic_source(td)
