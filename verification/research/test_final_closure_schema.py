@@ -89,6 +89,23 @@ class SchemaBoundaryTests(unittest.TestCase):
         with self.assertRaises(EvidenceError):
             schema.validate_overlay(x)  # no attributable execution check
 
+    def test_claim_decision_requires_positive_and_negative_receipts(self):
+        decision = {"id": "claim-1", "claim_id": "Q1",
+                    "proof_ids": ["proof"], "positive_ids": ["pos"],
+                    "negative_ids": ["neg"], "review_id": 11}
+        good = candidate()
+        good["claim_decisions"] = [decision]
+        schema.validate_overlay(good)  # Shape only, not real approval.
+        for key in ("positive_ids", "negative_ids"):
+            missing = copy.deepcopy(good)
+            del missing["claim_decisions"][0][key]
+            with self.subTest(key=key), self.assertRaises(EvidenceError):
+                schema.validate_overlay(missing)
+            empty = copy.deepcopy(good)
+            empty["claim_decisions"][0][key] = []
+            with self.subTest(key=key + " empty"), self.assertRaises(EvidenceError):
+                schema.validate_overlay(empty)
+
     def test_unknown_schema_rule_fails_closed(self):
         with self.assertRaises(EvidenceError):
             schema._check_spec({"magicallyAccept": True})
