@@ -132,11 +132,11 @@ class FrozenOriginalCaseMutations(unittest.TestCase):
         with self.assertRaises(batch.MutationEvidenceError):
             batch.run_one("not-a-commit", "F-03", output)
 
-    def test_all_eight_spec_ids_and_method_owners_are_distinct(self):
+    def test_all_nine_spec_ids_and_method_owners_are_distinct(self):
         self.assertEqual(
             set(batch.SPECS),
             {"F-03", "D-02", "D-03", "D-04", "D-05",
-             "D-06", "Q-03", "Q-04"},
+             "D-06", "Q-03", "Q-04", "E-05"},
         )
         seen = set()
         for cid, entry in batch.SPECS.items():

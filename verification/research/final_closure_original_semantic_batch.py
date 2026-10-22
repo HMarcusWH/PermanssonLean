@@ -1,4 +1,4 @@
-"""Execute eight frozen original-case semantic mutants as DETACHED candidates.
+"""Execute nine frozen original-case semantic mutants as DETACHED candidates.
 
 This file bridges disposable unittest mutants to the complete byte-preserving
 mutation verifier. Every mutant is the genuine on-repository Lean provider
@@ -117,6 +117,23 @@ open PermanssonResearch.Probability.DependentThreeStage
 example : dependentLaw.atom (true, (true,true)) = (9/20 : ℝ) := by
   rw [true_history_mass]
   norm_num
+""",
+    },
+    "E-05": {
+        "source": "PermanssonResearch/Specialized/E05FullGramMaskingCountermodel.lean",
+        "test_path": "verification/research/test_e05_full_gram_masking_lean.py",
+        "method": "test_false_unqualified_full_gram_negativity_rejected",
+        "body": """
+open PermanssonResearch.Specialized.E05FullGramMaskingCountermodel
+open PermanssonResearch.Specialized
+open scoped InnerProductSpace
+example {E : Type*} [NormedAddCommGroup E]
+    [InnerProductSpace ℝ E] {c : ℝ} (hc : 0 < c)
+    (x y : E) (hgap : 0 < gramGap x y) :
+    c * (⟪x, gramWitness x y⟫_ℝ ^ 2 -
+         ⟪y, gramWitness x y⟫_ℝ ^ 2) +
+    2 * c * gramGap x y ^ 2 < 0 := by
+  exact (original_signed_negative_but_total_positive hc x y hgap).2
 """,
     },
     "Q-04": {
