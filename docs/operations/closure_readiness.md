@@ -82,3 +82,38 @@ source-bound evidence rather than relying on expiring GitHub artifacts.
 PR #113 remains a draft until these gates actually succeed. No automation in
 these candidate producer workflows authorizes a merge, release, review
 approval, repository-setting change or deployment.
+
+
+## Source-bound GitHub producing-artifact attestation (candidate only)
+
+`verification/research/final_closure_candidate_artifact_auth.py` is the
+read-only consumer for a downloaded GitHub Actions ZIP. It requires the actual
+successful producing workflow/run, the precise shard job and its own check-run
+ID, the recorded head and run attempt, the artifact ID/name and the authoritative
+GitHub `sha256:` artifact digest. It verifies the downloaded ZIP against that
+digest and checks the expected, explicitly unreviewed candidate manifest.
+If GitHub does not provide the SHA-256 digest, this attestor **fails closed**.
+A successful attestation **does not** certify its inner mathematical logs, test
+semantics, completeness of the final 45/11 graph, or independent case approval.
+
+For a genuine, already completed run, the operator may separately supply
+the *actual* IDs and ZIP from GitHub (illustrative placeholders only):
+
+```sh
+python3 verification/research/final_closure_candidate_artifact_auth.py \
+  --head "$H" --kind append --shard 0 \
+  --run-id "$REAL_RUN_ID" --artifact-id "$REAL_ARTIFACT_ID" \
+  --artifact-zip /external/pr113-append-shard-0.zip \
+  --output /external/verified-producer-shard-0.json
+```
+
+The attestor records the independently queried producing check-run ID as
+metadata but **never writes it into a mathematical acceptance receipt**.
+Current strict `final_closure_case_receipts.validate_test_receipt` still
+requires a research check binding and a reviewed append-only false theorem;
+before G3, the final source gate must be further reconciled with authenticated
+per-producing-job artifacts and every complete original criterion. Never copy
+a green general research CI ID onto locally produced mutant logs.
+
+The repository's current draft branch has no permission to self-approve
+evidence, merge, tag, release or override these missing authentic dependencies.
