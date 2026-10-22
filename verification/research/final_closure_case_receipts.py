@@ -281,6 +281,18 @@ def validate_test_receipt(row: dict, head: str, members: dict[str, bytes],
                                row["mutant_source_sha256"])
         original_file = exact_source(row.get("original_lean_source_path"))
         original = original_file.read_bytes()
+        # A complete, detached false-theorem receipt must retain both the
+        # exact original provider and the append-only false source bytes.
+        archived = member_bytes(
+            members, row.get("original_lean_source_member"),
+            row.get("original_lean_source_sha256"))
+        demand(archived == original and mutated.startswith(original) and
+               len(mutated) > len(original),
+               "original Lean bytes missing or mutation is not append-only")
+        appended = mutated[len(original):].decode("utf-8")
+        demand(not re.search(
+            r"(?mi)^\s*(?:import|axiom|constant|opaque|sorry|admit)\b", appended),
+            "false mutant appended an import, axiom, or admission")
         demand(digest(original) == row.get("original_lean_source_sha256") and
                digest(mutated) != digest(original) and
                [line for line in mutated.decode("utf-8").splitlines()
