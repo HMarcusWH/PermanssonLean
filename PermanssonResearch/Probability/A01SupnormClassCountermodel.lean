@@ -19,8 +19,8 @@ def clipped (x : ℝ) : ℝ := max 0 (min x 4)
 
 theorem clipped_lipschitz :
     LipschitzWith 1 clipped := by
-  simpa [clipped] using
-    (LipschitzWith.id.min_const (4 : ℝ)).const_max 0
+  change LipschitzWith 1 (fun x : ℝ => max 0 (min x 4))
+  exact (LipschitzWith.id.min_const (4 : ℝ)).const_max 0
 
 theorem clipped_gap_four :
     |clipped 4 - clipped 0| = (4 : ℝ) := by

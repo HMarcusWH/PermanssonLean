@@ -52,12 +52,10 @@ theorem fullOrEmptyFine_empty_allowed :
 theorem fullOrEmptyFine_rejects_singleton_zero :
     ¬ fullOrEmptyFine.allowed ({0} : Finset (Fin 2)) := by
   simp [fullOrEmptyFine]
-  decide
 
 theorem fullOrEmptyFine_rejects_singleton_one :
     ¬ fullOrEmptyFine.allowed ({1} : Finset (Fin 2)) := by
   simp [fullOrEmptyFine]
-  decide
 
 /-- The original coarse grammar accepts its empty and full blocks. -/
 noncomputable def actualCoarsening : Coarsening fullOrEmptyFine coarse where
@@ -127,7 +125,7 @@ theorem original_admitted_lower_coverage :
     rw [actualCoarsening_lift_empty, he]
   · subst E
     rw [actualCoarsening_lift_full] at hstrict
-    exact False.elim ((Finset.ssubset_irrefl _) hstrict)
+    exact False.elim (lt_irrefl _ hstrict)
 
 /-- The coarse OR intervention has the actual ORIGINAL uniform margin
 one, not merely a syntactically named positive predicate. -/

@@ -64,7 +64,9 @@ noncomputable def game : TwoPlayerGenerator Unit Unit Bool Unit Bool Bool where
 
 theorem same_physical_P_for_both_actual_protocols :
     ((game.openLoop (player false) opponent).toModel world).world =
-      ((game.openLoop (player true) opponent).toModel world).world := rfl
+      ((game.openLoop (player true) opponent).toModel world).world := by
+  change world = world
+  rfl
 
 def markedNextKey (t b : Bool) : Bool :=
   if t then !b else b

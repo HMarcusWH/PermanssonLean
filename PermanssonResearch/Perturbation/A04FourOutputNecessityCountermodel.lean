@@ -18,12 +18,12 @@ namespace PermanssonResearch.Perturbation.A04FourOutputNecessity
 set_option autoImplicit false
 
 def marginDifference (base treated perturbedBase perturbedTreated : ℝ) : ℝ :=
-  | |perturbedBase - perturbedTreated| - |base - treated| |
+  dist (|perturbedBase - perturbedTreated|) (|base - treated|)
 
 theorem same_three_outputs_different_true_margins :
     marginDifference 0 1 0 0 = (1 : ℝ) ∧
     marginDifference 0 1 0 1 = (0 : ℝ) := by
-  constructor <;> norm_num [marginDifference]
+  constructor <;> norm_num [marginDifference, Real.dist_eq]
 
 /-- No function of only the original baseline, original treatment, and
 perturbed baseline outputs can return the correct margin difference for
@@ -36,7 +36,7 @@ theorem no_general_three_output_margin_formula :
   rintro ⟨f, hf⟩
   have h0 := hf 0 1 0 0
   have h1 := hf 0 1 0 1
-  norm_num [marginDifference] at h0 h1
+  norm_num [marginDifference, Real.dist_eq] at h0 h1
   linarith
 
 end PermanssonResearch.Perturbation.A04FourOutputNecessity

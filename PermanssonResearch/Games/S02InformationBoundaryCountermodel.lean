@@ -19,7 +19,7 @@ set_option autoImplicit false
 def matchingPayoff (a b : Bool) : ℝ :=
   if a = b then 1 else 0
 
-def independentFairMatch (a : Bool) : ℝ :=
+noncomputable def independentFairMatch (a : Bool) : ℝ :=
   (matchingPayoff a false + matchingPayoff a true) / 2
 
 theorem each_fixed_action_half (a : Bool) :

@@ -52,7 +52,7 @@ theorem legal_fibre_empty_at_genuine_key :
     have ht : a = true := (legal_oldTrue a).mp (h oldTrue rfl)
     simp [hf] at ht
   · intro h
-    exact False.elim (Set.not_mem_empty a h)
+    simp at h
 
 theorem no_feasible_original_strict_anchor :
     ¬ ∃ a : PlayerTwoMechanism Unit Bool Unit Unit Unit Bool,

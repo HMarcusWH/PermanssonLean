@@ -148,8 +148,8 @@ theorem mixed_initial_positive_each_state :
   · rw [mixedInitialLaw,
         Measure.map_apply (by fun_prop)
           (measurableSet_singleton (mixedInitialState true))]
-    rw [mixedPreimage_true]
-    exact PermanssonResearch.X1.coin_true (1/2)
+    rw [mixedPreimage_true, PermanssonResearch.X1.coin_true]
+    norm_num
 
 /-- A path distribution with two positive distinct time-zero atoms
 cannot equal the earlier point-started Dirac initial distribution. -/

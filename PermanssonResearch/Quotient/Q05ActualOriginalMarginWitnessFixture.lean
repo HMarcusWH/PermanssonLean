@@ -378,7 +378,9 @@ theorem commonSourceRow_mass (t : Bool) (y : FineState) :
     (commonTrueMass_nonneg t y.1) (commonFalseMass_nonneg t y.1)]
   have h : (commonTrueMass t y.1 : ℝ) +
       (commonFalseMass t y.1 : ℝ) = (19/20 : ℝ) := by
-    exact_mod_cast commonMass_normalization t y.1
+    have hh := congrArg (fun q : ℚ => (q : ℝ))
+      (commonMass_normalization t y.1)
+    simpa only [Rat.cast_add, Rat.cast_div, Rat.cast_ofNat] using hh
   rw [h]
 
 theorem commonSourceKernel_mass (t : Bool) (y : FineState) :
@@ -393,12 +395,12 @@ instance commonSourceKernel_isFinite (t : Bool) :
   rw [commonSourceKernel_mass]
   norm_num
 
-def commonEta : ℕ → ℝ := fun _ => 1/20
+noncomputable def commonEta : ℕ → ℝ := fun _ => 1/20
 
 theorem commonEta_retention (n : ℕ) :
     PermanssonResearch.Probability.DependentHistory.retained commonEta n =
       (19/20 : ℝ)^n := by
-  simp [PermanssonResearch.Probability.DependentHistory.retained,
+  norm_num [PermanssonResearch.Probability.DependentHistory.retained,
     commonEta]
 
 /-- This is exactly the retained mass inequality required by the general
