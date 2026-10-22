@@ -134,6 +134,11 @@ def produce(head: str, *, true_source: Path, mutant: Path, test_path: Path,
         raise MutationEvidenceError("pinned Lean required, cannot skip")
     positive = lean_result(source)
     negative = lean_result(mutant)
+    if committed_file_bytes(head, source) != original_bytes or \
+            committed_file_bytes(head, test) != test_bytes:
+        raise MutationEvidenceError("committed source/test mutated during compiler run")
+    if mutant.read_bytes() != mutant_bytes:
+        raise MutationEvidenceError("false mutant changed during compiler run")
     verify_negative(positive, negative, original_bytes, mutant_bytes)
     out.mkdir(parents=True, exist_ok=True)
     prefix = re.sub(r"[^A-Za-z0-9_-]", "_", case_id + "_" + test_name)
