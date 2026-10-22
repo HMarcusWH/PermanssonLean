@@ -120,6 +120,20 @@ instance mixedInitialLaw_isProbability : IsProbabilityMeasure mixedInitialLaw :=
 theorem mixed_starts_distinct :
     mixedInitialState false ≠ mixedInitialState true := by decide
 
+theorem mixedPreimage_false :
+    mixedInitialState ⁻¹' ({mixedInitialState false} :
+        Set (JointState (GameState Bool Unit Unit) Bool)) =
+      ({false} : Set Bool) := by
+  ext b
+  cases b <;> simp [mixedInitialState]
+
+theorem mixedPreimage_true :
+    mixedInitialState ⁻¹' ({mixedInitialState true} :
+        Set (JointState (GameState Bool Unit Unit) Bool)) =
+      ({true} : Set Bool) := by
+  ext b
+  cases b <;> simp [mixedInitialState]
+
 theorem mixed_initial_positive_each_state :
     mixedInitialLaw {mixedInitialState false} =
       ENNReal.ofReal (1/2 : ℝ) ∧
@@ -129,13 +143,12 @@ theorem mixed_initial_positive_each_state :
   · rw [mixedInitialLaw,
         Measure.map_apply (by fun_prop)
           (measurableSet_singleton (mixedInitialState false))]
-    change (PermanssonResearch.X1.coin (1/2)) {false} = _
-    rw [PermanssonResearch.X1.coin_false]
+    rw [mixedPreimage_false, PermanssonResearch.X1.coin_false]
     norm_num
   · rw [mixedInitialLaw,
         Measure.map_apply (by fun_prop)
           (measurableSet_singleton (mixedInitialState true))]
-    change (PermanssonResearch.X1.coin (1/2)) {true} = _
+    rw [mixedPreimage_true]
     exact PermanssonResearch.X1.coin_true (1/2)
 
 /-- A path distribution with two positive distinct time-zero atoms
