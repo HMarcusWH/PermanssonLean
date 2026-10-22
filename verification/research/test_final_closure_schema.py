@@ -78,6 +78,7 @@ class SchemaBoundaryTests(unittest.TestCase):
             "mutant_source_sha256": "3"*64,
             "original_lean_source_path": "Demo.lean",
             "original_lean_source_sha256": "4"*64,
+            "original_lean_source_member": "original.lean",
         }]
         schema.validate_overlay(x)
         bad = copy.deepcopy(x)
