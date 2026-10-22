@@ -1,5 +1,6 @@
 import PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure
 import PermanssonResearch.X1.TypedModels
+import PermanssonResearch.ConstitutiveQuasi.ComparisonTransport
 import Mathlib.Tactic
 
 /-!
@@ -143,6 +144,71 @@ theorem twoStartDomain_contains_both :
 
 theorem twoStartDomain_has_distinct_starts :
     (false, false) ≠ (false, true) := by decide
+
+/-- Frozen original source regime specification: no parameter is optimized
+after the witness is calculated. All finite states are declared in the basin.
+This does NOT assert Exact GR. -/
+noncomputable def fineSpec : RegimeSpecification FineState Bool where
+  region := Set.univ
+  region_measurable := MeasurableSet.univ
+  basin := Set.univ
+  basin_measurable := MeasurableSet.univ
+  basin_subset_region := Set.Subset.rfl
+  descriptor := Prod.snd
+  descriptor_measurable := measurable_snd
+  target := ⟨coin (1/2), coin_probability _ (by constructor <;> norm_num)⟩
+  convergenceMode := ConvergenceMode.almostSureWeak FineState Bool
+
+noncomputable def coarseSpec : RegimeSpecification CoarseState Bool where
+  region := Set.univ
+  region_measurable := MeasurableSet.univ
+  basin := Set.univ
+  basin_measurable := MeasurableSet.univ
+  basin_subset_region := Set.Subset.rfl
+  descriptor := Prod.snd
+  descriptor_measurable := measurable_snd
+  target := ⟨coin (1/2), coin_probability _ (by constructor <;> norm_num)⟩
+  convergenceMode := ConvergenceMode.almostSureWeak CoarseState Bool
+
+/-- The original B₁ object has TWO distinct baseline point-started
+whole-path laws. Randomness in one point-started law is not substituted for
+the required nontriviality premise. -/
+noncomputable def fineComparisonSet :
+    RegimeSpecification.ConstitutiveComparisonSet (fineModel false) fineSpec where
+  states := twoStartDomain
+  states_measurable := MeasurableSet.of_discrete
+  states_subset_basin := by intro y hy; trivial
+  pathLawNontrivial := by
+    refine ⟨(false, false), ?_, (false, true), ?_, ?_⟩
+    · simp [twoStartDomain]
+    · simp [twoStartDomain]
+    · exact PermanssonResearch.ConstitutiveQuasi.pointStarted_pathLaw_ne_of_ne
+        (fineModel false) (by decide)
+
+noncomputable def coarseComparisonSet :
+    RegimeSpecification.ConstitutiveComparisonSet (coarseModel false) coarseSpec where
+  states := Set.univ
+  states_measurable := MeasurableSet.univ
+  states_subset_basin := by intro y hy; trivial
+  pathLawNontrivial := by
+    refine ⟨((), false), Set.mem_univ _, ((), true), Set.mem_univ _, ?_⟩
+    exact PermanssonResearch.ConstitutiveQuasi.pointStarted_pathLaw_ne_of_ne
+      (coarseModel false) (by decide)
+
+/-- The *entire* original two-start domain maps to the coarse domain.
+No post-hoc smaller comparison subset or weaker surrogate margin. -/
+theorem entire_original_comparison_domain :
+    coarseComparisonSet.states =
+      compression.stateMap '' fineComparisonSet.states := by
+  change Set.univ = compression.stateMap '' twoStartDomain
+  ext z
+  constructor
+  · intro _
+    refine ⟨(false, z.2), ?_, ?_⟩
+    · cases z.2 <;> simp [twoStartDomain]
+    · cases z.1; rfl
+  · intro _
+    exact Set.mem_univ _
 
 theorem compression_preserves_world (y : FineState) :
     (compression.stateMap y).2 = y.2 := rfl
