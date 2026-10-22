@@ -58,6 +58,7 @@ class MoreActualSourceNegatives(unittest.TestCase):
     def test_F_04_false_product_representation_of_correlated_law(self):
         self.fail_mathematically(
             "PermanssonResearch.MultiAgent.ProtocolWitnesses",
+            "import PermanssonResearch.X1.TypedModels\n"
             "open MeasureTheory ProbabilityTheory\n"
             "open PermanssonResearch.MultiAgent\n"
             "open PermanssonResearch.MultiAgent.Witness\n"
