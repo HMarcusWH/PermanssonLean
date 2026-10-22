@@ -7,6 +7,11 @@ import stat
 import tempfile
 import unittest
 import zipfile
+import sys
+
+RELEASE = Path(__file__).resolve().parents[2] / "release/mathematical-closure-1"
+if str(RELEASE) not in sys.path:
+    sys.path.insert(0, str(RELEASE))
 
 import archive_integrity as a
 import verify_release as verifier

@@ -42,6 +42,7 @@ class ApprovedSealByteTests(unittest.TestCase):
             "format": "Permansson.MathClosure.BuildReceipt.v1",
             "status": "DRAFT_NOT_ACCEPTED", "mode": "DRAFT",
             "source_commit_sha": M, "pdf_sha256": self.pdfsha,
+            "tex_sha256": digest((self.draft / "Permansson_Mathematical_Closure.tex").read_bytes()),
             "pdf_page_count": 1,
             "source_tree_files": {
                 "research_papers/mathematical_closure/" + path:
