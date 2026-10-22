@@ -110,6 +110,63 @@ def verify_source(receipts):
 # The old verify_source remains a postmerge strict compatibility entrypoint;
 # neither legacy nor v2 acceptance ever accepts a self-reported review flag.
 
+
+MAX_PAGES = 20
+REVIEWER_POLICY = ROOT / "research/paper_closures/post_merge_112/reviewer_authority.json"
+
+
+def paginate(resource, *, key=None):
+    """Fetch complete GitHub pages; never certify the truncated first page."""
+    rows = []
+    for page in range(1, MAX_PAGES + 1):
+        suffix = "?per_page=100" + (f"&page={page}" if page > 1 else "")
+        response = live(resource + suffix)
+        batch = response.get(key) if key is not None and isinstance(response, dict) else response
+        demand(isinstance(batch, list), "malformed paginated GitHub response")
+        rows.extend(batch)
+        if len(batch) < 100:
+            return rows
+    raise AuthenticationError("GitHub evidence exceeds bounded pagination")
+
+
+def reviewer_authorized(login, role):
+    """Explicit owner-versioned reviewer authority; non-author alone is insufficient."""
+    demand(role in ("source", "scholarly"), "unknown reviewer role")
+    try:
+        policy = json.loads(REVIEWER_POLICY.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise AuthenticationError("reviewer authority policy unavailable") from exc
+    demand(isinstance(policy, dict) and
+           policy.get("format") == "Permansson.ReviewerAuthority.v1",
+           "invalid reviewer authority policy")
+    if policy.get("status") != "OWNER_AUTHORIZED":
+        return False
+    rows = policy.get(role + "_reviewers")
+    demand(isinstance(rows, list), "reviewer roster absent")
+    return any(isinstance(x, dict) and
+               x.get("login") == login and
+               x.get("independence_disclosed") is True and
+               x.get("approved_by") == "HMarcusWH"
+               for x in rows)
+
+
+def current_reviews_by_user(reviews):
+    """One effective review per user, including dismissal and later changes requests."""
+    latest = {}
+    for review in reviews:
+        if not isinstance(review, dict):
+            raise AuthenticationError("malformed GitHub review")
+        user = (review.get("user") or {}).get("login")
+        rid = review.get("id")
+        stamp = review.get("submitted_at") or review.get("dismissed_at") or ""
+        if not user or type(rid) is not int:
+            continue
+        key = (stamp, rid)
+        if user not in latest or key > latest[user][0]:
+            latest[user] = (key, review)
+    return {name: item[1] for name, item in latest.items()}
+
+
 REVIEW_PREFIX = "PERMANSSON-REVIEW-V2:"
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -138,24 +195,39 @@ def receipt_payload_digest(receipts):
 
 
 def authenticated_checks(head_sha):
-    """GitHub check-run ids, not Actions workflow run ids."""
-    response = live("/commits/" + head_sha + "/check-runs?per_page=100")
-    checks = response.get("check_runs", [])
-    demand(isinstance(checks, list), "malformed live check-runs")
-    checks_by_name = {}
-    for check in checks:
-        if (check.get("head_sha") == head_sha and
-            check.get("conclusion") == "success" and
-            check.get("status") == "completed" and
-            (check.get("app") or {}).get("slug") == "github-actions"):
-            name = check.get("name")
-            demand(isinstance(name, str) and isinstance(check.get("id"), int),
-                   "invalid head-bound GitHub check-run")
-            demand(name not in checks_by_name, "ambiguous completed check: " + name)
-            checks_by_name[name] = check
-    demand(REQUIRED <= checks_by_name.keys(),
-           "required H-bound successful GitHub check-runs absent")
-    return checks_by_name
+    """Select the latest trusted check attempt for every required job.
+
+    Older success cannot mask a newer failed, cancelled, or queued run.
+    GitHub check-run IDs are not workflow-run IDs.
+    """
+    demand(isinstance(head_sha, str) and SHA.fullmatch(head_sha),
+           "invalid checked source revision")
+    rows = paginate("/commits/" + head_sha + "/check-runs", key="check_runs")
+    by_name = {}
+    for check in rows:
+        if not isinstance(check, dict) or check.get("head_sha") != head_sha:
+            continue
+        name = check.get("name")
+        if name not in REQUIRED:
+            continue
+        if (check.get("app") or {}).get("slug") != "github-actions":
+            continue
+        rid = check.get("id")
+        demand(type(rid) is int and rid > 0, "bad GitHub check-run ID")
+        details = check.get("details_url")
+        if details is not None:
+            demand(isinstance(details, str) and details.startswith(
+                "https://github.com/HMarcusWH/PermanssonLean/actions/runs/"),
+                "required check has unexpected execution provenance")
+        if name not in by_name or rid > by_name[name]["id"]:
+            by_name[name] = check
+    demand(REQUIRED <= by_name.keys(), "required GitHub Actions checks absent")
+    for name in REQUIRED:
+        selected = by_name[name]
+        demand(selected.get("status") == "completed" and
+               selected.get("conclusion") == "success",
+               "latest required check is not successful: " + name)
+    return by_name
 
 
 def authenticate_scoped_reviews(head_sha, author, bundle_sha256, refs,
@@ -171,14 +243,14 @@ def authenticate_scoped_reviews(head_sha, author, bundle_sha256, refs,
     demand(isinstance(refs, list), "independent review receipts malformed")
     registered_ids = {x.get("id") for x in refs if isinstance(x, dict)}
     scopes = {}
-    reviews = live("/pulls/113/reviews?per_page=100")
-    demand(isinstance(reviews, list), "invalid live reviewer records")
-    for review in reviews:
+    reviews = paginate("/pulls/113/reviews")
+    for review in current_reviews_by_user(reviews).values():
         user = (review.get("user") or {}).get("login")
         rid = review.get("id")
         if (review.get("state") != "APPROVED" or
             review.get("commit_id") != head_sha or
             not review.get("submitted_at") or not user or user == author or
+            not reviewer_authorized(user, "source") or
             rid not in registered_ids):
             continue
         lines = [x.strip() for x in (review.get("body") or "").splitlines()
@@ -265,13 +337,14 @@ def authentic_scholarly_attestations(pr, head_sha, merged_sha):
     demand(isinstance(merged_at, str) and bool(merged_at),
            "scholarly approval requires completed genuine GitHub merge")
     author = (pr.get("user") or {}).get("login")
-    comments = live("/issues/113/comments?per_page=100")
-    demand(isinstance(comments, list), "invalid GitHub manuscript reviews")
+    comments = paginate("/issues/113/comments")
     results = []
     for comment in comments:
         reviewer = (comment.get("user") or {}).get("login")
         stamp = comment.get("created_at")
-        if not reviewer or reviewer == author or not stamp or stamp < merged_at:
+        if (not reviewer or reviewer == author or
+            not reviewer_authorized(reviewer, "scholarly") or
+            not stamp or stamp < merged_at):
             continue
         lines = [l.strip() for l in (comment.get("body") or "").splitlines()
                  if l.strip().startswith(SCHOLARLY_PREFIX)]
