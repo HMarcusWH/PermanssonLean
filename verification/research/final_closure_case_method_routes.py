@@ -228,6 +228,16 @@ METHOD_ROUTES = {
       "test_final_closure_missing_original_positives.py",
       "test_F_03_original_source_positive",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_f03_actual_infeasible_strict_anchor_lean.py",
+      "test_actual_all_state_legal_fibre_and_original_existence_theorems",
+      "COMPILER_SOURCE"
+    ],
+    [
+      "test_f03_actual_infeasible_strict_anchor_lean.py",
+      "test_false_feasible_anchor_with_conflicting_own_fibre_rejected",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "F-04": [

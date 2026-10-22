@@ -24,7 +24,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | M-02 | PENDING | Autonomy premise rejected; reactive witness not counted strict | 7 | verification/research/test_next03_m02_marked_coupling.py, verification/research/test_m02_marked_actual_source_lean.py, verification/research/test_m02_actual_history_kernel_lean.py |
 | F-01 | PENDING | P inputs reindexed correctly, no assumed symmetry | 8 | verification/research/test_next03_asymmetric_common_swap_lean.py, verification/research/test_final05_measurable_lean.py |
 | F-02 | PARTIAL_SCOPE | Projection/exogeneity fails | 5 | verification/research/test_paper_measurable_clock_lean.py, verification/research/test_f1_multiagent_protocols.py, verification/research/test_final_closure_more_false_semantics_lean.py |
-| F-03 | PARTIAL_SCOPE | No feasible strict probability anchor | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_f1_multiagent_protocols.py, verification/research/test_final_closure_missing_original_positives.py |
+| F-03 | PARTIAL_SCOPE | No feasible strict probability anchor | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_f1_multiagent_protocols.py, verification/research/test_final_closure_missing_original_positives.py, verification/research/test_f03_actual_infeasible_strict_anchor_lean.py |
 | F-04 | PARTIAL_SCOPE | Single-product claim fails; mediator mixture succeeds | 3 | verification/research/test_f1_multiagent_protocols.py, verification/research/test_final_closure_more_false_semantics_lean.py |
 | F-05 | PENDING | Mediation not identified without sufficient premises | 5 | verification/research/test_next03_positive_mediation.py, verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_more_false_semantics_lean.py |
 | Q-01 | PARTIAL_SCOPE | Geometric bound holds without claiming projection Markov | 6 | verification/research/test_e1_approx_quotient.py |
@@ -97,7 +97,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 ## Executable-route gaps (unreviewed; not acceptance)
 
 - Missing selected positive controls: 0 of 45.
-- Missing selected semantic false-mutant routes: 25 of 45.
+- Missing selected semantic false-mutant routes: 24 of 45.
 - Passing scope-boundary checks do **not** discharge the mandatory compiler-negative evidence obligation.
 - A selected method still requires source relevance, actual exact-head execution, intact logs, authenticated check-run attribution and independent approval.
 
@@ -115,7 +115,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | M-02 | 3 | 2 | 1 |
 | F-01 | 2 | 1 | 0 |
 | F-02 | 1 | 1 | 1 |
-| F-03 | 1 | 0 | 2 |
+| F-03 | 2 | 1 | 2 |
 | F-04 | 1 | 1 | 1 |
 | F-05 | 1 | 1 | 1 |
 | Q-01 | 1 | 0 | 1 |

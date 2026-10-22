@@ -1186,12 +1186,25 @@
           "path": "verification/research/test_final_closure_missing_original_positives.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_actual_all_state_legal_fibre_and_original_existence_theorems",
+          "path": "verification/research/test_f03_actual_infeasible_strict_anchor_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_false_feasible_anchor_with_conflicting_own_fibre_rejected",
+          "path": "verification/research/test_f03_actual_infeasible_strict_anchor_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_closure_boundaries.py",
         "verification/research/test_f1_multiagent_protocols.py",
-        "verification/research/test_final_closure_missing_original_positives.py"
+        "verification/research/test_final_closure_missing_original_positives.py",
+        "verification/research/test_f03_actual_infeasible_strict_anchor_lean.py"
       ]
     },
     {
