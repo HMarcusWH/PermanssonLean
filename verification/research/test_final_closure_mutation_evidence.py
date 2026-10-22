@@ -4,6 +4,7 @@ import tempfile
 import subprocess
 import types
 import unittest
+from unittest import mock
 
 import final_closure_mutation_evidence as m
 
@@ -81,6 +82,53 @@ class MutantEvidenceTests(unittest.TestCase):
             source.symlink_to(untracked)
             with self.assertRaises(m.MutationEvidenceError):
                 m.committed_file_bytes(head, source, root=root)
+
+
+    def test_producer_rechecks_source_after_compiler_run(self):
+        # Deliberate dirty-worktree race, with mocked Lean results only.
+        # Success here is a validator regression, not mathematical evidence.
+        with tempfile.TemporaryDirectory(prefix="pr113-source-race-") as tmp:
+            base = Path(tmp)
+            repo = base / "repo"
+            repo.mkdir()
+            subprocess.run(["git", "init", "-q"], cwd=repo, check=True)
+            source = repo / "PermanssonResearch" / "Proof.lean"
+            source.parent.mkdir(parents=True)
+            original = b"import Mathlib.Tactic\ntheorem positive : True := by trivial\n"
+            source.write_bytes(original)
+            test = repo / "verification" / "research" / "test_case.py"
+            test.parent.mkdir(parents=True)
+            test.write_text("def test_boundary():\n    pass\n")
+            subprocess.run(["git", "add", "."], cwd=repo, check=True)
+            subprocess.run([
+                "git", "-c", "user.name=ClosureAudit",
+                "-c", "user.email=audit@example.invalid",
+                "commit", "-qm", "frozen candidate"
+            ], cwd=repo, check=True)
+            head = subprocess.check_output(
+                ["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip()
+            mutant = base / "mutant.lean"
+            mutant.write_bytes(original + b"example : False := by trivial\n")
+            out = base / "detached-evidence"
+
+            def fake_compile(path):
+                if path == mutant:
+                    source.write_bytes(original + b"-- changed during compilation\n")
+                    return result(1, "error: type mismatch")
+                return result(0, "positive compilation simulated")
+
+            with (
+                mock.patch.object(m, "ROOT", repo),
+                mock.patch.object(m, "git_head", return_value=head),
+                mock.patch.object(m.shutil, "which", return_value="/fake/lake"),
+                mock.patch.object(m, "lean_result", side_effect=fake_compile),
+            ):
+                with self.assertRaises(m.MutationEvidenceError):
+                    m.produce(
+                        head, true_source=source, mutant=mutant, test_path=test,
+                        test_name="test_boundary", case_id="T-01", claim_ids=[],
+                        out=out)
+            self.assertFalse(out.exists())
 
 
 if __name__ == "__main__":
