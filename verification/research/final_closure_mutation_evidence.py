@@ -122,20 +122,20 @@ def produce(head: str, *, true_source: Path, mutant: Path, test_path: Path,
         not source.is_file() or source.suffix != ".lean" or
         not test.is_file() or test.suffix != ".py"):
         raise MutationEvidenceError("source/test must be genuine repo files")
-    test_bytes = committed_file_bytes(head, test)
+    test_bytes = committed_file_bytes(head, test, root=ROOT)
     if not re.search(r"(?m)^\s*def\s+" + re.escape(test_name) + r"\(",
                      test_bytes.decode("utf-8")):
         raise MutationEvidenceError("test name not defined by source")
     if not case_id or not isinstance(claim_ids, list):
         raise MutationEvidenceError("case/review ownership missing")
-    original_bytes = committed_file_bytes(head, source)
+    original_bytes = committed_file_bytes(head, source, root=ROOT)
     mutant_bytes = mutant.read_bytes()
     if not shutil.which("lake"):
         raise MutationEvidenceError("pinned Lean required, cannot skip")
     positive = lean_result(source)
     negative = lean_result(mutant)
-    if committed_file_bytes(head, source) != original_bytes or \
-            committed_file_bytes(head, test) != test_bytes:
+    if committed_file_bytes(head, source, root=ROOT) != original_bytes or \
+            committed_file_bytes(head, test, root=ROOT) != test_bytes:
         raise MutationEvidenceError("committed source/test mutated during compiler run")
     if mutant.read_bytes() != mutant_bytes:
         raise MutationEvidenceError("false mutant changed during compiler run")
