@@ -57,12 +57,13 @@ jobs:
           print("All-case compile candidates:", inv["proof_targets"])
           PY
       - name: Preserve source inventory candidate
+        if: ${{ always() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: pr113-all-case-owner-inventory
           path: ${{ runner.temp }}/all-case-inventory/
           retention-days: 30
-          if-no-files-found: error
+          if-no-files-found: warn
 
   compiler-shard:
     needs: inventory-preflight
@@ -103,9 +104,10 @@ jobs:
             --output "$RUNNER_TEMP/complete-shard" \
             --shard-index "${{ matrix.shard }}" --shard-count 4
       - name: Preserve unreviewed theorem type and axiom logs
+        if: ${{ always() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: pr113-compiler-shard-${{ matrix.shard }}
           path: ${{ runner.temp }}/complete-shard/
           retention-days: 30
-          if-no-files-found: error
+          if-no-files-found: warn
