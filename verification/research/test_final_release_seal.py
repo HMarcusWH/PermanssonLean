@@ -67,6 +67,11 @@ class ApprovedSealByteTests(unittest.TestCase):
         (self.draft / "SHA256SUMS.txt").write_text("".join(
             digest((self.draft / name).read_bytes()) + "  " + name + "\n"
             for name in integrity.SUMMED))
+        self.external_bundle = self.draft / "unavailable.zip"
+        self.external_bundle.write_bytes(b"MOCK_EXTERNAL_UNREVIEWED_PROOF_BUNDLE")
+        self.receipts = {
+            "evidence_bundle_sha256": digest(self.external_bundle.read_bytes())
+        }
         self.approved = {
             "status": "APPROVED_SOURCE_BOUND", "source_commit_sha": M,
             "pdf_sha256": self.pdfsha, "pdf_pages": self.pages,
@@ -89,14 +94,20 @@ class ApprovedSealByteTests(unittest.TestCase):
              mock.patch.object(seal, "strict_acceptance", return_value={
                     "source": M, "frozen_head": H,
                     "accepted_case_count": 1, "accepted_claim_count": 1}):
-            result = seal.seal(self.draft, self.approved, {},
-                               self.draft/"unavailable.zip", self.output)
+            result = seal.seal(self.draft, self.approved, self.receipts,
+                               self.external_bundle, self.output)
         self.assertEqual(result["status"], "APPROVED_SOURCE_BOUND")
         self.assertEqual((self.draft/"manifest.lock.json").read_bytes(), before)
         with zipfile.ZipFile(self.output/"Permansson_Mathematical_Closure_APPROVED.zip") as z:
             self.assertEqual(z.read("Permansson_Mathematical_Closure.pdf"), self.pdf)
             self.assertEqual(json.loads(z.read("original_draft_manifest.lock.json")),
                              self.manifest)
+            self.assertEqual(z.read("detached_proof_mutation_bundle.zip"),
+                             self.external_bundle.read_bytes())
+            self.assertEqual(json.loads(z.read("source_acceptance_receipts.json")),
+                             self.receipts)
+            self.assertEqual(len([n for n in z.namelist()
+                                  if n.startswith("manuscript/")]), 13)
 
     def test_full_seal_cannot_promote_partial_scope(self):
         from final_closure_full_contract import ORIGINAL_CLAIMS
