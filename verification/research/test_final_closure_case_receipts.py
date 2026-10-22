@@ -37,7 +37,10 @@ class DetachedCaseReceiptTests(unittest.TestCase):
                 b"Test.Scope.genuine depends on axioms: []\n"),
             "positive.log": b"test_meaningful_mutant ... ok\n",
             "negative.log": b"Test.Scope.genuine: error: unsolved goals\n",
-            "mutant.lean": b"namespace Test.Scope\ntheorem genuine : False := by trivial\nend Test.Scope\n",
+            "mutant.lean": (
+                (self.repo / "Proof.lean").read_bytes() +
+                b"\nnamespace Test.Scope\nexample : False := by exact genuine\nend Test.Scope\n"),
+            "original.lean": (self.repo / "Proof.lean").read_bytes(),
         }
         self.bundle = root / "evidence.zip"
         self.save()
@@ -80,6 +83,7 @@ class DetachedCaseReceiptTests(unittest.TestCase):
             mutant_source_member="mutant.lean",
             original_lean_source_path="Proof.lean",
             original_lean_source_sha256=sha((self.repo/"Proof.lean").read_bytes()),
+            original_lean_source_member="original.lean",
             outcome="REJECTED_SEMANTIC", compiler_exit_code=1)
         self.ledger = {"cases": [
             {"case_id": "C-%02d" % i,
