@@ -3,6 +3,7 @@
 from __future__ import annotations
 import argparse,hashlib,json,sys,zipfile
 from pathlib import Path
+from archive_integrity import verify_draft_archive
 
 def sha(p:Path):return hashlib.sha256(p.read_bytes()).hexdigest()
 def require(b,msg):
@@ -17,22 +18,11 @@ def verify(manifest:Path,strict:bool=False,*,source_receipts:Path|None=None,appr
            "latex_build.log":d["latex_log_sha256"]}
     for n,h in names.items():require((out/n).exists() and sha(out/n)==h,f"source/output corrupt {n}")
     require((out/"Permansson_Mathematical_Closure.pdf").read_bytes().startswith(b"%PDF-"),"bad PDF")
-    zpath=out/"Permansson_Mathematical_Closure_E2E.zip"
-    require(zpath.exists(),"missing release archive")
-    with zipfile.ZipFile(zpath) as z:
-        require(z.testzip() is None,"broken archive")
-        for p,h in d["source_tree_files"].items():
-            name="manuscript/"+p.partition("mathematical_closure/")[2]
-            require(name in z.namelist() and hashlib.sha256(z.read(name)).hexdigest()==h,
-                    f"archived source divergence {p}")
-    sums=out/"SHA256SUMS.txt";require(sums.is_file(),"missing checksum ledger")
-    for line in sums.read_text().splitlines():
-        h,p=line.split("  ",1)
-        require(sha(out/p)==h,f"checksum mismatch: {p}")
+    audit = verify_draft_archive(out, d)
     if strict:
         raise ValueError("draft artifact cannot be approved; use --approved-seal and genuine external review")
     return {"integrity":"PASS","accepted":False if not strict else True,
-            "pdf_pages":d.get("pdf_page_count"),"source_files":len(d["source_tree_files"])}
+            "pdf_pages":d.get("pdf_page_count"),"source_files":audit["canonical_sources"]}
 def main(argv=None):
     ap=argparse.ArgumentParser()
     ap.add_argument("--manifest",required=True,type=Path)

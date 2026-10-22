@@ -161,7 +161,7 @@ def verify_draft_archive(directory: Path, manifest: dict):
                "invalid rendered page directory")
         files = list(page_dir.iterdir())
         demand(all(p.is_file() and not p.is_symlink() and
-                   re.fullmatch(r"page-[1-9][0-9]*[.]png", p.name)
+                   re.fullmatch(r"page-[0-9]+[.]png", p.name)
                    for p in files), "unrelated/malformed page image")
         count = manifest.get("pdf_page_count")
         demand(type(count) is int and count > 0 and
