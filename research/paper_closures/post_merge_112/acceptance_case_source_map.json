@@ -4550,11 +4550,24 @@
           "path": "verification/research/test_paper_specialized_boundary_lean.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_original_signed_negative_and_masked_total_compiler",
+          "path": "verification/research/test_e05_full_gram_masking_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_false_unqualified_full_gram_negativity_rejected",
+          "path": "verification/research/test_e05_full_gram_masking_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_closure_boundaries.py",
-        "verification/research/test_paper_specialized_boundary_lean.py"
+        "verification/research/test_paper_specialized_boundary_lean.py",
+        "verification/research/test_e05_full_gram_masking_lean.py"
       ]
     }
   ],

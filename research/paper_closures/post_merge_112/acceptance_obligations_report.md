@@ -56,7 +56,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | E-02 | PARTIAL_SCOPE | No persistent witness transfer | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py, verification/research/test_final_closure_existing_false_semantics_lean.py |
 | E-03 | PARTIAL_SCOPE | No scalar shell reduction or unjustified inverse | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py, verification/research/test_final_closure_existing_false_semantics_lean.py |
 | E-04 | PARTIAL_SCOPE | No pseudoinverse positivity certificate or cancellation | 5 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py, verification/research/test_final_closure_existing_false_semantics_lean.py |
-| E-05 | PARTIAL_SCOPE | No unqualified negative full-form conclusion | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_paper_specialized_boundary_lean.py |
+| E-05 | PARTIAL_SCOPE | No unqualified negative full-form conclusion | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_paper_specialized_boundary_lean.py, verification/research/test_e05_full_gram_masking_lean.py |
 
 ## Fifteen case-specific historical objections
 
@@ -97,7 +97,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 ## Executable-route gaps (unreviewed; not acceptance)
 
 - Missing selected positive controls: 0 of 45.
-- Missing selected semantic false-mutant routes: 17 of 45.
+- Missing selected semantic false-mutant routes: 16 of 45.
 - Passing scope-boundary checks do **not** discharge the mandatory compiler-negative evidence obligation.
 - A selected method still requires source relevance, actual exact-head execution, intact logs, authenticated check-run attribution and independent approval.
 
@@ -147,7 +147,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | E-02 | 1 | 1 | 2 |
 | E-03 | 1 | 1 | 2 |
 | E-04 | 1 | 1 | 2 |
-| E-05 | 1 | 0 | 1 |
+| E-05 | 2 | 1 | 1 |
 
 ## Closure protocol
 

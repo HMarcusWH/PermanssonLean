@@ -782,6 +782,16 @@ METHOD_ROUTES = {
       "test_paper_specialized_boundary_lean.py",
       "test_negative_statements_and_transitive_axioms",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_e05_full_gram_masking_lean.py",
+      "test_original_signed_negative_and_masked_total_compiler",
+      "COMPILER_SOURCE"
+    ],
+    [
+      "test_e05_full_gram_masking_lean.py",
+      "test_false_unqualified_full_gram_negativity_rejected",
+      "SEMANTIC_NEGATIVE"
     ]
   ]
 }
