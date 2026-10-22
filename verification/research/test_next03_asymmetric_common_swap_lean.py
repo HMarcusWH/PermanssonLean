@@ -19,6 +19,33 @@ SEMANTIC = re.compile(r"unsolved goals|Tactic .?simp.? failed|tactic .?simp.? ma
 
 
 class AsymmetricPlayerSwap(unittest.TestCase):
+    def test_source_bound_non_dirac_asymmetric_whole_path(self):
+        module = "PermanssonResearch.MultiAgent.AsymmetricCommonSwapFixture"
+        declarations = (
+            "mixed_starts_distinct",
+            "mixed_initial_positive_each_state",
+            "mixed_initial_not_point_mass",
+            "asymmetric_mixed_original_path_law_transport",
+        )
+        code = "import " + module + "\n" + "".join(
+            "#check " + module + "." + item + "\n" +
+            "#print axioms " + module + "." + item + "\n"
+            for item in declarations
+        )
+        with tempfile.TemporaryDirectory(prefix="F01_mixed_", dir=ROOT / ".lake") as tmp:
+            source = Path(tmp) / "F01Mixed.lean"
+            source.write_text(code, encoding="utf-8")
+            run = subprocess.run(
+                ["lake", "env", "lean", str(source)], cwd=ROOT,
+                capture_output=True, text=True, timeout=180,
+            )
+        output = run.stdout + run.stderr
+        self.assertEqual(run.returncode, 0, output[-3500:])
+        self.assertNotIn("sorryAx", output)
+        self.assertNotIn("error:", output.lower())
+        for item in declarations:
+            self.assertIn(module + "." + item, output)
+
     def test_actual_common_update_false_same_input_claim(self):
         text = SOURCE.read_text(encoding="utf-8")
         self.assertEqual(text.count(OLD), 1)
