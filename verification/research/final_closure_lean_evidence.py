@@ -22,6 +22,8 @@ ROOT = Path(__file__).resolve().parents[2]
 MAP = ROOT / "research/paper_closures/post_merge_112/claim_declaration_map.json"
 DECL_RE = re.compile(r"^[A-Za-z0-9_'.]+$")
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
+CLAIM_IDS = ("Q1", "Q2", "Q3", "M1", "M2", "M3",
+             "N1", "N2", "N3", "D8", "D9")
 BAD = ("error:", "sorryax", "unknown identifier", "unknown module",
        "maximum number of heartbeats", "timeout", "failed to import")
 AXIOM_LIST = re.compile(r"depends on axioms:\s*\[([^\]]*)\]")
@@ -72,8 +74,35 @@ def candidate_records(head: str, out: Path) -> dict:
     if not MAP.is_file():
         raise CompilerEvidenceError("qualified source map missing")
     source_map = json.loads(MAP.read_text())
-    if source_map["count"] != 11:
-        raise CompilerEvidenceError("eleven source-claim owners not retained")
+    claim_rows = source_map.get("claims")
+    if (source_map.get("count") != len(CLAIM_IDS) or
+        not isinstance(claim_rows, list) or
+        len(claim_rows) != len(CLAIM_IDS) or
+        [c.get("claim_id") for c in claim_rows if isinstance(c, dict)]
+            != list(CLAIM_IDS)):
+        raise CompilerEvidenceError("exact eleven claim identities/rows missing")
+    declaration_owners = set()
+    for claim in claim_rows:
+        rows = claim.get("declarations")
+        if (not isinstance(rows, list) or not rows or
+            not isinstance(claim.get("original_case_links"), list) or
+            not claim["original_case_links"] or
+            not isinstance(claim.get("test_source_candidates"), list) or
+            not claim["test_source_candidates"]):
+            raise CompilerEvidenceError("claim lacks declarations/case/test obligations")
+        for row in rows:
+            if not isinstance(row, dict):
+                raise CompilerEvidenceError("invalid declaration owner entry")
+            pair = (row.get("path"), row.get("declaration"))
+            if pair in declaration_owners:
+                raise CompilerEvidenceError("duplicated primary claim declaration owner")
+            declaration_owners.add(pair)
+        for test in claim["test_source_candidates"]:
+            if (not isinstance(test, str) or
+                not test.startswith("verification/research/test_") or
+                not test.endswith(".py") or
+                not (ROOT / test).is_file()):
+                raise CompilerEvidenceError("claim test candidate is not current source")
     log_dir = out / "axiom_logs"
     log_dir.mkdir(parents=True, exist_ok=True)
     outputs = []
