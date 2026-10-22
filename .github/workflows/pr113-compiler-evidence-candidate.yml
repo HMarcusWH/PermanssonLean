@@ -40,6 +40,24 @@ jobs:
           python3 verification/research/final_closure_lean_evidence.py \
             --head "$GITHUB_SHA" \
             --output "$RUNNER_TEMP/perm-compiler-candidate"
+      - name: Resolve all historical case and claim theorem targets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 verification/research/final_closure_complete_lean_evidence.py \
+            --head "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/perm-compiler-candidate/complete" \
+            --inventory-only \
+            > "$RUNNER_TEMP/perm-compiler-candidate/complete_obligation_inventory.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          output = Path(os.environ["RUNNER_TEMP"]) / "perm-compiler-candidate"
+          manifest = json.loads((output/"complete_obligation_inventory.json").read_text())
+          assert manifest["cases"] == 45 and manifest["claims"] == 11
+          assert manifest["proof_targets"] >= 45
+          assert manifest["status"] == "SOURCE_CANDIDATE_UNREVIEWED"
+          PY
       - name: Bind evidence to actual source/job/run/attempt
         shell: bash
         run: |
