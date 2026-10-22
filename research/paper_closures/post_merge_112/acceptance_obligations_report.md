@@ -97,7 +97,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 ## Executable-route gaps (unreviewed; not acceptance)
 
 - Missing selected positive controls: 0 of 45.
-- Missing selected semantic false-mutant routes: 2 of 45.
+- Missing selected semantic false-mutant routes: 0 of 45.
 - Passing scope-boundary checks do **not** discharge the mandatory compiler-negative evidence obligation.
 - A selected method still requires source relevance, actual exact-head execution, intact logs, authenticated check-run attribution and independent approval.
 
@@ -126,8 +126,8 @@ This report is derived from unchanged original criteria and source mappings. It 
 | A-01 | 2 | 1 | 0 |
 | A-02 | 1 | 1 | 1 |
 | A-03 | 1 | 1 | 1 |
-| A-04 | 1 | 0 | 1 |
-| A-05 | 1 | 0 | 2 |
+| A-04 | 1 | 1 | 1 |
+| A-05 | 1 | 1 | 2 |
 | D-01 | 2 | 1 | 0 |
 | D-02 | 1 | 1 | 1 |
 | D-03 | 2 | 1 | 0 |
