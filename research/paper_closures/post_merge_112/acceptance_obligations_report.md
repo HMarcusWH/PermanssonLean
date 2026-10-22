@@ -50,7 +50,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | C11-02 | PARTIAL_SCOPE | Existing checker rejects complete faulty output | 7 | verification/research/test_lane_c11_stationary.py |
 | C-01 | PARTIAL_SCOPE | No unrestricted nonfinite occupation theorem | 11 | verification/research/test_paper_nonfinite_counterexample_lean.py |
 | B-01 | PENDING | Compatibility rejected; order dependence exposed | 6 | verification/research/test_next06_overlap_lean.py, verification/research/test_lane_b2_sequential_effects.py |
-| B-02 | PENDING | No unique-minimum or monotonicity inference | 3 | verification/research/test_lane_b2_sequential_effects.py |
+| B-02 | PENDING | No unique-minimum or monotonicity inference | 3 | verification/research/test_lane_b2_sequential_effects.py, verification/research/test_b02_actual_original_margin_lean.py |
 | XPLUS-01 | PARTIAL_SCOPE | Correct source constructors and kappa1; no edit to old X1 | 4 | verification/research/test_paper_strategy_economic_lean.py, verification/research/test_x1_commons.py |
 | E-01 | PARTIAL_SCOPE | Rank-one/scalar promotion rejected | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_paper_specialized_boundary_lean.py |
 | E-02 | PARTIAL_SCOPE | No persistent witness transfer | 4 | verification/research/test_paper_closure_boundaries.py |

@@ -495,6 +495,16 @@ METHOD_ROUTES = {
       "test_lane_b2_sequential_effects.py",
       "test_10_XOR_destroys_upward_monotonicity",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_b02_actual_original_margin_lean.py",
+      "test_actual_original_margin_minimality_and_axioms",
+      "COMPILER_SOURCE"
+    ],
+    [
+      "test_b02_actual_original_margin_lean.py",
+      "test_false_joint_minimality_is_rejected_semantically",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "XPLUS-01": [

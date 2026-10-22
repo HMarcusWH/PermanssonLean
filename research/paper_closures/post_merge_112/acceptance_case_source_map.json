@@ -3818,10 +3818,23 @@
           "path": "verification/research/test_lane_b2_sequential_effects.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_actual_original_margin_minimality_and_axioms",
+          "path": "verification/research/test_b02_actual_original_margin_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_false_joint_minimality_is_rejected_semantically",
+          "path": "verification/research/test_b02_actual_original_margin_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_lane_b2_sequential_effects.py"
+        "verification/research/test_lane_b2_sequential_effects.py",
+        "verification/research/test_b02_actual_original_margin_lean.py"
       ]
     },
     {
