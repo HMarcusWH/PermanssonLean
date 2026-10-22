@@ -150,6 +150,10 @@ def produce(head: str, *, true_source: Path, mutant: Path, test_path: Path,
     (out / negative_name).write_bytes(negative_log)
     mutant_name = prefix + ".mutant.lean"
     (out / mutant_name).write_bytes(mutant_bytes)
+    # Preserve the ORIGINAL provider bytes as well as the false assertion.
+    # A detached reviewer must not need an accessible mutable checkout.
+    original_name = prefix + ".original.lean"
+    (out / original_name).write_bytes(original_bytes)
     return {
         "id": prefix, "head_sha": head,
         "test_path": str(test.relative_to(ROOT)).replace("\\", "/"),
@@ -159,6 +163,7 @@ def produce(head: str, *, true_source: Path, mutant: Path, test_path: Path,
         "mutant_source_sha256": hash_bytes(mutant_bytes),
         "mutant_source_member": mutant_name,
         "original_lean_source_sha256": hash_bytes(original_bytes),
+        "original_lean_source_member": original_name,
         "original_lean_source_path": str(source.relative_to(ROOT)).replace("\\", "/"),
         "positive_control": {
             "compiled": True, "exit_code": 0, "lean_toolchain": "4.34.0",
