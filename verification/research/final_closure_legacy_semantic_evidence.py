@@ -138,9 +138,19 @@ def test_observations(directory, *, expected_case=None, expected_methods=None):
         if (expected_case is not None and
                 meta.get("case_id_unverified") != expected_case):
             raise MutationEvidenceError("cross-case compiler observation substituted")
-        if (expected_methods is not None and
-                meta.get("selected_method_unverified") != expected_methods):
-            raise MutationEvidenceError("cross-method compiler observation substituted")
+        observed_method = meta.get("selected_method_unverified")
+        ambiguous_method = False
+        if expected_methods is not None:
+            permitted = expected_methods.split(",")
+            if observed_method not in permitted:
+                # A class-level setup runs *before* TestCase.run can mark the
+                # individual test. Retain the diagnostic for inspection but
+                # never count it toward any one semantic-negative method.
+                if len(permitted) > 1 and observed_method == expected_methods:
+                    ambiguous_method = True
+                else:
+                    raise MutationEvidenceError(
+                        "cross-method compiler observation substituted")
         allowed_members = {"observation.json", "source.lean", "stdout.log", "stderr.log"}
         if (any(p.is_symlink() for p in root.iterdir()) or
                 any(p.name not in allowed_members for p in root.iterdir())):
@@ -173,11 +183,14 @@ def test_observations(directory, *, expected_case=None, expected_methods=None):
             and not any(token.encode() in output for token in INVALID_DIAGNOSTICS)
             and meta.get("source_retained") is True
             and not meta.get("truncated_or_missing")
+            and not ambiguous_method
         )
         results.append({
             "observation_id": root.name,
             "source_sha256": meta.get("source_sha256"),
             "returncode": meta.get("returncode"),
+            "method_observed_unverified": observed_method,
+            "method_attribution_ambiguous": ambiguous_method,
             "possible_semantic_diagnostic": semantic,
             "source_retained": meta.get("source_retained"),
             "raw_metadata_sha256": digest(raw),
