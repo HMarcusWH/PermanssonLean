@@ -54,6 +54,26 @@ def require_full_source(result: dict, case_ledger: dict,
                 "original case lacks an explicit selected test: " + row["case_id"])
         if not row.get("historical_proof_declarations"):
             raise EvidenceError("original case lacks proof route: " + row["case_id"])
+        method_rows = row.get("test_method_candidates")
+        if not isinstance(method_rows, list) or not method_rows:
+            raise EvidenceError("original case lacks named test-method selection: " + row["case_id"])
+        known = set()
+        for candidate in method_rows:
+            if (not isinstance(candidate, dict) or
+                candidate.get("path") not in tests or
+                not isinstance(candidate.get("method"), str) or
+                not candidate["method"].startswith("test_") or
+                candidate.get("role") not in {
+                    "COMPILER_SOURCE", "EXACT_CHECK", "SEMANTIC_NEGATIVE",
+                    "SCOPE_BOUNDARY"
+                } or
+                candidate.get("status") !=
+                    "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"):
+                raise EvidenceError("unreviewed method route invalid: " + row["case_id"])
+            key = (candidate["path"], candidate["method"])
+            if key in known:
+                raise EvidenceError("duplicated case method route: " + row["case_id"])
+            known.add(key)
 
     effective_cases = result.get("effective_cases")
     effective_claims = result.get("effective_claims")
