@@ -10,6 +10,8 @@ import json
 from pathlib import Path
 import sys
 
+from final_closure_case_method_routes import validated_routes
+
 ROOT = Path(__file__).resolve().parents[2]
 SNAP = ROOT / "research/paper_closures/post_merge_112"
 OUTPUT = SNAP / "acceptance_case_source_map.json"
@@ -31,7 +33,7 @@ CANDIDATE_TESTS = {
     "D-08": ["test_final_d08_admission.py", "test_next06_d08_joint_only_compiler.py"],
     "D-09": ["test_final_d09_multichain.py", "test_final06_phaseblind_original.py"],
     "B-01": ["test_next06_overlap_lean.py"],
-    "B-02": ["test_next06_d08_joint_only_compiler.py"],
+    "B-02": ["test_lane_b2_sequential_effects.py"],
 }
 
 
@@ -44,11 +46,15 @@ def generate() -> dict:
     claims = cross["closure_additions"]
     if len(claims) != 11:
         raise ValueError("expected eleven distinct source closure owners")
+    routes = validated_routes([c["case_id"] for c in cases], root=ROOT)
     results = []
     for c in cases:
         cid = c["case_id"]
         candidates = ["verification/research/" + n
                       for n in CANDIDATE_TESTS.get(cid, [])]
+        for route in routes[cid]:
+            if route["path"] not in candidates:
+                candidates.append(route["path"])
         for path in candidates:
             if not (ROOT / path).is_file():
                 raise ValueError("test candidate no longer exists: " + path)
@@ -62,6 +68,7 @@ def generate() -> dict:
                 {"id": row["id"], "path": row["path"]}
                 for row in claims if cid in row["acceptance_case_ids"]],
             "test_source_candidates": candidates,
+            "test_method_candidates": routes[cid],
             "case_specific_test_status": (
                 "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW" if candidates
                 else "MISSING_CASE_SPECIFIC_TEST_SELECTION"),
@@ -78,9 +85,10 @@ def generate() -> dict:
         "original_atlas_contracts": cross["historical_contract_count"],
         "new_closure_owners": 11,
         "cases": results,
-        "qualification": ("Test candidates are a review work queue. Missing "
-                          "case-specific tests remain explicitly unassigned; "
-                          "no global CI check or source name establishes case acceptance."),
+        "qualification": ("All 45 original cases now have concrete discovered test-method "
+                          "candidates; these are a review work queue, not criterion-level "
+                          "acceptance or executed CI receipts. Source/mutation identity, "
+                          "premise relevance and independent review remain mandatory."),
     }
 
 
