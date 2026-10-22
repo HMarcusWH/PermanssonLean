@@ -62,9 +62,13 @@ class OriginalRiskAndBeliefNegatives(unittest.TestCase):
             "open PermanssonResearch.ReverseSolver.ReachableCompletionBelief\n"
             "example : (model.filter 0 initial [(false, ())]).weight true =\n"
             "  (model.filter 0 initial [(true, ())]).weight true := by\n"
-            "  rw [reachable_posteriors_disagree.1,\n"
-            "      reachable_posteriors_disagree.2]\n"
-            "  norm_num\n"
+            "  have hneq :\n"
+            "      (model.filter 0 initial [(false, ())]).weight true ≠\n"
+            "      (model.filter 0 initial [(true, ())]).weight true := by\n"
+            "    rw [reachable_posteriors_disagree.1,\n"
+            "        reachable_posteriors_disagree.2]\n"
+            "    norm_num\n"
+            "  exact hneq\n"
         )
 
 

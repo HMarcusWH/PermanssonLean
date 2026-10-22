@@ -48,8 +48,7 @@ class OriginalConditionalMassAndErrorNegatives(unittest.TestCase):
             "PermanssonResearch.Probability.DependentThreeStageSaturation",
             "open PermanssonResearch.Probability.DependentThreeStage\n"
             "example : dependentLaw.atom (true, (true,true)) = (9/20 : ℝ) := by\n"
-            "  rw [true_history_mass]\n"
-            "  norm_num\n"
+            "  exact true_history_mass\n"
         )
         self.assertIn("error:", out.lower())
 

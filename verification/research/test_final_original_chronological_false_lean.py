@@ -56,7 +56,10 @@ class OriginalChronologicalBoundaryNegatives(unittest.TestCase):
             "example :\n"
             "  (residenceScan (fun z : Bool => z = true) 1\n"
             "    [true, false, true, true]).2 = false := by\n"
-            "  decide\n"
+            "  have hcorrect :\n"
+            "    (residenceScan (fun z : Bool => z = true) 1\n"
+            "      [true, false, true, true]).2 = true := by decide\n"
+            "  exact hcorrect\n"
         )
 
     def test_D_03_false_danger_after_success_revokes_it(self):

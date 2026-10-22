@@ -53,7 +53,10 @@ open PermanssonResearch.ReverseSolver.FiniteMonitor
 example :
   (residenceScan (fun z : Bool => z = true) 1
     [true, false, true, true]).2 = false := by
-  decide
+  have hcorrect :
+    (residenceScan (fun z : Bool => z = true) 1
+      [true, false, true, true]).2 = true := by decide
+  exact hcorrect
 """,
     },
     "D-03": {
@@ -103,9 +106,13 @@ example :
 open PermanssonResearch.ReverseSolver.ReachableCompletionBelief
 example : (model.filter 0 initial [(false, ())]).weight true =
   (model.filter 0 initial [(true, ())]).weight true := by
-  rw [reachable_posteriors_disagree.1,
-      reachable_posteriors_disagree.2]
-  norm_num
+  have hneq :
+      (model.filter 0 initial [(false, ())]).weight true ≠
+      (model.filter 0 initial [(true, ())]).weight true := by
+    rw [reachable_posteriors_disagree.1,
+        reachable_posteriors_disagree.2]
+    norm_num
+  exact hneq
 """,
     },
     "Q-03": {
@@ -115,8 +122,7 @@ example : (model.filter 0 initial [(false, ())]).weight true =
         "body": """
 open PermanssonResearch.Probability.DependentThreeStage
 example : dependentLaw.atom (true, (true,true)) = (9/20 : ℝ) := by
-  rw [true_history_mass]
-  norm_num
+  exact true_history_mass
 """,
     },
     "E-05": {
