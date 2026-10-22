@@ -57,7 +57,10 @@ def main(argv=None):
             with zipfile.ZipFile(a.approved_seal) as z:
                 seal=json.loads(z.read("approved_seal.json"))
             verify_approved_archive(a.approved_seal,seal)
-            outcome=strict_closure(receipts,"scoped-release-strict",approved,
+            requested_scope = ("full-release-strict" if
+                               seal.get("full45_claimed") is True
+                               else "scoped-release-strict")
+            outcome=strict_closure(receipts,requested_scope,approved,
                                    bundle_path=a.bundle)
             require(seal["source_commit_sha"]==outcome["source"] and
                     seal["head_sha"]==outcome["frozen_head"] and
@@ -65,8 +68,17 @@ def main(argv=None):
                     seal["pdf_pages"]==approved["pdf_pages"] and
                     seal["claims"]==approved["claims"],
                     "sealed reviewed claims or PDF source does not match live authentication")
+            if seal.get("full45_claimed") is True:
+                require(outcome.get("status") ==
+                        "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY" and
+                        outcome.get("accepted_case_count") == 45 and
+                        outcome.get("accepted_claim_count") == 11,
+                        "full claim contradicts effective acceptance gate")
             print(json.dumps({"integrity":"PASS","accepted":True,
-                              "source":outcome["source"],"scope":"SCOPED_ONLY"},indent=2))
+                              "source":outcome["source"],
+                              "scope":"FULL_45_AND_11" if
+                                      seal.get("full45_claimed") is True
+                                      else "SCOPED_ONLY"},indent=2))
             return 0
         print(json.dumps(verify(a.manifest,a.strict,
               source_receipts=a.source_receipts,
