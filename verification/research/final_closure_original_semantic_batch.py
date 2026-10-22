@@ -306,6 +306,45 @@ example :
 end PermanssonResearch.EconomicWitness
 """,
     },
+    "S-02": {
+        "source": "PermanssonResearch/Games/S02InformationBoundaryCountermodel.lean",
+        "test_path": "verification/research/test_pr113_semantic_structural_candidates.py",
+        "method": "test_S_02_clairvoyant_action_is_not_admissible_history_row",
+        "body": """
+namespace PermanssonResearch.ActionTrace.S02InformationBoundary
+open PermanssonResearch.ActionTrace
+example (p : Row Bool) :
+    p.expect independentFairMatch = (1 : ℝ) := by
+  exact every_nonanticipating_row_half p
+end PermanssonResearch.ActionTrace.S02InformationBoundary
+""",
+    },
+    "Q-01": {
+        "source": "PermanssonResearch/Quotient/Q01NonLumpableProjectionCountermodel.lean",
+        "test_path": "verification/research/test_pr113_semantic_structural_candidates.py",
+        "method": "test_Q_01_fine_projection_does_not_always_lump",
+        "body": """
+namespace PermanssonResearch.Quotient.Q01NonLumpable
+example :
+    ∃ g : Bool → Bool, ∀ x : Fin 3,
+      observed (fineStep x) = g (observed x) := by
+  exact no_autonomous_coarse_transition
+end PermanssonResearch.Quotient.Q01NonLumpable
+""",
+    },
+    "A-01": {
+        "source": "PermanssonResearch/Probability/A01SupnormClassCountermodel.lean",
+        "test_path": "verification/research/test_pr113_semantic_structural_candidates.py",
+        "method": "test_A_01_unit_supnorm_is_not_correct_KR_test_class",
+        "body": """
+namespace PermanssonResearch.Probability.A01SupnormClass
+example :
+    ∃ f : ℝ → ℝ, |f 0| ≤ 1 ∧ |f 4| ≤ 1 ∧
+      (4 : ℝ) ≤ |f 4 - f 0| := by
+  exact no_unit_supnorm_witness_for_gap_four
+end PermanssonResearch.Probability.A01SupnormClass
+""",
+    },
 }
 
 
