@@ -138,6 +138,11 @@ METHOD_ROUTES = {
       "test_d2_residence.py",
       "test_history_sensitive_policy_no_future_information",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_pr113_semantic_structural_candidates.py",
+      "test_S_02_clairvoyant_action_is_not_admissible_history_row",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "M-01": [
@@ -294,6 +299,11 @@ METHOD_ROUTES = {
       "test_e1_approx_quotient.py",
       "test_geometric_bound_numeric_only",
       "EXACT_CHECK"
+    ],
+    [
+      "test_pr113_semantic_structural_candidates.py",
+      "test_Q_01_fine_projection_does_not_always_lump",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "Q-02": [
@@ -409,6 +419,11 @@ METHOD_ROUTES = {
       "test_a3_contractive.py",
       "test_dual_equals_coupling_on_the_line",
       "EXACT_CHECK"
+    ],
+    [
+      "test_pr113_semantic_structural_candidates.py",
+      "test_A_01_unit_supnorm_is_not_correct_KR_test_class",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "A-02": [
