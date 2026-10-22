@@ -1,4 +1,5 @@
 import PermanssonResearch.MultiAgent.PlayerSwapTransport
+import PermanssonResearch.X1.TypedModels
 import Mathlib.Tactic
 
 /-!
@@ -97,5 +98,68 @@ theorem asymmetric_original_path_law_transport :
           ((Measure.dirac initial).map PlayerSwap.state) := by
   exact PlayerSwap.actual_pathLaw generator physicalFromFirstAction
     (Measure.dirac initial)
+
+
+/-- The initial source is deliberately NON-DIRAC. Both physical world
+values and both common-state values occur before the first action; no
+single favorable start is substituted for the original all-initial theorem. -/
+def mixedInitialState (b : Bool) :
+    JointState (GameState Bool Unit Unit) Bool :=
+  ((b, ((), ())), b)
+
+noncomputable def mixedInitialLaw :
+    Measure (JointState (GameState Bool Unit Unit) Bool) :=
+  (PermanssonResearch.X1.coin (1/2)).map mixedInitialState
+
+instance mixedInitialLaw_isProbability : IsProbabilityMeasure mixedInitialLaw := by
+  unfold mixedInitialLaw
+  haveI : IsProbabilityMeasure (PermanssonResearch.X1.coin (1/2)) :=
+    PermanssonResearch.X1.coin_probability (1/2) (by norm_num)
+  infer_instance
+
+theorem mixed_starts_distinct :
+    mixedInitialState false ≠ mixedInitialState true := by decide
+
+theorem mixed_initial_positive_each_state :
+    mixedInitialLaw {mixedInitialState false} =
+      ENNReal.ofReal (1/2 : ℝ) ∧
+    mixedInitialLaw {mixedInitialState true} =
+      ENNReal.ofReal (1/2 : ℝ) := by
+  constructor
+  · rw [mixedInitialLaw,
+        Measure.map_apply (by fun_prop)
+          (measurableSet_singleton (mixedInitialState false))]
+    change (PermanssonResearch.X1.coin (1/2)) {false} = _
+    rw [PermanssonResearch.X1.coin_false]
+    norm_num
+  · rw [mixedInitialLaw,
+        Measure.map_apply (by fun_prop)
+          (measurableSet_singleton (mixedInitialState true))]
+    change (PermanssonResearch.X1.coin (1/2)) {true} = _
+    exact PermanssonResearch.X1.coin_true (1/2)
+
+/-- A path distribution with two positive distinct time-zero atoms
+cannot equal the earlier point-started Dirac initial distribution. -/
+theorem mixed_initial_not_point_mass :
+    mixedInitialLaw ≠ Measure.dirac (mixedInitialState false) := by
+  intro h
+  have hm := congrArg
+    (fun μ : Measure (JointState (GameState Bool Unit Unit) Bool) =>
+      μ {mixedInitialState true}) h
+  rw [mixed_initial_positive_each_state.2] at hm
+  simp [Measure.dirac_apply', mixed_starts_distinct] at hm
+
+/-- Genuine asymmetric source transport for a mixed ORIGINAL initial law.
+It is an instance of the existing all-measurable-event whole-path theorem;
+the physical/world input is reindexed, not assumed symmetric. -/
+theorem asymmetric_mixed_original_path_law_transport :
+    ((generator.toModel physicalFromFirstAction).pathLaw mixedInitialLaw).map
+      (PlayerSwap.compression (S0 := Bool) (S1 := Unit)
+        (S2 := Unit) (X := Bool)).pathMap =
+      ((PlayerSwap.generator generator).toModel
+        (PlayerSwap.physical physicalFromFirstAction)).pathLaw
+          (mixedInitialLaw.map PlayerSwap.state) := by
+  exact PlayerSwap.actual_pathLaw generator physicalFromFirstAction
+    mixedInitialLaw
 
 end PermanssonResearch.MultiAgent.AsymmetricCommonSwapFixture
