@@ -82,6 +82,38 @@ def render():
         lines.append("| " + row["claim_id"] + " | " + row["primary_path"] +
                      " | " + str(len(row["declarations"])) +
                      " | SOURCE_PRESENT_REVIEW_PENDING |")
+    # These are merely route-role selections. The negative role is
+    # SEMANTIC_NEGATIVE only: a SCOPE_BOUNDARY observation must never replace
+    # an actually compiled, semantically false proposition.
+    missing_pos = [c for c in source_cases if not any(
+        x.get("role") in {"COMPILER_SOURCE", "EXACT_CHECK"}
+        for x in c.get("test_method_candidates", []))]
+    missing_neg = [c for c in source_cases if not any(
+        x.get("role") == "SEMANTIC_NEGATIVE"
+        for x in c.get("test_method_candidates", []))]
+    lines.extend([
+        "",
+        "## Executable-route gaps (unreviewed; not acceptance)",
+        "",
+        f"- Missing selected positive controls: {len(missing_pos)} of 45.",
+        f"- Missing selected semantic false-mutant routes: {len(missing_neg)} of 45.",
+        "- Passing scope-boundary checks do **not** discharge the mandatory"
+        " compiler-negative evidence obligation.",
+        "- A selected method still requires source relevance, actual exact-head"
+        " execution, intact logs, authenticated check-run attribution and"
+        " independent approval.",
+        "",
+        "| Case | Positive method routes | Semantic-negative routes |"
+        " Scope-boundary observations |",
+        "|---|---:|---:|---:|",
+    ])
+    for c in source_cases:
+        roles = [x.get("role") for x in c.get("test_method_candidates", [])]
+        p = sum(x in {"COMPILER_SOURCE", "EXACT_CHECK"} for x in roles)
+        n = sum(x == "SEMANTIC_NEGATIVE" for x in roles)
+        b = sum(x == "SCOPE_BOUNDARY" for x in roles)
+        lines.append(f"| {c['case_id']} | {p} | {n} | {b} |")
+
     lines.extend([
         "",
         "## Closure protocol",
