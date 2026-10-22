@@ -16,7 +16,7 @@ VERIFIED = frozenset(("VERIFIED_SELECTED_SCOPE", "VERIFIED_NEGATIVE"))
 
 
 def require_full_source(result: dict, case_ledger: dict,
-                        claims: list[dict]) -> dict:
+                        claims: list[dict], case_map: dict) -> dict:
     """Fail closed on missing, duplicated or spurious EFFECTIVE requirements."""
     if not isinstance(result, dict) or not isinstance(case_ledger, dict) or \
        not isinstance(claims, list):
@@ -32,6 +32,28 @@ def require_full_source(result: dict, case_ledger: dict,
     if len(claim_ids) != 11 or len(set(claim_ids)) != 11 or \
        set(claim_ids) != ORIGINAL_CLAIMS:
         raise EvidenceError("canonical eleven claims are missing or substituted")
+
+    # An accepted count is meaningless while any original case still lacks an
+    # explicit current-source test selection. Source maps are tracked at H and
+    # reviewed with H; historical aliases alone are not execution receipts.
+    selected = case_map.get("cases") if isinstance(case_map, dict) else None
+    if not isinstance(selected, list) or len(selected) != 45 or \
+       any(not isinstance(row, dict) for row in selected):
+        raise EvidenceError("frozen case-to-test mapping is missing")
+    selection = [row.get("case_id") for row in selected]
+    if len(set(selection)) != 45 or set(selection) != set(originals):
+        raise EvidenceError("case-to-test mapping is incomplete or altered")
+    for row in selected:
+        tests = row.get("test_source_candidates")
+        if (not isinstance(tests, list) or not tests or
+            len(set(tests)) != len(tests) or
+            not all(isinstance(t, str) and
+                    t.startswith("verification/research/test_") and
+                    t.endswith(".py") for t in tests)):
+            raise EvidenceError(
+                "original case lacks an explicit selected test: " + row["case_id"])
+        if not row.get("historical_proof_declarations"):
+            raise EvidenceError("original case lacks proof route: " + row["case_id"])
 
     effective_cases = result.get("effective_cases")
     effective_claims = result.get("effective_claims")
