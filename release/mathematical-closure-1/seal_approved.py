@@ -112,6 +112,27 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
     original_ci = (draft_directory/"source_ci_receipts.lock.json").read_bytes()
     original_log = (draft_directory/"latex_build.log").read_bytes()
     original_sums = (draft_directory/"SHA256SUMS.txt").read_bytes()
+    if not evidence_bundle.is_file() or evidence_bundle.is_symlink():
+        raise SealError("authenticated detached proof/mutation evidence bundle unavailable")
+    retained_bundle = evidence_bundle.read_bytes()
+    if not retained_bundle or len(retained_bundle) > 32*1024*1024:
+        raise SealError("detached proof/mutation bundle missing or oversized")
+    retained_receipts = (json.dumps(
+        receipts, indent=2, sort_keys=True, ensure_ascii=False)+"\n").encode("utf-8")
+    original_case_map = (ROOT/"research/paper_closures/post_merge_112/acceptance_case_source_map.json").read_bytes()
+    original_claim_map = (ROOT/"research/paper_closures/post_merge_112/claim_declaration_map.json").read_bytes()
+    effective_report = (json.dumps({
+        "scope": accepted_scope, "frozen_head": result["frozen_head"],
+        "merged_source": result["source"],
+        "accepted_cases": result.get("effective_cases", {}),
+        "accepted_claims": result.get("effective_claims", []),
+        "accepted_case_count": result["accepted_case_count"],
+        "accepted_claim_count": result["accepted_claim_count"],
+        "receipt_contract": result.get("receipt_contract"),
+        "status": result.get("status", "SCOPED_SOURCE_ONLY")
+    }, indent=2, sort_keys=True)+"\n").encode("utf-8")
+    if sha(retained_bundle) != receipts.get("evidence_bundle_sha256"):
+        raise SealError("retained original proof bundle differs from strict acceptance")
     if sha(original_log) != draft.get("latex_log_sha256"):
         raise SealError("draft compiler log changed before sealing")
     manifest = {
@@ -126,6 +147,11 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
         "original_draft_ci_sha256": sha(original_ci),
         "original_draft_log_sha256": sha(original_log),
         "original_draft_checksums_sha256": sha(original_sums),
+        "evidence_bundle_sha256": sha(retained_bundle),
+        "source_receipts_sha256": sha(retained_receipts),
+        "original_case_map_sha256": sha(original_case_map),
+        "original_claim_map_sha256": sha(original_claim_map),
+        "effective_acceptance_report_sha256": sha(effective_report),
         "pdf_sha256": draft["pdf_sha256"],
         "pdf_pages": pages,
         "claims": approved["claims"],
@@ -148,6 +174,11 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
         "original_draft_source_ci_receipts.lock.json": original_ci,
         "original_draft_latex_build.log": original_log,
         "original_draft_SHA256SUMS.txt": original_sums,
+        "detached_proof_mutation_bundle.zip": retained_bundle,
+        "source_acceptance_receipts.json": retained_receipts,
+        "original_case_acceptance_map.json": original_case_map,
+        "original_claim_declaration_map.json": original_claim_map,
+        "effective_acceptance_report.json": effective_report,
         "approved_claims_manifest.json":
             (json.dumps(approved, indent=2, sort_keys=True)+"\n").encode(),
         "approved_seal.json":
@@ -208,6 +239,11 @@ def verify_approved_archive(archive: Path, manifest: dict):
             "original_draft_source_ci_receipts.lock.json",
             "original_draft_latex_build.log",
             "original_draft_SHA256SUMS.txt",
+            "detached_proof_mutation_bundle.zip",
+            "source_acceptance_receipts.json",
+            "original_case_acceptance_map.json",
+            "original_claim_declaration_map.json",
+            "effective_acceptance_report.json",
             "approved_claims_manifest.json", "approved_seal.json",
             *["manuscript/" + source for source in SOURCE_FILES],
             *["pages/" + p for p in manifest["pdf_pages"]],
@@ -237,9 +273,28 @@ def verify_approved_archive(archive: Path, manifest: dict):
             "original_draft_SHA256SUMS.txt": "original_draft_checksums_sha256",
             "original_draft_manifest.lock.json": "draft_manifest_sha256",
         }
+        originals.update({
+            "detached_proof_mutation_bundle.zip": "evidence_bundle_sha256",
+            "source_acceptance_receipts.json": "source_receipts_sha256",
+            "original_case_acceptance_map.json": "original_case_map_sha256",
+            "original_claim_declaration_map.json": "original_claim_map_sha256",
+            "effective_acceptance_report.json": "effective_acceptance_report_sha256",
+        })
         for name, field in originals.items():
             if sha(z.read(name)) != manifest.get(field):
                 raise SealError("approved archive replaced provenance bytes: " + name)
+        bound_receipts = json.loads(z.read("source_acceptance_receipts.json"))
+        if bound_receipts.get("evidence_bundle_sha256") != manifest["evidence_bundle_sha256"]:
+            raise SealError("detached compiler bundle no longer matches reviewed receipts")
+        effective = json.loads(z.read("effective_acceptance_report.json"))
+        if (effective.get("frozen_head") != manifest["head_sha"] or
+            effective.get("merged_source") != manifest["source_commit_sha"] or
+            effective.get("accepted_case_count") != manifest["accepted_case_count"] or
+            effective.get("accepted_claim_count") != manifest["accepted_claim_count"] or
+            manifest.get("full45_claimed") is True and
+            (effective.get("receipt_contract") != "ALL_45_HISTORICAL_AND_ALL_11_COMPLETE" or
+             effective.get("status") != "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY")):
+            raise SealError("effective acceptance receipt contradicts approved seal")
         # A second complete retained copy must independently agree with all
         # direct source members. Neither source set may disappear silently.
         import io
