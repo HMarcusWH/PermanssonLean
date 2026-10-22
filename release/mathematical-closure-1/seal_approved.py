@@ -18,6 +18,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "verification/research"))
 from final_closure_verify import strict as strict_acceptance
+from final_closure_full_contract import ORIGINAL_CLAIMS
 
 THIS = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("permansson_draft_verifier",
@@ -77,6 +78,10 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
     accepted_scope = "full-release-strict" if full else "scoped-release-strict"
     result = strict_acceptance(receipts, accepted_scope, approved,
                                bundle_path=evidence_bundle)
+    if full and (set(approved.get("claims", [])) != ORIGINAL_CLAIMS or
+                 approved.get("approved_manuscript_claims") !=
+                 approved.get("claims")):
+        raise SealError("full seal must explicitly approve all original eleven claims")
     if full and (result.get("accepted_case_count") != 45 or
                  result.get("accepted_claim_count") != 11 or
                  result.get("status") !=
