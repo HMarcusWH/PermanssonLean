@@ -468,6 +468,7 @@ import PermanssonResearch.MultiAgent.AutonomousSupportClosure
 import PermanssonResearch.MultiAgent.BehavioralAutonomy
 import PermanssonResearch.MultiAgent.CorrelatedMediator
 import PermanssonResearch.MultiAgent.FeasibleAnchors
+import PermanssonResearch.MultiAgent.F03ActualInfeasibleAnchor
 import PermanssonResearch.MultiAgent.PlayerSwapConstitution
 import PermanssonResearch.MultiAgent.PlayerSwapTransport
 import PermanssonResearch.MultiAgent.PlayerTwoProtocols
