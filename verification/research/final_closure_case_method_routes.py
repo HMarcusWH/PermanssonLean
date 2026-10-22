@@ -157,6 +157,16 @@ METHOD_ROUTES = {
       "test_m02_marked_actual_source_lean.py",
       "test_invalid_strict_autonomy_promotion_fails_semantically",
       "SEMANTIC_NEGATIVE"
+    ],
+    [
+      "test_m02_actual_history_kernel_lean.py",
+      "test_real_marked_history_full_source_and_axioms",
+      "COMPILER_SOURCE"
+    ],
+    [
+      "test_m02_actual_history_kernel_lean.py",
+      "test_falsified_actual_marked_diagonal_is_rejected",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "F-01": [
@@ -316,6 +326,16 @@ METHOD_ROUTES = {
     [
       "test_q05_original_margin_adapter_lean.py",
       "test_unproved_source_domination_cannot_be_ignored",
+      "SEMANTIC_NEGATIVE"
+    ],
+    [
+      "test_q05_actual_atom_closure_lean.py",
+      "test_all_original_kernel_atoms_pointwitness_and_margin_compiler",
+      "COMPILER_SOURCE"
+    ],
+    [
+      "test_q05_actual_atom_closure_lean.py",
+      "test_actual_baseline_nonzero_atom_cannot_be_erased",
       "SEMANTIC_NEGATIVE"
     ]
   ],
@@ -574,6 +594,16 @@ METHOD_ROUTES = {
     [
       "test_b02_actual_original_margin_lean.py",
       "test_false_joint_minimality_is_rejected_semantically",
+      "SEMANTIC_NEGATIVE"
+    ],
+    [
+      "test_b02_local_nonisomorphic_margin_lean.py",
+      "test_original_nonisomorphic_local_margin_compiles",
+      "COMPILER_SOURCE"
+    ],
+    [
+      "test_b02_local_nonisomorphic_margin_lean.py",
+      "test_inadmissible_original_singleton_false_claim_rejected",
       "SEMANTIC_NEGATIVE"
     ]
   ],

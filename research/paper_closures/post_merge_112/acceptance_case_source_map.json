@@ -865,11 +865,24 @@
           "path": "verification/research/test_m02_marked_actual_source_lean.py",
           "role": "SEMANTIC_NEGATIVE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_real_marked_history_full_source_and_axioms",
+          "path": "verification/research/test_m02_actual_history_kernel_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_falsified_actual_marked_diagonal_is_rejected",
+          "path": "verification/research/test_m02_actual_history_kernel_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_next03_m02_marked_coupling.py",
-        "verification/research/test_m02_marked_actual_source_lean.py"
+        "verification/research/test_m02_marked_actual_source_lean.py",
+        "verification/research/test_m02_actual_history_kernel_lean.py"
       ]
     },
     {
@@ -1790,6 +1803,18 @@
           "path": "verification/research/test_q05_original_margin_adapter_lean.py",
           "role": "SEMANTIC_NEGATIVE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_all_original_kernel_atoms_pointwitness_and_margin_compiler",
+          "path": "verification/research/test_q05_actual_atom_closure_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_actual_baseline_nonzero_atom_cannot_be_erased",
+          "path": "verification/research/test_q05_actual_atom_closure_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
@@ -1798,7 +1823,8 @@
         "verification/research/test_next04_projection_arithmetic.py",
         "verification/research/test_q05_nonidentity_source_fixture.py",
         "verification/research/test_q05_actual_source_lean.py",
-        "verification/research/test_q05_original_margin_adapter_lean.py"
+        "verification/research/test_q05_original_margin_adapter_lean.py",
+        "verification/research/test_q05_actual_atom_closure_lean.py"
       ]
     },
     {
@@ -3923,11 +3949,24 @@
           "path": "verification/research/test_b02_actual_original_margin_lean.py",
           "role": "SEMANTIC_NEGATIVE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_original_nonisomorphic_local_margin_compiles",
+          "path": "verification/research/test_b02_local_nonisomorphic_margin_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_inadmissible_original_singleton_false_claim_rejected",
+          "path": "verification/research/test_b02_local_nonisomorphic_margin_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_lane_b2_sequential_effects.py",
-        "verification/research/test_b02_actual_original_margin_lean.py"
+        "verification/research/test_b02_actual_original_margin_lean.py",
+        "verification/research/test_b02_local_nonisomorphic_margin_lean.py"
       ]
     },
     {

@@ -21,7 +21,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | S-01 | PARTIAL_SCOPE | Exact identity including terminal beta^N value | 6 | verification/research/test_paper_strategy_economic_lean.py |
 | S-02 | PARTIAL_SCOPE | Outside admitted information class; no verification theorem | 6 | verification/research/test_paper_information_lean.py, verification/research/test_d2_residence.py |
 | M-01 | PARTIAL_SCOPE | Full counterfactual path laws equal under stated premises | 5 | verification/research/test_paper_autonomy_ae_lean.py, verification/research/test_f1_multiagent_protocols.py |
-| M-02 | PENDING | Autonomy premise rejected; reactive witness not counted strict | 7 | verification/research/test_next03_m02_marked_coupling.py, verification/research/test_m02_marked_actual_source_lean.py |
+| M-02 | PENDING | Autonomy premise rejected; reactive witness not counted strict | 7 | verification/research/test_next03_m02_marked_coupling.py, verification/research/test_m02_marked_actual_source_lean.py, verification/research/test_m02_actual_history_kernel_lean.py |
 | F-01 | PENDING | P inputs reindexed correctly, no assumed symmetry | 8 | verification/research/test_next03_asymmetric_common_swap_lean.py, verification/research/test_final05_measurable_lean.py |
 | F-02 | PARTIAL_SCOPE | Projection/exogeneity fails | 5 | verification/research/test_paper_measurable_clock_lean.py, verification/research/test_f1_multiagent_protocols.py |
 | F-03 | PARTIAL_SCOPE | No feasible strict probability anchor | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_f1_multiagent_protocols.py, verification/research/test_final_closure_missing_original_positives.py |
@@ -31,7 +31,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | Q-02 | PENDING | Correct boundaries; mismatched unbudgeted starts rejected | 6 | verification/research/test_next04_projection_arithmetic.py |
 | Q-03 | PENDING | Product mass proved, no independence assumption | 3 | verification/research/test_next03_dependent_three_stage.py, verification/research/test_a2_primitive_tv.py |
 | Q-04 | PENDING | Intervention defect charged rather than omitted | 2 | verification/research/test_localized_prefix_compiler.py, verification/research/test_next04_original_margin.py |
-| Q-05 | PENDING | No unqualified whole-path/Exact-GR transfer | 10 | verification/research/test_final04_source_lean.py, verification/research/test_next04_original_margin_lean.py, verification/research/test_next04_projection_arithmetic.py, verification/research/test_q05_nonidentity_source_fixture.py, verification/research/test_q05_actual_source_lean.py, verification/research/test_q05_original_margin_adapter_lean.py |
+| Q-05 | PENDING | No unqualified whole-path/Exact-GR transfer | 10 | verification/research/test_final04_source_lean.py, verification/research/test_next04_original_margin_lean.py, verification/research/test_next04_projection_arithmetic.py, verification/research/test_q05_nonidentity_source_fixture.py, verification/research/test_q05_actual_source_lean.py, verification/research/test_q05_original_margin_adapter_lean.py, verification/research/test_q05_actual_atom_closure_lean.py |
 | A-01 | PARTIAL_SCOPE | Finite dual equality checked; wrong supnorm test class rejected | 6 | verification/research/test_paper_metric_coupling_lean.py, verification/research/test_a3_contractive.py |
 | A-02 | PARTIAL_SCOPE | Missing strict contraction/uniqueness exposed | 13 | verification/research/test_paper_invariant_lean.py, verification/research/test_a3_contractive.py |
 | A-03 | PARTIAL_SCOPE | Bounded-diameter conversion not applied | 7 | verification/research/test_a3_contractive.py |
@@ -50,7 +50,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | C11-02 | PARTIAL_SCOPE | Existing checker rejects complete faulty output | 7 | verification/research/test_lane_c11_stationary.py, verification/research/test_final_closure_missing_original_positives.py |
 | C-01 | PARTIAL_SCOPE | No unrestricted nonfinite occupation theorem | 11 | verification/research/test_paper_nonfinite_counterexample_lean.py |
 | B-01 | PENDING | Compatibility rejected; order dependence exposed | 6 | verification/research/test_next06_overlap_lean.py, verification/research/test_lane_b2_sequential_effects.py, verification/research/test_final_closure_missing_original_positives.py |
-| B-02 | PENDING | No unique-minimum or monotonicity inference | 3 | verification/research/test_lane_b2_sequential_effects.py, verification/research/test_b02_actual_original_margin_lean.py |
+| B-02 | PENDING | No unique-minimum or monotonicity inference | 3 | verification/research/test_lane_b2_sequential_effects.py, verification/research/test_b02_actual_original_margin_lean.py, verification/research/test_b02_local_nonisomorphic_margin_lean.py |
 | XPLUS-01 | PARTIAL_SCOPE | Correct source constructors and kappa1; no edit to old X1 | 4 | verification/research/test_paper_strategy_economic_lean.py, verification/research/test_x1_commons.py |
 | E-01 | PARTIAL_SCOPE | Rank-one/scalar promotion rejected | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_paper_specialized_boundary_lean.py |
 | E-02 | PARTIAL_SCOPE | No persistent witness transfer | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_final_closure_missing_original_positives.py |
@@ -112,7 +112,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | S-01 | 1 | 0 | 0 |
 | S-02 | 1 | 0 | 1 |
 | M-01 | 2 | 0 | 0 |
-| M-02 | 2 | 1 | 1 |
+| M-02 | 3 | 2 | 1 |
 | F-01 | 2 | 1 | 0 |
 | F-02 | 1 | 0 | 1 |
 | F-03 | 1 | 0 | 2 |
@@ -122,7 +122,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | Q-02 | 1 | 0 | 1 |
 | Q-03 | 2 | 0 | 0 |
 | Q-04 | 2 | 0 | 0 |
-| Q-05 | 4 | 2 | 2 |
+| Q-05 | 5 | 3 | 2 |
 | A-01 | 2 | 0 | 0 |
 | A-02 | 1 | 0 | 1 |
 | A-03 | 1 | 0 | 1 |
@@ -141,7 +141,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | C11-02 | 1 | 0 | 2 |
 | C-01 | 1 | 0 | 0 |
 | B-01 | 1 | 1 | 1 |
-| B-02 | 2 | 1 | 1 |
+| B-02 | 3 | 2 | 1 |
 | XPLUS-01 | 1 | 0 | 1 |
 | E-01 | 1 | 0 | 1 |
 | E-02 | 1 | 0 | 2 |
