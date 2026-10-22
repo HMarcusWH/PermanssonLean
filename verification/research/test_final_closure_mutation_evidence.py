@@ -121,6 +121,7 @@ class MutantEvidenceTests(unittest.TestCase):
                 mock.patch.object(m, "ROOT", repo),
                 mock.patch.object(m, "git_head", return_value=head),
                 mock.patch.object(m.shutil, "which", return_value="/fake/lake"),
+                mock.patch.object(m, "pinned_lean_version", return_value="4.34.0"),
                 mock.patch.object(m, "lean_result", side_effect=fake_compile),
             ):
                 with self.assertRaises(m.MutationEvidenceError):
@@ -166,6 +167,7 @@ class MutantEvidenceTests(unittest.TestCase):
                 mock.patch.object(m, "ROOT", repo),
                 mock.patch.object(m, "git_head", return_value=head),
                 mock.patch.object(m.shutil, "which", return_value="/fake/lake"),
+                mock.patch.object(m, "pinned_lean_version", return_value="4.34.0"),
                 mock.patch.object(m, "lean_result", side_effect=compile_fixture),
             ):
                 record = m.produce(
@@ -179,6 +181,41 @@ class MutantEvidenceTests(unittest.TestCase):
             self.assertEqual(
                 (out / record["mutant_source_member"]).read_bytes(), false_bytes)
             self.assertIsNone(record["check_run_id"])
+
+
+    def test_verified_running_compiler_must_match_frozen_pin(self):
+        head = "a" * 40
+        with (
+            mock.patch.object(m, "committed_file_bytes",
+                              return_value=b"leanprover/lean4:v4.34.0\n"),
+            mock.patch.object(m.subprocess, "run",
+                              return_value=result(0, "Lean (version 4.34.0, test)")),
+        ):
+            self.assertEqual(m.pinned_lean_version(head), "4.34.0")
+        with (
+            mock.patch.object(m, "committed_file_bytes",
+                              return_value=b"leanprover/lean4:v4.34.0\n"),
+            mock.patch.object(m.subprocess, "run",
+                              return_value=result(0, "Lean (version 4.33.0, test)")),
+        ):
+            with self.assertRaises(m.MutationEvidenceError):
+                m.pinned_lean_version(head)
+        with (
+            mock.patch.object(m, "committed_file_bytes",
+                              return_value=b"leanprover/lean4:v4.35.0\n"),
+            mock.patch.object(m.subprocess, "run",
+                              return_value=result(0, "Lean (version 4.34.0, test)")),
+        ):
+            with self.assertRaises(m.MutationEvidenceError):
+                m.pinned_lean_version(head)
+        with (
+            mock.patch.object(m, "committed_file_bytes",
+                              return_value=b"leanprover/lean4:v4.34.0\n"),
+            mock.patch.object(m.subprocess, "run",
+                              return_value=result(1, "compiler failed")),
+        ):
+            with self.assertRaises(m.MutationEvidenceError):
+                m.pinned_lean_version(head)
 
 
 if __name__ == "__main__":

@@ -72,6 +72,24 @@ def committed_file_bytes(head: str, file: Path, *, root: Path = ROOT) -> bytes:
         raise MutationEvidenceError("source bytes differ from frozen Git blob")
     return actual
 
+def pinned_lean_version(head: str) -> str:
+    """Authenticate the actually invoked pinned Lean binary, not a label."""
+    toolchain = committed_file_bytes(head, ROOT / "lean-toolchain", root=ROOT)
+    if toolchain != b"leanprover/lean4:v4.34.0\n":
+        raise MutationEvidenceError("frozen Lean toolchain pin changed")
+    try:
+        result = subprocess.run(
+            ["lake", "env", "lean", "--version"], cwd=ROOT,
+            capture_output=True, text=True, timeout=30)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise MutationEvidenceError("pinned Lean version check unavailable") from exc
+    report = (result.stdout or "") + "\n" + (result.stderr or "")
+    actual = re.search(r"\bversion\s+([0-9]+\.[0-9]+\.[0-9]+)\b", report)
+    if result.returncode != 0 or not actual or actual.group(1) != "4.34.0":
+        raise MutationEvidenceError("running Lean binary disagrees with frozen 4.34.0")
+    return actual.group(1)
+
+
 def lean_result(source: Path):
     try:
         return subprocess.run(["lake", "env", "lean", str(source)],
@@ -132,6 +150,7 @@ def produce(head: str, *, true_source: Path, mutant: Path, test_path: Path,
     mutant_bytes = mutant.read_bytes()
     if not shutil.which("lake"):
         raise MutationEvidenceError("pinned Lean required, cannot skip")
+    actual_toolchain = pinned_lean_version(head)
     positive = lean_result(source)
     negative = lean_result(mutant)
     if committed_file_bytes(head, source, root=ROOT) != original_bytes or \
@@ -166,7 +185,7 @@ def produce(head: str, *, true_source: Path, mutant: Path, test_path: Path,
         "original_lean_source_member": original_name,
         "original_lean_source_path": str(source.relative_to(ROOT)).replace("\\", "/"),
         "positive_control": {
-            "compiled": True, "exit_code": 0, "lean_toolchain": "4.34.0",
+            "compiled": True, "exit_code": 0, "lean_toolchain": actual_toolchain,
             "log_member": positive_name, "log_sha256": hash_bytes(positive_log),
         },
         "outcome": "REJECTED_SEMANTIC", "compiler_exit_code": negative.returncode,
