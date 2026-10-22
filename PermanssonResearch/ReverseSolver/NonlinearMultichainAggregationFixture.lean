@@ -122,6 +122,16 @@ theorem actualNonlinearPathScore_integrable
       ((realizedModel twoAbsorbing).pathLaw (Measure.dirac y)) := by
   rcases y with ⟨s, x⟩
   cases s
+  -- The established integrability theorem uses the explicit occupation
+  -- integrand and the decoded canonical initial state.  Both are
+  -- definitionally the very same objects in the original full-path claim.
+  change Integrable
+    (fun w : ℕ → JointState Unit (Fin 2) =>
+      (booleanClassFunctional observedPhysicalBool).functional
+        (observedOccupationLimit
+          (realizedModel twoAbsorbing).inducedKernel
+          (booleanClassFunctional observedPhysicalBool).descriptor w))
+    ((realizedModel twoAbsorbing).pathLaw (Measure.dirac (decode x)))
   exact occupation_functional_integrable
     (booleanClassFunctional observedPhysicalBool) twoAbsorbing x
 
