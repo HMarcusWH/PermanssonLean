@@ -107,7 +107,11 @@ def statement_header(source: str, qualified: str) -> str:
     following = DECL_RE.search(source, match.end())
     limit = following.start() if following else len(source)
     stop = source.find(":=", match.end(), limit)
-    demand(stop >def parse_target_axioms(log: str, declaration: str) -> list[str]:
+    demand(stop > match.end(), "declaration header separator absent")
+    return source[start:stop].strip()
+
+
+def parse_target_axioms(log: str, declaration: str) -> list[str]:
     """Parse one target-qualified compiler record, never an unrelated last list."""
     demand(isinstance(log, str) and isinstance(declaration, str) and
            re.fullmatch(r"[A-Za-z0-9_'.]+", declaration) is not None,
@@ -184,9 +188,6 @@ def load_detached_bundle(path: str | Path, expected_sha256: str):
         raise EvidenceError("unreadable evidence archive") from exc
     return members
 
-exc:
-        raise EvidenceError("unreadable evidence archive") from exc
-    return members
 
 
 def member_bytes(members: dict[str, bytes], name: str, expected_hash: str) -> bytes:
