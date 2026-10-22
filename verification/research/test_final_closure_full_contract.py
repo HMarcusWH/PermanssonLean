@@ -22,7 +22,13 @@ def valid_inputs():
         "cases": [
             {"case_id": row["case_id"],
              "historical_proof_declarations": [{"name": "real_proof"}],
-             "test_source_candidates": ["verification/research/test_selected.py"]}
+             "test_source_candidates": ["verification/research/test_selected.py"],
+             "test_method_candidates": [{
+                 "path": "verification/research/test_selected.py",
+                 "method": "test_selected_original",
+                 "role": "COMPILER_SOURCE",
+                 "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+             }]}
             for row in cases
         ]
     }
@@ -57,6 +63,20 @@ class FullScopeContractTests(unittest.TestCase):
         selection["cases"][7]["test_source_candidates"] = []
         with self.assertRaises(EvidenceError):
             full.require_full_source(evidence, cases, claims, selection)
+
+    def test_method_only_filename_or_forged_role_cannot_count(self):
+        for fault in ("drop", "forged", "duplicate"):
+            evidence, cases, claims, selection = valid_inputs()
+            routes = selection["cases"][4]["test_method_candidates"]
+            if fault == "drop":
+                routes.clear()
+            elif fault == "forged":
+                routes[0]["role"] = "APPROVED"
+            else:
+                import copy
+                routes.append(copy.deepcopy(routes[0]))
+            with self.subTest(fault=fault), self.assertRaises(EvidenceError):
+                full.require_full_source(evidence, cases, claims, selection)
 
     def test_labels_cannot_replace_full_exact_sets(self):
         evidence, cases, claims, selection = valid_inputs()
