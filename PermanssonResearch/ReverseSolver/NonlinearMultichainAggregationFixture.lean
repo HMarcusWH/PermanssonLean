@@ -31,6 +31,8 @@ theorem nonlinear_classwise_aggregation_not_barycenter :
 open MeasureTheory ProbabilityTheory
 open PermanssonLean
 open PermanssonResearch.MultipleLimit.FiniteCanonicalPath
+open PermanssonResearch.MultipleLimit.FiniteOccupationRandomLaw
+open scoped ENNReal
 open PermanssonResearch.ReverseSolver.FiniteStrategicRealization
 open PermanssonResearch.ReverseSolver.StationaryOccupation
 
@@ -143,7 +145,8 @@ theorem actual_mixed_initial_nonlinear_expectation
       measure_mono (Set.subset_univ _)
     have htop : μ.toMeasure {y} ≠ ⊤ := by
       rw [measure_univ] at hle
-      exact ne_top_of_le_ne_top (by norm_num : (1 : ℝ≥0∞) ≠ ⊤) hle
+      have hone : (1 : ℝ≥0∞) ≠ ⊤ := by norm_num
+      exact ne_top_of_le_ne_top hone hle
     exact (actualNonlinearPathScore_integrable y).smul_measure htop
   have h := integral_finsetSum_measure
     (s := (Finset.univ : Finset (JointState Unit (Fin 2))))
@@ -157,8 +160,8 @@ theorem actual_mixed_initial_nonlinear_expectation
 on the original TWO PHYSICAL absorbing states. -/
 noncomputable def equalWeightInitialLaw :
     ProbabilityMeasure (JointState Unit (Fin 2)) :=
-  ⟨((1/2 : ℝ≥0∞) • Measure.dirac (decode (0 : Fin 2))) +
-      ((1/2 : ℝ≥0∞) • Measure.dirac (decode (1 : Fin 2))), by
+  ⟨(ENNReal.ofReal (1/2 : ℝ) • Measure.dirac (decode (0 : Fin 2))) +
+      (ENNReal.ofReal (1/2 : ℝ) • Measure.dirac (decode (1 : Fin 2))), by
     constructor
     simp [Measure.add_apply, Measure.smul_apply]
     norm_num⟩

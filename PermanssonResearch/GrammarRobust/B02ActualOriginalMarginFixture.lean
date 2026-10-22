@@ -21,6 +21,7 @@ open PermanssonResearch.GrammarRobust
 open BooleanModel BooleanBaseline BooleanOneStepEvents
 open BooleanMinimalityCases RelabelingOrderWitness
 open FullRelabelingTransport
+open RelabelingWitness
 
 theorem two_actual_minimal_original_blocks :
     IsMinimalAllowed fine andPos ({0} : Finset (Fin 2)) ∧
@@ -32,8 +33,8 @@ theorem nonidentity_relabeling_preserves_actual_margin :
       spec (propertyAtOne andP) comparison ∧
     blockMargin baseline bank fine (fineBlock {0})
       spec (propertyAtOne andP) comparison =
-    blockMargin baseline bank relabeled
-      (relabeledBlock (relabelEquiv {0}))
+    blockMargin baseline bank RelabelingWitness.relabeled
+      (RelabelingOrderWitness.relabeledBlock (relabelEquiv {0}))
       spec (propertyAtOne andP) comparison := by
   constructor
   · exact andPos_action
@@ -42,7 +43,7 @@ theorem nonidentity_relabeling_preserves_actual_margin :
 
 theorem actual_local_minimality_transport_not_global_identity :
     (IsMinimalAllowed fine andPos ({0} : Finset (Fin 2)) ∧
-     IsMinimalAllowed relabeled relabeledAndPos
+     IsMinimalAllowed RelabelingWitness.relabeled relabeledAndPos
         (relabelEquiv ({0} : Finset (Fin 2)))) ∧
     relabelEquiv ({0} : Finset (Fin 2)) ≠ ({0} : Finset (Fin 2)) := by
   constructor
