@@ -210,6 +210,102 @@ example (H : Matrix (Fin 2) (Fin 2) ℝ) (p : Fin 2)
 end PermanssonResearch.Specialized
 """,
     },
+    "S-01": {
+        "source": "PermanssonResearch/Games/DiscountedVerification.lean",
+        "test_path": "verification/research/test_pr113_semantic_second_candidates.py",
+        "method": "test_S_01_no_terminal_correction_is_false",
+        "body": """
+namespace PermanssonResearch.DiscountedVerification
+open ActionTrace
+example {Y A : Type} [Fintype Y] [Fintype A]
+    (G : Game Y A) (σ : BehavioralPolicy Y A)
+    (μ : Row Y) (V : Y → ℝ) (n : ℕ) :
+    finitePayoff G σ μ n + finiteLoss G σ μ V n = μ.expect V := by
+  exact finite_performance_difference G σ μ V n
+end PermanssonResearch.DiscountedVerification
+""",
+    },
+    "M-01": {
+        "source": "PermanssonResearch/MultiAgent/AutonomousAEContinuumFixture.lean",
+        "test_path": "verification/research/test_pr113_semantic_second_candidates.py",
+        "method": "test_M_01_null_key_is_not_free_initial_support",
+        "body": """
+namespace PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture
+open MeasureTheory ProbabilityTheory PermanssonLean
+example :
+    ((game.openLoop (player true) (anchor false)).toModel world).pathLaw
+      (Measure.dirac (initialState 0)) =
+    ((game.openLoop (player true) (anchor true)).toModel world).pathLaw
+      (Measure.dirac (initialState 0)) := by
+  exact point_start_treated_pathLaw_ne
+end PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture
+""",
+    },
+    "A-02": {
+        "source": "PermanssonResearch/Perturbation/DirectDualContraction.lean",
+        "test_path": "verification/research/test_pr113_semantic_second_candidates.py",
+        "method": "test_A_02_identity_kernel_is_not_strictly_contractive",
+        "body": """
+namespace PermanssonResearch.Perturbation
+open MeasureTheory ProbabilityTheory
+open PermanssonResearch.Probability
+example {Y : Type*} [PseudoMetricSpace Y] [MeasurableSpace Y] :
+    IsW1Contraction (Kernel.id : Kernel Y Y) (1 / 2 : ℝ) := by
+  exact identityKernel_isW1Contraction
+end PermanssonResearch.Perturbation
+""",
+    },
+    "D-01": {
+        "source": "PermanssonResearch/ReverseSolver/ResidenceEvent.lean",
+        "test_path": "verification/research/test_pr113_semantic_second_candidates.py",
+        "method": "test_D_01_hitting_is_not_residence",
+        "body": """
+namespace PermanssonResearch.ReverseSolver.Residence
+example :
+    hasRun (fun z : Bool => z = true) 2 [false, true, false] = true := by
+  exact hit_does_not_imply_stay.2
+end PermanssonResearch.ReverseSolver.Residence
+""",
+    },
+    "C11-01": {
+        "source": "PermanssonResearch/ReverseSolver/C11ReferenceExamples.lean",
+        "test_path": "verification/research/test_pr113_semantic_second_candidates.py",
+        "method": "test_C11_01_zero_dimensional_family_is_rejected",
+        "body": """
+namespace PermanssonResearch.ReverseSolver.C11.ReferenceExamples
+open PermanssonResearch.ReverseSolver.C11
+example : checkStationaryFamily empty
+    (referenceStationaryFamily empty) = true := by
+  exact zero_dimension_reference_rejected
+end PermanssonResearch.ReverseSolver.C11.ReferenceExamples
+""",
+    },
+    "C11-02": {
+        "source": "PermanssonResearch/ReverseSolver/C11ReferenceExamples.lean",
+        "test_path": "verification/research/test_pr113_semantic_second_candidates.py",
+        "method": "test_C11_02_corrupted_stationary_report_is_rejected",
+        "body": """
+namespace PermanssonResearch.ReverseSolver.C11.ReferenceExamples
+open PermanssonResearch.ReverseSolver.C11
+example : checkClassStationary periodic corruptedPeriodic = true := by
+  exact corrupted_stationary_receipt_rejected
+end PermanssonResearch.ReverseSolver.C11.ReferenceExamples
+""",
+    },
+    "XPLUS-01": {
+        "source": "PermanssonResearch/EconomicWitness/ConstitutionCore.lean",
+        "test_path": "verification/research/test_pr113_semantic_second_candidates.py",
+        "method": "test_XPLUS_01_constructed_original_margin_is_not_zero",
+        "body": """
+namespace PermanssonResearch.EconomicWitness
+open PermanssonLean.RegimeSpecification
+example :
+    constitutiveMargin model specification family survivalProperty
+      comparisonSet extractionIntervention = (0 : ℝ) := by
+  exact original_constitutive_margin_one
+end PermanssonResearch.EconomicWitness
+""",
+    },
 }
 
 
