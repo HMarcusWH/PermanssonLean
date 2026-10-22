@@ -113,7 +113,7 @@ def statement_header(source: str, qualified: str) -> str:
            re.fullmatch(r"[A-Za-z0-9_'.]+", declaration) is not None,
            "invalid target axiom record")
     list_pat = re.compile(
-        r"([A-Za-z0-9_'.]+) depends on axioms:\\s*\\[([^\\]]*)\\]")
+        r"([A-Za-z0-9_'.]+) depends on axioms:\s*\[([^\]]*)\]")
     zero_pat = re.compile(
         r"([A-Za-z0-9_'.]+) does not depend on any axioms")
     records = [(m.group(1), m.group(2)) for m in list_pat.finditer(log)]
