@@ -65,7 +65,7 @@ class DetachedCaseReceiptTests(unittest.TestCase):
             "id": "t", "head_sha": H, "test_path": "test_actual.py",
             "test_name": "test_meaningful_mutant",
             "source_sha256": sha((self.repo / "test_actual.py").read_bytes()),
-            "case_ids": ["C-01"], "check_run_id": 42,
+            "case_ids": ["C-01"], "claim_ids": ["Q1"], "check_run_id": 42,
             "positive_control": {"compiled": True, "exit_code": 0,
                 "lean_toolchain": "4.34.0", "log_member": "positive.log",
                 "log_sha256": sha(self.logs["positive.log"])},
@@ -99,7 +99,8 @@ class DetachedCaseReceiptTests(unittest.TestCase):
                 "negative_ids": ["n"], "review_id": 100}],
             "claim_decisions": [{
                 "id": "claim", "claim_id": "Q1",
-                "proof_ids": ["p"], "review_id": 100}],
+                "proof_ids": ["p"], "positive_ids": ["t"],
+                "negative_ids": ["n"], "review_id": 100}],
         }
         self.scopes = {100: {"cases": {"C-01": "VERIFIED_SELECTED_SCOPE"},
                              "claims": ["Q1"]}}
@@ -218,6 +219,17 @@ class DetachedCaseReceiptTests(unittest.TestCase):
                 o["semantic_negative_receipts"][0][key] = value
                 with self.assertRaises(gate.EvidenceError):
                     self.check(o)
+
+    def test_claim_cannot_reuse_proof_without_test_controls(self):
+        for key in ("positive_ids", "negative_ids"):
+            fake = copy.deepcopy(self.overlay)
+            fake["claim_decisions"][0][key] = []
+            with self.subTest(key=key), self.assertRaises(gate.EvidenceError):
+                self.check(fake)
+        forged = copy.deepcopy(self.overlay)
+        forged["semantic_negative_receipts"][0]["claim_ids"] = ["Q2"]
+        with self.assertRaises(gate.EvidenceError):
+            self.check(forged)
 
     def test_duplicate_evidence_cannot_satisfy_case(self):
         o = copy.deepcopy(self.overlay)
