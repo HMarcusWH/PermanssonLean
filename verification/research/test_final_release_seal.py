@@ -76,6 +76,36 @@ class ApprovedSealByteTests(unittest.TestCase):
             self.assertEqual(json.loads(z.read("original_draft_manifest.lock.json")),
                              self.manifest)
 
+    def test_full_seal_cannot_promote_partial_scope(self):
+        from final_closure_full_contract import ORIGINAL_CLAIMS
+        approved = dict(self.approved,
+                        claims=sorted(ORIGINAL_CLAIMS),
+                        approved_manuscript_claims=sorted(ORIGINAL_CLAIMS))
+        with mock.patch.object(seal.draft_verifier, "verify",
+                               return_value={"integrity": "PASS"}), \
+             mock.patch.object(seal, "strict_acceptance",
+                               return_value={
+                                   "source": M, "frozen_head": H,
+                                   "status": "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY",
+                                   "accepted_case_count": 44,
+                                   "accepted_claim_count": 11}):
+            with self.assertRaises(seal.SealError):
+                seal.seal(self.draft, approved, {},
+                          self.draft/"fake_bundle.zip", self.output, full=True)
+
+    def test_full_seal_mocked_success_still_requires_exact_claim_set(self):
+        with mock.patch.object(seal.draft_verifier, "verify",
+                               return_value={"integrity": "PASS"}), \
+             mock.patch.object(seal, "strict_acceptance",
+                               return_value={
+                                   "source": M, "frozen_head": H,
+                                   "status": "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY",
+                                   "accepted_case_count": 45,
+                                   "accepted_claim_count": 11}):
+            with self.assertRaises(seal.SealError):
+                seal.seal(self.draft, self.approved, {},
+                          self.draft/"fake_bundle.zip", self.output, full=True)
+
     def test_reproducibility_reports_different_bytes_instead_of_relabeling(self):
         first, second = self.draft, Path(self.tmp.name)/"second"
         import shutil
