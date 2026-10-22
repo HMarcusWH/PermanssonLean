@@ -9,6 +9,8 @@ ROOT = Path(__file__).resolve().parents[2]
 MOD = "PermanssonResearch.Quotient.Q05ActualOriginalMarginWitnessFixture"
 DECLS = (
     "fine_world_fixed", "coarse_world_fixed",
+    "admitted_fine_world_fixed", "admitted_coarse_world_fixed",
+    "twoStartDomain_has_distinct_starts",
     "compression_noninjective",
     "actual_two_start_effects", "exact_margin_gap",
     "both_sides_every_strategic_row",
