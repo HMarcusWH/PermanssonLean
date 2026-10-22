@@ -105,10 +105,12 @@ theorem fine_actual_atom_domination
   by_cases h : z.1 = t
   · simp only [h, ite_true]
     cases hz : z.2
-    · rw [coin_false]
+    · simp only [hz, ite_false]
+      rw [coin_false]
       apply ENNReal.ofReal_le_ofReal
       exact_mod_cast commonFalseMass_le_fine t y.1
-    · rw [coin_true]
+    · simp only [hz, ite_true]
+      rw [coin_true]
       apply ENNReal.ofReal_le_ofReal
       exact_mod_cast commonTrueMass_le_fine t y.1
   · simp [h]
@@ -121,10 +123,12 @@ theorem coarse_actual_atom_domination
       (coarseModel t).inducedKernel (compression.stateMap y) {z} := by
   rw [projected_common_singleton, coarse_induced_singleton]
   cases hz : z.2
-  · rw [coin_false]
+  · simp only [hz, ite_false]
+    rw [coin_false]
     apply ENNReal.ofReal_le_ofReal
     exact_mod_cast commonFalseMass_le_coarse t y.1
-  · rw [coin_true]
+  · simp only [hz, ite_true]
+    rw [coin_true]
     apply ENNReal.ofReal_le_ofReal
     exact_mod_cast commonTrueMass_le_coarse t y.1
 
