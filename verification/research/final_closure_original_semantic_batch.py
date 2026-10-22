@@ -162,13 +162,17 @@ def frozen_spec(case_id: str, *, root: Path = ROOT) -> tuple[dict, bytes]:
         not relative.as_posix().startswith("PermanssonResearch/") or
         relative.suffix != ".lean"):
         raise MutationEvidenceError("unsafe/non-original Lean provider path")
-    original_path = (root / relative).resolve()
-    if (not original_path.is_relative_to(root.resolve()) or
+    candidate_source = root / relative
+    original_path = candidate_source.resolve()
+    if (candidate_source.is_symlink() or
+        not original_path.is_relative_to(root.resolve()) or
         not original_path.is_file() or original_path.is_symlink()):
         raise MutationEvidenceError("actual original Lean source unavailable")
-    test_path = (root / entry["test_path"]).resolve()
-    if (not test_path.is_relative_to(root.resolve()) or not
-        test_path.is_file() or test_path.is_symlink()):
+    candidate_test = root / entry["test_path"]
+    test_path = candidate_test.resolve()
+    if (candidate_test.is_symlink() or
+        not test_path.is_relative_to(root.resolve()) or
+        not test_path.is_file() or test_path.is_symlink()):
         raise MutationEvidenceError("original named test unavailable")
     body = textwrap.dedent(entry["body"]).strip() + "\n"
     if any(re.match(r"(?i)^\s*(?:import|axiom|sorry|admit)\b", line)
