@@ -94,6 +94,62 @@ This report is derived from unchanged original criteria and source mappings. It 
 | D8 | PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean | 3 | SOURCE_PRESENT_REVIEW_PENDING |
 | D9 | PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean | 6 | SOURCE_PRESENT_REVIEW_PENDING |
 
+
+## Executable-route gaps (unreviewed; not acceptance)
+
+- Missing selected positive controls: 10 of 45.
+- Missing selected semantic false-mutant routes: 34 of 45.
+- Passing scope-boundary checks do **not** discharge the mandatory compiler-negative evidence obligation.
+- A selected method still requires source relevance, actual exact-head execution, intact logs, authenticated check-run attribution and independent approval.
+
+| Case | Positive method routes | Semantic-negative routes | Scope-boundary observations |
+|---|---:|---:|---:|
+| X-01 | 1 | 1 | 0 |
+| X-02 | 1 | 2 | 0 |
+| X-03 | 2 | 0 | 0 |
+| X-04 | 0 | 1 | 0 |
+| X-05 | 0 | 3 | 0 |
+| X-06 | 0 | 0 | 2 |
+| S-01 | 1 | 0 | 0 |
+| S-02 | 1 | 0 | 1 |
+| M-01 | 2 | 0 | 0 |
+| M-02 | 2 | 1 | 1 |
+| F-01 | 2 | 1 | 0 |
+| F-02 | 1 | 0 | 1 |
+| F-03 | 0 | 0 | 2 |
+| F-04 | 1 | 0 | 1 |
+| F-05 | 1 | 0 | 1 |
+| Q-01 | 1 | 0 | 1 |
+| Q-02 | 1 | 0 | 1 |
+| Q-03 | 2 | 0 | 0 |
+| Q-04 | 2 | 0 | 0 |
+| Q-05 | 4 | 2 | 2 |
+| A-01 | 2 | 0 | 0 |
+| A-02 | 1 | 0 | 1 |
+| A-03 | 1 | 0 | 1 |
+| A-04 | 1 | 0 | 1 |
+| A-05 | 0 | 0 | 2 |
+| D-01 | 2 | 0 | 0 |
+| D-02 | 1 | 0 | 1 |
+| D-03 | 2 | 0 | 0 |
+| D-04 | 2 | 0 | 0 |
+| D-05 | 1 | 0 | 1 |
+| D-06 | 1 | 0 | 1 |
+| D-07 | 2 | 0 | 0 |
+| D-08 | 1 | 1 | 0 |
+| D-09 | 3 | 1 | 0 |
+| C11-01 | 1 | 0 | 1 |
+| C11-02 | 0 | 0 | 2 |
+| C-01 | 1 | 0 | 0 |
+| B-01 | 0 | 1 | 1 |
+| B-02 | 2 | 1 | 1 |
+| XPLUS-01 | 1 | 0 | 1 |
+| E-01 | 1 | 0 | 1 |
+| E-02 | 0 | 0 | 2 |
+| E-03 | 0 | 0 | 2 |
+| E-04 | 0 | 0 | 2 |
+| E-05 | 1 | 0 | 1 |
+
 ## Closure protocol
 
 Each original case requires a correct Lean source/premise binding, a positive control and semantically false mutant, genuine check-run IDs and a separately authenticated non-author exact-H case-specific review. Source-only PENDING/PARTIAL decisions cannot self-promote.
