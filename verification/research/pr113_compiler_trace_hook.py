@@ -13,6 +13,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import unittest
 
 MAX_SOURCE = 4 * 1024 * 1024
 MAX_OUTPUT = 4 * 1024 * 1024
@@ -118,3 +119,24 @@ def install():
 
     observed_run._pr113_capture_installed = True
     subprocess.run = observed_run
+
+    # Set one exact unittest method only while its own body executes. Python
+    # subprocesses inherit this environment, so nested Lean audit drivers can
+    # be attributed to the actual original named test. Class-level setUpClass
+    # executions still carry a grouped/unattributed marker and cannot satisfy
+    # an individual semantic-negative method.
+    actual_test_run = unittest.TestCase.run
+    if not getattr(actual_test_run, "_pr113_method_context_installed", False):
+        def run_with_method(self, *args, **kwargs):
+            old_method = os.environ.get("PR113_SELECTED_METHOD")
+            os.environ["PR113_SELECTED_METHOD"] = self._testMethodName
+            try:
+                return actual_test_run(self, *args, **kwargs)
+            finally:
+                if old_method is None:
+                    os.environ.pop("PR113_SELECTED_METHOD", None)
+                else:
+                    os.environ["PR113_SELECTED_METHOD"] = old_method
+
+        run_with_method._pr113_method_context_installed = True
+        unittest.TestCase.run = run_with_method
