@@ -36,7 +36,7 @@ def lean_probe(module: str, declaration: str) -> str:
         f"import {module}\n"
         "open Lean Elab Command\n"
         "run_cmd do\n"
-        f"  let nm : Name := \`{declaration}\n"
+        f"  let nm : Name := `{declaration}\n"
         "  let some info := (← getEnv).find? nm |\n"
         "    throwError \"no kernel declaration for requested name\"\n"
         "  let kind : String := match info with\n"
