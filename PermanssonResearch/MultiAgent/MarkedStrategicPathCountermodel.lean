@@ -70,7 +70,7 @@ def markedNextKey (t b : Bool) : Bool :=
   if t then !b else b
 
 def sourceInput (t b old : Bool) : UI :=
-  ((((((), ((), old)), ()), (t,b)), ())
+  (((((), ((), old)), ()), (t,b)), ())
 
 /-- The opponent's actual private update uses both sampled actions, in the
 actual update-input type of the original TwoPlayerGenerator. -/
