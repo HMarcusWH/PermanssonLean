@@ -2220,10 +2220,17 @@
           "path": "verification/research/test_a3_contractive.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_A_03_unbounded_TV_does_not_bound_W1",
+          "path": "verification/research/test_pr113_semantic_boundary_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_a3_contractive.py"
+        "verification/research/test_a3_contractive.py",
+        "verification/research/test_pr113_semantic_boundary_candidates.py"
       ]
     },
     {
@@ -3337,11 +3344,18 @@
           "path": "verification/research/test_d2_residence.py",
           "role": "EXACT_CHECK",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_D_07_finite_survival_does_not_imply_infinite_safety",
+          "path": "verification/research/test_pr113_semantic_boundary_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_infinite_safety_lean.py",
-        "verification/research/test_d2_residence.py"
+        "verification/research/test_d2_residence.py",
+        "verification/research/test_pr113_semantic_boundary_candidates.py"
       ]
     },
     {
@@ -3875,10 +3889,17 @@
           "path": "verification/research/test_paper_nonfinite_counterexample_lean.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_C_01_bounded_descriptor_occupation_nonconvergence",
+          "path": "verification/research/test_pr113_semantic_boundary_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_paper_nonfinite_counterexample_lean.py"
+        "verification/research/test_paper_nonfinite_counterexample_lean.py",
+        "verification/research/test_pr113_semantic_boundary_candidates.py"
       ]
     },
     {
@@ -4211,11 +4232,18 @@
           "path": "verification/research/test_paper_specialized_boundary_lean.py",
           "role": "COMPILER_SOURCE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_E_01_seam_invisibility_does_not_force_rank_one",
+          "path": "verification/research/test_pr113_semantic_boundary_candidates.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_closure_boundaries.py",
-        "verification/research/test_paper_specialized_boundary_lean.py"
+        "verification/research/test_paper_specialized_boundary_lean.py",
+        "verification/research/test_pr113_semantic_boundary_candidates.py"
       ]
     },
     {
