@@ -18,20 +18,28 @@ def valid_inputs():
         "accepted_case_count": 45, "pending_case_count": 0,
         "accepted_claim_count": 11,
     }
-    return result, {"cases": cases}, claims
+    selection = {
+        "cases": [
+            {"case_id": row["case_id"],
+             "historical_proof_declarations": [{"name": "real_proof"}],
+             "test_source_candidates": ["verification/research/test_selected.py"]}
+            for row in cases
+        ]
+    }
+    return result, {"cases": cases}, claims, selection
 
 
 class FullScopeContractTests(unittest.TestCase):
     def test_fully_mocked_graph_passes_only_as_source_not_release(self):
-        evidence, cases, claims = valid_inputs()
-        proof = full.require_full_source(evidence, cases, claims)
+        evidence, cases, claims, selection = valid_inputs()
+        proof = full.require_full_source(evidence, cases, claims, selection)
         self.assertEqual(proof["effective_case_count"], 45)
         self.assertEqual(proof["effective_claim_count"], 11)
         self.assertTrue(proof["not_yet_release"])
 
     def test_44_cases_and_10_claims_each_reject(self):
         for what in ("cases", "claims", "counterfeit"):
-            evidence, cases, claims = valid_inputs()
+            evidence, cases, claims, selection = valid_inputs()
             if what == "cases":
                 evidence["effective_cases"].pop("C-45")
                 evidence["accepted_case_count"] = 44
@@ -42,21 +50,27 @@ class FullScopeContractTests(unittest.TestCase):
             else:
                 evidence["effective_claims"][-1] = "FAKE"
             with self.subTest(what=what), self.assertRaises(EvidenceError):
-                full.require_full_source(evidence, cases, claims)
+                full.require_full_source(evidence, cases, claims, selection)
+
+    def test_missing_case_specific_selection_never_full(self):
+        evidence, cases, claims, selection = valid_inputs()
+        selection["cases"][7]["test_source_candidates"] = []
+        with self.assertRaises(EvidenceError):
+            full.require_full_source(evidence, cases, claims, selection)
 
     def test_labels_cannot_replace_full_exact_sets(self):
-        evidence, cases, claims = valid_inputs()
+        evidence, cases, claims, selection = valid_inputs()
         evidence["accepted_case_count"] = 45
         evidence["effective_cases"] = {"C-01": "VERIFIED_SELECTED_SCOPE"}
         with self.assertRaises(EvidenceError):
-            full.require_full_source(evidence, cases, claims)
-        evidence, cases, claims = valid_inputs()
+            full.require_full_source(evidence, cases, claims, selection)
+        evidence, cases, claims, selection = valid_inputs()
         claims[-1]["id"] = "EXTRA"
         with self.assertRaises(EvidenceError):
-            full.require_full_source(evidence, cases, claims)
+            full.require_full_source(evidence, cases, claims, selection)
 
     def test_premerge_full_gates_full_review_and_requires_no_future_M(self):
-        evidence, cases, claims = valid_inputs()
+        evidence, cases, claims, selection = valid_inputs()
         receipt = {
             "format": gate.FORMAT, "phase": "premerge_review",
             "merged_main_sha": None, "head_sha": "a"*40,
@@ -72,7 +86,7 @@ class FullScopeContractTests(unittest.TestCase):
              mock.patch.object(gate, "effective_acceptance",
                                return_value=evidence), \
              mock.patch.object(gate, "read_json",
-                               side_effect=[cases, {"claims": claims}]):
+                               side_effect=[cases, {"claims": claims}, selection]):
             status = gate.premerge(receipt, None, full=True)
         self.assertEqual(status["gate"], "PREMERGE_FULL_SOURCE_READY")
         self.assertFalse(status["merge_authorized"])
