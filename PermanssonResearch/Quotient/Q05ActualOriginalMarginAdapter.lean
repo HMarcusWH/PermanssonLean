@@ -99,13 +99,6 @@ theorem sourceDominationOfAtoms
         Kernel.comap_apply]
     exact finiteMeasureLeOfAtoms _ _ (h.projected t y)
 
-/-- Once the eight finite-row atom obligations are discharged, their
-ALL-event consequences provide the genuine original PointWitness. -/
-noncomputable def sourcePointWitnessOfAtoms
-    (h : VerifiedSourceAtomDomination) (t : Bool) :
-    PointWitness compression (fineModel t) (coarseModel t) :=
-  sourcePointWitness (sourceDominationOfAtoms h) t
-
 /-- All the other PointWitness fields are derived from the source, not assumed.
 The two domination premises above are the precise open mathematical tasks. -/
 noncomputable def sourcePointWitness
@@ -119,6 +112,13 @@ noncomputable def sourcePointWitness
   eta_nonneg := by intro n; norm_num [commonEta]
   eta_le_one := by intro n; norm_num [commonEta]
   retention := fun n y => commonSourceKernel_retention t n y
+
+/-- Once the eight finite-row atom obligations are discharged, their
+ALL-event consequences provide the genuine original PointWitness. -/
+noncomputable def sourcePointWitnessOfAtoms
+    (h : VerifiedSourceAtomDomination) (t : Bool) :
+    PointWitness compression (fineModel t) (coarseModel t) :=
+  sourcePointWitness (sourceDominationOfAtoms h) t
 
 /-- This is the literal *admitted* joint strategic intervention, not a
 separate model silently substituted for the intervention. -/
