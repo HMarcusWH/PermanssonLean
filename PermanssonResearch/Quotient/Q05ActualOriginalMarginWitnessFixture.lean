@@ -295,6 +295,111 @@ theorem two_sided_original_margin_bound (x : Bool) :
 theorem positive_gap_survives_budget :
     (0 : ℚ) < 19/90 - 2/41 := by norm_num
 
+/-- The common true/false atom masses are the EXACT finite Bernoulli
+intersection, defined from the original typed action rates on every row. -/
+def commonTrueMass (treated strategic : Bool) : ℚ :=
+  min (fineActionRate treated strategic) (coarseActionRate treated)
+
+def commonFalseMass (treated strategic : Bool) : ℚ :=
+  min (1-fineActionRate treated strategic) (1-coarseActionRate treated)
+
+theorem commonTrueMass_nonneg (t s : Bool) :
+    (0 : ℝ) ≤ (commonTrueMass t s : ℝ) := by
+  cases t <;> cases s <;>
+    norm_num [commonTrueMass, fineActionRate, coarseActionRate]
+
+theorem commonFalseMass_nonneg (t s : Bool) :
+    (0 : ℝ) ≤ (commonFalseMass t s : ℝ) := by
+  cases t <;> cases s <;>
+    norm_num [commonFalseMass, fineActionRate, coarseActionRate]
+
+theorem commonMass_normalization (t s : Bool) :
+    commonTrueMass t s + commonFalseMass t s = (19/20 : ℚ) := by
+  simpa [commonMass, commonTrueMass, commonFalseMass] using
+    both_sides_every_strategic_row t s
+
+/-- A real FINITE subprobability measure on actual fine next states.
+The next strategic coordinate is the original baseline/treatment update;
+the physical coordinate remains the actual sampled action. -/
+noncomputable def commonSourceRow (t : Bool) (y : FineState) :
+    Measure FineState :=
+  ENNReal.ofReal (commonTrueMass t y.1 : ℝ) •
+    Measure.dirac (t, true) +
+  ENNReal.ofReal (commonFalseMass t y.1 : ℝ) •
+    Measure.dirac (t, false)
+
+noncomputable def commonSourceKernel (t : Bool) :
+    Kernel FineState FineState where
+  toFun := commonSourceRow t
+  measurable' := Measurable.of_discrete
+
+/-- Actual retained mass on every fine row, not only the two comparison
+starts or baseline-reachable strategic coordinate. -/
+theorem commonSourceRow_mass (t : Bool) (y : FineState) :
+    (commonSourceRow t y) Set.univ =
+      ENNReal.ofReal (19/20 : ℝ) := by
+  simp only [commonSourceRow, Measure.add_apply, Measure.smul_apply,
+    Measure.dirac_apply' _ MeasurableSet.univ,
+    Set.indicator_of_mem (Set.mem_univ _),
+    Pi.one_apply, smul_eq_mul, mul_one]
+  rw [← ENNReal.ofReal_add
+    (commonTrueMass_nonneg t y.1) (commonFalseMass_nonneg t y.1)]
+  have h : (commonTrueMass t y.1 : ℝ) +
+      (commonFalseMass t y.1 : ℝ) = (19/20 : ℝ) := by
+    exact_mod_cast commonMass_normalization t y.1
+  rw [h]
+
+theorem commonSourceKernel_mass (t : Bool) (y : FineState) :
+    (commonSourceKernel t) y Set.univ =
+      ENNReal.ofReal (19/20 : ℝ) :=
+  commonSourceRow_mass t y
+
+instance commonSourceKernel_isFinite (t : Bool) :
+    IsFiniteKernel (commonSourceKernel t) := by
+  refine ⟨⟨1, (by norm_num), ?_⟩⟩
+  intro y
+  rw [commonSourceKernel_mass]
+  norm_num
+
+def commonEta : ℕ → ℝ := fun _ => 1/20
+
+theorem commonEta_retention (n : ℕ) :
+    PermanssonResearch.Probability.DependentHistory.retained commonEta n =
+      (19/20 : ℝ)^n := by
+  simp [PermanssonResearch.Probability.DependentHistory.retained,
+    commonEta]
+
+/-- This is exactly the retained mass inequality required by the general
+PointWitness constructor (its domination fields are separate obligations). -/
+theorem commonSourceKernel_retention (t : Bool) (n : ℕ) (y : FineState) :
+    ENNReal.ofReal (1-commonEta n) ≤
+      (commonSourceKernel t) y Set.univ := by
+  rw [commonSourceKernel_mass]
+  norm_num [commonEta]
+
+theorem commonEta_discounted_budget :
+    (∑' n : ℕ, (1-(1/3 : ℝ))*(1/3 : ℝ)^n*
+      (1-PermanssonResearch.Probability.DependentHistory.retained
+        commonEta n)) = 1/41 := by
+  simp_rw [commonEta_retention]
+  have h (n : ℕ) :
+      1 - (19/20 : ℝ)^n =
+        1-(1-(0:ℝ))*(1-(1/20:ℝ))^n := by norm_num
+  simp_rw [h]
+  rw [PermanssonResearch.Probability.discounted_geometric_budget_initial
+    (show 0 ≤ (1/3 : ℝ) by norm_num)
+    (show (1/3 : ℝ) < 1 by norm_num)
+    (show 0 ≤ (1/20 : ℝ) by norm_num)
+    (show (1/20 : ℝ) ≤ 1 by norm_num)]
+  norm_num
+
+/-- A normalized kernel cannot be substituted for the actual common
+subkernel: the source retains only nineteen twentieths on every row. -/
+theorem commonSourceKernel_not_exact (t : Bool) (y : FineState) :
+    (commonSourceKernel t) y Set.univ ≠ 1 := by
+  rw [commonSourceKernel_mass]
+  norm_num
+
 theorem treatment_reaches_other_strategic_state :
     (false : Bool) ≠ true ∧
     fineActionRate true true ≠ coarseActionRate true := by
