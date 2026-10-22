@@ -55,12 +55,21 @@ def appended_mutant(original: bytes, captured: bytes, provider_module: str) -> b
     except UnicodeDecodeError as exc:
         raise MutationEvidenceError("non-UTF8 captured Lean input") from exc
     lines = text.splitlines(keepends=True)
-    imports = [line.strip() for line in lines
-               if line.lstrip().startswith("import ")]
+    imports = []
+    body = []
+    seen_statement = False
+    for line in lines:
+        trimmed = line.strip()
+        if trimmed.startswith("import "):
+            need(not seen_statement, "legacy false source has a late import")
+            imports.append(trimmed)
+        else:
+            body.append(line)
+            if trimmed and not trimmed.startswith("--"):
+                seen_statement = True
     need("import " + provider_module in imports,
          "legacy false source did not import the selected original provider")
-    remaining = "".join(line for line in lines
-                        if not line.lstrip().startswith("import ")).strip()
+    remaining = "".join(body).strip()
     need(remaining and re.search(r"(?m)^\s*(?:example|theorem|lemma)\b",
                                  remaining),
          "captured Lean probe has no explicit false mathematical statement")
@@ -107,6 +116,8 @@ def replay(head: str, *, case_id: str, method: str, provider: str,
     byid, legacy_ids = original_case_map(head)
     need(case_id in legacy_ids, "case is not in twenty original legacy candidates")
     row = byid[case_id]
+    if test_output.is_symlink() or output.is_symlink():
+        raise MutationEvidenceError("symlinked evidence roots are not allowed")
     test_output = test_output.resolve()
     output = output.resolve()
     root = ROOT.resolve()
@@ -172,6 +183,9 @@ def replay(head: str, *, case_id: str, method: str, provider: str,
     true_source, original, module = choose_original(head, row, provider)
     mutated = appended_mutant(original, false_raw, module)
     output.mkdir(parents=True, exist_ok=False)
+    # Bind the captured candidate inputs both before and after Lean work.
+    frozen_test_report = test_report.read_bytes()
+    frozen_observation = (event / "observation.json").read_bytes()
     with tempfile.TemporaryDirectory(prefix="pr113-replay-", dir=output) as td:
         replay_file = Path(td) / "OriginalAppendedFalse.lean"
         replay_file.write_bytes(mutated)
@@ -180,6 +194,10 @@ def replay(head: str, *, case_id: str, method: str, provider: str,
             head, true_source=true_source, mutant=replay_file,
             test_path=test_file, test_name=method,
             case_id=case_id, claim_ids=[], out=logs)
+    if (test_report.read_bytes() != frozen_test_report or
+            (event / "observation.json").read_bytes() != frozen_observation or
+            (event / "source.lean").read_bytes() != false_raw):
+        raise MutationEvidenceError("legacy captured input changed during replay")
     zip_path = output / "semantic_replay_candidate.zip"
     bundle_sha = seal_logs(logs, zip_path)
     raw_capture = output / "original_legacy_capture"
