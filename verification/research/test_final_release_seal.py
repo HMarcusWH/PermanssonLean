@@ -15,6 +15,7 @@ if str(RELEASE) not in sys.path:
     sys.path.insert(0, str(RELEASE))
 import reproduce
 import seal_approved as seal
+import archive_integrity as integrity
 
 H = "a" * 40
 M = "b" * 40
@@ -41,10 +42,31 @@ class ApprovedSealByteTests(unittest.TestCase):
             "format": "Permansson.MathClosure.BuildReceipt.v1",
             "status": "DRAFT_NOT_ACCEPTED", "mode": "DRAFT",
             "source_commit_sha": M, "pdf_sha256": self.pdfsha,
-            "pdf_page_count": 1, "source_tree_files": {},
+            "pdf_page_count": 1,
+            "source_tree_files": {
+                "research_papers/mathematical_closure/" + path:
+                digest(("FAKE_SOURCE_" + path).encode())
+                for path in integrity.SOURCE_FILES
+            },
         }
         (self.draft / "manifest.lock.json").write_text(
             json.dumps(self.manifest))
+        (self.draft / "latex_build.log").write_bytes(b"FAKE_TEX_LOG")
+        self.manifest["latex_log_sha256"] = digest(b"FAKE_TEX_LOG")
+        (self.draft / "manifest.lock.json").write_text(json.dumps(self.manifest))
+        source_ci = {"status": "MISSING_POST_MERGE_SOURCE_AND_REVIEWS",
+                     "ci_receipts": [], "independent_reviews": []}
+        (self.draft / "source_ci_receipts.lock.json").write_text(json.dumps(source_ci))
+        archive_path = self.draft / "Permansson_Mathematical_Closure_E2E.zip"
+        with zipfile.ZipFile(archive_path, "w") as z:
+            for path in integrity.SOURCE_FILES:
+                z.writestr("manuscript/" + path,
+                           ("FAKE_SOURCE_" + path).encode())
+            for name in integrity.GENERATED:
+                z.write(self.draft / name, name)
+        (self.draft / "SHA256SUMS.txt").write_text("".join(
+            digest((self.draft / name).read_bytes()) + "  " + name + "\n"
+            for name in integrity.SUMMED))
         self.approved = {
             "status": "APPROVED_SOURCE_BOUND", "source_commit_sha": M,
             "pdf_sha256": self.pdfsha, "pdf_pages": self.pages,
