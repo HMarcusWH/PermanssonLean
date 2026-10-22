@@ -206,6 +206,11 @@ METHOD_ROUTES = {
       "test_f1_multiagent_protocols.py",
       "test_nonstationary_anchor_needs_clock_in_baseline",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_final_closure_more_false_semantics_lean.py",
+      "test_F_02_false_stalled_original_natural_clock",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "F-03": [
@@ -235,6 +240,11 @@ METHOD_ROUTES = {
       "test_f1_multiagent_protocols.py",
       "test_ma3_shared_source_is_representable",
       "EXACT_CHECK"
+    ],
+    [
+      "test_final_closure_more_false_semantics_lean.py",
+      "test_F_04_false_product_representation_of_correlated_law",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "F-05": [
@@ -247,6 +257,11 @@ METHOD_ROUTES = {
       "test_paper_closure_boundaries.py",
       "test_observed_mediation_does_not_identify_joint_intervention",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_final_closure_more_false_semantics_lean.py",
+      "test_F_05_false_identification_of_original_joint_do",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "Q-01": [
@@ -271,6 +286,11 @@ METHOD_ROUTES = {
       "test_next04_projection_arithmetic.py",
       "test_time_varying_initial_and_row_budget",
       "EXACT_CHECK"
+    ],
+    [
+      "test_final_closure_more_false_semantics_lean.py",
+      "test_Q_02_false_zero_initial_error_under_zero_row_defect",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "Q-03": [

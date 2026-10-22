@@ -1100,11 +1100,18 @@
           "path": "verification/research/test_f1_multiagent_protocols.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_F_02_false_stalled_original_natural_clock",
+          "path": "verification/research/test_final_closure_more_false_semantics_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_paper_measurable_clock_lean.py",
-        "verification/research/test_f1_multiagent_protocols.py"
+        "verification/research/test_f1_multiagent_protocols.py",
+        "verification/research/test_final_closure_more_false_semantics_lean.py"
       ]
     },
     {
@@ -1245,10 +1252,17 @@
           "path": "verification/research/test_f1_multiagent_protocols.py",
           "role": "EXACT_CHECK",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_F_04_false_product_representation_of_correlated_law",
+          "path": "verification/research/test_final_closure_more_false_semantics_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_f1_multiagent_protocols.py"
+        "verification/research/test_f1_multiagent_protocols.py",
+        "verification/research/test_final_closure_more_false_semantics_lean.py"
       ]
     },
     {
@@ -1327,11 +1341,18 @@
           "path": "verification/research/test_paper_closure_boundaries.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_F_05_false_identification_of_original_joint_do",
+          "path": "verification/research/test_final_closure_more_false_semantics_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
         "verification/research/test_next03_positive_mediation.py",
-        "verification/research/test_paper_closure_boundaries.py"
+        "verification/research/test_paper_closure_boundaries.py",
+        "verification/research/test_final_closure_more_false_semantics_lean.py"
       ]
     },
     {
@@ -1506,10 +1527,17 @@
           "path": "verification/research/test_next04_projection_arithmetic.py",
           "role": "EXACT_CHECK",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_Q_02_false_zero_initial_error_under_zero_row_defect",
+          "path": "verification/research/test_final_closure_more_false_semantics_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_next04_projection_arithmetic.py"
+        "verification/research/test_next04_projection_arithmetic.py",
+        "verification/research/test_final_closure_more_false_semantics_lean.py"
       ]
     },
     {
