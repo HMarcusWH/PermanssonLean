@@ -48,6 +48,20 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Kernel-checked equality; changed world/update/action row rejected",
+      "test_method_candidates": [
+        {
+          "method": "test_actual_kernel_equality_rejects_normalized_wrong_row",
+          "path": "verification/research/test_next03_stochastic_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_source_bound_transitive_audit",
+          "path": "verification/research/test_paper_x1_matrix_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_next03_stochastic_lean.py",
         "verification/research/test_paper_x1_matrix_lean.py"
@@ -55,7 +69,7 @@
     },
     {
       "case_id": "X-02",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -107,11 +121,34 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Actual-kernel induction identifies each entry",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_corrupt_terminal_literal",
+          "path": "verification/research/test_paper_x1_lean_closure.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_wrong_terminal_horizon",
+          "path": "verification/research/test_paper_x1_lean_closure.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_paths_match_matrix_properties_and_killed_recursion",
+          "path": "verification/research/test_x1_commons.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_x1_lean_closure.py",
+        "verification/research/test_x1_commons.py"
+      ]
     },
     {
       "case_id": "X-03",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -171,7 +208,24 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Original constitutiveMargin equalities and exact attainers",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_exact_positive_controls",
+          "path": "verification/research/test_paper_x1_lean_closure.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_prospective_full_region_infima_check_every_start",
+          "path": "verification/research/test_x1_commons.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_x1_lean_closure.py",
+        "verification/research/test_x1_commons.py"
+      ]
     },
     {
       "case_id": "X-04",
@@ -237,13 +291,21 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Lean proof fails at arithmetic/domain obligation; parser failure alone insufficient",
+      "test_method_candidates": [
+        {
+          "method": "test_lean_false_original_domain_mutation",
+          "path": "verification/research/test_next03_tied_start_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_next03_tied_start_lean.py"
       ]
     },
     {
       "case_id": "X-05",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -320,11 +382,33 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Typed kernel equality fails",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_reset_before_action",
+          "path": "verification/research/test_paper_x1_lean_closure.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_new_world_learning",
+          "path": "verification/research/test_paper_x1_lean_closure.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_swapped_update_protocol",
+          "path": "verification/research/test_paper_x1_lean_closure.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_x1_lean_closure.py"
+      ]
     },
     {
       "case_id": "X-06",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -384,11 +468,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Rejected; leakage theorem remains unchanged",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_leaking_region_not_exact_gr_and_persistence_decay",
+          "path": "verification/research/test_x1_commons.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_positive_quotient_margin_not_exact_gr",
+          "path": "verification/research/test_e1_approx_quotient.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_x1_commons.py",
+        "verification/research/test_e1_approx_quotient.py"
+      ]
     },
     {
       "case_id": "S-01",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -456,11 +557,21 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Exact identity including terminal beta^N value",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_source_bound_transitive_axioms",
+          "path": "verification/research/test_paper_strategy_economic_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_strategy_economic_lean.py"
+      ]
     },
     {
       "case_id": "S-02",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -528,11 +639,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Outside admitted information class; no verification theorem",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_original_information_class_and_transitive_axioms",
+          "path": "verification/research/test_paper_information_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_history_sensitive_policy_no_future_information",
+          "path": "verification/research/test_d2_residence.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_information_lean.py",
+        "verification/research/test_d2_residence.py"
+      ]
     },
     {
       "case_id": "M-01",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -592,7 +720,24 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Full counterfactual path laws equal under stated premises",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_actual_all_time_autonomy_and_transitive_axioms",
+          "path": "verification/research/test_paper_autonomy_ae_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_strict_autonomous_off_support_difference_stochastic_crosscheck",
+          "path": "verification/research/test_f1_multiagent_protocols.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_autonomy_ae_lean.py",
+        "verification/research/test_f1_multiagent_protocols.py"
+      ]
     },
     {
       "case_id": "M-02",
@@ -675,6 +820,20 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Autonomy premise rejected; reactive witness not counted strict",
+      "test_method_candidates": [
+        {
+          "method": "test_unmarked_key_laws_identical",
+          "path": "verification/research/test_next03_m02_marked_coupling.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_marked_diagonal_is_maximally_separating",
+          "path": "verification/research/test_next03_m02_marked_coupling.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_next03_m02_marked_coupling.py"
       ]
@@ -782,6 +941,20 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "P inputs reindexed correctly, no assumed symmetry",
+      "test_method_candidates": [
+        {
+          "method": "test_actual_common_update_false_same_input_claim",
+          "path": "verification/research/test_next03_asymmetric_common_swap_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_matched_asymmetric_source_witnesses",
+          "path": "verification/research/test_final05_measurable_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_next03_asymmetric_common_swap_lean.py",
         "verification/research/test_final05_measurable_lean.py"
@@ -789,7 +962,7 @@
     },
     {
       "case_id": "F-02",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -849,11 +1022,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Projection/exogeneity fails",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_actual_measurable_clock_projection_and_axioms",
+          "path": "verification/research/test_paper_measurable_clock_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_nonstationary_anchor_needs_clock_in_baseline",
+          "path": "verification/research/test_f1_multiagent_protocols.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_measurable_clock_lean.py",
+        "verification/research/test_f1_multiagent_protocols.py"
+      ]
     },
     {
       "case_id": "F-03",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -905,11 +1095,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "No feasible strict probability anchor",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_nonempty_state_menus_can_have_empty_key_intersection",
+          "path": "verification/research/test_paper_closure_boundaries.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_infeasible_anchor_excluded_separate_toy",
+          "path": "verification/research/test_f1_multiagent_protocols.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_closure_boundaries.py",
+        "verification/research/test_f1_multiagent_protocols.py"
+      ]
     },
     {
       "case_id": "F-04",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -953,7 +1160,23 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Single-product claim fails; mediator mixture succeeds",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_ma3_correlated_law_not_product_exact",
+          "path": "verification/research/test_f1_multiagent_protocols.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_ma3_shared_source_is_representable",
+          "path": "verification/research/test_f1_multiagent_protocols.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_f1_multiagent_protocols.py"
+      ]
     },
     {
       "case_id": "F-05",
@@ -1019,13 +1242,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Mediation not identified without sufficient premises",
+      "test_method_candidates": [
+        {
+          "method": "test_mediator_matters_not_only_direct_treatment",
+          "path": "verification/research/test_next03_positive_mediation.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_observed_mediation_does_not_identify_joint_intervention",
+          "path": "verification/research/test_paper_closure_boundaries.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
-        "verification/research/test_next03_positive_mediation.py"
+        "verification/research/test_next03_positive_mediation.py",
+        "verification/research/test_paper_closure_boundaries.py"
       ]
     },
     {
       "case_id": "Q-01",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -1093,7 +1331,23 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Geometric bound holds without claiming projection Markov",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_projection_is_not_markov_from_one_start",
+          "path": "verification/research/test_e1_approx_quotient.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_geometric_bound_numeric_only",
+          "path": "verification/research/test_e1_approx_quotient.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_e1_approx_quotient.py"
+      ]
     },
     {
       "case_id": "Q-02",
@@ -1167,6 +1421,20 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Correct boundaries; mismatched unbudgeted starts rejected",
+      "test_method_candidates": [
+        {
+          "method": "test_zero_kernel_defect_does_not_delete_initial_mismatch",
+          "path": "verification/research/test_next04_projection_arithmetic.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_time_varying_initial_and_row_budget",
+          "path": "verification/research/test_next04_projection_arithmetic.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_next04_projection_arithmetic.py"
       ]
@@ -1219,6 +1487,20 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Product mass proved, no independence assumption",
+      "test_method_candidates": [
+        {
+          "method": "test_true_conditional_history_dependence",
+          "path": "verification/research/test_next03_dependent_three_stage.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_a2_15_seeded_exact_rational_primitive_rows",
+          "path": "verification/research/test_a2_primitive_tv.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_next03_dependent_three_stage.py",
         "verification/research/test_a2_primitive_tv.py"
@@ -1264,6 +1546,20 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Intervention defect charged rather than omitted",
+      "test_method_candidates": [
+        {
+          "method": "test_actual_final_source_and_semantic_mutations",
+          "path": "verification/research/test_localized_prefix_compiler.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_both_error_sides",
+          "path": "verification/research/test_next04_original_margin.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_localized_prefix_compiler.py",
         "verification/research/test_next04_original_margin.py"
@@ -1399,14 +1695,29 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "No unqualified whole-path/Exact-GR transfer",
+      "test_method_candidates": [
+        {
+          "method": "test_actual_kernel_witness_examples_and_axioms",
+          "path": "verification/research/test_final04_source_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_repeated_tiny_leaks_do_not_justify_exact_invariance",
+          "path": "verification/research/test_next04_projection_arithmetic.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_final04_source_lean.py",
-        "verification/research/test_next04_original_margin_lean.py"
+        "verification/research/test_next04_original_margin_lean.py",
+        "verification/research/test_next04_projection_arithmetic.py"
       ]
     },
     {
       "case_id": "A-01",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -1474,11 +1785,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Finite dual equality checked; wrong supnorm test class rejected",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_actual_metric_certificates_and_transitive_axioms",
+          "path": "verification/research/test_paper_metric_coupling_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_dual_equals_coupling_on_the_line",
+          "path": "verification/research/test_a3_contractive.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_metric_coupling_lean.py",
+        "verification/research/test_a3_contractive.py"
+      ]
     },
     {
       "case_id": "A-02",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -1603,11 +1931,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Missing strict contraction/uniqueness exposed",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_source_bound_transitive_axioms",
+          "path": "verification/research/test_paper_invariant_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_no_contraction_no_bound",
+          "path": "verification/research/test_a3_contractive.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_invariant_lean.py",
+        "verification/research/test_a3_contractive.py"
+      ]
     },
     {
       "case_id": "A-03",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -1683,11 +2028,27 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Bounded-diameter conversion not applied",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_bounded_diameter_conversion",
+          "path": "verification/research/test_a3_contractive.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_unbounded_no_conversion",
+          "path": "verification/research/test_a3_contractive.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_a3_contractive.py"
+      ]
     },
     {
       "case_id": "A-04",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -1771,11 +2132,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Four-process wrapper unavailable, not silently three-process",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_four_process_factorization_cannot_be_deleted",
+          "path": "verification/research/test_a3_contractive.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_source_bound_transitive_axioms",
+          "path": "verification/research/test_paper_strategy_economic_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_a3_contractive.py",
+        "verification/research/test_paper_strategy_economic_lean.py"
+      ]
     },
     {
       "case_id": "A-05",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -1859,11 +2237,27 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Property identity fails rather than being assumed",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_a3_3_survival_flips",
+          "path": "verification/research/test_a3_contractive.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_four_process_factorization_cannot_be_deleted",
+          "path": "verification/research/test_a3_contractive.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_a3_contractive.py"
+      ]
     },
     {
       "case_id": "D-01",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -1972,11 +2366,27 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Same literal-event value; deterministic augmented maximizer attains",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_bellman_equals_enumerated_deterministic_policies",
+          "path": "verification/research/test_d2_residence.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_product_clock_and_history_values_agree",
+          "path": "verification/research/test_d2_residence.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_d2_residence.py"
+      ]
     },
     {
       "case_id": "D-02",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -2077,11 +2487,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Exact event classification including word 1,0,1,1",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_retry_is_distinct_from_first_ever_entry",
+          "path": "verification/research/test_d2_residence.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_all_short_physical_words",
+          "path": "verification/research/test_monitor_stationary_closures.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_d2_residence.py",
+        "verification/research/test_monitor_stationary_closures.py"
+      ]
     },
     {
       "case_id": "D-03",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -2230,11 +2657,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Declared precedence and separate risk monitor preserved",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_retry_first_and_danger_boundaries",
+          "path": "verification/research/test_monitor_stationary_closures.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_actual_history_risk_flag_and_transitive_axioms",
+          "path": "verification/research/test_paper_through_risk_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_monitor_stationary_closures.py",
+        "verification/research/test_paper_through_risk_lean.py"
+      ]
     },
     {
       "case_id": "D-04",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -2334,7 +2778,24 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Optimum17/20 atp1/2, unconstrained p1 infeasible",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_risk_budget_changes_optimum",
+          "path": "verification/research/test_d2_residence.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_actual_solver_signatures_and_transitive_axioms",
+          "path": "verification/research/test_paper_risk_lp_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_d2_residence.py",
+        "verification/research/test_paper_risk_lp_lean.py"
+      ]
     },
     {
       "case_id": "D-05",
@@ -2432,6 +2893,20 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Committed value.09 differs from rectangular.01",
+      "test_method_candidates": [
+        {
+          "method": "test_rectangular_reselection_is_a_different_path_law",
+          "path": "verification/research/test_next06_committed_path_law.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_committed_model_identity_persists_between_stages",
+          "path": "verification/research/test_next06_committed_path_law.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_next06_committed_path_law.py"
       ]
@@ -2516,13 +2991,27 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Full augmented belief required",
+      "test_method_candidates": [
+        {
+          "method": "test_both_histories_have_mass_under_the_same_law",
+          "path": "verification/research/test_next06_reachable_completion_belief.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_same_physical_readout_does_not_identify_completion",
+          "path": "verification/research/test_next06_reachable_completion_belief.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_next06_reachable_completion_belief.py"
       ]
     },
     {
       "case_id": "D-07",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -2614,7 +3103,24 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Infinite optimum determined by limit theorem, not one finite bound",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_actual_infinite_safety_audit",
+          "path": "verification/research/test_paper_infinite_safety_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_deterministic_robust_value_zero",
+          "path": "verification/research/test_d2_residence.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_infinite_safety_lean.py",
+        "verification/research/test_d2_residence.py"
+      ]
     },
     {
       "case_id": "D-08",
@@ -2685,6 +3191,20 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "No admissible typed controlled row",
+      "test_method_candidates": [
+        {
+          "method": "test_false_frozen_joint_admission_is_semantic_mutant",
+          "path": "verification/research/test_final_d08_admission.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_actual_original_margin_control_and_false_mutant",
+          "path": "verification/research/test_next06_d08_joint_only_compiler.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_final_d08_admission.py",
         "verification/research/test_next06_d08_joint_only_compiler.py"
@@ -2787,6 +3307,20 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Class identity retained; descriptor score aggregates correctly",
+      "test_method_candidates": [
+        {
+          "method": "test_exact_expected_score_not_score_of_expected_law",
+          "path": "verification/research/test_final_d09_multichain.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_exact_policy_scores_not_just_orbit_table",
+          "path": "verification/research/test_final06_phaseblind_original.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
         "verification/research/test_final_d09_multichain.py",
         "verification/research/test_final06_phaseblind_original.py"
@@ -2794,7 +3328,7 @@
     },
     {
       "case_id": "C11-01",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -2870,11 +3404,27 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Valid nonempty families accepted; n0 rejected",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_02_periodic_alternation",
+          "path": "verification/research/test_lane_c11_stationary.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_13_zero_and_resource_limits",
+          "path": "verification/research/test_lane_c11_stationary.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_lane_c11_stationary.py"
+      ]
     },
     {
       "case_id": "C11-02",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -2950,11 +3500,27 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Existing checker rejects complete faulty output",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_07_forged_share_after_hash_repair",
+          "path": "verification/research/test_lane_c11_stationary.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_09_missing_extra_and_duplicate_classes",
+          "path": "verification/research/test_lane_c11_stationary.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_lane_c11_stationary.py"
+      ]
     },
     {
       "case_id": "C-01",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -3062,7 +3628,17 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "No unrestricted nonfinite occupation theorem",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_source_bound_transitive_axioms",
+          "path": "verification/research/test_paper_nonfinite_counterexample_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_nonfinite_counterexample_lean.py"
+      ]
     },
     {
       "case_id": "B-01",
@@ -3136,8 +3712,23 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Compatibility rejected; order dependence exposed",
+      "test_method_candidates": [
+        {
+          "method": "test_positive_and_false_compatibility_compile",
+          "path": "verification/research/test_next06_overlap_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_14_invalid_order_or_noncommuting_patch",
+          "path": "verification/research/test_lane_b2_sequential_effects.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
-        "verification/research/test_next06_overlap_lean.py"
+        "verification/research/test_next06_overlap_lean.py",
+        "verification/research/test_lane_b2_sequential_effects.py"
       ]
     },
     {
@@ -3189,13 +3780,27 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "No unique-minimum or monotonicity inference",
+      "test_method_candidates": [
+        {
+          "method": "test_09_AND_incomparable_singleton_supports",
+          "path": "verification/research/test_lane_b2_sequential_effects.py",
+          "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_10_XOR_destroys_upward_monotonicity",
+          "path": "verification/research/test_lane_b2_sequential_effects.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
       "test_source_candidates": [
-        "verification/research/test_next06_d08_joint_only_compiler.py"
+        "verification/research/test_lane_b2_sequential_effects.py"
       ]
     },
     {
       "case_id": "XPLUS-01",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -3247,11 +3852,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Correct source constructors and kappa1; no edit to old X1",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_source_bound_transitive_axioms",
+          "path": "verification/research/test_paper_strategy_economic_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_leaking_region_not_exact_gr_and_persistence_decay",
+          "path": "verification/research/test_x1_commons.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_strategy_economic_lean.py",
+        "verification/research/test_x1_commons.py"
+      ]
     },
     {
       "case_id": "E-01",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -3303,11 +3925,28 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "Rank-one/scalar promotion rejected",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_seam_invisibility_can_have_rank_two",
+          "path": "verification/research/test_paper_closure_boundaries.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_negative_statements_and_transitive_axioms",
+          "path": "verification/research/test_paper_specialized_boundary_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_closure_boundaries.py",
+        "verification/research/test_paper_specialized_boundary_lean.py"
+      ]
     },
     {
       "case_id": "E-02",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -3359,11 +3998,27 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "No persistent witness transfer",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_exact_approximant_can_violate_legal_carrier",
+          "path": "verification/research/test_paper_closure_boundaries.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_embedding_without_form_preservation_loses_negative_witness",
+          "path": "verification/research/test_paper_closure_boundaries.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_closure_boundaries.py"
+      ]
     },
     {
       "case_id": "E-03",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -3415,11 +4070,27 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "No scalar shell reduction or unjustified inverse",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_two_dimensional_shell_needs_second_equation",
+          "path": "verification/research/test_paper_closure_boundaries.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_zero_shift_does_not_invert_psd_singular_core",
+          "path": "verification/research/test_paper_closure_boundaries.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_closure_boundaries.py"
+      ]
     },
     {
       "case_id": "E-04",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -3479,11 +4150,27 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "No pseudoinverse positivity certificate or cancellation",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_singular_missing_preimage_produces_negative_vector",
+          "path": "verification/research/test_paper_closure_boundaries.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_source_exceptional_branch_does_not_force_vanishing",
+          "path": "verification/research/test_paper_closure_boundaries.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_closure_boundaries.py"
+      ]
     },
     {
       "case_id": "E-05",
-      "case_specific_test_status": "MISSING_CASE_SPECIFIC_TEST_SELECTION",
+      "case_specific_test_status": "CANDIDATES_REQUIRE_CRITERION_RELEVANCE_REVIEW",
       "current_candidate_decision": "PARTIAL_SCOPE",
       "effective_accepted": false,
       "evidence": {
@@ -3535,14 +4222,31 @@
         "Exact-head compiler and transitive-axiom receipts, source-bound semantic tests and independent case review are pending."
       ],
       "required_expected_result": "No unqualified negative full-form conclusion",
-      "test_source_candidates": []
+      "test_method_candidates": [
+        {
+          "method": "test_positive_component_can_mask_gram_negative_direction",
+          "path": "verification/research/test_paper_closure_boundaries.py",
+          "role": "SCOPE_BOUNDARY",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_negative_statements_and_transitive_axioms",
+          "path": "verification/research/test_paper_specialized_boundary_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        }
+      ],
+      "test_source_candidates": [
+        "verification/research/test_paper_closure_boundaries.py",
+        "verification/research/test_paper_specialized_boundary_lean.py"
+      ]
     }
   ],
   "format": "Permansson.OriginalAcceptanceCaseSourceMap.v1",
   "new_closure_owners": 11,
   "original_atlas_contracts": 42,
   "original_cases": 45,
-  "qualification": "Test candidates are a review work queue. Missing case-specific tests remain explicitly unassigned; no global CI check or source name establishes case acceptance.",
+  "qualification": "All 45 original cases now have concrete discovered test-method candidates; these are a review work queue, not criterion-level acceptance or executed CI receipts. Source/mutation identity, premise relevance and independent review remain mandatory.",
   "source_baseline_sha": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
   "status": "UNREVIEWED_CANDIDATE_ONLY"
 }
