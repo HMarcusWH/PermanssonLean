@@ -423,6 +423,11 @@ METHOD_ROUTES = {
       "test_a3_contractive.py",
       "test_unbounded_no_conversion",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_pr113_semantic_boundary_candidates.py",
+      "test_A_03_unbounded_TV_does_not_bound_W1",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "A-04": [
@@ -561,6 +566,11 @@ METHOD_ROUTES = {
       "test_d2_residence.py",
       "test_deterministic_robust_value_zero",
       "EXACT_CHECK"
+    ],
+    [
+      "test_pr113_semantic_boundary_candidates.py",
+      "test_D_07_finite_survival_does_not_imply_infinite_safety",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "D-08": [
@@ -631,6 +641,11 @@ METHOD_ROUTES = {
       "test_paper_nonfinite_counterexample_lean.py",
       "test_source_bound_transitive_axioms",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_pr113_semantic_boundary_candidates.py",
+      "test_C_01_bounded_descriptor_occupation_nonconvergence",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "B-01": [
@@ -704,6 +719,11 @@ METHOD_ROUTES = {
       "test_paper_specialized_boundary_lean.py",
       "test_negative_statements_and_transitive_axioms",
       "COMPILER_SOURCE"
+    ],
+    [
+      "test_pr113_semantic_boundary_candidates.py",
+      "test_E_01_seam_invisibility_does_not_force_rank_one",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "E-02": [
