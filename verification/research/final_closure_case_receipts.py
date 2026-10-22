@@ -290,8 +290,9 @@ def validate_test_receipt(row: dict, head: str, members: dict[str, bytes],
                len(mutated) > len(original),
                "original Lean bytes missing or mutation is not append-only")
         appended = mutated[len(original):].decode("utf-8")
-        demand(not re.search(
-            r"(?mi)^\s*(?:import|axiom|constant|opaque|sorry|admit)\b", appended),
+        demand(
+            not re.search(r"(?mi)^\s*(?:import|axiom|constant|opaque)\b", appended)
+            and not re.search(r"(?i)\b(?:sorry|sorryAx|admit)\b", appended),
             "false mutant appended an import, axiom, or admission")
         demand(digest(original) == row.get("original_lean_source_sha256") and
                digest(mutated) != digest(original) and
