@@ -130,6 +130,25 @@ class DetachedCaseReceiptTests(unittest.TestCase):
         with self.assertRaises(gate.EvidenceError):
             gate.load_detached_bundle(self.bundle, sha(self.bundle.read_bytes()))
 
+    def test_archive_metadata_bombs_fail_before_extraction(self):
+        with zipfile.ZipFile(self.bundle, "w") as z:
+            for i in range(gate.MAX_MEMBERS + 1):
+                z.writestr(f"items/{i}.log", b"x")
+        with self.assertRaises(gate.EvidenceError):
+            gate.load_detached_bundle(self.bundle, sha(self.bundle.read_bytes()))
+        with zipfile.ZipFile(self.bundle, "w", compression=zipfile.ZIP_DEFLATED) as z:
+            for i in range(gate.MAX_EXPANDED_BYTES // gate.MAX_MEMBER_BYTES + 1):
+                z.writestr(f"big/{i}.log", b"z" * gate.MAX_MEMBER_BYTES)
+        with self.assertRaises(gate.EvidenceError):
+            gate.load_detached_bundle(self.bundle, sha(self.bundle.read_bytes()))
+
+    def test_archive_ancestor_collision_fails(self):
+        with zipfile.ZipFile(self.bundle, "w") as z:
+            z.writestr("a", b"file")
+            z.writestr("a/b", b"not a directory")
+        with self.assertRaises(gate.EvidenceError):
+            gate.load_detached_bundle(self.bundle, sha(self.bundle.read_bytes()))
+
     def test_wrong_head_source_header_and_namespace_rejected(self):
         for key, value in [("head_sha", "b"*40),
                            ("source_sha256", "0"*64),

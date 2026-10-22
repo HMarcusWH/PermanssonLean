@@ -8,6 +8,7 @@ decisions. This module never mutates the historical 45-case ledger.
 from __future__ import annotations
 
 import hashlib
+import io
 import json
 from pathlib import Path, PurePosixPath
 import re
@@ -35,6 +36,9 @@ SEMANTIC_DIAGNOSTICS = (
 )
 MAX_BUNDLE_BYTES = 32 * 1024 * 1024
 MAX_MEMBER_BYTES = 4 * 1024 * 1024
+MAX_EXPANDED_BYTES = 64 * 1024 * 1024
+MAX_MEMBERS = 512
+MAX_EXPANSION_RATIO = 1000
 
 
 class EvidenceError(ValueError):
@@ -103,14 +107,11 @@ def statement_header(source: str, qualified: str) -> str:
     following = DECL_RE.search(source, match.end())
     limit = following.start() if following else len(source)
     stop = source.find(":=", match.end(), limit)
-    demand(stop > match.end(), "declaration header separator absent")
-    return source[start:stop].strip()
+    demand(stop >def load_detached_bundle(path: str | Path, expected_sha256: str):
+    """Verify and parse the exact hashed ZIP bytes with aggregate resource bounds.
 
-
-def load_detached_bundle(path: str | Path, expected_sha256: str):
-    """Verify detached ZIP by exact bytes, rejecting duplicate and unsafe members.
-
-    The external review must additionally attest the same bundle SHA-256.
+    All metadata are checked before decompression. Never reopen the potentially
+    mutable source path after verifying its digest; never extract members to disk.
     """
     location = Path(path)
     demand(location.is_file() and not location.is_symlink() and
@@ -120,30 +121,52 @@ def load_detached_bundle(path: str | Path, expected_sha256: str):
            "missing bundle SHA256")
     demand(location.stat().st_size <= MAX_BUNDLE_BYTES, "evidence bundle too large")
     raw = location.read_bytes()
-    demand(digest(raw) == expected_sha256, "detached evidence digest mismatch")
+    demand(len(raw) <= MAX_BUNDLE_BYTES and digest(raw) == expected_sha256,
+           "detached evidence digest mismatch")
     members = {}
     try:
-        with zipfile.ZipFile(location) as archive:
-            names = set()
-            for member in archive.infolist():
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            entries = archive.infolist()
+            demand(len(entries) <= MAX_MEMBERS, "too many evidence members")
+            normalized = set()
+            expanded = 0
+            for member in entries:
                 name = member.filename
                 rel = PurePosixPath(name)
-                demand(name not in names and name.casefold() not in
-                       {x.casefold() for x in names}, "duplicate evidence member")
-                demand(not member.is_dir() and name and
-                       "\\" not in name and not rel.is_absolute() and
-                       ".." not in rel.parts and rel.as_posix() == name,
+                demand(name and not member.is_dir() and
+                       chr(92) not in name and not rel.is_absolute() and
+                       ".." not in rel.parts and rel.as_posix() == name and
+                       not any(part in ("", ".") for part in name.split("/")),
                        "unsafe evidence member")
+                folded = name.casefold()
+                demand(folded not in normalized, "duplicate evidence member")
+                normalized.add(folded)
                 mode = (member.external_attr >> 16) & 0o170000
                 demand(mode in (0, stat.S_IFREG), "nonregular evidence member")
-                demand(member.file_size <= MAX_MEMBER_BYTES,
-                       "oversized evidence member")
+                demand(member.file_size <= MAX_MEMBER_BYTES, "oversized evidence member")
+                expanded += member.file_size
+                demand(expanded <= MAX_EXPANDED_BYTES,
+                       "expanded evidence bundle too large")
+                demand(member.compress_size >= 0 and
+                       (member.file_size <= 1024 * 1024 or
+                        member.file_size <= MAX_EXPANSION_RATIO *
+                        max(1, member.compress_size)),
+                       "suspicious evidence compression ratio")
+            for name in normalized:
+                parts = name.split("/")
+                demand(not any("/".join(parts[:i]) in normalized
+                               for i in range(1, len(parts))),
+                       "evidence member shadows a path ancestor")
+            for member in entries:
                 payload = archive.read(member)
                 demand(len(payload) == member.file_size,
                        "evidence member size mismatch")
-                names.add(name)
-                members[name] = payload
-    except (OSError, zipfile.BadZipFile, RuntimeError) as exc:
+                members[member.filename] = payload
+    except (OSError, zipfile.BadZipFile, RuntimeError, EOFError) as exc:
+        raise EvidenceError("unreadable evidence archive") from exc
+    return members
+
+exc:
         raise EvidenceError("unreadable evidence archive") from exc
     return members
 
