@@ -13,6 +13,9 @@ ROOT = Path(__file__).resolve().parents[2]
 MOD = "PermanssonResearch.Quotient.Q05ActualOriginalMarginAdapter"
 THEOREMS = (
     "sourcePointWitness",
+    "finiteMeasureLeOfAtoms",
+    "sourceDominationOfAtoms",
+    "sourcePointWitnessOfAtoms",
     "fineJ_is_treated_source",
     "coarseJ_is_treated_source",
     "observedWorldScore_measurable",
