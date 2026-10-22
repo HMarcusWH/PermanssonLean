@@ -744,6 +744,9 @@ import PermanssonResearch.Games.S02InformationBoundaryCountermodel
 import PermanssonResearch.Quotient.Q01NonLumpableProjectionCountermodel
 import PermanssonResearch.Probability.A01SupnormClassCountermodel
 
+import PermanssonResearch.Perturbation.A04FourOutputNecessityCountermodel
+import PermanssonResearch.Perturbation.A05SurvivalOccupationCountermodel
+
 /-!
 # PermanssonResearch
 
