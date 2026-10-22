@@ -132,6 +132,16 @@ METHOD_ROUTES = {
       "test_next03_m02_marked_coupling.py",
       "test_marked_diagonal_is_maximally_separating",
       "SCOPE_BOUNDARY"
+    ],
+    [
+      "test_m02_marked_actual_source_lean.py",
+      "test_original_typed_generator_source_and_axioms",
+      "COMPILER_SOURCE"
+    ],
+    [
+      "test_m02_marked_actual_source_lean.py",
+      "test_invalid_strict_autonomy_promotion_fails_semantically",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "F-01": [
@@ -440,6 +450,16 @@ METHOD_ROUTES = {
       "test_final06_phaseblind_original.py",
       "test_exact_policy_scores_not_just_orbit_table",
       "EXACT_CHECK"
+    ],
+    [
+      "test_final_d09_multichain.py",
+      "test_compiled_distinct_physical_classes_and_nonlinear_lemma",
+      "COMPILER_SOURCE"
+    ],
+    [
+      "test_final_d09_multichain.py",
+      "test_wrong_single_mixed_canonical_score_cannot_be_five_sixths",
+      "SEMANTIC_NEGATIVE"
     ]
   ],
   "C11-01": [

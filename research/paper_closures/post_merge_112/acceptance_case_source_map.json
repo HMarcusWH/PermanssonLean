@@ -832,10 +832,23 @@
           "path": "verification/research/test_next03_m02_marked_coupling.py",
           "role": "SCOPE_BOUNDARY",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_original_typed_generator_source_and_axioms",
+          "path": "verification/research/test_m02_marked_actual_source_lean.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_invalid_strict_autonomy_promotion_fails_semantically",
+          "path": "verification/research/test_m02_marked_actual_source_lean.py",
+          "role": "SEMANTIC_NEGATIVE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],
       "test_source_candidates": [
-        "verification/research/test_next03_m02_marked_coupling.py"
+        "verification/research/test_next03_m02_marked_coupling.py",
+        "verification/research/test_m02_marked_actual_source_lean.py"
       ]
     },
     {
@@ -3344,6 +3357,18 @@
           "method": "test_exact_policy_scores_not_just_orbit_table",
           "path": "verification/research/test_final06_phaseblind_original.py",
           "role": "EXACT_CHECK",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_compiled_distinct_physical_classes_and_nonlinear_lemma",
+          "path": "verification/research/test_final_d09_multichain.py",
+          "role": "COMPILER_SOURCE",
+          "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
+        },
+        {
+          "method": "test_wrong_single_mixed_canonical_score_cannot_be_five_sixths",
+          "path": "verification/research/test_final_d09_multichain.py",
+          "role": "SEMANTIC_NEGATIVE",
           "status": "DISCOVERED_UNREVIEWED_NOT_EXECUTION_EVIDENCE"
         }
       ],

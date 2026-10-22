@@ -21,7 +21,7 @@ This report is derived from unchanged original criteria and source mappings. It 
 | S-01 | PARTIAL_SCOPE | Exact identity including terminal beta^N value | 6 | verification/research/test_paper_strategy_economic_lean.py |
 | S-02 | PARTIAL_SCOPE | Outside admitted information class; no verification theorem | 6 | verification/research/test_paper_information_lean.py, verification/research/test_d2_residence.py |
 | M-01 | PARTIAL_SCOPE | Full counterfactual path laws equal under stated premises | 5 | verification/research/test_paper_autonomy_ae_lean.py, verification/research/test_f1_multiagent_protocols.py |
-| M-02 | PENDING | Autonomy premise rejected; reactive witness not counted strict | 7 | verification/research/test_next03_m02_marked_coupling.py |
+| M-02 | PENDING | Autonomy premise rejected; reactive witness not counted strict | 7 | verification/research/test_next03_m02_marked_coupling.py, verification/research/test_m02_marked_actual_source_lean.py |
 | F-01 | PENDING | P inputs reindexed correctly, no assumed symmetry | 8 | verification/research/test_next03_asymmetric_common_swap_lean.py, verification/research/test_final05_measurable_lean.py |
 | F-02 | PARTIAL_SCOPE | Projection/exogeneity fails | 5 | verification/research/test_paper_measurable_clock_lean.py, verification/research/test_f1_multiagent_protocols.py |
 | F-03 | PARTIAL_SCOPE | No feasible strict probability anchor | 4 | verification/research/test_paper_closure_boundaries.py, verification/research/test_f1_multiagent_protocols.py |
