@@ -104,6 +104,14 @@ class CompleteObligationReceiptTests(unittest.TestCase):
             with self.subTest(mode=mode), self.assertRaises(EvidenceError):
                 full.require_complete_obligation_receipts(a, b, c)
 
+    def test_scope_boundary_does_not_substitute_for_compiler_rejected_mutant(self):
+        a, b, c = mocked_graph()
+        # A passing boundary observation is not evidence that a semantically
+        # false Lean proposition failed to elaborate under the original types.
+        b["cases"][3]["test_method_candidates"][1]["role"] = "SCOPE_BOUNDARY"
+        with self.assertRaisesRegex(EvidenceError, "semantic negative route"):
+            full.require_complete_obligation_receipts(a, b, c)
+
     def test_claim_cannot_borrow_one_proof_from_another_owner(self):
         a, b, c = mocked_graph()
         row = next(r for r in a["claim_decisions"] if r["claim_id"] == "M1")

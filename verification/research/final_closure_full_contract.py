@@ -281,7 +281,7 @@ def require_complete_obligation_receipts(
         if not any(admissible(p, {"COMPILER_SOURCE", "EXACT_CHECK"})
                    for p in ps.values()):
             raise EvidenceError("original case lacks route-selected positive: " + cid)
-        if not any(admissible(n, {"SEMANTIC_NEGATIVE", "SCOPE_BOUNDARY"})
+        if not any(admissible(n, {"SEMANTIC_NEGATIVE"})
                    for n in ns.values()):
             raise EvidenceError("original case lacks semantic negative route: " + cid)
         # Scoped source links are mandatory; no arbitrary proof can
