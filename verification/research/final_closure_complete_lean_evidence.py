@@ -299,8 +299,14 @@ def export_all(head: str, output: Path, *,
             elaborated = compiled_type_record(text, declaration)
             axioms = parse_axioms(text, declaration)
         except (TypeEvidenceError, EvidenceError, RuntimeError) as exc:
+            # Keep each compiler shard fail-closed, but retain the exact
+            # parser/type reason so reviewers can distinguish a target-name
+            # mismatch, an invalid axiom or an absent elaborated type.
+            # No alternative theorem, skipped declaration or fabricated
+            # compiler success is permitted on this exception path.
             raise CompleteCompilerError(
-                "unverifiable compiler declaration: " + declaration) from exc
+                "unverifiable compiler declaration: " + declaration +
+                "; actual cause: " + type(exc).__name__ + ": " + str(exc)) from exc
         member = f"axiom_logs/all_{idx:04}.log"
         (output / member).write_bytes(data)
         receipts.append({
