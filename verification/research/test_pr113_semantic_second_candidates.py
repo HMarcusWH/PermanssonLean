@@ -57,6 +57,11 @@ class SecondOriginalNegativeCandidates(unittest.TestCase):
 
     def test_A_02_identity_kernel_is_not_strictly_contractive(self):
         # Two distinct Dirac initial laws are both invariant under identity.
+        # A nontrivial concrete state type is essential: the earlier
+        # polymorphic mutant failed in typeclass resolution, not mathematics.
+        self.assertIn("Kernel ℝ ℝ", batch.SPECS["A-02"]["body"])
+        self.assertIn("identityKernel_isW1Contraction",
+                      batch.SPECS["A-02"]["body"])
         ident = {0: {0: Fraction(1)}, 1: {1: Fraction(1)}}
         for state in (0, 1):
             self.assertEqual(ident[state], {state: Fraction(1)})

@@ -275,6 +275,11 @@ def export_all(head: str, output: Path, *,
             "compiler logs must be detached from the reviewed checkout")
     manifest = required_inventory()
     require(len(manifest) > 11, "original proof dependency graph is missing")
+    # Even a shard that does not compile a given original theorem must refuse
+    # a dirty/shadowed source-owner inventory. Authenticate ALL original paths
+    # at this H, not only the declarations assigned to the current worker.
+    for original_path in sorted({entry["path"] for entry in manifest}):
+        committed_file_bytes(head, ROOT / original_path, root=ROOT)
     selected_indices = shard_indices(len(manifest), shard_index, shard_count)
     manifest_digest = inventory_digest(manifest)
     output.mkdir(parents=True, exist_ok=False)
