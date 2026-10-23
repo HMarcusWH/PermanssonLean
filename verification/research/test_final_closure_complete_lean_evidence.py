@@ -135,6 +135,19 @@ class AllCaseCompilerManifestTests(unittest.TestCase):
         with self.assertRaises(combined.CompleteCompilerError):
             combined.addressable_declarations(repeated)
 
+    def test_attribute_prefixed_public_theorems_remain_addressable(self):
+        original = (
+            "namespace Demo\\n"
+            "@[simp] theorem typedRow_measure : True := by trivial\\n"
+            "@[simp] protected theorem factor_positive : True := by trivial\\n"
+            "-- @[simp] theorem spoof : False := by contradiction\\n"
+            "end Demo\\n"
+        )
+        found = combined.addressable_declarations(original)
+        self.assertEqual(found, [
+            "Demo.typedRow_measure", "Demo.factor_positive",
+        ])
+
     def test_targeting_private_lemma_cannot_resolve(self):
         with tempfile.TemporaryDirectory() as td:
             cases, claims = synthetic_source(td)

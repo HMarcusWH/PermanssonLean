@@ -108,6 +108,13 @@ def addressable_declarations(source: str):
         clean = "".join(line).strip()
         if not clean:
             continue
+        # Lean theorem attributes can prefix a genuine public declaration,
+        # e.g. "@[simp] theorem typedRow_measure". Strip only a complete
+        # same-line attribute wrapper after hiding comments; the compiler
+        # still authenticates the actual elaborated full declaration.
+        clean = re.sub(r"^(?:@\[[^\]\n]*\][ \t]*)+", "", clean)
+        if not clean:
+            continue
         opened = OPEN_NAMESPACE.match(clean)
         if opened:
             stack.append(opened.group(1))
