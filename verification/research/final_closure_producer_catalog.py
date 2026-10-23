@@ -19,7 +19,7 @@ import re
 import sys
 import tempfile
 
-from final_closure_review_dossier import (ReviewDossierError, extracted_case_refs,
+from final_closure_producer_v2_bridge import (ProducerBindingError, bind as bind_v2_producer)\nfrom final_closure_review_dossier import (ReviewDossierError, extracted_case_refs,
                                           make_dossier)
 from final_closure_mutation_evidence import committed_file_bytes
 from final_closure_authenticate import git
@@ -179,7 +179,14 @@ def collect(*, head, catalog_path: Path, output: Path):
                                 indent=2) + "\n").encode("utf-8")
     (output / "unreviewed_source_review_dossier.json").write_bytes(
         dossier_bytes)
+    typed_binding = bind_v2_producer(
+        head, reviewed_dossier, full, trusted)
+    typed_bytes = (json.dumps(typed_binding, sort_keys=True,
+                              indent=2) + "\n").encode("utf-8")
+    (output / "unreviewed_v2_producer_binding.json").write_bytes(
+        typed_bytes)
     report = {
+        "v2_producer_binding_sha256": digest(typed_bytes),
         "source_review_dossier_sha256": digest(dossier_bytes),
         "format": OUT_FORMAT,
         "status": "CI_PRODUCER_ARTIFACTS_AUTHENTICATED_UNREVIEWED",
@@ -214,7 +221,8 @@ def main(argv=None):
         result = collect(head=opts.head, catalog_path=opts.catalog,
                          output=opts.output)
     except (ProducerCatalogError, AuthenticationError, EvidenceError,
-            ShardMergeError, ReviewDossierError, OSError, KeyError, ValueError) as exc:
+            ShardMergeError, ReviewDossierError, ProducerBindingError,
+            OSError, KeyError, ValueError) as exc:
         print("PR113 PRODUCER CATALOG BLOCKED:", exc, file=sys.stderr)
         return 2
     print(json.dumps({k: result[k] for k in (
