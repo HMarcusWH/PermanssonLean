@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 import unittest
 
-from test_paper_x1_lean_closure import X1LeanClosure, driver
+import test_paper_x1_lean_closure as trace
 
 ROOT = Path(__file__).resolve().parents[2]
 CASE_MAP = ROOT / "research/paper_closures/post_merge_112/acceptance_case_source_map.json"
@@ -28,7 +28,7 @@ class OriginalX1MethodTraceContract(unittest.TestCase):
                        if row["role"] == "SEMANTIC_NEGATIVE"}
             self.assertEqual(methods, expected)
         expected_methods = set().union(*CASES.values())
-        mapped = X1LeanClosure._TRACE_FALSE_SOURCE
+        mapped = trace.X1LeanClosure._TRACE_FALSE_SOURCE
         self.assertEqual(set(mapped), {
             "corrupt_terminal_literal", "wrong_terminal_horizon",
             "reset_before_action", "new_world_learning",
@@ -36,11 +36,11 @@ class OriginalX1MethodTraceContract(unittest.TestCase):
         self.assertEqual({"test_" + name for name in mapped}, expected_methods)
 
     def test_each_probe_preserves_declared_original_provider_and_false_goal(self):
-        mapped = X1LeanClosure._TRACE_FALSE_SOURCE
+        mapped = trace.X1LeanClosure._TRACE_FALSE_SOURCE
         self.assertEqual(len(mapped), 5)
         for name, (module, statement) in mapped.items():
             with self.subTest(name=name):
-                self.assertIn(module, driver.MODULES)
+                self.assertIn(module, trace.driver.MODULES)
                 src = ROOT / f"PermanssonResearch/X1/{module}.lean"
                 self.assertTrue(src.is_file())
                 original = src.read_bytes()
