@@ -300,12 +300,24 @@ def export_all(head: str, output: Path, *,
             probe.write_text(code, encoding="utf-8")
             result = run_probe(probe)
         data = (result.stdout + "\n" + result.stderr).encode("utf-8")
+        require(0 < len(data) <= 4*1024*1024,
+                "compiler theorem log missing or too large")
+        # Preserve bounded RAW compiler bytes before interpreting exit codes,
+        # compiled types or axioms. Previously a failed parser exited before
+        # writing this log, leaving all-case failures unauditable in artifacts.
+        # This file is an UNREVIEWED diagnostic, never a proof receipt.
+        member = f"axiom_logs/all_{idx:04}.log"
+        log_path = output / member
+        require(not log_path.exists() and not log_path.is_symlink(),
+                "compiler log target already exists or is a symlink")
+        log_path.write_bytes(data)
+        require(log_path.read_bytes() == data,
+                "compiler log bytes changed after retention")
         require(committed_file_bytes(head, src, root=ROOT) == original_bytes,
                 "source theorem bytes changed during compiler execution: " +
                 declaration)
         require(result.returncode == 0, "compiler rejected mandatory source theorem: " +
                 declaration + "\n" + data[-500:].decode("utf-8", "replace"))
-        require(len(data) <= 4*1024*1024, "compiler theorem log too large")
         text = data.decode("utf-8")
         try:
             elaborated = compiled_type_record(text, declaration)
@@ -319,8 +331,7 @@ def export_all(head: str, output: Path, *,
             raise CompleteCompilerError(
                 "unverifiable compiler declaration: " + declaration +
                 "; actual cause: " + type(exc).__name__ + ": " + str(exc)) from exc
-        member = f"axiom_logs/all_{idx:04}.log"
-        (output / member).write_bytes(data)
+        # Raw member was retained before all authoritative validation.
         receipts.append({
             "id": f"all:{idx:04}", "inventory_index": idx,
             "head_sha": head,
