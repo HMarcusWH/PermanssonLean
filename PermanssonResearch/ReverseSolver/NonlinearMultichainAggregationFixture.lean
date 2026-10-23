@@ -205,10 +205,12 @@ theorem actual_equal_mixture_original_nonlinear_score :
        actualObjective (booleanClassFunctional observedPhysicalBool)
         twoAbsorbing (1 : Fin 2)) / 2 := by
   rw [actual_mixed_initial_nonlinear_expectation]
+  -- The full path-law sum uses the original decoded joint states;
+  -- normalize PUnit.unit/Bool pairs to those exact decoded sources before
+  -- linear real algebra.  Nothing about the nonlinear score is replaced.
   simp [Fintype.sum_prod_type, Fin.sum_univ_two,
     equalWeightInitialLaw_singleton, actualNonlinearPathScore,
-    actualObjective]
-  ring
+    actualObjective, decode] <;> ring
 
 /-- Exact mixed-initial score one-half, unequal to scoring the barycenter
 five-sixths; the constant-descriptor class-identity control remains separate. -/

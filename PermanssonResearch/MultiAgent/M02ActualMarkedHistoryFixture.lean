@@ -84,10 +84,14 @@ theorem markedLaw_actual_source_atom (twist : Bool) (y : Y) (b k : Bool) :
   have h := autonomous_marked_atom game world
     (strictAnchor twist) (sourceProfile twist) (player false)
     y b ((), k)
-  simpa [markedLaw, sourceProfile, fairActionFactor, markedUpdateFactor,
-    Kernel.const_apply, Kernel.deterministic_apply,
-    Measure.dirac_apply', Kernel.comap_apply,
-    markedNextKey] using h
+  -- In the finite Boolean source the only residual after the actual marked
+  -- atom theorem is Pi.single's indicator. Resolve the eight exact source
+  -- atoms rather than replacing the original history kernel with a table.
+  cases twist <;> cases b <;> cases k <;>
+    simpa [markedLaw, sourceProfile, fairActionFactor, markedUpdateFactor,
+      Kernel.const_apply, Kernel.deterministic_apply,
+      Measure.dirac_apply', Kernel.comap_apply,
+      markedNextKey, Pi.single_apply] using h
 
 /-- Both marked laws have exactly the SAME (fair) unmarked next-key
 marginal, shown by summing their actual marked source atoms. -/

@@ -61,11 +61,11 @@ theorem finiteMeasureLeOfAtoms
   calc
     μ E = μ (selected : Set Z) := by rw [hselected]
     _ = ∑ z ∈ selected, μ {z} :=
-      (Measure.sum_measure_singleton).symm
+      (sum_measure_singleton).symm
     _ ≤ ∑ z ∈ selected, ν {z} :=
       Finset.sum_le_sum (fun z _ => hatom z)
     _ = ν (selected : Set Z) :=
-      Measure.sum_measure_singleton
+      sum_measure_singleton
     _ = ν E := by rw [hselected]
 
 /-- An exact original-kernel atom contract: every fine atom AND every
