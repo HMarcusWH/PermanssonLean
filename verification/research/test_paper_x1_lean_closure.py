@@ -89,11 +89,103 @@ class X1LeanClosure(unittest.TestCase):
             with self.subTest(module=name):
                 self.assertEqual(result["status"], "PASS", str(self.receipt_path))
 
+    # The historic X1 driver runs all its false probes in setUpClass. A
+    # class-wide compiler observation cannot be attributed to an individual
+    # original-case method. Under the PR113 trace hook, replay one additional
+    # per-method SOURCE-APPENDED false equality with the actual original
+    # provider as a byte-identical prefix. No ordinary driver evidence is
+    # promoted or reclassified.
+    _TRACE_FALSE_SOURCE = {
+        "corrupt_terminal_literal": (
+            "ExactTerminalTables",
+            """example :
+    InterventionNumerics.table false false false 0 ((0,0),false) = (1 : ℚ) := by
+  exact InterventionNumerics.table_zero false false false ((0,0),false)
+"""
+        ),
+        "wrong_terminal_horizon": (
+            "ExactTerminalTables",
+            """example :
+    baselinePropertyValue property
+      (protocolModel .equilibrium false false) ((0,0),true) =
+      (InterventionNumerics.table false false false 2 ((0,0),true) : ℝ) := by
+  exact original_property_eq_table .equilibrium false false ((0,0),true)
+"""
+        ),
+        "new_world_learning": (
+            "InterventionNumericalBridge",
+            """example :
+    (protocolModel .learner false false).inducedKernel
+      ((0,0),true) {((1,1),true)} =
+      ENNReal.ofReal
+        (InterventionNumerics.entry false false false
+          ((0,0),true) ((1,1),true) : ℝ) := by
+  exact protocol_atom_eq .learner false false ((0,0),true) ((1,1),true)
+"""
+        ),
+        "swapped_update_protocol": (
+            "InterventionNumericalBridge",
+            """example :
+    (protocolModel .learner false true).inducedKernel
+      ((0,0),true) {((1,1),true)} =
+      ENNReal.ofReal
+        (InterventionNumerics.entry true true false
+          ((0,0),true) ((1,1),true) : ℝ) := by
+  exact protocol_atom_eq .learner false true ((0,0),true) ((1,1),true)
+"""
+        ),
+        "reset_before_action": (
+            "InterventionNumericalBridge",
+            """example :
+    (protocolModel .learner false true).inducedKernel
+      ((0,0),true) {((1,1),true)} =
+      ENNReal.ofReal
+        (InterventionNumerics.entry true false true
+          ((1,1),true) ((1,1),true) : ℝ) := by
+  exact protocol_atom_eq .learner false true ((0,0),true) ((1,1),true)
+"""
+        ),
+    }
+
+    def _trace_actual_false_source(self, name):
+        if not os.environ.get("PR113_CAPTURE_DIR"):
+            return
+        if name not in self._TRACE_FALSE_SOURCE:
+            return
+        import tempfile
+        module, assertion = self._TRACE_FALSE_SOURCE[name]
+        source_file = driver.ROOT / f"PermanssonResearch/X1/{module}.lean"
+        original = source_file.read_bytes()
+        suffix = ("\nnamespace PermanssonResearch.X1\n" +
+                  assertion + "\nend PermanssonResearch.X1\n").encode("utf-8")
+        self.assertNotIn(b"\nimport ", suffix)
+        self.assertNotIn(b"sorry", suffix.lower())
+        self.assertNotIn(b"admit", suffix.lower())
+        self.assertTrue(original)
+        with tempfile.TemporaryDirectory(
+                prefix="x1-method-specific-", dir=driver.ROOT / ".lake") as td:
+            mutant_file = Path(td) / "FalseX1Source.lean"
+            mutant_file.write_bytes(original + suffix)
+            self.assertTrue(mutant_file.read_bytes().startswith(original))
+            result = subprocess.run(
+                ["lake", "env", "lean", str(mutant_file)],
+                cwd=driver.ROOT, capture_output=True, text=True, timeout=600)
+        diagnostic = (result.stdout + "\n" + result.stderr).lower()
+        self.assertNotEqual(result.returncode, 0,
+                            "mathematically false original-source assertion compiled")
+        self.assertIn("type mismatch", diagnostic, diagnostic[-2700:])
+        for bad in ("unknown identifier", "unknown module",
+                    "parser error", "maximum number of heartbeats",
+                    "failed to synthesize", "sorryax", "timed out"):
+            self.assertNotIn(bad, diagnostic, diagnostic[-2700:])
+
     def _mutation(self, name):
         result = self.receipt["mutations"].get(name, {})
-        self.assertEqual(result.get("status"), "REJECTED", f"{name}: {result}; {self.receipt_path}")
+        self.assertEqual(result.get("status"), "REJECTED",
+                         f"{name}: {result}; {self.receipt_path}")
         self.assertTrue(result.get("expected_proof_failure"))
         self.assertEqual(result.get("invalid_diagnostics"), [])
+        self._trace_actual_false_source(name)
 
     def test_corrupt_terminal_literal(self):
         self._mutation("corrupt_terminal_literal")
