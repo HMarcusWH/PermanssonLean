@@ -16,7 +16,7 @@ ACTION_PINS = {"actions/checkout": "11d5960a326750d5838078e36cf38b85af677262",
 # effective execution. A profile change requires a separately reviewed update
 # to this source constant. There is no runtime override. The candidate still
 # owns this checker, so the pin does not authenticate its own human review.
-APPROVED_WORKFLOW_SHA256 = "70cd7e8569beb995981be210369f57c34460289e6a5890c54153683a26939093"
+APPROVED_WORKFLOW_SHA256 = "23bdb913dd2813dc9a3484bd40d142fa08ffb43da01efcda1f1b59284c1caed1"
 
 # Review the entire workflow set, not a grep of job names: another YAML file
 # can publish a colliding required context through quoted/flow/tagged or dynamic
@@ -30,7 +30,7 @@ APPROVED_WORKFLOW_SHA256 = "70cd7e8569beb995981be210369f57c34460289e6a5890c54153
 APPROVED_WORKFLOWS = {
     "a2-smoke.yml": "9ac3460a79cf861b43d5329d06a03650cc8c4de09d24cd677849eb1772c73a19",
     "a3-contractive-smoke.yml": "b7e3b723bb25e5287bdd60ee1470fabeeaac318617cca4f9ed1931c5a01c7931",
-    "application.yml": "356d62c5e8203ff9cc478f6d5f19d6bccb018eec5c3612b4d30d4b318c8db7e0",
+    "application.yml": "1abb20c60b1eeb7fd7eae51048aa7e3729a64a652772760bc4f272f57d3d5da4",
     "b2-smoke.yml": "3204afca3fb58bc72f6c90bfe6ca2b17e06b9b6c2b500b6087ee4c66ca7baebc",
     "c-exit-random-entry-smoke.yml": "499a5c76ecff1ab3b891df24477b249f9809b13201e9cee6b0a84250b3087536",
     "c-exit-restart-d-smoke.yml": "1ae741ce18c04d54bf3a25f82ef29041188551f8472757904b4675b2fbd443c3",
@@ -38,14 +38,20 @@ APPROVED_WORKFLOWS = {
     "c-exit-smoke.yml": "a6f5fcbd0c087848c02538f2aebbf4c0bc7cf655dbf4197d366c88f67295eaf7",
     "c-exit-switch-smoke.yml": "5ebe0c3b24621ef2e2e4cfa518a48cca39f4e576e72405122730daca0985a7c4",
     "d2-residence-smoke.yml": "47b95f2477cccb552074eb9168bdc4f28d5d7d456892a9b2ac44959e519d7908",
-    "e1-approx-quotient-smoke.yml": "73e09702dd2eb99c5da85d7efa86e6bfdd05b936a71c67b0d8fb4981c3a29ac5",
-    "f1-multiagent-protocols-smoke.yml": "475242f86682e23f8924d0f9b5e26db7f35971ee6c7c682cebc24ed6ef62c0ba",
-    "lean.yml": "2dc2bc23f6013faed093fbff8238801b0dab1bc6a121c9ea12dc07c99fa20432",
-    "research-integrity-portability.yml": "23c0b16125590d19c017a191b1b4a0b41ea8b15063fc13b246352901f64ad43e",
+    "e1-approx-quotient-smoke.yml": "adb2a60518e1fbbebc897ba007c16f2a5455a5b2ffef69765e71b9de7ae80099",
+    "f1-multiagent-protocols-smoke.yml": "3c67b8cf4f18c43bf0af97d362e630e3aeb3ffe92bfbca5fc6d3e763b741f7b9",
+    "lean.yml": "d5a3123455c359356c755c4be7131c74122003d897c8f4100f1e01ade1e54a1e",
+    "pr113-all-case-compiler.yml": "6e7bf24815b5e5e42779b730633180d2bfa32602176a75eca74e1515f1a0c7ed",
+    "pr113-all-original-semantic-candidates.yml": "c021166eb27a10910be58b3c04515c59f5585c025b742355289fa282491cec02",
+    "pr113-clean-paper-rebuild.yml": "e744174c3c8f6c50fb4e404702601a35b53c2925517fa7a4210849edbcf3c0ed",
+    "pr113-compiler-evidence-candidate.yml": "da51c1bbeb1f147b797bab03eb6492ac3024e6ae7504bba498e83e9606cfb54e",
+    "pr113-legacy-semantic-evidence.yml": "dddcc2c471cf13770e52dbb89329cc842ba83de73a3d1852edb7913f94067252",
+    "pr113-original-semantic-candidates.yml": "8a0e1abcd9ce4c574c95fa813bd27e8cf47ccf5d164541b9692d31db4be128b6",
+    "research-integrity-portability.yml": "8bdb9e5fe46a7f2bdf7f205cf4d537e07e9dcf37cecfe67f5a5ccc28064bc741",
     "research-integrity.yml": APPROVED_WORKFLOW_SHA256,
-    "research-lean.yml": "cb676566d9c0867b4b990ff83dffded6927972aca58068c6ab185cdf6af64eca",
-    "research-release-verification.yml": "6990c58ca64a260eab301ae022974b2642d80558817def87581087751a83821b",
-    "verification.yml": "8ec37551fc4a7b71e24fac0d5ead92ab308c40b4c35fe83f8befec39f14ce302",
+    "research-lean.yml": "5de749bf9deb22d4c9b0a3cd25db191f76a74d77ae668240f5adf9ea6f4eb6fd",
+    "research-release-verification.yml": "f66d6e1d7d46a16136314895456c62184ef496fbc9e4434edddaa2e2d4a67572",
+    "verification.yml": "ec40e169ecd9c5927731989b70f5aa4d1e220614b9aa21a4e498a19e7c5996cb",
     "x1-commons-smoke.yml": "606e8cf1b579f3012f534799e514c372a51e67cef990972718dc1724b206ea2d",
 }
 LEGACY_CONTEXTS = {"build", "research", "executable-verification",
@@ -120,6 +126,12 @@ def validate_workflow_set(workflows):
             reject("Legacy source binding must propagate its real exit status")
         if "      - name: Preserve required-check source context\n        if: always()\n" not in text:
             reject("Legacy required contexts must retain their actual source-binding report")
+    for name in sorted(n for n in workflows if n.startswith("pr113-")):
+        optional = workflows[name]
+        if (optional.count("\npermissions:\n  contents: read\n") != 1 or
+                "actions: write" in optional or
+                re.search(r"(?m)^  (?:frozen-source-preservation|release-export-integrity|archive-reproducibility|build|research|executable-verification|application-contract):", optional)):
+            reject("PR113 candidate workflow may not impersonate required jobs or elevate token permissions")
     for name, digest in APPROVED_WORKFLOWS.items():
         text = workflows[name]
         if not isinstance(text, str) or hashlib.sha256(text.encode("utf-8")).hexdigest() != digest:
@@ -146,8 +158,17 @@ def validate_workflow(text, workflows=None):
             or re.search(r"^[ \t]*<<[ \t]*:", text, re.M)):
         reject("Quoted/explicit keys, aliases and flow mappings are outside the reviewed workflow profile")
     top_keys = re.findall(r"^([a-z][a-z-]*):", text, re.M)
-    if len(top_keys) != 4 or set(top_keys) != {"name", "on", "permissions", "jobs"}:
+    if len(top_keys) != 5 or set(top_keys) != {"name", "on", "concurrency", "permissions", "jobs"}:
         reject("Unexpected or duplicated top-level workflow configuration")
+    # Every required job is allowed only this exact branch-scoped cancellation
+    # policy. Cross-branch cancellation or permission escalation remains barred.
+    fixed_concurrency = (
+        "\nconcurrency:\n"
+        "  group: ${{ github.workflow }}-${{ github.ref }}\n"
+        "  cancel-in-progress: true\n"
+    )
+    if text.count(fixed_concurrency) != 1:
+        reject("Unreviewed concurrency group or cancellation override")
     if re.search(r"^[ \t]*(?:shell|defaults|env|environment|working-directory|container|services|strategy)[ \t]*:", text, re.M):
         reject("Execution, environment and job-shell overrides are outside the reviewed profile")
     if re.search(r"^[ \t]*workflow_dispatch[ \t]*:", text, re.M):

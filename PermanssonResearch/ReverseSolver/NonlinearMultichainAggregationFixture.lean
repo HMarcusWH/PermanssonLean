@@ -106,6 +106,12 @@ theorem actual_multichain_classwise_differs_from_barycenter :
   norm_num [booleanRationalScore, NonlinearOccupationBoundary.score]
 
 
+/-- The original typed model's induced kernel is Markov; this supplies the
+actual infinite-path occupation interface, without any replacement model. -/
+noncomputable instance original_two_absorbing_induced_isMarkov :
+    IsMarkovKernel (realizedModel twoAbsorbing).inducedKernel :=
+  StrategicWorldModel.inducedKernel_isMarkov _
+
 /-- The nonlinear integrand acts on the true infinite canonical path and
 evaluates its selected physical stationary class, not the stationary
 barycenter of a pair of point starts. -/
@@ -164,7 +170,7 @@ theorem actual_mixed_initial_nonlinear_expectation
     (μ := fun y => μ.toMeasure {y} •
       (realizedModel twoAbsorbing).pathLaw (Measure.dirac y))
     (by intro y _; exact hint y)
-  simpa only [Finset.sum_univ, integral_smul_measure, smul_eq_mul] using h
+  simpa only [integral_smul_measure, smul_eq_mul] using h
 
 /-- The fifty-fifty initial law is explicitly a genuine probability measure
 on the original TWO PHYSICAL absorbing states. -/
@@ -173,16 +179,21 @@ noncomputable def equalWeightInitialLaw :
   ⟨(ENNReal.ofReal (1/2 : ℝ) • Measure.dirac (decode (0 : Fin 2))) +
       (ENNReal.ofReal (1/2 : ℝ) • Measure.dirac (decode (1 : Fin 2))), by
     constructor
-    simp [Measure.add_apply, Measure.smul_apply]
-    norm_num⟩
+    have hh : ENNReal.ofReal (1/2 : ℝ) +
+        ENNReal.ofReal (1/2 : ℝ) = 1 := by
+      rw [← ENNReal.ofReal_add
+        (by norm_num : (0 : ℝ) ≤ 1/2)
+        (by norm_num : (0 : ℝ) ≤ 1/2)]
+      norm_num
+    simpa [Measure.add_apply, Measure.smul_apply] using hh⟩
 
 theorem equalWeightInitialLaw_singleton (y : JointState Unit (Fin 2)) :
     (equalWeightInitialLaw.toMeasure {y}).toReal = (1/2 : ℝ) := by
   rcases y with ⟨s, x⟩
   cases s
   fin_cases x <;>
-    norm_num [equalWeightInitialLaw, Measure.add_apply, Measure.smul_apply,
-      Measure.dirac_apply']
+    norm_num [equalWeightInitialLaw, decode,
+      Measure.add_apply, Measure.smul_apply, Measure.dirac_apply']
 
 /-- The single mixed-initial ORIGINAL infinite path law produces a classwise
 mean. This is not evaluating F on an averaged descriptor law. -/

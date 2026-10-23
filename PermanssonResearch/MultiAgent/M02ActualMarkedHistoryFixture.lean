@@ -72,8 +72,7 @@ noncomputable def sourceProfile (twist : Bool) :
 next common/private opponent state of the original one-step history law. -/
 noncomputable def markedLaw (twist : Bool) (y : Y) :
     Measure (Bool × (Unit × Bool)) :=
-  ((((game.openLoop (player false) (strictAnchor twist)).toModel world)
-      .oneStepHistoryKernel y).map
+  ((((game.openLoop (player false) (strictAnchor twist)).toModel world).oneStepHistoryKernel y).map
     (opponentMark (S0 := Unit) (S1 := Unit) (S2 := Bool)
       (X := Unit) (A1 := Bool) (A2 := Bool)))
 
@@ -106,11 +105,18 @@ theorem actual_unmarked_next_key_laws_equal (y : Y) (k : Bool) :
 
 /-- Complete original action-marked diagonal event, in the ACTUAL original
 one-step history law, separates the two legal strict anchors. -/
+private theorem fair_halves_add_one :
+    ENNReal.ofReal (1/2 : ℝ) + ENNReal.ofReal (1/2 : ℝ) = 1 := by
+  rw [← ENNReal.ofReal_add
+    (by norm_num : (0 : ℝ) ≤ 1/2)
+    (by norm_num : (0 : ℝ) ≤ 1/2)]
+  norm_num
+
 theorem actual_marked_diagonal_separation (y : Y) :
     (∑ b : Bool, markedLaw false y {(b, ((), b))}) = 1 ∧
     (∑ b : Bool, markedLaw true y {(b, ((), b))}) = 0 := by
   constructor <;> simp_rw [markedLaw_actual_source_atom] <;>
-    norm_num [Fintype.sum_bool, coin_true, coin_false]
+    norm_num [Fintype.sum_bool, coin_true, coin_false, fair_halves_add_one]
 
 /-- The assumptions of the strict MA2 no-separation theorem are not silently
 inherited from equality of unmarked key marginals: these anchors have
@@ -121,7 +127,7 @@ theorem update_mechanisms_differ :
   intro h
   have he := congrArg (fun μ : Measure Bool => μ {true}) h
   simp [strictAnchor, markedUpdateFactor, fairActionFactor,
-    sourceInput, Kernel.comap_apply, Kernel.deterministic_apply,
-    Measure.dirac_apply'] at he
+    sourceInput, anchorUpdateKey, Kernel.comap_apply,
+    Kernel.deterministic_apply, Measure.dirac_apply'] at he
 
 end PermanssonResearch.MultiAgent.M02ActualMarkedHistoryFixture

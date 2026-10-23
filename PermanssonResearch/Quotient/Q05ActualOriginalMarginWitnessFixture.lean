@@ -401,7 +401,7 @@ theorem commonEta_retention (n : ℕ) :
     PermanssonResearch.Probability.DependentHistory.retained commonEta n =
       (19/20 : ℝ)^n := by
   norm_num [PermanssonResearch.Probability.DependentHistory.retained,
-    commonEta]
+    commonEta] <;> exact (div_pow (19 : ℝ) (20 : ℝ) n).symm
 
 /-- This is exactly the retained mass inequality required by the general
 PointWitness constructor (its domination fields are separate obligations). -/
