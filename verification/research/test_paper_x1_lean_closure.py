@@ -157,6 +157,7 @@ class X1LeanClosure(unittest.TestCase):
         source_file = driver.ROOT / f"PermanssonResearch/X1/{module}.lean"
         original = source_file.read_bytes()
         suffix = ("\nnamespace PermanssonResearch.X1\n" +
+                  "open PermanssonLean PermanssonLean.RegimeSpecification\n" +
                   assertion + "\nend PermanssonResearch.X1\n").encode("utf-8")
         self.assertNotIn(b"\nimport ", suffix)
         self.assertNotIn(b"sorry", suffix.lower())
