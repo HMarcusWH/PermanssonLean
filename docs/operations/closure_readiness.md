@@ -138,3 +138,21 @@ and source checks must not be skipped to obtain a green release check.
 
 A green draft paper build or an updated workflow hash does not supersede
 this distinct archive-reproducibility gate.
+
+
+## PR113 successor-tooling preflight (candidate, not historical certification)
+
+`verification/research/pr113_tooling_migration.py` compares the immutable
+historical tooling T, release base B, current candidate H and every packaged
+v0.2.0 tooling byte. It fails if the historical archive snapshot changes or
+if any canonical verifier beyond the two named integrity profile files differs.
+The 25-workflow successor inventory is bound to H; a distinct read-only test
+exercises extra-tooling, archive-tampering, missing-workflow and wrong-HEAD
+adversaries.
+
+The resulting `Permansson.PR113.ToolingMigrationProposal.v1` is deliberately
+`DRAFT_NEEDS_OWNER_AND_INDEPENDENT_SECURITY_REVIEW`. Its GitHub artifact is
+not a signed migration, an approved new T, a reason to alter historical v0.2.0
+evidence, or a mathematical release authorization. The old v0.2.0 offline
+job remains an independently enforced gate until an owner and an independent
+security reviewer authorize the successor release pathway.

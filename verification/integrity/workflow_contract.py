@@ -44,7 +44,7 @@ APPROVED_WORKFLOWS = {
     "pr113-all-case-compiler.yml": "6e7bf24815b5e5e42779b730633180d2bfa32602176a75eca74e1515f1a0c7ed",
     "pr113-all-original-semantic-candidates.yml": "c021166eb27a10910be58b3c04515c59f5585c025b742355289fa282491cec02",
     "pr113-clean-paper-rebuild.yml": "e744174c3c8f6c50fb4e404702601a35b53c2925517fa7a4210849edbcf3c0ed",
-    "pr113-compiler-evidence-candidate.yml": "da51c1bbeb1f147b797bab03eb6492ac3024e6ae7504bba498e83e9606cfb54e",
+    "pr113-compiler-evidence-candidate.yml": "f39066cd16a36860e44505f3b740f29e7169f4fb424897ac44010128b4592cf2",
     "pr113-legacy-semantic-evidence.yml": "dddcc2c471cf13770e52dbb89329cc842ba83de73a3d1852edb7913f94067252",
     "pr113-original-semantic-candidates.yml": "8a0e1abcd9ce4c574c95fa813bd27e8cf47ccf5d164541b9692d31db4be128b6",
     "research-integrity-portability.yml": "8bdb9e5fe46a7f2bdf7f205cf4d537e07e9dcf37cecfe67f5a5ccc28064bc741",
