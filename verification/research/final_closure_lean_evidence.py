@@ -59,10 +59,24 @@ def run_probe(path: Path):
 
 
 def parse_axioms(log: str, declaration: str) -> list[str]:
+    """Validate an isolated one-declaration Lean probe, never a mixed log.
+
+    The detached receipt parser may locate an exact target among unrelated
+    diagnostics, but the *producing* compiler probe must contain precisely one
+    axiom statement overall. This also prevents a valid target record hiding
+    a second, off-target axiom record.
+    """
     if any(word in log.lower() for word in BAD):
         raise CompilerEvidenceError("failed or untrusted compiler output: " + declaration)
     if declaration not in log:
         raise CompilerEvidenceError("wrong compiled Lean declaration: " + declaration)
+    records = re.findall(
+        r"\\bdepends on axioms:\\s*\\[|\\bdoes not depend on any axioms\\b",
+        log)
+    if len(records) != 1:
+        raise CompilerEvidenceError(
+            "isolated compiler probe must emit exactly one axiom record: " +
+            declaration)
     try:
         return parse_target_axioms(log, declaration)
     except EvidenceError as exc:

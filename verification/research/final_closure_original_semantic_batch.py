@@ -249,9 +249,12 @@ end PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture
 namespace PermanssonResearch.Perturbation
 open MeasureTheory ProbabilityTheory
 open PermanssonResearch.Probability
-example {Y : Type*} [PseudoMetricSpace Y] [MeasurableSpace Y] :
-    IsW1Contraction (Kernel.id : Kernel Y Y) (1 / 2 : ℝ) := by
-  exact identityKernel_isW1Contraction
+-- The original all-law contraction predicate on a concrete nontrivial
+-- measurable metric space.  The identity kernel only has factor one;
+-- supplying Y = ℝ rules out elaboration/typeclass failures being mistaken
+-- for semantic rejection of the intentionally false strict factor 1/2.
+example : IsW1Contraction (Kernel.id : Kernel ℝ ℝ) (1 / 2 : ℝ) := by
+  exact (identityKernel_isW1Contraction (Y := ℝ))
 end PermanssonResearch.Perturbation
 """,
     },
