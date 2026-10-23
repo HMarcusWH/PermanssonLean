@@ -37,8 +37,12 @@ class SecondOriginalNegativeCandidates(unittest.TestCase):
             file = Path(folder) / "FalseOriginalCase.lean"
             file.write_bytes(mutant)
             negative = evidence.lean_result(file)
-        self.assertTrue(evidence.verify_negative(
-            positive, negative, original, mutant))
+        try:
+            self.assertTrue(evidence.verify_negative(
+                positive, negative, original, mutant))
+        except evidence.MutationEvidenceError as exc:
+            self.fail(str(exc) + "; actual negative Lean diagnostic:\n" +
+                      (negative.stdout + "\n" + negative.stderr)[-3500:])
 
     def test_S_01_no_terminal_correction_is_false(self):
         # At horizon zero the omitted terminal term equals the initial V.

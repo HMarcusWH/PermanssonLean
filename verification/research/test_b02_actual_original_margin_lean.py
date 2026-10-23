@@ -45,7 +45,7 @@ class B02OriginalMarginCompiler(unittest.TestCase):
             "open PermanssonResearch.GrammarRobust.BooleanMinimalityCases\n"
             "open PermanssonResearch.GrammarRobust.BooleanModel\n"
             "example : IsMinimalAllowed fine andPos ({0,1} : Finset (Fin 2)) := by\n"
-            "  exact and_action_minimal\n"
+            "  exact PermanssonResearch.GrammarRobust.B02ActualOriginalMarginFixture.and_joint_is_positive_but_not_minimal.2\n"
         )
         diagnostic = (p.stdout + p.stderr).lower()
         self.assertNotEqual(p.returncode, 0, diagnostic[-2500:])

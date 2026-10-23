@@ -131,6 +131,31 @@ class DetachedCaseReceiptTests(unittest.TestCase):
         self.assertEqual((r["accepted_case_count"], r["pending_case_count"],
                           r["accepted_claim_count"]), (1, 44, 1))
 
+    def test_real_lean_quoted_multiline_axiom_target(self):
+        log = ("info: Provider.lean:11:0: 'Other.noise' depends on axioms: [sorryAx]\n"
+               "info: Proof.lean:5:0: 'Test.Scope.genuine' depends on axioms: "
+               "[propext,\n Classical.choice.{u},\n Quot.sound]\n")
+        self.assertEqual(set(gate.parse_target_axioms(
+            log, "Test.Scope.genuine")), gate.TRUSTED_AXIOMS)
+
+    def test_empty_target_axioms_and_wrong_target(self):
+        log = ("'Other.noise' depends on axioms: [sorryAx]\n"
+               "'Test.Scope.genuine' does not depend on any axioms\n")
+        self.assertEqual(gate.parse_target_axioms(log, "Test.Scope.genuine"), [])
+        with self.assertRaises(gate.EvidenceError):
+            gate.parse_target_axioms(log, "Test.Scope.missing")
+
+    def test_duplicate_or_forbidden_target_axioms_rejected(self):
+        line = "'Test.Scope.genuine' depends on axioms: [Quot.sound]"
+        with self.assertRaises(gate.EvidenceError):
+            gate.parse_target_axioms(line + "\n" + line, "Test.Scope.genuine")
+        for bad in ("[sorryAx.{u_1}]", "[propext, propext]",
+                    "[Classical.choiceUnsafe.{u}]"):
+            with self.subTest(bad=bad), self.assertRaises(gate.EvidenceError):
+                gate.parse_target_axioms(
+                    "'Test.Scope.genuine' depends on axioms: " + bad,
+                    "Test.Scope.genuine")
+
     def test_wrong_detached_digest_rejected(self):
         with self.assertRaises(gate.EvidenceError):
             gate.load_detached_bundle(self.bundle, "0"*64)

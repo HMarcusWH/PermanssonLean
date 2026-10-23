@@ -115,19 +115,29 @@ def statement_header(source: str, qualified: str) -> str:
 
 
 def parse_target_axioms(log: str, declaration: str) -> list[str]:
-    """Parse one target-qualified compiler record, never an unrelated last list."""
+    """Read one genuine target-qualified Lean axiom record.
+
+    Pinned Lean 4 prints quoted theorem names and multiline axiom lists.
+    Imported source can also print other records; a different declaration
+    must never be substituted for the requested theorem.
+    """
     demand(isinstance(log, str) and isinstance(declaration, str) and
            re.fullmatch(r"[A-Za-z0-9_'.]+", declaration) is not None,
            "invalid target axiom record")
-    list_pat = re.compile(
-        r"([A-Za-z0-9_'.]+) depends on axioms:\s*\[([^\]]*)\]")
-    zero_pat = re.compile(
-        r"([A-Za-z0-9_'.]+) does not depend on any axioms")
-    records = [(m.group(1), m.group(2)) for m in list_pat.finditer(log)]
-    records += [(m.group(1), "") for m in zero_pat.finditer(log)]
-    demand(len(records) == 1 and records[0][0] == declaration,
+    record_pat = re.compile(
+        r"(?<![A-Za-z0-9_'.])"
+        r"(?:'(?P<quoted>[A-Za-z0-9_'.]+)'|(?P<plain>[A-Za-z0-9_'.]+))"
+        r"\s+(?:depends on axioms:\s*\[(?P<axioms>[^\]]*)\]|"
+        r"does not depend on any axioms)")
+    targets = [match for match in record_pat.finditer(log)
+               if (match.group("quoted") or match.group("plain")) == declaration]
+    demand(len(targets) == 1,
            "missing, ambiguous or wrong-target compiler axiom output")
-    names = [x.strip() for x in records[0][1].split(",") if x.strip()]
+    # Universal level suffixes do not change the underlying axiom identity.
+    raw = re.sub(r"\.\{[^{}]*\}", "", targets[0].group("axioms") or "")
+    names = [part.strip() for part in raw.split(",") if part.strip()]
+    demand(all(re.fullmatch(r"[A-Za-z_][A-Za-z0-9_'.]*", x) for x in names),
+           "malformed transitive axiom identity")
     demand(len(set(names)) == len(names) and set(names) <= TRUSTED_AXIOMS,
            "untrusted or duplicate transitive axiom")
     return names
