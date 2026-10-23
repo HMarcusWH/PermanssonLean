@@ -26,6 +26,7 @@ from closure_elaborated_type import (
 )
 from final_closure_case_receipts import parse_target_axioms, EvidenceError
 from final_closure_lean_evidence import run_probe, parse_axioms
+from final_closure_mutation_evidence import committed_file_bytes
 
 ROOT = Path(__file__).resolve().parents[2]
 SNAP = ROOT / "research/paper_closures/post_merge_112"
@@ -282,6 +283,9 @@ def export_all(head: str, output: Path, *,
     for idx in selected_indices:
         required = manifest[idx]
         src = (ROOT / required["path"]).resolve()
+        # The requested H must supply these exact true theorem bytes;
+        # a dirty/shadowed checkout is not valid compiler evidence.
+        original_bytes = committed_file_bytes(head, src, root=ROOT)
         module = required["path"][:-5].replace("/", ".")
         declaration = required["declaration"]
         code = lean_probe(module, declaration)
@@ -291,6 +295,9 @@ def export_all(head: str, output: Path, *,
             probe.write_text(code, encoding="utf-8")
             result = run_probe(probe)
         data = (result.stdout + "\n" + result.stderr).encode("utf-8")
+        require(committed_file_bytes(head, src, root=ROOT) == original_bytes,
+                "source theorem bytes changed during compiler execution: " +
+                declaration)
         require(result.returncode == 0, "compiler rejected mandatory source theorem: " +
                 declaration + "\n" + data[-500:].decode("utf-8", "replace"))
         require(len(data) <= 4*1024*1024, "compiler theorem log too large")
@@ -316,7 +323,7 @@ def export_all(head: str, output: Path, *,
             "declaration": declaration,
             "case_ids": required["case_ids"],
             "claim_ids": required["claim_ids"],
-            "source_sha256": sha(src.read_bytes()),
+            "source_sha256": sha(original_bytes),
             "elaborated_type_sha256": elaborated_type_sha256(elaborated),
             "declaration_kind": elaborated["declaration_kind"],
             "universe_params_repr": elaborated["universe_params_repr"],
