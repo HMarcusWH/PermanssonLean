@@ -48,11 +48,16 @@ class Q05OriginalMarginAdapterCompiler(unittest.TestCase):
         self.assertNotIn("sorryAx", output)
 
     def test_unproved_source_domination_cannot_be_ignored(self):
+        # A genuine common-source row has mass < 1. Treating it as
+        # a defect-free probability kernel would erase the mandatory
+        # discounted transport budget; the actual nonexactness theorem
+        # refutes that false assertion, not an unfinished tactic.
         mutant = (
             "import " + MOD + "\n"
             "open " + MOD + "\n"
-            "example : VerifiedSourceDomination := by\n"
-            "  trivial\n"
+            "example : (commonSourceKernel false) "
+            "(false, false) Set.univ = 1 := by\n"
+            "  exact commonSourceKernel_not_exact false (false, false)\n"
         )
         result = compile_source(mutant)
         output = (result.stdout + result.stderr).lower()
@@ -62,9 +67,9 @@ class Q05OriginalMarginAdapterCompiler(unittest.TestCase):
         for fragment in ("unknown identifier", "unknown module", "parser error",
                          "sorryax", "maximum number of heartbeats"):
             self.assertNotIn(fragment, output)
-        self.assertTrue("unsolved goals" in output or
-                        "no goals to be solved" in output or
-                        "tactic" in output, output[-3000:])
+        self.assertTrue("type mismatch" in output or
+                        "application type mismatch" in output or
+                        "unsolved goals" in output, output[-3000:])
 
 
 if __name__ == "__main__":

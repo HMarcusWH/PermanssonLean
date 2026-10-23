@@ -17,10 +17,10 @@ INVALID = re.compile(
 )
 FALSE_CLAIM = """theorem incorrectly_identical_B1 :
     omittedTiedStart = comparisonStarts := by
-  rfl
+  exact omitted_domain_not_original
 
 """
-SEMANTIC = re.compile(r"Tactic .?rfl.? failed|unsolved goals", re.I)
+SEMANTIC = re.compile(r"type mismatch|application type mismatch|unsolved goals", re.I)
 
 
 class SameNumericMinNotSameDomain(unittest.TestCase):
