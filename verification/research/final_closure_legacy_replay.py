@@ -49,7 +49,31 @@ def appended_mutant(original: bytes, captured: bytes, provider_module: str) -> b
     need(isinstance(original, bytes) and original
          and isinstance(captured, bytes) and captured, "empty Lean sources")
     need(len(original) <= MAX_COMBINED_SOURCE and
-         len(captured) <= MAX_FALSE_SOURCE, "unbounded Lean replay input")
+         len(captured) <= MAX_COMBINED_SOURCE + MAX_FALSE_SOURCE,
+         "unbounded Lean replay input")
+    if captured.startswith(original):
+        # Some legacy tests actually compile the complete frozen original
+        # provider with a short source-appended false declaration. When that
+        # exact immutable prefix is proven byte-for-byte, retain the already
+        # source-preserving capture instead of converting it to an import-only
+        # synthetic probe.
+        suffix = captured[len(original):]
+        need(0 < len(suffix) <= MAX_FALSE_SOURCE,
+             "missing or oversized appended mathematical false statement")
+        try:
+            remaining = suffix.decode("utf-8")
+        except UnicodeDecodeError as exc:
+            raise MutationEvidenceError("non-UTF8 appended Lean source") from exc
+        need(re.search(r"(?m)^\s*(?:example|theorem|lemma)\b", remaining),
+             "appended original source lacks an explicit mathematical assertion")
+        need(not re.search(
+                 r"(?m)^\s*(?:import|axiom|opaque|constant|set_option)\b",
+                 remaining) and
+             not re.search(r"(?i)\b(?:sorry|sorryAx|admit)\b", remaining),
+             "appended original source changes imports, axioms or admissions")
+        return captured
+    need(len(captured) <= MAX_FALSE_SOURCE,
+         "unbounded standalone Lean replay input")
     try:
         text = captured.decode("utf-8")
     except UnicodeDecodeError as exc:

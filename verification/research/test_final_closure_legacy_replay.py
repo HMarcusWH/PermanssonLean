@@ -38,6 +38,29 @@ class LegacyAppendOnlyReplayBoundaries(unittest.TestCase):
         self.assertIn(b"example : False", combined)
         self.assertIn(b"CANDIDATE ONLY", combined)
 
+    def test_exact_original_prefix_capture_is_eligible_only_if_append_only(self):
+        # Synthetic bytes exercise the parser, not real Lean execution.
+        appended = (b"\nnamespace Original\n"
+                    b"theorem wrong_corner : False := by\n"
+                    b"  exact established\n"
+                    b"end Original\n")
+        captured = self.original + appended
+        self.assertEqual(replay.appended_mutant(
+            self.original, captured, "PermanssonResearch.X1.Exact"), captured)
+        for bad_suffix in (b"", b"\naxiom forged : False\n",
+                           b"\nimport Other.Lean\nexample : False := by trivial\n",
+                           b"\nexample : False := by sorry\n",
+                           b"\nset_option autoImplicit true\nexample : False := by trivial\n"):
+            with self.subTest(suffix=bad_suffix):
+                with self.assertRaises(MutationEvidenceError):
+                    replay.appended_mutant(
+                        self.original, self.original + bad_suffix,
+                        "PermanssonResearch.X1.Exact")
+        tampered = self.original.replace(b"established", b"impostor") + appended
+        with self.assertRaises(MutationEvidenceError):
+            replay.appended_mutant(
+                self.original, tampered, "PermanssonResearch.X1.Exact")
+
     def test_missing_provider_and_missing_statement_fail_closed(self):
         invalid = (
             (b"import Unrelated.Module\nexample : False := by trivial\n",

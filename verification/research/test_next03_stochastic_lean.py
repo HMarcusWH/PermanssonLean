@@ -40,8 +40,12 @@ theorem normalized_wrong_row_matches_original :
 """
         namespace_end = "end PermanssonResearch.X1.InterventionNumerics"
         self.assertEqual(source.count(namespace_end), 1)
-        mutant = source.replace(namespace_end, false_corner + namespace_end)
+        # Append a fresh namespace rather than modifying any proven source
+        # byte. The legacy replay adapter can verify this exact Git prefix.
+        mutant = (source + "\nnamespace PermanssonResearch.X1.InterventionNumerics\n" +
+                  false_corner + namespace_end + "\n")
         self.assertNotEqual(mutant, source)
+        self.assertTrue(mutant.startswith(source))
         self.assertEqual(mutant.count('import '), source.count('import '))
         self.assertEqual(mutant.count('theorem matrix_eq_entry'), 1)
         self.assertEqual(mutant.count('theorem normalized_wrong_row_matches_original'), 1)
