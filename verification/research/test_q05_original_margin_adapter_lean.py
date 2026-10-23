@@ -65,8 +65,10 @@ class Q05OriginalMarginAdapterCompiler(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0,
                             "actual all-state domination was silently assumed")
         self.assertIn("error:", output)
-        for fragment in ("unknown identifier", "unknown module", "parser error",
-                         "sorryax", "maximum number of heartbeats"):
+        for fragment in ("unknown identifier", "unknown constant",
+                         "unknown module", "parser error", "failed to synthesize",
+                         "object file", "sorryax", "maximum number of heartbeats",
+                         "timed out"):
             self.assertNotIn(fragment, output)
         self.assertTrue("type mismatch" in output or
                         "application type mismatch" in output or

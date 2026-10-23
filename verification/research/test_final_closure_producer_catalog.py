@@ -58,6 +58,11 @@ class ProducerCatalogTests(unittest.TestCase):
             payload["artifacts"][0]["zip_file"] = value
             with self.subTest(name=value), self.assertRaises(ProducerCatalogError):
                 entries(payload, H)
+        duplicate_file = copy.deepcopy(base)
+        duplicate_file["artifacts"][0]["zip_file"] = (
+            duplicate_file["artifacts"][1]["zip_file"])
+        with self.assertRaises(ProducerCatalogError):
+            entries(duplicate_file, H)
         bad = copy.deepcopy(base)
         bad["artifacts"][0]["artifact_id"] = bad["artifacts"][1]["artifact_id"]
         with self.assertRaises(ProducerCatalogError):

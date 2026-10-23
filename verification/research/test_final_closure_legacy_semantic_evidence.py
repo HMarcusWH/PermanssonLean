@@ -203,6 +203,39 @@ class LegacyEvidenceContract(unittest.TestCase):
         self.assertEqual(legacy.legacy_provider_candidates(
             row, b"\xff\xfe"), [])
 
+    def test_exact_committed_original_prefix_is_suggested_but_not_approved(self):
+        source = (b"import Mathlib.Tactic\nnamespace Original\n"
+                  b"theorem established : True := by trivial\n"
+                  b"end Original\n")
+        suffix = (b"\nnamespace Original\n"
+                  b"example : False := by exact established\n"
+                  b"end Original\n")
+        provider = "PermanssonResearch/X1/Actual.lean"
+        row = {"historical_proof_declarations": [{"path": provider}],
+               "new_claim_source_candidates": []}
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            source_path = root / provider
+            source_path.parent.mkdir(parents=True)
+            source_path.write_bytes(source)
+            with mock.patch.object(legacy, "ROOT", root), \
+                 mock.patch.object(legacy, "git_head", return_value=H), \
+                 mock.patch.object(legacy, "committed_file_bytes",
+                                   side_effect=lambda _head, p, **kwargs: source):
+                self.assertEqual(
+                    legacy.legacy_provider_candidates(row, source + suffix),
+                    [provider])
+                for false_source in (
+                    source,
+                    source.replace(b"established", b"impostor") + suffix,
+                    source + b"\naxiom fake : False\n" + suffix,
+                    source + b"\nexample : False := by sorry\n",
+                ):
+                    with self.subTest(source=false_source[-36:]):
+                        self.assertEqual(
+                            legacy.legacy_provider_candidates(row, false_source),
+                            [])
+
     def test_unexecuted_and_unreviewed_cannot_become_case_acceptance(self):
         with tempfile.TemporaryDirectory(prefix="pr113-legacy-payload-") as td:
             target = Path(td) / "sample.json"

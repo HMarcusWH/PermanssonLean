@@ -31,6 +31,7 @@ FORMAT = "Permansson.PR113.ExternalProducerCatalog.v1"
 OUT_FORMAT = "Permansson.PR113.ExactHeadProducingEvidence.v1"
 SHA40 = re.compile(r"^[a-f0-9]{40}$")
 MAX_INPUT_BYTES = 64 * 1024 * 1024
+MAX_CATALOG_BYTES = 1024 * 1024
 MAX_TOTAL_BYTES = 256 * 1024 * 1024
 
 
@@ -60,7 +61,7 @@ def entries(catalog, head):
                 for i in range(spec["count"])}
     need(isinstance(data, list) and len(data) == len(expected),
          "missing or extra required CI producer shards")
-    seen, ids, result = set(), set(), []
+    seen, ids, names, result = set(), set(), set(), []
     for row in data:
         need(isinstance(row, dict) and
              set(row) == {"kind", "shard", "run_id", "artifact_id", "zip_file"},
@@ -79,8 +80,10 @@ def entries(catalog, head):
         need(isinstance(name, str) and
              re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9_.-]{0,180}[.]zip", name) and
              name not in (".zip", "..zip") and
-             "/" not in name and chr(92) not in name,
-             "unsafe or nonflat detached artifact ZIP path")
+             "/" not in name and chr(92) not in name and
+             name not in names,
+             "unsafe, duplicated or nonflat detached artifact ZIP path")
+        names.add(name)
         result.append(row)
     need(seen == expected, "incomplete source-producer coverage")
     return sorted(result, key=lambda r: (r["kind"], r["shard"]))
@@ -91,8 +94,9 @@ def collect(*, head, catalog_path: Path, output: Path):
     output = Path(output)
     root = ROOT.resolve()
     need(catalog_path.is_file() and not catalog_path.is_symlink() and
-         not catalog_path.resolve().is_relative_to(root),
-         "external, nonsymlinked catalog required")
+         not catalog_path.resolve().is_relative_to(root) and
+         0 < catalog_path.stat().st_size <= MAX_CATALOG_BYTES,
+         "external, bounded and nonsymlinked catalog required")
     input_dir = catalog_path.resolve().parent
     output = output.resolve()
     need(not output.exists() and

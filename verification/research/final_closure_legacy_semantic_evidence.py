@@ -201,11 +201,13 @@ def test_observations(directory, *, expected_case=None, expected_methods=None):
 
 
 def legacy_provider_candidates(row, false_source: bytes) -> list[str]:
-    """Name-only replay suggestions from the frozen original declaration map.
+    """Unreviewed source suggestions, never a mathematical attribution.
 
-    This is deliberately NOT a proof relevance judgment or an import-graph
-    inference. A candidate is eligible only when the actual captured source
-    explicitly imports that precise declared original provider module.
+    A legacy standalone false probe may explicitly import its original source
+    provider; a source-appended probe instead CONTAINS the exact immutable
+    provider prefix and need not import itself. Both forms are supported, but
+    the prefix form is offered only after comparison to the committed Git blob.
+    No suggestion discharges theorem relevance, a producing job, or review.
     """
     if not isinstance(false_source, bytes):
         return []
@@ -224,12 +226,42 @@ def legacy_provider_candidates(row, false_source: bytes) -> list[str]:
          row.get("new_claim_source_candidates", []))
         if isinstance(entry, dict)
     }
-    return sorted(
+    paths = sorted(
         path for path in paths
-        if isinstance(path, str) and
-        path.startswith("PermanssonResearch/") and
-        path.endswith(".lean") and
-        ".".join(Path(path).with_suffix("").parts) in imported)
+        if isinstance(path, str) and path.startswith("PermanssonResearch/")
+        and path.endswith(".lean") and ".." not in Path(path).parts
+        and chr(92) not in path
+    )
+    matches = {
+        path for path in paths
+        if ".".join(Path(path).with_suffix("").parts) in imported
+    }
+    # A merely similar file, an imported dependency, or a dirty worktree
+    # cannot serve as a committed original-source prefix.
+    try:
+        head = git_head()
+    except (MutationEvidenceError, OSError):
+        head = None
+    if head:
+        for path in paths:
+            try:
+                original = committed_file_bytes(head, ROOT / path, root=ROOT)
+            except (MutationEvidenceError, OSError):
+                continue
+            if not false_source.startswith(original):
+                continue
+            suffix = false_source[len(original):]
+            if not 0 < len(suffix) <= 16 * 1024:
+                continue
+            if (not re.search(r"(?m)^\s*(?:example|lemma|theorem)\b",
+                              suffix.decode("utf-8", errors="replace"))
+                or re.search(
+                    rb"(?m)^\s*(?:import|axiom|opaque|constant|set_option)\b",
+                    suffix)
+                or re.search(rb"(?i)\b(?:sorry|sorryAx|admit)\b", suffix)):
+                continue
+            matches.add(path)
+    return sorted(matches)
 
 
 def covered_semantic_methods(methods, events):
