@@ -55,6 +55,7 @@ class Q05OriginalMarginAdapterCompiler(unittest.TestCase):
         mutant = (
             "import " + MOD + "\n"
             "open " + MOD + "\n"
+            "open PermanssonResearch.Quotient.Q05ActualOriginalMarginWitnessFixture\n"
             "example : (commonSourceKernel false) "
             "(false, false) Set.univ = 1 := by\n"
             "  exact commonSourceKernel_not_exact false (false, false)\n"
