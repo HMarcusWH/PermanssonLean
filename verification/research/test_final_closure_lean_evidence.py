@@ -40,16 +40,16 @@ class LeanEvidenceTests(unittest.TestCase):
             "Demo.foo"), [])
 
     def test_quoted_single_target_keeps_real_lean_multiline_output(self):
-        log = ("PERMANSSON_ELABORATED_TYPE_V1_BEGIN\\n"
-               "NAME=Demo.foo\\nKIND=theorem\\nUNIVERSES=[]\\n"
-               "TYPE=Expr.const `True []\\n"
-               "PERMANSSON_ELABORATED_TYPE_V1_END\\n"
+        log = ("PERMANSSON_ELABORATED_TYPE_V1_BEGIN\n"
+               "NAME=Demo.foo\nKIND=theorem\nUNIVERSES=[]\n"
+               "TYPE=Expr.const `True []\n"
+               "PERMANSSON_ELABORATED_TYPE_V1_END\n"
                "info: Demo.lean:3:0: 'Demo.foo' depends on axioms: "
-               "[propext,\\n Classical.choice.{u},\\n Quot.sound]\\n")
+               "[propext,\n Classical.choice.{u},\n Quot.sound]\n")
         self.assertEqual(set(e.parse_axioms(log, "Demo.foo")),
                          {"propext", "Classical.choice", "Quot.sound"})
         with self.assertRaises(e.CompilerEvidenceError):
-            e.parse_axioms(log + "'Other.foo' depends on axioms: []\\n",
+            e.parse_axioms(log + "'Other.foo' depends on axioms: []\n",
                            "Demo.foo")
 
     def test_missing_or_wrong_head_never_emits_certificate(self):

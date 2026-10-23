@@ -71,7 +71,7 @@ def parse_axioms(log: str, declaration: str) -> list[str]:
     if declaration not in log:
         raise CompilerEvidenceError("wrong compiled Lean declaration: " + declaration)
     records = re.findall(
-        r"\\bdepends on axioms:\\s*\\[|\\bdoes not depend on any axioms\\b",
+        r"\bdepends on axioms:\s*\[|\bdoes not depend on any axioms\b",
         log)
     if len(records) != 1:
         raise CompilerEvidenceError(
