@@ -19,6 +19,11 @@ import re
 import sys
 import tempfile
 
+from final_closure_review_dossier import (ReviewDossierError, extracted_case_refs,
+                                          make_dossier)
+from final_closure_mutation_evidence import committed_file_bytes
+from final_closure_authenticate import git
+
 from final_closure_authenticate import AuthenticationError
 from final_closure_candidate_artifact_auth import KINDS, verify_artifact
 from final_closure_case_receipts import EvidenceError, load_detached_bundle
@@ -108,6 +113,7 @@ def collect(*, head, catalog_path: Path, output: Path):
     rows = entries(json.loads(catalog_path.read_bytes()), head)
     total = 0
     trusted = []
+    case_candidates = {}
     with tempfile.TemporaryDirectory(prefix="pr113-producer-check-") as td:
         shard_root = Path(td) / "compiler-shards"
         shard_root.mkdir()
@@ -129,9 +135,15 @@ def collect(*, head, catalog_path: Path, output: Path):
                  verified["artifact_id"] == row["artifact_id"],
                  "producing CI attestation is unverified or mismatched")
             trusted.append(verified)
+            members = load_detached_bundle(
+                artifact, verified["artifact_sha256"])
+            if row["kind"] != "compiler":
+                candidates = extracted_case_refs(row["kind"], members,
+                                                head, verified)
+                need(not set(case_candidates) & set(candidates),
+                     "same original case appeared in multiple candidate shards")
+                case_candidates.update(candidates)
             if row["kind"] == "compiler":
-                members = load_detached_bundle(
-                    artifact, verified["artifact_sha256"])
                 folder = shard_root / ("shard-%02d" % row["shard"])
                 need(not folder.exists(), "duplicate compiler shard directory")
                 folder.mkdir()
@@ -153,7 +165,22 @@ def collect(*, head, catalog_path: Path, output: Path):
          not (EXPECTED & set(legacy_cases)) and
          set(original) == EXPECTED | set(legacy_cases),
          "original 25+20 original-case partition changed")
+    claim_map_path = ROOT / (
+        "research/paper_closures/post_merge_112/claim_declaration_map.json")
+    claim_map = json.loads(committed_file_bytes(
+        head, claim_map_path, root=ROOT))
+    actual_tree = git("rev-parse", head + "^{tree}")
+    reviewed_dossier = make_dossier(
+        head=head, tree=actual_tree, original={"cases": [
+            original[x] for x in sorted(original)]},
+        claim_map=claim_map, compiler=full,
+        candidate_cases=case_candidates, producers=trusted)
+    dossier_bytes = (json.dumps(reviewed_dossier, sort_keys=True,
+                                indent=2) + "\n").encode("utf-8")
+    (output / "unreviewed_source_review_dossier.json").write_bytes(
+        dossier_bytes)
     report = {
+        "source_review_dossier_sha256": digest(dossier_bytes),
         "format": OUT_FORMAT,
         "status": "CI_PRODUCER_ARTIFACTS_AUTHENTICATED_UNREVIEWED",
         "head_sha": head,
@@ -187,7 +214,7 @@ def main(argv=None):
         result = collect(head=opts.head, catalog_path=opts.catalog,
                          output=opts.output)
     except (ProducerCatalogError, AuthenticationError, EvidenceError,
-            ShardMergeError, OSError, KeyError, ValueError) as exc:
+            ShardMergeError, ReviewDossierError, OSError, KeyError, ValueError) as exc:
         print("PR113 PRODUCER CATALOG BLOCKED:", exc, file=sys.stderr)
         return 2
     print(json.dumps({k: result[k] for k in (
