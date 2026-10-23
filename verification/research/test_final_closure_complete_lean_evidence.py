@@ -106,6 +106,35 @@ class AllCaseCompilerManifestTests(unittest.TestCase):
                               if "C-01" in r["case_ids"]},
                              {"Demo.historical_0"})
 
+    def test_dotted_public_declarations_keep_distinct_qualified_owners(self):
+        source = (
+            "namespace Demo\\n"
+            "structure Bounds where\\n"
+            "  coefficient : Nat\\n"
+            "def Bounds.factor (x : Bounds) : Nat := x.coefficient\\n"
+            "theorem Bounds.factor_nonneg (x : Bounds) : 0 ≤ x.factor := by\\n"
+            "  exact Nat.zero_le _\\n"
+            "end Demo\\n"
+        )
+        names = combined.addressable_declarations(source)
+        self.assertEqual(names, [
+            "Demo.Bounds", "Demo.Bounds.factor",
+            "Demo.Bounds.factor_nonneg",
+        ])
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / "PermanssonResearch").mkdir()
+            (root / P).write_text(source)
+            resolved = combined.resolved_name(root, P, "Bounds.factor_nonneg", {})
+            self.assertEqual(resolved, "Demo.Bounds.factor_nonneg")
+        # A genuine repeated fully qualified name must still be blocked.
+        repeated = source.replace(
+            "end Demo\\n",
+            "theorem Bounds.factor_nonneg : True := by trivial\\nend Demo\\n",
+        )
+        with self.assertRaises(combined.CompleteCompilerError):
+            combined.addressable_declarations(repeated)
+
     def test_targeting_private_lemma_cannot_resolve(self):
         with tempfile.TemporaryDirectory() as td:
             cases, claims = synthetic_source(td)

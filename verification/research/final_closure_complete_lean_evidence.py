@@ -53,10 +53,14 @@ def load(path: Path):
 
 
 LEAN_NAME = r"[A-Za-z_][A-Za-z0-9_']*"
+# A declaration may be a public structure member written as
+# "theorem Structure.member". Truncating the dotted name to "Structure"
+# manufactures duplicate public names and drops the actual theorem owner.
+QUALIFIED_LEAN_NAME = LEAN_NAME + r"(?:\." + LEAN_NAME + r")*"
 DECLARATION = re.compile(
     r"^[ \t]*(?:(?:protected|private|noncomputable|unsafe|partial|opaque)\s+)*"
     r"(?:theorem|lemma|def|abbrev|structure|inductive|class|instance)\s+"
-    r"(" + LEAN_NAME + r")(?![A-Za-z0-9_'])"
+    r"(" + QUALIFIED_LEAN_NAME + r")(?![A-Za-z0-9_'.])"
 )
 PREFIX = re.compile(
     r"^[ \t]*(?P<flags>(?:(?:protected|private|noncomputable|unsafe|partial|opaque)\s+)*)"
@@ -131,7 +135,9 @@ def addressable_declarations(source: str):
     if block_depth != 0:
         raise CompleteCompilerError("unterminated Lean source comment")
     if len(found) != len(set(found)):
-        raise CompleteCompilerError("duplicate public declaration source name")
+        repeated = sorted(name for name in set(found) if found.count(name) > 1)
+        raise CompleteCompilerError("duplicate public declaration source name: " +
+                                    repr(repeated))
     return found
 
 
@@ -147,7 +153,10 @@ def source_declarations(root: Path, relative: str, cache: dict):
         require(src.is_relative_to(root.resolve()) and
                 src.is_file() and not src.is_symlink(),
                 "missing/hijacked original Lean module: " + relative)
-        fqns = addressable_declarations(src.read_text(encoding="utf-8"))
+        try:
+            fqns = addressable_declarations(src.read_text(encoding="utf-8"))
+        except CompleteCompilerError as exc:
+            raise CompleteCompilerError(relative + ": " + str(exc)) from exc
         cache[relative] = (src, fqns)
     return cache[relative]
 

@@ -117,3 +117,24 @@ a green general research CI ID onto locally produced mutant logs.
 
 The repository's current draft branch has no permission to self-approve
 evidence, merge, tag, release or override these missing authentic dependencies.
+
+
+## Immutable historical tooling gate — unresolved new release dependency
+
+The archival v0.2.0 offline verifier binds the complete canonical
+`verification/integrity/`, `verification/archive/`, and historical
+reproduction-guide byte closure between its preserved tooling commit T and
+candidate C. It deliberately rejects a changed checker at candidate HEAD
+with `E_TOOLING_CLOSURE`, even when the new checker's own unit tests pass.
+
+PR #113's updated 25-workflow source-profile checker remains **new, draft
+tooling**, not a silently substituted historical verifier. Its workflow-pin
+fix may pass frozen-source preservation while the historical offline-replay
+job correctly refuses the altered code/guide closure. Resolving this
+requires an explicitly authorized, independently reviewed tooling-version
+migration or a reviewed release strategy that restores immutable T-compatible
+tooling; the archived T snapshot must never be retroactively rewritten,
+and source checks must not be skipped to obtain a green release check.
+
+A green draft paper build or an updated workflow hash does not supersede
+this distinct archive-reproducibility gate.
