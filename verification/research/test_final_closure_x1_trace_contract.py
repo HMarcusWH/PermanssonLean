@@ -57,7 +57,7 @@ class OriginalX1MethodTraceContract(unittest.TestCase):
         # Preserve the separation of source candidates from real producing
         # compiler log, reviewer decision and original-case acceptance.
         self.assertTrue(CASES)
-        self.assertFalse(hasattr(X1LeanClosure, "independent_case_approval"))
+        self.assertFalse(hasattr(trace.X1LeanClosure, "independent_case_approval"))
 
 
 if __name__ == "__main__":
