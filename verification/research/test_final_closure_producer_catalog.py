@@ -1,5 +1,7 @@
 """Pure adversarial producer-catalog tests; none is real GitHub attestation."""
+import ast
 import copy
+from pathlib import Path
 import unittest
 
 from final_closure_producer_catalog import entries, ProducerCatalogError, FORMAT
@@ -25,6 +27,22 @@ def fixture():
 
 
 class ProducerCatalogTests(unittest.TestCase):
+    def test_all_research_python_parses_before_long_ci(self):
+        """Cheap syntax gate; runs before Lean-dependent cases in this module."""
+        research = Path(__file__).resolve().parent
+        sources = sorted(research.rglob("*.py"))
+        self.assertGreater(len(sources), 10)
+        for path in sources:
+            with self.subTest(path=path.name):
+                ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+
+    def test_literal_backslash_n_import_is_a_syntax_regression(self):
+        catalog = Path(__file__).with_name("final_closure_producer_catalog.py")
+        source = catalog.read_text(encoding="utf-8")
+        self.assertIn("from final_closure_review_dossier import", source)
+        self.assertNotIn("bind as bind_v2_producer)" + chr(92) + "nfrom", source)
+        ast.parse(source, filename=str(catalog))
+
     def test_exact_full_inventory_remains_unapproved_candidate(self):
         items = entries(fixture(), H)
         self.assertEqual(len(items), 21)

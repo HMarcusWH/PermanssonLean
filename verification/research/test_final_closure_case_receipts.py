@@ -126,6 +126,24 @@ class DetachedCaseReceiptTests(unittest.TestCase):
             members=members, accepted_checks=self.checks,
             approved_review_scopes=self.scopes if scopes is None else scopes)
 
+    def test_claim_only_positive_and_negative_receipts_are_scoped(self):
+        """A new claim may have no original case, but must retain claim ownership."""
+        clean = copy.deepcopy(self.overlay)
+        clean["case_decisions"] = []
+        for name in ("compiler_axiom_receipts", "positive_test_receipts",
+                     "semantic_negative_receipts"):
+            for row in clean[name]:
+                row["case_ids"] = []
+        scopes = {100: {"cases": {}, "claims": ["Q1"]}}
+        observed = self.check(overlay=clean, scopes=scopes)
+        self.assertEqual(observed["accepted_case_count"], 0)
+        self.assertEqual(observed["accepted_claim_count"], 1)
+        for section in ("positive_test_receipts", "semantic_negative_receipts"):
+            invalid = copy.deepcopy(clean)
+            invalid[section][0]["claim_ids"] = []
+            with self.subTest(section=section), self.assertRaises(gate.EvidenceError):
+                self.check(overlay=invalid, scopes=scopes)
+
     def test_one_mocked_case_never_promotes_other_forty_four(self):
         r = self.check()
         self.assertEqual((r["accepted_case_count"], r["pending_case_count"],

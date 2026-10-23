@@ -19,7 +19,8 @@ import re
 import sys
 import tempfile
 
-from final_closure_producer_v2_bridge import (ProducerBindingError, bind as bind_v2_producer)\nfrom final_closure_review_dossier import (ReviewDossierError, extracted_case_refs,
+from final_closure_producer_v2_bridge import (ProducerBindingError, bind as bind_v2_producer)
+from final_closure_review_dossier import (ReviewDossierError, extracted_case_refs,
                                           make_dossier)
 from final_closure_mutation_evidence import committed_file_bytes
 from final_closure_authenticate import git

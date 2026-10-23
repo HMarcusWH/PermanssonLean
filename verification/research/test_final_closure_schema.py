@@ -90,6 +90,39 @@ class SchemaBoundaryTests(unittest.TestCase):
         with self.assertRaises(EvidenceError):
             schema.validate_overlay(x)  # no attributable execution check
 
+    def test_claim_only_receipts_validate_but_orphans_fail(self):
+        x = candidate()
+        base = {
+            "id": "claim-only", "head_sha": H, "check_run_id": None,
+            "test_path": "verification/research/test_demo.py",
+            "test_name": "test_demo", "source_sha256": "1"*64,
+            "case_ids": [], "claim_ids": ["N2"],
+            "positive_control": {
+                "compiled": True, "exit_code": 0, "lean_toolchain": "4.34.0",
+                "log_member": "positive.log", "log_sha256": "2"*64,
+            },
+            "outcome": "PASS", "compiler_exit_code": 0,
+            "log_member": "positive.log", "log_sha256": "2"*64,
+        }
+        x["positive_test_receipts"] = [base]
+        schema.validate_overlay(x)
+        orphan = copy.deepcopy(x)
+        orphan["positive_test_receipts"][0]["claim_ids"] = []
+        with self.assertRaises(EvidenceError):
+            schema.validate_overlay(orphan)
+        x["semantic_negative_receipts"] = [{
+            **base, "id": "claim-only-negative", "outcome": "REJECTED_SEMANTIC",
+            "compiler_exit_code": 1, "log_member": "negative.log",
+            "mutant_source_member": "mutated.lean", "mutant_source_sha256": "3"*64,
+            "original_lean_source_path": "Proof.lean",
+            "original_lean_source_member": "original.lean",
+            "original_lean_source_sha256": "4"*64,
+        }]
+        schema.validate_overlay(x)
+        x["semantic_negative_receipts"][0]["claim_ids"] = []
+        with self.assertRaises(EvidenceError):
+            schema.validate_overlay(x)
+
     def test_claim_decision_requires_positive_and_negative_receipts(self):
         decision = {"id": "claim-1", "claim_id": "Q1",
                     "proof_ids": ["proof"], "positive_ids": ["pos"],

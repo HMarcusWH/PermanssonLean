@@ -279,8 +279,10 @@ def validate_test_receipt(row: dict, head: str, members: dict[str, bytes],
            "positive test log contains compiler error")
     log = member_bytes(members, row.get("log_member"), row.get("log_sha256"))
     s = log.decode("utf-8", errors="replace").lower()
-    demand(isinstance(row.get("case_ids"), list) and row["case_ids"],
-           "test is not linked to an original case")
+    cases, claims = row.get("case_ids"), row.get("claim_ids")
+    demand(isinstance(cases, list) and isinstance(claims, list) and
+           (cases or claims),
+           "test is not linked to any original case or new claim")
     if negative:
         demand(row.get("outcome") == "REJECTED_SEMANTIC" and
                row.get("compiler_exit_code") not in (None, 0) and

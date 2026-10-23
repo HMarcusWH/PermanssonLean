@@ -117,4 +117,10 @@ def validate_overlay(payload):
         raise EvidenceError("canonical detached receipt schema unavailable") from exc
     _check_spec(schema)
     _validate(payload, schema)
+    for family in ("compiler_axiom_receipts", "positive_test_receipts",
+                   "semantic_negative_receipts"):
+        for receipt in payload[family]:
+            if not receipt["case_ids"] and not receipt["claim_ids"]:
+                raise EvidenceError(
+                    "unowned proof/test receipt in " + family)
     return payload
