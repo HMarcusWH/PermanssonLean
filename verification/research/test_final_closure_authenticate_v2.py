@@ -194,6 +194,33 @@ class AuthenticationV2Tests(unittest.TestCase):
         self.assertEqual(outcome["M"], M)
         self.assertEqual(len(outcome["integrated_checks"]), len(auth.REQUIRED))
 
+    def test_new_required_jobs_cannot_be_borrowed_or_ignored(self):
+        required = {
+            "executable-verification", "research-release",
+            "integrity-portability-windows",
+            "Application contract (ubuntu-latest)",
+            "Application contract (windows-latest)",
+        }
+        self.assertTrue(required <= auth.REQUIRED)
+        for name in sorted(required):
+            def invalidate(receipts, pr, checks, integrated, reviews,
+                           parent_s, parent_m, trees):
+                for check in checks:
+                    if check["name"] == name:
+                        check["conclusion"] = "failure"
+                        return
+                self.fail("missing required test fixture: " + name)
+            with self.subTest(name=name), self.assertRaises(auth.AuthenticationError):
+                self.run_gate(mutate=invalidate)
+            def missing_receipt(receipts, pr, checks, integrated, reviews,
+                                parent_s, parent_m, trees):
+                receipts["source_bound_ci"] = [
+                    item for item in receipts["source_bound_ci"]
+                    if item["name"] != name]
+            with self.subTest(name=name + " receipt"), self.assertRaises(
+                    auth.AuthenticationError):
+                self.run_gate(mutate=missing_receipt)
+
     def test_fake_check_run_id_rejected(self):
         def mutate(r, p, c, i, reviews, ps, pm, ts):
             r["source_bound_ci"][0]["id"] = 9999

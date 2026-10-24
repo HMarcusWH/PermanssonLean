@@ -5,6 +5,17 @@
 Engineering compilation, theorem approval, independent scholarly review, PDF inspection, empirical identification, archive publication and operations are separate gates. The generated candidate remains unaccepted until actual post-merge M and CI identities and source/reviewer receipts have been authenticated. No release, tag, branch-setting change or production rollout is authorized.
 
 
+## Current required-check policy (candidate, review pending)
+
+The PR113 v2 source authenticator requires all twelve named, applicable
+exact-head checks: Research Lean, original Lean build, frozen-source preservation,
+F1, E1, release-export integrity, historical archive reproducibility, executable
+verification, research-release, Windows integrity portability and both application
+contract OS jobs. Their identities must be authenticated on H and again on genuine
+merged M. A global green Research job cannot mask a failing standalone verifier.
+The historical verifier and its original T tooling remain unchanged and may still
+fail pending a separately authorized successor trust-boundary migration.
+
 ## PR #113 candidate execution — not an acceptance receipt
 
 Original acceptance routing now identifies exactly 45 original positive routes

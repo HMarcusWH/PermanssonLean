@@ -20,6 +20,13 @@ REQUIRED = frozenset((
     "research", "build", "frozen-source-preservation",
     "multiagent-protocols", "approx-quotient",
     "release-export-integrity", "archive-reproducibility",
+    # These independent, applicable source-head checks MUST also be green.
+    # A green Research build cannot substitute for a failed executable,
+    # application or cross-platform integrity job.
+    "executable-verification", "research-release",
+    "integrity-portability-windows",
+    "Application contract (ubuntu-latest)",
+    "Application contract (windows-latest)",
 ))
 
 
