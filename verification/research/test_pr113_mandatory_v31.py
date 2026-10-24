@@ -61,6 +61,7 @@ class MandatoryV31Tests(unittest.TestCase):
             "source_owner_count": 76,
             "claim_positive_negative_directions": 22,
             "canonical_routes_bound": True,
+            "legacy_original_captures_bound": True,
             "execution_log_members_checked": 208,
         }
         claims = {"claims": [{"claim_id": x} for x in CLAIMS]}

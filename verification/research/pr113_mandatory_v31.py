@@ -130,6 +130,7 @@ def authenticate_all_76(head, original_receipts, original_members, *,
              execution.get("source_owner_count") == 76 and
              execution.get("claim_positive_negative_directions") == 22 and
              execution.get("canonical_routes_bound") is True and
+             execution.get("legacy_original_captures_bound") is True and
              attributed.get("schema_security_approved") is False and
              attributed.get("independent_mathematical_review") is False,
              "additional true/false source evidence is incomplete or self-approved")

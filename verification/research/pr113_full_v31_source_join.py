@@ -77,6 +77,8 @@ def join_authenticated_evidence(original, additional):
                 "ACTUAL_CONTROL_BYTES_REVALIDATED_UNREVIEWED" and
             checks.get("source_head") == head and
             checks.get("source_owner_count") == 76 and
+            checks.get("canonical_routes_bound") is True and
+            checks.get("legacy_original_captures_bound") is True and
             checks.get("claim_positive_negative_directions") == 22 and
             checks.get("execution_log_members_checked", 0) >= 76 and
             checks.get("independent_review") is False and

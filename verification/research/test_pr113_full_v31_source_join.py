@@ -45,6 +45,8 @@ def complete():
             "format": "Permansson.PR113.GenuineSourceExecutionBytes.v1",
             "status": "ACTUAL_CONTROL_BYTES_REVALIDATED_UNREVIEWED",
             "source_head": H, "source_owner_count": 76,
+            "canonical_routes_bound": True,
+            "legacy_original_captures_bound": True,
             "claim_positive_negative_directions": 22,
             "execution_log_members_checked": 208,
             "independent_review": False,

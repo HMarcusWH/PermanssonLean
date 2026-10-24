@@ -364,6 +364,7 @@ def assemble_review_pending(head, original_v3_receipts, original_v3_zip,
     need(real_controls["source_owner_count"] == 76 and
          real_controls["claim_positive_negative_directions"] == 22 and
          real_controls["canonical_routes_bound"] is True and
+         real_controls["legacy_original_captures_bound"] is True and
          real_controls["independent_review"] is False and
          real_controls["mathematical_acceptance"] is False,
          "actual 76 original source-control execution bytes not authenticated")

@@ -300,7 +300,7 @@ def bind_claim(source, owner_id, wrapper, content):
              "claim owner differs from the reviewed claim selection")
 
 
-def verify_owner(kind, owner_id, receipt_name, members, head, source=None):
+def verify_owner(kind, owner_id, receipt_name, members, head, source=None, original_producers=None):
     """Return an unreviewed byte-evidence diagnostic or fail closed.
 
     Without `source` only retained bytes are checked (producer-side packing);
@@ -443,16 +443,33 @@ def verify_owner(kind, owner_id, receipt_name, members, head, source=None):
     need("error:" not in poslog.decode("utf-8", errors="replace").lower(),
          "historical original positive control did not compile")
     source_clean_negative(neglog)
+    if source is not None:
+        from pr113_legacy_route_binding import bind_legacy, LegacyRouteError
+        try:
+            bind_legacy(
+                head, owner_id, replay, mut, wrapper,
+                original, false, source=source,
+                authenticated_original=original_producers)
+        except LegacyRouteError as exc:
+            raise RealControlError(
+                "original legacy case/provider/observation route mismatch: " +
+                str(exc)) from exc
     return {"kind": kind, "owner_id": owner_id,
             "actual_log_members_checked": 4}
 
 
-def validate_executed_controls(head, contract, zipped, *, source):
+def validate_executed_controls(head, contract, zipped, *, source, original_producers=None):
     """Validate all 76 original GH ZIP owner payloads, without review claims."""
     need(isinstance(contract, dict) and contract.get("head_sha") == head and
          isinstance(zipped, dict), "original v3.1 CI payload unavailable")
     need(isinstance(source, ExactSource) and source.head == head,
          "exact-H canonical route source required for 76-owner binding")
+    need(isinstance(original_producers, dict) and
+         original_producers.get("status") ==
+             "REAL_PRODUCING_BYTES_UNREVIEWED" and
+         original_producers.get("head_sha") == head and
+         original_producers.get("producer_count") == 21,
+         "all 21 authenticated original producers required for legacy capture linkage")
     owners = {}
     jobs = contract.get("producers")
     need(isinstance(jobs, list) and jobs and
@@ -471,7 +488,8 @@ def validate_executed_controls(head, contract, zipped, *, source):
             name = row["receipt_member"]
             member(members, name, row["receipt_sha256"])
             owners[key] = verify_owner(
-                row["kind"], row["owner_id"], name, members, head, source)
+                row["kind"], row["owner_id"], name, members, head,
+                source, original_producers)
     from collections import Counter
     n = Counter(kind for kind, _ in owners)
     need(len(owners) == 76 and n == {
@@ -488,6 +506,7 @@ def validate_executed_controls(head, contract, zipped, *, source):
         "execution_log_members_checked": sum(
             row["actual_log_members_checked"] for row in owners.values()),
         "canonical_routes_bound": True,
+        "legacy_original_captures_bound": True,
         "reviewed_positive_selection_bound":
             source.positive_selection is not None,
         "reviewed_claim_selection_bound": source.claim_selection is not None,

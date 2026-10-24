@@ -44,7 +44,8 @@ def test_source(cls, names):
 
 CASE_IDS = [f"C-{i:02}" for i in range(1, 46)]
 BLOBS = {
-    ROUTES: test_source("Routes", [method(c) for c in CASE_IDS]),
+    ROUTES: test_source("Routes", [method(c) for c in CASE_IDS] +
+                              [method(c) + "_false" for c in CASE_IDS]),
     CLAIM_TESTS: test_source("Claims", [
         "test_" + c.lower() + side for c in CLAIMS
         for side in ("_true", "_false")]),
@@ -56,7 +57,7 @@ BLOBS = {
 
 def source(blobs=None, **selection):
     cases = {"cases": [{
-        "case_id": c,
+        "case_id": c, "effective_accepted": False,
         "test_method_candidates": [
             {"path": ROUTES, "method": method(c), "role": "COMPILER_SOURCE"},
             {"path": ROUTES, "method": method(c) + "_false",
@@ -120,10 +121,57 @@ def make_positive(cid):
     }
 
 
+def original_legacy_capture(cid):
+    selected = method(cid) + "_false"
+    event = "event-1-000001"
+    inp = BLOBS[proof(cid)] + b"\ntheorem false_goal : False := by trivial\n"
+    manifest = {
+        "format": "Permansson.LegacyCaseTestExecutionCandidate.v1",
+        "status": "EXECUTED_UNREVIEWED_NOT_AUTHENTICATED",
+        "case_id": cid, "test_file": ROUTES,
+        "selected_methods": [selected],
+        "source_test_sha256": sha(BLOBS[ROUTES]),
+        "test_exit_code": 0,
+        "independent_review": False, "release_approved": False,
+    }
+    obs = {
+        "format": "Permansson.LegacyLeanCompilerObservation.v1",
+        "case_id_unverified": cid,
+        "selected_method_unverified": selected,
+        "source_sha256": sha(inp),
+    }
+    return manifest, obs, inp, event
+
+
+def authentic_original_legacy():
+    members = {}
+    for cid in [f"C-{i:02}" for i in range(1, 21)]:
+        manifest, obs, inp, event = original_legacy_capture(cid)
+        base = f"{cid}/test-00/"
+        members[base + "unreviewed_test_manifest.json"] = serialized(manifest)
+        members[base + "raw_compiler/" + event + "/observation.json"] = serialized(obs)
+        members[base + "raw_compiler/" + event + "/source.lean"] = inp
+    return {
+        "status": "REAL_PRODUCING_BYTES_UNREVIEWED", "head_sha": H,
+        "producer_count": 21,
+        "producers": {555: {
+            "kind": "legacy", "head_sha": H, "check_run_id": 777,
+            "members": members,
+        }},
+    }
+
+
 def make_legacy(cid):
     base = "legacy/" + cid + "/"
-    proof = {
-        "head_sha": H, "case_ids": [cid],
+    original = BLOBS[proof(cid)]
+    mutated = original + b"\ntheorem false_goal : False := by trivial\n"
+    test_manifest, observation, captured, event = original_legacy_capture(cid)
+    selected = method(cid) + "_false"
+    mutation = {
+        "head_sha": H, "case_ids": [cid], "claim_ids": [],
+        "test_path": ROUTES, "test_name": selected,
+        "source_sha256": sha(BLOBS[ROUTES]),
+        "original_lean_source_path": proof(cid),
         "outcome": "REJECTED_SEMANTIC", "compiler_exit_code": 1,
         "positive_control": {
             "compiled": True, "exit_code": 0,
@@ -131,24 +179,34 @@ def make_legacy(cid):
         },
         "log_member": "neg.log", "log_sha256": sha(NEGATIVE),
         "original_lean_source_member": "original.lean",
-        "original_lean_source_sha256": sha(ORIGINAL),
+        "original_lean_source_sha256": sha(original),
         "mutant_source_member": "false.lean",
-        "mutant_source_sha256": sha(FALSE),
+        "mutant_source_sha256": sha(mutated),
     }
     source = {
         "format": "Permansson.LegacyAppendOnlyReplayCandidate.v1",
         "status": "REPLAYED_APPEND_ONLY_UNREVIEWED_UNATTRIBUTED",
         "case_id": cid, "head_sha": H,
-        "mutation_record": proof,
+        "selected_test_path": ROUTES,
+        "selected_method": selected,
+        "original_provider_path": proof(cid),
+        "original_observation_id": event,
+        "legacy_test_manifest_sha256": sha(serialized(test_manifest)),
+        "raw_observation_sha256": sha(serialized(observation)),
+        "captured_false_source_sha256": sha(captured),
+        "replayed_false_source_sha256": sha(mutated),
+        "detached_bundle_sha256": None,
+        "mutation_record": mutation,
         "ci_check_run_id": None,
         "independent_review": False,
         "mathematical_acceptance": False,
     }
-    src_bytes = serialized(source)
     compiler = zipped({
         "pos.log": POSITIVE, "neg.log": NEGATIVE,
-        "original.lean": ORIGINAL, "false.lean": FALSE,
+        "original.lean": original, "false.lean": mutated,
     })
+    source["detached_bundle_sha256"] = sha(compiler)
+    src_bytes = serialized(source)
     record = {
         "status": "SOURCE_APPENDED_REPLAYED_UNREVIEWED_NOT_CI_ATTRIBUTED",
         "head_sha": H, "case_id": cid,
@@ -238,7 +296,8 @@ class ExecutedControlValidationTests(unittest.TestCase):
     def test_all_76_genuine_member_shapes_still_unreviewed(self):
         contract, binaries = complete()
         result = validate_executed_controls(H, contract, binaries,
-                                            source=source())
+                                            source=source(),
+                                            original_producers=authentic_original_legacy())
         self.assertEqual(result["source_owner_count"], 76)
         self.assertTrue(result["canonical_routes_bound"])
         self.assertFalse(result["reviewed_positive_selection_bound"])
@@ -282,7 +341,8 @@ class ExecutedControlValidationTests(unittest.TestCase):
         contract, binaries = complete()
         contract["producers"][2]["owners"].pop()
         with self.assertRaises(RealControlError):
-            validate_executed_controls(H, contract, binaries, source=source())
+            validate_executed_controls(H, contract, binaries, source=source(),
+                                       original_producers=authentic_original_legacy())
 
     def test_full_validation_requires_exact_h_route_source(self):
         contract, binaries = complete()
@@ -391,6 +451,61 @@ class ExecutedControlValidationTests(unittest.TestCase):
             row["retained_member_sha256"]["negative_test.stderr"] = sha(
                 b"ok\n" + TEST_OK)
         self.assert_claim_rejected(loose)
+
+
+    def test_true_original_legacy_route_and_capture_is_bound(self):
+        name, members, _, _ = make_legacy("C-01")
+        self.assertEqual(
+            verify_owner("legacy_negative", "C-01", name, members, H,
+                         source(), authentic_original_legacy())["owner_id"],
+            "C-01")
+
+    def test_swapped_legacy_method_rejected_despite_valid_zip_hashes(self):
+        cid = "C-01"
+        name, members, _, _ = make_legacy(cid)
+        row = json.loads(members[name])
+        receipt_name = row["execution_receipt_member"]
+        original = json.loads(members[receipt_name])
+        original["selected_method"] = method("C-02") + "_false"
+        changed = serialized(original)
+        members[receipt_name] = changed
+        row["execution_receipt_sha256"] = sha(changed)
+        members[name] = serialized(row)
+        # The byte-only receipt path does not establish original route.
+        verify_owner("legacy_negative", cid, name, members, H)
+        with self.assertRaises(RealControlError):
+            verify_owner("legacy_negative", cid, name, members, H,
+                         source(), authentic_original_legacy())
+
+    def test_foreign_legacy_original_capture_rejected(self):
+        cid = "C-01"
+        name, members, _, _ = make_legacy(cid)
+        changed = authentic_original_legacy()
+        target = changed["producers"][555]["members"]
+        event = "C-01/test-00/raw_compiler/event-1-000001/source.lean"
+        target[event] = target[
+            "C-02/test-00/raw_compiler/event-1-000001/source.lean"]
+        # Original receipt bytes still pass local ZIP-log checks.
+        verify_owner("legacy_negative", cid, name, members, H)
+        with self.assertRaises(RealControlError):
+            verify_owner("legacy_negative", cid, name, members, H,
+                         source(), changed)
+
+    def test_borrowed_legacy_provider_rejected(self):
+        cid = "C-01"
+        name, members, _, _ = make_legacy(cid)
+        row = json.loads(members[name])
+        receipt_name = row["execution_receipt_member"]
+        original = json.loads(members[receipt_name])
+        original["original_provider_path"] = proof("C-02")
+        changed = serialized(original)
+        members[receipt_name] = changed
+        row["execution_receipt_sha256"] = sha(changed)
+        members[name] = serialized(row)
+        verify_owner("legacy_negative", cid, name, members, H)
+        with self.assertRaises(RealControlError):
+            verify_owner("legacy_negative", cid, name, members, H,
+                         source(), authentic_original_legacy())
 
     def test_original_legacy_packer_20_owners_no_approval(self):
         with tempfile.TemporaryDirectory() as temporary:
