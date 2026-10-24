@@ -87,3 +87,34 @@ The mandatory check remains red until a separately authorized successor
 contract is approved and installed with fresh exact-H CI. The review must
 examine all 25 workflow objects, the two changed integrity files and the
 source execution profile, not just hashes and status labels.
+
+## Corrected v3.1 legacy provenance ordering (source cannot hold future IDs)
+
+A source-controlled exact-H file **cannot contain** the genuine GitHub
+`artifact_id`, `run_id`, or compiler `event-*` that only exist AFTER the
+same frozen-H producer executes. Previous v3.1 proposal erroneously required
+`reviewed_original21_catalog_v31.json` and dynamic
+`reviewed_legacy20_selection_v31.json` as committed inputs. That creates
+an impossible H/source-binding cycle.
+
+The latest staged v3.1 proposal instead:
+1. Requires a source-frozen, explicitly selected **20-case static intent**
+   `legacy20_source_intent_v31.json` (case, test path/method and original
+   provider only), with no future runtime identities.
+2. Runs `pr113_original21_live_catalog.py` AFTER the original 4+9+8 GH
+   checks complete at the SAME H. It authenticates latest successful
+   run/job/check/attempt/artifact SHA and obtains original ZIPs into a detached
+   runtime directory, not the repository.
+3. Runs `pr113_legacy20_runtime_resolution.py` to enumerate actual
+   criterion-owned semantic compiler observations. Several original
+   tests generate more than one false event, so this stage NEVER guesses
+   the first negative automatically. It retains the unreviewed choice report.
+4. **Deliberately fails closed** before the 20 source replays until an
+   independently justified, authenticated DETACHED event-choice input exists.
+   No producer of that reviewed choice has been authorized or implemented,
+   and mathematical review is still required before release.
+
+The first three stages are reviewable source engineering; step four remains
+an explicit open external review/evidence dependency. This proposal itself
+is still completely inactive and cannot satisfy required Research/Archive
+checks until the separate security review/activation contract is fulfilled.

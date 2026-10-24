@@ -22,3 +22,21 @@ The gate reauthenticates 21 original producing ZIPs, all 76 v3.1 role-owned sour
 - Independently submitted source/security and scholarly approval, genuine owner-authorized merge M with exact-M checks, original ZIP archive source and postseal replay, and explicit publication authority have not occurred.
 
 Any activation of a staged workflow or acceptance-map edit changes H and requires fresh exact-head CI, producer receipts, mathematical reviews and artifact verification.
+
+## Exact-H runtime dependency correction
+
+Never commit future GH artifact IDs or compiler event IDs into source H:
+they are generated only when the original CI producers execute. The source
+candidate workflow now keeps only
+`legacy20_source_intent_v31.json` (static test/provider relevance intent)
+under source control. It resolves all 21 producing artifacts at H through
+`pr113_original21_live_catalog.py` into an external checked ZIP catalog;
+then `pr113_legacy20_runtime_resolution.py` emits the unreviewed observed
+event-choice inventory.
+
+Some cases have multiple actual semantic-negative observations. There is
+currently NO authenticated detached reviewer event-choice producer, so
+the staged workflow deliberately blocks before claiming completed 20 legacy
+replays or 76 additional source owners. Human selection must be source-specific
+and its authorization independently attributable—never guessed from a green
+compiler exit.

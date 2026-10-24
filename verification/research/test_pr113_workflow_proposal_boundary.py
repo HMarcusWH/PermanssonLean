@@ -119,7 +119,11 @@ class WorkflowProposalBoundary(unittest.TestCase):
         self.assertIn("claim-true-false11:", source)
         self.assertIn("research/final-mathematical-closure", source)
         self.assertIn("reviewed_claim11_false_sources", source)
-        self.assertIn("reviewed_legacy20_selection_v31.json", source)
+        self.assertIn("legacy20_source_intent_v31.json", source)
+        self.assertIn("pr113_original21_live_catalog.py", source)
+        self.assertIn("pr113_legacy20_runtime_resolution.py", source)
+        self.assertIn("reviewed_legacy20_runtime_event_choices.json", source)
+        self.assertNotIn("reviewed_original21_catalog_v31.json", source)
         self.assertFalse((ROOT / ACTIVE /
                           "pr113-source-controls-v3_1.yml").exists())
 
