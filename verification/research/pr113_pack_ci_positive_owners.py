@@ -17,7 +17,7 @@ import sys
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 INDEX_FORMAT = "Permansson.PR113.AdditionalControlProducerIndex.v1"
-SUMMARY_FORMAT = "Permansson.PR113.OriginalPositiveRoutesCandidate.v1"
+SUMMARY_FORMAT = "Permansson.PR113.Original45PositiveRoutesCandidate.v1"
 RECEIPT_FORMAT = "Permansson.PR113.OriginalCasePositiveCandidate.v1"
 STATUS = "SOURCE_TEST_AND_LEAN_EXECUTED_UNREVIEWED"
 LOGS = ("unittest_stdout.log", "unittest_stderr.log", "source_positive.log")
