@@ -39,6 +39,19 @@ jobs:
           set -euo pipefail
           python3 -B -m unittest discover -s verification/research -p test_pr113_prepare_positive_selection.py -v
           python3 -B -m unittest discover -s verification/research -p test_pr113_pack_ci_positive_owners.py -v
+      - name: Resolve 45 genuine original case routes without acceptance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_prepare_positive_selection.py --head "$GITHUB_SHA" --out "$RUNNER_TEMP/pr113-selection-smoke"
+      - name: Retain candidate original-case route selection
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-positive-selection-unreviewed
+          path: ${{ runner.temp }}/pr113-selection-smoke/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Retain unapproved exact-source QA evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
