@@ -41,6 +41,34 @@ class SuccessorIdentityPolicyTests(unittest.TestCase):
                 self.assertNotEqual(successor.normalize_additive_root_separator(bad),
                                     original)
 
+    def test_real_synthetic_requires_B_H_parent_order_and_exact_H_tree(self):
+        from pathlib import Path
+        from unittest import mock
+        root = Path(".")
+        H = "a" * 40
+        B = successor.PR113_BASE
+        S = "b" * 40
+        def good(*args):
+            return {
+                ("rev-parse", "HEAD"): S,
+                ("rev-parse", H + "^{tree}"): "c" * 40,
+                ("rev-parse", "HEAD^{tree}"): "c" * 40,
+                ("show", "-s", "--format=%P", S): B + " " + H,
+            }[args]
+        with mock.patch.object(inherited, "git_text", side_effect=good):
+            self.assertEqual(successor.check_checkout_identity(root, H),
+                             (S, "c" * 40))
+        def reversed_parent(*args):
+            return H + " " + B if args[0] == "show" else good(*args)
+        with mock.patch.object(inherited, "git_text", side_effect=reversed_parent):
+            with self.assertRaises(inherited.GuardError):
+                successor.check_checkout_identity(root, H)
+        def drifted_tree(*args):
+            return "d" * 40 if args == ("rev-parse", "HEAD^{tree}") else good(*args)
+        with mock.patch.object(inherited, "git_text", side_effect=drifted_tree):
+            with self.assertRaises(inherited.GuardError):
+                successor.check_checkout_identity(root, H)
+
     def test_exact_delta_passes_only_as_candidate(self):
         old, current = fixture()
         result = successor.reconcile(old, current)

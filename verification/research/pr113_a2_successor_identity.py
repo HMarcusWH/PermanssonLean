@@ -121,13 +121,47 @@ def verify_root(repo: Path, old: dict, current: dict) -> None:
            "Research root differs from exact historical A2 import bridge")
 
 
+
+PR113_BASE = "17c315f7df7abf457eb94d393bd526d46da6f6f4"
+
+
+def check_checkout_identity(repo: Path, head: str) -> tuple[str, str]:
+    """Accept exact H or a real ordered [B,H] synthetic merge S, not a label."""
+    checked = original.git_text(repo, "rev-parse", "HEAD")
+    tree_h = original.git_text(repo, "rev-parse", head + "^{tree}")
+    tree_checked = original.git_text(repo, "rev-parse", "HEAD^{tree}")
+    if checked != head:
+        parents = original.git_text(
+            repo, "show", "-s", "--format=%P", checked).split()
+        demand(parents == [PR113_BASE, head],
+               "checked-out S is not a real ordered [B,H] commit")
+    demand(tree_checked == tree_h,
+           "checked-out source tree differs from actual H tree")
+    return checked, tree_h
+
+
+def inspect_successor_repo(repo: Path) -> dict:
+    """Unapproved successor inspection for the actual pinned Lean runtime."""
+    checked = original.git_text(repo, "rev-parse", "HEAD")
+    parents = original.git_text(repo, "show", "-s", "--format=%P", checked).split()
+    head = parents[1] if len(parents) == 2 and parents[0] == PR113_BASE else checked
+    record = audit(repo, head)
+    return {
+        **record,
+        "source_digest": record["head_tree_sha"],
+        "git_head": record["checked_sha"],
+        "git_head_tree": record["head_tree_sha"],
+        "git_status": [],
+        "files": {},
+    }
+
+
 def audit(repo: Path, head: str) -> dict:
     repo = repo.resolve(strict=True)
     demand(SHA.fullmatch(head) is not None, "invalid reviewed head")
     demand(Path(original.git_text(repo, "rev-parse", "--show-toplevel")).resolve()
            == repo, "not a genuine repository root")
-    demand(original.git_text(repo, "rev-parse", "HEAD") == head,
-           "requested H is not checked-out source")
+    checked, current_tree = check_checkout_identity(repo, head)
     demand(original.git_text(repo, "rev-parse",
                              original.BASE + "^{tree}") == original.BASE_TREE,
            "historical PR79 source/tree identity changed")
@@ -157,7 +191,8 @@ def audit(repo: Path, head: str) -> dict:
         "format": FORMAT,
         "status": "SOURCE_IDENTITY_CANDIDATE_NEEDS_INDEPENDENT_SECURITY_REVIEW",
         "head_sha": head,
-        "head_tree_sha": original.git_text(repo, "rev-parse", "HEAD^{tree}"),
+        "checked_sha": checked,
+        "head_tree_sha": current_tree,
         "inherited_baseline": original.BASE,
         "inherited_baseline_tree": original.BASE_TREE,
         "successor_delta": reconciled,
