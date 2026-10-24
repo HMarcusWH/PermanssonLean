@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Permansson detached execution target v1",
+  "type": "object",
+  "required": [
+    "format",
+    "phase",
+    "repository",
+    "pr_number",
+    "branch",
+    "base_sha",
+    "head_sha",
+    "synthetic_sha",
+    "infrastructure_merge_sha"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "Permansson.DetachedExecutionTarget.v1"
+    },
+    "phase": {
+      "enum": [
+        "infrastructure_premerge",
+        "certification_premerge"
+      ]
+    },
+    "repository": {
+      "const": "HMarcusWH/PermanssonLean"
+    },
+    "pr_number": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "branch": {
+      "type": "string",
+      "pattern": "^research/[A-Za-z0-9_./-]+$",
+      "maxLength": 180
+    },
+    "base_sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "head_sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "synthetic_sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "infrastructure_merge_sha": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{40}$"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "phase": {
+            "const": "infrastructure_premerge"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pr_number": {
+            "const": 113
+          },
+          "branch": {
+            "const": "research/final-mathematical-closure"
+          },
+          "base_sha": {
+            "const": "17c315f7df7abf457eb94d393bd526d46da6f6f4"
+          },
+          "infrastructure_merge_sha": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "phase": {
+            "const": "certification_premerge"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pr_number": {
+            "type": "integer",
+            "minimum": 115
+          },
+          "infrastructure_merge_sha": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ]
+}

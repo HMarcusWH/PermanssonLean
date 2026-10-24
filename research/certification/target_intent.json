@@ -1,0 +1,12 @@
+{
+  "format": "Permansson.CertificationTargetIntent.v1",
+  "repository": "HMarcusWH/PermanssonLean",
+  "original_base_sha": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+  "historical_T_sha": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+  "infrastructure_pr": 113,
+  "certification_pr": null,
+  "status": "CERTIFICATION_NOT_YET_BOUND",
+  "independent_security_review": false,
+  "independent_mathematical_review": false,
+  "publication_authorized": false
+}
