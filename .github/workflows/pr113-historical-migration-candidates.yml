@@ -4,6 +4,8 @@
 name: PR113 Historical T and A2 candidates
 
 on:
+  push:
+    branches: [review/pr113-pre-freeze-controls-20261024]
   workflow_dispatch:
 
 permissions:
@@ -31,6 +33,14 @@ jobs:
           python3 -B verification/research/pr113_fast_engineering_preflight.py \
             --head "$GITHUB_SHA" \
             --out "$RUNNER_TEMP/pr113-fast-engineering"
+      - name: Execute new producer and selection adversarial tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s verification/research \\
+            -p test_pr113_prepare_positive_selection.py -v
+          python3 -B -m unittest discover -s verification/research \\
+            -p test_pr113_pack_ci_positive_owners.py -v
       - name: Retain unapproved exact-source QA evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -42,6 +52,7 @@ jobs:
 
   original-T-and-current-H:
     name: historical-T-and-H-unreviewed
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -84,6 +95,7 @@ jobs:
 
   original-A2-and-current-H:
     name: historical-A2-and-H-unreviewed
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 110
     steps:
