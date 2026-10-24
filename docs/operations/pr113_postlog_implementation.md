@@ -175,3 +175,143 @@ missing/stale; any of 259 Lean declarations or 45+11 controls is missing;
 historical source/premise boundaries change without review; independent
 45+11 mathematical approval, exact M, PDF page review, two-clean-build
 evidence or authenticated postseal replay is absent.
+
+
+## October 24 complete engineering implementation: final coding additions
+
+**All changes below are in the draft PR only.** Security authorization,
+independent mathematical acceptance, scholarly publication and merge permission
+are not supplied by coding or a green candidate workflow. The original A2
+and T archived trust check remain fail-closed until reviewed migrations.
+
+### Immediate resolved source/test defects
+
+- test_pr113_a2_successor_identity.py now models the actual
+  git_text(repo, *argv) API, tests valid exact H and synthetic S, reversed
+  parents and wrong source tree. Original verifier untouched.
+- build.py now sets relative TEXINPUTS and BIBINPUTS and copies byte-identical
+  references.bib to the BibTeX working directory. The real earlier PDF-byte
+  comparison found both PDFs and all eight page PNGs equal; only the TeX log
+  hash differed. The old absolute TEXINPUTS caused path strings to be split
+  at the TeX output line width, defeating naive replacement. The new input
+  configuration avoids producing unstable absolute input paths.
+- reproduce_clean_sources.py reports exact field-level manifest differences,
+  first differing normalized/raw log byte and line, raw ZIP member SHA and
+  metadata, page PNG digest changes and SHA256SUMS. It does **not** normalize
+  scientific diagnostics or waive any raw output difference. The actual new
+  two-root clean-paper CI pass still must be verified at final H and M.
+
+### New source-bound execution inputs for all 45 original cases
+
+Code: verification/research/final_closure_positive_route_candidate.py
+
+The caller must supply an external JSON document of format
+Permansson.PR113.OriginalPositiveSelection.v1 containing **45** cases.
+Each entry uses exactly:
+
+    case_id
+    test_path
+    test_class
+    test_method
+    proof_source_path
+
+The selected named path and method must appear in the immutable original
+case registry as COMPILER_SOURCE or EXACT_CHECK. A semantic-negative method
+cannot impersonate an admissible positive. The proof provider must appear in
+that case's historical declarations. The runner checks the actual Git source
+bytes, executes exactly one real unskipped named test, compiles the provider
+with pinned Lean 4.34.0, records raw diagnostics and rechecks both sources.
+
+    python3 verification/research/final_closure_positive_route_candidate.py \
+      --head "$H" --selection /external/positive-45.json \
+      --out /external/pr113/actual-positive-45
+
+A local success is an **unreviewed execution candidate**, with NO real
+producing check-run ID, no independent case review and no acceptance result.
+It must subsequently be executed and attributed via a genuinely approved
+CI producer before producing strict original-case v3 receipts.
+
+### New source-bound controls for all eleven claims
+
+Code: verification/research/final_closure_claim_controls_candidate.py
+
+Provide a detached JSON with format
+Permansson.PR113.ClaimControlSelection.v1 containing exactly eleven
+claim entries, each with:
+
+    claim_id
+    proof_source_path
+    positive_test_path
+    positive_test_class
+    positive_test_method
+    negative_test_path
+    negative_test_class
+    negative_test_method
+
+Every selected path must be in the corresponding immutable claim's source
+registry; positive and negative named methods are distinct. Separately
+provide **one explicit, claim-relevant append-only false Lean file** per ID
+under an external directory, exactly Q1.lean, Q2.lean, Q3.lean, M1.lean,
+M2.lean, M3.lean, N1.lean, N2.lean, N3.lean, D8.lean and D9.lean.
+
+    python3 verification/research/final_closure_claim_controls_candidate.py \
+      --head "$H" --selection /external/claims-11.json \
+      --mutants-root /external/claim-false-sources \
+      --out /external/pr113/actual-claim-controls
+
+The runner uses the genuine exact-H theorem provider bytes, executes both
+selected named tests, compiles true and false Lean sources, rejects nonsemantic
+parser/import/resource errors, retained additions of imports/axioms/sorry,
+and stores every original input and log digest. No mathematical false theorem
+is guessed, and no case label or reviewer/CI stamp is fabricated.
+
+### Strengthened source-acceptance readiness
+
+Code: verification/research/final_closure_v3_source_readiness.py and
+pr113_final_source_readiness.py.
+
+The former rechecks all 259 exact original Lean theorem types, real producing
+check/ZIP member bytes, positive and negative compiler outcomes, all source
+test paths and exact original case method roles. Every case must have a
+distinct COMPILER_SOURCE/EXACT_CHECK positive and SEMANTIC_NEGATIVE negative
+test, and every claim must satisfy its complete path/declaration set and its
+selected positive and negative test-source paths. Unrelated extra methods
+remain invalid even alongside a legitimate route.
+
+The readiness predicate is NOW explicitly separated into
+label_coverage_only and candidate_controls_complete. A label-only complete
+mock NEVER creates full source readiness. A complete source candidate remains
+review pending and cannot set mathematical approval.
+
+### Local fast engineering feedback
+
+Code: verification/research/pr113_fast_engineering_preflight.py
+
+When at an exact clean checkout H, run:
+
+    python3 verification/research/pr113_fast_engineering_preflight.py \
+      --head "$H" --out /external/pr113/fast-qa
+
+It checks actual Python AST for every research and release module and runs
+sixteen separate targeted adversarial test modules (not the real source
+compiler integration). Reports/logs are detached with hashes. This is
+**fast engineering QA only** and never substitutes for required Research
+Lean, A2, original historical archive, 21 source jobs, mathematical reviews
+or postseal CI. No protected workflow changes were made.
+
+### Current execution/approval blockers
+
+- The required original A2 test still enforces the historical twelve
+  protected provider blobs; new successor compilation does not supersede it.
+- The historical T/C archive verifier still requires owner-approved and
+  independently security-reviewed versioned T2 migration.
+- Final H is not frozen for independent reviews; all twelve required check
+  contexts and all 4+9+8 original producer artifacts must be green at the
+  SAME final H before evidence is assembled.
+- The 45 positive and 20 legacy negative executions and the eleven
+  claim-specific false sources need real choices, real execution, authorized
+  producing job identities and independent semantic relevance reviews.
+- reviewer_authority.json remains unconfigured until actual owner
+  authorization, and no independent 45/11 mathematical reviews have been
+  recorded. No real M, final PDF page approval or postseal workflow has
+  been authorized. No merge, tag or publication.
