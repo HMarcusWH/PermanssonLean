@@ -48,6 +48,8 @@ SUITES = (
     "test_pr113_original21_live_catalog.py",
     "test_pr113_legacy20_runtime_resolution.py",
     "test_pr113_workflow_proposal_boundary.py",
+    "test_pr113_release_target.py",
+    "test_pr113_infrastructure_acceptance.py",
 )
 FORMAT = "Permansson.PR113.FastEngineeringPreflight.v1"
 
