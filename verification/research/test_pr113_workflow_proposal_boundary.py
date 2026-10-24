@@ -69,9 +69,12 @@ class WorkflowProposalBoundary(unittest.TestCase):
                              row["git_blob_oid"])
             self.assertIs(row["approved"], False)
             self.assertIs(row["installed"], False)
+            # Changed since baseline: v3.1 controls, and postseal for the
+            # upstream preseal producer success check (P1-13).
             self.assertIs(
                 row["source_unchanged"],
-                Path(old).name != "pr113-source-controls-v3_1.yml")
+                Path(old).name not in ("pr113-source-controls-v3_1.yml",
+                                       "pr113-postseal-replay.yml"))
 
     def test_unreviewed_manifest_cannot_assert_success(self):
         record = source_manifest()

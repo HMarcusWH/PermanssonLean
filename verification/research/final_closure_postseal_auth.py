@@ -8,6 +8,12 @@ actual candidate ZIP and sidecar bytes, and a second full archive replay.
 
 The work order remains BLOCKED until that workflow exists, an independent
 security reviewer approves it, and authentic postmerge evidence is available.
+
+The upstream preseal producer is authenticated in its own right: an artifact
+digest and run ID are not enough, because an `if: always()` upload from a
+failed, cancelled or superseded producer attempt carries an authentic digest.
+Its workflow/job/artifact names below are the proposed P1-12 contract, also
+pending independent security review.
 """
 from __future__ import annotations
 
@@ -24,6 +30,12 @@ from final_closure_producer_bytes import inspect_zip, ProducerBytesError
 WORKFLOW=".github/workflows/pr113-postseal-replay.yml"
 JOB="postseal-archive-replay"
 ARTIFACT="pr113-complete-postseal-candidate"
+UPSTREAM_WORKFLOW=".github/workflows/pr113-preseal-fullscope.yml"
+UPSTREAM_JOB="preseal-fullscope-candidate"
+UPSTREAM_ARTIFACT="pr113-preseal-fullscope-candidate"
+UPSTREAM_EVENTS=("push","workflow_dispatch")
+UPSTREAM_METADATA="upstream_source_artifact.json"
+IDENTITY_KEYS=("run_id","run_attempt","job_id","check_run_id","artifact_id")
 FORMAT="Permansson.PR113.GenuinePostsealCI.v1"
 SHA40=re.compile(r"^[0-9a-f]{40}$")
 SHA256=re.compile(r"^[0-9a-f]{64}$")
@@ -87,77 +99,124 @@ def validate_postseal_payload(members, *, merged, expected_pdf):
            "independent replay of original candidate bytes differs from job")
     return actual
 
+def authentic_producer(ids, merged, *, workflow, job, artifact_name, events):
+    """Authenticate one completed, successful exact-M producer and artifact."""
+    run=live("/actions/runs/"+str(ids["run_id"]))
+    demand(run.get("id")==ids["run_id"] and
+           run.get("head_sha")==merged and
+           run.get("head_branch")=="main" and
+           run.get("event") in events and
+           run.get("run_attempt")==ids["run_attempt"] and
+           run.get("status")=="completed" and
+           run.get("conclusion")=="success" and
+           (run.get("path")==workflow or
+            str(run.get("path","")).endswith("/"+workflow)),
+           "producing workflow not a genuine successful exact-M run: "+job)
+    rows=paginate("/actions/runs/"+str(ids["run_id"])+"/jobs",key="jobs")
+    jobs=[row for row in rows if row.get("id")==ids["job_id"] and
+          row.get("name")==job]
+    demand(len(jobs)==1 and jobs[0].get("run_id")==ids["run_id"] and
+           jobs[0].get("head_sha")==merged and
+           jobs[0].get("run_attempt")==ids["run_attempt"] and
+           jobs[0].get("status")=="completed" and
+           jobs[0].get("conclusion")=="success" and
+           str(jobs[0].get("check_run_url","")).endswith(
+               "/check-runs/"+str(ids["check_run_id"])),
+           "producer job/check is not authentic: "+job)
+    check=live("/check-runs/"+str(ids["check_run_id"]))
+    demand(check.get("id")==ids["check_run_id"] and
+           check.get("head_sha")==merged and
+           check.get("name")==job and
+           check.get("status")=="completed" and
+           check.get("conclusion")=="success" and
+           (check.get("app") or {}).get("slug")=="github-actions",
+           "producing check-run is missing or failed: "+job)
+    artifact=live("/actions/artifacts/"+str(ids["artifact_id"]))
+    digest=artifact.get("digest")
+    demand(artifact.get("id")==ids["artifact_id"] and
+           artifact.get("name")==artifact_name and
+           artifact.get("expired") is False and
+           (artifact.get("workflow_run") or {}).get("id")==ids["run_id"] and
+           (artifact.get("workflow_run") or {}).get("head_sha")==merged and
+           isinstance(digest,str) and digest.startswith("sha256:") and
+           SHA256.fullmatch(digest[7:]),
+           "GitHub authoritative artifact identity missing: "+artifact_name)
+    # The artifacts API has no attempt field: bind the upload to the window
+    # of the authenticated successful job attempt, so an artifact retained
+    # from a failed earlier attempt of the same run is not accepted.
+    stamps=(jobs[0].get("started_at"),artifact.get("created_at"),
+            jobs[0].get("completed_at"))
+    demand(all(isinstance(x,str) and
+               re.fullmatch(r"\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ",x)
+               for x in stamps) and stamps[0]<=stamps[1]<=stamps[2],
+           "artifact was not uploaded by the successful producer attempt: "+
+           artifact_name)
+    return run, digest[7:]
+
+def bind_upstream_metadata(entries, merged, upstream_ids, upstream_digest):
+    """The postseal job must have replayed exactly the authenticated input."""
+    demand(UPSTREAM_METADATA in entries,
+           "postseal job did not retain its upstream artifact identity")
+    try:
+        meta=json.loads(entries[UPSTREAM_METADATA])
+    except (TypeError,UnicodeError,ValueError) as exc:
+        raise PostsealAuthenticationError("invalid upstream metadata JSON") from exc
+    demand(isinstance(meta,dict) and
+           meta.get("id")==upstream_ids["artifact_id"] and
+           meta.get("name")==UPSTREAM_ARTIFACT and
+           meta.get("digest")=="sha256:"+upstream_digest and
+           (meta.get("workflow_run") or {}).get("id")==upstream_ids["run_id"] and
+           (meta.get("workflow_run") or {}).get("head_sha")==merged,
+           "postseal replayed a different upstream preseal artifact")
+
 def authenticate_postseal(merged, expected_pdf, identities, zipped_artifact):
     """Bind archived M/PDF bytes to approved producing-GH job, not a fake flag."""
     demand(isinstance(merged,str) and SHA40.fullmatch(merged) and
            isinstance(expected_pdf,str) and SHA256.fullmatch(expected_pdf) and
            isinstance(identities,dict),
            "postseal needs real merged-M source and PDF identity")
-    for key in ("run_id","run_attempt","job_id","check_run_id","artifact_id"):
+    upstream={key:identities.get("upstream_"+key) for key in IDENTITY_KEYS}
+    for key in IDENTITY_KEYS:
         demand(type(identities.get(key)) is int and identities[key]>0,
                "missing source-bound postseal GitHub identity: "+key)
-    run=live("/actions/runs/"+str(identities["run_id"]))
-    demand(run.get("id")==identities["run_id"] and
-           run.get("head_sha")==merged and
-           run.get("head_branch")=="main" and
-           run.get("event")=="workflow_dispatch" and
-           run.get("run_attempt")==identities["run_attempt"] and
-           run.get("status")=="completed" and
-           run.get("conclusion")=="success" and
-           (run.get("path")==WORKFLOW or
-            str(run.get("path","")).endswith("/"+WORKFLOW)),
-           "postseal producing workflow not a genuine exact-M run")
-    rows=paginate("/actions/runs/"+str(identities["run_id"])+"/jobs",key="jobs")
-    jobs=[row for row in rows if row.get("id")==identities["job_id"] and
-          row.get("name")==JOB]
-    demand(len(jobs)==1 and jobs[0].get("run_id")==identities["run_id"] and
-           jobs[0].get("head_sha")==merged and
-           jobs[0].get("run_attempt")==identities["run_attempt"] and
-           jobs[0].get("status")=="completed" and
-           jobs[0].get("conclusion")=="success" and
-           str(jobs[0].get("check_run_url","")).endswith(
-               "/check-runs/"+str(identities["check_run_id"])),
-           "postseal job/check is not authentic")
-    check=live("/check-runs/"+str(identities["check_run_id"]))
-    demand(check.get("id")==identities["check_run_id"] and
-           check.get("head_sha")==merged and
-           check.get("name")==JOB and
-           check.get("status")=="completed" and
-           check.get("conclusion")=="success" and
-           (check.get("app") or {}).get("slug")=="github-actions",
-           "producing postseal check-run is missing or failed")
-    artifact=live("/actions/artifacts/"+str(identities["artifact_id"]))
-    digest=artifact.get("digest")
-    demand(artifact.get("id")==identities["artifact_id"] and
-           artifact.get("name")==ARTIFACT and
-           artifact.get("expired") is False and
-           (artifact.get("workflow_run") or {}).get("id")==identities["run_id"] and
-           (artifact.get("workflow_run") or {}).get("head_sha")==merged and
-           isinstance(digest,str) and digest.startswith("sha256:") and
-           SHA256.fullmatch(digest[7:]),
-           "GitHub authoritative postseal artifact identity missing")
+        demand(type(upstream[key]) is int and upstream[key]>0,
+               "missing upstream preseal producer identity: "+key)
+    demand(upstream["run_id"]!=identities["run_id"] and
+           upstream["artifact_id"]!=identities["artifact_id"],
+           "postseal cannot be its own upstream preseal producer")
+    upstream_run,upstream_digest=authentic_producer(
+        upstream,merged,workflow=UPSTREAM_WORKFLOW,job=UPSTREAM_JOB,
+        artifact_name=UPSTREAM_ARTIFACT,events=UPSTREAM_EVENTS)
+    run,digest=authentic_producer(
+        identities,merged,workflow=WORKFLOW,job=JOB,
+        artifact_name=ARTIFACT,events=("workflow_dispatch",))
+    stamps=(upstream_run.get("updated_at"),run.get("run_started_at"))
+    demand(all(isinstance(x,str) for x in stamps) and stamps[0]<=stamps[1],
+           "upstream preseal producer had not finished before postseal began")
     raw_path=Path(zipped_artifact)
     demand(raw_path.is_file() and not raw_path.is_symlink() and
            not any(x.is_symlink() for x in raw_path.absolute().parents),
            "postseal evidence artifact is not a regular unsymlinked input")
     raw=raw_path.read_bytes()
-    demand(sha(raw)==digest[7:],
+    demand(sha(raw)==digest,
            "postseal original uploaded ZIP differs from real GitHub digest")
     try:
         entries=inspect_zip(raw)
     except ProducerBytesError as exc:
         raise PostsealAuthenticationError("unsafe postseal ZIP") from exc
+    bind_upstream_metadata(entries,merged,upstream,upstream_digest)
     actual=validate_postseal_payload(
         entries,merged=merged,expected_pdf=expected_pdf)
     return {
         "format":FORMAT,"status":"COMPLETE_ARCHIVE_REPLAY",
         "source_commit_sha":merged,"pdf_sha256":expected_pdf,
-        "artifact_sha256":digest[7:],
+        "artifact_sha256":digest,
         "authenticated_ci_artifact":True,
         "archive_sha256":actual["archive_sha256"],
         "run_id":identities["run_id"],"run_attempt":identities["run_attempt"],
         "job_id":identities["job_id"],"check_run_id":identities["check_run_id"],
         "artifact_id":identities["artifact_id"],
+        "upstream_preseal":{**upstream,"artifact_sha256":upstream_digest},
         "independent_scholarly_approval":False,
         "mathematical_release_approved":False,
     }

@@ -62,6 +62,10 @@ jobs:
           set -euo pipefail
           gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID" \
             > "$RUNNER_TEMP/pr113-upstream-artifact-metadata.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN" \
+            > "$RUNNER_TEMP/pr113-upstream-run.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN/jobs?per_page=100" \
+            > "$RUNNER_TEMP/pr113-upstream-jobs.json"
           gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" \
             > "$RUNNER_TEMP/pr113-upstream-artifact.zip"
           python3 - <<'PY'
@@ -81,6 +85,26 @@ jobs:
           context = meta.get("workflow_run") or {}
           assert context.get("id") == source_run
           assert context.get("head_sha") == merged
+
+          # An authentic digest is not a positive preseal result: an
+          # `if: always()` upload from a failed or superseded attempt has one.
+          run = json.loads((root/"pr113-upstream-run.json").read_text())
+          assert run.get("id") == source_run
+          assert run.get("head_sha") == merged
+          assert run.get("head_branch") == "main"
+          assert run.get("status") == "completed"
+          assert run.get("conclusion") == "success"
+          assert str(run.get("path", "")).endswith(
+              ".github/workflows/pr113-preseal-fullscope.yml")
+          jobs = [job for job in json.loads(
+                      (root/"pr113-upstream-jobs.json").read_text())["jobs"]
+                  if job.get("name") == "preseal-fullscope-candidate"]
+          assert len(jobs) == 1
+          job = jobs[0]
+          assert job.get("run_attempt") == run.get("run_attempt")
+          assert job.get("status") == "completed"
+          assert job.get("conclusion") == "success"
+          assert job["started_at"] <= meta["created_at"] <= job["completed_at"]
 
           allowed = {
               "Permansson_Mathematical_Closure_CANDIDATE.zip",
