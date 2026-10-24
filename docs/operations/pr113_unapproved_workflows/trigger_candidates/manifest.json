@@ -1,0 +1,38 @@
+{
+  "format": "Permansson.PR113.StagedFullProducerTriggerReview.v1",
+  "original_T": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+  "baseline_head": "fbbdb2968e18af5383b9871eb3bd89d36ad0f7fd",
+  "source_head": "FINAL_HEAD_MUST_BE_AUTHENTICATED_AT_REVIEW",
+  "status": "REVIEW_PENDING__ACTIVE_WORKFLOWS_UNCHANGED",
+  "original_requested_producer_jobs": 21,
+  "proposals": [
+    {
+      "active": ".github/workflows/pr113-all-case-compiler.yml",
+      "proposal": "docs/operations/pr113_unapproved_workflows/trigger_candidates/pr113-all-case-compiler.yml",
+      "original_blob": "07791f65c6572ca29ada9a8150a643c51958602f",
+      "proposed_blob": "6b27928aac900274eca4f683b1e209572a3f3d92",
+      "producer_shards": 4,
+      "expected_job": "all-case-compiler"
+    },
+    {
+      "active": ".github/workflows/pr113-all-original-semantic-candidates.yml",
+      "proposal": "docs/operations/pr113_unapproved_workflows/trigger_candidates/pr113-all-original-semantic-candidates.yml",
+      "original_blob": "2027a05a225dd49e92415bcbd81d73755111d5ef",
+      "proposed_blob": "ef79a9c668ebdce2ea2688cdb66b0c02561a03d5",
+      "producer_shards": 9,
+      "expected_job": "semantic-candidate-shard"
+    },
+    {
+      "active": ".github/workflows/pr113-legacy-semantic-evidence.yml",
+      "proposal": "docs/operations/pr113_unapproved_workflows/trigger_candidates/pr113-legacy-semantic-evidence.yml",
+      "original_blob": "6e65891db1239bf87250ff3420e9ea96407353a4",
+      "proposed_blob": "21d7c707d1e90b0b83c69e0402447e5419d8cc91",
+      "producer_shards": 8,
+      "expected_job": "legacy-original-shard"
+    }
+  ],
+  "independent_security_review": false,
+  "owner_approved_installation": false,
+  "mathematical_acceptance": false,
+  "publication_authorized": false
+}
