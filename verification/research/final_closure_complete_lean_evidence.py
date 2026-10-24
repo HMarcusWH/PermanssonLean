@@ -239,6 +239,56 @@ def required_inventory(*, root=ROOT, case_map=None, claim_map=None):
     ]
 
 
+
+# This release's exact selected-scope union was independently inventoried at
+# 259 distinct Lean declarations. A smaller successful subset cannot be
+# promoted into the original 45-case/11-claim source-candidate producer.
+FULL_TARGET_COUNT = 259
+FROZEN_CLAIM_IDS = frozenset((
+    "Q1", "Q2", "Q3", "M1", "M2", "M3",
+    "N1", "N2", "N3", "D8", "D9",
+))
+
+
+def validate_full_release_inventory(entries):
+    """Check the exact global evidence target, not a plausible small subset.
+
+    This does NOT prove any theorem. Real full types, axiom receipts and
+    producer ZIP identities are verified separately by the Lean job and gate.
+    """
+    require(isinstance(entries, list) and len(entries) == FULL_TARGET_COUNT,
+            "full closure compiler requires all 259 original proof targets")
+    keys, fqns, cases, claims = set(), set(), set(), set()
+    for row in entries:
+        require(isinstance(row, dict) and
+                set(row) == {"path", "declaration", "case_ids", "claim_ids"},
+                "malformed original theorem owner")
+        path, fqn = row["path"], row["declaration"]
+        require(isinstance(path, str) and
+                path.startswith("PermanssonResearch/") and
+                path.endswith(".lean") and
+                ".." not in Path(path).parts and
+                isinstance(fqn, str) and "." in fqn,
+                "proof owner missing original source path or qualified Lean name")
+        require((path, fqn) not in keys and fqn not in fqns,
+                "duplicate or borrowed Lean theorem identity")
+        keys.add((path, fqn))
+        fqns.add(fqn)
+        original, claim = row["case_ids"], row["claim_ids"]
+        require(isinstance(original, list) and
+                isinstance(claim, list) and
+                (original or claim) and
+                all(isinstance(x, str) and x for x in original + claim) and
+                len(original) == len(set(original)) and
+                len(claim) == len(set(claim)),
+                "unowned or duplicated theorem owner")
+        cases.update(original)
+        claims.update(claim)
+    require(len(cases) == 45 and claims == FROZEN_CLAIM_IDS,
+            "full release theorem owner map does not cover exactly 45/11")
+    return entries
+
+
 def git_head():
     try:
         return subprocess.check_output(["git", "rev-parse", "HEAD"],
@@ -274,7 +324,7 @@ def export_all(head: str, output: Path, *,
     require(not output.is_relative_to(ROOT.resolve()),
             "compiler logs must be detached from the reviewed checkout")
     manifest = required_inventory()
-    require(len(manifest) > 11, "original proof dependency graph is missing")
+    validate_full_release_inventory(manifest)
     # Even a shard that does not compile a given original theorem must refuse
     # a dirty/shadowed source-owner inventory. Authenticate ALL original paths
     # at this H, not only the declarations assigned to the current worker.
@@ -377,7 +427,7 @@ def main(argv=None):
     args = ap.parse_args(argv)
     try:
         if args.inventory_only:
-            plan = required_inventory()
+            plan = validate_full_release_inventory(required_inventory())
             output = {
                 "status": "SOURCE_CANDIDATE_UNREVIEWED",
                 "proof_targets": len(plan),
