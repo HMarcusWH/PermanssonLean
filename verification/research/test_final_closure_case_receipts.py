@@ -174,6 +174,83 @@ class DetachedCaseReceiptTests(unittest.TestCase):
                     "'Test.Scope.genuine' depends on axioms: " + bad,
                     "Test.Scope.genuine")
 
+    def test_v3_proof_and_positive_negative_test_logs_are_true_producer_bytes(self):
+        """Mocked authenticated source graph; no GitHub or review approval."""
+        source = self.logs
+        record = {
+            "format": "Permansson.PR113.ProducerBytesRevalidated.v1",
+            "head_sha": H,
+            "producers": {
+                911: {
+                    "kind": "compiler", "check_run_id": 811,
+                    "head_sha": H,
+                    "members": {"actual/axiom.log": source["axiom.log"]},
+                },
+                912: {
+                    "kind": "append", "check_run_id": 812,
+                    "head_sha": H,
+                    "members": {
+                        "actual/positive.log": source["positive.log"],
+                        "actual/negative.log": source["negative.log"],
+                        "actual/mutant.lean": source["mutant.lean"],
+                        "actual/original.lean": source["original.lean"],
+                    },
+                },
+            },
+        }
+
+        def bind(row, artifact_id, check_id, names):
+            row = copy.deepcopy(row)
+            row["producer_artifact_id"] = artifact_id
+            row["check_run_id"] = check_id
+            row["producer_member_bindings"] = [
+                {"outer_member": name, "source_member": "actual/" + name}
+                for name in names]
+            return row
+
+        proof = bind(self.proof, 911, 811, ["axiom.log"])
+        proof["compiler_check"] = "pr113-compiler-shard"
+        proof["statement_sha256"] = proof["elaborated_type_sha256"]
+        positive = bind(self.test, 912, 812, ["positive.log"])
+        negative = bind(
+            self.negative, 912, 812,
+            ["positive.log", "negative.log", "mutant.lean", "original.lean"])
+        members = gate.load_detached_bundle(self.bundle, self.bundle_sha)
+        self.assertEqual(
+            gate.validate_compiler_receipt(
+                proof, H, members, self.checks, producer_record=record), "p")
+        self.assertEqual(
+            gate.validate_test_receipt(
+                positive, H, members, self.checks,
+                negative=False, producer_record=record), "t")
+        self.assertEqual(
+            gate.validate_test_receipt(
+                negative, H, members, self.checks,
+                negative=True, producer_record=record), "n")
+        forged = copy.deepcopy(proof)
+        forged["statement_sha256"] = "f"*64
+        with self.assertRaises(gate.EvidenceError):
+            gate.validate_compiler_receipt(
+                forged, H, members, self.checks, producer_record=record)
+        swapped = copy.deepcopy(negative)
+        swapped["producer_artifact_id"] = 911
+        with self.assertRaises(gate.EvidenceError):
+            gate.validate_test_receipt(
+                swapped, H, members, self.checks,
+                negative=True, producer_record=record)
+        stolen = copy.deepcopy(negative)
+        stolen["producer_member_bindings"][0]["source_member"] = "actual/axiom.log"
+        with self.assertRaises(gate.EvidenceError):
+            gate.validate_test_receipt(
+                stolen, H, members, self.checks,
+                negative=True, producer_record=record)
+        incomplete = copy.deepcopy(negative)
+        incomplete["producer_member_bindings"].pop()
+        with self.assertRaises(gate.EvidenceError):
+            gate.validate_test_receipt(
+                incomplete, H, members, self.checks,
+                negative=True, producer_record=record)
+
     def test_wrong_detached_digest_rejected(self):
         with self.assertRaises(gate.EvidenceError):
             gate.load_detached_bundle(self.bundle, "0"*64)
