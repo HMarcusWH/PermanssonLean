@@ -1,0 +1,83 @@
+# Exact-source positive-test producer.  Execution alone is not independent review.
+# Original case decisions, 20 legacy negatives and 11 claim-pairs remain separate.
+name: PR113 Original 45 Positive Source Controls
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr113-original-positives-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  original-45-positive-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Reject stale or dirty source checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$GITHUB_REPOSITORY" = "HMarcusWH/PermanssonLean"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+      - name: Build and axiom-audit the original pinned Lean research source
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Resolve all 45 original source-positive routes, without approval
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_prepare_positive_selection.py \
+            --head "$GITHUB_SHA" \
+            --out "$RUNNER_TEMP/pr113-selection"
+          test -s "$RUNNER_TEMP/pr113-selection/selection_review_pending.json"
+      - name: Actually execute each named unittest and original Lean provider
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/final_closure_positive_route_candidate.py \
+            --head "$GITHUB_SHA" \
+            --selection "$RUNNER_TEMP/pr113-selection/selection.json" \
+            --out "$RUNNER_TEMP/pr113-positive-run"
+      - name: Revalidate log bytes and package 45 source-control owner records
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_pack_ci_positive_owners.py \
+            --head "$GITHUB_SHA" \
+            --run-id "$GITHUB_RUN_ID" \
+            --run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --source "$RUNNER_TEMP/pr113-positive-run" \
+            --output "$RUNNER_TEMP/pr113-positive-artifact"
+          cp "$RUNNER_TEMP/pr113-selection/selection.json" \
+            "$RUNNER_TEMP/pr113-positive-artifact/selection_candidate.json"
+          cp "$RUNNER_TEMP/pr113-selection/selection_review_pending.json" \
+            "$RUNNER_TEMP/pr113-positive-artifact/selection_review_pending.json"
+      - name: Preserve true original evidence, explicitly unreviewed
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-source-positive45-unreviewed
+          path: ${{ runner.temp }}/pr113-positive-artifact/
+          if-no-files-found: warn
+          retention-days: 30
