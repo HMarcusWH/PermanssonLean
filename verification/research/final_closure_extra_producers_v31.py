@@ -265,7 +265,10 @@ def authenticated_extra_controls(head, payload, zip_bytes, *,
         "original_case_positives":45,
         "legacy_case_negatives":20,
         "claim_positive_negative_pairs":11,
-        "source_owned_controls":results,
+        "source_owned_controls":[
+            {"kind":kind,"owner_id":owner,**details}
+            for (kind,owner),details in sorted(results.items())
+        ],
         "schema_security_approved":False,
         "accepted_cases":0,"accepted_claims":0,
         "independent_mathematical_review":False,
