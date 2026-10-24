@@ -352,6 +352,19 @@ def assemble_review_pending(head, original_v3_receipts, original_v3_zip,
          result["schema_security_approved"] is False and
          result["independent_mathematical_review"] is False,
          "additional source CI candidate cannot manufacture approval")
+    # A genuine GitHub check and original ZIP digest are necessary but not
+    # sufficient: the ZIP must actually contain source-positive test/Lean logs,
+    # 20 appended-source semantic negatives and 11 claim true/false pairs.
+    # This is still an execution-evidence candidate, NEVER review or approval.
+    from pr113_v31_execution_integrity import validate_executed_controls
+    real_controls = validate_executed_controls(head, contract, files)
+    need(real_controls["source_owner_count"] == 76 and
+         real_controls["claim_positive_negative_directions"] == 22 and
+         real_controls["independent_review"] is False and
+         real_controls["mathematical_acceptance"] is False,
+         "actual 76 original source-control execution bytes not authenticated")
+    result["actual_execution_member_validation"] = real_controls
+
     out.parent.mkdir(parents=True,exist_ok=True)
     with out.open("x",encoding="utf-8") as writer:
         writer.write(json.dumps(result,sort_keys=True,indent=2)+"\n")
