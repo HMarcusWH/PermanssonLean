@@ -65,6 +65,7 @@ def main(argv=None):
     parser.add_argument("--phase",
                         choices=("premerge", "premerge-full", "full45-strict",
                                  "scoped-release-strict",
+                                 "postmerge-preseal-strict",
                                  "full-release-strict"),
                         required=True)
     parser.add_argument("--receipts", type=Path, required=True)

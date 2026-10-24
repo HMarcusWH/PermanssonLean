@@ -98,15 +98,13 @@ def require_full_source(result: dict, case_ledger: dict,
     }
 
 
-def require_full_release(result: dict, case_ledger: dict, claims: list[dict],
+def require_preseal_release(result: dict, case_ledger: dict, claims: list[dict],
                          case_map: dict, manifest: dict,
                          provenance: dict) -> dict:
-    """Conjoin full math, scholarly PDF, real M and authenticated build/archive.
+    """Require genuine merged M, 45+11 review, PDF and clean-build evidence.
 
-    Provenance MUST be built from external authenticated CI and scholarly
-    attestations, not copied from caller-supplied manifest flags. At present
-    authentication does not provide reproduction/archive evidence: until
-    ENG-08 is wired, this gate intentionally remains closed.
+    A final sealed ZIP does not exist at this phase. No scholarly or CI
+    approval may come from hand-written source JSON. This is NOT a release.
     """
     import re
     source = require_full_source(result, case_ledger, claims, case_map)
@@ -161,8 +159,7 @@ def require_full_release(result: dict, case_ledger: dict, claims: list[dict],
 
     # The final artifact receipts are produced by an independent authenticator,
     # never by copying JSON values from the candidate release manifest.
-    for label, kind in (("reproduction", "TWO_CLEAN_SOURCE_BUILDS"),
-                        ("archive", "COMPLETE_ARCHIVE_REPLAY")):
+    for label, kind in (("reproduction", "TWO_CLEAN_SOURCE_BUILDS"),):
         expected = manifest.get(label + "_evidence_sha256")
         signed = provenance.get(label + "_evidence")
         if (not isinstance(expected, str) or
@@ -176,12 +173,36 @@ def require_full_release(result: dict, case_ledger: dict, claims: list[dict],
             raise EvidenceError("authenticated " + label + " evidence missing")
     return {
         **source,
-        "status": "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY",
+        "status": "POSTMERGE_PRESEAL_READY",
         "actual_merged_main_sha": merged,
         "pdf_sha256": pdf,
         "pdf_page_count": len(pages),
-        "not_yet_release": False,
+        "not_yet_release": True,
     }
+
+
+def require_full_release(result: dict, case_ledger: dict, claims: list[dict],
+                         case_map: dict, manifest: dict,
+                         provenance: dict) -> dict:
+    """Full release only after independently authenticated postseal replay."""
+    import re
+    candidate = require_preseal_release(
+        result, case_ledger, claims, case_map, manifest, provenance)
+    recorded = provenance.get("archive_evidence")
+    expected = manifest.get("archive_evidence_sha256")
+    if (not isinstance(expected, str) or
+        not re.fullmatch(r"[0-9a-f]{64}", expected) or
+        not isinstance(recorded, dict) or
+        recorded.get("status") != "COMPLETE_ARCHIVE_REPLAY" or
+        recorded.get("source_commit_sha") != provenance["M"] or
+        recorded.get("pdf_sha256") != manifest["pdf_sha256"] or
+        recorded.get("artifact_sha256") != expected or
+        recorded.get("authenticated_ci_artifact") is not True):
+        raise EvidenceError(
+            "independently authenticated postseal archive replay is missing")
+    return {**candidate,
+            "status": "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY",
+            "not_yet_release": False}
 
 
 def require_complete_obligation_receipts(

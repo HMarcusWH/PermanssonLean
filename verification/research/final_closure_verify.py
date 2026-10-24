@@ -17,7 +17,10 @@ from final_closure_case_receipts import (
     load_detached_bundle, effective_acceptance,
 )
 from final_closure_schema import validate_overlay
-from final_closure_full_contract import require_full_release, require_complete_obligation_receipts
+from final_closure_full_contract import (
+    require_preseal_release, require_full_release,
+    require_complete_obligation_receipts,
+)
 import post_merge_102_verify as historical_audit
 import re
 import subprocess
@@ -173,7 +176,8 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
     except EvidenceError as exc:
         raise GateError(str(exc)) from exc
     summary = audit()
-    check(scope in {"full45-strict", "scoped-release-strict", "full-release-strict"},
+    check(scope in {"full45-strict", "scoped-release-strict",
+                    "postmerge-preseal-strict", "full-release-strict"},
           "unknown strict acceptance scope")
     check(isinstance(receipts, dict) and
           receipts.get("format") == DETACHED_FORMAT,
@@ -240,10 +244,13 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
               bool(manifest.get("scientific_limitations")) and
               manifest.get("empirical_identification_status") == "NOT_ESTABLISHED",
               "claim/limitation boundaries missing or empirical proof invented")
-    if scope == "full-release-strict":
+    if scope in ("postmerge-preseal-strict", "full-release-strict"):
         try:
             original_map = read_json(NEW / "acceptance_case_source_map.json")
-            full_result = require_full_release(
+            validator = (require_preseal_release
+                         if scope == "postmerge-preseal-strict"
+                         else require_full_release)
+            full_result = validator(
                 result, decisions, inventory["claims"],
                 original_map, manifest, provenance)
             full_result.update(require_complete_obligation_receipts(
@@ -259,6 +266,7 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=("audit", "full45-strict",
                                       "scoped-release-strict",
+                                      "postmerge-preseal-strict",
                                       "full-release-strict"), default="audit")
     ap.add_argument("--receipts", type=Path)
     ap.add_argument("--manifest", type=Path)

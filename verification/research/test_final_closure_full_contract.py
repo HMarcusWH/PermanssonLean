@@ -123,6 +123,14 @@ class FullScopeContractTests(unittest.TestCase):
         }
         # This is explicitly a synthetic contract graph. The real provenance
         # authenticator cannot yet issue these artifacts; no release is claimed.
+        pre = full.require_preseal_release(
+            evidence, cases, claims, selection, manifest, provenance)
+        self.assertEqual(pre["status"], "POSTMERGE_PRESEAL_READY")
+        self.assertTrue(pre["not_yet_release"])
+        without_archive = dict(provenance, archive_evidence=None)
+        self.assertEqual(full.require_preseal_release(
+            evidence, cases, claims, selection, manifest,
+            without_archive)["status"], "POSTMERGE_PRESEAL_READY")
         success = full.require_full_release(
             evidence, cases, claims, selection, manifest, provenance)
         self.assertEqual(success["status"],
