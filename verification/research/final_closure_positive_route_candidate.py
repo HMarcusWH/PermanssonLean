@@ -84,6 +84,14 @@ def parse_selection(payload, case_map):
         require(cid in canon and cid not in chosen,
                 "duplicated/unknown original source case")
         original = canon[cid]
+        require(isinstance(row["test_class"], str) and
+                CLASS.fullmatch(row["test_class"]) is not None and
+                isinstance(row["test_method"], str) and
+                TEST_METHOD.fullmatch(row["test_method"]) is not None and
+                isinstance(row["test_path"], str) and
+                row["test_path"].startswith("verification/research/test_") and
+                row["test_path"].endswith(".py"),
+                "selected original positive class/method/path is malformed")
         matches = [route for route in original.get("test_method_candidates", [])
                    if route.get("path") == row["test_path"] and
                    route.get("method") == row["test_method"] and
