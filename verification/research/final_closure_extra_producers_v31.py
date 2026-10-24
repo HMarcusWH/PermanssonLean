@@ -10,8 +10,11 @@ a distinct authorized security process before a candidate can be checked.
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
+from pathlib import Path
+import sys
 from pathlib import PurePosixPath
 import re
 
@@ -274,3 +277,114 @@ def authenticated_extra_controls(head, payload, zip_bytes, *,
         "independent_mathematical_review":False,
         "full_release_approved":False,
     }
+
+
+def assemble_review_pending(head, original_v3_receipts, original_v3_zip,
+                            additional_contract_file, additional_zip_directory,
+                            proposed_reviewed_workflow_blobs, output):
+    """No local JSON can independently approve a workflow or mathematical claim.
+
+    GH check ownership is revalidated live on both original and additional
+    producers. The reviewed workflow OIDs argument supplies *candidate* source
+    objects only. Actual security signoff remains external to this process.
+    """
+    from final_closure_authenticate import git
+    from final_closure_case_receipts import (
+        ROOT, load_detached_bundle, authenticate_v3_sources,
+    )
+    from final_closure_schema import validate_overlay
+    from final_closure_legacy_semantic_evidence import original_case_map
+    from final_closure_producer_v2_bridge import verified_producer_index
+
+    need(git("rev-parse","HEAD")==head,
+         "control extension must execute in its exact original H checkout")
+    source_root=ROOT.resolve()
+    def external(path, *, directory=False):
+        given=Path(path)
+        need(not given.is_symlink() and not any(
+             p.is_symlink() for p in given.absolute().parents),
+             "source/control evidence cannot use symlinked inputs")
+        value=given.resolve(strict=True)
+        need(not value.is_relative_to(source_root) and
+             not source_root.is_relative_to(value) and
+             (value.is_dir() if directory else value.is_file()),
+             "original control evidence must be external to Git source")
+        return value
+    original_json=external(original_v3_receipts)
+    original_zip=external(original_v3_zip)
+    manifest_path=external(additional_contract_file)
+    zip_dir=external(additional_zip_directory,directory=True)
+    workflow_blobs_path=external(proposed_reviewed_workflow_blobs)
+    out=Path(output)
+    need(not out.is_symlink(),"detached output cannot be symlinked")
+    out=out.resolve()
+    need(not out.exists() and not out.is_relative_to(source_root) and
+         not out.is_relative_to(zip_dir),
+         "new control provenance output must be separate and fresh")
+    original=json.loads(original_json.read_bytes())
+    validate_overlay(original)
+    need(original.get("head_sha")==head and
+         original.get("format")=="Permansson.FinalClosureDetachedReceipts.v3",
+         "missing original strict v3 21-producer receipt")
+    original_members=load_detached_bundle(
+        original_zip,original["evidence_bundle_sha256"])
+    from_original=authenticate_v3_sources(original,head,original_members)
+    byid, legacy=original_case_map(head)
+    claims=json.loads((source_root/"research/paper_closures/post_merge_112/"
+                       "claim_declaration_map.json").read_bytes())
+    expected=expected_controls(byid.keys(),legacy,
+                               [x["claim_id"] for x in claims["claims"]])
+    contract=json.loads(manifest_path.read_bytes())
+    rows=candidate_registry(contract,head,expected)
+    files={}
+    for row in rows:
+        candidate=zip_dir/(str(row["artifact_id"])+".zip")
+        need(candidate.is_file() and not candidate.is_symlink() and
+             candidate.resolve().parent==zip_dir,
+             "original extra control ZIP not found by immutable artifact ID")
+        files[row["artifact_id"]]=candidate.read_bytes()
+    reviewed=json.loads(workflow_blobs_path.read_bytes())
+    result=authenticated_extra_controls(
+        head,contract,files,original_producers=from_original,
+        original_bundle_sha256=original["evidence_bundle_sha256"],
+        expected=expected,reviewed_workflow_blobs=reviewed)
+    need(result["accepted_cases"]==0 and result["accepted_claims"]==0 and
+         result["schema_security_approved"] is False and
+         result["independent_mathematical_review"] is False,
+         "additional source CI candidate cannot manufacture approval")
+    out.parent.mkdir(parents=True,exist_ok=True)
+    with out.open("x",encoding="utf-8") as writer:
+        writer.write(json.dumps(result,sort_keys=True,indent=2)+"\n")
+    return result
+
+
+def main(argv=None):
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--head",required=True)
+    parser.add_argument("--original-v3-receipts",required=True,type=Path)
+    parser.add_argument("--original-v3-zip",required=True,type=Path)
+    parser.add_argument("--additional-contract",required=True,type=Path)
+    parser.add_argument("--additional-zips",required=True,type=Path)
+    parser.add_argument("--reviewed-workflow-blob-candidates",
+                        required=True,type=Path)
+    parser.add_argument("--output",required=True,type=Path)
+    options=parser.parse_args(argv)
+    try:
+        output=assemble_review_pending(
+            options.head,options.original_v3_receipts,
+            options.original_v3_zip,options.additional_contract,
+            options.additional_zips,
+            options.reviewed_workflow_blob_candidates,options.output)
+    except (ControlProducerError,OSError,ValueError,TypeError,KeyError) as exc:
+        print("ADDITIONAL SOURCE CONTROL PRODUCER AUTHENTICATION BLOCKED:",
+              exc,file=sys.stderr)
+        return 2
+    print(json.dumps({"format":output["format"],
+                      "status":output["status"],
+                      "additional_owners":len(output["source_owned_controls"]),
+                      "original_required_producers":21},sort_keys=True))
+    return 0
+
+
+if __name__=="__main__":
+    raise SystemExit(main())

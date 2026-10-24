@@ -31,6 +31,7 @@ SUITES = (
     "test_final_closure_assemble_v3.py",
     "test_final_closure_batch_legacy_replay.py",
     "test_final_closure_producer_bytes.py",
+    "test_final_closure_extra_producers_v31.py",
     "test_final_closure_reproduction_auth.py",
     "test_final_closure_postseal_auth.py",
     "test_final_postseal_replay.py",
