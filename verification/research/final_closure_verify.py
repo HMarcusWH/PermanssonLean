@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 from final_closure_authenticate import verify_source, verify_merged_v2, AuthenticationError
 from final_closure_case_receipts import (
-    FORMAT as DETACHED_FORMAT, EvidenceError,
+    FORMAT as DETACHED_FORMAT, FORMAT_V3 as DETACHED_V3, EvidenceError,
     load_detached_bundle, effective_acceptance,
 )
 from final_closure_schema import validate_overlay
@@ -180,10 +180,14 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
                     "postmerge-preseal-strict", "full-release-strict"},
           "unknown strict acceptance scope")
     check(isinstance(receipts, dict) and
-          receipts.get("format") == DETACHED_FORMAT,
-          "canonical detached receipt v2 required; old flags cannot promote")
+          receipts.get("format") in (DETACHED_FORMAT, DETACHED_V3),
+          "canonical detached v2/v3 receipts required; old flags cannot promote")
     check(receipts.get("phase") == "postmerge_acceptance",
           "postmerge strict acceptance requires actual M")
+    if scope in ("full45-strict", "postmerge-preseal-strict",
+                 "full-release-strict"):
+        check(receipts.get("format") == DETACHED_V3,
+              "full 45/11 scope requires genuine producer-bound v3 receipts")
     try:
         provenance = verify_merged_v2(receipts)
         external = bundle_path or receipts.get("evidence_bundle_path")

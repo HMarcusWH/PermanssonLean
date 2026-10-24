@@ -162,7 +162,7 @@ class FullScopeContractTests(unittest.TestCase):
     def test_premerge_full_gates_full_review_and_requires_no_future_M(self):
         evidence, cases, claims, selection = valid_inputs()
         receipt = {
-            "format": gate.FORMAT, "phase": "premerge_review",
+            "format": gate.FORMAT_V3, "phase": "premerge_review",
             "merged_main_sha": None, "head_sha": "a"*40,
             "evidence_bundle_sha256": "b"*64,
         }

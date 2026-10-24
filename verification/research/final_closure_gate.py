@@ -15,7 +15,7 @@ from final_closure_authenticate import (
     AuthenticationError, verify_premerge,
 )
 from final_closure_case_receipts import (
-    EvidenceError, FORMAT, load_detached_bundle, effective_acceptance,
+    EvidenceError, FORMAT, FORMAT_V3, load_detached_bundle, effective_acceptance,
 )
 from final_closure_verify import (
     GateError, NEW, read_json, strict,
@@ -26,7 +26,7 @@ from final_closure_full_contract import require_full_source, require_complete_ob
 
 def premerge(receipts: dict, bundle: Path, *, full: bool = False):
     validate_overlay(receipts)
-    if receipts.get("format") != FORMAT or \
+    if receipts.get("format") not in (FORMAT, FORMAT_V3) or \
        receipts.get("phase") != "premerge_review" or \
        receipts.get("merged_main_sha") is not None:
         raise GateError("premerge requires detached v2 source, no future M")
@@ -40,6 +40,8 @@ def premerge(receipts: dict, bundle: Path, *, full: bool = False):
         accepted_checks=provenance["checks"],
         approved_review_scopes=provenance["review_scopes"])
     if full:
+        if receipts.get("format") != FORMAT_V3:
+            raise GateError("complete premerge 45/11 requires authenticated v3 producers")
         source_map = read_json(NEW/"acceptance_case_source_map.json")
         full_result = require_full_source(
             verified, decisions, inventory["claims"], source_map)
