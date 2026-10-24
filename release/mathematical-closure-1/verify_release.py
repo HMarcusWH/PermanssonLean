@@ -36,6 +36,9 @@ def main(argv=None):
     ap.add_argument("--reproduction-ids",type=Path)
     ap.add_argument("--postseal-zip",type=Path)
     ap.add_argument("--postseal-ids",type=Path)
+    ap.add_argument("--additional-contract",type=Path)
+    ap.add_argument("--additional-zips",type=Path)
+    ap.add_argument("--workflow-blob-candidates",type=Path)
     a=ap.parse_args(argv)
     try:
         if a.approved_seal:
@@ -63,10 +66,21 @@ def main(argv=None):
             postseal=({"zip_file":a.postseal_zip,
                        "identities":json.loads(a.postseal_ids.read_bytes())}
                       if a.postseal_zip else None)
+            additional=({
+                "additional_contract":a.additional_contract,
+                "additional_zips":a.additional_zips,
+                "workflow_blob_candidates":a.workflow_blob_candidates}
+                if all(x is not None for x in (
+                    a.additional_contract,a.additional_zips,
+                    a.workflow_blob_candidates)) else None)
+            if requested_scope == "full-release-strict":
+                require(additional is not None,
+                        "full release requires all 76 authentic v3.1 producer inputs")
             outcome=strict_closure(receipts,requested_scope,approved,
                                    bundle_path=a.bundle,
                                    reproduction_attachment=reproduction,
-                                   postseal_attachment=postseal)
+                                   postseal_attachment=postseal,
+                                   v31_attachment=additional)
             require(seal["source_commit_sha"]==outcome["source"] and
                     seal["head_sha"]==outcome["frozen_head"] and
                     seal["pdf_sha256"]==approved["pdf_sha256"] and

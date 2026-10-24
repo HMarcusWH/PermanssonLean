@@ -70,7 +70,8 @@ def prepare_approved_manifest(draft_directory: Path, approved: dict):
 
 def seal(draft_directory: Path, approved: dict, receipts: dict,
          evidence_bundle: Path, output: Path, *, full: bool = False,
-         reproduction_attachment: dict | None = None):
+         reproduction_attachment: dict | None = None,
+         v31_attachment: dict | None = None):
     if output.resolve().is_relative_to(ROOT.resolve()):
         raise SealError("release archive output must be detached from checkout")
     if output.resolve().is_relative_to(draft_directory.resolve()):
@@ -81,6 +82,8 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
     accepted_scope = "postmerge-preseal-strict" if full else "scoped-release-strict"
     authentic_input = ({"reproduction_attachment": reproduction_attachment}
                        if reproduction_attachment is not None else {})
+    if v31_attachment is not None:
+        authentic_input["v31_attachment"] = v31_attachment
     result = strict_acceptance(receipts, accepted_scope, approved,
                                bundle_path=evidence_bundle,
                                **authentic_input)
@@ -352,6 +355,9 @@ def main(argv=None):
                     help="require exact-M postmerge preseal 45/11 eligibility; candidate requires separate independent postseal review")
     ap.add_argument("--reproduction-zip", type=Path)
     ap.add_argument("--reproduction-ids", type=Path)
+    ap.add_argument("--additional-contract", type=Path)
+    ap.add_argument("--additional-zips", type=Path)
+    ap.add_argument("--workflow-blob-candidates", type=Path)
     args = ap.parse_args(argv)
     try:
         approved = json.loads(args.approved_claim_manifest.read_text())
@@ -362,9 +368,19 @@ def main(argv=None):
             "zip_file": args.reproduction_zip,
             "identities": json.loads(args.reproduction_ids.read_bytes())}
             if args.reproduction_zip else None)
+        additional = ({
+            "additional_contract": args.additional_contract,
+            "additional_zips": args.additional_zips,
+            "workflow_blob_candidates": args.workflow_blob_candidates}
+            if all(x is not None for x in (
+                args.additional_contract, args.additional_zips,
+                args.workflow_blob_candidates)) else None)
+        if args.full and additional is None:
+            raise SealError("full candidate seal requires authenticated 76-owner v3.1 source inputs")
         outcome = seal(args.draft_dir, approved, receipts,
                        args.bundle, args.out, full=args.full,
-                       reproduction_attachment=external)
+                       reproduction_attachment=external,
+                       v31_attachment=additional)
     except (OSError, ValueError, KeyError, zipfile.BadZipFile) as exc:
         print("APPROVED SEAL BLOCKED:", exc)
         return 2
