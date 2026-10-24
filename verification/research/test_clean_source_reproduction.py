@@ -27,6 +27,41 @@ class CleanSourceRootRebuildTests(unittest.TestCase):
             with self.assertRaises(clean.CleanReproductionError):
                 clean.reproduce_from_clean_source_roots(out, head=H)
 
+    def test_diagnostic_mismatches_never_pass_as_reproducible(self):
+        with tempfile.TemporaryDirectory(prefix="clean-root-negative-") as td:
+            target = Path(td) / "output"
+            completed = []
+            def git(args, cwd):
+                if args == ["rev-parse", "HEAD"]: return H
+                if args == ["rev-parse", "HEAD^{tree}"]: return T
+                if args == ["status", "--porcelain", "--untracked-files=no"]: return ""
+                if args[:2] == ["checkout", "--detach"]: return ""
+                raise AssertionError(args)
+            def run(arguments, *, cwd=None, timeout=600):
+                if len(arguments) > 1 and "build.py" in str(arguments[1]):
+                    dest = Path(arguments[arguments.index("--out")+1])
+                    dest.mkdir(parents=True)
+                    serial = "d"*64 if len(completed) == 0 else "e"*64
+                    completed.append(serial)
+                    (dest / "manifest.lock.json").write_text(json.dumps({
+                        "status": "DRAFT_NOT_ACCEPTED",
+                        "source_commit_sha": H,
+                        "pdf_sha256": serial,
+                        "pdf_page_count": 1,
+                    }))
+                    (dest / "Permansson_Mathematical_Closure_E2E.zip").write_bytes(b"Z")
+                    (dest / "pages").mkdir()
+                return ""
+            with mock.patch.object(clean, "git_object", side_effect=git), \
+                 mock.patch.object(clean, "cmd", side_effect=run):
+                with self.assertRaises(clean.CleanReproductionError) as ctx:
+                    clean.reproduce_from_clean_source_roots(target, head=H)
+            self.assertIn("pdf_sha256", str(ctx.exception))
+            report = json.loads((target/"reproduction_failure.json").read_text())
+            self.assertEqual(report["status"], "TWO_CLEAN_SOURCE_BUILDS_BLOCKED")
+            self.assertIn("pdf_sha256", report["differences"])
+            self.assertFalse(report["scientific_release_approved"])
+
     def test_mock_two_distinct_clones_and_no_approval(self):
         with tempfile.TemporaryDirectory(prefix="clean-root-unit-") as td:
             target = Path(td)/"output"

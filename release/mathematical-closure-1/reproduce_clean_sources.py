@@ -109,7 +109,29 @@ def reproduce_from_clean_source_roots(out: Path, *, head: str,
                             "manifest_sha256": hashlib.sha256(
                                 (output / "manifest.lock.json").read_bytes()).hexdigest()})
     if not results or results[0] != results[1]:
-        raise CleanReproductionError("independent source-root manifests differ")
+        # Report EXACT mismatched fields; do not downgrade byte identity,
+        # turn nondeterminism into a green receipt or erase either build root.
+        fields = sorted(set(results[0]) | set(results[1])) if len(results) == 2 else []
+        mismatches = {
+            field: {"first": results[0].get(field),
+                    "second": results[1].get(field)}
+            for field in fields if results[0].get(field) != results[1].get(field)
+        }
+        failed = {
+            "format": "Permansson.CleanRootMismatchDiagnostic.v1",
+            "status": "TWO_CLEAN_SOURCE_BUILDS_BLOCKED",
+            "source_commit_sha": head,
+            "source_tree_sha": tree,
+            "differences": mismatches,
+            "authenticated_ci_artifact": False,
+            "scientific_release_approved": False,
+        }
+        (out / "reproduction_failure.json").write_text(
+            json.dumps(failed, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8")
+        raise CleanReproductionError(
+            "independent source-root manifests differ: " +
+            json.dumps(mismatches, sort_keys=True))
     comparison = reproduce.compare_artifacts(out / "first", out / "second")
     need(comparison.get("pdf_sha256") == results[0]["pdf_sha256"] and
          comparison.get("zip_sha256") == results[0]["archive_sha256"],
