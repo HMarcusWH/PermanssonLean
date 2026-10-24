@@ -48,23 +48,37 @@ class SuccessorIdentityPolicyTests(unittest.TestCase):
         H = "a" * 40
         B = successor.PR113_BASE
         S = "b" * 40
-        def good(*args):
+        def good(actual_repo, *git_args):
+            self.assertEqual(actual_repo, root)
             return {
                 ("rev-parse", "HEAD"): S,
                 ("rev-parse", H + "^{tree}"): "c" * 40,
                 ("rev-parse", "HEAD^{tree}"): "c" * 40,
                 ("show", "-s", "--format=%P", S): B + " " + H,
-            }[args]
+            }[git_args]
         with mock.patch.object(inherited, "git_text", side_effect=good):
             self.assertEqual(successor.check_checkout_identity(root, H),
                              (S, "c" * 40))
-        def reversed_parent(*args):
-            return H + " " + B if args[0] == "show" else good(*args)
+
+        # A direct exact-H checkout is valid and does not need a synthetic
+        # parent assertion; its tree must still equal the immutable H tree.
+        def direct_h(actual_repo, *git_args):
+            self.assertEqual(actual_repo, root)
+            if git_args == ("rev-parse", "HEAD"):
+                return H
+            return good(actual_repo, *git_args)
+        with mock.patch.object(inherited, "git_text", side_effect=direct_h):
+            self.assertEqual(successor.check_checkout_identity(root, H),
+                             (H, "c" * 40))
+
+        def reversed_parent(actual_repo, *git_args):
+            return H + " " + B if git_args[:1] == ("show",) else good(actual_repo, *git_args)
         with mock.patch.object(inherited, "git_text", side_effect=reversed_parent):
             with self.assertRaises(inherited.GuardError):
                 successor.check_checkout_identity(root, H)
-        def drifted_tree(*args):
-            return "d" * 40 if args == ("rev-parse", "HEAD^{tree}") else good(*args)
+
+        def drifted_tree(actual_repo, *git_args):
+            return "d" * 40 if git_args == ("rev-parse", "HEAD^{tree}") else good(actual_repo, *git_args)
         with mock.patch.object(inherited, "git_text", side_effect=drifted_tree):
             with self.assertRaises(inherited.GuardError):
                 successor.check_checkout_identity(root, H)
