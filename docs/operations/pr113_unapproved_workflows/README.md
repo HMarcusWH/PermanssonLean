@@ -67,3 +67,24 @@ false statements, independent security approval of these YAML bytes,
 successful review of historical T/A2 migrations, final M and publication
 authorization are all STILL OPEN. No full candidate artifact or active
 workflow is created simply by adding this staged file.
+
+## Historical T/T2 dual verifier CI candidate (P0-01)
+
+The additional T2 candidate `pr113-historical-migration-candidates.yml`
+is intentionally **workflow_dispatch only**, not an automatic workflow and
+not a required check. Its T/H dual-verifier job is constrained to the exact
+original research branch and the named `original-T-and-current-H` job.
+The original T checkout runs its *unmodified* offline restoration in an
+actual Linux isolated standalone source context with all GitHub event and
+credential variables removed, while the current H workflow verifier runs in
+the genuine current CI context. This separation avoids falsely presenting an
+old T artifact restoration as the current C archive verification.
+
+The two original source paths, immutable T archive, historical checksums,
+accepted 25 current active workflow inventory, and required
+`archive-reproducibility` context have **not** been edited. A successful
+candidate run is a dossier for owner and independent security review only.
+The mandatory check remains red until a separately authorized successor
+contract is approved and installed with fresh exact-H CI. The review must
+examine all 25 workflow objects, the two changed integrity files and the
+source execution profile, not just hashes and status labels.

@@ -76,7 +76,8 @@ class WorkflowProposalBoundary(unittest.TestCase):
                 row["source_unchanged"],
                 Path(old).name not in ("pr113-source-controls-v3_1.yml",
                                        "pr113-postseal-replay.yml",
-                                       "pr113-preseal-fullscope.yml"))
+                                       "pr113-preseal-fullscope.yml",
+                                       "pr113-historical-migration-candidates.yml"))
 
     def test_unreviewed_manifest_cannot_assert_success(self):
         record = source_manifest()

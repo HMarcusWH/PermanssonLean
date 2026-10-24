@@ -94,10 +94,46 @@ def validate_dual_reports(historical, current, *, T_source, H_source):
         "mathematical_release_approved":False,
     }
 
-def command(argv,cwd,limit=1800):
+def candidate_ci_context(head):
+    """Permit only the manually dispatched, separately named CANDIDATE job.
+
+    This is neither a source-security authorization nor a mandatory CI gate.
+    Historical T itself must run with GitHub context removed (see command()).
+    """
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        return "LOCAL_UNREVIEWED"
+    demand(os.environ.get("GITHUB_REPOSITORY") ==
+               "HMarcusWH/PermanssonLean" and
+           os.environ.get("GITHUB_SHA") == head and
+           os.environ.get("GITHUB_REF") ==
+               "refs/heads/research/final-mathematical-closure" and
+           os.environ.get("GITHUB_EVENT_NAME") ==
+               "workflow_dispatch" and
+           os.environ.get("GITHUB_JOB") ==
+               "original-T-and-current-H" and
+           os.environ.get("GITHUB_WORKFLOW") ==
+               "PR113 Historical T and A2 candidates",
+           "historical verification must execute only in genuine staged candidate job")
+    return "MANUAL_GH_CANDIDATE_UNREVIEWED"
+
+
+def command(argv,cwd,limit=1800, *, historical_artifact=False):
     environment=os.environ.copy()
     for key in ("PYTHONPATH","PYTHONHOME"):
         environment.pop(key,None)
+    if historical_artifact:
+        # Historical offline_smoke rejects standalone replay from CI context.
+        # Do not claim that old T is the current candidate C / required job.
+        # Strip ALL GH event/credential inputs before executing the real
+        # immutable T implementation in its own checkout.
+        environment = {
+            name: value for name,value in environment.items()
+            if not name.startswith(("GITHUB_","GH_","GIT_")) and
+            name != "CI" and
+            not any(token in name.upper() for token in
+                    ("TOKEN","PASSWORD","COOKIE","SECRET","AUTHORIZATION",
+                     "CREDENTIAL","PROXY"))
+        }
     environment["PYTHONDONTWRITEBYTECODE"]="1"
     try:
         result=subprocess.run(argv,cwd=cwd,env=environment,timeout=limit,
@@ -122,8 +158,7 @@ def execute(historical_source,current_source,head,out):
            not output.is_relative_to(historical) and
            not output.is_relative_to(current),
            "archive evidence output must be new, detached and disjoint")
-    demand(os.environ.get("GITHUB_ACTIONS")!="true",
-           "unapproved historical replay cannot impersonate required candidate CI")
+    execution_context=candidate_ci_context(head)
     proposal=tooling_audit(current,head)
     demand(proposal["status"]=="DRAFT_NEEDS_OWNER_AND_INDEPENDENT_SECURITY_REVIEW"
            and proposal["historical_archive_unchanged"] is True and
@@ -141,12 +176,16 @@ def execute(historical_source,current_source,head,out):
     command([sys.executable,"-B","-m","verification.archive.offline_smoke",
              "--supplement",str(supplement),
              "--scratch",str(output/"historical_restore"),
-             "--report",str(original_report)],historical)
+             "--report",str(original_report)],historical,
+            historical_artifact=True)
     command([sys.executable,"-B","-m","verification.integrity.run_tests",
              "--suite","workflow","--report",str(current_report)],current)
     old=json.loads(original_report.read_bytes())
     new=json.loads(current_report.read_bytes())
     receipt=validate_dual_reports(old,new,T_source=T,H_source=head)
+    receipt["candidate_execution_context"]=execution_context
+    receipt["historical_leg_environment"]="NO_GITHUB_EVENT_CONTEXT_STANDALONE_T"
+    receipt["current_leg_environment"]="CURRENT_ACTUAL_H_WORKFLOW_TEST_SUITE"
     receipt["historical_manifest_sha256"]=proposal["historical_manifest_sha256"]
     receipt["reviewed_25_workflow_inventory"]=proposal["current_workflow_file_count"]
     receipt["historical_tooling_diff"]=proposal["changed_canonical_tooling"]

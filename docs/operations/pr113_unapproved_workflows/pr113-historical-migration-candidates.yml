@@ -3,9 +3,8 @@
 # It cannot approve a T2/A2 trust migration, PR merge, or mathematical release.
 name: PR113 Historical T and A2 candidates
 
+# No automatic PR/main execution before author review of the T2 transition.
 on:
-  push:
-    branches: [review/pr113-pre-freeze-controls-20261024]
   workflow_dispatch:
 
 permissions:

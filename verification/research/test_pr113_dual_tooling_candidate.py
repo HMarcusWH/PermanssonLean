@@ -1,6 +1,8 @@
 """Dual T/H report regression tests; mocks NEVER simulate real archive approval."""
 import copy
 import unittest
+from unittest import mock
+from types import SimpleNamespace
 import pr113_dual_tooling_candidate as dual
 
 T=dual.T
@@ -67,6 +69,93 @@ class DualToolingTests(unittest.TestCase):
             now[field]=changed
             with self.subTest(field=field), self.assertRaises(dual.DualToolingError):
                 dual.validate_dual_reports(old,now,T_source=T,H_source=H)
+
+    def test_real_manual_candidate_job_may_run_without_authorizing_archive(self):
+        context = {
+            "GITHUB_ACTIONS": "true",
+            "GITHUB_REPOSITORY": "HMarcusWH/PermanssonLean",
+            "GITHUB_SHA": H,
+            "GITHUB_REF": "refs/heads/research/final-mathematical-closure",
+            "GITHUB_EVENT_NAME": "workflow_dispatch",
+            "GITHUB_JOB": "original-T-and-current-H",
+            "GITHUB_WORKFLOW": "PR113 Historical T and A2 candidates",
+        }
+        with mock.patch.dict(dual.os.environ, context, clear=True):
+            self.assertEqual(
+                dual.candidate_ci_context(H),
+                "MANUAL_GH_CANDIDATE_UNREVIEWED")
+            for key, value in (
+                ("GITHUB_SHA", "b" * 40),
+                ("GITHUB_REF", "refs/heads/main"),
+                ("GITHUB_EVENT_NAME", "push"),
+                ("GITHUB_JOB", "archive-reproducibility"),
+                ("GITHUB_WORKFLOW", "Research integrity"),
+                ("GITHUB_REPOSITORY", "someone/else"),
+            ):
+                with self.subTest(key=key):
+                    with mock.patch.dict(dual.os.environ, {key: value}):
+                        with self.assertRaises(dual.DualToolingError):
+                            dual.candidate_ci_context(H)
+
+    def test_local_invocation_remains_unapproved(self):
+        with mock.patch.dict(dual.os.environ,
+                             {"GITHUB_ACTIONS": ""}, clear=True):
+            self.assertEqual(dual.candidate_ci_context(H),
+                             "LOCAL_UNREVIEWED")
+
+    def test_historical_original_process_has_no_ci_or_secret_inheritance(self):
+        context = {
+            "GITHUB_ACTIONS": "true",
+            "GITHUB_SHA": H,
+            "GITHUB_TOKEN": "not-for-historical-T",
+            "GH_TOKEN": "not-for-historical-T",
+            "GIT_CONFIG_GLOBAL": "test",
+            "CI": "true",
+            "CLOUD_SECRET": "test",
+            "HTTPS_PROXY": "http://proxy.invalid",
+            "PYTHONPATH": "forbidden_current_H_import",
+            "PATH": "/usr/bin",
+        }
+        fake = SimpleNamespace(returncode=0, stdout="PASS", stderr="")
+        with mock.patch.dict(dual.os.environ, context, clear=True):
+            with mock.patch.object(dual.subprocess, "run", return_value=fake) as run:
+                dual.command(["python", "-B", "-m",
+                              "verification.archive.offline_smoke"], "/tmp/T",
+                             historical_artifact=True)
+                environment = run.call_args.kwargs["env"]
+        self.assertNotIn("GITHUB_ACTIONS", environment)
+        self.assertNotIn("GITHUB_SHA", environment)
+        self.assertNotIn("GITHUB_TOKEN", environment)
+        self.assertNotIn("GH_TOKEN", environment)
+        self.assertNotIn("GIT_CONFIG_GLOBAL", environment)
+        self.assertNotIn("CI", environment)
+        self.assertNotIn("CLOUD_SECRET", environment)
+        self.assertNotIn("HTTPS_PROXY", environment)
+        self.assertNotIn("PYTHONPATH", environment)
+        self.assertEqual(environment["PYTHONDONTWRITEBYTECODE"], "1")
+        self.assertEqual(environment["PATH"], "/usr/bin")
+
+    def test_current_H_verifier_does_not_borrow_standalone_T_environment(self):
+        context = {"GITHUB_ACTIONS": "true", "GITHUB_SHA": H,
+                   "GITHUB_EVENT_NAME": "workflow_dispatch",
+                   "PYTHONPATH": "untrusted-import"}
+        fake = SimpleNamespace(returncode=0, stdout="PASS", stderr="")
+        with mock.patch.dict(dual.os.environ, context, clear=True):
+            with mock.patch.object(dual.subprocess, "run", return_value=fake) as run:
+                dual.command(["python", "-B", "-m",
+                              "verification.integrity.run_tests"], "/tmp/H")
+                environment = run.call_args.kwargs["env"]
+        self.assertEqual(environment["GITHUB_ACTIONS"], "true")
+        self.assertEqual(environment["GITHUB_SHA"], H)
+        self.assertNotIn("PYTHONPATH", environment)
+
+    def test_failed_historical_T_subprocess_stays_red_not_approved(self):
+        fake = SimpleNamespace(returncode=3, stdout="historical: BLOCKED",
+                               stderr="E_OFFLINE_UNAVAILABLE")
+        with mock.patch.object(dual.subprocess, "run", return_value=fake):
+            with self.assertRaisesRegex(dual.DualToolingError, "exited 3"):
+                dual.command(["python", "-m", "verification.archive.offline_smoke"],
+                             "/tmp/T", historical_artifact=True)
 
     def test_unexecuted_current_workflow_or_dirty_source_rejected(self):
         for key,value in [("status","FAIL"),
