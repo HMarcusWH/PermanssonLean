@@ -7,6 +7,17 @@
 \usetikzlibrary{positioning,arrows.meta}
 \usepackage[hidelinks]{hyperref}
 \usepackage[round]{natbib}
+
+% pdfTeX derives its PDF trailer /ID from the absolute output-directory
+% pathname even with SOURCE_DATE_EPOCH. Two exact Git source roots must not
+% produce different PDF bytes solely because their temporary roots differ.
+% This fixed release-profile PDF ID has NO scholarly or mathematical meaning;
+% the complete PDF SHA-256 (not the trailer ID) identifies the actual paper.
+% Other TeX engines require their own independently verified release profiles.
+\ifdefined\pdftrailerid
+  \pdftrailerid{<5045524D414E53534F4E2D4D41544821> <5045524D414E53534F4E2D4D41544821>}
+\fi
+
 \newtheorem{remark}{Remark}[section]
 \newcommand{\code}[1]{\texttt{\detokenize{#1}}}
 \newcommand{\Warning}{\textbf{DRAFT --- NOT ACCEPTED}}

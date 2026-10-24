@@ -62,6 +62,17 @@ class CleanSourceRootRebuildTests(unittest.TestCase):
             self.assertIn("pdf_sha256", report["differences"])
             self.assertFalse(report["scientific_release_approved"])
 
+    def test_fixed_pdftex_trailer_identity_is_explicit_and_source_bound(self):
+        """Different output-root paths must not randomize the PDF backend ID."""
+        preamble = (clean.ROOT / "research_papers/mathematical_closure" /
+                    "preamble.tex").read_text(encoding="utf-8")
+        self.assertIn(r"\ifdefined\pdftrailerid", preamble)
+        self.assertIn(
+            r"\pdftrailerid{<5045524D414E53534F4E2D4D41544821> "
+            r"<5045524D414E53534F4E2D4D41544821>}",
+            preamble)
+        self.assertIn(r"\fi", preamble)
+
     def test_mock_two_distinct_clones_and_no_approval(self):
         with tempfile.TemporaryDirectory(prefix="clean-root-unit-") as td:
             target = Path(td)/"output"
