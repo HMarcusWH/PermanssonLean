@@ -45,10 +45,12 @@ def fixture():
             urls[f"/actions/runs/{run}"]={
                 "id":run,"head_sha":H,"run_attempt":1,
                 "status":"completed","conclusion":"success",
-                "event":"push","path":spec["workflow"]}
+                "event":"push","path":spec["workflow"],
+                "head_branch":"research/final-mathematical-closure"}
             jobs[run]=[{
                 "id":job, "name":spec["job"]+f" ({shard})",
-                "head_sha":H,"run_attempt":1,"conclusion":"success",
+                "head_sha":H,"run_attempt":1,"run_id":run,
+                "status":"completed","conclusion":"success",
                 "check_run_url":f"https://api.github.com/repos/HMarcusWH/PermanssonLean/check-runs/{check}"}]
             urls[f"/check-runs/{check}"]={
                 "id":check,"head_sha":H,"name":spec["job"]+f" ({shard})",
@@ -93,6 +95,18 @@ class ProducerByteTests(unittest.TestCase):
                     (unit.ProducerBytesError,ValueError)):
                 self.execute(change)
 
+    def test_wrong_workflow_branch_or_incomplete_job_rejected(self):
+        faults=[
+            lambda a,b,c,d:c["/actions/runs/10001"].update(
+                head_branch="untrusted-branch"),
+            lambda a,b,c,d:d[10001][0].update(status="queued"),
+            lambda a,b,c,d:d[10001][0].update(run_id=10002),
+        ]
+        for idx,change in enumerate(faults):
+            with self.subTest(idx=idx),self.assertRaises(
+                    (unit.ProducerBytesError,ValueError)):
+                self.execute(change)
+
     def test_altered_receipt_member_and_borrowed_ids_reject(self):
         record=self.execute()
         for check,hash_ in [(30002,unit.sha(b"actual source evidence")),
@@ -104,6 +118,7 @@ class ProducerByteTests(unittest.TestCase):
         for contents in [
             {"../bad":b"x"},{"../bad2":b"x"},
             {"dir/FILE":b"x","dir/file":b"x"},
+            {"same":b"file","same/child":b"invalid ancestor"},
         ]:
             with self.subTest(contents=list(contents)),self.assertRaises(
                     unit.ProducerBytesError):

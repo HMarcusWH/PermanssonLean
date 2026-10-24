@@ -46,8 +46,16 @@ def inspect_zip(raw):
                 total += row.file_size
                 demand(row.file_size <= 4*1024*1024 and total <= 64*1024*1024,
                        "unbounded producer archive expansion")
+            for name in seen:
+                segments = name.split("/")
+                demand(not any("/".join(segments[:i]) in seen
+                               for i in range(1, len(segments))),
+                       "producer ZIP member shadows path ancestor")
             for row in rows:
-                result[row.filename] = z.read(row)
+                content = z.read(row)
+                demand(len(content) == row.file_size,
+                       "ZIP member decompression length mismatch")
+                result[row.filename] = content
     except (OSError, zipfile.BadZipFile, RuntimeError) as exc:
         raise ProducerBytesError("invalid producer archive") from exc
     return result
@@ -72,7 +80,9 @@ def authenticate(head, attestations, zip_bytes):
                run.get("status") == "completed" and
                run.get("conclusion") == "success" and
                run.get("event") in ("push", "workflow_dispatch") and
-               str(run.get("path","")).endswith(spec["workflow"]),
+               run.get("head_branch") == "research/final-mathematical-closure" and
+               (run.get("path") == spec["workflow"] or
+                str(run.get("path", "")).endswith("/" + spec["workflow"])),
                "GitHub producer workflow identity not authenticated")
         jobs = paginate("/actions/runs/"+str(row["run_id"])+"/jobs", key="jobs")
         expected_name = spec["job"] + f" ({shard})"
@@ -82,6 +92,8 @@ def authenticate(head, attestations, zip_bytes):
         demand(len(matched) == 1 and
                matched[0].get("head_sha") == head and
                matched[0].get("run_attempt") == row["run_attempt"] and
+               matched[0].get("run_id") == row["run_id"] and
+               matched[0].get("status") == "completed" and
                matched[0].get("conclusion") == "success" and
                str(matched[0].get("check_run_url","")).endswith(
                    "/check-runs/" + str(row["actual_check_run_id"])),
