@@ -10,21 +10,32 @@ import json
 from pathlib import Path
 import sys
 import zipfile
-from seal_approved import verify_approved_archive, SealError
+from seal_approved import verify_approved_archive, SealError, ROOT as ROOT_DIR
 
 FORMAT = "Permansson.MathClosure.PostsealReplayCandidate.v1"
 
 def sha(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
 
+def no_symlink_input(raw: Path, *, exists: bool) -> Path:
+    """Check each unresolved path component before any symlink resolution."""
+    raw = Path(raw).absolute()
+    if ".." in raw.parts or any(component.is_symlink()
+                                for component in (raw, *raw.parents)):
+        raise SealError("symlinked or parent-traversing release path")
+    resolved = raw.resolve(strict=exists)
+    if exists and (not resolved.is_file() or resolved.is_symlink()):
+        raise SealError("actual regular release input missing")
+    return resolved
+
+
 def replay(archive: Path, sidecar: Path, output: Path) -> dict:
-    archive = archive.resolve(strict=True)
-    sidecar = sidecar.resolve(strict=True)
-    output = output.resolve()
-    if (archive.is_symlink() or not archive.is_file() or
-        sidecar.is_symlink() or not sidecar.is_file() or
-        output.exists() or output.is_relative_to(archive.parent)):
-        raise SealError("need real candidate, safe sidecar, new detached replay output")
+    archive = no_symlink_input(archive, exists=True)
+    sidecar = no_symlink_input(sidecar, exists=True)
+    output = no_symlink_input(output, exists=False)
+    if (output.exists() or output.is_relative_to(archive.parent) or
+            output.is_relative_to(ROOT_DIR)):
+        raise SealError("replay output must be new and detached from source/candidate")
     with zipfile.ZipFile(archive) as z:
         seal_bytes = z.read("approved_seal.json")
         manifest = json.loads(seal_bytes)
@@ -54,8 +65,8 @@ def replay(archive: Path, sidecar: Path, output: Path) -> dict:
         "full_release_approved": False,
     }
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(result, sort_keys=True, indent=2) + "\n",
-                      encoding="utf-8")
+    with output.open("x", encoding="utf-8") as writer:
+        writer.write(json.dumps(result, sort_keys=True, indent=2) + "\n")
     return result
 
 def main(argv=None):

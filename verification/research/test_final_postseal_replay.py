@@ -47,6 +47,30 @@ class PostsealTests(unittest.TestCase):
         self.assertFalse(result["full_release_approved"])
         self.assertEqual(result["status"], "CANDIDATE_ARCHIVE_REPLAYED_UNREVIEWED")
 
+    def test_original_input_symlinks_and_ancestor_links_fail_closed(self):
+        other = self.folder / "alias.zip"
+        other.symlink_to(self.archive)
+        with mock.patch.object(replay, "verify_approved_archive", return_value=True):
+            with self.assertRaises(SealError):
+                replay.replay(other, self.sidecar, self.out)
+        other.unlink()
+        sidecar_alias = self.folder / "alias.sha256"
+        sidecar_alias.symlink_to(self.sidecar)
+        with mock.patch.object(replay, "verify_approved_archive", return_value=True):
+            with self.assertRaises(SealError):
+                replay.replay(self.archive, sidecar_alias, self.out)
+        sidecar_alias.unlink()
+        parent_alias = self.folder.parent / "alias-dir"
+        parent_alias.symlink_to(self.folder, target_is_directory=True)
+        with mock.patch.object(replay, "verify_approved_archive", return_value=True):
+            with self.assertRaises(SealError):
+                replay.replay(parent_alias / self.archive.name,
+                              self.sidecar, self.out)
+            with self.assertRaises(SealError):
+                replay.replay(self.archive, self.sidecar,
+                              parent_alias / "replay.json")
+        self.assertFalse(self.out.exists())
+
     def test_wrong_sidecar_fails(self):
         self.sidecar.write_text("bad checksum\n")
         with mock.patch.object(replay, "verify_approved_archive", return_value=True):
