@@ -126,6 +126,22 @@ class WorkflowProposalBoundary(unittest.TestCase):
         self.assertNotIn("reviewed_original21_catalog_v31.json", source)
         self.assertFalse((ROOT / ACTIVE /
                           "pr113-source-controls-v3_1.yml").exists())
+        # The observer must exit successfully and store the real survey.
+        # A separate explicit, independently reviewed resume consumes it.
+        self.assertIn("original-legacy20-replay:", source)
+        self.assertIn("if: github.event_name == 'workflow_dispatch'", source)
+        self.assertIn("pr113_legacy20_choice_delivery.py", source)
+        self.assertIn("survey_artifact_id:", source)
+        self.assertIn("review_comment_id:", source)
+        observer = source.split("  original-legacy20:", 1)[1].split(
+            "  original-legacy20-replay:", 1)[0]
+        self.assertNotIn("test -s \"$RUNNER_TEMP/reviewed_legacy20_runtime_event_choices.json\"",
+                         observer)
+        self.assertIn("pr113-v31-legacy20-observation-candidates", observer)
+        self.assertIn("Retain observed actual events", observer)
+        self.assertIn("reviewed_legacy20_runtime_event_choices.json",
+                      source.split("  original-legacy20-replay:", 1)[1])
+
 
 
 if __name__ == "__main__":

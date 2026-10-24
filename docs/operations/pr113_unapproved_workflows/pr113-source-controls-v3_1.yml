@@ -10,7 +10,33 @@ on:
       - "verification/research/**"
       - "research/paper_closures/post_merge_112/**"
       - "PermanssonResearch/**"
+  # Deliberate resumed execution after genuine observation and reviewer choice.
+  # This staged workflow cannot be dispatched until a separate authorized
+  # default-branch registration exists; no run/decision IDs are precommitted.
   workflow_dispatch:
+    inputs:
+      source_head:
+        description: Exact already-frozen PR source H
+        required: true
+        type: string
+      survey_run_id:
+        required: true
+        type: string
+      survey_run_attempt:
+        required: true
+        type: string
+      survey_job_id:
+        required: true
+        type: string
+      survey_check_run_id:
+        required: true
+        type: string
+      survey_artifact_id:
+        required: true
+        type: string
+      review_comment_id:
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -22,6 +48,7 @@ concurrency:
 
 jobs:
   original-positive45:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 360
     steps:
@@ -70,6 +97,7 @@ jobs:
           retention-days: 30
 
   original-legacy20:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 360
     steps:
@@ -134,45 +162,126 @@ jobs:
           path: ${{ runner.temp }}/legacy20-observed/
           if-no-files-found: warn
           retention-days: 30
-      - name: Execute twenty replays ONLY from independently selected detached real events
+  # A separate manually resumed run binds reviewer input AFTER original CI and
+  # AFTER a successful observation survey. No human input is awaited by a
+  # runner, and no source edit supplies runtime IDs. No self-approval.
+  original-legacy20-replay:
+    if: github.event_name == 'workflow_dispatch'
+    name: legacy20-source-review-replay
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - name: Bind actual frozen Git checkout and external runtime IDs
+        shell: bash
+        env:
+          SOURCE_HEAD: ${{ inputs.source_head }}
+          SURVEY_RUN: ${{ inputs.survey_run_id }}
+          SURVEY_ATTEMPT: ${{ inputs.survey_run_attempt }}
+          SURVEY_JOB: ${{ inputs.survey_job_id }}
+          SURVEY_CHECK: ${{ inputs.survey_check_run_id }}
+          SURVEY_ARTIFACT: ${{ inputs.survey_artifact_id }}
+          REVIEW_COMMENT: ${{ inputs.review_comment_id }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "HMarcusWH/PermanssonLean"
+          test "$GITHUB_REF" = "refs/heads/research/final-mathematical-closure"
+          test "$GITHUB_SHA" = "$SOURCE_HEAD"
+          test "$(git rev-parse HEAD)" = "$SOURCE_HEAD"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          [[ "$SOURCE_HEAD" =~ ^[a-f0-9]{40}$ ]]
+          for id in "$SURVEY_RUN" "$SURVEY_ATTEMPT" "$SURVEY_JOB" "$SURVEY_CHECK" "$SURVEY_ARTIFACT" "$REVIEW_COMMENT"; do
+            [[ "$id" =~ ^[1-9][0-9]*$ ]]
+          done
+          test "$SURVEY_RUN" != "$GITHUB_RUN_ID"
+      - name: Build original research/axioms at frozen H
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Download exact original observed survey and authorized reviewer choices
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SURVEY_RUN: ${{ inputs.survey_run_id }}
+          SURVEY_ATTEMPT: ${{ inputs.survey_run_attempt }}
+          SURVEY_JOB: ${{ inputs.survey_job_id }}
+          SURVEY_CHECK: ${{ inputs.survey_check_run_id }}
+          SURVEY_ARTIFACT: ${{ inputs.survey_artifact_id }}
+          REVIEW_COMMENT: ${{ inputs.review_comment_id }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$SURVEY_ARTIFACT/zip" \
+            > "$RUNNER_TEMP/pr113-real-survey.zip"
+          test -s "$RUNNER_TEMP/pr113-real-survey.zip"
+          python3 -B verification/research/pr113_legacy20_choice_delivery.py \
+            --head "$GITHUB_SHA" \
+            --survey-zip "$RUNNER_TEMP/pr113-real-survey.zip" \
+            --run-id "$SURVEY_RUN" --run-attempt "$SURVEY_ATTEMPT" \
+            --job-id "$SURVEY_JOB" --check-run-id "$SURVEY_CHECK" \
+            --artifact-id "$SURVEY_ARTIFACT" \
+            --review-comment-id "$REVIEW_COMMENT" \
+            --out "$RUNNER_TEMP/pr113-authenticated-legacy-event-choices"
+      - name: Reauthenticate all 21 original producers and resolve chosen captured events
         shell: bash
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          # The detached selection is absent until a real independent
-          # reviewer chooses exact observed event IDs AFTER original CI.
-          # Future reviewed producer must supply the authenticated external
-          # input WITHOUT mutating frozen H. No first-negative fallback.
-          test -s "$RUNNER_TEMP/reviewed_legacy20_runtime_event_choices.json"
+          python3 -B verification/research/pr113_original21_live_catalog.py \
+            --head "$GITHUB_SHA" --out "$RUNNER_TEMP/pr113-resumed-original21"
+          python3 -B verification/research/final_closure_producer_catalog.py \
+            --head "$GITHUB_SHA" \
+            --catalog "$RUNNER_TEMP/pr113-resumed-original21/original21_catalog.json" \
+            --output "$RUNNER_TEMP/pr113-resumed-catalog"
           python3 -B verification/research/pr113_legacy20_runtime_resolution.py \
             --head "$GITHUB_SHA" \
             --intent research/paper_closures/post_merge_112/legacy20_source_intent_v31.json \
-            --catalog-dir "$RUNNER_TEMP/original21-catalog" \
-            --producer-zips "$RUNNER_TEMP/original21-input" \
-            --detached-event-choice "$RUNNER_TEMP/reviewed_legacy20_runtime_event_choices.json" \
-            --out "$RUNNER_TEMP/legacy20-reviewed-route"
+            --catalog-dir "$RUNNER_TEMP/pr113-resumed-catalog" \
+            --producer-zips "$RUNNER_TEMP/pr113-resumed-original21" \
+            --detached-event-choice "$RUNNER_TEMP/pr113-authenticated-legacy-event-choices/reviewed_legacy20_runtime_event_choices.json" \
+            --out "$RUNNER_TEMP/pr113-reviewed-legacy20-route"
+      - name: Execute original-selected twenty append-only Lean semantic replays
+        shell: bash
+        run: |
+          set -euo pipefail
           python3 -B verification/research/final_closure_batch_legacy_replay.py \
             --head "$GITHUB_SHA" \
-            --catalog-dir "$RUNNER_TEMP/original21-catalog" \
-            --producer-zips "$RUNNER_TEMP/original21-input" \
-            --selection "$RUNNER_TEMP/legacy20-reviewed-route/legacy20_runtime_selection.json" \
-            --out "$RUNNER_TEMP/legacy20-real"
+            --catalog-dir "$RUNNER_TEMP/pr113-resumed-catalog" \
+            --producer-zips "$RUNNER_TEMP/pr113-resumed-original21" \
+            --selection "$RUNNER_TEMP/pr113-reviewed-legacy20-route/legacy20_runtime_selection.json" \
+            --out "$RUNNER_TEMP/pr113-resumed-legacy20-real"
           python3 -B verification/research/pr113_pack_ci_remaining_owners.py \
             --head "$GITHUB_SHA" --kind legacy_negative \
             --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" \
-            --source "$RUNNER_TEMP/legacy20-real" \
-            --output "$RUNNER_TEMP/legacy20-owner-index"
-      - name: Retain twenty original-source true/false Lean controls
+            --source "$RUNNER_TEMP/pr113-resumed-legacy20-real" \
+            --output "$RUNNER_TEMP/pr113-resumed-legacy20-owner-index"
+      - name: Retain original source-owned twenty real replays without certification
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: pr113-v31-legacy20
-          path: ${{ runner.temp }}/legacy20-owner-index/
+          path: |
+            ${{ runner.temp }}/pr113-resumed-legacy20-owner-index/
+            ${{ runner.temp }}/pr113-authenticated-legacy-event-choices/choice_transport.json
           if-no-files-found: warn
           retention-days: 30
 
   claim-true-false11:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 360
     steps:
