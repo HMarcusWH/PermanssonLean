@@ -114,6 +114,18 @@ jobs:
             --archive "$RUNNER_TEMP/pr113-original-candidate/Permansson_Mathematical_Closure_CANDIDATE.zip" \
             --sidecar "$RUNNER_TEMP/pr113-original-candidate/SHA256SUMS.txt" \
             --output "$RUNNER_TEMP/postseal_replay_receipt.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          receipt = json.loads(
+              (Path(os.environ["RUNNER_TEMP"]) /
+               "postseal_replay_receipt.json").read_bytes())
+          assert receipt["status"] == "CANDIDATE_ARCHIVE_REPLAYED_UNREVIEWED"
+          assert receipt["source_commit_sha"] == os.environ["GITHUB_SHA"]
+          assert receipt["authenticated_ci_artifact"] is False
+          assert receipt["independent_review"] is False
+          assert receipt["full_release_approved"] is False
+          PY
       - name: Package the original candidate bytes, not reconstructed surrogates
         shell: bash
         run: |
