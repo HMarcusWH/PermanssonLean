@@ -20,3 +20,17 @@ the authoritative artifact digest, and identical actual PDFs, manifests,
 archives, logs and page PNGs from two source roots. Without this genuine
 receipt the full pre-seal gate remains closed. Even a valid clean-build receipt
 is **not** mathematical review, scholarly approval or release authorization.
+
+## Post-seal release authorization (not yet available)
+
+`--postseal-zip` and `--postseal-ids` are paired inputs to the strict
+full-release verifier. `final_closure_postseal_auth.py` insists on a real
+successful exact-M `pr113-postseal-replay.yml` workflow_dispatch, a successful
+`postseal-archive-replay` producing check and the GitHub-authoritative
+`pr113-complete-postseal-candidate` artifact digest. It re-verifies the exact
+retained candidate ZIP and sidecar, complete archive members, and original
+unreviewed postseal receipt before recognizing `COMPLETE_ARCHIVE_REPLAY`.
+**The new workflow is NOT installed in the protected workflow inventory and
+must not be added without independent security authorization.** Until that
+reviewed producer exists the final release is necessarily blocked; local
+postseal reports are not substitutes.

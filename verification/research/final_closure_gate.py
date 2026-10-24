@@ -75,6 +75,8 @@ def main(argv=None):
     parser.add_argument("--approved-manifest", type=Path)
     parser.add_argument("--reproduction-zip", type=Path)
     parser.add_argument("--reproduction-ids", type=Path)
+    parser.add_argument("--postseal-zip", type=Path)
+    parser.add_argument("--postseal-ids", type=Path)
     opts = parser.parse_args(argv)
     try:
         receipts = json.loads(opts.receipts.read_bytes())
@@ -91,9 +93,16 @@ def main(argv=None):
                 "zip_file": opts.reproduction_zip,
                 "identities": json.loads(opts.reproduction_ids.read_bytes())}
                 if opts.reproduction_zip else None)
+            if bool(opts.postseal_zip) != bool(opts.postseal_ids):
+                raise GateError("postseal original artifact and IDs must be paired")
+            postseal = ({
+                "zip_file":opts.postseal_zip,
+                "identities":json.loads(opts.postseal_ids.read_bytes())}
+                if opts.postseal_zip else None)
             result = strict(receipts, opts.phase, manifest,
                             bundle_path=opts.bundle,
-                            reproduction_attachment=reproduction)
+                            reproduction_attachment=reproduction,
+                            postseal_attachment=postseal)
     except (GateError, EvidenceError, AuthenticationError,
             OSError, KeyError, ValueError) as exc:
         print("NOT ACCEPTED:", exc, file=sys.stderr)

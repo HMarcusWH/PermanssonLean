@@ -32,6 +32,10 @@ def main(argv=None):
     ap.add_argument("--approved-seal",type=Path,
                     help="immutable approved ZIP, independently source/PDF authenticated")
     ap.add_argument("--bundle",type=Path)
+    ap.add_argument("--reproduction-zip",type=Path)
+    ap.add_argument("--reproduction-ids",type=Path)
+    ap.add_argument("--postseal-zip",type=Path)
+    ap.add_argument("--postseal-ids",type=Path)
     a=ap.parse_args(argv)
     try:
         if a.approved_seal:
@@ -50,8 +54,19 @@ def main(argv=None):
             requested_scope = ("full-release-strict" if
                                seal.get("full45_claimed") is True
                                else "scoped-release-strict")
+            require(bool(a.reproduction_zip)==bool(a.reproduction_ids) and
+                    bool(a.postseal_zip)==bool(a.postseal_ids),
+                    "real GitHub artifact identities must have their ZIPs")
+            reproduction=({"zip_file":a.reproduction_zip,
+                           "identities":json.loads(a.reproduction_ids.read_bytes())}
+                          if a.reproduction_zip else None)
+            postseal=({"zip_file":a.postseal_zip,
+                       "identities":json.loads(a.postseal_ids.read_bytes())}
+                      if a.postseal_zip else None)
             outcome=strict_closure(receipts,requested_scope,approved,
-                                   bundle_path=a.bundle)
+                                   bundle_path=a.bundle,
+                                   reproduction_attachment=reproduction,
+                                   postseal_attachment=postseal)
             require(seal["source_commit_sha"]==outcome["source"] and
                     seal["head_sha"]==outcome["frozen_head"] and
                     seal["pdf_sha256"]==approved["pdf_sha256"] and

@@ -165,7 +165,8 @@ def verify_claim_source_receipts(receipts: dict, source_head: str) -> set[str]:
 
 def strict(receipts: dict, scope: str, manifest: dict | None,
            *, bundle_path: Path | str | None = None,
-           reproduction_attachment: dict | None = None) -> dict:
+           reproduction_attachment: dict | None = None,
+           postseal_attachment: dict | None = None) -> dict:
     """Calculate EFFECTIVE reviewed cases/claims; never trust source JSON flags.
 
     The detached bundle is an external post-freeze artifact. Real signed
@@ -271,6 +272,23 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
                 raise GateError("real merged source/PDF reproduction failed: " +
                                 str(exc)) from exc
             provenance = {**provenance, "reproduction_evidence": reproduced}
+        if scope == "full-release-strict" and postseal_attachment is not None:
+            from final_closure_postseal_auth import (
+                authenticate_postseal, PostsealAuthenticationError)
+            check(isinstance(postseal_attachment, dict) and
+                  set(postseal_attachment) == {"identities", "zip_file"} and
+                  isinstance(manifest, dict) and
+                  isinstance(manifest.get("pdf_sha256"), str),
+                  "untyped detached genuine postseal evidence")
+            try:
+                archive = authenticate_postseal(
+                    provenance["M"], manifest["pdf_sha256"],
+                    postseal_attachment["identities"],
+                    Path(postseal_attachment["zip_file"]))
+            except (PostsealAuthenticationError, OSError, KeyError) as exc:
+                raise GateError("genuine merged-M postseal authentication failed: "+
+                                str(exc)) from exc
+            provenance = {**provenance, "archive_evidence": archive}
         try:
             original_map = read_json(NEW / "acceptance_case_source_map.json")
             validator = (require_preseal_release
@@ -302,6 +320,10 @@ def main(argv=None) -> int:
                     help="original real merged-M clean-build Actions artifact ZIP")
     ap.add_argument("--reproduction-ids", type=Path,
                     help="detached source-bound GitHub run/job/check/artifact IDs")
+    ap.add_argument("--postseal-zip", type=Path,
+                    help="future independently authorized GH postseal artifact ZIP")
+    ap.add_argument("--postseal-ids", type=Path,
+                    help="real source-bound producing postseal job/check/artifact IDs")
     args = ap.parse_args(argv)
     try:
         if args.mode == "audit":
@@ -315,9 +337,15 @@ def main(argv=None) -> int:
             source = ({"zip_file": args.reproduction_zip,
                        "identities": read_json(args.reproduction_ids)}
                       if args.reproduction_zip else None)
+            check(bool(args.postseal_zip) == bool(args.postseal_ids),
+                  "postseal ZIP and exact GitHub producing IDs must be paired")
+            replay = ({"zip_file":args.postseal_zip,
+                       "identities":read_json(args.postseal_ids)}
+                      if args.postseal_zip else None)
             out = strict(receipts, args.mode, manifest,
                          bundle_path=args.bundle,
-                         reproduction_attachment=source)
+                         reproduction_attachment=source,
+                         postseal_attachment=replay)
     except (GateError, EvidenceError, KeyError, OSError, ValueError) as exc:
         print(f"NOT ACCEPTED: {exc}", file=sys.stderr)
         return 2
