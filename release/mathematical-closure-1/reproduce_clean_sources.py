@@ -203,6 +203,8 @@ def reproduce_from_clean_source_roots(out: Path, *, head: str,
                 ["status", "--porcelain", "--untracked-files=no"], checkout),
                  "replayed source root was dirty before build")
             script = checkout / "release" / "mathematical-closure-1"
+            need(not stable_stage.exists() and not stable_stage.is_symlink(),
+                 "shared TeX build stage was contaminated before build")
             command = [sys.executable, str(script / "build.py"),
                        "--out", str(stable_stage), "--engine", engine]
             if render:

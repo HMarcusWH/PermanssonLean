@@ -11,7 +11,10 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import hashlib
+import os
 import re
+import subprocess
 import sys
 
 import localized_prefix_gate as historical_gate
@@ -19,7 +22,10 @@ import pr113_a2_successor_compiler as successor_gate
 import localized_prefix_support as frozen
 
 SHA40=re.compile(r"^[0-9a-f]{40}$")
-FORMAT="Permansson.PR113.DualA2CompilerCandidate.v1"
+FORMAT="Permansson.PR113.DualA2CompilerCandidate.v2"
+HISTORICAL_INTRODUCER="f71a76032b169aac7bfe0694aa715339a94d4e05"
+HISTORICAL_GATE="verification/research/localized_prefix_gate.py"
+HISTORICAL_SUPPORT="verification/research/localized_prefix_support.py"
 
 class DualA2Error(ValueError):
     pass
@@ -37,7 +43,76 @@ def real_source(root,head):
          frozen.git_text(root,"rev-parse","HEAD")==head and
          Path(frozen.git_text(root,"rev-parse","--show-toplevel")).resolve()==root,
          "requested A2 source must be a genuine exact-head Git checkout")
+    need(not frozen.git_bytes(
+        root,"status","--porcelain=v1","--untracked-files=all"),
+        "A2 source checkout contains tracked/untracked modifications")
     return root
+
+
+def historical_command(historical_root, output, mode):
+    """Launch the independently committed historical module, not H's import."""
+    program=historical_root/HISTORICAL_GATE
+    need(program.is_file() and not program.is_symlink(),
+         "historical A2 executable is not a regular committed file")
+    return [sys.executable,"-B",str(program),
+            "--repo",str(historical_root),
+            "--output",str(output),"--mode",mode]
+
+
+def run_historical_verified(historical_root, commit, output, mode):
+    """Execute *old checkout's* own gate AND support implementation."""
+    frozen.git_bytes(historical_root,"merge-base","--is-ancestor",
+                     HISTORICAL_INTRODUCER,commit)
+    historical_gate_blob=frozen.git_text(
+        historical_root,"rev-parse",commit+":"+HISTORICAL_GATE)
+    introduced_blob=frozen.git_text(
+        historical_root,"rev-parse",HISTORICAL_INTRODUCER+":"+HISTORICAL_GATE)
+    need(historical_gate_blob==introduced_blob,
+         "historical A2 executor byte-drifted from original introducer")
+    pinned={}
+    for path in (HISTORICAL_GATE,HISTORICAL_SUPPORT):
+        committed=frozen.git_text(
+            historical_root,"rev-parse",commit+":"+path)
+        source=historical_root/path
+        need(source.is_file() and not source.is_symlink() and
+             frozen.blob_sha(source.read_bytes())==committed,
+             "historical A2 runtime source mismatched original Git object: "+path)
+        pinned[path]=committed
+    environment=os.environ.copy()
+    for name in ("PYTHONPATH","PYTHONHOME"):
+        environment.pop(name,None)
+    environment["PYTHONDONTWRITEBYTECODE"]="1"
+    command=historical_command(historical_root,output,mode)
+    try:
+        completed=subprocess.run(
+            command,cwd=historical_root,env=environment,
+            text=True,capture_output=True,timeout=5400)
+    except (OSError,subprocess.TimeoutExpired) as exc:
+        raise DualA2Error("original historical A2 runtime unavailable") from exc
+    need(output.joinpath("receipt.json").is_file(),
+         "historical runtime omitted its own original signed-source receipt")
+    try:
+        evidence=json.loads(output.joinpath("receipt.json").read_bytes())
+    except (OSError,ValueError,UnicodeError) as exc:
+        raise DualA2Error("historical runtime returned invalid original receipt") from exc
+    need(completed.returncode==0 and
+         evidence.get("format")=="Permansson.A2P02.CompilerReceipt.v2" and
+         evidence.get("status")=="LOCAL_KERNEL_CHECKED__CI_ACCEPTANCE_PENDING" and
+         isinstance(evidence.get("source"),dict) and
+         evidence["source"].get("git_head")==commit and
+         evidence["source"].get("git_head_tree")==
+             frozen.git_text(historical_root,"rev-parse",commit+"^{tree}"),
+         "original historical A2 code did not authenticate its own source")
+    evidence["historical_runtime_provenance"]={
+        "historical_checkout_sha":commit,
+        "introduced_executable_sha":HISTORICAL_INTRODUCER,
+        "original_runtime_git_blobs":pinned,
+        "output_receipt_sha256":hashlib.sha256(
+            output.joinpath("receipt.json").read_bytes()).hexdigest(),
+        "imported_current_A2_gate":False,
+        "independent_security_review":False,
+    }
+    return evidence
 
 def validate_run(result,mode,mutations,names):
     need(isinstance(result,dict) and result.get("status")==mode and
@@ -82,8 +157,8 @@ def execute(historical_source, historical_head, current_source, current_head,
     need(old != current and historical_head != current_head,
          "two different historical and PR113 source revisions required")
     target.mkdir(parents=True, exist_ok=False)
-    historical=historical_gate.verify(
-        old,target/"historical_original_A2",mode=mode)
+    historical=run_historical_verified(
+        old,historical_head,target/"historical_original_A2",mode)
     validate_run(historical,
                  "LOCAL_KERNEL_CHECKED__CI_ACCEPTANCE_PENDING",
                  historical_gate.MUTATIONS,historical_gate.DECLS)
@@ -92,6 +167,10 @@ def execute(historical_source, historical_head, current_source, current_head,
     validate_run(current_result,
                  "SUCCESSOR_KERNEL_CHECKED_REVIEW_PENDING",
                  successor_gate.MUTATIONS,successor_gate.DECLS)
+    need(isinstance(historical.get("historical_runtime_provenance"),dict) and
+         historical["historical_runtime_provenance"].get(
+             "imported_current_A2_gate") is False,
+         "historical leg did not execute its own immutable source")
     need(current_result.get("independent_security_review") is False and
          current_result.get("historical_a2_verifier_replaced") is False and
          current_result.get("mathematical_acceptance") is False,
@@ -100,6 +179,7 @@ def execute(historical_source, historical_head, current_source, current_head,
         "format":FORMAT,
         "status":"BOTH_ACTUAL_A2_COMPILER_PATHS_EXECUTED_UNREVIEWED",
         "historical_source_commit":historical_head,
+        "historical_runtime_provenance":historical["historical_runtime_provenance"],
         "current_source_commit":current_head,
         "historical_test_executed":True,
         "successor_test_executed":True,

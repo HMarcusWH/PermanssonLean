@@ -22,6 +22,12 @@ def fake_result(status, gate):
         "independent_security_review":False,
         "historical_a2_verifier_replaced":False,
         "mathematical_acceptance":False,
+        "historical_runtime_provenance":{
+            "historical_checkout_sha":"a"*40,
+            "introduced_executable_sha":dual.HISTORICAL_INTRODUCER,
+            "imported_current_A2_gate":False,
+            "independent_security_review":False,
+        },
     }
 
 
@@ -37,7 +43,7 @@ class DualA2Tests(unittest.TestCase):
             new=fake_result("SUCCESSOR_KERNEL_CHECKED_REVIEW_PENDING",
                             dual.successor_gate)
             with mock.patch.object(dual,"real_source",side_effect=[old,now]), \
-                 mock.patch.object(dual.historical_gate,"verify",
+                 mock.patch.object(dual,"run_historical_verified",
                                    return_value=original) as h, \
                  mock.patch.object(dual.successor_gate,"verify",
                                    return_value=new) as s:
@@ -59,11 +65,46 @@ class DualA2Tests(unittest.TestCase):
                           dual.historical_gate)
             h["mutations"].pop(next(iter(h["mutations"])))
             with mock.patch.object(dual,"real_source",side_effect=[old,now]), \
-                 mock.patch.object(dual.historical_gate,"verify",return_value=h), \
+                 mock.patch.object(dual,"run_historical_verified",return_value=h), \
                  mock.patch.object(dual.successor_gate,"verify") as s:
                 with self.assertRaises(dual.DualA2Error):
                     dual.execute(old,"a"*40,now,"b"*40,root/"out")
                 s.assert_not_called()
+
+    def test_historical_exec_invokes_its_own_checkout_not_current_module(self):
+        with tempfile.TemporaryDirectory() as td:
+            old=Path(td)/"historical"
+            (old/"verification/research").mkdir(parents=True)
+            gate=old/dual.HISTORICAL_GATE
+            gate.write_text("original")
+            path=Path(td)/"candidate"
+            invocation=dual.historical_command(old,path,"focused")
+            self.assertEqual(invocation[:2],[dual.sys.executable,"-B"])
+            self.assertEqual(Path(invocation[2]),gate)
+            self.assertEqual(invocation[3:],[
+                "--repo",str(old),"--output",str(path),"--mode","focused"])
+            self.assertNotEqual(Path(dual.historical_gate.__file__).resolve(),
+                                gate.resolve())
+            gate.unlink()
+            with self.assertRaises(dual.DualA2Error):
+                dual.historical_command(old,path,"focused")
+
+    def test_missing_historical_runtime_provenance_must_fail_closed(self):
+        with tempfile.TemporaryDirectory() as td:
+            old,now=Path(td)/"old",Path(td)/"now"
+            old.mkdir();now.mkdir()
+            receipt=fake_result("LOCAL_KERNEL_CHECKED__CI_ACCEPTANCE_PENDING",
+                                dual.historical_gate)
+            receipt.pop("historical_runtime_provenance")
+            with mock.patch.object(dual,"real_source",side_effect=[old,now]), \
+                 mock.patch.object(dual,"run_historical_verified",
+                                   return_value=receipt), \
+                 mock.patch.object(dual.successor_gate,"verify",
+                                   return_value=fake_result(
+                                       "SUCCESSOR_KERNEL_CHECKED_REVIEW_PENDING",
+                                       dual.successor_gate)):
+                with self.assertRaises(dual.DualA2Error):
+                    dual.execute(old,"a"*40,now,"b"*40,Path(td)/"result")
 
     def test_wrong_successor_semantic_result_rejects(self):
         h=fake_result("SUCCESSOR_KERNEL_CHECKED_REVIEW_PENDING",
