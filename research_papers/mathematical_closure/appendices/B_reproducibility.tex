@@ -16,3 +16,21 @@ The LaTeX manuscript must compile, be rendered and visually inspected;
 a PDF-to-text extraction is insufficient. No paper outputs, release
 receipts, external peer review, source-bound archive, or publication
 are certified by this working source.
+
+
+\paragraph{Current working reproduction.}
+Use the original pinned Lean 4.34.0 environment without dependency updates:
+\begin{verbatim}
+lake exe cache get
+lake build PermanssonResearch
+lake build
+python3 -m unittest discover -s verification/research -p 'test_*.py' -v
+python3 verification/research/final_closure_verify.py --mode audit
+python3 release/mathematical-closure-1/build.py --mode draft \
+  --render --out /tmp/permansson-math-closure
+python3 release/mathematical-closure-1/verify_release.py \
+  --manifest /tmp/permansson-math-closure/manifest.lock.json
+\end{verbatim}
+The two strict acceptance modes additionally require real authenticated
+CI/review receipts and a final approved claim inventory. The build
+script cannot predetermine the eventual GitHub merge SHA.

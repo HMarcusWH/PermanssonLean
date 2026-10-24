@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "fields": {
+    "declaration": {
+      "type": "string",
+      "required": true
+    },
+    "path": {
+      "type": "string",
+      "required": true
+    },
+    "source_sha256": {
+      "type": "sha256",
+      "required": true
+    },
+    "statement_sha256": {
+      "type": "sha256",
+      "required": true
+    },
+    "reviewed_head_sha": {
+      "type": "sha40",
+      "required": true
+    },
+    "axiom_allowlist": {
+      "type": "array",
+      "required": true
+    },
+    "compiler_run_url": {
+      "type": "url",
+      "required": true
+    },
+    "compiler_result": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED"
+      ]
+    },
+    "negative_mutant_receipts": {
+      "type": "array",
+      "required": true
+    }
+  }
+}
