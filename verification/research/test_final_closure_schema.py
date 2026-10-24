@@ -143,6 +143,11 @@ class SchemaBoundaryTests(unittest.TestCase):
     def test_v3_requires_true_producing_job_refs_and_all_21_entries(self):
         x = candidate()
         x["format"] = schema.FORMAT_V3
+        # v3 independently requires all 12 global source checks too.
+        x["source_bound_ci"] = [
+            {"name": f"required-{i}", "id": i + 1, "head_sha": H}
+            for i in range(12)
+        ]
         x["producer_artifacts"] = []
         with self.assertRaises(EvidenceError):
             schema.validate_overlay(x)
