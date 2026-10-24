@@ -182,3 +182,77 @@ class ExtraControlProvenanceTests(unittest.TestCase):
             a["/contents/.github/workflows/proposed-control-original_positive.yml?ref="+H]["sha"]="f"*40
         with self.assertRaises(auth.ControlProducerError):
             self.execute(no_real_source)
+
+
+    def test_assembler_calls_real_76_owner_validator_with_original_producers(self):
+        """Exercise public assembler, authenticating synthetic owner ZIPs locally."""
+        from pathlib import Path
+        import tempfile
+        import final_closure_authenticate as gh
+        import final_closure_case_receipts as original_auth
+        import final_closure_schema as schema
+        import final_closure_legacy_semantic_evidence as legacy
+        import pr113_v31_execution_integrity as integrity
+        from test_pr113_v31_execution_integrity import (
+            CASE_IDS, complete, source, authentic_original_legacy,
+        )
+        contract, binaries = complete()
+        original = authentic_original_legacy()
+        with tempfile.TemporaryDirectory(prefix="pr113-real-callee-") as td:
+            root = Path(td)
+            zip_dir = root / "additional-zips"
+            zip_dir.mkdir()
+            for artifact_id, raw in binaries.items():
+                (zip_dir / f"{artifact_id}.zip").write_bytes(raw)
+            original_file = root / "original.json"
+            original_file.write_text(json.dumps({
+                "format": "Permansson.FinalClosureDetachedReceipts.v3",
+                "head_sha": H, "evidence_bundle_sha256": ORIGINAL_HASH,
+            }))
+            original_zip = root / "original.zip"
+            original_zip.write_bytes(b"test-only original GH ZIP")
+            contract_file = root / "contract.json"
+            contract_file.write_text(json.dumps(contract))
+            blobs_file = root / "workflow-blobs.json"
+            blobs_file.write_text("{}")
+            case_map = {cid: {} for cid in CASE_IDS}
+            candidate = {
+                "accepted_cases": 0, "accepted_claims": 0,
+                "schema_security_approved": False,
+                "independent_mathematical_review": False,
+            }
+            with mock.patch.object(gh, "git", return_value=H), \
+                 mock.patch.object(schema, "validate_overlay"), \
+                 mock.patch.object(original_auth, "load_detached_bundle",
+                                   return_value={}), \
+                 mock.patch.object(original_auth, "authenticate_v3_sources",
+                                   return_value=original), \
+                 mock.patch.object(legacy, "original_case_map",
+                                   return_value=(case_map, set(CASE_IDS[:20]))), \
+                 mock.patch.object(auth, "candidate_registry",
+                                   return_value=contract["producers"]), \
+                 mock.patch.object(auth, "authenticated_extra_controls",
+                                   return_value=candidate), \
+                 mock.patch.object(integrity, "exact_source",
+                                   return_value=source()), \
+                 mock.patch.object(integrity, "validate_executed_controls",
+                                   wraps=integrity.validate_executed_controls) as validator:
+                report = auth.assemble_review_pending(
+                    H, original_file, original_zip, contract_file,
+                    zip_dir, blobs_file, root / "validated.json")
+                self.assertEqual(
+                    report["actual_execution_member_validation"]["source_owner_count"],
+                    76)
+                self.assertEqual(validator.call_count, 1)
+                self.assertIs(
+                    validator.call_args.kwargs["original_producers"], original)
+                self.assertFalse(
+                    report["actual_execution_member_validation"]["mathematical_acceptance"])
+                original["producers"][555]["members"][
+                    "C-01/test-00/raw_compiler/event-1-000001/source.lean"
+                ] = b"forged original capture"
+                with self.assertRaises(integrity.RealControlError):
+                    auth.assemble_review_pending(
+                        H, original_file, original_zip, contract_file,
+                        zip_dir, blobs_file, root / "rejected.json")
+

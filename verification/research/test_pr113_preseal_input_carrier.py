@@ -126,8 +126,27 @@ class PresealOriginalTransportTests(unittest.TestCase):
             self.assertIs(result["independent_review"], False)
             self.assertIs(result["mathematical_acceptance"], False)
             self.assertIs(result["publication_authorized"], False)
+            self.assertEqual(
+                result["status"],
+                "GH_SOURCE_TRANSPORT_VERIFIED__RELEASE_REVIEW_PENDING")
+            persisted = json.loads(
+                (target / "transport_diagnostics.json").read_text())
+            self.assertEqual(persisted, result)
+            self.assertEqual(
+                persisted["transport_artifact_sha256"], digest(src.read_bytes()))
             self.assertTrue((target / "additional_zips/101.zip").is_file())
             self.assertFalse((target / "approved_claim_manifest.json").is_symlink())
+
+
+    def test_staged_preseal_consumer_uses_exact_outer_status_and_digest(self):
+        yaml = (Path(__file__).resolve().parents[2] /
+                "docs/operations/pr113_unapproved_workflows/"
+                "pr113-preseal-fullscope.yml").read_text()
+        self.assertIn('input_report["status"]', yaml)
+        self.assertIn(
+            '"GH_SOURCE_TRANSPORT_VERIFIED__RELEASE_REVIEW_PENDING"', yaml)
+        self.assertIn('input_report["transport_artifact_sha256"]', yaml)
+        self.assertIn('input_report["independent_review"] is False', yaml)
 
 
 if __name__ == "__main__":

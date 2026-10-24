@@ -120,7 +120,8 @@ def authenticate_all_76(head, original_receipts, original_members, *,
             expected=expected,
             reviewed_workflow_blobs=workflow_blobs)
         execution = validate_executed_controls(
-            head, proposal, bytes_by_id, source=exact_source(head, ROOT))
+            head, proposal, bytes_by_id, source=exact_source(head, ROOT),
+            original_producers=authentic_original)
         need(attributed.get("head_sha") == head and
              attributed.get("status") ==
                 "ALL_ADDITIONAL_CONTROLS_SOURCE_ATTRIBUTED_UNREVIEWED" and

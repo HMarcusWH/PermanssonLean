@@ -1,5 +1,6 @@
 """Adversarial tests for an inactive, byte-pinned original producer trigger plan."""
 import copy
+import json
 import unittest
 
 import pr113_original_producer_trigger_candidate as trg
@@ -144,6 +145,20 @@ class FullProducerTriggerTests(unittest.TestCase):
         m["proposals"][2]["producer_shards"]=7
         with self.assertRaises(trg.TriggerReviewError):
             self.validate(m,b)
+
+
+    def test_committed_manifest_and_real_pinned_producer_sources(self):
+        """Read actual Git objects rather than a synthetic matching manifest."""
+        head = trg.git("rev-parse", "HEAD").decode().strip()
+        original = json.loads(trg.committed(head, trg.MANIFEST))
+        report = trg.validate_proposals(head, original)
+        self.assertEqual(report["original_shard_count"], 21)
+        self.assertFalse(report["installed"])
+        self.assertFalse(report["independent_security_review"])
+        invalid = copy.deepcopy(original)
+        invalid["proposals"][0]["expected_job"] = "all-case-compiler"
+        with self.assertRaises(trg.TriggerReviewError):
+            trg.validate_proposals(head, invalid)
 
 
 if __name__=="__main__":

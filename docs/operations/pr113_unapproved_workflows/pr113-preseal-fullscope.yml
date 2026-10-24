@@ -146,7 +146,7 @@ jobs:
             --sidecar "$RUNNER_TEMP/pr113-preseal-candidate/SHA256SUMS.txt" \
             --output "$RUNNER_TEMP/pr113-preseal-local-replay-unreviewed.json"
           python3 - <<'PY'
-          import json, os
+          import hashlib, json, os
           from pathlib import Path
           folder = Path(os.environ["RUNNER_TEMP"])
           actual = json.loads((folder/"pr113-preseal-local-replay-unreviewed.json").read_bytes())
@@ -161,6 +161,11 @@ jobs:
           assert input_report["status"] == \
               "GH_SOURCE_TRANSPORT_VERIFIED__RELEASE_REVIEW_PENDING"
           assert input_report["source_commit_sha"] == os.environ["GITHUB_SHA"]
+          assert input_report["transport_artifact_sha256"] == hashlib.sha256(
+              (folder/"pr113-review-input-original.zip").read_bytes()).hexdigest()
+          assert input_report["independent_review"] is False
+          assert input_report["mathematical_acceptance"] is False
+          assert input_report["publication_authorized"] is False
           PY
       - name: Upload real candidate ZIP + original SHA256 sidecar ONLY after success
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

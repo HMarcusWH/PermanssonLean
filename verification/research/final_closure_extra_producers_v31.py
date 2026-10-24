@@ -360,7 +360,8 @@ def assemble_review_pending(head, original_v3_receipts, original_v3_zip,
         exact_source, validate_executed_controls,
     )
     real_controls = validate_executed_controls(
-        head, contract, files, source=exact_source(head, source_root))
+        head, contract, files, source=exact_source(head, source_root),
+        original_producers=from_original)
     need(real_controls["source_owner_count"] == 76 and
          real_controls["claim_positive_negative_directions"] == 22 and
          real_controls["canonical_routes_bound"] is True and

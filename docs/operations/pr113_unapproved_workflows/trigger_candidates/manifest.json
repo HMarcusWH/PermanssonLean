@@ -12,7 +12,7 @@
       "original_blob": "07791f65c6572ca29ada9a8150a643c51958602f",
       "proposed_blob": "6b27928aac900274eca4f683b1e209572a3f3d92",
       "producer_shards": 4,
-      "expected_job": "all-case-compiler"
+      "expected_job": "compiler-shard"
     },
     {
       "active": ".github/workflows/pr113-all-original-semantic-candidates.yml",

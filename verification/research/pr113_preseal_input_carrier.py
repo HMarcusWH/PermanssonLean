@@ -222,8 +222,9 @@ def extract(artifact_zip, output, *, merged, run_id, attempt, job_id,
         members[rel] = digest(data)
     manifest = {
         "format": FORMAT,
-        "status": "GH_SOURCE_TRANSPORT_VERIFIED__RELEASE_REVIEW_PENDING",
         **transport,
+        # The transport status must not replace the outer result contract.
+        "status": "GH_SOURCE_TRANSPORT_VERIFIED__RELEASE_REVIEW_PENDING",
         "members_sha256": members,
         "independent_review": False,
         "mathematical_acceptance": False,
