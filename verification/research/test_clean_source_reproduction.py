@@ -126,6 +126,39 @@ class CleanSourceRootRebuildTests(unittest.TestCase):
         self.assertEqual(unset["TEXINPUTS"], "." + os.pathsep)
         self.assertEqual(unset["BIBINPUTS"], "." + os.pathsep)
 
+    def test_second_pass_detects_shared_stage_cache_contamination(self):
+        with tempfile.TemporaryDirectory(prefix="perm-r02-cache-") as td:
+            target = Path(td) / "outside"
+            builds = []
+            def git(args, cwd):
+                if args == ["rev-parse", "HEAD"]: return H
+                if args == ["rev-parse", "HEAD^{tree}"]: return T
+                if args == ["status", "--porcelain", "--untracked-files=no"]: return ""
+                if args[:2] == ["checkout", "--detach"]: return ""
+                raise AssertionError(args)
+            def run(arguments, *, cwd=None, timeout=600):
+                if arguments[:3] == ["git", "clone", "--local"] and builds:
+                    dirty = target/"_canonical_tex_stage"
+                    dirty.mkdir()
+                    (dirty/"stale-cache").write_bytes(b"untrusted leftover")
+                if len(arguments) > 1 and "build.py" in str(arguments[1]):
+                    output = Path(arguments[arguments.index("--out")+1])
+                    output.mkdir(parents=True, exist_ok=False)
+                    (output/"manifest.lock.json").write_text(json.dumps({
+                        "status":"DRAFT_NOT_ACCEPTED", "source_commit_sha":H,
+                        "pdf_sha256":"d"*64, "pdf_page_count":1}))
+                    (output/"Permansson_Mathematical_Closure_E2E.zip").write_bytes(b"ZIP")
+                    (output/"pages").mkdir()
+                    builds.append(output)
+                return ""
+            with mock.patch.object(clean, "git_object", side_effect=git), \
+                 mock.patch.object(clean, "cmd", side_effect=run):
+                with self.assertRaises(clean.CleanReproductionError) as error:
+                    clean.reproduce_from_clean_source_roots(target, head=H)
+            self.assertIn("shared TeX build stage", str(error.exception))
+            self.assertEqual(len(builds), 1)
+            self.assertFalse((target/"reproduction_receipt.json").exists())
+
     def test_fixed_pdftex_trailer_identity_is_explicit_and_source_bound(self):
         """Different output-root paths must not randomize the PDF backend ID."""
         preamble = (clean.ROOT / "research_papers/mathematical_closure" /
@@ -178,6 +211,16 @@ class CleanSourceRootRebuildTests(unittest.TestCase):
                                                  "zip_sha256": real_zip_sha}):
                 result = clean.reproduce_from_clean_source_roots(target, head=H)
             clones = [c for c in calls if c[:3] == ("git", "clone", "--local")]
+            build_commands = [c for c in calls if len(c) > 1 and
+                              "build.py" in c[1]]
+            self.assertEqual(len(build_commands), 2)
+            self.assertEqual(build_commands[0][build_commands[0].index("--out")+1],
+                             build_commands[1][build_commands[1].index("--out")+1])
+            self.assertIn("_canonical_tex_stage",
+                          build_commands[0][build_commands[0].index("--out")+1])
+            self.assertFalse((target/"_canonical_tex_stage").exists())
+            self.assertTrue((target/"first"/"manifest.lock.json").is_file())
+            self.assertTrue((target/"second"/"manifest.lock.json").is_file())
             self.assertEqual(len(clones), 2)
             self.assertNotEqual(clones[0][-1], clones[1][-1])
             self.assertIn("--no-hardlinks", clones[0])

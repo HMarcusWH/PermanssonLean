@@ -15,6 +15,7 @@ import json
 import zipfile
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -175,11 +176,23 @@ def reproduce_from_clean_source_roots(out: Path, *, head: str,
          "missing authentic Git source tree")
     out.mkdir(parents=True)
     results = []
+    # Keep independent Git source roots, but use ONE canonical TeX output
+    # pathname sequentially. pdfTeX inserts newlines according to the length
+    # of the displayed absolute output path, which cannot be fixed by
+    # replacing already-wrapped strings in compiler diagnostics.
+    #
+    # Rename the complete finished stage outside the reused pathname.
+    # Do not delete or edit one compiler log, nor share any output/cache
+    # between source passes.
+    stable_stage = out / "_canonical_tex_stage"
     with tempfile.TemporaryDirectory(prefix="perm-source-roots-") as td:
         temp = Path(td)
         for index in ("first", "second"):
             checkout = temp / ("source-" + index)
             output = out / index
+            need(not output.exists() and not stable_stage.exists() and
+                 not stable_stage.is_symlink(),
+                 "shared TeX build stage or completed output was not fresh")
             cmd(["git", "clone", "--local", "--no-hardlinks", "--no-checkout",
                  str(ROOT), str(checkout)], timeout=180)
             git_object(["checkout", "--detach", head], checkout)
@@ -191,21 +204,28 @@ def reproduce_from_clean_source_roots(out: Path, *, head: str,
                  "replayed source root was dirty before build")
             script = checkout / "release" / "mathematical-closure-1"
             command = [sys.executable, str(script / "build.py"),
-                       "--out", str(output), "--engine", engine]
+                       "--out", str(stable_stage), "--engine", engine]
             if render:
                 command.append("--render")
             cmd(command, cwd=checkout, timeout=1200)
+            need(stable_stage.is_dir() and not stable_stage.is_symlink(),
+                 "genuine TeX run did not create a regular fresh stage")
             cmd([sys.executable, str(script / "verify_release.py"),
-                 "--manifest", str(output / "manifest.lock.json")],
+                 "--manifest", str(stable_stage / "manifest.lock.json")],
                 cwd=checkout, timeout=120)
-            receipt = json.loads((output / "manifest.lock.json").read_bytes())
+            receipt = json.loads((stable_stage / "manifest.lock.json").read_bytes())
             need(receipt.get("source_commit_sha") == head and
                  receipt.get("status") == "DRAFT_NOT_ACCEPTED",
                  "clean replay manifest claims wrong commit or approval")
             if render:
-                need((output / "pages").is_dir() and
+                need((stable_stage / "pages").is_dir() and
                      receipt.get("pdf_page_count") is not None,
                      "clean replay lacks complete rendered pages")
+            # All outputs (including the unmodified raw compiler transcript)
+            # are moved as a whole; no normalization of diagnostics.
+            stable_stage.rename(output)
+            need(output.is_dir() and not stable_stage.exists(),
+                 "TeX stage not detached/emptied between independent builds")
             results.append({"source_head": head, "tree": tree,
                             "pdf_sha256": receipt["pdf_sha256"],
                             "archive_sha256": hashlib.sha256(
@@ -213,6 +233,8 @@ def reproduce_from_clean_source_roots(out: Path, *, head: str,
                                 .read_bytes()).hexdigest(),
                             "manifest_sha256": hashlib.sha256(
                                 (output / "manifest.lock.json").read_bytes()).hexdigest()})
+    need(not stable_stage.exists(),
+         "shared TeX output cache remained after independent source runs")
     if not results or results[0] != results[1]:
         # Report EXACT mismatched fields; do not downgrade byte identity,
         # turn nondeterminism into a green receipt or erase either build root.
@@ -252,6 +274,7 @@ def reproduce_from_clean_source_roots(out: Path, *, head: str,
         "source_tree_sha": tree,
         "independent_source_roots": 2,
         "git_clone_mode": "local_no_hardlinks_no_checkout",
+        "output_staging_profile": "two_distinct_git_roots_sequential_fresh_identical_output_path",
         "engine": engine, "rendered_pages": render,
         "pdf_sha256": results[0]["pdf_sha256"],
         "archive_sha256": results[0]["archive_sha256"],
