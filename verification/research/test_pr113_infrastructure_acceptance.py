@@ -310,6 +310,98 @@ class SeparateGateTests(unittest.TestCase):
         with self.assertRaises(Exception):
             validate_overlay(candidate)
 
+
+    def test_full_infrastructure_graph_synthetic_positive_never_math_release(self):
+        from test_pr113_release_target import fake_intent, fake_apis, fake_target
+        tzip, azip = zipped(historical_files()), zipped(a2_files())
+        source_test = SourceArtifactTests()
+        tids, _, tapi = source_test.evidence(kind="T")
+        aids, _, aapi = source_test.evidence(kind="A2")
+        # The two original artifacts belong to two successful, separate jobs.
+        newids = {
+            "run_id": 201, "run_attempt": 2, "job_id": 202,
+            "check_run_id": 203, "artifact_id": 204,
+        }
+        aid_api = {
+            key.replace("101", "201").replace("102", "202")
+               .replace("103", "203").replace("104", "204"): value
+            for key, value in aapi.items()
+        }
+        # Fix the authenticated identity fields, not merely the URL keys.
+        arun = aid_api["/actions/runs/201"]
+        arun["id"] = 201
+        job = aid_api["/actions/runs/201/jobs?per_page=100"]["jobs"][0]
+        job.update(id=202, run_id=201,
+                   check_run_url="https://api.github.com/check-runs/203")
+        checked = aid_api["/check-runs/203"]
+        checked["id"] = 203
+        art = aid_api["/actions/artifacts/204"]
+        art.update(id=204, digest="sha256:"+infra.sha(azip))
+        art["workflow_run"].update(id=201)
+        api = {**tapi, **aid_api}
+        # Both distinct real-API shapes use the staged workflow identity.
+        for key in ("/actions/runs/101", "/actions/runs/201"):
+            api[key]["path"] = infra.ACTIVE_WORKFLOW
+        target_gh, target_git, t_api = fake_apis()
+        api.update(t_api)
+        workflow = ("# Review-pending source-controlled historical verification\n"
+                    "name: PR113 Historical T and A2 candidates\n"
+                    "jobs:\n  historical-T-and-H-unreviewed:\n"
+                    "  historical-A2-and-H-unreviewed:\n")
+        policy = {
+            "format": "Permansson.InfrastructureReviewerAuthority.v1",
+            "owner": "HMarcusWH",
+            "status": "OWNER_AUTHORIZED",
+            "reviewers": [
+                {"login":"external-security-reviewer",
+                 "independence_disclosed":True,
+                 "approved_by":"HMarcusWH"}]
+        }
+        def git(*args):
+            if args == ("show", H + ":" + infra.AUTHORITY_PATH):
+                return json.dumps(policy)
+            if args == ("show", H + ":" + infra.ACTIVE_WORKFLOW):
+                return workflow
+            if args == ("show", H + ":" + release_target.INTENT_PATH):
+                return json.dumps(fake_intent())
+            return target_git(*args)
+        checks = {name:{"id":n,"head_sha":H,"name":name}
+                  for n,name in enumerate(sorted(infra.REQUIRED),1)}
+        receipt = {
+            "format":infra.FORMAT, "target":fake_target(),
+            "source_bound_ci":[{"name":name,"id":check["id"],
+                                "head_sha":H}
+                                for name,check in checks.items()],
+            "historical_T":tids, "historical_A2":newids,
+            "security_review_id":789,
+        }
+        attestation = {
+            "head_sha": H, "workflow_sha256": infra.sha(workflow.encode()),
+            "T_artifact_sha256": infra.sha(tzip),
+            "A2_artifact_sha256": infra.sha(azip),
+            "original_base_sha": release_target.B113,
+        }
+        approved_review = {
+            "id":789, "state":"APPROVED","commit_id":H,
+            "submitted_at":"2026-10-25T00:25:00Z",
+            "user":{"login":"external-security-reviewer"},
+            "body":infra.REVIEW_PREFIX + json.dumps(attestation),
+        }
+        api["/pulls/113"]["user"]={"login":"HMarcusWH"}
+        with mock.patch.object(infra.release_target,"exact_intent",
+                               wraps=infra.release_target.exact_intent):
+            verified = infra.check_evidence(
+                receipt,tzip,azip,git=git,live=api.__getitem__,
+                checks=lambda h: checks,
+                paginate=lambda path:[approved_review])
+        self.assertEqual(verified["required_ci_successful"],12)
+        self.assertEqual(
+            verified["status"],
+            "INFRASTRUCTURE_READY_FOR_SEPARATE_OWNER_MERGE_DECISION")
+        self.assertFalse(verified["independent_mathematical_review"])
+        self.assertFalse(verified["publication_authorized"])
+        self.assertFalse(verified["merge_authorized"])
+
     def test_all_12_exact_source_checks_required_and_missing_review_blocks(self):
         good = {
             "format": infra.FORMAT,
