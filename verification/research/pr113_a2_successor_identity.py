@@ -83,6 +83,21 @@ def reconcile(old: dict, current: dict) -> dict:
     }
 
 
+def normalize_additive_root_separator(raw: bytes) -> bytes:
+    """Permit only the two blank lines introduced at the original A2 tail.
+
+    This is an exact-position formatting equivalence, never global
+    whitespace canonicalization of mathematical source.
+    """
+    anchor = (b"import PermanssonResearch.ConstitutiveQuasi."
+              b"LocalizedPrefixExamples\\n")
+    original = anchor + b"\\n/-!\\n"
+    current = anchor + b"\\n\\n\\n/-!\\n"
+    if raw.count(current) == 1 and raw.count(original) == 0:
+        return raw.replace(current, original, 1)
+    return raw
+
+
 def verify_root(repo: Path, old: dict, current: dict) -> None:
     """Original A2 imports plus direct imports of truly new modules only."""
     source = original.git_bytes(repo, "show",
@@ -102,7 +117,7 @@ def verify_root(repo: Path, old: dict, current: dict) -> None:
             demand(actual.count(line) == 1,
                    "missing/duplicated direct import: " + module)
             actual = actual.replace(line, b"", 1)
-    demand(actual == expected,
+    demand(normalize_additive_root_separator(actual) == expected,
            "Research root differs from exact historical A2 import bridge")
 
 

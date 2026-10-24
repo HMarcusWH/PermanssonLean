@@ -28,6 +28,19 @@ def fixture():
 
 
 class SuccessorIdentityPolicyTests(unittest.TestCase):
+    def test_only_exact_source_root_separator_is_normalized(self):
+        anchor = (b"import PermanssonResearch.ConstitutiveQuasi."
+                  b"LocalizedPrefixExamples\\n")
+        original = anchor + b"\\n/-!\\n"
+        newer = anchor + b"\\n\\n\\n/-!\\n"
+        self.assertEqual(successor.normalize_additive_root_separator(newer), original)
+        for bad in (anchor + b"\\n\\n/-!\\n",
+                    anchor + b"\\n\\n\\n\\n/-!\\n",
+                    newer + b"\\n"):
+            with self.subTest(bad=bad):
+                self.assertNotEqual(successor.normalize_additive_root_separator(bad),
+                                    original)
+
     def test_exact_delta_passes_only_as_candidate(self):
         old, current = fixture()
         result = successor.reconcile(old, current)
