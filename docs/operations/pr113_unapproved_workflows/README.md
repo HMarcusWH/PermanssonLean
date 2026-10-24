@@ -71,8 +71,7 @@ workflow is created simply by adding this staged file.
 ## Historical T/T2 dual verifier CI candidate (P0-01)
 
 The additional T2 candidate `pr113-historical-migration-candidates.yml`
-is intentionally **workflow_dispatch only**, not an automatic workflow and
-not a required check. Its T/H dual-verifier job is constrained to the exact
+is a **branch-scoped push** proposal and NOT installed or a required check. Its T/H dual-verifier job is constrained to the exact
 original research branch and the named `original-T-and-current-H` job.
 The original T checkout runs its *unmodified* offline restoration in an
 actual Linux isolated standalone source context with all GitHub event and

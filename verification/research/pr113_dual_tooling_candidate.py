@@ -95,7 +95,7 @@ def validate_dual_reports(historical, current, *, T_source, H_source):
     }
 
 def candidate_ci_context(head):
-    """Permit only the manually dispatched, separately named CANDIDATE job.
+    """Permit only the exact-branch push from the reviewed CANDIDATE job.
 
     This is neither a source-security authorization nor a mandatory CI gate.
     Historical T itself must run with GitHub context removed (see command()).
@@ -108,13 +108,13 @@ def candidate_ci_context(head):
            os.environ.get("GITHUB_REF") ==
                "refs/heads/research/final-mathematical-closure" and
            os.environ.get("GITHUB_EVENT_NAME") ==
-               "workflow_dispatch" and
+               "push" and
            os.environ.get("GITHUB_JOB") ==
                "original-T-and-current-H" and
            os.environ.get("GITHUB_WORKFLOW") ==
                "PR113 Historical T and A2 candidates",
            "historical verification must execute only in genuine staged candidate job")
-    return "MANUAL_GH_CANDIDATE_UNREVIEWED"
+    return "REVIEWED_SOURCE_PUSH_CANDIDATE_UNAPPROVED"
 
 
 def command(argv,cwd,limit=1800, *, historical_artifact=False):

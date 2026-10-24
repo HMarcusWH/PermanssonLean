@@ -39,7 +39,7 @@ The source-controlled **candidate** entrypoint is
 historical candidate workflow source remains
 `docs/operations/pr113_unapproved_workflows/pr113-historical-migration-candidates.yml`.
 The proposed workflow is not installed. Its GitHub execution is allowed only
-as a specifically named, explicitly dispatched **candidate** after the
+as a specifically named exact-branch **push candidate** after the
 workflow has been independently authorized for activation. Never interpret
 its result as the required archived check.
 

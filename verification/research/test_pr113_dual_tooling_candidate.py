@@ -70,24 +70,24 @@ class DualToolingTests(unittest.TestCase):
             with self.subTest(field=field), self.assertRaises(dual.DualToolingError):
                 dual.validate_dual_reports(old,now,T_source=T,H_source=H)
 
-    def test_real_manual_candidate_job_may_run_without_authorizing_archive(self):
+    def test_real_branch_push_candidate_job_may_run_without_authorizing_archive(self):
         context = {
             "GITHUB_ACTIONS": "true",
             "GITHUB_REPOSITORY": "HMarcusWH/PermanssonLean",
             "GITHUB_SHA": H,
             "GITHUB_REF": "refs/heads/research/final-mathematical-closure",
-            "GITHUB_EVENT_NAME": "workflow_dispatch",
+            "GITHUB_EVENT_NAME": "push",
             "GITHUB_JOB": "original-T-and-current-H",
             "GITHUB_WORKFLOW": "PR113 Historical T and A2 candidates",
         }
         with mock.patch.dict(dual.os.environ, context, clear=True):
             self.assertEqual(
                 dual.candidate_ci_context(H),
-                "MANUAL_GH_CANDIDATE_UNREVIEWED")
+                "REVIEWED_SOURCE_PUSH_CANDIDATE_UNAPPROVED")
             for key, value in (
                 ("GITHUB_SHA", "b" * 40),
                 ("GITHUB_REF", "refs/heads/main"),
-                ("GITHUB_EVENT_NAME", "push"),
+                ("GITHUB_EVENT_NAME", "workflow_dispatch"),
                 ("GITHUB_JOB", "archive-reproducibility"),
                 ("GITHUB_WORKFLOW", "Research integrity"),
                 ("GITHUB_REPOSITORY", "someone/else"),
@@ -137,7 +137,7 @@ class DualToolingTests(unittest.TestCase):
 
     def test_current_H_verifier_does_not_borrow_standalone_T_environment(self):
         context = {"GITHUB_ACTIONS": "true", "GITHUB_SHA": H,
-                   "GITHUB_EVENT_NAME": "workflow_dispatch",
+                   "GITHUB_EVENT_NAME": "push",
                    "PYTHONPATH": "untrusted-import"}
         fake = SimpleNamespace(returncode=0, stdout="PASS", stderr="")
         with mock.patch.dict(dual.os.environ, context, clear=True):

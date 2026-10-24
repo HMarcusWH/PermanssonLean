@@ -3,9 +3,11 @@
 # It cannot approve a T2/A2 trust migration, PR merge, or mathematical release.
 name: PR113 Historical T and A2 candidates
 
-# No automatic PR/main execution before author review of the T2 transition.
+# Review/activation prerequisite: source-controlled branch push only.
+# This file remains inactive outside .github/workflows until explicitly approved.
 on:
-  workflow_dispatch:
+  push:
+    branches: [research/final-mathematical-closure]
 
 permissions:
   contents: read
@@ -62,7 +64,7 @@ jobs:
 
   original-T-and-current-H:
     name: historical-T-and-H-unreviewed
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -105,7 +107,7 @@ jobs:
 
   original-A2-and-current-H:
     name: historical-A2-and-H-unreviewed
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 110
     steps:
