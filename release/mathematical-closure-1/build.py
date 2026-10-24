@@ -51,7 +51,11 @@ def build(out:Path,engine:str,render:bool)->dict:
     logs += [run(cmd,PAPER,env),run(cmd,PAPER,env)]
     # The original LaTeX log contains transient output-root paths; preserve
     # diagnostics while replacing only those root locations deterministically.
-    normalized="\n".join(logs)
+    raw_merged="\n".join(logs)
+    # Retain a literal, non-published diagnostic transcript in each detached
+    # output root. It is NOT the hashed/scientific manuscript build receipt.
+    (out/"latex_build.raw.log").write_text(raw_merged)
+    normalized=raw_merged
     for actual,label in ((str(work.resolve()),"<TEX_WORK>"),
                          (str(out.resolve()),"<OUTPUT_ROOT>"),
                          (str(PAPER.resolve()),"<MANUSCRIPT_ROOT>")):
