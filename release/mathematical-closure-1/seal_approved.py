@@ -77,7 +77,7 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
     # Baseline source integrity is always checked, even before authenticity.
     draft_verifier.verify(draft_directory / "manifest.lock.json")
     draft, pages = prepare_approved_manifest(draft_directory, approved)
-    accepted_scope = "full-release-strict" if full else "scoped-release-strict"
+    accepted_scope = "postmerge-preseal-strict" if full else "scoped-release-strict"
     result = strict_acceptance(receipts, accepted_scope, approved,
                                bundle_path=evidence_bundle)
     if full and (set(approved.get("claims", [])) != ORIGINAL_CLAIMS or
@@ -87,8 +87,8 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
     if full and (result.get("accepted_case_count") != 45 or
                  result.get("accepted_claim_count") != 11 or
                  result.get("status") !=
-                     "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY"):
-        raise SealError("full-release seal lacks the exact effective 45+11 certificate")
+                     "POSTMERGE_PRESEAL_READY"):
+        raise SealError("candidate seal lacks authenticated preseal 45/11 certificate")
     if draft.get("source_commit_sha") != result["source"]:
         raise SealError("PDF was not built from genuine merged commit M")
     # Complete source files are included in the *approved* artifact too.
@@ -136,8 +136,9 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
     if sha(original_log) != draft.get("latex_log_sha256"):
         raise SealError("draft compiler log changed before sealing")
     manifest = {
-        "format": "Permansson.MathClosure.ApprovedSeal.v2",
-        "status": "APPROVED_SOURCE_BOUND",
+        "format": ("Permansson.MathClosure.CandidateSeal.v1" if full
+                   else "Permansson.MathClosure.ApprovedSeal.v2"),
+        "status": "CANDIDATE_SEAL_BUILT" if full else "APPROVED_SOURCE_BOUND",
         "source_commit_sha": result["source"],
         "head_sha": result["frozen_head"],
         "draft_manifest_sha256": sha(
@@ -162,7 +163,9 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
         "accepted_claim_count": result["accepted_claim_count"],
         "full45_claimed": full,
     }
-    output.mkdir(parents=True, exist_ok=True)
+    if output.exists():
+        raise SealError("output must be a fresh detached directory")
+    output.mkdir(parents=True, exist_ok=False)
     members = {
         "Permansson_Mathematical_Closure.pdf":
             (draft_directory/"Permansson_Mathematical_Closure.pdf").read_bytes(),
@@ -187,7 +190,8 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
     members.update(complete_sources)
     for page in pages:
         members["pages/" + page] = (draft_directory/"pages"/page).read_bytes()
-    archive = output/"Permansson_Mathematical_Closure_APPROVED.zip"
+    archive = output / ("Permansson_Mathematical_Closure_CANDIDATE.zip"
+                        if full else "Permansson_Mathematical_Closure_APPROVED.zip")
     with zipfile.ZipFile(archive, "w") as zipout:
         for name, payload in sorted(members.items()):
             entry = zipfile.ZipInfo(name, (1980,1,1,0,0,0))
@@ -293,7 +297,10 @@ def verify_approved_archive(archive: Path, manifest: dict):
             effective.get("accepted_claim_count") != manifest["accepted_claim_count"] or
             manifest.get("full45_claimed") is True and
             (effective.get("receipt_contract") != "ALL_45_HISTORICAL_AND_ALL_11_COMPLETE" or
-             effective.get("status") != "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY")):
+             effective.get("status") != (
+                 "POSTMERGE_PRESEAL_READY"
+                 if manifest.get("status") == "CANDIDATE_SEAL_BUILT"
+                 else "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY"))):
             raise SealError("effective acceptance receipt contradicts approved seal")
         # A second complete retained copy must independently agree with all
         # direct source members. Neither source set may disappear silently.
@@ -338,7 +345,7 @@ def main(argv=None):
     ap.add_argument("--bundle", required=True, type=Path)
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--full", action="store_true",
-                    help="require the complete full-release-strict certificate")
+                    help="require exact-M postmerge preseal 45/11 eligibility; candidate requires separate independent postseal review")
     args = ap.parse_args(argv)
     try:
         approved = json.loads(args.approved_claim_manifest.read_text())

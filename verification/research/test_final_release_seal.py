@@ -140,6 +140,23 @@ class ApprovedSealByteTests(unittest.TestCase):
                 seal.seal(self.draft, self.approved, {},
                           self.draft/"fake_bundle.zip", self.output, full=True)
 
+    def test_full_seal_uses_preseal_not_the_circular_full_gate(self):
+        from final_closure_full_contract import ORIGINAL_CLAIMS
+        approved = dict(self.approved, claims=sorted(ORIGINAL_CLAIMS),
+                        approved_manuscript_claims=sorted(ORIGINAL_CLAIMS))
+        scopes = []
+        def blocked(receipts, scope, manifest, bundle_path=None):
+            scopes.append(scope)
+            raise seal.SealError("no real independent preseal authorization")
+        with mock.patch.object(seal.draft_verifier, "verify",
+                               return_value={"integrity": "PASS"}), \
+             mock.patch.object(seal, "strict_acceptance", side_effect=blocked):
+            with self.assertRaises(seal.SealError):
+                seal.seal(self.draft, approved, self.receipts,
+                          self.external_bundle, self.output, full=True)
+        self.assertEqual(scopes, ["postmerge-preseal-strict"])
+        self.assertFalse(self.output.exists())
+
     def test_reproducibility_reports_different_bytes_instead_of_relabeling(self):
         first, second = self.draft, Path(self.tmp.name)/"second"
         import shutil
