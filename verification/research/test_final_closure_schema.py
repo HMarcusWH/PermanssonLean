@@ -140,6 +140,42 @@ class SchemaBoundaryTests(unittest.TestCase):
             with self.subTest(key=key + " empty"), self.assertRaises(EvidenceError):
                 schema.validate_overlay(empty)
 
+    def test_v3_requires_true_producing_job_refs_and_all_21_entries(self):
+        x = candidate()
+        x["format"] = schema.FORMAT_V3
+        x["producer_artifacts"] = []
+        with self.assertRaises(EvidenceError):
+            schema.validate_overlay(x)
+        from final_closure_candidate_artifact_auth import KINDS
+        records = []
+        for kind, spec in KINDS.items():
+            for shard in range(spec["count"]):
+                k = len(records)+1
+                records.append({
+                    "format":"Permansson.PR113.AuthenticatedProducerArtifact.v1",
+                    "status":"CI_ARTIFACT_DIGEST_VERIFIED_UNREVIEWED",
+                    "head_sha": H,
+                    "workflow_path":spec["workflow"],
+                    "run_id":1000+k,"run_attempt":1,
+                    "job_id":2000+k,"actual_check_run_id":3000+k,
+                    "artifact_id":4000+k,
+                    "artifact_name":spec["artifact"]+str(shard),
+                    "artifact_sha256":"a"*64,"manifest_sha256":"b"*64,
+                    "mathematical_acceptance":False,"independent_review":False,
+                    "scientific_release_approved":False,
+                    "merged_main_sha":None,
+                    "evidence_zip_member":f"producer/{4000+k}.zip",
+                })
+        x["producer_artifacts"] = records
+        schema.validate_overlay(x)  # STRUCTURAL ONLY; not real GH review
+        x["producer_artifacts"][0]["actual_check_run_id"] = True
+        with self.assertRaises(EvidenceError):
+            schema.validate_overlay(x)
+        x["producer_artifacts"][0]["actual_check_run_id"] = 3001
+        x["producer_artifacts"][0]["mathematical_acceptance"] = True
+        with self.assertRaises(EvidenceError):
+            schema.validate_overlay(x)
+
     def test_unknown_schema_rule_fails_closed(self):
         with self.assertRaises(EvidenceError):
             schema._check_spec({"magicallyAccept": True})

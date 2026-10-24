@@ -13,6 +13,8 @@ import re
 from final_closure_case_receipts import EvidenceError, ROOT
 
 SCHEMA = ROOT / "research/paper_closures/post_merge_112/detached_receipts_v2.schema.json"
+SCHEMA_V3 = ROOT / "research/paper_closures/post_merge_112/detached_receipts_v3.schema.json"
+FORMAT_V3 = "Permansson.FinalClosureDetachedReceipts.v3"
 KEYWORDS = frozenset({
     "$schema", "$id", "title", "description", "type", "properties",
     "additionalProperties", "required", "items", "prefixItems", "const",
@@ -111,8 +113,10 @@ def _validate(value, schema, where="$"):
 
 def validate_overlay(payload):
     """Schema gate for input/output; never converts candidates into approvals."""
+    selected = SCHEMA_V3 if isinstance(payload, dict) and (
+        payload.get("format") == FORMAT_V3) else SCHEMA
     try:
-        schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+        schema = json.loads(selected.read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
         raise EvidenceError("canonical detached receipt schema unavailable") from exc
     _check_spec(schema)
