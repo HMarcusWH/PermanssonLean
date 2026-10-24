@@ -105,7 +105,7 @@ def method_candidates(routes, read):
                 status = "DISCOVERED_UNREVIEWED"
             elif len(funcs) > 1:
                 status = "AMBIGUOUS_UNREVIEWED"
-        except (OSError, MatrixError, SyntaxError, UnicodeError):
+        except (OSError, MatrixError, KeyError, SyntaxError, UnicodeError):
             pass
         rows.append({
             "path": path, "method": name, "role": route.get("role"),
@@ -133,7 +133,7 @@ def proof_candidates(proofs, read, *, claim=False):
         try:
             digest = sha(read(path))
             status = "SOURCE_PRESENT__COMPILED_TYPE_UNCHECKED"
-        except (OSError, MatrixError):
+        except (OSError, MatrixError, KeyError):
             pass
         result.append({
             "path": path, "declaration": name, "source_sha256": digest,

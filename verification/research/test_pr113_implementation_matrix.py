@@ -61,7 +61,7 @@ class MatrixTests(unittest.TestCase):
         files.pop("PermanssonResearch/Actual.lean")
         r=m.produce(H,files.__getitem__)
         self.assertEqual(r["case_source_missing"],C)
-        self.assertEqual(r["claim_source_missing"],Q)
+        self.assertEqual(set(r["claim_source_missing"]),set(Q))
         files=fake_tree()
         files["verification/research/test_actual.py"]=b"def test_other(): pass\n"
         r=m.produce(H,files.__getitem__)

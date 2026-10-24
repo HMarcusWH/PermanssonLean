@@ -338,6 +338,7 @@ class SeparateGateTests(unittest.TestCase):
         art = aid_api["/actions/artifacts/204"]
         art.update(id=204, digest="sha256:"+infra.sha(azip))
         art["workflow_run"].update(id=201)
+        tapi["/actions/artifacts/104"]["digest"] = "sha256:"+infra.sha(tzip)
         api = {**tapi, **aid_api}
         # Both distinct real-API shapes use the staged workflow identity.
         for key in ("/actions/runs/101", "/actions/runs/201"):
