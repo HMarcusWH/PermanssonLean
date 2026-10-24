@@ -213,7 +213,7 @@ def inspect_A2(files, head):
         files, "pr113_successor_A2",
         "SUCCESSOR_KERNEL_CHECKED_REVIEW_PENDING", SUCCESSOR_MUTATIONS)
     prov = overall.get("historical_runtime_provenance")
-    need(overall.get("format") == "Permansson.PR113.DualA2CompilerCandidate.v1"
+    need(overall.get("format") == "Permansson.PR113.DualA2CompilerCandidate.v2"
          and overall.get("status")
              == "BOTH_ACTUAL_A2_COMPILER_PATHS_EXECUTED_UNREVIEWED"
          and overall.get("historical_source_commit") == A2_HISTORICAL

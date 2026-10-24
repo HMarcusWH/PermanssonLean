@@ -112,7 +112,7 @@ def a2_files():
         infra.SUCCESSOR_MUTATIONS)
     historical_receipt = left["historical_original_A2/receipt.json"]
     overall = {
-        "format": "Permansson.PR113.DualA2CompilerCandidate.v1",
+        "format": "Permansson.PR113.DualA2CompilerCandidate.v2",
         "status": "BOTH_ACTUAL_A2_COMPILER_PATHS_EXECUTED_UNREVIEWED",
         "historical_source_commit": infra.A2_HISTORICAL,
         "current_source_commit": H, "historical_test_executed": True,
