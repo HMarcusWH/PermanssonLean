@@ -8,6 +8,8 @@ H="a"*40
 
 def fixture():
     historical={
+        "format":"Permansson.Hardening.Check.v1",
+        "context":{"source":"immutable-T"},
         "check":"archive-reproducibility",
         "status":"PASS",
         "details":{
@@ -17,9 +19,11 @@ def fixture():
         },
     }
     current={
+        "format":"Permansson.Hardening.Tests.v1","schema_version":1,
         "status":"PASS","suite":"workflow",
         "execution_tracked_clean":True,
-        "methods_run":9,
+        "methods_run":9, "failures":0, "errors":0, "skips":0,
+        "covered_requirements":["CI-06","CI-07"],
     }
     return historical,current
 
@@ -44,6 +48,24 @@ class DualToolingTests(unittest.TestCase):
             old,now=fixture()
             old["details"]["isolation"][fault]="NOT_ENFORCED"
             with self.subTest(fault=fault), self.assertRaises(dual.DualToolingError):
+                dual.validate_dual_reports(old,now,T_source=T,H_source=H)
+
+    def test_tampered_run_or_missing_coverage_is_rejected(self):
+        for field, changed in (
+            ("format","Permansson.Hardening.Check.v0"),
+            ("context",None),
+        ):
+            old,now=fixture()
+            old[field]=changed
+            with self.subTest(field=field), self.assertRaises(dual.DualToolingError):
+                dual.validate_dual_reports(old,now,T_source=T,H_source=H)
+        for field,changed in (
+            ("covered_requirements",[]),("errors",1),("skips",1),
+            ("failures",1),("schema_version",2),
+        ):
+            old,now=fixture()
+            now[field]=changed
+            with self.subTest(field=field), self.assertRaises(dual.DualToolingError):
                 dual.validate_dual_reports(old,now,T_source=T,H_source=H)
 
     def test_unexecuted_current_workflow_or_dirty_source_rejected(self):

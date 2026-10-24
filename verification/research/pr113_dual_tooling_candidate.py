@@ -12,6 +12,7 @@ T/C closure error nor original verifier is rewritten, skipped or relabelled.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -22,7 +23,16 @@ import sys
 from pr113_tooling_migration import T, audit as tooling_audit
 import localized_prefix_support as git_source
 
-FORMAT="Permansson.PR113.DualToolingCandidate.v1"
+FORMAT="Permansson.PR113.DualToolingCandidate.v2"
+T2_FORMAT="Permansson.PR113.ToolingSecurityReviewDossier.v1"
+
+
+def checksum(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def sha_file(path):
+    return checksum(Path(path).read_bytes())
 SHA40=re.compile(r"^[0-9a-f]{40}$")
 
 class DualToolingError(ValueError):
@@ -48,6 +58,8 @@ def checkout(root,commit):
 
 def validate_dual_reports(historical, current, *, T_source, H_source):
     demand(isinstance(historical,dict) and
+           historical.get("format")=="Permansson.Hardening.Check.v1" and
+           isinstance(historical.get("context"), dict) and
            historical.get("status")=="PASS" and
            historical.get("check")=="archive-reproducibility",
            "original T offline archive verifier did not PASS")
@@ -59,10 +71,16 @@ def validate_dual_reports(historical, current, *, T_source, H_source):
            details["isolation"].get("capabilities")=="all_zero",
            "original T offline restore omitted true network isolation")
     demand(isinstance(current,dict) and
+           current.get("format")=="Permansson.Hardening.Tests.v1" and
+           current.get("schema_version")==1 and
            current.get("status")=="PASS" and
            current.get("suite")=="workflow" and
            current.get("execution_tracked_clean") is True and
-           current.get("methods_run",0)>0,
+           current.get("methods_run",0)>0 and
+           current.get("failures")==0 and current.get("errors")==0 and
+           current.get("skips")==0 and
+           isinstance(current.get("covered_requirements"),list) and
+           len(current["covered_requirements"])>0,
            "current H workflow verifier did not execute complete suite")
     return {
         "format":FORMAT,
@@ -77,8 +95,12 @@ def validate_dual_reports(historical, current, *, T_source, H_source):
     }
 
 def command(argv,cwd,limit=1800):
+    environment=os.environ.copy()
+    for key in ("PYTHONPATH","PYTHONHOME"):
+        environment.pop(key,None)
+    environment["PYTHONDONTWRITEBYTECODE"]="1"
     try:
-        result=subprocess.run(argv,cwd=cwd,timeout=limit,
+        result=subprocess.run(argv,cwd=cwd,env=environment,timeout=limit,
                               capture_output=True,text=True)
     except (OSError,subprocess.TimeoutExpired) as exc:
         raise DualToolingError("isolated original verification unavailable") from exc
@@ -100,6 +122,8 @@ def execute(historical_source,current_source,head,out):
            not output.is_relative_to(historical) and
            not output.is_relative_to(current),
            "archive evidence output must be new, detached and disjoint")
+    demand(os.environ.get("GITHUB_ACTIONS")!="true",
+           "unapproved historical replay cannot impersonate required candidate CI")
     proposal=tooling_audit(current,head)
     demand(proposal["status"]=="DRAFT_NEEDS_OWNER_AND_INDEPENDENT_SECURITY_REVIEW"
            and proposal["historical_archive_unchanged"] is True and
@@ -111,11 +135,9 @@ def execute(historical_source,current_source,head,out):
     output.mkdir(parents=True,exist_ok=False)
     original_report=output/"original_T_archive.json"
     current_report=output/"current_H_workflow.json"
-    # Never use a newer H interpreter for the old T archive.
-    # Running under GitHub Actions without the historical identity binding is
-    # unsafe: require an authorized separate isolated historical environment.
-    demand(os.environ.get("GITHUB_ACTIONS")!="true",
-           "cannot disguise standalone historical T replay as current GitHub CI")
+    # Separate cwd and sanitized Python import path ensure the original
+    # historical T archive implementation is actually executed, rather than
+    # importing the newer H module via PYTHONPATH.
     command([sys.executable,"-B","-m","verification.archive.offline_smoke",
              "--supplement",str(supplement),
              "--scratch",str(output/"historical_restore"),
@@ -127,8 +149,35 @@ def execute(historical_source,current_source,head,out):
     receipt=validate_dual_reports(old,new,T_source=T,H_source=head)
     receipt["historical_manifest_sha256"]=proposal["historical_manifest_sha256"]
     receipt["reviewed_25_workflow_inventory"]=proposal["current_workflow_file_count"]
+    receipt["historical_tooling_diff"]=proposal["changed_canonical_tooling"]
+    receipt["historical_T_report_sha256"]=sha_file(original_report)
+    receipt["current_H_report_sha256"]=sha_file(current_report)
+    receipt["original_T_archive_source_commit"]=T
+    receipt["genuine_current_source_commit"]=head
+    receipt["original_T_archive_unchanged"]=proposal["historical_archive_unchanged"]
+    receipt["independent_security_review"]=False
+    receipt["versioned_successor_T2_approved"]=False
+    proposal_dossier={
+        "format":T2_FORMAT,
+        "status":"COMPLETE_DUAL_EXECUTION_CANDIDATE_SECURITY_REVIEW_PENDING",
+        "base_sha":proposal["original_release_base_B"],
+        "T":T,"H":head,
+        "historical_supplement_tree":proposal["historical_supplement_tree"],
+        "historical_manifest_sha256":proposal["historical_manifest_sha256"],
+        "canonical_tooling_changes":proposal["changed_canonical_tooling"],
+        "required_workflow_inventory_count":proposal["current_workflow_file_count"],
+        "T_original_offline_restore_report_sha256":sha_file(original_report),
+        "H_original_workflow_test_report_sha256":sha_file(current_report),
+        "legacy_T_did_not_accept_current_C":True,
+        "owner_authorization_present":False,
+        "independent_security_review_present":False,
+        "historical_required_CI_replaced":False,
+        "mathematical_release_approved":False,
+    }
     (output/"dual_tooling_unreviewed.json").write_text(
         json.dumps(receipt,sort_keys=True,indent=2)+"\n")
+    (output/"T2_security_review_candidate.json").write_text(
+        json.dumps(proposal_dossier,sort_keys=True,indent=2)+"\n")
     return receipt
 
 def main(argv=None):
