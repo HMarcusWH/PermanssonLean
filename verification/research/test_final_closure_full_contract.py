@@ -177,13 +177,21 @@ class FullScopeContractTests(unittest.TestCase):
                                return_value={}), \
              mock.patch.object(gate, "effective_acceptance",
                                return_value=evidence), \
+             mock.patch.object(gate, "authenticate_all_76",
+                               return_value={"status": "MOCK_ONLY_V31"}), \
              mock.patch.object(gate, "read_json",
                                side_effect=[cases, {"claims": claims}, selection, {"claims": []}]):
-            status = gate.premerge(receipt, None, full=True)
+            status = gate.premerge(
+                receipt, None, full=True,
+                additional_contract="/mock/contract.json",
+                additional_zips="/mock/producer-zips",
+                workflow_blob_candidates="/mock/oid-candidates.json")
         self.assertEqual(status["gate"], "PREMERGE_FULL_SOURCE_READY")
         self.assertFalse(status["merge_authorized"])
         self.assertFalse(status["scientific_release_approved"])
         self.assertIsNone(status["merged_main_sha"])
+        self.assertEqual(status["additional_execution"]["status"],
+                         "MOCK_ONLY_V31")
 
 
 if __name__ == "__main__":

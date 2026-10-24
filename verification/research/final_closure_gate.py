@@ -22,9 +22,12 @@ from final_closure_verify import (
 )
 from final_closure_schema import validate_overlay
 from final_closure_full_contract import require_full_source, require_complete_obligation_receipts
+from pr113_mandatory_v31 import authenticate_all_76, MandatoryV31Error
 
 
-def premerge(receipts: dict, bundle: Path, *, full: bool = False):
+def premerge(receipts: dict, bundle: Path, *, full: bool = False,
+             additional_contract=None, additional_zips=None,
+             workflow_blob_candidates=None):
     validate_overlay(receipts)
     if receipts.get("format") not in (FORMAT, FORMAT_V3) or \
        receipts.get("phase") != "premerge_review" or \
@@ -48,6 +51,18 @@ def premerge(receipts: dict, bundle: Path, *, full: bool = False):
         claim_map = read_json(NEW/"claim_declaration_map.json")
         full_result.update(require_complete_obligation_receipts(
             receipts, source_map, claim_map))
+        # Reauthenticate all 76 actually executed source controls against
+        # current GitHub original artifacts. A v3-only/full45 label is NOT
+        # mathematical full-source readiness.
+        if any(x is None for x in (
+                additional_contract, additional_zips,
+                workflow_blob_candidates)):
+            raise GateError("premerge-full requires all 76 real v3.1 GitHub source controls")
+        full_result["additional_execution"] = authenticate_all_76(
+            provenance["H"], receipts, members,
+            additional_contract=additional_contract,
+            additional_zips=additional_zips,
+            workflow_blob_candidates=workflow_blob_candidates)
     else:
         if verified["accepted_case_count"] + verified["accepted_claim_count"] == 0:
             raise GateError("no exact source-scope case or claim independently reviewed")
@@ -77,12 +92,18 @@ def main(argv=None):
     parser.add_argument("--reproduction-ids", type=Path)
     parser.add_argument("--postseal-zip", type=Path)
     parser.add_argument("--postseal-ids", type=Path)
+    parser.add_argument("--additional-contract", type=Path)
+    parser.add_argument("--additional-zips", type=Path)
+    parser.add_argument("--workflow-blob-candidates", type=Path)
     opts = parser.parse_args(argv)
     try:
         receipts = json.loads(opts.receipts.read_bytes())
         if opts.phase in ("premerge", "premerge-full"):
-            result = premerge(receipts, opts.bundle,
-                              full=opts.phase == "premerge-full")
+            result = premerge(
+                receipts, opts.bundle, full=opts.phase == "premerge-full",
+                additional_contract=opts.additional_contract,
+                additional_zips=opts.additional_zips,
+                workflow_blob_candidates=opts.workflow_blob_candidates)
         else:
             manifest = (
                 json.loads(opts.approved_manifest.read_bytes())
@@ -99,12 +120,20 @@ def main(argv=None):
                 "zip_file":opts.postseal_zip,
                 "identities":json.loads(opts.postseal_ids.read_bytes())}
                 if opts.postseal_zip else None)
+            additional = ({
+                "additional_contract": opts.additional_contract,
+                "additional_zips": opts.additional_zips,
+                "workflow_blob_candidates": opts.workflow_blob_candidates}
+                if any(x is not None for x in (
+                    opts.additional_contract, opts.additional_zips,
+                    opts.workflow_blob_candidates)) else None)
             result = strict(receipts, opts.phase, manifest,
                             bundle_path=opts.bundle,
                             reproduction_attachment=reproduction,
-                            postseal_attachment=postseal)
+                            postseal_attachment=postseal,
+                            v31_attachment=additional)
     except (GateError, EvidenceError, AuthenticationError,
-            OSError, KeyError, ValueError) as exc:
+            MandatoryV31Error, OSError, KeyError, ValueError) as exc:
         print("NOT ACCEPTED:", exc, file=sys.stderr)
         return 2
     print(json.dumps(result, indent=2, sort_keys=True))

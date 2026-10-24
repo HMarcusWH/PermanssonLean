@@ -318,13 +318,33 @@ def shard_indices(total: int, shard_index: int, shard_count: int):
 
 def export_all(head: str, output: Path, *,
                shard_index: int = 0, shard_count: int = 1):
+    """Production-only 259-target release entrypoint; no inventory overrides.
+
+    The mockable per-shard engine below is intentionally private. No CLI,
+    approved receipt, or full release path can reach it with a selected subset.
+    """
+    manifest = validate_full_release_inventory(required_inventory())
+    return _export_checked_shard(
+        head, output, manifest,
+        shard_index=shard_index, shard_count=shard_count)
+
+
+def _export_checked_shard(head: str, output: Path, manifest: list[dict], *,
+                          shard_index: int = 0, shard_count: int = 1):
+    """Internal compiler diagnostic harness; NOT a full-release proof gate.
+
+    Test fixtures exercise log-retention behavior with small source inventories.
+    Actual release runs must call export_all(), which first enforces all 259
+    distinct 45-case / 11-claim source targets.
+    """
     require(isinstance(head, str) and SHA40.fullmatch(head) and
             git_head() == head, "compiler checkout differs from requested H")
     output = output.resolve()
     require(not output.is_relative_to(ROOT.resolve()),
             "compiler logs must be detached from the reviewed checkout")
-    manifest = required_inventory()
-    validate_full_release_inventory(manifest)
+    require(isinstance(manifest, list) and manifest and
+            all(isinstance(row, dict) for row in manifest),
+            "internal diagnostic harness has no source inventory")
     # Even a shard that does not compile a given original theorem must refuse
     # a dirty/shadowed source-owner inventory. Authenticate ALL original paths
     # at this H, not only the declarations assigned to the current worker.

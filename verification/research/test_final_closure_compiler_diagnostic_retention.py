@@ -28,7 +28,7 @@ class CompilerDiagnosticRetention(unittest.TestCase):
             "theorem genuine : True := by trivial\n"
             "end Demo\n", encoding="utf-8")
         self.out = Path(self.dir.name) / "detached"
-        # Exporter requires more than eleven targets before querying Lean.
+        # Private diagnostics runner accepts a focused fixture; production does not.
         self.inventory = [
             {"path": "PermanssonResearch/Demo.lean",
              "declaration": "Demo.genuine",
@@ -45,8 +45,9 @@ class CompilerDiagnosticRetention(unittest.TestCase):
                                side_effect=lambda *_args, **_kw:
                                    self.source.read_bytes()), \
              mock.patch.object(compiler, "run_probe", return_value=result):
-            return compiler.export_all(H, self.out, shard_index=0,
-                                       shard_count=1)
+            return compiler._export_checked_shard(
+                H, self.out, self.inventory, shard_index=0,
+                shard_count=1)
 
     def test_unparseable_type_keeps_verbatim_diagnostic_without_pass_receipt(self):
         result = SimpleNamespace(returncode=0,
@@ -82,6 +83,16 @@ class CompilerDiagnosticRetention(unittest.TestCase):
             self.run_with(result)
         self.assertFalse((self.out / "axiom_logs/all_0000.log").exists())
         self.assertFalse((self.out / "complete_compiler_candidate.json").exists())
+
+
+    def test_production_export_does_not_accept_focused_diagnostic_subset(self):
+        with mock.patch.object(compiler, "required_inventory",
+                               return_value=self.inventory):
+            with self.assertRaisesRegex(compiler.CompleteCompilerError,
+                                        "259 original proof targets"):
+                compiler.export_all(H, self.out)
+        self.assertFalse(self.out.exists())
+
 
 
 if __name__ == "__main__":

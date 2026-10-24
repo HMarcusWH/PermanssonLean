@@ -166,7 +166,8 @@ def verify_claim_source_receipts(receipts: dict, source_head: str) -> set[str]:
 def strict(receipts: dict, scope: str, manifest: dict | None,
            *, bundle_path: Path | str | None = None,
            reproduction_attachment: dict | None = None,
-           postseal_attachment: dict | None = None) -> dict:
+           postseal_attachment: dict | None = None,
+           v31_attachment: dict | None = None) -> dict:
     """Calculate EFFECTIVE reviewed cases/claims; never trust source JSON flags.
 
     The detached bundle is an external post-freeze artifact. Real signed
@@ -206,6 +207,27 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
     except (AuthenticationError, EvidenceError, OSError) as exc:
         raise GateError(str(exc)) from exc
 
+    # All 76 real source-owned positive/negative controls are mandatory for
+    # either complete scholarly release mode. A legacy original-v3 only
+    # source receipt cannot be promoted by successful review or green CI.
+    additional_source = {}
+    if scope in ("postmerge-preseal-strict", "full-release-strict"):
+        from pr113_mandatory_v31 import (
+            authenticate_all_76, MandatoryV31Error)
+        check(isinstance(v31_attachment, dict) and
+              set(v31_attachment) == {
+                  "additional_contract", "additional_zips",
+                  "workflow_blob_candidates"} and
+              all(v31_attachment[name] is not None for name
+                  in v31_attachment),
+              "full scholarly release requires 76 original v3.1 source controls")
+        try:
+            additional_source = authenticate_all_76(
+                provenance["H"], receipts, members, **v31_attachment)
+        except (MandatoryV31Error, OSError, TypeError, ValueError) as exc:
+            raise GateError(
+                "real full-scope v3.1 producer evidence is missing: " +
+                str(exc)) from exc
     full_result = {}
     if scope == "full45-strict":
         check(result["accepted_case_count"] == 45 and
@@ -302,7 +324,9 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
                 read_json(NEW / "claim_declaration_map.json")))
         except EvidenceError as exc:
             raise GateError(str(exc)) from exc
-    return {**summary, **result, **full_result, "strict": scope,
+    return {**summary, **result, **full_result,
+            "additional_source_execution": additional_source,
+            "strict": scope,
             "source": provenance["M"], "frozen_head": provenance["H"]}
 
 
@@ -324,6 +348,9 @@ def main(argv=None) -> int:
                     help="future independently authorized GH postseal artifact ZIP")
     ap.add_argument("--postseal-ids", type=Path,
                     help="real source-bound producing postseal job/check/artifact IDs")
+    ap.add_argument("--additional-contract", type=Path)
+    ap.add_argument("--additional-zips", type=Path)
+    ap.add_argument("--workflow-blob-candidates", type=Path)
     args = ap.parse_args(argv)
     try:
         if args.mode == "audit":
@@ -342,10 +369,18 @@ def main(argv=None) -> int:
             replay = ({"zip_file":args.postseal_zip,
                        "identities":read_json(args.postseal_ids)}
                       if args.postseal_zip else None)
+            v31 = ({
+                "additional_contract": args.additional_contract,
+                "additional_zips": args.additional_zips,
+                "workflow_blob_candidates": args.workflow_blob_candidates}
+                if any(x is not None for x in (
+                    args.additional_contract, args.additional_zips,
+                    args.workflow_blob_candidates)) else None)
             out = strict(receipts, args.mode, manifest,
                          bundle_path=args.bundle,
                          reproduction_attachment=source,
-                         postseal_attachment=replay)
+                         postseal_attachment=replay,
+                         v31_attachment=v31)
     except (GateError, EvidenceError, KeyError, OSError, ValueError) as exc:
         print(f"NOT ACCEPTED: {exc}", file=sys.stderr)
         return 2

@@ -1,0 +1,196 @@
+# PR113 v3.1 PROPOSED WORKFLOW ONLY.  NEVER INSTALL BEFORE AN
+# INDEPENDENT SECURITY REVIEW OF THE COMPLETE ORIGINAL 25 + SUCCESSOR SET.
+name: PR113 Full v3.1 Original Source Controls
+
+on:
+  push:
+    branches: [research/final-mathematical-closure]
+    paths:
+      - ".github/workflows/pr113-source-controls-v3_1.yml"
+      - "verification/research/**"
+      - "research/paper_closures/post_merge_112/**"
+      - "PermanssonResearch/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: pr113-v31-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  original-positive45:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - name: Require exact PR branch, clean source, reviewed selections
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "HMarcusWH/PermanssonLean"
+          test "$GITHUB_REF" = "refs/heads/research/final-mathematical-closure"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          test -s research/paper_closures/post_merge_112/reviewed_positive45_selection_v31.json
+      - name: Build and axiom-audit pinned Lean research
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Execute all 45 source-reviewed original positives
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp research/paper_closures/post_merge_112/reviewed_positive45_selection_v31.json "$RUNNER_TEMP/positive45.json"
+          python3 -B verification/research/final_closure_positive_route_candidate.py --head "$GITHUB_SHA" --selection "$RUNNER_TEMP/positive45.json" --out "$RUNNER_TEMP/positive45-real"
+          python3 -B verification/research/pr113_pack_ci_positive_owners.py --head "$GITHUB_SHA" --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" --source "$RUNNER_TEMP/positive45-real" --output "$RUNNER_TEMP/positive45-owner-index"
+      - name: Retain real original 45 positive controls without approval
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-v31-positive45
+          path: ${{ runner.temp }}/positive45-owner-index/
+          if-no-files-found: warn
+          retention-days: 30
+
+  original-legacy20:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - name: Require reviewed real original source, selections and catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/research/final-mathematical-closure"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          test -s research/paper_closures/post_merge_112/reviewed_legacy20_selection_v31.json
+          test -s research/paper_closures/post_merge_112/reviewed_original21_catalog_v31.json
+      - name: Compile research with pinned Lean/axiom audit
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Authenticate current-H 21 originals, download exact artifact ZIPs
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/final_closure_producer_catalog.py --head "$GITHUB_SHA" --catalog research/paper_closures/post_merge_112/reviewed_original21_catalog_v31.json --output "$RUNNER_TEMP/original21-catalog"
+          mkdir -p "$RUNNER_TEMP/original21-zips"
+          python3 - <<'PY'
+          import hashlib, json, os, re, subprocess
+          from pathlib import Path
+          root = Path(os.environ["RUNNER_TEMP"])
+          data = json.loads((root/"original21-catalog/unreviewed_producer_catalog.json").read_bytes())
+          assert data["head_sha"] == os.environ["GITHUB_SHA"]
+          rows = data["producer_artifact_checks"]
+          assert len(rows) == 21
+          assert len({x["artifact_id"] for x in rows}) == 21
+          for x in rows:
+              aid = x["artifact_id"]
+              assert type(aid) is int and aid > 0
+              expected = x["artifact_sha256"]
+              assert re.fullmatch("[0-9a-f]{64}", expected)
+              binary = subprocess.check_output(
+                  ["gh", "api", f"repos/{os.environ['GITHUB_REPOSITORY']}/actions/artifacts/{aid}/zip"],
+                  timeout=90)
+              assert hashlib.sha256(binary).hexdigest() == expected
+              (root/"original21-zips"/f"{aid}.zip").write_bytes(binary)
+          PY
+      - name: Run all 20 original theorem source-appended false proof replays
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp research/paper_closures/post_merge_112/reviewed_legacy20_selection_v31.json "$RUNNER_TEMP/legacy20.json"
+          python3 -B verification/research/final_closure_batch_legacy_replay.py --head "$GITHUB_SHA" --catalog-dir "$RUNNER_TEMP/original21-catalog" --producer-zips "$RUNNER_TEMP/original21-zips" --selection "$RUNNER_TEMP/legacy20.json" --out "$RUNNER_TEMP/legacy20-real"
+          python3 -B verification/research/pr113_pack_ci_remaining_owners.py --head "$GITHUB_SHA" --kind legacy_negative --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" --source "$RUNNER_TEMP/legacy20-real" --output "$RUNNER_TEMP/legacy20-owner-index"
+      - name: Retain 20 genuine original-source false Lean controls
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-v31-legacy20
+          path: ${{ runner.temp }}/legacy20-owner-index/
+          if-no-files-found: warn
+          retention-days: 30
+
+  claim-true-false11:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - name: Require exact original source and reviewed 11 claim false statements
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/research/final-mathematical-closure"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          test -s research/paper_closures/post_merge_112/reviewed_claim11_selection_v31.json
+          test -d research/paper_closures/post_merge_112/reviewed_claim11_false_sources
+          test "$(find research/paper_closures/post_merge_112/reviewed_claim11_false_sources -name '*.lean' | wc -l)" -eq 11
+      - name: Build/axiom-audit original Lean research providers
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Execute and preserve all 11 true/false claim proof controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp research/paper_closures/post_merge_112/reviewed_claim11_selection_v31.json "$RUNNER_TEMP/claim11.json"
+          cp -R research/paper_closures/post_merge_112/reviewed_claim11_false_sources "$RUNNER_TEMP/claim11-false-sources"
+          python3 -B verification/research/final_closure_claim_controls_candidate.py --head "$GITHUB_SHA" --selection "$RUNNER_TEMP/claim11.json" --mutants-root "$RUNNER_TEMP/claim11-false-sources" --out "$RUNNER_TEMP/claims11-real"
+          python3 -B verification/research/pr113_pack_ci_remaining_owners.py --head "$GITHUB_SHA" --kind claim_pair --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" --source "$RUNNER_TEMP/claims11-real" --output "$RUNNER_TEMP/claims11-owner-index"
+      - name: Retain original 11 claim true/false pair source checks
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-v31-claims11
+          path: ${{ runner.temp }}/claims11-owner-index/
+          if-no-files-found: warn
+          retention-days: 30

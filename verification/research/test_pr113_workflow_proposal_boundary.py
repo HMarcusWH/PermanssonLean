@@ -39,7 +39,7 @@ class WorkflowProposalBoundary(unittest.TestCase):
         self.assertEqual({x.removeprefix(ACTIVE) for x in active},
                          set(APPROVED_WORKFLOWS))
 
-    def test_all_three_proposals_unapproved_and_byte_identical(self):
+    def test_all_four_staged_proposals_unapproved_and_byte_identical(self):
         manifest = source_manifest()
         self.assertEqual(manifest["original_approved_workflow_count"], 25)
         self.assertEqual(manifest["status"],
@@ -49,8 +49,14 @@ class WorkflowProposalBoundary(unittest.TestCase):
         self.assertIs(manifest["mathematical_acceptance"], False)
         self.assertIs(manifest["release_authorized"], False)
         rows = manifest["proposals"]
-        self.assertEqual(len(rows), 3)
-        self.assertEqual(len({r["workflow_path"] for r in rows}), 3)
+        self.assertEqual(len(rows), 4)
+        self.assertEqual(len({r["workflow_path"] for r in rows}), 4)
+        self.assertEqual({Path(r["workflow_path"]).name for r in rows}, {
+            "pr113-historical-migration-candidates.yml",
+            "pr113-original-positive-controls-candidate.yml",
+            "pr113-postseal-replay.yml",
+            "pr113-source-controls-v3_1.yml",
+        })
         for row in rows:
             old = row["workflow_path"]
             staged = row["staged_source_path"]
@@ -63,7 +69,9 @@ class WorkflowProposalBoundary(unittest.TestCase):
                              row["git_blob_oid"])
             self.assertIs(row["approved"], False)
             self.assertIs(row["installed"], False)
-            self.assertIs(row["source_unchanged"], True)
+            self.assertIs(
+                row["source_unchanged"],
+                Path(old).name != "pr113-source-controls-v3_1.yml")
 
     def test_unreviewed_manifest_cannot_assert_success(self):
         record = source_manifest()
@@ -72,6 +80,19 @@ class WorkflowProposalBoundary(unittest.TestCase):
                       "owner_authorized_activation",
                       "mathematical_acceptance", "release_authorized"):
             self.assertIs(record[field], False)
+
+
+    def test_full_v31_proposal_has_real_three_job_families_but_is_inactive(self):
+        path = PROPOSALS / "pr113-source-controls-v3_1.yml"
+        source = path.read_text(encoding="utf-8")
+        self.assertIn("original-positive45:", source)
+        self.assertIn("original-legacy20:", source)
+        self.assertIn("claim-true-false11:", source)
+        self.assertIn("research/final-mathematical-closure", source)
+        self.assertIn("reviewed_claim11_false_sources", source)
+        self.assertIn("reviewed_legacy20_selection_v31.json", source)
+        self.assertFalse((ROOT / ACTIVE /
+                          "pr113-source-controls-v3_1.yml").exists())
 
 
 if __name__ == "__main__":

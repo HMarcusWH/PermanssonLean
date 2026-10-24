@@ -37,6 +37,11 @@ SUITES = (
     "test_final_postseal_replay.py",
     "test_final_closure_schema.py",
     "test_clean_source_reproduction.py",
+    # Focused source guards must fail fast before 1,500+ research regressions.
+    "test_final_closure_compiler_diagnostic_retention.py",
+    "test_pr113_full_inventory_gate.py",
+    "test_pr113_mandatory_v31.py",
+    "test_pr113_workflow_proposal_boundary.py",
 )
 FORMAT = "Permansson.PR113.FastEngineeringPreflight.v1"
 
