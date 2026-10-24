@@ -90,9 +90,9 @@ def normalize_additive_root_separator(raw: bytes) -> bytes:
     whitespace canonicalization of mathematical source.
     """
     anchor = (b"import PermanssonResearch.ConstitutiveQuasi."
-              b"LocalizedPrefixExamples\\n")
-    original = anchor + b"\\n/-!\\n"
-    current = anchor + b"\\n\\n\\n/-!\\n"
+              b"LocalizedPrefixExamples\n")
+    original = anchor + b"\n/-!\n"
+    current = anchor + b"\n\n\n/-!\n"
     if raw.count(current) == 1 and raw.count(original) == 0:
         return raw.replace(current, original, 1)
     return raw
