@@ -16,6 +16,20 @@ SRC=["README.md","main.tex","preamble.tex","references.bib",
      "appendices/A_theorem_crosswalk.tex","appendices/B_reproducibility.tex"]
 
 def sha(data: bytes)->str: return hashlib.sha256(data).hexdigest()
+
+def scoped_tex_environment(base: dict[str, str]) -> dict[str, str]:
+    """Use the current real manuscript/BibTeX input dir as a relative path.
+
+    Absolute TEXINPUTS caused pdfTeX to echo absolute *wrapped* source paths.
+    A naive replacement could not recognize path strings split at 79 columns,
+    so two verified PDF-identical roots still had different logs/manifests.
+    This sets the standard Kpathsea relative current-directory search and
+    retains the optional existing system/default search path unchanged.
+    """
+    environment = dict(base)
+    environment["TEXINPUTS"] = "." + os.pathsep + base.get("TEXINPUTS", "")
+    environment["BIBINPUTS"] = "." + os.pathsep + base.get("BIBINPUTS", "")
+    return environment
 def run(cmd,cwd,env=None):
     p=subprocess.run(cmd,cwd=cwd,env=env,check=False,capture_output=True,text=True,timeout=420)
     if p.returncode: raise RuntimeError(f"{cmd}: {p.returncode}\n{(p.stdout+p.stderr)[-7000:]}")
@@ -33,7 +47,7 @@ def build(out:Path,engine:str,render:bool)->dict:
     if not compiler: raise ValueError(f"TeX compiler unavailable: {engine}")
     out.mkdir(parents=True,exist_ok=True)
     work=out/"_texwork"; work.mkdir(exist_ok=True)
-    env=os.environ.copy()
+    env=scoped_tex_environment(os.environ)
     # Bind timestamps to the authentic source commit, not wall-clock build time.
     source_date_epoch=run(["git","show","-s","--format=%ct","HEAD"],ROOT).strip()
     if not source_date_epoch.isdigit():
@@ -42,8 +56,14 @@ def build(out:Path,engine:str,render:bool)->dict:
     env["FORCE_SOURCE_DATE"]="1"
     env["TZ"]="UTC"
     env["LC_ALL"]="C"
-    env["TEXINPUTS"]=str(PAPER)+os.pathsep+env.get("TEXINPUTS","")
-    env["BIBINPUTS"]=str(PAPER)+os.pathsep+env.get("BIBINPUTS","")
+    # BibTeX runs from _texwork, unlike pdfTeX, which runs in PAPER.
+    # Retain an exact byte copy of the committed references.bib there so
+    # BibTeX can also report a stable relative filename in its stdout.
+    bib_source = PAPER/"references.bib"
+    bib_target = work/"references.bib"
+    shutil.copyfile(bib_source, bib_target)
+    if sha(bib_target.read_bytes()) != sha(bib_source.read_bytes()):
+        raise RuntimeError("BibTeX input copy differs from canonical source")
     cmd=[compiler,"-halt-on-error","-interaction=nonstopmode","-file-line-error",
          f"-output-directory={work}","main.tex"]
     logs=[run(cmd,PAPER,env)]

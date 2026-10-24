@@ -1,5 +1,6 @@
 """Synthetic command stubs test two-source-root control flow, not PDF evidence."""
 import json
+import os
 from pathlib import Path
 import sys
 import tempfile
@@ -9,6 +10,7 @@ from unittest import mock
 RELEASE = Path(__file__).resolve().parents[2] / "release/mathematical-closure-1"
 sys.path.insert(0, str(RELEASE))
 import reproduce_clean_sources as clean
+import build as draft_builder
 
 H = "a"*40
 T = "b"*40
@@ -111,6 +113,18 @@ class CleanSourceRootRebuildTests(unittest.TestCase):
             (two/"pages/page-1.png").unlink()
             detail=clean.diagnose_root_differences(one,two)
             self.assertEqual(detail["rendered_pages"]["changed"],["page-1.png"])
+
+    def test_tex_input_search_is_relative_and_preserves_existing_system_search(self):
+        environment = draft_builder.scoped_tex_environment(
+            {"TEXINPUTS":"system-trees", "BIBINPUTS":"bib-trees", "ROOT":"unchanged"})
+        self.assertEqual(environment["TEXINPUTS"],
+                         "." + os.pathsep + "system-trees")
+        self.assertEqual(environment["BIBINPUTS"],
+                         "." + os.pathsep + "bib-trees")
+        self.assertEqual(environment["ROOT"],"unchanged")
+        unset = draft_builder.scoped_tex_environment({})
+        self.assertEqual(unset["TEXINPUTS"], "." + os.pathsep)
+        self.assertEqual(unset["BIBINPUTS"], "." + os.pathsep)
 
     def test_fixed_pdftex_trailer_identity_is_explicit_and_source_bound(self):
         """Different output-root paths must not randomize the PDF backend ID."""
