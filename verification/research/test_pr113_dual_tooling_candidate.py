@@ -8,6 +8,7 @@ H="a"*40
 
 def fixture():
     historical={
+        "check":"archive-reproducibility",
         "status":"PASS",
         "details":{
             "acceptance_scope":"accepted_artifact_replay_only",
@@ -34,7 +35,7 @@ class DualToolingTests(unittest.TestCase):
 
     def test_missing_isolation_or_bypassed_historical_T_fails(self):
         for key,value in [("status","FAIL"),("details",{}),
-                          ("name","wrong context")]:
+                          ("check","wrong context")]:
             old,now=fixture()
             old[key]=value
             with self.subTest(key=key), self.assertRaises(dual.DualToolingError):

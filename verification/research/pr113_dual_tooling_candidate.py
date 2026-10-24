@@ -49,8 +49,7 @@ def checkout(root,commit):
 def validate_dual_reports(historical, current, *, T_source, H_source):
     demand(isinstance(historical,dict) and
            historical.get("status")=="PASS" and
-           historical.get("name","archive-reproducibility")==
-               "archive-reproducibility",
+           historical.get("check")=="archive-reproducibility",
            "original T offline archive verifier did not PASS")
     details=historical.get("details")
     demand(isinstance(details,dict) and
