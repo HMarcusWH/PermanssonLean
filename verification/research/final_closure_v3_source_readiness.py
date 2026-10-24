@@ -110,7 +110,12 @@ def route_coverage(overlay, original_map, claim_map):
                "SEMANTIC_NEGATIVE"]
         if correct_plus: cp.add(cid)
         if correct_minus: cn.add(cid)
-        if (attached_plus and not correct_plus) or (attached_minus and not correct_minus):
+        # Do not ignore a role-ineligible extra record merely because a
+        # different record correctly satisfies this case.
+        if (any(roles.get((row.get("test_path"),row.get("test_name")))
+                not in POSITIVE_ROLES for row in attached_plus) or
+            any(roles.get((row.get("test_path"),row.get("test_name"))) !=
+                "SEMANTIC_NEGATIVE" for row in attached_minus)):
             wrong_roles.append(cid)
     for cid, original in sorted(byclaim.items()):
         attached = [row for row in proofs.values()
@@ -131,7 +136,10 @@ def route_coverage(overlay, original_map, claim_map):
                  if cid in row.get("claim_ids", ())]
         if any(row.get("test_path") in sources for row in plus): qp.add(cid)
         if any(row.get("test_path") in sources for row in minus): qn.add(cid)
-        if ((plus and cid not in qp) or (minus and cid not in qn)):
+        # A seemingly legitimate positive must not hide an unrelated
+        # claim test in the same owner set.
+        if any(row.get("test_path") not in sources
+               for row in plus + minus):
             wrong_claim_sources.append(cid)
     required_cases = set(bycase)
     result = {

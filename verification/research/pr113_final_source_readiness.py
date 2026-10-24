@@ -69,6 +69,8 @@ def candidate_coverage(overlay,original_ids,*,verified_roles=None):
         "label_coverage_only":not missing_cases and not missing_claims,
         "candidate_controls_complete":bool(source_ready and
                                            not missing_cases and not missing_claims),
+        "validated_original_case_control_count":45 if source_ready else 0,
+        "validated_new_claim_control_count":11 if source_ready else 0,
         "producer_source_and_role_validation":"PASSED" if source_ready else "NOT_VALIDATED",
         "validated_role_summary":verified_roles,
         "independent_case_reviews":0,

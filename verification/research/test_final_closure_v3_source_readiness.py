@@ -81,6 +81,25 @@ class ExactOriginalRoleTests(unittest.TestCase):
         self.assertIn(CASEIDS[0], report["inadmissible_original_method_roles"])
         self.assertFalse(report["all_original_roles_and_claim_sources_complete"])
 
+    def test_one_valid_route_cannot_hide_an_ineligible_extra(self):
+        over,cases,claims=fixture()
+        alien=dict(over["positive_test_receipts"][0])
+        alien["id"]="alien-positive"
+        alien["test_path"]=over["semantic_negative_receipts"][0]["test_path"]
+        alien["test_name"]=over["semantic_negative_receipts"][0]["test_name"]
+        over["positive_test_receipts"].append(alien)
+        result=gate.route_coverage(over,cases,claims)
+        self.assertIn(CASEIDS[0],result["inadmissible_original_method_roles"])
+        self.assertFalse(result["all_original_roles_and_claim_sources_complete"])
+        over,cases,claims=fixture()
+        alien=dict(over["positive_test_receipts"][-1])
+        alien["id"]="alien-claim-positive"
+        alien["test_path"]="verification/research/test_unrelated_claim.py"
+        over["positive_test_receipts"].append(alien)
+        result=gate.route_coverage(over,cases,claims)
+        self.assertIn(CLAIMS[-1],result["inadmissible_claim_test_sources"])
+        self.assertFalse(result["all_original_roles_and_claim_sources_complete"])
+
     def test_claim_wrong_source_and_omitted_support_are_rejected(self):
         over,cases,claims=fixture()
         over["positive_test_receipts"][-1]["test_path"] = (
