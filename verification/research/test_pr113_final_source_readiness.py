@@ -50,7 +50,11 @@ class ReadinessCoverageTests(unittest.TestCase):
             rows["semantic_negative_receipts"].append(
                 {"case_ids":[],"claim_ids":[claim]})
         result=ready.candidate_coverage(rows,CASE_IDS)
-        self.assertTrue(result["candidate_controls_complete"])
+        # A complete set of labels must NOT assert genuine test execution.
+        self.assertTrue(result["label_coverage_only"])
+        self.assertFalse(result["candidate_controls_complete"])
+        self.assertEqual(result["producer_source_and_role_validation"],
+                         "NOT_VALIDATED")
         self.assertEqual(result["independent_case_reviews"],0)
         self.assertEqual(result["independent_claim_reviews"],0)
         self.assertFalse(result["merge_authorized"])

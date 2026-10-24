@@ -13,11 +13,12 @@ import json
 from pathlib import Path
 import sys
 
-from final_closure_authenticate import BASE, REQUIRED, authenticated_checks, git
+from final_closure_authenticate import BASE, REQUIRED, authenticated_checks, git, live
 from final_closure_case_receipts import (
     FORMAT_V3, load_detached_bundle, authenticate_v3_sources, EvidenceError)
 from final_closure_schema import validate_overlay
 from final_closure_complete_lean_evidence import ROOT
+from final_closure_v3_source_readiness import revalidate_source_receipts
 
 CLAIMS=frozenset(("Q1","Q2","Q3","M1","M2","M3","N1","N2","N3","D8","D9"))
 
@@ -27,7 +28,7 @@ class ReadinessError(ValueError):
 def demand(ok,message):
     if not ok:raise ReadinessError(message)
 
-def candidate_coverage(overlay,original_ids):
+def candidate_coverage(overlay,original_ids,*,verified_roles=None):
     demand(isinstance(overlay,dict) and overlay.get("format")==FORMAT_V3 and
            isinstance(original_ids,set) and len(original_ids)==45,
            "original strict-v3/45-case source inventory unavailable")
@@ -52,6 +53,11 @@ def candidate_coverage(overlay,original_ids):
     missing_claims=sorted(CLAIMS - (cp & cm))
     demand(not (pp|pm)-original_ids and not (cp|cm)-CLAIMS,
            "foreign case/claim controls were inserted")
+    source_ready = (
+        isinstance(verified_roles, dict) and
+        verified_roles.get("all_original_roles_and_claim_sources_complete") is True
+        and verified_roles.get("independent_review") is False
+        and verified_roles.get("mathematical_release_approved") is False)
     return {
         "format":"Permansson.PR113.ReadinessGapAnalysis.v1",
         "source_proofs":259,"producer_shards":21,
@@ -59,7 +65,12 @@ def candidate_coverage(overlay,original_ids):
         "claims_with_positive_negative_controls":len(CLAIMS)-len(missing_claims),
         "missing_original_case_controls":missing_cases,
         "missing_new_claim_controls":missing_claims,
-        "candidate_controls_complete":not missing_cases and not missing_claims,
+        # Owner labels alone NEVER establish a validated source/test receipt.
+        "label_coverage_only":not missing_cases and not missing_claims,
+        "candidate_controls_complete":bool(source_ready and
+                                           not missing_cases and not missing_claims),
+        "producer_source_and_role_validation":"PASSED" if source_ready else "NOT_VALIDATED",
+        "validated_role_summary":verified_roles,
         "independent_case_reviews":0,
         "independent_claim_reviews":0,
         "merge_authorized":False,"mathematical_release_approved":False,
@@ -67,7 +78,8 @@ def candidate_coverage(overlay,original_ids):
 
 def inspect(head,synthetic,source_receipts,source_zip):
     demand(git("rev-parse","HEAD")==head and
-           git("rev-parse","main")==BASE and
+           git("cat-file","-t",BASE)=="commit" and
+           (live("/branches/main").get("commit") or {}).get("sha")==BASE and
            git("show","-s","--format=%P",synthetic).split()==[BASE,head] and
            git("rev-parse",synthetic+"^{tree}")==
            git("rev-parse",head+"^{tree}"),
@@ -96,10 +108,18 @@ def inspect(head,synthetic,source_receipts,source_zip):
     original=json.loads((ROOT/"research/paper_closures/post_merge_112/"
                          "acceptance_decisions.json").read_bytes())
     ids={row["case_id"] for row in original["cases"]}
-    report=candidate_coverage(receipts,ids)
+    original_map=json.loads(
+        (ROOT/"research/paper_closures/post_merge_112/"
+         "acceptance_case_source_map.json").read_bytes())
+    claim_map=json.loads(
+        (ROOT/"research/paper_closures/post_merge_112/"
+         "claim_declaration_map.json").read_bytes())
+    validated_roles=revalidate_source_receipts(
+        receipts,head,members,checks,producer,original_map,claim_map)
+    report=candidate_coverage(receipts,ids,verified_roles=validated_roles)
     demand(report["candidate_controls_complete"],
-           "unreviewed source candidate still lacks case/claim positive-negative "+
-           "controls: "+json.dumps({
+           "unreviewed source candidate lacks genuinely compiled role-correct "+
+           "case/claim controls: "+json.dumps({
                "cases":report["missing_original_case_controls"],
                "claims":report["missing_new_claim_controls"]},sort_keys=True))
     return {
