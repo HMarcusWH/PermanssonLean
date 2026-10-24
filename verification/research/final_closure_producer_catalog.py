@@ -20,6 +20,9 @@ import sys
 import tempfile
 
 from final_closure_producer_v2_bridge import (ProducerBindingError, bind as bind_v2_producer)
+from final_closure_producer_bytes import (
+    authenticate as authenticate_producing_bytes, ProducerBytesError,
+)
 from final_closure_review_dossier import (ReviewDossierError, extracted_case_refs,
                                           make_dossier)
 from final_closure_mutation_evidence import committed_file_bytes
@@ -114,6 +117,7 @@ def collect(*, head, catalog_path: Path, output: Path):
     rows = entries(json.loads(catalog_path.read_bytes()), head)
     total = 0
     trusted = []
+    authentic_zip_bytes = {}
     case_candidates = {}
     with tempfile.TemporaryDirectory(prefix="pr113-producer-check-") as td:
         shard_root = Path(td) / "compiler-shards"
@@ -136,6 +140,10 @@ def collect(*, head, catalog_path: Path, output: Path):
                  verified["artifact_id"] == row["artifact_id"],
                  "producing CI attestation is unverified or mismatched")
             trusted.append(verified)
+            authentic_zip_bytes[row["artifact_id"]] = artifact.read_bytes()
+            need(digest(authentic_zip_bytes[row["artifact_id"]]) ==
+                 verified["artifact_sha256"],
+                 "producer ZIP changed after live authentication")
             members = load_detached_bundle(
                 artifact, verified["artifact_sha256"])
             if row["kind"] != "compiler":
@@ -159,6 +167,35 @@ def collect(*, head, catalog_path: Path, output: Path):
         need(full["case_count"] == 45 and full["claim_count"] == 11 and
              full["proof_count"] == full["inventory_count"],
              "complete 45/11 compiler theorem coverage not proven")
+    # Second independent byte-level check against the actual GitHub
+    # producing run/job/check/artifact identity. The result is a source
+    # provenance candidate, NEVER reviewer or mathematical acceptance.
+    byte_auth = authenticate_producing_bytes(
+        head, trusted, authentic_zip_bytes)
+    need(byte_auth["producer_count"] == 21 and
+         byte_auth["accepted_cases"] == 0 and
+         byte_auth["accepted_claims"] == 0 and
+         byte_auth["independent_review"] is False,
+         "producer ZIP verifier fabricated acceptance")
+    member_index = {
+        "format": "Permansson.PR113.ProducerMemberIndexCandidate.v1",
+        "status": "AUTHENTICATED_UNREVIEWED",
+        "head_sha": head,
+        "members": [
+            {"artifact_id": artifact_id,
+             "check_run_id": row["check_run_id"],
+             "entries": [
+                 {"name": name, "sha256": digest(payload)}
+                 for name, payload in sorted(row["members"].items())]}
+            for artifact_id, row in sorted(byte_auth["producers"].items())
+        ],
+        "independent_review": False,
+        "mathematical_acceptance": False,
+    }
+    member_index_bytes = (
+        json.dumps(member_index, sort_keys=True, indent=2) + "\n").encode("utf-8")
+    (output / "unreviewed_original_producer_members.json").write_bytes(
+        member_index_bytes)
     from final_closure_all_original_semantics import EXPECTED
     original, legacy_cases = original_case_map(head)
     need(len(original) == 45 and len(EXPECTED) == 25 and
@@ -188,6 +225,7 @@ def collect(*, head, catalog_path: Path, output: Path):
         typed_bytes)
     report = {
         "v2_producer_binding_sha256": digest(typed_bytes),
+        "source_producer_member_index_sha256": digest(member_index_bytes),
         "source_review_dossier_sha256": digest(dossier_bytes),
         "format": OUT_FORMAT,
         "status": "CI_PRODUCER_ARTIFACTS_AUTHENTICATED_UNREVIEWED",
@@ -223,6 +261,7 @@ def main(argv=None):
                          output=opts.output)
     except (ProducerCatalogError, AuthenticationError, EvidenceError,
             ShardMergeError, ReviewDossierError, ProducerBindingError,
+            ProducerBytesError,
             OSError, KeyError, ValueError) as exc:
         print("PR113 PRODUCER CATALOG BLOCKED:", exc, file=sys.stderr)
         return 2
