@@ -20,6 +20,7 @@ from closure_elaborated_type import (
 
 ROOT = Path(__file__).resolve().parents[2]
 FORMAT = "Permansson.FinalClosureDetachedReceipts.v2"
+FORMAT_V3 = "Permansson.FinalClosureDetachedReceipts.v3"
 TRUSTED_AXIOMS = frozenset({"Classical.choice", "Quot.sound", "propext"})
 DECISIONS = frozenset({"VERIFIED_SELECTED_SCOPE", "VERIFIED_NEGATIVE"})
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
@@ -211,8 +212,78 @@ def member_bytes(members: dict[str, bytes], name: str, expected_hash: str) -> by
     return members[name]
 
 
+
+def authenticate_v3_sources(overlay, head, members):
+    """Reauthenticate exact 21 producer ZIPs; never infer any math approval."""
+    from final_closure_producer_bytes import authenticate
+    rows = overlay.get("producer_artifacts")
+    demand(isinstance(rows, list) and len(rows) == 21,
+           "all 21 exact-H producing artifacts required")
+    raw = {}
+    for item in rows:
+        demand(isinstance(item, dict) and
+               type(item.get("artifact_id")) is int and
+               isinstance(item.get("evidence_zip_member"), str) and
+               item["evidence_zip_member"] in members and
+               item["artifact_id"] not in raw,
+               "duplicate or missing producer ZIP")
+        raw[item["artifact_id"]] = members[item["evidence_zip_member"]]
+    try:
+        verified = authenticate(head, rows, raw)
+    except (ValueError, OSError, KeyError, TypeError) as exc:
+        raise EvidenceError("v3 producing CI job/ZIP authentication failed") from exc
+    demand(verified.get("format") ==
+           "Permansson.PR113.ProducerBytesRevalidated.v1" and
+           verified.get("status") == "REAL_PRODUCING_BYTES_UNREVIEWED" and
+           verified.get("producer_count") == 21 and
+           verified.get("accepted_cases") == 0 and
+           verified.get("accepted_claims") == 0 and
+           verified.get("head_sha") == head,
+           "producer provenance cannot self-approve mathematical scope")
+    return verified
+
+
+def verify_v3_member_links(row, members, producer, required, kind=None):
+    """All evidence member bytes must appear in the actual producer ZIP."""
+    from final_closure_producer_bytes import original_member
+    artifact = row.get("producer_artifact_id")
+    check = row.get("check_run_id")
+    demand(type(artifact) is int and type(check) is int,
+           "producer must be referenced by real artifact and check IDs")
+    owned = producer.get("producers", {}).get(artifact)
+    demand(isinstance(owned, dict) and
+           owned.get("check_run_id") == check and
+           (kind is None or owned.get("kind") == kind),
+           "proof/test borrowed a different producer check")
+    links = row.get("producer_member_bindings")
+    demand(isinstance(links, list) and
+           len(links) == len(set(required)),
+           "not all original producer log/input bytes bound")
+    mapping = {}
+    for link in links:
+        demand(isinstance(link, dict) and
+               set(link) == {"outer_member", "source_member"} and
+               isinstance(link["outer_member"], str) and
+               isinstance(link["source_member"], str) and
+               link["outer_member"] not in mapping,
+               "malformed or duplicated producer member map")
+        mapping[link["outer_member"]] = link["source_member"]
+    demand(set(mapping) == set(required),
+           "producer member map does not cover exact retained evidence")
+    for outer in required:
+        demand(isinstance(outer, str) and outer in members,
+               "required source log not retained")
+        actual_digest = digest(members[outer])
+        try:
+            raw = original_member(
+                producer, artifact, check, mapping[outer], actual_digest)
+        except ValueError as exc:
+            raise EvidenceError("original producer ZIP does not contain receipt") from exc
+        demand(raw == members[outer], "retained evidence differs from producer ZIP")
+
+
 def validate_compiler_receipt(row: dict, head: str, members: dict[str, bytes],
-                              accepted_checks: dict):
+                              accepted_checks: dict, *, producer_record=None):
     demand(isinstance(row, dict) and row.get("head_sha") == head,
            "stale/malformed compiler receipt")
     path = row.get("path")
@@ -226,11 +297,20 @@ def validate_compiler_receipt(row: dict, head: str, members: dict[str, bytes],
     axioms = row.get("transitive_axioms")
     demand(isinstance(axioms, list) and len(axioms) == len(set(axioms)) and
            set(axioms) <= TRUSTED_AXIOMS, "bad or unreviewed transitive axiom")
-    demand(row.get("compiler_check") == "research" and
-           row.get("compiler_result") == "PASS", "compiler success not established")
-    check = accepted_checks.get("research")
-    demand(check and row.get("check_run_id") == check["id"] and
-           check["head_sha"] == head, "compiler check does not bind exact H")
+    demand(row.get("compiler_result") == "PASS",
+           "compiler success not established")
+    if producer_record is None:
+        demand(row.get("compiler_check") == "research",
+               "legacy compiler check missing")
+        check = accepted_checks.get("research")
+        demand(check and row.get("check_run_id") == check["id"] and
+               check["head_sha"] == head, "compiler check does not bind exact H")
+    else:
+        demand(row.get("compiler_check") == "pr113-compiler-shard",
+               "v3 compiler cannot borrow green global research check")
+        verify_v3_member_links(
+            row, members, producer_record,
+            [row.get("axiom_log_member")], kind="compiler")
     data = member_bytes(members, row.get("axiom_log_member"),
                         row.get("axiom_log_sha256"))
     stdout = data.decode("utf-8", errors="replace")
@@ -247,6 +327,11 @@ def validate_compiler_receipt(row: dict, head: str, members: dict[str, bytes],
            "compiler elaborated-type identity mismatch")
     observed = parse_target_axioms(stdout, declaration)
     demand(observed == axioms, "target axioms do not match retained log")
+    if producer_record is not None:
+        # Kernel-elaborated full signature is authoritative, not a lexical
+        # header truncated at a named ':=' argument in Lean source.
+        demand(row.get("statement_sha256") == source_type_sha,
+               "v3 statement digest does not equal full elaborated type")
     cases = row.get("case_ids")
     claims = row.get("claim_ids")
     demand(isinstance(cases, list) and isinstance(claims, list) and
@@ -255,7 +340,8 @@ def validate_compiler_receipt(row: dict, head: str, members: dict[str, bytes],
 
 
 def validate_test_receipt(row: dict, head: str, members: dict[str, bytes],
-                          accepted_checks: dict, *, negative: bool):
+                          accepted_checks: dict, *, negative: bool,
+                          producer_record=None):
     demand(isinstance(row, dict) and row.get("head_sha") == head,
            "stale/malformed test receipt")
     p = exact_source(row.get("test_path"))
@@ -267,9 +353,18 @@ def validate_test_receipt(row: dict, head: str, members: dict[str, bytes],
            re.search(r"(?m)^\s*def\s+" + re.escape(test_name) + r"\(",
                      p.read_text(encoding="utf-8")) is not None,
            "named test does not exist")
-    check = accepted_checks.get("research")
-    demand(check and row.get("check_run_id") == check["id"] and
-           check["head_sha"] == head, "test CI check not bound to H")
+    if producer_record is None:
+        check = accepted_checks.get("research")
+        demand(check and row.get("check_run_id") == check["id"] and
+               check["head_sha"] == head, "test CI check not bound to H")
+    else:
+        pos = row.get("positive_control")
+        required = [row.get("log_member"),
+                    pos.get("log_member") if isinstance(pos, dict) else None]
+        if negative:
+            required += [row.get("mutant_source_member"),
+                         row.get("original_lean_source_member")]
+        verify_v3_member_links(row, members, producer_record, required)
     pos = row.get("positive_control")
     demand(isinstance(pos, dict) and pos.get("compiled") is True and
            pos.get("exit_code") == 0 and pos.get("lean_toolchain") == "4.34.0",
@@ -333,9 +428,12 @@ def effective_acceptance(overlay: dict, *, head: str, case_ledger: dict,
     approved_review_scopes is populated ONLY by authentication of non-author
     GitHub APPROVED review bodies at the identical frozen H and bundle SHA.
     """
-    demand(isinstance(overlay, dict) and overlay.get("format") == FORMAT and
+    demand(isinstance(overlay, dict) and
+           overlay.get("format") in (FORMAT, FORMAT_V3) and
            overlay.get("head_sha") == head and SHA40_RE.fullmatch(head),
            "unsupported or stale detached overlay")
+    producer_record = (authenticate_v3_sources(overlay, head, members)
+                       if overlay["format"] == FORMAT_V3 else None)
     originals = {c["case_id"]: c for c in case_ledger["cases"]}
     demand(len(originals) == len(case_ledger["cases"]) == 45,
            "original 45-case identity mismatch")
@@ -357,13 +455,17 @@ def effective_acceptance(overlay: dict, *, head: str, case_ledger: dict,
     neg_rows = keyed("semantic_negative_receipts")
     case_rows = keyed("case_decisions")
     claim_rows = keyed("claim_decisions")
-    proofs = {key: validate_compiler_receipt(row, head, members, accepted_checks)
+    proofs = {key: validate_compiler_receipt(
+                  row, head, members, accepted_checks,
+                  producer_record=producer_record)
               for key, row in proof_rows.items()}
-    positives = {key: validate_test_receipt(row, head, members, accepted_checks,
-                                         negative=False)
+    positives = {key: validate_test_receipt(
+                      row, head, members, accepted_checks,
+                      negative=False, producer_record=producer_record)
                  for key, row in pos_rows.items()}
-    negatives = {key: validate_test_receipt(row, head, members, accepted_checks,
-                                         negative=True)
+    negatives = {key: validate_test_receipt(
+                      row, head, members, accepted_checks,
+                      negative=True, producer_record=producer_record)
                  for key, row in neg_rows.items()}
     effective_cases = {}
     for row in case_rows.values():
