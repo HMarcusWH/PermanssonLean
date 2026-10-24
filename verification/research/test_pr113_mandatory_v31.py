@@ -60,6 +60,7 @@ class MandatoryV31Tests(unittest.TestCase):
             "status": "ACTUAL_CONTROL_BYTES_REVALIDATED_UNREVIEWED",
             "source_owner_count": 76,
             "claim_positive_negative_directions": 22,
+            "canonical_routes_bound": True,
             "execution_log_members_checked": 208,
         }
         claims = {"claims": [{"claim_id": x} for x in CLAIMS]}
@@ -79,6 +80,8 @@ class MandatoryV31Tests(unittest.TestCase):
                                              for k in (101, 102, 103)]), \
              mock.patch.object(v31, "authenticated_extra_controls",
                                return_value=attributed) as authentic, \
+             mock.patch.object(v31, "exact_source",
+                               return_value="exact-H-routes"), \
              mock.patch.object(v31, "validate_executed_controls",
                                return_value=executed) as logs:
             value = v31.authenticate_all_76(
@@ -88,6 +91,8 @@ class MandatoryV31Tests(unittest.TestCase):
                 workflow_blob_candidates=self.blobs)
             self.assertEqual(authentic.call_count, 1)
             self.assertEqual(logs.call_count, 1)
+            self.assertEqual(logs.call_args.kwargs["source"],
+                             "exact-H-routes")
             return value
 
     def test_full_76_owners_still_do_not_self_certify(self):

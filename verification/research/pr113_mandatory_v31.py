@@ -24,7 +24,7 @@ from final_closure_extra_producers_v31 import (
 )
 from final_closure_mutation_evidence import committed_file_bytes
 from pr113_v31_execution_integrity import (
-    validate_executed_controls, RealControlError,
+    exact_source, validate_executed_controls, RealControlError,
 )
 
 
@@ -120,7 +120,7 @@ def authenticate_all_76(head, original_receipts, original_members, *,
             expected=expected,
             reviewed_workflow_blobs=workflow_blobs)
         execution = validate_executed_controls(
-            head, proposal, bytes_by_id)
+            head, proposal, bytes_by_id, source=exact_source(head, ROOT))
         need(attributed.get("head_sha") == head and
              attributed.get("status") ==
                 "ALL_ADDITIONAL_CONTROLS_SOURCE_ATTRIBUTED_UNREVIEWED" and
@@ -129,6 +129,7 @@ def authenticate_all_76(head, original_receipts, original_members, *,
                 "ACTUAL_CONTROL_BYTES_REVALIDATED_UNREVIEWED" and
              execution.get("source_owner_count") == 76 and
              execution.get("claim_positive_negative_directions") == 22 and
+             execution.get("canonical_routes_bound") is True and
              attributed.get("schema_security_approved") is False and
              attributed.get("independent_mathematical_review") is False,
              "additional true/false source evidence is incomplete or self-approved")

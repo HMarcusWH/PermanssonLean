@@ -356,10 +356,14 @@ def assemble_review_pending(head, original_v3_receipts, original_v3_zip,
     # sufficient: the ZIP must actually contain source-positive test/Lean logs,
     # 20 appended-source semantic negatives and 11 claim true/false pairs.
     # This is still an execution-evidence candidate, NEVER review or approval.
-    from pr113_v31_execution_integrity import validate_executed_controls
-    real_controls = validate_executed_controls(head, contract, files)
+    from pr113_v31_execution_integrity import (
+        exact_source, validate_executed_controls,
+    )
+    real_controls = validate_executed_controls(
+        head, contract, files, source=exact_source(head, source_root))
     need(real_controls["source_owner_count"] == 76 and
          real_controls["claim_positive_negative_directions"] == 22 and
+         real_controls["canonical_routes_bound"] is True and
          real_controls["independent_review"] is False and
          real_controls["mathematical_acceptance"] is False,
          "actual 76 original source-control execution bytes not authenticated")

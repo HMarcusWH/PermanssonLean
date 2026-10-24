@@ -41,6 +41,7 @@ SUITES = (
     "test_final_closure_compiler_diagnostic_retention.py",
     "test_pr113_full_inventory_gate.py",
     "test_pr113_mandatory_v31.py",
+    "test_pr113_v31_execution_integrity.py",
     "test_pr113_v31_seal_entry.py",
     "test_pr113_workflow_proposal_boundary.py",
 )

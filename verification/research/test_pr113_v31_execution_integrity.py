@@ -8,7 +8,7 @@ import unittest
 import zipfile
 
 from pr113_v31_execution_integrity import (
-    RealControlError, validate_executed_controls, verify_owner,
+    ExactSource, RealControlError, validate_executed_controls, verify_owner,
 )
 from pr113_pack_ci_remaining_owners import manifest, PackError
 
@@ -19,6 +19,58 @@ FALSE = ORIGINAL + b"\ntheorem false_goal : False := by trivial\n"
 POSITIVE = b"Lean positive proof passed\n"
 NEGATIVE = b"error: type mismatch\n"
 TEST_OK = b"Ran 1 test in 0.001s\n\nOK\n"
+ROUTES = "verification/research/test_fixture_routes.py"
+CLAIM_TESTS = "verification/research/test_fixture_claims.py"
+
+
+def method(cid):
+    return "test_" + cid.replace("-", "").lower()
+
+
+def proof(cid):
+    return "PermanssonResearch/Fixture/" + cid.replace("-", "") + ".lean"
+
+
+def ran(path, cls, name):
+    module = Path(path).stem
+    return (f"{name} ({module}.{cls}.{name}) ... ok\n\n" +
+            "-" * 70 + "\n").encode() + TEST_OK
+
+
+def test_source(cls, names):
+    body = "".join(f"    def {n}(self):\n        pass\n" for n in names)
+    return f"import unittest\n\nclass {cls}(unittest.TestCase):\n{body}".encode()
+
+
+CASE_IDS = [f"C-{i:02}" for i in range(1, 46)]
+BLOBS = {
+    ROUTES: test_source("Routes", [method(c) for c in CASE_IDS]),
+    CLAIM_TESTS: test_source("Claims", [
+        "test_" + c.lower() + side for c in CLAIMS
+        for side in ("_true", "_false")]),
+    **{proof(c): b"theorem " + c.encode() + b" : True := trivial\n"
+       for c in CASE_IDS},
+    **{proof(c): ORIGINAL for c in CLAIMS},
+}
+
+
+def source(blobs=None, **selection):
+    cases = {"cases": [{
+        "case_id": c,
+        "test_method_candidates": [
+            {"path": ROUTES, "method": method(c), "role": "COMPILER_SOURCE"},
+            {"path": ROUTES, "method": method(c) + "_false",
+             "role": "SEMANTIC_NEGATIVE"},
+        ],
+        "historical_proof_declarations": [{"path": proof(c)}],
+    } for c in CASE_IDS]}
+    claims = {"claims": [{
+        "claim_id": c, "declarations": [{"path": proof(c)}],
+        "test_source_candidates": [CLAIM_TESTS],
+    } for c in CLAIMS]}
+    table = dict(BLOBS if blobs is None else blobs)
+    return ExactSource(H, cases, claims, lambda path: table.get(path),
+                       **selection)
 
 
 def sha(raw):
@@ -39,9 +91,16 @@ def zipped(members):
 
 def make_positive(cid):
     base = "positive/" + cid + "/"
+    stderr = ran(ROUTES, "Routes", method(cid))
     record = {
+        "format": "Permansson.PR113.OriginalCasePositiveCandidate.v1",
         "status": "SOURCE_TEST_AND_LEAN_EXECUTED_UNREVIEWED",
         "head_sha": H, "case_id": cid,
+        "test_path": ROUTES, "test_class": "Routes",
+        "test_name": method(cid),
+        "source_sha256": sha(BLOBS[ROUTES]),
+        "proof_source_path": proof(cid),
+        "proof_source_sha256": sha(BLOBS[proof(cid)]),
         "positive_role": "COMPILER_SOURCE",
         "source_positive_exit_code": 0, "registered_method_exit_code": 0,
         "actual_producing_check_run_id": None,
@@ -49,14 +108,14 @@ def make_positive(cid):
         "independent_case_review": False,
         "scientific_release_approved": False,
         "unittest_stdout_sha256": sha(b""),
-        "unittest_stderr_sha256": sha(TEST_OK),
+        "unittest_stderr_sha256": sha(stderr),
         "source_positive_log_sha256": sha(POSITIVE),
     }
     owner = base + "unreviewed_positive.json"
     return owner, {
         owner: serialized(record),
         base + "unittest_stdout.log": b"",
-        base + "unittest_stderr.log": TEST_OK,
+        base + "unittest_stderr.log": stderr,
         base + "source_positive.log": POSITIVE,
     }
 
@@ -118,15 +177,24 @@ def make_claim(cid):
         "positive_lean.log": POSITIVE,
         "negative_lean.log": NEGATIVE,
         "positive_test.stdout": b"",
-        "positive_test.stderr": TEST_OK,
+        "positive_test.stderr":
+            ran(CLAIM_TESTS, "Claims", "test_" + cid.lower() + "_true"),
         "negative_test.stdout": b"",
-        "negative_test.stderr": TEST_OK,
+        "negative_test.stderr":
+            ran(CLAIM_TESTS, "Claims", "test_" + cid.lower() + "_false"),
     }
     record = {
         "format": "Permansson.PR113.ClaimOnlyControlCandidate.v1",
         "status": "LEAN_POSITIVE_AND_FALSE_MUTANT_EXECUTED_UNREVIEWED",
         "head_sha": H, "claim_id": cid,
         "claim_ids": [cid], "case_ids": [],
+        "original_lean_source_path": proof(cid),
+        "positive_test_path": CLAIM_TESTS,
+        "positive_test_name": "test_" + cid.lower() + "_true",
+        "negative_test_path": CLAIM_TESTS,
+        "negative_test_name": "test_" + cid.lower() + "_false",
+        "source_test_hashes": {"positive": sha(BLOBS[CLAIM_TESTS]),
+                               "negative": sha(BLOBS[CLAIM_TESTS])},
         "lean_positive_exit_code": 0,
         "lean_negative_exit_code": 1,
         "retained_member_sha256":
@@ -146,8 +214,7 @@ def make_claim(cid):
 def complete():
     jobs, zipfiles = [], {}
     for kind, cases, fn, artifact in (
-        ("original_positive", [f"C-{i:02}" for i in range(1, 46)],
-         make_positive, 1),
+        ("original_positive", CASE_IDS, make_positive, 1),
         ("legacy_negative", [f"C-{i:02}" for i in range(1, 21)],
          make_legacy, 2),
         ("claim_pair", CLAIMS, make_claim, 3),
@@ -170,8 +237,11 @@ def complete():
 class ExecutedControlValidationTests(unittest.TestCase):
     def test_all_76_genuine_member_shapes_still_unreviewed(self):
         contract, binaries = complete()
-        result = validate_executed_controls(H, contract, binaries)
+        result = validate_executed_controls(H, contract, binaries,
+                                            source=source())
         self.assertEqual(result["source_owner_count"], 76)
+        self.assertTrue(result["canonical_routes_bound"])
+        self.assertFalse(result["reviewed_positive_selection_bound"])
         self.assertEqual(result["claim_positive_negative_directions"], 22)
         self.assertFalse(result["independent_review"])
         self.assertFalse(result["mathematical_acceptance"])
@@ -212,7 +282,115 @@ class ExecutedControlValidationTests(unittest.TestCase):
         contract, binaries = complete()
         contract["producers"][2]["owners"].pop()
         with self.assertRaises(RealControlError):
-            validate_executed_controls(H, contract, binaries)
+            validate_executed_controls(H, contract, binaries, source=source())
+
+    def test_full_validation_requires_exact_h_route_source(self):
+        contract, binaries = complete()
+        with self.assertRaises(RealControlError):
+            validate_executed_controls(H, contract, binaries, source=None)
+
+    def assert_positive_rejected(self, edit, cid="C-02", blobs=None):
+        name, members = make_positive(cid)
+        row = json.loads(members[name])
+        edit(row, members)
+        members[name] = serialized(row)
+        # Byte-only packing still accepts it; only route binding rejects.
+        verify_owner("original_positive", cid, name, members, H)
+        with self.assertRaises(RealControlError):
+            verify_owner("original_positive", cid, name, members, H,
+                         source(blobs))
+
+    def test_owner_label_swap_fails_route_binding(self):
+        name, members = make_positive("C-02")
+        row = json.loads(members[name])
+        row["case_id"] = "C-03"
+        members[name] = serialized(row)
+        verify_owner("original_positive", "C-03", name, members, H)
+        with self.assertRaises(RealControlError):
+            verify_owner("original_positive", "C-03", name, members, H,
+                         source())
+
+    def test_unrelated_passing_test_is_not_case_route(self):
+        def unrelated(row, members):
+            stderr = ran(ROUTES, "Routes", method("C-07"))
+            members["positive/C-02/unittest_stderr.log"] = stderr
+            row["unittest_stderr_sha256"] = sha(stderr)
+            row["test_name"] = method("C-07")
+        self.assert_positive_rejected(unrelated)
+
+    def test_semantic_negative_route_cannot_be_positive(self):
+        def negative(row, _):
+            row["test_name"] = method("C-02") + "_false"
+        self.assert_positive_rejected(negative)
+
+    def test_log_of_other_method_fails_named_run(self):
+        def other_log(row, members):
+            stderr = ran(ROUTES, "Routes", method("C-07"))
+            members["positive/C-02/unittest_stderr.log"] = stderr
+            row["unittest_stderr_sha256"] = sha(stderr)
+        self.assert_positive_rejected(other_log)
+
+    def test_foreign_original_provider_fails(self):
+        def foreign(row, _):
+            row["proof_source_path"] = proof("C-09")
+            row["proof_source_sha256"] = sha(BLOBS[proof("C-09")])
+        self.assert_positive_rejected(foreign)
+
+    def test_source_test_digest_substitution_fails(self):
+        def substituted(row, _):
+            row["source_sha256"] = sha(b"other test bytes")
+        self.assert_positive_rejected(substituted)
+
+    def test_undefined_class_method_at_exact_h_fails(self):
+        blobs = dict(BLOBS)
+        blobs[ROUTES] = test_source("Routes", [method("C-01")])
+        def rehash(row, _):
+            row["source_sha256"] = sha(blobs[ROUTES])
+        self.assert_positive_rejected(rehash, blobs=blobs)
+
+    def test_reviewed_selection_is_compared_exactly(self):
+        name, members = make_positive("C-02")
+        chosen = {"format": "Permansson.PR113.OriginalPositiveSelection.v1",
+                  "cases": [{"case_id": "C-02", "test_path": ROUTES,
+                             "test_class": "Routes",
+                             "test_method": method("C-02"),
+                             "proof_source_path": proof("C-03")}]}
+        with self.assertRaises(RealControlError):
+            verify_owner("original_positive", "C-02", name, members, H,
+                         source(positive_selection=chosen))
+        chosen["cases"][0]["proof_source_path"] = proof("C-02")
+        verify_owner("original_positive", "C-02", name, members, H,
+                     source(positive_selection=chosen))
+
+    def assert_claim_rejected(self, edit, blobs=None):
+        name, members, row = make_claim("Q2")
+        edit(row, members)
+        members[name] = serialized(row)
+        verify_owner("claim_pair", "Q2", name, members, H)
+        with self.assertRaises(RealControlError):
+            verify_owner("claim_pair", "Q2", name, members, H, source(blobs))
+
+    def test_claim_foreign_provider_fails(self):
+        def foreign(row, _):
+            row["original_lean_source_path"] = proof("Q3")
+        self.assert_claim_rejected(foreign)
+
+    def test_claim_original_bytes_must_equal_exact_h(self):
+        blobs = dict(BLOBS)
+        blobs[proof("Q2")] = ORIGINAL + b"-- edited at H\n"
+        self.assert_claim_rejected(lambda row, _: None, blobs=blobs)
+
+    def test_claim_source_test_digest_substitution_fails(self):
+        def substituted(row, _):
+            row["source_test_hashes"]["negative"] = sha(b"other")
+        self.assert_claim_rejected(substituted)
+
+    def test_claim_stderr_containing_ok_is_not_method_route(self):
+        def loose(row, members):
+            members["claim/Q2/negative_test.stderr"] = b"ok\n" + TEST_OK
+            row["retained_member_sha256"]["negative_test.stderr"] = sha(
+                b"ok\n" + TEST_OK)
+        self.assert_claim_rejected(loose)
 
     def test_original_legacy_packer_20_owners_no_approval(self):
         with tempfile.TemporaryDirectory() as temporary:
