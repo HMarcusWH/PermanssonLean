@@ -176,9 +176,13 @@ def manifest(head, run_id, run_attempt, kind, source, output):
             for name in sorted(REQUIRED_CLAIM_MEMBERS):
                 entries[base + name] = secure_file(source / cid / name)
             meta = original
+        # Match the exact strict limits of inspect_zip() in the downstream
+        # authenticating verifier, not a weaker preliminary packer budget.
+        need(all(len(x) <= 4 * 1024 * 1024 for x in entries.values()),
+             "source owner member exceeds canonical 4 MiB ZIP limit")
         total_bytes += sum(len(x) for x in entries.values())
-        need(total_bytes <= 256 * 1024 * 1024,
-             "control original evidence exceeded aggregate ZIP budget")
+        need(total_bytes <= 64 * 1024 * 1024,
+             "source owner archive exceeds canonical 64 MiB ZIP budget")
         # The same exact verifier will re-run on GitHub's original uploaded ZIP.
         need(verify_owner(kind, cid, path, entries, head)["owner_id"] == cid,
              "original executed Lean/source evidence is invalid")
