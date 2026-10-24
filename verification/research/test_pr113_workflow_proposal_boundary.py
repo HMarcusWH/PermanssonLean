@@ -39,7 +39,7 @@ class WorkflowProposalBoundary(unittest.TestCase):
         self.assertEqual({x.removeprefix(ACTIVE) for x in active},
                          set(APPROVED_WORKFLOWS))
 
-    def test_all_four_staged_proposals_unapproved_and_byte_identical(self):
+    def test_all_five_staged_proposals_unapproved_and_byte_identical(self):
         manifest = source_manifest()
         self.assertEqual(manifest["original_approved_workflow_count"], 25)
         self.assertEqual(manifest["status"],
@@ -49,13 +49,14 @@ class WorkflowProposalBoundary(unittest.TestCase):
         self.assertIs(manifest["mathematical_acceptance"], False)
         self.assertIs(manifest["release_authorized"], False)
         rows = manifest["proposals"]
-        self.assertEqual(len(rows), 4)
-        self.assertEqual(len({r["workflow_path"] for r in rows}), 4)
+        self.assertEqual(len(rows), 5)
+        self.assertEqual(len({r["workflow_path"] for r in rows}), 5)
         self.assertEqual({Path(r["workflow_path"]).name for r in rows}, {
             "pr113-historical-migration-candidates.yml",
             "pr113-original-positive-controls-candidate.yml",
             "pr113-postseal-replay.yml",
             "pr113-source-controls-v3_1.yml",
+            "pr113-preseal-fullscope.yml",
         })
         for row in rows:
             old = row["workflow_path"]
@@ -74,7 +75,8 @@ class WorkflowProposalBoundary(unittest.TestCase):
             self.assertIs(
                 row["source_unchanged"],
                 Path(old).name not in ("pr113-source-controls-v3_1.yml",
-                                       "pr113-postseal-replay.yml"))
+                                       "pr113-postseal-replay.yml",
+                                       "pr113-preseal-fullscope.yml"))
 
     def test_unreviewed_manifest_cannot_assert_success(self):
         record = source_manifest()
@@ -84,6 +86,29 @@ class WorkflowProposalBoundary(unittest.TestCase):
                       "mathematical_acceptance", "release_authorized"):
             self.assertIs(record[field], False)
 
+
+    def test_fullscope_preseal_is_staged_and_matches_postseal_contract(self):
+        from verification.research.final_closure_postseal_auth import (
+            UPSTREAM_WORKFLOW, UPSTREAM_JOB, UPSTREAM_ARTIFACT)
+        self.assertEqual(
+            UPSTREAM_WORKFLOW,
+            ".github/workflows/pr113-preseal-fullscope.yml")
+        self.assertEqual(UPSTREAM_JOB, "preseal-fullscope-candidate")
+        self.assertEqual(UPSTREAM_ARTIFACT,
+                         "pr113-preseal-fullscope-candidate")
+        proposed = PROPOSALS / "pr113-preseal-fullscope.yml"
+        self.assertTrue(proposed.is_file())
+        src = proposed.read_text(encoding="utf-8")
+        for critical in (
+            "preseal-fullscope-candidate:",
+            "pr113-preseal-fullscope-candidate",
+            "seal_approved.py",
+            "--full",
+            "pr113_preseal_input_carrier.py",
+            "postseal_replay.py",
+        ):
+            self.assertIn(critical, src)
+        self.assertFalse((ROOT / ACTIVE / "pr113-preseal-fullscope.yml").exists())
 
     def test_full_v31_proposal_has_real_three_job_families_but_is_inactive(self):
         path = PROPOSALS / "pr113-source-controls-v3_1.yml"

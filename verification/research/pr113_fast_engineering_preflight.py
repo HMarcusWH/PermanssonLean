@@ -43,6 +43,7 @@ SUITES = (
     "test_pr113_mandatory_v31.py",
     "test_pr113_v31_execution_integrity.py",
     "test_pr113_v31_seal_entry.py",
+    "test_pr113_preseal_input_carrier.py",
     "test_pr113_workflow_proposal_boundary.py",
 )
 FORMAT = "Permansson.PR113.FastEngineeringPreflight.v1"

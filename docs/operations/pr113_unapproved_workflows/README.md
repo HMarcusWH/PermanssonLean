@@ -40,3 +40,30 @@ source OIDs, job/check/artifact identity, script dependencies and original
 historical T/A2 trust migrations). Installing these bytes changes final H
 and requires **new** exact-H source CI and evidence. This manifest neither
 grants approval nor publishes a workflow.
+
+## P1-12: staged exact-M full-scope preseal producer
+
+`pr113-preseal-fullscope.yml` is a **fifth, entirely inactive** workflow
+proposal. Its exact approved workflow/job/artifact identifiers must remain
+`.github/workflows/pr113-preseal-fullscope.yml`,
+`preseal-fullscope-candidate` and
+`pr113-preseal-fullscope-candidate`, as expected by the independently
+executed postseal authenticator.
+
+It can only run on `main` at an owner-authorized real merge M. It downloads
+an original GitHub successful exact-M input carrier artifact named
+`pr113-preseal-review-inputs` and reauthenticates its run, attempt, job,
+check, source head and ZIP SHA before extracting reviewed evidence. **That
+carrier is not approval**. The strict full-scope sealing entrypoint
+independently checks all current-source and merged-M required CI, genuine
+source/scholarly reviews, all original 21 producer ZIPs, the 76 additional
+controls and mathematical scope. The pipeline must fail closed if any
+review/evidence input is absent or inauthentic, and only uploads the exact
+candidate ZIP and original SHA256 sidecar after successful independent
+archive replay.
+
+The input carrier production and reviewed source, method selections,
+false statements, independent security approval of these YAML bytes,
+successful review of historical T/A2 migrations, final M and publication
+authorization are all STILL OPEN. No full candidate artifact or active
+workflow is created simply by adding this staged file.
