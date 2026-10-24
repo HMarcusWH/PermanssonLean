@@ -69,7 +69,8 @@ def prepare_approved_manifest(draft_directory: Path, approved: dict):
 
 
 def seal(draft_directory: Path, approved: dict, receipts: dict,
-         evidence_bundle: Path, output: Path, *, full: bool = False):
+         evidence_bundle: Path, output: Path, *, full: bool = False,
+         reproduction_attachment: dict | None = None):
     if output.resolve().is_relative_to(ROOT.resolve()):
         raise SealError("release archive output must be detached from checkout")
     if output.resolve().is_relative_to(draft_directory.resolve()):
@@ -78,8 +79,11 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
     draft_verifier.verify(draft_directory / "manifest.lock.json")
     draft, pages = prepare_approved_manifest(draft_directory, approved)
     accepted_scope = "postmerge-preseal-strict" if full else "scoped-release-strict"
+    authentic_input = ({"reproduction_attachment": reproduction_attachment}
+                       if reproduction_attachment is not None else {})
     result = strict_acceptance(receipts, accepted_scope, approved,
-                               bundle_path=evidence_bundle)
+                               bundle_path=evidence_bundle,
+                               **authentic_input)
     if full and (set(approved.get("claims", [])) != ORIGINAL_CLAIMS or
                  approved.get("approved_manuscript_claims") !=
                  approved.get("claims")):
@@ -346,12 +350,21 @@ def main(argv=None):
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--full", action="store_true",
                     help="require exact-M postmerge preseal 45/11 eligibility; candidate requires separate independent postseal review")
+    ap.add_argument("--reproduction-zip", type=Path)
+    ap.add_argument("--reproduction-ids", type=Path)
     args = ap.parse_args(argv)
     try:
         approved = json.loads(args.approved_claim_manifest.read_text())
         receipts = json.loads(args.source_receipts.read_text())
+        if bool(args.reproduction_zip) != bool(args.reproduction_ids):
+            raise SealError("reproduction ZIP and real producing IDs required together")
+        external = ({
+            "zip_file": args.reproduction_zip,
+            "identities": json.loads(args.reproduction_ids.read_bytes())}
+            if args.reproduction_zip else None)
         outcome = seal(args.draft_dir, approved, receipts,
-                       args.bundle, args.out, full=args.full)
+                       args.bundle, args.out, full=args.full,
+                       reproduction_attachment=external)
     except (OSError, ValueError, KeyError, zipfile.BadZipFile) as exc:
         print("APPROVED SEAL BLOCKED:", exc)
         return 2

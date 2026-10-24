@@ -164,7 +164,8 @@ def verify_claim_source_receipts(receipts: dict, source_head: str) -> set[str]:
 
 
 def strict(receipts: dict, scope: str, manifest: dict | None,
-           *, bundle_path: Path | str | None = None) -> dict:
+           *, bundle_path: Path | str | None = None,
+           reproduction_attachment: dict | None = None) -> dict:
     """Calculate EFFECTIVE reviewed cases/claims; never trust source JSON flags.
 
     The detached bundle is an external post-freeze artifact. Real signed
@@ -249,6 +250,27 @@ def strict(receipts: dict, scope: str, manifest: dict | None,
               manifest.get("empirical_identification_status") == "NOT_ESTABLISHED",
               "claim/limitation boundaries missing or empirical proof invented")
     if scope in ("postmerge-preseal-strict", "full-release-strict"):
+        # A claimed PDF/CI digest is NOT evidence. Authenticate the actual
+        # successful merged-main producing job and its original ZIP bytes.
+        if reproduction_attachment is not None:
+            from final_closure_reproduction_auth import (
+                authenticate_merged_reproduction,
+                ReproductionAuthenticationError,
+            )
+            check(isinstance(reproduction_attachment, dict) and
+                  set(reproduction_attachment) == {"identities", "zip_file"} and
+                  isinstance(manifest, dict) and
+                  isinstance(manifest.get("pdf_sha256"), str),
+                  "untyped detached genuine reproduction input")
+            try:
+                reproduced = authenticate_merged_reproduction(
+                    provenance["M"], manifest["pdf_sha256"],
+                    reproduction_attachment["identities"],
+                    Path(reproduction_attachment["zip_file"]))
+            except (ReproductionAuthenticationError, OSError, KeyError) as exc:
+                raise GateError("real merged source/PDF reproduction failed: " +
+                                str(exc)) from exc
+            provenance = {**provenance, "reproduction_evidence": reproduced}
         try:
             original_map = read_json(NEW / "acceptance_case_source_map.json")
             validator = (require_preseal_release
@@ -276,6 +298,10 @@ def main(argv=None) -> int:
     ap.add_argument("--manifest", type=Path)
     ap.add_argument("--bundle", type=Path,
                     help="externally retained hash-bound exact-H diagnostic archive")
+    ap.add_argument("--reproduction-zip", type=Path,
+                    help="original real merged-M clean-build Actions artifact ZIP")
+    ap.add_argument("--reproduction-ids", type=Path,
+                    help="detached source-bound GitHub run/job/check/artifact IDs")
     args = ap.parse_args(argv)
     try:
         if args.mode == "audit":
@@ -284,7 +310,14 @@ def main(argv=None) -> int:
             check(args.receipts is not None, "strict mode requires authenticated receipts")
             receipts = read_json(args.receipts)
             manifest = read_json(args.manifest) if args.manifest else None
-            out = strict(receipts, args.mode, manifest, bundle_path=args.bundle)
+            check(bool(args.reproduction_zip) == bool(args.reproduction_ids),
+                  "reproduction ZIP and exact GitHub identities must be paired")
+            source = ({"zip_file": args.reproduction_zip,
+                       "identities": read_json(args.reproduction_ids)}
+                      if args.reproduction_zip else None)
+            out = strict(receipts, args.mode, manifest,
+                         bundle_path=args.bundle,
+                         reproduction_attachment=source)
     except (GateError, EvidenceError, KeyError, OSError, ValueError) as exc:
         print(f"NOT ACCEPTED: {exc}", file=sys.stderr)
         return 2

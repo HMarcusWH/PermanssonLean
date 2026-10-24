@@ -73,6 +73,8 @@ def main(argv=None):
     parser.add_argument("--receipts", type=Path, required=True)
     parser.add_argument("--bundle", type=Path, required=True)
     parser.add_argument("--approved-manifest", type=Path)
+    parser.add_argument("--reproduction-zip", type=Path)
+    parser.add_argument("--reproduction-ids", type=Path)
     opts = parser.parse_args(argv)
     try:
         receipts = json.loads(opts.receipts.read_bytes())
@@ -83,8 +85,15 @@ def main(argv=None):
             manifest = (
                 json.loads(opts.approved_manifest.read_bytes())
                 if opts.approved_manifest else None)
+            if bool(opts.reproduction_zip) != bool(opts.reproduction_ids):
+                raise GateError("merged-M reproduction artifact and IDs must be paired")
+            reproduction = ({
+                "zip_file": opts.reproduction_zip,
+                "identities": json.loads(opts.reproduction_ids.read_bytes())}
+                if opts.reproduction_zip else None)
             result = strict(receipts, opts.phase, manifest,
-                            bundle_path=opts.bundle)
+                            bundle_path=opts.bundle,
+                            reproduction_attachment=reproduction)
     except (GateError, EvidenceError, AuthenticationError,
             OSError, KeyError, ValueError) as exc:
         print("NOT ACCEPTED:", exc, file=sys.stderr)
