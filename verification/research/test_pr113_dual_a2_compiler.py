@@ -121,8 +121,10 @@ class DualA2Tests(unittest.TestCase):
         self.assertIn("ln -s \"$GITHUB_WORKSPACE/.lake/packages\"", stage)
         self.assertIn('actual == rev', stage)
         self.assertIn('"historical_project_proofs_reused": False', stage)
-        self.assertNotIn("lake update", stage.replace(
-            "# downloaded substitute mathlib, no imported current project build.", ""))
+        actual_commands = "\n".join(
+            line for line in stage.splitlines()
+            if not line.lstrip().startswith("#"))
+        self.assertNotIn("lake update", actual_commands)
         self.assertIn('"independent_security_review": False', stage)
         self.assertIn('"mathematical_acceptance": False', stage)
         self.assertTrue(proposed.startswith("# Review-pending"))
