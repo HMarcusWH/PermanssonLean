@@ -329,8 +329,10 @@ def cli(argv=None):
         def git(*commands):
             import subprocess
             try:
-                return subprocess.check_output(["git",*commands],cwd=ROOT,
-                    stderr=subprocess.DEVNULL,text=True,timeout=20).strip()
+                raw=subprocess.check_output(["git",*commands],cwd=ROOT,
+                    stderr=subprocess.DEVNULL,text=True,timeout=20)
+                # Never strip the committed Lake JSON blob before hashing.
+                return raw if commands and commands[0]=="show" else raw.strip()
             except (OSError,subprocess.CalledProcessError,
                     subprocess.TimeoutExpired) as exc:
                 raise DeliveryError("genuine Git source object unavailable") from exc
