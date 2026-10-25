@@ -13,6 +13,10 @@ import zipfile
 from seal_approved import verify_approved_archive, SealError, ROOT as ROOT_DIR
 
 FORMAT = "Permansson.MathClosure.PostsealReplayCandidate.v1"
+# Intake must be bounded *before* z.read("approved_seal.json"). The full
+# independently implemented archive verifier runs afterward.
+MAX_ARCHIVE_BYTES = 64 * 1024 * 1024
+MAX_MANIFEST_BYTES = 2 * 1024 * 1024
 
 def sha(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
@@ -36,8 +40,22 @@ def replay(archive: Path, sidecar: Path, output: Path) -> dict:
     if (output.exists() or output.is_relative_to(archive.parent) or
             output.is_relative_to(ROOT_DIR)):
         raise SealError("replay output must be new and detached from source/candidate")
+    if archive.stat().st_size > MAX_ARCHIVE_BYTES:
+        raise SealError("unbounded candidate archive before seal intake")
     with zipfile.ZipFile(archive) as z:
-        seal_bytes = z.read("approved_seal.json")
+        matching = [info for info in z.infolist()
+                    if info.filename.casefold() == "approved_seal.json"]
+        if len(matching) != 1 or matching[0].filename != "approved_seal.json":
+            raise SealError("missing, duplicated or case-colliding seal member")
+        info = matching[0]
+        if (info.is_dir() or (info.flag_bits & 1) or
+            info.file_size <= 0 or info.file_size > MAX_MANIFEST_BYTES or
+            info.compress_size <= 0 or info.file_size > 300 * info.compress_size):
+            raise SealError("unbounded or unsafe original seal member")
+        with z.open(info) as reader:
+            seal_bytes = reader.read(MAX_MANIFEST_BYTES + 1)
+        if len(seal_bytes) != info.file_size:
+            raise SealError("partial or overexpanded seal member")
         manifest = json.loads(seal_bytes)
     if (manifest.get("format") != "Permansson.MathClosure.CandidateSeal.v1" or
         manifest.get("status") != "CANDIDATE_SEAL_BUILT" or

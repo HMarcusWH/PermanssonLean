@@ -78,6 +78,26 @@ class PostsealTests(unittest.TestCase):
                 replay.replay(self.archive, self.sidecar, self.out)
         self.assertFalse(self.out.exists())
 
+    def test_replay_bounds_seal_before_parsing_or_full_archive_verification(self):
+        with mock.patch.object(replay, "MAX_MANIFEST_BYTES", 16), \
+             mock.patch.object(replay, "verify_approved_archive") as verifier:
+            with self.assertRaises(SealError):
+                replay.replay(self.archive, self.sidecar, self.out)
+            verifier.assert_not_called()
+        self.assertFalse(self.out.exists())
+
+    def test_duplicate_or_case_colliding_seal_members_never_replay(self):
+        for duplicate_name in ("approved_seal.json", "APPROVED_SEAL.JSON"):
+            with self.subTest(duplicate_name=duplicate_name):
+                with zipfile.ZipFile(self.archive, "w") as z:
+                    z.writestr("approved_seal.json", json.dumps(self.manifest))
+                    z.writestr(duplicate_name, json.dumps(self.manifest))
+                with mock.patch.object(replay, "verify_approved_archive") as verifier:
+                    with self.assertRaises(SealError):
+                        replay.replay(self.archive, self.sidecar, self.out)
+                    verifier.assert_not_called()
+                self.assertFalse(self.out.exists())
+
     def test_incomplete_claims_and_existing_output_fail(self):
         self.manifest["accepted_claim_count"] = 10
         self.make_zip()
