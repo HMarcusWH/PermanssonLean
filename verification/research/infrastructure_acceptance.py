@@ -18,7 +18,7 @@ import sys
 import zipfile
 
 from final_closure_authenticate import (
-    REQUIRED, authenticated_checks, current_reviews_by_user,
+    AuthenticationError, REQUIRED, authenticated_checks, current_reviews_by_user,
     git as real_git, live as real_live, paginate as real_paginate,
 )
 import release_target
@@ -362,10 +362,13 @@ def check_evidence(payload, T_bytes, A2_bytes, *, git=real_git, live=real_live,
          and payload.get("format") == FORMAT,
          "wrong infrastructure-only evidence type")
     source = payload.get("target")
-    need(isinstance(source, dict), "missing detached source target")
+    # Validate the complete detached target *before* looking up any Git/GitHub
+    # source object. An incomplete or retagged record must fail closed at the
+    # schema boundary, not turn into an unrelated Git authentication error.
+    release_target.candidate_bindings(source)
     target = release_target.bind(
         source, intent=release_target.exact_intent(
-            source.get("head_sha"), git=git), git=git, live=live)
+            source["head_sha"], git=git), git=git, live=live)
     need(target["phase"] == "infrastructure_premerge",
          "CERT cannot use an infrastructure readiness gate")
     H = target["head_sha"]
@@ -456,7 +459,7 @@ def main(argv=None):
                           "source_head": result["source_head"]}, sort_keys=True))
         return 0
     except (InfrastructureError, release_target.TargetError,
-            OSError, KeyError, TypeError, ValueError) as exc:
+            AuthenticationError, OSError, KeyError, TypeError, ValueError) as exc:
         print("INFRASTRUCTURE NOT ACCEPTED:", exc, file=sys.stderr)
         return 2
 

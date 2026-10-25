@@ -412,9 +412,21 @@ class SeparateGateTests(unittest.TestCase):
             "historical_A2": {},
             "security_review_id": 0,
         }
-        with self.assertRaises((infra.InfrastructureError,
-                               release_target.TargetError)):
-            infra.check_evidence(good, b"x", b"y")
+        # All invalid external targets are rejected before any Git, GitHub
+        # or required-CI lookup, even when their head SHA looks syntactically
+        # valid. No fake aaaa... Git object should be requested.
+        with mock.patch.object(infra, "real_git",
+                               side_effect=AssertionError("Git lookup")) as git, \
+             mock.patch.object(infra, "real_live",
+                               side_effect=AssertionError("GitHub lookup")) as live, \
+             mock.patch.object(infra, "authenticated_checks",
+                               side_effect=AssertionError("CI lookup")) as checks:
+            with self.assertRaises(release_target.TargetError):
+                infra.check_evidence(good, b"x", b"y",
+                                     git=git, live=live, checks=checks)
+            git.assert_not_called()
+            live.assert_not_called()
+            checks.assert_not_called()
 
 
 if __name__ == "__main__":
