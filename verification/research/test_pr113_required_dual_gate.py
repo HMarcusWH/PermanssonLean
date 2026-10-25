@@ -129,6 +129,18 @@ class RequiredDualGateTests(unittest.TestCase):
                         event_data=fake_event(),git=git,
                         historical_gate=lambda *args:original())
 
+    def test_postmerge_uses_real_git_default_instead_of_none(self):
+        environ=fake_env()
+        environ.update(GITHUB_EVENT_NAME="push",GITHUB_REF="refs/heads/main")
+        with mock.patch("pr113_historical_postmerge.verify",
+                        return_value={"status":"POSTMERGE_ONLY"}) as actual:
+            value=gate.verify(payload(),b"T",b"A2",
+                              env=environ,event_data=fake_event())
+        self.assertEqual(value["status"],"POSTMERGE_ONLY")
+        self.assertNotIn("git",actual.call_args.kwargs)
+        self.assertEqual(actual.call_args.kwargs["env"],environ)
+
+
     def test_local_environment_cannot_pass_required_gate(self):
         with mock.patch.dict(gate.os.environ,{},clear=True):
             with self.assertRaises(gate.RequiredGateError):

@@ -116,6 +116,16 @@ class HistoricalDeliveryTests(unittest.TestCase):
                     data[f"/actions/runs/{RUN}/artifacts?per_page=100"],
                     kind="T",head=H)
 
+    def test_source_git_preserves_file_bytes_but_uses_text_git_identities(self):
+        import subprocess
+        raw=b'{"packagesDir":".lake/packages"}\n'
+        with mock.patch.object(subprocess,"check_output",
+                               side_effect=[b"b"*40+b"\n",raw]) as stdout:
+            self.assertEqual(d.source_git("rev-parse","HEAD"),"b"*40)
+            self.assertEqual(d.source_git("show",H+":lake-manifest.json"),raw)
+            self.assertEqual(stdout.call_count,2)
+
+
     def test_invalid_https_redirect_is_rejected(self):
         for url in ("http://api.github.com/artifacts/1",
                     "https://127.0.0.1/latest",

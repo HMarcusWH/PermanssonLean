@@ -115,8 +115,13 @@ def verify(input_envelope, t_zip, a2_zip, *, env=None, git=None,
         from pr113_historical_postmerge import verify as verify_main
         if historical_gate is not None:
             raise RequiredGateError("fake premerge acceptance cannot run on main")
+        # An omitted Git adapter means the real authenticated Git reader,
+        # not an explicit None that would disable postmerge source checking.
+        if git is None:
+            return verify_main(input_envelope,t_zip,a2_zip,env=env,
+                               event_bytes=event_data)
         return verify_main(input_envelope,t_zip,a2_zip,env=env,
-                           git=git, event_bytes=event_data)
+                           git=git,event_bytes=event_data)
     context=actual_ci_event(env=env,git=git,event_data=event_data)
     need(isinstance(input_envelope,dict)
          and isinstance(input_envelope.get("target"),dict)

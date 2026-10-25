@@ -317,6 +317,25 @@ def fresh_detached_path(path):
     return original
 
 
+def source_git(*commands):
+    """Return scalar Git identities as text and committed file bytes verbatim.
+
+    Never pass bytes as a SHA comparison, and never use .strip() on a
+    Git show REV:PATH payload. Both mistakes break authentic required checks.
+    """
+    import subprocess
+    try:
+        raw=subprocess.check_output(["git",*commands],cwd=ROOT,
+              stderr=subprocess.DEVNULL,timeout=20)
+    except (OSError,subprocess.CalledProcessError,
+            subprocess.TimeoutExpired) as exc:
+        raise DeliveryError("genuine Git object unavailable") from exc
+    if (len(commands)>=2 and commands[0]=="show"
+            and ":" in commands[1]):
+        return raw
+    return raw.decode("utf-8").strip()
+
+
 def cli(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--producer-run-id", required=True, type=int)
@@ -324,27 +343,15 @@ def cli(argv=None):
     parser.add_argument("--out", required=True, type=Path)
     args = parser.parse_args(argv)
     try:
-        # Premerge PR and merged main have deliberately different source
-        # bindings. Never pass an already-merged PR through the draft-only gate.
-        def git(*commands):
-            import subprocess
-            try:
-                raw=subprocess.check_output(["git",*commands],cwd=ROOT,
-                    stderr=subprocess.DEVNULL,text=True,timeout=20)
-                # Never strip the committed Lake JSON blob before hashing.
-                return raw if commands and commands[0]=="show" else raw.strip()
-            except (OSError,subprocess.CalledProcessError,
-                    subprocess.TimeoutExpired) as exc:
-                raise DeliveryError("genuine Git source object unavailable") from exc
         if os.environ.get("GITHUB_EVENT_NAME") == "pull_request":
-            context = actual_ci_event(git=git)
+            context = actual_ci_event(git=source_git)
             result = deliver(context,args.producer_run_id,
-                             args.security_review_id,git=git)
+                             args.security_review_id,git=source_git)
         elif os.environ.get("GITHUB_EVENT_NAME") == "push":
             from pr113_historical_postmerge import exact_main_event
-            context = exact_main_event(git=git)
+            context = exact_main_event(git=source_git)
             result = deliver_merged(context,args.producer_run_id,
-                                    args.security_review_id,git=git)
+                                    args.security_review_id,git=source_git)
         else:
             raise DeliveryError("historical delivery requires a real main PR or push")
         out = fresh_detached_path(args.out)
