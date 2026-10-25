@@ -30,6 +30,7 @@ SUITES = (
     "test_pr113_inactive_required_gate_replacement.py",
     "test_pr113_full_required_workflow_preview.py",
     "test_pr113_atomic_migration_preview.py",
+    "test_pr113_v2_workflow_contract_preview.py",
     "test_pr113_draft_rehearsal_auth.py",
     "test_pr113_tooling_migration.py",
     "test_pr113_final_source_readiness.py",
