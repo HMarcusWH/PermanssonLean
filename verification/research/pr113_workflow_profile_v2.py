@@ -43,6 +43,9 @@ def _blob(root, head, path):
     require(0 < len(raw) <= 1_000_000, "missing/oversized reviewed Git blob")
     oid = git(root, "rev-parse", head + ":" + path).decode().strip()
     require(SHA.fullmatch(oid) is not None, "invalid Git blob object identity")
+    computed=hashlib.sha1(
+        b"blob "+str(len(raw)).encode("ascii")+b"\0"+raw).hexdigest()
+    require(computed==oid, "Git object contents differ from recorded blob OID")
     try:
         text = raw.decode("utf-8")
     except UnicodeError as exc:
@@ -186,7 +189,8 @@ def audit(root, head, *, phase="staged"):
         for name in module.APPROVED_WORKFLOW_BLOBS:
             path = ".github/workflows/" + name
             oid, text = _blob(root, head, path)
-            require(tree[path] == ("100644", oid),
+            require(tree[path] == ("100644", oid)
+                    and module.git_blob_oid(text.encode("utf-8")) == oid,
                     "activated workflow differs from committed exact blob")
             source[name] = text
         for name in module.RETAINED_HISTORICAL_WORKFLOWS:
@@ -230,7 +234,7 @@ def audit(root, head, *, phase="staged"):
             approved["retained_historical_mutable_action_refs"],
         "all_actions_commit_pinned":
             approved["all_workflow_actions_commit_pinned"],
-        "original_T_and_A2_altered": False,
+        "historical_T_A2_verification": "SEPARATE_DUAL_EXECUTION_REQUIRED",
         "independent_security_review": False,
         "owner_activation_authorized": False,
         "mathematical_acceptance": False,

@@ -73,6 +73,19 @@ class VersionedT2SourceTests(TestCase):
             with self.assertRaises(ToolingMigrationError):
                 workflow_audit(ROOT, self.head, phase="staged")
 
+    def test_fake_git_show_bytes_cannot_borrow_valid_blob_oid(self):
+        import pr113_workflow_profile_v2 as v2
+        authentic=v2.git
+        target=v2.CONTRACT
+        def forged(root,*args):
+            if args == ("show",self.head+":"+target):
+                return authentic(root,*args)+b"\n# forged source\n"
+            return authentic(root,*args)
+        with mock.patch.object(v2,"git",side_effect=forged):
+            with self.assertRaisesRegex(ToolingMigrationError,
+                                        "Git object contents differ"):
+                v2._blob(ROOT,self.head,target)
+
     def test_never_promote_v1_25_as_v2_30(self):
         legacy = {"format": "Permansson.PR113.ToolingMigrationProposal.v1",
                   "current_workflow_file_count": 25}
