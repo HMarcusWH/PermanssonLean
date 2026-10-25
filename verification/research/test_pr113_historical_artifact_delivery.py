@@ -148,6 +148,34 @@ class HistoricalDeliveryTests(unittest.TestCase):
             d.collect(H,RUN,live=api.__getitem__,
                       download=zips.__getitem__,committed_manifest=b"{}")
 
+    def test_detached_main_transport_rejects_foreign_merge_and_bogus_review(self):
+        from pr113_historical_postmerge import source_target
+        ctx={"original_base_sha":B,
+             "reviewed_head_sha":H,"merged_main_sha":S}
+        api, zips, manifest=inputs()
+        def merged_git(*args):
+            if args==("rev-parse","HEAD"):return S
+            if args==("show","-s","--format=%P",S):return B+" "+H
+            if args==("show",H+":lake-manifest.json"):
+                return manifest.decode()
+            raise AssertionError(args)
+        with mock.patch.object(d,"authenticate_original_zip",
+                               side_effect=lambda kind,ids,raw,head,live:
+                                   {"sha256":d.sha(raw)}):
+            result=d.deliver_merged(ctx,RUN,77,git=merged_git,
+                     live=api.__getitem__,download=zips.__getitem__)
+        self.assertEqual(result["envelope"]["target"],source_target(ctx))
+        self.assertEqual(result["envelope"]["security_review_id"],77)
+        self.assertFalse(result["transport"]["owner_merge_authorized"])
+        broken=dict(ctx,merged_main_sha="0"*40)
+        with self.assertRaises(d.DeliveryError):
+            d.deliver_merged(broken,RUN,77,git=merged_git,
+                     live=api.__getitem__,download=zips.__getitem())
+        with self.assertRaises(d.DeliveryError):
+            d.deliver_merged(ctx,RUN,0,git=merged_git,
+                     live=api.__getitem__,download=zips.__getitem())
+
+
 
 if __name__=="__main__":
     unittest.main()

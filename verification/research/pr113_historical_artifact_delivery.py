@@ -264,6 +264,52 @@ def deliver(context, run_id, reviewer_id, *, git,
     }
 
 
+def deliver_merged(context, run_id, reviewer_id, *, git,
+                   live=real_live, download=github_artifact_bytes):
+    """Source-bound postmerge transportation; cannot infer merge authorization."""
+    from pr113_historical_postmerge import FORMAT as MERGED_FORMAT, source_target
+    need(type(reviewer_id) is int and reviewer_id > 0,
+         "genuine historical independent review ID is mandatory")
+    need(isinstance(context,dict) and
+         context.get("original_base_sha") == B113 and
+         context.get("merged_main_sha") == git("rev-parse","HEAD") and
+         git("show","-s","--format=%P",
+             context["merged_main_sha"]).split() ==
+             [B113,context["reviewed_head_sha"]],
+         "postmerge historical delivery requires authentic B/H/M")
+    H=context["reviewed_head_sha"]
+    manifest=git("show",H+":lake-manifest.json")
+    need(isinstance(manifest,str) and bool(manifest),
+         "historical H dependency manifest missing in main checkout")
+    raw,ids,verified=collect(
+        H,run_id,live=live,download=download,
+        committed_manifest=manifest.encode("utf-8"))
+    envelope={
+        "format":MERGED_FORMAT,
+        "target":source_target(context),
+        "source_bound_ci":[],
+        "historical_T":ids["T"],"historical_A2":ids["A2"],
+        "security_review_id":reviewer_id,
+    }
+    return {
+        "envelope":envelope,
+        "zips":raw,
+        "transport":{
+            "format":FORMAT,
+            "status":"REAL_MERGED_SOURCE_ORIGINAL_ZIPS_RETRIEVED_REVIEW_PENDING",
+            "head":H,
+            "merged_main_sha":context["merged_main_sha"],
+            "source_run_id":run_id,
+            "originals":verified,
+            "independent_security_review":False,
+            "required_checks_successful":0,
+            "mathematical_acceptance":False,
+            "owner_merge_authorized":False,
+            "publication_authorized":False,
+        },
+    }
+
+
 def fresh_detached_path(path):
     original = Path(path).absolute()
     need(not original.exists() and not original.is_symlink()
@@ -280,7 +326,8 @@ def cli(argv=None):
     parser.add_argument("--out", required=True, type=Path)
     args = parser.parse_args(argv)
     try:
-        context = actual_ci_event()
+        # Premerge PR and merged main have deliberately different source
+        # bindings. Never pass an already-merged PR through the draft-only gate.
         def git(*commands):
             import subprocess
             try:
@@ -289,8 +336,17 @@ def cli(argv=None):
             except (OSError,subprocess.CalledProcessError,
                     subprocess.TimeoutExpired) as exc:
                 raise DeliveryError("genuine Git source object unavailable") from exc
-        result = deliver(context,args.producer_run_id,
-                         args.security_review_id,git=git)
+        if os.environ.get("GITHUB_EVENT_NAME") == "pull_request":
+            context = actual_ci_event(git=git)
+            result = deliver(context,args.producer_run_id,
+                             args.security_review_id,git=git)
+        elif os.environ.get("GITHUB_EVENT_NAME") == "push":
+            from pr113_historical_postmerge import exact_main_event
+            context = exact_main_event(git=git)
+            result = deliver_merged(context,args.producer_run_id,
+                                    args.security_review_id,git=git)
+        else:
+            raise DeliveryError("historical delivery requires a real main PR or push")
         out = fresh_detached_path(args.out)
         out.mkdir(parents=True,exist_ok=False)
         for k, name in (("T","historical_T.zip"),("A2","historical_A2.zip")):

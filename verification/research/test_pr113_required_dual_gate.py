@@ -120,6 +120,15 @@ class RequiredDualGateTests(unittest.TestCase):
                     gate.RequiredGateError):
                 self.check(source=value)
 
+    def test_main_push_cannot_reuse_draft_only_historical_gate(self):
+        ctx=fake_env()
+        ctx.update(GITHUB_EVENT_NAME="push",
+                   GITHUB_REF="refs/heads/main")
+        with self.assertRaises(gate.RequiredGateError):
+            gate.verify(payload(),b"T",b"A2",env=ctx,
+                        event_data=fake_event(),git=git,
+                        historical_gate=lambda *args:original())
+
     def test_local_environment_cannot_pass_required_gate(self):
         with mock.patch.dict(gate.os.environ,{},clear=True):
             with self.assertRaises(gate.RequiredGateError):

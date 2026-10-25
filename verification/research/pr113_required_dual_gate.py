@@ -108,6 +108,15 @@ def actual_ci_event(*, env=None, git=None, event_data=None):
 
 def verify(input_envelope, t_zip, a2_zip, *, env=None, git=None,
            event_data=None, historical_gate=None):
+    # Authentic merged-main pushes require an independent ordered B/H/M check,
+    # not a forged replay of the draft-only PR test-merge source binding.
+    env = os.environ if env is None else env
+    if env.get("GITHUB_EVENT_NAME") == "push":
+        from pr113_historical_postmerge import verify as verify_main
+        if historical_gate is not None:
+            raise RequiredGateError("fake premerge acceptance cannot run on main")
+        return verify_main(input_envelope,t_zip,a2_zip,env=env,
+                           git=git, event_bytes=event_data)
     context=actual_ci_event(env=env,git=git,event_data=event_data)
     need(isinstance(input_envelope,dict)
          and isinstance(input_envelope.get("target"),dict)
