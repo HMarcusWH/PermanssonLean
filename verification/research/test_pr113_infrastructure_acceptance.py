@@ -101,6 +101,34 @@ def compiler(prefix, status, mutation_names):
     return content
 
 
+def synthetic_lake_manifest():
+    return {
+        "packagesDir": ".lake/packages",
+        "packages": [
+            {"type": "git", "name": "mathlib",
+             "rev": "5ed2965256430c3649e86755f9576b54eca72435"},
+            {"type": "git", "name": "aesop", "rev": "1"*40},
+        ],
+    }
+
+
+def fake_bridge():
+    manifest = synthetic_lake_manifest()
+    raw = json.dumps(manifest, sort_keys=True).encode()
+    return {
+        "format": "Permansson.PR113.HistoricalA2DependencyBridge.v1",
+        "status": "PINNED_DEPENDENCIES_REUSED_WITHOUT_PROOF_BUILD_IMPORT",
+        "historical_head": infra.A2_HISTORICAL,
+        "current_head": H,
+        "manifest_sha256": infra.sha(raw),
+        "pinned_packages": {p["name"]:p["rev"] for p in manifest["packages"]},
+        "original_verifier_modified": False,
+        "historical_project_proofs_reused": False,
+        "independent_security_review": False,
+        "mathematical_acceptance": False,
+    }
+
+
 def a2_files():
     left = compiler(
         "historical_original_A2",
@@ -129,6 +157,8 @@ def a2_files():
         },
     }
     return {
+        "historical_dependency_bridge.json":
+            (json.dumps(fake_bridge(), sort_keys=True)+"\n").encode(),
         **left, **right, "unreviewed_dual_A2_candidate.json":
             (json.dumps(overall, sort_keys=True) + "\n").encode(),
     }
@@ -162,6 +192,34 @@ class HistoricalEvidenceTests(unittest.TestCase):
         files[key] = b"error: parser error\n"
         with self.assertRaises(infra.InfrastructureError):
             infra.inspect_A2(files, H)
+
+    def test_historical_dependency_bridge_rejects_forgery(self):
+        files = a2_files()
+        manifest=json.dumps(synthetic_lake_manifest(), sort_keys=True).encode()
+        evidence=infra.verify_A2_dependency_bridge(files,H,manifest_raw=manifest)
+        self.assertEqual(evidence,infra.sha(
+            files["historical_dependency_bridge.json"]))
+        for mutation in (
+            lambda x: x.update(current_head="b"*40),
+            lambda x: x.update(manifest_sha256="0"*64),
+            lambda x: x.update(pinned_packages={"mathlib":"0"*40}),
+            lambda x: x.update(historical_project_proofs_reused=True),
+            lambda x: x.update(independent_security_review=True),
+            lambda x: x.update(original_verifier_modified=True),
+        ):
+            with self.subTest(mutation=mutation):
+                modified=a2_files()
+                obj=json.loads(modified["historical_dependency_bridge.json"])
+                mutation(obj)
+                modified["historical_dependency_bridge.json"] = (
+                    json.dumps(obj, sort_keys=True)+"\n").encode()
+                with self.assertRaises(infra.InfrastructureError):
+                    infra.verify_A2_dependency_bridge(
+                        modified,H,manifest_raw=manifest)
+        with self.assertRaises(infra.InfrastructureError):
+            infra.verify_A2_dependency_bridge(
+                a2_files(),H,manifest_raw=b"{}")
+
 
     def test_safe_zip_member_bounds(self):
         raw = zipped(historical_files())
@@ -363,6 +421,8 @@ class SeparateGateTests(unittest.TestCase):
                 return json.dumps(policy)
             if args == ("show", H + ":" + infra.ACTIVE_WORKFLOW):
                 return workflow
+            if args == ("show", H + ":lake-manifest.json"):
+                return json.dumps(synthetic_lake_manifest(), sort_keys=True)
             if args == ("show", H + ":" + release_target.INTENT_PATH):
                 return json.dumps(fake_intent())
             return target_git(*args)

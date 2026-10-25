@@ -238,6 +238,58 @@ def inspect_A2(files, head):
             "dual_A2_sha256": sha(files["unreviewed_dual_A2_candidate.json"])}
 
 
+def verify_A2_dependency_bridge(files, head, *, manifest_raw):
+    """Check the historical dependency bridge against actual committed H bytes.
+
+    It authenticates *candidate evidence* only. It never makes a historical
+    verifier into the new mandatory gate and never supplies reviewer authority.
+    """
+    bridge = json_member(files, "historical_dependency_bridge.json")
+    if isinstance(manifest_raw, str):
+        manifest_raw = manifest_raw.encode("utf-8")
+    need(type(manifest_raw) is bytes and 0 < len(manifest_raw) <= 1024 * 1024,
+         "missing true current-H committed Lake manifest")
+    try:
+        manifest = json.loads(manifest_raw)
+    except (ValueError, TypeError) as exc:
+        raise InfrastructureError("committed Lean dependency manifest invalid") from exc
+    packages = manifest.get("packages") if isinstance(manifest, dict) else None
+    need(isinstance(packages, list) and bool(packages) and
+         manifest.get("packagesDir") == ".lake/packages",
+         "committed dependency manifest invalid or missing package pins")
+    expected = {}
+    for item in packages:
+        need(isinstance(item, dict) and item.get("type") == "git"
+             and isinstance(item.get("name"), str)
+             and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_-]*", item["name"])
+             and item["name"] not in expected
+             and isinstance(item.get("rev"), str)
+             and re.fullmatch(r"[a-f0-9]{40}", item["rev"]),
+             "untrusted, duplicated or unpinned historical dependency")
+        expected[item["name"]] = item["rev"]
+    need(expected.get("mathlib") ==
+             "5ed2965256430c3649e86755f9576b54eca72435",
+         "historical A2 dependency closure uses unauthorized mathlib")
+    need(set(bridge) == {
+             "format", "status", "historical_head", "current_head",
+             "manifest_sha256", "pinned_packages", "original_verifier_modified",
+             "historical_project_proofs_reused", "independent_security_review",
+             "mathematical_acceptance"} and
+         bridge.get("format") == "Permansson.PR113.HistoricalA2DependencyBridge.v1"
+         and bridge.get("status") ==
+             "PINNED_DEPENDENCIES_REUSED_WITHOUT_PROOF_BUILD_IMPORT"
+         and bridge.get("historical_head") == A2_HISTORICAL
+         and bridge.get("current_head") == head
+         and bridge.get("manifest_sha256") == sha(manifest_raw)
+         and bridge.get("pinned_packages") == expected
+         and bridge.get("original_verifier_modified") is False
+         and bridge.get("historical_project_proofs_reused") is False
+         and bridge.get("independent_security_review") is False
+         and bridge.get("mathematical_acceptance") is False,
+         "historical A2 dependency reuse receipt not bound to real pins")
+    return sha(files["historical_dependency_bridge.json"])
+
+
 def source_meta(data):
     need(isinstance(data, dict) and set(data) == SOURCE_FIELDS
          and all(type(data.get(x)) is int and data[x] > 0
@@ -398,6 +450,9 @@ def check_evidence(payload, T_bytes, A2_bytes, *, git=real_git, live=real_live,
         "A2", payload["historical_A2"], A2_bytes, H, live=live)
     t = inspect_T(inspect_zip(T_bytes), H)
     a = inspect_A2(inspect_zip(A2_bytes), H)
+    a["dependency_bridge_sha256"] = verify_A2_dependency_bridge(
+        inspect_zip(A2_bytes), H,
+        manifest_raw=git("show", H + ":lake-manifest.json"))
     policy = authority_policy(H, git=git)
     pr = live("/pulls/113")
     attest = {
