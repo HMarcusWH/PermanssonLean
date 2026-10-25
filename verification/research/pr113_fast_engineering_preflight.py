@@ -52,6 +52,7 @@ SUITES = (
     "test_pr113_infrastructure_acceptance.py",
     "test_pr113_legacy20_choice_delivery.py",
     "test_pr113_implementation_matrix.py",
+    "test_pr113_successor_workflow_profile.py",
 )
 FORMAT = "Permansson.PR113.FastEngineeringPreflight.v1"
 
