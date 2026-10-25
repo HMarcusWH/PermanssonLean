@@ -129,6 +129,15 @@ def run_exact_shard(head: str, shard_index: int, shard_count: int,
             "bundle_sha256": record["detached_bundle_sha256"],
             "status": record["status"],
         })
+    # Rebind immutable source identity after the last real original-source
+    # mutation execution. An externally observed source transition is a
+    # failure, not a candidate with a borrowed old-H hash.
+    if git_head() != head:
+        raise MutationEvidenceError("Git HEAD changed during semantic execution")
+    after_tree = subprocess.check_output(
+        ["git", "rev-parse", "HEAD^{tree}"], cwd=root, text=True).strip()
+    if after_tree != source_tree:
+        raise MutationEvidenceError("Git source tree changed during semantic execution")
     ci_keys = ("GITHUB_REPOSITORY", "GITHUB_WORKFLOW", "GITHUB_JOB",
                "GITHUB_RUN_ID", "GITHUB_RUN_ATTEMPT", "GITHUB_SHA")
     ci = {key: os.environ.get(key) for key in ci_keys}

@@ -144,6 +144,53 @@ class SemanticShardingTests(unittest.TestCase):
                     MutationEvidenceError):
                 all_cases.validate_candidate_case(H, cid, row)
 
+    def test_semantic_shard_detects_source_head_or_tree_transition(self):
+        with tempfile.TemporaryDirectory(prefix="perm-original-shard-") as root:
+            selected = all_cases.select_cases(0, 25)[0]
+            entry = all_cases.batch.SPECS[selected]
+            def run_one(head, cid, output):
+                output.mkdir(parents=True)
+                return {
+                    "format": "Permansson.OriginalSemanticMutantCandidate.v1",
+                    "status": "DETACHED_UNREVIEWED_UNATTRIBUTED",
+                    "source_head": head, "case_id": cid,
+                    "source_path": entry["source"],
+                    "test_path": entry["test_path"], "test_name": entry["method"],
+                    "mutant_sha256": "c"*64,
+                    "detached_bundle_sha256": "d"*64,
+                    "mutation_record": {
+                        "head_sha": head, "case_ids":[cid], "claim_ids":[],
+                        "test_path":entry["test_path"],
+                        "test_name":entry["method"],
+                        "original_lean_source_path":entry["source"],
+                        "mutant_source_sha256":"c"*64,
+                        "outcome":"REJECTED_SEMANTIC",
+                        "compiler_exit_code":1, "check_run_id":None,
+                        "review_status":"NOT_RECEIVED",
+                        "positive_control":{
+                            "compiled":True,"exit_code":0,
+                            "lean_toolchain":"leanprover/lean4:v4.34.0"},
+                        "original_lean_source_sha256":"e"*64,
+                        "source_sha256":"f"*64,
+                    },
+                    "ci_check_run_id":None,
+                    "independent_review":False,
+                    "full_mathematical_acceptance":False,
+                }
+            for mutate in ("head", "tree"):
+                with self.subTest(mutation=mutate):
+                    start = Path(root)/mutate
+                    gh = [H, "b"*40] if mutate == "head" else [H, H]
+                    tree = [T, "c"*40] if mutate == "tree" else [T, T]
+                    with mock.patch.object(all_cases, "git_head", side_effect=gh), \
+                         mock.patch.object(all_cases.subprocess, "check_output",
+                                           side_effect=tree), \
+                         mock.patch.object(all_cases.batch, "run_one",
+                                           side_effect=run_one):
+                        with self.assertRaises(MutationEvidenceError):
+                            all_cases.run_exact_shard(H, 0, 25, start)
+                    self.assertFalse((start/"unreviewed_shard_manifest.json").exists())
+
 
 
 if __name__ == "__main__":

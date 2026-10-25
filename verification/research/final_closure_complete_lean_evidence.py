@@ -244,6 +244,56 @@ def required_inventory(*, root=ROOT, case_map=None, claim_map=None):
 # 259 distinct Lean declarations. A smaller successful subset cannot be
 # promoted into the original 45-case/11-claim source-candidate producer.
 FULL_TARGET_COUNT = 259
+# Frozen original criteria, independent of the claimed case count. A renamed
+# or substituted historical case must not pass by keeping the total at 45.
+FROZEN_ORIGINAL_CASE_IDS = frozenset((
+    "A-01",
+    "A-02",
+    "A-03",
+    "A-04",
+    "A-05",
+    "B-01",
+    "B-02",
+    "C-01",
+    "C11-01",
+    "C11-02",
+    "D-01",
+    "D-02",
+    "D-03",
+    "D-04",
+    "D-05",
+    "D-06",
+    "D-07",
+    "D-08",
+    "D-09",
+    "E-01",
+    "E-02",
+    "E-03",
+    "E-04",
+    "E-05",
+    "F-01",
+    "F-02",
+    "F-03",
+    "F-04",
+    "F-05",
+    "M-01",
+    "M-02",
+    "Q-01",
+    "Q-02",
+    "Q-03",
+    "Q-04",
+    "Q-05",
+    "S-01",
+    "S-02",
+    "X-01",
+    "X-02",
+    "X-03",
+    "X-04",
+    "X-05",
+    "X-06",
+    "XPLUS-01",
+))
+
 FROZEN_CLAIM_IDS = frozenset((
     "Q1", "Q2", "Q3", "M1", "M2", "M3",
     "N1", "N2", "N3", "D8", "D9",
@@ -284,8 +334,8 @@ def validate_full_release_inventory(entries):
                 "unowned or duplicated theorem owner")
         cases.update(original)
         claims.update(claim)
-    require(len(cases) == 45 and claims == FROZEN_CLAIM_IDS,
-            "full release theorem owner map does not cover exactly 45/11")
+    require(cases == FROZEN_ORIGINAL_CASE_IDS and claims == FROZEN_CLAIM_IDS,
+            "full release theorem owner map substituted original 45/11 identities")
     return entries
 
 

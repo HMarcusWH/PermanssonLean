@@ -202,7 +202,7 @@ class AllCaseCompilerManifestTests(unittest.TestCase):
         fabricated = [{
             "path": "PermanssonResearch/Demo.lean",
             "declaration": "Demo.public_" + str(i),
-            "case_ids": [f"C-{i % 45 + 1:02d}"],
+            "case_ids": [sorted(combined.FROZEN_ORIGINAL_CASE_IDS)[i % 45]],
             "claim_ids": [claims[i % len(claims)]],
         } for i in range(259)]
         import hashlib
@@ -257,6 +257,29 @@ class AllCaseCompilerManifestTests(unittest.TestCase):
             checker.side_effect = changed
             with self.assertRaises(combined.CompleteCompilerError):
                 combined.source_bound_full_inventory(H)
+
+
+    def test_original_45_case_names_cannot_be_substituted_at_equal_count(self):
+        from unittest import mock
+        claim_ids = sorted(combined.FROZEN_CLAIM_IDS)
+        cases = sorted(combined.FROZEN_ORIGINAL_CASE_IDS)
+        records = [
+            {"path": "PermanssonResearch/Proof.lean",
+             "declaration": "SomeModule.thm_" + str(i),
+             "case_ids": [cases[i % len(cases)]],
+             "claim_ids": [claim_ids[i % len(claim_ids)]]}
+            for i in range(259)]
+        combined.validate_full_release_inventory(records)
+        changed = [dict(row) for row in records]
+        original = cases[0]
+        changed = [
+            {**row, "case_ids": ["FAKE-CASE-00"]
+             if original in row["case_ids"] else row["case_ids"]}
+            for row in changed
+        ]
+        self.assertEqual(len({c for r in changed for c in r["case_ids"]}), 45)
+        with self.assertRaises(combined.CompleteCompilerError):
+            combined.validate_full_release_inventory(changed)
 
 
 
