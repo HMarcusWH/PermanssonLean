@@ -145,7 +145,7 @@ def prepare_output(repo: Path, output: Path) -> Path:
 def verify(repo: Path, output: Path, *, mode: str = "full", timeout: int = 3600) -> dict[str, Any]:
     repo = repo.resolve(strict=True)
     output = prepare_output(repo, output)
-    report: dict[str, Any] = {"format": "Permansson.PR113.A2SuccessorCompilerCandidate.v1",
+    report: dict[str, Any] = {"format": "Permansson.PR113.A2SuccessorCompilerCandidate.v2",
         "contract": "Permansson.A2P02.PR113.SOURCE_PROFILE_REVIEW_PENDING", "mode": mode, "status": "NOT_RUN",
         "started_at": datetime.now(timezone.utc).isoformat(), "commands": [],
         "mutations": {}, "declarations": {}, "event_binding": "LOCAL_NOT_H_B_S_M_CI",
