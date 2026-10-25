@@ -86,7 +86,15 @@ class CompilerDiagnosticRetention(unittest.TestCase):
 
 
     def test_production_export_does_not_accept_focused_diagnostic_subset(self):
-        with mock.patch.object(compiler, "required_inventory",
+        # The public exporter now authenticates H and source-ledger Git
+        # objects before checking the 259-target size. Supply an explicit
+        # synthetic clean-Git boundary so this unit test exercises its
+        # intended insufficient-inventory rejection, not the unrelated
+        # foreign-HEAD guard.
+        with mock.patch.object(compiler, "git_head", return_value=H), \
+             mock.patch.object(compiler, "committed_file_bytes",
+                               return_value=b"synthetic exact-H blob"), \
+             mock.patch.object(compiler, "required_inventory",
                                return_value=self.inventory):
             with self.assertRaisesRegex(compiler.CompleteCompilerError,
                                         "259 original proof targets"):

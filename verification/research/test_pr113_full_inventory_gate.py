@@ -2,18 +2,19 @@
 import copy
 import unittest
 from final_closure_complete_lean_evidence import (
-    FULL_TARGET_COUNT, FROZEN_CLAIM_IDS,
+    FULL_TARGET_COUNT, FROZEN_CLAIM_IDS, FROZEN_ORIGINAL_CASE_IDS,
     CompleteCompilerError, validate_full_release_inventory,
 )
 
 
 def synthetic_inventory():
     claims = sorted(FROZEN_CLAIM_IDS)
+    original_cases = sorted(FROZEN_ORIGINAL_CASE_IDS)
     return [
         {
             "path": f"PermanssonResearch/Fake/F{n:03}.lean",
             "declaration": f"PermanssonResearch.Fake.t{n:03}",
-            "case_ids": [f"C-{(n % 45) + 1:02}"],
+            "case_ids": [original_cases[n % len(original_cases)]],
             "claim_ids": [claims[n % len(claims)]],
         }
         for n in range(FULL_TARGET_COUNT)
@@ -51,7 +52,7 @@ class FullReleaseInventoryScopeTests(unittest.TestCase):
             validate_full_release_inventory(rows)
         rows = synthetic_inventory()
         for row in rows:
-            row["case_ids"] = ["C-01"]
+            row["case_ids"] = ["A-01"]
         with self.assertRaisesRegex(CompleteCompilerError, "45/11"):
             validate_full_release_inventory(rows)
 
