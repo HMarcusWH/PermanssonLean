@@ -56,6 +56,21 @@ APPROVED_ACTIONS={
     "actions/upload-artifact":"ea165f8d65b6e75b540449e92b4886f43607fa02",
 }
 READ_PERMISSIONS=frozenset(("actions","checks","contents","pull-requests"))
+# These 23 objects retain the exact already-active historical Git blobs.
+# Their mutable action tags are PRE-EXISTING SECURITY DEBT, not newly
+# approved action pins. Only the two replacements and five additions can
+# introduce a new workflow source, and every such action must be SHA pinned.
+REPLACEMENT_WORKFLOWS=frozenset(("research-lean.yml","research-integrity.yml"))
+ADDITION_WORKFLOWS=frozenset((
+    "pr113-historical-migration-candidates.yml",
+    "pr113-original-positive-controls-candidate.yml",
+    "pr113-postseal-replay.yml",
+    "pr113-source-controls-v3_1.yml",
+    "pr113-preseal-fullscope.yml",
+))
+RETAINED_HISTORICAL_WORKFLOWS=(frozenset(APPROVED_WORKFLOW_BLOBS)
+    - REPLACEMENT_WORKFLOWS - ADDITION_WORKFLOWS)
+assert len(RETAINED_HISTORICAL_WORKFLOWS)==23
 
 
 def need(ok,msg):
@@ -113,6 +128,7 @@ def validate_workflow_set(workflows):
     need(isinstance(workflows,dict) and
          set(workflows)==set(APPROVED_WORKFLOW_BLOBS),
          "entire 30-workflow review set must match exactly")
+    inherited_mutable_actions={}
     for name,oid in APPROVED_WORKFLOW_BLOBS.items():
         text=workflows[name]
         need(isinstance(text,str) and
@@ -124,13 +140,23 @@ def validate_workflow_set(workflows):
              "actions: write" not in text and
              "pull-requests: write" not in text,
              "workflow source is privileged beyond read-only profile")
-        for action,pin in re.findall(
-                r"(?m)^\s*- uses:\s*([^@\s]+)@([^\s]+)",text):
-            need(re.fullmatch(r"[a-f0-9]{40}",pin) is not None,
-                 "workflow action is not full-commit pinned: "+name)
-            if action in APPROVED_ACTIONS:
+        inherited=[]
+        for token in re.findall(r"(?m)^\s*- uses:\s*(\S+)",text):
+            need(token.count("@")==1 and not token.startswith("@"),
+                 "unrecognized action source syntax: "+name)
+            action,pin=token.rsplit("@",1)
+            if re.fullmatch(r"[a-f0-9]{40}",pin) is None:
+                # Exact Git blob commitment above is mandatory in either case.
+                # This exception ONLY reports unchanged, inherited action tags;
+                # it never labels those tags immutable, reviewed, or approved.
+                need(name in RETAINED_HISTORICAL_WORKFLOWS,
+                     "new/replaced workflow action must be full-SHA pinned: "+name)
+                inherited.append(token)
+            elif action in APPROVED_ACTIONS:
                 need(APPROVED_ACTIONS[action]==pin,
                      "workflow action source is not the approved pin")
+        if inherited:
+            inherited_mutable_actions[name]=sorted(inherited)
     research=workflows["research-lean.yml"]
     arch=workflows["research-integrity.yml"]
     need(research.count("\n  research:\n")==1 and
@@ -155,6 +181,11 @@ def validate_workflow_set(workflows):
         "retains_historical_T_and_A2_through_external_original_checkouts":True,
         "original_required_context_names":sorted(REQUIRED_JOBS),
         "mathematical_release_approved":False,
+        "independent_security_review":False,
+        "owner_activation_authorized":False,
+        "all_workflow_actions_commit_pinned":not bool(inherited_mutable_actions),
+        "retained_historical_mutable_action_refs":inherited_mutable_actions,
+        "mutable_action_refs_pending_security_review":bool(inherited_mutable_actions),
     }
 
 

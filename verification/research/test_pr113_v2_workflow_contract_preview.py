@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 import subprocess
 import unittest
+from unittest import mock
 from verification.integrity.workflow_contract import (
     APPROVED_WORKFLOWS as ORIGINAL,
 )
@@ -56,11 +57,42 @@ class CandidateV2ContractTests(unittest.TestCase):
     def test_exact_thirty_virtual_git_blobs_and_required_job_names(self):
         result=self.contract.validate_workflow_set(self.sources)
         self.assertEqual(result["workflows"],30)
+        self.assertFalse(result["owner_activation_authorized"])
+        self.assertFalse(result["independent_security_review"])
+        self.assertFalse(result["all_workflow_actions_commit_pinned"])
+        self.assertTrue(result["mutable_action_refs_pending_security_review"])
+        self.assertIn("actions/checkout@v4",
+                      result["retained_historical_mutable_action_refs"]["a2-smoke.yml"])
         self.assertEqual(set(self.sources),set(
             self.contract.APPROVED_WORKFLOW_BLOBS))
         actual=self.contract.validate_workflow(
             self.sources["research-integrity.yml"],self.sources)
         self.assertEqual(len(actual["contexts"]),3)
+
+    def test_only_exact_retained_history_may_keep_mutable_action_tags(self):
+        # Mutable inherited action tags are unresolved security debt,
+        # not fully pinned workflow actions or reviewer authorization.
+        self.assertEqual(len(self.contract.RETAINED_HISTORICAL_WORKFLOWS),23)
+        self.assertEqual(len(self.contract.REPLACEMENT_WORKFLOWS),2)
+        self.assertEqual(len(self.contract.ADDITION_WORKFLOWS),5)
+        for name in ("research-integrity.yml","pr113-preseal-fullscope.yml"):
+            with self.subTest(source=name):
+                src=self.sources[name]
+                import re
+                matcher=re.search(r"(?m)^\s*- uses:\s*actions/checkout@[a-f0-9]{40}",
+                                  src)
+                self.assertIsNotNone(matcher)
+                new_line=matcher.group(0).rsplit("@",1)[0]+"@v4"
+                changed=src[:matcher.start()]+new_line+src[matcher.end():]
+                modified=dict(self.sources)
+                modified[name]=changed
+                # Even a source-owned repin must not allow a new mutable tag.
+                new_blob=self.contract.git_blob_oid(changed.encode("utf-8"))
+                with mock.patch.dict(self.contract.APPROVED_WORKFLOW_BLOBS,
+                                     {name:new_blob}):
+                    with self.assertRaisesRegex(Exception,
+                                                 "must be full-SHA pinned"):
+                        self.contract.validate_workflow_set(modified)
 
     def test_each_canonical_mutation_rejected_by_exact_source_gate(self):
         self.assertEqual(len(self.sources),30)

@@ -178,12 +178,14 @@ class HistoricalDeliveryTests(unittest.TestCase):
         self.assertEqual(result["envelope"]["security_review_id"],77)
         self.assertFalse(result["transport"]["owner_merge_authorized"])
         broken=dict(ctx,merged_main_sha="0"*40)
-        with self.assertRaises(d.DeliveryError):
+        with self.assertRaisesRegex(d.DeliveryError,
+                                    "authentic B/H/M"):
             d.deliver_merged(broken,RUN,77,git=merged_git,
-                     live=api.__getitem__,download=zips.__getitem())
-        with self.assertRaises(d.DeliveryError):
+                     live=api.__getitem__,download=zips.__getitem__)
+        with self.assertRaisesRegex(d.DeliveryError,
+                                    "review ID is mandatory"):
             d.deliver_merged(ctx,RUN,0,git=merged_git,
-                     live=api.__getitem__,download=zips.__getitem())
+                     live=api.__getitem__,download=zips.__getitem__)
 
 
 

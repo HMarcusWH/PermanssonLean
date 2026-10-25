@@ -6,7 +6,7 @@
   "proposed_active_count": 30,
   "activation_target": "verification/integrity/workflow_contract.py",
   "staged_source": "docs/operations/pr113_required_gate_replacement_unapproved/workflow_contract_v2.py",
-  "staged_git_blob_oid": "791f610777b9c958d8640312aa889d172af01b78",
+  "staged_git_blob_oid": "ac0e2820b2bdf9290cffc4b3f6900c1d805de61a",
   "expected_workflow_git_blobs": {
     "a2-smoke.yml": "b1a3c2001614ac873ec015d05d2dfd7e7e04344f",
     "a3-contractive-smoke.yml": "d17cb4a6eecf5083f0eb92dd8437719c752c6e4f",
