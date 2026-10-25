@@ -26,6 +26,7 @@ SUITES = (
     "test_pr113_dual_review_packet.py",
     "test_pr113_required_dual_gate.py",
     "test_pr113_inactive_required_gate_replacement.py",
+    "test_pr113_draft_rehearsal_auth.py",
     "test_pr113_tooling_migration.py",
     "test_pr113_final_source_readiness.py",
     "test_final_closure_v3_source_readiness.py",
