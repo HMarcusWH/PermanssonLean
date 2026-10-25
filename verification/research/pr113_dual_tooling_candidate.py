@@ -70,18 +70,25 @@ def validate_dual_reports(historical, current, *, T_source, H_source):
            details["isolation"].get("network_isolation")=="ENFORCED" and
            details["isolation"].get("capabilities")=="all_zero",
            "original T offline restore omitted true network isolation")
+    context=current.get("context") if isinstance(current,dict) else None
     demand(isinstance(current,dict) and
            current.get("format")=="Permansson.Hardening.Tests.v1" and
            current.get("schema_version")==1 and
            current.get("status")=="PASS" and
            current.get("suite")=="workflow" and
            current.get("execution_tracked_clean") is True and
-           current.get("methods_run",0)>0 and
+           type(current.get("methods_run")) is int and
+           current["methods_run"]>0 and
            current.get("failures")==0 and current.get("errors")==0 and
            current.get("skips")==0 and
-           isinstance(current.get("covered_requirements"),list) and
-           len(current["covered_requirements"])>0,
-           "current H workflow verifier did not execute complete suite")
+           current.get("covered_requirements")==["CI-06","CI-07"] and
+           isinstance(context,dict) and
+           context.get("repository")=="HMarcusWH/PermanssonLean" and
+           context.get("checked_sha")==H_source and
+           context.get("event")=="local" and
+           isinstance(context.get("checked_tree"),str) and
+           SHA40.fullmatch(context["checked_tree"]) is not None,
+           "current H original workflow verifier did not run all local source-bound tests")
     return {
         "format":FORMAT,
         "status":"DUAL_T_AND_H_EXECUTED_UNREVIEWED",
@@ -117,15 +124,17 @@ def candidate_ci_context(head):
     return "REVIEWED_SOURCE_PUSH_CANDIDATE_UNAPPROVED"
 
 
-def command(argv,cwd,limit=1800, *, historical_artifact=False):
+def command(argv,cwd,limit=1800, *, historical_artifact=False,
+            detached_current_suite=False):
     environment=os.environ.copy()
     for key in ("PYTHONPATH","PYTHONHOME"):
         environment.pop(key,None)
-    if historical_artifact:
-        # Historical offline_smoke rejects standalone replay from CI context.
-        # Do not claim that old T is the current candidate C / required job.
-        # Strip ALL GH event/credential inputs before executing the real
-        # immutable T implementation in its own checkout.
+    if historical_artifact or detached_current_suite:
+        # Both historical T and the original current-H test runner must run
+        # WITHOUT event/credential inputs. The current-H source test runner
+        # rejects a feature-branch push as a genuine main/PR required check.
+        # The outer candidate job separately binds the real GitHub push.
+        # Neither child may claim original required CI acceptance.
         environment = {
             name: value for name,value in environment.items()
             if not name.startswith(("GITHUB_","GH_","GIT_")) and
@@ -179,7 +188,8 @@ def execute(historical_source,current_source,head,out):
              "--report",str(original_report)],historical,
             historical_artifact=True)
     command([sys.executable,"-B","-m","verification.integrity.run_tests",
-             "--suite","workflow","--report",str(current_report)],current)
+             "--suite","workflow","--report",str(current_report)],current,
+            detached_current_suite=True)
     old=json.loads(original_report.read_bytes())
     new=json.loads(current_report.read_bytes())
     receipt=validate_dual_reports(old,new,T_source=T,H_source=head)

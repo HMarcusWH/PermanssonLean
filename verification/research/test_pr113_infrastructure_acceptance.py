@@ -35,9 +35,11 @@ def historical_files():
     current = {
         "format": "Permansson.Hardening.Tests.v1",
         "schema_version": 1, "status": "PASS", "suite": "workflow",
+        "context":{"repository":"HMarcusWH/PermanssonLean",
+                   "checked_sha":H,"checked_tree":"9"*40,"event":"local"},
         "execution_tracked_clean": True, "methods_run": 5,
         "failures": 0, "errors": 0, "skips": 0,
-        "covered_requirements": ["R01"]
+        "covered_requirements": ["CI-06","CI-07"]
     }
     obj = lambda x: (json.dumps(x, sort_keys=True) + "\n").encode()
     oldraw, newraw = obj(old), obj(current)

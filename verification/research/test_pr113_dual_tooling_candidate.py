@@ -23,6 +23,8 @@ def fixture():
     current={
         "format":"Permansson.Hardening.Tests.v1","schema_version":1,
         "status":"PASS","suite":"workflow",
+        "context":{"repository":"HMarcusWH/PermanssonLean",
+                   "checked_sha":H,"checked_tree":"9"*40,"event":"local"},
         "execution_tracked_clean":True,
         "methods_run":9, "failures":0, "errors":0, "skips":0,
         "covered_requirements":["CI-06","CI-07"],
@@ -68,6 +70,21 @@ class DualToolingTests(unittest.TestCase):
             old,now=fixture()
             now[field]=changed
             with self.subTest(field=field), self.assertRaises(dual.DualToolingError):
+                dual.validate_dual_reports(old,now,T_source=T,H_source=H)
+
+    def test_mismatched_H_or_incomplete_workflow_coverage_blocks(self):
+        for edit in (
+            lambda x: x["context"].update(checked_sha="b"*40),
+            lambda x: x["context"].update(event="push"),
+            lambda x: x["context"].update(checked_tree="malformed"),
+            lambda x: x.update(covered_requirements=["CI-06"]),
+            lambda x: x.update(covered_requirements=["CI-06","CI-07","OPS-01"]),
+            lambda x: x.update(methods_run=True),
+        ):
+            old,now=fixture()
+            edit(now)
+            with self.subTest(edit=edit), self.assertRaises(
+                    dual.DualToolingError):
                 dual.validate_dual_reports(old,now,T_source=T,H_source=H)
 
     def test_real_branch_push_candidate_job_may_run_without_authorizing_archive(self):
@@ -135,18 +152,23 @@ class DualToolingTests(unittest.TestCase):
         self.assertEqual(environment["PYTHONDONTWRITEBYTECODE"], "1")
         self.assertEqual(environment["PATH"], "/usr/bin")
 
-    def test_current_H_verifier_does_not_borrow_standalone_T_environment(self):
+    def test_current_H_verifier_runs_as_sanitized_local_source(self):
         context = {"GITHUB_ACTIONS": "true", "GITHUB_SHA": H,
                    "GITHUB_EVENT_NAME": "push",
+                   "GITHUB_TOKEN": "never-for-current-suite",
                    "PYTHONPATH": "untrusted-import"}
         fake = SimpleNamespace(returncode=0, stdout="PASS", stderr="")
         with mock.patch.dict(dual.os.environ, context, clear=True):
             with mock.patch.object(dual.subprocess, "run", return_value=fake) as run:
                 dual.command(["python", "-B", "-m",
-                              "verification.integrity.run_tests"], "/tmp/H")
+                              "verification.integrity.run_tests"], "/tmp/H",
+                             detached_current_suite=True)
                 environment = run.call_args.kwargs["env"]
-        self.assertEqual(environment["GITHUB_ACTIONS"], "true")
-        self.assertEqual(environment["GITHUB_SHA"], H)
+            self.assertEqual(dual.os.environ["GITHUB_ACTIONS"], "true")
+            self.assertEqual(dual.os.environ["GITHUB_SHA"], H)
+        self.assertNotIn("GITHUB_ACTIONS", environment)
+        self.assertNotIn("GITHUB_SHA", environment)
+        self.assertNotIn("GITHUB_TOKEN", environment)
         self.assertNotIn("PYTHONPATH", environment)
 
     def test_failed_historical_T_subprocess_stays_red_not_approved(self):
