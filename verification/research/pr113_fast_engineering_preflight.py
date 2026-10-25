@@ -28,6 +28,7 @@ SUITES = (
     "test_pr113_historical_postmerge.py",
     "test_pr113_historical_artifact_delivery.py",
     "test_pr113_inactive_required_gate_replacement.py",
+    "test_pr113_full_required_workflow_preview.py",
     "test_pr113_draft_rehearsal_auth.py",
     "test_pr113_tooling_migration.py",
     "test_pr113_final_source_readiness.py",
