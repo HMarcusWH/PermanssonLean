@@ -136,6 +136,20 @@ class DraftByteRehearsalTests(unittest.TestCase):
         with self.assertRaises(r.DraftRehearsalError):
             r.audit(zipped(data),H)
 
+    def test_nested_archive_rejects_traversal_and_duplicate_source(self):
+        for filename in ("../escape", "manuscript/../escape"):
+            with self.subTest(path=filename):
+                with self.assertRaises(r.DraftRehearsalError):
+                    r.bounded_nested_archive(zipped({filename:b"hello"}))
+        for name in ("first.json", "FIRST.JSON"):
+            pass
+        output=io.BytesIO()
+        with zipfile.ZipFile(output,"w",zipfile.ZIP_DEFLATED) as z:
+            z.writestr("manuscript/main.tex",b"true")
+            z.writestr("MANUSCRIPT/MAIN.TEX",b"false")
+        with self.assertRaises(r.DraftRehearsalError):
+            r.bounded_nested_archive(output.getvalue())
+
     def test_changed_nested_manuscript_source_is_rejected(self):
         data=fixture()
         with zipfile.ZipFile(io.BytesIO(

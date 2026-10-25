@@ -11,8 +11,10 @@ import io
 import json
 from pathlib import Path
 import re
+import stat
 import sys
 import zipfile
+from pathlib import PurePosixPath
 
 from infrastructure_acceptance import inspect_zip
 
@@ -57,6 +59,45 @@ def jsonfile(files, name):
         raise DraftRehearsalError("invalid original draft JSON: "+name) from exc
     need(isinstance(data, dict), "draft receipt must be JSON object")
     return data
+
+
+def bounded_nested_archive(raw):
+    """Reject inner archive bombs, symlinks, traversal and duplicate members."""
+    need(type(raw) is bytes and 0 < len(raw) <= 64*1024*1024,
+         "draft nested archive byte budget exceeded")
+    try:
+        with zipfile.ZipFile(io.BytesIO(raw)) as z:
+            infos=z.infolist()
+            need(1 <= len(infos) <= 100,
+                 "nested draft ZIP member count unsafe")
+            total=0
+            seen=set()
+            output={}
+            for item in infos:
+                name=item.filename
+                path=PurePosixPath(name)
+                mode=(item.external_attr >> 16) & 0o170000
+                need(name==path.as_posix() and
+                     not path.is_absolute() and
+                     all(part not in ("", ".", "..") for part in name.split("/"))
+                     and "\\" not in name and len(name) <= 300
+                     and not item.is_dir() and mode in (0,stat.S_IFREG)
+                     and name.casefold() not in seen and
+                     0 < item.file_size <= 16*1024*1024
+                     and item.compress_size > 0 and
+                     item.file_size <= item.compress_size * 300 and
+                     not (item.flag_bits & 1),
+                     "nested draft ZIP member unsafe, duplicate or compressed bomb")
+                seen.add(name.casefold())
+                total+=item.file_size
+                need(total <= 64*1024*1024,
+                     "nested original manuscript expands beyond source limit")
+                output[name]=z.read(item)
+            need(z.testzip() is None,"nested original draft archive CRC invalid")
+            return output
+    except (OSError,RuntimeError,ValueError,zipfile.BadZipFile,
+            zipfile.LargeZipFile) as exc:
+        raise DraftRehearsalError("invalid actual nested draft ZIP") from exc
 
 
 def audit(artifact_zip, head):
@@ -155,20 +196,16 @@ def audit(artifact_zip, head):
                 if name.startswith(prefix+"pages/") and
                 name.removeprefix(prefix) not in pages]
         need(not extras,"unexpected or duplicated PDF render page")
-        with zipfile.ZipFile(io.BytesIO(original[names[2]])) as z:
-            need(z.testzip() is None,
-                 "nested original draft source archive ZIP failed CRC")
-            nested=set(z.namelist())
-            need(all("manuscript/"+path in nested for path in SOURCE_PATHS),
-                 "draft nested archive lost manuscript source")
-            need(z.read("manifest.lock.json")==original[names[3]] and
-                 z.read("Permansson_Mathematical_Closure.pdf")==original[names[0]] and
-                 z.read("source_ci_receipts.lock.json")==original[names[4]],
-                 "two-root draft nested archive replaced its source outputs")
-            for path in SOURCE_PATHS:
-                need(digest(z.read("manuscript/"+path))==
-                     index[PREFIX+path],
-                     "actual original draft manuscript source byte mismatch")
+        inner=bounded_nested_archive(original[names[2]])
+        need(all("manuscript/"+path in inner for path in SOURCE_PATHS),
+             "draft nested archive lost manuscript source")
+        need(inner.get("manifest.lock.json")==original[names[3]] and
+             inner.get("Permansson_Mathematical_Closure.pdf")==original[names[0]] and
+             inner.get("source_ci_receipts.lock.json")==original[names[4]],
+             "two-root draft nested archive replaced its source outputs")
+        for path in SOURCE_PATHS:
+            need(digest(inner["manuscript/"+path])==index[PREFIX+path],
+                 "actual original draft manuscript source byte mismatch")
         if side=="first":
             first_manifest=original[names[3]]
             first_files={key:digest(val) for key,val in original.items()}
