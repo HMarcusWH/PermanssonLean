@@ -61,6 +61,11 @@ def fake_apis(cert=False):
     lookup = {
         "/branches/main": {"commit": {"sha": base}},
         "/pulls/" + str(binding["pr_number"]): p,
+        "/git/commits/" + syn: {
+            "sha": syn,
+            "parents": [{"sha": base}, {"sha": head}],
+            "tree": {"sha": "same_tree"},
+        },
     }
     if cert:
         lookup["/pulls/113"] = {
@@ -112,6 +117,37 @@ class ReleaseTargetTests(unittest.TestCase):
         self.assertEqual(r["pr_number"], 113)
         self.assertFalse(r["independent_security_review"])
         self.assertFalse(r["merge_authorized"])
+
+    def test_github_synthetic_merge_can_have_distinct_commit_sha(self):
+        """Separate GitHub test-merge metadata from an independently built S."""
+        gh, git, api = fake_apis()
+        p = api["/pulls/113"]
+        github_sha = "f" * 40
+        p["merge_commit_sha"] = github_sha
+        api["/git/commits/" + github_sha] = {
+            "sha": github_sha,
+            "parents": [{"sha": B}, {"sha": H}],
+            "tree": {"sha": "same_tree"},
+        }
+        result = target.bind(fake_target(), intent=fake_intent(),
+                             git=git, live=gh)
+        self.assertEqual(result["synthetic_sha"], S)
+        self.assertNotEqual(S, github_sha)
+        self.assertFalse(result["merge_authorized"])
+        for mutation in (
+            lambda row: row["parents"].reverse(),
+            lambda row: row["parents"].append({"sha": "9" * 40}),
+            lambda row: row["tree"].update(sha="wrong"),
+            lambda row: row.update(sha="8" * 40),
+        ):
+            with self.subTest(mutation=mutation):
+                record = api["/git/commits/" + github_sha]
+                original = json.loads(json.dumps(record))
+                mutation(record)
+                with self.assertRaises(target.TargetError):
+                    target.bind(fake_target(), intent=fake_intent(),
+                                git=git, live=gh)
+                api["/git/commits/" + github_sha] = original
 
     def test_certification_requires_real_M113_and_new_pr(self):
         gh, git, api = fake_apis(cert=True)

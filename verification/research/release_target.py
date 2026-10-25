@@ -152,9 +152,28 @@ def bind(record, *, intent, git=real_git, live=real_live):
             and (pr.get("head") or {}).get("sha") == head
             and (pr.get("head") or {}).get("ref") == record["branch"]
             and (pr.get("head") or {}).get("repo", {}).get("full_name")
-                == REPOSITORY
-            and pr.get("merge_commit_sha") == syn,
+                == REPOSITORY,
             "live PR is unrelated, modified, merged or no longer draft")
+    # GitHub creates an independent ephemeral test merge with its own
+    # committer metadata. Its SHA need not equal a separately constructed
+    # synthetic merge S, even when both have the exact ordered [B,H] parents
+    # and H's source tree. Authenticate both objects instead of equating
+    # their incidental commit-object hashes.
+    github_merge_sha = pr.get("merge_commit_sha")
+    require(is_sha(github_merge_sha),
+            "live PR did not supply a genuine test-merge commit identifier")
+    try:
+        github_merge = live("/git/commits/" + github_merge_sha)
+    except Exception as exc:
+        raise TargetError("GitHub test merge unavailable for authentication") from exc
+    require(isinstance(github_merge, dict)
+            and github_merge.get("sha") == github_merge_sha
+            and isinstance(github_merge.get("parents"), list)
+            and [row.get("sha") for row in github_merge["parents"]
+                 if isinstance(row, dict)] == [base, head]
+            and (github_merge.get("tree") or {}).get("sha") ==
+                git("rev-parse", head + "^{tree}"),
+            "live GitHub test-merge topology or tree differs from exact B/H/S")
     if record["phase"] == "certification_premerge":
         p113 = live("/pulls/113")
         infra_merge = record["infrastructure_merge_sha"]
