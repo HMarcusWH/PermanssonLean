@@ -1,0 +1,39 @@
+{
+  "format": "Permansson.PR113.FullRequiredWorkflowPreactivation.v1",
+  "status": "SOURCE_STAGED_NONEXECUTABLE_AWAITING_COMPLETE_SECURITY_REVIEW",
+  "original_repository": "HMarcusWH/PermanssonLean",
+  "original_workflow_count": 25,
+  "proposed_final_workflow_count": 30,
+  "old_workflows": [
+    {
+      "path": ".github/workflows/research-lean.yml",
+      "git_blob_oid": "06842a2da34d6ff06434f202a7630edd57e8cb20"
+    },
+    {
+      "path": ".github/workflows/research-integrity.yml",
+      "git_blob_oid": "19bab92285ab2c981b0a1200c03024f7d022e31c"
+    }
+  ],
+  "full_replacements": [
+    {
+      "target": ".github/workflows/research-lean.yml",
+      "staged_source": "docs/operations/pr113_required_gate_replacement_unapproved/research_lean_full.yml",
+      "git_blob_oid": "9f5bbfce2da6e4b7a3511b5d360fc9c70c2bd080",
+      "installed": false,
+      "independent_reviewed": false
+    },
+    {
+      "target": ".github/workflows/research-integrity.yml",
+      "staged_source": "docs/operations/pr113_required_gate_replacement_unapproved/research_integrity_full.yml",
+      "git_blob_oid": "54a64e0d2832d965088cf896c1a052d2809b083f",
+      "installed": false,
+      "independent_reviewed": false
+    }
+  ],
+  "requires_main_PR_and_ordered_merge": true,
+  "independent_security_review": false,
+  "owner_activation_authorized": false,
+  "mathematical_acceptance": false,
+  "merge_authorized": false,
+  "publication_authorized": false
+}
