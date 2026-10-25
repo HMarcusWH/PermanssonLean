@@ -32,10 +32,10 @@ PINNED_MODIFIED_PROVIDERS = {
     ".github/workflows/research-lean.yml": "9f5bbfce2da6e4b7a3511b5d360fc9c70c2bd080",
     ".github/workflows/research-release-verification.yml": "46ea7ebeae142f794394179154385cf1762b78d3",
     ".github/workflows/verification.yml": "c016aa6efcc42e19d81cb148f5db6bc6a439d7d3",
-    "verification/integrity/tests/test_workflow.py": "84c9e62f3db152acba9b25966927703501e8bc3d",
+    "verification/integrity/tests/test_workflow.py": "50986f09407c9b4ef6a5e9b777898e2e1f640dcd",
     "verification/integrity/workflow_contract.py": "ac0e2820b2bdf9290cffc4b3f6900c1d805de61a",
     "verification/research/test_paper_x1_lean_closure.py": "2ee078c86c58b5e577597acfc3ae950e4028ebac",
-    "verification/research/test_localized_prefix_compiler.py": "193a23c62edc1825daf716fe9eabe4ca4feeec07",
+    "verification/research/test_localized_prefix_compiler.py": "8bc0fdd8ae3442844187db6f5787d22011dd899a",
 }
 # These inherited verifier binaries themselves are preserved exactly.
 INHERITED_A2_VERIFIERS = {

@@ -21,14 +21,14 @@
     {
       "target": "verification/research/test_localized_prefix_compiler.py",
       "source": "docs/operations/pr113_required_gate_replacement_unapproved/test_localized_prefix_compiler.py",
-      "git_blob_oid": "193a23c62edc1825daf716fe9eabe4ca4feeec07",
+      "git_blob_oid": "8bc0fdd8ae3442844187db6f5787d22011dd899a",
       "installed": false,
       "independent_reviewed": false
     },
     {
       "target": ".github/workflows/research-integrity.yml#archive-reproducibility",
       "source": "docs/operations/pr113_required_gate_replacement_unapproved/research_integrity_archive_step.yml.inc",
-      "git_blob_oid": "99f722259c0c365f269eef002ae69dc9f08fd5b9",
+      "git_blob_oid": "476dc9764eb73a8a065c2c1a9be42c8c9d2850a5",
       "installed": false,
       "independent_reviewed": false
     }

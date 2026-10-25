@@ -11,7 +11,7 @@
           test -s "$PERMANSSON_DUAL_HISTORICAL_EVIDENCE"
           test -s "$PERMANSSON_DUAL_ORIGINAL_T_ZIP"
           test -s "$PERMANSSON_DUAL_ORIGINAL_A2_ZIP"
-          python3 -B verification/research/pr113_required_dual_gate.py \
+          python3 -B verification/research/pr113_required_dual_gate_v2.py \
             --evidence "$PERMANSSON_DUAL_HISTORICAL_EVIDENCE" \
             --historical-T-zip "$PERMANSSON_DUAL_ORIGINAL_T_ZIP" \
             --historical-A2-zip "$PERMANSSON_DUAL_ORIGINAL_A2_ZIP" \

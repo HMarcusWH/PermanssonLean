@@ -15,6 +15,18 @@ PROPOSALS = ROOT / "docs/operations/pr113_unapproved_workflows"
 ACTIVE = ".github/workflows/"
 
 
+def active30():
+    sources=[name for name in git("ls-tree","-r","--name-only","HEAD","--",
+                                  ".github/workflows").splitlines()
+             if name.startswith(ACTIVE) and name.endswith((".yml",".yaml"))]
+    if len(sources)==25:
+        return None
+    if len(sources)!=30:
+        raise AssertionError("unexpected workflow profile inventory")
+    from pr113_workflow_profile_v2 import audit
+    return audit(ROOT,git("rev-parse","HEAD"),phase="active")
+
+
 def git(*args):
     return subprocess.check_output(
         ["git", *args], cwd=ROOT, stderr=subprocess.DEVNULL, timeout=20
@@ -31,6 +43,13 @@ def source_manifest():
 
 class WorkflowProposalBoundary(unittest.TestCase):
     def test_original_workflow_set_retained_without_silent_new_workflows(self):
+        profile=active30()
+        if profile is not None:
+            self.assertEqual(profile["historical_original_workflow_count"],25)
+            self.assertEqual(profile["current_reviewed_workflow_count"],30)
+            self.assertEqual(profile["retained_historical_count"],23)
+            self.assertFalse(profile["independent_security_review"])
+            return
         from verification.integrity.workflow_contract import APPROVED_WORKFLOWS
         active = [x for x in git("ls-tree", "-r", "--name-only", "HEAD",
                                   "--", ".github/workflows").splitlines()
@@ -42,8 +61,10 @@ class WorkflowProposalBoundary(unittest.TestCase):
     def test_all_five_staged_proposals_unapproved_and_byte_identical(self):
         manifest = source_manifest()
         self.assertEqual(manifest["original_approved_workflow_count"], 25)
-        self.assertEqual(manifest["status"],
-                         "SOURCE_STAGED_NONEXECUTABLE_PENDING_INDEPENDENT_SECURITY_REVIEW")
+        profile=active30()
+        if profile is None:
+            self.assertEqual(manifest["status"],
+                             "SOURCE_STAGED_NONEXECUTABLE_PENDING_INDEPENDENT_SECURITY_REVIEW")
         self.assertIs(manifest["independent_security_review"], False)
         self.assertIs(manifest["owner_authorized_activation"], False)
         self.assertIs(manifest["mathematical_acceptance"], False)
@@ -64,7 +85,12 @@ class WorkflowProposalBoundary(unittest.TestCase):
             self.assertTrue(old.startswith(ACTIVE))
             self.assertTrue(staged.startswith("docs/operations/pr113_unapproved_workflows/"))
             self.assertEqual(Path(old).name, Path(staged).name)
-            self.assertFalse((ROOT / old).exists(), old)
+            if profile is None:
+                self.assertFalse((ROOT / old).exists(), old)
+            else:
+                self.assertTrue((ROOT / old).is_file(), old)
+                self.assertEqual(git("rev-parse","HEAD:"+old),
+                                 row["git_blob_oid"])
             self.assertTrue((ROOT / staged).is_file(), staged)
             self.assertEqual(git("rev-parse", "HEAD:" + staged),
                              row["git_blob_oid"])
@@ -109,7 +135,15 @@ class WorkflowProposalBoundary(unittest.TestCase):
             "postseal_replay.py",
         ):
             self.assertIn(critical, src)
-        self.assertFalse((ROOT / ACTIVE / "pr113-preseal-fullscope.yml").exists())
+        installed=ROOT / ACTIVE / "pr113-preseal-fullscope.yml"
+        if active30() is None:
+            self.assertFalse(installed.exists())
+        else:
+            self.assertTrue(installed.is_file())
+            self.assertEqual(git("rev-parse","HEAD:"+ACTIVE+
+                                 "pr113-preseal-fullscope.yml"),
+                             git("rev-parse","HEAD:docs/operations/"+
+                                 "pr113_unapproved_workflows/pr113-preseal-fullscope.yml"))
 
     def test_full_v31_proposal_has_real_three_job_families_but_is_inactive(self):
         path = PROPOSALS / "pr113-source-controls-v3_1.yml"
@@ -124,8 +158,15 @@ class WorkflowProposalBoundary(unittest.TestCase):
         self.assertIn("pr113_legacy20_runtime_resolution.py", source)
         self.assertIn("reviewed_legacy20_runtime_event_choices.json", source)
         self.assertNotIn("reviewed_original21_catalog_v31.json", source)
-        self.assertFalse((ROOT / ACTIVE /
-                          "pr113-source-controls-v3_1.yml").exists())
+        installed=ROOT / ACTIVE / "pr113-source-controls-v3_1.yml"
+        if active30() is None:
+            self.assertFalse(installed.exists())
+        else:
+            self.assertTrue(installed.is_file())
+            self.assertEqual(git("rev-parse","HEAD:"+ACTIVE+
+                                 "pr113-source-controls-v3_1.yml"),
+                             git("rev-parse","HEAD:docs/operations/"+
+                                 "pr113_unapproved_workflows/pr113-source-controls-v3_1.yml"))
         # The observer must exit successfully and store the real survey.
         # A separate explicit, independently reviewed resume consumes it.
         self.assertIn("original-legacy20-replay:", source)

@@ -5,6 +5,14 @@ import unittest
 from unittest import mock
 
 import pr113_atomic_migration_preview as preview
+import pr113_workflow_profile_v2 as v2
+
+def active30(root):
+    count=len(list((root/".github/workflows").glob("*.yml")))
+    if count not in (25,30):
+        raise AssertionError("only exact 25 or exact 30 profile is valid")
+    return count==30
+
 
 def fake_source():
     ROOT=Path(__file__).resolve().parents[2]
@@ -14,6 +22,12 @@ def fake_source():
 class AtomicMigrationPreviewTests(unittest.TestCase):
     def test_real_source_preview_is_honestly_unapproved(self):
         H,root=fake_source()
+        if active30(root):
+            actual=v2.audit(root,H,phase="active")
+            self.assertEqual(actual["current_reviewed_workflow_count"],30)
+            self.assertEqual(actual["retained_historical_count"],23)
+            self.assertFalse(actual["independent_security_review"])
+            return
         actual=preview.preview(H)
         self.assertEqual(actual["proposed_total_workflows"],30)
         self.assertEqual(actual["historical_preserved_workflows"],23)
@@ -32,6 +46,20 @@ class AtomicMigrationPreviewTests(unittest.TestCase):
 
     def test_forged_head_or_staged_yaml_modification_is_rejected(self):
         H,_=fake_source()
+        root=Path(__file__).resolve().parents[2]
+        if active30(root):
+            with self.assertRaises(v2.ToolingMigrationError):
+                v2.audit(root,"f"*40,phase="active")
+            original_blob=v2._blob
+            def altered(repo,head,path):
+                oid,source=original_blob(repo,head,path)
+                if path==".github/workflows/research-lean.yml":
+                    return oid,source+"\n# unreviewed exact-active mutation\n"
+                return oid,source
+            with mock.patch.object(v2,"_blob",side_effect=altered):
+                with self.assertRaises(v2.ToolingMigrationError):
+                    v2.audit(root,H,phase="active")
+            return
         with self.assertRaises(preview.TransitionError):
             preview.preview("f"*40)
         original_git=preview.git
@@ -46,6 +74,17 @@ class AtomicMigrationPreviewTests(unittest.TestCase):
     def test_modified_v2_integrity_contract_or_suite_is_rejected(self):
         H,_=fake_source()
         original_git=preview.git
+        root=Path(__file__).resolve().parents[2]
+        if active30(root):
+            from pr113_tooling_migration import git as genuine_git
+            def changed(repo,*args):
+                if args==("show",H+":"+v2.CONTRACT):
+                    return genuine_git(repo,*args)+b"\n# unauthorized contract\n"
+                return genuine_git(repo,*args)
+            with mock.patch.object(v2,"git",side_effect=changed):
+                with self.assertRaises(v2.ToolingMigrationError):
+                    v2.audit(root,H,phase="active")
+            return
         for name in ("workflow_contract_v2.py","test_workflow_v2.py"):
             target=("docs/operations/pr113_required_gate_replacement_unapproved/"
                     +name)
@@ -59,6 +98,14 @@ class AtomicMigrationPreviewTests(unittest.TestCase):
 
     def test_missing_source_or_invalid_old_profile_rejected(self):
         H,_=fake_source()
+        root=Path(__file__).resolve().parents[2]
+        if active30(root):
+            old=v2._historical(root,H)
+            with mock.patch.object(v2,"_historical",
+                                   return_value=dict(list(old.items())[:-1])):
+                with self.assertRaises(v2.ToolingMigrationError):
+                    v2.audit(root,H,phase="active")
+            return
         def damaged(h):
             return {"status":"CANDIDATE","original_workflow_count":25}
         with self.assertRaises(preview.TransitionError):

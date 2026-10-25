@@ -98,7 +98,7 @@ class WorkflowTests(unittest.TestCase):
                 "  archive-reproducibility:\n"+value))
 
     def test_shell_background_and_redirection_rejected(self):
-        original="python3 -B verification/research/pr113_required_dual_gate.py"
+        original="python3 -B verification/research/pr113_required_dual_gate_v2.py"
         for changed in ("true || "+original,
                         original+" > /dev/null",
                         original+" & true",

@@ -11,9 +11,7 @@ from pathlib import Path
 import subprocess
 import unittest
 from unittest import mock
-from verification.integrity.workflow_contract import (
-    APPROVED_WORKFLOWS as ORIGINAL,
-)
+from pr113_workflow_profile_v2 import PREACTIVATION_HEAD
 
 ROOT=Path(__file__).resolve().parents[2]
 STAGE=ROOT/"docs/operations/pr113_required_gate_replacement_unapproved"
@@ -31,8 +29,11 @@ def virtual_sources():
     proposal=json.loads(git("show",H+":"+
                "docs/operations/pr113_unapproved_workflows/manifest.json"))
     result={}
-    for name in ORIGINAL:
-        result[name]=git("show",H+":.github/workflows/"+name).decode()
+    historical=git("ls-tree","-r","--name-only",PREACTIVATION_HEAD,
+                   "--",".github/workflows").decode().splitlines()
+    for path in historical:
+        if path.startswith(".github/workflows/") and path.endswith((".yml",".yaml")):
+            result[Path(path).name]=git("show",PREACTIVATION_HEAD+":"+path).decode()
     for item in full["full_replacements"]:
         result[Path(item["target"]).name]=git(
             "show",H+":"+item["staged_source"]).decode()
@@ -115,8 +116,8 @@ class CandidateV2ContractTests(unittest.TestCase):
         for before,after in (("actions: read","actions: write"),
                              ("contents: read","contents: write"),
                              ("pull_request:","pull_request_target:"),
-                             ("pr113_required_dual_gate.py",
-                              "echo pr113_required_dual_gate.py")):
+                             ("pr113_required_dual_gate_v2.py",
+                              "echo pr113_required_dual_gate_v2.py")):
             source=dict(self.sources)
             self.assertIn(before,source["research-integrity.yml"])
             source["research-integrity.yml"]=source[
@@ -125,7 +126,8 @@ class CandidateV2ContractTests(unittest.TestCase):
                 self.contract.validate_workflow_set(source)
 
     def test_v2_suite_preserves_all_ci06_ci07_mappings_before_install(self):
-        old_tests=(ROOT/"verification/integrity/tests/test_workflow.py").read_text()
+        old_tests=git("show",PREACTIVATION_HEAD+
+                      ":verification/integrity/tests/test_workflow.py").decode()
         staged=TEST_STAGE.read_text()
         old_names={n.name for n in ast.walk(ast.parse(old_tests))
                    if isinstance(n,ast.FunctionDef) and n.name.startswith("test_")

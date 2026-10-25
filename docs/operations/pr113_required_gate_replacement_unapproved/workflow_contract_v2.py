@@ -33,7 +33,7 @@ APPROVED_WORKFLOW_BLOBS={
     "pr113-all-original-semantic-candidates.yml": "2027a05a225dd49e92415bcbd81d73755111d5ef",
     "pr113-clean-paper-rebuild.yml": "a89fdc99e7daa8b418deed2f09898a08677140a8",
     "pr113-compiler-evidence-candidate.yml": "8f762813360a43e344bc328d54d53c2726bf3879",
-    "pr113-historical-migration-candidates.yml": "6b62e789eaa40e933faaf350352da386334b49bc",
+    "pr113-historical-migration-candidates.yml": "77c338c436ab16c2ef73a04bcb9c93f0857939a7",
     "pr113-legacy-semantic-evidence.yml": "6e65891db1239bf87250ff3420e9ea96407353a4",
     "pr113-original-positive-controls-candidate.yml": "16245b42cbfea16ade0cce24bb0c345c2b251a14",
     "pr113-original-semantic-candidates.yml": "ab509cdb5097fb3c1a9e04dbba192adfe304a940",
@@ -41,8 +41,8 @@ APPROVED_WORKFLOW_BLOBS={
     "pr113-preseal-fullscope.yml": "5fb2a30a8b18076cae2fb81210a5d6819d3bab11",
     "pr113-source-controls-v3_1.yml": "0bc958aebde7d56cb2532ac89203522277889322",
     "research-integrity-portability.yml": "380a592039dd9e50b87bb2891771e76b071a2aaa",
-    "research-integrity.yml": "54a64e0d2832d965088cf896c1a052d2809b083f",
-    "research-lean.yml": "9f5bbfce2da6e4b7a3511b5d360fc9c70c2bd080",
+    "research-integrity.yml": "02e97e27e85b9d3353edf495eab1ee8cb8b9e642",
+    "research-lean.yml": "64c990e3468d23cac945fe6e066229dff328d4c7",
     "research-release-verification.yml": "46ea7ebeae142f794394179154385cf1762b78d3",
     "verification.yml": "c016aa6efcc42e19d81cb148f5db6bc6a439d7d3",
     "x1-commons-smoke.yml": "554966b640d5f4d4ad284f3b5bdd0005c992dd80"
@@ -166,9 +166,9 @@ def validate_workflow_set(workflows):
          "original required-check job identities changed")
     need("verification.integrity.ci_context" in research and
          "verification.integrity.ci_context" in arch and
-         "pr113_historical_artifact_delivery.py" in research and
-         "pr113_historical_artifact_delivery.py" in arch and
-         "pr113_required_dual_gate.py" in arch and
+         "pr113_historical_artifact_delivery_v2.py" in research and
+         "pr113_historical_artifact_delivery_v2.py" in arch and
+         "pr113_required_dual_gate_v2.py" in arch and
          "Run research-only exact rational regressions" in research and
          "Generate and independently verify C10" in research and
          "Generate and independently recheck D0" in research and

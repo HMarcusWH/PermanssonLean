@@ -10,7 +10,7 @@ import json
 import os
 from pathlib import Path
 import unittest
-from pr113_required_dual_gate import verify
+from pr113_required_dual_gate_v2 import verify
 
 INPUTS = (
     "PERMANSSON_DUAL_HISTORICAL_EVIDENCE",

@@ -109,7 +109,7 @@ jobs:
           set -euo pipefail
           [[ "$ORIGINAL_RUN_ID" =~ ^[1-9][0-9]*$ ]]
           [[ "$INDEPENDENT_REVIEW_ID" =~ ^[1-9][0-9]*$ ]]
-          python3 -B verification/research/pr113_historical_artifact_delivery.py \
+          python3 -B verification/research/pr113_historical_artifact_delivery_v2.py \
             --producer-run-id "$ORIGINAL_RUN_ID" \
             --security-review-id "$INDEPENDENT_REVIEW_ID" \
             --out "$RUNNER_TEMP/pr113-historical-input"
@@ -124,7 +124,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          python3 -B verification/research/pr113_required_dual_gate.py \
+          python3 -B verification/research/pr113_required_dual_gate_v2.py \
             --evidence "$RUNNER_TEMP/pr113-historical-input/historical_envelope.json" \
             --historical-T-zip "$RUNNER_TEMP/pr113-historical-input/historical_T.zip" \
             --historical-A2-zip "$RUNNER_TEMP/pr113-historical-input/historical_A2.zip" \

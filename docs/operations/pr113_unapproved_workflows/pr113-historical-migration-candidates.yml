@@ -91,7 +91,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 -B verification/research/pr113_dual_tooling_candidate.py \
+          python3 -B verification/research/pr113_dual_tooling_candidate_v2.py \
             --historical-T-source "$RUNNER_TEMP/pr113-source-T" \
             --current-source "$GITHUB_WORKSPACE" \
             --head "$GITHUB_SHA" \
@@ -206,7 +206,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 -B verification/research/pr113_dual_a2_compiler.py \
+          python3 -B verification/research/pr113_dual_a2_compiler_v2.py \
             --historical-source "$RUNNER_TEMP/pr113-source-A2" \
             --historical-head f71a76032b169aac7bfe0694aa715339a94d4e05 \
             --current-source "$GITHUB_WORKSPACE" \
