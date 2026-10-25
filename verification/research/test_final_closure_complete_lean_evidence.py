@@ -195,6 +195,70 @@ class AllCaseCompilerManifestTests(unittest.TestCase):
                 combined.required_inventory(
                     root=Path(td), case_map=cases, claim_map=claims)
 
+    def test_inventory_only_fails_closed_on_stale_head_or_dirty_ledger(self):
+        import unittest.mock as mock
+        H = "a" * 40
+        claims = tuple(CLAIMS)
+        fabricated = [{
+            "path": "PermanssonResearch/Demo.lean",
+            "declaration": "Demo.public_" + str(i),
+            "case_ids": [f"C-{i % 45 + 1:02d}"],
+            "claim_ids": [claims[i % len(claims)]],
+        } for i in range(259)]
+        import hashlib
+        digest = hashlib.sha256(b"original Git object").digest()
+        expected_file_count = len({
+            p for p in ["PermanssonResearch/Demo.lean"]
+        })
+        with mock.patch.object(combined, "git_head", return_value="b" * 40), \
+             mock.patch.object(combined, "committed_file_bytes") as check_blob:
+            with self.assertRaises(combined.CompleteCompilerError):
+                combined.source_bound_full_inventory(H)
+            check_blob.assert_not_called()
+        source_ledger = {
+            str(combined.SNAP / "acceptance_case_source_map.json"): b"case map",
+            str(combined.SNAP / "claim_declaration_map.json"): b"claim map",
+        }
+        calls = []
+        def genuine_blob(_head, path, *, root):
+            self.assertEqual(root, combined.ROOT)
+            calls.append(str(path))
+            if str(path) == str(combined.ROOT / "PermanssonResearch/Demo.lean"):
+                return b"true Lean bytes"
+            return source_ledger[str(path)]
+        with mock.patch.object(combined, "git_head", return_value=H), \
+             mock.patch.object(combined, "required_inventory",
+                               return_value=fabricated), \
+             mock.patch.object(combined, "committed_file_bytes",
+                               side_effect=genuine_blob):
+            actual = combined.source_bound_full_inventory(H)
+        self.assertEqual(len(actual), 259)
+        self.assertEqual(len(calls), 5)
+        self.assertEqual(calls.count(str(combined.ROOT /
+                                        "PermanssonResearch/Demo.lean")), 1)
+        source_ledger[str(combined.SNAP /
+                          "claim_declaration_map.json")] = b"mutated"
+        with mock.patch.object(combined, "git_head", return_value=H), \
+             mock.patch.object(combined, "required_inventory",
+                               return_value=fabricated), \
+             mock.patch.object(combined, "committed_file_bytes",
+                               side_effect=genuine_blob) as checker:
+            # Mutate the claim ledger after its initial Git-object read.
+            initial = source_ledger[str(combined.SNAP /
+                                       "claim_declaration_map.json")]
+            def changed(_head, path, *, root):
+                if (str(path).endswith("claim_declaration_map.json")
+                        and changed.calls >= 2):
+                    return b"changed while generating"
+                if str(path).endswith("claim_declaration_map.json"):
+                    changed.calls += 1
+                return genuine_blob(_head, path, root=root)
+            changed.calls = 0
+            checker.side_effect = changed
+            with self.assertRaises(combined.CompleteCompilerError):
+                combined.source_bound_full_inventory(H)
+
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -316,6 +316,35 @@ def shard_indices(total: int, shard_index: int, shard_count: int):
     return [idx for idx in range(total) if idx % shard_count == shard_index]
 
 
+def source_bound_full_inventory(head: str):
+    """Bind BOTH original ledgers and all 259 theorem owners to exact Git H.
+
+    Even --inventory-only is a source-bound *candidate*, not permission to
+    trust modified checkout JSON or pretend a status-only receipt was compiled.
+    We intentionally check the owner map before and after building the plan
+    so a mutable worktree cannot substitute its case/claim selection.
+    """
+    require(isinstance(head, str) and SHA40.fullmatch(head)
+            and git_head() == head,
+            "original 45/11 inventory requested against foreign or stale Git H")
+    ledger_files = (
+        SNAP / "acceptance_case_source_map.json",
+        SNAP / "claim_declaration_map.json",
+    )
+    before = [
+        committed_file_bytes(head, path, root=ROOT)
+        for path in ledger_files
+    ]
+    plan = validate_full_release_inventory(required_inventory())
+    for path in sorted({row["path"] for row in plan}):
+        committed_file_bytes(head, ROOT / path, root=ROOT)
+    for path, bound in zip(ledger_files, before):
+        require(committed_file_bytes(head, path, root=ROOT) == bound,
+                "original 45/11 source-ledger changed during inventory")
+    require(git_head() == head, "Git HEAD moved during original inventory")
+    return plan
+
+
 def export_all(head: str, output: Path, *,
                shard_index: int = 0, shard_count: int = 1):
     """Production-only 259-target release entrypoint; no inventory overrides.
@@ -323,7 +352,7 @@ def export_all(head: str, output: Path, *,
     The mockable per-shard engine below is intentionally private. No CLI,
     approved receipt, or full release path can reach it with a selected subset.
     """
-    manifest = validate_full_release_inventory(required_inventory())
+    manifest = source_bound_full_inventory(head)
     return _export_checked_shard(
         head, output, manifest,
         shard_index=shard_index, shard_count=shard_count)
@@ -447,7 +476,7 @@ def main(argv=None):
     args = ap.parse_args(argv)
     try:
         if args.inventory_only:
-            plan = validate_full_release_inventory(required_inventory())
+            plan = source_bound_full_inventory(args.head)
             output = {
                 "status": "SOURCE_CANDIDATE_UNREVIEWED",
                 "proof_targets": len(plan),
