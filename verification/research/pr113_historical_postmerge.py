@@ -24,7 +24,8 @@ from final_closure_authenticate import (
 from infrastructure_acceptance import (
     FORMAT as HISTORICAL_INPUT, ACTIVE_WORKFLOW, AUTHORITY_PATH,
     authenticate_original_zip, inspect_zip, inspect_T, inspect_A2,
-    verify_A2_dependency_bridge, authority_policy, approved_security_review,
+    verify_A2_dependency_bridge, exact_committed_lake_blob,
+    authority_policy, approved_security_review,
 )
 from release_target import B113, REPOSITORY
 
@@ -155,7 +156,7 @@ def check_historical_merged(envelope, t_zip, a2_zip, *,
     current=inspect_A2(inspect_zip(a2_zip),H)
     current["dependency_bridge_sha256"] = verify_A2_dependency_bridge(
         inspect_zip(a2_zip),H,
-        manifest_raw=git("show",H+":lake-manifest.json"))
+        manifest_raw=exact_committed_lake_blob(H,git=git))
     policy=authority_policy(H,git=git)
     reviewer_attestation={
         "head_sha":H,

@@ -21,7 +21,7 @@ import sys
 from final_closure_authenticate import git as real_git
 from infrastructure_acceptance import (
     InfrastructureError, inspect_zip, inspect_T, inspect_A2,
-    verify_A2_dependency_bridge,
+    verify_A2_dependency_bridge, exact_committed_lake_blob,
 )
 from pr113_tooling_migration import audit as tooling_audit
 from pr113_successor_workflow_profile import audit as workflow_profile_audit
@@ -60,7 +60,7 @@ def assemble(head, original_t_zip, original_a2_zip, *,
     t = inspect_T(t_files, head)
     a2 = inspect_A2(a2_files, head)
     a2["dependency_bridge_sha256"] = verify_A2_dependency_bridge(
-        a2_files, head, manifest_raw=git("show", head+":lake-manifest.json"))
+        a2_files, head, manifest_raw=exact_committed_lake_blob(head,git=git))
     if audit_tooling is None:
         audit_tooling = lambda h: tooling_audit(ROOT, h)
     if audit_workflows is None:

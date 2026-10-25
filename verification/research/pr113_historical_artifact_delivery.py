@@ -232,12 +232,11 @@ def deliver(context, run_id, reviewer_id, *, git,
              [context["original_base_sha"], context["head_sha"]],
          "GitHub synthetic merge does not use ordered exact B/H parents")
     # Use the true H Git blob; never the potentially modified local worktree.
-    manifest = git("show", context["head_sha"]+":lake-manifest.json")
-    need(isinstance(manifest, str) and bool(manifest),
-         "committed source dependency manifest unavailable")
+    from infrastructure_acceptance import exact_committed_lake_blob
+    manifest=exact_committed_lake_blob(context["head_sha"],git=git)
     raw, ids, verified = collect(
         context["head_sha"],run_id,live=live,download=download,
-        committed_manifest=manifest.encode("utf-8"))
+        committed_manifest=manifest)
     envelope = {
         "format": EVIDENCE_FORMAT,
         "target": detached_target(context),
@@ -278,12 +277,11 @@ def deliver_merged(context, run_id, reviewer_id, *, git,
              [B113,context["reviewed_head_sha"]],
          "postmerge historical delivery requires authentic B/H/M")
     H=context["reviewed_head_sha"]
-    manifest=git("show",H+":lake-manifest.json")
-    need(isinstance(manifest,str) and bool(manifest),
-         "historical H dependency manifest missing in main checkout")
+    from infrastructure_acceptance import exact_committed_lake_blob
+    manifest=exact_committed_lake_blob(H,git=git)
     raw,ids,verified=collect(
         H,run_id,live=live,download=download,
-        committed_manifest=manifest.encode("utf-8"))
+        committed_manifest=manifest)
     envelope={
         "format":MERGED_FORMAT,
         "target":source_target(context),
