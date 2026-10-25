@@ -132,6 +132,9 @@ class DualA2Tests(unittest.TestCase):
         self.assertNotIn("lake update", actual_commands)
         self.assertIn('"independent_security_review": False', stage)
         self.assertIn('"mathematical_acceptance": False', stage)
+        self.assertIn("historical_dependency_bridge.json", proposed)
+        self.assertIn("cp --", proposed)
+        self.assertIn("test -s", proposed)
         self.assertTrue(proposed.startswith("# Review-pending"))
 
     def test_wrong_successor_semantic_result_rejects(self):

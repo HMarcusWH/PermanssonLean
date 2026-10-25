@@ -212,6 +212,12 @@ jobs:
             --current-source "$GITHUB_WORKSPACE" \
             --current-head "$GITHUB_SHA" \
             --out "$RUNNER_TEMP/pr113-dual-A2"
+          # Carry forward the actual original dependency bridge bytes. The
+          # output producer cannot claim full A2 provenance without them.
+          test -s "$RUNNER_TEMP/pr113-A2-dependency-bridge.json"
+          test -s "$RUNNER_TEMP/pr113-dual-A2/unreviewed_dual_A2_candidate.json"
+          cp -- "$RUNNER_TEMP/pr113-A2-dependency-bridge.json" \
+             "$RUNNER_TEMP/pr113-dual-A2/historical_dependency_bridge.json"
       - name: Retain historical and successor source-bound proof logs
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
