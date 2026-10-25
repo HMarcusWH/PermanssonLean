@@ -248,7 +248,7 @@ class AllCaseCompilerManifestTests(unittest.TestCase):
                                        "claim_declaration_map.json")]
             def changed(_head, path, *, root):
                 if (str(path).endswith("claim_declaration_map.json")
-                        and changed.calls >= 2):
+                        and changed.calls >= 1):
                     return b"changed while generating"
                 if str(path).endswith("claim_declaration_map.json"):
                     changed.calls += 1

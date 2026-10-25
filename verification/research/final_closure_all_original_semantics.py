@@ -28,6 +28,66 @@ EXPECTED = frozenset((
 ))
 
 
+def validate_candidate_case(head: str, cid: str, record: dict) -> dict:
+    """A successful job must retain true/false execution, not just status.
+
+    This checks the local producing payload before attaching any claimed CI
+    identity. The external v3 authenticated producer still validates actual
+    GitHub run/job/artifact and source/mutant ZIP bytes separately.
+    """
+    entry = batch.SPECS.get(cid)
+    if not isinstance(entry, dict) or not isinstance(record, dict):
+        raise MutationEvidenceError("original semantic case/record absent")
+    expected = {
+        "format": "Permansson.OriginalSemanticMutantCandidate.v1",
+        "status": "DETACHED_UNREVIEWED_UNATTRIBUTED",
+        "source_head": head,
+        "case_id": cid,
+        "test_path": entry["test_path"],
+        "test_name": entry["method"],
+        "source_path": entry["source"],
+        "ci_check_run_id": None,
+        "independent_review": False,
+        "full_mathematical_acceptance": False,
+    }
+    if any(record.get(k) != v or type(record.get(k)) is not type(v)
+           for k, v in expected.items()):
+        raise MutationEvidenceError(
+            "original semantic evidence returned foreign source/role/approval")
+    hashes = ("mutant_sha256", "detached_bundle_sha256")
+    if not all(isinstance(record.get(k), str) and
+               re.fullmatch(r"[0-9a-f]{64}", record[k]) for k in hashes):
+        raise MutationEvidenceError("original semantic source/ZIP digests absent")
+    original = record.get("mutation_record")
+    if (not isinstance(original, dict)
+            or original.get("head_sha") != head
+            or original.get("case_ids") != [cid]
+            or original.get("claim_ids") != []
+            or original.get("test_path") != entry["test_path"]
+            or original.get("test_name") != entry["method"]
+            or original.get("original_lean_source_path") != entry["source"]
+            or original.get("mutant_source_sha256") != record["mutant_sha256"]
+            or original.get("outcome") != "REJECTED_SEMANTIC"
+            or type(original.get("compiler_exit_code")) is not int
+            or original["compiler_exit_code"] == 0
+            or original.get("check_run_id") is not None
+            or original.get("review_status") != "NOT_RECEIVED"):
+        raise MutationEvidenceError(
+            "original semantic case lacks actual bound false Lean execution")
+    positive = original.get("positive_control")
+    if (not isinstance(positive, dict)
+            or positive.get("compiled") is not True
+            or positive.get("exit_code") != 0
+            or not isinstance(positive.get("lean_toolchain"), str)
+            or not re.fullmatch(r"[0-9a-f]{64}",
+                                str(original.get("original_lean_source_sha256", "")))
+            or not re.fullmatch(r"[0-9a-f]{64}",
+                                str(original.get("source_sha256", "")))):
+        raise MutationEvidenceError(
+            "original positive Lean and exact source bytes were not retained")
+    return original
+
+
 def select_cases(shard_index: int, shard_count: int) -> tuple[str, ...]:
     if not 1 <= shard_count <= 25 or not 0 <= shard_index < shard_count:
         raise MutationEvidenceError("invalid original-semantic shard specification")
@@ -58,6 +118,7 @@ def run_exact_shard(head: str, shard_index: int, shard_count: int,
     completed = []
     for cid in ids:
         record = batch.run_one(head, cid, output / cid)
+        validate_candidate_case(head, cid, record)
         (output / cid / "unreviewed_candidate.json").write_text(
             json.dumps(record, indent=2, sort_keys=True) + "\n",
             encoding="utf-8")

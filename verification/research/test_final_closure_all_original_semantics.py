@@ -4,6 +4,7 @@ Mocks exercise allocation and fail-closed metadata handling only; they are
 never counted as successful Lean, real CI execution, or mathematical review.
 """
 from pathlib import Path
+import copy
 import tempfile
 import unittest
 from unittest import mock
@@ -44,11 +45,33 @@ class SemanticShardingTests(unittest.TestCase):
             def fake_run(_head, cid, directory):
                 self.assertEqual(cid, selected[0])
                 directory.mkdir(parents=True, exist_ok=False)
+                spec = all_cases.batch.SPECS[cid]
                 return {
+                    "format": "Permansson.OriginalSemanticMutantCandidate.v1",
                     "status": "DETACHED_UNREVIEWED_UNATTRIBUTED",
+                    "source_head": H, "case_id": cid,
+                    "test_path": spec["test_path"], "test_name": spec["method"],
+                    "source_path": spec["source"],
                     "mutant_sha256": "c" * 64,
                     "detached_bundle_sha256": "d" * 64,
-                    "mutation_record": {"original_lean_source_sha256": "e" * 64},
+                    "mutation_record": {
+                        "head_sha": H, "case_ids": [cid], "claim_ids": [],
+                        "test_path": spec["test_path"],
+                        "test_name": spec["method"],
+                        "original_lean_source_path": spec["source"],
+                        "mutant_source_sha256": "c" * 64,
+                        "outcome": "REJECTED_SEMANTIC",
+                        "compiler_exit_code": 1,
+                        "check_run_id": None, "review_status": "NOT_RECEIVED",
+                        "positive_control": {
+                            "compiled": True, "exit_code": 0,
+                            "lean_toolchain": "leanprover/lean4:v4.34.0",
+                        },
+                        "original_lean_source_sha256": "e" * 64,
+                        "source_sha256": "f" * 64,
+                    },
+                    "ci_check_run_id": None, "independent_review": False,
+                    "full_mathematical_acceptance": False,
                 }
             with (
                 mock.patch.object(all_cases, "git_head", return_value=H),
@@ -69,6 +92,58 @@ class SemanticShardingTests(unittest.TestCase):
             self.assertIn("UNREVIEWED", manifest["status"])
             with self.assertRaises(MutationEvidenceError):
                 all_cases.run_exact_shard("bad", 0, 25, out)
+    def test_attested_semantic_shard_rejects_fake_positive_or_approval(self):
+        cid = all_cases.select_cases(0, 25)[0]
+        spec = all_cases.batch.SPECS[cid]
+        base = {
+            "format": "Permansson.OriginalSemanticMutantCandidate.v1",
+            "status": "DETACHED_UNREVIEWED_UNATTRIBUTED",
+            "source_head": H, "case_id": cid,
+            "test_path": spec["test_path"], "test_name": spec["method"],
+            "source_path": spec["source"],
+            "mutant_sha256": "c" * 64,
+            "detached_bundle_sha256": "d" * 64,
+            "mutation_record": {
+                "head_sha": H, "case_ids": [cid], "claim_ids": [],
+                "test_path": spec["test_path"],
+                "test_name": spec["method"],
+                "original_lean_source_path": spec["source"],
+                "mutant_source_sha256": "c" * 64,
+                "outcome": "REJECTED_SEMANTIC",
+                "compiler_exit_code": 1,
+                "check_run_id": None, "review_status": "NOT_RECEIVED",
+                "positive_control": {
+                    "compiled": True, "exit_code": 0,
+                    "lean_toolchain": "leanprover/lean4:v4.34.0",
+                },
+                "original_lean_source_sha256": "e" * 64,
+                "source_sha256": "f" * 64,
+            },
+            "ci_check_run_id": None, "independent_review": False,
+            "full_mathematical_acceptance": False,
+        }
+        all_cases.validate_candidate_case(H, cid, base)
+        changes = (
+            lambda x: x.update(case_id="foreign"),
+            lambda x: x.update(independent_review=True),
+            lambda x: x.update(ci_check_run_id=999),
+            lambda x: x["mutation_record"].update(head_sha="0" * 40),
+            lambda x: x["mutation_record"].update(outcome="UNVERIFIED"),
+            lambda x: x["mutation_record"].update(compiler_exit_code=0),
+            lambda x: x["mutation_record"]["positive_control"].update(
+                compiled=False),
+            lambda x: x["mutation_record"].update(check_run_id=999),
+            lambda x: x["mutation_record"].update(source_sha256="not-a-sha"),
+            lambda x: x["mutation_record"].update(
+                mutant_source_sha256="0" * 64),
+        )
+        for mutate in changes:
+            row = copy.deepcopy(base)
+            mutate(row)
+            with self.subTest(mutate=mutate), self.assertRaises(
+                    MutationEvidenceError):
+                all_cases.validate_candidate_case(H, cid, row)
+
 
 
 if __name__ == "__main__":
