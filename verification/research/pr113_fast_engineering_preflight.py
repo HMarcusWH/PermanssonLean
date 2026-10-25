@@ -23,6 +23,7 @@ SUITES = (
     "test_pr113_a2_successor_identity.py",
     "test_pr113_dual_a2_compiler.py",
     "test_pr113_dual_tooling_candidate.py",
+    "test_pr113_dual_review_packet.py",
     "test_pr113_tooling_migration.py",
     "test_pr113_final_source_readiness.py",
     "test_final_closure_v3_source_readiness.py",
