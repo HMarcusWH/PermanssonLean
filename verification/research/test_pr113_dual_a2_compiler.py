@@ -10,14 +10,19 @@ import pr113_dual_a2_compiler as dual
 
 def fake_result(status, gate):
     command_names = ["compiler_version","research_build","signatures_axioms",
-                     "positive_fixture",*gate.MUTATIONS]
+                     "positive_fixture","source_1","source_2","source_3","source_4",
+                     *gate.MUTATIONS]
     return {
         "status":status,
+        "mode":"focused",
         "source_unchanged":True,
         "declarations":{name:[] for name in gate.DECLS},
-        "mutations":{name:{"status":"SEMANTICALLY_REJECTED"}
+        "mutations":{name:{"status":"SEMANTICALLY_REJECTED",
+                           "positive_source_sha256":"b"*64,
+                           "mutant_source_sha256":"c"*64}
                      for name in gate.MUTATIONS},
-        "commands":[{"label":name,"returncode":0,
+        "commands":[{"label":name,
+                     "returncode":1 if name in gate.MUTATIONS else 0,
                      "log_sha256":"a"*64} for name in command_names],
         "independent_security_review":False,
         "historical_a2_verifier_replaced":False,
@@ -137,3 +142,35 @@ class DualA2Tests(unittest.TestCase):
             dual.validate_run(h,"SUCCESSOR_KERNEL_CHECKED_REVIEW_PENDING",
                               dual.successor_gate.MUTATIONS,
                               dual.successor_gate.DECLS)
+
+
+    def test_real_a2_both_legs_refuse_fake_green_status(self):
+        """A mock receipt cannot hide failed positives or accepted mutants."""
+        for gate,status in ((dual.historical_gate,
+                            "LOCAL_KERNEL_CHECKED__CI_ACCEPTANCE_PENDING"),
+                           (dual.successor_gate,
+                            "SUCCESSOR_KERNEL_CHECKED_REVIEW_PENDING")):
+            original=fake_result(status,gate)
+            self.assertTrue(dual.validate_run(original,status,gate.MUTATIONS,
+                                              gate.DECLS))
+            mutate = next(iter(gate.MUTATIONS))
+            broken = [
+                lambda x: x["commands"][0].update(returncode=1),
+                lambda x: next(q for q in x["commands"] if
+                               q["label"]==mutate).update(returncode=0),
+                lambda x: x["commands"].append(dict(x["commands"][0])),
+                lambda x: x["commands"][0].update(log_sha256="x"*64),
+                lambda x: x["commands"].pop(4),
+                lambda x: x["mutations"][mutate].update(
+                    mutant_source_sha256="b"*64),
+                lambda x: x["mutations"][mutate].update(
+                    positive_source_sha256="not-an-authentic-digest"),
+            ]
+            for edit in broken:
+                with self.subTest(status=status,edit=edit):
+                    candidate=json.loads(json.dumps(original))
+                    edit(candidate)
+                    with self.assertRaises(dual.DualA2Error):
+                        dual.validate_run(candidate,status,gate.MUTATIONS,
+                                          gate.DECLS)
+

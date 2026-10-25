@@ -123,21 +123,34 @@ def validate_run(result,mode,mutations,names):
          set(result["mutations"]) == set(mutations),
          "real A2 proof run did not complete all signatures/mutants")
     logs=result.get("commands")
-    need(isinstance(logs,list) and
-         all(isinstance(x,dict) and
-             type(x.get("returncode")) is int and
-             isinstance(x.get("log_sha256"),str) and
-             len(x["log_sha256"])==64
-             for x in logs),
+    mandatory={"compiler_version","research_build","signatures_axioms",
+               "positive_fixture",*(f"source_{i}" for i in range(1,5))}
+    need(isinstance(logs,list) and all(
+         isinstance(x,dict) and
+         isinstance(x.get("label"),str) and
+         type(x.get("returncode")) is int and
+         x["returncode"] not in (-999,-998) and
+         isinstance(x.get("log_sha256"),str) and
+         re.fullmatch(r"[0-9a-f]{64}",x["log_sha256"]) is not None
+         for x in logs),
          "A2 compilation log/diagnostic evidence incomplete")
-    labels={row["label"] for row in logs}
-    need(set(mutations) <= labels and
-         {"compiler_version","research_build","signatures_axioms",
-          "positive_fixture"} <= labels,
-         "historical or successor A2 compiler did not execute every required leg")
-    need(all(row.get("status")=="SEMANTICALLY_REJECTED"
+    labels=[row["label"] for row in logs]
+    need(len(set(labels))==len(labels) and
+         set(labels)==mandatory|set(mutations)|
+             ({"original_default_build"} if result.get("mode")=="full" else set()),
+         "historical or successor A2 compiler duplicated/omitted a required leg")
+    need(all(row["returncode"]==0 if row["label"] not in mutations
+             else row["returncode"]!=0 for row in logs),
+         "A2 positive source did not compile or false mutant unexpectedly compiled")
+    need(all(isinstance(row,dict) and
+             row.get("status")=="SEMANTICALLY_REJECTED" and
+             isinstance(row.get("positive_source_sha256"),str) and
+             isinstance(row.get("mutant_source_sha256"),str) and
+             re.fullmatch(r"[0-9a-f]{64}",row["positive_source_sha256"]) and
+             re.fullmatch(r"[0-9a-f]{64}",row["mutant_source_sha256"]) and
+             row["positive_source_sha256"]!=row["mutant_source_sha256"]
              for row in result["mutations"].values()),
-         "at least one A2 false semantic mutant was accepted")
+         "at least one A2 false semantic mutant was not source-bound rejected")
     return True
 
 def execute(historical_source, historical_head, current_source, current_head,
