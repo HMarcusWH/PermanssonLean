@@ -195,6 +195,20 @@ class HistoricalEvidenceTests(unittest.TestCase):
         with self.assertRaises(infra.InfrastructureError):
             infra.inspect_A2(files, H)
 
+    def test_reviewed_workflow_hash_includes_exact_git_bytes(self):
+        source=(b"# Review-pending source-controlled historical verification\\n"
+                b"historical-T-and-H-unreviewed\\n"
+                b"historical-A2-and-H-unreviewed\\n")
+        with mock.patch.object(infra.subprocess,"check_output",
+                               return_value=source):
+            raw=infra.exact_committed_blob(
+                H,infra.ACTIVE_WORKFLOW,git=infra.real_git)
+        self.assertEqual(raw,source)
+        self.assertNotEqual(infra.sha(raw),infra.sha(raw.strip()))
+        self.assertEqual(infra.exact_committed_blob(
+            H,infra.ACTIVE_WORKFLOW,git=lambda *a:source),source)
+
+
     def test_lake_manifest_full_committed_bytes_never_trimmed(self):
         raw=b'{"packagesDir":".lake/packages"}\n'
         with mock.patch.object(infra.subprocess,"check_output",

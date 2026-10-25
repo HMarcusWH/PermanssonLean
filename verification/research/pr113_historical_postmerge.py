@@ -25,6 +25,7 @@ from infrastructure_acceptance import (
     FORMAT as HISTORICAL_INPUT, ACTIVE_WORKFLOW, AUTHORITY_PATH,
     authenticate_original_zip, inspect_zip, inspect_T, inspect_A2,
     verify_A2_dependency_bridge, exact_committed_lake_blob,
+    exact_committed_blob,
     authority_policy, approved_security_review,
 )
 from release_target import B113, REPOSITORY
@@ -141,12 +142,12 @@ def check_historical_merged(envelope, t_zip, a2_zip, *,
          "historical postmerge target not bound to real M/B/H")
     H = event_context["reviewed_head_sha"]
     M = event_context["merged_main_sha"]
-    workflow = git("show", H+":"+ACTIVE_WORKFLOW)
-    need(isinstance(workflow,str) and
-         workflow.startswith("# Review-pending source-controlled") and
+    workflow_raw=exact_committed_blob(H,ACTIVE_WORKFLOW,git=git)
+    workflow=workflow_raw.decode("utf-8")
+    need(workflow.startswith("# Review-pending source-controlled") and
          "historical-T-and-H-unreviewed" in workflow and
          "historical-A2-and-H-unreviewed" in workflow and
-         git("show",M+":"+ACTIVE_WORKFLOW) == workflow,
+         exact_committed_blob(M,ACTIVE_WORKFLOW,git=git)==workflow_raw,
          "reviewed historical T/A2 source not identical in real M")
     t = authenticate_original_zip(
         "T",envelope["historical_T"],t_zip,H,live=live)
@@ -160,7 +161,7 @@ def check_historical_merged(envelope, t_zip, a2_zip, *,
     policy=authority_policy(H,git=git)
     reviewer_attestation={
         "head_sha":H,
-        "workflow_sha256":sha(workflow.encode("utf-8")),
+        "workflow_sha256":sha(workflow_raw),
         "T_artifact_sha256":sha(t_zip),
         "A2_artifact_sha256":sha(a2_zip),
         "original_base_sha":B113,

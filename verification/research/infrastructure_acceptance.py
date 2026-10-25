@@ -239,24 +239,40 @@ def inspect_A2(files, head):
             "dual_A2_sha256": sha(files["unreviewed_dual_A2_candidate.json"])}
 
 
-def exact_committed_lake_blob(head, *, git=real_git):
-    """Authentic full Git blob bytes; never .strip() source contents."""
-    need(isinstance(head,str) and re.fullmatch(r"[a-f0-9]{40}",head),
-         "committed Lake manifest requested for invalid Git H")
+def exact_committed_blob(revision, path, *, git=real_git,
+                         max_bytes=1024*1024):
+    """Preserve exact Git source bytes; never strip trailing whitespace.
+
+    Commit-identification helpers deliberately trim newline, but that
+    normalization invalidates hashes of any arbitrary committed file.
+    Workflows, dependency manifests and reviewer-visible source profiles
+    must be verified against exact original Git object bytes.
+    """
+    need(isinstance(revision,str) and
+         re.fullmatch(r"[a-f0-9]{40}",revision) and
+         isinstance(path,str) and path and
+         not path.startswith("/") and "\\x00" not in path and
+         ".." not in Path(path).parts,
+         "invalid committed source revision or path")
     if git is real_git:
         try:
             raw=subprocess.check_output(
-                ["git","show",head+":lake-manifest.json"],cwd=ROOT,
+                ["git","show",revision+":"+path],cwd=ROOT,
                 stderr=subprocess.DEVNULL,timeout=25)
         except (OSError,subprocess.CalledProcessError,
                 subprocess.TimeoutExpired) as exc:
-            raise InfrastructureError("authentic Lake Git blob unavailable") from exc
+            raise InfrastructureError("authentic Git source blob unavailable") from exc
     else:
-        candidate=git("show",head+":lake-manifest.json")
+        candidate=git("show",revision+":"+path)
         raw=candidate.encode("utf-8") if isinstance(candidate,str) else candidate
-    need(type(raw) is bytes and 0<len(raw)<=1024*1024,
-         "Lake source dependency bytes missing or unbounded")
+    need(type(raw) is bytes and 0 < len(raw) <= max_bytes,
+         "missing or unbounded raw committed source blob")
     return raw
+
+
+def exact_committed_lake_blob(head, *, git=real_git):
+    """Original Lake manifest SHA must include all committed raw bytes."""
+    return exact_committed_blob(head,"lake-manifest.json",git=git)
 
 
 def verify_A2_dependency_bridge(files, head, *, manifest_raw):
@@ -449,13 +465,13 @@ def check_historical_only(payload, T_bytes, A2_bytes, *,
     need(target["phase"] == "infrastructure_premerge",
          "certification target cannot borrow infrastructure provenance")
     H = target["head_sha"]
-    workflow = git("show", H + ":" + ACTIVE_WORKFLOW)
-    need(isinstance(workflow, str) and
-         workflow.startswith("# Review-pending source-controlled")
-         and "historical-T-and-H-unreviewed" in workflow and
-         "historical-A2-and-H-unreviewed" in workflow,
+    workflow_raw=exact_committed_blob(H,ACTIVE_WORKFLOW,git=git)
+    workflow=workflow_raw.decode("utf-8")
+    need(workflow.startswith("# Review-pending source-controlled")
+         and "historical-T-and-H-unreviewed" in workflow
+         and "historical-A2-and-H-unreviewed" in workflow,
          "required source-controlled T/T2+A2 producer workflow not installed")
-    workflow_digest = sha(workflow.encode("utf-8"))
+    workflow_digest = sha(workflow_raw)
     t_auth = authenticate_original_zip(
         "T", payload["historical_T"], T_bytes, H, live=live)
     a_auth = authenticate_original_zip(
