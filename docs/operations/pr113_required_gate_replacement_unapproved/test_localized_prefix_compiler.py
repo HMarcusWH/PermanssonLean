@@ -30,11 +30,23 @@ class LocalizedCompilerIntegration(unittest.TestCase):
             payload.append(candidate.read_bytes())
         self.assertLessEqual(len(payload[0]),64*1024)
         result=verify(json.loads(payload[0]),payload[1],payload[2])
-        self.assertEqual(result["status"],
-                         "REQUIRED_HISTORICAL_SOURCE_AND_SECURITY_REVIEW_VERIFIED")
-        self.assertFalse(result["all_required_CI_accepted"])
+        event = os.environ.get("GITHUB_EVENT_NAME")
+        self.assertIn(event, ("pull_request", "push"))
+        expected = (
+            "MERGED_HISTORICAL_T_AND_A2_REVERIFIED_UNDER_REVIEWED_SOURCE"
+            if event == "push" else
+            "REQUIRED_HISTORICAL_SOURCE_AND_SECURITY_REVIEW_VERIFIED"
+        )
+        self.assertEqual(result["status"], expected)
+        if event == "pull_request":
+            self.assertFalse(result["all_required_CI_accepted"])
+        else:
+            self.assertEqual(result["required_ci_successful"], 0)
         self.assertFalse(result["mathematical_acceptance"])
-        self.assertFalse(result["owner_merge_authorized"])
+        if event == "pull_request":
+            self.assertFalse(result["owner_merge_authorized"])
+        else:
+            self.assertFalse(result["owner_merge_authorized"])
         self.assertFalse(result["publication_authorized"])
         print("PR113_ORIGINAL_DUAL_HISTORICAL_RECEIPT_BEGIN")
         print(json.dumps(result,sort_keys=True))

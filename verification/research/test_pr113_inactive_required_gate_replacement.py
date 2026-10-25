@@ -41,6 +41,8 @@ class InactiveHistoricalTransition(unittest.TestCase):
         ast.parse(replacement)
         self.assertIn("from pr113_required_dual_gate import verify",replacement)
         self.assertIn("test_actual_final_source_and_semantic_mutations",replacement)
+        self.assertIn("GITHUB_EVENT_NAME",replacement)
+        self.assertIn("MERGED_HISTORICAL_T_AND_A2",replacement)
         self.assertNotIn("@unittest.skip",replacement)
         self.assertNotIn("skipTest(",replacement)
         self.assertNotIn("mock.patch",replacement)
