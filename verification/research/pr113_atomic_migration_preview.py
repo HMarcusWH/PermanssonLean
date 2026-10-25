@@ -8,6 +8,7 @@ actual authorized independent security reviewer; this artifact grants none.
 """
 from __future__ import annotations
 import argparse
+import ast
 import hashlib
 import json
 from pathlib import Path
@@ -22,6 +23,8 @@ ROOT = Path(__file__).resolve().parents[2]
 OLD = "docs/operations/pr113_unapproved_workflows/manifest.json"
 FULL = "docs/operations/pr113_required_gate_replacement_unapproved/full_workflow_manifest.json"
 R3 = "docs/operations/pr113_required_gate_replacement_unapproved/manifest.json"
+V2_CONTRACT = "docs/operations/pr113_required_gate_replacement_unapproved/workflow_contract_v2_manifest.json"
+V2_SUITE = "docs/operations/pr113_required_gate_replacement_unapproved/test_workflow_v2_manifest.json"
 FORMAT = "Permansson.PR113.AtomicWorkflowTransitionReview.v1"
 SHA = re.compile(r"^[a-f0-9]{40}$")
 
@@ -173,6 +176,69 @@ def preview(head, *, git=git, old_audit=old_staged_audit):
              and replacement.get("installed") is False
              and replacement.get("independent_reviewed") is False,
              "original A2/R3 exact source binding absent")
+    # The authorization surface also changes two canonical integrity Python
+    # files. Count and hash those exact source replacements; a reviewed YAML
+    # set without the matching CI-06/07 test suite cannot be activated.
+    v2_contract=json.loads(raw(head,V2_CONTRACT,git=git))
+    v2_tests=json.loads(raw(head,V2_SUITE,git=git))
+    need(v2_contract.get("format") ==
+             "Permansson.PR113.ReviewPendingVersionedWorkflowContract.v2"
+         and v2_contract.get("status") ==
+             "EXACT_30_WORKFLOW_GIT_BLOBS_SOURCE_STAGED_NOT_ACTIVE"
+         and v2_contract.get("current_original_count")==25
+         and v2_contract.get("proposed_active_count")==30
+         and v2_contract.get("installed") is False
+         and v2_contract.get("independent_security_review") is False
+         and v2_contract.get("owner_activation_authorized") is False
+         and v2_tests.get("format") ==
+             "Permansson.PR113.VersionedWorkflowSuiteCandidate.v2"
+         and v2_tests.get("installed") is False
+         and v2_tests.get("independent_security_review") is False
+         and v2_tests.get("owner_activation_authorized") is False
+         and v2_tests.get("original_CI06_CI07_case_mapping_preserved") is True,
+         "v2 source contract and mapped workflow tests missing/unreviewed")
+    new_integrity = []
+    for descriptor, destination, stage, oid in (
+        (v2_contract,"verification/integrity/workflow_contract.py",
+         "staged_source","staged_git_blob_oid"),
+        (v2_tests,"verification/integrity/tests/test_workflow.py",
+         "staged_test_source","staged_test_blob_oid"),
+    ):
+        need(descriptor.get("activation_target",
+                            descriptor.get("target_test_path"))==destination,
+             "reviewed v2 integrity tooling destination mismatch")
+        original_oid=git("rev-parse",head+":"+destination)
+        source_path=descriptor.get(stage)
+        need(isinstance(source_path,str) and source_path.startswith(
+                 "docs/operations/pr113_required_gate_replacement_unapproved/"),
+             "reviewed v2 integrity source must remain staged")
+        raw_source=raw(head,source_path,git=git)
+        need(git_blob_oid(raw_source)==descriptor.get(oid) and
+             git_blob_oid(raw_source)!=original_oid,
+             "source-pinned v2 integrity verifier source not actually changed")
+        new_integrity.append({
+            "target":destination,
+            "original_git_blob_oid":original_oid,
+            "review_pending_git_blob_oid":git_blob_oid(raw_source),
+            "staged_source":source_path,
+        })
+    need(len(new_integrity)==2 and
+         len({x["target"] for x in new_integrity})==2,
+         "precise two-file historical integrity contract transition missing")
+    contract_bytes=raw(head,v2_contract["staged_source"],git=git)
+    try:
+        syntax=ast.parse(contract_bytes.decode("utf-8"))
+        profile_node=next(
+            n.value for n in syntax.body if isinstance(n,ast.Assign)
+            and any(isinstance(x,ast.Name) and
+                    x.id=="APPROVED_WORKFLOW_BLOBS" for x in n.targets))
+        profile=ast.literal_eval(profile_node)
+    except (SyntaxError,StopIteration,ValueError,UnicodeError) as exc:
+        raise TransitionError("versioned workflow allowlist unparseable") from exc
+    expected={Path(row["path"]).name:row["git_blob_oid"] for row in ordered}
+    need(profile==expected and
+         v2_contract.get("expected_workflow_git_blobs")==expected,
+         "30-workflow v2 contract pins an unexpected source set")
     return {
         "format":FORMAT,
         "status":"EXACT_30_SOURCE_ACTIVATION_PREVIEW_UNAPPROVED",
@@ -183,6 +249,8 @@ def preview(head, *, git=git, old_audit=old_staged_audit):
         "review_pending_additional_workflows":5,
         "proposed_total_workflows":30,
         "virtual_profile_sha256":digest(material),
+        "review_pending_integrity_tooling_replacements":new_integrity,
+        "versioned_workflow_allowlist_count":len(profile),
         "original_25_plus_5_profile_sha256":original["profile_sha256"],
         "virtual_source_members":ordered,
         "additional_original_test_replacements":[

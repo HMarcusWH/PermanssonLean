@@ -21,6 +21,8 @@ class AtomicMigrationPreviewTests(unittest.TestCase):
         self.assertEqual(actual["review_pending_additional_workflows"],5)
         self.assertEqual(len(actual["virtual_source_members"]),30)
         self.assertEqual(len(actual["additional_original_test_replacements"]),2)
+        self.assertEqual(len(actual["review_pending_integrity_tooling_replacements"]),2)
+        self.assertEqual(actual["versioned_workflow_allowlist_count"],30)
         self.assertRegex(actual["virtual_profile_sha256"],"^[a-f0-9]{64}$")
         for field in (
             "independent_security_review","owner_activation_authorized",
@@ -40,6 +42,20 @@ class AtomicMigrationPreviewTests(unittest.TestCase):
             return original_git(*args)
         with self.assertRaises(preview.TransitionError):
             preview.preview(H,git=mutated)
+
+    def test_modified_v2_integrity_contract_or_suite_is_rejected(self):
+        H,_=fake_source()
+        original_git=preview.git
+        for name in ("workflow_contract_v2.py","test_workflow_v2.py"):
+            target=("docs/operations/pr113_required_gate_replacement_unapproved/"
+                    +name)
+            def changed(*args):
+                if args==("show",H+":"+target):
+                    return original_git(*args)+"\n# unauthorized change\n"
+                return original_git(*args)
+            with self.subTest(name=name),self.assertRaises(
+                    preview.TransitionError):
+                preview.preview(H,git=changed)
 
     def test_missing_source_or_invalid_old_profile_rejected(self):
         H,_=fake_source()
