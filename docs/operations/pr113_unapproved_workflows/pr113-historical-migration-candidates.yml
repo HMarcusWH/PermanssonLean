@@ -141,6 +141,67 @@ jobs:
           use-github-cache: false
           axiom-audit: true
           axiom-audit-root: PermanssonResearch
+      - name: Bind historical A2 to the exact pinned dependency source (not H build objects)
+        shell: bash
+        run: |
+          set -euo pipefail
+          OLD="$RUNNER_TEMP/pr113-source-A2"
+          # Both real Git commits name identical toolchain/manifests. This
+          # permits sharing only dependencies, never current-source proof .olean.
+          for path in lean-toolchain lake-manifest.json lakefile.toml; do
+            test "$(git rev-parse "$GITHUB_SHA:$path")" = \
+              "$(git -C "$OLD" rev-parse "HEAD:$path")"
+          done
+          test -d "$GITHUB_WORKSPACE/.lake/packages"
+          test ! -e "$OLD/.lake/packages"
+          test ! -L "$OLD/.lake/packages"
+          test ! -e "$OLD/.lake/build"
+          mkdir -p "$OLD/.lake"
+          ln -s "$GITHUB_WORKSPACE/.lake/packages" "$OLD/.lake/packages"
+          # Prove every dependency is a clean Git checkout of the immutable
+          # revision named by the unchanged manifest. No lake update, no
+          # downloaded substitute mathlib, no imported current project build.
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          old = pathlib.Path(os.environ["RUNNER_TEMP"]) / "pr113-source-A2"
+          current = pathlib.Path(os.environ["GITHUB_WORKSPACE"])
+          raw = (old/"lake-manifest.json").read_bytes()
+          assert raw == (current/"lake-manifest.json").read_bytes()
+          pins = json.loads(raw)
+          assert pins["packagesDir"] == ".lake/packages"
+          assert pins["packages"]
+          assert (old/".lake/packages").resolve() == (current/".lake/packages").resolve()
+          checked = {}
+          for pkg in pins["packages"]:
+              assert pkg.get("type") == "git"
+              name, rev = pkg["name"], pkg["rev"]
+              assert "/" not in name and len(rev) == 40
+              root = old/".lake/packages"/name
+              assert root.is_dir()
+              actual = subprocess.check_output(
+                  ["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()
+              assert actual == rev
+              assert not subprocess.check_output(
+                  ["git", "-C", str(root), "status", "--porcelain=v1",
+                   "--untracked-files=all"])
+              checked[name] = actual
+          assert checked["mathlib"] == "5ed2965256430c3649e86755f9576b54eca72435"
+          assert not (old/".lake/build").exists()
+          receipt = {
+              "format": "Permansson.PR113.HistoricalA2DependencyBridge.v1",
+              "status": "PINNED_DEPENDENCIES_REUSED_WITHOUT_PROOF_BUILD_IMPORT",
+              "historical_head": "f71a76032b169aac7bfe0694aa715339a94d4e05",
+              "current_head": os.environ["GITHUB_SHA"],
+              "manifest_sha256": hashlib.sha256(raw).hexdigest(),
+              "pinned_packages": dict(sorted(checked.items())),
+              "original_verifier_modified": False,
+              "historical_project_proofs_reused": False,
+              "independent_security_review": False,
+              "mathematical_acceptance": False,
+          }
+          output = pathlib.Path(os.environ["RUNNER_TEMP"])/"pr113-A2-dependency-bridge.json"
+          output.write_text(json.dumps(receipt, indent=2, sort_keys=True)+"\n")
+          PY
       - name: Execute both genuine compiler gates and four semantic negatives
         shell: bash
         run: |

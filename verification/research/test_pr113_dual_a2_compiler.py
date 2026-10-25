@@ -106,6 +106,27 @@ class DualA2Tests(unittest.TestCase):
                 with self.assertRaises(dual.DualA2Error):
                     dual.execute(old,"a"*40,now,"b"*40,Path(td)/"result")
 
+    def test_staged_historical_dependency_bridge_uses_identical_pins_only(self):
+        """The historical T/A2 migration candidate does not borrow H proofs."""
+        proposed = (Path(__file__).resolve().parents[2] /
+                    "docs/operations/pr113_unapproved_workflows/"
+                    "pr113-historical-migration-candidates.yml").read_text()
+        begin = proposed.index("      - name: Bind historical A2 to the exact pinned dependency source")
+        end = proposed.index("      - name: Execute both genuine compiler gates", begin)
+        stage = proposed[begin:end]
+        self.assertIn("git rev-parse", stage)
+        self.assertIn("lake-manifest.json", stage)
+        self.assertIn("lean-toolchain", stage)
+        self.assertIn("test ! -e \"$OLD/.lake/build\"", stage)
+        self.assertIn("ln -s \"$GITHUB_WORKSPACE/.lake/packages\"", stage)
+        self.assertIn('actual == rev', stage)
+        self.assertIn('"historical_project_proofs_reused": False', stage)
+        self.assertNotIn("lake update", stage.replace(
+            "# downloaded substitute mathlib, no imported current project build.", ""))
+        self.assertIn('"independent_security_review": False', stage)
+        self.assertIn('"mathematical_acceptance": False', stage)
+        self.assertTrue(proposed.startswith("# Review-pending"))
+
     def test_wrong_successor_semantic_result_rejects(self):
         h=fake_result("SUCCESSOR_KERNEL_CHECKED_REVIEW_PENDING",
                       dual.successor_gate)
