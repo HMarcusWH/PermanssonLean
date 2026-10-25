@@ -181,10 +181,17 @@ def comment_choices(head, comment_id, policy, survey_zip_sha256,
             (pr.get("head") or {}).get("sha") == head,
             "reviewer input belongs to wrong PR or stale head")
     author = (comment.get("user") or {}).get("login")
+    # Issue comments are mutable. An edited old comment is NOT the same
+    # immutable reviewer selection originally submitted after the producer
+    # artifact existed. Refuse edits rather than accept a historical ID that
+    # now points at different choices.
     require(isinstance(author, str) and author !=
             (pr.get("user") or {}).get("login") and
-            comment.get("created_at", "") > survey_time,
-            "source author/early comment cannot independently choose legacy events")
+            isinstance(comment.get("created_at"), str) and
+            comment["created_at"] > survey_time and
+            isinstance(comment.get("updated_at"), str) and
+            comment["updated_at"] == comment["created_at"],
+            "review comment is early, post-edited, or not independent")
     eligible = [entry for entry in policy["reviewers"]
                 if isinstance(entry, dict) and
                 entry.get("login") == author
@@ -237,7 +244,10 @@ def comment_choices(head, comment_id, policy, survey_zip_sha256,
     decision_to_selection(head, candidates, detached)
     return detached, {"review_comment_id": comment_id,
                       "reviewer": author, "survey_zip_sha256": survey_zip_sha256,
-                      "survey_member_sha256": survey_member_sha256}
+                      "survey_member_sha256": survey_member_sha256,
+                      "review_comment_created_at": comment["created_at"],
+                      "review_comment_body_sha256":
+                          digest(comment["body"].encode("utf-8"))}
 
 
 def deliver(head, ids, original_zip, comment_id, *, git=real_git, live=real_live):

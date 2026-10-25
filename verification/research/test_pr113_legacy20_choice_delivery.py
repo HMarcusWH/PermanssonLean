@@ -52,6 +52,7 @@ def fixture():
         "id": 700,
         "issue_url":"https://api.github.com/repos/HMarcusWH/PermanssonLean/issues/113",
         "created_at":"2026-10-25T01:00:00Z",
+        "updated_at":"2026-10-25T01:00:00Z",
         "user":{"login":REVIEWER},
         "body":deliver.PREFIX+json.dumps(att,sort_keys=True),
     }
@@ -154,6 +155,26 @@ class LegacyDeliveryTests(unittest.TestCase):
             with self.subTest(mutate=mutate),self.assertRaises(
                     deliver.ChoiceDeliveryError):
                 self.run_delivery(bad)
+
+    def test_post_edit_reviewer_comment_is_never_source_authority(self):
+        for edited in (
+            "2026-10-25T01:00:01Z",
+            "2026-10-25T09:30:00Z",
+            None,
+        ):
+            def tamper(raw,member,api,policy,att):
+                api["/issues/comments/700"]["updated_at"]=edited
+            with self.subTest(edited=edited), self.assertRaises(
+                    deliver.ChoiceDeliveryError):
+                self.run_delivery(tamper)
+
+    def test_reviewer_comment_body_digest_retained_but_unapproved(self):
+        result=self.run_delivery()
+        diagnostic=result["diagnostic"]
+        self.assertRegex(diagnostic["review_comment_body_sha256"],r"^[0-9a-f]{64}$")
+        self.assertEqual(diagnostic["review_comment_created_at"],
+                         "2026-10-25T01:00:00Z")
+        self.assertFalse(diagnostic["mathematical_acceptance"])
 
     def test_foreign_issue_or_stale_PR_rejected(self):
         def wrong(raw,member,api,policy,att):
