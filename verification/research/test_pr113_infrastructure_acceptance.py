@@ -480,7 +480,8 @@ class SeparateGateTests(unittest.TestCase):
              mock.patch.object(infra.release_target,"bind",
                                return_value=report_target), \
              mock.patch.object(infra,"authenticate_original_zip",
-                               side_effect=[{"sha256":"1"*64},{"sha256":"2"*64}]), \
+                               side_effect=lambda kind,*args,**kw:
+                                   {"sha256":("1" if kind=="T" else "2")*64}), \
              mock.patch.object(infra,"inspect_zip",return_value={}), \
              mock.patch.object(infra,"inspect_T",return_value={"T":"PASS"}), \
              mock.patch.object(infra,"inspect_A2",return_value={"A2":"PASS"}), \
