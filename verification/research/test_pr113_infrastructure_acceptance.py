@@ -195,6 +195,19 @@ class HistoricalEvidenceTests(unittest.TestCase):
         with self.assertRaises(infra.InfrastructureError):
             infra.inspect_A2(files, H)
 
+    def test_lake_manifest_full_committed_bytes_never_trimmed(self):
+        raw=b'{"packagesDir":".lake/packages"}\n'
+        with mock.patch.object(infra.subprocess,"check_output",
+                               return_value=raw) as checked:
+            self.assertEqual(infra.exact_committed_lake_blob(
+                H,git=infra.real_git),raw)
+            self.assertEqual(checked.call_args.args[0],
+                             ["git","show",H+":lake-manifest.json"])
+        self.assertEqual(infra.exact_committed_lake_blob(
+            H,git=lambda *a:raw.decode("utf-8")),raw)
+        self.assertNotEqual(infra.sha(raw),infra.sha(raw.strip()))
+
+
     def test_historical_dependency_bridge_rejects_forgery(self):
         files = a2_files()
         manifest=json.dumps(synthetic_lake_manifest(), sort_keys=True).encode()

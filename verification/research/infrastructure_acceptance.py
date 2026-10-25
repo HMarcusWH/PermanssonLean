@@ -13,6 +13,7 @@ import io
 import json
 from pathlib import Path, PurePosixPath
 import re
+import subprocess
 import stat
 import sys
 import zipfile
@@ -238,6 +239,26 @@ def inspect_A2(files, head):
             "dual_A2_sha256": sha(files["unreviewed_dual_A2_candidate.json"])}
 
 
+def exact_committed_lake_blob(head, *, git=real_git):
+    """Authentic full Git blob bytes; never .strip() source contents."""
+    need(isinstance(head,str) and re.fullmatch(r"[a-f0-9]{40}",head),
+         "committed Lake manifest requested for invalid Git H")
+    if git is real_git:
+        try:
+            raw=subprocess.check_output(
+                ["git","show",head+":lake-manifest.json"],cwd=ROOT,
+                stderr=subprocess.DEVNULL,timeout=25)
+        except (OSError,subprocess.CalledProcessError,
+                subprocess.TimeoutExpired) as exc:
+            raise InfrastructureError("authentic Lake Git blob unavailable") from exc
+    else:
+        candidate=git("show",head+":lake-manifest.json")
+        raw=candidate.encode("utf-8") if isinstance(candidate,str) else candidate
+    need(type(raw) is bytes and 0<len(raw)<=1024*1024,
+         "Lake source dependency bytes missing or unbounded")
+    return raw
+
+
 def verify_A2_dependency_bridge(files, head, *, manifest_raw):
     """Check the historical dependency bridge against actual committed H bytes.
 
@@ -443,7 +464,7 @@ def check_historical_only(payload, T_bytes, A2_bytes, *,
     a = inspect_A2(inspect_zip(A2_bytes), H)
     a["dependency_bridge_sha256"] = verify_A2_dependency_bridge(
         inspect_zip(A2_bytes), H,
-        manifest_raw=git("show", H + ":lake-manifest.json"))
+        manifest_raw=exact_committed_lake_blob(H, git=git))
     policy = authority_policy(H, git=git)
     pr = live("/pulls/113")
     attestation = {
