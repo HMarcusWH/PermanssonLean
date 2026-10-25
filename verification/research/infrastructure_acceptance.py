@@ -251,7 +251,7 @@ def exact_committed_blob(revision, path, *, git=real_git,
     need(isinstance(revision,str) and
          re.fullmatch(r"[a-f0-9]{40}",revision) and
          isinstance(path,str) and path and
-         not path.startswith("/") and "\\x00" not in path and
+         not path.startswith("/") and "\x00" not in path and
          ".." not in Path(path).parts,
          "invalid committed source revision or path")
     if git is real_git:

@@ -196,9 +196,9 @@ class HistoricalEvidenceTests(unittest.TestCase):
             infra.inspect_A2(files, H)
 
     def test_reviewed_workflow_hash_includes_exact_git_bytes(self):
-        source=(b"# Review-pending source-controlled historical verification\\n"
-                b"historical-T-and-H-unreviewed\\n"
-                b"historical-A2-and-H-unreviewed\\n")
+        source=(b"# Review-pending source-controlled historical verification\n"
+                b"historical-T-and-H-unreviewed\n"
+                b"historical-A2-and-H-unreviewed\n")
         with mock.patch.object(infra.subprocess,"check_output",
                                return_value=source):
             raw=infra.exact_committed_blob(
