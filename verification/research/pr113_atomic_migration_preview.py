@@ -37,8 +37,11 @@ def need(ok, why):
 
 def git(*args):
     try:
-        return subprocess.check_output(["git",*args],cwd=ROOT,
-            stderr=subprocess.DEVNULL,timeout=30).decode("utf-8").strip()
+        data=subprocess.check_output(["git",*args],cwd=ROOT,
+            stderr=subprocess.DEVNULL,timeout=30).decode("utf-8")
+        # Git blob bytes must be preserved exactly, including final newlines.
+        # Only identity-command scalar output is stripped.
+        return data if args and args[0]=="show" else data.strip()
     except (OSError,subprocess.CalledProcessError,
             subprocess.TimeoutExpired) as exc:
         raise TransitionError("real Git source unavailable") from exc
