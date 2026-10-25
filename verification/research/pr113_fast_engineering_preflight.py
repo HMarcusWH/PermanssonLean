@@ -25,6 +25,7 @@ SUITES = (
     "test_pr113_dual_tooling_candidate.py",
     "test_pr113_dual_review_packet.py",
     "test_pr113_required_dual_gate.py",
+    "test_pr113_historical_postmerge.py",
     "test_pr113_historical_artifact_delivery.py",
     "test_pr113_inactive_required_gate_replacement.py",
     "test_pr113_draft_rehearsal_auth.py",
