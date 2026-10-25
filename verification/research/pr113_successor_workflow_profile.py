@@ -15,10 +15,16 @@ import re
 import subprocess
 import sys
 
+# Direct invocation (python verification/research/pr113_successor_workflow_profile.py)
+# otherwise includes only verification/research in sys.path, not the repository
+# package root. Resolve the exact local checkout before import, then audit all
+# 25 protected Git blobs against the original hashes as before.
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from release_target import B113, T
 from verification.integrity.workflow_contract import APPROVED_WORKFLOWS
-
-ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = "docs/operations/pr113_unapproved_workflows/manifest.json"
 FORMAT = "Permansson.PR113.SuccessorWorkflowProfile.v1"
 PATH = re.compile(r"^\.github/workflows/[a-zA-Z0-9_.-]+\.ya?ml$")

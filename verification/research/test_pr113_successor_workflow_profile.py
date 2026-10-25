@@ -1,6 +1,10 @@
 """25+5 workflow profile mutation gates. No security approval is fabricated."""
 import copy
 import json
+import os
+from pathlib import Path
+import subprocess
+import sys
 import unittest
 
 import pr113_successor_workflow_profile as p
@@ -100,6 +104,18 @@ class WorkflowProfileTests(unittest.TestCase):
         files[p.MANIFEST]=json.dumps(row).encode()
         with self.assertRaises(p.ProfileError):
             p.audit(H,read=files.__getitem__,tree=lambda:tree,approved=approved)
+
+    def test_direct_cli_imports_workflow_contract_without_pythonpath(self):
+        script=Path(p.__file__).resolve()
+        env=os.environ.copy()
+        env.pop("PYTHONPATH",None)
+        done=subprocess.run(
+            [sys.executable,"-B",str(script),"--head","invalid-head",
+             "--out",str(script.parent/"NEVER_WRITTEN.json")],
+            cwd=p.ROOT,env=env,capture_output=True,text=True,timeout=20)
+        self.assertEqual(done.returncode,2,done.stderr)
+        self.assertIn("WORKFLOW PROFILE NOT ACCEPTED",done.stderr)
+        self.assertNotIn("ModuleNotFoundError",done.stderr)
 
     def test_fake_owner_authorization_in_staged_manifest_rejected(self):
         approved,files,tree=fixture()
