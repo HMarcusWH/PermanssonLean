@@ -407,42 +407,33 @@ def approved_security_review(review_id, author, head, attest, policy, *, paginat
     return True
 
 
-def check_evidence(payload, T_bytes, A2_bytes, *, git=real_git, live=real_live,
-                   checks=authenticated_checks, paginate=real_paginate):
-    """No proof acceptance, merge or publication authority is inferred."""
+def check_historical_only(payload, T_bytes, A2_bytes, *,
+                          git=real_git, live=real_live,
+                          paginate=real_paginate):
+    """Noncircular mandatory-check dependency: T/T2+A2 and real review only.
+
+    Both source-bound producing jobs and the independent security review must
+    be genuine. No claim is made about the *caller* being a green check, so this
+    can be used inside an authorized replacement required-check workflow.
+    The complete 12-context aggregate is verified separately afterward.
+    """
     need(isinstance(payload, dict) and set(payload) == EVIDENCE_FIELDS
          and payload.get("format") == FORMAT,
          "wrong infrastructure-only evidence type")
     source = payload.get("target")
-    # Validate the complete detached target *before* looking up any Git/GitHub
-    # source object. An incomplete or retagged record must fail closed at the
-    # schema boundary, not turn into an unrelated Git authentication error.
     release_target.candidate_bindings(source)
     target = release_target.bind(
         source, intent=release_target.exact_intent(
             source["head_sha"], git=git), git=git, live=live)
     need(target["phase"] == "infrastructure_premerge",
-         "CERT cannot use an infrastructure readiness gate")
+         "certification target cannot borrow infrastructure provenance")
     H = target["head_sha"]
-    actual = checks(H)
-    requested = payload.get("source_bound_ci")
-    need(isinstance(requested, list) and
-         len(requested) == len(REQUIRED) and
-         {r.get("name") for r in requested if isinstance(r, dict)} == REQUIRED,
-         "infrastructure requires all twelve genuine source checks")
-    for row in requested:
-        need(isinstance(row, dict) and
-             set(row) == {"name", "id", "head_sha"} and
-             row.get("head_sha") == H and
-             type(row.get("id")) is int and
-             row["id"] == actual[row["name"]]["id"],
-             "failed/stale/borrowed required source check")
     workflow = git("show", H + ":" + ACTIVE_WORKFLOW)
     need(isinstance(workflow, str) and
          workflow.startswith("# Review-pending source-controlled")
-         and "historical-T-and-H-unreviewed" in workflow
-         and "historical-A2-and-H-unreviewed" in workflow,
-         "protected historical workflow not source-activated as reviewed")
+         and "historical-T-and-H-unreviewed" in workflow and
+         "historical-A2-and-H-unreviewed" in workflow,
+         "required source-controlled T/T2+A2 producer workflow not installed")
     workflow_digest = sha(workflow.encode("utf-8"))
     t_auth = authenticate_original_zip(
         "T", payload["historical_T"], T_bytes, H, live=live)
@@ -455,7 +446,7 @@ def check_evidence(payload, T_bytes, A2_bytes, *, git=real_git, live=real_live,
         manifest_raw=git("show", H + ":lake-manifest.json"))
     policy = authority_policy(H, git=git)
     pr = live("/pulls/113")
-    attest = {
+    attestation = {
         "head_sha": H,
         "workflow_sha256": workflow_digest,
         "T_artifact_sha256": sha(T_bytes),
@@ -465,19 +456,20 @@ def check_evidence(payload, T_bytes, A2_bytes, *, git=real_git, live=real_live,
     approved_security_review(
         payload["security_review_id"],
         (pr.get("user") or {}).get("login"),
-        H, attest, policy, paginate=paginate)
+        H, attestation, policy, paginate=paginate)
     return {
-        "format": "Permansson.PR113.InfrastructureAcceptanceReceipt.v1",
-        "status": "INFRASTRUCTURE_READY_FOR_SEPARATE_OWNER_MERGE_DECISION",
+        "format": "Permansson.PR113.HistoricalDualRequiredSourceReceipt.v1",
+        "status": "HISTORICAL_T_AND_A2_GENUINE_WITH_INDEPENDENT_SECURITY_REVIEW",
         "source_head": H,
         "base_sha": release_target.B113,
         "synthetic_sha": target["synthetic_sha"],
         "workflow_sha256": workflow_digest,
-        "required_ci_successful": 12,
-        "T_execution": t, "A2_execution": a,
+        "T_execution": t,
+        "A2_execution": a,
         "genuine_artifacts": {"T": t_auth, "A2": a_auth},
         "security_review_id": payload["security_review_id"],
-        "independent_security_review_authenticated": True,
+        "historical_source_and_security_review_authenticated": True,
+        "required_ci_successful": 0,
         "independent_mathematical_review": False,
         "accepted_original_cases": 0,
         "accepted_new_claims": 0,
@@ -488,12 +480,48 @@ def check_evidence(payload, T_bytes, A2_bytes, *, git=real_git, live=real_live,
     }
 
 
+def check_evidence(payload, T_bytes, A2_bytes, *, git=real_git, live=real_live,
+                   checks=authenticated_checks, paginate=real_paginate):
+    """Infrastructure aggregation only AFTER all twelve genuine checks pass.
+
+    Required historical checks should call check_historical_only, never this
+    aggregate, so they do not depend on their own green check-run statuses.
+    """
+    historical = check_historical_only(
+        payload,T_bytes,A2_bytes,git=git,live=live,paginate=paginate)
+    H = historical["source_head"]
+    actual = checks(H)
+    requested = payload.get("source_bound_ci")
+    need(isinstance(requested, list) and
+         len(requested) == len(REQUIRED) and
+         {r.get("name") for r in requested if isinstance(r, dict)} == REQUIRED,
+         "infrastructure requires all twelve genuine source checks")
+    for row in requested:
+        need(isinstance(row, dict) and
+             set(row) == {"name", "id", "head_sha"} and
+             row.get("head_sha") == H and
+             type(row.get("id")) is int and
+             row.get("name") in actual and
+             row["id"] == actual[row["name"]]["id"],
+             "failed/stale/borrowed required source check")
+    result = dict(historical)
+    result.update({
+        "format": "Permansson.PR113.InfrastructureAcceptanceReceipt.v1",
+        "status": "INFRASTRUCTURE_READY_FOR_SEPARATE_OWNER_MERGE_DECISION",
+        "required_ci_successful": len(REQUIRED),
+        "independent_security_review_authenticated": True,
+    })
+    return result
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--evidence", type=Path, required=True)
     p.add_argument("--historical-T-zip", type=Path, required=True)
     p.add_argument("--historical-A2-zip", type=Path, required=True)
     p.add_argument("--out", type=Path, required=True)
+    p.add_argument("--historical-only", action="store_true",
+                   help="Verify both real original legs and independent review without querying the twelve required check statuses")
     args = p.parse_args(argv)
     try:
         out = args.out.absolute()
@@ -503,7 +531,8 @@ def main(argv=None):
              "infrastructure result must be fresh and detached")
         ev = args.evidence.read_bytes()
         need(0 < len(ev) <= 64 * 1024, "unbounded detached infrastructure envelope")
-        result = check_evidence(
+        checker = check_historical_only if args.historical_only else check_evidence
+        result = checker(
             json.loads(ev), args.historical_T_zip.read_bytes(),
             args.historical_A2_zip.read_bytes())
         out.parent.mkdir(parents=True, exist_ok=True)

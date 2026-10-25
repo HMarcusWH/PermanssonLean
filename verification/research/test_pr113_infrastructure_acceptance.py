@@ -465,6 +465,58 @@ class SeparateGateTests(unittest.TestCase):
         self.assertFalse(verified["publication_authorized"])
         self.assertFalse(verified["merge_authorized"])
 
+    def test_historical_required_gate_cannot_self_require_ci_or_approve_merge(self):
+        from test_pr113_release_target import fake_target
+        payload = {
+            "format": infra.FORMAT, "target": fake_target(),
+            "source_bound_ci": [], "historical_T":{},
+            "historical_A2":{}, "security_review_id":987,
+        }
+        report_target = {"head_sha": H,"phase":"infrastructure_premerge",
+                         "synthetic_sha":"b"*40}
+        with mock.patch.object(infra.release_target,"candidate_bindings"), \
+             mock.patch.object(infra.release_target,"exact_intent",
+                               return_value={}), \
+             mock.patch.object(infra.release_target,"bind",
+                               return_value=report_target), \
+             mock.patch.object(infra,"authenticate_original_zip",
+                               side_effect=[{"sha256":"1"*64},{"sha256":"2"*64}]), \
+             mock.patch.object(infra,"inspect_zip",return_value={}), \
+             mock.patch.object(infra,"inspect_T",return_value={"T":"PASS"}), \
+             mock.patch.object(infra,"inspect_A2",return_value={"A2":"PASS"}), \
+             mock.patch.object(infra,"verify_A2_dependency_bridge",
+                               return_value="3"*64), \
+             mock.patch.object(infra,"authority_policy",
+                               return_value={"status":"OWNER_AUTHORIZED"}), \
+             mock.patch.object(infra,"approved_security_review",
+                               return_value=True), \
+             mock.patch.object(infra,"authenticated_checks",
+                               side_effect=AssertionError("self-dependent CI")):
+            def git(*args):
+                if args[0]=="show" and args[1].endswith(infra.ACTIVE_WORKFLOW):
+                    return ("# Review-pending source-controlled historical verifier\n"
+                            "historical-T-and-H-unreviewed\n"
+                            "historical-A2-and-H-unreviewed\n")
+                if args[0]=="show" and args[1].endswith("lake-manifest.json"):
+                    return "{}"
+                raise AssertionError(args)
+            def live(path):
+                if path=="/pulls/113":
+                    return {"user":{"login":"HMarcusWH"}}
+                raise AssertionError(path)
+            receipt=infra.check_historical_only(
+                payload,b"original-T",b"original-A2",
+                git=git,live=live,paginate=lambda p:[])
+            self.assertEqual(receipt["required_ci_successful"],0)
+            self.assertIn("HISTORICAL_T_AND_A2",receipt["status"])
+            self.assertFalse(receipt["independent_mathematical_review"])
+            self.assertFalse(receipt["merge_authorized"])
+            self.assertFalse(receipt["publication_authorized"])
+            with self.assertRaises(infra.InfrastructureError):
+                infra.check_evidence(payload,b"original-T",b"original-A2",
+                                     git=git,live=live,checks=lambda h: {},
+                                     paginate=lambda p:[])
+
     def test_all_12_exact_source_checks_required_and_missing_review_blocks(self):
         good = {
             "format": infra.FORMAT,
