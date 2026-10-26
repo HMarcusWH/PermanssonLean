@@ -1,11 +1,15 @@
 """25+5 workflow profile mutation gates. No security approval is fabricated."""
+import ast
 import copy
+import importlib.util
 import json
 import os
 from pathlib import Path
 import subprocess
 import sys
 import unittest
+import types
+from unittest import mock
 
 import pr113_successor_workflow_profile as p
 
@@ -116,6 +120,111 @@ class WorkflowProfileTests(unittest.TestCase):
         self.assertEqual(done.returncode,2,done.stderr)
         self.assertIn("WORKFLOW PROFILE NOT ACCEPTED",done.stderr)
         self.assertNotIn("ModuleNotFoundError",done.stderr)
+
+
+    def test_real_immutable_historical_25_git_allowlist(self):
+        head=p.git_bytes("HEAD",op=("rev-parse","HEAD")).decode().strip()
+        historical=p.authenticated_historical_25(head)
+        self.assertEqual(len(historical),25)
+        self.assertTrue(all(len(v)==64 for v in historical.values()))
+        self.assertEqual(p.HISTORICAL_25_HEAD,
+                         "5189f0c4a0db7535d57a9ff2a7aef6a3e76191b6")
+        self.assertEqual(p.HISTORICAL_CONTRACT_BLOB,
+                         "f8fa8196a7a0e33d2f218faa0ba570c09aac9a3a")
+        self.assertNotIn("pr113-historical-migration-candidates.yml",historical)
+        self.assertNotEqual(next(iter(historical.values())),
+                            "02e97e27e85b9d3353edf495eab1ee8cb8b9e642")
+        original=p.git_bytes(p.HISTORICAL_25_HEAD,p.HISTORICAL_CONTRACT)
+        self.assertEqual(p.parse_historical_25_contract(original),historical)
+
+    def test_historical_contract_parser_rejects_24_26_duplicate_dynamic_and_oid(self):
+        original=p.git_bytes(p.HISTORICAL_25_HEAD,p.HISTORICAL_CONTRACT)
+        syntax=ast.parse(original)
+        table=next(item.value for item in syntax.body
+                   if isinstance(item,ast.Assign)
+                   and any(isinstance(t,ast.Name) and
+                           t.id=="APPROVED_WORKFLOWS" for t in item.targets))
+        constant=next(item.value for item in syntax.body
+                      if isinstance(item,ast.Assign)
+                      and any(isinstance(t,ast.Name) and
+                              t.id=="APPROVED_WORKFLOW_SHA256"
+                              for t in item.targets))
+        self.assertIsInstance(table,ast.Dict)
+        self.assertEqual(len(table.keys),25)
+        for variant in ("24","26","duplicate","dynamic","git_oid","wrong_constant"):
+            altered=copy.deepcopy(syntax)
+            mapped=next(item.value for item in altered.body
+                        if isinstance(item,ast.Assign)
+                        and any(isinstance(t,ast.Name) and
+                                t.id=="APPROVED_WORKFLOWS" for t in item.targets))
+            literal=next(item.value for item in altered.body
+                         if isinstance(item,ast.Assign)
+                         and any(isinstance(t,ast.Name) and
+                                 t.id=="APPROVED_WORKFLOW_SHA256"
+                                 for t in item.targets))
+            if variant=="24":
+                mapped.keys.pop()
+                mapped.values.pop()
+            elif variant=="26":
+                mapped.keys.append(copy.deepcopy(mapped.keys[0]))
+                mapped.values.append(copy.deepcopy(mapped.values[0]))
+            elif variant=="duplicate":
+                mapped.keys[-1]=copy.deepcopy(mapped.keys[0])
+            elif variant=="dynamic":
+                mapped.values[0]=ast.Call(
+                    func=ast.Name(id="eval",ctx=ast.Load()),
+                    args=[ast.Constant(value="'untrusted'")],keywords=[])
+            elif variant=="git_oid":
+                mapped.values[0]=ast.Constant(value="a"*40)
+            else:
+                literal.value="b"*40
+            with self.subTest(variant=variant),self.assertRaises(p.ProfileError):
+                p.parse_historical_25_contract(
+                    ast.unparse(ast.fix_missing_locations(altered)).encode())
+
+    def test_frozen_git_contract_rejects_spoofed_bytes_and_wrong_tree(self):
+        real=p.git_bytes
+        anchor=p.HISTORICAL_25_HEAD
+        def tamper(head,path=None,*,op=None):
+            if head==anchor and path==p.HISTORICAL_CONTRACT and op is None:
+                return real(head,path)+b"\n# unapproved historical change\n"
+            return real(head,path,op=op)
+        with mock.patch.object(p,"git_bytes",side_effect=tamper):
+            with self.assertRaisesRegex(p.ProfileError,
+                                        "Git blob byte identity changed"):
+                p.authenticated_historical_25()
+        def wrong_tree(head,path=None,*,op=None):
+            if op==("ls-tree","-r","-z",anchor,"--",".github/workflows"):
+                data=real(head,path,op=op)
+                self.assertIn(b"100644 blob ",data)
+                return data.replace(b"100644 blob ",b"100755 blob ",1)
+            return real(head,path,op=op)
+        with mock.patch.object(p,"git_bytes",side_effect=wrong_tree):
+            with self.assertRaisesRegex(p.ProfileError,
+                                        "Git mode unexpected"):
+                p.authenticated_historical_25()
+
+    def test_legacy_modules_import_with_current_v2_only_namespace(self):
+        """An installed 30 Git-OID contract may not masquerade as 25 SHA256s."""
+        fake=types.ModuleType("verification.integrity.workflow_contract")
+        fake.APPROVED_WORKFLOW_BLOBS={"research-lean.yml":"a"*40}
+        real_path=Path(p.__file__).resolve()
+        atomic_path=real_path.with_name("pr113_atomic_migration_preview.py")
+        with mock.patch.dict(sys.modules,{
+                "verification.integrity.workflow_contract":fake}):
+            for label,path in (("legacy_25",real_path),
+                               ("atomic_preview",atomic_path)):
+                spec=importlib.util.spec_from_file_location(
+                    "pr113_v2_import_canary_"+label,path)
+                self.assertIsNotNone(spec)
+                candidate=importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(candidate)
+                self.assertTrue(callable(candidate.preview if
+                        label=="atomic_preview" else candidate.audit))
+                if label=="atomic_preview":
+                    self.assertEqual(
+                        candidate.preview.__kwdefaults__["old_audit"],None)
+        self.assertFalse(hasattr(fake,"APPROVED_WORKFLOWS"))
 
     def test_fake_owner_authorization_in_staged_manifest_rejected(self):
         approved,files,tree=fixture()

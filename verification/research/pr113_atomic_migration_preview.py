@@ -16,8 +16,9 @@ import re
 import subprocess
 import sys
 
-from verification.integrity.workflow_contract import APPROVED_WORKFLOWS
-from pr113_successor_workflow_profile import audit as old_staged_audit
+# Historical 25-SHA256 workflow authority is resolved lazily from the actual
+# pinned Git source. Neither current v2 installed contract nor its namespace
+# can supply (or impersonate) the immutable original 25-workflow allowlist.
 
 ROOT = Path(__file__).resolve().parents[2]
 OLD = "docs/operations/pr113_unapproved_workflows/manifest.json"
@@ -67,10 +68,24 @@ def git_blob_oid(blob):
     return hashlib.sha1(payload).hexdigest()
 
 
-def preview(head, *, git=git, old_audit=old_staged_audit):
+def preview(head, *, git=git, old_audit=None):
     need(isinstance(head,str) and SHA.fullmatch(head) and
          git("rev-parse","HEAD")==head,
          "virtual activation must bind one real, original preactivation H")
+    # Fail closed if someone reuses this PREACTIVATION reviewer on the actual
+    # installed-30 tree, even if an injected old audit would claim otherwise.
+    active=git("ls-tree","-r","--name-only",head,"--",".github/workflows")
+    original_paths=active.splitlines()
+    need(len(original_paths)==25
+         and len(set(original_paths))==25
+         and all(re.fullmatch(r"\.github/workflows/[A-Za-z0-9_.-]+\.ya?ml",p)
+                 for p in original_paths),
+         "virtual original 25-source preview cannot evaluate installed30")
+    from pr113_successor_workflow_profile import (
+        audit as authentic_old_audit, authenticated_historical_25,
+    )
+    if old_audit is None:
+        old_audit=authentic_old_audit
     original=old_audit(head)
     need(original.get("status") ==
          "EXACT_25_PLUS_5_SOURCE_PROFILE_CANDIDATE_NOT_ACTIVATED" and
@@ -78,7 +93,11 @@ def preview(head, *, git=git, old_audit=old_staged_audit):
          original.get("successor_proposal_count")==5,
          "original 25+5 source review profile not valid")
     original_members={}
-    for name,hash_value in sorted(APPROVED_WORKFLOWS.items()):
+    historical_allowlist=authenticated_historical_25(head)
+    need(set(original_paths) ==
+         {".github/workflows/"+name for name in historical_allowlist},
+         "original 25-workflow membership diverged from frozen Git history")
+    for name,hash_value in sorted(historical_allowlist.items()):
         path=".github/workflows/"+name
         data=raw(head,path,git=git)
         need(digest(data)==hash_value and

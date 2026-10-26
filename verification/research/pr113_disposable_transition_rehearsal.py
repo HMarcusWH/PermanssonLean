@@ -268,6 +268,7 @@ def run_installed_workflow_suite(checkout, evidence):
 ACTIVE_30_SUITES=(
     "test_pr113_tooling_migration_v2.py",
     "test_pr113_a2_successor_identity_v2.py",
+    "test_pr113_successor_workflow_profile.py",
     "test_pr113_atomic_migration_preview.py",
     "test_pr113_v2_workflow_contract_preview.py",
     "test_pr113_full_required_workflow_preview.py",
@@ -317,8 +318,35 @@ def run_active_30_regressions(checkout, evidence_dir):
                 and "FAILED (" not in output
                 and "skipped=" not in output
                 and "expected failures=" not in output)
-        need(passed,"authentic active30 regression failed: "+filename+
-             "\n"+output[-1700:])
+        if not passed:
+            # This receipt is only a diagnostic of FAILED local execution.
+            # It cannot impersonate GitHub CI or confer review/activation.
+            failure={
+                "format":"Permansson.PR113.Active30RegressionFailure.v1",
+                "status":"FAIL_CLOSED",
+                "checked_sha":scalar(checkout,"rev-parse","HEAD"),
+                "failed_suite":filename,
+                "failed_returncode":process.returncode,
+                "failed_output_sha256":hashlib.sha256(
+                    output.encode("utf-8")).hexdigest(),
+                "earlier_executed_suites":receipts,
+                "github_required_ci_authenticated":False,
+                "independent_security_review":False,
+                "owner_activation_authorized":False,
+                "mathematical_acceptance":False,
+            }
+            failure_path=evidence_dir/"FAILURE_ONLY.json"
+            with failure_path.open("x",encoding="utf-8") as f:
+                json.dump(failure,f,sort_keys=True,indent=2)
+                f.write("\n")
+            print("PR113_ACTIVE30_FAILURE_RECEIPT_BEGIN",
+                  file=sys.stderr)
+            print(json.dumps(failure,sort_keys=True),file=sys.stderr)
+            print("PR113_ACTIVE30_FAILURE_RECEIPT_END",
+                  file=sys.stderr)
+            raise RehearsalError(
+                "authentic active30 regression failed: "+filename+
+                "\n"+output[-1700:])
         receipts.append({
             "source_test":filename,
             "status":"PASS_EXECUTED",
@@ -328,7 +356,7 @@ def run_active_30_regressions(checkout, evidence_dir):
          "active30 regressions changed committed source")
     return {
         "format":"Permansson.PR113.Active30RegressionRehearsal.v1",
-        "status":"SEVEN_REAL_ACTIVE30_SUITES_PASSED_UNREVIEWED",
+        "status":"EIGHT_REAL_ACTIVE30_SUITES_PASSED_UNREVIEWED",
         "checked_sha":scalar(checkout,"rev-parse","HEAD"),
         "executed_suites":receipts,
         "independent_security_review":False,

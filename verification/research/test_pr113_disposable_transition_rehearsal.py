@@ -44,8 +44,8 @@ class RealDisposableRehearsalTests(unittest.TestCase):
             self.assertFalse(result["current30_local_suite_is_required_CI"])
             regression=result["current30_phase_aware_regressions"]
             self.assertEqual(regression["status"],
-                             "SEVEN_REAL_ACTIVE30_SUITES_PASSED_UNREVIEWED")
-            self.assertEqual(len(regression["executed_suites"]),7)
+                             "EIGHT_REAL_ACTIVE30_SUITES_PASSED_UNREVIEWED")
+            self.assertEqual(len(regression["executed_suites"]),8)
             self.assertEqual(regression["checked_sha"],
                              result["disposable_current_source_commit"])
             self.assertTrue(all(x["status"]=="PASS_EXECUTED"
@@ -92,6 +92,15 @@ class RealDisposableRehearsalTests(unittest.TestCase):
         self.assertEqual(before,rehearsal.scalar(ROOT,"rev-parse","HEAD"))
         self.assertFalse(rehearsal.run(
             ROOT,"status","--porcelain=v1","--untracked-files=all"))
+
+    def test_active_30_rehearsal_requires_both_legacy_import_consumers(self):
+        actual=rehearsal.ACTIVE_30_SUITES
+        self.assertEqual(len(actual),8)
+        self.assertEqual(len(set(actual)),8)
+        self.assertIn("test_pr113_successor_workflow_profile.py",actual)
+        self.assertIn("test_pr113_atomic_migration_preview.py",actual)
+        self.assertIn("test_pr113_tooling_migration_v2.py",actual)
+        self.assertIn("test_pr113_a2_successor_identity_v2.py",actual)
 
     def test_foreign_or_nonexistent_head_never_creates_temporary_checkout(self):
         with tempfile.TemporaryDirectory(prefix="pr113-report-outside-") as temp:

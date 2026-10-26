@@ -27,6 +27,11 @@ class AtomicMigrationPreviewTests(unittest.TestCase):
             self.assertEqual(actual["current_reviewed_workflow_count"],30)
             self.assertEqual(actual["retained_historical_count"],23)
             self.assertFalse(actual["independent_security_review"])
+            # The old preview must never reclassify a genuinely installed
+            # current-30 checkout as the historical 25-source predecessor.
+            with self.assertRaisesRegex(preview.TransitionError,
+                                        "virtual original 25-source preview"):
+                preview.preview(H)
             return
         actual=preview.preview(H)
         self.assertEqual(actual["proposed_total_workflows"],30)

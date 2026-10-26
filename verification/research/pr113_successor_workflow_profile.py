@@ -8,6 +8,7 @@ review dossier. It never edits .github/workflows or relaxes historical T/A2.
 from __future__ import annotations
 
 import argparse
+import ast
 import hashlib
 import json
 from pathlib import Path
@@ -24,7 +25,12 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from release_target import B113, T
-from verification.integrity.workflow_contract import APPROVED_WORKFLOWS
+# Do NOT import the current workflow contract: the independently staged v2
+# replacement intentionally removes the historical APPROVED_WORKFLOWS symbol.
+# The 25-source contract is instead parsed from its immutable actual Git blob.
+HISTORICAL_25_HEAD = "5189f0c4a0db7535d57a9ff2a7aef6a3e76191b6"
+HISTORICAL_CONTRACT = "verification/integrity/workflow_contract.py"
+HISTORICAL_CONTRACT_BLOB = "f8fa8196a7a0e33d2f218faa0ba570c09aac9a3a"
 MANIFEST = "docs/operations/pr113_unapproved_workflows/manifest.json"
 FORMAT = "Permansson.PR113.SuccessorWorkflowProfile.v1"
 PATH = re.compile(r"^\.github/workflows/[a-zA-Z0-9_.-]+\.ya?ml$")
@@ -72,6 +78,117 @@ def git_bytes(head, path=None, *, op=None):
     return proc.stdout
 
 
+
+def parse_historical_25_contract(source):
+    """Read exactly the historical 25 SHA-256 pins; never execute old Python.
+
+    The original source uses one named SHA-256 literal for the Research
+    integrity workflow and 24 additional string literals. Every other AST
+    expression and all duplicate names are rejected, rather than evaluated.
+    """
+    need(type(source) is bytes and 0<len(source)<=200_000,
+         "invalid bounded historical integrity-contract source")
+    try:
+        parsed=ast.parse(source.decode("utf-8", "strict"),
+                         filename=HISTORICAL_CONTRACT)
+    except (UnicodeError,SyntaxError,ValueError) as exc:
+        raise ProfileError("historical 25-source contract cannot be parsed") from exc
+    relevant={}
+    for stmt in parsed.body:
+        if isinstance(stmt,ast.Assign):
+            for target in stmt.targets:
+                if isinstance(target,ast.Name) and target.id in (
+                    "APPROVED_WORKFLOW_SHA256","APPROVED_WORKFLOWS"):
+                    need(len(stmt.targets)==1 and target.id not in relevant,
+                         "historical workflow binding duplicated or reassigned")
+                    relevant[target.id]=stmt.value
+        elif isinstance(stmt,(ast.AnnAssign,ast.AugAssign)):
+            target=stmt.target
+            if isinstance(target,ast.Name) and target.id in (
+                "APPROVED_WORKFLOW_SHA256","APPROVED_WORKFLOWS"):
+                raise ProfileError("historical workflow binding mutated")
+    singleton=relevant.get("APPROVED_WORKFLOW_SHA256")
+    need(isinstance(singleton,ast.Constant)
+         and type(singleton.value) is str
+         and re.fullmatch(r"[0-9a-f]{64}",singleton.value) is not None,
+         "historical Research integrity SHA-256 constant unavailable")
+    table=relevant.get("APPROVED_WORKFLOWS")
+    need(isinstance(table,ast.Dict) and len(table.keys)==25,
+         "historical 25-source SHA-256 allowlist not a literal dictionary")
+    values={}
+    for key,value in zip(table.keys,table.values):
+        need(isinstance(key,ast.Constant) and type(key.value) is str
+             and re.fullmatch(r"[A-Za-z0-9_.-]+\.ya?ml",key.value)
+                 is not None
+             and key.value not in values,
+             "historical 25-workflow label absent, invalid, or duplicated")
+        if isinstance(value,ast.Name):
+            need(value.id=="APPROVED_WORKFLOW_SHA256",
+                 "historical workflow digest depends on other Python code")
+            hexdigest=singleton.value
+        else:
+            need(isinstance(value,ast.Constant) and type(value.value) is str,
+                 "historical workflow digest not a fixed SHA-256 literal")
+            hexdigest=value.value
+        need(re.fullmatch(r"[0-9a-f]{64}",hexdigest) is not None,
+             "historical workflow identity must be 64-digit SHA-256, not Git OID")
+        values[key.value]=hexdigest
+    need(len(values)==25 and
+         values.get("research-integrity.yml")==singleton.value,
+         "original 25-source historical manifest membership changed")
+    return values
+
+
+def authenticated_historical_25(head=None):
+    """Authenticate the actual immutable historical Git tree and contract.
+
+    A supplied head must descend from the frozen preactivation source.
+    This loader is separate from installed integrity contracts: old 25 SHA256
+    identities must never be substituted by successor 30 Git blob OIDs.
+    """
+    if head is not None:
+        need(isinstance(head,str) and SHA.fullmatch(head),
+             "noncanonical current source for historical profile")
+        git_bytes(head,op=("merge-base","--is-ancestor",HISTORICAL_25_HEAD,head))
+    raw=git_bytes(HISTORICAL_25_HEAD,HISTORICAL_CONTRACT)
+    oid=git_bytes(HISTORICAL_25_HEAD,op=(
+        "rev-parse",HISTORICAL_25_HEAD+":"+HISTORICAL_CONTRACT
+    )).decode("ascii","strict").strip()
+    need(oid==HISTORICAL_CONTRACT_BLOB and git_blob_oid(raw)==oid,
+         "frozen 25-source integrity contract Git blob byte identity changed")
+    approved=parse_historical_25_contract(raw)
+    tree=git_bytes(HISTORICAL_25_HEAD,op=(
+        "ls-tree","-r","-z",HISTORICAL_25_HEAD,"--",".github/workflows"
+    ))
+    need(tree.endswith(b"\0"),"historical workflow tree missing Git terminator")
+    seen={}
+    for record in tree[:-1].split(b"\0"):
+        try:
+            meta,path=record.split(b"\t",1)
+            mode,kind,entry_oid=meta.decode("ascii").split()
+            filename=path.decode("utf-8","strict")
+        except (UnicodeError,ValueError) as exc:
+            raise ProfileError("historical workflow Git tree record malformed") from exc
+        need(mode=="100644" and kind=="blob"
+             and re.fullmatch(r"[0-9a-f]{40}",entry_oid)
+             and filename.startswith(".github/workflows/")
+             and filename.count("/")==2,
+             "frozen 25-source tree member or Git mode unexpected")
+        name=filename.removeprefix(".github/workflows/")
+        need(name in approved and name not in seen,
+             "unexpected or duplicated original workflow Git entry")
+        seen[name]=entry_oid
+    need(set(seen)==set(approved) and len(seen)==25,
+         "historical tree does not contain exactly original 25 workflows")
+    for name,expected_digest in approved.items():
+        path=".github/workflows/"+name
+        content=git_bytes(HISTORICAL_25_HEAD,path)
+        need(git_blob_oid(content)==seen[name]
+             and digest(content)==expected_digest,
+             "immutable historical workflow byte SHA-256 differs: "+name)
+    return approved
+
+
 def audit(head, *, read=None, tree=None, approved=None):
     need(isinstance(head,str) and SHA.fullmatch(head),
          "unknown candidate H identity")
@@ -81,7 +198,7 @@ def audit(head, *, read=None, tree=None, approved=None):
         tree=lambda:git_bytes(head,op=(
             "ls-tree","-r","--name-only",head,"--",".github/workflows"))
     if approved is None:
-        approved=APPROVED_WORKFLOWS
+        approved=authenticated_historical_25(head)
     need(isinstance(approved,dict) and len(approved)==25,
          "original 25 required workflow hash contract missing")
     active_paths={p.decode("utf-8") for p in tree().splitlines()}
