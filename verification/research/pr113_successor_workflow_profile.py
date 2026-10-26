@@ -63,9 +63,20 @@ def git_bytes(head, path=None, *, op=None):
     if op is not None:
         args=list(op)
     else:
-        need(isinstance(path,str) and
-             (path.startswith(".github/workflows/") or
-              path.startswith(STAGED_PREFIX)),
+        # One immutable historical Python source is the ONLY non-workflow
+        # exception. Never borrow the same path from current H or another
+        # commit, and never admit prefix lookalikes or Git revspec injection.
+        need(type(head) is str and SHA.fullmatch(head) is not None and
+             type(path) is str,
+             "untrusted workflow source path")
+        workflow_path=PATH.fullmatch(path) is not None
+        staged_name=(path[len(STAGED_PREFIX):]
+                     if path.startswith(STAGED_PREFIX) else "")
+        staged_path=(bool(staged_name) and
+                     re.fullmatch(r"[A-Za-z0-9_.-]+",staged_name) is not None)
+        historical_contract_only=(
+            head==HISTORICAL_25_HEAD and path==HISTORICAL_CONTRACT)
+        need(workflow_path or staged_path or historical_contract_only,
              "untrusted workflow source path")
         args=["show",head+":"+path]
     try:

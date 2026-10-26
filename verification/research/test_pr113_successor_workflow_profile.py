@@ -204,6 +204,54 @@ class WorkflowProfileTests(unittest.TestCase):
                                         "Git mode unexpected"):
                 p.authenticated_historical_25()
 
+    def test_historical_python_contract_only_at_exact_original_git_commit(self):
+        historical=p.HISTORICAL_25_HEAD
+        contract=p.HISTORICAL_CONTRACT
+        current=p.git_bytes("HEAD",op=("rev-parse","HEAD")).decode().strip()
+        self.assertNotEqual(current,historical)
+        raw=p.git_bytes(historical,contract)
+        self.assertTrue(raw.startswith(b'"""'))
+        self.assertEqual(p.git_blob_oid(raw),p.HISTORICAL_CONTRACT_BLOB)
+        bad=(
+            (current,contract),
+            ("a"*40,contract),
+            ("HEAD",contract),
+            (historical,"verification/integrity/other.py"),
+            (historical,"verification/integrity/tests/test_workflow.py"),
+            (historical,"verification/integrity/workflow_contract.py/extra"),
+            (historical,"verification/integrity/../integrity/workflow_contract.py"),
+            (historical,"/verification/integrity/workflow_contract.py"),
+            (historical,"verification\\integrity\\workflow_contract.py"),
+            (historical,"verification/integrity/workflow_contract.py:HEAD"),
+            (historical,".github/workflows/../research-lean.yml"),
+            (historical,".github/workflows/research-lean.yml:other"),
+            (historical,p.STAGED_PREFIX+"../other.yml"),
+            (historical,p.STAGED_PREFIX+"subfolder/manifest.json"),
+            (historical,p.STAGED_PREFIX+"manifest.json\\other"),
+            (historical,".github/workflows/evil.yml\\suffix"),
+        )
+        for head,path in bad:
+            with self.subTest(head=head,path=path),self.assertRaisesRegex(
+                    p.ProfileError,"untrusted workflow source path"):
+                p.git_bytes(head,path)
+        self.assertTrue(p.git_bytes(historical,
+             ".github/workflows/research-lean.yml"))
+        self.assertTrue(p.git_bytes(current,p.MANIFEST))
+
+    def test_historical_contract_does_not_accept_dynamic_alias_or_prefix(self):
+        historical=p.HISTORICAL_25_HEAD
+        old=p.git_bytes(historical,p.HISTORICAL_CONTRACT)
+        self.assertEqual(len(p.parse_historical_25_contract(old)),25)
+        for forged in (
+            old.replace(b"APPROVED_WORKFLOWS = {",
+                        b"APPROVED_WORKFLOWS = dict({",1),
+            old.replace(b"APPROVED_WORKFLOWS = {",
+                        b"APPROVED_WORKFLOWS += {",1),
+        ):
+            with self.subTest(forged_digest=p.digest(forged)),self.assertRaises(
+                    p.ProfileError):
+                p.parse_historical_25_contract(forged)
+
     def test_legacy_modules_import_with_current_v2_only_namespace(self):
         """An installed 30 Git-OID contract may not masquerade as 25 SHA256s."""
         fake=types.ModuleType("verification.integrity.workflow_contract")
