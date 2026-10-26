@@ -122,6 +122,68 @@ class ActualSourceProducerCatalogTests(unittest.TestCase):
             self.assertEqual(json.loads(
                 (path/"original21_catalog.json").read_text())["head_sha"],H)
 
+    def test_authentic_frozen_head_manual_dispatch_is_a_producer(self):
+        """workflow_dispatch is an original GH run, not manual approval."""
+        checks, runs, jobs, artifacts, binary = fixture()
+        for run in runs.values():
+            run["event"] = "workflow_dispatch"
+
+        def pages(path, *, key):
+            if path.startswith("/commits/"):
+                return checks
+            run_id = int(path.split("/")[3])
+            return jobs[run_id] if key == "jobs" else artifacts[run_id]
+
+        def details(path):
+            return runs[int(path.split("/")[-1])]
+
+        with tempfile.TemporaryDirectory(prefix="perm-dispatched21-") as td:
+            output = Path(td) / "unreviewed"
+            with mock.patch.object(source, "git_head", return_value=H):
+                report = source.collect(
+                    H, output, checks=checks, lookup=details,
+                    paginate_source=pages, download=lambda aid: binary[aid])
+            self.assertEqual(len(report["artifacts"]), 21)
+            self.assertFalse(report["independent_case_review"])
+            self.assertEqual(len(list(output.glob("*.zip"))), 21)
+            self.assertEqual(
+                json.loads((output/"original21_catalog.json").read_bytes())
+                ["head_sha"], H)
+
+    def test_dispatch_still_rejects_foreign_event_head_and_branch(self):
+        checks, runs, jobs, artifacts, binary = fixture()
+        first = checks[0]
+        run_id = int(source.RUN_URL.fullmatch(
+            first["details_url"]).group(1))
+        key = next(k for k, value in source.classify_latest(
+            checks, H).items() if value is first)
+        kind, shard = key
+        valid = dict(runs[run_id], event="workflow_dispatch")
+        candidate = source.validate_run_job_artifact(
+            head=H, kind=kind, shard=shard, check=first,
+            run=valid, jobs=jobs[run_id], artifacts=artifacts[run_id])
+        self.assertEqual(candidate["run_id"], run_id)
+        self.assertEqual(candidate["kind"], kind)
+        for mutation in (
+            lambda p: p.update(event="repository_dispatch"),
+            lambda p: p.update(event="pull_request"),
+            lambda p: p.update(event="schedule"),
+            lambda p: p.update(event=None),
+            lambda p: p.update(head_sha="0" * 40),
+            lambda p: p.update(head_branch="main"),
+            lambda p: p.update(path=".github/workflows/research-lean.yml"),
+            lambda p: p.update(conclusion="failure"),
+            lambda p: p.update(run_attempt=3),
+        ):
+            with self.subTest(mutation=mutation):
+                wrong = dict(valid)
+                mutation(wrong)
+                with self.assertRaises(source.DiscoveryError):
+                    source.validate_run_job_artifact(
+                        head=H, kind=kind, shard=shard, check=first,
+                        run=wrong, jobs=jobs[run_id],
+                        artifacts=artifacts[run_id])
+
     def test_wrong_artifact_digest_aborts_without_output(self):
         checks,runs,jobs,artifacts,binary=fixture()
         def pagination(path,*,key):

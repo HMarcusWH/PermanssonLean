@@ -84,10 +84,15 @@ def validate_run_job_artifact(*, head, kind, shard, check,
     match=RUN_URL.fullmatch(link) if isinstance(link,str) else None
     require(match is not None, "GitHub check is missing original run URL")
     run_id=int(match.group(1))
+    # The immutable original 4+9+8 workflows have narrow push path filters,
+    # but all three also expose manual workflow_dispatch. After exact source
+    # freeze they must be reproducible at the SAME H without editing a
+    # workflow or manufacturing a triggering source commit. Both event types
+    # still require original head/branch/workflow/job/attempt/artifact binding.
     require(run.get("id")==run_id and
             run.get("head_sha")==head and
             run.get("head_branch")=="research/final-mathematical-closure" and
-            run.get("event")=="push" and
+            run.get("event") in ("push","workflow_dispatch") and
             run.get("status")=="completed" and
             run.get("conclusion")=="success" and
             type(run.get("run_attempt")) is int and run["run_attempt"]>0 and
