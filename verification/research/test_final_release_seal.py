@@ -195,6 +195,30 @@ class ApprovedSealByteTests(unittest.TestCase):
                 archive, sidecar,
                 Path(self.tmp.name) / "tampered" / "replay.json")
 
+    def test_partial_additional_evidence_inputs_fail_before_seal(self):
+        approved = Path(self.tmp.name) / "approved.json"
+        receipts = Path(self.tmp.name) / "receipts.json"
+        approved.write_text(json.dumps(self.approved))
+        receipts.write_text(json.dumps(self.receipts))
+        args = [
+            "--draft-dir", str(self.draft),
+            "--approved-claim-manifest", str(approved),
+            "--source-receipts", str(receipts),
+            "--bundle", str(self.external_bundle),
+            "--out", str(self.output),
+        ]
+        fields = ("--additional-contract", "--additional-zips",
+                  "--workflow-blob-candidates")
+        for flags in ((fields[0],), fields[:2], (fields[2],)):
+            with self.subTest(flags=flags), mock.patch.object(
+                    seal, "seal") as actual_seal:
+                test_args = list(args)
+                for flag in flags:
+                    test_args.extend((flag, str(self.draft)))
+                self.assertEqual(seal.main(test_args), 2)
+                actual_seal.assert_not_called()
+                self.assertFalse(self.output.exists())
+
     def test_full_seal_uses_preseal_not_the_circular_full_gate(self):
         from final_closure_full_contract import ORIGINAL_CLAIMS
         approved = dict(self.approved, claims=sorted(ORIGINAL_CLAIMS),

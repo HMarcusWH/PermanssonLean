@@ -368,13 +368,18 @@ def main(argv=None):
             "zip_file": args.reproduction_zip,
             "identities": json.loads(args.reproduction_ids.read_bytes())}
             if args.reproduction_zip else None)
+        extra_inputs = (args.additional_contract, args.additional_zips,
+                        args.workflow_blob_candidates)
+        if any(x is not None for x in extra_inputs) and not all(
+                x is not None for x in extra_inputs):
+            raise SealError(
+                "additional source-control evidence requires all three "
+                "contract, owner ZIP and workflow-source inputs")
         additional = ({
             "additional_contract": args.additional_contract,
             "additional_zips": args.additional_zips,
             "workflow_blob_candidates": args.workflow_blob_candidates}
-            if all(x is not None for x in (
-                args.additional_contract, args.additional_zips,
-                args.workflow_blob_candidates)) else None)
+            if all(x is not None for x in extra_inputs) else None)
         if args.full and additional is None:
             raise SealError("full candidate seal requires authenticated 76-owner v3.1 source inputs")
         outcome = seal(args.draft_dir, approved, receipts,

@@ -67,6 +67,54 @@ class MatrixTests(unittest.TestCase):
         r=m.produce(H,files.__getitem__)
         self.assertEqual(len(r["case_source_missing"]),45)
 
+    def test_nested_or_conditionally_hidden_method_cannot_cover_case(self):
+        files = fake_tree()
+        path = "verification/research/test_actual.py"
+        originals = (
+            b"def helper():\n    def test_real():\n        pass\n",
+            b"if False:\n    def test_real():\n        pass\n",
+            b"class Test(unittest.TestCase):\n"
+            b"    def helper(self):\n"
+            b"        def test_real():\n"
+            b"            pass\n",
+        )
+        for raw in originals:
+            with self.subTest(source=raw[:35]):
+                files[path] = raw
+                report = m.produce(H, files.__getitem__)
+                self.assertEqual(len(report["case_source_missing"]), 45)
+                self.assertEqual(
+                    report["cases"][0]["candidate_tests"][0]["source_status"],
+                    "MISSING_SOURCE_OR_METHOD")
+
+    def test_top_level_pytest_and_unittest_methods_remain_candidates(self):
+        for source_text in (
+            "def test_real():\n    assert True\n",
+            "import unittest\nclass Test(unittest.TestCase):\n"
+            "    def test_real(self):\n        self.assertTrue(True)\n",
+        ):
+            with self.subTest(source=source_text[:22]):
+                files = fake_tree()
+                files["verification/research/test_actual.py"] = (
+                    source_text.encode())
+                report = m.produce(H, files.__getitem__)
+                self.assertFalse(report["case_source_missing"])
+                self.assertEqual(
+                    report["cases"][0]["candidate_tests"][0]["source_status"],
+                    "DISCOVERED_UNREVIEWED")
+                self.assertEqual(report["independently_accepted_cases"], 0)
+
+    def test_duplicate_top_level_methods_are_ambiguous(self):
+        files = fake_tree()
+        files["verification/research/test_actual.py"] = (
+            b"class First:\n    def test_real(self): pass\n"
+            b"class Second:\n    def test_real(self): pass\n")
+        report = m.produce(H, files.__getitem__)
+        self.assertEqual(len(report["case_source_missing"]), 45)
+        self.assertEqual(
+            report["cases"][0]["candidate_tests"][0]["source_status"],
+            "AMBIGUOUS_UNREVIEWED")
+
     def test_original_requirement_mutation_blocks_matrix(self):
         files=fake_tree()
         raw=json.loads(files[m.CASE_MAP])

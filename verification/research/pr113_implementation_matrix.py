@@ -98,9 +98,18 @@ def method_candidates(routes, read):
             raw = read(path)
             digest = sha(raw)
             tree = ast.parse(raw.decode("utf-8"))
-            funcs = [n for n in ast.walk(tree)
-                     if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
-                     and n.name == name]
+            # ast.walk() also finds nested, conditionally hidden functions
+            # that unittest discovery will never execute. Route discovery
+            # may inspect only module-level tests or direct methods of
+            # module-level classes; execution still requires real CI logs.
+            functions = (ast.FunctionDef, ast.AsyncFunctionDef)
+            funcs = [n for n in tree.body
+                     if isinstance(n, functions) and n.name == name]
+            funcs += [method for cls in tree.body
+                      if isinstance(cls, ast.ClassDef)
+                      for method in cls.body
+                      if isinstance(method, functions)
+                      and method.name == name]
             if len(funcs) == 1:
                 status = "DISCOVERED_UNREVIEWED"
             elif len(funcs) > 1:
