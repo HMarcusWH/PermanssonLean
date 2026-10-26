@@ -21,7 +21,8 @@ import localized_prefix_support as original
 
 FORMAT = "Permansson.PR113.A2SuccessorIdentityCandidate.v2"
 SHA = re.compile(r"^[0-9a-f]{40}$")
-# The exact twelve already-changed former baseline files. No wildcard grants.
+# Exactly twelve providers present in PR79 BASE and modified at current source.
+# The later-introduced A2 test is protected under a different historical anchor.
 PINNED_MODIFIED_PROVIDERS = {
     ".github/workflows/application.yml": "bdd02d48265e08f8cb94b7402da56da9c8e3ec9d",
     ".github/workflows/e1-approx-quotient-smoke.yml": "11bba31567059d968133a513c78b9103e43418fc",
@@ -35,9 +36,15 @@ PINNED_MODIFIED_PROVIDERS = {
     "verification/integrity/tests/test_workflow.py": "50986f09407c9b4ef6a5e9b777898e2e1f640dcd",
     "verification/integrity/workflow_contract.py": "ac0e2820b2bdf9290cffc4b3f6900c1d805de61a",
     "verification/research/test_paper_x1_lean_closure.py": "2ee078c86c58b5e577597acfc3ae950e4028ebac",
-    "verification/research/test_localized_prefix_compiler.py": "8bc0fdd8ae3442844187db6f5787d22011dd899a",
 }
-# These inherited verifier binaries themselves are preserved exactly.
+# This historical test did NOT exist at PR79 BASE. The real A2 introducer
+# committed its original source; an approved 30-workflow cutover changes it.
+LATE_A2_TEST = "verification/research/test_localized_prefix_compiler.py"
+LATE_A2_TEST_PROPOSED_BLOB = "8bc0fdd8ae3442844187db6f5787d22011dd899a"
+LATE_A2_TEST_ORIGINAL_BLOB = "c0f49038ea9b590720c78be85968eb63f5ac820f"
+HISTORICAL_A2_INTRODUCER = "f71a76032b169aac7bfe0694aa715339a94d4e05"
+
+# Preserve original A2 executor and support source byte-for-byte.
 INHERITED_A2_VERIFIERS = {
     "verification/research/localized_prefix_support.py": "93462e9546ba494e8384d75ce49ff9020f831216",
     "verification/research/localized_prefix_gate.py": "6f15dca74895e59a4d4bfcb54d38b471a1798be3",
@@ -52,6 +59,10 @@ def demand(ok: bool, message: str) -> None:
 def reconcile(old: dict, current: dict) -> dict:
     """Reviewable pure Git-tree delta gate, never a blob-prefix wildcard."""
     demand(set(old) <= set(current), "historical provider deleted")
+    demand(LATE_A2_TEST not in old,
+           "forged PR79 baseline membership for later-introduced A2 test")
+    demand(current.get(LATE_A2_TEST) == ("100644", LATE_A2_TEST_PROPOSED_BLOB),
+           "late-introduced A2 test was not replaced by exact reviewed blob")
     modified = {p for p in old if old[p] != current[p]}
     exceptions = original.REVIEWABLE_DOCUMENTATION | {"PermanssonResearch.lean"}
     demand(modified - exceptions == set(PINNED_MODIFIED_PROVIDERS),
@@ -76,6 +87,10 @@ def reconcile(old: dict, current: dict) -> dict:
     return {
         "modified_old_provider_paths": sorted(modified),
         "pinned_successor_provider_paths": sorted(PINNED_MODIFIED_PROVIDERS),
+        "late_introduced_A2_test": LATE_A2_TEST,
+        "late_A2_original_introducer": HISTORICAL_A2_INTRODUCER,
+        "late_A2_original_blob": LATE_A2_TEST_ORIGINAL_BLOB,
+        "late_A2_proposed_blob": LATE_A2_TEST_PROPOSED_BLOB,
         "reviewable_documentation_paths": sorted(
             modified & original.REVIEWABLE_DOCUMENTATION),
         "accepted_a2_proof_blobs": len(original.ACCEPTED_A2_PROOF_BLOBS),
@@ -166,6 +181,12 @@ def audit(repo: Path, head: str) -> dict:
                              original.BASE + "^{tree}") == original.BASE_TREE,
            "historical PR79 source/tree identity changed")
     original.git_bytes(repo, "merge-base", "--is-ancestor", original.BASE, head)
+    original.git_bytes(
+        repo, "merge-base", "--is-ancestor", HISTORICAL_A2_INTRODUCER, head)
+    demand(original.git_text(
+        repo,"rev-parse",HISTORICAL_A2_INTRODUCER+":"+LATE_A2_TEST)
+        == LATE_A2_TEST_ORIGINAL_BLOB,
+        "actual historical A2 introducer test Git blob changed")
     demand(not original.git_bytes(repo, "status", "--porcelain=v1",
                                   "--untracked-files=all"),
            "successor source has tracked or untracked modifications")
@@ -177,8 +198,14 @@ def audit(repo: Path, head: str) -> dict:
     # Exact active 30-workflow trust surface, including the staged A2 test,
     # must be present. A 25-file source is never a successor A2 certificate.
     from pr113_workflow_profile_v2 import audit as versioned_profile
-    source_profile = versioned_profile(repo, head, phase="active")
-    demand(source_profile["current_reviewed_workflow_count"] == 30 and
+    # H is the reviewed source; checked is the actual checkout. In required
+    # PR CI checked may be the genuine ordered [B113,H] synthetic merge S.
+    # check_checkout_identity already proves identical trees and parents.
+    source_profile = versioned_profile(repo, checked, phase="active")
+    demand(source_profile["head_sha"] == checked and
+           original.git_text(repo, "rev-parse", checked + "^{tree}") == current_tree and
+           original.git_text(repo, "rev-parse", head + "^{tree}") == current_tree and
+           source_profile["current_reviewed_workflow_count"] == 30 and
            source_profile["independent_security_review"] is False,
            "A2 successor did not authenticate exact active 30-workflow bytes")
     verify_root(repo, old, current)

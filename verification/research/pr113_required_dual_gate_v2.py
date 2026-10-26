@@ -135,7 +135,13 @@ def verify(input_envelope, t_zip, a2_zip, *, env=None, git=None,
         historical_gate=historical.check_historical_only
     source=historical_gate(input_envelope,t_zip,a2_zip)
     need(isinstance(source,dict) and
-         source.get("status") ==
+         source.get("format") ==
+             "Permansson.PR113.HistoricalDualRequiredSourceReceipt.v2"
+         and source.get("historical_original_workflow_count")==25
+         and source.get("current_reviewed_workflow_count")==30
+         and isinstance(source.get("workflow_profile_sha256"),str)
+         and len(source["workflow_profile_sha256"])==64
+         and source.get("status") ==
              "HISTORICAL_T_AND_A2_GENUINE_WITH_INDEPENDENT_SECURITY_REVIEW"
          and source.get("source_head")==context["head_sha"]
          and source.get("historical_source_and_security_review_authenticated")

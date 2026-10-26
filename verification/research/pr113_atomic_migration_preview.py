@@ -110,6 +110,14 @@ def preview(head, *, git=git, old_audit=old_staged_audit):
     for x in old:
         need(x.get("git_blob_oid")==original_members[x["path"]]["git_blob_oid"],
              "old protected original source hash changed")
+    # A workflow's self-declared manifest SHA cannot stand in for the real
+    # versioned artifact-delivery module's independently committed identity.
+    delivery_path="verification/research/pr113_historical_artifact_delivery_v2.py"
+    delivery=raw(head,delivery_path,git=git)
+    need(git("rev-parse",head+":"+delivery_path)==git_blob_oid(delivery)
+         and b'FORMAT = "Permansson.PR113.ExactHistoricalArtifactDelivery.v2"' in delivery
+         and b"from pr113_required_dual_gate_v2 import actual_ci_event" in delivery,
+         "v2 artifact delivery source absent, substituted or wired to v1 gate")
     plan=dict(original_members)
     for x in replacements:
         need(isinstance(x,dict) and
@@ -124,7 +132,8 @@ def preview(head, *, git=git, old_audit=old_staged_audit):
              data.startswith(b"name: ") and
              b"pull_request:\n" in data and
              b"push:\n" in data and
-             b"pr113_historical_artifact_delivery.py" in data,
+             data.count(b"pr113_historical_artifact_delivery_v2.py")==1 and
+             b"pr113_historical_artifact_delivery.py" not in data,
              "reviewed mandatory candidate source byte drift")
         plan[x["target"]]={
             "path":x["target"],"sha256":digest(data),

@@ -111,6 +111,49 @@ class AtomicMigrationPreviewTests(unittest.TestCase):
         with self.assertRaises(preview.TransitionError):
             preview.preview(H,old_audit=damaged)
 
+    def test_staged_executables_must_be_exact_v2_even_when_manifest_is_rehashed(self):
+        import hashlib
+        H,_=fake_source()
+        real=preview.git
+        full_path=preview.FULL
+        full=json.loads(preview.raw(H,full_path))
+        for variant in ("v1", "missing", "duplicated"):
+            with self.subTest(variant=variant):
+                candidate=full["full_replacements"][0]
+                staged=candidate["staged_source"]
+                original=preview.raw(H,staged)
+                token=b"pr113_historical_artifact_delivery_v2.py"
+                self.assertEqual(original.count(token),1)
+                if variant=="v1":
+                    source=original.replace(token,b"pr113_historical_artifact_delivery.py")
+                elif variant=="missing":
+                    source=original.replace(token,b"pr113_invalid_transport.py")
+                else:
+                    source=original.replace(token,token+b" # pr113_historical_artifact_delivery_v2.py")
+                altered=json.loads(json.dumps(full))
+                altered["full_replacements"][0]["git_blob_oid"]=preview.git_blob_oid(source)
+                def fake(*args):
+                    if args==("show",H+":"+staged):
+                        return source.decode()
+                    if args==("show",H+":"+full_path):
+                        return json.dumps(altered)+"\n"
+                    return real(*args)
+                with self.assertRaisesRegex(preview.TransitionError,
+                                            "mandatory candidate source byte drift"):
+                    preview.preview(H,git=fake)
+
+    def test_artifact_delivery_module_source_is_checked_independently(self):
+        H,_=fake_source()
+        real=preview.git
+        path="verification/research/pr113_historical_artifact_delivery_v2.py"
+        with self.assertRaisesRegex(preview.TransitionError,
+                                    "v2 artifact delivery source"):
+            def fake(*args):
+                if args==("show",H+":"+path):
+                    return real(*args)+"\n# unsigned transport change\n"
+                return real(*args)
+            preview.preview(H,git=fake)
+
 
 if __name__=="__main__":
     unittest.main()

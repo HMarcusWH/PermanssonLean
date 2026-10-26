@@ -30,7 +30,7 @@ from infrastructure_acceptance_v2 import (
 from release_target import (
     B113, REPOSITORY, BINDING_FORMAT, SHA as SHA40,
 )
-from pr113_required_dual_gate import actual_ci_event
+from pr113_required_dual_gate_v2 import actual_ci_event
 
 ROOT = Path(__file__).resolve().parents[2]
 FORMAT = "Permansson.PR113.ExactHistoricalArtifactDelivery.v2"
@@ -232,7 +232,7 @@ def deliver(context, run_id, reviewer_id, *, git,
              [context["original_base_sha"], context["head_sha"]],
          "GitHub synthetic merge does not use ordered exact B/H parents")
     # Use the true H Git blob; never the potentially modified local worktree.
-    from infrastructure_acceptance import exact_committed_lake_blob
+    from infrastructure_acceptance_v2 import exact_committed_lake_blob
     manifest=exact_committed_lake_blob(context["head_sha"],git=git)
     raw, ids, verified = collect(
         context["head_sha"],run_id,live=live,download=download,
@@ -277,7 +277,7 @@ def deliver_merged(context, run_id, reviewer_id, *, git,
              [B113,context["reviewed_head_sha"]],
          "postmerge historical delivery requires authentic B/H/M")
     H=context["reviewed_head_sha"]
-    from infrastructure_acceptance import exact_committed_lake_blob
+    from infrastructure_acceptance_v2 import exact_committed_lake_blob
     manifest=exact_committed_lake_blob(H,git=git)
     raw,ids,verified=collect(
         H,run_id,live=live,download=download,
@@ -348,7 +348,7 @@ def cli(argv=None):
             result = deliver(context,args.producer_run_id,
                              args.security_review_id,git=source_git)
         elif os.environ.get("GITHUB_EVENT_NAME") == "push":
-            from pr113_historical_postmerge import exact_main_event
+            from pr113_historical_postmerge_v2 import exact_main_event
             context = exact_main_event(git=source_git)
             result = deliver_merged(context,args.producer_run_id,
                                     args.security_review_id,git=source_git)

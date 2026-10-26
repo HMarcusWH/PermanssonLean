@@ -48,12 +48,20 @@ def checked_profile(head, *, git=real_git):
     profile is measured from Git objects; its digest is not a human review.
     """
     checked = git("rev-parse", "HEAD")
-    need(isinstance(checked, str) and len(checked) == 40
-         and git("rev-parse", checked + "^{tree}") ==
+    need(isinstance(checked, str) and len(checked) == 40 and
+         git("cat-file","-t",checked) == "commit" and
+         git("cat-file","-t",head) == "commit",
+         "v2 checkout/H source must be genuine Git commits")
+    if checked != head:
+        need(git("show","-s","--format=%P",checked).split() ==
+                 [release_target.B113,head],
+             "v2 checkout S/M must have exact ordered original B113 and reviewed H")
+    need(git("rev-parse", checked + "^{tree}") ==
              git("rev-parse", head + "^{tree}"),
          "v2 source is not the same exact Git tree as reviewed H")
     result = workflow_audit(ROOT, checked, phase="active")
-    need(result.get("current_reviewed_workflow_count") == 30
+    need(result.get("head_sha") == checked
+         and result.get("current_reviewed_workflow_count") == 30
          and result.get("historical_original_workflow_count") == 25
          and result.get("independent_security_review") is False,
          "current T2 profile cannot be inferred from 25-file evidence")
