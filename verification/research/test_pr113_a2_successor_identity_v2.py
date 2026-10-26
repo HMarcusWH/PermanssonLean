@@ -198,8 +198,11 @@ class SuccessorA2Active30Tests(unittest.TestCase):
                              successor.HISTORICAL_A2_INTRODUCER+":"+
                              successor.LATE_A2_TEST).decode().strip(),
                          successor.LATE_A2_TEST_ORIGINAL_BLOB)
+        phase,report=workflow_profile.audited_source_phase(root,checked)
         self.assertEqual(current[successor.LATE_A2_TEST],
-                         ("100644",successor.LATE_A2_TEST_ORIGINAL_BLOB))
+                         ("100644",successor.LATE_A2_TEST_ORIGINAL_BLOB
+                          if phase=="staged" else
+                          successor.LATE_A2_TEST_PROPOSED_BLOB))
         def committed_json(path):
             return json.loads(git(root,"show",checked+":"+path))
         full=committed_json(workflow_profile.FULL_MANIFEST)
@@ -207,7 +210,6 @@ class SuccessorA2Active30Tests(unittest.TestCase):
         suite=committed_json(workflow_profile.STAGE+"test_workflow_v2_manifest.json")
         historical=committed_json(workflow_profile.STAGE+"manifest.json")
         additions=committed_json(workflow_profile.PROPOSAL_MANIFEST)
-        report=workflow_profile.audit(root,checked,phase="staged")
         self.assertEqual(report["historical_original_workflow_count"],25)
         self.assertEqual(report["current_reviewed_workflow_count"],30)
         self.assertEqual(report["retained_historical_count"],23)
@@ -244,16 +246,24 @@ class SuccessorA2Active30Tests(unittest.TestCase):
                 name=path.removeprefix(".github/workflows/")
                 expected=stage_oid(stage["staged_source"],stage["git_blob_oid"])
                 self.assertEqual(expected,contract["expected_workflow_git_blobs"][name])
-                self.assertEqual(current[path],old25[path],
-                                 "protected active workflow changed preactivation")
+                if phase=="staged":
+                    self.assertEqual(current[path],old25[path],
+                        "original required workflow changed before activation")
+                else:
+                    self.assertEqual(current[path],("100644",expected),
+                        "installed required workflow differs from reviewed staged blob")
                 future[path]=("100644",expected)
             elif path=="verification/integrity/workflow_contract.py":
                 expected=stage_oid(contract["staged_source"],
                                    contract["staged_git_blob_oid"])
+                if phase=="active":
+                    self.assertEqual(current[path],("100644",expected))
                 future[path]=("100644",expected)
             elif path=="verification/integrity/tests/test_workflow.py":
                 expected=stage_oid(suite["staged_test_source"],
                                    suite["staged_test_blob_oid"])
+                if phase=="active":
+                    self.assertEqual(current[path],("100644",expected))
                 future[path]=("100644",expected)
             else:
                 expected=current[path][1]
@@ -275,10 +285,17 @@ class SuccessorA2Active30Tests(unittest.TestCase):
                          successor.LATE_A2_TEST_PROPOSED_BLOB)
         future[successor.LATE_A2_TEST]=(
             "100644",successor.LATE_A2_TEST_PROPOSED_BLOB)
+        if phase=="active":
+            self.assertEqual(current[successor.LATE_A2_TEST],
+                             future[successor.LATE_A2_TEST])
         for added in additions["proposals"]:
             path=added["workflow_path"]
             oid=stage_oid(added["staged_source_path"],added["git_blob_oid"])
-            self.assertNotIn(path,current)
+            if phase=="staged":
+                self.assertNotIn(path,current)
+            else:
+                self.assertEqual(current.get(path),("100644",oid),
+                                 "installed proposed workflow blob differs from stage")
             self.assertNotIn(path,baseline)
             future[path]=("100644",oid)
         for path,oid in frozen.ACCEPTED_A2_PROOF_BLOBS.items():
@@ -290,6 +307,9 @@ class SuccessorA2Active30Tests(unittest.TestCase):
         self.assertEqual(len([p for p in future
             if p.startswith(".github/workflows/") and p.endswith((".yml",".yaml"))]),
             30)
+        if phase=="active":
+            self.assertEqual(current,future,
+                "actual active 30-tree differs from reviewed virtual 30-tree")
         audited=successor.reconcile(baseline,future)
         self.assertEqual(len(audited["pinned_successor_provider_paths"]),12)
         return root,checked,baseline,future,full,contract
@@ -300,6 +320,7 @@ class SuccessorA2Active30Tests(unittest.TestCase):
     def test_each_stale_a2_pin_and_staged_source_substitution_fail_closed(self):
         root,checked,baseline,future,full,contract=(
             self._historically_anchored_virtual_tree())
+        phase=workflow_profile.source_phase(root,checked)
         for path in (".github/workflows/research-integrity.yml",
                      ".github/workflows/research-lean.yml",
                      "verification/integrity/workflow_contract.py"):
@@ -343,4 +364,4 @@ class SuccessorA2Active30Tests(unittest.TestCase):
                  mock.patch.object(workflow_profile,"_json",
                                    side_effect=forged_manifest),\
                  self.assertRaises(workflow_profile.ToolingMigrationError):
-                workflow_profile.audit(root,checked,phase="staged")
+                workflow_profile.audit(root,checked,phase=phase)

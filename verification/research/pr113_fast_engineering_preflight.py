@@ -20,6 +20,15 @@ ROOT = Path(__file__).resolve().parents[2]
 TEST_ROOT = ROOT/"verification/research"
 SOURCE_ROOTS = (TEST_ROOT, ROOT/"release/mathematical-closure-1")
 SUITES = (
+    # The versioned migration and actual detached 30-source CI-06/CI-07
+    # executions must be present before the whole producer may pass.
+    "test_pr113_tooling_migration_v2.py",
+    "test_pr113_a2_successor_identity_v2.py",
+    "test_pr113_disposable_transition_rehearsal.py",
+    "test_pr113_v2_runtime.py",
+    "test_pr113_t2_intake_v2.py",
+    # The actual pinned Lean A2 positive/negative compiler runs in its
+    # separately configured historical-A2 producer job with lean-action.
     "test_pr113_a2_successor_identity.py",
     "test_pr113_dual_a2_compiler.py",
     "test_pr113_dual_tooling_candidate.py",

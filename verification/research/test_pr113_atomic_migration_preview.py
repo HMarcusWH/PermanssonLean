@@ -113,7 +113,34 @@ class AtomicMigrationPreviewTests(unittest.TestCase):
 
     def test_staged_executables_must_be_exact_v2_even_when_manifest_is_rehashed(self):
         import hashlib
-        H,_=fake_source()
+        H,root=fake_source()
+        phase=v2.source_phase(root,H)
+        if phase=="active":
+            original_blob=v2._blob
+            target=".github/workflows/research-lean.yml"
+            origin_oid,origin_source=original_blob(root,H,target)
+            token="pr113_historical_artifact_delivery_v2.py"
+            self.assertEqual(origin_source.count(token),1)
+            for variant in ("v1","missing","duplicated"):
+                with self.subTest(variant=variant):
+                    if variant=="v1":
+                        forged=origin_source.replace(token,
+                            "pr113_historical_artifact_delivery.py")
+                    elif variant=="missing":
+                        forged=origin_source.replace(token,
+                            "pr113_invalid_transport.py")
+                    else:
+                        forged=origin_source.replace(
+                            token,token+" # pr113_historical_artifact_delivery_v2.py")
+                    def wrong_source(repo,head,path):
+                        if path==target:
+                            return origin_oid,forged
+                        return original_blob(repo,head,path)
+                    with mock.patch.object(v2,"_blob",side_effect=wrong_source):
+                        with self.assertRaisesRegex(v2.ToolingMigrationError,
+                                                   "activated workflow differs"):
+                            v2.audit(root,H,phase="active")
+            return
         real=preview.git
         full_path=preview.FULL
         full=json.loads(preview.raw(H,full_path))
@@ -143,7 +170,21 @@ class AtomicMigrationPreviewTests(unittest.TestCase):
                     preview.preview(H,git=fake)
 
     def test_artifact_delivery_module_source_is_checked_independently(self):
-        H,_=fake_source()
+        H,root=fake_source()
+        phase=v2.source_phase(root,H)
+        if phase=="active":
+            original_blob=v2._blob
+            path="verification/research/pr113_historical_artifact_delivery_v2.py"
+            oid,source=original_blob(root,H,path)
+            def changed(repo,head,source_path):
+                if source_path==path:
+                    return oid,source+"\n# tampered artifact deliverer\n"
+                return original_blob(repo,head,source_path)
+            with mock.patch.object(v2,"_blob",side_effect=changed):
+                with self.assertRaisesRegex(v2.ToolingMigrationError,
+                                            "versioned transport source"):
+                    v2.audit(root,H,phase="active")
+            return
         real=preview.git
         path="verification/research/pr113_historical_artifact_delivery_v2.py"
         with self.assertRaisesRegex(preview.TransitionError,

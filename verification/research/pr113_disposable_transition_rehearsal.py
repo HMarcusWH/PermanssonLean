@@ -23,7 +23,7 @@ import sys
 import tempfile
 
 from pr113_workflow_profile_v2 import (
-    audit as workflow_audit, PREACTIVATION_HEAD, STAGE, PROPOSALS,
+    audit as workflow_audit, audited_source_phase, PREACTIVATION_HEAD, STAGE, PROPOSALS,
     FULL_MANIFEST, PROPOSAL_MANIFEST, CONTRACT,
 )
 from pr113_tooling_migration_v2 import audit as tooling_audit
@@ -200,6 +200,143 @@ def verify_target_worktree(worktree,reviewed_head):
     return profile,tooling,identity
 
 
+
+def run_installed_workflow_suite(checkout, evidence):
+    """Run actual 30-source CI-06/CI-07 unittest+registry, not a source mock.
+
+    A sanitized local execution is independent of PR and cannot be reused as
+    genuine required GitHub CI or as an approval of its own source.
+    """
+    checkout=Path(checkout).resolve(strict=True)
+    evidence=Path(evidence).absolute()
+    need(not evidence.exists() and not evidence.is_symlink()
+         and not evidence.is_relative_to(checkout)
+         and not any(p.is_symlink() for p in evidence.parents),
+         "local workflow suite evidence must be new and outside Git checkout")
+    env={name:value for name,value in os.environ.items()
+         if not name.startswith(("GITHUB_","GH_","GIT_"))
+         and name not in ("CI","PYTHONPATH","PYTHONHOME")
+         and not any(key in name.upper() for key in
+             ("TOKEN","PASSWORD","COOKIE","SECRET","AUTHORIZATION",
+              "CREDENTIAL","PROXY"))}
+    env["PYTHONDONTWRITEBYTECODE"]="1"
+    source=scalar(checkout,"rev-parse","HEAD")
+    command=[sys.executable,"-B","-m","verification.integrity.run_tests",
+             "--suite","workflow","--report",str(evidence)]
+    try:
+        finished=subprocess.run(command,cwd=checkout,env=env,
+                  capture_output=True,text=True,timeout=180)
+    except (OSError,subprocess.TimeoutExpired) as exc:
+        raise RehearsalError("actual versioned workflow suite unavailable") from exc
+    need(finished.returncode==0 and evidence.is_file(),
+         "actual installed CI-06/CI-07 test suite failed: "+
+         (finished.stdout+"\n"+finished.stderr)[-1800:])
+    try:
+        report=json.loads(evidence.read_bytes())
+    except (ValueError,UnicodeError,OSError) as exc:
+        raise RehearsalError("actual CI-06/CI-07 report malformed") from exc
+    context=report.get("context") if isinstance(report,dict) else None
+    need(report.get("format")=="Permansson.Hardening.Tests.v1"
+         and report.get("status")=="PASS"
+         and report.get("suite")=="workflow"
+         and report.get("execution_tracked_clean") is True
+         and type(report.get("methods_run")) is int and
+             report["methods_run"]>=8
+         and report.get("failures")==0 and report.get("errors")==0
+         and report.get("skips")==0 and
+             report.get("covered_requirements")==["CI-06","CI-07"]
+         and isinstance(context,dict)
+         and context.get("checked_sha")==source
+         and context.get("event")=="local",
+         "current30 workflow execution omitted source-bound CI-06/CI-07 requirements")
+    need(not run(checkout,"status","--porcelain=v1","--untracked-files=all"),
+         "executing installed workflow suite modified Git source")
+    return {
+        "status":"CURRENT_30_WORKFLOW_CI06_CI07_EXECUTED_LOCALLY",
+        "source_head":source,
+        "methods_run":report["methods_run"],
+        "covered_requirements":report["covered_requirements"],
+        "report_sha256":hashlib.sha256(evidence.read_bytes()).hexdigest(),
+        "real_execution":True,
+        "required_github_check_authenticated":False,
+        "independent_security_review":False,
+        "mathematical_acceptance":False,
+    }
+
+
+
+ACTIVE_30_SUITES=(
+    "test_pr113_tooling_migration_v2.py",
+    "test_pr113_a2_successor_identity_v2.py",
+    "test_pr113_atomic_migration_preview.py",
+    "test_pr113_v2_workflow_contract_preview.py",
+    "test_pr113_full_required_workflow_preview.py",
+    "test_pr113_inactive_required_gate_replacement.py",
+    "test_pr113_workflow_proposal_boundary.py",
+)
+
+
+def run_active_30_regressions(checkout, evidence_dir):
+    """Run the REAL phase-aware suites against committed installed 30 blobs.
+
+    No source-owned test result can authorize activation or security review.
+    """
+    checkout=Path(checkout).resolve(strict=True)
+    evidence_dir=Path(evidence_dir).absolute()
+    need(not evidence_dir.exists()
+         and not evidence_dir.is_relative_to(checkout)
+         and not any(p.is_symlink() for p in evidence_dir.parents),
+         "active30 regression logs must be detached fresh evidence")
+    evidence_dir.mkdir(parents=True,exist_ok=False)
+    env={key:value for key,value in os.environ.items()
+         if not key.startswith(("GITHUB_","GH_","GIT_"))
+         and key not in ("CI","PYTHONPATH","PYTHONHOME")
+         and not any(token in key.upper() for token in (
+             "TOKEN","PASSWORD","COOKIE","SECRET","AUTHORIZATION",
+             "CREDENTIAL","PROXY"))}
+    env["PYTHONDONTWRITEBYTECODE"]="1"
+    receipts=[]
+    for filename in ACTIVE_30_SUITES:
+        need((checkout/"verification/research"/filename).is_file(),
+             "active30 regression source absent: "+filename)
+        args=[sys.executable,"-B","-m","unittest","discover",
+              "-s","verification/research","-p",filename,"-v"]
+        try:
+            process=subprocess.run(
+                args,cwd=checkout,env=env,timeout=150,
+                capture_output=True,text=True)
+        except (OSError,subprocess.TimeoutExpired) as exc:
+            raise RehearsalError("actual current30 regression unavailable: "+
+                                 filename) from exc
+        output=(process.stdout+"\n"+process.stderr)
+        log=evidence_dir/filename.removesuffix(".py")
+        log.write_text(output,encoding="utf-8")
+        passed=(process.returncode==0
+                and re.search(r"Ran [1-9][0-9]* tests? in ",output)
+                and re.search(r"(?:^|\n)OK(?:\n|$)",output)
+                and "FAILED (" not in output
+                and "skipped=" not in output
+                and "expected failures=" not in output)
+        need(passed,"authentic active30 regression failed: "+filename+
+             "\n"+output[-1700:])
+        receipts.append({
+            "source_test":filename,
+            "status":"PASS_EXECUTED",
+            "output_sha256":hashlib.sha256(output.encode()).hexdigest(),
+        })
+    need(not run(checkout,"status","--porcelain=v1","--untracked-files=all"),
+         "active30 regressions changed committed source")
+    return {
+        "format":"Permansson.PR113.Active30RegressionRehearsal.v1",
+        "status":"SEVEN_REAL_ACTIVE30_SUITES_PASSED_UNREVIEWED",
+        "checked_sha":scalar(checkout,"rev-parse","HEAD"),
+        "executed_suites":receipts,
+        "independent_security_review":False,
+        "required_github_ci_authenticated":False,
+        "mathematical_acceptance":False,
+    }
+
+
 def execute(head,output):
     """Run actual source-code verification; no mocked compiler/reviewer claims."""
     output=Path(output).absolute()
@@ -207,12 +344,12 @@ def execute(head,output):
          not output.is_relative_to(ROOT.resolve()) and
          not any(p.is_symlink() for p in output.parents),
          "rehearsal report must be a new external regular-file path")
-    original_source(ROOT,head)
-    pre=workflow_audit(ROOT,scalar(ROOT,"rev-parse","HEAD"),phase="staged")
+    source_at_entry=original_source(ROOT,head)
+    phase,pre=audited_source_phase(ROOT,source_at_entry)
     need(pre.get("historical_original_workflow_count")==25 and
          pre.get("current_reviewed_workflow_count")==30 and
-         pre.get("versioned_source_phase")=="staged",
-         "original source is not exact 25 plus virtual 30 staged proposal")
+         pre.get("versioned_source_phase")==phase,
+         "original source not fully verified as exact staged25 or active30")
     sources=planned_sources(ROOT,head)
     report={}
     with tempfile.TemporaryDirectory(prefix="pr113-disposable-source-") as temp:
@@ -220,24 +357,43 @@ def execute(head,output):
         need(not worktree.exists(),"temporary checkout destination occupied")
         run(ROOT,"worktree","add","--detach",str(worktree),head,seconds=180)
         try:
-            need(len(list((worktree/".github/workflows").glob("*.yml")))==25,
-                 "original disposable worktree is not exactly 25 workflows")
-            for path,(stage,oid) in sorted(sources.items()):
-                _,raw=object_bytes(ROOT,head,stage)
-                dest=worktree/path
-                need(not dest.is_symlink(),"symlinked target in disposable tree")
-                dest.parent.mkdir(parents=True,exist_ok=True)
-                dest.write_bytes(raw)
-                need(hashlib.sha1(
-                    b"blob "+str(len(raw)).encode("ascii")+b"\0"+dest.read_bytes()
-                    ).hexdigest()==oid,
-                    "disposable source write did not match exact staged blob")
-            run(worktree,"add","--",*sorted(sources))
-            run(worktree,"commit","--no-gpg-sign",
-                "-m","PR113 DISPOSABLE 30-source review rehearsal only",
-                author=True,seconds=180)
-            C=scalar(worktree,"rev-parse","HEAD")
+            if phase=="staged":
+                need(len(list((worktree/".github/workflows").glob("*.yml")))==25,
+                     "historical staged checkout must contain exactly 25 workflows")
+                for path,(stage,oid) in sorted(sources.items()):
+                    _,raw=object_bytes(ROOT,head,stage)
+                    dest=worktree/path
+                    need(not dest.is_symlink(),"symlinked target in disposable tree")
+                    dest.parent.mkdir(parents=True,exist_ok=True)
+                    dest.write_bytes(raw)
+                    need(hashlib.sha1(
+                        b"blob "+str(len(raw)).encode("ascii")+b"\0"+dest.read_bytes()
+                        ).hexdigest()==oid,
+                        "disposable source write not exactly staged Git blob")
+                run(worktree,"add","--",*sorted(sources))
+                run(worktree,"commit","--no-gpg-sign",
+                    "-m","PR113 DISPOSABLE 30-source review rehearsal only",
+                    author=True,seconds=180)
+                C=scalar(worktree,"rev-parse","HEAD")
+                need(C!=head,"25-to-30 rehearsal did not produce a new Git tree")
+            else:
+                need(len(list((worktree/".github/workflows").glob("*.yml")))==30,
+                     "activated disposable worktree must contain 30 workflows")
+                C=scalar(worktree,"rev-parse","HEAD")
+                need(C==head,"active30 direct source checkout must be exact H")
+                for path,(stage,oid) in sorted(sources.items()):
+                    actual=scalar(worktree,"rev-parse","HEAD:"+path)
+                    need(actual==oid,
+                        "installed source not identical to reviewed staged blob: "+path)
             profile,tooling,identity=verify_target_worktree(worktree,C)
+            workflow_suite=run_installed_workflow_suite(
+                worktree,Path(temp)/"actual_current30_workflow_suite.json")
+            need(workflow_suite["source_head"]==C,
+                 "current30 CI-06/07 suite ran against unrelated source")
+            active_regressions=run_active_30_regressions(
+                worktree,Path(temp)/"active30_regression_evidence")
+            need(active_regressions["checked_sha"]==C,
+                 "active30 unit suites ran against unrelated Git source")
             tree=scalar(worktree,"rev-parse",C+"^{tree}")
             S=run(worktree,"commit-tree",tree,"-p",PR113_BASE,"-p",C,
                   input_bytes=b"PR113 DISPOSABLE ordered [B113,C] dry-run\n",
@@ -275,7 +431,13 @@ def execute(head,output):
                  "disposable workflow source was not restored after mutation")
             report={
                 "format":FORMAT,
-                "status":"DISPOSABLE_SOURCE_AND_ORDERED_SYNTHETIC_REHEARSED_UNREVIEWED",
+                "status":("DISPOSABLE_SOURCE_AND_ORDERED_SYNTHETIC_REHEARSED_UNREVIEWED"
+                          if phase=="staged" else
+                          "DISPOSABLE_ACTIVE_30_AND_ORDERED_SYNTHETIC_REHEARSED_UNREVIEWED"),
+                "source_phase_at_invocation":phase,
+                "current30_CI06_CI07_workflow_suite":workflow_suite,
+                "current30_phase_aware_regressions":active_regressions,
+                "current30_local_suite_is_required_CI":False,
                 "actual_requested_head":head,
                 "source_at_invocation":scalar(ROOT,"rev-parse","HEAD"),
                 "original_25_workflow_anchor":PREACTIVATION_HEAD,
@@ -294,6 +456,7 @@ def execute(head,output):
                 "disposable_source_mutation_rejected":True,
                 "original_T_archive_replay":"NOT_EXECUTED",
                 "original_A2_compiler_replay":"NOT_EXECUTED",
+                "current_A2_successor_compiler_replay":"NOT_EXECUTED",
                 "source_bound_GitHub_producer_authenticated":False,
                 "independent_security_review":False,
                 "owner_activation_authorized":False,

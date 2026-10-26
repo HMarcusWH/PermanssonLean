@@ -21,12 +21,42 @@ class RealDisposableRehearsalTests(unittest.TestCase):
             ROOT,"show","-s","--format=%P",source).split()
         head=(parents[1] if len(parents)==2
               and parents[0]==rehearsal.PR113_BASE else source)
+        phase,pre=rehearsal.audited_source_phase(ROOT,source)
+        self.assertIn(phase,("staged","active"))
+        self.assertEqual(pre["historical_original_workflow_count"],25)
         before=rehearsal.scalar(ROOT,"rev-parse","HEAD")
         with tempfile.TemporaryDirectory(prefix="pr113-report-outside-") as temp:
             report_path=Path(temp)/"source_rehearsal.json"
             result=rehearsal.execute(head,report_path)
             self.assertEqual(result["status"],
-                "DISPOSABLE_SOURCE_AND_ORDERED_SYNTHETIC_REHEARSED_UNREVIEWED")
+                ("DISPOSABLE_SOURCE_AND_ORDERED_SYNTHETIC_REHEARSED_UNREVIEWED"
+                 if phase=="staged" else
+                 "DISPOSABLE_ACTIVE_30_AND_ORDERED_SYNTHETIC_REHEARSED_UNREVIEWED"))
+            self.assertEqual(result["source_phase_at_invocation"],phase)
+            workflow=result["current30_CI06_CI07_workflow_suite"]
+            self.assertEqual(workflow["status"],
+                "CURRENT_30_WORKFLOW_CI06_CI07_EXECUTED_LOCALLY")
+            self.assertEqual(workflow["covered_requirements"],
+                             ["CI-06","CI-07"])
+            self.assertGreaterEqual(workflow["methods_run"],8)
+            self.assertTrue(workflow["real_execution"])
+            self.assertFalse(workflow["required_github_check_authenticated"])
+            self.assertFalse(result["current30_local_suite_is_required_CI"])
+            regression=result["current30_phase_aware_regressions"]
+            self.assertEqual(regression["status"],
+                             "SEVEN_REAL_ACTIVE30_SUITES_PASSED_UNREVIEWED")
+            self.assertEqual(len(regression["executed_suites"]),7)
+            self.assertEqual(regression["checked_sha"],
+                             result["disposable_current_source_commit"])
+            self.assertTrue(all(x["status"]=="PASS_EXECUTED"
+                                for x in regression["executed_suites"]))
+            self.assertEqual({x["source_test"]
+                              for x in regression["executed_suites"]},
+                             set(rehearsal.ACTIVE_30_SUITES))
+            self.assertFalse(regression["required_github_ci_authenticated"])
+            self.assertFalse(regression["independent_security_review"])
+            self.assertEqual(workflow["source_head"],
+                             result["disposable_current_source_commit"])
             self.assertEqual(result["historical_original_workflow_count"],25)
             self.assertEqual(result["current_reviewed_workflow_count"],30)
             self.assertEqual(result["retained_workflow_count"],23)
@@ -34,7 +64,10 @@ class RealDisposableRehearsalTests(unittest.TestCase):
             self.assertEqual(result["addition_workflow_count"],5)
             self.assertEqual(result["actual_requested_head"],head)
             self.assertEqual(result["source_at_invocation"],source)
-            self.assertNotEqual(result["disposable_current_source_commit"],head)
+            if phase=="staged":
+                self.assertNotEqual(result["disposable_current_source_commit"],head)
+            else:
+                self.assertEqual(result["disposable_current_source_commit"],head)
             self.assertNotEqual(result["disposable_synthetic_source_commit"],
                                 result["disposable_current_source_commit"])
             self.assertEqual(result["profile_sha256"],

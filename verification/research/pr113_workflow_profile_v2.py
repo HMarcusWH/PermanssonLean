@@ -93,6 +93,33 @@ def _historical(root, head):
             for p, (mode, oid) in old.items()}
 
 
+
+def source_phase(root, head):
+    """Return the only two permissible inventory phases from real Git tree.
+
+    This is a classification only, not approval. Always call audit() with the
+    result before claiming even a source-bound engineering preflight.
+    """
+    root = Path(root).resolve(strict=True)
+    require(isinstance(head, str) and SHA.fullmatch(head) is not None
+            and git(root, "rev-parse", "HEAD").decode().strip() == head,
+            "phase classification requires exact checked Git HEAD")
+    tree = exact_tree(root, head, ".github/workflows")
+    require(len(tree) in (25, 30)
+            and all(mode == "100644" and
+                    path.startswith(".github/workflows/") and
+                    path.endswith((".yml", ".yaml"))
+                    for path, (mode, oid) in tree.items()),
+            "workflow source phase must be exactly 25 staged or 30 active Git blobs")
+    return "staged" if len(tree) == 25 else "active"
+
+
+def audited_source_phase(root, head):
+    """Verify the complete exact Git phase, not merely its filename count."""
+    phase = source_phase(root, head)
+    return phase, audit(root, head, phase=phase)
+
+
 def audit(root, head, *, phase="staged"):
     """Return an exact-content preview, never an activation certificate.
 
@@ -208,6 +235,18 @@ def audit(root, head, *, phase="staged"):
                     git(root, "rev-parse", head + ":" + staged).strip(),
                     "source migration incomplete or test/contract unreviewed: "
                     + installed)
+    # Authenticate the versioned historical artifact transport separately
+    # from workflow YAMLs; the installed job must not borrow a v1 event gate.
+    transport_path="verification/research/pr113_historical_artifact_delivery_v2.py"
+    transport_oid,transport_text=_blob(root,head,transport_path)
+    require(module.git_blob_oid(transport_text.encode("utf-8"))==transport_oid
+            and 'FORMAT = "Permansson.PR113.ExactHistoricalArtifactDelivery.v2"'
+                in transport_text
+            and "from pr113_required_dual_gate_v2 import actual_ci_event"
+                in transport_text
+            and "from pr113_historical_postmerge_v2 import exact_main_event"
+                in transport_text,
+            "versioned transport source differs from exact Git blob or v2 event gate")
     approved = module.validate_workflow_set(source)
     actual = {name: module.git_blob_oid(text.encode("utf-8"))
               for name, text in sorted(source.items())}
