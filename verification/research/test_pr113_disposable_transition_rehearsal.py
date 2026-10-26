@@ -50,6 +50,12 @@ class RealDisposableRehearsalTests(unittest.TestCase):
             self.assertEqual(result["original_T_archive_replay"],"NOT_EXECUTED")
             self.assertEqual(result["original_A2_compiler_replay"],"NOT_EXECUTED")
             self.assertEqual(json.loads(report_path.read_bytes()),result)
+            # Persist the exact detached C/S source receipt in the genuine
+            # GitHub research job log before the scratch directory is removed.
+            # This does not fabricate a CI/security/release approval.
+            print("\nPR113_R5_SOURCE_REHEARSAL_RECEIPT_BEGIN")
+            print(json.dumps(result,sort_keys=True))
+            print("PR113_R5_SOURCE_REHEARSAL_RECEIPT_END")
         self.assertEqual(before,rehearsal.scalar(ROOT,"rev-parse","HEAD"))
         self.assertFalse(rehearsal.run(
             ROOT,"status","--porcelain=v1","--untracked-files=all"))
