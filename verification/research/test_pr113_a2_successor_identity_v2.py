@@ -1,5 +1,10 @@
 """Versioned A2 current-30 source invariants; historical verifiers are untouched."""
 import unittest
+import hashlib
+import json
+import subprocess
+import copy
+import pr113_workflow_profile_v2 as workflow_profile
 from unittest import mock
 from pathlib import Path
 import localized_prefix_support as frozen
@@ -154,3 +159,188 @@ class SuccessorA2Active30Tests(unittest.TestCase):
             altered[key]=("100644","0"*40)
             with self.subTest(key=key),self.assertRaises(frozen.GuardError):
                 successor.reconcile(old,altered)
+
+
+    @staticmethod
+    def _git_raw(root, *args):
+        return subprocess.check_output(
+            ["git", *args], cwd=root, stderr=subprocess.DEVNULL, timeout=35)
+
+    @staticmethod
+    def _blob_oid(raw):
+        return hashlib.sha1(
+            b"blob " + str(len(raw)).encode("ascii") + b"\0" + raw
+        ).hexdigest()
+
+    def _historically_anchored_virtual_tree(self):
+        """Build proposed 30-source truth from ACTUAL Git objects, not mocks."""
+        root=Path(__file__).resolve().parents[2]
+        git=self._git_raw
+        checked=git(root,"rev-parse","HEAD").decode().strip()
+        self.assertRegex(checked,r"^[a-f0-9]{40}$")
+        for anchor in (frozen.BASE,successor.HISTORICAL_A2_INTRODUCER,
+                       workflow_profile.PREACTIVATION_HEAD):
+            self.assertEqual(subprocess.run(
+                ["git","merge-base","--is-ancestor",anchor,checked],
+                cwd=root,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,
+                timeout=35).returncode,0,
+                "actual historical baseline missing from exact Git history")
+        baseline=frozen.parse_tree(
+            git(root,"ls-tree","-r","-z",frozen.BASE))
+        current=frozen.parse_tree(
+            git(root,"ls-tree","-r","-z","HEAD"))
+        old25=frozen.parse_tree(
+            git(root,"ls-tree","-r","-z",workflow_profile.PREACTIVATION_HEAD))
+        self.assertEqual(git(root,"rev-parse",frozen.BASE+"^{tree}").decode().strip(),
+                         frozen.BASE_TREE)
+        self.assertNotIn(successor.LATE_A2_TEST,baseline)
+        self.assertEqual(git(root,"rev-parse",
+                             successor.HISTORICAL_A2_INTRODUCER+":"+
+                             successor.LATE_A2_TEST).decode().strip(),
+                         successor.LATE_A2_TEST_ORIGINAL_BLOB)
+        self.assertEqual(current[successor.LATE_A2_TEST],
+                         ("100644",successor.LATE_A2_TEST_ORIGINAL_BLOB))
+        def committed_json(path):
+            return json.loads(git(root,"show",checked+":"+path))
+        full=committed_json(workflow_profile.FULL_MANIFEST)
+        contract=committed_json(workflow_profile.CONTRACT_MANIFEST)
+        suite=committed_json(workflow_profile.STAGE+"test_workflow_v2_manifest.json")
+        historical=committed_json(workflow_profile.STAGE+"manifest.json")
+        additions=committed_json(workflow_profile.PROPOSAL_MANIFEST)
+        report=workflow_profile.audit(root,checked,phase="staged")
+        self.assertEqual(report["historical_original_workflow_count"],25)
+        self.assertEqual(report["current_reviewed_workflow_count"],30)
+        self.assertEqual(report["retained_historical_count"],23)
+        self.assertFalse(report["independent_security_review"])
+        self.assertFalse(report["owner_activation_authorized"])
+        for manifest in (full,contract,suite,historical,additions):
+            for claim in ("independent_security_review","owner_activation_authorized",
+                          "mathematical_acceptance","publication_authorized"):
+                if claim in manifest:
+                    self.assertIs(manifest[claim],False,
+                                  "candidate manifest cannot grant "+claim)
+        replacements={r["target"]:r for r in full["full_replacements"]}
+        self.assertEqual(set(replacements),{
+            ".github/workflows/research-lean.yml",
+            ".github/workflows/research-integrity.yml",
+        })
+        self.assertEqual(len(contract["expected_workflow_git_blobs"]),30)
+        self.assertEqual(len(successor.PINNED_MODIFIED_PROVIDERS),12)
+        intended={}
+        future=dict(current)
+        def stage_oid(path,recorded):
+            raw=git(root,"show",checked+":"+path)
+            git_oid=git(root,"rev-parse",checked+":"+path).decode().strip()
+            self.assertEqual(git_oid,self._blob_oid(raw),
+                             "actual Git object bytes do not match object ID")
+            self.assertEqual(git_oid,recorded,
+                             "staged manifest is not an authority over Git")
+            return git_oid
+        for path,stored_pin in successor.PINNED_MODIFIED_PROVIDERS.items():
+            self.assertIn(path,baseline,"only existing PR79 providers can be modified")
+            self.assertIn(path,old25,"original 25-history snapshot lost a provider")
+            if path in replacements:
+                stage=replacements[path]
+                name=path.removeprefix(".github/workflows/")
+                expected=stage_oid(stage["staged_source"],stage["git_blob_oid"])
+                self.assertEqual(expected,contract["expected_workflow_git_blobs"][name])
+                self.assertEqual(current[path],old25[path],
+                                 "protected active workflow changed preactivation")
+                future[path]=("100644",expected)
+            elif path=="verification/integrity/workflow_contract.py":
+                expected=stage_oid(contract["staged_source"],
+                                   contract["staged_git_blob_oid"])
+                future[path]=("100644",expected)
+            elif path=="verification/integrity/tests/test_workflow.py":
+                expected=stage_oid(suite["staged_test_source"],
+                                   suite["staged_test_blob_oid"])
+                future[path]=("100644",expected)
+            else:
+                expected=current[path][1]
+                self.assertEqual(old25[path],current[path],
+                                 "retained source changed since 25-workflow anchor")
+                if path.startswith(".github/workflows/"):
+                    name=path.removeprefix(".github/workflows/")
+                    self.assertEqual(expected,
+                        contract["expected_workflow_git_blobs"][name])
+                raw=git(root,"show",checked+":"+path)
+                self.assertEqual(self._blob_oid(raw),expected)
+            self.assertEqual(stored_pin,expected,
+                             "A2 successor has stale provider pin: "+path)
+            intended[path]=expected
+        self.assertEqual(set(intended),set(successor.PINNED_MODIFIED_PROVIDERS))
+        late=next(r for r in historical["staged_replacements"]
+                  if r["target"]==successor.LATE_A2_TEST)
+        self.assertEqual(stage_oid(late["source"],late["git_blob_oid"]),
+                         successor.LATE_A2_TEST_PROPOSED_BLOB)
+        future[successor.LATE_A2_TEST]=(
+            "100644",successor.LATE_A2_TEST_PROPOSED_BLOB)
+        for added in additions["proposals"]:
+            path=added["workflow_path"]
+            oid=stage_oid(added["staged_source_path"],added["git_blob_oid"])
+            self.assertNotIn(path,current)
+            self.assertNotIn(path,baseline)
+            future[path]=("100644",oid)
+        for path,oid in frozen.ACCEPTED_A2_PROOF_BLOBS.items():
+            self.assertEqual(current[path],("100644",oid),
+                             "accepted mathematical source blob was changed")
+        for path in ("lean-toolchain","lake-manifest.json"):
+            self.assertEqual(current[path],baseline[path],
+                             "historical Lean/toolchain dependency identity changed")
+        self.assertEqual(len([p for p in future
+            if p.startswith(".github/workflows/") and p.endswith((".yml",".yaml"))]),
+            30)
+        audited=successor.reconcile(baseline,future)
+        self.assertEqual(len(audited["pinned_successor_provider_paths"]),12)
+        return root,checked,baseline,future,full,contract
+
+    def test_all_twelve_actual_git_provider_pins_match_staged_manifests(self):
+        self._historically_anchored_virtual_tree()
+
+    def test_each_stale_a2_pin_and_staged_source_substitution_fail_closed(self):
+        root,checked,baseline,future,full,contract=(
+            self._historically_anchored_virtual_tree())
+        for path in (".github/workflows/research-integrity.yml",
+                     ".github/workflows/research-lean.yml",
+                     "verification/integrity/workflow_contract.py"):
+            with self.subTest(forged_pin=path),mock.patch.dict(
+                    successor.PINNED_MODIFIED_PROVIDERS,{path:"0"*40}):
+                with self.assertRaises(frozen.GuardError):
+                    successor.reconcile(baseline,future)
+        for path in (".github/workflows/research-integrity.yml",
+                     ".github/workflows/research-lean.yml"):
+            altered=dict(future)
+            altered[path]=("100644","0"*40)
+            with self.subTest(forged_candidate=path),self.assertRaises(
+                    frozen.GuardError):
+                successor.reconcile(baseline,altered)
+        stage_paths=[contract["staged_source"]]
+        stage_paths += [r["staged_source"] for r in full["full_replacements"]]
+        true_git=workflow_profile.git
+        def committed_json(r,head,path):
+            return json.loads(true_git(r,"show",head+":"+path))
+        for staged in stage_paths:
+            raw=true_git(root,"show",checked+":"+staged)
+            forged=raw+b"\n# changed and misleadingly rehashed\n"
+            spoofed_oid=self._blob_oid(forged)
+            def forged_git(r,*args):
+                if args==("show",checked+":"+staged):
+                    return forged
+                return true_git(r,*args)
+            def forged_manifest(r,head,path):
+                data=committed_json(r,head,path)
+                if staged==workflow_profile.CONTRACT and path==(
+                        workflow_profile.CONTRACT_MANIFEST):
+                    data["staged_git_blob_oid"]=spoofed_oid
+                if path==workflow_profile.FULL_MANIFEST:
+                    for row in data["full_replacements"]:
+                        if row["staged_source"]==staged:
+                            row["git_blob_oid"]=spoofed_oid
+                return data
+            with self.subTest(forged_stage=staged),\
+                 mock.patch.object(workflow_profile,"git",
+                                   side_effect=forged_git),\
+                 mock.patch.object(workflow_profile,"_json",
+                                   side_effect=forged_manifest),\
+                 self.assertRaises(workflow_profile.ToolingMigrationError):
+                workflow_profile.audit(root,checked,phase="staged")
