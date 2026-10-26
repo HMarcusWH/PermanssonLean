@@ -29,6 +29,9 @@ from infrastructure_acceptance_v2 import (
     authority_policy, approved_security_review,
 )
 from release_target import B113, REPOSITORY
+from pr113_historical_evidence_contract_v2 import (
+    InfrastructureEnvelopeError, decode_unique_json,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 SHA = re.compile(r"^[0-9a-f]{40}$")
@@ -76,9 +79,9 @@ def exact_main_event(*, env=None, event_bytes=None, git=real_git, live=real_live
          0 < len(event_bytes) <= 8*1024*1024,
          "main event must be the original bounded GitHub JSON")
     try:
-        event = json.loads(event_bytes)
-    except (ValueError, TypeError) as exc:
-        raise PostmergeError("main GitHub event JSON invalid") from exc
+        event = decode_unique_json(event_bytes, max_bytes=8*1024*1024)
+    except InfrastructureEnvelopeError as exc:
+        raise PostmergeError("main GitHub event JSON invalid or ambiguous") from exc
     need(isinstance(event,dict) and
          event.get("ref") == "refs/heads/main" and
          event.get("after") == M and

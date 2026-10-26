@@ -21,6 +21,9 @@ import subprocess
 import sys
 
 import infrastructure_acceptance_v2 as historical
+from pr113_historical_evidence_contract_v2 import (
+    InfrastructureEnvelopeError, decode_unique_json,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 FORMAT = "Permansson.PR113.VersionedRequiredHistoricalGate.v2"
@@ -72,9 +75,9 @@ def actual_ci_event(*, env=None, git=None, event_data=None):
          0 < len(event_data) <= 8*1024*1024,
          "original event bytes absent or oversized")
     try:
-        event=json.loads(event_data)
-    except (ValueError,TypeError) as exc:
-        raise RequiredGateError("invalid GitHub required-check event JSON") from exc
+        event=decode_unique_json(event_data, max_bytes=8*1024*1024)
+    except InfrastructureEnvelopeError as exc:
+        raise RequiredGateError("invalid or duplicated GitHub required-check event JSON") from exc
     pr=event.get("pull_request") if isinstance(event,dict) else None
     need(isinstance(pr,dict) and
          event.get("number")==PR and
@@ -195,7 +198,7 @@ def cli(argv=None):
                  0 < path.stat().st_size <= 256*1024*1024,
                  "historical original ZIP absent or unbounded")
             zips.append(path.read_bytes())
-        result=verify(json.loads(envelope),*zips)
+        result=verify(decode_unique_json(envelope),*zips)
         output.parent.mkdir(parents=True,exist_ok=True)
         with output.open("x",encoding="utf-8") as writer:
             json.dump(result,writer,sort_keys=True,indent=2)

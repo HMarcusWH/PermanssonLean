@@ -105,10 +105,11 @@ def validate_envelope(payload, *, require_all_checks=False):
     return payload
 
 
-def parse_envelope(raw, *, require_all_checks=False):
-    """Bound raw JSON and reject duplicate keys before any network or Git read."""
-    need(type(raw) is bytes and 0 < len(raw) <= MAX_BYTES,
-         "v2 historical envelope bytes missing or unbounded")
+def decode_unique_json(raw, *, max_bytes=MAX_BYTES):
+    """Bound all original GitHub event / evidence JSON without last-key-wins."""
+    need(type(max_bytes) is int and 0 < max_bytes <= 8 * 1024 * 1024
+         and type(raw) is bytes and 0 < len(raw) <= max_bytes,
+         "historical JSON bytes missing or unbounded")
 
     def no_duplicate_keys(pairs):
         result = {}
@@ -121,7 +122,17 @@ def parse_envelope(raw, *, require_all_checks=False):
 
     try:
         value = json.loads(raw, object_pairs_hook=no_duplicate_keys)
+    except InfrastructureEnvelopeError:
+        raise
     except (UnicodeError, ValueError, TypeError) as exc:
         raise InfrastructureEnvelopeError(
             "malformed/ambiguous historical evidence JSON") from exc
-    return validate_envelope(value, require_all_checks=require_all_checks)
+    need(isinstance(value, dict),
+         "historical JSON must be an object, not a scalar or array")
+    return value
+
+
+def parse_envelope(raw, *, require_all_checks=False):
+    """Decode and validate the v2 PR premerge historical evidence contract."""
+    return validate_envelope(
+        decode_unique_json(raw), require_all_checks=require_all_checks)

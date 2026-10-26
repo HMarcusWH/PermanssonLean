@@ -103,6 +103,40 @@ class HistoricalEnvelopeV2Tests(unittest.TestCase):
         with self.assertRaises(contract.InfrastructureEnvelopeError):
             contract.parse_envelope(b"{bad json}")
 
+    def test_generic_bounded_event_parser_rejects_duplicate_values(self):
+        message = b'{"after":"%s", "ref":"refs/heads/main"}' % (b"a"*40)
+        self.assertEqual(contract.decode_unique_json(message)["after"],
+                         "a" * 40)
+        duplicate = message[:-1] + b', "after":"%s"}' % (b"a"*40)
+        with self.assertRaises(contract.InfrastructureEnvelopeError):
+            contract.decode_unique_json(duplicate, max_bytes=8*1024*1024)
+        for raw in (b"[]", b"false", b"null", b"{}"*(contract.MAX_BYTES+1)):
+            with self.subTest(raw=raw[:10]), self.assertRaises(
+                    contract.InfrastructureEnvelopeError):
+                contract.decode_unique_json(raw)
+
+    def test_pr_and_main_event_decoders_reject_duplicate_object_keys(self):
+        from test_pr113_required_dual_gate import fake_env, fake_event
+        from test_pr113_historical_postmerge import (
+            env as main_env, event as main_event,
+        )
+        import pr113_required_dual_gate_v2 as pr_gate
+        import pr113_historical_postmerge_v2 as main_gate
+
+        pr_raw = fake_event()
+        pr_dup = pr_raw[:-1] + b', "number":113}'
+        with self.assertRaises(pr_gate.RequiredGateError):
+            pr_gate.actual_ci_event(
+                env=fake_env(), event_data=pr_dup,
+                git=lambda *args: "irrelevant")
+        original = main_event()
+        main_dup = original[:-1] + b', "after":"%s"}' % (b"b"*40)
+        with self.assertRaises(main_gate.PostmergeError):
+            main_gate.exact_main_event(
+                env=main_env(), event_bytes=main_dup,
+                git=lambda *args: "irrelevant",
+                live=lambda *args: {})
+
     def test_versioned_source_schema_preserves_v1_and_target_contract(self):
         schema = json.loads(SCHEMA.read_bytes())
         self.assertEqual(schema["properties"]["format"]["const"], contract.FORMAT)
