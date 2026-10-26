@@ -140,6 +140,61 @@ class ApprovedSealByteTests(unittest.TestCase):
                 seal.seal(self.draft, self.approved, {},
                           self.draft/"fake_bundle.zip", self.output, full=True)
 
+    def test_connected_mock_preseal_postseal_replay_does_not_authorize(self):
+        """Run actual ZIP/manifest/checksum/replay code end to end.
+
+        The only substituted boundary is the external acceptance gate.
+        These fixture bytes and their output are not GitHub or scholarly
+        evidence, even when the candidate archive replays successfully.
+        """
+        import postseal_replay as replay
+        from final_closure_full_contract import ORIGINAL_CLAIMS
+
+        claims = sorted(ORIGINAL_CLAIMS)
+        approved = dict(self.approved, claims=claims,
+                        approved_manuscript_claims=claims)
+        mock_external_review = {
+            "source": M, "frozen_head": H,
+            "status": "POSTMERGE_PRESEAL_READY",
+            "accepted_case_count": 45, "accepted_claim_count": 11,
+            "receipt_contract": "ALL_45_HISTORICAL_AND_ALL_11_COMPLETE",
+            "effective_cases": {
+                f"C-{index:02d}": "VERIFIED_SELECTED_SCOPE"
+                for index in range(1, 46)},
+            "effective_claims": claims,
+        }
+        with mock.patch.object(
+                seal.draft_verifier, "verify",
+                return_value={"integrity": "TEST_FIXTURE_ONLY"}):
+            with mock.patch.object(
+                    seal, "strict_acceptance",
+                    return_value=mock_external_review):
+                result = seal.seal(
+                    self.draft, approved, self.receipts,
+                    self.external_bundle, self.output, full=True)
+
+        self.assertEqual(result["status"], "CANDIDATE_SEAL_BUILT")
+        archive = self.output / "Permansson_Mathematical_Closure_CANDIDATE.zip"
+        sidecar = self.output / "SHA256SUMS.txt"
+        target = Path(self.tmp.name) / "detached" / "replay.json"
+        receipt = replay.replay(archive, sidecar, target)
+        self.assertEqual(
+            receipt["status"], "CANDIDATE_ARCHIVE_REPLAYED_UNREVIEWED")
+        self.assertEqual(receipt["source_commit_sha"], M)
+        self.assertTrue(receipt["complete_original_members_verified"])
+        self.assertEqual(json.loads(target.read_bytes()), receipt)
+        for key in ("authenticated_ci_artifact", "independent_review",
+                    "full_release_approved"):
+            self.assertFalse(receipt[key], key)
+
+        # The exact sidecar is mandatory: altered bytes must fail
+        # independently of the simulated upstream review predicate.
+        sidecar.write_text("0" * 64 + "  forged.zip\n")
+        with self.assertRaises(seal.SealError):
+            replay.replay(
+                archive, sidecar,
+                Path(self.tmp.name) / "tampered" / "replay.json")
+
     def test_full_seal_uses_preseal_not_the_circular_full_gate(self):
         from final_closure_full_contract import ORIGINAL_CLAIMS
         approved = dict(self.approved, claims=sorted(ORIGINAL_CLAIMS),
