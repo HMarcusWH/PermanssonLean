@@ -144,7 +144,9 @@ class ActualSourceProducerCatalogTests(unittest.TestCase):
                     H, output, checks=checks, lookup=details,
                     paginate_source=pages, download=lambda aid: binary[aid])
             self.assertEqual(len(report["artifacts"]), 21)
-            self.assertFalse(report["independent_case_review"])
+            self.assertFalse(json.loads(
+                (output/"source_execution_provenance.json").read_bytes())
+                ["independent_case_review"])
             self.assertEqual(len(list(output.glob("*.zip"))), 21)
             self.assertEqual(
                 json.loads((output/"original21_catalog.json").read_bytes())
