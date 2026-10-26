@@ -31,6 +31,7 @@ from release_target import (
     B113, REPOSITORY, BINDING_FORMAT, SHA as SHA40,
 )
 from pr113_required_dual_gate_v2 import actual_ci_event
+from pr113_historical_evidence_contract_v2 import validate_envelope
 
 ROOT = Path(__file__).resolve().parents[2]
 FORMAT = "Permansson.PR113.ExactHistoricalArtifactDelivery.v2"
@@ -244,6 +245,9 @@ def deliver(context, run_id, reviewer_id, *, git,
         "historical_T": ids["T"], "historical_A2": ids["A2"],
         "security_review_id": reviewer_id,
     }
+    # The noncircular v2 source-only envelope legitimately has zero CI
+    # contexts. The later twelve-context aggregate uses the SAME schema.
+    validate_envelope(envelope)
     return {
         "envelope": envelope,
         "zips": raw,

@@ -18,6 +18,9 @@ from final_closure_authenticate import (
     paginate as real_paginate,
 )
 import release_target
+from pr113_historical_evidence_contract_v2 import (
+    validate_envelope, parse_envelope,
+)
 from pr113_workflow_profile_v2 import audit as workflow_audit
 from pr113_historical_intake_v2 import (
     inspect_T_v2, inspect_A2_v2,
@@ -83,6 +86,7 @@ def check_historical_only(payload, T_bytes, A2_bytes, *,
                           git=real_git, live=real_live,
                           paginate=real_paginate):
     """Noncircular mandatory check: real dual producers and review, NOT 12/12."""
+    validate_envelope(payload)
     need(isinstance(payload, dict) and set(payload) == EVIDENCE_FIELDS
          and payload.get("format") == FORMAT,
          "unversioned/forged historical input envelope")
@@ -156,6 +160,7 @@ def check_evidence(payload, T_bytes, A2_bytes, *,
                    git=real_git, live=real_live,
                    paginate=real_paginate, checks=authenticated_checks):
     """Later aggregate 12 genuine checks. It cannot self-certify its caller."""
+    validate_envelope(payload, require_all_checks=True)
     old = check_historical_only(
         payload,T_bytes,A2_bytes,git=git,live=live,paginate=paginate)
     head = old["source_head"]
@@ -203,7 +208,9 @@ def main(argv=None):
         need(0 < len(envelope) <= 64*1024,
              "missing/unbounded authentic versioned evidence envelope")
         check=check_historical_only if args.historical_only else check_evidence
-        receipt=check(json.loads(envelope),args.historical_T_zip.read_bytes(),
+        receipt=check(parse_envelope(
+            envelope, require_all_checks=not args.historical_only),
+            args.historical_T_zip.read_bytes(),
                       args.historical_A2_zip.read_bytes())
         dest.parent.mkdir(parents=True,exist_ok=True)
         with dest.open("x",encoding="utf-8") as f:

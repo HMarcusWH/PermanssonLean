@@ -115,6 +115,25 @@ class MatrixTests(unittest.TestCase):
             report["cases"][0]["candidate_tests"][0]["source_status"],
             "AMBIGUOUS_UNREVIEWED")
 
+    def test_live_tracked_source_case_claim_inventory_never_accepts(self):
+        """Inspect exact current Git blobs; not lexical proof certification."""
+        import subprocess
+        current = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=m.ROOT,
+            text=True, timeout=20).strip()
+        report = m.produce(current)
+        self.assertEqual(report["original_case_count"], 45)
+        self.assertEqual(report["new_claim_count"], 11)
+        self.assertEqual(report["case_source_missing"], [])
+        self.assertEqual(report["claim_source_missing"], [])
+        self.assertEqual(report["independently_accepted_cases"], 0)
+        self.assertEqual(report["independently_accepted_claims"], 0)
+        self.assertEqual(report["unconditionally_implemented"], 0)
+        self.assertFalse(report["mathematical_certification"])
+        self.assertEqual(
+            {row["implementation_state"] for row in report["cases"]},
+            {"PARTIAL"})
+
     def test_original_requirement_mutation_blocks_matrix(self):
         files=fake_tree()
         raw=json.loads(files[m.CASE_MAP])
