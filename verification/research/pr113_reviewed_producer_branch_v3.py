@@ -68,27 +68,36 @@ def authentic_branch(head, claimed_branch, *, live=real_live, git=real_git):
                 and base.get("ref") == "main"
                 and (base.get("repo") or {}).get("full_name") == REPOSITORY):
             continue
+        # The commit-associated PR listing is only discovery, not authority:
+        # GET the exact live PR, whose merged flag/parents can be authenticated.
+        actual = live("/pulls/" + str(number))
+        if (not isinstance(actual, dict) or actual.get("number") != number
+                or (actual.get("head") or {}).get("sha") != head
+                or (actual.get("head") or {}).get("ref") != claimed_branch
+                or (actual.get("base") or {}).get("sha") != base.get("sha")
+                or (actual.get("base") or {}).get("ref") != "main"):
+            continue
         B = base.get("sha")
         if not (isinstance(B, str) and SHA.fullmatch(B)
                 and git("cat-file", "-t", B) == "commit"
                 and git("merge-base", "--is-ancestor", M113, B) == ""
                 and git("merge-base", "--is-ancestor", B, head) == ""):
             continue
-        if pr.get("merged") is True:
-            M = pr.get("merge_commit_sha")
+        if actual.get("merged") is True:
+            M = actual.get("merge_commit_sha")
             if not (isinstance(M, str) and SHA.fullmatch(M)
                     and git("cat-file", "-t", M) == "commit"
                     and git("show", "-s", "--format=%P", M).split() == [B, head]
                     and git("rev-parse", M+"^{tree}") ==
                         git("rev-parse", head+"^{tree}")):
                 continue
-        elif pr.get("state") == "open" and pr.get("merged") is False:
+        elif actual.get("state") == "open" and actual.get("merged") is False:
             main = live("/branches/main")
             if (main.get("commit") or {}).get("sha") != B:
                 continue
         else:
             continue
-        matching.append(pr)
+        matching.append(actual)
     need(len(matching) == 1,
          "CERT source head/branch not uniquely bound to genuine GitHub PR")
     # The author, approval and evidence consumers still authenticate their

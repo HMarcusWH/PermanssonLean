@@ -20,6 +20,8 @@ class BoundBranchTests(unittest.TestCase):
             return B113+" "+H113
         if args == ("show", "-s", "--format=%P", M):
             return BASE+" "+H
+        if args[:3] == ("show", "-s", "--format=%P"):
+            return "not an ordered merge"
         if args[0] == "rev-parse" and args[1].endswith("^{tree}"):
             return "reviewed_tree"
         if args[:2] == ("merge-base", "--is-ancestor"):
@@ -32,6 +34,8 @@ class BoundBranchTests(unittest.TestCase):
                     "merge_commit_sha":M113,"head":{"sha":H113}}
         if path == "/branches/main":
             return {"commit":{"sha":BASE}}
+        if path == "/pulls/115":
+            return self.pr()
         if path == "/commits/"+H+"/pulls?per_page=100":
             return [self.pr()]
         raise AssertionError(path)
@@ -67,6 +71,14 @@ class BoundBranchTests(unittest.TestCase):
                 return value
             with self.subTest(patch=patch),self.assertRaises(target.ProducerBranchError):
                 target.authentic_branch(H,BRANCH,live=invalid,git=self.git)
+
+    def test_exact_live_pr_disagrees_with_discovered_list_rejects(self):
+        def wrong(path):
+            if path == "/pulls/115":
+                return {**self.pr(), "merge_commit_sha": "f"*40}
+            return self.live(path)
+        with self.assertRaises(target.ProducerBranchError):
+            target.authentic_branch(H,BRANCH,live=wrong,git=self.git)
 
     def test_missing_m113_ancestry_rejects(self):
         def wrong(*args):
