@@ -311,7 +311,7 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
 def verify_approved_archive(archive: Path, manifest: dict):
     if not archive.is_file():
         raise SealError("approved archive missing")
-    if archive.is_symlink() or archive.stat().st_size > 64*1024*1024:
+    if archive.is_symlink() or archive.stat().st_size > 384*1024*1024:
         raise SealError("approved ZIP path or size unsafe")
     with zipfile.ZipFile(archive) as z:
         infos = z.infolist()
@@ -322,6 +322,7 @@ def verify_approved_archive(archive: Path, manifest: dict):
             mode = info.external_attr >> 16
             low = info.filename.casefold()
             if (low in seen or
+                info.flag_bits & 1 or
                 info.filename.startswith("/") or
                 ".." in info.filename.split("/") or
                 "\\" in info.filename or

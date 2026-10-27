@@ -16,7 +16,7 @@ from pr113_boundary_io import strict_json_object, detached_destination
 FORMAT = "Permansson.MathClosure.PostsealReplayCandidate.v1"
 # Intake must be bounded *before* z.read("approved_seal.json"). The full
 # independently implemented archive verifier runs afterward.
-MAX_ARCHIVE_BYTES = 64 * 1024 * 1024
+MAX_ARCHIVE_BYTES = 384 * 1024 * 1024
 MAX_MANIFEST_BYTES = 2 * 1024 * 1024
 
 def sha(raw: bytes) -> str:

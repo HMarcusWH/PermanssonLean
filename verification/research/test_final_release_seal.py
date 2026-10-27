@@ -267,6 +267,30 @@ class ApprovedSealByteTests(unittest.TestCase):
         with self.assertRaises(reproduce.ReproducibilityError):
             reproduce.compare_artifacts(first, second)
 
+
+    def test_modified_approved_claim_member_rejects_even_with_new_zip_crc(self):
+        """Reproduce the formerly accepted claim-member mutation."""
+        with mock.patch.object(seal.draft_verifier, "verify", return_value={
+                    "integrity": "TEST_ONLY"}), \
+             mock.patch.object(seal, "strict_acceptance", return_value={
+                    "source": M, "frozen_head": H,
+                    "accepted_case_count": 1, "accepted_claim_count": 1}):
+            seal.seal(self.draft, self.approved, self.receipts,
+                      self.external_bundle, self.output)
+        archive = self.output / "Permansson_Mathematical_Closure_APPROVED.zip"
+        with zipfile.ZipFile(archive) as source:
+            seal_manifest = json.loads(source.read("approved_seal.json"))
+            members = {name: source.read(name) for name in source.namelist()}
+        wrong_claims = json.loads(members["approved_claims_manifest.json"])
+        wrong_claims["claims"] = ["MUTATED_CLAIM"]
+        members["approved_claims_manifest.json"] = json.dumps(wrong_claims).encode()
+        replacement = self.output / "rewritten.zip"
+        with zipfile.ZipFile(replacement, "w", compression=zipfile.ZIP_DEFLATED) as zipped:
+            for name, raw in sorted(members.items()):
+                zipped.writestr(name, raw)
+        with self.assertRaises(seal.SealError):
+            seal.verify_approved_archive(replacement, seal_manifest)
+
     def test_approved_archive_cannot_contain_extra_members(self):
         archive = Path(self.tmp.name)/"bad.zip"
         manifest = {"pdf_sha256": self.pdfsha, "pdf_pages": self.pages}
