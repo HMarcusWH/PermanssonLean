@@ -75,8 +75,7 @@ def source_pr(base, head, merged=None, *, git, live):
         b = pr.get("base") or {}
         h = pr.get("head") or {}
         branch = h.get("ref")
-        if not (h.get("sha") == head and b.get("sha") == base
-                and b.get("ref") == "main"
+        if not (h.get("sha") == head and b.get("ref") == "main"
                 and (b.get("repo") or {}).get("full_name") == REPOSITORY
                 and (h.get("repo") or {}).get("full_name") == REPOSITORY
                 and isinstance(branch, str) and BRANCH.fullmatch(branch)
@@ -84,12 +83,23 @@ def source_pr(base, head, merged=None, *, git, live):
                 and "//" not in branch and ".." not in branch):
             continue
         if merged is None:
-            if pr.get("state") != "open" or pr.get("merged") is not False:
+            # The unmerged PR base must still be the literal current base.
+            if (pr.get("state") != "open" or pr.get("merged") is not False
+                    or b.get("sha") != base
+                    or (live("/branches/main").get("commit") or {}).get("sha") != base):
                 continue
-        elif not (pr.get("state") == "closed"
-                  and pr.get("merged") is True
-                  and pr.get("merge_commit_sha") == merged):
-            continue
+        else:
+            # GitHub may move base.sha after a merge. The actual immutable
+            # ordered merge parents and source tree, not the mutable PR-base
+            # display, define the historical source B.
+            if not (pr.get("state") == "closed"
+                    and pr.get("merged") is True
+                    and pr.get("merge_commit_sha") == merged
+                    and git("cat-file", "-t", merged) == "commit"
+                    and git("show", "-s", "--format=%P", merged).split() == [base, head]
+                    and git("rev-parse", merged+"^{tree}") ==
+                        git("rev-parse", head+"^{tree}")):
+                continue
         found.append(pr)
     need(len(found) == 1,
          "source not uniquely bound to genuine successor CERT PR")

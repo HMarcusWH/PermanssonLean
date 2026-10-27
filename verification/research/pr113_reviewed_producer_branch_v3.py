@@ -74,28 +74,34 @@ def authentic_branch(head, claimed_branch, *, live=real_live, git=real_git):
         if (not isinstance(actual, dict) or actual.get("number") != number
                 or (actual.get("head") or {}).get("sha") != head
                 or (actual.get("head") or {}).get("ref") != claimed_branch
-                or (actual.get("base") or {}).get("sha") != base.get("sha")
-                or (actual.get("base") or {}).get("ref") != "main"):
+                or (actual.get("head") or {}).get("repo", {}).get("full_name") != REPOSITORY
+                or (actual.get("base") or {}).get("ref") != "main"
+                or (actual.get("base") or {}).get("repo", {}).get("full_name") != REPOSITORY):
             continue
-        B = base.get("sha")
+        if actual.get("merged") is True and actual.get("state") == "closed":
+            M = actual.get("merge_commit_sha")
+            if not (isinstance(M, str) and SHA.fullmatch(M)
+                    and git("cat-file", "-t", M) == "commit"):
+                continue
+            parents = git("show", "-s", "--format=%P", M).split()
+            if len(parents) != 2 or parents[1] != head:
+                continue
+            B = parents[0]
+            # Immutable Git parents, not a subsequently advanced base.sha.
+            if git("rev-parse", M+"^{tree}") != git("rev-parse", head+"^{tree}"):
+                continue
+        elif actual.get("state") == "open" and actual.get("merged") is False:
+            B = (actual.get("base") or {}).get("sha")
+            main = live("/branches/main")
+            if (B != base.get("sha")
+                    or (main.get("commit") or {}).get("sha") != B):
+                continue
+        else:
+            continue
         if not (isinstance(B, str) and SHA.fullmatch(B)
                 and git("cat-file", "-t", B) == "commit"
                 and git("merge-base", "--is-ancestor", M113, B) == ""
                 and git("merge-base", "--is-ancestor", B, head) == ""):
-            continue
-        if actual.get("merged") is True:
-            M = actual.get("merge_commit_sha")
-            if not (isinstance(M, str) and SHA.fullmatch(M)
-                    and git("cat-file", "-t", M) == "commit"
-                    and git("show", "-s", "--format=%P", M).split() == [B, head]
-                    and git("rev-parse", M+"^{tree}") ==
-                        git("rev-parse", head+"^{tree}")):
-                continue
-        elif actual.get("state") == "open" and actual.get("merged") is False:
-            main = live("/branches/main")
-            if (main.get("commit") or {}).get("sha") != B:
-                continue
-        else:
             continue
         matching.append(actual)
     need(len(matching) == 1,

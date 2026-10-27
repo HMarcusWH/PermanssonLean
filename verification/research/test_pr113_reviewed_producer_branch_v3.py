@@ -54,6 +54,16 @@ class BoundBranchTests(unittest.TestCase):
         self.assertEqual(target.authentic_branch(H,BRANCH,
                          live=self.live,git=self.git),BRANCH)
 
+    def test_merged_cert_remains_source_bound_after_mutable_base_advances(self):
+        def advanced(path):
+            if path == "/pulls/115":
+                pr = self.pr()
+                pr["base"]["sha"] = "f"*40
+                return pr
+            return self.live(path)
+        self.assertEqual(target.authentic_branch(
+            H, BRANCH, live=advanced, git=self.git), BRANCH)
+
     def test_foreign_pr_wrong_number_branch_or_merge_fail(self):
         for patch in (
             {"number":114},

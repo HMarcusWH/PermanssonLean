@@ -16,6 +16,8 @@ class ReleaseTargetTests(unittest.TestCase):
             return "commit"
         if a == ("show", "-s", "--format=%P", M113):
             return B113+" "+H113
+        if a == ("show", "-s", "--format=%P", M):
+            return B+" "+H
         if a[0] == "rev-parse" and a[1].endswith("^{tree}"):
             return "source_tree"
         if a == ("merge-base", "--is-ancestor", M113, B):
@@ -47,6 +49,15 @@ class ReleaseTargetTests(unittest.TestCase):
     def test_original_and_cert_merge_targets_distinct(self):
         self.assertEqual(v3.source_pr(B113,H113,M113,git=self.git,live=self.live)[0],113)
         self.assertEqual(v3.source_pr(B,H,M,git=self.git,live=self.live)[0],115)
+
+    def test_merged_CERT_base_display_can_move_without_changing_git_parents(self):
+        def advanced(url):
+            if url == "/pulls/115":
+                updated = self.cert()
+                updated["base"]["sha"] = "f"*40
+                return updated
+            return self.live(url)
+        self.assertEqual(v3.source_pr(B,H,M,git=self.git,live=advanced)[0],115)
 
     def test_wrong_merge_or_ancestry_rejected(self):
         with self.assertRaises(v3.ReleaseSourceError):
