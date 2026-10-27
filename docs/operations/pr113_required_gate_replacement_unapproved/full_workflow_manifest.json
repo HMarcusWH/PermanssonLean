@@ -18,7 +18,7 @@
     {
       "target": ".github/workflows/research-lean.yml",
       "staged_source": "docs/operations/pr113_required_gate_replacement_unapproved/research_lean_full.yml",
-      "git_blob_oid": "64c990e3468d23cac945fe6e066229dff328d4c7",
+      "git_blob_oid": "e40744176c03275e59a8d04a2921d71f02ebb6d4",
       "installed": false,
       "independent_reviewed": false
     },

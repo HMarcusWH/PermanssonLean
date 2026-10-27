@@ -41,7 +41,7 @@
     {
       "workflow_path": ".github/workflows/pr113-preseal-fullscope.yml",
       "staged_source_path": "docs/operations/pr113_unapproved_workflows/pr113-preseal-fullscope.yml",
-      "git_blob_oid": "5fb2a30a8b18076cae2fb81210a5d6819d3bab11",
+      "git_blob_oid": "b849a1492badfffcc18e40759c1c78c67f60b824",
       "source_unchanged": false,
       "approved": false,
       "installed": false

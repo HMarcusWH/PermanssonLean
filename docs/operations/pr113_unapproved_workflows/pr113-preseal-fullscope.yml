@@ -36,6 +36,8 @@ on:
 permissions:
   contents: read
   actions: read
+  checks: read
+  pull-requests: read
 
 jobs:
   preseal-fullscope-candidate:
@@ -123,6 +125,8 @@ jobs:
             --mode draft --render --out "$RUNNER_TEMP/pr113-paper-draft"
       - name: Independently authenticate full 45/11 scholarly/review/CI source and seal
         shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           INPUT="$RUNNER_TEMP/pr113-reviewed-inputs"

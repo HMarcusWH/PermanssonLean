@@ -64,10 +64,19 @@ jobs:
           echo "PERMANSSON_DUAL_HISTORICAL_EVIDENCE=$RUNNER_TEMP/pr113-historical-input/historical_envelope.json" >> "$GITHUB_ENV"
           echo "PERMANSSON_DUAL_ORIGINAL_T_ZIP=$RUNNER_TEMP/pr113-historical-input/historical_T.zip" >> "$GITHUB_ENV"
           echo "PERMANSSON_DUAL_ORIGINAL_A2_ZIP=$RUNNER_TEMP/pr113-historical-input/historical_A2.zip" >> "$GITHUB_ENV"
-      - name: Run research-only exact rational regressions (CQ-1 and D0)
+      - name: Run research regressions and retain test-level diagnostics
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 -m unittest discover -s verification/research -p 'test_*.py' -v
+        run: |
+          python3 -B verification/research/pr113_regression_diagnostics.py --out "$RUNNER_TEMP/pr113-research-diagnostics.json"
+      - name: Preserve diagnostics even when regressions fail
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-regression-diagnostics
+          path: ${{ runner.temp }}/pr113-research-diagnostics.json
+          if-no-files-found: warn
+          retention-days: 30
       - name: Generate and independently verify C10 release proof evidence
         if: github.event_name == 'pull_request'
         run: |

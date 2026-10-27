@@ -38,11 +38,11 @@ APPROVED_WORKFLOW_BLOBS={
     "pr113-original-positive-controls-candidate.yml": "16245b42cbfea16ade0cce24bb0c345c2b251a14",
     "pr113-original-semantic-candidates.yml": "ab509cdb5097fb3c1a9e04dbba192adfe304a940",
     "pr113-postseal-replay.yml": "03c5da76dc5c2d5ae40234799294164a4ec46d5c",
-    "pr113-preseal-fullscope.yml": "5fb2a30a8b18076cae2fb81210a5d6819d3bab11",
+    "pr113-preseal-fullscope.yml": "b849a1492badfffcc18e40759c1c78c67f60b824",
     "pr113-source-controls-v3_1.yml": "0bc958aebde7d56cb2532ac89203522277889322",
     "research-integrity-portability.yml": "380a592039dd9e50b87bb2891771e76b071a2aaa",
     "research-integrity.yml": "02e97e27e85b9d3353edf495eab1ee8cb8b9e642",
-    "research-lean.yml": "64c990e3468d23cac945fe6e066229dff328d4c7",
+    "research-lean.yml": "e40744176c03275e59a8d04a2921d71f02ebb6d4",
     "research-release-verification.yml": "46ea7ebeae142f794394179154385cf1762b78d3",
     "verification.yml": "c016aa6efcc42e19d81cb148f5db6bc6a439d7d3",
     "x1-commons-smoke.yml": "554966b640d5f4d4ad284f3b5bdd0005c992dd80"
