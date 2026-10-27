@@ -72,6 +72,9 @@ class StagedRehearsalTests(unittest.TestCase):
             lambda a,b,p: p.update(historical_packaged_tooling_files_verified=34),
             lambda a,b,p: p.update(independent_security_review=True),
             lambda a,b,p: p.update(owner_activation_authorized=True),
+            lambda a,b,p: p.update(changed_canonical_tooling=[]),
+            lambda a,b,p: p["changed_canonical_tooling"][0].update(
+                path="verification/archive/verify_bundle.py"),
         )
         for update in edits:
             old,now,profile=fixture()

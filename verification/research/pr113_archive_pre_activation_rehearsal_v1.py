@@ -43,6 +43,20 @@ def validate_reports(old, new, profile, head):
          and profile.get("owner_activation_authorized") is False
          and profile.get("independent_security_review") is False,
          "virtual 30 is not a complete original/25-current staged source audit")
+    deltas = profile.get("changed_canonical_tooling")
+    expected = {"verification/integrity/workflow_contract.py",
+                "verification/integrity/tests/test_workflow.py"}
+    need(type(deltas) is list and len(deltas) == 2
+         and all(type(row) is dict and
+                 set(row) == {"path", "T_blob", "H_blob"}
+                 and type(row["path"]) is str
+                 and type(row["T_blob"]) is str
+                 and type(row["H_blob"]) is str
+                 and len(row["T_blob"]) == len(row["H_blob"]) == 40
+                 and row["T_blob"] != row["H_blob"]
+                 for row in deltas)
+         and {row["path"] for row in deltas} == expected,
+         "rehearsal profile did not bind exactly the two known T/H differences")
     try:
         checked = dual.validate_dual_reports(
             old, new, T_source=T, H_source=head)
