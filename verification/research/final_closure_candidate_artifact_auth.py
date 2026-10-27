@@ -24,6 +24,7 @@ from final_closure_case_receipts import load_detached_bundle, EvidenceError
 from final_closure_all_original_semantics import select_cases
 from final_closure_legacy_semantic_evidence import shard_cases
 from final_closure_mutation_evidence import git_head, MutationEvidenceError
+from pr113_boundary_io import strict_json_object
 
 BRANCH = "research/final-mathematical-closure"
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
@@ -65,7 +66,7 @@ def verify_manifest(members: dict, kind: str, shard: int, head: str):
     name = spec["manifest"]
     demand(name in members, "original candidate manifest missing from artifact")
     try:
-        manifest = json.loads(members[name])
+        manifest = strict_json_object(members[name])
     except (TypeError, ValueError) as exc:
         raise AuthenticationError("candidate manifest is invalid JSON") from exc
     demand(isinstance(manifest, dict), "candidate manifest must be an object")

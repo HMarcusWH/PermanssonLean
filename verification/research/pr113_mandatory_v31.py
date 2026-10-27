@@ -23,6 +23,7 @@ from final_closure_extra_producers_v31 import (
     ControlProducerError,
 )
 from final_closure_mutation_evidence import committed_file_bytes
+from pr113_boundary_io import strict_json_object, detached_destination
 from pr113_v31_execution_integrity import (
     exact_source, validate_executed_controls, RealControlError,
 )
@@ -38,10 +39,9 @@ def need(condition, message):
 
 
 def external(path, *, directory=False):
-    src = Path(path).absolute()
-    need(not src.is_symlink() and
-         not any(parent.is_symlink() for parent in src.parents),
-         "source-owned control files must not have symlink ancestors")
+    src = Path(path)
+    need(".." not in src.parts,
+         "parent-traversing owner evidence path")
     src = src.resolve(strict=True)
     need(not src.is_relative_to(ROOT.resolve()) and
          not ROOT.resolve().is_relative_to(src) and
@@ -53,7 +53,7 @@ def external(path, *, directory=False):
 def read_object(path):
     raw = external(path).read_bytes()
     need(0 < len(raw) <= 4 * 1024 * 1024, "oversized or missing control JSON")
-    obj = json.loads(raw)
+    obj = strict_json_object(raw)
     need(isinstance(obj, dict), "malformed control producer JSON")
     return obj
 
@@ -88,7 +88,7 @@ def authenticate_all_76(head, original_receipts, original_members, *,
         by_case, legacy = original_case_map(head)
         claim_path = ROOT / ("research/paper_closures/post_merge_112/"
                              "claim_declaration_map.json")
-        claims = json.loads(committed_file_bytes(
+        claims = strict_json_object(committed_file_bytes(
             head, claim_path, root=ROOT))
         claim_ids = [r.get("claim_id") for r in claims.get("claims", [])]
         expected = expected_controls(

@@ -13,6 +13,7 @@ import re
 import sys
 
 from final_closure_authenticate import git as real_git, live as real_live
+from pr113_boundary_io import strict_json_object, detached_destination
 
 ROOT = Path(__file__).resolve().parents[2]
 INTENT_PATH = "research/certification/target_intent.json"
@@ -74,7 +75,7 @@ def exact_intent(head, *, git=real_git):
             "target source head not an accessible Git commit")
     raw = git("show", head + ":" + INTENT_PATH)
     try:
-        parsed = json.loads(raw)
+        parsed = strict_json_object(raw.encode('utf-8') if isinstance(raw, str) else raw)
     except (ValueError, TypeError) as exc:
         raise TargetError("invalid Git-committed target intent") from exc
     return intent_contract(parsed)
@@ -216,15 +217,11 @@ def main(argv=None):
     ap.add_argument("--out", required=True, type=Path)
     args = ap.parse_args(argv)
     try:
-        out = args.out.absolute()
-        require(not out.exists() and not out.is_symlink()
-                and not any(p.is_symlink() for p in out.parents)
-                and not out.is_relative_to(ROOT.resolve()),
-                "execution binding must be a fresh detached record")
+        out = detached_destination(args.out, ROOT)
         intent = exact_intent(args.head)
         raw = args.target.read_bytes()
         require(0 < len(raw) <= 16 * 1024, "invalid detached target size")
-        report = bind(json.loads(raw), intent=intent)
+        report = bind(strict_json_object(raw, max_bytes=16*1024), intent=intent)
         require(report["head_sha"] == args.head,
                 "frozen source does not match target")
         out.parent.mkdir(parents=True, exist_ok=True)

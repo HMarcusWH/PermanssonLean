@@ -19,6 +19,8 @@ import stat
 import sys
 import zipfile
 
+from pr113_boundary_io import strict_json_object
+
 SOURCE = Path(__file__).resolve().parents[2]
 NAME = "pr113-preseal-review-inputs"
 FORMAT = "Permansson.PR113.PresealInputCarrier.v1"
@@ -61,7 +63,7 @@ def read_json_file(path):
     raw = p.read_bytes()
     demand(0 < len(raw) <= 4*1024*1024, "invalid GitHub API response size")
     try:
-        obj = json.loads(raw)
+        obj = strict_json_object(raw)
     except (UnicodeError, TypeError, ValueError) as exc:
         raise PresealInputError("GitHub API JSON invalid") from exc
     demand(isinstance(obj, dict), "GitHub API source is not an object")

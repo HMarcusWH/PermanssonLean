@@ -11,6 +11,7 @@ import ast
 import hashlib
 import json
 from pathlib import Path
+from pr113_boundary_io import strict_json_object
 import re
 import subprocess
 import sys
@@ -61,7 +62,7 @@ def committed(head, path):
 def strict_json(raw):
     check(type(raw) is bytes and len(raw) > 0, "empty JSON source")
     try:
-        obj = json.loads(raw)
+        obj = strict_json_object(raw)
     except (ValueError, UnicodeError) as exc:
         raise MatrixError("malformed JSON source") from exc
     check(isinstance(obj, dict), "object required")

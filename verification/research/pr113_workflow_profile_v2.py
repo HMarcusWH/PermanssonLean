@@ -12,6 +12,7 @@ import json
 from pathlib import Path
 import re
 
+from pr113_boundary_io import strict_json_object
 from pr113_tooling_migration import (
     ROOT, git, exact_tree, require, ToolingMigrationError,
 )
@@ -31,7 +32,7 @@ def _json(root, head, path):
     raw = git(root, "show", head + ":" + path)
     require(0 < len(raw) <= 2_000_000, "unbounded staged manifest")
     try:
-        item = json.loads(raw)
+        item = strict_json_object(raw)
     except (UnicodeError, ValueError) as exc:
         raise ToolingMigrationError("noncanonical workflow manifest: " + path) from exc
     require(isinstance(item, dict), "workflow manifest is not an object")
