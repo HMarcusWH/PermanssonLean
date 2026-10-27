@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 import subprocess
 import urllib.request
+from pr113_boundary_io import strict_json_object
 
 ROOT = Path(__file__).resolve().parents[2]
 PREFIX = "https://api.github.com/repos/HMarcusWH/PermanssonLean"
@@ -140,7 +141,7 @@ def reviewer_authorized(login, role):
     """Explicit owner-versioned reviewer authority; non-author alone is insufficient."""
     demand(role in ("source", "scholarly"), "unknown reviewer role")
     try:
-        policy = json.loads(REVIEWER_POLICY.read_text(encoding="utf-8"))
+        policy = strict_json_object(REVIEWER_POLICY.read_bytes())
     except (OSError, ValueError) as exc:
         raise AuthenticationError("reviewer authority policy unavailable") from exc
     demand(isinstance(policy, dict) and
@@ -266,7 +267,9 @@ def authenticate_scoped_reviews(head_sha, author, bundle_sha256, refs,
         if not lines:
             continue
         try:
-            claim = json.loads(lines[0][len(REVIEW_PREFIX):].strip())
+            claim = strict_json_object(
+                lines[0][len(REVIEW_PREFIX):].strip().encode("utf-8"),
+                max_bytes=64*1024)
         except (ValueError, TypeError) as exc:
             raise AuthenticationError("reviewer attestation is not valid JSON") from exc
         demand(isinstance(claim, dict) and
@@ -364,7 +367,9 @@ def authentic_scholarly_attestations(pr, head_sha, merged_sha, *,
         if not lines:
             continue
         try:
-            data = json.loads(lines[0][len(SCHOLARLY_PREFIX):].strip())
+            data = strict_json_object(
+                lines[0][len(SCHOLARLY_PREFIX):].strip().encode("utf-8"),
+                max_bytes=64*1024)
         except (TypeError, ValueError) as exc:
             raise AuthenticationError("invalid scholarly approval JSON") from exc
         if (not isinstance(data, dict) or

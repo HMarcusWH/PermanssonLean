@@ -52,6 +52,24 @@ def live(endpoint):
 
 
 class AuthenticatedCertMergeTests(unittest.TestCase):
+
+    def test_duplicate_GitHub_review_field_rejected_before_acceptance(self):
+        import json
+        sha = "e"*64
+        payload = ('{"head_sha":"' + H + '","head_sha":"' + H +
+                   '","evidence_bundle_sha256":"' + sha +
+                   '","receipt_payload_sha256":"' + sha +
+                   '","cases":{},"claims":[]}')
+        review = {"id":991,"state":"APPROVED","commit_id":H,
+                  "submitted_at":"2026-10-27T01:00:00Z",
+                  "user":{"login":"independent-reviewer"},
+                  "body":source.REVIEW_PREFIX+" "+payload}
+        with mock.patch.object(source,"paginate",return_value=[review]), \
+             mock.patch.object(source,"reviewer_authorized",return_value=True):
+            with self.assertRaises(source.AuthenticationError):
+                source.authenticate_scoped_reviews(
+                    H,"HMarcusWH",sha,[{"id":991}],sha,pr_number=115)
+
     def test_v2_source_gate_uses_real_cert_not_original_pr_reviewer_records(self):
         def checks(commit):
             return {name:{"id":i+1,"head_sha":commit,
