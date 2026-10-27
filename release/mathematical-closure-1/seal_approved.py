@@ -129,12 +129,12 @@ def bounded_zip_members(z, expected, *, total_limit, member_limit):
     total = 0
     for entry in infos:
         name = entry.filename
-        mode = entry.external_attr >> 16
+        mode = stat.S_IFMT(entry.external_attr >> 16)
         if (name not in expected or name.casefold() in seen
                 or name.startswith("/") or "\\" in name or
                 any(x in ("", ".", "..") for x in name.split("/"))
                 or entry.is_dir() or entry.flag_bits & 1
-                or (mode != 0 and not stat.S_ISREG(mode))
+                or mode not in (0, stat.S_IFREG)
                 or entry.file_size > member_limit or entry.compress_size <= 0
                 or entry.file_size > max(entry.compress_size*500, 1024*1024)):
             raise SealError("unsafe/duplicate/overexpanded ZIP member")
@@ -326,14 +326,14 @@ def verify_approved_archive(archive: Path, manifest: dict):
             raise SealError("approved ZIP expanded member bound exceeded")
         seen = set()
         for info in infos:
-            mode = info.external_attr >> 16
+            mode = stat.S_IFMT(info.external_attr >> 16)
             low = info.filename.casefold()
             if (low in seen or
                 info.flag_bits & 1 or
                 info.filename.startswith("/") or
                 ".." in info.filename.split("/") or
                 "\\" in info.filename or
-                (mode != 0 and not stat.S_ISREG(mode)) or
+                mode not in (0, stat.S_IFREG) or
                 info.is_dir() or
                 info.file_size > 64*1024*1024 or
                 info.flag_bits & 1):

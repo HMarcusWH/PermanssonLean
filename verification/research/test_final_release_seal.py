@@ -80,6 +80,28 @@ class ApprovedSealByteTests(unittest.TestCase):
             "empirical_identification_status": "NOT_ESTABLISHED",
         }
 
+    def test_standard_zip_permission_only_mode_not_mistaken_for_symlink(self):
+        import io
+        import stat
+        raw = io.BytesIO()
+        with zipfile.ZipFile(raw, "w", zipfile.ZIP_DEFLATED) as archive:
+            archive.writestr("valid.txt", b"synthetic regular artifact")
+        with zipfile.ZipFile(io.BytesIO(raw.getvalue())) as archive:
+            self.assertFalse(
+                stat.S_ISREG(archive.infolist()[0].external_attr >> 16))
+            seal.bounded_zip_members(
+                archive, {"valid.txt"}, total_limit=1024, member_limit=1024)
+
+        malicious = io.BytesIO()
+        with zipfile.ZipFile(malicious, "w", zipfile.ZIP_DEFLATED) as archive:
+            entry = zipfile.ZipInfo("valid.txt")
+            entry.external_attr = (stat.S_IFLNK | 0o777) << 16
+            archive.writestr(entry, b"unauthorized symlink")
+        with zipfile.ZipFile(io.BytesIO(malicious.getvalue())) as archive:
+            with self.assertRaises(seal.SealError):
+                seal.bounded_zip_members(
+                    archive, {"valid.txt"}, total_limit=1024, member_limit=1024)
+
     def test_changed_pdf_or_unrendered_page_never_seals(self):
         approval = dict(self.approved, pdf_sha256="0"*64)
         with self.assertRaises(seal.SealError):
