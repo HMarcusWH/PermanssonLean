@@ -39,6 +39,13 @@ SUITES = (
     "test_pr113_inactive_required_gate_replacement.py",
     "test_pr113_full_required_workflow_preview.py",
     "test_pr113_atomic_migration_preview.py",
+    # Real phase-aware A2 input contract and exact historical Git source pin.
+    # These are Python-only source/receipt tests; genuine Lean and the old
+    # isolated historical executor remain separate mandatory CI.
+    "test_localized_prefix_integrity.py",
+    "test_pr113_phase_aware_a2_consumer.py",
+    "test_pr113_semantic_receipt_v2.py",
+    "test_pr113_historical_evidence_contract_v2.py",
     "test_pr113_v2_workflow_contract_preview.py",
     "test_pr113_draft_rehearsal_auth.py",
     "test_pr113_tooling_migration.py",
