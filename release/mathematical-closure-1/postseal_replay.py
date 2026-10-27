@@ -11,7 +11,7 @@ from pathlib import Path
 import sys
 import zipfile
 from seal_approved import verify_approved_archive, SealError, ROOT as ROOT_DIR
-from pr113_boundary_io import strict_json_object, detached_destination
+from pr113_boundary_io import strict_json_object, detached_destination, BoundaryError
 
 FORMAT = "Permansson.MathClosure.PostsealReplayCandidate.v1"
 # Intake must be bounded *before* z.read("approved_seal.json"). The full
@@ -24,7 +24,12 @@ def sha(raw: bytes) -> str:
 
 def no_symlink_input(raw: Path, *, exists: bool) -> Path:
     """Check each unresolved path component before any symlink resolution."""
-    return detached_destination(raw, ROOT_DIR, must_exist=exists)
+    try:
+        return detached_destination(raw, ROOT_DIR, must_exist=exists)
+    except BoundaryError as exc:
+        # Preserve the fail-closed path guard while exposing a stable
+        # seal-replay public error type to callers.
+        raise SealError("unsafe detached replay evidence path: " + str(exc)) from exc
 
 
 def replay(archive: Path, sidecar: Path, output: Path) -> dict:

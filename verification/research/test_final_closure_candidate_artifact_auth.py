@@ -14,6 +14,8 @@ from unittest import mock
 import zipfile
 
 import final_closure_candidate_artifact_auth as auth
+import pr113_producer_target_v3 as producer
+from release_target import B113
 from final_closure_authenticate import AuthenticationError
 
 H = "a" * 40
@@ -61,6 +63,16 @@ class CandidateArtifactIntegrity(unittest.TestCase):
                 "workflow_run": {"id": RUN, "head_sha": H},
             },
         }
+        self.synthetic_source_event = {
+            "GITHUB_ACTIONS": "true", "GITHUB_REPOSITORY": "HMarcusWH/PermanssonLean",
+            "GITHUB_SHA": H, "GITHUB_EVENT_NAME": "push",
+            "GITHUB_REF": "refs/heads/research/final-mathematical-closure",
+        }
+        self.synthetic_live_pr = {
+            "number": 113, "merged": False,
+            "head": {"sha": H, "ref": "research/final-mathematical-closure"},
+            "base": {"sha": B113},
+        }
         self.jobs = [{
             "name": "semantic-candidate-shard (0)",
             "run_id": RUN, "head_sha": H,
@@ -71,8 +83,25 @@ class CandidateArtifactIntegrity(unittest.TestCase):
         }]
 
     def evaluate(self):
+        # Explicit synthetic event/PR/Git fixture, retaining the actual
+        # production source guard and all of its fail-closed conditions.
+        real_guard = producer.authenticated_producer_branch
+        def git(*args):
+            if args == ("rev-parse", "HEAD"):
+                return H
+            if args == ("cat-file", "-t", H):
+                return "commit"
+            raise AssertionError("unmocked producer Git command: " + repr(args))
+        def synthetic_source_guard(head):
+            def live(url):
+                if url == "/pulls/113":
+                    return self.synthetic_live_pr
+                raise AssertionError("unmocked producer GitHub path: " + url)
+            return real_guard(head, env=self.synthetic_source_event, live=live, git=git)
         with (
             mock.patch.dict(os.environ, {"GITHUB_TOKEN": "fake-test-token"}),
+            mock.patch.object(producer, "authenticated_producer_branch",
+                              side_effect=synthetic_source_guard),
             mock.patch.object(auth, "git_head", return_value=H),
             mock.patch.object(auth, "live",
                               side_effect=lambda path: self.responses[path]),
@@ -120,6 +149,32 @@ class CandidateArtifactIntegrity(unittest.TestCase):
         self.responses = baseline_resp
         self.jobs = baseline_jobs
 
+
+    def test_synthetic_wrong_source_event_or_pr_fails_before_artifact(self):
+        original_event = copy.deepcopy(self.synthetic_source_event)
+        for key, value in (
+            ("GITHUB_ACTIONS", "false"),
+            ("GITHUB_SHA", "f"*40),
+            ("GITHUB_REF", "refs/heads/invalid"),
+            ("GITHUB_REPOSITORY", "foreign/repository"),
+        ):
+            self.synthetic_source_event = dict(original_event, **{key: value})
+            with self.subTest(event=key), self.assertRaises(
+                    producer.ProducerTargetError):
+                self.evaluate()
+        self.synthetic_source_event = original_event
+        original_pr = copy.deepcopy(self.synthetic_live_pr)
+        for edit in (
+            lambda pr: pr["head"].update(sha="f"*40),
+            lambda pr: pr["base"].update(sha="f"*40),
+            lambda pr: pr.update(merged=True),
+        ):
+            self.synthetic_live_pr = copy.deepcopy(original_pr)
+            edit(self.synthetic_live_pr)
+            with self.subTest(pr=self.synthetic_live_pr), self.assertRaises(
+                    producer.ProducerTargetError):
+                self.evaluate()
+        self.synthetic_live_pr = original_pr
 
     def test_attestation_output_traversal_rejects_before_live_source(self):
         with tempfile.TemporaryDirectory() as tmp:

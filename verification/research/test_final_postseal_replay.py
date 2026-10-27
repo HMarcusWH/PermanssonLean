@@ -23,7 +23,7 @@ class PostsealTests(unittest.TestCase):
         self.sidecar = self.folder / "SHA256SUMS.txt"
         self.out = root / "detached" / "replay.json"
         self.manifest = {
-            "format": "Permansson.MathClosure.CandidateSeal.v1",
+            "format": "Permansson.MathClosure.CandidateSeal.v3",
             "status": "CANDIDATE_SEAL_BUILT", "full45_claimed": True,
             "accepted_case_count": 45, "accepted_claim_count": 11,
             "source_commit_sha": "a"*40, "head_sha": "b"*40,
@@ -70,6 +70,14 @@ class PostsealTests(unittest.TestCase):
                 replay.replay(self.archive, self.sidecar,
                               parent_alias / "replay.json")
         self.assertFalse(self.out.exists())
+
+    def test_obsolete_candidate_v1_is_not_accepted_as_a_full_seal(self):
+        self.manifest["format"] = "Permansson.MathClosure.CandidateSeal.v1"
+        self.make_zip()
+        with mock.patch.object(replay, "verify_approved_archive") as verifier:
+            with self.assertRaises(SealError):
+                replay.replay(self.archive, self.sidecar, self.out)
+            verifier.assert_not_called()
 
     def test_wrong_sidecar_fails(self):
         self.sidecar.write_text("bad checksum\n")

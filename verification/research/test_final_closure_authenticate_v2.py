@@ -131,25 +131,26 @@ class AuthenticationV2Tests(unittest.TestCase):
 
     def test_authority_policy_unconfigured_denies_non_author(self):
         with mock.patch.object(auth, "REVIEWER_POLICY") as target:
-            target.read_text.return_value = json.dumps({
+            policy = {
                 "format": "Permansson.ReviewerAuthority.v1",
                 "status": "UNCONFIGURED",
                 "source_reviewers": [{"login": "external",
                                       "approved_by": "HMarcusWH",
                                       "independence_disclosed": True}],
                 "scholarly_reviewers": [],
-            })
+            }
+            target.read_bytes.return_value = json.dumps(policy).encode("utf-8")
             self.assertFalse(auth.reviewer_authorized("external", "source"))
-            target.read_text.return_value = json.dumps({
-                "format": "Permansson.ReviewerAuthority.v1",
-                "status": "OWNER_AUTHORIZED",
-                "source_reviewers": [{"login": "external",
-                                      "approved_by": "HMarcusWH",
-                                      "independence_disclosed": True}],
-                "scholarly_reviewers": [],
-            })
+            policy["status"] = "OWNER_AUTHORIZED"
+            target.read_bytes.return_value = json.dumps(policy).encode("utf-8")
             self.assertTrue(auth.reviewer_authorized("external", "source"))
             self.assertFalse(auth.reviewer_authorized("external", "scholarly"))
+            target.read_bytes.return_value = (
+                b'{"format":"Permansson.ReviewerAuthority.v1",'
+                b'"status":"UNCONFIGURED","status":"OWNER_AUTHORIZED",'
+                b'"source_reviewers":[],"scholarly_reviewers":[]}')
+            with self.assertRaises(auth.AuthenticationError):
+                auth.reviewer_authorized("external", "source")
 
     def test_revoked_review_does_not_survive_later_changes_requested(self):
         def bad(r, p, c, i, reviews, ps, pm, ts):
@@ -283,6 +284,7 @@ class AuthenticationV2Tests(unittest.TestCase):
         comments = [{
             "id": 910, "user": {"login": "external_scholar"},
             "created_at": "2026-10-21T19:00:00Z",
+            "updated_at": "2026-10-21T19:00:00Z",
             "body": auth.SCHOLARLY_PREFIX + " " + json.dumps(record),
         }]
         with mock.patch.object(auth, "live", return_value=comments), \
@@ -290,6 +292,10 @@ class AuthenticationV2Tests(unittest.TestCase):
                                side_effect=lambda name, role: name == "external_scholar"):
             got = auth.authentic_scholarly_attestations(pr, H, M)
             self.assertEqual(got[0]["pages"], record["pages"])
+            comments[0]["updated_at"] = "2026-10-21T20:00:00Z"
+            with self.assertRaises(auth.AuthenticationError):
+                auth.authentic_scholarly_attestations(pr, H, M)
+            comments[0]["updated_at"] = comments[0]["created_at"]
             comments[0]["user"]["login"] = "author"
             self.assertEqual(auth.authentic_scholarly_attestations(pr, H, M), [])
             comments[0]["user"]["login"] = "external_scholar"
