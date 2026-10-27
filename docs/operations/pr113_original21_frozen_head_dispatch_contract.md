@@ -9,3 +9,8 @@ The original source collector previously required `run.event == "push"`, which r
 For PR #113, run nonauthorizing trigger/collector/consumer rehearsals, not purported original21 acceptance. GitHub manual dispatch requires the workflow to exist on the default branch; at original base B the retained compiler workflow is absent from main, so feature-branch-only dispatch cannot work. After a separately authorized M113 registers the protected producers on main, the successor CERT may dispatch them at its frozen head, checking actual returned branch/ref, SHA, run/attempt, jobs, checks and all 4+9+8 artifacts. Path-filtered push may not trigger. Do not manufacture commits/IDs or conflate original21 with historical T/A2.
 
 Independent R08 review and separate owner R09b workflow activation remain prerequisites. This implementation does not dispatch workflows or perform an activation.
+
+
+## Successor source identity contract
+
+At the genuine frozen Hcert run, the versioned producer consumers read `PERMANSSON_CERT_PR_NUMBER` as an **untrusted runtime lookup hint**. Set it to the actually assigned post-M113 successor PR number only after main registers the retained producer workflows. The consumer checks the exact GitHub producer event (`GITHUB_SHA`, `GITHUB_REF`, `GITHUB_REPOSITORY`), the live CERT PR head/base/branch, and the actual ordered M113 ancestry. Missing, stale, guessed or old #114 PR numbers fail. This variable is neither independent review nor authorization for mathematical acceptance.
