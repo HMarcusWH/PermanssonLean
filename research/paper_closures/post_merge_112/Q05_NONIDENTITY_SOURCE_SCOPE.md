@@ -91,3 +91,10 @@ values `19/90` and `1/5` must still be identified with the two
 whole-canonical-path original constitutive margins. Until those proofs
 compile with exact-head provenance and receive independent review, the
 conditional theorem is not a complete Q-05 acceptance certificate.
+
+
+## Current-source reconciliation (27 October 2026)
+
+The historical checklist predates PermanssonResearch/Quotient/Q05ActualAtomClosure.lean. The current source contains fine_induced_singleton, coarse_induced_singleton, fine_actual_atom_domination, coarse_actual_atom_domination, original_verified_atom_domination, original_point_witness, and actual_original_B1_margin_bound. These implement typed alpha -> P -> U singleton identities, all-state domination and a 2/41 bound for the original whole-path margin difference over the two-start B1. Thus actual atom domination is not merely postulated, although compilation and independent statement review remain distinct.
+
+The bound does NOT establish exact 19/90 or 1/5 whole-path constitutive margins. Those must be individually located in Lean and authenticated, or recorded as remaining mathematics. No empirical/Exact-GR or unrestricted policy-class claim follows.
