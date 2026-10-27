@@ -37,8 +37,9 @@ inspect_zip = legacy.inspect_zip
 verify_A2_dependency_bridge = legacy.verify_A2_dependency_bridge
 exact_committed_lake_blob = legacy.exact_committed_lake_blob
 exact_committed_blob = legacy.exact_committed_blob
-authority_policy = legacy.authority_policy
-approved_security_review = legacy.approved_security_review
+from pr113_secure_security_review_v3 import (
+    authority_policy, approved_security_review,
+)
 sha = legacy.sha
 need = legacy.need
 InfrastructureError = legacy.InfrastructureError
