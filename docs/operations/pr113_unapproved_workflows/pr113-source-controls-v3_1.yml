@@ -264,6 +264,7 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
           SURVEY_RUN: ${{ inputs.survey_run_id }}
           SURVEY_ATTEMPT: ${{ inputs.survey_run_attempt }}
           SURVEY_JOB: ${{ inputs.survey_job_id }}
