@@ -6,7 +6,7 @@
   "proposed_active_count": 30,
   "activation_target": "verification/integrity/workflow_contract.py",
   "staged_source": "docs/operations/pr113_required_gate_replacement_unapproved/workflow_contract_v2.py",
-  "staged_git_blob_oid": "47998ff84ceb28a8d063f6d49e65dd00084cda4d",
+  "staged_git_blob_oid": "8449ab8d00eb58544294044baf27b22f603ed2ef",
   "expected_workflow_git_blobs": {
     "a2-smoke.yml": "b1a3c2001614ac873ec015d05d2dfd7e7e04344f",
     "a3-contractive-smoke.yml": "d17cb4a6eecf5083f0eb92dd8437719c752c6e4f",
@@ -31,7 +31,7 @@
     "pr113-original-semantic-candidates.yml": "ab509cdb5097fb3c1a9e04dbba192adfe304a940",
     "pr113-postseal-replay.yml": "76777249a3a66312fde3b7ec35cd32bdb961e671",
     "pr113-preseal-fullscope.yml": "b849a1492badfffcc18e40759c1c78c67f60b824",
-    "pr113-source-controls-v3_1.yml": "0bc958aebde7d56cb2532ac89203522277889322",
+    "pr113-source-controls-v3_1.yml": "e5409b73ea74eaef0575301d9de7a47b7a7a55f2",
     "research-integrity-portability.yml": "380a592039dd9e50b87bb2891771e76b071a2aaa",
     "research-integrity.yml": "76ab437ef4781e534b0bf7de79c646890dae1be7",
     "research-lean.yml": "8e993121fdd0e278a2b9585f90dd73795058d938",
