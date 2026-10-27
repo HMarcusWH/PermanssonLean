@@ -21,6 +21,7 @@ sys.path.insert(0, str(ROOT / "verification/research"))
 from final_closure_verify import strict as strict_acceptance
 from final_closure_full_contract import ORIGINAL_CLAIMS
 from archive_integrity import SOURCE_FILES
+from pr113_boundary_io import strict_json_object, detached_destination
 
 THIS = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("permansson_draft_verifier",
@@ -52,7 +53,7 @@ def render_page_digests(directory: Path, expected_count: int):
 
 
 def prepare_approved_manifest(draft_directory: Path, approved: dict):
-    draft = json.loads((draft_directory / "manifest.lock.json").read_text())
+    draft = strict_json_object((draft_directory / "manifest.lock.json").read_bytes())
     if draft.get("status") != "DRAFT_NOT_ACCEPTED" or draft.get("mode") != "DRAFT":
         raise SealError("input must be the genuine untouched draft artifact")
     sha_pdf = sha((draft_directory/"Permansson_Mathematical_Closure.pdf").read_bytes())
@@ -68,14 +69,92 @@ def prepare_approved_manifest(draft_directory: Path, approved: dict):
     return draft, pages
 
 
+
+def external_evidence_children(reproduction_attachment, v31_attachment):
+    """Retain unmodified full-scope reproduction and all 76 owner inputs."""
+    if not isinstance(reproduction_attachment, dict) or not isinstance(v31_attachment, dict):
+        raise SealError("full seal requires original reproduction and owner evidence")
+    source_files = {
+        "external/reproduction.zip": reproduction_attachment.get("zip_file"),
+        "external/additional_contract.json": v31_attachment.get("additional_contract"),
+        "external/workflow_blob_candidates.json": v31_attachment.get("workflow_blob_candidates"),
+    }
+    identities = reproduction_attachment.get("identities")
+    if not isinstance(identities, dict):
+        raise SealError("original reproduction identities missing")
+    children = {
+        "external/reproduction_ids.json":
+            (json.dumps(identities, indent=2, sort_keys=True) + "\n").encode(),
+    }
+    for key, file in source_files.items():
+        if file is None:
+            raise SealError("missing full-scope source " + key)
+        p = Path(file)
+        if not p.is_file() or p.is_symlink() or not 0 < p.stat().st_size <= 64*1024*1024:
+            raise SealError("external input missing, oversized or symlinked")
+        children[key] = p.read_bytes()
+    directory = v31_attachment.get("additional_zips")
+    if directory is None or not Path(directory).is_dir() or Path(directory).is_symlink():
+        raise SealError("missing original 76-owner directory")
+    files = list(Path(directory).iterdir())
+    if len(files) != 76:
+        raise SealError("full-scope original owners must number 76")
+    import re
+    total = 0
+    for p in files:
+        if (not p.is_file() or p.is_symlink()
+                or not re.fullmatch(r"[1-9][0-9]*\.zip", p.name)
+                or not 0 < p.stat().st_size <= 64*1024*1024):
+            raise SealError("invalid original owner artifact")
+        total += p.stat().st_size
+        if total > 256*1024*1024:
+            raise SealError("original owner ZIP budget exceeded")
+        children["external/owners/" + p.name] = p.read_bytes()
+    return children
+
+
+def bounded_zip_members(z, expected, *, total_limit, member_limit):
+    """Validate ZIP directory and budgets before any decompression."""
+    infos = z.infolist()
+    if len(infos) != len(expected) or len(infos) > 256:
+        raise SealError("wrong ZIP member count")
+    seen = set()
+    total = 0
+    for entry in infos:
+        name = entry.filename
+        mode = entry.external_attr >> 16
+        if (name not in expected or name.casefold() in seen
+                or name.startswith("/") or "\\" in name or
+                any(x in ("", ".", "..") for x in name.split("/"))
+                or entry.is_dir() or entry.flag_bits & 1
+                or (mode != 0 and not stat.S_ISREG(mode))
+                or entry.file_size > member_limit or entry.compress_size <= 0
+                or entry.file_size > max(entry.compress_size*500, 1024*1024)):
+            raise SealError("unsafe/duplicate/overexpanded ZIP member")
+        seen.add(name.casefold())
+        total += entry.file_size
+        if total > total_limit:
+            raise SealError("excess nested ZIP expansion")
+    if {x.filename for x in infos} != set(expected):
+        raise SealError("missing expected ZIP member")
+
+
+def read_bounded(z, name, max_bytes):
+    info = z.getinfo(name)
+    if info.file_size > max_bytes:
+        raise SealError("oversized ZIP member: " + name)
+    with z.open(info) as reader:
+        value = reader.read(max_bytes + 1)
+    if len(value) != info.file_size:
+        raise SealError("incomplete ZIP member: " + name)
+    return value
+
+
 def seal(draft_directory: Path, approved: dict, receipts: dict,
          evidence_bundle: Path, output: Path, *, full: bool = False,
          reproduction_attachment: dict | None = None,
          v31_attachment: dict | None = None):
-    if output.resolve().is_relative_to(ROOT.resolve()):
-        raise SealError("release archive output must be detached from checkout")
-    if output.resolve().is_relative_to(draft_directory.resolve()):
-        raise SealError("approved output cannot overwrite its draft sources")
+    output = detached_destination(output, ROOT, forbidden=(draft_directory,))
     # Baseline source integrity is always checked, even before authenticity.
     draft_verifier.verify(draft_directory / "manifest.lock.json")
     draft, pages = prepare_approved_manifest(draft_directory, approved)
@@ -106,13 +185,20 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
         raise SealError("original 13-source draft archive missing")
     complete_sources = {}
     with zipfile.ZipFile(src_zip) as draft_zip:
+        expected_inner = {"manuscript/" + path for path in SOURCE_FILES}
+        expected_inner.update({"Permansson_Mathematical_Closure.pdf",
+                               "Permansson_Mathematical_Closure.tex",
+                               "manifest.lock.json", "source_ci_receipts.lock.json",
+                               "latex_build.log"})
+        bounded_zip_members(draft_zip, expected_inner,
+                            total_limit=128*1024*1024, member_limit=48*1024*1024)
         for relative in SOURCE_FILES:
             original = "research_papers/mathematical_closure/" + relative
             name = "manuscript/" + relative
             expected = draft.get("source_tree_files", {}).get(original)
             if not isinstance(expected, str):
                 raise SealError("draft omitted source input " + relative)
-            raw = draft_zip.read(name)
+            raw = read_bounded(draft_zip, name, 48*1024*1024)
             if sha(raw) != expected:
                 raise SealError("draft source hash does not match " + relative)
             complete_sources[name] = raw
@@ -142,9 +228,12 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
         raise SealError("retained original proof bundle differs from strict acceptance")
     if sha(original_log) != draft.get("latex_log_sha256"):
         raise SealError("draft compiler log changed before sealing")
+    approved_bytes = (json.dumps(approved, indent=2, sort_keys=True)+"\n").encode()
+    children = (external_evidence_children(reproduction_attachment, v31_attachment)
+                if full else {})
     manifest = {
-        "format": ("Permansson.MathClosure.CandidateSeal.v1" if full
-                   else "Permansson.MathClosure.ApprovedSeal.v2"),
+        "format": ("Permansson.MathClosure.CandidateSeal.v2" if full
+                   else "Permansson.MathClosure.ApprovedSeal.v3"),
         "status": "CANDIDATE_SEAL_BUILT" if full else "APPROVED_SOURCE_BOUND",
         "source_commit_sha": result["source"],
         "head_sha": result["frozen_head"],
@@ -157,6 +246,9 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
         "original_draft_checksums_sha256": sha(original_sums),
         "evidence_bundle_sha256": sha(retained_bundle),
         "source_receipts_sha256": sha(retained_receipts),
+        "approved_claims_manifest_sha256": sha(approved_bytes),
+        "external_evidence_members":
+            {key: sha(data) for key, data in sorted(children.items())},
         "original_case_map_sha256": sha(original_case_map),
         "original_claim_map_sha256": sha(original_claim_map),
         "effective_acceptance_report_sha256": sha(effective_report),
@@ -189,12 +281,12 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
         "original_case_acceptance_map.json": original_case_map,
         "original_claim_declaration_map.json": original_claim_map,
         "effective_acceptance_report.json": effective_report,
-        "approved_claims_manifest.json":
-            (json.dumps(approved, indent=2, sort_keys=True)+"\n").encode(),
+        "approved_claims_manifest.json": approved_bytes,
         "approved_seal.json":
             (json.dumps(manifest, indent=2, sort_keys=True)+"\n").encode(),
     }
     members.update(complete_sources)
+    members.update(children)
     for page in pages:
         members["pages/" + page] = (draft_directory/"pages"/page).read_bytes()
     archive = output / ("Permansson_Mathematical_Closure_CANDIDATE.zip"
@@ -223,7 +315,7 @@ def verify_approved_archive(archive: Path, manifest: dict):
         raise SealError("approved ZIP path or size unsafe")
     with zipfile.ZipFile(archive) as z:
         infos = z.infolist()
-        if len(infos) > 128 or sum(i.file_size for i in infos) > 128*1024*1024:
+        if len(infos) > 256 or sum(i.file_size for i in infos) > 512*1024*1024:
             raise SealError("approved ZIP expanded member bound exceeded")
         seen = set()
         for info in infos:
@@ -235,7 +327,7 @@ def verify_approved_archive(archive: Path, manifest: dict):
                 "\\" in info.filename or
                 (mode != 0 and not stat.S_ISREG(mode)) or
                 info.is_dir() or
-                info.file_size > 48*1024*1024 or
+                info.file_size > 64*1024*1024 or
                 info.flag_bits & 1):
                 raise SealError("unsafe or nonportable approved ZIP member")
             seen.add(low)
@@ -259,14 +351,48 @@ def verify_approved_archive(archive: Path, manifest: dict):
             *["manuscript/" + source for source in SOURCE_FILES],
             *["pages/" + p for p in manifest["pdf_pages"]],
         }
+        extra = manifest.get("external_evidence_members")
+        if not isinstance(extra, dict):
+            raise SealError("missing versioned evidence inventory")
+        if manifest.get("format") == "Permansson.MathClosure.CandidateSeal.v2":
+            if (len(extra) != 80 or
+                {n for n in extra if n.startswith("external/owners/")} !=
+                {n for n in extra if n.startswith("external/owners/") and n.endswith(".zip")} or
+                len([n for n in extra if n.startswith("external/owners/")]) != 76 or
+                not {"external/reproduction.zip", "external/reproduction_ids.json",
+                     "external/additional_contract.json",
+                     "external/workflow_blob_candidates.json"} <= set(extra)):
+                raise SealError("full original evidence closure incomplete")
+        elif manifest.get("format") == "Permansson.MathClosure.ApprovedSeal.v3":
+            if extra:
+                raise SealError("scoped release cannot assert full owner evidence")
+        else:
+            raise SealError("obsolete or unknown seal format")
+        expected.update(extra)
         if len(names) != len(expected) or set(names) != expected:
             raise SealError("approved archive has extra/missing members")
+        for child, digest in extra.items():
+            if not isinstance(digest, str) or sha(read_bounded(z, child, 64*1024*1024)) != digest:
+                raise SealError("original full evidence bytes changed: " + child)
+        approved_bytes = read_bounded(z, "approved_claims_manifest.json", 4*1024*1024)
+        if sha(approved_bytes) != manifest.get("approved_claims_manifest_sha256"):
+            raise SealError("approved claims bytes not bound by seal")
+        approved = strict_json_object(approved_bytes)
+        if (approved.get("status") != "APPROVED_SOURCE_BOUND"
+                or approved.get("source_commit_sha") != manifest.get("source_commit_sha")
+                or approved.get("pdf_sha256") != manifest.get("pdf_sha256")
+                or approved.get("pdf_pages") != manifest.get("pdf_pages")
+                or approved.get("claims") != manifest.get("claims")):
+            raise SealError("approved claims contradict sealed review/source")
+        if manifest.get("full45_claimed") is True and (
+                approved.get("approved_manuscript_claims") != manifest.get("claims")):
+            raise SealError("full paper claims differ from approved claim list")
         if sha(z.read("Permansson_Mathematical_Closure.pdf")) != manifest["pdf_sha256"]:
             raise SealError("approved archive replaced PDF")
         for page, expected_sha in manifest["pdf_pages"].items():
             if sha(z.read("pages/"+page)) != expected_sha:
                 raise SealError("approved page bytes changed")
-        if json.loads(z.read("approved_seal.json")) != manifest:
+        if strict_json_object(z.read("approved_seal.json")) != manifest:
             raise SealError("approved source metadata changed")
         source_index = manifest.get("manuscript_sources")
         if not isinstance(source_index, dict) or len(source_index) != len(SOURCE_FILES):
@@ -294,10 +420,10 @@ def verify_approved_archive(archive: Path, manifest: dict):
         for name, field in originals.items():
             if sha(z.read(name)) != manifest.get(field):
                 raise SealError("approved archive replaced provenance bytes: " + name)
-        bound_receipts = json.loads(z.read("source_acceptance_receipts.json"))
+        bound_receipts = strict_json_object(z.read("source_acceptance_receipts.json"))
         if bound_receipts.get("evidence_bundle_sha256") != manifest["evidence_bundle_sha256"]:
             raise SealError("detached compiler bundle no longer matches reviewed receipts")
-        effective = json.loads(z.read("effective_acceptance_report.json"))
+        effective = strict_json_object(z.read("effective_acceptance_report.json"))
         if (effective.get("frozen_head") != manifest["head_sha"] or
             effective.get("merged_source") != manifest["source_commit_sha"] or
             effective.get("accepted_case_count") != manifest["accepted_case_count"] or
@@ -320,25 +446,25 @@ def verify_approved_archive(archive: Path, manifest: dict):
                 "manifest.lock.json", "source_ci_receipts.lock.json",
                 "latex_build.log",
             })
-            if set(inner.namelist()) != expected_inner or len(inner.namelist()) != len(expected_inner):
-                raise SealError("nested original draft archive is incomplete")
+            bounded_zip_members(inner, expected_inner,
+                                total_limit=128*1024*1024, member_limit=48*1024*1024)
             for path in SOURCE_FILES:
                 name = "manuscript/" + path
-                if inner.read(name) != z.read(name):
+                if read_bounded(inner, name, 48*1024*1024) != z.read(name):
                     raise SealError("nested/detached manuscript bytes diverged: " + path)
-            if inner.read("Permansson_Mathematical_Closure.pdf") != z.read(
+            if read_bounded(inner, "Permansson_Mathematical_Closure.pdf", 48*1024*1024) != z.read(
                     "Permansson_Mathematical_Closure.pdf"):
                 raise SealError("approved PDF differs from exact draft PDF")
-            if inner.read("Permansson_Mathematical_Closure.tex") != z.read(
+            if read_bounded(inner, "Permansson_Mathematical_Closure.tex", 48*1024*1024) != z.read(
                     "Permansson_Mathematical_Closure.tex"):
                 raise SealError("approved TeX differs from original draft")
-            if inner.read("manifest.lock.json") != z.read(
+            if read_bounded(inner, "manifest.lock.json", 48*1024*1024) != z.read(
                     "original_draft_manifest.lock.json"):
                 raise SealError("nested draft manifest changed")
-            if inner.read("source_ci_receipts.lock.json") != z.read(
+            if read_bounded(inner, "source_ci_receipts.lock.json", 48*1024*1024) != z.read(
                     "original_draft_source_ci_receipts.lock.json"):
                 raise SealError("nested draft source CI receipts changed")
-            if inner.read("latex_build.log") != z.read(
+            if read_bounded(inner, "latex_build.log", 48*1024*1024) != z.read(
                     "original_draft_latex_build.log"):
                 raise SealError("nested draft compiler log changed")
     return True
@@ -360,13 +486,13 @@ def main(argv=None):
     ap.add_argument("--workflow-blob-candidates", type=Path)
     args = ap.parse_args(argv)
     try:
-        approved = json.loads(args.approved_claim_manifest.read_text())
-        receipts = json.loads(args.source_receipts.read_text())
+        approved = strict_json_object(args.approved_claim_manifest.read_bytes())
+        receipts = strict_json_object(args.source_receipts.read_bytes())
         if bool(args.reproduction_zip) != bool(args.reproduction_ids):
             raise SealError("reproduction ZIP and real producing IDs required together")
         external = ({
             "zip_file": args.reproduction_zip,
-            "identities": json.loads(args.reproduction_ids.read_bytes())}
+            "identities": strict_json_object(args.reproduction_ids.read_bytes())}
             if args.reproduction_zip else None)
         extra_inputs = (args.additional_contract, args.additional_zips,
                         args.workflow_blob_candidates)

@@ -163,6 +163,21 @@ class ApprovedSealByteTests(unittest.TestCase):
                 for index in range(1, 46)},
             "effective_claims": claims,
         }
+        # Explicit synthetic owner inputs; the external acceptance is mocked.
+        owner_dir = Path(self.tmp.name) / "mock-original-owners"
+        owner_dir.mkdir()
+        for i in range(1, 77):
+            (owner_dir / (str(i) + ".zip")).write_bytes(b"PK_fake_unreviewed")
+        reproduction_zip = Path(self.tmp.name) / "mock-reproduction.zip"
+        reproduction_zip.write_bytes(b"PK_fake_reproduction")
+        extra_contract = Path(self.tmp.name) / "extra_contract.json"
+        extra_contract.write_text("{}")
+        workflow_blobs = Path(self.tmp.name) / "workflow_blobs.json"
+        workflow_blobs.write_text("{}")
+        reproduction = {"zip_file": reproduction_zip, "identities": {"synthetic": True}}
+        v31 = {"additional_contract": extra_contract,
+               "workflow_blob_candidates": workflow_blobs,
+               "additional_zips": owner_dir}
         with mock.patch.object(
                 seal.draft_verifier, "verify",
                 return_value={"integrity": "TEST_FIXTURE_ONLY"}):
@@ -171,7 +186,8 @@ class ApprovedSealByteTests(unittest.TestCase):
                     return_value=mock_external_review):
                 result = seal.seal(
                     self.draft, approved, self.receipts,
-                    self.external_bundle, self.output, full=True)
+                    self.external_bundle, self.output, full=True,
+                    reproduction_attachment=reproduction, v31_attachment=v31)
 
         self.assertEqual(result["status"], "CANDIDATE_SEAL_BUILT")
         archive = self.output / "Permansson_Mathematical_Closure_CANDIDATE.zip"

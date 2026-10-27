@@ -11,6 +11,7 @@ from pathlib import Path
 import sys
 import zipfile
 from seal_approved import verify_approved_archive, SealError, ROOT as ROOT_DIR
+from pr113_boundary_io import strict_json_object, detached_destination
 
 FORMAT = "Permansson.MathClosure.PostsealReplayCandidate.v1"
 # Intake must be bounded *before* z.read("approved_seal.json"). The full
@@ -23,14 +24,7 @@ def sha(raw: bytes) -> str:
 
 def no_symlink_input(raw: Path, *, exists: bool) -> Path:
     """Check each unresolved path component before any symlink resolution."""
-    raw = Path(raw).absolute()
-    if ".." in raw.parts or any(component.is_symlink()
-                                for component in (raw, *raw.parents)):
-        raise SealError("symlinked or parent-traversing release path")
-    resolved = raw.resolve(strict=exists)
-    if exists and (not resolved.is_file() or resolved.is_symlink()):
-        raise SealError("actual regular release input missing")
-    return resolved
+    return detached_destination(raw, ROOT_DIR, must_exist=exists)
 
 
 def replay(archive: Path, sidecar: Path, output: Path) -> dict:
@@ -56,8 +50,8 @@ def replay(archive: Path, sidecar: Path, output: Path) -> dict:
             seal_bytes = reader.read(MAX_MANIFEST_BYTES + 1)
         if len(seal_bytes) != info.file_size:
             raise SealError("partial or overexpanded seal member")
-        manifest = json.loads(seal_bytes)
-    if (manifest.get("format") != "Permansson.MathClosure.CandidateSeal.v1" or
+        manifest = strict_json_object(seal_bytes, max_bytes=MAX_MANIFEST_BYTES)
+    if (manifest.get("format") != "Permansson.MathClosure.CandidateSeal.v2" or
         manifest.get("status") != "CANDIDATE_SEAL_BUILT" or
         manifest.get("full45_claimed") is not True or
         manifest.get("accepted_case_count") != 45 or
