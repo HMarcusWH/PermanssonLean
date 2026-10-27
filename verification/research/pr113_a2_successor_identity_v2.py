@@ -40,7 +40,7 @@ PINNED_MODIFIED_PROVIDERS = {
 # This historical test did NOT exist at PR79 BASE. The real A2 introducer
 # committed its original source; an approved 30-workflow cutover changes it.
 LATE_A2_TEST = "verification/research/test_localized_prefix_compiler.py"
-LATE_A2_TEST_PROPOSED_BLOB = "8bc0fdd8ae3442844187db6f5787d22011dd899a"
+LATE_A2_TEST_PROPOSED_BLOB = "89d1772038e0d6e07d095e44ddf4a2bb93c86ee4"
 LATE_A2_TEST_ORIGINAL_BLOB = "c0f49038ea9b590720c78be85968eb63f5ac820f"
 HISTORICAL_A2_INTRODUCER = "f71a76032b169aac7bfe0694aa715339a94d4e05"
 

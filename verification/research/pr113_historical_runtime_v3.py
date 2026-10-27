@@ -194,16 +194,24 @@ def main(argv=None):
             out, receipt = store(
                 produce(args.producer_run_id, args.security_review_id),
                 args.out, args.producer_run_id, args.security_review_id)
-            if receipt["phase"].startswith("initial_113"):
-                env = Path(__import__("os").environ.get("GITHUB_ENV", "/dev/null"))
-                with env.open("a", encoding="utf-8") as f:
-                    for key, path in {
-                        "PERMANSSON_DUAL_HISTORICAL_EVIDENCE":
-                            "historical_envelope.json",
-                        "PERMANSSON_DUAL_ORIGINAL_T_ZIP": "historical_T.zip",
-                        "PERMANSSON_DUAL_ORIGINAL_A2_ZIP": "historical_A2.zip",
-                    }.items():
-                        f.write(key + "=" + str(out / path) + "\n")
+            # The next Research regression step always receives the real
+            # phase-neutral, source-bound receipt, including descendants.
+            # The original T/A2 ZIP variables remain initial-only for
+            # consumers that explicitly verify the original PR113 phase.
+            env_path = __import__("os").environ.get("GITHUB_ENV")
+            if env_path:
+                with Path(env_path).open("a", encoding="utf-8") as f:
+                    f.write(
+                        "PERMANSSON_HISTORICAL_REQUIRED_RECEIPT="
+                        + str(out / "historical_required.json") + "\n")
+                    if receipt["phase"].startswith("initial_113"):
+                        for key, path in {
+                            "PERMANSSON_DUAL_HISTORICAL_EVIDENCE":
+                                "historical_envelope.json",
+                            "PERMANSSON_DUAL_ORIGINAL_T_ZIP": "historical_T.zip",
+                            "PERMANSSON_DUAL_ORIGINAL_A2_ZIP": "historical_A2.zip",
+                        }.items():
+                            f.write(key + "=" + str(out / path) + "\n")
         print(json.dumps({"status": receipt["phase"],
                           "source_commit_sha": receipt["source_commit_sha"],
                           "historical_required": True,

@@ -1,53 +1,73 @@
-"""UNAPPROVED R3 versioned A2 test; never installed before security review.
+"""Review-pending versioned A2 required-check consumer (not installed).
 
-Original historical A2 itself runs in its authentic historical checkout.
-This candidate replacement checks that source-bound original execution,
-the present H successor and four genuine negatives on both sides via an
-independently security-reviewed producing GitHub workflow. Missing detached
-inputs or approval MUST fail the required Research Lean check.
+The authentic v3 historical runtime already executed and bound the phase-
+appropriate original T/A2 or inherited M113 check. Revalidate its detached
+receipt against the *current* real CI event before accepting this test:
+original PR/main and later CERT/main descendants have different sources.
+A candidate result is never independent review or mathematical acceptance.
 """
 import json
 import os
 from pathlib import Path
 import unittest
-from pr113_required_dual_gate_v2 import verify
 
-INPUTS = (
-    "PERMANSSON_DUAL_HISTORICAL_EVIDENCE",
-    "PERMANSSON_DUAL_ORIGINAL_T_ZIP",
-    "PERMANSSON_DUAL_ORIGINAL_A2_ZIP",
-)
+from pr113_boundary_io import strict_json_object
+from pr113_historical_runtime_v3 import FORMAT, check_stored
+
+RECEIPT_ENV = "PERMANSSON_HISTORICAL_REQUIRED_RECEIPT"
+PHASE_STATUSES = {
+    "initial_113_pr": "REQUIRED_HISTORICAL_SOURCE_AND_SECURITY_REVIEW_VERIFIED",
+    "initial_113_main": "MERGED_HISTORICAL_T_AND_A2_REVERIFIED_UNDER_REVIEWED_SOURCE",
+    "main_descendant_pr": "PR113_HISTORICAL_SOURCE_REVERIFIED_FOR_AUTHENTIC_DESCENDANT",
+    "main_descendant_push": "PR113_HISTORICAL_SOURCE_REVERIFIED_FOR_AUTHENTIC_DESCENDANT",
+}
+MAX_RECEIPT_BYTES = 4 * 1024 * 1024
+
 
 class LocalizedCompilerIntegration(unittest.TestCase):
     def test_actual_final_source_and_semantic_mutations(self):
-        payload=[]
-        for name in INPUTS:
-            value=os.environ.get(name)
-            self.assertTrue(value,"missing authentic historical input "+name)
-            candidate=Path(value)
-            self.assertTrue(candidate.is_file() and not candidate.is_symlink())
-            self.assertLessEqual(candidate.stat().st_size,256*1024*1024)
-            payload.append(candidate.read_bytes())
-        self.assertLessEqual(len(payload[0]),64*1024)
-        result=verify(json.loads(payload[0]),payload[1],payload[2])
-        event = os.environ.get("GITHUB_EVENT_NAME")
-        self.assertIn(event, ("pull_request", "push"))
-        expected = (
-            "MERGED_HISTORICAL_T_AND_A2_REVERIFIED_UNDER_REVIEWED_SOURCE"
-            if event == "push" else
-            "REQUIRED_HISTORICAL_SOURCE_AND_SECURITY_REVIEW_VERIFIED"
-        )
-        self.assertEqual(result["status"], expected)
-        if event == "pull_request":
-            self.assertFalse(result["all_required_CI_accepted"])
+        value = os.environ.get(RECEIPT_ENV)
+        self.assertTrue(value, "missing phase-neutral authenticated historical receipt")
+        candidate = Path(value)
+        self.assertTrue(candidate.is_file() and not candidate.is_symlink())
+        self.assertLessEqual(candidate.stat().st_size, MAX_RECEIPT_BYTES)
+        payload = strict_json_object(
+            candidate.read_bytes(), max_bytes=MAX_RECEIPT_BYTES)
+        self.assertEqual(payload.get("format"), FORMAT)
+        phase = payload.get("phase")
+        self.assertIn(phase, PHASE_STATUSES)
+        producer_id = payload.get("historical_producer_run_id")
+        reviewer_id = payload.get("historical_security_review_id")
+        self.assertIs(type(producer_id), int)
+        self.assertGreater(producer_id, 0)
+        self.assertIs(type(reviewer_id), int)
+        self.assertGreater(reviewer_id, 0)
+
+        # This is the real fail-closed validator, not a status-only parse:
+        # it binds actual_source() to this job and independently re-executes
+        # the historical source+artifact+independent-review authentication.
+        # Only the initial PR/main phases carry original T/A2 ZIP sidecars;
+        # descendants must revalidate M113 without borrowing those ZIPs.
+        verified = check_stored(candidate, producer_id, reviewer_id)
+        self.assertEqual(verified, payload)
+        result = verified["historical_required_result"]
+        self.assertEqual(result.get("status"), PHASE_STATUSES[phase])
+        if phase.startswith("initial_113"):
+            self.assertIs(result.get("independent_security_review_authenticated"), True)
         else:
-            self.assertEqual(result["required_ci_successful"], 0)
-        self.assertFalse(result["mathematical_acceptance"])
-        if event == "pull_request":
-            self.assertFalse(result["owner_merge_authorized"])
-        else:
-            self.assertFalse(result["owner_merge_authorized"])
-        self.assertFalse(result["publication_authorized"])
-        print("PR113_ORIGINAL_DUAL_HISTORICAL_RECEIPT_BEGIN")
-        print(json.dumps(result,sort_keys=True))
-        print("PR113_ORIGINAL_DUAL_HISTORICAL_RECEIPT_END")
+            self.assertRegex(
+                result.get("historical_merged_main_sha", ""), r"^[0-9a-f]{40}$")
+            self.assertIs(result.get("current_required_ci_accepted"), False)
+        self.assertIs(verified.get("accepted_current_mathematics"), False)
+        self.assertIs(verified.get("owner_merge_authorized"), False)
+        self.assertIs(verified.get("publication_authorized"), False)
+        print("PR113_PHASE_AWARE_HISTORICAL_RECEIPT_BEGIN")
+        print(json.dumps({
+            "phase": phase,
+            "historical_status": result["status"],
+            "source_commit_sha": verified["source_commit_sha"],
+            "mathematical_acceptance": False,
+            "required_ci_acceptance_inferred": False,
+            "publication_authorized": False,
+        }, sort_keys=True))
+        print("PR113_PHASE_AWARE_HISTORICAL_RECEIPT_END")
