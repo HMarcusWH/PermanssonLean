@@ -71,7 +71,8 @@ def prepare_approved_manifest(draft_directory: Path, approved: dict):
 
 
 
-def external_evidence_children(reproduction_attachment, v31_attachment):
+def external_evidence_children(reproduction_attachment, v31_attachment, *,
+                               reproduction_ids_source):
     """Retain unmodified full-scope reproduction and all 76 owner inputs."""
     if not isinstance(reproduction_attachment, dict) or not isinstance(v31_attachment, dict):
         raise SealError("full seal requires original reproduction and owner evidence")
@@ -83,20 +84,33 @@ def external_evidence_children(reproduction_attachment, v31_attachment):
     identities = reproduction_attachment.get("identities")
     if not isinstance(identities, dict):
         raise SealError("original reproduction identities missing")
-    children = {
-        "external/reproduction_ids.json":
-            (json.dumps(identities, indent=2, sort_keys=True) + "\n").encode(),
-    }
+    if reproduction_ids_source is None:
+        raise SealError("full candidate must retain original reproduction ID bytes")
+    ids_path = detached_destination(reproduction_ids_source, ROOT, must_exist=True)
+    if not 0 < ids_path.stat().st_size <= 4*1024*1024:
+        raise SealError("original reproduction identity JSON missing or oversized")
+    original_id_bytes = ids_path.read_bytes()
+    if strict_json_object(original_id_bytes) != identities:
+        raise SealError("original reproduction identity file differs from authenticated inputs")
+    children = {"external/reproduction_ids.json": original_id_bytes}
     for key, file in source_files.items():
         if file is None:
             raise SealError("missing full-scope source " + key)
-        p = Path(file)
-        if not p.is_file() or p.is_symlink() or not 0 < p.stat().st_size <= 64*1024*1024:
+        p = detached_destination(file, ROOT, must_exist=True)
+        if not 0 < p.stat().st_size <= 64*1024*1024:
             raise SealError("external input missing, oversized or symlinked")
         children[key] = p.read_bytes()
     directory = v31_attachment.get("additional_zips")
-    if directory is None or not Path(directory).is_dir() or Path(directory).is_symlink():
+    if directory is None:
         raise SealError("missing original 76-owner directory")
+    requested = Path(directory)
+    if (".." in requested.parts or any(part.is_symlink()
+            for part in (requested.absolute(), *requested.absolute().parents))):
+        raise SealError("original owner ZIP directory traverses or uses symlink")
+    directory = requested.resolve(strict=True)
+    if (not directory.is_dir() or directory.is_relative_to(ROOT.resolve())
+            or ROOT.resolve().is_relative_to(directory)):
+        raise SealError("original owner directory is not detached")
     try:
         expected_ids = original_owner_artifacts(
             strict_json_object(children["external/additional_contract.json"]))
@@ -160,7 +174,8 @@ def read_bounded(z, name, max_bytes):
 def seal(draft_directory: Path, approved: dict, receipts: dict,
          evidence_bundle: Path, output: Path, *, full: bool = False,
          reproduction_attachment: dict | None = None,
-         v31_attachment: dict | None = None):
+         v31_attachment: dict | None = None,
+         reproduction_ids_source: Path | None = None):
     output = detached_destination(output, ROOT, forbidden=(draft_directory,))
     # Baseline source integrity is always checked, even before authenticity.
     draft_verifier.verify(draft_directory / "manifest.lock.json")
@@ -236,8 +251,10 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
     if sha(original_log) != draft.get("latex_log_sha256"):
         raise SealError("draft compiler log changed before sealing")
     approved_bytes = (json.dumps(approved, indent=2, sort_keys=True)+"\n").encode()
-    children = (external_evidence_children(reproduction_attachment, v31_attachment)
-                if full else {})
+    children = (external_evidence_children(
+        reproduction_attachment, v31_attachment,
+        reproduction_ids_source=reproduction_ids_source)
+        if full else {})
     manifest = {
         "format": ("Permansson.MathClosure.CandidateSeal.v3" if full
                    else "Permansson.MathClosure.ApprovedSeal.v3"),
@@ -531,7 +548,8 @@ def main(argv=None):
         outcome = seal(args.draft_dir, approved, receipts,
                        args.bundle, args.out, full=args.full,
                        reproduction_attachment=external,
-                       v31_attachment=additional)
+                       v31_attachment=additional,
+                       reproduction_ids_source=args.reproduction_ids)
     except (OSError, ValueError, KeyError, zipfile.BadZipFile) as exc:
         print("APPROVED SEAL BLOCKED:", exc)
         return 2

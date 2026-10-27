@@ -110,6 +110,45 @@ class ApprovedSealByteTests(unittest.TestCase):
         with self.assertRaises(seal.SealError):
             seal.prepare_approved_manifest(self.draft, self.approved)
 
+    def test_external_ids_require_exact_original_bytes(self):
+        from pr113_owner_partition_v3 import FORMAT, CLAIMS
+        folder = Path(self.tmp.name) / "source"
+        folder.mkdir()
+        (folder/"101.zip").write_bytes(b"PK_fake")
+        (folder/"102.zip").write_bytes(b"PK_fake")
+        (folder/"103.zip").write_bytes(b"PK_fake")
+        cases = [f"C-{i:02d}" for i in range(1, 46)]
+        contract = {"format": FORMAT, "source_controls_accepted": False,
+                    "independent_security_review": False,
+                    "mathematical_approval": False,
+                    "producers": [
+                        {"artifact_id":101, "owners":[
+                            {"kind":"original_positive","owner_id":i} for i in cases]},
+                        {"artifact_id":102, "owners":[
+                            {"kind":"legacy_negative","owner_id":i} for i in cases[:20]]},
+                        {"artifact_id":103, "owners":[
+                            {"kind":"claim_pair","owner_id":i} for i in sorted(CLAIMS)]},
+                    ]}
+        extra = Path(self.tmp.name)/"contract.json"
+        extra.write_text(json.dumps(contract))
+        workflow = Path(self.tmp.name)/"workflow.json"
+        workflow.write_text("{}")
+        rep = Path(self.tmp.name)/"reproduction.zip"
+        rep.write_bytes(b"PK_mock")
+        ids = Path(self.tmp.name)/"ids.json"
+        ids.write_bytes(b'{"source":"original", "run_id":101}')
+        inputs = {"zip_file":rep,"identities":{"source":"original","run_id":101}}
+        extras = {"additional_contract":extra,"workflow_blob_candidates":workflow,
+                  "additional_zips":folder}
+        children = seal.external_evidence_children(
+            inputs, extras, reproduction_ids_source=ids)
+        self.assertEqual(children["external/reproduction_ids.json"],
+                         ids.read_bytes())
+        ids.write_bytes(b'{"source":"changed","run_id":101}')
+        with self.assertRaises(seal.SealError):
+            seal.external_evidence_children(
+                inputs, extras, reproduction_ids_source=ids)
+
     def test_mocked_seal_preserves_original_draft_and_exact_bytes(self):
         before = (self.draft/"manifest.lock.json").read_bytes()
         with mock.patch.object(seal.draft_verifier, "verify", return_value={
@@ -213,6 +252,8 @@ class ApprovedSealByteTests(unittest.TestCase):
         extra_contract.write_text(json.dumps(owner_registry))
         workflow_blobs = Path(self.tmp.name) / "workflow_blobs.json"
         workflow_blobs.write_text("{}")
+        reproduction_ids = Path(self.tmp.name) / "mock-reproduction-ids.json"
+        reproduction_ids.write_text(json.dumps({"synthetic": True}))
         reproduction = {"zip_file": reproduction_zip, "identities": {"synthetic": True}}
         v31 = {"additional_contract": extra_contract,
                "workflow_blob_candidates": workflow_blobs,
@@ -226,7 +267,8 @@ class ApprovedSealByteTests(unittest.TestCase):
                 result = seal.seal(
                     self.draft, approved, self.receipts,
                     self.external_bundle, self.output, full=True,
-                    reproduction_attachment=reproduction, v31_attachment=v31)
+                    reproduction_attachment=reproduction, v31_attachment=v31,
+                    reproduction_ids_source=reproduction_ids)
 
         self.assertEqual(result["status"], "CANDIDATE_SEAL_BUILT")
         archive = self.output / "Permansson_Mathematical_Closure_CANDIDATE.zip"
