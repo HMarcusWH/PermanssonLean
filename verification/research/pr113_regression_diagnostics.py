@@ -30,6 +30,11 @@ def summary(result):
         "status": "TESTS_PASSED" if result.wasSuccessful() else "TESTS_FAILED",
         "tests_run": result.testsRun,
         "failure_count": len(result.failures),
+        "direct_failure_count": sum(
+            test.id() not in {row["id"] for row in result.subtests}
+            for test, _detail in result.failures),
+        "subtest_failure_count": sum(row["status"] == "failure"
+                                     for row in result.subtests),
         "error_count": len(result.errors),
         "skips": len(result.skipped),
         "subtest_failures": result.subtests,
