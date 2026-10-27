@@ -238,7 +238,7 @@ def authenticated_checks(head_sha):
 
 
 def authenticate_scoped_reviews(head_sha, author, bundle_sha256, refs,
-                                expected_payload_sha256):
+                                expected_payload_sha256, *, pr_number=113):
     """Parse per-case/claim decisions from exact-H non-author GitHub approvals.
 
     These scopes are authentic review-body content from GitHub, not the
@@ -250,7 +250,7 @@ def authenticate_scoped_reviews(head_sha, author, bundle_sha256, refs,
     demand(isinstance(refs, list), "independent review receipts malformed")
     registered_ids = {x.get("id") for x in refs if isinstance(x, dict)}
     scopes = {}
-    reviews = paginate("/pulls/113/reviews")
+    reviews = paginate("/pulls/"+str(pr_number)+"/reviews")
     for review in current_reviews_by_user(reviews).values():
         user = (review.get("user") or {}).get("login")
         rid = review.get("id")
@@ -295,7 +295,8 @@ def verify_premerge(receipts, *, require_independent_review=True):
     for name, value in (("B", b), ("H", h), ("S", s)):
         demand(isinstance(value, str) and SHA.fullmatch(value), "missing real " + name)
         demand(git("cat-file", "-t", value) == "commit", name + " not a Git commit")
-    demand(b == BASE, "wrong immutable original PR base")
+    # Original PR113 must still use B113. A later genuine CERT target is
+    # separately source-bound to the actual ordered M113 ancestor.
     demand(git("show", "-s", "--format=%P", s).split() == [b, h],
            "synthetic S does not have ordered B/H parents")
     demand(git("rev-parse", s + "^{tree}") ==
@@ -303,10 +304,13 @@ def verify_premerge(receipts, *, require_independent_review=True):
            "synthetic merge changes the reviewed source tree")
     demand(git("rev-parse", "main") == b,
            "main advanced after branch freeze: rebase/re-review needed")
-    pr = live("/pulls/113")
-    demand(pr.get("number") == 113 and pr.get("merged") is False and
-           pr.get("state") == "open" and
-           pr["head"]["sha"] == h and pr["base"]["sha"] == b,
+    from pr113_cert_release_source_v3 import source_pr, ReleaseSourceError
+    try:
+        pr_number, pr = source_pr(b, h, git=git, live=live)
+    except ReleaseSourceError as exc:
+        raise AuthenticationError("original/CERT premerge source invalid") from exc
+    demand(pr.get("merged") is False and pr.get("state") == "open"
+           and pr["head"]["sha"] == h and pr["base"]["sha"] == b,
            "PR no longer an authentic unmerged B/H review candidate")
     checks = authenticated_checks(h)
     required = receipts.get("source_bound_ci")
@@ -324,7 +328,7 @@ def verify_premerge(receipts, *, require_independent_review=True):
             h, (pr.get("user") or {}).get("login"),
             receipts.get("evidence_bundle_sha256"),
             receipts.get("independent_source_reviews", []),
-            receipt_payload_digest(receipts))
+            receipt_payload_digest(receipts), pr_number=pr_number)
         demand(bool(scopes), "independent exact-H GitHub review/scope absent")
     return {"B": b, "H": h, "S": s, "M": None,
             "checks": checks, "review_scopes": scopes}
@@ -333,7 +337,8 @@ def verify_premerge(receipts, *, require_independent_review=True):
 SCHOLARLY_PREFIX = "PERMANSSON-SCHOLARLY-V2:"
 
 
-def authentic_scholarly_attestations(pr, head_sha, merged_sha):
+def authentic_scholarly_attestations(pr, head_sha, merged_sha, *,
+                                   pr_number=113):
     """Postmerge external scientific/PDF review from genuine GitHub comments.
 
     A machine can authenticate who authored this attestation, what they
@@ -344,7 +349,7 @@ def authentic_scholarly_attestations(pr, head_sha, merged_sha):
     demand(isinstance(merged_at, str) and bool(merged_at),
            "scholarly approval requires completed genuine GitHub merge")
     author = (pr.get("user") or {}).get("login")
-    comments = paginate("/issues/113/comments")
+    comments = paginate("/issues/"+str(pr_number)+"/comments")
     results = []
     for comment in comments:
         reviewer = (comment.get("user") or {}).get("login")
@@ -393,8 +398,7 @@ def verify_merged_v2(receipts):
         demand(isinstance(value, str) and SHA.fullmatch(value), "missing merged " + name)
         demand(git("cat-file", "-t", value) == "commit",
                "missing authentic " + name + " Git object")
-    demand(b == BASE and
-           git("show", "-s", "--format=%P", s).split() == [b, h] and
+    demand(git("show", "-s", "--format=%P", s).split() == [b, h] and
            git("show", "-s", "--format=%P", m).split() == [b, h],
            "not an exact real [B,H] Git merge")
     demand(git("rev-parse", m + "^{tree}") ==
@@ -402,7 +406,11 @@ def verify_merged_v2(receipts):
            "merged source tree differs from genuine synthetic merge")
     git("merge-base", "--is-ancestor", b, m)
     git("merge-base", "--is-ancestor", h, m)
-    pr = live("/pulls/113")
+    from pr113_cert_release_source_v3 import source_pr, ReleaseSourceError
+    try:
+        pr_number, pr = source_pr(b, h, m, git=git, live=live)
+    except ReleaseSourceError as exc:
+        raise AuthenticationError("merged PR113/CERT source not genuine") from exc
     demand(pr.get("merged") is True and pr.get("head", {}).get("sha") == h and
            pr.get("merge_commit_sha") == m,
            "live GitHub PR does not authenticate M")
@@ -424,9 +432,10 @@ def verify_merged_v2(receipts):
         h, (pr.get("user") or {}).get("login"),
         receipts.get("evidence_bundle_sha256"),
         receipts.get("independent_source_reviews", []),
-        receipt_payload_digest(receipts))
+        receipt_payload_digest(receipts), pr_number=pr_number)
     demand(bool(scopes), "missing authenticated independent exact-H scope reviews")
-    scholarly = authentic_scholarly_attestations(pr, h, m)
+    scholarly = authentic_scholarly_attestations(
+        pr, h, m, pr_number=pr_number)
     return {"B": b, "H": h, "S": s, "M": m,
             "checks": frozen, "integrated_checks": integrated,
             "review_scopes": scopes, "scholarly_reviews": scholarly}
