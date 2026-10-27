@@ -2,7 +2,7 @@
   "format": "Permansson.PR113.VersionedWorkflowSuiteCandidate.v2",
   "status": "ORIGINAL_CI06_CI07_METHODS_PRESERVED_IN_INACTIVE_STAGE",
   "staged_test_source": "docs/operations/pr113_required_gate_replacement_unapproved/test_workflow_v2.py",
-  "staged_test_blob_oid": "50986f09407c9b4ef6a5e9b777898e2e1f640dcd",
+  "staged_test_blob_oid": "d49819f064a4da330d4ba8fcc1456232fdc27fb6",
   "target_test_path": "verification/integrity/tests/test_workflow.py",
   "target_contract_path": "verification/integrity/workflow_contract.py",
   "old_test_source_untouched": true,

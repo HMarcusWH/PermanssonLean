@@ -98,13 +98,25 @@ class WorkflowTests(unittest.TestCase):
                 "  archive-reproducibility:\n"+value))
 
     def test_shell_background_and_redirection_rejected(self):
-        original="python3 -B verification/research/pr113_required_dual_gate_v2.py"
-        for changed in ("true || "+original,
-                        original+" > /dev/null",
-                        original+" & true",
-                        "echo "+original):
-            self.rejected(self.altered("research-integrity.yml",
-                                       original,changed))
+        original="python3 -B verification/research/pr113_historical_runtime_v3.py"
+        source=self.integrity
+        # Both the producer and --check-existing verifier must be guarded.
+        self.assertEqual(source.count(original),2)
+        first=source.find(original)
+        second=source.find(original,first+len(original))
+        self.assertGreater(second,first)
+        self.assertIn("--check-existing",source[second:second+400])
+        for site,offset in (("produce",first),("check-existing",second)):
+            for changed in ("true || "+original,
+                            original+" > /dev/null",
+                            original+" & true",
+                            original+" || true",
+                            "echo "+original):
+                with self.subTest(site=site,mutation=changed):
+                    mutated=dict(self.workflows)
+                    mutated["research-integrity.yml"]=(
+                        source[:offset]+changed+source[offset+len(original):])
+                    self.rejected(mutated)
 
     def test_execution_overrides_rejected(self):
         for source in ("research-integrity.yml","research-lean.yml"):

@@ -201,6 +201,68 @@ def verify_target_worktree(worktree,reviewed_head):
 
 
 
+def _nested_workflow_failure(finished, evidence):
+    """Preserve bounded real nested failure evidence in the outer CI failure.
+
+    The detached report can be removed with the disposable worktree, so
+    failure IDs, error codes and output must also reach the outer job log.
+    This diagnostic is never an approval or a successful test receipt.
+    """
+    output=(finished.stdout or "")+"\n"+(finished.stderr or "")
+    details={
+        "format":"Permansson.PR113.WorkflowSuiteFailureDiagnostic.v1",
+        "status":"FAIL_CLOSED",
+        "nested_returncode":finished.returncode,
+        "nested_output_sha256":hashlib.sha256(output.encode("utf-8")).hexdigest(),
+        "report_state":"ABSENT",
+        "failed_test_methods":[],
+        "required_github_ci_authenticated":False,
+        "independent_security_review":False,
+        "owner_activation_authorized":False,
+        "mathematical_acceptance":False,
+    }
+    if evidence.is_file() and not evidence.is_symlink():
+        try:
+            raw=evidence.read_bytes()
+            if not 0<len(raw)<=262144:
+                details["report_state"]="OVERSIZED_OR_EMPTY"
+            else:
+                report=json.loads(raw)
+                if not isinstance(report,dict) or report.get("suite")!="workflow":
+                    details["report_state"]="INVALID_SUITE_OR_SCHEMA"
+                else:
+                    details["report_state"]="PARSED"
+                    details["report_status"]=str(report.get("status",""))[:80]
+                    details["report_error_code"]=str(report.get("error_code",""))[:120]
+                    details["report_message"]=str(report.get("message",""))[:2000]
+                    for key in ("methods_run","failures","errors","skips"):
+                        value=report.get(key)
+                        if type(value) is int:
+                            details[key]=value
+                    rows=report.get("results",[])
+                    if isinstance(rows,list):
+                        for row in rows[:128]:
+                            if not isinstance(row,dict) or row.get("status") not in (
+                                    "FAIL","ERROR","SKIP","EXPECTED_FAILURE"):
+                                continue
+                            details["failed_test_methods"].append({
+                                "method":str(row.get("method",""))[:250],
+                                "status":row["status"],
+                                "subtest":str(row.get("subtest",""))[:250],
+                            })
+        except (OSError,UnicodeError,ValueError):
+            details["report_state"]="UNREADABLE_OR_MALFORMED"
+    # Retain an output head AND tail rather than losing earlier test IDs to
+    # a last-1800-characters slice of the unittest traceback.
+    if len(output)>24000:
+        output=output[:8000]+"\n... bounded nested output omitted ...\n"+output[-16000:]
+    envelope=json.dumps(details,sort_keys=True)
+    print("PR113_NESTED_WORKFLOW_FAILURE_BEGIN",file=sys.stderr)
+    print(envelope,file=sys.stderr)
+    print("PR113_NESTED_WORKFLOW_FAILURE_END",file=sys.stderr)
+    return "actual installed CI-06/CI-07 test suite failed:\n"+envelope+"\n"+output
+
+
 def run_installed_workflow_suite(checkout, evidence):
     """Run actual 30-source CI-06/CI-07 unittest+registry, not a source mock.
 
@@ -228,14 +290,15 @@ def run_installed_workflow_suite(checkout, evidence):
                   capture_output=True,text=True,timeout=180)
     except (OSError,subprocess.TimeoutExpired) as exc:
         raise RehearsalError("actual versioned workflow suite unavailable") from exc
-    need(finished.returncode==0 and evidence.is_file(),
-         "actual installed CI-06/CI-07 test suite failed: "+
-         (finished.stdout+"\n"+finished.stderr)[-1800:])
+    if finished.returncode!=0 or not evidence.is_file():
+        raise RehearsalError(_nested_workflow_failure(finished,evidence))
     try:
         report=json.loads(evidence.read_bytes())
     except (ValueError,UnicodeError,OSError) as exc:
         raise RehearsalError("actual CI-06/CI-07 report malformed") from exc
-    context=report.get("context") if isinstance(report,dict) else None
+    if not isinstance(report,dict) or report.get("status")!="PASS":
+        raise RehearsalError(_nested_workflow_failure(finished,evidence))
+    context=report.get("context")
     need(report.get("format")=="Permansson.Hardening.Tests.v1"
          and report.get("status")=="PASS"
          and report.get("suite")=="workflow"

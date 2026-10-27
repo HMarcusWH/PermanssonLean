@@ -5,9 +5,11 @@ objects and proves genuine ordered synthetic S source identity. The original
 PR branch, workflow files, owner/reviewer state and release claims stay inert.
 """
 import json
+import subprocess
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 
 import pr113_disposable_transition_rehearsal as rehearsal
 
@@ -92,6 +94,43 @@ class RealDisposableRehearsalTests(unittest.TestCase):
         self.assertEqual(before,rehearsal.scalar(ROOT,"rev-parse","HEAD"))
         self.assertFalse(rehearsal.run(
             ROOT,"status","--porcelain=v1","--untracked-files=all"))
+
+    def test_nested_failure_retains_exact_method_and_exit_status(self):
+        """A failed nested test must stay red and identify the failing method."""
+        name=("verification.integrity.tests.test_workflow.WorkflowTests."
+              "test_shell_background_and_redirection_rejected")
+        with tempfile.TemporaryDirectory(prefix="pr113-nested-fail-test-") as temp:
+            checkout=Path(temp)/"source"
+            checkout.mkdir()
+            evidence=Path(temp)/"workflow-tests.json"
+            def failed_child(command,**kwargs):
+                self.assertEqual(command[-1],str(evidence))
+                evidence.write_text(json.dumps({
+                    "format":"Permansson.Hardening.Tests.v1",
+                    "suite":"workflow",
+                    "status":"FAIL",
+                    "error_code":"E_REPORT",
+                    "message":"Suite failed, skipped, or incomplete",
+                    "methods_run":8,
+                    "failures":1,
+                    "errors":0,
+                    "skips":0,
+                    "results":[{"method":name,"status":"FAIL"}],
+                }),encoding="utf-8")
+                return subprocess.CompletedProcess(
+                    command,1,"workflow: FAIL\n",
+                    "FAIL: "+name+"\nAssertionError: expected E_WORKFLOW_CONTRACT\n")
+            with mock.patch.object(rehearsal,"scalar",return_value="a"*40), \
+                    mock.patch.object(rehearsal.subprocess,"run",
+                                      side_effect=failed_child):
+                with self.assertRaises(rehearsal.RehearsalError) as raised:
+                    rehearsal.run_installed_workflow_suite(checkout,evidence)
+            message=str(raised.exception)
+            self.assertIn(name,message)
+            self.assertIn("E_REPORT",message)
+            self.assertIn('"nested_returncode": 1',message)
+            self.assertIn('"status": "FAIL_CLOSED"',message)
+            self.assertEqual(json.loads(evidence.read_text())["status"],"FAIL")
 
     def test_active_30_rehearsal_requires_both_legacy_import_consumers(self):
         actual=rehearsal.ACTIVE_30_SUITES
