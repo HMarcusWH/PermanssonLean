@@ -120,8 +120,22 @@ def decode_unique_json(raw, *, max_bytes=MAX_BYTES):
             result[key] = value
         return result
 
+    def reject_nonfinite_constant(value):
+        raise InfrastructureEnvelopeError(
+            "nonfinite historical evidence JSON number: " + value)
+
+    def finite_float(value):
+        import math
+        number = float(value)
+        if not math.isfinite(number):
+            raise InfrastructureEnvelopeError(
+                "nonfinite historical evidence JSON float")
+        return number
+
     try:
-        value = json.loads(raw, object_pairs_hook=no_duplicate_keys)
+        value = json.loads(raw, object_pairs_hook=no_duplicate_keys,
+                           parse_constant=reject_nonfinite_constant,
+                           parse_float=finite_float)
     except InfrastructureEnvelopeError:
         raise
     except (UnicodeError, ValueError, TypeError) as exc:

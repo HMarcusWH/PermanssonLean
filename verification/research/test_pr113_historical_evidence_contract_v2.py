@@ -115,6 +115,15 @@ class HistoricalEnvelopeV2Tests(unittest.TestCase):
                     contract.InfrastructureEnvelopeError):
                 contract.decode_unique_json(raw)
 
+    def test_json_nan_and_infinity_never_enter_historical_evidence(self):
+        for raw in (b'{"after": NaN}', b'{"after": Infinity}',
+                    b'{"after": -Infinity}', b'{"after": 1e999}'):
+            # Parse constants or nonfinite numeric results must fail before
+            # a machine-readable verification status can be accepted.
+            with self.subTest(raw=raw), self.assertRaises(
+                    contract.InfrastructureEnvelopeError):
+                contract.decode_unique_json(raw)
+
     def test_pr_and_main_event_decoders_reject_duplicate_object_keys(self):
         from test_pr113_required_dual_gate import fake_env, fake_event
         from test_pr113_historical_postmerge import (

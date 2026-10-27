@@ -140,3 +140,41 @@ class PhaseAwareStagedA2ConsumerTests(unittest.TestCase):
                 "test_actual_final_source_and_semantic_mutations")
             with self.assertRaises(AssertionError):
                 case.test_actual_final_source_and_semantic_mutations()
+
+    def test_runtime_exports_one_phase_neutral_receipt_to_next_ci_step(self):
+        """Synthetic event tests real main() output and GITHUB_ENV handoff."""
+        for phase in PHASES:
+            with self.subTest(phase=phase):
+                result = fabricated_result(phase)
+                with tempfile.TemporaryDirectory(prefix="pr113-export-") as temp:
+                    envfile = Path(temp) / "github-env"
+                    args = [
+                        "--producer-run-id", "111",
+                        "--security-review-id", "333",
+                        "--out", str(Path(temp) / "material"),
+                    ]
+                    with mock.patch.dict(
+                        os.environ, {"GITHUB_ENV": str(envfile)}, clear=False
+                    ), mock.patch.object(
+                        runtime, "produce", return_value=result
+                    ), redirect_stdout(io.StringIO()):
+                        self.assertEqual(runtime.main(args), 0)
+                    lines = envfile.read_text(encoding="utf-8").splitlines()
+                    paths = dict(line.split("=", 1) for line in lines)
+                    self.assertEqual(
+                        set(paths) >= {consumer.RECEIPT_ENV}, True)
+                    receipt = Path(paths[consumer.RECEIPT_ENV])
+                    self.assertTrue(receipt.is_file())
+                    self.assertEqual(
+                        json.loads(receipt.read_text())["phase"], phase)
+                    original_vars = {
+                        "PERMANSSON_DUAL_HISTORICAL_EVIDENCE",
+                        "PERMANSSON_DUAL_ORIGINAL_T_ZIP",
+                        "PERMANSSON_DUAL_ORIGINAL_A2_ZIP",
+                    }
+                    if phase.startswith("initial_113"):
+                        self.assertTrue(original_vars <= set(paths))
+                        for key in original_vars:
+                            self.assertTrue(Path(paths[key]).is_file())
+                    else:
+                        self.assertTrue(original_vars.isdisjoint(paths))
