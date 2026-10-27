@@ -2,6 +2,7 @@
 import copy
 import json
 import unittest
+import os
 from unittest import mock
 
 import pr113_legacy20_choice_delivery as deliver
@@ -83,7 +84,9 @@ def fixture():
         "workflow_run":{"id":100,"head_sha":H},
       },
       "/issues/comments/700":comment,
-      "/pulls/113":{"state":"open","merged":False,"head":{"sha":H},
+      "/pulls/113":{"number":113,"state":"open","merged":False,
+                    "head":{"sha":H,"ref":"research/final-mathematical-closure"},
+                    "base":{"sha":deliver.B113},
                     "user":{"login":AUTHOR}},
     }
     policy={"format":"Permansson.PR113.LegacyEventReviewerAuthority.v1",
@@ -94,19 +97,56 @@ def fixture():
 
 
 class LegacyDeliveryTests(unittest.TestCase):
-    def run_delivery(self, modify=None):
+    def run_delivery(self, modify=None, *, cert=False):
         raw, member, api, policy, att = fixture()
+        env = {
+            "GITHUB_ACTIONS": "true",
+            "GITHUB_REPOSITORY": "HMarcusWH/PermanssonLean",
+            "GITHUB_EVENT_NAME": "workflow_dispatch",
+            "GITHUB_SHA": H,
+            "GITHUB_REF": "refs/heads/research/final-mathematical-closure",
+            "PERMANSSON_CERT_PR_NUMBER": "",
+        }
+        cert_base, historical_head, merged = ("d"*40, "b"*40, "c"*40)
+        if cert:
+            env["GITHUB_REF"] = "refs/heads/research/cert-real"
+            env["PERMANSSON_CERT_PR_NUMBER"] = "115"
+            api["/actions/runs/100"]["head_branch"] = "research/cert-real"
+            api["/actions/runs/100"]["event"] = "workflow_dispatch"
+            api["/issues/comments/700"]["issue_url"] = (
+                "https://api.github.com/repos/HMarcusWH/PermanssonLean/issues/115")
+            api["/pulls/113"] = {
+                "number":113, "state":"closed", "merged":True,
+                "head":{"sha":historical_head}, "merge_commit_sha":merged,
+            }
+            api["/pulls/115"] = {
+                "number":115, "state":"open", "merged":False,
+                "base":{"ref":"main","sha":cert_base},
+                "head":{"sha":H,"ref":"research/cert-real",
+                        "repo":{"full_name":"HMarcusWH/PermanssonLean"}},
+                "user":{"login":AUTHOR},
+            }
+            api["/branches/main"] = {"commit":{"sha":cert_base}}
         if modify: modify(raw,member,api,policy,att)
         def git(*args):
             if args==("rev-parse","HEAD"):
                 return H
             if args==("show",H+":"+deliver.POLICY):
                 return json.dumps(policy)
+            if args[:2]==("cat-file","-t"):
+                return "commit"
+            if args==("show","-s","--format=%P",merged):
+                return deliver.B113 + " " + historical_head
+            if args[0]=="rev-parse" and args[1].endswith("^{tree}"):
+                return "reviewed_tree"
+            if args[:2]==("merge-base","--is-ancestor"):
+                return ""
             raise AssertionError(args)
         # Selection matching is independently checked by original code.
         with mock.patch.object(deliver,"decision_to_selection",
                                return_value={"cases":[]}) as binder:
-            result=deliver.deliver(H,IDS,raw,700,git=git,live=api.__getitem__)
+            result=deliver.deliver(H,IDS,raw,700,git=git,
+                                   live=api.__getitem__,env=env)
             self.assertEqual(binder.call_count,1)
         return result
 
@@ -117,6 +157,25 @@ class LegacyDeliveryTests(unittest.TestCase):
         self.assertFalse(selection["independent_case_review"])
         self.assertFalse(selection["mathematical_acceptance"])
         self.assertFalse(result["diagnostic"]["publication_authorized"])
+
+    def test_real_cert_target_binds_review_to_actual_successor(self):
+        result = self.run_delivery(cert=True)
+        self.assertEqual(result["diagnostic"]["reviewed_pr_number"], 115)
+        self.assertEqual(result["diagnostic"]["reviewed_branch"],
+                         "research/cert-real")
+        self.assertFalse(result["diagnostic"]["mathematical_acceptance"])
+
+    def test_cert_must_reject_old_pr113_issue_and_stale_survey_branch(self):
+        def wrong_issue(raw, member, api, policy, att):
+            api["/issues/comments/700"]["issue_url"] = (
+                "https://api.github.com/repos/HMarcusWH/PermanssonLean/issues/113")
+        with self.assertRaises(deliver.ChoiceDeliveryError):
+            self.run_delivery(wrong_issue, cert=True)
+        def wrong_source(raw, member, api, policy, att):
+            api["/actions/runs/100"]["head_branch"] = (
+                "research/final-mathematical-closure")
+        with self.assertRaises(deliver.ChoiceDeliveryError):
+            self.run_delivery(wrong_source, cert=True)
 
     def test_incomplete_or_unobserved_reviewer_selection_fails(self):
         def missing(raw,member,api,policy,att):

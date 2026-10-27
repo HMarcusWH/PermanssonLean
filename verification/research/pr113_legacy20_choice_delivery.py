@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import sys
@@ -20,6 +21,7 @@ from pr113_legacy20_runtime_resolution import (
     FORMAT_DECISION, FORMAT_REPORT, decision_to_selection,
 )
 from release_target import B113, REPOSITORY, T
+from pr113_producer_target_v3 import authenticated_producer_branch, BRANCH113
 
 ROOT = Path(__file__).resolve().parents[2]
 POLICY = "research/certification/legacy_event_reviewer_authority.json"
@@ -75,7 +77,30 @@ def reviewer_policy(head, *, git):
     return policy
 
 
-def authenticate_survey(head, ids, survey_bytes, *, live):
+def authenticated_reviewer_target(head, *, git=real_git, live=real_live, env=None):
+    """Resolve the *real* source PR/branch, never a caller-approved reviewer.
+
+    The future PR ID is a lookup hint. The common original-producer target
+    authentication proves current GitHub event, PR head/base and M113 ancestry.
+    This does not grant reviewer independence or mathematical acceptance.
+    """
+    env = os.environ if env is None else env
+    try:
+        branch = authenticated_producer_branch(head, env=env, git=git, live=live)
+    except (ValueError, KeyError, TypeError) as exc:
+        raise ChoiceDeliveryError("legacy survey target is not a genuine current PR") from exc
+    if branch == BRANCH113:
+        number = 113
+    else:
+        hint = env.get("PERMANSSON_CERT_PR_NUMBER", "")
+        require(type(hint) is str and hint.isdecimal()
+                and not hint.startswith("0") and int(hint) > 114,
+                "future legacy reviewer PR number absent or invalid")
+        number = int(hint)
+    return {"branch": branch, "pr_number": number, "head_sha": head}
+
+
+def authenticate_survey(head, ids, survey_bytes, *, live, branch=BRANCH113):
     require(isinstance(ids, dict) and set(ids) == SOURCE_FIELDS
             and all(type(ids.get(x)) is int and ids[x] > 0
                     for x in SOURCE_FIELDS),
@@ -90,8 +115,8 @@ def authenticate_survey(head, ids, survey_bytes, *, live):
     require(isinstance(run, dict) and
             run.get("id") == run_id
             and run.get("head_sha") == head
-            and run.get("head_branch") == "research/final-mathematical-closure"
-            and run.get("event") == "push"
+            and run.get("head_branch") == branch
+            and run.get("event") in ("push", "workflow_dispatch")
             and run.get("run_attempt") == attempt
             and run.get("status") == "completed"
             and run.get("conclusion") == "success"
@@ -169,16 +194,17 @@ def authenticate_survey(head, ids, survey_bytes, *, live):
 
 def comment_choices(head, comment_id, policy, survey_zip_sha256,
                     survey_member_sha256, survey_artifact_id, survey_time,
-                    candidates, *, live):
+                    candidates, *, live, pr_number=113):
     require(type(comment_id) is int and comment_id > 0,
             "reviewer comment must be a real GitHub comment ID")
     comment = live("/issues/comments/" + str(comment_id))
-    pr = live("/pulls/113")
+    pr = live("/pulls/" + str(pr_number))
     require(isinstance(comment, dict) and
             comment.get("id") == comment_id and
             comment.get("issue_url") ==
-                "https://api.github.com/repos/" + REPOSITORY + "/issues/113"
+                "https://api.github.com/repos/" + REPOSITORY + "/issues/" + str(pr_number)
             and isinstance(pr, dict) and
+            pr.get("number") == pr_number and
             pr.get("state") == "open" and
             pr.get("merged") is False and
             (pr.get("head") or {}).get("sha") == head,
@@ -253,22 +279,27 @@ def comment_choices(head, comment_id, policy, survey_zip_sha256,
                           digest(comment["body"].encode("utf-8"))}
 
 
-def deliver(head, ids, original_zip, comment_id, *, git=real_git, live=real_live):
+def deliver(head, ids, original_zip, comment_id, *, git=real_git,
+            live=real_live, env=None):
     require(isinstance(head, str) and SHA40.fullmatch(head)
             and git("rev-parse", "HEAD") == head,
             "runtime choice delivery must use frozen actual H")
+    target = authenticated_reviewer_target(head, env=env, git=git, live=live)
     reviewer = reviewer_policy(head, git=git)
     candidates, observed_hash, observed_at = authenticate_survey(
-        head, ids, original_zip, live=live)
+        head, ids, original_zip, live=live, branch=target["branch"])
     decisions, reviewer_info = comment_choices(
         head, comment_id, reviewer, digest(original_zip), observed_hash,
-        ids["artifact_id"], observed_at, candidates, live=live)
+        ids["artifact_id"], observed_at, candidates, live=live,
+        pr_number=target["pr_number"])
     return {
         "selection": decisions,
         "diagnostic": {
             "format": "Permansson.PR113.LegacyChoiceDelivery.v1",
             "status": "AUTHENTIC_SURVEY_AND_REVIEWER_CHOICE_DELIVERED_UNCERTIFIED",
             "head_sha": head,
+            "reviewed_pr_number": target["pr_number"],
+            "reviewed_branch": target["branch"],
             "original_survey_run_id": ids["run_id"],
             "original_survey_job_id": ids["job_id"],
             "original_survey_artifact_id": ids["artifact_id"],
