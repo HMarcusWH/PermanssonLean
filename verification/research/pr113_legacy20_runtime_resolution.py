@@ -23,6 +23,7 @@ from final_closure_legacy_semantic_evidence import original_case_map
 from final_closure_producer_bytes import authenticate
 from final_closure_producer_v2_bridge import verified_producer_index
 from pr113_v31_execution_integrity import exact_source, source_clean_negative
+from pr113_boundary_io import strict_json_object, detached_destination
 
 FORMAT_INTENT="Permansson.PR113.Legacy20StaticSourceIntent.v1"
 FORMAT_DECISION="Permansson.PR113.Legacy20DetachedEventDecision.v1"
@@ -44,9 +45,14 @@ def sha(raw):
 
 def committed_selection(head, path):
     """Only static, criterion-selected source intent can precede source H."""
-    path=Path(path).absolute()
-    require(not path.is_symlink() and
-            path.is_relative_to(ROOT.resolve()) and
+    requested = Path(path)
+    require(".." not in requested.parts,
+            "pre-freeze legacy source cannot use parent traversal")
+    absolute = requested.absolute()
+    require(not any(p.is_symlink() for p in (absolute, *absolute.parents)),
+            "pre-freeze legacy source cannot use symlinked ancestors")
+    path = absolute.resolve(strict=True)
+    require(path.is_relative_to(ROOT.resolve()) and
             path.as_posix().endswith(
                 "/research/paper_closures/post_merge_112/legacy20_source_intent_v31.json"),
             "pre-freeze legacy route intent must be source-controlled")
@@ -55,7 +61,7 @@ def committed_selection(head, path):
     raw=source.blob(rel)
     require(path.is_file() and path.read_bytes()==raw,
             "working source intent differs from exact-H Git blob")
-    return json.loads(raw), source
+    return strict_json_object(raw), source
 
 def parse_intent(payload, head, source):
     byid,legacy=original_case_map(head)
@@ -100,19 +106,28 @@ def parse_intent(payload, head, source):
     require(set(mapped)==required, "original 20-case legacy intent incomplete")
     return mapped
 
+def original_detached_directory(path):
+    """Reject lexical traversal and every symlink ancestor before resolution."""
+    requested=Path(path)
+    require(".." not in requested.parts,
+            "original producer evidence directory traverses parent")
+    absolute=requested.absolute()
+    require(not any(p.is_symlink() for p in (absolute,*absolute.parents)),
+            "original producer directory has symlink ancestor")
+    canonical=absolute.resolve(strict=True)
+    require(canonical.is_dir() and
+            not canonical.is_relative_to(ROOT.resolve()) and
+            not ROOT.resolve().is_relative_to(canonical),
+            "original producer evidence directory is not detached")
+    return canonical
+
 def original21(catalog_dir, zips_dir, head):
-    catalog=Path(catalog_dir).absolute()
-    directory=Path(zips_dir).absolute()
-    require(catalog.is_dir() and directory.is_dir() and
-            all(not p.is_symlink() for p in (
-                catalog,directory,*catalog.parents,*directory.parents)) and
-            not catalog.is_relative_to(ROOT.resolve()) and
-            not directory.is_relative_to(ROOT.resolve()),
-            "legacy 21 original producing inputs must be detached")
+    catalog=original_detached_directory(catalog_dir)
+    directory=original_detached_directory(zips_dir)
     raw=(catalog/"unreviewed_producer_catalog.json").read_bytes()
     require(0<len(raw)<=4*1024*1024,
             "full original producer provenance unavailable")
-    summary=json.loads(raw)
+    summary=strict_json_object(raw)
     rows=summary.get("producer_artifact_checks")
     require(summary.get("head_sha")==head and
             summary.get("producing_artifact_count")==21 and
@@ -261,11 +276,9 @@ def main(argv=None):
         require(isinstance(a.head,str) and SHA40.fullmatch(a.head) and
                 git_head()==a.head,
                 "must use genuine current exact H Git source")
-        dest=a.out.absolute()
-        require(not dest.exists() and
-                not dest.is_relative_to(ROOT.resolve()) and
-                not any(p.is_symlink() for p in (dest,*dest.parents)),
-                "legacy event choices output must be fresh and external")
+        dest=detached_destination(a.out, ROOT)
+        require(not ROOT.resolve().is_relative_to(dest),
+                "legacy event choices output must not contain source")
         source_intent,source=committed_selection(a.head,a.intent)
         intents=parse_intent(source_intent,a.head,source)
         original,legacies=original21(a.catalog_dir,a.producer_zips,a.head)
@@ -284,17 +297,16 @@ def main(argv=None):
             "source_commit_changed":False,
         }
         # Every report is nonauthoritative; even one synthetic choice is banned.
-        dest.mkdir(parents=True)
+        dest.mkdir(parents=True,exist_ok=False)
         (dest/"unreviewed_legacy20_candidates.json").write_text(
             json.dumps(report,sort_keys=True,indent=2)+"\n")
         if a.detached_event_choice is not None:
-            external=a.detached_event_choice.absolute()
-            require(external.is_file() and not external.is_symlink() and
-                    not external.is_relative_to(ROOT.resolve()) and
-                    external.stat().st_size<=1024*1024,
+            external=detached_destination(
+                a.detached_event_choice, ROOT, must_exist=True)
+            require(0<external.stat().st_size<=1024*1024,
                     "runtime event choice must be a detached bounded original input")
             selection=decision_to_selection(
-                a.head,options,json.loads(external.read_bytes()))
+                a.head,options,strict_json_object(external.read_bytes()))
             (dest/"legacy20_runtime_selection.json").write_text(
                 json.dumps(selection,sort_keys=True,indent=2)+"\n")
         return 0 if all(options.values()) else 2

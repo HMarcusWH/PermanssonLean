@@ -167,5 +167,30 @@ class LegacyEventDecisionTests(unittest.TestCase):
         self.assertEqual(bad[cid],[])
 
 
+    def test_detached_legacy21_directories_reject_path_traversal_and_symlinks(self):
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            original=root/"original"
+            original.mkdir()
+            self.assertEqual(r.original_detached_directory(original),
+                             original.resolve())
+            parent=root/"parent"
+            parent.mkdir()
+            with self.assertRaises(r.RuntimeLegacyError):
+                r.original_detached_directory(parent/".."/"original")
+            link=root/"alias"
+            link.symlink_to(original,target_is_directory=True)
+            with self.assertRaises(r.RuntimeLegacyError):
+                r.original_detached_directory(link)
+
+    def test_duplicate_selected_legacy21_source_receipt_is_not_authority(self):
+        from pr113_boundary_io import strict_json_object, BoundaryError
+        with self.assertRaises(BoundaryError):
+            strict_json_object(
+                b'{"head_sha":"old","head_sha":"forged","cases":[]}')
+
+
 if __name__=="__main__":
     unittest.main()
