@@ -120,6 +120,23 @@ class CandidateArtifactIntegrity(unittest.TestCase):
         self.responses = baseline_resp
         self.jobs = baseline_jobs
 
+
+    def test_attestation_output_traversal_rejects_before_live_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            destination = base / "outside"
+            destination.mkdir()
+            args = [
+                "--head", H, "--kind", "append", "--shard", "0",
+                "--run-id", str(RUN), "--artifact-id", str(ARTIFACT),
+                "--artifact-zip", str(self.artifact),
+                "--output", str(destination / ".." / "forged.json"),
+            ]
+            with mock.patch.object(auth, "verify_artifact") as external:
+                self.assertEqual(auth.main(args), 2)
+                external.assert_not_called()
+            self.assertFalse((base / "forged.json").exists())
+
     def test_false_approval_in_candidate_manifest_rejected(self):
         modified = dict(self.manifest, independent_review=True)
         with zipfile.ZipFile(self.artifact, "w") as archive:

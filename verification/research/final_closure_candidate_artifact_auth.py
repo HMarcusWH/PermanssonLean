@@ -193,9 +193,11 @@ def verify_artifact(*, kind: str, shard: int, head: str,
            isinstance(digest, str) and digest.startswith("sha256:") and
            SHA256.fullmatch(digest[7:]),
            "GitHub artifact lacks verified exact-run SHA-256 metadata")
-    artifact_zip = Path(artifact_zip)
-    demand(artifact_zip.is_file() and not artifact_zip.is_symlink() and
-           0 < artifact_zip.stat().st_size <= MAX_ARTIFACT_BYTES,
+    from pr113_boundary_io import detached_destination
+    from final_closure_case_receipts import ROOT as PROJECT_ROOT
+    artifact_zip = detached_destination(artifact_zip, PROJECT_ROOT,
+                                        must_exist=True)
+    demand(0 < artifact_zip.stat().st_size <= MAX_ARTIFACT_BYTES,
            "detached uploaded artifact ZIP is unsafe or too large")
     actual = sha(artifact_zip.read_bytes())
     demand(actual == digest[7:],
@@ -237,16 +239,17 @@ def main(argv=None):
     ap.add_argument("--output", required=True, type=Path)
     a = ap.parse_args(argv)
     try:
-        out = a.output.resolve()
+        from pr113_boundary_io import detached_destination
         from final_closure_case_receipts import ROOT
-        demand(not out.exists() and not out.is_relative_to(ROOT.resolve())
-               and not ROOT.resolve().is_relative_to(out),
+        out = detached_destination(a.output, ROOT)
+        demand(not ROOT.resolve().is_relative_to(out),
                "attestation must be written to a new detached location")
         report = verify_artifact(
             kind=a.kind, shard=a.shard, head=a.head, run_id=a.run_id,
             artifact_id=a.artifact_id, artifact_zip=a.artifact_zip)
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(json.dumps(report, sort_keys=True, indent=2)+"\n")
+        with out.open("x", encoding="utf-8") as writer:
+            writer.write(json.dumps(report, sort_keys=True, indent=2)+"\n")
     except (OSError, ValueError, AuthenticationError, MutationEvidenceError) as exc:
         print("CI ARTIFACT ATTESTATION BLOCKED:", exc, file=sys.stderr)
         return 2
