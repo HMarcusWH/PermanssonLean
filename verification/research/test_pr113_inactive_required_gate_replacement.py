@@ -64,18 +64,46 @@ class InactiveHistoricalTransition(unittest.TestCase):
         if active30():
             installed=(ROOT/"verification/research/test_localized_prefix_compiler.py").read_text()
             self.assertEqual(installed,replacement)
+        from pr113_a2_successor_identity_v2 import (
+            LATE_A2_TEST_ORIGINAL_BLOB, LATE_A2_TEST_PROPOSED_BLOB,
+        )
+        path="verification/research/test_localized_prefix_compiler.py"
+        self.assertEqual(
+            git("rev-parse", PREACTIVATION_HEAD+":"+path),
+            LATE_A2_TEST_ORIGINAL_BLOB)
+        self.assertEqual(git(
+            "rev-parse","HEAD:docs/operations/"
+            "pr113_required_gate_replacement_unapproved/"
+            "test_localized_prefix_compiler.py"),
+            LATE_A2_TEST_PROPOSED_BLOB)
         ast.parse(replacement)
-        self.assertIn("from pr113_required_dual_gate_v2 import verify",replacement)
-        self.assertIn("test_actual_final_source_and_semantic_mutations",replacement)
-        self.assertIn("GITHUB_EVENT_NAME",replacement)
-        self.assertIn("MERGED_HISTORICAL_T_AND_A2",replacement)
+        self.assertIn(
+            "from pr113_historical_runtime_v3 import FORMAT, check_stored",
+            replacement)
+        self.assertIn("check_stored(candidate, producer_id, reviewer_id)",
+                      replacement)
+        self.assertIn("strict_json_object(",replacement)
+        self.assertIn("PERMANSSON_HISTORICAL_REQUIRED_RECEIPT",replacement)
+        self.assertIn("test_actual_final_source_and_semantic_mutations",
+                      replacement)
+        self.assertIn("PHASE_STATUSES",replacement)
+        for status in (
+            "REQUIRED_HISTORICAL_SOURCE_AND_SECURITY_REVIEW_VERIFIED",
+            "MERGED_HISTORICAL_T_AND_A2_REVERIFIED_UNDER_REVIEWED_SOURCE",
+            "PR113_HISTORICAL_SOURCE_REVERIFIED_FOR_AUTHENTIC_DESCENDANT",
+        ):
+            self.assertIn(status,replacement)
+        self.assertNotIn("from pr113_required_dual_gate_v2 import verify",
+                         replacement)
         self.assertNotIn("@unittest.skip",replacement)
         self.assertNotIn("skipTest(",replacement)
         self.assertNotIn("mock.patch",replacement)
-        for term in ("PERMANSSON_DUAL_HISTORICAL_EVIDENCE",
-                     "PERMANSSON_DUAL_ORIGINAL_T_ZIP",
-                     "PERMANSSON_DUAL_ORIGINAL_A2_ZIP"):
-            self.assertIn(term,replacement)
+        # Initial PR/main may use original T/A2 sidecars, but the v3
+        # consumer must not require those inputs for later CERT/main phases.
+        for original_only in ("PERMANSSON_DUAL_HISTORICAL_EVIDENCE",
+                              "PERMANSSON_DUAL_ORIGINAL_T_ZIP",
+                              "PERMANSSON_DUAL_ORIGINAL_A2_ZIP"):
+            self.assertNotIn(original_only,replacement)
 
     def test_original_archive_gate_is_still_protected_and_staged_step_fails_closed(self):
         original=(
