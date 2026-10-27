@@ -23,6 +23,7 @@ from final_closure_verify import (
 from final_closure_schema import validate_overlay
 from final_closure_full_contract import require_full_source, require_complete_obligation_receipts
 from pr113_mandatory_v31 import authenticate_all_76, MandatoryV31Error
+from pr113_boundary_io import strict_json_object
 
 
 def premerge(receipts: dict, bundle: Path, *, full: bool = False,
@@ -97,7 +98,7 @@ def main(argv=None):
     parser.add_argument("--workflow-blob-candidates", type=Path)
     opts = parser.parse_args(argv)
     try:
-        receipts = json.loads(opts.receipts.read_bytes())
+        receipts = strict_json_object(opts.receipts.read_bytes(), max_bytes=8*1024*1024)
         if opts.phase in ("premerge", "premerge-full"):
             result = premerge(
                 receipts, opts.bundle, full=opts.phase == "premerge-full",
@@ -106,19 +107,19 @@ def main(argv=None):
                 workflow_blob_candidates=opts.workflow_blob_candidates)
         else:
             manifest = (
-                json.loads(opts.approved_manifest.read_bytes())
+                strict_json_object(opts.approved_manifest.read_bytes())
                 if opts.approved_manifest else None)
             if bool(opts.reproduction_zip) != bool(opts.reproduction_ids):
                 raise GateError("merged-M reproduction artifact and IDs must be paired")
             reproduction = ({
                 "zip_file": opts.reproduction_zip,
-                "identities": json.loads(opts.reproduction_ids.read_bytes())}
+                "identities": strict_json_object(opts.reproduction_ids.read_bytes())}
                 if opts.reproduction_zip else None)
             if bool(opts.postseal_zip) != bool(opts.postseal_ids):
                 raise GateError("postseal original artifact and IDs must be paired")
             postseal = ({
                 "zip_file":opts.postseal_zip,
-                "identities":json.loads(opts.postseal_ids.read_bytes())}
+                "identities":strict_json_object(opts.postseal_ids.read_bytes())}
                 if opts.postseal_zip else None)
             additional = ({
                 "additional_contract": opts.additional_contract,

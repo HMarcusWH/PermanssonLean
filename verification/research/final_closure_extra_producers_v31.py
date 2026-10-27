@@ -334,7 +334,7 @@ def assemble_review_pending(head, original_v3_receipts, original_v3_zip,
     need(not out.exists() and not out.is_relative_to(source_root) and
          not out.is_relative_to(zip_dir),
          "new control provenance output must be separate and fresh")
-    original=json.loads(original_json.read_bytes())
+    original=strict_json_object(original_json.read_bytes(), max_bytes=8*1024*1024)
     validate_overlay(original)
     need(original.get("head_sha")==head and
          original.get("format")=="Permansson.FinalClosureDetachedReceipts.v3",
@@ -343,11 +343,11 @@ def assemble_review_pending(head, original_v3_receipts, original_v3_zip,
         original_zip,original["evidence_bundle_sha256"])
     from_original=authenticate_v3_sources(original,head,original_members)
     byid, legacy=original_case_map(head)
-    claims=json.loads((source_root/"research/paper_closures/post_merge_112/"
+    claims=strict_json_object((source_root/"research/paper_closures/post_merge_112/"
                        "claim_declaration_map.json").read_bytes())
     expected=expected_controls(byid.keys(),legacy,
                                [x["claim_id"] for x in claims["claims"]])
-    contract=json.loads(manifest_path.read_bytes())
+    contract=strict_json_object(manifest_path.read_bytes())
     rows=candidate_registry(contract,head,expected)
     files={}
     for row in rows:
@@ -356,7 +356,7 @@ def assemble_review_pending(head, original_v3_receipts, original_v3_zip,
              candidate.resolve().parent==zip_dir,
              "original extra control ZIP not found by immutable artifact ID")
         files[row["artifact_id"]]=candidate.read_bytes()
-    reviewed=json.loads(workflow_blobs_path.read_bytes())
+    reviewed=strict_json_object(workflow_blobs_path.read_bytes())
     result=authenticated_extra_controls(
         head,contract,files,original_producers=from_original,
         original_bundle_sha256=original["evidence_bundle_sha256"],

@@ -17,6 +17,7 @@ from final_closure_case_receipts import (
     load_detached_bundle, effective_acceptance,
 )
 from final_closure_schema import validate_overlay
+from pr113_boundary_io import strict_json_object
 from final_closure_full_contract import (
     require_preseal_release, require_full_release,
     require_complete_obligation_receipts,
@@ -47,9 +48,9 @@ def check(test: bool, message: str) -> None:
 
 
 def read_json(path: Path) -> dict:
-    obj = json.loads(path.read_bytes())
-    check(isinstance(obj, dict), f"not a JSON object: {path}")
-    return obj
+    # Historical and current case/claim documents must not have
+    # ambiguous JSON keys before the research audit uses their values.
+    return strict_json_object(path.read_bytes(), max_bytes=8*1024*1024)
 
 
 def secure_path(path: str) -> Path:
