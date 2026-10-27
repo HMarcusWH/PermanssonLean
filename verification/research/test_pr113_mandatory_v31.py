@@ -241,5 +241,22 @@ class MandatoryV31Tests(unittest.TestCase):
                     workflow_blob_candidates=self.blobs)
 
 
+
+    def test_owner_control_sources_reject_symlinked_ancestors(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            real = root / "real"
+            real.mkdir()
+            source = real / "owner.json"
+            source.write_text("{}")
+            link = root / "alias"
+            link.symlink_to(real, target_is_directory=True)
+            with self.assertRaises(v31.MandatoryV31Error):
+                v31.external(link / "owner.json")
+            with self.assertRaises(v31.MandatoryV31Error):
+                v31.external(root / "real" / ".." / "real" / "owner.json")
+            self.assertEqual(v31.external(source), source)
+
+
 if __name__ == "__main__":
     unittest.main()

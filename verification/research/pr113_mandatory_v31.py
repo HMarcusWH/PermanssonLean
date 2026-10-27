@@ -42,7 +42,10 @@ def external(path, *, directory=False):
     src = Path(path)
     need(".." not in src.parts,
          "parent-traversing owner evidence path")
-    src = src.resolve(strict=True)
+    absolute = src.absolute()
+    need(not any(part.is_symlink() for part in (absolute, *absolute.parents)),
+         "symlinked owner-control evidence or ancestor")
+    src = absolute.resolve(strict=True)
     need(not src.is_relative_to(ROOT.resolve()) and
          not ROOT.resolve().is_relative_to(src) and
          (src.is_dir() if directory else src.is_file()),
