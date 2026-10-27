@@ -116,8 +116,8 @@ class CandidateV2ContractTests(unittest.TestCase):
         for before,after in (("actions: read","actions: write"),
                              ("contents: read","contents: write"),
                              ("pull_request:","pull_request_target:"),
-                             ("pr113_required_dual_gate_v2.py",
-                              "echo pr113_required_dual_gate_v2.py")):
+                             ("pr113_historical_runtime_v3.py",
+                              "echo pr113_historical_runtime_v3.py")):
             source=dict(self.sources)
             self.assertIn(before,source["research-integrity.yml"])
             source["research-integrity.yml"]=source[

@@ -124,7 +124,7 @@ class AtomicMigrationPreviewTests(unittest.TestCase):
             original_blob=v2._blob
             target=".github/workflows/research-lean.yml"
             origin_oid,origin_source=original_blob(root,H,target)
-            token="pr113_historical_artifact_delivery_v2.py"
+            token="pr113_historical_runtime_v3.py"
             self.assertEqual(origin_source.count(token),1)
             for variant in ("v1","missing","duplicated"):
                 with self.subTest(variant=variant):
@@ -154,7 +154,7 @@ class AtomicMigrationPreviewTests(unittest.TestCase):
                 candidate=full["full_replacements"][0]
                 staged=candidate["staged_source"]
                 original=preview.raw(H,staged)
-                token=b"pr113_historical_artifact_delivery_v2.py"
+                token=b"pr113_historical_runtime_v3.py"
                 self.assertEqual(original.count(token),1)
                 if variant=="v1":
                     source=original.replace(token,b"pr113_historical_artifact_delivery.py")

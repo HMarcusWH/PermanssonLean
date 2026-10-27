@@ -29,12 +29,12 @@ PINNED_MODIFIED_PROVIDERS = {
     ".github/workflows/f1-multiagent-protocols-smoke.yml": "b87a8c082f51f24dd7d533147e676813d1a78b85",
     ".github/workflows/lean.yml": "65aa095a9564cbef0bdca035c95b6d8f568d2cf4",
     ".github/workflows/research-integrity-portability.yml": "380a592039dd9e50b87bb2891771e76b071a2aaa",
-    ".github/workflows/research-integrity.yml": "02e97e27e85b9d3353edf495eab1ee8cb8b9e642",
-    ".github/workflows/research-lean.yml": "64c990e3468d23cac945fe6e066229dff328d4c7",
+    ".github/workflows/research-integrity.yml": "76ab437ef4781e534b0bf7de79c646890dae1be7",
+    ".github/workflows/research-lean.yml": "8e993121fdd0e278a2b9585f90dd73795058d938",
     ".github/workflows/research-release-verification.yml": "46ea7ebeae142f794394179154385cf1762b78d3",
     ".github/workflows/verification.yml": "c016aa6efcc42e19d81cb148f5db6bc6a439d7d3",
     "verification/integrity/tests/test_workflow.py": "50986f09407c9b4ef6a5e9b777898e2e1f640dcd",
-    "verification/integrity/workflow_contract.py": "189e69d210d1cd364bbe36fefb081e437b6be0b9",
+    "verification/integrity/workflow_contract.py": "a97025dc543991bfa3645a34a8c75cd4b2ccd8c8",
     "verification/research/test_paper_x1_lean_closure.py": "2ee078c86c58b5e577597acfc3ae950e4028ebac",
 }
 # This historical test did NOT exist at PR79 BASE. The real A2 introducer

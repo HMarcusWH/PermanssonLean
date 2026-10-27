@@ -137,6 +137,15 @@ def preview(head, *, git=git, old_audit=None):
          and b'FORMAT = "Permansson.PR113.ExactHistoricalArtifactDelivery.v2"' in delivery
          and b"from pr113_required_dual_gate_v2 import actual_ci_event" in delivery,
          "v2 artifact delivery source absent, substituted or wired to v1 gate")
+    # Direct reviewed job entry: v3; original T/A2 delivery+verification is
+    # authenticated transitively from the genuine committed runtime source.
+    runtime_path="verification/research/pr113_historical_runtime_v3.py"
+    runtime=raw(head,runtime_path,git=git)
+    need(git("rev-parse",head+":"+runtime_path)==git_blob_oid(runtime)
+         and b"from pr113_historical_artifact_delivery_v2 import" in runtime
+         and b"from pr113_required_dual_gate_v2 import verify" in runtime
+         and b"independent_security_review_authenticated" in runtime,
+         "v3 required gate's original reviewed T/A2 dependencies absent")
     plan=dict(original_members)
     for x in replacements:
         need(isinstance(x,dict) and
@@ -151,7 +160,14 @@ def preview(head, *, git=git, old_audit=None):
              data.startswith(b"name: ") and
              b"pull_request:\n" in data and
              b"push:\n" in data and
-             data.count(b"pr113_historical_artifact_delivery_v2.py")==1 and
+             data.count(b"pr113_historical_runtime_v3.py")==(
+                 1 if x["target"].endswith("/research-lean.yml") else 2) and
+             b"--producer-run-id" in data and
+             b"--security-review-id" in data and
+             (b"pr113_regression_diagnostics.py" in data
+              if x["target"].endswith("/research-lean.yml")
+              else b"--check-existing" in data) and
+             b"pr113_historical_artifact_delivery_v2.py" not in data and
              b"pr113_historical_artifact_delivery.py" not in data,
              "reviewed mandatory candidate source byte drift")
         plan[x["target"]]={

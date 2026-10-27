@@ -64,7 +64,7 @@ class FullRequiredPreview(unittest.TestCase):
         self.assertIn("Execute archive adversaries",self.arch)
         self.assertIn("verification.integrity.run_tests --suite archive",self.arch)
         for stage in ("Build research library and audit its transitive axioms",
-                      "Run research-only exact rational regressions",
+                      "Run research regressions and retain test-level diagnostics",
                       "Generate and independently verify C10",
                       "Generate and independently recheck D0",
                       "Verify original default target still builds",
@@ -73,12 +73,24 @@ class FullRequiredPreview(unittest.TestCase):
             self.assertIn(stage,self.lean)
 
     def test_readonly_artifact_transport_and_source_checks_cannot_be_bypassed(self):
+        runtime=(ROOT/"verification/research/pr113_historical_runtime_v3.py").read_text()
+        diagnostics=(ROOT/"verification/research/pr113_regression_diagnostics.py").read_text()
+        self.assertIn("from pr113_historical_artifact_delivery_v2 import",runtime)
+        self.assertIn("from pr113_required_dual_gate_v2 import verify",runtime)
+        self.assertIn("PERMANSSON_DUAL_HISTORICAL_EVIDENCE",runtime)
+        self.assertIn("GITHUB_ENV",runtime)
+        self.assertIn("unittest.defaultTestLoader.discover(",diagnostics)
+        self.assertIn('pattern="test_*.py"',diagnostics)
+        self.assertIn("return 0 if result.wasSuccessful() else 1",diagnostics)
+        self.assertIn("Preserve diagnostics even when regressions fail",self.lean)
+        self.assertIn("--check-existing",self.arch)
+        self.assertIn("Verify genuine reviewed original T/T2 and A2 source",self.arch)
         for source in (self.lean,self.arch):
             for needle in (
                 "GITHUB_TOKEN: ${{ github.token }}",
                 "PR113_HISTORICAL_PRODUCER_RUN_ID",
                 "PR113_SECURITY_REVIEW_ID",
-                "pr113_historical_artifact_delivery_v2.py",
+                "pr113_historical_runtime_v3.py",
                 "actions: read","checks: read","contents: read",
                 "pull-requests: read","pull_request:","push:",
                 '[[ "$ORIGINAL_RUN_ID" =~ ^[1-9][0-9]*$ ]]',
@@ -90,9 +102,9 @@ class FullRequiredPreview(unittest.TestCase):
             self.assertNotIn("pull_request_target",source)
             self.assertNotIn("continue-on-error",source)
             self.assertNotIn("|| true",source)
-        self.assertIn("pr113_required_dual_gate_v2.py",self.arch)
-        self.assertIn("PERMANSSON_DUAL_HISTORICAL_EVIDENCE",self.lean)
-        self.assertIn("GITHUB_ENV",self.lean)
+        self.assertIn("--producer-run-id",self.lean)
+        self.assertIn("--security-review-id",self.arch)
+        self.assertIn("pr113_regression_diagnostics.py",self.lean)
 
 if __name__=="__main__":
     unittest.main()
