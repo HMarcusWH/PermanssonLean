@@ -54,16 +54,11 @@ jobs:
           set -euo pipefail
           [[ "$ORIGINAL_RUN_ID" =~ ^[1-9][0-9]*$ ]]
           [[ "$INDEPENDENT_REVIEW_ID" =~ ^[1-9][0-9]*$ ]]
-          python3 -B verification/research/pr113_historical_artifact_delivery_v2.py \
+          python3 -B verification/research/pr113_historical_runtime_v3.py \
             --producer-run-id "$ORIGINAL_RUN_ID" \
             --security-review-id "$INDEPENDENT_REVIEW_ID" \
             --out "$RUNNER_TEMP/pr113-historical-input"
-          test -s "$RUNNER_TEMP/pr113-historical-input/historical_envelope.json"
-          test -s "$RUNNER_TEMP/pr113-historical-input/historical_T.zip"
-          test -s "$RUNNER_TEMP/pr113-historical-input/historical_A2.zip"
-          echo "PERMANSSON_DUAL_HISTORICAL_EVIDENCE=$RUNNER_TEMP/pr113-historical-input/historical_envelope.json" >> "$GITHUB_ENV"
-          echo "PERMANSSON_DUAL_ORIGINAL_T_ZIP=$RUNNER_TEMP/pr113-historical-input/historical_T.zip" >> "$GITHUB_ENV"
-          echo "PERMANSSON_DUAL_ORIGINAL_A2_ZIP=$RUNNER_TEMP/pr113-historical-input/historical_A2.zip" >> "$GITHUB_ENV"
+          test -s "$RUNNER_TEMP/pr113-historical-input/historical_required.json"
       - name: Run research regressions and retain test-level diagnostics
         env:
           GITHUB_TOKEN: ${{ github.token }}

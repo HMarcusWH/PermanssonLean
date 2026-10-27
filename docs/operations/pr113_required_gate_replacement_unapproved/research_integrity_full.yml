@@ -109,26 +109,28 @@ jobs:
           set -euo pipefail
           [[ "$ORIGINAL_RUN_ID" =~ ^[1-9][0-9]*$ ]]
           [[ "$INDEPENDENT_REVIEW_ID" =~ ^[1-9][0-9]*$ ]]
-          python3 -B verification/research/pr113_historical_artifact_delivery_v2.py \
+          python3 -B verification/research/pr113_historical_runtime_v3.py \
             --producer-run-id "$ORIGINAL_RUN_ID" \
             --security-review-id "$INDEPENDENT_REVIEW_ID" \
             --out "$RUNNER_TEMP/pr113-historical-input"
-          test -s "$RUNNER_TEMP/pr113-historical-input/historical_envelope.json"
-          test -s "$RUNNER_TEMP/pr113-historical-input/historical_T.zip"
-          test -s "$RUNNER_TEMP/pr113-historical-input/historical_A2.zip"
+          test -s "$RUNNER_TEMP/pr113-historical-input/historical_required.json"
       # Original T restoration remains mandatory in the separate historical
       # producer; the original archive adversaries above still execute here.
       - name: Verify genuine reviewed original T/T2 and A2 source
         shell: bash
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          ORIGINAL_RUN_ID: ${{ vars.PR113_HISTORICAL_PRODUCER_RUN_ID }}
+          INDEPENDENT_REVIEW_ID: ${{ vars.PR113_SECURITY_REVIEW_ID }}
         run: |
           set -euo pipefail
-          python3 -B verification/research/pr113_required_dual_gate_v2.py \
-            --evidence "$RUNNER_TEMP/pr113-historical-input/historical_envelope.json" \
-            --historical-T-zip "$RUNNER_TEMP/pr113-historical-input/historical_T.zip" \
-            --historical-A2-zip "$RUNNER_TEMP/pr113-historical-input/historical_A2.zip" \
-            --out "$RUNNER_TEMP/pr113-historical-required.json"
+          python3 -B verification/research/pr113_historical_runtime_v3.py \
+            --producer-run-id "$ORIGINAL_RUN_ID" \
+            --security-review-id "$INDEPENDENT_REVIEW_ID" \
+            --out "$RUNNER_TEMP/pr113-historical-input/historical_required.json" \
+            --check-existing
+          cp "$RUNNER_TEMP/pr113-historical-input/historical_required.json" \
+            "$RUNNER_TEMP/pr113-historical-required.json"
           test -s "$RUNNER_TEMP/pr113-historical-required.json"
       - name: Preserve archival restoration reports
         if: always()

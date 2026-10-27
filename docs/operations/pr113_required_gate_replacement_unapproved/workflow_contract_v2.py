@@ -41,8 +41,8 @@ APPROVED_WORKFLOW_BLOBS={
     "pr113-preseal-fullscope.yml": "b849a1492badfffcc18e40759c1c78c67f60b824",
     "pr113-source-controls-v3_1.yml": "0bc958aebde7d56cb2532ac89203522277889322",
     "research-integrity-portability.yml": "380a592039dd9e50b87bb2891771e76b071a2aaa",
-    "research-integrity.yml": "02e97e27e85b9d3353edf495eab1ee8cb8b9e642",
-    "research-lean.yml": "e40744176c03275e59a8d04a2921d71f02ebb6d4",
+    "research-integrity.yml": "76ab437ef4781e534b0bf7de79c646890dae1be7",
+    "research-lean.yml": "8e993121fdd0e278a2b9585f90dd73795058d938",
     "research-release-verification.yml": "46ea7ebeae142f794394179154385cf1762b78d3",
     "verification.yml": "c016aa6efcc42e19d81cb148f5db6bc6a439d7d3",
     "x1-commons-smoke.yml": "554966b640d5f4d4ad284f3b5bdd0005c992dd80"
@@ -166,10 +166,11 @@ def validate_workflow_set(workflows):
          "original required-check job identities changed")
     need("verification.integrity.ci_context" in research and
          "verification.integrity.ci_context" in arch and
-         "pr113_historical_artifact_delivery_v2.py" in research and
-         "pr113_historical_artifact_delivery_v2.py" in arch and
-         "pr113_required_dual_gate_v2.py" in arch and
-         "Run research-only exact rational regressions" in research and
+         "pr113_historical_runtime_v3.py" in research and
+         "pr113_historical_runtime_v3.py" in arch and
+         "--check-existing" in arch and
+         "pr113_regression_diagnostics.py" in research and
+         "Preserve diagnostics even when regressions fail" in research and
          "Generate and independently verify C10" in research and
          "Generate and independently recheck D0" in research and
          "Reject proof placeholders" in research and

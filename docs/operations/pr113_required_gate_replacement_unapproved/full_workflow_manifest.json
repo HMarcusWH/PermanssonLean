@@ -18,14 +18,14 @@
     {
       "target": ".github/workflows/research-lean.yml",
       "staged_source": "docs/operations/pr113_required_gate_replacement_unapproved/research_lean_full.yml",
-      "git_blob_oid": "e40744176c03275e59a8d04a2921d71f02ebb6d4",
+      "git_blob_oid": "8e993121fdd0e278a2b9585f90dd73795058d938",
       "installed": false,
       "independent_reviewed": false
     },
     {
       "target": ".github/workflows/research-integrity.yml",
       "staged_source": "docs/operations/pr113_required_gate_replacement_unapproved/research_integrity_full.yml",
-      "git_blob_oid": "02e97e27e85b9d3353edf495eab1ee8cb8b9e642",
+      "git_blob_oid": "76ab437ef4781e534b0bf7de79c646890dae1be7",
       "installed": false,
       "independent_reviewed": false
     }
