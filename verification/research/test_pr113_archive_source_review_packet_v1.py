@@ -3,15 +3,28 @@ import unittest
 from unittest import mock
 
 import pr113_archive_source_review_packet_v1 as packet
-from pr113_tooling_migration import ROOT, git, ToolingMigrationError
+from pr113_tooling_migration import ROOT, git, exact_tree, ToolingMigrationError
+from pr113_workflow_profile_v2 import source_phase
 
 
 class SourcePacketTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.head=git(ROOT,"rev-parse","HEAD").decode().strip()
+        cls.phase=source_phase(ROOT,cls.head)
+
+    def require_staged_or_refuse_active_rehearsal(self):
+        if self.phase == "staged":
+            return True
+        self.assertEqual(self.phase, "active")
+        self.assertEqual(len(exact_tree(ROOT,self.head,".github/workflows")),30)
+        with self.assertRaises(ToolingMigrationError):
+            packet.produce(self.head)
+        return False
 
     def test_exact_real_T_B_H_35_and_virtual_30_unapproved(self):
+        if not self.require_staged_or_refuse_active_rehearsal():
+            return
         actual=packet.produce(self.head)
         self.assertEqual(actual["tooling_file_count"],35)
         self.assertEqual(len(actual["historical_tooling"]),35)
@@ -24,6 +37,8 @@ class SourcePacketTests(unittest.TestCase):
         self.assertFalse(actual["publication_authorized"])
 
     def test_packet_refuses_forged_successor_workflow_count(self):
+        if not self.require_staged_or_refuse_active_rehearsal():
+            return
         actual=packet.workflow_audit
         def forged(*args,**kwargs):
             result=actual(*args,**kwargs)
@@ -33,6 +48,8 @@ class SourcePacketTests(unittest.TestCase):
                 packet.produce(self.head)
 
     def test_packet_refuses_extra_canonical_blob_even_if_two_known_differ(self):
+        if not self.require_staged_or_refuse_active_rehearsal():
+            return
         original=packet.exact_tree
         def altered(root,rev,*prefixes):
             rows=original(root,rev,*prefixes)
