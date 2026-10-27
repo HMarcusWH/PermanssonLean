@@ -51,8 +51,36 @@ class SuccessorA2Active30Tests(unittest.TestCase):
         self.assertEqual(len(successor.INHERITED_A2_VERIFIERS),2)
         self.assertEqual(len(legacy.INHERITED_A2_VERIFIERS),3)
         self.assertEqual(len(frozen.ACCEPTED_A2_PROOF_BLOBS),4)
-        self.assertEqual(successor.LATE_A2_TEST_PROPOSED_BLOB,
-                         "8bc0fdd8ae3442844187db6f5787d22011dd899a")
+        # Three independent source identities replace the obsolete frozen
+        # *successor* literal. The historical original stays immutable.
+        root = Path(__file__).resolve().parents[2]
+        staged = ("docs/operations/pr113_required_gate_replacement_unapproved/"
+                  "test_localized_prefix_compiler.py")
+        manifest_path = ("docs/operations/pr113_required_gate_replacement_unapproved/"
+                         "manifest.json")
+        manifest = json.loads((root / manifest_path).read_bytes())
+        self.assertEqual(manifest["format"],
+                         "Permansson.PR113.UnapprovedRequiredGateTransition.v1")
+        matching = [record for record in manifest["staged_replacements"]
+                    if record.get("target") == successor.LATE_A2_TEST]
+        self.assertEqual(len(matching), 1)
+        record = matching[0]
+        self.assertEqual(record["source"], staged)
+        self.assertIs(record["installed"], False)
+        self.assertIs(record["independent_reviewed"], False)
+        payload = (root / staged).read_bytes()
+        computed = hashlib.sha1(
+            b"blob " + str(len(payload)).encode("ascii") + b"\0" + payload
+        ).hexdigest()
+        committed = subprocess.check_output(
+            ["git", "rev-parse", "HEAD:" + staged], cwd=root,
+            text=True, stderr=subprocess.DEVNULL, timeout=20,
+        ).strip()
+        self.assertEqual(computed, committed)
+        self.assertEqual(record["git_blob_oid"], committed)
+        self.assertEqual(successor.LATE_A2_TEST_PROPOSED_BLOB, committed)
+        self.assertEqual(report["late_A2_proposed_blob"], committed)
+        self.assertNotEqual(committed, successor.LATE_A2_TEST_ORIGINAL_BLOB)
         self.assertNotEqual(
             successor.PINNED_MODIFIED_PROVIDERS[
                 "verification/integrity/workflow_contract.py"],

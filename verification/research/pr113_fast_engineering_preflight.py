@@ -44,6 +44,7 @@ SUITES = (
     # isolated historical executor remain separate mandatory CI.
     "test_localized_prefix_integrity.py",
     "test_pr113_phase_aware_a2_consumer.py",
+    "test_pr113_boundary_hardening_20261027.py",
     "test_pr113_semantic_receipt_v2.py",
     "test_pr113_historical_evidence_contract_v2.py",
     "test_pr113_v2_workflow_contract_preview.py",

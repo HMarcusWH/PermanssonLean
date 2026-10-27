@@ -6,7 +6,6 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import patch
 
 from pr113_boundary_io import (
     BoundaryError, strict_json_object, detached_destination,
@@ -96,56 +95,90 @@ class RedirectTests(unittest.TestCase):
 
 
 class A2DiagnosticTests(unittest.TestCase):
-    def fixture(self, log):
-        prefix = "historical_original_A2"
-        raw_positive = b"example theorem valid : True := trivial"
-        raw_mutant = b"example theorem invalid : False := by simp"
-        artifacts = {
-            prefix + "/PositiveControl.lean": raw_positive,
-            prefix + "/bad_math.lean": raw_mutant,
-            prefix + "/01_bad_math.log": log.encode(),
-        }
-        row = {
-            "commands": [
-                {"label": "compiler_version", "returncode": 0},
-                {"label": "research_build", "returncode": 0},
-                {"label": "signatures_axioms", "returncode": 0},
-                {"label": "positive_fixture", "returncode": 0},
-                {"label": "bad_math", "returncode": 1,
-                 "log": "01_bad_math.log"},
-            ],
-            "mutations": {
-                "bad_math": {
-                    "positive_source_sha256": hashlib.sha256(raw_positive).hexdigest(),
-                    "mutant_source_sha256": hashlib.sha256(raw_mutant).hexdigest(),
-                },
-            },
-        }
-        return prefix, artifacts, row
+    """Exercise the actual complete v2 A2 validator, without stubbing it.
 
-    def test_import_and_syntax_failures_do_not_count_as_mathematics(self):
+    Synthetic Lean logs are only diagnostic fixtures: these tests never
+    represent an original historical Lean execution or security acceptance.
+    """
+    PREFIX = "historical_original_A2"
+    MUTANT = "wrong_reported_effect"
+    EXPECTED_STATUS = "LOCAL_KERNEL_CHECKED__CI_ACCEPTANCE_PENDING"
+
+    def fixture(self, log):
+        # Reuse the complete, source-mutated four-negative fixture so all
+        # four real source probes, the exact positive, artifacts and command
+        # byte digests remain part of the versioned evidence contract.
+        from localized_prefix_gate import MUTATIONS, mutated_source
+        from test_pr113_semantic_receipt_v2 import fixture as full_fixture
+        files = full_fixture(self.PREFIX, MUTATIONS, mutated_source,
+                             mode="focused")
+        receipt_path = self.PREFIX + "/receipt.json"
+        row = json.loads(files[receipt_path])
+        matched = [entry for entry in row["commands"]
+                   if entry["label"] == self.MUTANT]
+        self.assertEqual(len(matched), 1)
+        command = matched[0]
+        log_path = self.PREFIX + "/" + command["log"]
+        original_bytes = log.encode("utf-8")
+        files[log_path] = original_bytes
+        command["log_sha256"] = hashlib.sha256(original_bytes).hexdigest()
+        row["artifacts"][command["log"]] = {
+            "sha256": command["log_sha256"], "bytes": len(original_bytes)}
+        files[receipt_path] = (
+            json.dumps(row, sort_keys=True) + "\n").encode("utf-8")
+        return self.PREFIX, files, row
+
+    def _verify(self, files, prefix):
+        from localized_prefix_gate import MUTATIONS
+        return validate_compiler_receipt_v2(
+            files, prefix, self.EXPECTED_STATUS, MUTATIONS)
+
+    def test_import_syntax_resource_and_wrong_file_fail_closed(self):
         for log in (
-            "bad_math.lean:1:0: error: unknown module prefix 'Missing'",
-            "bad_math.lean:1:0: error: unexpected token ')'; expected term",
+            "wrong_reported_effect.lean:1:0: error: unknown module prefix 'Missing'",
+            "wrong_reported_effect.lean:1:0: error: unexpected token ')'; expected term",
             "Other.lean:1:0: error: unsolved goals",
+            "wrong_reported_effect.lean:1:0: error: deterministic timeout",
+            "wrong_reported_effect.lean:1:0: error: failed to synthesize",
         ):
             with self.subTest(log=log):
                 prefix, files, row = self.fixture(log)
-                with patch.object(original, "verify_compiler_receipt",
-                                  return_value=(row, "hash")):
-                    with self.assertRaises((original.InfrastructureError, ValueError)):
-                        validate_compiler_receipt_v2(files, prefix, "OK",
-                                                      {"bad_math": None})
+                with self.assertRaises(original.InfrastructureError):
+                    self._verify(files, prefix)
 
     def test_intended_goal_failure_with_correct_filename_is_distinguished(self):
         prefix, files, row = self.fixture(
-            "bad_math.lean:1:0: error: unsolved goals\ncase : False")
-        with patch.object(original, "verify_compiler_receipt",
-                          return_value=(row, "original")):
-            verified, identity = validate_compiler_receipt_v2(
-                files, prefix, "OK", {"bad_math": None})
+            "wrong_reported_effect.lean:1:0: error: unsolved goals\n"
+            "case : False")
+        verified, identity = self._verify(files, prefix)
         self.assertEqual(verified, row)
-        self.assertEqual(identity, "original")
+        self.assertEqual(identity, hashlib.sha256(
+            files[prefix + "/receipt.json"]).hexdigest())
+        self.assertEqual(verified["mode"], "focused")
+        self.assertEqual(len(verified["mutations"]), 4)
+        self.assertTrue(all(
+            source in {command["label"] for command in verified["commands"]}
+            for source in ("source_1", "source_2", "source_3", "source_4")))
+
+    def test_missing_or_duplicated_source_probe_never_passes(self):
+        prefix, files, row = self.fixture(
+            "wrong_reported_effect.lean:1:0: error: unsolved goals\n"
+            "case : False")
+        for variant in ("missing", "duplicate"):
+            altered = dict(files)
+            receipt = json.loads(files[prefix + "/receipt.json"])
+            if variant == "missing":
+                receipt["commands"] = [
+                    command for command in receipt["commands"]
+                    if command["label"] != "source_4"]
+            else:
+                copied = next(command for command in receipt["commands"]
+                              if command["label"] == "source_4")
+                receipt["commands"].append(dict(copied))
+            altered[prefix + "/receipt.json"] = json.dumps(receipt).encode()
+            with self.subTest(variant=variant), self.assertRaises(
+                    original.InfrastructureError):
+                self._verify(altered, prefix)
 
 
 if __name__ == "__main__":
