@@ -200,14 +200,15 @@ def inspect_original_carrier(raw):
 
 def extract(artifact_zip, output, *, merged, run_id, attempt, job_id,
             check_id, artifact_id, meta, run, jobs, check):
-    src = Path(artifact_zip).absolute()
-    target = Path(output).absolute()
-    demand(src.is_file() and not any(x.is_symlink() for x in (src, *src.parents))
-           and not target.exists() and
-           not any(x.is_symlink() for x in target.parents)
-           and not target.is_relative_to(SOURCE.resolve()) and
-           not SOURCE.resolve().is_relative_to(target),
+    from pr113_boundary_io import detached_destination
+    # Reject lexical traversal and symlink ancestors before normalization.
+    # GitHub original input and all outputs must stay outside source.
+    src = detached_destination(artifact_zip, SOURCE, must_exist=True)
+    target = detached_destination(output, SOURCE)
+    demand(not SOURCE.resolve().is_relative_to(target),
            "original GH artifact/read-only target path invalid")
+    demand(0 < src.stat().st_size <= MAX_ZIP_BYTES,
+           "original GH carrier ZIP size exceeds bounded intake")
     raw = src.read_bytes()
     transport = verified_transport(
         merged=merged, run_id=run_id, attempt=attempt, job_id=job_id,

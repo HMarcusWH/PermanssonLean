@@ -138,6 +138,28 @@ class PresealOriginalTransportTests(unittest.TestCase):
             self.assertFalse((target / "approved_claim_manifest.json").is_symlink())
 
 
+
+    def test_traversing_and_symlinked_carrier_paths_fail_before_intake(self):
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            original = root / "original.zip"
+            raw = zipped()
+            original.write_bytes(raw)
+            target_dir = root / "target"
+            target_dir.mkdir()
+            options = {key:value for key,value in originals(raw).items()
+                       if key != "raw"}
+            with mock.patch("pr113_preseal_input_carrier.verified_transport") as authenticate:
+                with self.assertRaises(ValueError):
+                    extract(original, target_dir / ".." / "other", **options)
+                authenticate.assert_not_called()
+            alias = root / "alias"
+            alias.symlink_to(target_dir, target_is_directory=True)
+            with self.assertRaises(ValueError):
+                extract(original, alias / "evidence", **options)
+            self.assertFalse((target_dir / "evidence").exists())
+
     def test_staged_preseal_consumer_uses_exact_outer_status_and_digest(self):
         yaml = (Path(__file__).resolve().parents[2] /
                 "docs/operations/pr113_unapproved_workflows/"
