@@ -10,6 +10,9 @@ from pathlib import PurePosixPath
 from final_closure_authenticate import live, paginate
 from final_closure_candidate_artifact_auth import KINDS
 from final_closure_producer_v2_bridge import verified_producer_index
+from pr113_reviewed_producer_branch_v3 import (
+    authentic_branch, ProducerBranchError,
+)
 
 FORMAT = "Permansson.PR113.ProducerBytesRevalidated.v1"
 
@@ -71,16 +74,24 @@ def authenticate(head, attestations, zip_bytes):
            "missing or borrowed producer ZIP")
     verified = {}
     total = 0
+    verified_branch = None
     for (kind, shard), row in indexed.items():
         spec = KINDS[kind]
         run = live("/actions/runs/" + str(row["run_id"]))
+        if verified_branch is None:
+            try:
+                verified_branch = authentic_branch(
+                    head, run.get("head_branch"), live=live)
+            except ProducerBranchError as exc:
+                raise ProducerBytesError(
+                    "original 21 branch is unrelated to reviewed PR source") from exc
         demand(run.get("id") == row["run_id"] and
                run.get("head_sha") == head and
                run.get("run_attempt") == row["run_attempt"] and
                run.get("status") == "completed" and
                run.get("conclusion") == "success" and
                run.get("event") in ("push", "workflow_dispatch") and
-               run.get("head_branch") == "research/final-mathematical-closure" and
+               run.get("head_branch") == verified_branch and
                (run.get("path") == spec["workflow"] or
                 str(run.get("path", "")).endswith("/" + spec["workflow"])),
                "GitHub producer workflow identity not authenticated")

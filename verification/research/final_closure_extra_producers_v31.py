@@ -20,6 +20,10 @@ import re
 
 from final_closure_authenticate import live, paginate
 from final_closure_producer_bytes import inspect_zip, ProducerBytesError
+from pr113_reviewed_producer_branch_v3 import (
+    authentic_branch, ProducerBranchError,
+)
+from pr113_boundary_io import strict_json_object
 
 FORMAT = "Permansson.PR113.ControlProducerExtension.v3.1"
 INDEX_FORMAT = "Permansson.PR113.AdditionalControlProducerIndex.v1"
@@ -158,6 +162,7 @@ def authenticated_extra_controls(head, payload, zip_bytes, *,
              for v in reviewed_workflow_blobs.values()),
          "new producer workflows have not been independently source-profiled")
     results, total = {}, 0
+    verified_branch = None
     for job in producers:
         path = job["workflow_path"]
         # Real H must contain the reviewed producing workflow object; a
@@ -168,9 +173,17 @@ def authenticated_extra_controls(head, payload, zip_bytes, *,
              source.get("sha") == reviewed_workflow_blobs[path],
              "actual GitHub H workflow object does not equal reviewed source")
         run = live("/actions/runs/"+str(job["run_id"]))
+        if verified_branch is None:
+            try:
+                verified_branch = authentic_branch(
+                    head, run.get("head_branch"), live=live)
+            except ProducerBranchError as exc:
+                raise ControlProducerError(
+                    "current original-control producing branch not independently bound"
+                ) from exc
         need(run.get("id") == job["run_id"] and
              run.get("head_sha") == head and
-             run.get("head_branch") == BRANCH and
+             run.get("head_branch") == verified_branch and
              run.get("run_attempt") == job["run_attempt"] and
              run.get("status") == "completed" and
              run.get("conclusion") == "success" and
@@ -221,7 +234,7 @@ def authenticated_extra_controls(head, payload, zip_bytes, *,
              sha(index_raw) == job["owner_index_sha256"],
              "original new-control producer ownership index missing/changed")
         try:
-            index = json.loads(index_raw)
+            index = strict_json_object(index_raw)
         except (ValueError,TypeError,UnicodeError) as exc:
             raise ControlProducerError("bad original new-control CI owner index") from exc
         need(index.get("format") == INDEX_FORMAT and
@@ -238,7 +251,7 @@ def authenticated_extra_controls(head, payload, zip_bytes, *,
             need(record is not None and sha(record) == owner["receipt_sha256"],
                  "true owner record absent from retained producing CI ZIP")
             try:
-                actual = json.loads(record)
+                actual = strict_json_object(record)
             except (ValueError,TypeError,UnicodeError) as exc:
                 raise ControlProducerError("malformed source control receipt") from exc
             need(actual.get("status") == STATUS[owner["kind"]] and
