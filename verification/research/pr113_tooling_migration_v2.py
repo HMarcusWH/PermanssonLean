@@ -16,6 +16,7 @@ from pr113_tooling_migration import (
     ToolingMigrationError, exact_tree, git, sha, require, SHA40,
 )
 from pr113_workflow_profile_v2 import audit as audit_workflows
+from pr113_boundary_io import strict_json_object
 
 FORMAT = "Permansson.PR113.ToolingMigrationCandidate.v2"
 
@@ -35,36 +36,44 @@ def audit(root, head, *, phase="staged"):
     manifest_raw = git(root, "show", head + ":" + SUPPLEMENT +
                        "/archive-manifest.json")
     try:
-        manifest = json.loads(manifest_raw)
+        manifest = strict_json_object(manifest_raw)
     except (ValueError, UnicodeError) as exc:
         raise ToolingMigrationError("original T archive manifest malformed") from exc
     tooling = manifest.get("tooling") if isinstance(manifest, dict) else None
     require(isinstance(tooling, dict) and tooling.get("source_commit") == T,
             "original historical T source not pinned by archived manifest")
+    # The original manifest is a COMPLETE 35-file historical source closure.
+    # A self-consistent partial repackage is NOT the approved T artifact.
+    old = exact_tree(root, T, *TOOLING)
+    current = exact_tree(root, head, *TOOLING)
     files = tooling.get("files")
-    require(isinstance(files, list) and len(files) >= 3,
-            "historical packaged T closure incomplete")
+    require(isinstance(files, list) and len(files) == len(old) == 35,
+            "historical packaged T closure is not the complete 35-file set")
+    declared = set()
     for row in files:
-        require(isinstance(row, dict), "historical T manifest row invalid")
-        path, oid, digest = row.get("path"), row.get("blob"), row.get("sha256")
-        require(isinstance(path, str) and
-                (path.startswith("verification/integrity/") or
-                 path.startswith("verification/archive/") or
-                 path == "archival/v0.2.0/README.md")
-                and isinstance(oid, str) and SHA40.fullmatch(oid)
+        require(isinstance(row, dict)
+                and set(row) == {"path", "blob", "sha256"},
+                "historical T manifest row invalid or has unknown keys")
+        path, oid, digest = row["path"], row["blob"], row["sha256"]
+        require(isinstance(path, str) and path in old
+                and path not in declared and
+                isinstance(oid, str) and SHA40.fullmatch(oid)
                 and isinstance(digest, str) and
                 re.fullmatch(r"[0-9a-f]{64}", digest),
-                "historical T declared member invalid")
+                "historical T manifest has missing, foreign or duplicate source")
+        declared.add(path)
         at_t = git(root, "show", T + ":" + path)
         packaged = git(root, "show", head + ":" + SUPPLEMENT +
                        "/tooling/" + path)
         original_oid = git(root, "rev-parse", T + ":" + path).decode().strip()
-        require(at_t == packaged and sha(at_t) == digest and oid == original_oid,
+        require(at_t == packaged and sha(at_t) == digest and
+                oid == original_oid == old[path][1],
                 "historical T file is not the byte-exact frozen member: " + path)
-    old = exact_tree(root, T, *TOOLING)
-    current = exact_tree(root, head, *TOOLING)
+    require(declared == set(old), "historical packaged T omits an original file")
     require(set(old) == set(current), "T2 changed historical tooling membership")
-    changed = sorted(k for k in old if old[k] != current[k])
+    require(all(old[path][0] == current[path][0] for path in old),
+            "historical tooling file mode changed (not an approved migration)")
+    changed = sorted(path for path in old if old[path][1] != current[path][1])
     require(set(changed) == EXPECTED_CHANGES,
             "changed integrity verifier surface not limited to named two files")
     profile = audit_workflows(root, head, phase=phase)

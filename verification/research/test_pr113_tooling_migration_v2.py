@@ -58,6 +58,63 @@ class VersionedT2SourceTests(TestCase):
         self.assertFalse(result["new_successor_T_approved"])
         self.assertFalse(result["independent_security_review"])
 
+    def test_frozen_archive_manifest_cannot_omit_or_duplicate_source(self):
+        from pr113_tooling_migration import SUPPLEMENT
+        import json
+        import pr113_tooling_migration_v2 as migration
+        phase = source_phase(ROOT, self.head)
+        original = migration.git
+        name = self.head + ":" + SUPPLEMENT + "/archive-manifest.json"
+        record = json.loads(original(ROOT, "show", name))
+        for defect in ("omission", "duplicate", "unknown"):
+            modified = copy.deepcopy(record)
+            if defect == "omission":
+                modified["tooling"]["files"].pop()
+            elif defect == "duplicate":
+                modified["tooling"]["files"][-1] = modified["tooling"]["files"][0]
+            else:
+                modified["tooling"]["files"][-1]["path"] = "verification/archive/foreign.py"
+            def fake(root, *args):
+                if args == ("show", name):
+                    return json.dumps(modified, sort_keys=True).encode("utf-8")
+                return original(root, *args)
+            with self.subTest(defect=defect), mock.patch.object(
+                    migration, "git", side_effect=fake):
+                with self.assertRaises(ToolingMigrationError):
+                    tooling_audit(ROOT, self.head, phase=phase)
+
+    def test_historical_executable_modes_are_never_a_migration_exception(self):
+        import pr113_tooling_migration_v2 as migration
+        phase = source_phase(ROOT, self.head)
+        original = migration.exact_tree
+        target = "verification/integrity/workflow_contract.py"
+        def changed_mode(root, revision, *paths):
+            result = original(root, revision, *paths)
+            if revision == self.head and target in result:
+                result = dict(result)
+                result[target] = ("100755", result[target][1])
+            return result
+        with mock.patch.object(migration, "exact_tree", side_effect=changed_mode):
+            with self.assertRaisesRegex(ToolingMigrationError, "mode changed"):
+                tooling_audit(ROOT, self.head, phase=phase)
+
+    def test_forged_original_sha256_is_rejected_before_any_approval(self):
+        from pr113_tooling_migration import SUPPLEMENT
+        import json
+        import pr113_tooling_migration_v2 as migration
+        phase = source_phase(ROOT, self.head)
+        original = migration.git
+        name = self.head + ":" + SUPPLEMENT + "/archive-manifest.json"
+        record = json.loads(original(ROOT, "show", name))
+        record["tooling"]["files"][0]["sha256"] = "0"*64
+        def fake(root, *args):
+            if args == ("show", name):
+                return json.dumps(record, sort_keys=True).encode("utf-8")
+            return original(root, *args)
+        with mock.patch.object(migration, "git", side_effect=fake):
+            with self.assertRaises(ToolingMigrationError):
+                tooling_audit(ROOT, self.head, phase=phase)
+
     def test_no_direct_ad_hoc_source_pin_override(self):
         from pr113_workflow_profile_v2 import _historical
         old = _historical(ROOT, self.head)
