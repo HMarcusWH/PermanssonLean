@@ -163,15 +163,32 @@ class ApprovedSealByteTests(unittest.TestCase):
                 for index in range(1, 46)},
             "effective_claims": claims,
         }
-        # Explicit synthetic owner inputs; the external acceptance is mocked.
+        # Explicit synthetic owner inputs: 76 owners across THREE artifacts,
+        # not 76 ZIPs. The external acceptance is mocked and never approved.
+        from pr113_owner_partition_v3 import FORMAT as OWNER_FORMAT, CLAIMS
         owner_dir = Path(self.tmp.name) / "mock-original-owners"
         owner_dir.mkdir()
-        for i in range(1, 77):
+        for i in (101, 102, 103):
             (owner_dir / (str(i) + ".zip")).write_bytes(b"PK_fake_unreviewed")
         reproduction_zip = Path(self.tmp.name) / "mock-reproduction.zip"
         reproduction_zip.write_bytes(b"PK_fake_reproduction")
+        cases = [f"C-{i:02d}" for i in range(1, 46)]
+        owner_registry = {
+            "format": OWNER_FORMAT,
+            "source_controls_accepted": False,
+            "independent_security_review": False,
+            "mathematical_approval": False,
+            "producers": [
+                {"artifact_id":101, "owners":[
+                    {"kind":"original_positive","owner_id":cid} for cid in cases]},
+                {"artifact_id":102, "owners":[
+                    {"kind":"legacy_negative","owner_id":cid} for cid in cases[:20]]},
+                {"artifact_id":103, "owners":[
+                    {"kind":"claim_pair","owner_id":cid} for cid in sorted(CLAIMS)]},
+            ],
+        }
         extra_contract = Path(self.tmp.name) / "extra_contract.json"
-        extra_contract.write_text("{}")
+        extra_contract.write_text(json.dumps(owner_registry))
         workflow_blobs = Path(self.tmp.name) / "workflow_blobs.json"
         workflow_blobs.write_text("{}")
         reproduction = {"zip_file": reproduction_zip, "identities": {"synthetic": True}}

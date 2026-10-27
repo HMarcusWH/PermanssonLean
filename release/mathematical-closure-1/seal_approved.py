@@ -22,6 +22,7 @@ from final_closure_verify import strict as strict_acceptance
 from final_closure_full_contract import ORIGINAL_CLAIMS
 from archive_integrity import SOURCE_FILES
 from pr113_boundary_io import strict_json_object, detached_destination
+from pr113_owner_partition_v3 import original_owner_artifacts, OwnerPartitionError
 
 THIS = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("permansson_draft_verifier",
@@ -96,19 +97,25 @@ def external_evidence_children(reproduction_attachment, v31_attachment):
     directory = v31_attachment.get("additional_zips")
     if directory is None or not Path(directory).is_dir() or Path(directory).is_symlink():
         raise SealError("missing original 76-owner directory")
+    try:
+        expected_ids = original_owner_artifacts(
+            strict_json_object(children["external/additional_contract.json"]))
+    except (OwnerPartitionError, ValueError) as exc:
+        raise SealError("full-scope owner source registry does not cover 45+20+11") from exc
     files = list(Path(directory).iterdir())
-    if len(files) != 76:
-        raise SealError("full-scope original owners must number 76")
+    expected_names = {str(i) + ".zip" for i in expected_ids}
+    if {p.name for p in files} != expected_names or len(files) != len(expected_ids):
+        raise SealError("actual original producer ZIP inventory differs from owner registry")
     import re
     total = 0
     for p in files:
         if (not p.is_file() or p.is_symlink()
                 or not re.fullmatch(r"[1-9][0-9]*\.zip", p.name)
                 or not 0 < p.stat().st_size <= 64*1024*1024):
-            raise SealError("invalid original owner artifact")
+            raise SealError("invalid original owner-producing artifact")
         total += p.stat().st_size
         if total > 256*1024*1024:
-            raise SealError("original owner ZIP budget exceeded")
+            raise SealError("original owner-producing ZIP budget exceeded")
         children["external/owners/" + p.name] = p.read_bytes()
     return children
 
@@ -232,7 +239,7 @@ def seal(draft_directory: Path, approved: dict, receipts: dict,
     children = (external_evidence_children(reproduction_attachment, v31_attachment)
                 if full else {})
     manifest = {
-        "format": ("Permansson.MathClosure.CandidateSeal.v2" if full
+        "format": ("Permansson.MathClosure.CandidateSeal.v3" if full
                    else "Permansson.MathClosure.ApprovedSeal.v3"),
         "status": "CANDIDATE_SEAL_BUILT" if full else "APPROVED_SOURCE_BOUND",
         "source_commit_sha": result["source"],
@@ -355,15 +362,27 @@ def verify_approved_archive(archive: Path, manifest: dict):
         extra = manifest.get("external_evidence_members")
         if not isinstance(extra, dict):
             raise SealError("missing versioned evidence inventory")
-        if manifest.get("format") == "Permansson.MathClosure.CandidateSeal.v2":
-            if (len(extra) != 80 or
-                {n for n in extra if n.startswith("external/owners/")} !=
-                {n for n in extra if n.startswith("external/owners/") and n.endswith(".zip")} or
-                len([n for n in extra if n.startswith("external/owners/")]) != 76 or
-                not {"external/reproduction.zip", "external/reproduction_ids.json",
-                     "external/additional_contract.json",
-                     "external/workflow_blob_candidates.json"} <= set(extra)):
-                raise SealError("full original evidence closure incomplete")
+        if manifest.get("format") == "Permansson.MathClosure.CandidateSeal.v3":
+            mandatory = {
+                "external/reproduction.zip", "external/reproduction_ids.json",
+                "external/additional_contract.json",
+                "external/workflow_blob_candidates.json",
+            }
+            if "external/additional_contract.json" not in names:
+                raise SealError("full source-controlled owner contract missing")
+            try:
+                raw_contract = read_bounded(
+                    z, "external/additional_contract.json", 4*1024*1024)
+                producer_ids = original_owner_artifacts(
+                    strict_json_object(raw_contract))
+            except (OwnerPartitionError, ValueError, KeyError) as exc:
+                raise SealError(
+                    "archived original owner contract not authenticated structurally") from exc
+            exact_members = mandatory | {
+                "external/owners/" + str(i) + ".zip" for i in producer_ids
+            }
+            if set(extra) != exact_members:
+                raise SealError("full candidate ZIP inventory differs from 45+20+11 owner registry")
         elif manifest.get("format") == "Permansson.MathClosure.ApprovedSeal.v3":
             if extra:
                 raise SealError("scoped release cannot assert full owner evidence")

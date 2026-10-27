@@ -51,7 +51,7 @@ def replay(archive: Path, sidecar: Path, output: Path) -> dict:
         if len(seal_bytes) != info.file_size:
             raise SealError("partial or overexpanded seal member")
         manifest = strict_json_object(seal_bytes, max_bytes=MAX_MANIFEST_BYTES)
-    if (manifest.get("format") != "Permansson.MathClosure.CandidateSeal.v2" or
+    if (manifest.get("format") != "Permansson.MathClosure.CandidateSeal.v3" or
         manifest.get("status") != "CANDIDATE_SEAL_BUILT" or
         manifest.get("full45_claimed") is not True or
         manifest.get("accepted_case_count") != 45 or
