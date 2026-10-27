@@ -168,6 +168,37 @@ class LegacyDeliveryTests(unittest.TestCase):
                     deliver.ChoiceDeliveryError):
                 self.run_delivery(tamper)
 
+
+    def test_duplicate_reviewer_attestation_fields_are_rejected(self):
+        def duplicate(raw, member, api, policy, att):
+            text = json.dumps(att, sort_keys=True)
+            needle = '"status": "RELEVANCE_CHOICES_ONLY_NOT_CASE_ACCEPTANCE"'
+            self.assertIn(needle, text)
+            text = text.replace(needle, '"status": "FORGED_APPROVAL", ' + needle)
+            api["/issues/comments/700"]["body"] = deliver.PREFIX + text
+        with self.assertRaises(deliver.ChoiceDeliveryError):
+            self.run_delivery(duplicate)
+
+    def test_reviewer_choice_output_rejects_parent_traversal_without_delivery(self):
+        import tempfile
+        from pathlib import Path
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "unused.zip").write_bytes(b"PK-not-real")
+            (root / "out").mkdir()
+            args = [
+                "--head", H, "--survey-zip", str(root / "unused.zip"),
+                "--run-id", "100", "--run-attempt", "1", "--job-id", "200",
+                "--check-run-id", "300", "--artifact-id", "400",
+                "--review-comment-id", "700",
+                "--out", str(root / "out" / ".." / "unexpected"),
+            ]
+            with mock.patch.object(deliver, "deliver") as producer:
+                self.assertEqual(deliver.main(args), 2)
+                producer.assert_not_called()
+            self.assertFalse((root / "unexpected").exists())
+
     def test_reviewer_comment_body_digest_retained_but_unapproved(self):
         result=self.run_delivery()
         diagnostic=result["diagnostic"]

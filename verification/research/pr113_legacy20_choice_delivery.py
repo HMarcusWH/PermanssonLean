@@ -15,6 +15,7 @@ import sys
 
 from final_closure_authenticate import git as real_git, live as real_live
 from infrastructure_acceptance import inspect_zip
+from pr113_boundary_io import strict_json_object, detached_destination
 from pr113_legacy20_runtime_resolution import (
     FORMAT_DECISION, FORMAT_REPORT, decision_to_selection,
 )
@@ -57,7 +58,9 @@ def digest(raw):
 
 def reviewer_policy(head, *, git):
     try:
-        policy = json.loads(git("show", head + ":" + POLICY))
+        raw = git("show", head + ":" + POLICY)
+        policy = strict_json_object(raw if type(raw) is bytes
+                                    else raw.encode("utf-8"))
     except (OSError, ValueError, TypeError) as exc:
         raise ChoiceDeliveryError("legacy reviewer authority not source-bound") from exc
     require(isinstance(policy, dict)
@@ -137,7 +140,7 @@ def authenticate_survey(head, ids, survey_bytes, *, live):
             "survey artifact lost the real enumerated event choices")
     survey_raw = files[SURVEY_MEMBER]
     try:
-        survey = json.loads(survey_raw)
+        survey = strict_json_object(survey_raw)
     except (TypeError, ValueError) as exc:
         raise ChoiceDeliveryError("survey source is invalid JSON") from exc
     require(isinstance(survey, dict) and
@@ -204,7 +207,7 @@ def comment_choices(head, comment_id, policy, survey_zip_sha256,
     require(len(lines) == 1,
             "exactly one JSON reviewed choice line required from GitHub")
     try:
-        att = json.loads(lines[0])
+        att = strict_json_object(lines[0].encode("utf-8"))
     except (TypeError, ValueError) as exc:
         raise ChoiceDeliveryError("reviewer selection is invalid JSON") from exc
     require(isinstance(att, dict) and set(att) == ATTEST_FIELDS
@@ -288,12 +291,13 @@ def main(argv=None):
     p.add_argument("--out", type=Path, required=True)
     a = p.parse_args(argv)
     try:
-        dest = a.out.absolute()
-        require(not dest.exists() and not dest.is_symlink()
-                and not dest.is_relative_to(ROOT.resolve())
-                and not any(p.is_symlink() for p in dest.parents),
+        dest = detached_destination(a.out, ROOT)
+        require(not ROOT.resolve().is_relative_to(dest),
                 "detached reviewer choice folder must be new and external")
-        raw = a.survey_zip.read_bytes()
+        survey_file = detached_destination(a.survey_zip, ROOT, must_exist=True)
+        require(0 < survey_file.stat().st_size <= 256 * 1024 * 1024,
+                "real survey original ZIP missing or oversized")
+        raw = survey_file.read_bytes()
         report = deliver(
             a.head,
             {"run_id": a.run_id, "run_attempt": a.run_attempt,
