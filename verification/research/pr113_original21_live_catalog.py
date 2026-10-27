@@ -74,7 +74,8 @@ def classify_latest(checks, head):
 
 
 def validate_run_job_artifact(*, head, kind, shard, check,
-                              run, jobs, artifacts):
+                              run, jobs, artifacts,
+                              branch="research/final-mathematical-closure"):
     """Authentic completed run, latest attempt/job, and correct artifact."""
     spec=KINDS[kind]
     require(isinstance(run,dict) and isinstance(jobs,list) and
@@ -91,7 +92,7 @@ def validate_run_job_artifact(*, head, kind, shard, check,
     # still require original head/branch/workflow/job/attempt/artifact binding.
     require(run.get("id")==run_id and
             run.get("head_sha")==head and
-            run.get("head_branch")=="research/final-mathematical-closure" and
+            run.get("head_branch")==branch and
             run.get("event") in ("push","workflow_dispatch") and
             run.get("status")=="completed" and
             run.get("conclusion")=="success" and
@@ -160,6 +161,10 @@ def collect(head, output, *, checks=None, lookup=live,
     out=detached_destination(output, ROOT)
     require(not ROOT.resolve().is_relative_to(out),
             "original 21 producer input must not encompass source")
+    from pr113_producer_target_v3 import authenticated_producer_branch
+    # Genuine workflow execution is mandatory outside explicit test injection.
+    branch=(authenticated_producer_branch(head)
+            if checks is None else "research/final-mathematical-closure")
     candidates=classify_latest(
         paginate_source("/commits/"+head+"/check-runs",key="check_runs")
         if checks is None else checks,head)
@@ -183,7 +188,8 @@ def collect(head, output, *, checks=None, lookup=live,
         run,jobs,artifacts=run_cache[rid]
         info=validate_run_job_artifact(
             head=head,kind=kind,shard=shard,
-            check=check,run=run,jobs=jobs,artifacts=artifacts)
+            check=check,run=run,jobs=jobs,artifacts=artifacts,
+            branch=branch)
         raw=download(info["artifact_id"])
         total+=len(raw)
         require(total<=MAX_TOTAL and sha(raw)==info["artifact_sha256"],

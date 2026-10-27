@@ -142,10 +142,12 @@ def verify_artifact(*, kind: str, shard: int, head: str,
            "invalid producing GitHub run or artifact ID")
     demand(git_head() == head, "checkout differs from producing source head")
     demand(os.environ.get("GITHUB_TOKEN"), "live GitHub authentication token required")
+    from pr113_producer_target_v3 import authenticated_producer_branch
+    branch = authenticated_producer_branch(head)
     spec = KINDS[kind]
     run = live(f"/actions/runs/{run_id}")
     demand(isinstance(run, dict) and run.get("id") == run_id
-           and run.get("head_sha") == head and run.get("head_branch") == BRANCH
+           and run.get("head_sha") == head and run.get("head_branch") == branch
            and run.get("event") in ("push", "workflow_dispatch")
            and run.get("status") == "completed"
            and run.get("conclusion") == "success",
