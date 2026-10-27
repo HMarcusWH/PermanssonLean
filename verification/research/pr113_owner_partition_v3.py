@@ -45,7 +45,8 @@ def original_owner_artifacts(payload):
                 "owner-producing artifact has no actual source owners")
         for owner in owners:
             require(type(owner) is dict
-                    and owner.get("kind") in COUNTS
+                    and type(owner.get("kind")) is str
+                    and owner["kind"] in COUNTS
                     and type(owner.get("owner_id")) is str
                     and bool(owner["owner_id"])
                     and owner["owner_id"] not in by_kind[owner["kind"]],

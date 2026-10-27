@@ -36,6 +36,7 @@ class PartitionTests(unittest.TestCase):
             lambda p: p["producers"][1]["owners"].append(
                 dict(p["producers"][1]["owners"][0])),
             lambda p: p.update(mathematical_approval=True),
+            lambda p: p["producers"][0]["owners"][0].update(kind=[]),
             lambda p: p["producers"][1]["owners"][0].update(owner_id="FOREIGN"),
             lambda p: p["producers"][2]["owners"][0].update(owner_id="NOT_A_CLAIM"),
         ):
