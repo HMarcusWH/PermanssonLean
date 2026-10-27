@@ -87,7 +87,18 @@ class HistoricalLifecycleUnitTests(unittest.TestCase):
                 },
             }
             file.write_text(json.dumps(base))
-            adapter.check_stored(file, 111, 333, event=current)
+            # Only a synthetic test replay: production rechecks original GitHub.
+            valid_fresh = {
+                "phase": current["phase"], "event": current,
+                "required": base["historical_required_result"],
+                "envelope": None, "transport": None, "zips": {},
+            }
+            def simulated(*args, **kwargs):
+                self.assertEqual(args, (111, 333))
+                self.assertEqual(kwargs, {"event": current})
+                return valid_fresh
+            adapter.check_stored(file, 111, 333, event=current,
+                                 recompute=simulated)
             for change in (
                 {"historical_security_review_id": 445},
                 {"source_commit_sha": "f" * 40},
@@ -101,7 +112,39 @@ class HistoricalLifecycleUnitTests(unittest.TestCase):
                 file.write_text(json.dumps(candidate))
                 with self.subTest(change=change), self.assertRaises(
                         adapter.RuntimeError113):
-                    adapter.check_stored(file, 111, 333, event=current)
+                    adapter.check_stored(file, 111, 333, event=current,
+                                         recompute=simulated)
+
+    def test_structurally_valid_but_borrowed_receipt_is_rejected(self):
+        current = event("main_descendant_pr")
+        with tempfile.TemporaryDirectory() as tmp:
+            file = Path(tmp) / "historical.json"
+            source = {
+                "status": "PR113_HISTORICAL_SOURCE_REVERIFIED_FOR_AUTHENTIC_DESCENDANT",
+                "historical_merged_main_sha": M, "current_required_ci_accepted": False,
+            }
+            payload = {
+                "format": adapter.FORMAT, "phase": current["phase"],
+                "source_commit_sha": C, "original_github_run_id": 222,
+                "original_github_run_attempt": 1, "historical_producer_run_id": 111,
+                "historical_security_review_id": 333,
+                "accepted_current_mathematics": False, "owner_merge_authorized": False,
+                "publication_authorized": False, "historical_required_result": source,
+            }
+            file.write_text(json.dumps(payload))
+            forged_recompute = {
+                "phase": current["phase"], "event": current,
+                "required": {**source, "historical_original_producer_run_id": 444},
+                "envelope": None, "transport": None, "zips": {},
+            }
+            with self.assertRaises(adapter.RuntimeError113):
+                adapter.check_stored(file, 111, 333, event=current,
+                                     recompute=lambda *a, **k: forged_recompute)
+            file.unlink()
+            file.symlink_to(Path(tmp) / "elsewhere.json")
+            with self.assertRaises(ValueError):
+                adapter.check_stored(file, 111, 333, event=current,
+                                     recompute=lambda *a, **k: forged_recompute)
 
     def test_inherited_source_result_requires_12_authenticated_contexts(self):
         current = event("main_descendant_pr")
