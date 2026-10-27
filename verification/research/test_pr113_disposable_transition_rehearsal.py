@@ -4,8 +4,10 @@ One test runs the complete staged 25->30 installation using disposable Git
 objects and proves genuine ordered synthetic S source identity. The original
 PR branch, workflow files, owner/reviewer state and release claims stay inert.
 """
+import io
 import json
 import subprocess
+from contextlib import redirect_stderr
 from pathlib import Path
 import tempfile
 import unittest
@@ -120,11 +122,18 @@ class RealDisposableRehearsalTests(unittest.TestCase):
                 return subprocess.CompletedProcess(
                     command,1,"workflow: FAIL\n",
                     "FAIL: "+name+"\nAssertionError: expected E_WORKFLOW_CONTRACT\n")
-            with mock.patch.object(rehearsal,"scalar",return_value="a"*40), \
-                    mock.patch.object(rehearsal.subprocess,"run",
-                                      side_effect=failed_child):
-                with self.assertRaises(rehearsal.RehearsalError) as raised:
-                    rehearsal.run_installed_workflow_suite(checkout,evidence)
+            # Keep synthetic failure markers out of successful real CI logs.
+            # Assert the actual failure renderer emits them when required.
+            captured=io.StringIO()
+            with redirect_stderr(captured):
+                with mock.patch.object(rehearsal,"scalar",return_value="a"*40), \
+                        mock.patch.object(rehearsal.subprocess,"run",
+                                          side_effect=failed_child):
+                    with self.assertRaises(rehearsal.RehearsalError) as raised:
+                        rehearsal.run_installed_workflow_suite(checkout,evidence)
+            self.assertIn("PR113_NESTED_WORKFLOW_FAILURE_BEGIN",
+                          captured.getvalue())
+            self.assertIn(name,captured.getvalue())
             message=str(raised.exception)
             self.assertIn(name,message)
             self.assertIn("E_REPORT",message)
