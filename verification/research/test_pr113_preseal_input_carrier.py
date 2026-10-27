@@ -17,7 +17,9 @@ M = "a" * 40
 def zipped(override=None):
     files = {name: b"source-bound-but-unreviewed-" + name.encode()
              for name in EXPECTED_FILES}
-    files["reviewed/additional_zips/101.zip"] = b"synthetic GH artifact bytes"
+    for original_id in range(101, 177):
+        files[f"reviewed/additional_zips/{original_id}.zip"] = (
+            b"synthetic GH artifact bytes " + str(original_id).encode())
     if override:
         files.update(override)
     buf = io.BytesIO()
@@ -103,6 +105,18 @@ class PresealOriginalTransportTests(unittest.TestCase):
                 z.writestr(name, raw)
         with self.assertRaises(PresealInputError):
             inspect_original_carrier(buf.getvalue())
+
+
+    def test_75_of_76_owner_zip_sources_reject_before_replay(self):
+        raw = zipped()
+        out = io.BytesIO()
+        with zipfile.ZipFile(io.BytesIO(raw)) as source, zipfile.ZipFile(
+                out, "w", zipfile.ZIP_DEFLATED) as candidate:
+            for name in source.namelist():
+                if name != "reviewed/additional_zips/176.zip":
+                    candidate.writestr(name, source.read(name))
+        with self.assertRaises(PresealInputError):
+            inspect_original_carrier(out.getvalue())
 
     def test_arbitrary_zip_member_and_traversal_are_rejected(self):
         for name in (

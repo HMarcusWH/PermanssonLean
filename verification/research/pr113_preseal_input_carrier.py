@@ -182,11 +182,17 @@ def inspect_original_carrier(raw):
                 total += info.file_size
                 demand(total <= MAX_TOTAL_UNCOMPRESSED,
                        "aggregate evidence input exceeds bounded size")
-            # Name aliasing (file/child) and all required original source files
-            demand(EXPECTED_FILES <= set(x.filename for x in infos) and
-                   any(x.filename.startswith("reviewed/additional_zips/")
-                       for x in infos),
-                   "full v3.1 reviewed producer inputs absent")
+            # A full preseal must carry exactly the 45 original positives,
+            # 20 legacy negative owners and 11 claim pairs: 76 original ZIPs.
+            # A single ZIP is not a complete 21->76 review-input transport.
+            all_names = {x.filename for x in infos}
+            owner_members = {
+                name for name in all_names
+                if name.startswith("reviewed/additional_zips/")
+            }
+            demand(EXPECTED_FILES <= all_names and len(owner_members) == 76
+                   and len(all_names) == len(EXPECTED_FILES) + 76,
+                   "full v3.1 carrier needs exactly 76 original owner ZIPs")
             for info in infos:
                 with z.open(info) as handle:
                     content = handle.read(info.file_size + 1)
