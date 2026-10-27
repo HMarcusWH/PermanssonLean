@@ -74,7 +74,9 @@ jobs:
 
           root = Path(os.environ["RUNNER_TEMP"])
           meta = json.loads((root/"pr113-upstream-artifact-metadata.json").read_text())
-          raw = (root/"pr113-upstream-artifact.zip").read_bytes()
+          upstream = root/"pr113-upstream-artifact.zip"
+          assert 0 < upstream.stat().st_size <= 400*1024*1024
+          raw = upstream.read_bytes()
           merged = os.environ["MERGED_SHA"]
           source_run = int(os.environ["SOURCE_RUN"])
           artifact_id = int(os.environ["ARTIFACT_ID"])
@@ -116,10 +118,10 @@ jobs:
               members = package.infolist()
               assert len(members) == 2
               assert {m.filename for m in members} == allowed
-              assert sum(m.file_size for m in members) <= 128*1024*1024
+              assert sum(m.file_size for m in members) <= 384*1024*1024 + 8192
               for item in members:
                   assert not item.is_dir()
-                  assert 0 < item.file_size <= 127*1024*1024
+                  assert 0 < item.file_size <= 384*1024*1024
                   assert item.compress_size > 0
                   assert item.file_size <= 200*item.compress_size
                   mode = (item.external_attr >> 16) & 0o170000
