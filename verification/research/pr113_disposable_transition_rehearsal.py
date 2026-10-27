@@ -340,6 +340,89 @@ ACTIVE_30_SUITES=(
 )
 
 
+
+def _active30_suite_passed(process, output):
+    """Require executed unittest success, not caller-supplied status text."""
+    return bool(
+        process.returncode == 0
+        and re.search(r"Ran [1-9][0-9]* tests? in ", output)
+        and re.search(r"(?:^|\n)OK(?:\n|$)", output)
+        and "FAILED (" not in output
+        and "skipped=" not in output
+        and "expected failures=" not in output
+    )
+
+
+def _active30_bounded_output(output):
+    """Redact credential-bearing diagnostic lines before external logging."""
+    sensitive=re.compile(
+        r"(?i)(?:\b(?:GITHUB_TOKEN|GH_TOKEN|ACCESS_TOKEN|API_KEY|"
+        r"SECRET|PASSWORD|CREDENTIAL|AUTHORIZATION|COOKIE)\b\s*[:=]|"
+        r"\bbearer\s+\S+|(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]+)"
+    )
+    clean="\n".join(
+        "[redacted credential-bearing diagnostic line]"
+        if sensitive.search(line) else line
+        for line in output.splitlines()
+    )
+    if len(clean) <= 9000:
+        return clean, ""
+    return clean[:3500], clean[-5500:]
+
+
+def _active30_failure_receipt(checkout, filename, process, output, prior, *,
+                              timed_out=False):
+    """Bounded, nonauthorizing record of a genuine failed nested test run.
+
+    Parse the complete captured test stream before bounding; preserve its
+    SHA256 and exact unittest FAIL/ERROR identifiers. Logs remain detached.
+    """
+    head,tail=_active30_bounded_output(output)
+    methods=[]
+    seen=set()
+    for match in re.finditer(r"(?m)^(FAIL|ERROR):[ \t]*([^\r\n]+)$",output):
+        kind,header=match.groups()
+        safe_header,_=_active30_bounded_output(header)
+        name=re.search(r"\(([^()\r\n]+)\)\s*$",safe_header)
+        ident=(name.group(1) if name else safe_header).strip()
+        if ident not in seen:
+            methods.append({"method":ident[:400],"status":kind,
+                            "header":safe_header[:550]})
+            seen.add(ident)
+        if len(methods)>=32:
+            break
+    summaries=[]
+    for line in output.splitlines():
+        stripped=line.strip()
+        if re.match(r"^(?:AssertionError|[A-Za-z_][A-Za-z0-9_.]*"
+                    r"(?:Error|Exception|Failure)):",stripped):
+            safe,_=_active30_bounded_output(stripped)
+            if safe not in summaries:
+                summaries.append(safe[:650])
+        if len(summaries)>=20:
+            break
+    ran=re.search(r"(?m)^Ran ([0-9]+) tests? in ",output)
+    return {
+        "format":"Permansson.PR113.Active30RegressionFailure.v2",
+        "status":"FAIL_CLOSED",
+        "checked_sha":scalar(checkout,"rev-parse","HEAD"),
+        "failed_suite":filename,
+        "failed_returncode":process.returncode,
+        "timed_out":bool(timed_out),
+        "tests_run":int(ran.group(1)) if ran else None,
+        "failed_methods":methods,
+        "error_summaries":summaries,
+        "failed_output_sha256":hashlib.sha256(output.encode("utf-8")).hexdigest(),
+        "diagnostic_head":head,
+        "diagnostic_tail":tail,
+        "earlier_executed_suites":prior,
+        "github_required_ci_authenticated":False,
+        "independent_security_review":False,
+        "owner_activation_authorized":False,
+        "mathematical_acceptance":False,
+    }
+
+
 def run_active_30_regressions(checkout, evidence_dir):
     """Run the REAL phase-aware suites against committed installed 30 blobs.
 
@@ -365,39 +448,33 @@ def run_active_30_regressions(checkout, evidence_dir):
              "active30 regression source absent: "+filename)
         args=[sys.executable,"-B","-m","unittest","discover",
               "-s","verification/research","-p",filename,"-v"]
+        timed_out=False
         try:
             process=subprocess.run(
                 args,cwd=checkout,env=env,timeout=150,
                 capture_output=True,text=True)
-        except (OSError,subprocess.TimeoutExpired) as exc:
+        except subprocess.TimeoutExpired as exc:
+            # Preserve timeout as a failed execution; never manufacture OK.
+            timed_out=True
+            def decoded(value):
+                if isinstance(value,bytes):
+                    return value.decode("utf-8","replace")
+                return value if isinstance(value,str) else ""
+            process=subprocess.CompletedProcess(
+                args,124,decoded(exc.stdout),
+                decoded(exc.stderr)+"\nACTIVE30_SUBPROCESS_TIMEOUT")
+        except OSError as exc:
             raise RehearsalError("actual current30 regression unavailable: "+
                                  filename) from exc
         output=(process.stdout+"\n"+process.stderr)
         log=evidence_dir/filename.removesuffix(".py")
         log.write_text(output,encoding="utf-8")
-        passed=(process.returncode==0
-                and re.search(r"Ran [1-9][0-9]* tests? in ",output)
-                and re.search(r"(?:^|\n)OK(?:\n|$)",output)
-                and "FAILED (" not in output
-                and "skipped=" not in output
-                and "expected failures=" not in output)
+        passed=_active30_suite_passed(process,output) and not timed_out
         if not passed:
             # This receipt is only a diagnostic of FAILED local execution.
             # It cannot impersonate GitHub CI or confer review/activation.
-            failure={
-                "format":"Permansson.PR113.Active30RegressionFailure.v1",
-                "status":"FAIL_CLOSED",
-                "checked_sha":scalar(checkout,"rev-parse","HEAD"),
-                "failed_suite":filename,
-                "failed_returncode":process.returncode,
-                "failed_output_sha256":hashlib.sha256(
-                    output.encode("utf-8")).hexdigest(),
-                "earlier_executed_suites":receipts,
-                "github_required_ci_authenticated":False,
-                "independent_security_review":False,
-                "owner_activation_authorized":False,
-                "mathematical_acceptance":False,
-            }
+            failure=_active30_failure_receipt(
+                checkout,filename,process,output,receipts,timed_out=timed_out)
             failure_path=evidence_dir/"FAILURE_ONLY.json"
             with failure_path.open("x",encoding="utf-8") as f:
                 json.dump(failure,f,sort_keys=True,indent=2)
@@ -409,7 +486,7 @@ def run_active_30_regressions(checkout, evidence_dir):
                   file=sys.stderr)
             raise RehearsalError(
                 "authentic active30 regression failed: "+filename+
-                "\n"+output[-1700:])
+                "\n"+json.dumps(failure,sort_keys=True))
         receipts.append({
             "source_test":filename,
             "status":"PASS_EXECUTED",

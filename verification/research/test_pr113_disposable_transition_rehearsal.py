@@ -141,6 +141,106 @@ class RealDisposableRehearsalTests(unittest.TestCase):
             self.assertIn('"status": "FAIL_CLOSED"',message)
             self.assertEqual(json.loads(evidence.read_text())["status"],"FAIL")
 
+    def test_active30_regression_failure_retains_exact_method_and_error(self):
+        """Synthetic red subprocess exercises real receipt and fail-closed code."""
+        first=rehearsal.ACTIVE_30_SUITES[0]
+        qualified=("test_pr113_tooling_migration_v2."
+                   "ToolingMigrationTests.test_reject_changed_archive_blob")
+        stderr=(
+            "test_reject_changed_archive_blob ("+qualified+") ... FAIL\n"
+            + "harmless preceding diagnostics\n"*500
+            + "======================================================================\n"
+            + "FAIL: test_reject_changed_archive_blob ("+qualified+")\n"
+            + "----------------------------------------------------------------------\n"
+            + "Traceback (most recent call last):\n"
+            + "AssertionError: wrong pinned source remains unverified\n"
+            + "----------------------------------------------------------------------\n"
+            + "Ran 3 tests in 0.012s\n\nFAILED (failures=1)\n"
+        )
+        failed=subprocess.CompletedProcess(["python"],1,"",stderr)
+        with tempfile.TemporaryDirectory(prefix="pr113-active30-negative-") as tmp:
+            checkout=Path(tmp)/"repo"
+            source=checkout/"verification/research"/first
+            source.parent.mkdir(parents=True)
+            source.write_text("# isolated test fixture\n",encoding="utf-8")
+            outside=Path(tmp)/"detached-logs"
+            capture=io.StringIO()
+            with mock.patch.object(rehearsal.subprocess,"run",return_value=failed), \
+                    mock.patch.object(rehearsal,"scalar",return_value="a"*40), \
+                    redirect_stderr(capture):
+                with self.assertRaises(rehearsal.RehearsalError) as caught:
+                    rehearsal.run_active_30_regressions(checkout,outside)
+            report=json.loads((outside/"FAILURE_ONLY.json").read_bytes())
+            self.assertEqual(report["status"],"FAIL_CLOSED")
+            self.assertEqual(report["failed_suite"],first)
+            self.assertEqual(report["failed_returncode"],1)
+            self.assertEqual(report["tests_run"],3)
+            self.assertEqual(report["failed_methods"][0]["method"],qualified)
+            self.assertIn("wrong pinned source",report["error_summaries"][0])
+            self.assertEqual(report["diagnostic_tail"][-40:],
+                             stderr.rstrip()[-40:])
+            self.assertIn("PR113_ACTIVE30_FAILURE_RECEIPT_BEGIN",
+                          capture.getvalue())
+            self.assertIn(qualified,str(caught.exception))
+            self.assertFalse(report["independent_security_review"])
+            self.assertFalse(report["github_required_ci_authenticated"])
+
+    def test_active30_zero_skipped_forged_ok_and_error_stay_red(self):
+        """Only genuine nonempty unittest OK is a passing subprocess."""
+        make=subprocess.CompletedProcess
+        examples=(
+            make(["python"],0,"","Ran 0 tests in 0.001s\n\nOK\n"),
+            make(["python"],0,"","Ran 2 tests in 0.001s\n\nOK (skipped=1)\n"),
+            make(["python"],0,"","OK\n"),
+            make(["python"],1,"","ERROR: testcase (module.Case.testcase)\n"
+                                  "RuntimeError: fixture failed\n"),
+            make(["python"],0,"","Ran 2 tests in 0.001s\n\nFAILED (errors=1)\n"),
+        )
+        for process in examples:
+            with self.subTest(output=process.stderr):
+                self.assertFalse(rehearsal._active30_suite_passed(
+                    process,process.stdout+"\n"+process.stderr))
+        positive=make(["python"],0,"","Ran 2 tests in 0.001s\n\nOK\n")
+        self.assertTrue(rehearsal._active30_suite_passed(
+            positive,positive.stdout+"\n"+positive.stderr))
+        with tempfile.TemporaryDirectory(prefix="pr113-active30-redact-") as tmp:
+            checkout=Path(tmp)
+            with mock.patch.object(rehearsal,"scalar",return_value="b"*40):
+                report=rehearsal._active30_failure_receipt(
+                    checkout,"synthetic.py",examples[3],
+                    "ERROR: testcase (module.Case.testcase)\n"
+                    "ValueError: incorrect assumption\n"
+                    "GITHUB_TOKEN: example-synthetic-secret\n",
+                    [],timed_out=False)
+            self.assertEqual(report["failed_methods"][0]["method"],
+                             "module.Case.testcase")
+            self.assertIn("[redacted credential-bearing diagnostic line]",
+                          report["diagnostic_head"])
+            self.assertNotIn("example-synthetic-secret",
+                             json.dumps(report))
+
+    def test_active30_timeout_is_red_and_source_receipt_not_approval(self):
+        first=rehearsal.ACTIVE_30_SUITES[0]
+        with tempfile.TemporaryDirectory(prefix="pr113-active30-timeout-") as tmp:
+            checkout=Path(tmp)/"repo"
+            test_source=checkout/"verification/research"/first
+            test_source.parent.mkdir(parents=True)
+            test_source.write_text("# synthetic runner fixture\n",encoding="utf-8")
+            outside=Path(tmp)/"detached"
+            timeout=subprocess.TimeoutExpired(["python"],150,
+                                              output=b"test_started\n")
+            capture=io.StringIO()
+            with mock.patch.object(rehearsal.subprocess,"run",side_effect=timeout), \
+                    mock.patch.object(rehearsal,"scalar",return_value="c"*40), \
+                    redirect_stderr(capture):
+                with self.assertRaises(rehearsal.RehearsalError):
+                    rehearsal.run_active_30_regressions(checkout,outside)
+            report=json.loads((outside/"FAILURE_ONLY.json").read_bytes())
+            self.assertTrue(report["timed_out"])
+            self.assertEqual(report["failed_returncode"],124)
+            self.assertEqual(report["status"],"FAIL_CLOSED")
+            self.assertIn("ACTIVE30_SUBPROCESS_TIMEOUT",capture.getvalue())
+
     def test_active_30_rehearsal_requires_both_legacy_import_consumers(self):
         actual=rehearsal.ACTIVE_30_SUITES
         self.assertEqual(len(actual),8)

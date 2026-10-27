@@ -86,8 +86,34 @@ class InactiveHistoricalTransition(unittest.TestCase):
             if active30() else
             (ROOT/".github/workflows/research-integrity.yml").read_text())
         if active30():
-            self.assertIn("pr113_required_dual_gate_v2.py",
-                          (ROOT/".github/workflows/research-integrity.yml").read_text())
+            # The installed v3 workflow replaces current-source delivery,
+            # while the immutable historical v2 archive fragment below stays
+            # separately asserted. Verify exact active-30 source identity.
+            report=audit_v2(ROOT,git("rev-parse","HEAD"),phase="active")
+            self.assertEqual(report["versioned_source_phase"],"active")
+            self.assertEqual(report["current_reviewed_workflow_count"],30)
+            installed=(ROOT/".github/workflows/research-integrity.yml").read_text(
+                encoding="utf-8")
+            runtime="python3 -B verification/research/pr113_historical_runtime_v3.py"
+            self.assertEqual(installed.count(runtime),2)
+            self.assertNotIn("pr113_required_dual_gate_v2.py",installed)
+            producer_name="      - name: Deliver genuine source-bound historical T and A2 artifacts\n"
+            verifier_name="      - name: Verify genuine reviewed original T/T2 and A2 source\n"
+            preserve_name="      - name: Preserve archival restoration reports\n"
+            for name in (producer_name,verifier_name,preserve_name):
+                self.assertEqual(installed.count(name),1)
+            producer,tail=installed.split(producer_name,1)[1].split(verifier_name,1)
+            verifier=tail.split(preserve_name,1)[0]
+            self.assertEqual(producer.count(runtime),1)
+            self.assertEqual(verifier.count(runtime),1)
+            self.assertRegex(producer,
+                             r"(?m)^\s+python3 -B verification/research/"
+                             r"pr113_historical_runtime_v3\.py \s*\\\s*$")
+            self.assertRegex(verifier,
+                             r"(?m)^\s+python3 -B verification/research/"
+                             r"pr113_historical_runtime_v3\.py \s*\\\s*$")
+            self.assertNotIn("--check-existing",producer)
+            self.assertRegex(verifier,r"(?m)^\s+--check-existing\s*$")
         self.assertIn("verification.archive.offline_smoke",original)
         self.assertIn("Execute archive adversaries",original)
         replacement=(STAGED/"research_integrity_archive_step.yml.inc").read_text()
