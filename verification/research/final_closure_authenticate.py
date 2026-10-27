@@ -366,6 +366,11 @@ def authentic_scholarly_attestations(pr, head_sha, merged_sha, *,
         demand(len(lines) <= 1, "ambiguous publication attestations")
         if not lines:
             continue
+        # GitHub issue comments are editable. Do not accept a later-edited
+        # statement as the immutable scholarly attestation submitted after M.
+        demand(type(comment.get("id")) is int and comment["id"] > 0
+               and comment.get("updated_at") == stamp,
+               "scholarly source comment was changed after its original submission")
         try:
             data = strict_json_object(
                 lines[0][len(SCHOLARLY_PREFIX):].strip().encode("utf-8"),
@@ -384,7 +389,9 @@ def authentic_scholarly_attestations(pr, head_sha, merged_sha, *,
                all(isinstance(n, str) and n.startswith("page-") and
                    isinstance(h, str) and SHA256.fullmatch(h)
                    for n, h in pages.items()) and
-               isinstance(claim_ids, list) and
+               isinstance(claim_ids, list) and bool(claim_ids) and
+               all(isinstance(claim, str) and bool(claim)
+                   for claim in claim_ids) and
                len(claim_ids) == len(set(claim_ids)) and
                data.get("scholarly_review") == "APPROVED" and
                data.get("all_pages_visually_inspected") is True,

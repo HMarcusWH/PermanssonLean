@@ -70,6 +70,30 @@ class AuthenticatedCertMergeTests(unittest.TestCase):
                 source.authenticate_scoped_reviews(
                     H,"HMarcusWH",sha,[{"id":991}],sha,pr_number=115)
 
+    def test_edited_scholarly_comment_does_not_become_approval(self):
+        import json
+        pr = {"merged_at": "2026-10-27T01:00:00Z",
+              "user": {"login": "HMarcusWH"}}
+        claim = {
+            "head_sha": H, "merged_main_sha": M,
+            "pdf_sha256": "e"*64,
+            "pages": {"page-1.png": "f"*64},
+            "approved_claim_ids": ["Q1"],
+            "scholarly_review": "APPROVED",
+            "all_pages_visually_inspected": True,
+        }
+        comment = {
+            "id": 777, "user": {"login": "independent-scholarly"},
+            "created_at": "2026-10-27T01:05:00Z",
+            "updated_at": "2026-10-27T02:05:00Z",
+            "body": source.SCHOLARLY_PREFIX + json.dumps(claim),
+        }
+        with mock.patch.object(source, "paginate", return_value=[comment]), \
+             mock.patch.object(source, "reviewer_authorized", return_value=True):
+            with self.assertRaises(source.AuthenticationError):
+                source.authentic_scholarly_attestations(
+                    pr, H, M, pr_number=115)
+
     def test_v2_source_gate_uses_real_cert_not_original_pr_reviewer_records(self):
         def checks(commit):
             return {name:{"id":i+1,"head_sha":commit,
