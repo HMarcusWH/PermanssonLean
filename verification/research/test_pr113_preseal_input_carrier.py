@@ -15,9 +15,28 @@ M = "a" * 40
 
 
 def zipped(override=None):
+    from pr113_owner_partition_v3 import FORMAT, CLAIMS
     files = {name: b"source-bound-but-unreviewed-" + name.encode()
              for name in EXPECTED_FILES}
-    for original_id in range(101, 177):
+    cases = [f"C-{i:02d}" for i in range(1, 46)]
+    contract = {
+        "format": FORMAT, "source_controls_accepted": False,
+        "independent_security_review": False, "mathematical_approval": False,
+        "producers": [
+            {"artifact_id": 101, "owners": [
+                {"kind": "original_positive", "owner_id": cid}
+                for cid in cases]},
+            {"artifact_id": 102, "owners": [
+                {"kind": "legacy_negative", "owner_id": cid}
+                for cid in cases[:20]]},
+            {"artifact_id": 103, "owners": [
+                {"kind": "claim_pair", "owner_id": claim}
+                for claim in sorted(CLAIMS)]},
+        ],
+    }
+    files["reviewed/additional_contract.json"] = (
+        json.dumps(contract, sort_keys=True) + "\n").encode()
+    for original_id in (101, 102, 103):
         files[f"reviewed/additional_zips/{original_id}.zip"] = (
             b"synthetic GH artifact bytes " + str(original_id).encode())
     if override:
@@ -107,13 +126,13 @@ class PresealOriginalTransportTests(unittest.TestCase):
             inspect_original_carrier(buf.getvalue())
 
 
-    def test_75_of_76_owner_zip_sources_reject_before_replay(self):
+    def test_missing_actual_artifact_id_rejects_despite_76_owners(self):
         raw = zipped()
         out = io.BytesIO()
         with zipfile.ZipFile(io.BytesIO(raw)) as source, zipfile.ZipFile(
                 out, "w", zipfile.ZIP_DEFLATED) as candidate:
             for name in source.namelist():
-                if name != "reviewed/additional_zips/176.zip":
+                if name != "reviewed/additional_zips/103.zip":
                     candidate.writestr(name, source.read(name))
         with self.assertRaises(PresealInputError):
             inspect_original_carrier(out.getvalue())

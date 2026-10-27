@@ -20,6 +20,7 @@ import sys
 import zipfile
 
 from pr113_boundary_io import strict_json_object
+from pr113_owner_partition_v3 import original_owner_artifacts, OwnerPartitionError
 
 SOURCE = Path(__file__).resolve().parents[2]
 NAME = "pr113-preseal-review-inputs"
@@ -182,17 +183,32 @@ def inspect_original_carrier(raw):
                 total += info.file_size
                 demand(total <= MAX_TOTAL_UNCOMPRESSED,
                        "aggregate evidence input exceeds bounded size")
-            # A full preseal must carry exactly the 45 original positives,
-            # 20 legacy negative owners and 11 claim pairs: 76 original ZIPs.
-            # A single ZIP is not a complete 21->76 review-input transport.
+            # 76 ownership obligations may be grouped in fewer genuine
+            # producer ZIP artifacts. Derive the *exact* ZIP inventory from
+            # the original claimed 45+20+11 partition, then independently
+            # authenticate that contract through the mandatory live gate.
             all_names = {x.filename for x in infos}
-            owner_members = {
-                name for name in all_names
-                if name.startswith("reviewed/additional_zips/")
+            demand(EXPECTED_FILES <= all_names,
+                   "full v3.1 review carrier lacks required source inputs")
+            contract_info = z.getinfo("reviewed/additional_contract.json")
+            demand(0 < contract_info.file_size <= 4*1024*1024,
+                   "full owner producer contract exceeds bounded intake")
+            with z.open(contract_info) as reader:
+                contract_raw = reader.read(4*1024*1024 + 1)
+            demand(len(contract_raw) == contract_info.file_size,
+                   "original owner contract was not decompressed completely")
+            try:
+                artifact_ids = original_owner_artifacts(
+                    strict_json_object(contract_raw))
+            except (OwnerPartitionError, ValueError) as exc:
+                raise PresealInputError(
+                    "carrier owner registry lacks genuine-shaped 45+20+11") from exc
+            expected = set(EXPECTED_FILES) | {
+                "reviewed/additional_zips/" + str(i) + ".zip"
+                for i in artifact_ids
             }
-            demand(EXPECTED_FILES <= all_names and len(owner_members) == 76
-                   and len(all_names) == len(EXPECTED_FILES) + 76,
-                   "full v3.1 carrier needs exactly 76 original owner ZIPs")
+            demand(all_names == expected and len(infos) == len(expected),
+                   "extra/missing producer ZIP identity for exact owner partition")
             for info in infos:
                 with z.open(info) as handle:
                     content = handle.read(info.file_size + 1)

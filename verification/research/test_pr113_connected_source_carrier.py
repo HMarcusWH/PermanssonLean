@@ -60,6 +60,17 @@ def synthetic_carrier(contract, archives):
             "status": "SYNTHETIC_UNREVIEWED",
         }),
     }
+    # This synthetic connected fixture represents a full 76-owner registry
+    # over only three producer ZIPs; the real validator still authenticates
+    # every run/check/artifact byte in subsequent separate stages.
+    contract = {
+        **contract,
+        "format": "Permansson.PR113.ControlProducerExtension.v3.1",
+        "source_controls_accepted": False,
+        "independent_security_review": False,
+        "mathematical_approval": False,
+    }
+    members["reviewed/additional_contract.json"] = encoded(contract)
     for artifact_id, raw in archives.items():
         members[f"reviewed/additional_zips/{artifact_id}.zip"] = raw
     assert EXPECTED_FILES <= set(members)
