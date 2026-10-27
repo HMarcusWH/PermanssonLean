@@ -63,8 +63,9 @@ def sha(raw):
 def json_member(files, name):
     need(name in files and 0 < len(files[name]) <= 4 * 1024 * 1024,
          "missing/big original evidence: " + name)
+    from pr113_boundary_io import strict_json_object
     try:
-        item = json.loads(files[name])
+        item = strict_json_object(files[name])
     except (ValueError, TypeError) as exc:
         raise InfrastructureError("original source report not valid JSON: " + name) from exc
     need(isinstance(item, dict), "report is not a JSON object: " + name)

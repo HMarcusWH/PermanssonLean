@@ -142,59 +142,13 @@ def validate_run_job_artifact(*, head, kind, shard, check,
 
 
 def original_artifact_zip(artifact_id):
-    """Get original GH ZIP via API (signed redirect), bounded and hash-checked."""
-    require(type(artifact_id) is int and artifact_id>0,
-            "unknown source artifact ID")
-    api="https://api.github.com/repos/"+REPO+"/actions/artifacts/"+str(artifact_id)+"/zip"
-    token=os.environ.get("GITHUB_TOKEN")
-    require(isinstance(token,str) and bool(token),
-            "GitHub actions/read credential required for original ZIP")
-    headers={"User-Agent":"Permansson-Original21-Collector/1",
-             "Accept":"application/vnd.github+json",
-             "Authorization":"Bearer "+token}
-    # GitHub responds with a time-limited storage redirect. Explicitly
-    # suppress credential forwarding; the signed storage URL gets NO token.
-    class NoRedirect(urllib.request.HTTPRedirectHandler):
-        def redirect_request(self, req, fp, code, msg, headers, newurl):
-            return None
-    opener=urllib.request.build_opener(NoRedirect())
-    request=urllib.request.Request(api,headers=headers)
+    """Download exact GitHub ZIP through the bounded all-hop source policy."""
+    from pr113_boundary_io import github_artifact_zip
+    token = os.environ.get("GITHUB_TOKEN")
     try:
-        with opener.open(request,timeout=45) as answer:
-            # GitHub's zip API normally redirects; direct 200 is also valid.
-            require(answer.status==200,
-                    "unexpected original GitHub artifact HTTP response")
-            raw=answer.read(MAX_ZIP+1)
-    except urllib.error.HTTPError as exc:
-        require(exc.code in (302,303,307,308),
-                "GitHub original artifact source did not redirect safely")
-        redirect=exc.headers.get("Location")
-        parts=urlsplit(redirect) if isinstance(redirect,str) else None
-        require(parts is not None and
-                parts.scheme=="https" and
-                (parts.hostname or "").endswith((
-                    ".blob.core.windows.net",
-                    ".githubusercontent.com",
-                    ".amazonaws.com",
-                )) and
-                not parts.username and not parts.password and
-                not parts.fragment,
-                "untrusted external artifact redirect host")
-        try:
-            # Credential intentionally omitted.
-            with urllib.request.urlopen(
-                urllib.request.Request(redirect,headers={
-                    "User-Agent":"Permansson-Original21-Collector/1"}),
-                timeout=120) as response:
-                require(response.status==200,
-                        "original signed GH artifact was not returned")
-                raw=response.read(MAX_ZIP+1)
-        except Exception as nested:
-            raise DiscoveryError("signed original GH artifact unavailable") from nested
-    except Exception as exc:
-        raise DiscoveryError("cannot retrieve original GitHub artifact ZIP") from exc
-    require(0<len(raw)<=MAX_ZIP, "original producing ZIP absent or oversized")
-    return raw
+        return github_artifact_zip(REPO, artifact_id, token, max_bytes=MAX_ZIP)
+    except (OSError, ValueError) as exc:
+        raise DiscoveryError("authentic original ZIP delivery unavailable") from exc
 
 
 def collect(head, output, *, checks=None, lookup=live,
@@ -202,12 +156,10 @@ def collect(head, output, *, checks=None, lookup=live,
     require(isinstance(head,str) and HEAD.fullmatch(head)
             and git_head()==head,
             "original 21 producer collection requires exact committed source")
-    out=Path(output).absolute()
-    require(not out.exists() and not out.is_symlink() and
-            not out.is_relative_to(ROOT.resolve()) and
-            not ROOT.resolve().is_relative_to(out) and
-            not any(p.is_symlink() for p in out.parents),
-            "original 21 producer input must be fresh and source-detached")
+    from pr113_boundary_io import detached_destination
+    out=detached_destination(output, ROOT)
+    require(not ROOT.resolve().is_relative_to(out),
+            "original 21 producer input must not encompass source")
     candidates=classify_latest(
         paginate_source("/commits/"+head+"/check-runs",key="check_runs")
         if checks is None else checks,head)

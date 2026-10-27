@@ -10,6 +10,7 @@ from infrastructure_acceptance import (
     json_member, need, sha, verify_compiler_receipt,
     HISTORICAL_MUTATIONS, SUCCESSOR_MUTATIONS,
 )
+from pr113_semantic_receipt_v2 import validate_compiler_receipt_v2
 from pr113_dual_tooling_candidate_v2 import validate_dual_reports_v2
 from pr113_tooling_migration import T
 
@@ -89,10 +90,10 @@ def inspect_T_v2(files, head, *, profile_sha256):
 
 def inspect_A2_v2(files, head):
     overall = json_member(files, "unreviewed_dual_A2_candidate.json")
-    historical, hhash = verify_compiler_receipt(
+    historical, hhash = validate_compiler_receipt_v2(
         files, "historical_original_A2",
         "LOCAL_KERNEL_CHECKED__CI_ACCEPTANCE_PENDING", HISTORICAL_MUTATIONS)
-    successor, shash = verify_compiler_receipt(
+    successor, shash = validate_compiler_receipt_v2(
         files, "pr113_successor_A2",
         "SUCCESSOR_KERNEL_CHECKED_REVIEW_PENDING", SUCCESSOR_MUTATIONS)
     provenance = overall.get("historical_runtime_provenance")

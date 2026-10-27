@@ -313,12 +313,8 @@ def deliver_merged(context, run_id, reviewer_id, *, git,
 
 
 def fresh_detached_path(path):
-    original = Path(path).absolute()
-    need(not original.exists() and not original.is_symlink()
-         and not original.is_relative_to(ROOT.resolve())
-         and not any(x.is_symlink() for x in original.parents),
-         "historical delivery output must be new, outside source and unsymlinked")
-    return original
+    from pr113_boundary_io import detached_destination
+    return detached_destination(path, ROOT)
 
 
 def source_git(*commands):

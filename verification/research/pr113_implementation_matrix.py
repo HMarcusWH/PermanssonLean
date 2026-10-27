@@ -252,11 +252,8 @@ def main(argv=None):
     p.add_argument("--out", type=Path, required=True)
     args=p.parse_args(argv)
     try:
-        target=args.out.absolute()
-        check(not target.exists() and not target.is_symlink() and
-              not target.is_relative_to(ROOT.resolve()) and
-              not any(p.is_symlink() for p in target.parents),
-              "source report must be detached and not overwrite previous evidence")
+        from pr113_boundary_io import detached_destination
+        target=detached_destination(args.out, ROOT)
         report=produce(args.head)
         target.parent.mkdir(parents=True, exist_ok=True)
         with target.open("x",encoding="utf-8") as file:

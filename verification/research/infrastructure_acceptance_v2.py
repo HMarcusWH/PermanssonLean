@@ -199,11 +199,8 @@ def main(argv=None):
     ap.add_argument("--historical-only",action="store_true")
     args=ap.parse_args(argv)
     try:
-        dest=args.out.absolute()
-        need(not dest.exists() and not dest.is_symlink()
-             and not dest.is_relative_to(ROOT.resolve())
-             and not any(x.is_symlink() for x in dest.parents),
-             "v2 historical output must be a fresh detached file")
+        from pr113_boundary_io import detached_destination
+        dest=detached_destination(args.out, ROOT)
         envelope=args.evidence.read_bytes()
         need(0 < len(envelope) <= 64*1024,
              "missing/unbounded authentic versioned evidence envelope")

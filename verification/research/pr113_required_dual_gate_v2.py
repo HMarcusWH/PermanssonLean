@@ -184,11 +184,8 @@ def cli(argv=None):
     ap.add_argument("--out",type=Path,required=True)
     args=ap.parse_args(argv)
     try:
-        output=args.out.absolute()
-        need(not output.exists() and
-             not any(x.is_symlink() for x in (output,*output.parents)) and
-             not output.is_relative_to(ROOT.resolve()),
-             "required historical receipt must be new and detached")
+        from pr113_boundary_io import detached_destination
+        output=detached_destination(args.out, ROOT)
         envelope=args.evidence.read_bytes()
         need(0 < len(envelope) <= 64*1024,
              "original detached historical evidence too large")
