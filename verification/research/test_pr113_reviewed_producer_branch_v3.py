@@ -68,6 +68,8 @@ class BoundBranchTests(unittest.TestCase):
                 value=self.live(path)
                 if path.startswith("/commits/"):
                     value=[{**value[0],**patch}]
+                elif path == "/pulls/115":
+                    value={**value,**patch}
                 return value
             with self.subTest(patch=patch),self.assertRaises(target.ProducerBranchError):
                 target.authentic_branch(H,BRANCH,live=invalid,git=self.git)
