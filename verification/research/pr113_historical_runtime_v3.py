@@ -112,9 +112,16 @@ def store(result, output, producer_run_id, security_review_id):
     return out, receipt
 
 
-def check_stored(path, producer_run_id, security_review_id, *, event=None):
+def check_stored(path, producer_run_id, security_review_id, *, event=None,
+                 recompute=None):
+    """Fail closed on a saved receipt unless authentic evidence rechecks.
+
+    The production CLI never injects the recomputation function. Only
+    source-bound unit tests may provide a synthetic recomputation.
+    """
     event = actual_source() if event is None else event
-    original = strict_json_object(Path(path).read_bytes(), max_bytes=4*1024*1024)
+    output = detached_destination(path, ROOT, must_exist=True)
+    original = strict_json_object(output.read_bytes(), max_bytes=4*1024*1024)
     need(original.get("format") == FORMAT
          and original.get("phase") == event["phase"]
          and original.get("source_commit_sha") == event["source_commit_sha"]
@@ -142,6 +149,33 @@ def check_stored(path, producer_run_id, security_review_id, *, event=None):
                 else source.get("independent_security_review_authenticated") is True
                      and source.get("head_sha") == event["head_sha"],
              "original PR113 historical source is not bound")
+    if recompute is None:
+        recompute = produce
+    fresh = recompute(producer_run_id, security_review_id, event=event)
+    need(isinstance(fresh, dict)
+         and fresh.get("phase") == event["phase"]
+         and fresh.get("event") == event
+         and fresh.get("required") == source,
+         "saved historical receipt differs from live reauthenticated evidence")
+    parent = output.parent
+    if event["phase"].startswith("initial_113"):
+        for key, name in (("envelope", "historical_envelope.json"),
+                          ("transport", "historical_transport_unreviewed.json")):
+            saved = detached_destination(parent / name, ROOT, must_exist=True)
+            need(isinstance(fresh.get(key), dict)
+                 and strict_json_object(saved.read_bytes()) == fresh[key],
+                 "saved historical envelope or transport differs from original")
+        for kind, name in (("T", "historical_T.zip"), ("A2", "historical_A2.zip")):
+            saved = detached_destination(parent / name, ROOT, must_exist=True)
+            need(fresh.get("zips", {}).get(kind) == saved.read_bytes(),
+                 "saved genuine historical GitHub ZIP differs from revalidated bytes")
+    else:
+        need(fresh.get("envelope") is None and fresh.get("transport") is None
+             and fresh.get("zips") == {}
+             and not any((parent / name).exists() for name in (
+                 "historical_envelope.json", "historical_transport_unreviewed.json",
+                 "historical_T.zip", "historical_A2.zip")),
+             "descendant evidence cannot borrow original PR113 ZIP files")
     return original
 
 
