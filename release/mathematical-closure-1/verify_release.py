@@ -93,6 +93,8 @@ def main(argv=None):
                         outcome.get("accepted_case_count") == 45 and
                         outcome.get("accepted_claim_count") == 11,
                         "full claim contradicts effective acceptance gate")
+                require(sha(a.approved_seal) == outcome.get("authenticated_archive_sha256"),
+                        "approved seal ZIP differs from authenticated postseal archive")
             print(json.dumps({"integrity":"PASS","accepted":True,
                               "source":outcome["source"],
                               "scope":"FULL_45_AND_11" if

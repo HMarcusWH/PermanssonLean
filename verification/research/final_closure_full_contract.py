@@ -197,11 +197,14 @@ def require_full_release(result: dict, case_ledger: dict, claims: list[dict],
         recorded.get("source_commit_sha") != provenance["M"] or
         recorded.get("pdf_sha256") != manifest["pdf_sha256"] or
         recorded.get("artifact_sha256") != expected or
+        not isinstance(recorded.get("archive_sha256"), str) or
+        not re.fullmatch(r"[0-9a-f]{64}", recorded["archive_sha256"]) or
         recorded.get("authenticated_ci_artifact") is not True):
         raise EvidenceError(
             "independently authenticated postseal archive replay is missing")
     return {**candidate,
             "status": "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY",
+            "authenticated_archive_sha256": recorded["archive_sha256"],
             "not_yet_release": False}
 
 

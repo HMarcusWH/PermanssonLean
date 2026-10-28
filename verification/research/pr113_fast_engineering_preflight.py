@@ -1,7 +1,7 @@
 """Fast read-only PR113 engineering QA, never a substitute for required CI.
 
-Run real Python syntax checks and selected mock-only adversarial unit suites,
-without executing >1,500-test Research Lean discovery or changing any
+Run real Python syntax checks and selected source/receipt adversarial suites,
+without executing full Research Lean discovery or changing any
 historically pinned .github/workflows context. Full original Lean, archive
 and scholarly gates remain mandatory.
 """
@@ -35,6 +35,9 @@ SUITES = (
     "test_pr113_t2_intake_v2.py",
     "test_pr113_archive_pre_activation_rehearsal_v1.py",
     "test_pr113_t2_execution_io_v1.py",
+    # Full-release acceptance must bind the exact ZIP replayed by authenticated CI.
+    "test_final_closure_full_contract.py",
+    "test_final_release_manifest.py",
     # The actual pinned Lean A2 positive/negative compiler runs in its
     # separately configured historical-A2 producer job with lean-action.
     "test_pr113_a2_successor_identity.py",

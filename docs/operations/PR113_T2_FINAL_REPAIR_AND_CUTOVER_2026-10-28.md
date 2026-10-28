@@ -170,3 +170,28 @@ still requires a genuine complete T/H run and semantic packet validation. The
 old current-source archive tooling-closure failure, 32 mutable-action uses in
 13 inherited workflows, T2/A2 activation, artifact authentication and independent
 security decisions remain separate open gates. Do not silently waive them.
+
+## Codex review: bind full release acceptance to the replayed ZIP
+
+The automated code review at `ec3cf04b0d63d69af02899766c447d0779fd3d73`
+identified an additional acceptance gap in the current release verifier:
+source, PDF and claim equality did not establish that the supplied approved ZIP
+was the exact archive authenticated by the postseal replay. An internally
+consistent replacement ZIP could contain different evidence while preserving
+those core identities. This is a verifier binding defect; fixing it neither
+creates a seal nor supplies review authority.
+
+The full-release contract now requires the authenticated postseal
+`archive_sha256` and exports it as `authenticated_archive_sha256`. The existing
+strict gate carries that trusted result to the release CLI, which requires the
+supplied approved ZIP's SHA-256 to match before reporting full acceptance.
+Missing, malformed and different digests fail closed. The reproduction and
+postseal transport artifact hashes retain their existing distinct meanings.
+The preseal and scoped-release contracts keep their existing requirements.
+
+The existing full-contract and release-manifest suites exercise the binding,
+including two real ZIPs with the same source/PDF/claims but different evidence.
+Their external authentication adapters are explicitly synthetic test fixtures.
+Both suites are registered in fast preflight; measure the inventory at the
+tested commit. No original release bytes, protected workflow, mathematical
+proof, reviewer policy, or independent approval is changed by this repair.

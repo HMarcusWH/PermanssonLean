@@ -119,6 +119,7 @@ class FullScopeContractTests(unittest.TestCase):
                 "status": "COMPLETE_ARCHIVE_REPLAY",
                 "source_commit_sha": "f"*40,
                 "pdf_sha256": pdf, "artifact_sha256": "c"*64,
+                "archive_sha256": "e"*64,
                 "authenticated_ci_artifact": True},
         }
         # This is explicitly a synthetic contract graph. The real provenance
@@ -127,6 +128,7 @@ class FullScopeContractTests(unittest.TestCase):
             evidence, cases, claims, selection, manifest, provenance)
         self.assertEqual(pre["status"], "POSTMERGE_PRESEAL_READY")
         self.assertTrue(pre["not_yet_release"])
+        self.assertNotIn("authenticated_archive_sha256", pre)
         without_archive = dict(provenance, archive_evidence=None)
         self.assertEqual(full.require_preseal_release(
             evidence, cases, claims, selection, manifest,
@@ -135,8 +137,12 @@ class FullScopeContractTests(unittest.TestCase):
             evidence, cases, claims, selection, manifest, provenance)
         self.assertEqual(success["status"],
                          "FULL_MATHEMATICAL_CLOSURE_RELEASE_READY")
+        self.assertEqual(success["authenticated_archive_sha256"], "e"*64)
+        self.assertNotEqual(success["authenticated_archive_sha256"],
+                            manifest["archive_evidence_sha256"])
         for defect in ("10claims", "44cases", "no_scholarly", "no_repro",
-                       "no_archive", "wrong_pdf_count", "wrong_merged_m"):
+                       "no_archive", "no_archive_digest", "bad_archive_digest",
+                       "wrong_pdf_count", "wrong_merged_m"):
             import copy
             e, m, p = copy.deepcopy(evidence), copy.deepcopy(manifest), copy.deepcopy(provenance)
             if defect == "10claims":
@@ -152,6 +158,10 @@ class FullScopeContractTests(unittest.TestCase):
                 p["reproduction_evidence"] = None
             elif defect == "no_archive":
                 p["archive_evidence"] = None
+            elif defect == "no_archive_digest":
+                del p["archive_evidence"]["archive_sha256"]
+            elif defect == "bad_archive_digest":
+                p["archive_evidence"]["archive_sha256"] = "NOT_A_CANONICAL_DIGEST"
             elif defect == "wrong_pdf_count":
                 m["pdf_page_count"] = 1
             else:
