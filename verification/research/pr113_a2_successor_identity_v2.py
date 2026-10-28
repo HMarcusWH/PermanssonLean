@@ -34,7 +34,7 @@ PINNED_MODIFIED_PROVIDERS = {
     ".github/workflows/research-release-verification.yml": "46ea7ebeae142f794394179154385cf1762b78d3",
     ".github/workflows/verification.yml": "c016aa6efcc42e19d81cb148f5db6bc6a439d7d3",
     "verification/integrity/tests/test_workflow.py": "d49819f064a4da330d4ba8fcc1456232fdc27fb6",
-    "verification/integrity/workflow_contract.py": "a97025dc543991bfa3645a34a8c75cd4b2ccd8c8",
+    "verification/integrity/workflow_contract.py": "cf8b89114adc280dbb2bb68ff6037a0822e8c1d2",
     "verification/research/test_paper_x1_lean_closure.py": "2ee078c86c58b5e577597acfc3ae950e4028ebac",
 }
 # This historical test did NOT exist at PR79 BASE. The real A2 introducer

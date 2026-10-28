@@ -34,7 +34,7 @@ EXPECTED_ARTIFACTS = legacy.EXPECTED_ARTIFACTS
 EVIDENCE_FIELDS = legacy.EVIDENCE_FIELDS
 authenticate_original_zip = legacy.authenticate_original_zip
 inspect_zip = legacy.inspect_zip
-verify_A2_dependency_bridge = legacy.verify_A2_dependency_bridge
+from pr113_a2_dependency_bridge_v2 import verify_A2_dependency_bridge
 exact_committed_lake_blob = legacy.exact_committed_lake_blob
 exact_committed_blob = legacy.exact_committed_blob
 from pr113_secure_security_review_v3 import (

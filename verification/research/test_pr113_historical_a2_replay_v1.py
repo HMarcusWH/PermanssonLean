@@ -61,7 +61,14 @@ class HistoricalA2ReplayTests(unittest.TestCase):
         (self.root / "lake-manifest.json").write_text(json.dumps({
             "packagesDir": ".lake/packages", "packages": [
                 {"type": "git", "name": "mockdep", "rev": self.pin}]}))
+        # Populate the execution surface for the real source audit. These are
+        # explicit synthetic sources; no compiler success is inferred from them.
+        for name in (*replay.baseline.PROOF_PATHS, "PermanssonResearch.lean"):
+            file = self.root / name
+            file.parent.mkdir(parents=True, exist_ok=True)
+            file.write_text("-- SYNTHETIC baseline source, not a proof\n")
         self.historical = commit(self.root)
+        self.historical_tree = command(self.root, "rev-parse", "HEAD^{tree}")
         historical_blobs = {
             name: command(self.root, "rev-parse", "HEAD:" + name)
             for name in replay.EXECUTORS}
@@ -105,6 +112,12 @@ class HistoricalA2ReplayTests(unittest.TestCase):
                                 ORIGINAL_TEST_BLOB=original_test)
         guards.start()
         self.addCleanup(guards.stop)
+        anchors = patch.multiple(
+            replay.baseline, INTRODUCER=self.historical,
+            REPLAY_HEAD=self.historical, REPLAY_TREE=self.historical_tree,
+            EXECUTORS=dict(historical_blobs), ORIGINAL_TEST_BLOB=original_test)
+        anchors.start()
+        self.addCleanup(anchors.stop)
         modules = patch.dict(sys.modules, {
             "localized_prefix_gate": historical_module,
             "pr113_dual_a2_compiler_v2": dual,
@@ -352,6 +365,14 @@ class RealHistoricalA2GitPins(unittest.TestCase):
     def test_immutable_original_and_current_source_pins_are_revision_scoped(self):
         root = Path(__file__).resolve().parents[2]
         head = replay.scalar(root, "rev-parse", "HEAD")
+        self.assertNotEqual(replay.HISTORICAL_A2, replay.baseline.INTRODUCER)
+        self.assertEqual(replay.HISTORICAL_A2, replay.baseline.REPLAY_HEAD)
+        self.assertEqual(replay.scalar(root, "rev-parse",
+                                      replay.HISTORICAL_A2 + "^{tree}"),
+                         replay.baseline.REPLAY_TREE)
+        replay.git(root, "merge-base", "--is-ancestor",
+                   replay.baseline.INTRODUCER, replay.HISTORICAL_A2)
+        replay.git(root, "merge-base", "--is-ancestor", replay.HISTORICAL_A2, head)
         self.assertEqual(set(replay.EXECUTORS), set(replay.HISTORICAL_EXECUTORS))
         path = "verification/research/localized_prefix_support.py"
         self.assertNotEqual(replay.EXECUTORS[path],

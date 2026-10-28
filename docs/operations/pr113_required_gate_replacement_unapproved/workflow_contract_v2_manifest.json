@@ -6,7 +6,7 @@
   "proposed_active_count": 30,
   "activation_target": "verification/integrity/workflow_contract.py",
   "staged_source": "docs/operations/pr113_required_gate_replacement_unapproved/workflow_contract_v2.py",
-  "staged_git_blob_oid": "a97025dc543991bfa3645a34a8c75cd4b2ccd8c8",
+  "staged_git_blob_oid": "cf8b89114adc280dbb2bb68ff6037a0822e8c1d2",
   "expected_workflow_git_blobs": {
     "a2-smoke.yml": "b1a3c2001614ac873ec015d05d2dfd7e7e04344f",
     "a3-contractive-smoke.yml": "d17cb4a6eecf5083f0eb92dd8437719c752c6e4f",
@@ -25,7 +25,7 @@
     "pr113-all-original-semantic-candidates.yml": "2027a05a225dd49e92415bcbd81d73755111d5ef",
     "pr113-clean-paper-rebuild.yml": "a89fdc99e7daa8b418deed2f09898a08677140a8",
     "pr113-compiler-evidence-candidate.yml": "8f762813360a43e344bc328d54d53c2726bf3879",
-    "pr113-historical-migration-candidates.yml": "77c338c436ab16c2ef73a04bcb9c93f0857939a7",
+    "pr113-historical-migration-candidates.yml": "41c9dc082db3fc51110f72a98b1f1a41af9b0361",
     "pr113-legacy-semantic-evidence.yml": "6e65891db1239bf87250ff3420e9ea96407353a4",
     "pr113-original-positive-controls-candidate.yml": "16245b42cbfea16ade0cce24bb0c345c2b251a14",
     "pr113-original-semantic-candidates.yml": "ab509cdb5097fb3c1a9e04dbba192adfe304a940",

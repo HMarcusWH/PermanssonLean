@@ -11,7 +11,10 @@ from pathlib import Path
 import subprocess
 import tempfile
 
-HISTORICAL_A2 = "f71a76032b169aac7bfe0694aa715339a94d4e05"
+import pr113_historical_a2_baseline_v1 as baseline
+
+# The introducer is an immutable provenance anchor, not the positive baseline.
+HISTORICAL_A2 = baseline.REPLAY_HEAD
 ORIGINAL_TEST = "verification/research/test_localized_prefix_compiler.py"
 ORIGINAL_TEST_BLOB = "c0f49038ea9b590720c78be85968eb63f5ac820f"
 # Explicit, revision-specific immutable Git blobs. The original gate script
@@ -31,7 +34,7 @@ HISTORICAL_EXECUTORS = {
         "b07bc7d3b9ebe55b131466aebc28149fa2f03228",
 }
 PINS = ("lean-toolchain", "lake-manifest.json", "lakefile.toml")
-FORMAT = "Permansson.PR113.HistoricalA2EngineeringReplay.v1"
+FORMAT = "Permansson.PR113.HistoricalA2EngineeringReplay.v2"
 STATUS = "HISTORICAL_AND_CURRENT_A2_ENGINEERING_PASSED"
 
 
@@ -168,6 +171,7 @@ def verify(repo, output, *, mode="focused"):
             git(current, "worktree", "add", "--detach", str(old), HISTORICAL_A2)
             added = True
             unchanged(old, HISTORICAL_A2)
+            baseline.verify_positive_source(old)
             verify_executors(current, old)
             packages = dependency_bridge(current, old)
             from pr113_dual_a2_compiler_v2 import run_historical_verified
@@ -203,6 +207,8 @@ def verify(repo, output, *, mode="focused"):
                 "format": FORMAT, "status": STATUS,
                 "execution_scope": "HISTORICAL_A2_AND_CURRENT_SOURCE",
                 "historical_source_sha": HISTORICAL_A2,
+                "historical_introducer_sha": baseline.INTRODUCER,
+                "historical_tree_sha": baseline.REPLAY_TREE,
                 "current_checked_sha": checked, "current_tree_sha": tree,
                 "original_receipt_sha256": receipt_sha,
                 "original_compiler_receipt": original,

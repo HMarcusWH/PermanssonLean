@@ -33,7 +33,7 @@ APPROVED_WORKFLOW_BLOBS={
     "pr113-all-original-semantic-candidates.yml": "2027a05a225dd49e92415bcbd81d73755111d5ef",
     "pr113-clean-paper-rebuild.yml": "a89fdc99e7daa8b418deed2f09898a08677140a8",
     "pr113-compiler-evidence-candidate.yml": "8f762813360a43e344bc328d54d53c2726bf3879",
-    "pr113-historical-migration-candidates.yml": "77c338c436ab16c2ef73a04bcb9c93f0857939a7",
+    "pr113-historical-migration-candidates.yml": "41c9dc082db3fc51110f72a98b1f1a41af9b0361",
     "pr113-legacy-semantic-evidence.yml": "6e65891db1239bf87250ff3420e9ea96407353a4",
     "pr113-original-positive-controls-candidate.yml": "16245b42cbfea16ade0cce24bb0c345c2b251a14",
     "pr113-original-semantic-candidates.yml": "ab509cdb5097fb3c1a9e04dbba192adfe304a940",

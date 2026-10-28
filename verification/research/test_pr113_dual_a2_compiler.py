@@ -119,19 +119,38 @@ class DualA2Tests(unittest.TestCase):
         begin = proposed.index("      - name: Bind historical A2 to the exact pinned dependency source")
         end = proposed.index("      - name: Execute both genuine compiler gates", begin)
         stage = proposed[begin:end]
-        self.assertIn("git rev-parse", stage)
-        self.assertIn("lake-manifest.json", stage)
-        self.assertIn("lean-toolchain", stage)
-        self.assertIn("test ! -e \"$OLD/.lake/build\"", stage)
-        self.assertIn("ln -s \"$GITHUB_WORKSPACE/.lake/packages\"", stage)
-        self.assertIn('actual == rev', stage)
-        self.assertIn('"historical_project_proofs_reused": False', stage)
+        from pr113_a2_dependency_bridge_v2 import FORMAT
+        from pr113_historical_a2_baseline_v1 import REPLAY_HEAD, INTRODUCER
+        self.assertIn("pr113_a2_dependency_bridge_v2.py", stage)
+        for option in ("--historical-source", "--current-source",
+                       "--current-head", "--out"):
+            self.assertIn(option, stage)
+        self.assertIn("--historical-head " + REPLAY_HEAD, proposed)
+        self.assertNotIn("--historical-head " + INTRODUCER, proposed)
+        self.assertEqual(FORMAT, "Permansson.PR113.HistoricalA2DependencyBridge.v2")
+        root = Path(__file__).resolve().parents[2]
+        bridge = (root / "verification/research/pr113_a2_dependency_bridge_v2.py").read_text()
+        replay = (root / "verification/research/pr113_historical_a2_replay_v1.py").read_text()
+        # Check the executable helper and the original package-only bridge,
+        # not obsolete inline shell text. Runtime tests separately reject
+        # wrong pins, source edits, injected project builds and fake receipts.
+        for guard in ("baseline.verify_positive_source(historical)",
+                      "packages = dependency_bridge(now, old)",
+                      "packages == manifest_packages(raw)",
+                      "unchanged(old, baseline.REPLAY_HEAD)",
+                      '"historical_project_proofs_reused": False',
+                      '"independent_security_review": False',
+                      '"mathematical_acceptance": False'):
+            self.assertIn(guard, bridge)
+        for guard in ('"lean-toolchain", "lake-manifest.json", "lakefile.toml"',
+                      'not (old / ".lake/build").exists()',
+                      "link.symlink_to(packages.resolve()",
+                      "check_dependencies(old) == before"):
+            self.assertIn(guard, replay)
         actual_commands = "\n".join(
             line for line in stage.splitlines()
             if not line.lstrip().startswith("#"))
         self.assertNotIn("lake update", actual_commands)
-        self.assertIn('"independent_security_review": False', stage)
-        self.assertIn('"mathematical_acceptance": False', stage)
         self.assertIn("historical_dependency_bridge.json", proposed)
         self.assertIn("cp --", proposed)
         self.assertIn("test -s", proposed)

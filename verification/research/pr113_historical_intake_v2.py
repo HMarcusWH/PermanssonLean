@@ -13,10 +13,12 @@ from infrastructure_acceptance import (
 from pr113_semantic_receipt_v2 import validate_compiler_receipt_v2
 from pr113_dual_tooling_candidate_v2 import validate_dual_reports_v2
 from pr113_tooling_migration import T
+import pr113_historical_a2_baseline_v1 as baseline
+from localized_prefix_gate import DECLS
 
 T2_FORMAT = "Permansson.PR113.DualToolingCandidate.v3"
 DOSSIER_FORMAT = "Permansson.PR113.ToolingSecurityReviewDossier.v2"
-A2_FORMAT = "Permansson.PR113.DualA2CompilerCandidate.v3"
+A2_FORMAT = baseline.DUAL_FORMAT
 
 
 def inspect_T_v2(files, head, *, profile_sha256):
@@ -96,17 +98,24 @@ def inspect_A2_v2(files, head):
     successor, shash = validate_compiler_receipt_v2(
         files, "pr113_successor_A2",
         "SUCCESSOR_KERNEL_CHECKED_REVIEW_PENDING", SUCCESSOR_MUTATIONS)
+    baseline.verify_receipt_source(historical)
+    need(set(historical.get("declarations", {})) == set(DECLS)
+         and set(successor.get("declarations", {})) == set(DECLS),
+         "both A2 legs must retain all forty original declarations")
     provenance = overall.get("historical_runtime_provenance")
     need(overall.get("format") == A2_FORMAT
          and overall.get("status") ==
              "BOTH_ACTUAL_A2_COMPILER_PATHS_EXECUTED_UNREVIEWED"
-         and overall.get("historical_source_commit") ==
-             "f71a76032b169aac7bfe0694aa715339a94d4e05"
+         and overall.get("historical_source_commit") == baseline.REPLAY_HEAD
+         and overall.get("historical_introducer_sha") == baseline.INTRODUCER
+         and overall.get("historical_tree_sha") == baseline.REPLAY_TREE
          and overall.get("current_source_commit") == head
          and overall.get("historical_original_workflow_count") == 25
          and overall.get("current_reviewed_workflow_count") == 30
          and overall.get("historical_test_executed") is True
          and overall.get("successor_test_executed") is True
+         and overall.get("historical_signatures") == 40
+         and overall.get("successor_signatures") == 40
          and overall.get("historical_semantic_mutants") == 4
          and overall.get("successor_semantic_mutants") == 4
          and overall.get("original_verifier_modified") is False
@@ -116,16 +125,24 @@ def inspect_A2_v2(files, head):
          and overall.get("full_release_approved") is False
          and isinstance(provenance, dict)
          and provenance.get("imported_current_A2_gate") is False
-         and provenance.get("historical_checkout_sha") ==
-             "f71a76032b169aac7bfe0694aa715339a94d4e05"
+         and provenance.get("historical_checkout_sha") == baseline.REPLAY_HEAD
+         and provenance.get("historical_tree_sha") == baseline.REPLAY_TREE
+         and provenance.get("introduced_executable_sha") == baseline.INTRODUCER
+         and provenance.get("baseline_contract") == baseline.FORMAT
+         and provenance.get("original_runtime_git_blobs") == baseline.EXECUTORS
          and provenance.get("output_receipt_sha256") == hhash
          and historical.get("source_unchanged") is True
          and successor.get("source_unchanged") is True
+         and isinstance(successor.get("source"), dict)
+         and successor["source"].get("git_head") == head
          and successor.get("format") ==
              "Permansson.PR113.A2SuccessorCompilerCandidate.v2",
          "A2 historical and active30 successor proof evidence not authenticated")
     return {
-        "format": "Permansson.PR113.A2DualSourceCandidate.v2",
+        "format": "Permansson.PR113.A2DualSourceCandidate.v3",
+        "historical_introducer_sha": baseline.INTRODUCER,
+        "historical_replay_sha": baseline.REPLAY_HEAD,
+        "historical_replay_tree": baseline.REPLAY_TREE,
         "historical_A2_report_sha256": hhash,
         "successor_A2_report_sha256": shash,
         "dual_A2_sha256": sha(files["unreviewed_dual_A2_candidate.json"]),

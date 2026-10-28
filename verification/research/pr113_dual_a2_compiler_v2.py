@@ -20,9 +20,10 @@ import sys
 import localized_prefix_gate as historical_gate
 import pr113_a2_successor_compiler_v2 as successor_gate
 import localized_prefix_support as frozen
+import pr113_historical_a2_baseline_v1 as baseline
 
 SHA40=re.compile(r"^[0-9a-f]{40}$")
-FORMAT="Permansson.PR113.DualA2CompilerCandidate.v3"
+FORMAT=baseline.DUAL_FORMAT
 HISTORICAL_INTRODUCER="f71a76032b169aac7bfe0694aa715339a94d4e05"
 HISTORICAL_GATE="verification/research/localized_prefix_gate.py"
 HISTORICAL_SUPPORT="verification/research/localized_prefix_support.py"
@@ -60,7 +61,10 @@ def historical_command(historical_root, output, mode):
 
 
 def run_historical_verified(historical_root, commit, output, mode):
-    """Execute *old checkout's* own gate AND support implementation."""
+    """Execute the corrected positive baseline using its own untouched code."""
+    need(commit == baseline.REPLAY_HEAD,
+         "positive historical A2 requires corrected PR80 head, not introducer")
+    baseline.verify_positive_source(historical_root)
     frozen.git_bytes(historical_root,"merge-base","--is-ancestor",
                      HISTORICAL_INTRODUCER,commit)
     historical_gate_blob=frozen.git_text(
@@ -95,16 +99,15 @@ def run_historical_verified(historical_root, commit, output, mode):
         evidence=json.loads(output.joinpath("receipt.json").read_bytes())
     except (OSError,ValueError,UnicodeError) as exc:
         raise DualA2Error("historical runtime returned invalid original receipt") from exc
-    need(completed.returncode==0 and
-         evidence.get("format")=="Permansson.A2P02.CompilerReceipt.v2" and
-         evidence.get("status")=="LOCAL_KERNEL_CHECKED__CI_ACCEPTANCE_PENDING" and
-         isinstance(evidence.get("source"),dict) and
-         evidence["source"].get("git_head")==commit and
-         evidence["source"].get("git_head_tree")==
-             frozen.git_text(historical_root,"rev-parse",commit+"^{tree}"),
-         "original historical A2 code did not authenticate its own source")
+    # A compiler failure must expose the original label, exit and reason,
+    # not masquerade as a source-authentication mismatch.
+    baseline.require_runtime_success(completed.returncode, evidence)
+    baseline.verify_receipt_source(evidence)
+    baseline.verify_positive_source(historical_root)
     evidence["historical_runtime_provenance"]={
         "historical_checkout_sha":commit,
+        "historical_tree_sha":baseline.REPLAY_TREE,
+        "baseline_contract":baseline.FORMAT,
         "introduced_executable_sha":HISTORICAL_INTRODUCER,
         "original_runtime_git_blobs":pinned,
         "output_receipt_sha256":hashlib.sha256(
@@ -192,6 +195,8 @@ def execute(historical_source, historical_head, current_source, current_head,
         "format":FORMAT,
         "status":"BOTH_ACTUAL_A2_COMPILER_PATHS_EXECUTED_UNREVIEWED",
         "historical_source_commit":historical_head,
+        "historical_introducer_sha":baseline.INTRODUCER,
+        "historical_tree_sha":baseline.REPLAY_TREE,
         "historical_runtime_provenance":historical["historical_runtime_provenance"],
         "current_source_commit":current_head,
         "historical_test_executed":True,
