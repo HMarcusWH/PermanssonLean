@@ -35,10 +35,12 @@ def need(ok, message):
 
 
 def _redacted_diagnostic(value):
+    # A traceback's escaped source literal can put a word character before
+    # a credential label, so matching must not require a leading word boundary.
     sensitive = re.compile(
-        r"(?i)(?:\b(?:GITHUB_TOKEN|GH_TOKEN|ACCESS_TOKEN|API_KEY|"
+        r"(?i)(?:(?:GITHUB_TOKEN|GH_TOKEN|ACCESS_TOKEN|API_KEY|"
         r"SECRET|PASSWORD|CREDENTIAL|AUTHORIZATION|COOKIE)\b\s*[:=]|"
-        r"\bbearer\s+\S+|(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]+)")
+        r"bearer\s+\S+|(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]+)")
     return "\n".join(
         "[redacted credential-bearing diagnostic line]"
         if sensitive.search(line) else line for line in value.splitlines())

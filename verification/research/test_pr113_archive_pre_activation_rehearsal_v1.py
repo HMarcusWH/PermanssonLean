@@ -279,6 +279,15 @@ class OuterDiagnosticsTests(unittest.TestCase):
         self.assertIn("[redacted credential-bearing diagnostic line]", diagnostic)
         self.assertEqual(record["argv"][-2:], ["--diagnostics", str(self.diagnostics)])
 
+    def test_escaped_traceback_source_snippets_redact_credential_labels_and_bearer(self):
+        # Python 3.13 includes the multiline raise expression in the traceback.
+        # Its literal backslash-n puts a word character before the token label.
+        for marker in ("GITHUB_TOKEN=", "AUTHORIZATION: ", "bearer "):
+            with self.subTest(marker=marker):
+                source = '    raise ValueError("SYNTHETIC\\n' + marker + 'synthetic-secret")'
+                self.assertEqual(rehearsal._redacted_diagnostic(source),
+                                 "[redacted credential-bearing diagnostic line]")
+
 
 if __name__=="__main__":
     unittest.main()
