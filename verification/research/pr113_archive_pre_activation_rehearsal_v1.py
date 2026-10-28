@@ -9,9 +9,12 @@ import argparse
 import json
 from pathlib import Path
 import sys
+import tempfile
+
+from pr113_t2_execution_io_v1 import evidence_files, read_report
 
 import pr113_dual_tooling_candidate_v2 as dual
-from pr113_boundary_io import detached_destination, strict_json_object
+from pr113_boundary_io import detached_destination
 from pr113_tooling_migration_v2 import audit as tooling_audit
 from pr113_tooling_migration import ROOT, T
 
@@ -113,18 +116,25 @@ def execute(original_checkout, current_checkout, head, output):
          "unchanged original T supplement unavailable")
     out.mkdir(parents=True, exist_ok=False)
     t_file, h_file = out/"historical_T_archive.json", out/"current_H_workflow.json"
-    t_args = [sys.executable, "-B", "-m", "verification.archive.offline_smoke",
-              "--supplement", str(supplement),
-              "--scratch", str(out/"original_T_restoration"),
-              "--report", str(t_file)]
     h_args = [sys.executable, "-B", "-m", "verification.integrity.run_tests",
               "--suite", "workflow", "--report", str(h_file)]
-    t_process = dual.command(t_args, old, historical_artifact=True)
-    t_trace, t_stdout, t_stderr = _trace(t_process, t_args)
-    h_process = dual.command(h_args, current, detached_current_suite=True)
+    with tempfile.TemporaryDirectory(prefix="pr113-T-rehearsal-") as scratch:
+        t_args = [sys.executable, "-B", "-m", "verification.archive.offline_smoke",
+                  "--supplement", str(supplement),
+                  "--scratch", str(Path(scratch)/"restore"),
+                  "--report", str(t_file)]
+        t_process = dual.command(t_args, old, historical_artifact=True,
+                                 evidence_dir=out,evidence_label="T")
+        t_trace, t_stdout, t_stderr = _trace(t_process, t_args)
+    h_process = dual.command(h_args, current, detached_current_suite=True,
+                             evidence_dir=out,evidence_label="H")
     h_trace, h_stdout, h_stderr = _trace(h_process, h_args)
-    t_json = strict_json_object(t_file.read_bytes(), max_bytes=MAX_LOG_BYTES)
-    h_json = strict_json_object(h_file.read_bytes(), max_bytes=MAX_LOG_BYTES)
+    dual.checkout(old, T)
+    dual.checkout(current, head)
+    need(tooling_audit(current, head, phase="staged") == profile,
+         "T/H rehearsal source profile changed during verification")
+    t_json = read_report(t_file)
+    h_json = read_report(h_file)
     result = validate_reports(t_json, h_json, profile, head)
     result["historical_report_sha256"] = dual.sha_file(t_file)
     result["current_report_sha256"] = dual.sha_file(h_file)
@@ -132,8 +142,12 @@ def execute(original_checkout, current_checkout, head, output):
         ("T_stdout.log", t_stdout), ("T_stderr.log", t_stderr),
         ("H_stdout.log", h_stdout), ("H_stderr.log", h_stderr),
     ):
-        with (out/name).open("x", encoding="utf-8") as stream:
-            stream.write(data)
+        # Keep the legacy readable log names for nonempty output only.
+        # The trace hashes still bind empty streams; zero-byte ZIP entries
+        # are deliberately invalid at the downstream historical intake.
+        if data:
+            with (out/name).open("x", encoding="utf-8") as stream:
+                stream.write(data)
     with (out/"STAGED_REHEARSAL_NOT_T2_AUTHORITY.json").open("x") as stream:
         json.dump(result, stream, sort_keys=True, indent=2)
         stream.write("\n")
@@ -142,6 +156,9 @@ def execute(original_checkout, current_checkout, head, output):
                    "independent_security_review": False}, stream,
                   sort_keys=True, indent=2)
         stream.write("\n")
+    evidence_files(out, required=(
+        "historical_T_archive.json", "current_H_workflow.json",
+        "STAGED_REHEARSAL_NOT_T2_AUTHORITY.json", "unreviewed_process_trace.json"))
     return result
 
 

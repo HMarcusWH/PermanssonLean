@@ -19,6 +19,11 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import tempfile
+
+from pr113_t2_execution_io_v1 import (
+    execute_logged, evidence_files, read_report, EvidenceExecutionError,
+)
 
 from pr113_tooling_migration_v2 import T, audit as tooling_audit
 import localized_prefix_support as git_source
@@ -145,7 +150,7 @@ def candidate_ci_context(head):
 
 
 def command(argv,cwd,limit=1800, *, historical_artifact=False,
-            detached_current_suite=False):
+            detached_current_suite=False, evidence_dir=None, evidence_label=None):
     environment=os.environ.copy()
     for key in ("PYTHONPATH","PYTHONHOME"):
         environment.pop(key,None)
@@ -164,6 +169,12 @@ def command(argv,cwd,limit=1800, *, historical_artifact=False,
                      "CREDENTIAL","PROXY"))
         }
     environment["PYTHONDONTWRITEBYTECODE"]="1"
+    if evidence_dir is not None:
+        try:
+            return execute_logged(argv, cwd, environment, evidence_dir,
+                                  evidence_label, timeout=limit)
+        except EvidenceExecutionError as exc:
+            raise DualToolingError(str(exc)) from exc
     try:
         result=subprocess.run(argv,cwd=cwd,env=environment,timeout=limit,
                               capture_output=True,text=True)
@@ -181,11 +192,15 @@ def execute(historical_source,current_source,head,out):
     demand(historical!=current and head!=T,
            "separate genuine T and H checkouts mandatory")
     output=Path(out)
-    demand(not output.is_symlink(),"output symlink forbidden")
+    demand(not output.is_symlink()
+           and not any(p.is_symlink() for p in output.absolute().parents),
+           "output symlink forbidden")
     output=output.resolve()
     demand(not output.exists() and
            not output.is_relative_to(historical) and
-           not output.is_relative_to(current),
+           not output.is_relative_to(current) and
+           not historical.is_relative_to(output) and
+           not current.is_relative_to(output),
            "archive evidence output must be new, detached and disjoint")
     execution_context=candidate_ci_context(head)
     proposal=tooling_audit(current,head,phase="active")
@@ -205,16 +220,27 @@ def execute(historical_source,current_source,head,out):
     # Separate cwd and sanitized Python import path ensure the original
     # historical T archive implementation is actually executed, rather than
     # importing the newer H module via PYTHONPATH.
-    command([sys.executable,"-B","-m","verification.archive.offline_smoke",
-             "--supplement",str(supplement),
-             "--scratch",str(output/"historical_restore"),
-             "--report",str(original_report)],historical,
-            historical_artifact=True)
+    # The upload directory is a strict evidence packet, not a restored Git
+    # repository. The consumer rejects directories, empty members and >500
+    # entries. Keep disposable restoration scratch outside it on every path.
+    with tempfile.TemporaryDirectory(prefix="pr113-T-restore-") as scratch:
+        command([sys.executable,"-B","-m","verification.archive.offline_smoke",
+                 "--supplement",str(supplement),
+                 "--scratch",str(Path(scratch)/"restore"),
+                 "--report",str(original_report)],historical,
+                historical_artifact=True,
+                evidence_dir=output,evidence_label="T")
     command([sys.executable,"-B","-m","verification.integrity.run_tests",
              "--suite","workflow","--report",str(current_report)],current,
-            detached_current_suite=True)
-    old=json.loads(original_report.read_bytes())
-    new=json.loads(current_report.read_bytes())
+            detached_current_suite=True,
+            evidence_dir=output,evidence_label="H")
+    # Check both sources again before producing any successful summary.
+    checkout(historical,T)
+    checkout(current,head)
+    demand(tooling_audit(current,head,phase="active")==proposal,
+           "T/H source profile changed during verification")
+    old=read_report(original_report)
+    new=read_report(current_report)
     receipt=validate_dual_reports_v2(old,new,T_source=T,H_source=head,
                                      profile=proposal)
     receipt["candidate_execution_context"]=execution_context
@@ -256,6 +282,9 @@ def execute(historical_source,current_source,head,out):
         json.dumps(receipt,sort_keys=True,indent=2)+"\n")
     (output/"T2_security_review_candidate.json").write_text(
         json.dumps(proposal_dossier,sort_keys=True,indent=2)+"\n")
+    evidence_files(output, required=(
+        "original_T_archive.json", "current_H_workflow.json",
+        "dual_tooling_unreviewed.json", "T2_security_review_candidate.json"))
     return receipt
 
 def main(argv=None):

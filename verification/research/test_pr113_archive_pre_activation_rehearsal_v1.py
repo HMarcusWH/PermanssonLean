@@ -98,7 +98,7 @@ class StagedRehearsalTests(unittest.TestCase):
                     "historical_artifact") else now))
                 return SimpleNamespace(returncode=0,stdout="PASS",stderr="")
             with mock.patch.object(rehearsal.dual,"checkout",
-                                   side_effect=[historical,current]), \
+                                   side_effect=[historical,current,historical,current]), \
                  mock.patch.object(rehearsal,"tooling_audit",return_value=profile), \
                  mock.patch.object(rehearsal.dual,"command",
                                    side_effect=exec_command):

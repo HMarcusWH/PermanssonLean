@@ -32,6 +32,8 @@ SUITES = (
     "test_pr113_disposable_transition_rehearsal.py",
     "test_pr113_v2_runtime.py",
     "test_pr113_t2_intake_v2.py",
+    "test_pr113_archive_pre_activation_rehearsal_v1.py",
+    "test_pr113_t2_execution_io_v1.py",
     # The actual pinned Lean A2 positive/negative compiler runs in its
     # separately configured historical-A2 producer job with lean-action.
     "test_pr113_a2_successor_identity.py",
