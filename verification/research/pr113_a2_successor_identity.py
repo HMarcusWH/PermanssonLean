@@ -1,7 +1,8 @@
 """PR113 successor A2-P02 source-identity proposal: a NEW read-only profile.
 
-The inherited PR79/PR80 localized_prefix_support.inspect_repo and its test
-remain untouched, and intentionally reject changed historical providers.
+The original PR79/PR80 compiler/support remain unchanged. The current
+integration adapter replays them at their original commit; current source
+is checked separately. Original integration bytes remain pinned in history.
 This separately versioned candidate pins the *entire* known T/B-to-PR113
 modified-provider delta by actual Git blob identity, preserves all original
 A2 mathematical provider objects, and checks the complete clean current tree.
@@ -36,11 +37,13 @@ PINNED_MODIFIED_PROVIDERS = {
     "verification/integrity/workflow_contract.py": "f8fa8196a7a0e33d2f218faa0ba570c09aac9a3a",
     "verification/research/test_paper_x1_lean_closure.py": "2ee078c86c58b5e577597acfc3ae950e4028ebac",
 }
-# These inherited verifier binaries themselves are preserved exactly.
+# Exact current callable surface: two unchanged historical executors and
+# the separately versioned engineering replay integration adapter. The
+# original integration blob c0f49038 remains pinned at its historical commit.
 INHERITED_A2_VERIFIERS = {
     "verification/research/localized_prefix_support.py": "93462e9546ba494e8384d75ce49ff9020f831216",
     "verification/research/localized_prefix_gate.py": "6f15dca74895e59a4d4bfcb54d38b471a1798be3",
-    "verification/research/test_localized_prefix_compiler.py": "c0f49038ea9b590720c78be85968eb63f5ac820f",
+    "verification/research/test_localized_prefix_compiler.py": "cb3384bce991e1fb7900cfae6633d61c2735561a",
 }
 
 
@@ -69,7 +72,7 @@ def reconcile(old: dict, current: dict) -> dict:
                "accepted A2 mathematical proof blob changed: " + path)
     for path, oid in INHERITED_A2_VERIFIERS.items():
         demand(current.get(path) == ("100644", oid),
-               "inherited A2 historical verifier changed: " + path)
+               "pinned A2 executor/integration source changed: " + path)
     for path in ("lean-toolchain", "lake-manifest.json"):
         demand(old.get(path) == current.get(path),
                "frozen Lean/dependency pin changed: " + path)

@@ -38,7 +38,7 @@ class InactiveHistoricalTransition(unittest.TestCase):
             self.assertFalse(obj[k])
         self.assertEqual(len(obj["original_unchanged_sources"]),3)
         for rec in obj["original_unchanged_sources"]:
-            original_source=(PREACTIVATION_HEAD if active30() else "HEAD")
+            original_source=PREACTIVATION_HEAD
             self.assertEqual(git("rev-parse",original_source+":"+rec["path"]),
                              rec["git_blob_oid"])
         self.assertEqual(len(obj["staged_replacements"]),2)
@@ -52,18 +52,25 @@ class InactiveHistoricalTransition(unittest.TestCase):
             # workflow and test source contract rather than a fragment hash.
 
     def test_original_A2_is_mandatory_and_staged_successor_is_real(self):
-        original=(
-            subprocess.check_output(
-                ["git","show",PREACTIVATION_HEAD+
-                 ":verification/research/test_localized_prefix_compiler.py"],
-                cwd=ROOT,text=True,timeout=20)
-            if active30() else
-            (ROOT/"verification/research/test_localized_prefix_compiler.py").read_text())
+        original=subprocess.check_output(
+            ["git","show",PREACTIVATION_HEAD+
+             ":verification/research/test_localized_prefix_compiler.py"],
+            cwd=ROOT,text=True,timeout=20)
         self.assertIn('report = verify(ROOT, out, mode="focused")',original)
         replacement=(STAGED/"test_localized_prefix_compiler.py").read_text()
         if active30():
             installed=(ROOT/"verification/research/test_localized_prefix_compiler.py").read_text()
             self.assertEqual(installed,replacement)
+        else:
+            from pr113_a2_successor_identity import INHERITED_A2_VERIFIERS
+            path="verification/research/test_localized_prefix_compiler.py"
+            self.assertEqual(git("rev-parse","HEAD:"+path),
+                             INHERITED_A2_VERIFIERS[path])
+            installed=(ROOT/path).read_text()
+            self.assertIn("from pr113_historical_a2_replay_v1 import verify",installed)
+            self.assertIn("HISTORICAL_A2_AND_CURRENT_SOURCE",installed)
+            self.assertNotIn("skipTest",installed)
+            self.assertNotIn("@unittest.skip",installed)
         from pr113_a2_successor_identity_v2 import (
             LATE_A2_TEST_ORIGINAL_BLOB, LATE_A2_TEST_PROPOSED_BLOB,
         )

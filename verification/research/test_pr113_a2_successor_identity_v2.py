@@ -228,7 +228,7 @@ class SuccessorA2Active30Tests(unittest.TestCase):
                          successor.LATE_A2_TEST_ORIGINAL_BLOB)
         phase,report=workflow_profile.audited_source_phase(root,checked)
         self.assertEqual(current[successor.LATE_A2_TEST],
-                         ("100644",successor.LATE_A2_TEST_ORIGINAL_BLOB
+                         ("100644",legacy.INHERITED_A2_VERIFIERS[successor.LATE_A2_TEST]
                           if phase=="staged" else
                           successor.LATE_A2_TEST_PROPOSED_BLOB))
         def committed_json(path):

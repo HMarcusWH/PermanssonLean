@@ -25,6 +25,7 @@ SUITES = (
     "test_pr113_tooling_migration_v2.py",
     "test_pr113_a2_successor_identity_v2.py",
     "test_pr113_a2_compiler_route_v3.py",
+    "test_pr113_historical_a2_replay_v1.py",
     "test_pr113_disposable_transition_rehearsal.py",
     "test_pr113_v2_runtime.py",
     "test_pr113_t2_intake_v2.py",

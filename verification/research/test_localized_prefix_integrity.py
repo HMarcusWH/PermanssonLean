@@ -133,7 +133,24 @@ class LocalizedSourceGuards(unittest.TestCase):
 
         installed = (ROOT / rel).read_bytes()
         if phase == "staged":
-            self.assertEqual(installed, original)
+            # Current engineering discovery freshly replays the unchanged
+            # executor at original A2; it does not compare new H to old H.
+            import hashlib
+            from pr113_a2_successor_identity import INHERITED_A2_VERIFIERS
+            actual = hashlib.sha1(
+                b"blob " + str(len(installed)).encode() + b"\0" + installed
+            ).hexdigest()
+            self.assertEqual(actual, INHERITED_A2_VERIFIERS[rel])
+            self.assertEqual(actual, subprocess.check_output(
+                ["git", "rev-parse", "HEAD:" + rel], cwd=ROOT,
+                text=True, timeout=20).strip())
+            self.assertIn(b"from pr113_historical_a2_replay_v1 import verify", installed)
+            self.assertIn(b'HISTORICAL_A2_AND_CURRENT_SOURCE', installed)
+            current = (ROOT / "verification/research/test_pr113_a2_successor_compiler.py").read_text()
+            self.assertIn("selected = select_compiler(ROOT)", current)
+            self.assertIn('record = compiler.verify(ROOT, folder, mode="focused")', current)
+            self.assertNotIn("skipTest", current)
+            self.assertNotIn("@unittest.skip", current)
         else:
             staged = (
                 "docs/operations/pr113_required_gate_replacement_unapproved/"

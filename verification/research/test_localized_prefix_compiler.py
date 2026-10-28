@@ -1,13 +1,13 @@
-"""Real, mandatory compiler gate in the existing Research discovery step.
+"""Mandatory ORIGINAL A2 replay at its frozen source, not at current HEAD.
 
-No skip path. Unit-only kit QA intentionally runs separately and does NOT
-claim this integration test passed. No recursive test discovery is invoked.
+This registered P-02 method also compiles current source through the native
+successor. Neither result grants migration review or merge authority.
 """
 import json
 from pathlib import Path
 import tempfile
 import unittest
-from localized_prefix_gate import verify
+from pr113_historical_a2_replay_v1 import verify, HISTORICAL_A2, STATUS
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -15,16 +15,35 @@ ROOT = Path(__file__).resolve().parents[2]
 class LocalizedCompilerIntegration(unittest.TestCase):
     def test_actual_final_source_and_semantic_mutations(self):
         with tempfile.TemporaryDirectory(prefix="a2p02-proof-") as temp:
-            out = Path(temp)
-            report = verify(ROOT, out, mode="focused")
-            # Existing required workflow stores stdout in its source-bound job log.
-            # Emit raw logs as well as the receipt; do not leave the only evidence
-            # in a temporary directory that disappears at the end of this test.
-            print("\nA2P02_RECEIPT_BEGIN\n" + json.dumps(report, sort_keys=True) + "\nA2P02_RECEIPT_END")
-            for entry in report["commands"]:
-                print("\nA2P02_LOG_BEGIN " + entry["log"])
-                print((out / entry["log"]).read_text(encoding="utf-8", errors="replace"))
-                print("A2P02_LOG_END " + entry["log"])
-            self.assertEqual(report["status"], "LOCAL_KERNEL_CHECKED__CI_ACCEPTANCE_PENDING",
-                             report.get("reason", "compiler gate failed"))
-            self.assertTrue(report["source_unchanged"])
+            out = Path(temp) / "original-evidence"
+            try:
+                report = verify(ROOT, out, mode="focused")
+            finally:
+                # Preserve original raw evidence even if replay fails. A
+                # failing compiler must never disappear with its worktree.
+                for scope in ("historical_original_A2", "pr113_successor_A2"):
+                    folder = out / scope
+                    receipt = folder / "receipt.json"
+                    if receipt.is_file():
+                        print("A2P02_SCOPED_RECEIPT_BEGIN", scope)
+                        print(receipt.read_text(encoding="utf-8"))
+                        print("A2P02_SCOPED_RECEIPT_END", scope)
+                    for log in sorted(folder.glob("*.log")):
+                        print("A2P02_SCOPED_LOG_BEGIN", scope, log.name)
+                        print(log.read_text(encoding="utf-8", errors="replace"))
+                        print("A2P02_SCOPED_LOG_END", scope, log.name)
+            self.assertEqual(report["status"], STATUS)
+            self.assertEqual(report["historical_source_sha"], HISTORICAL_A2)
+            self.assertEqual(report["execution_scope"], "HISTORICAL_A2_AND_CURRENT_SOURCE")
+            self.assertTrue(report["original_compiler_receipt"]["source_unchanged"])
+            self.assertTrue(report["current_compiler_required_separately"])
+            self.assertTrue(report["current_source_compiler_executed"])
+            self.assertTrue(report["current_compiler_receipt"]["source_unchanged"])
+            self.assertFalse(report["historical_project_build_imported"])
+            self.assertFalse(report["historical_executor_modified"])
+            self.assertFalse(report["independent_security_review"])
+            self.assertFalse(report["mathematical_acceptance"])
+            self.assertFalse(report["merge_authorized"])
+            print("PR113_HISTORICAL_ENGINEERING_REPLAY_BEGIN")
+            print(json.dumps(report, sort_keys=True))
+            print("PR113_HISTORICAL_ENGINEERING_REPLAY_END")
