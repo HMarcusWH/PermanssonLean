@@ -14,11 +14,21 @@ import tempfile
 HISTORICAL_A2 = "f71a76032b169aac7bfe0694aa715339a94d4e05"
 ORIGINAL_TEST = "verification/research/test_localized_prefix_compiler.py"
 ORIGINAL_TEST_BLOB = "c0f49038ea9b590720c78be85968eb63f5ac820f"
+# Explicit, revision-specific immutable Git blobs. The original gate script
+# is unchanged, but the historical support source predates the later-reviewed
+# current source. Never demand that two distinct Git revisions share its blob.
+# EXECUTORS retains its existing name for current-source callers/tests.
 EXECUTORS = {
     "verification/research/localized_prefix_gate.py":
         "6f15dca74895e59a4d4bfcb54d38b471a1798be3",
     "verification/research/localized_prefix_support.py":
         "93462e9546ba494e8384d75ce49ff9020f831216",
+}
+HISTORICAL_EXECUTORS = {
+    "verification/research/localized_prefix_gate.py":
+        "6f15dca74895e59a4d4bfcb54d38b471a1798be3",
+    "verification/research/localized_prefix_support.py":
+        "b07bc7d3b9ebe55b131466aebc28149fa2f03228",
 }
 PINS = ("lean-toolchain", "lake-manifest.json", "lakefile.toml")
 FORMAT = "Permansson.PR113.HistoricalA2EngineeringReplay.v1"
@@ -59,15 +69,23 @@ def unchanged(root, expected):
 
 
 def verify_executors(current, old):
-    for path, expected in EXECUTORS.items():
-        for root in (current, old):
+    # This is an exact two-revision source contract, not an exception list.
+    # Both original and current sources must match their own reviewed Git blobs
+    # and their own filesystem bytes; an edited file on either leg fails closed.
+    paths = {"verification/research/localized_prefix_gate.py",
+             "verification/research/localized_prefix_support.py"}
+    need(set(EXECUTORS) == set(HISTORICAL_EXECUTORS) == paths,
+         "A2 historical/current executor inventory changed")
+    for scope, root, pins in (("historical", old, HISTORICAL_EXECUTORS),
+                              ("current", current, EXECUTORS)):
+        for path, expected in pins.items():
             raw = git(root, "show", "HEAD:" + path)
             need(scalar(root, "rev-parse", "HEAD:" + path) == expected,
-                 "original A2 executor Git identity changed: " + path)
+                 scope + " A2 executor Git identity changed: " + path)
             file = root / path
             need(file.is_file() and not file.is_symlink()
                  and file.read_bytes() == raw,
-                 "original A2 executable bytes differ from Git: " + path)
+                 scope + " A2 executable bytes differ from Git: " + path)
     need(scalar(old, "rev-parse", "HEAD:" + ORIGINAL_TEST) == ORIGINAL_TEST_BLOB,
          "original historical A2 integration source was not preserved")
 

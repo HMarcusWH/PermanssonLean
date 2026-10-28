@@ -62,11 +62,23 @@ class HistoricalA2ReplayTests(unittest.TestCase):
             "packagesDir": ".lake/packages", "packages": [
                 {"type": "git", "name": "mockdep", "rev": self.pin}]}))
         self.historical = commit(self.root)
-        blobs = {name: command(self.root, "rev-parse", "HEAD:" + name)
-                 for name in replay.EXECUTORS}
+        historical_blobs = {
+            name: command(self.root, "rev-parse", "HEAD:" + name)
+            for name in replay.EXECUTORS}
         original_test = command(self.root, "rev-parse", "HEAD:" + replay.ORIGINAL_TEST)
+        # The real historical and current localized_prefix_support.py are NOT
+        # identical. Reproduce that difference: the old fixture incorrectly
+        # installed the same executor source in both historical/current trees.
+        self.support_path = "verification/research/localized_prefix_support.py"
+        (self.root / self.support_path).write_text(
+            "# SYNTHETIC separately reviewed successor support source\n")
         (self.root / "README.md").write_text("SYNTHETIC future source\n")
         self.head = commit(self.root)
+        current_blobs = {
+            name: command(self.root, "rev-parse", "HEAD:" + name)
+            for name in replay.EXECUTORS}
+        self.historical_blobs = historical_blobs
+        self.current_blobs = current_blobs
         self.output = self.top / "evidence"
         self.runs = []
         self.current_runs = []
@@ -88,7 +100,9 @@ class HistoricalA2ReplayTests(unittest.TestCase):
             receipt_format="Permansson.PR113.A2SuccessorCompilerCandidate.v1",
             module=types.SimpleNamespace(verify=self.synthetic_current_compile))
         guards = patch.multiple(replay, HISTORICAL_A2=self.historical,
-                                EXECUTORS=blobs, ORIGINAL_TEST_BLOB=original_test)
+                                EXECUTORS=current_blobs,
+                                HISTORICAL_EXECUTORS=historical_blobs,
+                                ORIGINAL_TEST_BLOB=original_test)
         guards.start()
         self.addCleanup(guards.stop)
         modules = patch.dict(sys.modules, {
@@ -186,6 +200,11 @@ class HistoricalA2ReplayTests(unittest.TestCase):
         self.assertEqual(sum(row.startswith("worktree ") for row in rows), 1)
 
     def test_fresh_original_source_and_no_current_build_reuse(self):
+        self.assertNotEqual(self.historical_blobs[self.support_path],
+                            self.current_blobs[self.support_path])
+        self.assertEqual(
+            self.historical_blobs["verification/research/localized_prefix_gate.py"],
+            self.current_blobs["verification/research/localized_prefix_gate.py"])
         (self.root / ".lake/build").mkdir()
         (self.root / ".lake/build/current.olean").write_text("SYNTHETIC current-only cache")
         result = replay.verify(self.root, self.output)
@@ -257,6 +276,34 @@ class HistoricalA2ReplayTests(unittest.TestCase):
         self.assertFalse(self.runs)
         self.no_extra_worktrees()
 
+    def test_historical_support_cannot_borrow_current_blob_pin(self):
+        with patch.dict(replay.HISTORICAL_EXECUTORS,
+                        {self.support_path: self.current_blobs[self.support_path]}):
+            with self.assertRaisesRegex(replay.HistoricalReplayError,
+                                        "historical A2 executor Git identity changed"):
+                replay.verify(self.root, self.output)
+        self.assertFalse(self.runs)
+        self.no_extra_worktrees()
+
+    def test_current_support_cannot_borrow_historical_blob_pin(self):
+        with patch.dict(replay.EXECUTORS,
+                        {self.support_path: self.historical_blobs[self.support_path]}):
+            with self.assertRaisesRegex(replay.HistoricalReplayError,
+                                        "current A2 executor Git identity changed"):
+                replay.verify(self.root, self.output)
+        self.assertFalse(self.runs)
+        self.no_extra_worktrees()
+
+    def test_unreviewed_current_support_change_is_rejected(self):
+        (self.root / self.support_path).write_text(
+            "# SYNTHETIC unreviewed current support change\n")
+        commit(self.root)
+        with self.assertRaisesRegex(replay.HistoricalReplayError,
+                                    "current A2 executor Git identity changed"):
+            replay.verify(self.root, self.output)
+        self.assertFalse(self.runs)
+        self.no_extra_worktrees()
+
     def test_changed_original_executor_never_runs(self):
         path = next(iter(replay.EXECUTORS))
         (self.root / path).write_text("# SYNTHETIC changed executor\n")
@@ -299,6 +346,38 @@ class HistoricalA2ReplayTests(unittest.TestCase):
         with self.assertRaises(replay.HistoricalReplayError):
             replay.verify(self.root, self.output, mode="pretend")
         self.assertFalse(self.runs)
+
+
+class RealHistoricalA2GitPins(unittest.TestCase):
+    def test_immutable_original_and_current_source_pins_are_revision_scoped(self):
+        root = Path(__file__).resolve().parents[2]
+        head = replay.scalar(root, "rev-parse", "HEAD")
+        self.assertEqual(set(replay.EXECUTORS), set(replay.HISTORICAL_EXECUTORS))
+        path = "verification/research/localized_prefix_support.py"
+        self.assertNotEqual(replay.EXECUTORS[path],
+                            replay.HISTORICAL_EXECUTORS[path])
+        gate = "verification/research/localized_prefix_gate.py"
+        self.assertEqual(replay.EXECUTORS[gate],
+                         replay.HISTORICAL_EXECUTORS[gate])
+        for label, revision, pins in (
+                ("historical", replay.HISTORICAL_A2,
+                 replay.HISTORICAL_EXECUTORS),
+                ("current", head, replay.EXECUTORS)):
+            for member, oid in pins.items():
+                with self.subTest(scope=label, member=member):
+                    self.assertEqual(
+                        replay.scalar(root, "rev-parse", revision + ":" + member),
+                        oid)
+                    raw = replay.git(root, "show", revision + ":" + member)
+                    self.assertEqual(
+                        hashlib.sha1(
+                            b"blob " + str(len(raw)).encode("ascii") + b"\0" + raw
+                        ).hexdigest(), oid)
+                    if label == "current":
+                        self.assertEqual((root / member).read_bytes(), raw)
+        self.assertEqual(replay.scalar(
+            root, "rev-parse", replay.HISTORICAL_A2 + ":" + replay.ORIGINAL_TEST),
+            replay.ORIGINAL_TEST_BLOB)
 
 
 if __name__ == "__main__":
