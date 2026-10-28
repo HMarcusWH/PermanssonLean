@@ -18,14 +18,16 @@ pending independent security review.
 from __future__ import annotations
 
 import hashlib
+import io
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import re
+import stat
 import sys
 import tempfile
+import zipfile
 
 from final_closure_authenticate import live, paginate
-from final_closure_producer_bytes import inspect_zip, ProducerBytesError
 
 WORKFLOW=".github/workflows/pr113-postseal-replay.yml"
 JOB="postseal-archive-replay"
@@ -39,6 +41,17 @@ IDENTITY_KEYS=("run_id","run_attempt","job_id","check_run_id","artifact_id")
 FORMAT="Permansson.PR113.GenuinePostsealCI.v1"
 SHA40=re.compile(r"^[0-9a-f]{40}$")
 SHA256=re.compile(r"^[0-9a-f]{64}$")
+CANDIDATE_MEMBER="candidate/Permansson_Mathematical_Closure_CANDIDATE.zip"
+POSTSEAL_MEMBERS=frozenset((CANDIDATE_MEMBER,"candidate/SHA256SUMS.txt",
+                            "postseal_replay_receipt.json",UPSTREAM_METADATA))
+# Match postseal_replay.MAX_ARCHIVE_BYTES for the single nested candidate.
+# Metadata retains the original producer reader's individual 4MiB bound.
+MAX_CANDIDATE_BYTES=384*1024*1024
+MAX_METADATA_BYTES=4*1024*1024
+MAX_EXPANDED_BYTES=MAX_CANDIDATE_BYTES+3*MAX_METADATA_BYTES
+# Four ZIP records can add local/central extra fields and comments. Reserve
+# a bounded 1MiB above their entire permitted payload, including stored ZIPs.
+MAX_POSTSEAL_ZIP_BYTES=MAX_EXPANDED_BYTES+1024*1024
 
 class PostsealAuthenticationError(ValueError):
     pass
@@ -48,6 +61,62 @@ def demand(ok, reason):
 
 def sha(raw):
     return hashlib.sha256(raw).hexdigest()
+
+def read_postseal_zip(path):
+    """Bound the transport before allocation, including a changing file."""
+    declared=path.stat().st_size
+    demand(0<declared<=MAX_POSTSEAL_ZIP_BYTES,
+           "missing or oversized postseal ZIP before reading")
+    with path.open("rb") as stream:
+        raw=stream.read(declared+1)
+    demand(0<len(raw)<=MAX_POSTSEAL_ZIP_BYTES and len(raw)==declared,
+           "postseal ZIP size changed or exceeded its wire budget")
+    return raw
+
+
+def inspect_postseal_zip(raw):
+    """Read the exact four-file producer envelope, not producer-log budgets."""
+    demand(type(raw) is bytes and 0<len(raw)<=MAX_POSTSEAL_ZIP_BYTES,
+           "missing or oversized postseal ZIP")
+    result,seen,total={},set(),0
+    try:
+        with zipfile.ZipFile(io.BytesIO(raw)) as zipped:
+            rows=zipped.infolist()
+            demand(len(rows)==len(POSTSEAL_MEMBERS),
+                   "postseal ZIP must contain exactly four producer members")
+            for row in rows:
+                name=row.filename
+                path=PurePosixPath(name)
+                mode=stat.S_IFMT(row.external_attr>>16)
+                demand(row.orig_filename==name and name and
+                       not row.is_dir() and not (row.flag_bits&1) and
+                       not path.is_absolute() and ".." not in path.parts and
+                       "\\" not in name and path.as_posix()==name and
+                       not any(part in ("", ".") for part in name.split("/")) and
+                       mode in (0,stat.S_IFREG) and name.casefold() not in seen,
+                       "unsafe, duplicated or nonregular postseal member")
+                seen.add(name.casefold())
+                limit=MAX_CANDIDATE_BYTES if name==CANDIDATE_MEMBER else MAX_METADATA_BYTES
+                total+=row.file_size
+                demand(0<row.file_size<=limit and total<=MAX_EXPANDED_BYTES,
+                       "unbounded postseal archive expansion")
+            demand({row.filename for row in rows}==POSTSEAL_MEMBERS,
+                   "postseal ZIP inventory differs from the exact producer files")
+            for name in seen:
+                parts=name.split("/")
+                demand(not any("/".join(parts[:i]) in seen
+                               for i in range(1,len(parts))),
+                       "postseal ZIP member shadows path ancestor")
+            for row in rows:
+                with zipped.open(row) as stream:
+                    content=stream.read(row.file_size+1)
+                demand(len(content)==row.file_size,
+                       "postseal ZIP decompression length mismatch")
+                result[row.filename]=content
+    except (OSError,zipfile.BadZipFile,RuntimeError,NotImplementedError,UnicodeError) as exc:
+        raise PostsealAuthenticationError("invalid postseal ZIP") from exc
+    return result
+
 
 def validate_postseal_payload(members, *, merged, expected_pdf):
     """Replay complete candidate archive, not a source-owned Boolean label."""
@@ -197,13 +266,10 @@ def authenticate_postseal(merged, expected_pdf, identities, zipped_artifact):
     demand(raw_path.is_file() and not raw_path.is_symlink() and
            not any(x.is_symlink() for x in raw_path.absolute().parents),
            "postseal evidence artifact is not a regular unsymlinked input")
-    raw=raw_path.read_bytes()
+    raw=read_postseal_zip(raw_path)
     demand(sha(raw)==digest,
            "postseal original uploaded ZIP differs from real GitHub digest")
-    try:
-        entries=inspect_zip(raw)
-    except ProducerBytesError as exc:
-        raise PostsealAuthenticationError("unsafe postseal ZIP") from exc
+    entries=inspect_postseal_zip(raw)
     bind_upstream_metadata(entries,merged,upstream,upstream_digest)
     actual=validate_postseal_payload(
         entries,merged=merged,expected_pdf=expected_pdf)

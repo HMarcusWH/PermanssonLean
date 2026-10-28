@@ -195,3 +195,32 @@ Their external authentication adapters are explicitly synthetic test fixtures.
 Both suites are registered in fast preflight; measure the inventory at the
 tested commit. No original release bytes, protected workflow, mathematical
 proof, reviewer policy, or independent approval is changed by this repair.
+
+## Binary artifact intake budgets
+
+The next Codex review identified that postseal authentication reused the original
+producer-log ZIP reader's 4 MiB member limit for a candidate archive supported
+up to 384 MiB. The adjacent two-root reproduction intake had the same mismatch
+for PDF, page and nested draft ZIP members. Both consumers now use bounded
+readers for their own artifact formats; the original 21-producer reader keeps
+its 4 MiB member and 64 MiB transport/expanded limits.
+
+Postseal intake permits exactly the four files emitted by the staged producer:
+one candidate ZIP up to 384 MiB and three metadata files up to 4 MiB each.
+Expanded content is bounded to 396 MiB, with a 397 MiB wire budget including
+ZIP headers. The candidate's actual independent replay remains mandatory.
+
+Reproduction intake preserves the existing 64 MiB compressed transport cap
+used by the carrier and seal. Its two complete roots have a 512 MiB expanded
+budget and at most 512 members. Only named PDFs and numbered page PNGs receive
+32 MiB member budgets, and the two named E2E ZIPs receive 48 MiB. Other safe
+diagnostic/TeX members retain their 4 MiB cap, including valid empty metadata.
+This accommodates the actual producer's retained build logs and `_texwork`.
+
+Both readers check file size before allocation, validate the complete ZIP
+directory before bounded decompression, and reject path aliases, duplicates,
+case collisions, symlinks, encryption, corrupt content and size overruns.
+Regression tests cover real nested candidates above 4 MiB and the unchanged
+generic reader's rejection of those larger members. The actual two-root draft
+artifact also passes the reproduction reader and unchanged byte validator.
+Synthetic GitHub adapters in unit tests provide no real review or approval.

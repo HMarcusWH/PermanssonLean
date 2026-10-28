@@ -9,12 +9,14 @@ No Boolean claimed inside producer JSON grants authentication.
 from __future__ import annotations
 
 import hashlib
+import io
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import re
+import stat
+import zipfile
 
 from final_closure_authenticate import live, paginate
-from final_closure_producer_bytes import inspect_zip, ProducerBytesError
 
 FORMAT = "Permansson.PR113.GenuineCleanReproductionCI.v1"
 WORKFLOW = ".github/workflows/pr113-clean-paper-rebuild.yml"
@@ -22,6 +24,15 @@ JOB = "clean-paper-rebuild"
 ARTIFACT = "pr113-clean-paper-rebuild-draft"
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
+# The carrier and full seal both retain the reproduction ZIP as one <=64MiB
+# member. Its TWO complete output roots can expand beyond the text producer
+# profile; only these exact binary paths get larger per-member allowances.
+MAX_ZIP_BYTES = 64 * 1024 * 1024
+MAX_EXPANDED_BYTES = 512 * 1024 * 1024
+MAX_MEMBERS = 512
+MAX_METADATA_BYTES = 4 * 1024 * 1024
+MAX_PDF_OR_PAGE_BYTES = 32 * 1024 * 1024
+MAX_DRAFT_ZIP_BYTES = 48 * 1024 * 1024
 
 
 class ReproductionAuthenticationError(ValueError):
@@ -35,6 +46,71 @@ def demand(ok, message):
 
 def sha(raw):
     return hashlib.sha256(raw).hexdigest()
+
+
+def inspect_reproduction_zip(raw):
+    """Bounded two-root binary intake, separate from original21 text producers.
+
+    Preserve safe small diagnostic/TeX paths emitted by the actual producer.
+    Only canonical PDFs, draft ZIPs and numbered page PNGs have binary budgets.
+    Validate the entire directory before allocating any expanded member bytes.
+    """
+    demand(type(raw) is bytes and 0 < len(raw) <= MAX_ZIP_BYTES,
+           "missing or oversized two-root reproduction ZIP")
+    seen, result, total = set(), {}, 0
+    try:
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            rows = archive.infolist()
+            demand(1 <= len(rows) <= MAX_MEMBERS, "unbounded reproduction member count")
+            budgets = []
+            for row in rows:
+                name = row.filename
+                path = PurePosixPath(name)
+                mode = stat.S_IFMT(row.external_attr >> 16)
+                demand(name and row.orig_filename == name
+                       and name == path.as_posix() and not path.is_absolute()
+                       and not row.is_dir() and "\\" not in name
+                       and all(part not in ("", ".", "..") for part in name.split("/"))
+                       and len(name) <= 300 and len(path.parts) <= 12
+                       and mode in (0, stat.S_IFREG) and not row.flag_bits & 1
+                       and name.casefold() not in seen,
+                       "unsafe, duplicated or nonregular reproduction member")
+                seen.add(name.casefold())
+                limit = MAX_METADATA_BYTES
+                for prefix in ("first/", "second/"):
+                    if not name.startswith(prefix):
+                        continue
+                    relative = name[len(prefix):]
+                    if relative in ("Permansson_Mathematical_Closure.pdf", "_texwork/main.pdf") \
+                            or re.fullmatch(r"pages/page-[0-9]+[.]png", relative):
+                        limit = MAX_PDF_OR_PAGE_BYTES
+                    elif relative == "Permansson_Mathematical_Closure_E2E.zip":
+                        limit = MAX_DRAFT_ZIP_BYTES
+                demand(0 <= row.file_size <= limit
+                       and (row.file_size == 0 or row.compress_size > 0),
+                       "reproduction member exceeds its typed byte budget")
+                if limit != MAX_METADATA_BYTES:
+                    demand(row.file_size > 0, "empty reproduction binary member")
+                total += row.file_size
+                demand(total <= MAX_EXPANDED_BYTES, "reproduction expanded budget exceeded")
+                budgets.append(limit)
+            for name in seen:
+                parts = name.split("/")
+                demand(not any("/".join(parts[:index]) in seen
+                               for index in range(1, len(parts))),
+                       "reproduction member shadows a path ancestor")
+            for row, limit in zip(rows, budgets):
+                with archive.open(row) as reader:
+                    body = reader.read(limit + 1)
+                demand(len(body) == row.file_size and len(body) <= limit,
+                       "reproduction decompression length mismatch")
+                result[row.filename] = body
+    except (OSError, RuntimeError, ValueError, zipfile.BadZipFile,
+            zipfile.LargeZipFile) as exc:
+        if isinstance(exc, ReproductionAuthenticationError):
+            raise
+        raise ReproductionAuthenticationError("invalid two-root reproduction ZIP") from exc
+    return result
 
 
 def exact(payload, name):
@@ -169,12 +245,17 @@ def authenticate_merged_reproduction(merged, expected_pdf, identities,
     demand(input_path.is_file() and not input_path.is_symlink() and
            not any(parent.is_symlink() for parent in input_path.absolute().parents),
            "detached clean source-root ZIP must be a regular unsymlinked file")
-    raw=input_path.read_bytes()
+    demand(0 < input_path.stat().st_size <= MAX_ZIP_BYTES,
+           "detached two-root ZIP exceeds compressed byte budget")
+    with input_path.open("rb") as stream:
+        raw = stream.read(MAX_ZIP_BYTES + 1)
+    demand(0 < len(raw) <= MAX_ZIP_BYTES,
+           "detached two-root ZIP changed beyond compressed byte budget")
     demand(sha(raw) == gh_digest[7:],
            "downloaded two-root ZIP bytes differ from GitHub digest")
     try:
-        members=inspect_zip(raw)
-    except ProducerBytesError as exc:
+        members=inspect_reproduction_zip(raw)
+    except ReproductionAuthenticationError as exc:
         raise ReproductionAuthenticationError("unsafe original two-root ZIP") from exc
     report,identity,pages=validate_clean_root_bytes(
         members,merged=merged,expected_pdf=expected_pdf)
