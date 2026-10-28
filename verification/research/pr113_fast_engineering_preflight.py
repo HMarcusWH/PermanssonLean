@@ -47,6 +47,7 @@ SUITES = (
     "test_pr113_boundary_hardening_20261027.py",
     "test_pr113_semantic_receipt_v2.py",
     "test_pr113_historical_evidence_contract_v2.py",
+    "test_pr113_inheritance_optimized.py",
     "test_pr113_v2_workflow_contract_preview.py",
     "test_pr113_draft_rehearsal_auth.py",
     "test_pr113_tooling_migration.py",

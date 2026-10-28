@@ -35,7 +35,8 @@ from final_closure_authenticate import REQUIRED, authenticated_checks
 H,M,run_id,reviewer_id=sys.argv[1:]
 run_id=int(run_id)
 reviewer_id=int(reviewer_id)
-assert run_id > 0 and reviewer_id > 0
+if run_id <= 0 or reviewer_id <= 0:
+    raise ValueError("historical source run/review IDs must be positive")
 context={"original_base_sha":B113,"reviewed_head_sha":H,
          "merged_main_sha":M}
 bytes_by_kind,ids,verified=collect(
@@ -49,11 +50,28 @@ receipt=check_historical_merged(
     envelope,bytes_by_kind["T"],bytes_by_kind["A2"],
     event_context=context)
 required=authenticated_checks(H)
-assert set(REQUIRED) <= set(required) and len(REQUIRED) == 12
-assert receipt["status"] == (
-    "MERGED_HISTORICAL_T_AND_A2_REVERIFIED_UNDER_REVIEWED_SOURCE")
-assert receipt["independent_security_review_authenticated"] is True
-assert receipt["required_ci_successful"] == 0
+# Assertions can disappear with python -O or PYTHONOPTIMIZE. Use explicit
+# checks in every inherited historical source/review authentication path.
+if (len(REQUIRED) != 12 or not isinstance(required,dict)
+        or not set(REQUIRED) <= set(required)):
+    raise ValueError("historical source lacks all twelve live required checks")
+for name in REQUIRED:
+    check=required[name]
+    if (not isinstance(check,dict)
+            or check.get("head_sha") != H
+            or check.get("status") != "completed"
+            or check.get("conclusion") != "success"
+            or type(check.get("id")) is not int
+            or check["id"] <= 0):
+        raise ValueError("unbound or unsuccessful historical check: " + name)
+if receipt.get("status") != (
+        "MERGED_HISTORICAL_T_AND_A2_REVERIFIED_UNDER_REVIEWED_SOURCE"):
+    raise ValueError("original M113 historical replay has not succeeded")
+if receipt.get("independent_security_review_authenticated") is not True:
+    raise ValueError("original M113 security review is not authenticated")
+if type(receipt.get("required_ci_successful")) is not int or (
+        receipt["required_ci_successful"] != 0):
+    raise ValueError("historical-only result cannot assert current CI approval")
 print(json.dumps({
     "source_head_sha":H,"merged_main_sha":M,
     "historical_original_producer_run_id":run_id,
