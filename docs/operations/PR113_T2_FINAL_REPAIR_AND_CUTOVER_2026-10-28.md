@@ -113,3 +113,60 @@ activate unreviewed workflow definitions, import current proof objects into
 history, accept partial/mixed-source evidence, mark skipped steps successful,
 or invent a reviewer. A failed historical execution must stay failed with its
 actual diagnostic. Successful engineering tests do not grant merge authority.
+
+## Post-rehearsal direct-command repair
+
+The genuine rehearsal at `fb89f4dd2e4c51790f15b416b820e7f25ac50f80`
+found a shared direct-script import failure before either child started.
+The dynamic staged-contract loader now establishes its helper checkout's
+package context and rejects cached foreign package sources. Its inspected
+checkout may still be a separate disposable active30 fixture. Expected import
+failures retain their cause through `ToolingMigrationError`; no substitute
+validator or `PYTHONPATH` override is used. Historical children retain their
+separate checkout and scrubbed import environment.
+
+The rehearsal CLI creates a fresh detached outer diagnostic directory before
+checking sources or loading the profile. It records the command, declared
+sources, execution stage and outer exit. Child return codes come only from real
+retained execution sidecars. Import failures have no invented T/H reports;
+T's original BLOCKED report and exit 3 remain distinct from the wrapper's exit 2.
+Unexpected exceptions retain bounded, redacted tracebacks and remain failures.
+Outer diagnostics are separate from the strict inner report/log packet.
+
+On a qualified Linux host, from any working directory, use absolute paths:
+
+```bash
+env -u PYTHONPATH -u PYTHONHOME python3.13 -B \
+  "$H_DIR/verification/research/pr113_archive_pre_activation_rehearsal_v1.py" \
+  --historical-T-source "$T_DIR" --current-source "$H_DIR" \
+  --head "$H_REPAIR" --out "$EVIDENCE_DIR" \
+  --diagnostics "$OUTER_DIAGNOSTICS_DIR"
+```
+
+Both output directories must be fresh, unsymlinked and disjoint from both source
+trees and each other. Without `--diagnostics`, the outer directory is the sibling
+`EVIDENCE_DIR.diagnostics`. The tooling-only CLI uses `--out FILE` and an explicit
+`--phase staged` or `active`. The active dual producer instead uses `--output
+DIRECTORY` and rejects staged25 source. It is not a preactivation launch route.
+
+Require Python 3.13, exactly `pypdf==6.10.0`, nonroot execution, passwordless sudo
+for the supported `unshare --net` / `setpriv` chain, genuine readable IPv4 and
+IPv6 route tables inside the new namespace, zero capabilities, no supplementary
+groups, NoNewPrivs, no outward routes and conclusive outbound denial. Call T's
+unchanged attestation through that chain before restoration. A VM booted with
+`ipv6.disable=1` is incompatible; missing IPv6 metadata must still block.
+
+The new direct-CLI subprocess suite is registered in fast preflight and ordinary
+Research discovery. It audits real committed staged25 and disposable active30
+sources, checks unrelated/foreign-package cwd behavior, wrong head, dirty source,
+contract drift and phase rejection, and exercises optimized Python. Synthetic
+faults remain labelled fixtures. Measure suite counts at the tested commit;
+the earlier 59-suite count above describes its historical patch only.
+
+These research helpers, tests and runbook have no existing exact-byte manifest
+bindings. The 35 historical files, installed 25 workflows, staged contract pins
+and workflow-only profile digest remain unchanged. Full historical acceptance
+still requires a genuine complete T/H run and semantic packet validation. The
+old current-source archive tooling-closure failure, 32 mutable-action uses in
+13 inherited workflows, T2/A2 activation, artifact authentication and independent
+security decisions remain separate open gates. Do not silently waive them.

@@ -8,8 +8,10 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import re
 import sys
 import tempfile
+import traceback
 
 from pr113_t2_execution_io_v1 import evidence_files, read_report
 
@@ -30,6 +32,16 @@ class RehearsalError(ValueError):
 def need(ok, message):
     if not ok:
         raise RehearsalError(message)
+
+
+def _redacted_diagnostic(value):
+    sensitive = re.compile(
+        r"(?i)(?:\b(?:GITHUB_TOKEN|GH_TOKEN|ACCESS_TOKEN|API_KEY|"
+        r"SECRET|PASSWORD|CREDENTIAL|AUTHORIZATION|COOKIE)\b\s*[:=]|"
+        r"\bbearer\s+\S+|(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]+)")
+    return "\n".join(
+        "[redacted credential-bearing diagnostic line]"
+        if sensitive.search(line) else line for line in value.splitlines())
 
 
 def validate_reports(old, new, profile, head):
@@ -100,7 +112,9 @@ def _trace(process, argv):
             "non_authorizing": True}, out, err
 
 
-def execute(original_checkout, current_checkout, head, output):
+def execute(original_checkout, current_checkout, head, output, *, stage=None):
+    mark = stage if stage is not None else lambda value: None
+    mark("SOURCE_CHECKOUTS")
     old = dual.checkout(original_checkout, T)
     current = dual.checkout(current_checkout, head)
     need(old != current and head != T, "T/H checkouts not independent")
@@ -108,12 +122,14 @@ def execute(original_checkout, current_checkout, head, output):
     need(not out.is_relative_to(old) and not out.is_relative_to(current)
          and not old.is_relative_to(out) and not current.is_relative_to(out),
          "rehearsal output overlaps either source checkout")
+    mark("STAGED_PROFILE")
     profile = tooling_audit(current, head, phase="staged")
     need(profile.get("reviewed_workflow_source_mode") == "staged",
          "the archive rehearsal must not claim active 30")
     supplement = current/"archival/v0.2.0/supplement-1"
     need(supplement.is_dir() and not supplement.is_symlink(),
          "unchanged original T supplement unavailable")
+    mark("EVIDENCE_PREPARATION")
     out.mkdir(parents=True, exist_ok=False)
     t_file, h_file = out/"historical_T_archive.json", out/"current_H_workflow.json"
     h_args = [sys.executable, "-B", "-m", "verification.integrity.run_tests",
@@ -123,12 +139,15 @@ def execute(original_checkout, current_checkout, head, output):
                   "--supplement", str(supplement),
                   "--scratch", str(Path(scratch)/"restore"),
                   "--report", str(t_file)]
+        mark("HISTORICAL_T")
         t_process = dual.command(t_args, old, historical_artifact=True,
                                  evidence_dir=out,evidence_label="T")
         t_trace, t_stdout, t_stderr = _trace(t_process, t_args)
+    mark("CURRENT_H")
     h_process = dual.command(h_args, current, detached_current_suite=True,
                              evidence_dir=out,evidence_label="H")
     h_trace, h_stdout, h_stderr = _trace(h_process, h_args)
+    mark("FINAL_SOURCE_AND_REPORT_CHECKS")
     dual.checkout(old, T)
     dual.checkout(current, head)
     need(tooling_audit(current, head, phase="staged") == profile,
@@ -162,22 +181,91 @@ def execute(original_checkout, current_checkout, head, output):
     return result
 
 
+class OuterDiagnostics:
+    """Detached startup/failure record, deliberately outside the inner packet."""
+
+    def __init__(self, args, invocation=None):
+        output = args.out.absolute().resolve()
+        path = args.diagnostics or args.out.with_name(args.out.name + ".diagnostics")
+        self.root = detached_destination(path, ROOT, forbidden=(
+            args.historical_T_source, args.current_source, output))
+        for source in (args.historical_T_source, args.current_source, output):
+            need(not Path(source).resolve().is_relative_to(self.root),
+                 "outer diagnostics must not contain source or evidence paths")
+        self.root.mkdir(parents=True, exist_ok=False)
+        self.record = {
+            "format": "Permansson.PR113.PreactivationOuterExecution.v1",
+            "status": "RUNNING", "stage": "STARTUP", "outer_exit": None,
+            "historical_T": T, "declared_current_H": args.head,
+            "historical_source": str(args.historical_T_source.resolve()),
+            "current_source": str(args.current_source.resolve()),
+            "inner_packet": str(output), "children": {},
+            "argv": (list(sys.orig_argv) if invocation is None else
+                     [sys.executable, str(Path(__file__).resolve()), *invocation]),
+            "required_ci_accepted": False, "independent_security_review": False,
+            "merge_authorized": False,
+        }
+        self.write()
+
+    def write(self):
+        (self.root / "outer.execution.json").write_text(
+            json.dumps(self.record, sort_keys=True, indent=2) + "\n",
+            encoding="utf-8")
+
+    def stage(self, value):
+        self.record["stage"] = value
+        self.write()
+
+    def finish(self, exit_code, error=None):
+        self.record.update(outer_exit=exit_code,
+                           status="COMPLETED_UNAPPROVED" if exit_code == 0 else "FAILED")
+        for label in ("T", "H"):
+            sidecar = Path(self.record["inner_packet"]) / (label + ".execution.json")
+            if sidecar.is_file():
+                try:
+                    child = read_report(sidecar)
+                    self.record["children"][label] = {
+                        key: child.get(key) for key in ("returncode", "status", "failure_kind")}
+                except (OSError, ValueError) as exc:
+                    self.record["children"][label] = {"sidecar_error": type(exc).__name__}
+        if error is not None:
+            self.record["exception_type"] = type(error).__name__
+            # Record the cause chain, but no environment dump or source locals.
+            diagnostic = "".join(traceback.format_exception(
+                type(error), error, error.__traceback__, limit=12))[-16384:]
+            diagnostic = _redacted_diagnostic(diagnostic) + "\n"
+            (self.root / "outer.stderr.log").write_text(diagnostic, encoding="utf-8")
+        self.write()
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--historical-T-source", type=Path, required=True)
     ap.add_argument("--current-source", type=Path, required=True)
     ap.add_argument("--head", required=True)
     ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument("--diagnostics", type=Path,
+                    help="fresh detached outer logs (default: OUT.diagnostics)")
     a = ap.parse_args(argv)
+    diagnostics = None
     try:
-        value = execute(a.historical_T_source, a.current_source, a.head, a.out)
+        diagnostics = OuterDiagnostics(a, invocation=argv)
+        value = execute(a.historical_T_source, a.current_source, a.head, a.out,
+                        stage=diagnostics.stage)
+        diagnostics.finish(0)
         print(json.dumps({"status": value["status"], "required_ci_accepted": False},
                          sort_keys=True))
         return 0
     except (RehearsalError, dual.DualToolingError, OSError, ValueError,
             KeyError, TypeError) as exc:
-        print("STAGED_T_H_REHEARSAL_BLOCKED:", exc, file=sys.stderr)
+        if diagnostics is not None:
+            diagnostics.finish(2, exc)
+        print("STAGED_T_H_REHEARSAL_BLOCKED:", _redacted_diagnostic(str(exc)), file=sys.stderr)
         return 2
+    except Exception as exc:
+        if diagnostics is not None:
+            diagnostics.finish(1, exc)
+        raise
 
 
 if __name__ == "__main__":

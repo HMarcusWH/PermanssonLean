@@ -7,10 +7,13 @@ This checker does not install files, authorize an action tag, or accept CI.
 from __future__ import annotations
 
 import hashlib
+from contextlib import contextmanager
+import importlib.machinery
 import importlib.util
 import json
 from pathlib import Path
 import re
+import sys
 
 from pr113_boundary_io import strict_json_object
 from pr113_tooling_migration import (
@@ -26,6 +29,60 @@ CONTRACT_MANIFEST = STAGE + "workflow_contract_v2_manifest.json"
 FULL_MANIFEST = STAGE + "full_workflow_manifest.json"
 PROPOSAL_MANIFEST = PROPOSALS + "manifest.json"
 SHA = re.compile(r"^[a-f0-9]{40}$")
+
+
+def _check_import_origin(name, helper_root):
+    """Reject cached package parents that could redirect the staged import."""
+    if name not in sys.modules:
+        return
+    module = sys.modules[name]
+    expected = helper_root.joinpath(*name.split("."))
+    require(module is not None, "versioned contract import is unavailable: " + name)
+    if name == "verification":
+        require(getattr(module, "__file__", None) is None
+                and {Path(p).resolve() for p in getattr(module, "__path__", ())}
+                    == {expected},
+                "versioned contract package has a foreign source: " + name)
+    else:
+        expected_file = (expected / "__init__.py" if name == "verification.integrity"
+                         else expected.with_suffix(".py"))
+        origin = getattr(module, "__file__", None)
+        require(isinstance(origin, str) and Path(origin).resolve() == expected_file,
+                "versioned contract import has a foreign source: " + name)
+        if name == "verification.integrity":
+            require({Path(p).resolve() for p in getattr(module, "__path__", ())}
+                        == {expected},
+                    "versioned contract package path has a foreign source: " + name)
+
+
+@contextmanager
+def _contract_import_context():
+    # The helper may audit a separate disposable active-30 checkout. Package
+    # imports belong to this helper's checkout, not cwd or the inspected root.
+    helper_root = Path(__file__).resolve().parents[2]
+    names = ("verification", "verification.integrity", "verification.integrity.reports")
+    original_path = sys.path[:]
+    sys.path[:] = [str(helper_root), *(p for p in sys.path if p != str(helper_root))]
+    try:
+        for name in names:
+            _check_import_origin(name, helper_root)
+        if "verification" not in sys.modules:
+            # verification is a namespace package. A foreign regular package
+            # later on sys.path otherwise wins even when helper_root is first.
+            spec = importlib.machinery.PathFinder.find_spec(
+                "verification", [str(helper_root)])
+            require(spec is not None and spec.origin is None
+                    and list(spec.submodule_search_locations or ())
+                        == [str(helper_root / "verification")],
+                    "local verification namespace unavailable")
+            spec.submodule_search_locations = [str(helper_root / "verification")]
+            sys.modules["verification"] = importlib.util.module_from_spec(spec)
+        yield
+        for name in names:
+            require(name in sys.modules, "versioned contract omitted import: " + name)
+            _check_import_origin(name, helper_root)
+    finally:
+        sys.path[:] = original_path
 
 
 def _json(root, head, path):
@@ -76,7 +133,11 @@ def _contract(root, head):
     require(spec is not None and spec.loader is not None,
             "versioned contract module unavailable")
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    try:
+        with _contract_import_context():
+            spec.loader.exec_module(module)
+    except ImportError as exc:
+        raise ToolingMigrationError("versioned contract package import failed") from exc
     expected = manifest.get("expected_workflow_git_blobs")
     require(isinstance(expected, dict) and len(expected) == 30
             and expected == module.APPROVED_WORKFLOW_BLOBS,

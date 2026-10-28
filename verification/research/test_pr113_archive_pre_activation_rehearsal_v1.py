@@ -1,4 +1,5 @@
 """Staged T/H engineering evidence can never satisfy the active-30 gate."""
+import io
 import json
 from pathlib import Path
 from types import SimpleNamespace
@@ -8,6 +9,7 @@ from unittest import mock
 
 import pr113_archive_pre_activation_rehearsal_v1 as rehearsal
 import pr113_dual_tooling_candidate_v2 as actual
+from pr113_tooling_migration import ToolingMigrationError
 
 H = "a"*40
 
@@ -114,6 +116,168 @@ class StagedRehearsalTests(unittest.TestCase):
             self.assertFalse(data["original_T2_producer_zip"])
             self.assertTrue((out/"T_stdout.log").is_file())
             self.assertTrue((out/"current_H_workflow.json").is_file())
+
+
+class OuterDiagnosticsTests(unittest.TestCase):
+    """SYNTHETIC orchestration inputs; real detached records and child logging."""
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory(prefix="pr113-outer-tests-")
+        self.addCleanup(self.temporary.cleanup)
+        self.parent = Path(self.temporary.name)
+        self.historical = self.parent / "T"
+        self.current = self.parent / "H"
+        self.historical.mkdir()
+        (self.current / "archival/v0.2.0/supplement-1").mkdir(parents=True)
+        self.output = self.parent / "packet"
+        self.diagnostics = self.parent / "outer"
+        self.arguments = [
+            "--historical-T-source", str(self.historical),
+            "--current-source", str(self.current), "--head", H,
+            "--out", str(self.output), "--diagnostics", str(self.diagnostics),
+        ]
+
+    def record(self):
+        return json.loads((self.diagnostics / "outer.execution.json").read_bytes())
+
+    def checkouts(self):
+        return mock.patch.object(rehearsal.dual, "checkout",
+                                 side_effect=lambda root, head: Path(root).resolve())
+
+    def test_profile_import_cause_retained_without_inventing_child_packet(self):
+        def failed_profile(*args, **kwargs):
+            try:
+                raise ModuleNotFoundError("SYNTHETIC missing verification package")
+            except ImportError as cause:
+                raise ToolingMigrationError("SYNTHETIC staged contract import failed") from cause
+
+        with self.checkouts(), mock.patch.object(
+                rehearsal, "tooling_audit", side_effect=failed_profile), \
+                mock.patch.object(rehearsal.dual, "command") as child:
+            self.assertEqual(rehearsal.main(self.arguments), 2)
+        child.assert_not_called()
+        record = self.record()
+        self.assertEqual((record["stage"], record["outer_exit"], record["status"]),
+                         ("STAGED_PROFILE", 2, "FAILED"))
+        self.assertEqual(record["exception_type"], "ToolingMigrationError")
+        self.assertEqual(record["children"], {})
+        self.assertFalse(self.output.exists())
+        diagnostic = (self.diagnostics / "outer.stderr.log").read_text()
+        self.assertIn("ModuleNotFoundError", diagnostic)
+        self.assertIn("SYNTHETIC missing verification package", diagnostic)
+        self.assertIn("ToolingMigrationError", diagnostic)
+        self.assertFalse(record["required_ci_accepted"])
+
+    def test_real_logged_blocked_child_preserves_3_beside_outer_2(self):
+        # This is a deliberately synthetic verifier, not historical restoration.
+        package = self.historical / "verification/archive"
+        package.mkdir(parents=True)
+        for init in (package.parent / "__init__.py", package / "__init__.py"):
+            init.write_text("", encoding="utf-8")
+        blocked = {
+            "format": "Permansson.Hardening.Check.v1",
+            "status": "BLOCKED", "check": "archive-reproducibility",
+            "error_code": "E_NETWORK_NOT_ISOLATED", "synthetic_test_fixture": True,
+        }
+        (package / "offline_smoke.py").write_text(
+            "import json, sys\nfrom pathlib import Path\n"
+            "report = Path(sys.argv[sys.argv.index('--report') + 1])\n"
+            "report.write_text(json.dumps(" + repr(blocked) + "), encoding='utf-8')\n"
+            "print('SYNTHETIC archive-reproducibility: BLOCKED')\n"
+            "raise SystemExit(3)\n", encoding="utf-8")
+        with self.checkouts(), mock.patch.object(
+                rehearsal, "tooling_audit", return_value=fixture()[2]):
+            self.assertEqual(rehearsal.main(self.arguments), 2)
+        record = self.record()
+        self.assertEqual(record["stage"], "HISTORICAL_T")
+        self.assertEqual(record["outer_exit"], 2)
+        self.assertEqual(set(record["children"]), {"T"})
+        self.assertEqual(record["children"]["T"], {
+            "returncode": 3, "status": "CHILD_FAILED", "failure_kind": "NONZERO_EXIT"})
+        self.assertEqual(json.loads(
+            (self.output / "historical_T_archive.json").read_bytes()), blocked)
+        sidecar = json.loads((self.output / "T.execution.json").read_bytes())
+        self.assertEqual(sidecar["returncode"], 3)
+        self.assertFalse(sidecar["required_ci_accepted"])
+        self.assertIn("SYNTHETIC", (self.output / "T.stdout.log").read_text())
+        for absent in ("H.execution.json", "current_H_workflow.json",
+                       "STAGED_REHEARSAL_NOT_T2_AUTHORITY.json"):
+            self.assertFalse((self.output / absent).exists(), absent)
+
+    def test_invalid_or_overlapping_diagnostics_destinations_write_no_source(self):
+        existing = self.parent / "existing.json"
+        existing.write_text("original diagnostic", encoding="utf-8")
+        bad = (self.historical / "outer", self.current / "outer",
+               self.output / "outer", existing,
+               self.parent / "unused" / ".." / "traversal")
+        before = {root: sorted(str(p.relative_to(root)) for p in root.rglob("*"))
+                  for root in (self.historical, self.current)}
+        for path in bad:
+            with self.subTest(destination=str(path)), mock.patch.object(
+                    rehearsal, "execute") as execute:
+                self.assertEqual(rehearsal.main(self.arguments[:-1] + [str(path)]), 2)
+                execute.assert_not_called()
+            self.assertEqual(existing.read_text(), "original diagnostic")
+            self.assertFalse(self.output.exists())
+            for root in (self.historical, self.current):
+                self.assertEqual(sorted(str(p.relative_to(root)) for p in root.rglob("*")),
+                                 before[root])
+
+    def test_unexpected_failure_is_recorded_then_reraised(self):
+        with self.checkouts(), mock.patch.object(
+                rehearsal, "tooling_audit", side_effect=RuntimeError("SYNTHETIC unexpected bug")):
+            with self.assertRaisesRegex(RuntimeError, "SYNTHETIC unexpected bug"):
+                rehearsal.main(self.arguments)
+        record = self.record()
+        self.assertEqual((record["stage"], record["outer_exit"], record["status"]),
+                         ("STAGED_PROFILE", 1, "FAILED"))
+        self.assertEqual(record["exception_type"], "RuntimeError")
+        self.assertEqual(record["children"], {})
+        self.assertFalse(self.output.exists())
+        self.assertIn("RuntimeError: SYNTHETIC unexpected bug",
+                      (self.diagnostics / "outer.stderr.log").read_text())
+
+    def test_successful_synthetic_orchestration_remains_non_authorizing(self):
+        old, now, profile = fixture()
+
+        def child(argv, cwd, **kwargs):
+            report = Path(argv[argv.index("--report") + 1])
+            report.write_text(json.dumps(old if kwargs.get("historical_artifact") else now))
+            return SimpleNamespace(returncode=0, stdout="SYNTHETIC PASS", stderr="")
+
+        with self.checkouts(), mock.patch.object(rehearsal, "tooling_audit", return_value=profile), \
+                mock.patch.object(rehearsal.dual, "command", side_effect=child):
+            self.assertEqual(rehearsal.main(self.arguments), 0)
+        record = self.record()
+        self.assertEqual((record["stage"], record["outer_exit"], record["status"]),
+                         ("FINAL_SOURCE_AND_REPORT_CHECKS", 0, "COMPLETED_UNAPPROVED"))
+        for key in ("required_ci_accepted", "independent_security_review", "merge_authorized"):
+            self.assertFalse(record[key])
+        summary = json.loads((self.output / "STAGED_REHEARSAL_NOT_T2_AUTHORITY.json").read_bytes())
+        self.assertFalse(summary["active_30_reverified"])
+        self.assertFalse(summary["genuine_required_ci"])
+        self.assertFalse(summary["owner_activation_authorized"])
+        self.assertNotIn("outer.execution.json", rehearsal.evidence_files(self.output))
+
+    def test_malformed_child_sidecar_cannot_mask_original_failure_or_leak_credentials(self):
+        def failed_child(*args, **kwargs):
+            (self.output / "T.execution.json").write_text("{broken SYNTHETIC JSON")
+            raise rehearsal.dual.DualToolingError(
+                "SYNTHETIC failure\nGITHUB_TOKEN=synthetic-secret-to-redact")
+
+        with self.checkouts(), mock.patch.object(
+                rehearsal, "tooling_audit", return_value=fixture()[2]), \
+                mock.patch.object(rehearsal.dual, "command", side_effect=failed_child), \
+                mock.patch.object(rehearsal.sys, "stderr", io.StringIO()):
+            self.assertEqual(rehearsal.main(self.arguments), 2)
+        record = self.record()
+        self.assertEqual(record["outer_exit"], 2)
+        self.assertEqual(record["exception_type"], "DualToolingError")
+        self.assertIn("sidecar_error", record["children"]["T"])
+        diagnostic = (self.diagnostics / "outer.stderr.log").read_text()
+        self.assertNotIn("synthetic-secret-to-redact", diagnostic)
+        self.assertIn("[redacted credential-bearing diagnostic line]", diagnostic)
+        self.assertEqual(record["argv"][-2:], ["--diagnostics", str(self.diagnostics)])
 
 
 if __name__=="__main__":

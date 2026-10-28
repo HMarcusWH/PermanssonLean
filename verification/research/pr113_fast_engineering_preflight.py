@@ -23,6 +23,7 @@ SUITES = (
     # The versioned migration and actual detached 30-source CI-06/CI-07
     # executions must be present before the whole producer may pass.
     "test_pr113_tooling_migration_v2.py",
+    "test_pr113_historical_cli_entrypoints.py",
     "test_pr113_a2_successor_identity_v2.py",
     "test_pr113_a2_compiler_route_v3.py",
     "test_pr113_historical_a2_replay_v1.py",
@@ -155,9 +156,12 @@ def execute(head, output):
     for pattern in SUITES:
         require((TEST_ROOT/pattern).is_file(),
                 "expected source-controlled QA suite missing")
+        # Full-clone direct-entrypoint regressions spawn the real Git audit;
+        # allow slower Windows process startup without relaxing any assertion.
+        timeout = 300 if pattern == "test_pr113_historical_cli_entrypoints.py" else 120
         result=run_cli(
             [sys.executable,"-B","-m","unittest","discover",
-             "-s",str(TEST_ROOT),"-p",pattern,"-v"],120)
+             "-s",str(TEST_ROOT),"-p",pattern,"-v"],timeout)
         name=pattern.removesuffix(".py")
         combined=(result.stdout+"\n"+result.stderr)
         (output/(name+".log")).write_text(combined)

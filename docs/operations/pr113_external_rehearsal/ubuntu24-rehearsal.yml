@@ -1,0 +1,487 @@
+# EXTERNAL HARNESS TEMPLATE: keep outside PermanssonLean/.github/workflows.
+# Install in a separately authorized harness repository's default branch only.
+name: PR113 external preactivation rehearsal
+
+on:
+  workflow_dispatch:
+    inputs:
+      current_head:
+        description: Exact current PR113 repair commit (40 lowercase hexadecimal characters)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr113-external-preactivation-${{ inputs.current_head }}
+  cancel-in-progress: false
+
+jobs:
+  rehearsal:
+    name: external-T-H-staged25-unreviewed
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      TARGET_HEAD: ${{ inputs.current_head }}
+      HARNESS_REPOSITORY: ${{ github.repository }}
+      HARNESS_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+      HARNESS_REF: ${{ github.ref }}
+      HARNESS_SHA: ${{ github.sha }}
+      HARNESS_WORKFLOW_SHA: ${{ github.workflow_sha }}
+      HARNESS_WORKFLOW_REF: ${{ github.workflow_ref }}
+      HARNESS_RUN_ID: ${{ github.run_id }}
+      HARNESS_RUN_ATTEMPT: ${{ github.run_attempt }}
+      HARNESS_JOB: ${{ github.job }}
+      HARNESS_SERVER_URL: ${{ github.server_url }}
+    steps:
+      - name: Initialize detached diagnostic destination
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -- "$RUNNER_TEMP/pr113-external-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          mkdir -- "$RUNNER_TEMP/pr113-external-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT/evidence"
+          mkdir -- "$RUNNER_TEMP/pr113-external-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT/evidence/meta"
+          printf '%s\n' 'Harness setup started; no rehearsal executed.' > "$RUNNER_TEMP/pr113-external-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT/evidence/meta/setup.log"
+
+      - name: Read exact external orchestrator source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Prepare supported Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+
+      - name: Qualify runner and execute the unchanged T and repaired H rehearsal
+        shell: bash
+        run: |
+          set -euo pipefail
+          export EXTERNAL_WORK="$RUNNER_TEMP/pr113-external-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          python3 -B - <<'PY'
+          import datetime
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import platform
+          import re
+          import subprocess
+          import sys
+          import traceback
+          import urllib.request
+
+          T = "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388"
+          REPOSITORY = "HMarcusWH/PermanssonLean"
+          URL = "https://github.com/" + REPOSITORY + ".git"
+          work = Path(os.environ["EXTERNAL_WORK"]).resolve(strict=True)
+          evidence = work / "evidence"
+          meta = evidence / "meta"
+          sources = work / "src"
+          head = os.environ["TARGET_HEAD"]
+          state = {
+              "format": "Permansson.PR113.ExternalPreactivationHarness.v1",
+              "status": "RUNNING", "stage": "INPUTS", "outer_exit": None,
+              "historical_T": T, "declared_current_H": head,
+              "required_ci_accepted": False, "active_30_reverified": False,
+              "independent_security_review": False, "owner_activation_authorized": False,
+              "mathematical_acceptance": False, "merge_authorized": False,
+          }
+
+          class HarnessFailure(Exception):
+              def __init__(self, message, code=2):
+                  super().__init__(message)
+                  self.code = code
+
+          def need(value, message):
+              if not value:
+                  raise HarnessFailure(message)
+
+          def save(name, value):
+              (meta / name).write_text(json.dumps(value, sort_keys=True, indent=2) + "\n",
+                                       encoding="utf-8")
+
+          def mark(value):
+              state["stage"] = value
+              save("harness.execution.json", state)
+
+          home = work / "home"
+          home.mkdir()
+          # Explicit allowlist: no imported credentials, proxy settings, CI context,
+          # Python import overrides, Git redirection, or user/system Git configuration.
+          clean = {
+              "PATH": str(Path(sys.executable).parent) + ":/usr/bin:/bin",
+              "HOME": str(home), "LANG": "C.UTF-8", "LC_ALL": "C.UTF-8",
+              "PYTHONDONTWRITEBYTECODE": "1", "PIP_CONFIG_FILE": "/dev/null",
+              "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": "/dev/null",
+              "GIT_TERMINAL_PROMPT": "0", "GIT_NO_REPLACE_OBJECTS": "1",
+              "GIT_NO_LAZY_FETCH": "1",
+          }
+
+          def command(argv, cwd, label, timeout=300, check=True):
+              # These are outer diagnostic logs, never strict inner packet members.
+              record = {"argv": argv, "cwd": str(cwd), "returncode": None}
+              save(label + ".command.json", record)
+              try:
+                  with (meta / (label + ".stdout.log")).open("wb") as out, \
+                          (meta / (label + ".stderr.log")).open("wb") as err:
+                      result = subprocess.run(argv, cwd=cwd, env=clean, stdin=subprocess.DEVNULL,
+                                              stdout=out, stderr=err, timeout=timeout, check=False)
+                  record["returncode"] = result.returncode
+              except subprocess.TimeoutExpired:
+                  record["failure_kind"] = "OUTER_PREPARATION_TIMEOUT"
+                  raise
+              except OSError:
+                  record["failure_kind"] = "LAUNCH_ERROR"
+                  raise
+              finally:
+                  save(label + ".command.json", record)
+              for suffix in (".stdout.log", ".stderr.log"):
+                  need((meta / (label + suffix)).stat().st_size <= 4 * 1024 * 1024,
+                       "outer command log exceeded budget: " + label)
+              if check and result.returncode:
+                  raise HarnessFailure(label + " failed; retained original exit " +
+                                       str(result.returncode), result.returncode if
+                                       result.returncode in (1, 2, 3) else 2)
+              return (meta / (label + ".stdout.log")).read_text(encoding="utf-8")
+
+          def git(root, *args):
+              result = subprocess.run(["git", "-C", str(root), *args], env=clean,
+                                      capture_output=True, text=True, timeout=60, check=False)
+              need(result.returncode == 0, "Git source verification failed: " + repr(args))
+              return result.stdout.strip()
+
+          def live_pr(name):
+              request = urllib.request.Request(
+                  "https://api.github.com/repos/" + REPOSITORY + "/pulls/113",
+                  headers={"Accept": "application/vnd.github+json",
+                           "User-Agent": "PR113-External-Preactivation-Harness"})
+              # No bearer credentials or inherited proxy configuration.
+              opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+              with opener.open(request, timeout=45) as response:
+                  raw = response.read(2 * 1024 * 1024 + 1)
+              need(len(raw) <= 2 * 1024 * 1024, "oversized PR metadata")
+              pr = json.loads(raw)
+              record = {
+                  "observed_at_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                  "number": pr["number"], "state": pr["state"], "url": pr["html_url"],
+                  "head": pr["head"]["sha"], "head_ref": pr["head"]["ref"],
+                  "head_repository": pr["head"]["repo"]["full_name"],
+                  "base": pr["base"]["sha"], "merged": pr["merged"],
+              }
+              save(name, record)
+              need(record["number"] == 113 and record["state"] == "open"
+                   and record["merged"] is False and record["head"] == head
+                   and record["head_ref"] == "research/final-mathematical-closure"
+                   and record["head_repository"] == REPOSITORY,
+                   "input is no longer the actual open PR113 head")
+              return record
+
+          def source_records():
+              rows = {}
+              for label, expected in (("T", T), ("H", head)):
+                  root = sources / label
+                  dotgit = root / ".git"
+                  need(dotgit.is_dir() and not dotgit.is_symlink(),
+                       "independent full clone required")
+                  need(git(root, "rev-parse", "HEAD") == expected, "wrong source head")
+                  need(Path(git(root, "rev-parse", "--show-toplevel")).resolve() == root,
+                       "wrong source root")
+                  need(Path(git(root, "rev-parse", "--absolute-git-dir")).resolve() == dotgit,
+                       "shared Git metadata is prohibited")
+                  need(Path(git(root, "rev-parse", "--git-common-dir")).resolve()
+                       == dotgit or git(root, "rev-parse", "--git-common-dir") == ".git",
+                       "shared Git common directory is prohibited")
+                  detached = subprocess.run(["git", "-C", str(root), "symbolic-ref", "-q", "HEAD"],
+                                            env=clean, capture_output=True, timeout=30)
+                  need(detached.returncode == 1, "source checkout is not detached")
+                  need(git(root, "rev-parse", "--is-shallow-repository") == "false",
+                       "shallow source is prohibited")
+                  need(not git(root, "status", "--porcelain=v1", "--untracked-files=all",
+                               "--ignored=matching"), "source contains tracked/untracked/ignored changes")
+                  need(not git(root, "for-each-ref", "--format=%(refname)", "refs/replace"),
+                       "replacement refs are prohibited")
+                  need(not list((dotgit / "objects/pack").glob("*.promisor")),
+                       "promisor packs are prohibited")
+                  config = git(root, "config", "--local", "--list")
+                  need(not re.search(r"(?im)^(extensions\.partialclone|remote\..*\.(promisor|partialclonefilter))=",
+                                     config), "partial clone configuration is prohibited")
+                  for suffix in ("info/grafts", "objects/info/alternates",
+                                 "objects/info/http-alternates"):
+                      candidate = dotgit / suffix
+                      need(not candidate.exists() or candidate.stat().st_size == 0,
+                           "external object source or graft is prohibited")
+                  need(all(path.lstat().st_uid == os.getuid() for path in root.rglob("*")),
+                       "source ownership differs from nonroot runner")
+                  rows[label] = {"commit": expected, "tree": git(root, "rev-parse", "HEAD^{tree}"),
+                                 "path": str(root), "clean": True, "full_independent_clone": True}
+              need((sources / "T/.git/objects").resolve() != (sources / "H/.git/objects").resolve(),
+                   "T/H object databases must be distinct")
+              return rows
+
+          code = 1
+          try:
+              need(platform.system() == "Linux" and sys.version_info[:2] == (3, 13),
+                   "supported Linux/Python3.13 host required")
+              need(os.getuid() != 0 and os.getgid() != 0, "nonroot runner required")
+              need(re.fullmatch(r"[0-9a-f]{40}", head) is not None, "full lowercase input SHA required")
+              need(os.environ["HARNESS_REPOSITORY"] != REPOSITORY,
+                   "this template must execute from a separate harness repository")
+              need(os.environ["HARNESS_REF"] == "refs/heads/" + os.environ["HARNESS_DEFAULT_BRANCH"],
+                   "dispatch the registered harness default branch")
+              need(os.environ["HARNESS_SHA"] == os.environ["HARNESS_WORKFLOW_SHA"],
+                   "checked harness and executing workflow source differ")
+              harness = Path(os.environ["GITHUB_WORKSPACE"]).resolve(strict=True)
+              need(git(harness, "rev-parse", "HEAD") == os.environ["HARNESS_WORKFLOW_SHA"],
+                   "external orchestrator checkout has the wrong immutable source")
+              workflow = harness / ".github/workflows/ubuntu24-rehearsal.yml"
+              need(workflow.is_file() and not workflow.is_symlink(), "installed harness source missing")
+              save("orchestrator.json", {
+                  "repository": os.environ["HARNESS_REPOSITORY"],
+                  "commit": os.environ["HARNESS_WORKFLOW_SHA"],
+                  "workflow_ref": os.environ["HARNESS_WORKFLOW_REF"],
+                  "workflow_sha256": hashlib.sha256(workflow.read_bytes()).hexdigest(),
+                  "run_id": os.environ["HARNESS_RUN_ID"],
+                  "run_attempt": os.environ["HARNESS_RUN_ATTEMPT"],
+                  "job_key": os.environ["HARNESS_JOB"],
+                  "run_url": os.environ["HARNESS_SERVER_URL"] + "/" +
+                      os.environ["HARNESS_REPOSITORY"] + "/actions/runs/" + os.environ["HARNESS_RUN_ID"],
+                  "tested_repository": REPOSITORY, "tested_H": head, "historical_T": T,
+                  "provenance_scope": "external_orchestrator_record_not_independent_authentication",
+              })
+              save("environment.json", {"platform": platform.platform(), "python": sys.version,
+                                       "python_executable": sys.executable, "uid": os.getuid(),
+                                       "gid": os.getgid(), "kernel_cmdline":
+                                       Path("/proc/cmdline").read_text().strip()})
+              live_pr("pr113-pre.json")
+              mark("INDEPENDENT_FULL_CLONES")
+              sources.mkdir()
+              for label, commit in (("T", T), ("H", head)):
+                  root = sources / label
+                  command(["git", "clone", "--quiet", "--no-local", "--no-checkout",
+                           "--no-recurse-submodules", URL, str(root)], work, "clone-" + label)
+                  command(["git", "-C", str(root), "checkout", "--quiet", "--detach", commit],
+                          work, "checkout-" + label)
+              before = source_records()
+              save("checkouts-pre.json", before)
+
+              mark("PINNED_DEPENDENCY")
+              requirement = sources / "H/verification/integrity/requirements.txt"
+              need(requirement.read_bytes() ==
+                   (sources / "T/verification/integrity/requirements.txt").read_bytes(),
+                   "historical dependency requirements changed")
+              wheels = work / "wheels"
+              wheels.mkdir()
+              command([sys.executable, "-m", "pip", "download", "--index-url", "https://pypi.org/simple",
+                       "--only-binary=:all:", "--no-deps", "-r", str(requirement),
+                       "--dest", str(wheels)], work, "download-pinned-wheel")
+              wheel_files = list(wheels.iterdir())
+              need(len(wheel_files) == 1 and wheel_files[0].name == "pypdf-6.10.0-py3-none-any.whl",
+                   "unexpected replay dependency wheel inventory")
+              save("dependency.json", {"requirements_sha256": hashlib.sha256(
+                  requirement.read_bytes()).hexdigest(), "wheel": wheel_files[0].name,
+                  "wheel_sha256": hashlib.sha256(wheel_files[0].read_bytes()).hexdigest()})
+              command([sys.executable, "-m", "venv", str(work / "venv")], work, "create-venv")
+              python = str(work / "venv/bin/python")
+              command([python, "-m", "pip", "install", "--no-index", "--no-deps",
+                       "--find-links", str(wheels), "-r", str(requirement)], work, "install-pinned-wheel")
+
+              mark("UNCHANGED_T_RUNNER_QUALIFICATION")
+              # Same launch chain as T's launch_offline/ARCH-21; Python starts only
+              # after root creates the namespace and setpriv drops every capability.
+              # This calls T's actual function; it is only a runner qualification.
+              need(all(Path(binary).is_file() and os.access(binary, os.X_OK) for binary in
+                       ("/usr/bin/sudo", "/usr/bin/unshare", "/usr/bin/setpriv")),
+                   "required original namespace/privilege executables are unavailable")
+              probe = "\n".join((
+                  "import json,sys",
+                  "from pathlib import Path",
+                  "sys.path.insert(0,sys.argv[1])",
+                  "from verification.archive import offline_smoke as original",
+                  "from verification.integrity.reports import HardeningError",
+                  "try:",
+                  "    original.require_dependencies()",
+                  "    attestation = original.isolation_attestation(sys.argv[2])",
+                  "    print(json.dumps({'status':'QUALIFIED_RUNNER_ONLY',",
+                  "        'original_module':original.__file__,",
+                  "        'ipv6_route_readable':Path('/proc/net/ipv6_route').is_file(),",
+                  "        'attestation':attestation},sort_keys=True))",
+                  "except HardeningError as error:",
+                  "    print(json.dumps({'status':'BLOCKED' if error.exit_code == 3 else 'FAIL',",
+                  "        'error_code':error.code,'message':str(error)},sort_keys=True))",
+                  "    raise SystemExit(error.exit_code)",
+              ))
+              parent_namespace = os.readlink("/proc/self/ns/net")
+              argv = ["/usr/bin/sudo", "-n", "/usr/bin/unshare", "--net", "--",
+                      "/usr/bin/setpriv", "--reuid=" + str(os.getuid()),
+                      "--regid=" + str(os.getgid()), "--clear-groups", "--bounding-set=-all",
+                      "--inh-caps=-all", "--ambient-caps=-all", "--no-new-privs",
+                      python, "-B", "-c", probe, str(sources / "T"), parent_namespace]
+              raw = command(argv, sources / "T", "qualify-original-T", timeout=60, check=False)
+              qualification_command = json.loads((meta / "qualify-original-T.command.json").read_bytes())
+              if raw.strip():
+                  try:
+                      save("runner-qualification.json", json.loads(raw))
+                  except ValueError:
+                      pass  # Original bounded logs remain authoritative for a malformed probe response.
+              need(qualification_command["returncode"] == 0,
+                   "unchanged T isolation qualification BLOCKED; no replay or relaxed fallback")
+              qualification = json.loads(raw)
+              need(qualification["attestation"]["network_isolation"] == "ENFORCED"
+                   and qualification["attestation"]["parent_network_namespace"] == parent_namespace
+                   and qualification["attestation"]["child_network_namespace"] != parent_namespace
+                   and Path(qualification["original_module"]).resolve()
+                       == sources / "T/verification/archive/offline_smoke.py",
+                   "wrong original T function or missing namespace attestation")
+              save("runner-qualification.json", qualification)
+
+              mark("ACTUAL_STAGED_T_H_REHEARSAL")
+              argv = [python, "-B", str(sources / "H/verification/research/"
+                      "pr113_archive_pre_activation_rehearsal_v1.py"),
+                      "--historical-T-source", str(sources / "T"),
+                      "--current-source", str(sources / "H"), "--head", head,
+                      "--out", str(evidence / "packet"), "--diagnostics", str(evidence / "outer")]
+              # The repaired wrapper owns each 1800-second child timeout and
+              # its process-group cleanup. Do not kill it with a shorter outer timer.
+              command(argv, work, "rehearsal", timeout=None, check=False)
+              rehearsal_exit = json.loads((meta / "rehearsal.command.json").read_bytes())["returncode"]
+              state["rehearsal_outer_exit"] = rehearsal_exit
+              after = source_records()
+              save("checkouts-post.json", after)
+              need(after == before, "source identities/cleanliness changed during rehearsal")
+              live_pr("pr113-post.json")
+              if rehearsal_exit:
+                  raise HarnessFailure("actual rehearsal failed; retain original child and outer exits",
+                                       rehearsal_exit if rehearsal_exit in (1, 2, 3) else 2)
+              mark("STRICT_PACKET_AND_STAGED_SEMANTICS")
+              # A fresh interpreter imports the exact H helpers; T's process
+              # and import context remain entirely separate from this intake.
+              validator = r'''
+          import hashlib
+          import json
+          from pathlib import Path
+          import sys
+          import zipfile
+          source, head, packet, destination = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3]), Path(sys.argv[4])
+          sys.path[:0] = [str(source / "verification/research"), str(source)]
+          from pr113_t2_execution_io_v1 import evidence_files, read_report
+          from pr113_tooling_migration_v2 import audit
+          from pr113_archive_pre_activation_rehearsal_v1 import validate_reports
+          from infrastructure_acceptance import inspect_zip
+          def need(ok, message):
+              if not ok:
+                  raise ValueError(message)
+          required = ("historical_T_archive.json", "current_H_workflow.json",
+                      "STAGED_REHEARSAL_NOT_T2_AUTHORITY.json", "unreviewed_process_trace.json",
+                      "T.execution.json", "H.execution.json")
+          members = evidence_files(packet, required=required)
+          old = read_report(packet / "historical_T_archive.json")
+          current = read_report(packet / "current_H_workflow.json")
+          profile = audit(source, head, phase="staged")
+          expected = validate_reports(old, current, profile, head)
+          summary = read_report(packet / "STAGED_REHEARSAL_NOT_T2_AUTHORITY.json")
+          need(all(summary.get(key) == value for key, value in expected.items()),
+               "retained summary contradicts actual staged report validation")
+          for report, key in (("historical_T_archive.json", "historical_report_sha256"),
+                              ("current_H_workflow.json", "current_report_sha256")):
+              need(summary.get(key) == hashlib.sha256((packet / report).read_bytes()).hexdigest(),
+                   "summary report digest mismatch")
+          traces = read_report(packet / "unreviewed_process_trace.json")
+          need(traces.get("independent_security_review") is False, "trace falsely asserts review")
+          for label in ("T", "H"):
+              receipt = read_report(packet / (label + ".execution.json"))
+              trace = traces[label]
+              need(receipt.get("format") == "Permansson.PR113.T2ChildExecution.v1"
+                   and receipt.get("returncode") == 0
+                   and receipt.get("status") == "CHILD_EXIT_ZERO_REPORTS_UNVERIFIED"
+                   and receipt.get("failure_kind") is None
+                   and receipt.get("required_ci_accepted") is False
+                   and receipt.get("independent_security_review") is False
+                   and trace.get("exit_code") == 0 and trace.get("non_authorizing") is True
+                   and receipt.get("argv") == trace.get("command"), "child execution/trace mismatch")
+              for stream in ("stdout", "stderr"):
+                  log = receipt["logs"][stream]
+                  name = log["file"]
+                  need(name is None or name == label + "." + stream + ".log", "foreign log filename")
+                  data = b"" if name is None else (packet / name).read_bytes()
+                  digest = hashlib.sha256(data).hexdigest()
+                  need(log.get("truncated") is False and log.get("bytes") == len(data)
+                       and log.get("observed_bytes") == len(data) and log.get("sha256") == digest
+                       and trace.get(stream + "_sha256") == digest,
+                       "original child stream bytes/count/hash mismatch")
+                  legacy = packet / (label + "_" + stream + ".log")
+                  need((legacy.is_file() and legacy.read_bytes() == data) if data else not legacy.exists(),
+                       "legacy stream differs from retained original bytes")
+          need(not destination.exists(), "strict packet destination already exists")
+          with zipfile.ZipFile(destination, "x", compression=zipfile.ZIP_STORED) as archive:
+              for name in members:
+                  archive.write(packet / name, arcname=name)
+          raw = destination.read_bytes()
+          decoded = inspect_zip(raw)
+          need(set(decoded) == set(members) and all(decoded[name] == (packet / name).read_bytes()
+               for name in members), "strict ZIP altered or omitted original member bytes")
+          print(json.dumps({"status":"STRUCTURE_AND_STAGED_SEMANTICS_VALID_UNAPPROVED",
+                            "head":head,"members":members,"strict_packet_sha256":hashlib.sha256(raw).hexdigest(),
+                            "active_30_reverified":False,"required_ci_accepted":False,
+                            "independent_security_review":False},sort_keys=True))
+              '''
+              validation = command([python, "-B", "-c", validator, str(sources / "H"), head,
+                                    str(evidence / "packet"), str(evidence / "packet.zip")],
+                                   work, "strict-packet-intake", timeout=300)
+              save("strict-packet-validation.json", json.loads(validation))
+              state["status"] = "STAGED_REHEARSAL_COMPLETED_UNAPPROVED"
+              state["stage"] = "COMPLETE"
+              code = 0
+          except HarnessFailure as exc:
+              code = exc.code
+              state["status"] = "BLOCKED" if state["stage"] == "UNCHANGED_T_RUNNER_QUALIFICATION" else "FAILED"
+              if state["status"] == "BLOCKED":
+                  code = 3
+              state["message"] = str(exc)
+              (meta / "harness.stderr.log").write_text(traceback.format_exc(), encoding="utf-8")
+          except Exception as exc:
+              state["status"] = "FAILED"
+              state["exception_type"] = type(exc).__name__
+              (meta / "harness.stderr.log").write_text(traceback.format_exc(), encoding="utf-8")
+          finally:
+              state["outer_exit"] = code
+              save("harness.execution.json", state)
+              print(json.dumps(state, sort_keys=True))
+          raise SystemExit(code)
+          PY
+
+      - name: Hash retained evidence without changing execution status
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd -- "$RUNNER_TEMP/pr113-external-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT/evidence"
+          find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 -r sha256sum > SHA256SUMS
+
+      - name: Retain external success or failure evidence
+        if: always()
+        id: evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-external-preactivation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/pr113-external-${{ github.run_id }}-${{ github.run_attempt }}/evidence/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Record actual transport identity for later independent inspection
+        if: always() && steps.evidence.outcome == 'success'
+        shell: bash
+        env:
+          ARTIFACT_ID: ${{ steps.evidence.outputs.artifact-id }}
+          ARTIFACT_DIGEST: ${{ steps.evidence.outputs.artifact-digest }}
+          ARTIFACT_URL: ${{ steps.evidence.outputs.artifact-url }}
+        run: |
+          {
+            echo 'External preactivation evidence; no required-CI or review authority.'
+            echo "Artifact ID: $ARTIFACT_ID"
+            echo "Transport ZIP digest: $ARTIFACT_DIGEST"
+            echo "Artifact URL: $ARTIFACT_URL"
+          } >> "$GITHUB_STEP_SUMMARY"
