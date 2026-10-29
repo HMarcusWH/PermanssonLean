@@ -59,6 +59,32 @@ class LPReificationTests(unittest.TestCase):
         self.assertIn('multiplier_bound_negative',metadata['theorem_names'])
         self.assertFalse(metadata['application_release_authorized'])
 
+    def test_optimality_instance_checks_finite_rational_premises(self):
+        raw,receipt=optimal_fixture()
+        source,metadata=emit_source(parse_lp(raw),receipt)
+        self.assertIn('fin_cases j <;> norm_num [primal]',source)
+        self.assertIn('fin_cases i <;> norm_num [dual]',source)
+        self.assertIn('Fin.sum_univ_succ, A, b, primal',source)
+        self.assertIn('Fin.sum_univ_succ, A, c, dual',source)
+        self.assertNotIn('theorem primal_checked : primalFeasible A b primal := by decide',source)
+        self.assertNotIn('theorem dual_checked : dualFeasible A c dual := by decide',source)
+        self.assertFalse(metadata['compiler_evidence_authenticated'])
+
+    def test_exact_premises_survive_shift_minimum_and_tie(self):
+        raw,_=optimal_fixture()
+        raw['bounds']['x']['lower']='-2'
+        raw['bounds']['y']['lower']='3'
+        raw['constraints'][0]['rhs']='5'
+        raw['objective']['sense']='minimize'
+        model=parse_lp(raw)
+        proposal=propose_lp_optimum(model)
+        self.assertEqual(proposal['status'],'CHECKED_OPTIMAL_CANDIDATE')
+        source,meta=emit_source(model,proposal['receipt'])
+        self.assertIn('fin_cases j <;> norm_num [primal]',source)
+        self.assertIn('fin_cases j <;> norm_num [Fin.sum_univ_succ, A, c, dual]',source)
+        self.assertEqual(meta['normalization']['original_sense'],'minimize')
+        self.assertEqual(meta['normalization']['lower_bounds'],['-2','3'])
+
     def test_original_lower_bound_shift_preserved(self):
         raw,r=optimal_fixture()
         raw['bounds']['x']['lower']='-2'
