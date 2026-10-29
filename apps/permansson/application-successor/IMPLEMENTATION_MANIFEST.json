@@ -1,12 +1,12 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 442,
+    "combined_inventory_rows": 448,
     "declared_leans_compiled": 0,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
     "local_tested_python_modules": 56,
-    "new_paths_not_in_original_union": 84,
-    "source_changes_in_branch": 142
+    "new_paths_not_in_original_union": 90,
+    "source_changes_in_branch": 149
   },
   "candidate_engine_overlays": {
     "exit_routing": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
@@ -21,7 +21,7 @@
     "one_step_observation_belief": "NUMERIC_CHECKED_ONE_TRANSITION_NOT_LEAN_CERTIFIED"
   },
   "candidate_head_sha": "EXTERNAL_GITHUB_PR_HEAD_REQUIRED_AFTER_COMMIT",
-  "candidate_revision": "lean-bridge-first-sources-v12-pending-ci",
+  "candidate_revision": "v12-source-bound-finite-lean-and-T2-diagnostic",
   "candidate_source_base_sha": "3492b26707788293ca88c66637b6ba021c7e478d",
   "candidate_verification": {
     "0": "1",
@@ -354,6 +354,20 @@
       "scientific_claims_verified": false,
       "independent_math_cert": false,
       "release_authorized": false
+    },
+    "round13_reification_and_T2_candidate": {
+      "base_head_before_commit": "4f352cda7eb7f7014b1ee6a234acd642b33d29fd",
+      "source_paths_added": 8,
+      "prior_manifest_planned_paths_promoted": 2,
+      "focused_reification_tests_passed": 11,
+      "synthetic_archive_guard_tests_passed": 6,
+      "authentic_archive_guard_test": "EXACT_HEAD_CI_REQUIRED",
+      "installed_wheel_python_module": "PASS_LOCAL_EARLIER_HANDOFF_OVERLAY",
+      "local_genuine_lean_compilation": "NOT_EXECUTED",
+      "original_required_archive_gate": "STILL_FAIL_CLOSED",
+      "independent_security_review": false,
+      "full_release_authorized": false,
+      "mathematical_certification": false
     }
   },
   "counts": {
@@ -7158,12 +7172,17 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_SOURCE_CANDIDATE",
+        "sha256": "8880bb7ae4724ebd91c17d938582f99f55cedf37a66ef35f568964c08f2affbe",
+        "git_blob_sha": "c5f568bf2ab389f540c3a97c5ca3d0d03ebcedde",
+        "proof": "NOT_EXECUTED",
+        "independent_security_review": false,
+        "release_authorized": false
       },
       "classification": "package",
       "conditional": false,
       "dependency_paths": [],
-      "disposition": "IMPLEMENT_FROM_V2_SPEC",
+      "disposition": "SOURCE_CANDIDATE_NOT_CERTIFICATION",
       "gate": "No import side effects; setuptools discovers the explicitly declared subpackage.",
       "generated": false,
       "original_main_git_blob": null,
@@ -7297,7 +7316,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_SOURCE_CANDIDATE",
+        "sha256": "a698c87a23cae552b5e483235c71197ba804ef140ab0bbc627f03970210c0952",
+        "git_blob_sha": "4179b0c6205dce1f695d021843200b4cd45b7c33",
+        "proof": "NOT_EXECUTED",
+        "independent_security_review": false,
+        "release_authorized": false
       },
       "classification": "python_proof_emitter",
       "conditional": false,
@@ -7311,7 +7335,7 @@
         "apps/permansson/application-successor/src/permansson_app/receipts/lp.py",
         "apps/permansson/application-successor/src/permansson_app/engines/types.py"
       ],
-      "disposition": "IMPLEMENT_OR_RECONCILE_V2",
+      "disposition": "SOURCE_CANDIDATE_NOT_CERTIFICATION",
       "gate": "No generated theorem success until actual pinned compiler runs; no arbitrary user Lean expressions interpolated.",
       "generated": false,
       "original_main_git_blob": null,
@@ -12782,6 +12806,132 @@
         "sha256": "8fe78425ff50cac4743c7e3b2d068d924701de3d2a8118711250a2256abee971",
         "proof": "NOT_EXECUTED",
         "trust": "NO_CERTIFICATION_OR_RELEASE_PROMOTION"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/proof/finite_source_check.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "SOURCE_CANDIDATE_NOT_CERTIFICATION",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-06"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_SOURCE_CANDIDATE",
+        "sha256": "6ba0844988b996b7cbea770710a496310f64e4a3a072ba95a067e333b635e98e",
+        "git_blob_sha": "49d622686481904a7c7b552352aad01f01cecb2e",
+        "proof": "NOT_EXECUTED",
+        "independent_security_review": false,
+        "release_authorized": false
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_finite_lean_source.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "SOURCE_CANDIDATE_NOT_CERTIFICATION",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-06"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_SOURCE_CANDIDATE",
+        "sha256": "c1425c285b97c6a940d32565dbf5ee7eb4a9466826c207e8ce957a2503efd638",
+        "git_blob_sha": "e1fb553b3055b10f303661b0d0b30130e78b2bcf",
+        "proof": "NOT_EXECUTED",
+        "independent_security_review": false,
+        "release_authorized": false
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/FINITE_WORLD_LEAN_REIFICATION_V1.md",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "SOURCE_CANDIDATE_NOT_CERTIFICATION",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-06"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_SOURCE_CANDIDATE",
+        "sha256": "96f23792ec07cc9f942665fd355514e7bdad04c2406c247a1c6db5b19c3e20b3",
+        "git_blob_sha": "00e1c25bc2147d12e5d95888287e219866b8b3d0",
+        "proof": "NOT_EXECUTED",
+        "independent_security_review": false,
+        "release_authorized": false
+      }
+    },
+    {
+      "path": "verification/research/pr115_archive_transition_guard_v1.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "research-preactivation-diagnostic",
+      "disposition": "SOURCE_CANDIDATE_NOT_CERTIFICATION",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "REL-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_SOURCE_CANDIDATE",
+        "sha256": "ebd966fbc4bcecdd71822667f50fcefa727cad9e27109016af46ec01ea80f5ec",
+        "git_blob_sha": "c1db9e291b995f39a79047eac8cde208b1c7dc3c",
+        "proof": "NOT_EXECUTED",
+        "independent_security_review": false,
+        "release_authorized": false
+      }
+    },
+    {
+      "path": "verification/research/test_pr115_archive_transition_guard_v1.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "research-preactivation-diagnostic",
+      "disposition": "SOURCE_CANDIDATE_NOT_CERTIFICATION",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "REL-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_SOURCE_CANDIDATE",
+        "sha256": "e20c2187685a774a47eae31db98522e79132c2d95c1b00b86dbbec3c166fe76a",
+        "git_blob_sha": "f068241185474eba6ad20f0cb6607902cd0a67aa",
+        "proof": "NOT_EXECUTED",
+        "independent_security_review": false,
+        "release_authorized": false
+      }
+    },
+    {
+      "path": "docs/operations/PR115_ARCHIVE_T_T2_REPAIR_INTEGRATION_2026-10-29.md",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "SOURCE_CANDIDATE_NOT_CERTIFICATION",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-06"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_SOURCE_CANDIDATE",
+        "sha256": "cab3df9ea77dd6a93aea8825d426e9365ff9a2a26095be213037833be3bd0ee9",
+        "git_blob_sha": "11f13d52eab518f110fb63c16a6ec4f803b1e521",
+        "proof": "NOT_EXECUTED",
+        "independent_security_review": false,
+        "release_authorized": false
       }
     }
   ],
