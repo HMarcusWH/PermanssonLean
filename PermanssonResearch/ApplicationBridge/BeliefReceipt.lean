@@ -88,8 +88,6 @@ noncomputable def posterior (b : RationalBelief ns nx) (o : Fin no) :
       nonneg := fun y => div_nonneg (m.observedAtom_nonneg b o y)
         (m.observationMass_nonneg b o)
       sum_one := ?_ }
-    change (∑ y : Fin ns × Fin nx,
-      m.observedAtom b o y / m.observationMass b o) = 1
     rw [← Finset.sum_div]
     exact div_self hz
 
@@ -129,7 +127,7 @@ structure LegalObservedChoice (b : RationalBelief ns nx) where
 
 /-- A controller selects one action as a function of its CURRENT observation.
     The world state `y` is not supplied to this controller. -/
-def observedPolicyValue (b : RationalBelief ns nx) (choose : Fin no → Fin na)
+noncomputable def observedPolicyValue (b : RationalBelief ns nx) (choose : Fin no → Fin na)
     (terminal : (Fin ns × Fin nx) → ℚ) : ℚ :=
   ∑ o : Fin no, m.observationMass b o *
     (m.posterior b o).dot (fun y =>
