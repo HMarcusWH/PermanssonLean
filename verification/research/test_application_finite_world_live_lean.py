@@ -117,7 +117,7 @@ class FiniteWorldSourceCompiler(unittest.TestCase):
                    if line.startswith(marker)]
         self.assertEqual(len(targets), 1, "missing/ambiguous obligation")
         errors = [int(m.group(1)) for m in re.finditer(
-            r"ReifiedFiniteWorld\\.lean:(\\d+):\\d+: error:", log)]
+            r"ReifiedFiniteWorld\.lean:(\d+):\d+: error:", log)]
         self.assertTrue(errors, "no source-anchored Lean error: " + log[-4000:])
         self.assertTrue(any(0 <= err - targets[0] <= 7 for err in errors),
                         "false source did not fail at its claimed obligation: " + log[-4000:])
