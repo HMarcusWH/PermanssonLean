@@ -1,4 +1,4 @@
-"""Closed two-capability registry with source-byte pins."""
+"""Two closed native providers plus separately scoped exact numeric profiles."""
 import json
 from .package_data import resource_bytes
 from .errors import AppError
@@ -9,6 +9,18 @@ def registry():
     caps = data.get("capabilities")
     if not isinstance(caps, dict) or set(caps) != {"c10.fixed_six_state.numeric.v1", "c11.stationary_1_to_6.numeric.v1"}:
         raise AppError("REGISTRY", "invalid registry capability set")
+    extra=data.get('exact_profiles')
+    if (type(extra) is not dict or set(extra)!={
+        'finite.alpha_P_U.induced_kernel.numeric.v1',
+        'finite.killed_kernel.survival.numeric.v1',
+        'lp.exact_rational.optimality.numeric.v1',
+        'lp.exact_rational.independent_verification.v1',
+        'finite.random_occupation.numeric.v1',
+        'finite.first_exit_and_survival.numeric.v1'}):
+        raise AppError('REGISTRY','unknown or missing additive numeric profile')
+    for name,entry in extra.items():
+        if type(entry) is not dict or entry.get('mode')!='numeric' or entry.get('scientific_claims_verified') is not False or entry.get('lean_status')!='NOT_EXECUTED':
+            raise AppError('REGISTRY','additive profile may not claim Lean or scientific certification')
     return data
 
 

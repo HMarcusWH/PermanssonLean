@@ -39,6 +39,16 @@ def main(argv=None):
     finite=sub.add_parser('finite-kernel')
     finite.add_argument('model',type=Path)
     finite.add_argument('--output',type=Path,required=True)
+    survival=sub.add_parser('finite-survival')
+    survival.add_argument('comparison',type=Path)
+    survival.add_argument('--output',type=Path,required=True)
+    occ=sub.add_parser('finite-occupation')
+    occ.add_argument('model',type=Path)
+    occ.add_argument('--output',type=Path,required=True)
+    exit_cmd=sub.add_parser('finite-exit')
+    exit_cmd.add_argument('model',type=Path)
+    exit_cmd.add_argument('region',type=Path)
+    exit_cmd.add_argument('--output',type=Path,required=True)
     lp=sub.add_parser('lp-propose')
     lp.add_argument('model',type=Path)
     lp.add_argument('--output',type=Path,required=True)
@@ -108,22 +118,64 @@ def main(argv=None):
             _write_json(args.output/'legacy_import.json',result)
             print(json.dumps({'ok':True,'contract_valid':result['original_result']['contract_valid'],
                               'scientific_claims_verified':False},sort_keys=True))
-        elif args.command in ('finite-kernel','lp-propose','lp-check'):
+        elif args.command=='finite-survival':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.finite_survival import propose_finite_survival
+            from .receipts.finite_survival import check_survival_receipt
+            from .report import numeric_application_report
+            _, raw=strict_read(args.comparison)
+            validate_packaged_schema('schemas/finite_survival.v1.schema.json',raw)
+            receipt=propose_finite_survival(raw)
+            checker=check_survival_receipt(raw,receipt)
+            report=numeric_application_report(capability='finite.killed_kernel.survival.numeric.v1',
+                 model_semantic_identity=receipt['comparison_identity'],
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('finite_survival_receipt.json',receipt),('independent_check.json',checker),
+                               ('scientific_report.json',report)]:
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command in ('finite-kernel','finite-occupation','finite-exit','lp-propose','lp-check'):
             from .strict_json import strict_read
             from .schema_validate import validate_packaged_schema
             from .report import numeric_application_report
             _, raw=strict_read(args.model)
-            if args.command=='finite-kernel':
+            if args.command in ('finite-kernel','finite-occupation','finite-exit'):
                 from .finite_world import parse_finite_world
                 from .receipts.finite_world import emit_finite_receipt,check_finite_receipt
                 validate_packaged_schema('schemas/finite_world.v1.schema.json',raw)
                 model=parse_finite_world(raw)
-                receipt=emit_finite_receipt(model)
-                checker=check_finite_receipt(model,receipt)
-                report=numeric_application_report(capability='finite.alpha_P_U.induced_kernel.numeric.v1',
-                       model_semantic_identity=model.semantic_id(),computation_receipt=receipt,independent_check=checker)
+                if args.command=='finite-kernel':
+                    receipt=emit_finite_receipt(model)
+                    checker=check_finite_receipt(model,receipt)
+                    cap='finite.alpha_P_U.induced_kernel.numeric.v1'
+                    output_name='induced_kernel_receipt.json'
+                    identity=model.semantic_id()
+                elif args.command=='finite-occupation':
+                    from .engines.occupation import compute_occupation
+                    from .receipts.occupation import check_occupation
+                    receipt=compute_occupation(model)
+                    checker=check_occupation(model,receipt)
+                    cap='finite.random_occupation.numeric.v1'
+                    output_name='occupation_receipt.json'
+                    identity=model.semantic_id()
+                else:
+                    from .engines.exit import parse_region,compute_exit
+                    from .receipts.exit import check_exit
+                    _,region_raw=strict_read(args.region)
+                    validate_packaged_schema('schemas/finite_region.v1.schema.json',region_raw)
+                    region=parse_region(region_raw,model)
+                    receipt=compute_exit(model,region)
+                    checker=check_exit(model,region,receipt)
+                    cap='finite.first_exit_and_survival.numeric.v1'
+                    output_name='exit_receipt.json'
+                    identity={'model':model.semantic_id(),'region':region.semantic_id}
+                report=numeric_application_report(capability=cap,
+                       model_semantic_identity=identity,computation_receipt=receipt,independent_check=checker)
                 out=_new_output(args.output)
-                for name,value in [('induced_kernel_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
+                for name,value in [(output_name,receipt),('independent_check.json',checker),('scientific_report.json',report)]:
                     _write_json(out/name,value)
                 print(json.dumps({'ok':True,'numeric_status':'EXACT_RATIONAL_VERIFIED','lean_status':'NOT_EXECUTED',
                                   'output':str(out)},sort_keys=True))

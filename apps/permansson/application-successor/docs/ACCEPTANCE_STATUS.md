@@ -9,6 +9,11 @@ Base: `main@3492b26707788293ca88c66637b6ba021c7e478d`, tree `9ef00ac4b2d4f928aa6
 | C10 fixed six-state numeric | implemented, local installed example | exact native application + independent native receipt checker |
 | C11 1..6-state stationary family numeric | implemented, periodic/multichain installed examples | exact native application + independent native checker |
 | Finite α/P/U composition numeric | implemented, locally tested | exact input parsing + separate recomputed kernel check |
+| Recurrent class and occupation families | implemented, 25 focused tests shared with exit | random occupation law distinct from mean; not empirically identified |
+| Exact first-exit and never-exit mass | implemented, local tests and CLI | preserve destination subprobabilities and nonexit mass |
+| Finite recurrent occupation and absorption | implemented, 25-test occupation/exit focused suite | exact closed classes and independent stationarity/harmonic checker; random law kept separate from mean |
+| Finite first-exit routing and never-exit mass | implemented, 25-test focused suite and CLI | exact killed-path and eventual hitting checks; no normalization of never-exit mass |
+| Exact finite killed-kernel survival and finite gap | implemented, local tests and CLI | comparison-state-complete recurrence; **not** Exact GR/PR or QSD |
 | Rational LP primal/dual / Farkas checking | implemented, locally tested | exact independent arithmetic checks; bounded candidate generator |
 | Legacy Application Standard v0.1.0 | read-only wrapped, seven historical fixture outcomes tested | retained original validator source pin |
 | Offline Draft 2020-12 schemas | implemented as optional dependency, locally tested | packaged schema resources + no network resolution |

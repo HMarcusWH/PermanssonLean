@@ -19,7 +19,7 @@ def numeric_application_report(*, capability:str, model_semantic_identity:dict,
                                source_ref:str|None=None)->dict:
     if type(capability) is not str or type(model_semantic_identity) is not dict:
         raise AppError('REPORT_SCOPE','missing bound capability and model')
-    if type(independent_check) is not dict or independent_check.get('status') not in ('PASS','OPTIMAL_VERIFIED','INFEASIBILITY_VERIFIED'):
+    if type(independent_check) is not dict or independent_check.get('status') not in ('PASS','OPTIMAL_VERIFIED','INFEASIBILITY_VERIFIED','FINITE_SURVIVAL_TABLE_VERIFIED'):
         raise AppError('REPORT_EVIDENCE','independent numeric check is mandatory')
     if type(computation_receipt) is not dict:
         raise AppError('REPORT_EVIDENCE','actual receipt required')

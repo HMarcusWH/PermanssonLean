@@ -33,6 +33,56 @@
       "source_profile": "REIFIED_FINITE_RATIONAL_C11"
     }
   },
-  "format": "Permansson.App.ReconstructedRegistry.v1",
+  "exact_profiles": {
+    "finite.alpha_P_U.induced_kernel.numeric.v1": {
+      "checker": "permansson_app.receipts.finite_world.check_finite_receipt",
+      "cli": "finite-kernel",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite exact rational alpha/P/U model; held-fixed/causal identification not inferred"
+    },
+    "finite.first_exit_and_survival.numeric.v1": {
+      "checker": "permansson_app.receipts.exit.check_exit",
+      "cli": "finite-exit",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite region first-exit destination subprobability and never-exit mass; never normalize away nonexit"
+    },
+    "finite.killed_kernel.survival.numeric.v1": {
+      "checker": "permansson_app.receipts.finite_survival.check_survival_receipt",
+      "cli": "finite-survival",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite horizon 0..32; <=12 joint states, full declared region and comparison set; not Exact GR/PR"
+    },
+    "finite.random_occupation.numeric.v1": {
+      "checker": "permansson_app.receipts.occupation.check_occupation",
+      "cli": "finite-occupation",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite rational multichain bottom classes, absorption and random limiting occupation; not empirical GR/PR"
+    },
+    "lp.exact_rational.independent_verification.v1": {
+      "checker": "permansson_app.receipts.lp",
+      "cli": "lp-check",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Consumer-side exact rational primal/dual optimum or Farkas infeasibility; no provider equality"
+    },
+    "lp.exact_rational.optimality.numeric.v1": {
+      "checker": "permansson_app.receipts.lp.check_lp_certificate",
+      "cli": "lp-propose",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Bounded exact rational <=6-variable LP; failure to locate a certificate never means infeasible"
+    }
+  },
+  "format": "Permansson.App.Registry.AdditiveNumerical.v2",
   "source_baseline": "3492b26707788293ca88c66637b6ba021c7e478d"
 }

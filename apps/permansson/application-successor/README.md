@@ -1,6 +1,6 @@
 # Permansson application successor — implementation candidate
 
-**Development status (2026-10-29):** independently checkable **numeric foundation**, not a complete 217-/251-file application, release or mathematical certificate. The former recovered C10/C11 seed has been extended with strict finite `α/P/U` kernels, exact rational LP candidate/certificate verification, offline schemas, historical legacy import, detached bundle integrity and chronology-aware domain evidence intake. No Lean correspondence module or independent review is claimed for these new components.
+**Development status (2026-10-29):** independently checkable **numeric foundation**, not a complete 217-/251-file application, release or mathematical certificate. The former recovered C10/C11 seed has been extended with strict finite `α/P/U` kernels, exact rational LP candidate/certificate verification, finite killed-kernel survival comparisons, exact occupation families and first-exit routing, offline schemas, historical legacy import, detached bundle integrity and chronology-aware domain evidence intake. No Lean correspondence module or independent review is claimed for these new components.
 
 The package is additive under `apps/permansson/application-successor/`. The existing `application/`, `PermanssonLean/`, accepted release artifacts, native C10/C11 providers, Lean toolchain and `.github/workflows/` remain untouched. The original Application Standard 0.1.0 and its historical digest profile are **not** reinterpreted as the newer typed-rational identity profile.
 
@@ -31,11 +31,22 @@ permansson-app finite-kernel /tmp/permansson-resources/examples/finite_world.v1.
   --output /tmp/finite-kernel
 permansson-app lp-propose /tmp/permansson-resources/examples/lp.v1.model.json \
   --output /tmp/lp-proposal
+permansson-app finite-survival /tmp/permansson-resources/examples/finite_survival.v1.json \
+  --output /tmp/finite-survival
+permansson-app finite-occupation /tmp/permansson-resources/examples/finite_world.v1.model.json \
+  --output /tmp/finite-occupation
+permansson-app finite-exit /tmp/permansson-resources/examples/finite_world.v1.model.json \
+  /tmp/permansson-resources/examples/finite_region.v1.json \
+  --output /tmp/finite-exit
 ```
 
 `finite-kernel` validates finite strategic/world/action spaces and admissible actions, exact rational stochastic `α/P/U` rows, and the induced joint transition kernel in the order **α → P → U**. The independent checker recomputes the full finite kernel; there is no theorem claiming identification of the factors from external data.
 
-`lp-propose` enumerates bounded exact vertices and proposes a primal/dual certificate. The *separate* `lp-check` can verify supplied exact primal/dual certificates or a Farkas infeasibility witness without invoking a producer. An unlocated vertex returns `NO_CERTIFICATE_FOUND`, not a theorem of infeasibility. The checked value does not identify the controller that another solver happens to return. Finite LP correspondence to canonical Lean theorems remains unsupported.
+`lp-propose` enumerates bounded exact vertices and proposes a primal/dual certificate. The *separate* `lp-check` can verify supplied exact primal/dual certificates or a Farkas infeasibility witness without invoking a producer. An unlocated vertex returns `NO_CERTIFICATE_FOUND`, not a theorem of infeasibility. The checked value does not identify the controller that another solver happens to return. Finite LP correspondence to canonical Lean theorems remains unsupported. `finite-survival` compares a held-fixed strategic intervention against a baseline with an exact killed-kernel recurrence and a complete declared comparison set; it checks every horizon row and the minimum absolute finite difference. It cannot establish Exact GR/PR, infinite-horizon persistence, QSD uniqueness or empirical transition probabilities.
+
+`finite-occupation` computes all bottom recurrent classes, exact stationary laws and start-specific absorption weights. Its `expected_limit_laws` are explicitly the **means of random limiting class laws**, not the law realized on every sample path. The independent checker reconstructs the canonical `α → P → U` kernel and uses separately calculated communication/reachability sets and exact stationarity/harmonic equations.
+
+`finite-exit` accepts an immutable explicit region and finite horizon, checks every survival value and first-exit-by-destination vector, and preserves never-exit mass without renormalization. Eventual exit is an exact finite-state Markov property; it does **not** establish an equilibrium, constitutive intervention or an Exact GR. Both routes are numerical-only and fail closed on false receipts. Proof correspondence to canonical Lean statements is still unimplemented.
 
 ## Evidence, legacy import and detached bundles
 
@@ -69,4 +80,4 @@ python -B -m unittest discover -s apps/permansson/application-successor/tests -p
 python -B -m unittest discover -s verification/research -p 'test_application_successor_numeric.py' -v
 ```
 
-An installed wheel and source distribution must be tested in clean roots outside the checkout. The current available runtime is Linux/Python 3.12; Windows/Python 3.13 and pinned Lean replay have not been qualified here. See `IMPLEMENTATION_MANIFEST.json` and `docs/ACCEPTANCE_STATUS.md` for source-by-source status and blockers.
+An installed wheel and source distribution must be tested in clean roots outside the checkout. The current newly tested runtime is Linux/Python 3.13.5; a previous recovered prototype had separate Linux/Python 3.12 evidence. Current-source Windows, fresh Python 3.12, and pinned Lean replay have not been qualified here. See `IMPLEMENTATION_MANIFEST.json` and `docs/ACCEPTANCE_STATUS.md` for source-by-source status and blockers.

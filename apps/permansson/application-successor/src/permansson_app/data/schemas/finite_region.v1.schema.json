@@ -1,0 +1,45 @@
+{
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/finite_region.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "Permansson.App.FiniteRegion.v1"
+    },
+    "horizon": {
+      "maximum": 64,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "joint_states": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "strategic": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "world": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "strategic",
+          "world"
+        ],
+        "type": "object"
+      },
+      "maxItems": 36,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "format",
+    "joint_states",
+    "horizon"
+  ],
+  "type": "object"
+}
