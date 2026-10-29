@@ -22,7 +22,7 @@ class GrammarQuotientCLI(unittest.TestCase):
             self.assertEqual(validate_packaged_schema(f'schemas/{profile}.v1.schema.json',raw)['status'],'PASS')
     with tempfile.TemporaryDirectory() as td:
         exported=export_extended_resources(Path(td)/'export')
-        self.assertEqual(len(exported),40)
+        self.assertEqual(len(exported),42)
         for profile in ('grammar','quotient'):
             self.assertIn(f'examples/{profile}.v1.json',exported)
             self.assertIn(f'schemas/{profile}.v1.schema.json',exported)

@@ -57,3 +57,14 @@ The bounded, fully observed `one-step-risk` numerical profile solves an exact on
 ### Bounded partial-observation addition
 
 `finite.one_step_observation_belief.numeric.v1` provides exact one-transition observation-conditioned action optimization with a complete, bounded deterministic observation-policy comparison and an independent checker. It binds the supplied alpha/P/U source model without asserting that the optimized observation policy was the original alpha policy. Its output reports `lean_status=NOT_EXECUTED`, `empirical_identification=NOT_IDENTIFIED`, and `scientific_claims_verified=false`. Genuine Lean correspondence, general belief-tree optimality, full source-head CI, independent CERT and scholarly release acceptance remain outstanding.
+
+### Finite multistage observation-history profile (local numerical tests)
+
+`finite.observation_history_tree.numeric.v1` has a strict schema,
+independent source-kernel checker, 16 focused positive/negative tests and an
+installed-wheel example on the recovered local development overlay. All strong
+scientific statuses remain unassessed; `lean_status=NOT_EXECUTED` and
+`scientific_claims_verified=false`. The historical source/workflow trust gate
+has not been changed. The recovered local overlay omits six resources present
+on the current GitHub PR head, so full current-H CI and source-exact installed
+artifact acceptance must be checked separately after the new commit.

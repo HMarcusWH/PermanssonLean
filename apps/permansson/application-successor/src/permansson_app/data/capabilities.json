@@ -169,6 +169,14 @@
       "mode": "numeric",
       "scientific_claims_verified": false,
       "scope": "One-transition, one strategic state, 1..3 hidden world states, observations and actions. Exact observation likelihoods and Bayesian posterior where reachable; one action shared across all hidden states in each observation support; bounded complete deterministic observation-policy enumeration. Unreachable observation never normalized. No multistage POMDP, independent Lean proof, empirical identification or GR/PR status."
+    },
+    "finite.observation_history_tree.numeric.v1": {
+      "checker": "permansson_app.receipts.belief_tree.check_belief_tree",
+      "cli": "finite-belief-tree",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "One to three transitions; <=2 strategic and <=3 hidden world states, <=3 observations/actions. Observation before action at each stage, P then U; exhaustive bounded finite observation-history deterministic policy class with exact Bayesian joint-state beliefs, common hidden-support feasibility and independent unnormalized-flow/replayed-path verification. No general POMDP, Lean replay or empirical GR/PR identification."
     }
   },
   "format": "Permansson.App.Registry.AdditiveNumerical.v2",

@@ -157,3 +157,16 @@ The `one-step-risk` command optimizes a bounded randomized policy over one fully
 ### Bounded one-step observation-conditioned control
 
 `permansson-app one-step-belief <request.json> --output <new-output>` verifies a declared finite hidden-world prior and observation likelihoods, computes exact posteriors for reachable observations, and chooses one common legal action for each observation using complete bounded deterministic-policy enumeration. The independent checker reconstructs the original P/U law and does not trust the candidate action scores. Zero-probability observations have no posterior or inferred action. See [`docs/NUMERIC_BELIEF_CONTROL.md`](docs/NUMERIC_BELIEF_CONTROL.md). This is not general multistage belief-tree/POMDP control or a Lean/GR/PR certificate.
+
+### Multistage finite observation-history control (numeric only)
+
+A separate `finite-belief-tree` CLI supports 1–3 transitions, finite exact
+`alpha/P/U` strategic-world dynamics and world-only observation likelihoods.
+Policies use the complete available **observation history**, not hidden states
+or future signals. The source `alpha` is bound, not replaced or certified.
+An independent unnormalized-flow checker replays the chosen decision tree.
+The two-stage example scores 55/64 versus a 3/4 blind fixed action sequence;
+a separate small oracle enumerates 64 policy trees. See
+[`docs/NUMERIC_MULTISTAGE_BELIEF.md`](docs/NUMERIC_MULTISTAGE_BELIEF.md).
+This is **not** general POMDP optimality, a Lean proof, mathematical CERT,
+empirical identification, release acceptance or publication approval.
