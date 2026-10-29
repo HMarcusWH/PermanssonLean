@@ -68,3 +68,14 @@ scientific statuses remain unassessed; `lean_status=NOT_EXECUTED` and
 has not been changed. The recovered local overlay omits six resources present
 on the current GitHub PR head, so full current-H CI and source-exact installed
 artifact acceptance must be checked separately after the new commit.
+
+
+### Exact LP → Lean soundness candidate (S03L)
+
+`LinearProgramReceipt.lean` adds rational primal/dual and strict Farkas soundness,
+including real-valued competitor conclusions. A bounded actual-source reifier,
+independent byte/semantic checker, and positive/false-witness pinned-Lean tests
+are included. **At this Git source candidate, the module and emitted instances
+are awaiting exact-head compiler and transitive axiom results.** Numeric LP
+certificates are not automatically promoted to Lean-certified receipts.
+No historical archive/workflow relaxation or application release approval.

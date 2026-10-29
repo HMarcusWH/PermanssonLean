@@ -1,12 +1,12 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 452,
+    "combined_inventory_rows": 457,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
     "local_tested_python_modules": 56,
-    "new_paths_not_in_original_union": 94,
-    "source_changes_in_branch": 188
+    "new_paths_not_in_original_union": 99,
+    "source_changes_in_branch": 193
   },
   "candidate_engine_overlays": {
     "exit_routing": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
@@ -21,7 +21,7 @@
     "one_step_observation_belief": "NUMERIC_CHECKED_ONE_TRANSITION_NOT_LEAN_CERTIFIED"
   },
   "candidate_head_sha": "EXACT_NEW_PR_HEAD_PENDING_COMMIT_AND_CI",
-  "candidate_revision": "v14-governance-provenance-domain-federation-test-candidate",
+  "candidate_revision": "v15-exact-lp-lean-real-soundness-source-candidate",
   "candidate_source_base_sha": "3492b26707788293ca88c66637b6ba021c7e478d",
   "candidate_verification": {
     "0": "1",
@@ -786,7 +786,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "SOURCE_CANDIDATE_PENDING_PINNED_LEAN_COMPILATION",
+        "sha256": "f6f4271cedd14c8d3ef326d74626daba6352677cad847701379105edfc83288d",
+        "proof": "NOT_YET_EXECUTED_AT_NEW_HEAD",
+        "trust": "PINNED_CI_AND_NEGATIVE_MUTATIONS_REQUIRED"
       },
       "classification": "lean_bridge",
       "conditional": false,
@@ -804,7 +807,9 @@
         "Test certificates from different producers or deliberately different optimal bases; equality of objective is required, equality of chosen vector is not.",
         "An infeasibility report needs a checked contradiction certificate; timeout, failed reconstruction and exhausted enumeration return unknown/resource status.",
         "Benchmark reference producer against at least one optional exact backend before choosing that backend or increasing limits.",
-        "An optional SoPlex backend must pin version/configuration, use exact input parsing and rational witness output, and pass the same checker; current floating default is insufficient."
+        "An optional SoPlex backend must pin version/configuration, use exact input parsing and rational witness output, and pass the same checker; current floating default is insufficient.",
+        "verification/research/test_application_lp_bridge_live_lean.py",
+        "apps/permansson/application-successor/tests/test_lp_reification.py"
       ],
       "v2_action": "CREATE",
       "v2_id": "FILE-203",
@@ -13188,6 +13193,106 @@
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/proof/lp_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-05",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN",
+        "sha256": "48d9379e17f75a6a39700ce11cdd11d18844cfda2370a4451412d55609e70808",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/proof/lp_source_check.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-05",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN",
+        "sha256": "2ed706c34bc5c57348e60ebac6d02b170718f6345eec2a59f3d0637095ae2fc6",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_lp_reification.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-05",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN",
+        "sha256": "45b9aba32261000703565f95291eb3333366bed638e4818581c8a4144b6efe21",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/LP_CERTIFICATE_LEAN_BRIDGE.md",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-05",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN",
+        "sha256": "4f32aa0b27da5f0545e29beab4383733c3c82e24b6aa704b75c1b58165dc99c2",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/test_application_lp_bridge_live_lean.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-05",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN",
+        "sha256": "418db8d342a57f87ca101515f0253c2c51e7325113d72130b425fb9f8334e44a",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
     }
   ],
   "format": "Permansson.App.AuthoritativeSourceReconciliation.v1",
@@ -13223,5 +13328,19 @@
     "independent_lean_proof": false,
     "scientific_claims_verified": false,
     "authorization": "DRAFT_ONLY"
+  },
+  "round15_lp_lean": {
+    "base_head": "2f0be61800b14dd0ac49db217e79e94d6a9ade05",
+    "source_files": 6,
+    "focused_lp_reification_test_methods_passed": 15,
+    "separate_foundation_test_methods_passed": 35,
+    "separate_finite_lean_source_test_methods_passed": 11,
+    "real_optimum_theorem": "PENDING_PINNED_LEAN_COMPILATION",
+    "real_farkas_theorem": "PENDING_PINNED_LEAN_COMPILATION",
+    "real_negative_mutations": "PENDING_PINNED_LEAN_COMPILATION",
+    "source_head_exact_installed_distribution": "NOT_QUALIFIED",
+    "independent_mathematical_certification": false,
+    "release_authorized": false,
+    "historic_archive_closure": "UNALTERED_FAIL_CLOSED_REVIEW_REQUIRED"
   }
 }

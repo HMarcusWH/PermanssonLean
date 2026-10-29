@@ -1,3 +1,4 @@
+import PermanssonResearch.ApplicationBridge.LinearProgramReceipt
 import PermanssonResearch.ApplicationBridge.FiniteWorldInput
 import PermanssonResearch.ApplicationBridge.BeliefReceipt
 import PermanssonResearch.ReverseSolver.ResidenceEvent
