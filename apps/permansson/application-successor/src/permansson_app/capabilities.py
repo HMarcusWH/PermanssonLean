@@ -24,7 +24,8 @@ def registry():
         'finite.residence_monitor.numeric.v1',
         'finite.nonlinear_classwise_stationary.numeric.v1',
         'finite.patch_grammar.numeric.v1',
-        'finite.typed_quotient.numeric.v1'}):
+        'finite.typed_quotient.numeric.v1',
+        'finite.rectangular_vs_committed_nature.numeric.v1'}):
         raise AppError('REGISTRY','unknown or missing additive numeric profile')
     for name,entry in extra.items():
         if type(entry) is not dict or entry.get('mode')!='numeric' or entry.get('scientific_claims_verified') is not False or entry.get('lean_status')!='NOT_EXECUTED':

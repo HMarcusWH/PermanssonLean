@@ -114,6 +114,14 @@
       "scientific_claims_verified": false,
       "scope": "Finite rational multichain bottom classes, absorption and random limiting occupation; not empirical GR/PR"
     },
+    "finite.rectangular_vs_committed_nature.numeric.v1": {
+      "checker": "permansson_app.receipts.robust_nature.check_nature",
+      "cli": "finite-robust-nature",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite rational max-min rectangular nature chooses a complete physical P row after each observed control; fixed deterministic Markov policy compared with one whole P model committed at t=0. Fully observed <=12 joint states, <=6 nature models, <=12 transitions. No committed-controller optimum or private-information claim; no Lean or empirical identification."
+    },
     "finite.residence_monitor.numeric.v1": {
       "checker": "permansson_app.receipts.residence.check_residence",
       "cli": "finite-residence",

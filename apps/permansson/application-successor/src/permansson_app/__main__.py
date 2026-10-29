@@ -54,6 +54,9 @@ def main(argv=None):
     residence=sub.add_parser('finite-residence')
     residence.add_argument('request',type=Path)
     residence.add_argument('--output',type=Path,required=True)
+    nature=sub.add_parser('finite-robust-nature')
+    nature.add_argument('request',type=Path)
+    nature.add_argument('--output',type=Path,required=True)
     for name in ('finite-grammar','finite-quotient'):
         staged=sub.add_parser(name)
         staged.add_argument('request',type=Path)
@@ -168,6 +171,24 @@ def main(argv=None):
                    computation_receipt=receipt,independent_check=checker)
             out=_new_output(args.output)
             for name,value in ((receipt_name,receipt),('independent_check.json',checker),('scientific_report.json',report)):
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command=='finite-robust-nature':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.robust_nature import propose_nature
+            from .receipts.robust_nature import check_nature
+            from .report import numeric_application_report
+            _,raw=strict_read(args.request)
+            validate_packaged_schema('schemas/robust_nature.v1.schema.json',raw)
+            receipt=propose_nature(raw)
+            checker=check_nature(raw,receipt)
+            report=numeric_application_report(capability='finite.rectangular_vs_committed_nature.numeric.v1',
+                 model_semantic_identity=receipt['request_identity'],
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('nature_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
                 _write_json(out/name,value)
             print(json.dumps({'ok':True,'numeric_status':checker['status'],
                               'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))

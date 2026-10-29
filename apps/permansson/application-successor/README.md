@@ -145,3 +145,7 @@ No application release acceptance is claimed.
 ### Additional exact numeric profiles (2026-10-29)
 
 The finite residence and nonlinear classwise stationary-policy engines have independent exact receipt checks and bounded, explicitly scoped examples. See [`docs/NUMERIC_RESIDENCE_NONLINEAR.md`](docs/NUMERIC_RESIDENCE_NONLINEAR.md). Neither profile provides Lean replay, mathematical CERT, empirical identification or application release acceptance.
+
+### Exact finite robust nature chronology — numeric-only
+
+`finite-robust-nature` implements an action-then-nature rectangular max-min Bellman table and separately evaluates a fixed stationary controller under a nature model committed at time zero. It preserves typed `α/U` while enumerating complete alternative physical `P` kernels; all reported values and ties are recomputed by an independent rational checker. See [`docs/NUMERIC_ROBUST_NATURE.md`](docs/NUMERIC_ROBUST_NATURE.md). This is **not** a committed-game controller optimum or a Lean/Exact-GR/PR/empirical certificate.
