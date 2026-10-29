@@ -1,12 +1,12 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 441,
+    "combined_inventory_rows": 442,
     "declared_leans_compiled": 0,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
     "local_tested_python_modules": 56,
-    "new_paths_not_in_original_union": 83,
-    "source_changes_in_branch": 137
+    "new_paths_not_in_original_union": 84,
+    "source_changes_in_branch": 142
   },
   "candidate_engine_overlays": {
     "exit_routing": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
@@ -21,7 +21,7 @@
     "one_step_observation_belief": "NUMERIC_CHECKED_ONE_TRANSITION_NOT_LEAN_CERTIFIED"
   },
   "candidate_head_sha": "EXTERNAL_GITHUB_PR_HEAD_REQUIRED_AFTER_COMMIT",
-  "candidate_revision": "numeric-exact-expanded-v11-multistage-belief",
+  "candidate_revision": "lean-bridge-first-sources-v12-pending-ci",
   "candidate_source_base_sha": "3492b26707788293ca88c66637b6ba021c7e478d",
   "candidate_verification": {
     "0": "1",
@@ -339,6 +339,21 @@
       "accepted_45_case_11_claim": "NOT_SUBSTITUTED",
       "inherited_archive_gate": "NOT_CHANGED",
       "full_release_authorized": false
+    },
+    "round12_lean_bridge": {
+      "base_head": "f857f61da49fbe8c21700e17a8da3421c2450ab5",
+      "new_lean_sources": 2,
+      "research_root_additional_imports": 2,
+      "new_scope_doc": 1,
+      "static_imports_passed": 688,
+      "existing_belief_tree_python_tests_passed": 11,
+      "local_pinned_lean_compilation": "UNAVAILABLE_TOOLCHAIN_NOT_INSTALLED",
+      "github_pinned_lean_compilation": "PENDING_NEW_HEAD",
+      "generated_literal_instance_replay": "NOT_IMPLEMENTED",
+      "lean_receipt_promotion": false,
+      "scientific_claims_verified": false,
+      "independent_math_cert": false,
+      "release_authorized": false
     }
   },
   "counts": {
@@ -434,7 +449,9 @@
     {
       "base_state": "EXISTED_ON_MAIN",
       "candidate": {
-        "state": "EXISTING_MAIN_PRESERVED"
+        "state": "ADDITIVE_IMPORTS_PENDING_PINNED_LEAN_BUILD",
+        "proof": "NOT_EXECUTED",
+        "trust": "RESEARCH_ROOT_IMPORT_COVERAGE_CHECKED"
       },
       "classification": "edit_research_imports",
       "conditional": false,
@@ -497,7 +514,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "SOURCE_CANDIDATE_UNCOMPILED",
+        "sha256": "8216e7ed49137a18a32d5da42924caff166ab9e287707daaf3f0e583e276e426",
+        "proof": "NOT_EXECUTED",
+        "trust": "PINNED_LEAN_BUILD_AND_MUTATION_CHECK_PENDING",
+        "source_type": "SCHEMATIC_LEAN_PROOF_NOT_REIFIED_JSON_INSTANCE"
       },
       "classification": "lean_bridge",
       "conditional": false,
@@ -508,7 +529,7 @@
         "PermanssonResearch/ReverseSolver/BeliefChronology.lean",
         "PermanssonResearch/ReverseSolver/BeliefMonitor.lean"
       ],
-      "disposition": "IMPLEMENT_OR_RECONCILE_V2",
+      "disposition": "NEW_UNCOMPILED_LEAN_RESEARCH_SOURCE",
       "gate": "Must compile under unchanged pinned Lean/mathlib, pass actual semantic negative mutations and complete transitive axiom audit; no sorry/admit/native_decide/custom axioms or assumed output equality. Planned until implemented.",
       "generated": false,
       "original_main_git_blob": null,
@@ -625,7 +646,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "SOURCE_CANDIDATE_UNCOMPILED",
+        "sha256": "046894c6d8c9571a60d9b33fd791be824fbf3c91f208ca435145e21799871a32",
+        "proof": "NOT_EXECUTED",
+        "trust": "PINNED_LEAN_BUILD_AND_MUTATION_CHECK_PENDING",
+        "source_type": "SCHEMATIC_LEAN_PROOF_NOT_REIFIED_JSON_INSTANCE"
       },
       "classification": "lean_bridge",
       "conditional": false,
@@ -633,7 +658,7 @@
         "PermanssonResearch/ReverseSolver/FiniteStrategicRealization.lean",
         "PermanssonLean/StrategicWorld/Model.lean"
       ],
-      "disposition": "IMPLEMENT_OR_RECONCILE_V2",
+      "disposition": "NEW_UNCOMPILED_LEAN_RESEARCH_SOURCE",
       "gate": "Must compile under unchanged pinned Lean/mathlib, pass actual semantic negative mutations and complete transitive axiom audit; no sorry/admit/native_decide/custom axioms or assumed output equality. Planned until implemented.",
       "generated": false,
       "original_main_git_blob": null,
@@ -12734,6 +12759,29 @@
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
         "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/LEAN_APPLICATION_BRIDGE_CANDIDATE.md",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_PROOF_SCOPE_DOCUMENTATION",
+      "conditional": false,
+      "dependency_paths": [
+        "PermanssonResearch/ApplicationBridge/FiniteWorldInput.lean",
+        "PermanssonResearch/ApplicationBridge/BeliefReceipt.lean"
+      ],
+      "work_items": [
+        "APP-06",
+        "OPT-07"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_STATIC_REVIEW_PENDING_PINNED_CI",
+        "sha256": "8fe78425ff50cac4743c7e3b2d068d924701de3d2a8118711250a2256abee971",
+        "proof": "NOT_EXECUTED",
+        "trust": "NO_CERTIFICATION_OR_RELEASE_PROMOTION"
       }
     }
   ],
