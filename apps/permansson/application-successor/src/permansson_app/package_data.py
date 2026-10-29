@@ -10,8 +10,12 @@ NAMES = ("schemas/request.v1.schema.json", "schemas/result.v1.schema.json",
          "examples/c11.multiclass.request.json", "examples/c11.multiclass.model.json")
 
 
+SCHEMA_RESOURCES = ("schemas/finite_world.v1.schema.json", "schemas/lp.v1.schema.json")
+EXTENDED_EXAMPLES = ("examples/finite_world.v1.model.json", "examples/lp.v1.model.json")
+
+
 def resource_bytes(name: str) -> bytes:
-    if name not in NAMES and name != "capabilities.json":
+    if name not in NAMES and name not in SCHEMA_RESOURCES and name not in EXTENDED_EXAMPLES and name != "capabilities.json":
         raise AppError("RESOURCE_SCOPE", "unregistered package resource")
     return files("permansson_app").joinpath("data", *name.split("/")).read_bytes()
 
@@ -29,3 +33,19 @@ def export_resources(directory: Path):
         output.write_bytes(data)
         results[name] = sha256(data).hexdigest()
     return results
+
+
+def export_extended_resources(directory: Path):
+    """Export both legacy recovered examples and successor schema contracts."""
+    if directory.exists():
+        raise AppError("OUTPUT_SCOPE", "destination already exists")
+    directory.mkdir(parents=True,exist_ok=False)
+    from hashlib import sha256
+    result={}
+    for name in (*NAMES,*SCHEMA_RESOURCES,*EXTENDED_EXAMPLES):
+        data=resource_bytes(name)
+        out=directory / name
+        out.parent.mkdir(parents=True,exist_ok=True)
+        out.write_bytes(data)
+        result[name]=sha256(data).hexdigest()
+    return result

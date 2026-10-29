@@ -7,7 +7,7 @@ import sys
 from .contracts import parse_request
 from .capabilities import selected
 from .errors import AppError
-from .process import run_bounded
+from .process import run_bounded, RunBudget
 from .source import check_source
 from .strict_json import strict_read
 
@@ -25,13 +25,19 @@ def execute(request_path: Path, source_root: Path, output: Path):
     raw, _ = strict_read(request.model_path)
     repo = source_root.resolve()
     out = output.absolute()
-    if repo == out or repo in out.parents:
+    # Reject output parent symlinks and lexical/realpath scope escapes.
+    for parent in (out.parent,*out.parent.parents):
+        if parent.is_symlink():
+            raise AppError("OUTPUT_SCOPE", "output ancestor must not be a symlink")
+    real_parent=out.parent.resolve()
+    if repo == out or repo in out.parents or repo == real_parent or repo in real_parent.parents:
         raise AppError("OUTPUT_SCOPE", "output must be outside repository")
     if out.exists():
         raise AppError("OUTPUT_SCOPE", "output path must not exist")
     # Verify pins before touching output or executing an arbitrary provider.
     before = check_source(repo, cap["sha256_pins"])
     out.mkdir(parents=True, exist_ok=False)
+    budget = RunBudget.start(seconds=120,output_bytes=262144)
     native = out / "native"
     native.mkdir()
     # Reified input is an immutable copy, not a mutable caller path during execution.
@@ -39,7 +45,7 @@ def execute(request_path: Path, source_root: Path, output: Path):
     frozen_input.write_bytes(raw)
     command = [sys.executable, "-I", "-B", str(repo / cap["native_cli"]), str(frozen_input),
                "--mode", "numeric", "--output", str(native)]
-    producer = run_bounded(command, repo, out / "producer.log")
+    producer = run_bounded(command, repo, out / "producer.log",budget=budget)
     receipt = native / "numeric_receipt.json"
     result_file = native / "result.json"
     if not receipt.is_file() or not result_file.is_file():
@@ -58,7 +64,7 @@ def execute(request_path: Path, source_root: Path, output: Path):
         raise AppError("RECEIPT_INVALID", "native input digest disagreement")
     # Recheck the bytes saved by the native process, not an in-memory producer object.
     check = run_bounded([sys.executable, "-B", str(repo / cap["checker"]), str(receipt)],
-                        repo, out / "checker.log")
+                        repo, out / "checker.log",budget=budget)
     after = check_source(repo, cap["sha256_pins"])
     if before != after or frozen_input.read_bytes() != raw:
         raise AppError("SOURCE_CHANGED", "source or frozen input changed across execution")
