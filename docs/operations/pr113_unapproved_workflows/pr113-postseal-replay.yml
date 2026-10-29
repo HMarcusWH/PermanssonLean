@@ -1,0 +1,175 @@
+# SECURITY REVIEW REQUIRED BEFORE MERGE.
+# This workflow is an independently inspectable producer candidate; it is
+# not an authorization to seal, tag, publish or declare 45/11 accepted.
+name: PR113 Full Candidate Postseal Replay
+
+on:
+  workflow_dispatch:
+    inputs:
+      merged_sha:
+        description: Exact already-authorized main merge M
+        required: true
+        type: string
+      candidate_run_id:
+        description: Original exact-M producing GitHub run ID
+        required: true
+        type: string
+      candidate_artifact_id:
+        description: Original exact-M preseal artifact ID
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  postseal-archive-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Enforce actual authorized main M and numeric source identity
+        shell: bash
+        env:
+          MERGED_SHA: ${{ inputs.merged_sha }}
+          SOURCE_RUN: ${{ inputs.candidate_run_id }}
+          ARTIFACT_ID: ${{ inputs.candidate_artifact_id }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/main"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$GITHUB_SHA" = "$MERGED_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          [[ "$MERGED_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$SOURCE_RUN" =~ ^[1-9][0-9]*$ ]]
+          [[ "$ARTIFACT_ID" =~ ^[1-9][0-9]*$ ]]
+          test "$SOURCE_RUN" != "$GITHUB_RUN_ID"
+      - name: Fetch genuine exact-M source artifact by immutable GitHub identity
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MERGED_SHA: ${{ inputs.merged_sha }}
+          SOURCE_RUN: ${{ inputs.candidate_run_id }}
+          ARTIFACT_ID: ${{ inputs.candidate_artifact_id }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID" \
+            > "$RUNNER_TEMP/pr113-upstream-artifact-metadata.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN" \
+            > "$RUNNER_TEMP/pr113-upstream-run.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN/jobs?per_page=100" \
+            > "$RUNNER_TEMP/pr113-upstream-jobs.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" \
+            > "$RUNNER_TEMP/pr113-upstream-artifact.zip"
+          python3 - <<'PY'
+          import hashlib, json, os, stat, zipfile
+          from pathlib import Path
+
+          root = Path(os.environ["RUNNER_TEMP"])
+          meta = json.loads((root/"pr113-upstream-artifact-metadata.json").read_text())
+          upstream = root/"pr113-upstream-artifact.zip"
+          assert 0 < upstream.stat().st_size <= 400*1024*1024
+          raw = upstream.read_bytes()
+          merged = os.environ["MERGED_SHA"]
+          source_run = int(os.environ["SOURCE_RUN"])
+          artifact_id = int(os.environ["ARTIFACT_ID"])
+          assert meta.get("id") == artifact_id
+          assert meta.get("name") == "pr113-preseal-fullscope-candidate"
+          assert meta.get("expired") is False
+          assert meta.get("digest") == "sha256:" + hashlib.sha256(raw).hexdigest()
+          context = meta.get("workflow_run") or {}
+          assert context.get("id") == source_run
+          assert context.get("head_sha") == merged
+
+          # An authentic digest is not a positive preseal result: an
+          # `if: always()` upload from a failed or superseded attempt has one.
+          run = json.loads((root/"pr113-upstream-run.json").read_text())
+          assert run.get("id") == source_run
+          assert run.get("head_sha") == merged
+          assert run.get("head_branch") == "main"
+          assert run.get("status") == "completed"
+          assert run.get("conclusion") == "success"
+          assert str(run.get("path", "")).endswith(
+              ".github/workflows/pr113-preseal-fullscope.yml")
+          jobs = [job for job in json.loads(
+                      (root/"pr113-upstream-jobs.json").read_text())["jobs"]
+                  if job.get("name") == "preseal-fullscope-candidate"]
+          assert len(jobs) == 1
+          job = jobs[0]
+          assert job.get("run_attempt") == run.get("run_attempt")
+          assert job.get("status") == "completed"
+          assert job.get("conclusion") == "success"
+          assert job["started_at"] <= meta["created_at"] <= job["completed_at"]
+
+          allowed = {
+              "Permansson_Mathematical_Closure_CANDIDATE.zip",
+              "SHA256SUMS.txt",
+          }
+          target = root/"pr113-original-candidate"
+          target.mkdir(mode=0o700)
+          with zipfile.ZipFile(root/"pr113-upstream-artifact.zip") as package:
+              members = package.infolist()
+              assert len(members) == 2
+              assert {m.filename for m in members} == allowed
+              assert sum(m.file_size for m in members) <= 384*1024*1024 + 8192
+              for item in members:
+                  assert not item.is_dir()
+                  assert 0 < item.file_size <= 384*1024*1024
+                  assert item.compress_size > 0
+                  assert item.file_size <= 200*item.compress_size
+                  mode = (item.external_attr >> 16) & 0o170000
+                  assert mode not in (stat.S_IFLNK, stat.S_IFDIR)
+                  name = target/item.filename
+                  with package.open(item) as stream:
+                      bytes_ = stream.read(item.file_size + 1)
+                  assert len(bytes_) == item.file_size
+                  name.write_bytes(bytes_)
+          PY
+      - name: Independently replay exact candidate archive and sidecar bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B release/mathematical-closure-1/postseal_replay.py \
+            --archive "$RUNNER_TEMP/pr113-original-candidate/Permansson_Mathematical_Closure_CANDIDATE.zip" \
+            --sidecar "$RUNNER_TEMP/pr113-original-candidate/SHA256SUMS.txt" \
+            --output "$RUNNER_TEMP/postseal_replay_receipt.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          receipt = json.loads(
+              (Path(os.environ["RUNNER_TEMP"]) /
+               "postseal_replay_receipt.json").read_bytes())
+          assert receipt["status"] == "CANDIDATE_ARCHIVE_REPLAYED_UNREVIEWED"
+          assert receipt["source_commit_sha"] == os.environ["GITHUB_SHA"]
+          assert receipt["authenticated_ci_artifact"] is False
+          assert receipt["independent_review"] is False
+          assert receipt["full_release_approved"] is False
+          PY
+      - name: Package the original candidate bytes, not reconstructed surrogates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/pr113-postseal-artifact/candidate"
+          cp "$RUNNER_TEMP/pr113-original-candidate/Permansson_Mathematical_Closure_CANDIDATE.zip" \
+             "$RUNNER_TEMP/pr113-postseal-artifact/candidate/"
+          cp "$RUNNER_TEMP/pr113-original-candidate/SHA256SUMS.txt" \
+             "$RUNNER_TEMP/pr113-postseal-artifact/candidate/"
+          cp "$RUNNER_TEMP/postseal_replay_receipt.json" \
+             "$RUNNER_TEMP/pr113-postseal-artifact/postseal_replay_receipt.json"
+          cp "$RUNNER_TEMP/pr113-upstream-artifact-metadata.json" \
+             "$RUNNER_TEMP/pr113-postseal-artifact/upstream_source_artifact.json"
+      - name: Retain exact-M unreviewed postseal producing artifact
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-complete-postseal-candidate
+          path: ${{ runner.temp }}/pr113-postseal-artifact/
+          if-no-files-found: warn
+          retention-days: 30

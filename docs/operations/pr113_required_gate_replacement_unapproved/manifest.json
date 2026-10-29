@@ -1,0 +1,42 @@
+{
+  "format": "Permansson.PR113.UnapprovedRequiredGateTransition.v1",
+  "status": "PROPOSED_EXACT_SOURCE_REPLACEMENTS_PENDING_INDEPENDENT_SECURITY_REVIEW",
+  "target_pr": 113,
+  "baseline_original_workflow_count": 25,
+  "original_unchanged_sources": [
+    {
+      "path": "verification/research/test_localized_prefix_compiler.py",
+      "git_blob_oid": "c0f49038ea9b590720c78be85968eb63f5ac820f"
+    },
+    {
+      "path": ".github/workflows/research-integrity.yml",
+      "git_blob_oid": "19bab92285ab2c981b0a1200c03024f7d022e31c"
+    },
+    {
+      "path": ".github/workflows/research-lean.yml",
+      "git_blob_oid": "06842a2da34d6ff06434f202a7630edd57e8cb20"
+    }
+  ],
+  "staged_replacements": [
+    {
+      "target": "verification/research/test_localized_prefix_compiler.py",
+      "source": "docs/operations/pr113_required_gate_replacement_unapproved/test_localized_prefix_compiler.py",
+      "git_blob_oid": "89d1772038e0d6e07d095e44ddf4a2bb93c86ee4",
+      "installed": false,
+      "independent_reviewed": false
+    },
+    {
+      "target": ".github/workflows/research-integrity.yml#archive-reproducibility",
+      "source": "docs/operations/pr113_required_gate_replacement_unapproved/research_integrity_archive_step.yml.inc",
+      "git_blob_oid": "476dc9764eb73a8a065c2c1a9be42c8c9d2850a5",
+      "installed": false,
+      "independent_reviewed": false
+    }
+  ],
+  "original_T_A2_unmodified": true,
+  "requires_independent_security_review": true,
+  "owner_activation_authorized": false,
+  "mathematical_acceptance": false,
+  "merge_authorized": false,
+  "publication_authorized": false
+}

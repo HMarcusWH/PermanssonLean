@@ -1,0 +1,176 @@
+# Review-pending source-controlled historical execution candidate.
+# This workflow is NOT the required Research Lean or archive-reproducibility gate.
+# It cannot approve a T2/A2 trust migration, PR merge, or mathematical release.
+name: PR113 Historical T and A2 candidates
+
+# Review/activation prerequisite: source-controlled branch push only.
+# This file remains inactive outside .github/workflows until explicitly approved.
+on:
+  push:
+    branches: [research/final-mathematical-closure]
+
+permissions:
+  contents: read
+
+jobs:
+  engineering-preflight:
+    name: historical-engineering-preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Verify real checkout and run source-controlled engineering preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          python3 -B verification/research/pr113_fast_engineering_preflight.py \
+            --head "$GITHUB_SHA" \
+            --out "$RUNNER_TEMP/pr113-fast-engineering"
+      - name: Execute new producer and selection adversarial tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s verification/research -p test_pr113_prepare_positive_selection.py -v
+          python3 -B -m unittest discover -s verification/research -p test_pr113_pack_ci_positive_owners.py -v
+      - name: Resolve 45 genuine original case routes without acceptance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_prepare_positive_selection.py --head "$GITHUB_SHA" --out "$RUNNER_TEMP/pr113-selection-smoke"
+      - name: Retain candidate original-case route selection
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-positive-selection-unreviewed
+          path: ${{ runner.temp }}/pr113-selection-smoke/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Retain unapproved exact-source QA evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-fast-qa-candidate
+          path: ${{ runner.temp }}/pr113-fast-engineering/
+          if-no-files-found: warn
+          retention-days: 30
+
+  original-T-and-current-H:
+    name: historical-T-and-H-unreviewed
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Pin dependencies and isolate original history
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          python3 -m pip install -r verification/integrity/requirements.txt
+          git cat-file -e "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388^{commit}"
+          git worktree add --detach "$RUNNER_TEMP/pr113-source-T" \
+            71cc34fa0bc4b639c05d2ec5f39f0b88afd56388
+          test "$(git -C "$RUNNER_TEMP/pr113-source-T" rev-parse HEAD)" = \
+            71cc34fa0bc4b639c05d2ec5f39f0b88afd56388
+      - name: Execute unmodified T and current H as distinct historical legs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_dual_tooling_candidate_v2.py \
+            --historical-T-source "$RUNNER_TEMP/pr113-source-T" \
+            --current-source "$GITHUB_WORKSPACE" \
+            --head "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/pr113-dual-tooling"
+      - name: Retain T and H original bytes and candidate reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-T-H-historical-candidate
+          path: ${{ runner.temp }}/pr113-dual-tooling/
+          if-no-files-found: warn
+          retention-days: 30
+
+  original-A2-and-current-H:
+    name: historical-A2-and-H-unreviewed
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Pin genuine historical A2 executor source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          git cat-file -e "55f872abddfbbd8eaa996f3c95f91e15a5ea421a^{commit}"
+          git worktree add --detach "$RUNNER_TEMP/pr113-source-A2" \
+            55f872abddfbbd8eaa996f3c95f91e15a5ea421a
+          test "$(git -C "$RUNNER_TEMP/pr113-source-A2" rev-parse HEAD)" = \
+            55f872abddfbbd8eaa996f3c95f91e15a5ea421a
+      - name: Build pinned Lean and audit current mathematical dependencies
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Bind historical A2 to the exact pinned dependency source (not H build objects)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_a2_dependency_bridge_v2.py \
+            --historical-source "$RUNNER_TEMP/pr113-source-A2" \
+            --current-source "$GITHUB_WORKSPACE" \
+            --current-head "$GITHUB_SHA" \
+            --out "$RUNNER_TEMP/pr113-A2-dependency-bridge.json"
+      - name: Execute both genuine compiler gates and four semantic negatives
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_dual_a2_compiler_v2.py \
+            --historical-source "$RUNNER_TEMP/pr113-source-A2" \
+            --historical-head 55f872abddfbbd8eaa996f3c95f91e15a5ea421a \
+            --current-source "$GITHUB_WORKSPACE" \
+            --current-head "$GITHUB_SHA" \
+            --out "$RUNNER_TEMP/pr113-dual-A2"
+          # Carry forward the actual original dependency bridge bytes. The
+          # output producer cannot claim full A2 provenance without them.
+          test -s "$RUNNER_TEMP/pr113-A2-dependency-bridge.json"
+          test -s "$RUNNER_TEMP/pr113-dual-A2/unreviewed_dual_A2_candidate.json"
+          cp -- "$RUNNER_TEMP/pr113-A2-dependency-bridge.json" \
+             "$RUNNER_TEMP/pr113-dual-A2/historical_dependency_bridge.json"
+      - name: Retain historical and successor source-bound proof logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-A2-historical-candidate
+          path: ${{ runner.temp }}/pr113-dual-A2/
+          if-no-files-found: warn
+          retention-days: 30

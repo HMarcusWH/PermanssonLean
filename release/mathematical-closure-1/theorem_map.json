@@ -1,0 +1,61 @@
+{
+  "format": "Permansson.MathClosure.TheoremMap.v1",
+  "source_baseline_sha": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+  "entries": [
+    {
+      "id": "Q1",
+      "source": "research/paper_closures/post_merge_112/theorem_crosswalk.json",
+      "certification": "PENDING_SOURCE_BOUND_ACCEPTANCE"
+    },
+    {
+      "id": "Q2",
+      "source": "research/paper_closures/post_merge_112/theorem_crosswalk.json",
+      "certification": "PENDING_SOURCE_BOUND_ACCEPTANCE"
+    },
+    {
+      "id": "Q3",
+      "source": "research/paper_closures/post_merge_112/theorem_crosswalk.json",
+      "certification": "PENDING_SOURCE_BOUND_ACCEPTANCE"
+    },
+    {
+      "id": "M1",
+      "source": "research/paper_closures/post_merge_112/theorem_crosswalk.json",
+      "certification": "PENDING_SOURCE_BOUND_ACCEPTANCE"
+    },
+    {
+      "id": "M2",
+      "source": "research/paper_closures/post_merge_112/theorem_crosswalk.json",
+      "certification": "PENDING_SOURCE_BOUND_ACCEPTANCE"
+    },
+    {
+      "id": "M3",
+      "source": "research/paper_closures/post_merge_112/theorem_crosswalk.json",
+      "certification": "PENDING_SOURCE_BOUND_ACCEPTANCE"
+    },
+    {
+      "id": "N1",
+      "source": "research/paper_closures/post_merge_112/theorem_crosswalk.json",
+      "certification": "PENDING_SOURCE_BOUND_ACCEPTANCE"
+    },
+    {
+      "id": "N2",
+      "source": "research/paper_closures/post_merge_112/theorem_crosswalk.json",
+      "certification": "PENDING_SOURCE_BOUND_ACCEPTANCE"
+    },
+    {
+      "id": "N3",
+      "source": "research/paper_closures/post_merge_112/theorem_crosswalk.json",
+      "certification": "PENDING_SOURCE_BOUND_ACCEPTANCE"
+    },
+    {
+      "id": "D8",
+      "source": "research/paper_closures/post_merge_112/theorem_crosswalk.json",
+      "certification": "PENDING_SOURCE_BOUND_ACCEPTANCE"
+    },
+    {
+      "id": "D9",
+      "source": "research/paper_closures/post_merge_112/theorem_crosswalk.json",
+      "certification": "PENDING_SOURCE_BOUND_ACCEPTANCE"
+    }
+  ]
+}

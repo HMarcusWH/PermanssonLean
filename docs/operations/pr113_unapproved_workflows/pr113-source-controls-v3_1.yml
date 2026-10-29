@@ -1,0 +1,393 @@
+# PR113 v3.1 PROPOSED WORKFLOW ONLY.  NEVER INSTALL BEFORE AN
+# INDEPENDENT SECURITY REVIEW OF THE COMPLETE ORIGINAL 25 + SUCCESSOR SET.
+name: PR113 Full v3.1 Original Source Controls
+
+on:
+  push:
+    branches: ['research/**']
+    paths:
+      - ".github/workflows/pr113-source-controls-v3_1.yml"
+      - "verification/research/**"
+      - "research/paper_closures/post_merge_112/**"
+      - "PermanssonResearch/**"
+  # This staged source is not dispatchable until separately authorized
+  # default-branch installation. Every PR/head choice is authenticated live.
+  workflow_dispatch:
+    inputs:
+      run_mode:
+        description: Original source controls or independent legacy20 replay
+        required: true
+        type: choice
+        options:
+          - source_controls
+          - reviewed_legacy20
+      source_head:
+        description: Exact current frozen PR source H
+        required: true
+        type: string
+      cert_pr_number:
+        description: Actual successor PR number; blank only for original PR113
+        required: false
+        type: string
+      survey_run_id:
+        required: false
+        type: string
+      survey_run_attempt:
+        required: false
+        type: string
+      survey_job_id:
+        required: false
+        type: string
+      survey_check_run_id:
+        required: false
+        type: string
+      survey_artifact_id:
+        required: false
+        type: string
+      review_comment_id:
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+  checks: read
+  pull-requests: read
+
+concurrency:
+  group: pr113-v31-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  original-positive45:
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/research/final-mathematical-closure') || (github.event_name == 'workflow_dispatch' && inputs.run_mode == 'source_controls')
+    env:
+      PERMANSSON_CERT_PR_NUMBER: ${{ inputs.cert_pr_number }}
+      PR113_REQUESTED_SOURCE_HEAD: ${{ inputs.source_head }}
+      PR113_REQUESTED_RUN_MODE: ${{ inputs.run_mode }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - name: Authenticate genuine original PR113 or successor CERT source
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_ci_producer_source_v3.py \
+            --head "$GITHUB_SHA" --mode source_controls
+      - name: Require exact PR branch, clean source, reviewed selections
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "HMarcusWH/PermanssonLean"
+          [[ "$GITHUB_REF" == refs/heads/research/* ]]
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          test -s research/paper_closures/post_merge_112/reviewed_positive45_selection_v31.json
+      - name: Build and axiom-audit pinned Lean research
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Execute all 45 source-reviewed original positives
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp research/paper_closures/post_merge_112/reviewed_positive45_selection_v31.json "$RUNNER_TEMP/positive45.json"
+          python3 -B verification/research/final_closure_positive_route_candidate.py --head "$GITHUB_SHA" --selection "$RUNNER_TEMP/positive45.json" --out "$RUNNER_TEMP/positive45-real"
+          python3 -B verification/research/pr113_pack_ci_positive_owners.py --head "$GITHUB_SHA" --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" --source "$RUNNER_TEMP/positive45-real" --output "$RUNNER_TEMP/positive45-owner-index"
+      - name: Retain real original 45 positive controls without approval
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-v31-positive45
+          path: ${{ runner.temp }}/positive45-owner-index/
+          if-no-files-found: warn
+          retention-days: 30
+
+  original-legacy20:
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/research/final-mathematical-closure') || (github.event_name == 'workflow_dispatch' && inputs.run_mode == 'source_controls')
+    env:
+      PERMANSSON_CERT_PR_NUMBER: ${{ inputs.cert_pr_number }}
+      PR113_REQUESTED_SOURCE_HEAD: ${{ inputs.source_head }}
+      PR113_REQUESTED_RUN_MODE: ${{ inputs.run_mode }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - name: Authenticate genuine original PR113 or successor CERT source
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_ci_producer_source_v3.py \
+            --head "$GITHUB_SHA" --mode source_controls
+      - name: Require exactly frozen original criterion/test/provider intent
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF" == refs/heads/research/* ]]
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          test -s research/paper_closures/post_merge_112/legacy20_source_intent_v31.json
+      - name: Compile research with pinned Lean/axiom audit
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Discover all actual 4+9+8 exact-H original GH producing artifacts
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Runtime IDs CANNOT appear in a source-frozen selection file.
+          # Fail closed until all original 21 source-bound jobs pass at H.
+          python3 -B verification/research/pr113_original21_live_catalog.py \
+            --head "$GITHUB_SHA" --out "$RUNNER_TEMP/original21-input"
+          python3 -B verification/research/final_closure_producer_catalog.py \
+            --head "$GITHUB_SHA" \
+            --catalog "$RUNNER_TEMP/original21-input/original21_catalog.json" \
+            --output "$RUNNER_TEMP/original21-catalog"
+      - name: Enumerate actual semantic-negative capture choices, not author-assigned approval
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_legacy20_runtime_resolution.py \
+            --head "$GITHUB_SHA" \
+            --intent research/paper_closures/post_merge_112/legacy20_source_intent_v31.json \
+            --catalog-dir "$RUNNER_TEMP/original21-catalog" \
+            --producer-zips "$RUNNER_TEMP/original21-input" \
+            --out "$RUNNER_TEMP/legacy20-observed"
+      - name: Retain observed actual events for independent source-relevance review
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-v31-legacy20-observation-candidates
+          path: ${{ runner.temp }}/legacy20-observed/
+          if-no-files-found: warn
+          retention-days: 30
+  # A separate manually resumed run binds reviewer input AFTER original CI and
+  # AFTER a successful observation survey. No human input is awaited by a
+  # runner, and no source edit supplies runtime IDs. No self-approval.
+  original-legacy20-replay:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_mode == 'reviewed_legacy20'
+    name: legacy20-source-review-replay
+    env:
+      PERMANSSON_CERT_PR_NUMBER: ${{ inputs.cert_pr_number }}
+      PR113_REQUESTED_SOURCE_HEAD: ${{ inputs.source_head }}
+      PR113_REQUESTED_RUN_MODE: ${{ inputs.run_mode }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - name: Authenticate genuine original PR113 or successor CERT source
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_ci_producer_source_v3.py \
+            --head "$GITHUB_SHA" --mode reviewed_legacy20
+      - name: Bind actual frozen Git checkout and external runtime IDs
+        shell: bash
+        env:
+          SOURCE_HEAD: ${{ inputs.source_head }}
+          SURVEY_RUN: ${{ inputs.survey_run_id }}
+          SURVEY_ATTEMPT: ${{ inputs.survey_run_attempt }}
+          SURVEY_JOB: ${{ inputs.survey_job_id }}
+          SURVEY_CHECK: ${{ inputs.survey_check_run_id }}
+          SURVEY_ARTIFACT: ${{ inputs.survey_artifact_id }}
+          REVIEW_COMMENT: ${{ inputs.review_comment_id }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "HMarcusWH/PermanssonLean"
+          [[ "$GITHUB_REF" == refs/heads/research/* ]]
+          test "$GITHUB_SHA" = "$SOURCE_HEAD"
+          test "$(git rev-parse HEAD)" = "$SOURCE_HEAD"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          [[ "$SOURCE_HEAD" =~ ^[a-f0-9]{40}$ ]]
+          for id in "$SURVEY_RUN" "$SURVEY_ATTEMPT" "$SURVEY_JOB" "$SURVEY_CHECK" "$SURVEY_ARTIFACT" "$REVIEW_COMMENT"; do
+            [[ "$id" =~ ^[1-9][0-9]*$ ]]
+          done
+          test "$SURVEY_RUN" != "$GITHUB_RUN_ID"
+      - name: Build original research/axioms at frozen H
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Download exact original observed survey and authorized reviewer choices
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
+          SURVEY_RUN: ${{ inputs.survey_run_id }}
+          SURVEY_ATTEMPT: ${{ inputs.survey_run_attempt }}
+          SURVEY_JOB: ${{ inputs.survey_job_id }}
+          SURVEY_CHECK: ${{ inputs.survey_check_run_id }}
+          SURVEY_ARTIFACT: ${{ inputs.survey_artifact_id }}
+          REVIEW_COMMENT: ${{ inputs.review_comment_id }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$SURVEY_ARTIFACT/zip" \
+            > "$RUNNER_TEMP/pr113-real-survey.zip"
+          test -s "$RUNNER_TEMP/pr113-real-survey.zip"
+          python3 -B verification/research/pr113_legacy20_choice_delivery.py \
+            --head "$GITHUB_SHA" \
+            --survey-zip "$RUNNER_TEMP/pr113-real-survey.zip" \
+            --run-id "$SURVEY_RUN" --run-attempt "$SURVEY_ATTEMPT" \
+            --job-id "$SURVEY_JOB" --check-run-id "$SURVEY_CHECK" \
+            --artifact-id "$SURVEY_ARTIFACT" \
+            --review-comment-id "$REVIEW_COMMENT" \
+            --out "$RUNNER_TEMP/pr113-authenticated-legacy-event-choices"
+      - name: Reauthenticate all 21 original producers and resolve chosen captured events
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_original21_live_catalog.py \
+            --head "$GITHUB_SHA" --out "$RUNNER_TEMP/pr113-resumed-original21"
+          python3 -B verification/research/final_closure_producer_catalog.py \
+            --head "$GITHUB_SHA" \
+            --catalog "$RUNNER_TEMP/pr113-resumed-original21/original21_catalog.json" \
+            --output "$RUNNER_TEMP/pr113-resumed-catalog"
+          python3 -B verification/research/pr113_legacy20_runtime_resolution.py \
+            --head "$GITHUB_SHA" \
+            --intent research/paper_closures/post_merge_112/legacy20_source_intent_v31.json \
+            --catalog-dir "$RUNNER_TEMP/pr113-resumed-catalog" \
+            --producer-zips "$RUNNER_TEMP/pr113-resumed-original21" \
+            --detached-event-choice "$RUNNER_TEMP/pr113-authenticated-legacy-event-choices/reviewed_legacy20_runtime_event_choices.json" \
+            --out "$RUNNER_TEMP/pr113-reviewed-legacy20-route"
+      - name: Execute original-selected twenty append-only Lean semantic replays
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/final_closure_batch_legacy_replay.py \
+            --head "$GITHUB_SHA" \
+            --catalog-dir "$RUNNER_TEMP/pr113-resumed-catalog" \
+            --producer-zips "$RUNNER_TEMP/pr113-resumed-original21" \
+            --selection "$RUNNER_TEMP/pr113-reviewed-legacy20-route/legacy20_runtime_selection.json" \
+            --out "$RUNNER_TEMP/pr113-resumed-legacy20-real"
+          python3 -B verification/research/pr113_pack_ci_remaining_owners.py \
+            --head "$GITHUB_SHA" --kind legacy_negative \
+            --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --source "$RUNNER_TEMP/pr113-resumed-legacy20-real" \
+            --output "$RUNNER_TEMP/pr113-resumed-legacy20-owner-index"
+      - name: Retain original source-owned twenty real replays without certification
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-v31-legacy20
+          path: |
+            ${{ runner.temp }}/pr113-resumed-legacy20-owner-index/
+            ${{ runner.temp }}/pr113-authenticated-legacy-event-choices/choice_transport.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  claim-true-false11:
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/research/final-mathematical-closure') || (github.event_name == 'workflow_dispatch' && inputs.run_mode == 'source_controls')
+    env:
+      PERMANSSON_CERT_PR_NUMBER: ${{ inputs.cert_pr_number }}
+      PR113_REQUESTED_SOURCE_HEAD: ${{ inputs.source_head }}
+      PR113_REQUESTED_RUN_MODE: ${{ inputs.run_mode }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - name: Authenticate genuine original PR113 or successor CERT source
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B verification/research/pr113_ci_producer_source_v3.py \
+            --head "$GITHUB_SHA" --mode source_controls
+      - name: Require exact original source and reviewed 11 claim false statements
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF" == refs/heads/research/* ]]
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          test -s research/paper_closures/post_merge_112/reviewed_claim11_selection_v31.json
+          test -d research/paper_closures/post_merge_112/reviewed_claim11_false_sources
+          test "$(find research/paper_closures/post_merge_112/reviewed_claim11_false_sources -name '*.lean' | wc -l)" -eq 11
+      - name: Build/axiom-audit original Lean research providers
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Execute and preserve all 11 true/false claim proof controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp research/paper_closures/post_merge_112/reviewed_claim11_selection_v31.json "$RUNNER_TEMP/claim11.json"
+          cp -R research/paper_closures/post_merge_112/reviewed_claim11_false_sources "$RUNNER_TEMP/claim11-false-sources"
+          python3 -B verification/research/final_closure_claim_controls_candidate.py --head "$GITHUB_SHA" --selection "$RUNNER_TEMP/claim11.json" --mutants-root "$RUNNER_TEMP/claim11-false-sources" --out "$RUNNER_TEMP/claims11-real"
+          python3 -B verification/research/pr113_pack_ci_remaining_owners.py --head "$GITHUB_SHA" --kind claim_pair --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" --source "$RUNNER_TEMP/claims11-real" --output "$RUNNER_TEMP/claims11-owner-index"
+      - name: Retain original 11 claim true/false pair source checks
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-v31-claims11
+          path: ${{ runner.temp }}/claims11-owner-index/
+          if-no-files-found: warn
+          retention-days: 30

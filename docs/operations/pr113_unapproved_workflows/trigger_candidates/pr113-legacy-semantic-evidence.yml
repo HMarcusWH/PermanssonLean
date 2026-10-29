@@ -1,0 +1,70 @@
+name: PR113 Legacy Original Semantic Compiler Candidates
+
+on:
+  push:
+    branches: [research/final-mathematical-closure]
+  workflow_dispatch:
+
+concurrency:
+  group: pr113-legacy-semantic-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  legacy-original-shard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Verify checkout identity and original policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$GITHUB_REPOSITORY" = "HMarcusWH/PermanssonLean"
+          test -z "$(git status --porcelain=v1 --untracked-files=all -- PermanssonResearch PermanssonLean verification/research research/paper_closures/post_merge_112)"
+          python3 -m unittest discover -s verification/research -p test_final_closure_legacy_semantic_evidence.py -v
+      - name: Build and audit pinned research source
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Execute and retain original negative unittest compiler observations
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          python3 verification/research/final_closure_legacy_semantic_evidence.py \
+            --head "$GITHUB_SHA" \
+            --shard-index "${{ matrix.shard }}" --shard-count 8 \
+            --out "$RUNNER_TEMP/pr113-legacy-semantic-${{ matrix.shard }}"
+      - name: Retain source bytes, compiler logs, and explicitly unreviewed manifests
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-legacy-semantic-candidates-${{ matrix.shard }}
+          path: ${{ runner.temp }}/pr113-legacy-semantic-${{ matrix.shard }}/
+          retention-days: 30
+          if-no-files-found: warn

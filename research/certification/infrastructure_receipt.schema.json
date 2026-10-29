@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Permansson PR113 InfrastructureEvidence v1 - distinct from proof acceptance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "target",
+    "source_bound_ci",
+    "historical_T",
+    "historical_A2",
+    "security_review_id"
+  ],
+  "properties": {
+    "format": {
+      "const": "Permansson.PR113.InfrastructureEvidence.v1"
+    },
+    "target": {
+      "$ref": "target_contract.schema.json"
+    },
+    "source_bound_ci": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "id",
+          "head_sha"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "head_sha": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          }
+        }
+      }
+    },
+    "historical_T": {
+      "$ref": "#/$defs/artifact"
+    },
+    "historical_A2": {
+      "$ref": "#/$defs/artifact"
+    },
+    "security_review_id": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "run_id",
+        "run_attempt",
+        "job_id",
+        "check_run_id",
+        "artifact_id"
+      ],
+      "properties": {
+        "run_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "run_attempt": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "job_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "check_run_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "artifact_id": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

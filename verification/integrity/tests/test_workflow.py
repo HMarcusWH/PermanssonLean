@@ -32,7 +32,7 @@ class WorkflowTests(unittest.TestCase):
     def test_ci_06_filters_and_skip_paths_forbidden(self):
         # This is the production gate, bound to canonical HEAD. A changed
         # profile must be committed before a full suite can certify it.
-        self.assertEqual(19, validate_workflow(self.text)["workflows"])
+        self.assertEqual(25, validate_workflow(self.text)["workflows"])
         self.assertEqual(3, len(self.checked(self.text)["contexts"]))
         for snippet in ("    paths: ['docs/**']\n", "    paths-ignore: ['release/**']\n",
                         "    if: false\n", "    needs: absent\n", "    continue-on-error: true\n"):
@@ -123,6 +123,20 @@ class WorkflowTests(unittest.TestCase):
 
     def test_execution_overrides_rejected(self):
         self.checked(self.text)
+        # A profile change must not cancel checks on a different ref,
+        # silently disable superseded-run cleanup, or override its scope.
+        concurrency = ("concurrency:\n"
+                       "  group: ${{ github.workflow }}-${{ github.ref }}\n"
+                       "  cancel-in-progress: true\n")
+        self.assertIn(concurrency, self.text)
+        for drift in (
+            concurrency.replace("cancel-in-progress: true", "cancel-in-progress: false"),
+            concurrency.replace("github.ref", "github.repository"),
+            concurrency.replace("github.workflow", "github.repository"),
+            concurrency + "  max-parallel: 1\n",
+        ):
+            self.rejected(lambda: self.checked(self.text.replace(
+                concurrency, drift, 1)), "E_WORKFLOW_CONTRACT")
         for override in ("    env:\n      PATH: /tmp/shadow\n",
                          "    defaults:\n      run:\n        shell: bash -c 'true'\n",
                          "    shell: bash -c 'true'\n",
@@ -163,7 +177,7 @@ class WorkflowTests(unittest.TestCase):
 
     def test_required_workflow_rejects_dispatch(self):
         checked = self.checked(self.text)
-        self.assertEqual(19, checked["workflows"])
+        self.assertEqual(25, checked["workflows"])
         self.assertEqual(5, len(checked["legacy_contexts"]))
         candidate = self.text.replace("on:\n", "on:\n  workflow_dispatch:\n", 1)
         self.rejected(lambda: self.checked(candidate), "E_WORKFLOW_CONTRACT")
@@ -220,7 +234,7 @@ class WorkflowTests(unittest.TestCase):
         (checkout / "duplicate-required.yaml").write_bytes(b"jobs: {build: {}}\n")
         canonical = load_workflows(fixture.root)
         self.assertEqual(self.workflows, canonical)
-        self.assertEqual(19, self.checked(self.text, canonical)["workflows"])
+        self.assertEqual(25, self.checked(self.text, canonical)["workflows"])
         path = b".github/workflows/lean.yml"
         variants = (
             {path: ("100644", self.workflows["lean.yml"].replace("\n", "\r\n").encode())},

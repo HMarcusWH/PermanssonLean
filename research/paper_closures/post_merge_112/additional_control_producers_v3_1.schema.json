@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/HMarcusWH/PermanssonLean/blob/research/final-mathematical-closure/research/paper_closures/post_merge_112/additional_control_producers_v3_1.schema.json",
+  "title": "PR113 additional producing CI source-control extension v3.1 (unreviewed)",
+  "description": "Requires separately authorized source workflow provenance. This schema alone never grants review or mathematical acceptance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "head_sha",
+    "original_21_producer_bundle_sha256",
+    "original_producing_artifact_count",
+    "source_controls_accepted",
+    "independent_security_review",
+    "mathematical_approval",
+    "merged_main_sha",
+    "producers"
+  ],
+  "properties": {
+    "format": {
+      "const": "Permansson.PR113.ControlProducerExtension.v3.1"
+    },
+    "head_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "original_21_producer_bundle_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "original_producing_artifact_count": {
+      "const": 21
+    },
+    "source_controls_accepted": {
+      "const": false
+    },
+    "independent_security_review": {
+      "const": false
+    },
+    "mathematical_approval": {
+      "const": false
+    },
+    "merged_main_sha": {
+      "type": "null"
+    },
+    "producers": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "run_id",
+          "run_attempt",
+          "job_id",
+          "check_run_id",
+          "artifact_id",
+          "artifact_name",
+          "artifact_sha256",
+          "workflow_path",
+          "job_name",
+          "owner_index_member",
+          "owner_index_sha256",
+          "owners"
+        ],
+        "properties": {
+          "run_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "run_attempt": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "job_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "check_run_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "artifact_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "artifact_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "artifact_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "workflow_path": {
+            "type": "string",
+            "pattern": "^\\.github/workflows/[A-Za-z0-9_.-]+\\.ya?ml$"
+          },
+          "job_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner_index_member": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner_index_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "owners": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "owner_id",
+                "receipt_member",
+                "receipt_sha256"
+              ],
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "original_positive",
+                    "legacy_negative",
+                    "claim_pair"
+                  ]
+                },
+                "owner_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "receipt_member": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "receipt_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

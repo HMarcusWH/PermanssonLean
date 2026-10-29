@@ -1,0 +1,1129 @@
+{
+  "format": "Permansson.FinalClosureCrosswalk.v1",
+  "evaluated_main_sha": "3931e4dccafb47b3cdf70177c0cf337102c90731",
+  "historical_contract_count": 42,
+  "contracts": [
+    {
+      "atlas_id": "X1-N01",
+      "historical_selected_scope": "The exact accepted two modes and baseline/action/update/joint variants; every pair of eighteen states.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "The original finite X1 model, its state ordering and both modes are fixed.",
+        "The action uses the current memory; learning uses the old world state; resetting changes only the next memory."
+      ],
+      "historical_declared_residual": [
+        "No new arbitrary intervention family or world model is certified by this fixed example."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/X1/InterventionNumericalBridge.lean",
+        "PermanssonResearch/X1/ExactMatrixTables.lean"
+      ],
+      "acceptance_case_ids": [
+        "X-01",
+        "X-05"
+      ]
+    },
+    {
+      "atlas_id": "X1-N02",
+      "historical_selected_scope": "All-horizon rational-to-actual terminal evaluation; checked literal tables at horizons zero through three.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "Finite original X1 state/action spaces and original chronological alpha-P-U semantics.",
+        "The table fixture is specifically horizons 0,1,2,3; the induction theorem is separately all-horizon."
+      ],
+      "historical_declared_residual": [
+        "No certificate for arbitrary externally supplied terminal tables or changed properties is inferred."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/X1/InterventionNumericalBridge.lean",
+        "PermanssonResearch/X1/ExactTerminalTables.lean"
+      ],
+      "acceptance_case_ids": [
+        "X-02",
+        "X-05"
+      ]
+    },
+    {
+      "atlas_id": "X1-N03",
+      "historical_selected_scope": "Six original constitutiveMargin equalities on all nine starts with lower bounds and attaining starts.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "The original comparison set is retained, including every equilibrium tie.",
+        "Nonempty/bounded-below infimum hypotheses and the actual original interventions are used."
+      ],
+      "historical_declared_residual": [
+        "The preserved replete_not_exactGR leakage theorem remains valid. Positive finite margins do not establish exact invariance."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/X1/ExactMargins.lean"
+      ],
+      "acceptance_case_ids": [
+        "X-03",
+        "X-04",
+        "X-06"
+      ]
+    },
+    {
+      "atlas_id": "X1-S01",
+      "historical_selected_scope": "Bounded finite discounted stochastic games, arbitrary nonanticipating behavioral unilateral deviations, independent current opponent draw.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "Finite state/actions; real-valued probability rows; 0 <= beta < 1 and bounded reward/value.",
+        "The deviator sees completed history, not the current opponent draw or future noise.",
+        "The opponent uses the fixed declared equilibrium action law; the learner mode changes memory updates, not that opponent action assumption."
+      ],
+      "historical_declared_residual": [
+        "This does not prove clairvoyant, current-noise-correlated, changed-world or risk-sensitive optimality, nor unique optimality. The learner action policy is not silently declared an equilibrium."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Games/DiscountedVerification.lean",
+        "PermanssonResearch/Games/DiscountedTraceExpectation.lean",
+        "PermanssonResearch/X1/FullStrategyCertificate.lean",
+        "PermanssonResearch/X1/StrategyOriginalBridge.lean",
+        "PermanssonResearch/X1/FullStrategyTrace.lean"
+      ],
+      "acceptance_case_ids": [
+        "S-01",
+        "S-02"
+      ]
+    },
+    {
+      "atlas_id": "F1-MA2",
+      "historical_selected_scope": "Finite autonomous strict anchors with full baseline-supported action/update agreement; separately standard-Borel all-time AE extension.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Original strict nonreactivity and exogenous common updates yield actual factor kernels.",
+        "Finite support agreement includes the opponent update on actual realized action/world inputs.",
+        "The AE theorem uses explicit measurable factor kernels, the relevant standard-Borel spaces, and action plus update agreement under their different actual baseline laws.",
+        "The treated mechanism is the stationary PlayerOneMechanism type in these theorems."
+      ],
+      "historical_declared_residual": [
+        "Weaker agreement, endogenous common channels, other information structures or history-dependent treated mechanisms need their own theorem; no broader strict-MA2 impossibility is asserted."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/MultiAgent/AutonomousMarkedKernel.lean",
+        "PermanssonResearch/MultiAgent/AutonomousSupportClosure.lean",
+        "PermanssonResearch/MultiAgent/StrictMA2Obstruction.lean",
+        "PermanssonResearch/MultiAgent/AutonomousAEMechanisms.lean",
+        "PermanssonResearch/MultiAgent/AutonomousAEContinuumFixture.lean"
+      ],
+      "acceptance_case_ids": [
+        "M-01",
+        "M-02"
+      ]
+    },
+    {
+      "atlas_id": "E1-G01",
+      "historical_selected_scope": "Finite spaces or measurable kernel common-mass and jointly measurable Radon-Nikodym lift profile; every fine row.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Actual homogeneous fine K and coarse Kbar, measurable q, every-fine-row HasQuotientDefect <= eta, 0<=eta<=1, and matched fine Dirac y/coarse Dirac q(y) starts for the exported quotient theorem.",
+        "The RN wrapper has the declared CountableOrCountablyGenerated profile. The common-subkernel wrapper accepts an actual jointly measurable R<=K with projected R dominated by Kbar(q(y)) and row mass at least 1-eta.",
+        "Original margin wrapper has a type-respecting state compression, paired actual baseline/intervention defects, source TV-Lipschitz finite-prefix property and the complete coarse comparison set as the image of the original fine set."
+      ],
+      "historical_declared_residual": [
+        "No unrestricted measurable RN lifting claim.",
+        "Chapter04:49-51 also describes varying eta_t and an initial common mass. DependentHistoryCommonMass proves those retained products on a common dependent history type, but there is no exported varying-kernel/mismatched-start fine-hidden/coarse-projected adapter. Keep that expanded projected variant open rather than infer it from the generic product theorem."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Probability/ProjectedCommonSubkernel.lean",
+        "PermanssonResearch/Quotient/GeometricQuotient.lean",
+        "PermanssonResearch/Quotient/GeometricPrefix.lean",
+        "PermanssonResearch/Quotient/GeometricMargin.lean",
+        "PermanssonResearch/Probability/DependentHistoryCommonMass.lean"
+      ],
+      "acceptance_case_ids": [
+        "Q-01",
+        "Q-02"
+      ]
+    },
+    {
+      "atlas_id": "A3-K01",
+      "historical_selected_scope": "Finite metric probabilities; larger complete separable Borel space with finite first moments and explicit finite quantization proof.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite profile: finite pseudometric space with measurable singletons, probability measures, actual distance costs. Theorems retain arbitrary real atom weights and distances.",
+        "Larger KR profile: separable pseudometric Borel space; both probability laws integrate distance to an anchor. Completeness is unnecessary for the equality itself.",
+        "P1 completeness profile: complete separable metric Borel space and a chosen anchor; the metric is the constructed coupling W1.",
+        "IsKRTest means individually bounded measurable one-Lipschitz functions; it does not impose a shared supnorm-one restriction."
+      ],
+      "historical_declared_residual": [
+        "General optimal coupling or optimal potential attainment on arbitrary Polish spaces is not exported; equality and approximate couplings are sufficient for the selected target.",
+        "There is no unrestricted sigma-algebra or infinite-first-moment KR assertion."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Probability/FiniteKantorovichDuality.lean",
+        "PermanssonResearch/Probability/FirstMomentKantorovichDuality.lean",
+        "PermanssonResearch/Probability/FirstMomentCompleteness.lean"
+      ],
+      "acceptance_case_ids": [
+        "A-01"
+      ]
+    },
+    {
+      "atlas_id": "A3-I01",
+      "historical_selected_scope": "Contraction preserving first-moment probabilities on a complete separable metric space; finite shortcut also specified.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Complete separable metric/Borel state space with anchor; actual Markov kernel; preservation of first moments; exact source IsW1Contraction K rho with 0 <= rho < 1.",
+        "FirstMomentKernel derives preservation from explicit row anchor-moment integrability and an affine drift upper bound. Supplying preservation directly is also permitted.",
+        "GeneratedInvariantPerturbation requires each of K and Kt to preserve P1 and have its own strict contraction coefficient. Its defect estimate uses the baseline coefficient.",
+        "Finite route requires a finite genuine metric space; it supplies existence from the finite invariant construction and uniqueness from contraction."
+      ],
+      "historical_declared_residual": [
+        "Uniqueness is within the declared P1 class, not among all probability measures with no moment restrictions.",
+        "A small row defect alone does not establish perturbed existence or uniqueness."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Perturbation/FirstMomentKernel.lean",
+        "PermanssonResearch/Perturbation/FirstMomentInvariant.lean",
+        "PermanssonResearch/Perturbation/GeneratedInvariantPerturbation.lean",
+        "PermanssonResearch/Perturbation/FiniteInvariantConstructor.lean"
+      ],
+      "acceptance_case_ids": [
+        "A-02"
+      ]
+    },
+    {
+      "atlas_id": "A3-C01",
+      "historical_selected_scope": "Direct bounded-Lipschitz row criterion giving the exact existing global dual predicate; finite Dobrushin and metric row-coupling certificates.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "K is Markov; rho >= 0; for every original IsKRTest f and every x,y, |Kf(x)-Kf(y)| <= rho*dist(x,y).",
+        "The conclusion quantifies over every probability law and every real admissible input dual bound. W1DualLE.nonneg handles impossible negative input bounds.",
+        "TV conversion retains finite diameter D and positive separation ell, giving D*beta/ell; only the discrete unit metric has coefficient exactly the Dobrushin TV coefficient.",
+        "Finite typed conversion requires positive weights a,b and four separate factor/min(a,b)<1 gates before original-margin integration."
+      ],
+      "historical_declared_residual": [
+        "The theorem proves a criterion; an application must supply genuine row or primitive bounds and prove strictness. A TV coefficient on an unbounded metric does not suffice."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Perturbation/DirectDualContraction.lean",
+        "PermanssonResearch/Perturbation/DobrushinContraction.lean",
+        "PermanssonResearch/Perturbation/FiniteStateMetricContraction.lean",
+        "PermanssonResearch/Perturbation/FiniteMetricProtocol.lean"
+      ],
+      "acceptance_case_ids": [
+        "A-02"
+      ]
+    },
+    {
+      "atlas_id": "A3-F01",
+      "historical_selected_scope": "Explicit occupation-limit functional, four actual finite unique-class kernels; separate regenerative Polish profile with added moment conditions.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "A single property is defined in advance from descriptor h, fallback, and observable Phi. It is measurable on all paths; nonconvergent paths use that fixed fallback.",
+        "Finite route: finite state and descriptor metrics; each of the four actual kernels has a unique recurrent class, or its own strict contraction from which that class is derived. The law functional is continuous and has the literal old global IsW1LipschitzFunctional bound.",
+        "Regenerative route: for every one of the four actual kernels, Data supplies an actual row decomposition K=(1-r)*seed+r*R with 0<=r<1, Markov R and probability seed. This independently constructs the stationary geometric residual-orbit mixture.",
+        "Bounded weak route uses continuous h and bounded weakly continuous Phi; compact descriptor route supplies a full probability-valued measurable occupation selector.",
+        "P1 route: complete separable metric/Borel descriptor; measurable h; genuine regenerative distance-reward summability for each descriptor target, and state moment budgets where invariant perturbation needs them. PhiB is bounded and continuous on P1 and identified with a Measure-level Phi satisfying the literal global dual-Lipschitz predicate.",
+        "Original margin comparison retains the original common comparison-state set, baseline/intervention contraction and defect budgets, and all four actual induced kernels."
+      ],
+      "historical_declared_residual": [
+        "The result is for declared occupation functionals, not every arbitrary previously frozen survival or time-zero property.",
+        "On a general noncompact weak space, the bounded weak route uses a scalar Phi(empirical) limit; a universal full weak-law selector is supplied only in compact or complete P1 profiles.",
+        "Bounded continuous Phi is an explicit selected assumption in chapter05:110; arbitrary unbounded P1-Lipschitz observables are not asserted.",
+        "An explicit regeneration/moment certificate is still required for each of the four kernels; contraction alone does not prove the needed path factorization for arbitrary functionals."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Perturbation/FiniteOccupationFactorization.lean",
+        "PermanssonResearch/Perturbation/RegenerativeOccupationFactorization.lean",
+        "PermanssonResearch/MultipleLimit/RegenerativeFirstMomentOccupation.lean",
+        "PermanssonResearch/MultipleLimit/RegenerativeDescriptorTails.lean",
+        "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean"
+      ],
+      "acceptance_case_ids": [
+        "A-04",
+        "A-05"
+      ]
+    },
+    {
+      "atlas_id": "A3-P01",
+      "historical_selected_scope": "Weighted product metric and conditional stage couplings with declared action/world/update errors and Lipschitz sensitivities.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite nonempty S,X,A with supplied metrics and measurable singletons; actual typed StrategicWorldModel primitives.",
+        "PrimitiveMetricBounds gives uniform all-input primitive W1DualLE errors and reference action/next-world Lipschitz sensitivities; the comparison reference in the sequential proof is explicit.",
+        "a,b>0. Weighted budget is a*deltaU+(b+a*LUx)*deltaP+[a*LUa+(b+a*LUx)*LPa]*deltaAlpha.",
+        "The frozen product metric is max(dS,dX). Conversion divides the weighted output budget by min(a,b). Same-model input bounds must be stated relative to the intended incoming metric, and all four converted factors must be below one."
+      ],
+      "historical_declared_residual": [
+        "The selected finite implementation is expressly allowed by chapter05:114. General measurable selection of optimal primitive couplings on arbitrary unbounded spaces is not exported.",
+        "The bounded-diameter TV-to-dual primitive wrapper remains a separate route and retains its D factor."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Perturbation/FiniteTypedRows.lean",
+        "PermanssonResearch/Perturbation/FiniteSequentialCoupling.lean",
+        "PermanssonResearch/Perturbation/FinitePrimitiveMetric.lean",
+        "PermanssonResearch/Perturbation/FiniteStateMetricContraction.lean",
+        "PermanssonResearch/Perturbation/FiniteMetricProtocol.lean"
+      ],
+      "acceptance_case_ids": [
+        "A-03"
+      ]
+    },
+    {
+      "atlas_id": "D2-R01",
+      "historical_selected_scope": "Finite fully observed known rational controlled process and literal retryable residence event.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "Finite fully observed known rational physical rows and nonempty state-dependent finite control menus.",
+        "Monitor reads Y0; m transitions means m+1 observations; entry T uses horizon T+m.",
+        "The physical row continues after the monitor success flag becomes sticky."
+      ],
+      "historical_declared_residual": [
+        "No physical absorption or arbitrary nonlinear objective; entry and completion deadlines remain distinct. The stated complexity is arithmetic-operation complexity, not exact-rational bit complexity."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/ReverseSolver/CompactResidenceMonitor.lean",
+        "PermanssonResearch/ReverseSolver/MonitorEventOptimality.lean",
+        "PermanssonResearch/ReverseSolver/MonitorHistoryBridge.lean",
+        "PermanssonResearch/ReverseSolver/RollingResidenceTable.lean"
+      ],
+      "acceptance_case_ids": [
+        "D-01",
+        "D-02"
+      ]
+    },
+    {
+      "atlas_id": "A2-P01",
+      "historical_selected_scope": "Actual ordered primitive composition with measurable common kernels at each stage and uniform stage errors.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "Actual ordered alpha/P/U primitives from two typed models; every delta lies in [0,1].",
+        "The common-part construction requires the three explicit CountableOrCountablyGenerated source/target instances; finite spaces satisfy them.",
+        "All required primitive input rows, including off-graph and intervention-reachable rows, satisfy the uniform primitive bounds. World-law differences are between-model perturbations."
+      ],
+      "historical_declared_residual": [
+        "Q-03 requires an actual correlated-stage/product-saturating semantic example. The generic theorem is correct, but that stronger acceptance fixture is not supplied at H."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Perturbation/PrimitiveProductTV.lean",
+        "PermanssonResearch/Perturbation/PrimitiveMetricBudget.lean"
+      ],
+      "acceptance_case_ids": [
+        "Q-03"
+      ]
+    },
+    {
+      "atlas_id": "A2-P02",
+      "historical_selected_scope": "Nonstationary history-kernel hybrid with initial TV and expected every-step row defects; separate baseline/intervention visit budgets.",
+      "historical_disposition": "CORE_THEOREM_FORMALIZED_INTEGRATION_OPEN",
+      "historical_declared_hypotheses": [
+        "Actual probability initial laws mu,nu and Markov K_t,L_t on a common history/output type; measurable append maps. Histories evolve by the actual composition-product/map recurrence.",
+        "d_t is measurable and nonnegative and bounds actual row event TV at every history. e_t>=0 and the extended nonnegative integral of ENNReal.ofReal(d_t) under the actual FIRST history law is at most ENNReal.ofReal(e_t).",
+        "Initial event TV is at most epsilon. The conclusion is min(1, epsilon + sum e_t). The finite upper budgets ensure no nonintegrable real Bochner integral can silently evaluate to zero."
+      ],
+      "historical_declared_residual": [
+        "Required selected integration remains: prove the good-history bound eta_t+mu_t(E_t^c), instantiate separate actual baseline/intervention visit budgets, and feed the resulting localized/initial-law property errors plus separately verified b0,bJ into the original margin interface.",
+        "This is required by the original A2-P02 title/selected scope and chapter04:81-84, not an optional unrestricted extension. The old ConstitutiveQuasi/PropertyErrors:45-98 accepts uniform kernel TV and geometric envelopes; it does not instantiate the new localized budget.",
+        "No other Lean source imports or applies historyEvolution_tv_le_sum or eventTV_compProd_averaged. A correct generic inequality alone does not establish this requested original-interface integration."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Probability/LocalizedHistoryTV.lean"
+      ],
+      "acceptance_case_ids": [
+        "Q-04"
+      ]
+    },
+    {
+      "atlas_id": "E1-P01",
+      "historical_selected_scope": "Summable weighted bounded finite-prefix scores; full path TV only with summable sequential error or a separately proved common-mass limit.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Actual probability laws mu,nu on a common measurable Omega; measurable finite-output maps and measurable scores in [0,1]; nonnegative summable weights; actual output TV bounds e_t in [0,1].",
+        "Normalized discount has 0<=beta<1, 0<=eta<=1. With initial mismatch also 0<=epsilon<=1 and actual output bounds 1-(1-epsilon)(1-eta)^t.",
+        "Full-product-law route: actual laws P,Q on the dependent countable product, actual prefix marginal identities with the dependent-history evolution, common initial submeasure, common transition subkernels with mass lower bounds, and summable nonnegative eta_t<=1."
+      ],
+      "historical_declared_residual": [
+        "There is no exported quotient-native discounted RegimePropertyMap/original-margin adapter identifying fine and coarse path pushforwards. The stated chapter04:88-105 generic score inequality is proved; claiming automatic original quotient/margin integration would exceed the exports.",
+        "Recurring constant positive leakage is not summable and yields only the trivial full-path TV bound one. Infinite survival is outside the summable score class."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Probability/SummablePathScores.lean",
+        "PermanssonResearch/Probability/DiscountedInitialBudget.lean",
+        "PermanssonResearch/Probability/CylinderTotalVariation.lean",
+        "PermanssonResearch/Probability/FullPathProductTV.lean"
+      ],
+      "acceptance_case_ids": [
+        "Q-05"
+      ]
+    },
+    {
+      "atlas_id": "E1-P02",
+      "historical_selected_scope": "Original-margin transport with independently proved Exact-GR, grounding, comparison and convergence prerequisites on both models.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "The geometric quotient wrapper requires the actual type-respecting compression, paired fine/coarse original intervention models, source property factorization, matching actual comparison sets, both row-defect budgets and independent original Exact-GR certificates.",
+        "The explicit bidirectional margin lemma assumes e>=0, absolute margin error <=e, and either fine margin>e or coarse margin>e.",
+        "The grounded bidirectional wrapper separately requires the original confirmatory regime and grounded-property certificates on both sides."
+      ],
+      "historical_declared_residual": [
+        "There is no bare-positivity equivalence at e>0 and no automatic Exact-GR, target-law identity, grounding, or intervention-label discovery from a small quotient defect."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Quotient/GeometricMargin.lean"
+      ],
+      "acceptance_case_ids": [
+        "Q-05"
+      ]
+    },
+    {
+      "atlas_id": "F1-P01",
+      "historical_selected_scope": "Player-two construction and coordinate reindexing with physical kernel inputs explicitly transported.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "Swapping acts on private-state, action, world-input and update-input coordinates.",
+        "Full actual atom/path transport is in the stated finite-coordinate profile.",
+        "The property and original comparison sets are transported by the declared equivalence."
+      ],
+      "historical_declared_residual": [
+        "General measurable full path transport beyond the finite proof profile remains a possible extension; direct measurable player-two protocols themselves are present."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/MultiAgent/PlayerSwapTransport.lean",
+        "PermanssonResearch/MultiAgent/PlayerSwapConstitution.lean"
+      ],
+      "acceptance_case_ids": [
+        "F-01"
+      ]
+    },
+    {
+      "atlas_id": "F1-P02",
+      "historical_selected_scope": "Finite-index conditional-product action/update kernels and selected-player protocols.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite index set with a selected player; each component is a measurable Markov kernel.",
+        "Conditional independence is part of this subclass.",
+        "General binary productKernel_two is a measure identity; the full FiniteProductTwo bridge adds finite-coordinate assumptions."
+      ],
+      "historical_declared_residual": [
+        "Countably infinite products and general correlated games are outside scope. To claim full recovery of the old arbitrary-measurable two-player interface, add the corresponding measurable model/path/intervention transport adapter."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/MultiAgent/MeasurableFiniteProduct.lean",
+        "PermanssonResearch/MultiAgent/MeasurableProductProtocols.lean",
+        "PermanssonResearch/MultiAgent/FiniteProductTwo.lean"
+      ],
+      "acceptance_case_ids": [
+        "F-01"
+      ]
+    },
+    {
+      "atlas_id": "F1-P03",
+      "historical_selected_scope": "A new typed common/private clock-augmented baseline with actual clock update and projection bridge.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Time index is natural; the initial clock value is fixed.",
+        "Each selected time kernel is measurable/Markov and each anchor satisfies its strictness/feasibility premise.",
+        "The lawful clock advances independently of the treated action."
+      ],
+      "historical_declared_residual": [
+        "This constructs a new lifted baseline; it is not a silent alteration of the original frozen model. Arbitrary real-time or unobservable-clock implementations are not supplied."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/MultiAgent/MeasurableNatPrivateClock.lean",
+        "PermanssonResearch/MultiAgent/MeasurableNatClockTransport.lean",
+        "PermanssonResearch/MultiAgent/MeasurableNatClockFixture.lean"
+      ],
+      "acceptance_case_ids": [
+        "F-02"
+      ]
+    },
+    {
+      "atlas_id": "F1-P04",
+      "historical_selected_scope": "Finite feasible menus; all-state strict feasibility iff support in each own-key fibre intersection.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite menu/key/action profiles for the executable selector; the AE intersection theorem has its stated countability assumptions.",
+        "The key map is surjective or every represented fibre is explicitly handled.",
+        "Legality applies to the common anchor law over the whole key fibre."
+      ],
+      "historical_declared_residual": [
+        "Nonrectangular joint feasibility and a general measurable-selection theorem remain separate."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/MultiAgent/FeasibleAnchors.lean"
+      ],
+      "acceptance_case_ids": [
+        "F-03"
+      ]
+    },
+    {
+      "atlas_id": "F1-P05",
+      "historical_selected_scope": "All-point-start/all-control projected or marked kernel autonomy iff the corresponding row factorization.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite control set; general measurable state and key spaces.",
+        "Legality holds with policy probability one and quantification includes all initial histories.",
+        "The theorem concerns the unmarked projected row unless a separate marked result is invoked."
+      ],
+      "historical_declared_residual": [
+        "Equal unmarked key laws do not identify action coupling. A dedicated tracked regression for that distinction was not found; the audit gives an exact counterexample with the same constant key law and opposite realized actions."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/MultiAgent/BehavioralAutonomy.lean"
+      ],
+      "acceptance_case_ids": [
+        "M-02"
+      ]
+    },
+    {
+      "atlas_id": "F1-P06",
+      "historical_selected_scope": "Finite joint actions represented by an explicitly sampled mediator with declared information timing.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite joint action space for the explicit mixture identity.",
+        "A mediator may depend measurably on the current state; the full joint draw is the mediator variable."
+      ],
+      "historical_declared_residual": [
+        "This is an explicit action-stage representation, not a hidden-state augmentation, public-signal identification or dynamic causal model."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/MultiAgent/CorrelatedMediator.lean"
+      ],
+      "acceptance_case_ids": [
+        "F-04"
+      ]
+    },
+    {
+      "atlas_id": "F1-P07",
+      "historical_selected_scope": "Finite single-mediator SCM with conditional independent noises, treatment ignorability, consistency and positivity; explicit nonidentification example.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Covariate law, treatment assignment and two conditional noise laws are normalized and nonnegative.",
+        "Consistency and modularity come from shared deterministic mediator/outcome maps and the same declared noises.",
+        "Treatment ignorability and conditional noise independence are structural product assumptions.",
+        "The on-support theorem requires positivity only on cells actually used."
+      ],
+      "historical_declared_residual": [
+        "Dynamic/sequential mediation and actual empirical identification remain open. The positive example is not a dedicated Lean SCM instantiation and is absent from the 48-test acceptance routing even though it is in the 918-test suite."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/MultiAgent/FiniteMediation.lean"
+      ],
+      "acceptance_case_ids": [
+        "F-05"
+      ]
+    },
+    {
+      "atlas_id": "D2-P01",
+      "historical_selected_scope": "Known finite fully observed expected terminal monitor reward, real behavioral probabilities, deterministic time-state maximizer.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "Real behavioral probabilities are normalized/supported on each supplied past.",
+        "The controller sees completed realized states and controls, never a future draw.",
+        "One fixed finite horizon and rational terminal monitor reward; no constrained/robust/private/hidden-policy extension."
+      ],
+      "historical_declared_residual": [
+        "Does not extend deterministic sufficiency to risk-constrained or hidden-model robust objectives. The conclusion is not imported into constrained or hidden-draw robust objectives."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/ReverseSolver/BehavioralFinitePolicy.lean",
+        "PermanssonResearch/ReverseSolver/ChronologicalFiniteLaw.lean",
+        "PermanssonResearch/ReverseSolver/MonitorOptimality.lean",
+        "PermanssonResearch/ReverseSolver/InitialLawMonitor.lean"
+      ],
+      "acceptance_case_ids": [
+        "D-01"
+      ]
+    },
+    {
+      "atlas_id": "D2-P02",
+      "historical_selected_scope": "Literal first-ever-hit-and-stay event, fixed entry deadline, irreversible failure after interrupted first run.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "First ever target hit, entry deadline T, m further transitions in target; time-zero entry counts.",
+        "Failure after interrupted first stay is irreversible; physical transitions remain live."
+      ],
+      "historical_declared_residual": [
+        "No substitution for the existing retryable event."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/ReverseSolver/FirstEntryMonitor.lean",
+        "PermanssonResearch/ReverseSolver/ResidenceSpecializationOptimality.lean"
+      ],
+      "acceptance_case_ids": [
+        "D-02"
+      ]
+    },
+    {
+      "atlas_id": "D2-P03",
+      "historical_selected_scope": "Finish a target run before any danger; danger precedence at ties; separate through-horizon risk monitor.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "Danger precedes simultaneous unfinished success; a completed before-danger success remains true.",
+        "Ever-danger through horizon is an additional memory bit, not the complement of success.",
+        "Actual risk measure uses an initialized consistent monitor augmentation and the actual occupancy history law."
+      ],
+      "historical_declared_residual": [
+        "Other post-success risk conventions require separately named events."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/ReverseSolver/AvoidResidenceMonitor.lean",
+        "PermanssonResearch/ReverseSolver/AvoidResidenceHistoryBridge.lean",
+        "PermanssonResearch/ReverseSolver/ResidenceSpecializationOptimality.lean",
+        "PermanssonResearch/ReverseSolver/ThroughHorizonRiskMonitor.lean"
+      ],
+      "acceptance_case_ids": [
+        "D-03"
+      ]
+    },
+    {
+      "atlas_id": "D2-P04",
+      "historical_selected_scope": "Finite rational augmented occupancy polytope, behavioral policy reconstruction, exact vertex optimum and optional weak-dual certificate.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite horizon, finite nonempty legal menus, rational initial law/rows/objective/risk/threshold.",
+        "Comparison is against all normalized supported real behavioral history policies.",
+        "x/d uses a legal default at zero state mass; one reconstructed policy realizes all coordinates and scores.",
+        "Compactness and rational vertex completeness are proved; no supplied optimal candidate, rank oracle or dual completeness premise."
+      ],
+      "historical_declared_residual": [
+        "Polynomial efficiency is not proved; more general risk functionals require new state/convexity results. No polynomial runtime or general nonlinear/path-risk optimization claim."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/ReverseSolver/FiniteOccupancyReconstruction.lean",
+        "PermanssonResearch/ReverseSolver/PolytopeCompleteness.lean",
+        "PermanssonResearch/ReverseSolver/FlowPolytope.lean",
+        "PermanssonResearch/ReverseSolver/FlowPolicyOptimality.lean",
+        "PermanssonResearch/ReverseSolver/FlowRiskWitness.lean",
+        "PermanssonResearch/ReverseSolver/PolytopeRegression.lean"
+      ],
+      "acceptance_case_ids": [
+        "D-03",
+        "D-04"
+      ]
+    },
+    {
+      "atlas_id": "D2-P05",
+      "historical_selected_scope": "Finite rectangular perfect-information nature-after-control game; separately private-control-draw stage maximin LP.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite nonempty control/nature menus with perfect-information realized history.",
+        "Dynamic nature observes the current realized control and can choose anew at every node.",
+        "Private stage is a separate finite rational payoff table; nature sees distribution but not private draw.",
+        "No static model-commitment Bellman equivalence or generic minimax interchange."
+      ],
+      "historical_declared_residual": [
+        "Static hidden model commitment is not rectangular; no generic max/min interchange. A single hidden model committed for the whole horizon requires different state/information treatment."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/ReverseSolver/RectangularFiniteGame.lean",
+        "PermanssonResearch/ReverseSolver/RectangularGameLaw.lean",
+        "PermanssonResearch/ReverseSolver/PrivateControlStageOptimizer.lean",
+        "PermanssonResearch/ReverseSolver/PrivateControlStageFixture.lean",
+        "PermanssonResearch/ReverseSolver/SolverBoundaryWitnesses.lean"
+      ],
+      "acceptance_case_ids": [
+        "D-05"
+      ]
+    },
+    {
+      "atlas_id": "D2-P06",
+      "historical_selected_scope": "Finite hidden augmented state including event monitors, common finite control menu, finite observations, alpha-vector optimality.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite full hidden augmented state, including event monitors; finite observations.",
+        "Common finite nonempty control menu is legal at every hidden physical state.",
+        "Control precedes hidden transition and successor observation; policy argument excludes hidden state.",
+        "Positive-word Bayes normalization; fixed fallback only on zero-probability branches.",
+        "Mathematical real alpha-vector maximum is noncomputable; no executable arbitrary-real optimization claim."
+      ],
+      "historical_declared_residual": [
+        "Arbitrary belief-dependent menus, empirical identification and general infinite-horizon POMDP theory are excluded. Identifiability of the hidden model and general infinite-horizon POMDPs remain separate."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/ReverseSolver/BeliefHistory.lean",
+        "PermanssonResearch/ReverseSolver/BeliefKernel.lean",
+        "PermanssonResearch/ReverseSolver/BeliefChronology.lean",
+        "PermanssonResearch/ReverseSolver/BeliefAlpha.lean",
+        "PermanssonResearch/ReverseSolver/BeliefMonitor.lean"
+      ],
+      "acceptance_case_ids": [
+        "D-06"
+      ]
+    },
+    {
+      "atlas_id": "D2-P07",
+      "historical_selected_scope": "Finite controlled infinite-safety optimum and deterministic stationary attainment; greatest controlled invariant set.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite rational time-homogeneous controlled system; finite nonempty menus.",
+        "All real full-history behavioral policies use a genuine normalized countable-history canonical law.",
+        "Safety includes time zero and every physical successor.",
+        "Finite max/sum continuity yields fixed point; stationary lower-bound verification precedes limit.",
+        "Greatest invariant core is finite/rational; real limiting value selector is noncomputable."
+      ],
+      "historical_declared_residual": [
+        "General nonfinite infinite retention or finite-horizon extrapolation is not supplied. A general reach-then-stay optimal switching theorem and original frozen-intervention bridge are additional targets."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/ReverseSolver/BehavioralInfiniteLaw.lean",
+        "PermanssonResearch/ReverseSolver/InfiniteSafetyPathSemantics.lean",
+        "PermanssonResearch/ReverseSolver/InfiniteSafetyBellman.lean",
+        "PermanssonResearch/ReverseSolver/InfiniteSafetyFiniteEvaluation.lean",
+        "PermanssonResearch/ReverseSolver/InfiniteSafetyOptimality.lean",
+        "PermanssonResearch/ReverseSolver/GreatestControlledInvariant.lean",
+        "PermanssonResearch/ReverseSolver/InfiniteSafetyLeakage.lean"
+      ],
+      "acceptance_case_ids": [
+        "D-07"
+      ]
+    },
+    {
+      "atlas_id": "D2-P08",
+      "historical_selected_scope": "Finite certified block menus and genuine time-dependent alpha/P/U-controlled law with fixed physical P.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "Certified finite measurable state indexing and exact rational actual block atom certificates.",
+        "Whole-block admission and both action/update overlap compatibility are explicit independent fields.",
+        "Block selected before its alpha/P/U stage; physical world P stays fixed.",
+        "Successive selections define an adaptive controlled law, not one frozen intervention."
+      ],
+      "historical_declared_residual": [
+        "Overlapping incompatible patches and post-draw unauthorized control choice remain inadmissible. Compatible overlapping blocks are allowed; the inherited blanket wording “overlapping patches rejected” needs narrowing."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/ReverseSolver/AdaptiveGrammarControl.lean"
+      ],
+      "acceptance_case_ids": [
+        "D-08"
+      ]
+    },
+    {
+      "atlas_id": "D2-P09",
+      "historical_selected_scope": "Finite menu of deterministic stationary policies, exact class absorption and stationary descriptor-limit scores.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "All admissible deterministic stationary StateFeedback maps only.",
+        "Descriptor and globally bounded functional fixed before policy selection.",
+        "Exact rational functional evaluation on every constructed class law is certified input; existence of such an evaluator for arbitrary functionals is not claimed.",
+        "C10 absorption, C11 stationary laws, original C2 selector/occupation convergence supply actual-law bridge.",
+        "Expectation is of F(random occupation limit), not F(expected occupation law)."
+      ],
+      "historical_declared_residual": [
+        "All-history asymptotic synthesis, MEC/mean-payoff objectives remain a broader unproved target. For continuous F(nu)=1-|nu(1)-2/3|, a two-state force-0/force-1 model has deterministic-stationary optimum 5/6 but a period-three history policy or randomized row policy attains 1."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/MultipleLimit/FiniteOccupationRandomLaw.lean",
+        "PermanssonResearch/ReverseSolver/StationaryOccupationObjective.lean",
+        "PermanssonResearch/ReverseSolver/StationaryMenuOptimization.lean"
+      ],
+      "acceptance_case_ids": [
+        "D-09"
+      ]
+    },
+    {
+      "atlas_id": "C11-P01",
+      "historical_selected_scope": "All nonempty finite rational stochastic matrices; explicit Cramer stationary family for every genuine bottom class.",
+      "historical_disposition": "SELECTED_STATEMENT_VERIFIED",
+      "historical_declared_hypotheses": [
+        "Arbitrary nonempty finite rational stochastic matrix, no aperiodicity or resource-size hypothesis.",
+        "Computed genuine bottom classes give nonempty irreducible closed restrictions.",
+        "Nonsingularity, rational/real cast compatibility, positivity, mass one, stationarity and zero extension are proved.",
+        "Canonical class list is complete and duplicate-free; final checker acceptance is universal, not assumed."
+      ],
+      "historical_declared_residual": [
+        "No verified external parser or runtime scalability claim; C10 total absorption is already proved. Existing C10 total Dirichlet/Cramer absorption must be reused; parser verification and runtime scalability are separate."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/ReverseSolver/C11ReferenceMatrix.lean",
+        "PermanssonResearch/ReverseSolver/C11ReferenceProbability.lean",
+        "PermanssonResearch/ReverseSolver/C11ReferenceClasses.lean",
+        "PermanssonResearch/ReverseSolver/C11ReferenceStationaryFamily.lean",
+        "PermanssonResearch/ReverseSolver/C11ReferenceTypedBridge.lean"
+      ],
+      "acceptance_case_ids": [
+        "C11-01",
+        "C11-02"
+      ]
+    },
+    {
+      "atlas_id": "C-P01",
+      "historical_selected_scope": "Compact metric Feller cluster theorem, unique-invariant convergence, stationary/absolutely-continuous random-law extension.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Compact-Feller route: nonempty compact metric Borel state space, actual Markov kernel, Feller continuity on C(Y,R), and any initial probability law.",
+        "Unique-invariant convergence requires uniqueness; general multi-invariant compact chains yield cluster containment and approach to the invariant set, not a single limit from this theorem alone.",
+        "Random-law route: second-countable metric Borel standard-Borel nonempty state space, actual stationary probability pi for K, and stationary start or an initial mu absolutely continuous with respect to pi. Feller and compactness are not needed for this separate route.",
+        "Weak pushforward descriptor conclusions use continuous h; a separate regenerative theorem can handle merely measurable h through direct averages. The original regime occupation bridge also needs every invariant descriptor image to equal the declared target."
+      ],
+      "historical_declared_residual": [
+        "There is no unrestricted nonfinite all-initial weak occupation theorem. Noncompact marginal boundedness or weak cluster containment alone does not imply pathwise empirical convergence.",
+        "A non-atomic stationary pi does not dominate arbitrary Dirac starting laws; the absolute-continuity premise is material.",
+        "The general ergodic result formalized here is bounded Birkhoff. The regenerative route separately proves nonnegative integrable averages; it is not an unrestricted integrable Birkhoff theorem."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/MultipleLimit/CompactFellerEmpirical.lean",
+        "PermanssonResearch/MultipleLimit/CompactFellerDistance.lean",
+        "PermanssonResearch/MultipleLimit/StationaryConditionalLaw.lean",
+        "PermanssonResearch/MultipleLimit/StationaryConditionalInvariant.lean",
+        "PermanssonResearch/MultipleLimit/PolishStationaryRandomOccupation.lean",
+        "PermanssonResearch/MultipleLimit/CanonicalInitialDensity.lean",
+        "PermanssonResearch/MultipleLimit/NonfiniteClock.lean",
+        "PermanssonResearch/MultipleLimit/GrowingBlockCounterexample.lean"
+      ],
+      "acceptance_case_ids": [
+        "C-01"
+      ]
+    },
+    {
+      "atlas_id": "B-P01",
+      "historical_selected_scope": "Finite measurable row patches agreeing on every active overlap; fixed P and original typed law bridge.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite lists of measurable Markov row patches on exact alpha/update input types.",
+        "Pairwise equality of replacement measures at every active overlap.",
+        "Independent frozen whole-block admission; original P retained.",
+        "Permutation/idempotence/original-law/original-margin claims are under compatibility; raw fold may accept ordered conflicting data."
+      ],
+      "historical_declared_residual": [
+        "Arbitrary conflicting patches require declared priority/order semantics rather than this commutative theorem. General nonlinear kernel transformations and conflict-priority semantics need distinct assumptions/theorems."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/GrammarRobust/CompatibleOverlap.lean",
+        "PermanssonResearch/GrammarRobust/OverlapKernelAssembly.lean",
+        "PermanssonResearch/GrammarRobust/OverlapCanonicalBridge.lean"
+      ],
+      "acceptance_case_ids": [
+        "B-01"
+      ]
+    },
+    {
+      "atlas_id": "B-P02",
+      "historical_selected_scope": "Local strict lower-set mapping/lifting with matched positivity; unique least block only under finite positive meet closure.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Matched positivity throughout chosen downset, strict preservation below chosen element, coverage of every strict lower target element.",
+        "Admission is in the poset carrier or explicitly retained in the actual wrapper.",
+        "Original-margin positivity match follows from typed physical coarsening transport.",
+        "Unique least positive element only when positive finite family is nonempty and meet-closed; uniqueness follows by antisymmetry."
+      ],
+      "historical_declared_residual": [
+        "No arbitrary bijection or coarsening preserves minimality; positivity need not be monotone. The raw enabling-Boolean interpretation must be distinguished from the preserved ablation-margin examples, where AND correctly has incomparable singleton minima and OR a joint minimum."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/GrammarRobust/LowerSetTransport.lean",
+        "PermanssonResearch/GrammarRobust/OriginalLowerSetTransport.lean"
+      ],
+      "acceptance_case_ids": [
+        "B-02"
+      ]
+    },
+    {
+      "atlas_id": "X1-P01",
+      "historical_selected_scope": "New three-world two-player constructed economic model with fair safe baseline, collapse under extraction, beta three quarters.",
+      "historical_disposition": "SCOPED_THEOREM_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Two safe world states and an absorbing collapse state; Unit strategic memory and Boolean extraction actions.",
+        "The baseline rests, discount is 3/4, safe rest reward is one and safe extraction reward is two.",
+        "The original descriptor, basin, comparison set, intervention family and property are explicitly constructed."
+      ],
+      "historical_declared_residual": [
+        "This is a constructed mathematical witness, not empirical calibration or certification. It does not repair or reinterpret the older X1 leakage model."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/EconomicWitness/ExactRegime.lean",
+        "PermanssonResearch/EconomicWitness/Constitution.lean",
+        "PermanssonResearch/EconomicWitness/Incentives.lean"
+      ],
+      "acceptance_case_ids": [
+        "XPLUS-01"
+      ]
+    },
+    {
+      "atlas_id": "APP-E01",
+      "historical_selected_scope": "Finite real symmetric feature discrepancy with seam invisibility, plus constant diagonal for common rank one.",
+      "historical_disposition": "CONDITIONAL_ADAPTER_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite real symmetric matrices; a pivot; exact vanishing seam and, for rank one, constant diagonal.",
+        "A genuine path-law feature identity is an explicit premise of the original-model wrapper."
+      ],
+      "historical_declared_residual": [
+        "The model-to-feature identity is not manufactured by the matrix algebra. Natural Weil/CCM or production-model transfer remains conditional."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Specialized/SeamReduction.lean"
+      ],
+      "acceptance_case_ids": [
+        "E-01"
+      ]
+    },
+    {
+      "atlas_id": "APP-E02",
+      "historical_selected_scope": "Continuous quadratic form, certified legal approximants and form-preserving nested embeddings.",
+      "historical_disposition": "CONDITIONAL_ADAPTER_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Real normed spaces and bounded bilinear form with a declared bound.",
+        "A legal approximation property supplies arbitrarily close legal vectors.",
+        "Embedding must preserve the actual form; the original model wrapper requires its feature identity."
+      ],
+      "historical_declared_residual": [
+        "This supplies no independent density theorem for an intended arithmetic/physical carrier and no unproved feature identification."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Specialized/FiniteDetection.lean"
+      ],
+      "acceptance_case_ids": [
+        "E-02"
+      ]
+    },
+    {
+      "atlas_id": "APP-E03",
+      "historical_selected_scope": "Finite real self-adjoint predecessor PSD block, actual shell dimension, negative shift and Schur elimination.",
+      "historical_disposition": "CONDITIONAL_ADAPTER_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "PSD core and strictly negative shift, finite dimensions and the actual off-diagonal blocks.",
+        "Scalar secular monotonicity is restricted to a one-dimensional shell.",
+        "Existence of a first bad index is conditional on some bad index existing."
+      ],
+      "historical_declared_residual": [
+        "A general shell is a matrix equation, not an automatic scalar cubic. No actual source hierarchy or first failure is identified by these algebraic facts."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Specialized/ShellSchur.lean",
+        "PermanssonResearch/Specialized/ShellResolvent.lean"
+      ],
+      "acceptance_case_ids": [
+        "E-03"
+      ]
+    },
+    {
+      "atlas_id": "APP-E04",
+      "historical_selected_scope": "Finite symmetric range/kernel compatibility; explicit preimages and denominator-free source transport identities.",
+      "historical_disposition": "CONDITIONAL_ADAPTER_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Finite real inner-product spaces and symmetric operators; the relevant PSD and source/preimage assumptions are explicit.",
+        "The denominator-free rigidity statement uses a correctly typed D:E->F and separate operators.",
+        "The zero-shift response uses an independent w:F with two explicit response identities."
+      ],
+      "historical_declared_residual": [
+        "The actual construction identifying w with the intended source/hierarchy remains a premise. The Gamma=0 branch is unresolved by design, and complex/Hermitian source variants are not supplied."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Specialized/SingularCompatibility.lean"
+      ],
+      "acceptance_case_ids": [
+        "E-04"
+      ]
+    },
+    {
+      "atlas_id": "APP-E05",
+      "historical_selected_scope": "Signed rank-one quadratic block with positive Gram gap and an explicit operator-norm perturbation threshold.",
+      "historical_disposition": "CONDITIONAL_ADAPTER_FORMALIZED",
+      "historical_declared_hypotheses": [
+        "Positive coefficient c and Gram gap Delta > 0.",
+        "An added PSD component is controlled by its actual value in the witness direction.",
+        "The original effect wrapper requires a declared operator feature representation."
+      ],
+      "historical_declared_residual": [
+        "No zero-gap negative witness, unrestricted positive addition or natural model-to-operator identification follows. These remain conditional real algebraic adapters."
+      ],
+      "current_accepted_status": "PENDING_REAUDIT",
+      "source_paths": [
+        "PermanssonResearch/Specialized/GramSeparation.lean"
+      ],
+      "acceptance_case_ids": [
+        "E-05"
+      ]
+    }
+  ],
+  "planned_new_claims": [
+    {
+      "id": "P-04",
+      "status": "NOT_LEAN_VERIFIED",
+      "accepted_declarations": []
+    },
+    {
+      "id": "P-05",
+      "status": "NOT_LEAN_VERIFIED",
+      "accepted_declarations": []
+    },
+    {
+      "id": "P-06",
+      "status": "NOT_LEAN_VERIFIED",
+      "accepted_declarations": []
+    }
+  ],
+  "source_baseline_sha": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+  "closure_additions": [
+    {
+      "id": "Q1",
+      "title": "Canonical-source discounted output",
+      "path": "PermanssonResearch/Quotient/DiscountedCanonicalSourceWitness.lean",
+      "status": "PLANNED_NOT_VERIFIED",
+      "actual_declarations": [],
+      "source_sha256": null,
+      "axiom_receipts": [],
+      "acceptance_case_ids": [
+        "Q-05"
+      ]
+    },
+    {
+      "id": "Q2",
+      "title": "Original full comparison margin",
+      "path": "PermanssonResearch/Quotient/DiscountedCanonicalMarginClosure.lean",
+      "status": "PLANNED_NOT_VERIFIED",
+      "actual_declarations": [],
+      "source_sha256": null,
+      "axiom_receipts": [],
+      "acceptance_case_ids": [
+        "Q-05"
+      ]
+    },
+    {
+      "id": "Q3",
+      "title": "Typed quotient adversaries",
+      "path": "PermanssonResearch/Quotient/DiscountedCanonicalWitnessExamples.lean",
+      "status": "PLANNED_NOT_VERIFIED",
+      "actual_declarations": [],
+      "source_sha256": null,
+      "axiom_receipts": [],
+      "acceptance_case_ids": [
+        "Q-05"
+      ]
+    },
+    {
+      "id": "M1",
+      "title": "Admissible matched protocols",
+      "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedProtocols.lean",
+      "status": "PLANNED_NOT_VERIFIED",
+      "actual_declarations": [],
+      "source_sha256": null,
+      "axiom_receipts": [],
+      "acceptance_case_ids": [
+        "F-01",
+        "Q-05"
+      ]
+    },
+    {
+      "id": "M2",
+      "title": "Full B1 matched original margin",
+      "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+      "status": "PLANNED_NOT_VERIFIED",
+      "actual_declarations": [],
+      "source_sha256": null,
+      "axiom_receipts": [],
+      "acceptance_case_ids": [
+        "F-01",
+        "Q-05"
+      ]
+    },
+    {
+      "id": "M3",
+      "title": "Mixed-start and asymmetric adversaries",
+      "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedExamples.lean",
+      "status": "PLANNED_NOT_VERIFIED",
+      "actual_declarations": [],
+      "source_sha256": null,
+      "axiom_receipts": [],
+      "acceptance_case_ids": [
+        "F-01",
+        "Q-05"
+      ]
+    },
+    {
+      "id": "N1",
+      "title": "Native recurrent stationary law",
+      "path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeStationary.lean",
+      "status": "PLANNED_NOT_VERIFIED",
+      "actual_declarations": [],
+      "source_sha256": null,
+      "axiom_receipts": [],
+      "acceptance_case_ids": [
+        "D-09"
+      ]
+    },
+    {
+      "id": "N2",
+      "title": "Actual infinite-path nonlinear score",
+      "path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeExpectedScore.lean",
+      "status": "PLANNED_NOT_VERIFIED",
+      "actual_declarations": [],
+      "source_sha256": null,
+      "axiom_receipts": [],
+      "acceptance_case_ids": [
+        "D-09"
+      ]
+    },
+    {
+      "id": "N3",
+      "title": "Exact C11 general class functional",
+      "path": "PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean",
+      "status": "PLANNED_NOT_VERIFIED",
+      "actual_declarations": [],
+      "source_sha256": null,
+      "axiom_receipts": [],
+      "acceptance_case_ids": [
+        "D-09"
+      ]
+    },
+    {
+      "id": "D8",
+      "title": "Typed restricted admission",
+      "path": "PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean",
+      "status": "PLANNED_NOT_VERIFIED",
+      "actual_declarations": [],
+      "source_sha256": null,
+      "axiom_receipts": [],
+      "acceptance_case_ids": [
+        "D-08"
+      ]
+    },
+    {
+      "id": "D9",
+      "title": "Classwise expected nonlinear functional",
+      "path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+      "status": "PLANNED_NOT_VERIFIED",
+      "actual_declarations": [],
+      "source_sha256": null,
+      "axiom_receipts": [],
+      "acceptance_case_ids": [
+        "D-09"
+      ]
+    }
+  ],
+  "final_reviewed_head_sha": null
+}

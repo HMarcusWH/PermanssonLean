@@ -1,0 +1,92 @@
+name: PR113 Compiler Evidence Candidate
+
+on:
+  push:
+    branches:
+      - research/final-mathematical-closure
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compiler-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Test and inspect immutable historical tooling migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s verification/research \
+            -p test_pr113_tooling_migration.py -v
+          python3 verification/research/pr113_tooling_migration.py \
+            --head "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/pr113-tooling-migration-proposal.json"
+      - name: Retain candidate tooling migration proposal
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-tooling-migration-candidate
+          path: ${{ runner.temp }}/pr113-tooling-migration-proposal.json
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Build exact source and audit transitive axioms
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          auto-config: false
+          build: true
+          build-args: PermanssonResearch
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+          axiom-audit: true
+          axiom-audit-root: PermanssonResearch
+      - name: Execute all 11 mapped compiler-declaration probes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 verification/research/final_closure_lean_evidence.py \
+            --head "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/perm-compiler-candidate"
+      - name: Resolve all historical case and claim theorem targets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 verification/research/final_closure_complete_lean_evidence.py \
+            --head "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/perm-compiler-candidate/complete" \
+            --inventory-only \
+            > "$RUNNER_TEMP/perm-compiler-candidate/complete_obligation_inventory.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          output = Path(os.environ["RUNNER_TEMP"]) / "perm-compiler-candidate"
+          manifest = json.loads((output/"complete_obligation_inventory.json").read_text())
+          assert manifest["cases"] == 45 and manifest["claims"] == 11
+          assert manifest["proof_targets"] >= 45
+          assert manifest["status"] == "SOURCE_CANDIDATE_UNREVIEWED"
+          PY
+      - name: Bind evidence to actual source/job/run/attempt
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 verification/research/final_closure_execution_stamp.py \
+            --head "$GITHUB_SHA" \
+            --evidence-dir "$RUNNER_TEMP/perm-compiler-candidate" \
+            --out "$RUNNER_TEMP/perm-compiler-candidate/execution_provenance.json"
+      - name: Retain raw executed compiler logs and unreviewed inventory
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-executed-compiler-candidate
+          path: ${{ runner.temp }}/perm-compiler-candidate/
+          retention-days: 30
+          if-no-files-found: error

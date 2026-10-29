@@ -1,0 +1,92 @@
+{
+  "format": "Permansson.FinalClosureClaimInventory.v1",
+  "status": "PLANNED_NOT_ACCEPTED",
+  "authority": "Actual Lean declarations and fully quantified premises govern claims. Do not infer empirical Exact GR/PR.",
+  "source_baseline_sha": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+  "claims": [
+    {
+      "id": "Q1",
+      "title": "Canonical-source discounted output",
+      "source": "PermanssonResearch/Quotient/DiscountedCanonicalSourceWitness.lean",
+      "accepted": false,
+      "claimed_in_draft_only": true
+    },
+    {
+      "id": "Q2",
+      "title": "Original full comparison margin",
+      "source": "PermanssonResearch/Quotient/DiscountedCanonicalMarginClosure.lean",
+      "accepted": false,
+      "claimed_in_draft_only": true
+    },
+    {
+      "id": "Q3",
+      "title": "Typed quotient adversaries",
+      "source": "PermanssonResearch/Quotient/DiscountedCanonicalWitnessExamples.lean",
+      "accepted": false,
+      "claimed_in_draft_only": true
+    },
+    {
+      "id": "M1",
+      "title": "Admissible matched protocols",
+      "source": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedProtocols.lean",
+      "accepted": false,
+      "claimed_in_draft_only": true
+    },
+    {
+      "id": "M2",
+      "title": "Full B1 matched original margin",
+      "source": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+      "accepted": false,
+      "claimed_in_draft_only": true
+    },
+    {
+      "id": "M3",
+      "title": "Mixed-start and asymmetric adversaries",
+      "source": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedExamples.lean",
+      "accepted": false,
+      "claimed_in_draft_only": true
+    },
+    {
+      "id": "N1",
+      "title": "Native recurrent stationary law",
+      "source": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeStationary.lean",
+      "accepted": false,
+      "claimed_in_draft_only": true
+    },
+    {
+      "id": "N2",
+      "title": "Actual infinite-path nonlinear score",
+      "source": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeExpectedScore.lean",
+      "accepted": false,
+      "claimed_in_draft_only": true
+    },
+    {
+      "id": "N3",
+      "title": "Exact C11 general class functional",
+      "source": "PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean",
+      "accepted": false,
+      "claimed_in_draft_only": true
+    },
+    {
+      "id": "D8",
+      "title": "Typed restricted admission",
+      "source": "PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean",
+      "accepted": false,
+      "claimed_in_draft_only": true
+    },
+    {
+      "id": "D9",
+      "title": "Classwise expected nonlinear functional",
+      "source": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+      "accepted": false,
+      "claimed_in_draft_only": true
+    }
+  ],
+  "exclusions": [
+    "No empirical GR/PR certification",
+    "No unconditional all-policy superiority",
+    "No Exact GR transport from approximate quotient",
+    "No source-independent Lean certificate",
+    "No automatic full45 acceptance"
+  ]
+}

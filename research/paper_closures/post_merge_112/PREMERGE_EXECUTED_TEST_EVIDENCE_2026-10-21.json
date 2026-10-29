@@ -1,0 +1,348 @@
+{
+  "format": "Permansson.PreMergeExecutedTestObservation.v1",
+  "status": "TEST_SOURCE_AND_CI_OBSERVATION_ONLY_NOT_ACCEPTED",
+  "observed_head_sha": "1ec91b78f423261a91670e5f66bbd5ccb78ed0eb",
+  "observed_date": "2026-10-21",
+  "source_fingerprint": "Exact Git blob IDs of test files at H; no after-commit current-head promotion",
+  "research_lean_run_id": 39652715436,
+  "research_lean_job_id": 119404925339,
+  "regression_result": {
+    "observed_tests_passed": 1211,
+    "total_tests": 1211
+  },
+  "test_module_count": 15,
+  "new_final_test_functions": 47,
+  "new_final_test_functions_with_named_pass": 47,
+  "missing_named_success_records": [],
+  "tests": [
+    {
+      "test_path": "verification/research/test_final04_canonical_output.py",
+      "blob_sha": "e2d80afc8e6ce0252fcdeba92763f24fe7e4eecd",
+      "test_count": 5,
+      "executions": [
+        {
+          "name": "test_frozen_geometric_exact_thirteen_fortyfive",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_zero_row_error_keeps_initial_mismatch",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_chronological_defects_not_last_row",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_intervention_only_reachable_row_charged",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_positive_leakage_cannot_certify_exact_retention",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final04_source_lean.py",
+      "blob_sha": "ebe8eb486422367391658cd9071a6e7c227f7b3f",
+      "test_count": 2,
+      "executions": [
+        {
+          "name": "test_canonical_source_and_full_margin",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_actual_kernel_witness_examples_and_axioms",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final05_matched_protocols.py",
+      "blob_sha": "6cc4d8fa60bd5117b2a48d5f609d9e803aca2b7d",
+      "test_count": 4,
+      "executions": [
+        {
+          "name": "test_asymmetric_opponent_anchor_not_changed_by_treated_component",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_joint_action_order_changes_physical_law_when_asymmetric",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_correlated_actions_are_outside_product_subclass",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_mixed_initial_law_requires_both_atoms",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final05_measurable_lean.py",
+      "blob_sha": "1acee08e4d36f8be26a3271d7564212560eb1ac5",
+      "test_count": 2,
+      "executions": [
+        {
+          "name": "test_full_original_margin_compiler_axioms",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_matched_asymmetric_source_witnesses",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final06_actual_score_lean.py",
+      "blob_sha": "b920b7a06ed7bbf66c7f9650470940d1c073bd73",
+      "test_count": 2,
+      "executions": [
+        {
+          "name": "test_source_signatures_and_axioms",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_false_native_cycle_score_rejected_semantically",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final06_c11_evaluator.py",
+      "blob_sha": "1a45ccd707a52540445cdaeee9df138002eb478c",
+      "test_count": 2,
+      "executions": [
+        {
+          "name": "test_named_compiler_and_transitive_axioms",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_false_stationarity_accepted_mutant_rejected",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final06_native_class_lean.py",
+      "blob_sha": "3bb65857813403e7b890354a1afc6c89124f7933",
+      "test_count": 2,
+      "executions": [
+        {
+          "name": "test_real_native_class_source_signatures_and_axioms",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_false_transition_arc_rejected_semantically",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final06_phaseblind_original.py",
+      "blob_sha": "05373e7c521af0a9a67b253ab5a22a15cb8e5fe7",
+      "test_count": 3,
+      "executions": [
+        {
+          "name": "test_exact_policy_scores_not_just_orbit_table",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_lean_original_canonical_expected_scores_and_axioms",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_false_unrestricted_optimum_is_rejected_mathematically",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final06_stationary_arithmetic.py",
+      "blob_sha": "80805052e477f33cdba3189f425eaa56c5bbc29c",
+      "test_count": 4,
+      "executions": [
+        {
+          "name": "test_phase_aware_real_native_three_cycle",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_all_four_deterministic_physical_only_feedbacks",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_randomized_class_tie_not_unrestricted_dominance",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_cannot_replace_classwise_expectation_with_nonlinear_barycenter",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final_closure_acceptance.py",
+      "blob_sha": "40f58b17c879db3f8c2411a1b064bce451127106",
+      "test_count": 4,
+      "executions": [
+        {
+          "name": "test_candidate_inventory_is_full_but_pending",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_full45_without_real_source_receipts_rejects",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_scoped_release_needs_authenticated_compiler_and_review",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_historical_expectations_remain_complete",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final_closure_authenticate.py",
+      "blob_sha": "cebfbd398a408166e14f97742da8b00d0ad84e51",
+      "test_count": 7,
+      "executions": [
+        {
+          "name": "test_boolean_authenticated_flag_never_suffices",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_forged_non_git_synthetic_parents_rejected",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_source_head_ci_must_be_complete",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_author_approval_is_not_independent_review",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_stale_review_commit_is_rejected",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_claimed_ci_id_must_match_live_check",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_live_merge_and_read_only_checks_are_all_bound",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final_closure_generator.py",
+      "blob_sha": "eac8cd0d7bee674445f5c5611517ca36c4fef0a8",
+      "test_count": 2,
+      "executions": [
+        {
+          "name": "test_all_eleven_closure_modules_present_and_directly_imported",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_statement_hashes_have_strict_byte_identity",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final_d08_admission.py",
+      "blob_sha": "7e8ad13b1cb3cbcd96df287c87ded35b602526ff",
+      "test_count": 2,
+      "executions": [
+        {
+          "name": "test_positive_signatures_and_axioms",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_false_frozen_joint_admission_is_semantic_mutant",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final_d09_multichain.py",
+      "blob_sha": "97a02a3c552c98387b831bd59db7541040a58c02",
+      "test_count": 3,
+      "executions": [
+        {
+          "name": "test_exact_expected_score_not_score_of_expected_law",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_compiled_distinct_physical_classes_and_nonlinear_lemma",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_wrong_barycenter_literal_fails_for_mathematical_reason",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    },
+    {
+      "test_path": "verification/research/test_final_release_manifest.py",
+      "blob_sha": "4cae61a6bb4a625b21a160e692cfc80b1996ccc9",
+      "test_count": 3,
+      "executions": [
+        {
+          "name": "test_unreviewed_manifest_is_still_draft",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_fake_receipt_with_no_pdf_is_rejected",
+          "observed_pass_in_ci_log": true
+        },
+        {
+          "name": "test_strict_rejects_draft",
+          "observed_pass_in_ci_log": true
+        }
+      ],
+      "source_audit": "SOURCE_BOUND_TO_OBSERVED_HEAD_AND_SUCCESSFUL_WORKFLOW"
+    }
+  ],
+  "research_artifacts": [
+    {
+      "name": "legacy-research-source-context",
+      "id": 12371867374
+    },
+    {
+      "name": "d0-finite-calculation-evidence",
+      "id": 12371416774
+    },
+    {
+      "name": "c10-release-evidence",
+      "id": 12371403038
+    }
+  ],
+  "not_claimed": [
+    "A passing test is not an independent scholarly approval",
+    "Passing code and mocks are not proof of case-specific generality",
+    "No new source-bound signed review receipts are fabricated",
+    "Test names and Git blob IDs do not replace exact theorem signature and axiom receipts"
+  ],
+  "next_gate": "Re-run and independently inspect final-source theorem signatures, genuine negative compiler logs and reviewer approval on eventual final H/S/M."
+}

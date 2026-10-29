@@ -1,0 +1,925 @@
+{
+  "format": "Permansson.PreMergeCaseAndClaimObservation.v1",
+  "status": "PREMERGE_AUDIT_ONLY__NOT_ACCEPTED",
+  "observed_on": "2026-10-21",
+  "observation_boundary": "This records original compiled source H before the evidence-file commit. The commit changes Git HEAD. No final-source certification or reviewer approval is asserted.",
+  "pr": 113,
+  "source_head": "1ec91b78f423261a91670e5f66bbd5ccb78ed0eb",
+  "base_sha": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+  "synthetic_sha": "2034fa27329d8de445268a64639b88039a1ccbd6",
+  "synthetic_parents_observed": [
+    "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+    "1ec91b78f423261a91670e5f66bbd5ccb78ed0eb"
+  ],
+  "merged_main_sha": null,
+  "observed_workflows": [
+    {
+      "name": "Executable verification",
+      "run_id": 39652715580,
+      "conclusion": "success"
+    },
+    {
+      "name": "v0.2.0 research release verification",
+      "run_id": 39652715449,
+      "conclusion": "success"
+    },
+    {
+      "name": "Application contract",
+      "run_id": 39652715491,
+      "conclusion": "success"
+    },
+    {
+      "name": "Research integrity",
+      "run_id": 39652716098,
+      "conclusion": "success"
+    },
+    {
+      "name": "Integrity portability",
+      "run_id": 39652715531,
+      "conclusion": "success"
+    },
+    {
+      "name": "F1 multi-agent protocols focused smoke",
+      "run_id": 39652715434,
+      "conclusion": "success"
+    },
+    {
+      "name": "Lean",
+      "run_id": 39652715550,
+      "conclusion": "success"
+    },
+    {
+      "name": "E1 approximate-quotient focused smoke",
+      "run_id": 39652715536,
+      "conclusion": "success"
+    },
+    {
+      "name": "Research Lean",
+      "run_id": 39652715436,
+      "conclusion": "success"
+    }
+  ],
+  "research_regressions_at_H": "1211/1211 SUCCESS",
+  "observed_research_job": 119404925339,
+  "cases": {
+    "count": 45,
+    "pending": 15,
+    "partial_scope": 30,
+    "accepted": 0,
+    "rows": [
+      {
+        "case_id": "X-01",
+        "prior_decision": "PENDING",
+        "closure_ids": [],
+        "recorded_proof_references": 3,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "R2-A01: emitted-literal corruption is not stochasticity-preserving."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "X-02",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 4,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "X-03",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 5,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "X-04",
+        "prior_decision": "PENDING",
+        "closure_ids": [],
+        "recorded_proof_references": 5,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "R2-A02: unique learner attainer removal is tested, not tied-equilibrium domain removal."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "X-05",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 7,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "X-06",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 5,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "S-01",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 6,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "S-02",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 6,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "M-01",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 5,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "M-02",
+        "prior_decision": "PENDING",
+        "closure_ids": [],
+        "recorded_proof_references": 7,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "R2-A04: marked-versus-unmarked action-coupling distinction has no dedicated tracked countermodel."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "F-01",
+        "prior_decision": "PENDING",
+        "closure_ids": [
+          "M1",
+          "M2",
+          "M3"
+        ],
+        "recorded_proof_references": 8,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "R2-A03: asymmetric common/private-update swap fixture missing.",
+          "R2-I02: general measurable n=2 product identity is distinct from the finite full model/path recovery."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "F-02",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 5,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "F-03",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 4,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "F-04",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 3,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "F-05",
+        "prior_decision": "PENDING",
+        "closure_ids": [],
+        "recorded_proof_references": 5,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "R2-A05: positive exact SCM test is in the full suite, but not this 48-check route; dedicated positive Lean instantiation is absent."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "Q-01",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 6,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "Q-02",
+        "prior_decision": "PENDING",
+        "closure_ids": [],
+        "recorded_proof_references": 6,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "ANA-03: direct projected theorem uses matched starts/homogeneous kernels; expanded projected adapter remains open."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "Q-03",
+        "prior_decision": "PENDING",
+        "closure_ids": [],
+        "recorded_proof_references": 3,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "ANA-01: routed executable tests the old additive primitive budget, not product saturation."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "Q-04",
+        "prior_decision": "PENDING",
+        "closure_ids": [],
+        "recorded_proof_references": 2,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "ANA-02: selected localized visit/original-margin/reporting integration missing."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "Q-05",
+        "prior_decision": "PENDING",
+        "closure_ids": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "M1",
+          "M2",
+          "M3"
+        ],
+        "recorded_proof_references": 10,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "ANA-04: generic discounted/whole-law results are proved; a quotient-native original-margin application must still supply its actual bindings."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "A-01",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 6,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "A-02",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 13,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "A-03",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 7,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "A-04",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 8,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "A-05",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 8,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "D-01",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 11,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "D-02",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 10,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "D-03",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 16,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "D-04",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 10,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "D-05",
+        "prior_decision": "PENDING",
+        "closure_ids": [],
+        "recorded_proof_references": 9,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "SR-A04: 9/100 versus1/100 boundary is scalar arithmetic rather than an instantiated committed-model path-law fixture."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "D-06",
+        "prior_decision": "PENDING",
+        "closure_ids": [],
+        "recorded_proof_references": 7,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "SR-A05: hidden-flag fixture uses different pure priors, not two reachable histories from one fixed initial law."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "D-07",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 9,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "D-08",
+        "prior_decision": "PENDING",
+        "closure_ids": [
+          "D8"
+        ],
+        "recorded_proof_references": 5,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "SR-A02: concrete typed compatible-overlap and joint-only certified block fixture missing."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "D-09",
+        "prior_decision": "PENDING",
+        "closure_ids": [
+          "N1",
+          "N2",
+          "N3",
+          "D9"
+        ],
+        "recorded_proof_references": 7,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "SR-A01: concrete ExactClassFunctional and two-state5/6-versus1 regression missing."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "C11-01",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 7,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "C11-02",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 7,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "C-01",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 11,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "B-01",
+        "prior_decision": "PENDING",
+        "closure_ids": [],
+        "recorded_proof_references": 6,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "SR-A02: generic compatible overlap proved; concrete typed positive/negative overlap fixtures missing."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "B-02",
+        "prior_decision": "PENDING",
+        "closure_ids": [],
+        "recorded_proof_references": 3,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [
+          "SR-A03: non-global-isomorphism positive local-margin transport fixture missing.",
+          "R2-C01: preserved OR/AND labels are correct for ablation margins."
+        ],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "XPLUS-01",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 4,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "E-01",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 4,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "E-02",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 4,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "E-03",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 4,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "E-04",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 5,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      },
+      {
+        "case_id": "E-05",
+        "prior_decision": "PARTIAL_SCOPE",
+        "closure_ids": [],
+        "recorded_proof_references": 4,
+        "recorded_positive_test_receipts": 0,
+        "recorded_negative_test_receipts": 0,
+        "recorded_ci_receipts": 0,
+        "recorded_review_receipts": 0,
+        "explicit_remaining_obligations": [],
+        "case_authenticated": false
+      }
+    ]
+  },
+  "claims": {
+    "count": 11,
+    "accepted": 0,
+    "rows": [
+      {
+        "claim_id": "Q1",
+        "path": "PermanssonResearch/Quotient/DiscountedCanonicalSourceWitness.lean",
+        "github_blob_sha": "5bc6096a983318a399d5fa5fd4196b1c55a73f50",
+        "root_import_occurrences": 1,
+        "source_declaration_names": [
+          "canonical_discounted_output_error"
+        ],
+        "mapped_original_cases": [
+          "Q-05"
+        ],
+        "observed_status": "SOURCE_PRESENT_AND_RESEARCH_LIBRARY_COMPILED",
+        "claim_acceptance": "PENDING_DECLARATION_LEVEL_REVIEW",
+        "transitive_axiom_receipts": [],
+        "independent_review_receipts": []
+      },
+      {
+        "claim_id": "Q2",
+        "path": "PermanssonResearch/Quotient/DiscountedCanonicalMarginClosure.lean",
+        "github_blob_sha": "96f86a243a3b88211de9b0fe6b8a80145eff8cd3",
+        "root_import_occurrences": 1,
+        "source_declaration_names": [
+          "point_witness_output",
+          "actual_canonical_discounted_original_margin"
+        ],
+        "mapped_original_cases": [
+          "Q-05"
+        ],
+        "observed_status": "SOURCE_PRESENT_AND_RESEARCH_LIBRARY_COMPILED",
+        "claim_acceptance": "PENDING_DECLARATION_LEVEL_REVIEW",
+        "transitive_axiom_receipts": [],
+        "independent_review_receipts": []
+      },
+      {
+        "claim_id": "Q3",
+        "path": "PermanssonResearch/Quotient/DiscountedCanonicalWitnessExamples.lean",
+        "github_blob_sha": "e79843e60a7c776d8352a91c0b2498260a8a6430",
+        "root_import_occurrences": 1,
+        "source_declaration_names": [
+          "correct_frozen_discounted_budget",
+          "wrong_frozen_discounted_budget",
+          "exactKernelPointWitness",
+          "exactKernelPointWitness_retained_one",
+          "identityStateCompression",
+          "identity_canonical_full_path"
+        ],
+        "mapped_original_cases": [
+          "Q-05"
+        ],
+        "observed_status": "SOURCE_PRESENT_AND_RESEARCH_LIBRARY_COMPILED",
+        "claim_acceptance": "PENDING_DECLARATION_LEVEL_REVIEW",
+        "transitive_axiom_receipts": [],
+        "independent_review_receipts": []
+      },
+      {
+        "claim_id": "M1",
+        "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedProtocols.lean",
+        "github_blob_sha": "e7c1a1e84715ea869e0eeb7a2b023b7888ef8350",
+        "root_import_occurrences": 1,
+        "source_declaration_names": [
+          "matchedBinaryFamily",
+          "matchedBinaryClosed",
+          "matchedBinaryOpen",
+          "matchedBinaryClosed_apply",
+          "matchedBinaryOpen_apply",
+          "matched_closed_kernel_two",
+          "matched_open_kernel_two",
+          "matched_binary_closed_world_frozen",
+          "matched_binary_open_world_frozen"
+        ],
+        "mapped_original_cases": [
+          "F-01",
+          "Q-05"
+        ],
+        "observed_status": "SOURCE_PRESENT_AND_RESEARCH_LIBRARY_COMPILED",
+        "claim_acceptance": "PENDING_DECLARATION_LEVEL_REVIEW",
+        "transitive_axiom_receipts": [],
+        "independent_review_receipts": []
+      },
+      {
+        "claim_id": "M2",
+        "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+        "github_blob_sha": "d3ce047db6564d591610e5b0fe103eba4ea8f26a",
+        "root_import_occurrences": 1,
+        "source_declaration_names": [
+          "matched_closed_loop_original_margin",
+          "matched_open_loop_original_margin",
+          "matched_closed_loop_all_initial_paths",
+          "matched_open_loop_all_initial_paths"
+        ],
+        "mapped_original_cases": [
+          "F-01",
+          "Q-05"
+        ],
+        "observed_status": "SOURCE_PRESENT_AND_RESEARCH_LIBRARY_COMPILED",
+        "claim_acceptance": "PENDING_DECLARATION_LEVEL_REVIEW",
+        "transitive_axiom_receipts": [],
+        "independent_review_receipts": []
+      },
+      {
+        "claim_id": "M3",
+        "path": "PermanssonResearch/MultiAgent/MeasurableProductTwoMatchedExamples.lean",
+        "github_blob_sha": "b5d3a252be48ad2013b5614b76861ac89ed00209",
+        "root_import_occurrences": 1,
+        "source_declaration_names": [
+          "matched_closed_worlds_both_frozen",
+          "matched_open_worlds_both_frozen",
+          "wrong_asymmetric_input_change_is_detectable"
+        ],
+        "mapped_original_cases": [
+          "F-01",
+          "Q-05"
+        ],
+        "observed_status": "SOURCE_PRESENT_AND_RESEARCH_LIBRARY_COMPILED",
+        "claim_acceptance": "PENDING_DECLARATION_LEVEL_REVIEW",
+        "transitive_axiom_receipts": [],
+        "independent_review_receipts": []
+      },
+      {
+        "claim_id": "N1",
+        "path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeStationary.lean",
+        "github_blob_sha": "f786c9b89812d658bab7dd5494163429b77ba4f8",
+        "root_import_occurrences": 1,
+        "source_declaration_names": [
+          "canonicalCycleState",
+          "native_cycle_state_zero",
+          "native_cycle_state_one",
+          "native_cycle_state_two",
+          "native_cycle_successor",
+          "phaseIndex",
+          "native_phase_orbit_is_cycle",
+          "exactCycleLaw",
+          "native_three_phase_true_share",
+          "phase_aware_real_transition",
+          "phase_aware_invariant_weights"
+        ],
+        "mapped_original_cases": [
+          "D-09"
+        ],
+        "observed_status": "SOURCE_PRESENT_AND_RESEARCH_LIBRARY_COMPILED",
+        "claim_acceptance": "PENDING_DECLARATION_LEVEL_REVIEW",
+        "transitive_axiom_receipts": [],
+        "independent_review_receipts": []
+      },
+      {
+        "claim_id": "N2",
+        "path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeExpectedScore.lean",
+        "github_blob_sha": "db8ff1cef8c34352950256c934545366ec294230",
+        "root_import_occurrences": 1,
+        "source_declaration_names": [
+          "actual_phase_aware_score_one_of_canonical_true_mass",
+          "actual_phase_blind_score_le_of_class_identification",
+          "actual_restricted_gap_of_identified_classes",
+          "native_phase_aware_actual_score_one"
+        ],
+        "mapped_original_cases": [
+          "D-09"
+        ],
+        "observed_status": "SOURCE_PRESENT_AND_RESEARCH_LIBRARY_COMPILED",
+        "claim_acceptance": "PENDING_DECLARATION_LEVEL_REVIEW",
+        "transitive_axiom_receipts": [],
+        "independent_review_receipts": []
+      },
+      {
+        "claim_id": "N3",
+        "path": "PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean",
+        "github_blob_sha": "7f918d91cbc10dbfc9eba13ca406679faf6cdf87",
+        "root_import_occurrences": 1,
+        "source_declaration_names": [
+          "certified_boolean_score_exact",
+          "boolean_score_bounded",
+          "booleanClassFunctional",
+          "boolean_rational_objective_eq_actual"
+        ],
+        "mapped_original_cases": [
+          "D-09"
+        ],
+        "observed_status": "SOURCE_PRESENT_AND_RESEARCH_LIBRARY_COMPILED",
+        "claim_acceptance": "PENDING_DECLARATION_LEVEL_REVIEW",
+        "transitive_axiom_receipts": [],
+        "independent_review_receipts": []
+      },
+      {
+        "claim_id": "D8",
+        "path": "PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean",
+        "github_blob_sha": "2f9e54f40c59ca2d0b9ae9074c78c4ed738b2ba4",
+        "root_import_occurrences": 1,
+        "source_declaration_names": [
+          "forbidden_joint_not_in_restricted_menu",
+          "admitted_block_row_normalized",
+          "stateEquiv",
+          "stateIndex",
+          "atomRow",
+          "dirac_atom_exact",
+          "actionSelection",
+          "updateSelection",
+          "chosen",
+          "componentNames",
+          "chosen_action_components",
+          "chosen_update_components",
+          "actionSourceModel",
+          "updateSourceModel",
+          "actionSourceModel_induced",
+          "updateSourceModel_induced",
+          "restrictedCertifiedMenu",
+          "actual_restricted_menu_admits_both_components",
+          "actual_restricted_menu_rejects_joint",
+          "actual_restricted_menu_row_normalized"
+        ],
+        "mapped_original_cases": [
+          "D-08"
+        ],
+        "observed_status": "SOURCE_PRESENT_AND_RESEARCH_LIBRARY_COMPILED",
+        "claim_acceptance": "PENDING_DECLARATION_LEVEL_REVIEW",
+        "transitive_axiom_receipts": [],
+        "independent_review_receipts": []
+      },
+      {
+        "claim_id": "D9",
+        "path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+        "github_blob_sha": "10bcbfb888a268fe381b23f747ed22d8fb3fdc3c",
+        "root_import_occurrences": 1,
+        "source_declaration_names": [
+          "physically_distinct_classes_with_shared_descriptor",
+          "nonlinear_classwise_aggregation_not_barycenter",
+          "actual_two_absorbing_full_path_mixture",
+          "observedPhysicalBool",
+          "exact_two_absorbing_rational_scores",
+          "actual_equal_weight_original_scores",
+          "actual_multichain_classwise_differs_from_barycenter"
+        ],
+        "mapped_original_cases": [
+          "D-09"
+        ],
+        "observed_status": "SOURCE_PRESENT_AND_RESEARCH_LIBRARY_COMPILED",
+        "claim_acceptance": "PENDING_DECLARATION_LEVEL_REVIEW",
+        "transitive_axiom_receipts": [],
+        "independent_review_receipts": []
+      }
+    ]
+  },
+  "review": {
+    "github_reviews": 0,
+    "registered_independent_review": false,
+    "academic_reviews": 0,
+    "source_reviews": 0,
+    "signoff": "NOT_RECEIVED"
+  },
+  "release": {
+    "status": "DRAFT_NOT_ACCEPTED",
+    "visual_pdf_review": "NOT_PERFORMED",
+    "independent_scholarly_review": false
+  },
+  "important_boundaries": [
+    "Observed source-only blob identities; source SHA256 and per-theorem statement receipts still require exact-source extraction",
+    "Green source head CI does not imply 45-case acceptance",
+    "M is unavailable until an authorized merge",
+    "Not a substitute for exact-head independent review or manuscript/PDF inspection"
+  ]
+}

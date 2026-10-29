@@ -1,0 +1,182 @@
+# REVIEW-PENDING ONLY. This is NOT an active Github Actions workflow.
+# Independent security authorization of the full workflow set and genuine
+# 45/11 mathematical/scholarly acceptance are prerequisites for activation.
+# The transported input artifact is untrusted; seal_approved.py --full
+# independently revalidates all source, GitHub, receipt and review evidence.
+name: PR113 Complete Mathematical Preseal Candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      merged_sha:
+        description: Exact owner-authorized already-merged main M
+        required: true
+        type: string
+      carrier_run_id:
+        description: Successful exact-M upstream review-input carrier run ID
+        required: true
+        type: string
+      carrier_run_attempt:
+        description: Exact successful carrier run attempt
+        required: true
+        type: string
+      carrier_job_id:
+        description: Original successful carrier producer job ID
+        required: true
+        type: string
+      carrier_check_id:
+        description: Original successful producer check-run ID
+        required: true
+        type: string
+      carrier_artifact_id:
+        description: Original carrier ZIP artifact ID
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+  checks: read
+  pull-requests: read
+
+jobs:
+  preseal-fullscope-candidate:
+    name: preseal-fullscope-candidate
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Fail closed unless checkout is authorized genuine main merge M
+        shell: bash
+        env:
+          MERGED_SHA: ${{ inputs.merged_sha }}
+          CARRIER_RUN: ${{ inputs.carrier_run_id }}
+          CARRIER_ATTEMPT: ${{ inputs.carrier_run_attempt }}
+          CARRIER_JOB: ${{ inputs.carrier_job_id }}
+          CARRIER_CHECK: ${{ inputs.carrier_check_id }}
+          CARRIER_ARTIFACT: ${{ inputs.carrier_artifact_id }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "HMarcusWH/PermanssonLean"
+          test "$GITHUB_REF" = "refs/heads/main"
+          test "$GITHUB_SHA" = "$MERGED_SHA"
+          test "$(git rev-parse HEAD)" = "$MERGED_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          [[ "$MERGED_SHA" =~ ^[0-9a-f]{40}$ ]]
+          for field in "$CARRIER_RUN" "$CARRIER_ATTEMPT" "$CARRIER_JOB" "$CARRIER_CHECK" "$CARRIER_ARTIFACT"; do
+            [[ "$field" =~ ^[1-9][0-9]*$ ]]
+          done
+          test "$CARRIER_RUN" != "$GITHUB_RUN_ID"
+      - name: Fetch genuine upstream input artifact and immutable job/check identity
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MERGED_SHA: ${{ inputs.merged_sha }}
+          CARRIER_RUN: ${{ inputs.carrier_run_id }}
+          CARRIER_ATTEMPT: ${{ inputs.carrier_run_attempt }}
+          CARRIER_JOB: ${{ inputs.carrier_job_id }}
+          CARRIER_CHECK: ${{ inputs.carrier_check_id }}
+          CARRIER_ARTIFACT: ${{ inputs.carrier_artifact_id }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$CARRIER_RUN" \
+            > "$RUNNER_TEMP/pr113-review-run.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$CARRIER_RUN/jobs?per_page=100" \
+            > "$RUNNER_TEMP/pr113-review-jobs.json"
+          gh api "repos/$GITHUB_REPOSITORY/check-runs/$CARRIER_CHECK" \
+            > "$RUNNER_TEMP/pr113-review-check.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$CARRIER_ARTIFACT" \
+            > "$RUNNER_TEMP/pr113-review-artifact.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$CARRIER_ARTIFACT/zip" \
+            > "$RUNNER_TEMP/pr113-review-input-original.zip"
+          python3 -B verification/research/pr113_preseal_input_carrier.py \
+            --merged "$MERGED_SHA" \
+            --run-id "$CARRIER_RUN" \
+            --attempt "$CARRIER_ATTEMPT" \
+            --job-id "$CARRIER_JOB" \
+            --check-id "$CARRIER_CHECK" \
+            --artifact-id "$CARRIER_ARTIFACT" \
+            --run "$RUNNER_TEMP/pr113-review-run.json" \
+            --jobs "$RUNNER_TEMP/pr113-review-jobs.json" \
+            --check "$RUNNER_TEMP/pr113-review-check.json" \
+            --metadata "$RUNNER_TEMP/pr113-review-artifact.json" \
+            --zip "$RUNNER_TEMP/pr113-review-input-original.zip" \
+            --out "$RUNNER_TEMP/pr113-reviewed-inputs"
+      - name: Install exact PDF source reproduction requirements
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
+            texlive-latex-base texlive-latex-recommended \
+            texlive-latex-extra texlive-pictures \
+            texlive-fonts-recommended poppler-utils
+      - name: Build the actual M source paper and all rendered pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B release/mathematical-closure-1/build.py \
+            --mode draft --render --out "$RUNNER_TEMP/pr113-paper-draft"
+      - name: Independently authenticate full 45/11 scholarly/review/CI source and seal
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          INPUT="$RUNNER_TEMP/pr113-reviewed-inputs"
+          python3 -B release/mathematical-closure-1/seal_approved.py \
+            --draft-dir "$RUNNER_TEMP/pr113-paper-draft" \
+            --approved-claim-manifest "$INPUT/approved_claim_manifest.json" \
+            --source-receipts "$INPUT/source_receipts.json" \
+            --bundle "$INPUT/evidence_bundle.zip" \
+            --reproduction-zip "$INPUT/reproduction.zip" \
+            --reproduction-ids "$INPUT/reproduction_ids.json" \
+            --additional-contract "$INPUT/additional_contract.json" \
+            --additional-zips "$INPUT/additional_zips" \
+            --workflow-blob-candidates "$INPUT/workflow_blob_candidates.json" \
+            --out "$RUNNER_TEMP/pr113-preseal-candidate" --full
+      - name: Independently replay candidate ZIP, sidecar and complete source PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B release/mathematical-closure-1/postseal_replay.py \
+            --archive "$RUNNER_TEMP/pr113-preseal-candidate/Permansson_Mathematical_Closure_CANDIDATE.zip" \
+            --sidecar "$RUNNER_TEMP/pr113-preseal-candidate/SHA256SUMS.txt" \
+            --output "$RUNNER_TEMP/pr113-preseal-local-replay-unreviewed.json"
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          folder = Path(os.environ["RUNNER_TEMP"])
+          actual = json.loads((folder/"pr113-preseal-local-replay-unreviewed.json").read_bytes())
+          assert actual["status"] == "CANDIDATE_ARCHIVE_REPLAYED_UNREVIEWED"
+          assert actual["source_commit_sha"] == os.environ["GITHUB_SHA"]
+          assert actual["complete_original_members_verified"] is True
+          assert actual["independent_review"] is False
+          assert actual["authenticated_ci_artifact"] is False
+          assert actual["full_release_approved"] is False
+          input_report = json.loads(
+              (folder/"pr113-reviewed-inputs/transport_diagnostics.json").read_bytes())
+          assert input_report["status"] == \
+              "GH_SOURCE_TRANSPORT_VERIFIED__RELEASE_REVIEW_PENDING"
+          assert input_report["source_commit_sha"] == os.environ["GITHUB_SHA"]
+          assert input_report["transport_artifact_sha256"] == hashlib.sha256(
+              (folder/"pr113-review-input-original.zip").read_bytes()).hexdigest()
+          assert input_report["independent_review"] is False
+          assert input_report["mathematical_acceptance"] is False
+          assert input_report["publication_authorized"] is False
+          PY
+      - name: Upload real candidate ZIP + original SHA256 sidecar ONLY after success
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr113-preseal-fullscope-candidate
+          path: |
+            ${{ runner.temp }}/pr113-preseal-candidate/Permansson_Mathematical_Closure_CANDIDATE.zip
+            ${{ runner.temp }}/pr113-preseal-candidate/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 30

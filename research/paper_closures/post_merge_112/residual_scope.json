@@ -1,0 +1,18 @@
+{
+  "format": "Permansson.FinalClosureResidualScope.v1",
+  "source_baseline_sha": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+  "open_programmes": [
+    "NEXT-08: general randomized/history-dependent asymptotic optimization",
+    "NEXT-09: specialized algebraic/causal identification",
+    "NEXT-10: prospective independently replicated empirical regime",
+    "General external-model JSON to alpha-P-U certification"
+  ],
+  "mandatory_scoped_gates": [
+    "P-04 actual-source both-side bound",
+    "P-05 admitted binary CL/OL margin",
+    "P-06 native actual occupation score",
+    "D-08 true restrictive grammar menu",
+    "D-09 distinct physical bottom classes and nonlinear averaging"
+  ],
+  "disclosure": "All wider research questions remain open unless independently formalized; a single PR is not empirical validation."
+}
