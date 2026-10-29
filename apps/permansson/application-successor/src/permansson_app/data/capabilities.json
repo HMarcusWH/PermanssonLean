@@ -50,6 +50,22 @@
       "scientific_claims_verified": false,
       "scope": "Finite region first-exit destination subprobability and never-exit mass; never normalize away nonexit"
     },
+    "finite.frozen_menu.numeric.v1": {
+      "checker": "permansson_app.receipts.menu.check_menu",
+      "cli": "frozen-menu",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact finite-horizon objective over 1..8 fully enumerated declared interventions; includes all tied optimizers, not the universe of controls"
+    },
+    "finite.hitting_bellman.numeric.v1": {
+      "checker": "permansson_app.receipts.control.check_bellman",
+      "cli": "finite-bellman",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite <=12-state <=24-step fully observed rational hitting Bellman; deterministic remaining-horizon Markov; P/U held fixed; no Lean or GR/PR certification"
+    },
     "finite.killed_kernel.survival.numeric.v1": {
       "checker": "permansson_app.receipts.finite_survival.check_survival_receipt",
       "cli": "finite-survival",

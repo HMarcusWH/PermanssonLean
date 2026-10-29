@@ -81,3 +81,7 @@ python -B -m unittest discover -s verification/research -p 'test_application_suc
 ```
 
 An installed wheel and source distribution must be tested in clean roots outside the checkout. The current newly tested runtime is Linux/Python 3.13.5; a previous recovered prototype had separate Linux/Python 3.12 evidence. Current-source Windows, fresh Python 3.12, and pinned Lean replay have not been qualified here. See `IMPLEMENTATION_MANIFEST.json` and `docs/ACCEPTANCE_STATUS.md` for source-by-source status and blockers.
+
+### Frozen finite-menu optimization
+
+`permansson-app frozen-menu <request.json> --output <new-output>` computes exact rational finite-horizon survival or exit objective for each *explicitly listed* feasible alpha/U intervention, independently checks all choices, reports every tied optimum, and never claims that the menu exhausts all feasible policies. The mathematical/Lean and causal status remains unassessed. A packaged `examples/finite_menu.v1.json` provides a reproducible input.

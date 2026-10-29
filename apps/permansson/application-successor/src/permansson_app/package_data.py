@@ -10,8 +10,8 @@ NAMES = ("schemas/request.v1.schema.json", "schemas/result.v1.schema.json",
          "examples/c11.multiclass.request.json", "examples/c11.multiclass.model.json")
 
 
-SCHEMA_RESOURCES = ("schemas/finite_world.v1.schema.json", "schemas/lp.v1.schema.json", "schemas/finite_survival.v1.schema.json", "schemas/finite_region.v1.schema.json")
-EXTENDED_EXAMPLES = ("examples/finite_world.v1.model.json", "examples/lp.v1.model.json", "examples/finite_survival.v1.json", "examples/finite_region.v1.json")
+SCHEMA_RESOURCES = ("schemas/finite_world.v1.schema.json", "schemas/lp.v1.schema.json", "schemas/finite_survival.v1.schema.json", "schemas/finite_region.v1.schema.json", "schemas/finite_menu.v1.schema.json", "schemas/control_hitting.v1.schema.json")
+EXTENDED_EXAMPLES = ("examples/finite_world.v1.model.json", "examples/lp.v1.model.json", "examples/finite_survival.v1.json", "examples/finite_region.v1.json", "examples/finite_menu.v1.json", "examples/control_hitting.v1.json")
 
 
 def resource_bytes(name: str) -> bytes:

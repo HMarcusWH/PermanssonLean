@@ -16,7 +16,9 @@ def registry():
         'lp.exact_rational.optimality.numeric.v1',
         'lp.exact_rational.independent_verification.v1',
         'finite.random_occupation.numeric.v1',
-        'finite.first_exit_and_survival.numeric.v1'}):
+        'finite.first_exit_and_survival.numeric.v1',
+        'finite.frozen_menu.numeric.v1',
+        'finite.hitting_bellman.numeric.v1'}):
         raise AppError('REGISTRY','unknown or missing additive numeric profile')
     for name,entry in extra.items():
         if type(entry) is not dict or entry.get('mode')!='numeric' or entry.get('scientific_claims_verified') is not False or entry.get('lean_status')!='NOT_EXECUTED':

@@ -42,6 +42,9 @@ def main(argv=None):
     survival=sub.add_parser('finite-survival')
     survival.add_argument('comparison',type=Path)
     survival.add_argument('--output',type=Path,required=True)
+    bellman=sub.add_parser('finite-bellman')
+    bellman.add_argument('problem',type=Path)
+    bellman.add_argument('--output',type=Path,required=True)
     occ=sub.add_parser('finite-occupation')
     occ.add_argument('model',type=Path)
     occ.add_argument('--output',type=Path,required=True)
@@ -49,6 +52,9 @@ def main(argv=None):
     exit_cmd.add_argument('model',type=Path)
     exit_cmd.add_argument('region',type=Path)
     exit_cmd.add_argument('--output',type=Path,required=True)
+    menu=sub.add_parser('frozen-menu')
+    menu.add_argument('request',type=Path)
+    menu.add_argument('--output',type=Path,required=True)
     lp=sub.add_parser('lp-propose')
     lp.add_argument('model',type=Path)
     lp.add_argument('--output',type=Path,required=True)
@@ -118,6 +124,43 @@ def main(argv=None):
             _write_json(args.output/'legacy_import.json',result)
             print(json.dumps({'ok':True,'contract_valid':result['original_result']['contract_valid'],
                               'scientific_claims_verified':False},sort_keys=True))
+        elif args.command=='frozen-menu':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.menu import propose_menu
+            from .receipts.menu import check_menu
+            from .report import numeric_application_report
+            _,raw=strict_read(args.request)
+            validate_packaged_schema('schemas/finite_menu.v1.schema.json',raw)
+            receipt=propose_menu(raw)
+            checker=check_menu(raw,receipt)
+            report=numeric_application_report(capability='finite.frozen_menu.numeric.v1',
+                 model_semantic_identity=receipt['request_identity'],
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('menu_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command=='finite-bellman':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.hitting import parse_hitting_problem,propose_bellman
+            from .receipts.control import check_bellman
+            from .report import numeric_application_report
+            _, raw=strict_read(args.problem)
+            validate_packaged_schema('schemas/control_hitting.v1.schema.json',raw)
+            problem=parse_hitting_problem(raw)
+            receipt=propose_bellman(problem)
+            checker=check_bellman(problem,receipt)
+            report=numeric_application_report(capability='finite.hitting_bellman.numeric.v1',
+                 model_semantic_identity={'model':problem.world.semantic_id(),'objective':problem.semantic_id},
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('bellman_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':'EXACT_FINITE_BELLMAN_CHECKED',
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
         elif args.command=='finite-survival':
             from .strict_json import strict_read
             from .schema_validate import validate_packaged_schema
