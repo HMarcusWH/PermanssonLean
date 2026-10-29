@@ -49,3 +49,7 @@ Finite residence monitors and nonlinear classwise stationary-policy evaluation a
 ### Additional scoped nature-chronology implementation
 
 A bounded fully observed rectangular-versus-committed-nature numeric comparison and independent checker are available in `finite-robust-nature` (single fixed controller for the committed case). The positive separation fixture, negative receipt mutations, and installed-wheel CLI were verified locally; GitHub CI and exact-head review remain separate. No new correspondence proof, mathematical acceptance, empirical identification, release approval or workflow migration is claimed.
+
+### One-step randomized risk-occupancy implementation
+
+The bounded, fully observed `one-step-risk` numerical profile solves an exact one-transition occupancy/risk LP, reconstructs the randomized behavioral policy, and independently checks the primal/dual certificate and original `P/U` law. The fractional `1/2` risk-bound example and adversarial mutation cases passed local tests. No Farkas infeasibility is claimed when candidate generation fails. The mode's kernel-checked Lean proof, independent mathematical CERT, empirical identification, application release acceptance, and current-head GitHub CI remain separate pending gates.

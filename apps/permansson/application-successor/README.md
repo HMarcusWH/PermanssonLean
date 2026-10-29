@@ -149,3 +149,7 @@ The finite residence and nonlinear classwise stationary-policy engines have inde
 ### Exact finite robust nature chronology — numeric-only
 
 `finite-robust-nature` implements an action-then-nature rectangular max-min Bellman table and separately evaluates a fixed stationary controller under a nature model committed at time zero. It preserves typed `α/U` while enumerating complete alternative physical `P` kernels; all reported values and ties are recomputed by an independent rational checker. See [`docs/NUMERIC_ROBUST_NATURE.md`](docs/NUMERIC_ROBUST_NATURE.md). This is **not** a committed-game controller optimum or a Lean/Exact-GR/PR/empirical certificate.
+
+### Randomized one-step risk occupancy — numeric-only
+
+The `one-step-risk` command optimizes a bounded randomized policy over one fully observed transition of the **actual typed** finite `α/P/U` model. The independent checker reconstructs original controlled transition rows, all mass and risk constraints, exact primal/dual LP optimality and the policy implied by the certificate rather than a preferred solver vector. See [`docs/NUMERIC_RISK_OCCUPANCY.md`](docs/NUMERIC_RISK_OCCUPANCY.md). This is not multistage control, unbounded policy optimality, a Lean certificate, Exact GR/PR, or empirical identification.

@@ -90,6 +90,14 @@
       "scientific_claims_verified": false,
       "scope": "All feasible deterministic stationary policies, <=8 finite joint states and <=64 policies, Boolean F(p)=1-|p-2/3| applied to each recurrent-class law before expectation; numeric only"
     },
+    "finite.one_step_risk_occupancy.numeric.v1": {
+      "mode": "numeric",
+      "cli": "one-step-risk",
+      "checker": "permansson_app.receipts.risk_occupancy.check_risk",
+      "lean_status": "NOT_EXECUTED",
+      "scientific_claims_verified": false,
+      "scope": "One-transition, fully observed, finite, exact rational randomized state-feedback optimum from a declared initial law, complete feasible action sets, and risk event; independent primal/dual LP certificate and actual P/U law reconstruction. At most four joint states and five occupancy variables. No multistage, private-information, unbounded-policy, Lean or empirical identification claim."
+    },
     "finite.patch_grammar.numeric.v1": {
       "mode": "numeric",
       "cli": "finite-grammar",

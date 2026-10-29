@@ -54,6 +54,9 @@ def main(argv=None):
     residence=sub.add_parser('finite-residence')
     residence.add_argument('request',type=Path)
     residence.add_argument('--output',type=Path,required=True)
+    risk=sub.add_parser('one-step-risk')
+    risk.add_argument('request',type=Path)
+    risk.add_argument('--output',type=Path,required=True)
     nature=sub.add_parser('finite-robust-nature')
     nature.add_argument('request',type=Path)
     nature.add_argument('--output',type=Path,required=True)
@@ -171,6 +174,24 @@ def main(argv=None):
                    computation_receipt=receipt,independent_check=checker)
             out=_new_output(args.output)
             for name,value in ((receipt_name,receipt),('independent_check.json',checker),('scientific_report.json',report)):
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command=='one-step-risk':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.risk_occupancy import propose_risk
+            from .receipts.risk_occupancy import check_risk
+            from .report import numeric_application_report
+            _,raw=strict_read(args.request)
+            validate_packaged_schema('schemas/risk_occupancy.v1.schema.json',raw)
+            receipt=propose_risk(raw)
+            checker=check_risk(raw,receipt)
+            report=numeric_application_report(capability='finite.one_step_risk_occupancy.numeric.v1',
+                 model_semantic_identity=receipt['request_identity'],
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('occupancy_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
                 _write_json(out/name,value)
             print(json.dumps({'ok':True,'numeric_status':checker['status'],
                               'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))

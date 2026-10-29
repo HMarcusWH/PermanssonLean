@@ -1,0 +1,206 @@
+{
+  "format": "Permansson.App.OneStepRiskOccupancyRequest.v1",
+  "initial_law": [
+    {
+      "mass": "1",
+      "state": [
+        "s",
+        "safe"
+      ]
+    },
+    {
+      "mass": "0",
+      "state": [
+        "s",
+        "danger"
+      ]
+    }
+  ],
+  "model": {
+    "P": [
+      {
+        "a": "stay",
+        "s": "s",
+        "weights": {
+          "danger": "0",
+          "safe": "1"
+        },
+        "x": "safe"
+      },
+      {
+        "a": "gamble",
+        "s": "s",
+        "weights": {
+          "danger": "1",
+          "safe": "0"
+        },
+        "x": "safe"
+      },
+      {
+        "a": "stay",
+        "s": "s",
+        "weights": {
+          "danger": "1",
+          "safe": "0"
+        },
+        "x": "danger"
+      },
+      {
+        "a": "gamble",
+        "s": "s",
+        "weights": {
+          "danger": "1",
+          "safe": "0"
+        },
+        "x": "danger"
+      }
+    ],
+    "U": [
+      {
+        "a": "stay",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "safe",
+        "xp": "safe"
+      },
+      {
+        "a": "stay",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "safe",
+        "xp": "danger"
+      },
+      {
+        "a": "gamble",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "safe",
+        "xp": "safe"
+      },
+      {
+        "a": "gamble",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "safe",
+        "xp": "danger"
+      },
+      {
+        "a": "stay",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "danger",
+        "xp": "safe"
+      },
+      {
+        "a": "stay",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "danger",
+        "xp": "danger"
+      },
+      {
+        "a": "gamble",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "danger",
+        "xp": "safe"
+      },
+      {
+        "a": "gamble",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "danger",
+        "xp": "danger"
+      }
+    ],
+    "alpha": [
+      {
+        "s": "s",
+        "weights": {
+          "gamble": "0",
+          "stay": "1"
+        },
+        "x": "safe"
+      },
+      {
+        "s": "s",
+        "weights": {
+          "gamble": "0",
+          "stay": "1"
+        },
+        "x": "danger"
+      }
+    ],
+    "feasible": [
+      {
+        "actions": [
+          "stay",
+          "gamble"
+        ],
+        "s": "s",
+        "x": "safe"
+      },
+      {
+        "actions": [
+          "stay",
+          "gamble"
+        ],
+        "s": "s",
+        "x": "danger"
+      }
+    ],
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "actions": [
+        "stay",
+        "gamble"
+      ],
+      "strategic": [
+        "s"
+      ],
+      "world": [
+        "safe",
+        "danger"
+      ]
+    }
+  },
+  "risk_cap": "1/2",
+  "risk_states": [
+    [
+      "s",
+      "danger"
+    ]
+  ],
+  "terminal_rewards": [
+    {
+      "state": [
+        "s",
+        "safe"
+      ],
+      "value": "0"
+    },
+    {
+      "state": [
+        "s",
+        "danger"
+      ],
+      "value": "1"
+    }
+  ]
+}
