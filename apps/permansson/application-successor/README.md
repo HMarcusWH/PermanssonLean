@@ -85,3 +85,59 @@ An installed wheel and source distribution must be tested in clean roots outside
 ### Frozen finite-menu optimization
 
 `permansson-app frozen-menu <request.json> --output <new-output>` computes exact rational finite-horizon survival or exit objective for each *explicitly listed* feasible alpha/U intervention, independently checks all choices, reports every tied optimum, and never claims that the menu exhausts all feasible policies. The mathematical/Lean and causal status remains unassessed. A packaged `examples/finite_menu.v1.json` provides a reproducible input.
+
+### Checked finite feedback and intervention control
+
+```bash
+permansson-app finite-bellman /tmp/permansson-resources/examples/control_hitting.v1.json \
+  --output /tmp/finite-bellman
+permansson-app frozen-menu /tmp/permansson-resources/examples/finite_menu.v1.json \
+  --output /tmp/frozen-menu
+```
+
+`finite-bellman` implements the actual finite-horizon fully observed hitting
+recurrence: a goal gives terminal value one; a forbidden state value zero;
+outside both, the value at remaining horizon `h+1` is the maximum
+state-dependent permitted-action expectation of the `h` table. The controlled
+transition is recomposed exactly from **P then U**, holding the physical
+model fixed and optimizing over declared actions rather than treating baseline
+`alpha` as optimal. An independent checker validates the entire time/state table
+and **all** tied optimizers; a valid alternate tied controller need not be the
+producer's reference choice. There is no data-to-Lean proof replay.
+
+`frozen-menu` optimizes **only** over the declared 1–8 strategic interventions,
+with exact full-menu assessment and a separate result checker. It does not
+optimize the universe of control policies or claim causal constitution.
+
+### Almost-sure safety and finite-horizon perturbation
+
+```bash
+permansson-app finite-safety /tmp/permansson-resources/examples/finite_safety.v1.json \
+  --output /tmp/finite-safety
+permansson-app finite-perturbation /tmp/permansson-resources/examples/finite_perturbation.v1.json \
+  --output /tmp/finite-perturbation
+```
+
+`finite-safety` computes the **greatest almost-sure controlled invariant subset**
+of a finite predeclared safety region, following the finite descending-prune
+recurrence of `GreatestControlledInvariant.lean`. The checked receipt records
+every pruning iterate and an admissible state-dependent stationary witness.
+**Being outside the core does not mean zero survival probability.** It means
+that almost-sure protection is not available from that state in the supported
+finite fully observed model. The independent checker recomputes P/U support
+and verifies that no excluded safe state has a control supported entirely on
+the next candidate core.
+
+`finite-perturbation` compares two typed finite transition models with the
+same ordered joint-state inventory and two separately declared initial laws.
+It computes exact killed-process finite survival through horizon `h`, every
+row total-variation discrepancy, initial-law TV and the conservative bound
+`min(1, TV(initial laws) + h * max_row_TV)`. The checker independently
+reconstructs both induced kernels, the full survival recurrence and the
+finite path-event inequality. These are **finite-time error bounds**, not
+long-run stability, equilibrium, Exact GR, policy constitution, or statistical
+identification.
+
+Both new profiles use the same strict packaged schemas, numerical receipt
+policy and nine-dimensional *unassessed* scientific certificate as C10/C11.
+No application release acceptance is claimed.

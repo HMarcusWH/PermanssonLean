@@ -1,0 +1,43 @@
+{
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/finite_safety.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "Permansson.App.FiniteSafetyCore.v1"
+    },
+    "model": {
+      "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/finite_world.v1.schema.json"
+    },
+    "safe": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "strategic": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "world": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "strategic",
+          "world"
+        ],
+        "type": "object"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "format",
+    "model",
+    "safe"
+  ],
+  "type": "object"
+}

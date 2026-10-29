@@ -19,6 +19,10 @@ Base: `main@3492b26707788293ca88c66637b6ba021c7e478d`, tree `9ef00ac4b2d4f928aa6
 | Offline Draft 2020-12 schemas | implemented as optional dependency, locally tested | packaged schema resources + no network resolution |
 | Detached bundles | implemented, locally tested | offline SHA-256 integrity; not origin authentication |
 | Domain evidence role / chronology envelopes | implemented, locally tested | noncomputational envelope; **not** empirical identification |
+| Frozen-menu exact finite optimization | implemented, 21 focused tests | tied optimum over the declared menu only; not all controls |
+| Fully observed finite hitting Bellman | implemented, 25 focused tests | full recurrence, admissible selected policy and all tied optimum actions; no Lean correspondence |
+| Finite almost-sure safety core | implemented, 32 focused tests | maximal descending pruning, independent stationary-witness check; excluded states may have positive survival probability |
+| Finite-horizon TV perturbation | implemented, 37 focused tests | separate exact initial-law/kernel error, complete finite killed-survival table; not long-run stability |
 | Native Lean correspondence for new mathematical results | **not implemented** | no Lean receipt claimed |
 | Full planned advanced engine suite | **incomplete** | no false registry activation |
 | Original 45 acceptance cases | **not newly certified** | independent research CERT remains separate |

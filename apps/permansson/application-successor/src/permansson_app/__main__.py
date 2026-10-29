@@ -42,6 +42,12 @@ def main(argv=None):
     survival=sub.add_parser('finite-survival')
     survival.add_argument('comparison',type=Path)
     survival.add_argument('--output',type=Path,required=True)
+    perturb=sub.add_parser('finite-perturbation')
+    perturb.add_argument('problem',type=Path)
+    perturb.add_argument('--output',type=Path,required=True)
+    safe=sub.add_parser('finite-safety')
+    safe.add_argument('problem',type=Path)
+    safe.add_argument('--output',type=Path,required=True)
     bellman=sub.add_parser('finite-bellman')
     bellman.add_argument('problem',type=Path)
     bellman.add_argument('--output',type=Path,required=True)
@@ -142,6 +148,44 @@ def main(argv=None):
                 _write_json(out/name,value)
             print(json.dumps({'ok':True,'numeric_status':checker['status'],
                 'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command=='finite-perturbation':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.robustness import parse_perturbation,propose_perturbation
+            from .receipts.robustness import check_perturbation
+            from .report import numeric_application_report
+            _,raw=strict_read(args.problem)
+            validate_packaged_schema('schemas/finite_perturbation.v1.schema.json',raw)
+            problem=parse_perturbation(raw)
+            receipt=propose_perturbation(problem)
+            checker=check_perturbation(problem,receipt)
+            report=numeric_application_report(capability='finite.path_perturbation_tv.numeric.v1',
+                model_semantic_identity=problem.identity,
+                computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('perturbation_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':'FINITE_PATH_TV_BOUND_VERIFIED',
+                'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command=='finite-safety':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.safety import parse_safety_problem,propose_safety_core
+            from .receipts.safety import check_safety_core
+            from .report import numeric_application_report
+            _,raw=strict_read(args.problem)
+            validate_packaged_schema('schemas/finite_safety.v1.schema.json',raw)
+            problem=parse_safety_problem(raw)
+            receipt=propose_safety_core(problem)
+            checker=check_safety_core(problem,receipt)
+            report=numeric_application_report(capability='finite.almost_sure_safety_core.numeric.v1',
+                 model_semantic_identity=problem.identity,
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('safety_core_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':'EXACT_ALMOST_SURE_SAFETY_CORE_VERIFIED',
+                 'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
         elif args.command=='finite-bellman':
             from .strict_json import strict_read
             from .schema_validate import validate_packaged_schema

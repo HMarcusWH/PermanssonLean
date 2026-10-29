@@ -34,6 +34,14 @@
     }
   },
   "exact_profiles": {
+    "finite.almost_sure_safety_core.numeric.v1": {
+      "checker": "permansson_app.receipts.safety.check_safety_core",
+      "cli": "finite-safety",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite rational greatest almost-sure controlled invariant core <=12 joint states; not survival probability outside core; no Lean or empirical GR/PR qualification"
+    },
     "finite.alpha_P_U.induced_kernel.numeric.v1": {
       "checker": "permansson_app.receipts.finite_world.check_finite_receipt",
       "cli": "finite-kernel",
@@ -73,6 +81,14 @@
       "mode": "numeric",
       "scientific_claims_verified": false,
       "scope": "Finite horizon 0..32; <=12 joint states, full declared region and comparison set; not Exact GR/PR"
+    },
+    "finite.path_perturbation_tv.numeric.v1": {
+      "checker": "permansson_app.receipts.robustness.check_perturbation",
+      "cli": "finite-perturbation",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact finite-horizon path event survival and TV coupling bound, <=12 states, horizon <=32; never long-run GR/PR or causal identity"
     },
     "finite.random_occupation.numeric.v1": {
       "checker": "permansson_app.receipts.occupation.check_occupation",
