@@ -53,3 +53,7 @@ A bounded fully observed rectangular-versus-committed-nature numeric comparison 
 ### One-step randomized risk-occupancy implementation
 
 The bounded, fully observed `one-step-risk` numerical profile solves an exact one-transition occupancy/risk LP, reconstructs the randomized behavioral policy, and independently checks the primal/dual certificate and original `P/U` law. The fractional `1/2` risk-bound example and adversarial mutation cases passed local tests. No Farkas infeasibility is claimed when candidate generation fails. The mode's kernel-checked Lean proof, independent mathematical CERT, empirical identification, application release acceptance, and current-head GitHub CI remain separate pending gates.
+
+### Bounded partial-observation addition
+
+`finite.one_step_observation_belief.numeric.v1` provides exact one-transition observation-conditioned action optimization with a complete, bounded deterministic observation-policy comparison and an independent checker. It binds the supplied alpha/P/U source model without asserting that the optimized observation policy was the original alpha policy. Its output reports `lean_status=NOT_EXECUTED`, `empirical_identification=NOT_IDENTIFIED`, and `scientific_claims_verified=false`. Genuine Lean correspondence, general belief-tree optimality, full source-head CI, independent CERT and scholarly release acceptance remain outstanding.

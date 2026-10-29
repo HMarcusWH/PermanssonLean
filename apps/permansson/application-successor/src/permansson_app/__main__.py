@@ -54,6 +54,9 @@ def main(argv=None):
     residence=sub.add_parser('finite-residence')
     residence.add_argument('request',type=Path)
     residence.add_argument('--output',type=Path,required=True)
+    belief=sub.add_parser('one-step-belief')
+    belief.add_argument('request',type=Path)
+    belief.add_argument('--output',type=Path,required=True)
     risk=sub.add_parser('one-step-risk')
     risk.add_argument('request',type=Path)
     risk.add_argument('--output',type=Path,required=True)
@@ -174,6 +177,24 @@ def main(argv=None):
                    computation_receipt=receipt,independent_check=checker)
             out=_new_output(args.output)
             for name,value in ((receipt_name,receipt),('independent_check.json',checker),('scientific_report.json',report)):
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command=='one-step-belief':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.belief import propose_belief
+            from .receipts.belief import check_belief
+            from .report import numeric_application_report
+            _,raw=strict_read(args.request)
+            validate_packaged_schema('schemas/belief.v1.schema.json',raw)
+            receipt=propose_belief(raw)
+            checker=check_belief(raw,receipt)
+            report=numeric_application_report(capability='finite.one_step_observation_belief.numeric.v1',
+                 model_semantic_identity=receipt['request_identity'],
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('belief_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
                 _write_json(out/name,value)
             print(json.dumps({'ok':True,'numeric_status':checker['status'],
                               'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))

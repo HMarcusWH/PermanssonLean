@@ -161,6 +161,14 @@
       "mode": "numeric",
       "scientific_claims_verified": false,
       "scope": "Bounded exact rational <=6-variable LP; failure to locate a certificate never means infeasible"
+    },
+    "finite.one_step_observation_belief.numeric.v1": {
+      "checker": "permansson_app.receipts.belief.check_belief",
+      "cli": "one-step-belief",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "One-transition, one strategic state, 1..3 hidden world states, observations and actions. Exact observation likelihoods and Bayesian posterior where reachable; one action shared across all hidden states in each observation support; bounded complete deterministic observation-policy enumeration. Unreachable observation never normalized. No multistage POMDP, independent Lean proof, empirical identification or GR/PR status."
     }
   },
   "format": "Permansson.App.Registry.AdditiveNumerical.v2",

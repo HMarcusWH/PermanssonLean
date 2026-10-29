@@ -1,12 +1,12 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 430,
+    "combined_inventory_rows": 434,
     "declared_leans_compiled": 0,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
     "local_tested_python_modules": 56,
-    "new_paths_not_in_original_union": 72,
-    "source_changes_in_branch": 123
+    "new_paths_not_in_original_union": 76,
+    "source_changes_in_branch": 130
   },
   "candidate_engine_overlays": {
     "exit_routing": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
@@ -17,10 +17,11 @@
     "finite_intervention_grammar": "NUMERIC_CHECKED_NOT_CONSTITUTIVE_CERTIFIED",
     "finite_typed_induced_quotient": "STRONG_LUMPABILITY_NUMERIC_ONLY_NOT_COARSE_ALPHA_P_U_PROOF",
     "robust_nature": "NUMERIC_EXACT_CHECKED_NOT_COMMITTED_GAME_OPTIMUM_NOT_LEAN_CERTIFIED",
-    "one_step_risk_occupancy": "NUMERIC_EXACT_PRIMAL_DUAL_CHECKED_SINGLE_TRANSITION_ONLY_NOT_LEAN_CERTIFIED"
+    "one_step_risk_occupancy": "NUMERIC_EXACT_PRIMAL_DUAL_CHECKED_SINGLE_TRANSITION_ONLY_NOT_LEAN_CERTIFIED",
+    "one_step_observation_belief": "NUMERIC_CHECKED_ONE_TRANSITION_NOT_LEAN_CERTIFIED"
   },
   "candidate_head_sha": "EXTERNAL_GITHUB_PR_HEAD_REQUIRED_AFTER_COMMIT",
-  "candidate_revision": "numeric-exact-expanded-v9-risk-occupancy",
+  "candidate_revision": "numeric-exact-expanded-v10-one-step-belief",
   "candidate_source_base_sha": "3492b26707788293ca88c66637b6ba021c7e478d",
   "candidate_verification": {
     "0": "1",
@@ -1091,11 +1092,12 @@
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
-        "git_blob_sha1": "7f93622ecc8483cadd1cb535cbc4f7a8d4e91f0a",
+        "git_blob_sha1": "984f54fb8f4fdab072b161eb05b940e407dff82b",
         "proof": "NOT_EXECUTED",
-        "sha256": "9cc150b8e79a61746d6e22de147e9e5b75a4cf16a1d9bfa34f47895d25cada0a",
-        "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH",
+        "previous_local_sha256": "9cc150b8e79a61746d6e22de147e9e5b75a4cf16a1d9bfa34f47895d25cada0a"
       },
       "classification": "implementation documentation",
       "conditional": false,
@@ -1789,11 +1791,12 @@
     {
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
-        "git_blob_sha1": "ac6a990a983df3c51dcd71ed50014760abc00915",
+        "git_blob_sha1": "329ddce3386da4fed0cbce0b607ba5b4277d9841",
         "proof": "NOT_EXECUTED",
-        "sha256": "1224e63a1137bd40ac2429898ce58f64c6e58d7a79e7936f6ade1a247eb6816c",
-        "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH",
+        "previous_local_sha256": "1224e63a1137bd40ac2429898ce58f64c6e58d7a79e7936f6ade1a247eb6816c"
       },
       "classification": "documentation_or_manifest",
       "conditional": false,
@@ -2471,11 +2474,12 @@
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
-        "git_blob_sha1": "cc6f4bfa4d9e90327b0d82d644b04ab92d39ff99",
+        "git_blob_sha1": "b7f386acb6b784a7dbf8293650d7541b33b58173",
         "proof": "NOT_EXECUTED",
-        "sha256": "0a5841cf62e5c1df15e321f5df65a2fe3154141eef1a8d5aa773d10247ca4292",
-        "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH",
+        "previous_local_sha256": "0a5841cf62e5c1df15e321f5df65a2fe3154141eef1a8d5aa773d10247ca4292"
       },
       "classification": "implemented Python",
       "conditional": false,
@@ -2703,11 +2707,12 @@
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
-        "git_blob_sha1": "fcc15033f3e5c102a2b342f97091ca718a06a6b1",
+        "git_blob_sha1": "2b626f1176e9609608a1cf411bd15c89293df654",
         "proof": "NOT_EXECUTED",
-        "sha256": "4c34874a82266c9c90b7f2aff522232d975e1109ea7f4a3637e442ee6e3bac38",
-        "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH",
+        "previous_local_sha256": "4c34874a82266c9c90b7f2aff522232d975e1109ea7f4a3637e442ee6e3bac38"
       },
       "classification": "implemented Python",
       "conditional": false,
@@ -2832,11 +2837,12 @@
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
-        "git_blob_sha1": "9473ac6ea9761b26482d031e67bdbe54752b9988",
+        "git_blob_sha1": "5651460841a4fbd0ab7599ad138310dcbde95ff3",
         "proof": "NOT_EXECUTED",
-        "sha256": "5d1fcec4438f27d51e6eedbde886b01ad2586ec96dcbe14e4abbb8431102749f",
-        "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH",
+        "previous_local_sha256": "5d1fcec4438f27d51e6eedbde886b01ad2586ec96dcbe14e4abbb8431102749f"
       },
       "classification": "active prototype registry",
       "conditional": false,
@@ -3719,7 +3725,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "git_blob_sha1": "5f4720e76ac7f4ddf9808329645d838b69d2d2cd",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH"
       },
       "classification": "Full Draft 2020-12 schema; semantics enforced separately",
       "conditional": false,
@@ -5644,7 +5654,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "git_blob_sha1": "57116afda33d6c723190cd5f53f2eaba47624735",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH"
       },
       "classification": "python_engine",
       "conditional": false,
@@ -6998,11 +7012,12 @@
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
-        "git_blob_sha1": "1a0dcd30ce79662a11253a3636b99ec51c61b463",
+        "git_blob_sha1": "1afb343ef256aa7ecf8a3bbd49833d5fe9942f6a",
         "proof": "NOT_EXECUTED",
-        "sha256": "89ebd1c116a248ee8dc2a6fb5930a9929b53332030e9e3ebd9d6a7ad358a6e1c",
-        "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH",
+        "previous_local_sha256": "89ebd1c116a248ee8dc2a6fb5930a9929b53332030e9e3ebd9d6a7ad358a6e1c"
       },
       "classification": "implemented Python",
       "conditional": false,
@@ -8097,7 +8112,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "git_blob_sha1": "fbe3df0cc95eb5badbf58777264545554941511f",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH"
       },
       "classification": "Positive/negative semantic and numerical fixtures for belief.py",
       "conditional": false,
@@ -8382,11 +8401,12 @@
     {
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
-        "git_blob_sha1": "006ce644ce128f1c922e6915b86267a9a1807639",
+        "git_blob_sha1": "5a4e42d1e95788140e44c92efa943f0b297c2b71",
         "proof": "NOT_EXECUTED",
-        "sha256": "89d4c258e3705e4a3c831302690951e0035327392f0d3ef2455934f6ae8f3bc5",
-        "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH",
+        "previous_local_sha256": "89d4c258e3705e4a3c831302690951e0035327392f0d3ef2455934f6ae8f3bc5"
       },
       "classification": "integration_test",
       "conditional": false,
@@ -8506,11 +8526,12 @@
     {
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
-        "git_blob_sha1": "b36241fd551a26b65bf6fe195210b8bf25a3a6bf",
+        "git_blob_sha1": "2cd8b5bbc574ac81fb450256dd88485fec46eea2",
         "proof": "NOT_EXECUTED",
-        "sha256": "75c0e0dc423b3129285d1d39f8de6d85fd1eebaa7e34637939c662568434c93e",
-        "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH",
+        "previous_local_sha256": "75c0e0dc423b3129285d1d39f8de6d85fd1eebaa7e34637939c662568434c93e"
       },
       "classification": "integration_test",
       "conditional": false,
@@ -12113,10 +12134,12 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
-        "sha256": "aea1fed470312ba2ce1a85a7a5e8c39741d4b13fe7534dfd74c741c8077c26b4",
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
         "proof": "NOT_EXECUTED",
-        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "git_blob_sha1": "1554b66e56988c41f27a731e01daa298a032651e",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH",
+        "previous_local_sha256": "aea1fed470312ba2ce1a85a7a5e8c39741d4b13fe7534dfd74c741c8077c26b4"
       }
     },
     {
@@ -12435,12 +12458,14 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
         "git_blob_sha": "fc2fbc30c5c45ce7666bccda4419f8460f22ff95",
-        "sha256": "207465e09d7b173ec5ae0b1fa830bf007983de811c1aa825de6e0f869e991dab",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
-        "scope": "5 CLI resource/schema/status tests"
+        "scope": "5 CLI resource/schema/status tests",
+        "git_blob_sha1": "95010b66fbd0de9bbc3e44f1bd5474076700b04f",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH",
+        "previous_local_sha256": "207465e09d7b173ec5ae0b1fa830bf007983de811c1aa825de6e0f869e991dab"
       }
     },
     {
@@ -12462,6 +12487,86 @@
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
         "scope": "scope/limitations documentation"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/receipts/belief.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-07"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "git_blob_sha1": "2de038c84f062abb9f637eb3f55bb3ef6e4e49db",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/data/examples/belief.v1.json",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-07"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "git_blob_sha1": "66fc619c21c386b0c818035b0a0054e4a7017b08",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_belief_cli.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-07"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "git_blob_sha1": "e0d73fe570eb404831ddb54eb26b4436c3a039fb",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/NUMERIC_BELIEF_CONTROL.md",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-07"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
+        "git_blob_sha1": "e89a11bc8e449693b9e11b134d8f8c870dce5d49",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
+        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH"
       }
     }
   ],
@@ -12486,5 +12591,17 @@
     "scientific_claims_verified": false,
     "full_repo_qa_status": "PENDING_CURRENT_HEAD_CI",
     "release_authorized": false
+  },
+  "belief_candidate_verification": {
+    "base_head": "c82d04df1979ecd5f6251156c52593aea2f26793",
+    "scope": "1..3 hidden states/actions/observations; one observation before one action and one transition",
+    "new_capability": "finite.one_step_observation_belief.numeric.v1",
+    "local_focused_tests_passed": 20,
+    "local_test_status": "PASSED_ON_RECOVERED_OVERLAY; OVERLAY NOT EXACT_GITHUB_SOURCE_TREE",
+    "packaged_resource_count_after_live_head_merge": 40,
+    "source_exact_ci": "PENDING",
+    "independent_lean_proof": false,
+    "scientific_claims_verified": false,
+    "authorization": "DRAFT_ONLY"
   }
 }
