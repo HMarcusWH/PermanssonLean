@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "permansson-application-successor-recovery"
+version = "0.1.0.dev0"
+description = "Reconstructed numeric-only Permansson C10/C11 application integration"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+permansson-app = "permansson_app.__main__:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+permansson_app = ["data/*.json", "data/schemas/*.json", "data/examples/*.json"]

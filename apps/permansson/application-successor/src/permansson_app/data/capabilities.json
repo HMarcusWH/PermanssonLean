@@ -1,0 +1,38 @@
+{
+  "capabilities": {
+    "c10.fixed_six_state.numeric.v1": {
+      "allowed_numeric_status": [
+        "VERIFIED_EXACT_RATIONAL"
+      ],
+      "checker": "verification/research/c10_verify_receipt.py",
+      "native_cli": "apps/permansson/closure-successor/cli.py",
+      "scope": "Only frozen six-state C10 witness and complete comparison starts [1,2]",
+      "sha256_pins": {
+        "apps/permansson/closure-successor/cli.py": "c64be5accf4be470fcb0388c666e6ff7a8454774b513cddae78a06449883c8cb",
+        "verification/research/c10_emit_golden_bridge.py": "790223ae2289163619377626d2dd43e2512714da0cbb721eee4e5a09fac64a51",
+        "verification/research/c10_exact_execution.py": "f27a93626b31f6bfab3cff7cc1c584b023cf4f1bf946b1ef7eb78d23577b9be7",
+        "verification/research/c10_golden.py": "4c33cc52e1648c9e3a259d18093cf98460e13c71cb67826c0d4d88a896dc61a0",
+        "verification/research/c10_release_evidence.py": "cdf4088f1afb9e40a71817e7c1ad897ccfc2d9ae33c6862c51cb04c9ee05a26a",
+        "verification/research/c10_verify_receipt.py": "dd94134ebb715fd60c1516ce63e1265b53e39bed2f14c08126ec666e08bedebc"
+      },
+      "source_profile": "D0.C10.FROZEN_SIX_STATE"
+    },
+    "c11.stationary_1_to_6.numeric.v1": {
+      "allowed_numeric_status": [
+        "EXACT_RATIONAL_VERIFIED"
+      ],
+      "checker": "verification/research/c11_verify_stationary.py",
+      "native_cli": "apps/permansson/closure-successor-c11/cli.py",
+      "scope": "1..6-state rational stochastic matrices with Boolean descriptors",
+      "sha256_pins": {
+        "apps/permansson/closure-successor-c11/cli.py": "d5a49a552787c1b19beab4a6dd04ebfed97e1100677fb4d4bf81f0bb854c1c0f",
+        "verification/research/c11_emit_stationary_lean.py": "61e26c8ee253e909db9975d64cb3d6bd137c3f792abf8f7268112f65869be0e9",
+        "verification/research/c11_stationary_execution.py": "faa6b0f2fd0934a9adc8f9d6722b768f3a1df2d902d8be1a445db69088d717c6",
+        "verification/research/c11_verify_stationary.py": "731351061cf3cb7b45156e702885d735b2a1c45e8eecdeb5ed4f0f7a30396e70"
+      },
+      "source_profile": "REIFIED_FINITE_RATIONAL_C11"
+    }
+  },
+  "format": "Permansson.App.ReconstructedRegistry.v1",
+  "source_baseline": "3492b26707788293ca88c66637b6ba021c7e478d"
+}

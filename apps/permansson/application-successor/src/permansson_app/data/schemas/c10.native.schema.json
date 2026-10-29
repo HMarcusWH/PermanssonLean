@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Documentation only; native C10 semantic input checker is authoritative for supported frozen model.",
+  "title": "C10 supported frozen witness only",
+  "type": "object"
+}

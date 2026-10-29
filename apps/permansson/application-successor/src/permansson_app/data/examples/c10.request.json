@@ -1,0 +1,5 @@
+{
+  "capability": "c10.fixed_six_state.numeric.v1",
+  "format": "Permansson.App.NumericRequest.v1",
+  "input_file": "c10.model.json"
+}

@@ -1,0 +1,7 @@
+# Only source, test fixtures, and reviewed documentation enter the PR.
+/build/
+/dist/
+*.egg-info/
+__pycache__/
+*.py[cod]
+*.log

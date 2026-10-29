@@ -1,0 +1,26 @@
+{
+  "$id": "https://hmwh.se/permansson/recovery/request.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "capability": {
+      "enum": [
+        "c10.fixed_six_state.numeric.v1",
+        "c11.stationary_1_to_6.numeric.v1"
+      ]
+    },
+    "format": {
+      "const": "Permansson.App.NumericRequest.v1"
+    },
+    "input_file": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "format",
+    "capability",
+    "input_file"
+  ],
+  "type": "object"
+}

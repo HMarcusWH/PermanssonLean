@@ -1,0 +1,5 @@
+{
+  "capability": "c11.stationary_1_to_6.numeric.v1",
+  "format": "Permansson.App.NumericRequest.v1",
+  "input_file": "c11.periodic.model.json"
+}
