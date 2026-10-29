@@ -1,12 +1,12 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 448,
-    "declared_leans_compiled": 0,
+    "combined_inventory_rows": 452,
+    "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
     "local_tested_python_modules": 56,
-    "new_paths_not_in_original_union": 90,
-    "source_changes_in_branch": 149
+    "new_paths_not_in_original_union": 94,
+    "source_changes_in_branch": 188
   },
   "candidate_engine_overlays": {
     "exit_routing": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
@@ -20,8 +20,8 @@
     "one_step_risk_occupancy": "NUMERIC_EXACT_PRIMAL_DUAL_CHECKED_SINGLE_TRANSITION_ONLY_NOT_LEAN_CERTIFIED",
     "one_step_observation_belief": "NUMERIC_CHECKED_ONE_TRANSITION_NOT_LEAN_CERTIFIED"
   },
-  "candidate_head_sha": "EXTERNAL_GITHUB_PR_HEAD_REQUIRED_AFTER_COMMIT",
-  "candidate_revision": "v12-source-bound-finite-lean-and-T2-diagnostic",
+  "candidate_head_sha": "EXACT_NEW_PR_HEAD_PENDING_COMMIT_AND_CI",
+  "candidate_revision": "v14-governance-provenance-domain-federation-test-candidate",
   "candidate_source_base_sha": "3492b26707788293ca88c66637b6ba021c7e478d",
   "candidate_verification": {
     "0": "1",
@@ -368,6 +368,33 @@
       "independent_security_review": false,
       "full_release_authorized": false,
       "mathematical_certification": false
+    },
+    "round14_governance_domain_federation": {
+      "previous_source_head": "0877c55264d7b5626bac311b2ad82d6f1609aa1a",
+      "source_files_changed": 40,
+      "new_source_paths": 39,
+      "existing_files_modified": 1,
+      "manifest_entries_new": 4,
+      "manifest_entries_updated": 36,
+      "local_new_test_methods_passed": 82,
+      "local_governance_test_methods_passed": 56,
+      "local_domain_test_methods_passed": 26,
+      "local_wheel_build": "PASS_LOCAL_RECOVERED_OVERLAY_NOT_FULL_CURRENT_HEAD",
+      "installed_governance_cli": "PASS_SELECTED_SOURCE_ROUTES",
+      "real_uploaded_companion_imports_checked": [
+        "russia_ukraine",
+        "hormuz",
+        "iran",
+        "midr",
+        "brown_mackay",
+        "cross_conflict"
+      ],
+      "domains_status": "DESCRIPTIVE_EVIDENCE_ONLY_NO_ALPHA_P_U_IDENTIFICATION",
+      "mathematical_acceptance": false,
+      "lean_instance_replay": "NOT_EXECUTED",
+      "historical_archive_T_T2": "UNRESOLVED_SEPARATE_TRUST_PROFILE_REVIEW",
+      "current_head_ci": "NOT_YET_EXECUTED",
+      "owner_release_approval": false
     }
   },
   "counts": {
@@ -528,9 +555,9 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "SOURCE_CANDIDATE_UNCOMPILED",
+        "state": "PINNED_RESEARCH_BUILD_COMPILED_AT_PRIOR_HEAD",
         "sha256": "8216e7ed49137a18a32d5da42924caff166ab9e287707daaf3f0e583e276e426",
-        "proof": "NOT_EXECUTED",
+        "proof": "RESEARCH_LEAN_11616_DECLARATION_AXIOM_AUDIT_PASS_AT_0877_NOT_PER_INSTANCE",
         "trust": "PINNED_LEAN_BUILD_AND_MUTATION_CHECK_PENDING",
         "source_type": "SCHEMATIC_LEAN_PROOF_NOT_REIFIED_JSON_INSTANCE"
       },
@@ -660,9 +687,9 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "SOURCE_CANDIDATE_UNCOMPILED",
+        "state": "PINNED_RESEARCH_BUILD_COMPILED_AT_PRIOR_HEAD",
         "sha256": "046894c6d8c9571a60d9b33fd791be824fbf3c91f208ca435145e21799871a32",
-        "proof": "NOT_EXECUTED",
+        "proof": "RESEARCH_LEAN_11616_DECLARATION_AXIOM_AUDIT_PASS_AT_0877_NOT_PER_INSTANCE",
         "trust": "PINNED_LEAN_BUILD_AND_MUTATION_CHECK_PENDING",
         "source_type": "SCHEMATIC_LEAN_PROOF_NOT_REIFIED_JSON_INSTANCE"
       },
@@ -1821,7 +1848,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "90bb7a8cce9fa980f63935c660fc8e4e2eccaf0613d6b1297c37bb6f7074ffd0",
+        "git_blob_sha": "7c7c06aaec637c5b420faab5d1ac018e35b4a931",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "documentation",
       "conditional": false,
@@ -1899,7 +1930,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "cf0b721cffb89a0f91a990d79ada2d8ee459006b4877c73743e372e936cb41b0",
+        "git_blob_sha": "bfe8de3c3eba863dbc6faf51f1a4175deec004e1",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "implementation documentation",
       "conditional": false,
@@ -1970,7 +2005,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "c2a3415071b0c413adfa8ddb1c0b295e57403f2075ebe54ee412d3b7a48d5d38",
+        "git_blob_sha": "35d45e5326b0e21762abcbcd70765dda1c0ada69",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "documentation",
       "conditional": false,
@@ -2067,7 +2106,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "35f08c830b1b70341451b69c6c9a21df2f56ad9e33d7d0b96866b91633eb596e",
+        "git_blob_sha": "5ddea00c1b887e715731780be0f9229e7bd30073",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "documentation",
       "conditional": false,
@@ -2187,7 +2230,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "c7ed29b164c5349609664297ecfec84a47e10eacfd153051af1f1ec65389c7df",
+        "git_blob_sha": "64665cf413743dbef26d965892bf30f70b1df407",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Document original v0.1.8, newer research and exact adapter scope",
       "conditional": false,
@@ -2356,11 +2403,11 @@
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
-        "git_blob_sha1": "86d426756b818d7198f4a69cf93380e1789292e6",
-        "proof": "NOT_EXECUTED",
-        "sha256": "3a86f295d002f8be8897e8e3ba6a780e00ed75aa6dc5b8739332babdf2fa09b8",
-        "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "9a6ce622faada5c86ecc2e8f3b9c3b5ee7c265d362e79bd889040236eb41404d",
+        "git_blob_sha": "c396f9cb5b2f4173f5ede8ff0a67a17bd10168a7",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "packaging",
       "conditional": false,
@@ -2570,7 +2617,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "156822801f499bee22ca3a0e43ded28985f1a4f8b8a1486a91084defa3620ac7",
+        "git_blob_sha": "91b7663f87c832bff6563513a2de6a20e7b6161d",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "runtime",
       "conditional": false,
@@ -2801,7 +2852,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "f97aaa9b7e7ba133ff3ad8be6cd8b3aa041e2f556f09767a39fd785a41ad34d9",
+        "git_blob_sha": "4e1bf6e06041b1485b60ac90f95c9820e93cb517",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "runtime",
       "conditional": false,
@@ -2866,7 +2921,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "1a0835996e677c4ed00a7e2ccb4273f06b54dd3856603edf481a3ec9e7ab437d",
+        "git_blob_sha": "d74706b9866be3b7bd450a105aeee7cc7223726e",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "registry",
       "conditional": false,
@@ -2968,7 +3027,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "fdf9a0f24f568e21ffbc3eaaedf3a69aa7506a8f777b297b4efe424c2649f189",
+        "git_blob_sha": "340d733a8daff9edb6ce861ec798532703798c3f",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "registry",
       "conditional": false,
@@ -5135,7 +5198,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "deb136e5f76bfc3ac83f29953162e3c23b5a25b4944cc932ac9f33b357d5634c",
+        "git_blob_sha": "2feead5d53e00fbc15b89e5a9d3f3aea5635b973",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "package",
       "conditional": false,
@@ -5162,7 +5229,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "dfcfa87df24b7d0df362af629776b5ef0f081294980ba9086d057b05dc47ead1",
+        "git_blob_sha": "c5917ac23514ba1d6142668ff66ebd2a13506462",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "package",
       "conditional": false,
@@ -5189,7 +5260,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "9f69227c9ab425984778cf374b5dc5bafe46f826d00065a03d7471dd237fc58d",
+        "git_blob_sha": "84e413f87a2490fc39bd9bfbd48effa3abe6b890",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python native parser",
       "conditional": false,
@@ -5218,7 +5293,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "c75803df7ec98aa1091be664e7fa44abd9669463c65428a1de7abb0d533d14d9",
+        "git_blob_sha": "75d456187472bf7a1717eca081de54eb12e65f03",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Cross-conflict geometry diagnostics",
       "conditional": false,
@@ -5299,7 +5378,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "a1522441c38ad1e102f493b5bfff24ab6629162e41647b8ca050329bad0e6d68",
+        "git_blob_sha": "130b3ecee9ebe96c727e1383f39df3d7d9a672d8",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python native parser",
       "conditional": false,
@@ -5328,7 +5411,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "4ed8a63ebaae8b870cad97fcf8f11e19684dd801be4e27e8f7781a1a37908f86",
+        "git_blob_sha": "dd6c72e8b0a843298a5c8e76ef6c72861e9b4314",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python native parser",
       "conditional": false,
@@ -5357,7 +5444,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "bca9cbd80fd5fc92e61cc7ea858ce7c2bb898374f25cc10a2666ab981c63bbd8",
+        "git_blob_sha": "66cdb566ac6c09fdd1b277962c2f310f2f2658e0",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python native parser",
       "conditional": false,
@@ -5386,7 +5477,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "a68b2c2369323fb93512d211a53de22083cbe5b556a475035099b3b49635fe2d",
+        "git_blob_sha": "ac441ba50555e13b24fbe8d6890d2b0d7cfa3d66",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python native parser",
       "conditional": false,
@@ -5415,7 +5510,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "70c92012d3b63cd4b99723f1c3eb026659e657bb361c7703b749ea751f1b23bd",
+        "git_blob_sha": "12aef836fea43d45e6e049a761935c388f6900c0",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python IO",
       "conditional": false,
@@ -5444,7 +5543,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "f5ea8f745912cb97def24a9f51024346070374c8e7cd98167d0bc3538a5a37a3",
+        "git_blob_sha": "12352b4882b9e879f2849edf89b35886d46152d3",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python validation",
       "conditional": false,
@@ -5472,7 +5575,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "bd2a782920ad7b5b695c464e5e8a5367e000aa0cee629d5a9b89f923129e5696",
+        "git_blob_sha": "4371b4adec1370c327034ff652705246e1df26e2",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python service",
       "conditional": false,
@@ -5502,7 +5609,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "3636e0ce9e4faeb3bb3c0168718dd27ef3c54041e0af238707e6aa2a6b19712d",
+        "git_blob_sha": "e9dd1ec6781e3c2f4555cadfdb63793de8f0ed6d",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python dispatch",
       "conditional": false,
@@ -5531,7 +5642,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "149a6569d5e781f774e22d1e9f5ad36f02a5c35c662d0451971d44b3e134eb8b",
+        "git_blob_sha": "50ba8af834367655528c10b15416b37ae2325aa3",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python validation",
       "conditional": false,
@@ -5563,7 +5678,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "44b662a57167d8d438e939bf7d67fd9b5ac5eeed8860467957add14d7b85b6d9",
+        "git_blob_sha": "cc356554bb777fc44115b0a440fe925278fb841c",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python contracts",
       "conditional": false,
@@ -6664,7 +6783,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "a826734f20c4363405a96fb6d3d1aad9f7c8c9cdc7ab8bb90b4b4f6fde3f2d0f",
+        "git_blob_sha": "a5e10e1d84c876bc67b84f80ac45d8a9ca6e3ed4",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "runtime",
       "conditional": false,
@@ -6725,7 +6848,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "4d03bfe268f6b678f86e9e8aa31d7b6f531fc199d86e3de55c0593ffa4272f8c",
+        "git_blob_sha": "8ea1b5dee7d72395f6ee5dc35cd1331dd9b3ac2b",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "package",
       "conditional": false,
@@ -6752,7 +6879,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "2468baf9525648e3bdeb1a3440f5f474dba1634169cc455977799453582d326d",
+        "git_blob_sha": "82ec89c3259ed5e3b3a59d79098ed680e028cb91",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python validation",
       "conditional": false,
@@ -6781,7 +6912,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "d7a82c116c0ce52eba2f18b87e4b0b7be0cfaa9819a4abff1991901573710453",
+        "git_blob_sha": "5ced41b38780c10961394b29970b8467fa067c94",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python contracts",
       "conditional": false,
@@ -6809,7 +6944,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "b2f78f19275880dc6a95c0f93859d74fc16c1dbdf2259d73ade8f6e535a89840",
+        "git_blob_sha": "62fee6c94e99ed7ba8acd5cc681ca083173995ae",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python file IO",
       "conditional": false,
@@ -6840,7 +6979,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "c6cbbfdc793d08bcdc72bdc59f2a593a08f458a5fb7bd4eb9454b12a09a580a4",
+        "git_blob_sha": "9bbe613908e6ad508b67677446fe5d99fa9b701a",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "Python adapter",
       "conditional": false,
@@ -7359,7 +7502,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "d8f7fe623c5479d697e14969722e80241408d5744ef8c65572a4c7c720eef946",
+        "git_blob_sha": "aa94b50bd7f8315c90cea229ef06e053413b75e9",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "runtime",
       "conditional": false,
@@ -7775,7 +7922,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "c80a7923cde46edef470bed94b573fbca19eeaf1f09af6a4555acb3ae6674f06",
+        "git_blob_sha": "0009652df06875a23865b6e1b76f5fd136ea8f2d",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "runtime",
       "conditional": false,
@@ -7838,7 +7989,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "51dddbc75e3a85e4675f83b2ac8a60438d538dbcd0c84c12e7898a2d60177dd3",
+        "git_blob_sha": "70730133d2f3fc44d42b770836cffdca9f508c6f",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "runtime",
       "conditional": false,
@@ -7874,7 +8029,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "7f27b5bc5d25fe4736bc5842584fb929f158f5b62ec16abdf15b50989477ae75",
+        "git_blob_sha": "0d0e4087b53146f3f99e920157d9a401ae4a3f20",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "runtime",
       "conditional": false,
@@ -7975,7 +8134,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "a54b44bb780f886a8026a435cd760e86ae822ca67a3d713401d5b5ecdaee8efa",
+        "git_blob_sha": "fd4a75ddb5a8ef64961641ef2e4610772f5f20a1",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "types",
       "conditional": false,
@@ -8103,7 +8266,11 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "db6e57c4774b4becad946ed0eec90a8acf21dab16a1f3a1ca2a048ad74aa872f",
+        "git_blob_sha": "018c9a126c7b9c2328deaf98c3777a6b67b6e614",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
       "classification": "runtime",
       "conditional": false,
@@ -12932,6 +13099,94 @@
         "proof": "NOT_EXECUTED",
         "independent_security_review": false,
         "release_authorized": false
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/governance_cli.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "governance contract",
+      "disposition": "NEW_TESTED_REVIEW_GATED_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-07",
+        "APP-08",
+        "REL-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "43fc177d1b6e47ec64cf71d4f12f820c413ed2f6953200c92a9577631cd7ec0a",
+        "git_blob_sha": "9b314ed3bb658ab8fadb67a58e9f8b163ed96dcc",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_governance_contracts.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "test",
+      "disposition": "NEW_TESTED_REVIEW_GATED_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-07",
+        "APP-08",
+        "REL-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "a2dfa5feacd29ddf820ac74e155f0e136e1a775527c5589d835a8df4f2cc7250",
+        "git_blob_sha": "4a100e5ca36ca07fac758768f74093fc361f6839",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_governance_cli.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "test",
+      "disposition": "NEW_TESTED_REVIEW_GATED_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-07",
+        "APP-08",
+        "REL-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "60c597f16bb0740cd994d692ead1d7c1226745fc5b58e73d5b1db5c5976b813b",
+        "git_blob_sha": "3f9e33063de6b654bbb7ad4c6ff906294daf3a47",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_domain_imports.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "test",
+      "disposition": "NEW_TESTED_REVIEW_GATED_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-07",
+        "APP-08",
+        "REL-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "d86a30858ab63367659f3a23a3c9e7dcb2dd1e7ed89919913a8970f51e449ed6",
+        "git_blob_sha": "11342234a3450964d454b138185b3e6211865ae7",
+        "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+        "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       }
     }
   ],

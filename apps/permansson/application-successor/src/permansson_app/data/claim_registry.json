@@ -1,0 +1,565 @@
+{
+  "format": "Permansson.App.ClaimRegistry.v1",
+  "claims": [
+    {
+      "id": "X-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "protocol_atom_eq",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "X-02",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "kernelTerminal_eq_rational",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "X-03",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "effects_eq_candidates",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "X-04",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "effects_eq_candidates",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "X-05",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "protocol_atom_eq",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "X-06",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "effects_eq_candidates",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "S-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "finite_performance_difference",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "S-02",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "finite_performance_difference",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "M-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "autonomous_marked_atom",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "M-02",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "autonomous_marked_atom",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "F-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "generator",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "F-02",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "advancing_update",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "F-03",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "keyLaw_feasible_iff",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "F-04",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "mediator_mixture_eq",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "F-05",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "mediation_identification",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "Q-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "map_liftProjectedDensity",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "Q-02",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "map_liftProjectedDensity",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "Q-03",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "primitiveCommon_mass_ge_product",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "Q-04",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "eventTV_compProd_averaged",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "Q-05",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "integral_summablePathScore",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "A-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "finite_w1DualLE_iff_couplingW1_le",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "A-02",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "preservesFirstMoment_of_drift",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "A-03",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "typedRow_measure",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "A-04",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "four_actual_factorizations",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "A-05",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "four_actual_factorizations",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "D-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "residenceScan_invariant",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "D-02",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "residenceScan_invariant",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "D-03",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "avoidRun_safePrefix",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "D-04",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "actual_history_flow_equivalence",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "D-05",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "Controller",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "D-06",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "ObservationPolicy",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "D-07",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "pathLaw",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "D-08",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "CertifiedMenu",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "D-09",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "observedOccupationLimit_ae_correct",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "C11-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "referenceMatrix_det_ne_zero",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "C11-02",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "referenceMatrix_det_ne_zero",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "C-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "empirical_clusters_invariant_ae",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "B-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "RowPatch.Compatible",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "B-02",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "minimalPositive_iff_of_lowerSet_lifting",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "XPLUS-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "original_exactGR",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "E-01",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "seam_rank_le_two",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "E-02",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "quadratic_approximation_bound",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "E-03",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "negativeShift_isUnit",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "E-04",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "symmetric_preimage_iff",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "E-05",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "norm_gramWitness_sq",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "historical_case",
+      "original_accepted": false
+    },
+    {
+      "id": "Q1",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "PermanssonResearch.Quotient.DiscountedCanonicalSourceWitness.canonical_discounted_output_error",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "later_claim",
+      "original_accepted": false
+    },
+    {
+      "id": "Q2",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure.actual_canonical_discounted_original_margin",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "later_claim",
+      "original_accepted": false
+    },
+    {
+      "id": "Q3",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.SourceBoundExactWitness.exactKernelPointWitness",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "later_claim",
+      "original_accepted": false
+    },
+    {
+      "id": "M1",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_kernel_two",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "later_claim",
+      "original_accepted": false
+    },
+    {
+      "id": "M2",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_loop_original_margin",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "later_claim",
+      "original_accepted": false
+    },
+    {
+      "id": "M3",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_worlds_both_frozen",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "later_claim",
+      "original_accepted": false
+    },
+    {
+      "id": "N1",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.phase_aware_invariant_weights",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "later_claim",
+      "original_accepted": false
+    },
+    {
+      "id": "N2",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_aware_actual_score_one",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "later_claim",
+      "original_accepted": false
+    },
+    {
+      "id": "N3",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "PermanssonResearch.ReverseSolver.NonlinearPeriodThree.booleanClassFunctional",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "later_claim",
+      "original_accepted": false
+    },
+    {
+      "id": "D8",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_admits_both_components",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "later_claim",
+      "original_accepted": false
+    },
+    {
+      "id": "D9",
+      "source_commit": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+      "theorem": "PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_two_absorbing_full_path_mixture",
+      "capability": null,
+      "required_hypotheses": [],
+      "required_starts": [],
+      "classification": "later_claim",
+      "original_accepted": false
+    }
+  ]
+}
