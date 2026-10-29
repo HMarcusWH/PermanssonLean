@@ -40,3 +40,8 @@ The original v2 217-entry and reconstructed v3 251-entry inventories overlap on 
 P2: full strict versioned request/report schema families and legacy byte/digest roundtrips. P3: actual theorem/expected-type and transitive-axiom replay plus authenticated evidence. P4: Lean `FiniteWorldInput` and `LinearProgramReceipt` correspondence proofs under frozen pinned toolchain. P5: the 19 planned mathematical engine profiles, independent checkers and remaining 15+ Lean bridges. P6: actual source-bound per-case raw data importer adapters (this code is currently envelope-only), external providers conditional on audited contracts. P7: cross-platform wheels/SDists, exact-source trusted release gate, negative fixture matrix, CI at exact reviewed H/S and authorized independent review.
 
 A green *local numeric test* is not a substitute for any of the still-missing items.
+
+
+### Additional numeric scope (2026-10-29)
+
+Finite residence monitors and nonlinear classwise stationary-policy evaluation are implemented in Python with independent rational checkers only. `kernel_checked_proof=NOT_EXECUTED` and all stronger mathematical, release, empirical and publication statuses remain unassessed. The historical trust-profile archive-reproducibility failure is not relaxed or treated as accepted.

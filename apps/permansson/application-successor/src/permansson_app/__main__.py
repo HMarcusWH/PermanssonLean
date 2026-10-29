@@ -48,6 +48,12 @@ def main(argv=None):
     safe=sub.add_parser('finite-safety')
     safe.add_argument('problem',type=Path)
     safe.add_argument('--output',type=Path,required=True)
+    nonlinear=sub.add_parser('nonlinear-stationary')
+    nonlinear.add_argument('request',type=Path)
+    nonlinear.add_argument('--output',type=Path,required=True)
+    residence=sub.add_parser('finite-residence')
+    residence.add_argument('request',type=Path)
+    residence.add_argument('--output',type=Path,required=True)
     bellman=sub.add_parser('finite-bellman')
     bellman.add_argument('problem',type=Path)
     bellman.add_argument('--output',type=Path,required=True)
@@ -130,6 +136,37 @@ def main(argv=None):
             _write_json(args.output/'legacy_import.json',result)
             print(json.dumps({'ok':True,'contract_valid':result['original_result']['contract_valid'],
                               'scientific_claims_verified':False},sort_keys=True))
+        elif args.command in ('nonlinear-stationary','finite-residence'):
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .report import numeric_application_report
+            _,raw=strict_read(args.request)
+            if args.command=='nonlinear-stationary':
+                from .engines.nonlinear import propose_nonlinear
+                from .receipts.nonlinear import check_nonlinear
+                schema='schemas/nonlinear.v1.schema.json'
+                validate_packaged_schema(schema,raw)
+                receipt=propose_nonlinear(raw)
+                checker=check_nonlinear(raw,receipt)
+                capability='finite.nonlinear_classwise_stationary.numeric.v1'
+                receipt_name='nonlinear_receipt.json'
+            else:
+                from .engines.residence import solve_residence
+                from .receipts.residence import check_residence
+                schema='schemas/residence.v1.schema.json'
+                validate_packaged_schema(schema,raw)
+                receipt=solve_residence(raw)
+                checker=check_residence(raw,receipt)
+                capability='finite.residence_monitor.numeric.v1'
+                receipt_name='residence_receipt.json'
+            report=numeric_application_report(capability=capability,
+                   model_semantic_identity=receipt['problem_semantic_identity'] if 'problem_semantic_identity' in receipt else receipt['request_identity'],
+                   computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in ((receipt_name,receipt),('independent_check.json',checker),('scientific_report.json',report)):
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
         elif args.command=='frozen-menu':
             from .strict_json import strict_read
             from .schema_validate import validate_packaged_schema

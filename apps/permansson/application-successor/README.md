@@ -141,3 +141,7 @@ identification.
 Both new profiles use the same strict packaged schemas, numerical receipt
 policy and nine-dimensional *unassessed* scientific certificate as C10/C11.
 No application release acceptance is claimed.
+
+### Additional exact numeric profiles (2026-10-29)
+
+The finite residence and nonlinear classwise stationary-policy engines have independent exact receipt checks and bounded, explicitly scoped examples. See [`docs/NUMERIC_RESIDENCE_NONLINEAR.md`](docs/NUMERIC_RESIDENCE_NONLINEAR.md). Neither profile provides Lean replay, mathematical CERT, empirical identification or application release acceptance.

@@ -82,6 +82,14 @@
       "scientific_claims_verified": false,
       "scope": "Finite horizon 0..32; <=12 joint states, full declared region and comparison set; not Exact GR/PR"
     },
+    "finite.nonlinear_classwise_stationary.numeric.v1": {
+      "checker": "permansson_app.receipts.nonlinear.check_nonlinear",
+      "cli": "nonlinear-stationary",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "All feasible deterministic stationary policies, <=8 finite joint states and <=64 policies, Boolean F(p)=1-|p-2/3| applied to each recurrent-class law before expectation; numeric only"
+    },
     "finite.path_perturbation_tv.numeric.v1": {
       "checker": "permansson_app.receipts.robustness.check_perturbation",
       "cli": "finite-perturbation",
@@ -97,6 +105,14 @@
       "mode": "numeric",
       "scientific_claims_verified": false,
       "scope": "Finite rational multichain bottom classes, absorption and random limiting occupation; not empirical GR/PR"
+    },
+    "finite.residence_monitor.numeric.v1": {
+      "checker": "permansson_app.receipts.residence.check_residence",
+      "cli": "finite-residence",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Fully observed <=8-state finite Bellman over explicit first-entry/retryable/avoid monitors, deadlines <=8 and dwell <=4; numeric only; no through-horizon risk certificate"
     },
     "lp.exact_rational.independent_verification.v1": {
       "checker": "permansson_app.receipts.lp",

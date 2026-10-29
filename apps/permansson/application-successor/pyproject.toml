@@ -7,10 +7,10 @@ name = "permansson-application-successor-recovery"
 version = "0.1.0.dev0"
 description = "Reconstructed numeric-only Permansson C10/C11 application integration"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["jsonschema==4.26.0", "referencing==0.37.0"]
 
 [project.optional-dependencies]
-full-schema = ["jsonschema>=4.23,<5", "referencing>=0.36,<1"]
+full-schema = ["jsonschema==4.26.0", "referencing==0.37.0"]
 
 [project.scripts]
 permansson-app = "permansson_app.__main__:main"
