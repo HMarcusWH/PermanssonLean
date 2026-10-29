@@ -90,6 +90,14 @@
       "scientific_claims_verified": false,
       "scope": "All feasible deterministic stationary policies, <=8 finite joint states and <=64 policies, Boolean F(p)=1-|p-2/3| applied to each recurrent-class law before expectation; numeric only"
     },
+    "finite.patch_grammar.numeric.v1": {
+      "mode": "numeric",
+      "cli": "finite-grammar",
+      "checker": "permansson_app.receipts.grammar.check_grammar",
+      "scope": "Exact finite alpha/U explicitly admitted block grammar and per-comparison finite survival/exit effects, all inclusion-minimal positive admitted blocks, four-corner interactions. Not a PR certificate.",
+      "lean_status": "NOT_EXECUTED",
+      "scientific_claims_verified": false
+    },
     "finite.path_perturbation_tv.numeric.v1": {
       "checker": "permansson_app.receipts.robustness.check_perturbation",
       "cli": "finite-perturbation",
@@ -113,6 +121,14 @@
       "mode": "numeric",
       "scientific_claims_verified": false,
       "scope": "Fully observed <=8-state finite Bellman over explicit first-entry/retryable/avoid monitors, deadlines <=8 and dwell <=4; numeric only; no through-horizon risk certificate"
+    },
+    "finite.typed_quotient.numeric.v1": {
+      "mode": "numeric",
+      "cli": "finite-quotient",
+      "checker": "permansson_app.receipts.quotients.check_quotient",
+      "scope": "Exactly strongly lumpable typed strategic/world coordinate projection for baseline and each frozen alpha/U intervention, complete fibers and finite horizon survival/exit transport. Does not construct coarse alpha/P/U or certify Exact GR/PR.",
+      "lean_status": "NOT_EXECUTED",
+      "scientific_claims_verified": false
     },
     "lp.exact_rational.independent_verification.v1": {
       "checker": "permansson_app.receipts.lp",

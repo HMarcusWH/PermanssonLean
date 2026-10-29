@@ -54,6 +54,10 @@ def main(argv=None):
     residence=sub.add_parser('finite-residence')
     residence.add_argument('request',type=Path)
     residence.add_argument('--output',type=Path,required=True)
+    for name in ('finite-grammar','finite-quotient'):
+        staged=sub.add_parser(name)
+        staged.add_argument('request',type=Path)
+        staged.add_argument('--output',type=Path,required=True)
     bellman=sub.add_parser('finite-bellman')
     bellman.add_argument('problem',type=Path)
     bellman.add_argument('--output',type=Path,required=True)
@@ -164,6 +168,36 @@ def main(argv=None):
                    computation_receipt=receipt,independent_check=checker)
             out=_new_output(args.output)
             for name,value in ((receipt_name,receipt),('independent_check.json',checker),('scientific_report.json',report)):
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command in ('finite-grammar','finite-quotient'):
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .report import numeric_application_report
+            _,raw=strict_read(args.request)
+            if args.command=='finite-grammar':
+                from .engines.grammar import propose_grammar
+                from .receipts.grammar import check_grammar
+                schema='schemas/grammar.v1.schema.json'
+                capability='finite.patch_grammar.numeric.v1'
+                compute,check=propose_grammar,check_grammar
+                filename='grammar_receipt.json'
+            else:
+                from .engines.quotients import propose_quotient
+                from .receipts.quotients import check_quotient
+                schema='schemas/quotient.v1.schema.json'
+                capability='finite.typed_quotient.numeric.v1'
+                compute,check=propose_quotient,check_quotient
+                filename='quotient_receipt.json'
+            validate_packaged_schema(schema,raw)
+            receipt=compute(raw)
+            checker=check(raw,receipt)
+            report=numeric_application_report(capability=capability,
+                 model_semantic_identity=receipt['request_identity'],
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [(filename,receipt),('independent_check.json',checker),('scientific_report.json',report)]:
                 _write_json(out/name,value)
             print(json.dumps({'ok':True,'numeric_status':checker['status'],
                               'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))

@@ -1,19 +1,21 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 407,
+    "combined_inventory_rows": 416,
     "declared_leans_compiled": 0,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
     "local_tested_python_modules": 56,
-    "new_paths_not_in_original_union": 49,
-    "source_changes_in_branch": 96
+    "new_paths_not_in_original_union": 58,
+    "source_changes_in_branch": 109
   },
   "candidate_engine_overlays": {
     "exit_routing": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
     "finite_frozen_menu": "NUMERIC_CHECKED_NOT_GLOBAL_OPTIMUM_NOT_LEAN_CERTIFIED",
     "finite_hitting_bellman": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
     "finite_survival": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
-    "occupation": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED"
+    "occupation": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
+    "finite_intervention_grammar": "NUMERIC_CHECKED_NOT_CONSTITUTIVE_CERTIFIED",
+    "finite_typed_induced_quotient": "STRONG_LUMPABILITY_NUMERIC_ONLY_NOT_COARSE_ALPHA_P_U_PROOF"
   },
   "candidate_head_sha": "EXTERNAL_GITHUB_PR_HEAD_REQUIRED_AFTER_COMMIT",
   "candidate_revision": "numeric-exact-expanded-v7",
@@ -5613,7 +5615,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "813c739bd7855eac100e4e703c869e589137184a49d0e6e24bbc0f414c39d71b",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
       },
       "classification": "python_engine",
       "conditional": false,
@@ -5980,7 +5985,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "21f0e3bb0288f57489413c7808a9acffb5632986ecc6547a5d2890d9db8247e4",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
       },
       "classification": "python_engine",
       "conditional": false,
@@ -8150,7 +8158,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "c7616cd9e42e6ff4598c9e220a5fa4761edceab9f275a7baf0a652deda3d6379",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
       },
       "classification": "Positive/negative semantic and numerical fixtures for grammar.py",
       "conditional": false,
@@ -8561,7 +8572,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "91ac173af135bc79eac6c1c8803c89a0f3ca3cbbc4786c3bbed0ef60ad236895",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
       },
       "classification": "Positive/negative semantic and numerical fixtures for quotients.py",
       "conditional": false,
@@ -11703,11 +11717,181 @@
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/receipts/grammar.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "6ba0cd5a8a6fab4ded03e2074be09c6b06dbf5c282c2544b6585d87b23826f8e",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_grammar_cli.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "203921904b96cbe793cac06a8793e0f8a09a3ff55fda59a11bd874595d05799f",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/data/schemas/grammar.v1.schema.json",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "99d6e09de88e75050c70f68172c2964fd17d382c2d074665e03e29591d2cb4c5",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/data/examples/grammar.v1.json",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "f6d2f45b6c6cbc8141dcf0ec9b8b3d603305d5163f8502930c1ea7ffc7242de8",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/receipts/quotients.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "ddbbde9d921687ca529c3b561c5936c99801ac58844fc894b6377d82e3aa9489",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_grammar_quotient_cli.py",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "aea1fed470312ba2ce1a85a7a5e8c39741d4b13fe7534dfd74c741c8077c26b4",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/data/schemas/quotient.v1.schema.json",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "d53d250d61314d279b8cc1193f59719e6e475f00bb50a2f9023ce1f62d660837",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/data/examples/quotient.v1.json",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "35713fc303892a0264e2e4c21dd2271d86e5c5472bb1034020674cc94a3af75e",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/NUMERIC_GRAMMAR_QUOTIENT.md",
+      "base_state": "NOT_PRESENT_IN_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_NUMERIC_SOURCE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
+        "sha256": "dabad4238364a8154065791eeb11c74e592b001ca8b2f6b91b308b5aa4169f67",
+        "proof": "NOT_EXECUTED",
+        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
     }
   ],
   "format": "Permansson.App.AuthoritativeSourceReconciliation.v1",
   "live_main": "3492b26707788293ca88c66637b6ba021c7e478d",
   "scope": "v2 reviewed + v3 reconstructed + main-backed; never promote proposed files to available",
   "source_tree": "9ef00ac4b2d4f928aa6551ef3f0dfeb2d4434452",
-  "status": "DEVELOPMENT_BASELINE_NOT_RELEASE_ACCEPTANCE"
+  "status": "DEVELOPMENT_BASELINE_NOT_RELEASE_ACCEPTANCE",
+  "candidate_build_round3": {
+    "parent_git_head": "a56e31185c6775558f01087a9e4fd64c7fe25102",
+    "scope": "GRAMMAR_AND_TYPED_INDUCED_QUOTIENT_NUMERIC_ONLY",
+    "new_source_paths": 13,
+    "existing_inventory_paths_updated": 4,
+    "inventory_paths_added": 9,
+    "verified_focused_test_methods": 42,
+    "installed_wheel_examples": [
+      "finite-grammar",
+      "finite-quotient"
+    ],
+    "verified_source_model": "Local additive source candidate, not exact latest GitHub merged head",
+    "lean_replay": "NOT_EXECUTED",
+    "scientific_claims_verified": false,
+    "full_repo_qa_status": "PENDING_CURRENT_HEAD_CI",
+    "release_authorized": false
+  }
 }
