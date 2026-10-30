@@ -5,8 +5,8 @@ compares metadata and exact Lean bytes. It is NOT a compiler, trusted source
 signer, proof kernel or release attestation. It covers every application
 bridge emitter (Bellman control table, safety core, residence, frozen menu,
 killed-kernel survival, occupation, first-exit routing, nonlinear objective,
-perturbation, typed quotient, patch grammar, risk flow, robust nature and
-observe-then-act belief), which share one layout. The exit family also binds
+perturbation, typed quotient, patch grammar, risk flow, robust nature,
+observe-then-act belief and CQ-1 certificates), which share one layout. The exit family also binds
 the original region bytes.
 """
 from __future__ import annotations
@@ -21,7 +21,7 @@ from ..engines.safety import parse_safety_problem
 from ..errors import AppError
 from ..identity import canonical_bytes
 from ..strict_json import strict_read
-from . import (belief_emit, control_emit, exit_emit, flow_emit, grammar_emit, menu_emit, nonlinear_emit,
+from . import (belief_emit, control_emit, cq1_emit, exit_emit, flow_emit, grammar_emit, menu_emit, nonlinear_emit,
                occupation_emit, perturbation_emit, quotient_emit, residence_emit,
                robust_emit, safety_emit, survival_emit)
 
@@ -59,6 +59,8 @@ FAMILIES={
     # One-step and belief-tree requests; the emitter dispatches on the format.
     'belief':(lambda raw:raw,belief_emit,'ReifiedBelief.lean','BELIEF_REIFY',
               'Permansson.App.BeliefSourceRecheck.v1'),
+    'cq1':(lambda raw:raw,cq1_emit,'ReifiedCQ1.lean','CQ1_REIFY',
+           'Permansson.App.CQ1SourceRecheck.v1'),
 }
 # Families whose source also depends on a separate region file.
 REGION_FAMILIES={'exit'}
