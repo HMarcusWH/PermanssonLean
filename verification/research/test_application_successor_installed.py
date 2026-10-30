@@ -34,7 +34,7 @@ import zipfile
 BASE = Path(__file__).resolve().parents[2]
 APP = BASE / "apps/permansson/application-successor"
 PACKAGE = APP / "src/permansson_app"
-PINS = ["build==1.3.0", "jsonschema==4.26.0", "referencing==0.37.0"]
+PINS = ["build==1.3.0", "jsonschema==4.26.0", "referencing==0.37.0", "rfc8785==0.1.4"]
 
 
 def _run(cmd, *, cwd, env, timeout):
@@ -141,8 +141,16 @@ class InstalledDistributionTest(unittest.TestCase):
             # happened to import.
             ran = re.search(r"^Ran (\d+) tests? in ", out, re.M)
             self.assertIsNotNone(ran, out[-2000:])
-            expected = unittest.defaultTestLoader.discover(
-                str(APP / "tests"), top_level_dir=str(APP / "tests")).countTestCases()
+            # Count the source-tree suite with the installed environment's
+            # interpreter (it has every pinned dependency), and refuse any
+            # module that failed to import instead of counting it as one test.
+            counter = ("import json,sys,unittest;l=unittest.TestLoader();"
+                       "s=l.discover(sys.argv[1],top_level_dir=sys.argv[1]);"
+                       "print(json.dumps([s.countTestCases(),[str(e)[:400] for e in l.errors]]))")
+            code, counted = _run([python, "-B", "-c", counter, APP / "tests"], cwd=work, env=env, timeout=120)
+            self.assertEqual(code, 0, counted)
+            expected, errors = json.loads(counted.strip().splitlines()[-1])
+            self.assertEqual(errors, [])
             self.assertEqual(int(ran.group(1)), expected)
 
 

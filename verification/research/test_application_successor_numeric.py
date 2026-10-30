@@ -23,12 +23,12 @@ class ApplicationSuccessorNumericTest(unittest.TestCase):
         env['PERMANSSON_SOURCE_ROOT']=str(BASE)
         with tempfile.TemporaryDirectory(prefix='permansson-schema-') as workspace:
             interpreter=sys.executable
-            if any(importlib.util.find_spec(name) is None for name in ('jsonschema','referencing')):
+            if any(importlib.util.find_spec(name) is None for name in ('jsonschema','referencing','rfc8785')):
                 venv.EnvBuilder(with_pip=True,system_site_packages=False).create(workspace)
                 interpreter=str(Path(workspace)/('Scripts/python.exe' if os.name=='nt' else 'bin/python'))
                 install=subprocess.run([interpreter,'-m','pip','install',
                   '--disable-pip-version-check','--no-input',
-                  'jsonschema==4.26.0','referencing==0.37.0'],
+                  'jsonschema==4.26.0','referencing==0.37.0','rfc8785==0.1.4'],
                   cwd=BASE,env=env,capture_output=True,text=True,timeout=180)
                 self.assertEqual(install.returncode,0,msg=(install.stdout+install.stderr)[-8000:])
             p=subprocess.run([interpreter,'-B','-m','unittest','discover',
