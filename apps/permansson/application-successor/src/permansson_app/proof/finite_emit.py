@@ -107,7 +107,7 @@ def _terms(model: FiniteWorld):
     }
 
 
-def input_definition(model: FiniteWorld) -> tuple[list[str], tuple[int, int, int], list[dict]]:
+def input_definition(model: FiniteWorld, name: str = 'input') -> tuple[list[str], tuple[int, int, int], list[dict]]:
     """Lean `def input : FiniteWorldInput ...` lines with per-row proofs.
 
     Shared by every emitter that binds a theorem to the same reflected source,
@@ -115,9 +115,11 @@ def input_definition(model: FiniteWorld) -> tuple[list[str], tuple[int, int, int
     """
     if type(model) is not FiniteWorld:
         raise AppError('REIFICATION_TYPE', 'parsed finite strategic-world model required')
+    if not name.isidentifier() or not name.isascii():
+        raise AppError('REIFICATION_TYPE', 'Lean definition name must be a plain identifier')
     ns, nx, na, extensions, terms = _terms(model)
     lines = [
-        f'def input : FiniteWorldInput {ns} {nx} {na} where',
+        f'def {name} : FiniteWorldInput {ns} {nx} {na} where',
         f'  feasible := fun s x a => ({terms["feasible"]}) = true',
         f'  alpha := fun s x a => {terms["alpha"]}',
         f'  world := fun s x a xp => {terms["world"]}',

@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 478,
+    "combined_inventory_rows": 483,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -491,7 +491,7 @@
       "base_state": "EXISTED_ON_MAIN",
       "candidate": {
         "state": "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
-        "sha256": "a71aa37d48a313d536eed109c975938e878dae8e1b5a3b73dc9342ea74131cb9",
+        "sha256": "0823442e3f1f65472d57cf41a99842087b7cd51d1b430e83ac44d54b772ecd46",
         "proof": "NOT_APPLICABLE",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
@@ -1894,7 +1894,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "b52f065a18e70a33c1154a0df6680e46ff98a79a619331dd005e21ad9eee713f",
+        "sha256": "8f1aecd834aaf0fc38c7fa70cbe490e902e25f9ab5e698f877be74c05e2d4186",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -7483,8 +7483,8 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "LOCAL_TESTED_OUTPUT_BYTE_IDENTICAL_AFTER_REFACTOR_PENDING_EXACT_HEAD_CI",
-        "sha256": "77f915d3666095ee3be444df8b48c421e1301f333cc274959a9a7738949735ed",
+        "state": "LOCAL_TESTED_DEFAULT_OUTPUT_BYTE_IDENTICAL_PENDING_EXACT_HEAD_CI",
+        "sha256": "ee7b5e9a1c35bdfc4941fe7c7e65ad77aefac9ace6f82a41013f9ff480a71a6e",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
@@ -13326,7 +13326,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "5dbfad10f43b4b5cf5fa4a857bd7a42296e86e3963359ea4ecb64eed475d7fb4",
+        "sha256": "a2160632d5499d004d74aae14edffe0143d261f1cea91934c2c5efebfa73dd6a",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -13738,6 +13738,106 @@
       "candidate": {
         "state": "LOCAL_PINNED_LEAN_7_OF_7_PASSED_PENDING_EXACT_HEAD_CI",
         "sha256": "66c60e90af7fb85d106d75a26986a87b67c2940a95454f19bf616456fdaa1cfc",
+        "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "PermanssonResearch/ApplicationBridge/MenuReceipt.lean",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [
+        "PermanssonResearch/ApplicationBridge/ControlTableReceipt.lean",
+        "PermanssonResearch/ReverseSolver/CanonicalAllHorizonCorrespondence.lean"
+      ],
+      "work_items": [
+        "OPT-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
+        "sha256": "edf6ab408b9858b9506868215f8215bde8933929d25ab9f19e68f6d6218f10db",
+        "proof": "LOCAL_LEAN_4_34_0_COMPILED_AXIOMS_AUDITED",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/proof/menu_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-01",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI",
+        "sha256": "e7adf652712e0bb9bbe3634ffe55a016e1c2c9a0a20e1096e11bb5e17f8ab43a",
+        "proof": "NOT_EXECUTED_IN_APPLICATION_OUTPUT",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_menu_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "d2f3376d1d19dfe22ae54034b80d554b36e973fddd665c2a500fa52b62804976",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/MENU_LEAN_BRIDGE.md",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "DOCUMENTATION",
+        "sha256": "8e7af4dffaf42373b99fbb15f4ff3968d4cae62f050ff0dd77ec68ff07dedb75",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/test_application_menu_live_lean.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-01",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_PINNED_LEAN_7_OF_7_PASSED_PENDING_EXACT_HEAD_CI",
+        "sha256": "2ef71179ecd962da1ca65a48717c83de8dad9c6a68639ba4c3c58898b73e1b6c",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       }
