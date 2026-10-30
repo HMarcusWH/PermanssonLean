@@ -16,6 +16,7 @@ import PermanssonResearch.ApplicationBridge.RobustReceipt
 import PermanssonResearch.ApplicationBridge.BeliefTreeReceipt
 import PermanssonResearch.ApplicationBridge.FiniteScoreReceipt
 import PermanssonResearch.ApplicationBridge.MetricReceipt
+import PermanssonResearch.ApplicationBridge.RationalAlgebraReceipt
 import PermanssonResearch.ReverseSolver.ResidenceEvent
 import PermanssonResearch.ReverseSolver.ResidenceValue
 import PermanssonResearch.ReverseSolver.ResidenceContracts
