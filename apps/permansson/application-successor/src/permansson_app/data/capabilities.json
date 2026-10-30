@@ -90,6 +90,14 @@
       "scientific_claims_verified": false,
       "scope": "Finite horizon 0..32; <=12 joint states, full declared region and comparison set; not Exact GR/PR"
     },
+    "finite.metric_contraction_perturbation.numeric.v1": {
+      "checker": "permansson_app.receipts.metric.check_metric",
+      "cli": "finite-metric",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact finite W1 transport on a declared metric over <=4 joint states: every baseline row-pair distance with an optimal coupling and an attaining 1-Lipschitz potential, contraction factor, per-row defects against a perturbed alpha/P/U model, unique invariant laws, their exact distance and the A3 bound delta/(1-rho) only under strict contraction. No Polish-space moment argument, Lean or empirical identification claim."
+    },
     "finite.nonlinear_classwise_stationary.numeric.v1": {
       "checker": "permansson_app.receipts.nonlinear.check_nonlinear",
       "cli": "nonlinear-stationary",

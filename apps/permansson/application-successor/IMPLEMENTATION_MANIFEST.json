@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 540,
+    "combined_inventory_rows": 547,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -1218,7 +1218,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "9633cff38d0812c65d0630d31aee1844b6b83818f09758aaf1187574b18488f8",
+        "sha256": "bbff67b63ab130f700616fa91b42a72a47a0c1390576ec655e65d60def6a871e",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2624,7 +2624,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "2ae0b295b64a9825a099d14a84d25f8cf74a464ba723e9f3ef9a0c4b70cc9fa1",
+        "sha256": "19261a7d7467a098cc4952667388a2353ccaa774ceace18fce9f8a093e9eea62",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -2859,7 +2859,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "3b56cf9ab67c637f1e84873af7843e7b7c3752d3ecc6dc8c530300048f8111bc",
+        "sha256": "766f2e604295958a6da4139de4c5b10d20f54007866a0d80b5052bb7c8306117",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -2995,7 +2995,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "7a8a55b13c7b3e3fdaec24fccff043e93ca9c6e29718d7e07990b93006f7aea6",
+        "sha256": "d5380094b1de3a0554068e7da37393cae7079d8f7bdf9007845ca6160d3edb8c",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -7258,7 +7258,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "ba4263560288cffb6193e3625c89c806abdd6e3b2b156f65b710048c736a44c0",
+        "sha256": "060098877a0afc33f80d255a85d9d870b82e22618ff6ee627b9b4762a771fb9e",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8683,7 +8683,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "965b2463aa3a90229054c8c29f5dbc667b45c7e64a614dd1bb73a861b150f7bb",
+        "sha256": "ebc2792cd8084eede73716144e830947068a813c2ed12ca720dc076ba02f80fd",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8806,7 +8806,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "0f54b21db5892b80ec3ede298d93959ab8dcde6ccca00188c52f7f39b84766e6",
+        "sha256": "1eb4f99d81169d29bdd77a46173d5a29a66efc31a5cafd9c7a2305d9d405c578",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -12411,7 +12411,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "e423aa2b5a2a84052efe9f959ca23319d854468d6544637e1e4e43697ba09180",
+        "sha256": "c68aa1844f0d8affb9c1db20d33ab38934b5c365d8df69b6a8cf5e03ea8fb031",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -12733,7 +12733,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "caba15c226336323f67ea7eb34197f5fe4504d19f6dbd30f41b2be09cc3821d3",
+        "sha256": "791c5d88997af44a494742f147d9067c87cd242d7241fa9ccd51a2be9ec042d3",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -12813,7 +12813,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "ec646d80966909d26438a572d596438e2b046ae5b359e152afd7ea9a9e762f78",
+        "sha256": "ee6e583200acbce8946a629a02bda74d6369e8711ee0cb64661df711e5ee9f89",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -14962,6 +14962,139 @@
         "sha256": "0a3e54dc0155e4fce2ed8639e2e76ec50aacab180926210cd8401be51295ec63",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/engines/metric.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ROB-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "4f7852dd5a79259744a4b235bc0274a2d4623c352352b9b093206278eeb5df17",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/receipts/metric.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ROB-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "485b7e8804a971714c50960091d266afd5b29ac056bbcf396e1af53949026dc4",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/data/schemas/metric.v1.schema.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ROB-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "419ec647e7e7af794144a59614775ac09fdbfff0782a73429dd8f1bd262d62cb",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/data/examples/metric.v1.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ROB-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "c052c540fc685d232435b4ec92748ad06469301fa5732d84367b9a14f5bcaf33",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_metric.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ROB-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "707bcbcc03dea7ec28f3e4a92e020cacede6b25e5b88372aeb5975054dea9489",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_metric_cli.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ROB-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "bad5aa654347ec7f1db60d9663afa4db50bf1865692455851f9779be4e517e42",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/NUMERIC_METRIC.md",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ROB-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "DOCUMENTATION",
+        "sha256": "7fd0506b872fe18f60d1c46f7a2c044ebc19c7fd74f356ac6a1e253e4778aaee",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       }
     }
   ],

@@ -146,6 +146,10 @@ No application release acceptance is claimed.
 
 The finite residence and nonlinear classwise stationary-policy engines have independent exact receipt checks and bounded, explicitly scoped examples. See [`docs/NUMERIC_RESIDENCE_NONLINEAR.md`](docs/NUMERIC_RESIDENCE_NONLINEAR.md). Neither profile provides Lean replay, mathematical CERT, empirical identification or application release acceptance.
 
+### Finite metric contraction and invariant-law perturbation — numeric profile
+
+`finite-metric` computes exact Wasserstein-1 transport on a declared finite metric over the joint states: every baseline row-pair distance with an optimal coupling and an attaining 1-Lipschitz potential, the contraction factor ρ, per-row defects δ against a perturbed `α/P/U` model, both unique invariant laws and their exact distance, and the A3 bound `δ/(1−ρ)` only when ρ < 1. An independent checker validates every certificate. See [`docs/NUMERIC_METRIC.md`](docs/NUMERIC_METRIC.md). Not a Polish-space moment argument or an empirical metric.
+
 ### Finite CQ-1 constitutive certificate — numeric profile
 
 `finite-cq1` computes, for one declared strategic `α/U` intervention with P held fixed, the region-wide finite persistence gate (killed survival from every region state, not only the comparison set), prefix-survival effects on a comparison set of at least two states and their uniform margin, and reports a finite constitutive certificate only when the gate passes and the margin is positive. An independent rational checker recomputes every value. See [`docs/NUMERIC_CQ1.md`](docs/NUMERIC_CQ1.md). This is **not** an Exact GR/PR, QSD, error-budget or empirical certificate.

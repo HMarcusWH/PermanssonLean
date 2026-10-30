@@ -29,7 +29,8 @@ def registry():
         'finite.one_step_risk_occupancy.numeric.v1',
         'finite.one_step_observation_belief.numeric.v1',
         'finite.observation_history_tree.numeric.v1',
-        'finite.cq1_constitutive_certificate.numeric.v1'}):
+        'finite.cq1_constitutive_certificate.numeric.v1',
+        'finite.metric_contraction_perturbation.numeric.v1'}):
         raise AppError('REGISTRY','unknown or missing additive numeric profile')
     for name,entry in extra.items():
         if type(entry) is not dict or entry.get('mode')!='numeric' or entry.get('scientific_claims_verified') is not False or entry.get('lean_status')!='NOT_EXECUTED':

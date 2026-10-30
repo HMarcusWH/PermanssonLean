@@ -1,0 +1,463 @@
+{
+  "baseline": {
+    "P": [
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "high": "1/4",
+          "low": "3/4"
+        },
+        "x": "low"
+      },
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "high": "3/4",
+          "low": "1/4"
+        },
+        "x": "high"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "high": "1/4",
+          "low": "3/4"
+        },
+        "x": "low"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "high": "3/4",
+          "low": "1/4"
+        },
+        "x": "high"
+      }
+    ],
+    "U": [
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "alert": "1/4",
+          "calm": "3/4"
+        },
+        "x": "low",
+        "xp": "low"
+      },
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "alert": "1/4",
+          "calm": "3/4"
+        },
+        "x": "low",
+        "xp": "high"
+      },
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "alert": "1/4",
+          "calm": "3/4"
+        },
+        "x": "high",
+        "xp": "low"
+      },
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "alert": "1/4",
+          "calm": "3/4"
+        },
+        "x": "high",
+        "xp": "high"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "alert": "3/4",
+          "calm": "1/4"
+        },
+        "x": "low",
+        "xp": "low"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "alert": "3/4",
+          "calm": "1/4"
+        },
+        "x": "low",
+        "xp": "high"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "alert": "3/4",
+          "calm": "1/4"
+        },
+        "x": "high",
+        "xp": "low"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "alert": "3/4",
+          "calm": "1/4"
+        },
+        "x": "high",
+        "xp": "high"
+      }
+    ],
+    "alpha": [
+      {
+        "s": "calm",
+        "weights": {
+          "go": "1"
+        },
+        "x": "low"
+      },
+      {
+        "s": "calm",
+        "weights": {
+          "go": "1"
+        },
+        "x": "high"
+      },
+      {
+        "s": "alert",
+        "weights": {
+          "go": "1"
+        },
+        "x": "low"
+      },
+      {
+        "s": "alert",
+        "weights": {
+          "go": "1"
+        },
+        "x": "high"
+      }
+    ],
+    "feasible": [
+      {
+        "actions": [
+          "go"
+        ],
+        "s": "calm",
+        "x": "low"
+      },
+      {
+        "actions": [
+          "go"
+        ],
+        "s": "calm",
+        "x": "high"
+      },
+      {
+        "actions": [
+          "go"
+        ],
+        "s": "alert",
+        "x": "low"
+      },
+      {
+        "actions": [
+          "go"
+        ],
+        "s": "alert",
+        "x": "high"
+      }
+    ],
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "actions": [
+        "go"
+      ],
+      "strategic": [
+        "calm",
+        "alert"
+      ],
+      "world": [
+        "low",
+        "high"
+      ]
+    }
+  },
+  "format": "Permansson.App.FiniteMetricRequest.v1",
+  "metric": [
+    {
+      "a": [
+        "calm",
+        "low"
+      ],
+      "b": [
+        "calm",
+        "high"
+      ],
+      "distance": "1"
+    },
+    {
+      "a": [
+        "calm",
+        "low"
+      ],
+      "b": [
+        "alert",
+        "low"
+      ],
+      "distance": "1"
+    },
+    {
+      "a": [
+        "calm",
+        "low"
+      ],
+      "b": [
+        "alert",
+        "high"
+      ],
+      "distance": "2"
+    },
+    {
+      "a": [
+        "calm",
+        "high"
+      ],
+      "b": [
+        "alert",
+        "low"
+      ],
+      "distance": "2"
+    },
+    {
+      "a": [
+        "calm",
+        "high"
+      ],
+      "b": [
+        "alert",
+        "high"
+      ],
+      "distance": "1"
+    },
+    {
+      "a": [
+        "alert",
+        "low"
+      ],
+      "b": [
+        "alert",
+        "high"
+      ],
+      "distance": "1"
+    }
+  ],
+  "perturbed": {
+    "P": [
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "high": "1/4",
+          "low": "3/4"
+        },
+        "x": "low"
+      },
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "high": "1/2",
+          "low": "1/2"
+        },
+        "x": "high"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "high": "1/4",
+          "low": "3/4"
+        },
+        "x": "low"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "high": "1/2",
+          "low": "1/2"
+        },
+        "x": "high"
+      }
+    ],
+    "U": [
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "alert": "1/4",
+          "calm": "3/4"
+        },
+        "x": "low",
+        "xp": "low"
+      },
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "alert": "1/4",
+          "calm": "3/4"
+        },
+        "x": "low",
+        "xp": "high"
+      },
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "alert": "1/4",
+          "calm": "3/4"
+        },
+        "x": "high",
+        "xp": "low"
+      },
+      {
+        "a": "go",
+        "s": "calm",
+        "weights": {
+          "alert": "1/4",
+          "calm": "3/4"
+        },
+        "x": "high",
+        "xp": "high"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "alert": "3/4",
+          "calm": "1/4"
+        },
+        "x": "low",
+        "xp": "low"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "alert": "3/4",
+          "calm": "1/4"
+        },
+        "x": "low",
+        "xp": "high"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "alert": "3/4",
+          "calm": "1/4"
+        },
+        "x": "high",
+        "xp": "low"
+      },
+      {
+        "a": "go",
+        "s": "alert",
+        "weights": {
+          "alert": "3/4",
+          "calm": "1/4"
+        },
+        "x": "high",
+        "xp": "high"
+      }
+    ],
+    "alpha": [
+      {
+        "s": "calm",
+        "weights": {
+          "go": "1"
+        },
+        "x": "low"
+      },
+      {
+        "s": "calm",
+        "weights": {
+          "go": "1"
+        },
+        "x": "high"
+      },
+      {
+        "s": "alert",
+        "weights": {
+          "go": "1"
+        },
+        "x": "low"
+      },
+      {
+        "s": "alert",
+        "weights": {
+          "go": "1"
+        },
+        "x": "high"
+      }
+    ],
+    "feasible": [
+      {
+        "actions": [
+          "go"
+        ],
+        "s": "calm",
+        "x": "low"
+      },
+      {
+        "actions": [
+          "go"
+        ],
+        "s": "calm",
+        "x": "high"
+      },
+      {
+        "actions": [
+          "go"
+        ],
+        "s": "alert",
+        "x": "low"
+      },
+      {
+        "actions": [
+          "go"
+        ],
+        "s": "alert",
+        "x": "high"
+      }
+    ],
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "actions": [
+        "go"
+      ],
+      "strategic": [
+        "calm",
+        "alert"
+      ],
+      "world": [
+        "low",
+        "high"
+      ]
+    }
+  }
+}
