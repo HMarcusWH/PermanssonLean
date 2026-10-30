@@ -80,7 +80,7 @@ python -B -m unittest discover -s apps/permansson/application-successor/tests -p
 python -B -m unittest discover -s verification/research -p 'test_application_successor_numeric.py' -v
 ```
 
-An installed wheel and source distribution must be tested in clean roots outside the checkout. The current newly tested runtime is Linux/Python 3.13.5; a previous recovered prototype had separate Linux/Python 3.12 evidence. Current-source Windows, fresh Python 3.12, and pinned Lean replay have not been qualified here. See `IMPLEMENTATION_MANIFEST.json` and `docs/ACCEPTANCE_STATUS.md` for source-by-source status and blockers.
+An installed wheel and source distribution must be tested in clean roots outside the checkout. The current newly tested runtime is Linux/Python 3.13.5; a previous recovered prototype had separate Linux/Python 3.12 evidence. Current-source Windows, fresh Python 3.12, and pinned Lean replay have not been qualified here. See `IMPLEMENTATION_MANIFEST.json` and `docs/ACCEPTANCE_STATUS.md` for source-by-source status and blockers. The execution plan and what is deliberately out of scope are in [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ### Frozen finite-menu optimization
 

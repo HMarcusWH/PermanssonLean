@@ -556,11 +556,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PINNED_RESEARCH_BUILD_COMPILED_AT_PRIOR_HEAD",
-        "sha256": "8216e7ed49137a18a32d5da42924caff166ab9e287707daaf3f0e583e276e426",
-        "proof": "RESEARCH_LEAN_11616_DECLARATION_AXIOM_AUDIT_PASS_AT_0877_NOT_PER_INSTANCE",
-        "trust": "PINNED_LEAN_BUILD_AND_MUTATION_CHECK_PENDING",
-        "source_type": "SCHEMATIC_LEAN_PROOF_NOT_REIFIED_JSON_INSTANCE"
+        "state": "LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
+        "sha256": "8952a0676cdcf620736196709a5b507518437aeeb7f1d8c5c996bba16f6c21c6",
+        "proof": "LOCAL_LEAN_4_34_0_COMPILED_AXIOMS_AUDITED",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
       "classification": "lean_bridge",
       "conditional": false,
@@ -802,10 +801,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "SOURCE_CANDIDATE_PENDING_PINNED_LEAN_COMPILATION",
+        "state": "LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
         "sha256": "f6f4271cedd14c8d3ef326d74626daba6352677cad847701379105edfc83288d",
-        "proof": "NOT_YET_EXECUTED_AT_NEW_HEAD",
-        "trust": "PINNED_CI_AND_NEGATIVE_MUTATIONS_REQUIRED"
+        "proof": "LOCAL_LEAN_4_34_0_COMPILED_AXIOMS_AUDITED",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
       "classification": "lean_bridge",
       "conditional": false,
@@ -2301,7 +2300,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "DOCUMENTATION",
+        "sha256": "5334a1ed6bb281db094d96fa0f8d2b479a6dbb5df0b505dd62d0e25cfa44fbf4",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       },
       "classification": "Document original v0.1.8, newer research and exact adapter scope",
       "conditional": false,
@@ -6322,7 +6324,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/src/permansson_app/engines/metric.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "python_engine",
       "conditional": false,
@@ -6458,7 +6465,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/src/permansson_app/engines/risk_occupancy.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "python_engine",
       "conditional": false,
@@ -6731,7 +6743,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/src/permansson_app/engines/algebra.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "python_engine",
       "conditional": false,
@@ -7431,7 +7448,16 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/src/permansson_app/proof/perturbation_emit.py",
+          "apps/permansson/application-successor/src/permansson_app/proof/metric_emit.py",
+          "apps/permansson/application-successor/src/permansson_app/proof/quotient_emit.py",
+          "apps/permansson/application-successor/src/permansson_app/proof/grammar_emit.py",
+          "apps/permansson/application-successor/src/permansson_app/proof/multiagent_emit.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "python_proof_emitter",
       "conditional": false,
@@ -7626,7 +7652,16 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/src/permansson_app/receipts/robustness.py",
+          "apps/permansson/application-successor/src/permansson_app/receipts/metric.py",
+          "apps/permansson/application-successor/src/permansson_app/receipts/quotients.py",
+          "apps/permansson/application-successor/src/permansson_app/receipts/grammar.py",
+          "apps/permansson/application-successor/src/permansson_app/receipts/multiagent.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "python_checker",
       "conditional": false,
@@ -8651,7 +8686,13 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/tests/test_occupation_exit.py",
+          "apps/permansson/application-successor/tests/test_exit_emit.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Positive/negative semantic and numerical fixtures for exit.py",
       "conditional": false,
@@ -8797,7 +8838,13 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/tests/test_bellman.py",
+          "apps/permansson/application-successor/tests/test_control_emit.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Positive/negative semantic and numerical fixtures for hitting.py",
       "conditional": false,
@@ -8892,7 +8939,13 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/tests/test_metric.py",
+          "apps/permansson/application-successor/tests/test_metric_cli.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Positive/negative semantic and numerical fixtures for metrics.py",
       "conditional": false,
@@ -9068,7 +9121,13 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/tests/test_risk_occupancy.py",
+          "apps/permansson/application-successor/tests/test_risk_occupancy_cli.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Positive/negative semantic and numerical fixtures for occupancy.py",
       "conditional": false,
@@ -9091,7 +9150,13 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/tests/test_occupation_exit.py",
+          "apps/permansson/application-successor/tests/test_occupation_emit.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Positive/negative semantic and numerical fixtures for occupation.py",
       "conditional": false,
@@ -9460,7 +9525,13 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/tests/test_algebra.py",
+          "apps/permansson/application-successor/tests/test_algebra_cli.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Positive/negative semantic and numerical fixtures for specialized.py",
       "conditional": false,
@@ -11170,7 +11241,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_belief_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge BeliefReceipt.lean",
       "conditional": false,
@@ -11245,7 +11321,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_control_table_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge ControlTableReceipt.lean",
       "conditional": false,
@@ -11268,7 +11349,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_exit_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge ExitReceipt.lean",
       "conditional": false,
@@ -11291,7 +11377,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_cq1_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge FiniteScoreReceipt.lean",
       "conditional": false,
@@ -11314,7 +11405,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_finite_world_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge FiniteWorldInput.lean",
       "conditional": false,
@@ -11337,7 +11433,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_flow_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge FlowReceipt.lean",
       "conditional": false,
@@ -11360,7 +11461,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_grammar_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge GrammarReceipt.lean",
       "conditional": false,
@@ -11383,7 +11489,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_lp_bridge_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge LinearProgramReceipt.lean",
       "conditional": false,
@@ -11406,7 +11517,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_metric_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge MetricReceipt.lean",
       "conditional": false,
@@ -11429,7 +11545,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_multiagent_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge MultiAgentReceipt.lean",
       "conditional": false,
@@ -11452,7 +11573,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_nonlinear_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge NonlinearReceipt.lean",
       "conditional": false,
@@ -11475,7 +11601,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_occupation_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge OccupationReceipt.lean",
       "conditional": false,
@@ -11498,7 +11629,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_perturbation_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge QuantitativeReceipt.lean",
       "conditional": false,
@@ -11521,7 +11657,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_quotient_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge QuotientReceipt.lean",
       "conditional": false,
@@ -11544,7 +11685,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_algebra_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge RationalAlgebraReceipt.lean",
       "conditional": false,
@@ -11567,7 +11713,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_robust_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge RobustReceipt.lean",
       "conditional": false,
@@ -11590,7 +11741,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_safety_core_live_lean.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Actual pinned-Lean positive/mutation/axiom test for bridge SafetyReceipt.lean",
       "conditional": false,
@@ -13254,9 +13410,9 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN",
-        "sha256": "48d9379e17f75a6a39700ce11cdd11d18844cfda2370a4451412d55609e70808",
-        "proof": "NOT_EXECUTED",
+        "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI",
+        "sha256": "0906fe59559c2c7fea101c674c4bd68e47bbe8570f626090507bcdf3e60b7e83",
+        "proof": "NOT_EXECUTED_IN_APPLICATION_OUTPUT",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
     },
@@ -13294,8 +13450,8 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN",
-        "sha256": "45b9aba32261000703565f95291eb3333366bed638e4818581c8a4144b6efe21",
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "b78cb0470b9635c7771fd3cfc9e7325a7d766ccb052319177181df8965ca9fa8",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
