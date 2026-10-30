@@ -1893,12 +1893,10 @@
     {
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
-        "git_blob_sha1": "305f634aab6c29786e2b7ef72d91d28e9b98b08a",
-        "proof": "NOT_EXECUTED",
-        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
-        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
-        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH",
-        "previous_local_sha256": "1224e63a1137bd40ac2429898ce58f64c6e58d7a79e7936f6ade1a247eb6816c"
+        "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
+        "sha256": "4393ef82e2ba428cd91b02170915e3ea244dd45960972133417ff35db1e6b0a5",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       },
       "classification": "documentation_or_manifest",
       "conditional": false,

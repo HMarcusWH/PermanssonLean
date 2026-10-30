@@ -23,7 +23,8 @@ Base: `main@3492b26707788293ca88c66637b6ba021c7e478d`, tree `9ef00ac4b2d4f928aa6
 | Fully observed finite hitting Bellman | implemented, 25 focused tests | full recurrence, admissible selected policy and all tied optimum actions; no Lean correspondence |
 | Finite almost-sure safety core | implemented, 32 focused tests | maximal descending pruning, independent stationary-witness check; excluded states may have positive survival probability |
 | Finite-horizon TV perturbation | implemented, 37 focused tests | separate exact initial-law/kernel error, complete finite killed-survival table; not long-run stability |
-| Native Lean correspondence for new mathematical results | **not implemented** | no Lean receipt claimed |
+| Source-bound Lean correspondence (finite α/P/U, LP, Bellman control table, safety core, retryable residence) | implemented for bounded reflected instances; library built and instances replayed with pinned Lean v4.34.0 locally | instance theorems + transitive axiom audit + semantic mutations; application outputs still report `lean_status=NOT_EXECUTED` |
+| Lean correspondence for the other numeric profiles | **not implemented** | no Lean receipt claimed |
 | Full planned advanced engine suite | **incomplete** | no false registry activation |
 | Original 45 acceptance cases | **not newly certified** | independent research CERT remains separate |
 | Later 11 mathematical claims | **not newly certified** | independent research CERT remains separate |
@@ -75,7 +76,32 @@ artifact acceptance must be checked separately after the new commit.
 `LinearProgramReceipt.lean` adds rational primal/dual and strict Farkas soundness,
 including real-valued competitor conclusions. A bounded actual-source reifier,
 independent byte/semantic checker, and positive/false-witness pinned-Lean tests
-are included. **At this Git source candidate, the module and emitted instances
-are awaiting exact-head compiler and transitive axiom results.** Numeric LP
-certificates are not automatically promoted to Lean-certified receipts.
-No historical archive/workflow relaxation or application release approval.
+are included. With pinned Lean v4.34.0 and the Mathlib cache installed locally
+the module compiles and the optimum, Farkas and false-witness instance tests
+pass with an audited axiom set; exact-head GitHub results must still be read
+per commit. Numeric LP certificates are not automatically promoted to
+Lean-certified receipts. No historical archive/workflow relaxation or
+application release approval.
+
+
+### Source-bound Lean bridges (local pinned-Lean evidence)
+
+Each bridge builds its `FiniteControlSystem` from the reflected source with
+`boundControlSystem` (control `a` = fixed-action `P·U` rows; admitted controls
+exactly the declared feasible actions), runs the independent application
+checker before emitting source, and has a Research-route live test that
+compiles real instances, audits every theorem's transitive axioms against
+`propext`, `Classical.choice` and `Quot.sound`, and requires single-line
+semantic mutations to fail at the falsified obligation.
+
+| Profile | Lean module | Instance theorems | Live tests | Scope |
+| --- | --- | --- | --- | --- |
+| `finite.hitting_bellman` | `ControlTableReceipt` | Bellman value, schedule upper bound, attainment, selected-action feasibility | 8 (2 positive, 6 mutations) | ≤2 per dimension, 1..6 transitions |
+| `finite.almost_sure_safety_core` | `SafetyReceipt` | greatest invariant core; almost-sure safety iff in core; < 1 outside; stationary optimum | 6 (1 positive, 5 mutations) | ≤2 per dimension |
+| `finite.residence_monitor` (retryable) | `ResidenceReceipt` | literal residence optimum over all behavioral histories, attained | 5 methods (2 positive horizons, 5 mutations) | ≤2 per dimension, 1..6 transitions; first-entry/avoid numeric-only |
+
+`ControlTableReceipt` failed to compile at `6eda7e9` (missing `Decidable`
+instance); it is repaired and the full Research library builds. These are
+local and per-commit CI observations, not authenticated proof receipts,
+independent mathematical certification, empirical identification or release
+approval; packaged examples beyond the reflection bound remain numeric-only.
