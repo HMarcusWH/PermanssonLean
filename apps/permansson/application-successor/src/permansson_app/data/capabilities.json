@@ -50,6 +50,14 @@
       "scientific_claims_verified": false,
       "scope": "Finite exact rational alpha/P/U model; held-fixed/causal identification not inferred"
     },
+    "finite.cq1_constitutive_certificate.numeric.v1": {
+      "checker": "permansson_app.receipts.cq1.check_cq1",
+      "cli": "finite-cq1",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact finite CQ-1 certificate for one declared alpha/U intervention with P and feasibility held fixed: killed survival in the region from every region state (finite persistence gate), prefix survival in a property set under both models on a comparison set of at least two states, and the uniform margin. <=12 joint states, horizon <=16. No error-budget transport, Exact GR/PR, QSD, Lean or empirical identification claim."
+    },
     "finite.first_exit_and_survival.numeric.v1": {
       "checker": "permansson_app.receipts.exit.check_exit",
       "cli": "finite-exit",
