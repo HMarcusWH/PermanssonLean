@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 461,
+    "combined_inventory_rows": 466,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -490,9 +490,10 @@
     {
       "base_state": "EXISTED_ON_MAIN",
       "candidate": {
-        "state": "ADDITIVE_IMPORTS_PENDING_PINNED_LEAN_BUILD",
-        "proof": "NOT_EXECUTED",
-        "trust": "RESEARCH_ROOT_IMPORT_COVERAGE_CHECKED"
+        "state": "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
+        "sha256": "6f106192a96523e0acb7ad5cb582529c689ab545ff9fcdaeadfcf346a3acff74",
+        "proof": "NOT_APPLICABLE",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
       "classification": "edit_research_imports",
       "conditional": false,
@@ -1074,7 +1075,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
+        "sha256": "22fc2c0ace759f2e0f4a62fa9a05f73eb246ef02c07e51cb42382f7a3f1515cc",
+        "proof": "LOCAL_LEAN_4_34_0_COMPILED_AXIOMS_AUDITED",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
       "classification": "lean_bridge",
       "conditional": false,
@@ -13314,7 +13318,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "15bf777b211ab1f45f84f17823eb5c042c45799381eadcc849865bc420701445",
+        "sha256": "8f55f546d4defdf1c7dd2853e10bc1a42f03dbcae9042c6151bffa6d4e4d096a",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -13376,7 +13380,106 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_PINNED_LEAN_8_OF_8_PASSED_PENDING_EXACT_HEAD_CI",
-        "sha256": "a942f1c7be297a80205483963bca7cb9ca86eabbcb27dc8ed329dc6909d567c9",
+        "sha256": "ccad578657fca17f2aff24e8bbccdeab50699d456082f889199e1350a8658603",
+        "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/proof/safety_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-08",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI",
+        "sha256": "c1f6bc1f742bdadf07b7de98d464a582810c5a87bbbde7506f3808bcbb392e6e",
+        "proof": "NOT_EXECUTED_IN_APPLICATION_OUTPUT",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_safety_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-08",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "9754b8bd8e10ebf9fbb3b05ebbd5b8b8ff1e5cf894854c24d4a10899b9c9a345",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/SAFETY_CORE_LEAN_BRIDGE.md",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "DOCUMENTATION",
+        "sha256": "0352c11f662090adb507289c22f069bd6517843c97a712b01ff9cce74cccde96",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/application_bridge_replay.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-05",
+        "REL-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "52d3df7e323035df14689a331e36c03dcdabee57603762a3521c631884718e1f",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/test_application_safety_core_live_lean.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-08",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_PINNED_LEAN_6_OF_6_PASSED_PENDING_EXACT_HEAD_CI",
+        "sha256": "154e42aa171125389078281a689529d0f1682f576e86f785b80bd8fda3f1829e",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       }
@@ -13450,5 +13553,21 @@
     "independent_mathematical_certification": false,
     "release_authorized": false,
     "historic_archive_closure": "UNALTERED_FAIL_CLOSED_REVIEW_REQUIRED"
+  },
+  "round17_safety_core_lean": {
+    "base_head": "c841d1f",
+    "bridge": "SafetyReceipt: invariantCore equality + witness closure; infinite-horizon almost-sure characterization reused",
+    "live_lean_tests_passed": 6,
+    "semantic_negative_mutations": [
+      "over-claimed core",
+      "under-claimed core",
+      "leaking witness",
+      "false safe region",
+      "admitted infeasible action"
+    ],
+    "reflection_scope": "ns,nx,na <= 2; packaged three-world example numeric-only",
+    "github_ci_at_new_head": "PENDING",
+    "independent_mathematical_certification": false,
+    "release_authorized": false
   }
 }
