@@ -70,3 +70,7 @@ comparison set is unchanged, a comparison set outside the basin (all at
 Emission and source rechecks report `lean_status: NOT_EXECUTED`. A compiler
 pass is not an authenticated proof receipt, independent mathematical
 certification, empirical identification or release approval.
+
+Transport of a checked certificate to an approximate pair under exact row-TV
+budgets is a separate bridge; see
+[`CQ1_TRANSPORT_LEAN_BRIDGE.md`](CQ1_TRANSPORT_LEAN_BRIDGE.md).
