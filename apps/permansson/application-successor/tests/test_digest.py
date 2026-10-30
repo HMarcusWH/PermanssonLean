@@ -98,10 +98,16 @@ class ProfileTests(unittest.TestCase):
                 digest.semantic_digest(bad)
 
     def test_encoder_disagreement_never_issues_a_digest(self):
-        with mock.patch.object(digest.rfc8785,'dumps',return_value=b'{"x":1}'):
+        with mock.patch.object(rfc8785,'dumps',return_value=b'{"x":1}'):
             with self.assertRaises(AppError) as raised:
                 digest.semantic_digest({'x':2})
         self.assertEqual(raised.exception.code,'DIGEST_IMPLEMENTATION_DISAGREEMENT')
+
+    def test_missing_canonicalizer_fails_without_substitution(self):
+        with mock.patch.object(digest.importlib,'import_module',side_effect=ImportError('absent')):
+            with self.assertRaises(AppError) as raised:
+                digest.semantic_digest({'x':'1'})
+        self.assertEqual(raised.exception.code,'DIGEST_DEPENDENCY_MISSING')
 
     def test_domain_separation(self):
         value={'x':'1/2'}

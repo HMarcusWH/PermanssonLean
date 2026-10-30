@@ -27,8 +27,8 @@ class ApplicationSuccessorNumericTest(unittest.TestCase):
                 venv.EnvBuilder(with_pip=True,system_site_packages=False).create(workspace)
                 interpreter=str(Path(workspace)/('Scripts/python.exe' if os.name=='nt' else 'bin/python'))
                 install=subprocess.run([interpreter,'-m','pip','install',
-                  '--disable-pip-version-check','--no-input',
-                  'jsonschema==4.26.0','referencing==0.37.0','rfc8785==0.1.4'],
+                  '--disable-pip-version-check','--no-input','--require-hashes',
+                  '-r',str(APP/'requirements-test.lock')],
                   cwd=BASE,env=env,capture_output=True,text=True,timeout=180)
                 self.assertEqual(install.returncode,0,msg=(install.stdout+install.stderr)[-8000:])
             p=subprocess.run([interpreter,'-B','-m','unittest','discover',

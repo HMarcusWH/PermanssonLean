@@ -26,10 +26,13 @@ with structured `AppError`s. Full RFC 8785 number support is **not** claimed.
 
 ## Implementation and oracles
 
-Encoding uses the pinned `rfc8785==0.1.4` (`dumps`). Every encoding must also
-equal the bytes of the independent restricted encoder in `identity`; any
-disagreement raises `DIGEST_IMPLEMENTATION_DISAGREEMENT` and no digest is
-issued — there is no fallback to `json.dumps`.
+Encoding uses the pinned `rfc8785==0.1.4` (`dumps`), an optional `semantics`
+extra rather than a mandatory runtime dependency while no runtime path
+advertises this profile. It is hash-pinned in `requirements-runtime.lock`;
+a missing canonicalizer raises `DIGEST_DEPENDENCY_MISSING`. Every encoding
+must also equal the bytes of the independent restricted encoder in
+`identity`; any disagreement raises `DIGEST_IMPLEMENTATION_DISAGREEMENT` and
+no digest is issued — there is no fallback to `json.dumps`.
 
 `tests/test_digest.py` checks:
 
@@ -50,3 +53,15 @@ issued — there is no fallback to `json.dumps`.
 
 The profile is available to callers; no existing receipt, report or bundle
 identity has been switched to it.
+
+## Locked environments
+
+`requirements-runtime.lock`, `requirements-test.lock` (which includes the
+runtime lock) and `requirements-build.lock` list PyPI's published SHA-256
+digest of every file of each exact pinned version, resolved for CPython 3.13
+(3.12 adds the marked `typing-extensions` pin). The Research-route source
+suite installs `requirements-test.lock` with `--require-hashes` when its
+interpreter lacks the dependencies; the installed-distribution test builds
+with `--no-isolation` from `requirements-build.lock`, installs
+`requirements-test.lock` with `--require-hashes`, installs the wheel with
+`--no-deps` and runs `pip check`.

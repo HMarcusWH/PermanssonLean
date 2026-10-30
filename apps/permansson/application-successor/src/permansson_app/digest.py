@@ -10,16 +10,16 @@ unchanged and are not recomputed here.
 
 Values must already be schema-normalized: reduced rational strings, safe
 integers, Unicode scalar strings, string keys and explicit arrays. Encoding
-uses the pinned `rfc8785` implementation, and every encoding must agree
-byte-for-byte with the independent restricted encoder in `identity`; a
-disagreement is an error, never a fallback. Floats and other values outside
+uses the pinned `rfc8785` implementation (the `semantics` extra, locked in
+requirements-runtime.lock), and every encoding must agree byte-for-byte with
+the independent restricted encoder in `identity`; a disagreement or a missing
+canonicalizer is an error, never a fallback. Floats and other values outside
 the restricted profile are rejected; full JCS number support is not claimed.
 """
 from __future__ import annotations
 import hashlib
+import importlib
 import re
-
-import rfc8785
 
 from .errors import AppError
 from .identity import canonical_bytes as restricted_canonical_bytes
@@ -32,9 +32,18 @@ EXECUTION_FIELDS=frozenset({'semantic_digest','wrapper','registry','provider','r
 _HEX64=re.compile(r'[0-9a-f]{64}')
 
 
+def _canonicalizer():
+    try:
+        return importlib.import_module('rfc8785')
+    except ImportError as exc:
+        raise AppError('DIGEST_DEPENDENCY_MISSING',
+                       'install the pinned semantics extra (rfc8785==0.1.4); no substitute encoder') from exc
+
+
 def canonical_semantics(value)->bytes:
     """RFC 8785 bytes of a schema-normalized value in the restricted profile."""
     restricted=restricted_canonical_bytes(value)
+    rfc8785=_canonicalizer()
     try:
         encoded=rfc8785.dumps(value)
     except rfc8785.CanonicalizationError as exc:

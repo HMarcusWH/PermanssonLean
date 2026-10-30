@@ -2415,8 +2415,8 @@
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
-        "state": "RUNTIME_DEPENDENCY_RFC8785_0_1_4_PINNED_PENDING_EXACT_HEAD_CI",
-        "sha256": "ac71167270e49f7beca1eea63c6b6ec7053a5904a308de85cb0092b93f7cdcc0",
+        "state": "SEMANTICS_EXTRA_RFC8785_0_1_4_PENDING_EXACT_HEAD_CI",
+        "sha256": "2ee3a0269be807a891d84db3672bbc457d2efd52b4e86babc622c2dab8cd3068",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
@@ -2444,7 +2444,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "HASH_PINNED_FROM_PYPI_DIGESTS_LOCAL_REQUIRE_HASHES_INSTALL_PASSED",
+        "sha256": "23b91ad67fabbec542497b15296236f5c2d50d1a0f6e242a858b6767c133fc01",
+        "proof": "NOT_APPLICABLE",
+        "trust": "PYPI_PUBLISHED_SHA256_NOT_INDEPENDENT_BUILDER"
       },
       "classification": "build dependency lock",
       "conditional": false,
@@ -2473,7 +2476,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "HASH_PINNED_FROM_PYPI_DIGESTS_LOCAL_REQUIRE_HASHES_INSTALL_PASSED",
+        "sha256": "b044b0c6837e9db19bacf6f7ea1b4b01cd9c0669ebebc305ce4c9a7f6f1b1564",
+        "proof": "NOT_APPLICABLE",
+        "trust": "PYPI_PUBLISHED_SHA256_NOT_INDEPENDENT_BUILDER"
       },
       "classification": "runtime dependency lock",
       "conditional": false,
@@ -2501,7 +2507,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "HASH_PINNED_FROM_PYPI_DIGESTS_LOCAL_REQUIRE_HASHES_INSTALL_PASSED",
+        "sha256": "2833a496029b63b1d2d7f7cf3bd1b3a47f8c147e94083487b9b5eeadec416bc6",
+        "proof": "NOT_APPLICABLE",
+        "trust": "PYPI_PUBLISHED_SHA256_NOT_INDEPENDENT_BUILDER"
       },
       "classification": "verification dependency lock",
       "conditional": false,
@@ -5177,7 +5186,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "5dd3bafbb0cc331e22907a8674431f27d038264f57300820ec490f6313b166d8",
+        "sha256": "3eb2b894d1e3230d10c95ec9016c025b3058bfd2b7f28e01bc4b687b306eec3b",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
@@ -11600,8 +11609,8 @@
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
-        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "9b8eacd173aad5eb0f0c7ff4d52a018085c8687e1b52cf0adcb7579d9c5de303",
+        "state": "LOCAL_TESTED_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI",
+        "sha256": "82b5dd82f04386949f4b05b9af5c51701cdaa7e6f2367c19e593781f9531b53e",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
@@ -13505,8 +13514,8 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI",
-        "sha256": "2ebdd9da129d961632145ce8b255ba1f2caeb7fc33b80e4a451215f1cc4a146c",
+        "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI",
+        "sha256": "9fa16af0bc8b1a847b79c8888a6b4a0da62ad000d9fd4fee8d17cfe68203b812",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -13526,7 +13535,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "e3154e8ae42533ea97f73536bb95ade47cb92198e82197d3be91e4d080d4594e",
+        "sha256": "ed7c54d35fd0f64836a7bf1cce3b0cde73f3ccea714f2ae720bbe47ef24f349c",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -13585,7 +13594,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "77ec57e61384f3b63c587facad1c2b2ce036d44ceee766f01ad1450d9b1885b7",
+        "sha256": "b16cbe6e5c9767d80ea9054fa63332a7eb930bfb34184da7cfd9aa179708b5b6",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }

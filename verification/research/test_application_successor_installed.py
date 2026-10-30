@@ -9,6 +9,11 @@ virtual environment, and then exercises the installed package only:
 * the console entry points run C10/C11 from exported packaged requests;
 * the complete application test suite passes against the installed code.
 
+Build and runtime environments are installed only from the hash-pinned
+requirements-build.lock and requirements-test.lock (`--require-hashes`);
+the build runs without isolation so no unpinned backend is fetched, and the
+wheel itself is installed with `--no-deps` followed by `pip check`.
+
 The suite runs from a copy of the application tree with every package
 ``.py`` file removed, so its fixtures resolve while ``permansson_app``
 can only be imported from the installed wheel. No skip or fallback: missing
@@ -34,7 +39,8 @@ import zipfile
 BASE = Path(__file__).resolve().parents[2]
 APP = BASE / "apps/permansson/application-successor"
 PACKAGE = APP / "src/permansson_app"
-PINS = ["build==1.3.0", "jsonschema==4.26.0", "referencing==0.37.0", "rfc8785==0.1.4"]
+BUILD_LOCK = APP / "requirements-build.lock"
+TEST_LOCK = APP / "requirements-test.lock"
 
 
 def _run(cmd, *, cwd, env, timeout):
@@ -64,12 +70,13 @@ class InstalledDistributionTest(unittest.TestCase):
             builder = work / "builder"
             venv.EnvBuilder(with_pip=True).create(builder)
             code, log = _run([_bin(builder, "python"), "-m", "pip", "install",
-                              "--disable-pip-version-check", "--no-input", PINS[0]],
-                             cwd=work, env=env, timeout=300)
+                              "--disable-pip-version-check", "--no-input", "--require-hashes",
+                              "-r", BUILD_LOCK], cwd=work, env=env, timeout=300)
             self.assertEqual(code, 0, log[-6000:])
-            # Default `build` makes the sdist, then the wheel *from the sdist*.
-            code, log = _run([_bin(builder, "python"), "-m", "build", "--outdir", work / "dist", source],
-                             cwd=work, env=env, timeout=600)
+            # Default `build` makes the sdist, then the wheel *from the sdist*;
+            # without isolation the locked setuptools is the only backend.
+            code, log = _run([_bin(builder, "python"), "-m", "build", "--no-isolation",
+                              "--outdir", work / "dist", source], cwd=work, env=env, timeout=600)
             self.assertEqual(code, 0, log[-8000:])
             wheels = sorted((work / "dist").glob("*.whl"))
             sdists = sorted((work / "dist").glob("*.tar.gz"))
@@ -83,8 +90,14 @@ class InstalledDistributionTest(unittest.TestCase):
             venv.EnvBuilder(with_pip=True).create(target)
             python = _bin(target, "python")
             code, log = _run([python, "-m", "pip", "install", "--disable-pip-version-check",
-                              "--no-input", *PINS[1:], wheels[0]], cwd=work, env=env, timeout=300)
+                              "--no-input", "--require-hashes", "-r", TEST_LOCK],
+                             cwd=work, env=env, timeout=300)
             self.assertEqual(code, 0, log[-6000:])
+            code, log = _run([python, "-m", "pip", "install", "--disable-pip-version-check",
+                              "--no-input", "--no-deps", wheels[0]], cwd=work, env=env, timeout=300)
+            self.assertEqual(code, 0, log[-6000:])
+            code, log = _run([python, "-m", "pip", "check"], cwd=work, env=env, timeout=120)
+            self.assertEqual(code, 0, log[-4000:])
 
             # A tree with fixtures and docs but no package code: imports can
             # only resolve to the installed distribution.

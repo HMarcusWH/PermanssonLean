@@ -1,0 +1,7 @@
+# Hash-pinned verification (runtime + standard-library unittest) lock for permansson-application-successor.
+# Install with: python -m pip install --require-hashes -r requirements-test.lock
+# Resolved for CPython 3.13 (and 3.12 via the marked typing-extensions pin)
+# from pypi.org on 2026-10-30. Hashes are PyPI's published SHA-256 digests of
+# every file of each exact version; none are fabricated or computed locally.
+# Regenerate and review on any version change.
+-r requirements-runtime.lock
