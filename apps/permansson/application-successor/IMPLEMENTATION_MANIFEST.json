@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 466,
+    "combined_inventory_rows": 467,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -13482,6 +13482,32 @@
         "sha256": "154e42aa171125389078281a689529d0f1682f576e86f785b80bd8fda3f1829e",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "verification/research/test_application_successor_installed.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/pyproject.toml",
+        "apps/permansson/application-successor/src/permansson_app/package_data.py"
+      ],
+      "work_items": [
+        "REL-01",
+        "APP-04",
+        "APP-09",
+        "EXE-01",
+        "EXE-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI",
+        "sha256": "32a49f78637c6216b8be42c4a6ac6a34fb7d5d28f24559ac96a526dfce9bec8d",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
     }
   ],
