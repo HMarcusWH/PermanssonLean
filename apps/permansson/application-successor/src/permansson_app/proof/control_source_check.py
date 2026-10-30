@@ -6,8 +6,8 @@ signer, proof kernel or release attestation. It covers every application
 bridge emitter (Bellman control table, safety core, residence, frozen menu,
 killed-kernel survival, occupation, first-exit routing, nonlinear objective,
 perturbation, typed quotient, patch grammar, risk flow, robust nature,
-observe-then-act belief, CQ-1 certificates, finite metric contraction and
-rational algebra witnesses), which share one layout. The exit family also binds
+observe-then-act belief, CQ-1 certificates, finite metric contraction,
+rational algebra witnesses and two-player protocols), which share one layout. The exit family also binds
 the original region bytes.
 """
 from __future__ import annotations
@@ -22,7 +22,7 @@ from ..engines.safety import parse_safety_problem
 from ..errors import AppError
 from ..identity import canonical_bytes
 from ..strict_json import strict_read
-from . import (algebra_emit, belief_emit, control_emit, cq1_emit, metric_emit, exit_emit, flow_emit, grammar_emit, menu_emit, nonlinear_emit,
+from . import (algebra_emit, belief_emit, control_emit, cq1_emit, metric_emit, multiagent_emit, exit_emit, flow_emit, grammar_emit, menu_emit, nonlinear_emit,
                occupation_emit, perturbation_emit, quotient_emit, residence_emit,
                robust_emit, safety_emit, survival_emit)
 
@@ -66,6 +66,8 @@ FAMILIES={
               'Permansson.App.MetricSourceRecheck.v1'),
     'algebra':(lambda raw:raw,algebra_emit,'ReifiedAlgebra.lean','ALGEBRA_REIFY',
                'Permansson.App.AlgebraSourceRecheck.v1'),
+    'multiagent':(lambda raw:raw,multiagent_emit,'ReifiedMultiAgent.lean','MULTIAGENT_REIFY',
+                  'Permansson.App.MultiAgentSourceRecheck.v1'),
 }
 # Families whose source also depends on a separate region file.
 REGION_FAMILIES={'exit'}
