@@ -1,0 +1,440 @@
+{
+  "format": "Permansson.App.FiniteTypedQuotientRequest.v1",
+  "baseline": {
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "strategic": [
+        "s0",
+        "s1"
+      ],
+      "world": [
+        "safe",
+        "outside"
+      ],
+      "actions": [
+        "go"
+      ]
+    },
+    "feasible": [
+      {
+        "s": "s0",
+        "x": "safe",
+        "actions": [
+          "go"
+        ]
+      },
+      {
+        "s": "s0",
+        "x": "outside",
+        "actions": [
+          "go"
+        ]
+      },
+      {
+        "s": "s1",
+        "x": "safe",
+        "actions": [
+          "go"
+        ]
+      },
+      {
+        "s": "s1",
+        "x": "outside",
+        "actions": [
+          "go"
+        ]
+      }
+    ],
+    "alpha": [
+      {
+        "s": "s0",
+        "x": "safe",
+        "weights": {
+          "go": "1"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "outside",
+        "weights": {
+          "go": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "safe",
+        "weights": {
+          "go": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "outside",
+        "weights": {
+          "go": "1"
+        }
+      }
+    ],
+    "P": [
+      {
+        "s": "s0",
+        "x": "safe",
+        "a": "go",
+        "weights": {
+          "safe": "2/3",
+          "outside": "1/3"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "outside",
+        "a": "go",
+        "weights": {
+          "safe": "0",
+          "outside": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "safe",
+        "a": "go",
+        "weights": {
+          "safe": "2/3",
+          "outside": "1/3"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "outside",
+        "a": "go",
+        "weights": {
+          "safe": "0",
+          "outside": "1"
+        }
+      }
+    ],
+    "U": [
+      {
+        "s": "s0",
+        "x": "safe",
+        "a": "go",
+        "xp": "safe",
+        "weights": {
+          "s0": "1/2",
+          "s1": "1/2"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "safe",
+        "a": "go",
+        "xp": "outside",
+        "weights": {
+          "s0": "1/2",
+          "s1": "1/2"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "outside",
+        "a": "go",
+        "xp": "safe",
+        "weights": {
+          "s0": "1/2",
+          "s1": "1/2"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "outside",
+        "a": "go",
+        "xp": "outside",
+        "weights": {
+          "s0": "1/2",
+          "s1": "1/2"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "safe",
+        "a": "go",
+        "xp": "safe",
+        "weights": {
+          "s0": "1/2",
+          "s1": "1/2"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "safe",
+        "a": "go",
+        "xp": "outside",
+        "weights": {
+          "s0": "1/2",
+          "s1": "1/2"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "outside",
+        "a": "go",
+        "xp": "safe",
+        "weights": {
+          "s0": "1/2",
+          "s1": "1/2"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "outside",
+        "a": "go",
+        "xp": "outside",
+        "weights": {
+          "s0": "1/2",
+          "s1": "1/2"
+        }
+      }
+    ]
+  },
+  "interventions": [
+    {
+      "id": "keep_strategy",
+      "target": "U",
+      "model": {
+        "format": "Permansson.App.FiniteStrategicWorld.v1",
+        "states": {
+          "strategic": [
+            "s0",
+            "s1"
+          ],
+          "world": [
+            "safe",
+            "outside"
+          ],
+          "actions": [
+            "go"
+          ]
+        },
+        "feasible": [
+          {
+            "s": "s0",
+            "x": "safe",
+            "actions": [
+              "go"
+            ]
+          },
+          {
+            "s": "s0",
+            "x": "outside",
+            "actions": [
+              "go"
+            ]
+          },
+          {
+            "s": "s1",
+            "x": "safe",
+            "actions": [
+              "go"
+            ]
+          },
+          {
+            "s": "s1",
+            "x": "outside",
+            "actions": [
+              "go"
+            ]
+          }
+        ],
+        "alpha": [
+          {
+            "s": "s0",
+            "x": "safe",
+            "weights": {
+              "go": "1"
+            }
+          },
+          {
+            "s": "s0",
+            "x": "outside",
+            "weights": {
+              "go": "1"
+            }
+          },
+          {
+            "s": "s1",
+            "x": "safe",
+            "weights": {
+              "go": "1"
+            }
+          },
+          {
+            "s": "s1",
+            "x": "outside",
+            "weights": {
+              "go": "1"
+            }
+          }
+        ],
+        "P": [
+          {
+            "s": "s0",
+            "x": "safe",
+            "a": "go",
+            "weights": {
+              "safe": "2/3",
+              "outside": "1/3"
+            }
+          },
+          {
+            "s": "s0",
+            "x": "outside",
+            "a": "go",
+            "weights": {
+              "safe": "0",
+              "outside": "1"
+            }
+          },
+          {
+            "s": "s1",
+            "x": "safe",
+            "a": "go",
+            "weights": {
+              "safe": "2/3",
+              "outside": "1/3"
+            }
+          },
+          {
+            "s": "s1",
+            "x": "outside",
+            "a": "go",
+            "weights": {
+              "safe": "0",
+              "outside": "1"
+            }
+          }
+        ],
+        "U": [
+          {
+            "s": "s0",
+            "x": "safe",
+            "a": "go",
+            "xp": "safe",
+            "weights": {
+              "s0": "1",
+              "s1": "0"
+            }
+          },
+          {
+            "s": "s0",
+            "x": "safe",
+            "a": "go",
+            "xp": "outside",
+            "weights": {
+              "s0": "1",
+              "s1": "0"
+            }
+          },
+          {
+            "s": "s0",
+            "x": "outside",
+            "a": "go",
+            "xp": "safe",
+            "weights": {
+              "s0": "1",
+              "s1": "0"
+            }
+          },
+          {
+            "s": "s0",
+            "x": "outside",
+            "a": "go",
+            "xp": "outside",
+            "weights": {
+              "s0": "1",
+              "s1": "0"
+            }
+          },
+          {
+            "s": "s1",
+            "x": "safe",
+            "a": "go",
+            "xp": "safe",
+            "weights": {
+              "s0": "0",
+              "s1": "1"
+            }
+          },
+          {
+            "s": "s1",
+            "x": "safe",
+            "a": "go",
+            "xp": "outside",
+            "weights": {
+              "s0": "0",
+              "s1": "1"
+            }
+          },
+          {
+            "s": "s1",
+            "x": "outside",
+            "a": "go",
+            "xp": "safe",
+            "weights": {
+              "s0": "0",
+              "s1": "1"
+            }
+          },
+          {
+            "s": "s1",
+            "x": "outside",
+            "a": "go",
+            "xp": "outside",
+            "weights": {
+              "s0": "0",
+              "s1": "1"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "quotient": {
+    "strategic_states": [
+      "q"
+    ],
+    "world_states": [
+      "safe",
+      "outside"
+    ],
+    "strategic_map": {
+      "s0": "q",
+      "s1": "q"
+    },
+    "world_map": {
+      "safe": "safe",
+      "outside": "outside"
+    }
+  },
+  "region": [
+    [
+      "s0",
+      "safe"
+    ],
+    [
+      "s1",
+      "safe"
+    ]
+  ],
+  "comparison_states": [
+    [
+      "s0",
+      "safe"
+    ],
+    [
+      "s1",
+      "safe"
+    ]
+  ],
+  "horizon": 3,
+  "value_type": "survival_horizon"
+}
