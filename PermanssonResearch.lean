@@ -11,6 +11,7 @@ import PermanssonResearch.ApplicationBridge.NonlinearReceipt
 import PermanssonResearch.ApplicationBridge.QuantitativeReceipt
 import PermanssonResearch.ApplicationBridge.QuotientReceipt
 import PermanssonResearch.ApplicationBridge.GrammarReceipt
+import PermanssonResearch.ApplicationBridge.FlowReceipt
 import PermanssonResearch.ReverseSolver.ResidenceEvent
 import PermanssonResearch.ReverseSolver.ResidenceValue
 import PermanssonResearch.ReverseSolver.ResidenceContracts
