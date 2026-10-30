@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 512,
+    "combined_inventory_rows": 516,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -491,7 +491,7 @@
       "base_state": "EXISTED_ON_MAIN",
       "candidate": {
         "state": "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
-        "sha256": "a3370dc9c2aaee0491f7aec354ed7e84ef096a7ac3079db90e134465ed051723",
+        "sha256": "21135454cb724628b6e22421fb55bba22e63ea3413d9e8ec92da3c0a38007c91",
         "proof": "NOT_APPLICABLE",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
@@ -762,7 +762,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
+        "sha256": "10041defea41e3ac6f6d943fb31cdd0c2329cc83fa18c160028390d71f32ae9d",
+        "proof": "LOCAL_LEAN_4_34_0_COMPILED_AXIOMS_AUDITED",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
       "classification": "lean_bridge",
       "conditional": false,
@@ -1909,7 +1912,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "d3087855cc6e25ee577816e36ad91557b7ab7c0b9bedf866cd923906118ae1fa",
+        "sha256": "2c8b2b73747ea56a0ad8f3558bab8a8f3e7005aa0ef8b5cacebf585fa26973f6",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -13341,7 +13344,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "19afa0e7b74b0da0a731ab6ec8ceea23b37bf3130b89abb152116b13b381b18b",
+        "sha256": "8841c109ed25b61376a2fac041c88467d98f9c69e413508399be19cddf7272b0",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -14417,6 +14420,84 @@
       "candidate": {
         "state": "LOCAL_PINNED_LEAN_7_OF_7_PASSED_PENDING_EXACT_HEAD_CI",
         "sha256": "6bda4eab2bd1b3fbb2f9237e6ba88f568a6b7faadd4e6b551981143c6ce86fe7",
+        "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/proof/grammar_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "GRAM-01",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI",
+        "sha256": "25bd6683a46d967683d8bc1bfcc19e2b312c1a8d9db31715ce94df2c3969a45a",
+        "proof": "NOT_EXECUTED_IN_APPLICATION_OUTPUT",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_grammar_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "GRAM-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "87565e4b656c48901b6f515007bda146cf384eb9832eac1f3f174d364e1056bd",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/GRAMMAR_LEAN_BRIDGE.md",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "GRAM-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "DOCUMENTATION",
+        "sha256": "cbdea8e2ee9c99cae6050bd5eae668c45adcad946c13c4008e5251b7b631571c",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/test_application_grammar_live_lean.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "GRAM-01",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_PINNED_LEAN_8_OF_8_PASSED_PENDING_EXACT_HEAD_CI",
+        "sha256": "dd8c1c1fe6817e1fec9d419fc6922211e3cc7b004216707b31416a9bbdbf4834",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       }

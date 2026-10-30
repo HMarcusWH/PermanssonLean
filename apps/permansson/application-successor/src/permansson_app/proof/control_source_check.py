@@ -2,10 +2,11 @@
 
 This re-derives a candidate from the original problem and receipt bytes and
 compares metadata and exact Lean bytes. It is NOT a compiler, trusted source
-signer, proof kernel or release attestation. It covers the Bellman control
-table, almost-sure safety core, residence, frozen-menu, killed-kernel
-survival, finite occupation, first-exit routing, nonlinear classwise objective
-finite-horizon perturbation and typed quotient emitters, which share one layout. The exit family also binds the original region bytes.
+signer, proof kernel or release attestation. It covers every application
+bridge emitter (Bellman control table, safety core, residence, frozen menu,
+killed-kernel survival, occupation, first-exit routing, nonlinear objective,
+perturbation, typed quotient, patch grammar, risk flow and robust nature),
+which share one layout. The exit family also binds the original region bytes.
 """
 from __future__ import annotations
 import argparse
@@ -19,8 +20,9 @@ from ..engines.safety import parse_safety_problem
 from ..errors import AppError
 from ..identity import canonical_bytes
 from ..strict_json import strict_read
-from . import (control_emit, exit_emit, menu_emit, nonlinear_emit, occupation_emit,
-               perturbation_emit, quotient_emit, residence_emit, safety_emit, survival_emit)
+from . import (control_emit, exit_emit, grammar_emit, menu_emit, nonlinear_emit,
+               occupation_emit, perturbation_emit, quotient_emit, residence_emit,
+               safety_emit, survival_emit)
 
 # family -> (parser, emitter module, Lean file name, error-code prefix, recheck format)
 FAMILIES={
@@ -47,6 +49,8 @@ FAMILIES={
                     'Permansson.App.PerturbationSourceRecheck.v1'),
     'quotient':(lambda raw:raw,quotient_emit,'ReifiedQuotient.lean','QUOTIENT_REIFY',
                 'Permansson.App.QuotientSourceRecheck.v1'),
+    'grammar':(lambda raw:raw,grammar_emit,'ReifiedGrammar.lean','GRAMMAR_REIFY',
+               'Permansson.App.GrammarSourceRecheck.v1'),
 }
 # Families whose source also depends on a separate region file.
 REGION_FAMILIES={'exit'}
