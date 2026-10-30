@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 582,
+    "combined_inventory_rows": 584,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -2301,7 +2301,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "5334a1ed6bb281db094d96fa0f8d2b479a6dbb5df0b505dd62d0e25cfa44fbf4",
+        "sha256": "8b0e32432cb3e1b58688d16eca33cd5ddfe59ae9de14cb9393f648b98a33dfa1",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2635,7 +2635,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "b860ff363b2b2d2fb7a4d355ccbde6f4809e22df1ccbd59c836969d5b1cab25d",
+        "sha256": "c095e82bd52b56f2b6b91b7b883723345a070baf0bc7337824b48ce188f2355b",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -13188,8 +13188,8 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "f10b7013ce1fa5d2f585389e33f3b667e5d0036adab9b5df6a9dfcb233a36385",
+        "state": "DOCUMENTATION",
+        "sha256": "a78719195921419c166ade143cd042c25afbe413352c3d79c42d902d917f97ee",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -15956,6 +15956,44 @@
         "sha256": "a55f15f66740ced0d47f084b2ad576cf46a95a0cc17c7d1fd76dba1b40bd360a",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/proof/lean_candidates.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "6b14d9bb846ea4c1135094fd01bfaddead8b869d7e5e46b64929124d7bb226e1",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_lean_candidates.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "70411636fca3dddefec7292c44dcc7c94ec6b62c6da64af31baf9c1c5beef8b5",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
     }
   ],

@@ -49,6 +49,21 @@ pin remain unchanged. The additions are under a new `PermanssonResearch`
 submodule and its explicit root imports only. The pinned toolchain is Lean
 v4.34.0 with mathlib v4.34.0 (see `lean-toolchain` and `lakefile.toml`).
 
+## One CLI for every family
+
+`permansson-app lean-emit` and `permansson-app lean-recheck` dispatch to the
+emitter and the byte/semantic recheck of each family
+(`proof/lean_candidates.py`): `finite-world` (model only), `lp`, every family
+of `proof/control_source_check.FAMILIES`, and `exit`, which also takes
+`--region`. Neither command runs Lean, and both keep
+`lean_status=NOT_EXECUTED`.
+
+```bash
+permansson-app lean-emit --family private-stage request.json receipt.json --output cand
+permansson-app lean-recheck --family private-stage request.json receipt.json --candidate cand
+lake env lean cand/ReifiedPrivateStage.lean   # from the repository root, pinned toolchain
+```
+
 ## Evidence and remaining work
 
 1. Build `lake build PermanssonResearch` at an exact PR commit, with the

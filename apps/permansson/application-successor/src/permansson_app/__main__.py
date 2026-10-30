@@ -63,6 +63,15 @@ def main(argv=None):
     risk=sub.add_parser('one-step-risk')
     risk.add_argument('request',type=Path)
     risk.add_argument('--output',type=Path,required=True)
+    for name,help_text in (('lean-emit','emit a source-bound Lean candidate for a checked receipt; Lean is not run'),
+                           ('lean-recheck','recheck candidate bytes against the original request and receipt')):
+        lean=sub.add_parser(name,help=help_text)
+        lean.add_argument('--family',required=True)
+        lean.add_argument('request',type=Path)
+        lean.add_argument('receipt',type=Path,nargs='?')
+        lean.add_argument('--region',type=Path)
+        if name=='lean-emit':lean.add_argument('--output',type=Path,required=True)
+        else:lean.add_argument('--candidate',type=Path,required=True)
     private_stage=sub.add_parser('finite-private-stage')
     private_stage.add_argument('request',type=Path)
     private_stage.add_argument('--output',type=Path,required=True)
@@ -252,6 +261,13 @@ def main(argv=None):
                 _write_json(out/name,value)
             print(json.dumps({'ok':True,'numeric_status':checker['status'],
                               'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command in ('lean-emit','lean-recheck'):
+            from .proof.lean_candidates import emit,recheck
+            if args.command=='lean-emit':
+                result=emit(args.family,args.request,args.receipt,args.output,args.region)
+            else:
+                result=recheck(args.family,args.request,args.receipt,args.candidate,args.region)
+            print(json.dumps({'ok':True,'family':args.family,'result':result},sort_keys=True))
         elif args.command=='finite-private-stage':
             from .strict_json import strict_read
             from .schema_validate import validate_packaged_schema

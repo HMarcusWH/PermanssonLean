@@ -18,9 +18,9 @@ or empirical identification.
 
 ## Built so far
 
-* 22 additive exact numeric profiles registered in `data/capabilities.json`,
+* 23 additive exact numeric profiles registered in `data/capabilities.json`,
   next to the two closed native providers (C10, C11).
-* 20 source-bound Lean bridge families under
+* 21 source-bound Lean bridge families under
   `PermanssonResearch/ApplicationBridge/`, each with an emitter, a byte
   recheck family and a pinned-Lean live replay with semantic mutations:
   finite α/P/U input, LP certificates, Bellman control table, safety core,
@@ -28,19 +28,21 @@ or empirical identification.
   occupation, first-exit routing, nonlinear classwise objective,
   finite-horizon perturbation, typed quotient, patch grammar, risk flow,
   rectangular robust nature, observe-then-act belief, CQ-1 finite
-  certificate, finite metric contraction, rational algebra witnesses and
-  two-player protocols.
+  certificate, finite metric contraction, rational algebra witnesses,
+  two-player protocols and private-stage saddles. `permansson-app lean-emit`
+  and `lean-recheck` reach every family through one command.
 * Local evidence at `6b9cf13`: application suite 673/673 (Python 3.13 and
   3.12); full Research verification suite 2156/2156 including every live
-  replay. Exact-head GitHub CI is tracked separately on the pull request.
+  replay; GitHub CI green at that head except the inherited
+  `archive-reproducibility` job. Later heads are tracked on the pull request.
 
 ## Planned next (in order)
 
 | Step | Work item | Content | Status |
 | --- | --- | --- | --- |
-| P0 | REL-02 | this roadmap; reconcile planned inventory paths that implemented modules already supersede | this commit |
-| P1 | APP-05 | one `lean-emit` / `lean-recheck` CLI over every emitter family | planned |
-| P2 | OPT-06 | one-stage private-control robust profile with a two-sided saddle certificate; `PrivateStageReceipt` identifies Research's `solvePrivateStage` value without evaluating the solver | planned |
+| P0 | REL-02 | this roadmap; reconcile planned inventory paths that implemented modules already supersede | done (`29fa860`) |
+| P1 | APP-05 | one `lean-emit` / `lean-recheck` CLI over every emitter family | done |
+| P2 | OPT-06 | one-stage private-control robust profile with a two-sided saddle certificate; `PrivateStageReceipt` identifies Research's `solvePrivateStage` value without evaluating the solver | done (`f75b8e6`, `44fff07`, `11f3d29`) |
 | P3 | OPT-09 | adaptive grammar control: admitted patch menus compiled into a shared-P control problem | planned |
 | P4 | OPT-05 | risk-flow Farkas infeasibility route: no admissible policy meets the declared cap | planned |
 | P5 | ANA-01 | CQ-1 certificate transport under exact TV error budgets | planned |
