@@ -42,6 +42,50 @@ def _override(rows:list[tuple[list[str],list[str]]],default:str)->str:
     return result
 
 
+def block_definitions(g,ns:int,nx:int,na:int)->tuple[list[str],list[str],dict]:
+    """Every admitted block's reflected treated model, with theorems that it keeps
+    feasibility and P and is the baseline with exactly its declared patch rows."""
+    S,X,A=list(g.baseline.strategic),list(g.baseline.world),list(g.baseline.actions)
+    lines=[];names=[];extensions={}
+    for i,block in enumerate(g.blocks):
+        treated=apply_block(g,block)
+        block_lines,dims,ext=input_definition(treated,f'block_{i}')
+        if dims!=(ns,nx,na):raise AppError('GRAMMAR_REIFY_SCOPE','blocks must share the baseline dimensions')
+        extensions[f'block_{i}']=ext
+        alpha_rows=[];update_rows=[]
+        for name in block:
+            for key,vals in g.patch_rows[name].items():
+                values=[rational_expr(exact_ratio(v)) for v in vals]
+                if key[0]=='alpha':
+                    s,x=key[1],key[2]
+                    alpha_rows.append(([f's = ({S.index(s)} : Fin {ns})',f'x = ({X.index(x)} : Fin {nx})'],
+                                       _fin_case('a',values,na)))
+                else:
+                    s,x,a,xp=key[1:]
+                    update_rows.append(([f's = ({S.index(s)} : Fin {ns})',f'x = ({X.index(x)} : Fin {nx})',
+                                         f'a = ({A.index(a)} : Fin {na})',f'xp = ({X.index(xp)} : Fin {nx})'],
+                                        _fin_case('sp',values,ns)))
+        label='{'+', '.join(block)+'}'
+        lines+=[*block_lines,'',
+                f'/-- Admitted block {i} = {label}: feasibility and P held fixed. -/',
+                f'theorem block_{i}_held_fixed : HeldFixed base block_{i} := by',
+                '  unfold HeldFixed',
+                f'  simp only [base, block_{i}]',
+                '  decide +kernel',
+                f'/-- Block {i} is the baseline with exactly its declared α patch rows. -/',
+                f'theorem block_{i}_alpha_rows : ∀ s x a, block_{i}.alpha s x a =',
+                f'    {_override(alpha_rows,"base.alpha s x a")} := by',
+                f'  simp only [base, block_{i}]',
+                '  decide +kernel',
+                f'/-- Block {i} is the baseline with exactly its declared U patch rows. -/',
+                f'theorem block_{i}_update_rows : ∀ s x a xp sp, block_{i}.update s x a xp sp =',
+                f'    {_override(update_rows,"base.update s x a xp sp")} := by',
+                f'  simp only [base, block_{i}]',
+                '  decide +kernel','']
+        names+=[f'block_{i}_held_fixed',f'block_{i}_alpha_rows',f'block_{i}_update_rows']
+    return lines,names,extensions
+
+
 def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
     if type(raw) is not dict or type(receipt) is not dict:
         raise AppError('GRAMMAR_REIFY_INPUT','raw grammar request and receipt required')
@@ -88,43 +132,9 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
         'set_option maxHeartbeats 0','',
         *base_lines,'',
     ]
-    names=[];extensions={'base':base_ext}
-    for i,block in enumerate(g.blocks):
-        treated=apply_block(g,block)
-        block_lines,dims,ext=input_definition(treated,f'block_{i}')
-        if dims!=(ns,nx,na):raise AppError('GRAMMAR_REIFY_SCOPE','blocks must share the baseline dimensions')
-        extensions[f'block_{i}']=ext
-        alpha_rows=[];update_rows=[]
-        for name in block:
-            for key,vals in g.patch_rows[name].items():
-                values=[rational_expr(exact_ratio(v)) for v in vals]
-                if key[0]=='alpha':
-                    s,x=key[1],key[2]
-                    alpha_rows.append(([f's = ({S.index(s)} : Fin {ns})',f'x = ({X.index(x)} : Fin {nx})'],
-                                       _fin_case('a',values,na)))
-                else:
-                    s,x,a,xp=key[1:]
-                    update_rows.append(([f's = ({S.index(s)} : Fin {ns})',f'x = ({X.index(x)} : Fin {nx})',
-                                         f'a = ({A.index(a)} : Fin {na})',f'xp = ({X.index(xp)} : Fin {nx})'],
-                                        _fin_case('sp',values,ns)))
-        label='{'+', '.join(block)+'}'
-        lines+=[*block_lines,'',
-                f'/-- Admitted block {i} = {label}: feasibility and P held fixed. -/',
-                f'theorem block_{i}_held_fixed : HeldFixed base block_{i} := by',
-                '  unfold HeldFixed',
-                f'  simp only [base, block_{i}]',
-                '  decide +kernel',
-                f'/-- Block {i} is the baseline with exactly its declared α patch rows. -/',
-                f'theorem block_{i}_alpha_rows : ∀ s x a, block_{i}.alpha s x a =',
-                f'    {_override(alpha_rows,"base.alpha s x a")} := by',
-                f'  simp only [base, block_{i}]',
-                '  decide +kernel',
-                f'/-- Block {i} is the baseline with exactly its declared U patch rows. -/',
-                f'theorem block_{i}_update_rows : ∀ s x a xp sp, block_{i}.update s x a xp sp =',
-                f'    {_override(update_rows,"base.update s x a xp sp")} := by',
-                f'  simp only [base, block_{i}]',
-                '  decide +kernel','']
-        names+=[f'block_{i}_held_fixed',f'block_{i}_alpha_rows',f'block_{i}_update_rows']
+    block_src,names,block_ext=block_definitions(g,ns,nx,na)
+    lines+=block_src
+    extensions={'base':base_ext,**block_ext}
     index={b:i for i,b in enumerate(g.blocks)}
     minimal=[index[tuple(b)] for b in receipt['minimal_positive_blocks']]
     corner_terms=[]
