@@ -20,7 +20,7 @@ from ..engines.safety import parse_safety_problem
 from ..errors import AppError
 from ..identity import canonical_bytes
 from ..strict_json import strict_read
-from . import (control_emit, exit_emit, grammar_emit, menu_emit, nonlinear_emit,
+from . import (control_emit, exit_emit, flow_emit, grammar_emit, menu_emit, nonlinear_emit,
                occupation_emit, perturbation_emit, quotient_emit, residence_emit,
                safety_emit, survival_emit)
 
@@ -51,6 +51,8 @@ FAMILIES={
                 'Permansson.App.QuotientSourceRecheck.v1'),
     'grammar':(lambda raw:raw,grammar_emit,'ReifiedGrammar.lean','GRAMMAR_REIFY',
                'Permansson.App.GrammarSourceRecheck.v1'),
+    'flow':(lambda raw:raw,flow_emit,'ReifiedFlow.lean','FLOW_REIFY',
+            'Permansson.App.FlowSourceRecheck.v1'),
 }
 # Families whose source also depends on a separate region file.
 REGION_FAMILIES={'exit'}
