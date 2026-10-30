@@ -1,4 +1,5 @@
-"""Pinned-Lean replay of checked retryable residence values bound to alpha/P/U.
+"""Pinned-Lean replay of checked residence values (retryable, first-entry,
+danger-avoid) bound to alpha/P/U.
 
 The reflected control system is `boundControlSystem` over the exact source
 input; each per-start value is evaluated by Lean's layer-wise optimal
@@ -61,13 +62,25 @@ def residence_problem(dwell: int = 1, deadline: int = 2) -> dict:
             "initial_law": [{"state": [s, x], "mass": "1/4"} for s in S for x in X]}
 
 
+def mode_problem(mode: str, dwell: int = 1, deadline: int = 2) -> dict:
+    """The same source model under the other monitors. Avoid uses a completion-by
+    deadline and treats the target state (s1, x1) as danger, which takes priority
+    at the moment of success."""
+    raw = residence_problem(dwell, deadline)
+    raw["mode"] = mode
+    if mode == "avoid":
+        raw["deadline_semantics"] = "completion_by"
+        raw["danger"] = [{"strategic": "s1", "world": "x1"}]
+    return raw
+
+
 class ResidenceLeanReplay(unittest.TestCase):
     _cache: dict = {}
 
-    def _positive(self, dwell: int = 1, deadline: int = 2):
-        key = (dwell, deadline)
+    def _positive(self, dwell: int = 1, deadline: int = 2, mode: str = "retryable"):
+        key = (dwell, deadline, mode)
         if key not in ResidenceLeanReplay._cache:
-            raw = residence_problem(dwell, deadline)
+            raw = mode_problem(mode, dwell, deadline)
             code, meta = emit_source(raw, solve_residence(raw))
             self.assertEqual(meta["lean_status"], "NOT_EXECUTED")
             exitcode, log = compile_source(code, FILENAME)
@@ -75,6 +88,11 @@ class ResidenceLeanReplay(unittest.TestCase):
             audited_axioms(log, meta["theorem_qualified_names"])
             ResidenceLeanReplay._cache[key] = (code, meta, solve_residence(raw))
         return ResidenceLeanReplay._cache[key]
+
+    def _replace_values(self, code, receipt, replacement):
+        values = [rational_expr(Fraction(v)) for v in receipt["probability_by_initial_state"]]
+        bad = [rational_expr(Fraction(v)) for v in replacement]
+        return change_line(code, "def values ", _fin_case("y", values, 4), _fin_case("y", bad, 4))
 
     def test_short_and_long_horizons_replay_with_audited_axioms(self):
         for dwell, deadline in ((1, 2), (2, 4)):
@@ -109,6 +127,24 @@ class ResidenceLeanReplay(unittest.TestCase):
                               "(if y = (2 : Fin 4) then ({0} : Finset (Fin 2))",
                               "(if y = (2 : Fin 4) then ({0, 1} : Finset (Fin 2))")
         assert_semantic_rejection(self, code, changed, "options_exact", FILENAME)
+
+    def test_first_entry_values_replay_and_differ_from_retryable(self):
+        code, meta, receipt = self._positive(mode="first_entry")
+        self.assertIn("checkFirstEntryValues", code)
+        retry = self._positive()[2]["probability_by_initial_state"]
+        self.assertNotEqual(receipt["probability_by_initial_state"], retry)
+        changed = self._replace_values(code, receipt, retry)
+        assert_semantic_rejection(self, code, changed, "receipt_checked", FILENAME)
+
+    def test_avoid_values_replay_and_danger_is_semantic(self):
+        code, meta, receipt = self._positive(dwell=1, deadline=3, mode="avoid")
+        self.assertIn("checkAvoidValues", code)
+        self.assertEqual(receipt["probability_by_initial_state"], ["7/36", "7/12", "0", "0"])
+        changed = change_line(code, "def dangerSet ", "({3} : Finset (Fin 4))", "(∅ : Finset (Fin 4))")
+        assert_semantic_rejection(self, code, changed, "receipt_checked", FILENAME)
+        retry = solve_residence(dict(residence_problem(1, 3), deadline_semantics="completion_by"))
+        changed = self._replace_values(code, receipt, retry["probability_by_initial_state"])
+        assert_semantic_rejection(self, code, changed, "receipt_checked", FILENAME)
 
 
 if __name__ == "__main__":

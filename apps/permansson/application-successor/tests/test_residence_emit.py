@@ -1,4 +1,4 @@
-"""Source-bound retryable residence Lean candidates: binding and boundaries.
+"""Source-bound residence Lean candidates (all three modes): binding and boundaries.
 
 Compiler replay is exercised by verification/research/
 test_application_residence_live_lean.py; these tests need no Lean.
@@ -74,12 +74,24 @@ class ResidenceEmitTests(unittest.TestCase):
         self.assertIn('def latest : ℕ := 2',source)
         self.assertEqual(meta['scope']['horizon'],3)
 
-    def test_first_entry_and_avoid_modes_stay_numeric_only(self):
-        for mode in ('first_entry','avoid'):
+    def test_each_mode_maps_to_its_own_lean_monitor(self):
+        expected={'retryable':('checkResidenceValues','behavioralResidenceProbability'),
+                  'first_entry':('checkFirstEntryValues','behavioralFirstEntryProbability'),
+                  'avoid':('checkAvoidValues','behavioralAvoidResidenceProbability')}
+        for mode,(checker,probability) in expected.items():
             raw=problem(mode=mode,semantics='completion_by',deadline=3)
-            with self.subTest(mode=mode),self.assertRaises(AppError) as raised:
-                emit_source(raw,solve_residence(raw))
-            self.assertEqual(raised.exception.code,'RESIDENCE_REIFY_SCOPE')
+            with self.subTest(mode=mode):
+                source,meta=emit_source(raw,solve_residence(raw))
+                self.assertEqual(meta['scope']['mode'],mode)
+                self.assertIn(f'theorem receipt_checked : {checker} sys',source)
+                self.assertIn(probability,source)
+                for other,(other_checker,_) in expected.items():
+                    if other!=mode:
+                        self.assertNotIn(other_checker+' ',source)
+                self.assertEqual('def dangerSet ' in source,mode=='avoid')
+        source,_=emit_source(problem(mode='avoid',semantics='completion_by',deadline=3),
+                             solve_residence(problem(mode='avoid',semantics='completion_by',deadline=3)))
+        self.assertIn('theorem receipt_checked : checkAvoidValues sys targetSet dangerSet dwell latest values',source)
 
     def test_horizon_and_dimension_scope(self):
         raw=problem(dwell=2,deadline=MAX_HORIZON)

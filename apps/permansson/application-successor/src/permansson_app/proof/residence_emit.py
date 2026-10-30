@@ -1,10 +1,11 @@
-"""Checked retryable residence receipt -> source-bound Lean theorem *candidate*.
+"""Checked residence receipt -> source-bound Lean theorem *candidate*.
 
-Only receipts that pass the independent residence checker are emitted, and
-only for the retryable mode, whose literal block event is the one proved
-optimal by `rollingResidence_optimal_and_attained`. First-entry and avoid
-modes stay numeric-only. The Lean control system is `boundControlSystem` over
-the reflected alpha/P/U input. Emission is never compiler replay, independent
+Only receipts that pass the independent residence checker are emitted. Each
+application mode maps to the Lean monitor whose literal event it computes:
+retryable -> `checkResidenceValues` (compact residence monitor), first_entry ->
+`checkFirstEntryValues`, avoid -> `checkAvoidValues` (danger before or at
+success fails). The Lean control system is `boundControlSystem` over the
+reflected alpha/P/U input. Emission is never compiler replay, independent
 certification, empirical identification or release acceptance.
 """
 from __future__ import annotations
@@ -27,6 +28,15 @@ FORMAT='Permansson.App.ResidenceLeanSourceCandidate.v1'
 MODULE='PermanssonResearch.ApplicationBridge.ReifiedResidence'
 MAX_HORIZON=6
 MAX_SOURCE_BYTES=256*1024
+# mode -> (Lean checker, behavioral probability, soundness theorem, uses danger set)
+MODES={
+    'retryable':('checkResidenceValues','behavioralResidenceProbability',
+                 'checkResidenceValues_sound',False),
+    'first_entry':('checkFirstEntryValues','behavioralFirstEntryProbability',
+                   'checkFirstEntryValues_sound',False),
+    'avoid':('checkAvoidValues','behavioralAvoidResidenceProbability',
+             'checkAvoidValues_sound',True),
+}
 
 
 def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
@@ -34,8 +44,9 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
         raise AppError('RESIDENCE_REIFY_INPUT','raw residence request and receipt required')
     checked=check_residence(raw,receipt)
     problem=parse_residence(raw)
-    if problem.mode!='retryable':
-        raise AppError('RESIDENCE_REIFY_SCOPE','only the retryable residence mode has a Lean bridge')
+    if problem.mode not in MODES:
+        raise AppError('RESIDENCE_REIFY_SCOPE','residence mode has no Lean bridge')
+    checker,probability,soundness,uses_danger=MODES[problem.mode]
     if not 1<=problem.horizon<=MAX_HORIZON:
         raise AppError('RESIDENCE_REIFY_SCOPE',f'Lean residence reflection limited to 1..{MAX_HORIZON} transitions')
     model=problem.model
@@ -52,10 +63,12 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
 
     dim=f'({ns} * {nx})'
     def state_row(entries):return _fin_case('y',entries,N)
+    sets='targetSet dangerSet' if uses_danger else 'targetSet'
+    events='(· ∈ targetSet) (· ∈ dangerSet)' if uses_danger else '(· ∈ targetSet)'
     lines=[
         'import PermanssonResearch.ApplicationBridge.ResidenceReceipt',
         'import Mathlib.Tactic','',
-        '/-! Reified exact retryable residence values; application source candidate only.',
+        f'/-! Reified exact {problem.mode} residence values; application source candidate only.',
         f'    Problem semantic SHA-256: {problem.semantic_id["sha256"]}',
         f'    Independently checked receipt SHA-256: {checked["receipt_sha256"]}',
         '    Infeasible P/U entries are normalized Dirac extensions.',
@@ -83,12 +96,13 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
         f'def sys : FiniteControlSystem (Fin {na}) {dim} :=',
         '  boundControlSystem input options options_exact states_pos','',
         f'def targetSet : Finset (Fin {dim}) := {_finset(list(problem.target),N)}',
+        *([f'def dangerSet : Finset (Fin {dim}) := {_finset(list(problem.danger),N)}'] if uses_danger else []),
         f'def values : Fin {dim} → ℚ := fun y => {state_row([rational_expr(v) for v in values])}',
         f'def dwell : ℕ := {dwell}',
         f'def latest : ℕ := {latest}',
         '',
         '/-- Kernel evaluation of the layer-wise optimal residence table at every start. -/',
-        'theorem receipt_checked : checkResidenceValues sys targetSet dwell latest values = true := by',
+        f'theorem receipt_checked : {checker} sys {sets} dwell latest values = true := by',
         '  decide +kernel','',
     ]
     names=['options_exact','receipt_checked']
@@ -98,12 +112,12 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
         literal=f'(({rational_expr(v)} : ℚ) : ℝ)'
         lines+=[f'theorem {name} :',
                 '    (∀ σ : BehavioralPolicy sys,',
-                f'      behavioralResidenceProbability sys σ (· ∈ targetSet) dwell latest ({y} : Fin {N}) ≤ {literal}) ∧',
+                f'      {probability} sys σ {events} dwell latest ({y} : Fin {N}) ≤ {literal}) ∧',
                 '    (∃ σ : BehavioralPolicy sys,',
-                f'      behavioralResidenceProbability sys σ (· ∈ targetSet) dwell latest ({y} : Fin {N}) = {literal}) := by',
+                f'      {probability} sys σ {events} dwell latest ({y} : Fin {N}) = {literal}) := by',
                 f'  have hv : values ({y} : Fin {N}) = {rational_expr(v)} := by decide +kernel',
                 f'  simpa only [hv] using',
-                f'    checkResidenceValues_sound sys targetSet dwell latest values receipt_checked ({y} : Fin {N})','']
+                f'    {soundness} sys {sets} dwell latest values receipt_checked ({y} : Fin {N})','']
     lines.append(f'end {MODULE}')
     lines.append('')
     for name in names:

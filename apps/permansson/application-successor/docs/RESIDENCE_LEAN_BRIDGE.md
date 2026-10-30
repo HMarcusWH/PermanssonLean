@@ -1,11 +1,11 @@
-# Retryable residence values — source-bound Lean bridge candidate
+# Residence values (retryable, first-entry, danger-avoid) — source-bound Lean bridge candidate
 
 **Development scope:** OPT-03/OPT-04 (finite residence monitors),
 `feature/application-successor-full`, PR #115.
 The `finite-residence` profile computes exact optimal probabilities of
 monitored residence events by dynamic programming over (time, joint state,
 monitor state), and `receipts.residence` independently rechecks the table.
-This increment binds the **retryable** mode's per-start values to the
+This increment binds the per-start values of all three residence modes to the
 existing Research residence theorems for the submitted source model.
 
 ## Mathematical contract
@@ -24,9 +24,22 @@ existing Research residence theorems for the submitted source model.
 
 The application's retryable mode is the same event: `entry_by` deadline `d`
 gives `latest = d`; `completion_by` deadline `d` gives `latest = d − dwell`;
-in both cases the receipt horizon is `latest + dwell`. First-entry and
-danger-avoid modes use different monitors and stay numeric-only. Values are
-per start state; the initial-law mixture is not reflected.
+in both cases the receipt horizon is `latest + dwell`.
+
+The other two modes use the generic array-backed `rollingMonitorTable` with
+explicit computable state enumerations (`firstEntryEnumeration`,
+`avoidEnumeration`) and `rollingMonitorTable_eq_value`:
+
+- `first_entry` → `checkFirstEntryValues` / `checkFirstEntryValues_sound`
+  (`behavioralFirstEntry_optimal_and_attained`): the first target observation,
+  at time `≤ latest`, must start the completed block; a broken run never
+  retries.
+- `avoid` → `checkAvoidValues` / `checkAvoidValues_sound`
+  (`behavioralAvoidResidence_optimal_and_attained`): a retryable block within
+  the prefix before the first danger observation; danger at the moment of
+  success is failure, danger after success does not undo it.
+
+Values are per start state; the initial-law mixture is not reflected.
 
 ## Source emission and replay
 
@@ -47,11 +60,13 @@ lake env lean /tmp/permansson-residence-instance/ReifiedResidence.lean
 ```
 
 `verification/research/test_application_residence_live_lean.py` compiles
-horizons 3 and 6 (the second with dwell 2), audits axioms, and requires
-single-line mutations to fail at the falsified obligation: a false start
-value, a wrong dwell, a wrong latest entry, a false target set and an
-admitted infeasible action. On the reference fixture Lean's table reproduced
-every Python per-start value exactly.
+retryable horizons 3 and 6 (the second with dwell 2), a first-entry and a
+danger-avoid instance, audits axioms, and requires single-line mutations to
+fail at the falsified obligation: a false start value, a wrong dwell, a wrong
+latest entry, a false target set, an admitted infeasible action, retryable
+values substituted into the first-entry and avoid checks, and an emptied
+danger set. On every fixture Lean's tables reproduced the Python per-start
+values exactly, including danger taking priority at a target state.
 
 ## Trust boundary
 

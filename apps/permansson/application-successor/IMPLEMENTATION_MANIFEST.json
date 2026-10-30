@@ -1894,7 +1894,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "4393ef82e2ba428cd91b02170915e3ea244dd45960972133417ff35db1e6b0a5",
+        "sha256": "b52f065a18e70a33c1154a0df6680e46ff98a79a619331dd005e21ad9eee713f",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -13615,7 +13615,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
-        "sha256": "34714922efc97955e485390859db21cdad80dc0a0b0a1569676d170b57bc6bef",
+        "sha256": "59259b1248e18957af921db609bec0be6bc383b0752f282238f1ffcef936d7c0",
         "proof": "LOCAL_LEAN_4_34_0_COMPILED_AXIOMS_AUDITED",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       }
@@ -13635,8 +13635,8 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI",
-        "sha256": "118f41920c9822520f85dec456ebc079b15a2c186888bcff3bb180de199a792f",
+        "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_ALL_THREE_MODES_PENDING_EXACT_HEAD_CI",
+        "sha256": "5c72bd9ad2ffd59e116845ef845fdbde75bf3b8da4e364a5b78b27bece1abc34",
         "proof": "NOT_EXECUTED_IN_APPLICATION_OUTPUT",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -13656,7 +13656,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "4a1a4d3f8e0e8049317b6fdc9ff9645cd6dc4298c43844639491adb418d02ca6",
+        "sha256": "5fca114b537dce8155c92631eeb701959f948f9388ead56ce31f452155bd5f49",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -13676,7 +13676,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "c3fbaa25e5b30edad547b14b599f470f8d005732e5d4be7583765d1b694be454",
+        "sha256": "62f07df56d46d9eafd72c33f109bd82f07b41ae2b18858754150bc6496e3d0ef",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -13696,8 +13696,8 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_PINNED_LEAN_5_OF_5_PASSED_PENDING_EXACT_HEAD_CI",
-        "sha256": "e86b38acef9761b9e86898c1db47e7c25c36201c20c0dfbe3cf9cf038a82b732",
+        "state": "LOCAL_PINNED_LEAN_7_OF_7_PASSED_PENDING_EXACT_HEAD_CI",
+        "sha256": "3bd8aa94c529f060e520d35266950cd60abadaa424a8ee4e73d0d0b7a22da11e",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       }

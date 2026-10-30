@@ -98,7 +98,7 @@ semantic mutations to fail at the falsified obligation.
 | --- | --- | --- | --- | --- |
 | `finite.hitting_bellman` | `ControlTableReceipt` | Bellman value, schedule upper bound, attainment, selected-action feasibility | 8 (2 positive, 6 mutations) | ≤2 per dimension, 1..6 transitions |
 | `finite.almost_sure_safety_core` | `SafetyReceipt` | greatest invariant core; almost-sure safety iff in core; < 1 outside; stationary optimum | 6 (1 positive, 5 mutations) | ≤2 per dimension |
-| `finite.residence_monitor` (retryable) | `ResidenceReceipt` | literal residence optimum over all behavioral histories, attained | 5 methods (2 positive horizons, 5 mutations) | ≤2 per dimension, 1..6 transitions; first-entry/avoid numeric-only |
+| `finite.residence_monitor` (retryable, first-entry, avoid) | `ResidenceReceipt` | literal residence optimum of each mode over all behavioral histories, attained | 7 methods (4 positive instances, 9 mutations) | ≤2 per dimension, 1..6 transitions |
 
 `ControlTableReceipt` failed to compile at `6eda7e9` (missing `Decidable`
 instance); it is repaired and the full Research library builds. These are
