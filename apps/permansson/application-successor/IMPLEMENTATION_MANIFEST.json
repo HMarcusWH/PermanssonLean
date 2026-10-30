@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 476,
+    "combined_inventory_rows": 478,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -13304,10 +13304,10 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN",
-        "sha256": "418db8d342a57f87ca101515f0253c2c51e7325113d72130b425fb9f8334e44a",
-        "proof": "NOT_EXECUTED",
-        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+        "state": "LOCAL_PINNED_LEAN_7_OF_7_PASSED_PENDING_EXACT_HEAD_CI",
+        "sha256": "b6a63cd052b391dd437ca55ea311a1048a65dde84376905ba1155ef6f630e66d",
+        "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       }
     },
     {
@@ -13467,7 +13467,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "52d3df7e323035df14689a331e36c03dcdabee57603762a3521c631884718e1f",
+        "sha256": "35715ba7baf061d280f77aa5bed1c83c32ae4323fecbc90c627df78244e72b4e",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -13698,6 +13698,46 @@
       "candidate": {
         "state": "LOCAL_PINNED_LEAN_5_OF_5_PASSED_PENDING_EXACT_HEAD_CI",
         "sha256": "e86b38acef9761b9e86898c1db47e7c25c36201c20c0dfbe3cf9cf038a82b732",
+        "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "verification/research/test_application_bridge_replay_harness.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-05",
+        "REL-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "efc0ac07f1823fd985c11df4598d8bf86dfff8aa99944d4c3e38191ef2d86341",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/test_application_finite_world_live_lean.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-06",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_PINNED_LEAN_7_OF_7_PASSED_PENDING_EXACT_HEAD_CI",
+        "sha256": "66c60e90af7fb85d106d75a26986a87b67c2940a95454f19bf616456fdaa1cfc",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       }

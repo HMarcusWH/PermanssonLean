@@ -12,7 +12,6 @@ import json
 from pathlib import Path
 import re
 import shutil
-import subprocess
 import sys
 import tempfile
 import unittest
@@ -24,6 +23,7 @@ sys.path.insert(0, str(APP / "src"))
 from permansson_app.finite_world import parse_finite_world
 from permansson_app.proof.finite_emit import emit_source
 from test_application_lp_bridge_live_lean import _audited_axioms
+from application_bridge_replay import run_bounded
 
 EXAMPLE = APP / "src/permansson_app/data/examples/finite_world.v1.model.json"
 MODULE = "PermanssonResearch.ApplicationBridge.ReifiedFiniteWorld"
@@ -56,13 +56,10 @@ def _compile(code: str):
     with tempfile.TemporaryDirectory(dir=ROOT / ".lake", prefix="app-finite-") as td:
         source = Path(td) / "ReifiedFiniteWorld.lean"
         source.write_text(code, encoding="utf-8")
-        process = subprocess.run(
-            ["lake", "env", "lean", str(source)], cwd=ROOT,
-            capture_output=True, text=True, timeout=450)
-    result = process.stdout + "\n" + process.stderr
+        returncode, result = run_bounded(["lake", "env", "lean", str(source)], ROOT, 450)
     if len(result) > 250000:
         raise AssertionError("unbounded Lean compiler output")
-    return process.returncode, result
+    return returncode, result
 
 
 def _change_line(code: str, prefix: str, replacement: str):

@@ -10,7 +10,6 @@ import json
 from pathlib import Path
 import re
 import shutil
-import subprocess
 import sys
 import tempfile
 import unittest
@@ -81,12 +80,12 @@ def _compile(code:str,*,timeout:int=450):
     with tempfile.TemporaryDirectory(dir=ROOT/'.lake',prefix='app-lp-proof-') as td:
         path=Path(td)/'ReifiedLP.lean'
         path.write_text(code,encoding='utf-8')
-        p=subprocess.run(['lake','env','lean',str(path)],cwd=ROOT,
-                         capture_output=True,text=True,timeout=timeout)
-    out=p.stdout+'\n'+p.stderr
+        # Imported at call time: application_bridge_replay imports this module.
+        from application_bridge_replay import run_bounded
+        returncode,out=run_bounded(['lake','env','lean',str(path)],ROOT,timeout)
     if len(out)>250_000:
         raise AssertionError('unbounded compiler diagnostic output')
-    return p.returncode,out
+    return returncode,out
 
 
 class AxiomRecordParserTests(unittest.TestCase):

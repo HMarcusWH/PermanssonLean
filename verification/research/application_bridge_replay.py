@@ -8,9 +8,11 @@ position. Axiom records are parsed by the already-reviewed research parser.
 from __future__ import annotations
 
 from hashlib import sha256
+import os
 from pathlib import Path
 import re
 import shutil
+import signal
 import subprocess
 import tempfile
 
@@ -30,13 +32,25 @@ def compile_source(code: str, filename: str, *, timeout: int = 450):
     with tempfile.TemporaryDirectory(dir=ROOT / ".lake", prefix="app-bridge-") as td:
         source = Path(td) / filename
         source.write_text(code, encoding="utf-8")
-        process = subprocess.run(
-            ["lake", "env", "lean", str(source)], cwd=ROOT,
-            capture_output=True, text=True, timeout=timeout)
-    result = process.stdout + "\n" + process.stderr
+        returncode, result = run_bounded(["lake", "env", "lean", str(source)], ROOT, timeout)
     if len(result) > 250000:
         raise AssertionError("unbounded Lean compiler output")
-    return process.returncode, result
+    return returncode, result
+
+
+def run_bounded(command: list[str], cwd: Path, timeout: int):
+    """Run the compiler in its own session and kill the whole process group on
+    timeout: `lake env lean` forks `lean`, which would otherwise outlive the
+    killed `lake` and keep consuming the runner."""
+    process = subprocess.Popen(command, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                               text=True, start_new_session=True)
+    try:
+        out, err = process.communicate(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        os.killpg(process.pid, signal.SIGKILL)
+        process.communicate()
+        raise AssertionError(f"Lean compilation exceeded {timeout}s; process group killed")
+    return process.returncode, out + "\n" + err
 
 
 def audited_axioms(log: str, expected: list[str]):
