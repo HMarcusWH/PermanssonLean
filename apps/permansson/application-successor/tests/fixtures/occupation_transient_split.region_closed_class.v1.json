@@ -1,0 +1,18 @@
+{
+  "format": "Permansson.App.FiniteRegion.v1",
+  "horizon": 3,
+  "joint_states": [
+    {
+      "strategic": "s0",
+      "world": "x0"
+    },
+    {
+      "strategic": "s0",
+      "world": "x1"
+    },
+    {
+      "strategic": "s1",
+      "world": "x0"
+    }
+  ]
+}

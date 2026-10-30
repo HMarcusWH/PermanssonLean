@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 491,
+    "combined_inventory_rows": 497,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -491,7 +491,7 @@
       "base_state": "EXISTED_ON_MAIN",
       "candidate": {
         "state": "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
-        "sha256": "3126c24f526a9fd01c195e6d7ad6a0fa0eb12748def5358d68ad2a87e80262e4",
+        "sha256": "ecbae42b458e658b4dba397c27e033cc40e6b6ff6e3c5be6afe87eee85afc049",
         "proof": "NOT_APPLICABLE",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
@@ -630,7 +630,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
+        "sha256": "37fc13863f9bfd71d6a6fd21bd588a40385414e6e7450b5ad073ea65dc4c7346",
+        "proof": "LOCAL_LEAN_4_34_0_COMPILED_AXIOMS_AUDITED",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
       "classification": "lean_bridge",
       "conditional": false,
@@ -1897,7 +1900,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "8d331367d3b250af6dd05f5cd34ae427613914885b7ee444ba7d572d33117814",
+        "sha256": "c385a4116353f596aa9dc6235a2e0d8b332198787c3e2f64ec94738f209cc671",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -13329,7 +13332,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "9307f58bbea8a9b6a0f4693f80de585e81620112da177671fe5d029ab6fe3ac0",
+        "sha256": "0d7d01c46133f733d423d1465cb69f1a4d7750892932381841cda2863c467de7",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -13998,6 +14001,122 @@
       "candidate": {
         "state": "LOCAL_PINNED_LEAN_8_OF_8_PASSED_PENDING_EXACT_HEAD_CI",
         "sha256": "ef2e9b30667e1bee238022d52f7ee4339b13dc6025774a9c1aedda04d7bdafc8",
+        "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/proof/exit_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ANA-04",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI",
+        "sha256": "01dcb22c1cf09e3fd5e89132a1d0921c1de3deeaff10ff0f3f361504826eeaf5",
+        "proof": "NOT_EXECUTED_IN_APPLICATION_OUTPUT",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_exit_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ANA-04"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "0ae1db48088558641dcf1426e05ecca267e74ed2201a967b0d319be4dbb137fa",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/occupation_transient_split.region_origin.v1.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ANA-04"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "TEST_FIXTURE",
+        "sha256": "9c15a3ea82063440db014d413de108a5795db94f55c287b257729be590f57c4b",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/occupation_transient_split.region_closed_class.v1.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ANA-04"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "TEST_FIXTURE",
+        "sha256": "3fcca8d22aee0b7a097c75c59bd2805681499e5a47f88f2792cb14c2f0718f01",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/EXIT_LEAN_BRIDGE.md",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ANA-04"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "DOCUMENTATION",
+        "sha256": "7dd41d70cf6c5f0dedb873f92fc8636adac17b5cf26a819856504b772e45f5f4",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/test_application_exit_live_lean.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "ANA-04",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_PINNED_LEAN_9_OF_9_PASSED_PENDING_EXACT_HEAD_CI",
+        "sha256": "3f0c9e000711abcc9409067bf866ee0c5804e3855984fab33ddbefc5c2dec804",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       }

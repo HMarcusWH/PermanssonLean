@@ -4,7 +4,8 @@ This re-derives a candidate from the original problem and receipt bytes and
 compares metadata and exact Lean bytes. It is NOT a compiler, trusted source
 signer, proof kernel or release attestation. It covers the Bellman control
 table, almost-sure safety core, residence, frozen-menu, killed-kernel
-survival and finite occupation emitters, which share one layout.
+survival, finite occupation and first-exit routing emitters, which share one
+layout. The exit family also binds the original region bytes.
 """
 from __future__ import annotations
 import argparse
@@ -18,7 +19,8 @@ from ..engines.safety import parse_safety_problem
 from ..errors import AppError
 from ..identity import canonical_bytes
 from ..strict_json import strict_read
-from . import control_emit, menu_emit, occupation_emit, residence_emit, safety_emit, survival_emit
+from . import (control_emit, exit_emit, menu_emit, occupation_emit, residence_emit,
+               safety_emit, survival_emit)
 
 # family -> (parser, emitter module, Lean file name, error-code prefix, recheck format)
 FAMILIES={
@@ -36,12 +38,20 @@ FAMILIES={
     # The occupation emitter parses the raw finite model itself.
     'occupation':(lambda raw:raw,occupation_emit,'ReifiedOccupation.lean','OCCUPATION_REIFY',
                   'Permansson.App.OccupationSourceRecheck.v1'),
+    # The exit emitter parses the raw model and region itself.
+    'exit':(lambda raw:raw,exit_emit,'ReifiedExit.lean','EXIT_REIFY',
+            'Permansson.App.ExitSourceRecheck.v1'),
 }
+# Families whose source also depends on a separate region file.
+REGION_FAMILIES={'exit'}
 
 
-def check_family(family:str,problem_path:Path,receipt_path:Path,directory:Path)->dict:
+def check_family(family:str,problem_path:Path,receipt_path:Path,directory:Path,
+                 region_path:Path|None=None)->dict:
     if family not in FAMILIES:
         raise AppError('REIFY_FAMILY','unknown source-candidate family')
+    if (region_path is not None)!=(family in REGION_FAMILIES):
+        raise AppError('REIFY_FAMILY','a region file is required exactly for region families')
     parse,emitter,lean_name,code,fmt=FAMILIES[family]
     root=directory.absolute()
     if not root.is_dir() or root.is_symlink() or any(p.is_symlink() for p in root.parents):
@@ -52,8 +62,14 @@ def check_family(family:str,problem_path:Path,receipt_path:Path,directory:Path)-
         raise AppError(code+'_PATH','candidate directory has missing/extra/symlinked contents')
     problem_raw,problem=strict_read(problem_path)
     receipt_raw,receipt=strict_read(receipt_path)
-    lean,expected=emitter.emit_source(parse(problem),receipt)
-    expected['problem_bytes_sha256']=sha256(problem_raw).hexdigest()
+    if region_path is None:
+        lean,expected=emitter.emit_source(parse(problem),receipt)
+        expected['problem_bytes_sha256']=sha256(problem_raw).hexdigest()
+    else:
+        region_raw,region=strict_read(region_path)
+        lean,expected=emitter.emit_source(parse(problem),region,receipt)
+        expected['problem_bytes_sha256']=sha256(problem_raw).hexdigest()
+        expected['region_bytes_sha256']=sha256(region_raw).hexdigest()
     expected['receipt_bytes_sha256']=sha256(receipt_raw).hexdigest()
     actual_raw,actual=strict_read(root/'source_candidate.json')
     if type(actual) is not dict or actual!=expected or actual_raw!=canonical_bytes(expected)+b'\n':
@@ -84,9 +100,11 @@ def main(argv=None)->int:
     parser.add_argument('receipt',type=Path)
     parser.add_argument('candidate',type=Path)
     parser.add_argument('--family',choices=sorted(FAMILIES),default='control-table')
+    parser.add_argument('--region',type=Path,default=None)
     args=parser.parse_args(argv)
     try:
-        print(json.dumps(check_family(args.family,args.problem,args.receipt,args.candidate),sort_keys=True))
+        print(json.dumps(check_family(args.family,args.problem,args.receipt,args.candidate,
+                                      args.region),sort_keys=True))
         return 0
     except AppError as exc:
         print(json.dumps({'ok':False,'error':{'code':exc.code,'message':str(exc)}},sort_keys=True),file=sys.stderr)
