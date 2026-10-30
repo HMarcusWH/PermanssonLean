@@ -23,7 +23,7 @@ Base: `main@3492b26707788293ca88c66637b6ba021c7e478d`, tree `9ef00ac4b2d4f928aa6
 | Fully observed finite hitting Bellman | implemented, 25 focused tests | full recurrence, admissible selected policy and all tied optimum actions; no Lean correspondence |
 | Finite almost-sure safety core | implemented, 32 focused tests | maximal descending pruning, independent stationary-witness check; excluded states may have positive survival probability |
 | Finite-horizon TV perturbation | implemented, 37 focused tests | separate exact initial-law/kernel error, complete finite killed-survival table; not long-run stability |
-| Source-bound Lean correspondence (finite α/P/U, LP, Bellman control table, safety core, residence monitors, frozen menu, killed-kernel survival) | implemented for bounded reflected instances; library built and instances replayed with pinned Lean v4.34.0 locally | instance theorems + transitive axiom audit + semantic mutations; application outputs still report `lean_status=NOT_EXECUTED` |
+| Source-bound Lean correspondence (finite α/P/U, LP, Bellman control table, safety core, residence monitors, frozen menu, killed-kernel survival, recurrent-class occupation) | implemented for bounded reflected instances; library built and instances replayed with pinned Lean v4.34.0 locally | instance theorems + transitive axiom audit + semantic mutations; application outputs still report `lean_status=NOT_EXECUTED` |
 | Lean correspondence for the other numeric profiles | **not implemented** | no Lean receipt claimed |
 | Full planned advanced engine suite | **incomplete** | no false registry activation |
 | Original 45 acceptance cases | **not newly certified** | independent research CERT remains separate |
@@ -101,6 +101,7 @@ semantic mutations to fail at the falsified obligation.
 | `finite.residence_monitor` (retryable, first-entry, avoid) | `ResidenceReceipt` | literal residence optimum of each mode over all behavioral histories, attained | 7 methods (4 positive instances, 9 mutations) | ≤2 per dimension, 1..6 transitions |
 | `finite.frozen_menu` | `MenuReceipt` | listed member values as canonical path-law probabilities; tie set exactly the listed optima; P/feasibility and undeclared generator held fixed | 7 methods (2 positive objectives, 5 mutations) | ≤2 per dimension, ≤4 members, 1..6 transitions; optimality over the declared menu only |
 | `finite.killed_kernel.survival` | `MenuReceipt` (survival tables) | complete baseline/treated tables as canonical-law survival; horizon effects; P/feasibility and undeclared generator held fixed | 4 methods (1 positive, 3 mutations) | ≤2 per dimension, 1..6 transitions; finite-horizon diagnostic only |
+| `finite.random_occupation` | `OccupationReceipt` | exact bottom classes (C10); weights as actual eventual-entry/selected-class probabilities; class laws (C11) as the actual a.s. occupation limit on each class event; whole random-limit law as the receipt's Dirac mixture (C2); mean law only its barycenter | 8 methods (2 positive, 6 mutations) | ≤2 per dimension; no GR/PR recovery or original-margin corollary |
 
 `ControlTableReceipt` failed to compile at `6eda7e9` (missing `Decidable`
 instance); it is repaired and the full Research library builds. These are
