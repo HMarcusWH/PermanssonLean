@@ -162,6 +162,14 @@
       "scientific_claims_verified": false,
       "scope": "Fully observed <=8-state finite Bellman over explicit first-entry/retryable/avoid monitors, deadlines <=8 and dwell <=4; numeric only; no through-horizon risk certificate"
     },
+    "finite.two_player_protocol.numeric.v1": {
+      "checker": "permansson_app.receipts.multiagent.check_multiagent",
+      "cli": "finite-multiagent",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact finite two-player protocol with product actions: per-player action and private-update tables, a common update and physical P (each dimension <=2, both players with the same private-state and action counts); baseline, closed-loop (treated player's mechanism replaced) and open-loop (declared anchor profile, then the replacement) joint kernels and their row total variation. P is never changed. No asymmetric types, mediated or correlated actions, private clocks, Lean or empirical game identification claim."
+    },
     "finite.typed_quotient.numeric.v1": {
       "mode": "numeric",
       "cli": "finite-quotient",

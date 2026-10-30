@@ -146,6 +146,10 @@ No application release acceptance is claimed.
 
 The finite residence and nonlinear classwise stationary-policy engines have independent exact receipt checks and bounded, explicitly scoped examples. See [`docs/NUMERIC_RESIDENCE_NONLINEAR.md`](docs/NUMERIC_RESIDENCE_NONLINEAR.md). Neither profile provides Lean replay, mathematical CERT, empirical identification or application release acceptance.
 
+### Finite two-player protocols — numeric profile
+
+`finite-multiagent` assembles an exact finite two-player protocol with product actions from per-player action and private-update tables, a common update and physical P, and computes the baseline, closed-loop (only the treated player's mechanism replaced) and open-loop (a declared anchor profile installed, then the same replacement) joint kernels and their row total variation; P is never changed. See [`docs/NUMERIC_MULTIAGENT.md`](docs/NUMERIC_MULTIAGENT.md). No asymmetric player types, mediated or correlated actions or empirical game identification.
+
 ### Rational real-algebra witnesses — numeric profile
 
 `finite-algebra` checks exact rational witnesses for four specialized profiles: seam equations and common mode (rank at most two or one), an LDLᵀ positive-semidefinite witness with the shell Schur complement, singular compatibility (a preimage with the bordered-form gap, or a kernel vector ruling out every preimage), and the Gram gap, witness and exact perturbation threshold. See [`docs/NUMERIC_ALGEBRA.md`](docs/NUMERIC_ALGEBRA.md). The identification of a strategic source with these matrices is an explicit unmet premise.

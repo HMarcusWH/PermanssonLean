@@ -63,6 +63,9 @@ def main(argv=None):
     risk=sub.add_parser('one-step-risk')
     risk.add_argument('request',type=Path)
     risk.add_argument('--output',type=Path,required=True)
+    multiagent=sub.add_parser('finite-multiagent')
+    multiagent.add_argument('request',type=Path)
+    multiagent.add_argument('--output',type=Path,required=True)
     algebra=sub.add_parser('finite-algebra')
     algebra.add_argument('request',type=Path)
     algebra.add_argument('--output',type=Path,required=True)
@@ -243,6 +246,24 @@ def main(argv=None):
                  computation_receipt=receipt,independent_check=checker)
             out=_new_output(args.output)
             for name,value in [('occupancy_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command=='finite-multiagent':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.multiagent import propose_multiagent
+            from .receipts.multiagent import check_multiagent
+            from .report import numeric_application_report
+            _,raw=strict_read(args.request)
+            validate_packaged_schema('schemas/multiagent.v1.schema.json',raw)
+            receipt=propose_multiagent(raw)
+            checker=check_multiagent(raw,receipt)
+            report=numeric_application_report(capability='finite.two_player_protocol.numeric.v1',
+                 model_semantic_identity=receipt['request_identity'],
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('multiagent_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
                 _write_json(out/name,value)
             print(json.dumps({'ok':True,'numeric_status':checker['status'],
                               'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
