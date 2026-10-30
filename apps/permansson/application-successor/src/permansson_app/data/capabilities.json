@@ -225,6 +225,14 @@
       "mode": "numeric",
       "scientific_claims_verified": false,
       "scope": "Exact adaptive control over the declared admitted blocks of a finite patch grammar (at most 8 blocks, 12 joint states, 8 transitions): before every alpha/P/U stage the controller selects one whole admitted block and its history may select a different one next time; P is never changed. The exact Bellman table over (joint state, still-inside flag) gives the survival or exit optimum over every full-history behavioral block controller, with tied optimal blocks, every frozen block value and the adaptivity gain. No downward closure, unadmitted joint block, overlap-model certificate, Lean or empirical identification claim."
+    },
+    "finite.one_step_risk_infeasibility.numeric.v1": {
+      "checker": "permansson_app.receipts.risk_infeasibility.check_risk_infeasibility",
+      "cli": "one-step-risk-infeasibility",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact Farkas certificate that the one-step risk cap of a one-step-risk request cannot be met: per-state floors (the least next-step risk over the declared feasible actions of the actual P.U rows), every attaining action, the least risk mass of any fully observed randomized policy from the initial law, and its shortfall over the cap. Refuses when a policy meets the cap. One transition only; no multi-stage, private-information, Lean or empirical identification claim."
     }
   },
   "format": "Permansson.App.Registry.AdditiveNumerical.v2",

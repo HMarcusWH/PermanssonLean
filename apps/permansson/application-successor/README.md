@@ -176,7 +176,7 @@ The finite residence and nonlinear classwise stationary-policy engines have inde
 
 ### Randomized one-step risk occupancy — numeric-only
 
-The `one-step-risk` command optimizes a bounded randomized policy over one fully observed transition of the **actual typed** finite `α/P/U` model. The independent checker reconstructs original controlled transition rows, all mass and risk constraints, exact primal/dual LP optimality and the policy implied by the certificate rather than a preferred solver vector. See [`docs/NUMERIC_RISK_OCCUPANCY.md`](docs/NUMERIC_RISK_OCCUPANCY.md). This is not multistage control, unbounded policy optimality, a Lean certificate, Exact GR/PR, or empirical identification.
+The `one-step-risk` command optimizes a bounded randomized policy over one fully observed transition of the **actual typed** finite `α/P/U` model. The independent checker reconstructs original controlled transition rows, all mass and risk constraints, exact primal/dual LP optimality and the policy implied by the certificate rather than a preferred solver vector. See [`docs/NUMERIC_RISK_OCCUPANCY.md`](docs/NUMERIC_RISK_OCCUPANCY.md). This is not multistage control, unbounded policy optimality, a Lean certificate, Exact GR/PR, or empirical identification. When the cap cannot be met, `one-step-risk-infeasibility` certifies that exactly with per-state risk floors (a normalized Farkas ray), instead of the optimum route's `RISK_NO_CERTIFICATE`.
 
 ### Bounded one-step observation-conditioned control
 

@@ -20,7 +20,7 @@ class BeliefCLI(unittest.TestCase):
         self.assertEqual(validate_packaged_schema('schemas/belief.v1.schema.json',x)['status'],'PASS')
         with tempfile.TemporaryDirectory() as td:
             d=export_extended_resources(Path(td)/'resources')
-            self.assertEqual(len(d),54)
+            self.assertEqual(len(d),55)
             self.assertIn('schemas/belief.v1.schema.json',d)
             self.assertIn('examples/belief.v1.json',d)
 
