@@ -18,9 +18,9 @@ or empirical identification.
 
 ## Built so far
 
-* 24 additive exact numeric profiles registered in `data/capabilities.json`,
+* 25 additive exact numeric profiles registered in `data/capabilities.json`,
   next to the two closed native providers (C10, C11).
-* 22 source-bound Lean bridge families under
+* 23 source-bound Lean bridge families under
   `PermanssonResearch/ApplicationBridge/`, each with an emitter, a byte
   recheck family and a pinned-Lean live replay with semantic mutations:
   finite α/P/U input, LP certificates, Bellman control table, safety core,
@@ -29,7 +29,8 @@ or empirical identification.
   finite-horizon perturbation, typed quotient, patch grammar, risk flow,
   rectangular robust nature, observe-then-act belief, CQ-1 finite
   certificate, finite metric contraction, rational algebra witnesses,
-  two-player protocols, private-stage saddles and adaptive block control.
+  two-player protocols, private-stage saddles, adaptive block control and
+  risk-cap infeasibility.
   `permansson-app lean-emit` and `lean-recheck` reach every family through
   one command.
 * Local evidence at `6b9cf13`: application suite 673/673 (Python 3.13 and
@@ -45,7 +46,7 @@ or empirical identification.
 | P1 | APP-05 | one `lean-emit` / `lean-recheck` CLI over every emitter family | done |
 | P2 | OPT-06 | one-stage private-control robust profile with a two-sided saddle certificate; `PrivateStageReceipt` identifies Research's `solvePrivateStage` value without evaluating the solver | done (`f75b8e6`, `44fff07`, `11f3d29`) |
 | P3 | OPT-09 | adaptive grammar control: admitted patch menus compiled into a shared-P control problem | done |
-| P4 | OPT-05 | risk-flow Farkas infeasibility route: no admissible policy meets the declared cap | planned |
+| P4 | OPT-05 | risk-flow Farkas infeasibility route: no admissible policy meets the declared cap | done |
 | P5 | ANA-01 | CQ-1 certificate transport under exact TV error budgets | planned |
 | P6 | REL-02 | remaining planned documentation set and a final local verification pass | planned |
 

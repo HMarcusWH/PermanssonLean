@@ -7,8 +7,8 @@ bridge emitter (Bellman control table, safety core, residence, frozen menu,
 killed-kernel survival, occupation, first-exit routing, nonlinear objective,
 perturbation, typed quotient, patch grammar, risk flow, robust nature,
 observe-then-act belief, CQ-1 certificates, finite metric contraction,
-rational algebra witnesses, two-player protocols, private-stage saddles and
-adaptive block control), which share one layout. The exit family also binds
+rational algebra witnesses, two-player protocols, private-stage saddles,
+adaptive block control and risk-cap infeasibility), which share one layout. The exit family also binds
 the original region bytes.
 """
 from __future__ import annotations
@@ -23,7 +23,7 @@ from ..engines.safety import parse_safety_problem
 from ..errors import AppError
 from ..identity import canonical_bytes
 from ..strict_json import strict_read
-from . import (adaptive_emit, algebra_emit, belief_emit, control_emit, cq1_emit, metric_emit, multiagent_emit, private_stage_emit, exit_emit, flow_emit, grammar_emit, menu_emit, nonlinear_emit,
+from . import (adaptive_emit, algebra_emit, belief_emit, control_emit, cq1_emit, metric_emit, multiagent_emit, private_stage_emit, risk_infeasibility_emit, exit_emit, flow_emit, grammar_emit, menu_emit, nonlinear_emit,
                occupation_emit, perturbation_emit, quotient_emit, residence_emit,
                robust_emit, safety_emit, survival_emit)
 
@@ -73,6 +73,8 @@ FAMILIES={
                      'Permansson.App.PrivateStageSourceRecheck.v1'),
     'adaptive':(lambda raw:raw,adaptive_emit,'ReifiedAdaptive.lean','ADAPTIVE_REIFY',
                 'Permansson.App.AdaptiveSourceRecheck.v1'),
+    'risk-infeasibility':(lambda raw:raw,risk_infeasibility_emit,'ReifiedRiskInfeasibility.lean',
+                          'RISK_INFEASIBILITY_REIFY','Permansson.App.RiskInfeasibilitySourceRecheck.v1'),
 }
 # Families whose source also depends on a separate region file.
 REGION_FAMILIES={'exit'}

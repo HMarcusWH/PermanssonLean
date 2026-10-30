@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 598,
+    "combined_inventory_rows": 603,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -491,7 +491,7 @@
       "base_state": "EXISTED_ON_MAIN",
       "candidate": {
         "state": "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
-        "sha256": "699d183d170425106260a3bbcf938042ba6afa1984883064714995e6cd85571e",
+        "sha256": "b02e7a2de85787b5b158f2a4cb1d0f91e16454fadef1a8c1958eac0010d34a0d",
         "proof": "NOT_APPLICABLE",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
@@ -1927,7 +1927,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "4f0da18f1a68370d1f42e57117d982c544695728c9a6ed833e41a40d61160437",
+        "sha256": "6700773a3260499609141657b96ad27edc39595ea7c7d53fb820654744dd9a31",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2301,7 +2301,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "3faf7778bea3ae95067c8a84bd2258217ec4e738fe330b96461795f9084b6a43",
+        "sha256": "2635e6d87c37db98b5176c948a18ee307923ce3d993cedb0bd86d197fe35add6",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -13528,7 +13528,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "2a46c2f6c70458c954cf57bee4834a348146ec13406504e4f7692c642e90f165",
+        "sha256": "a3c570b372179065c303c84f23b8f14d64982ccd5849ec983d14e0567fdab674",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -14739,7 +14739,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "570e1a1bc0d4ae1cbbfa345b220de45b7fb2343d304452397dde784eb3a9b5ba",
+        "sha256": "f782273774c9eecf603f8d79f10dc510860cae1961e9143da03448e52986045a",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -16271,6 +16271,105 @@
         "sha256": "209920a99aaa24a82176399fb167ceb56826f60d81e13b85dc784bc2f5308622",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "PermanssonResearch/ApplicationBridge/FlowInfeasibilityReceipt.lean",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [
+        "PermanssonResearch/ApplicationBridge/FlowReceipt.lean"
+      ],
+      "work_items": [
+        "OPT-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
+        "sha256": "5122a2081d4df94fb69de69ee4a8353b143a8790cfe59efe4ecf8cb1762381e6",
+        "proof": "LOCAL_LEAN_4_34_0_COMPILED_AXIOMS_AUDITED",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/proof/risk_infeasibility_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-05",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI",
+        "sha256": "dee7e67e0b3292f1f489b2092fe48521cf8d35654aa95a5760379fef5864d76e",
+        "proof": "NOT_EXECUTED_IN_APPLICATION_OUTPUT",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_risk_infeasibility_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "a3ed953531f5eefb8e7519765be0bb35ba79b87fc84a74ceda0a691959351e59",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/RISK_INFEASIBILITY_LEAN_BRIDGE.md",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "DOCUMENTATION",
+        "sha256": "5d5ebd0073586c82862ad48a04e134c564c246bad8d6217b4c6cd81d19694177",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/test_application_risk_infeasibility_live_lean.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-05",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_PINNED_LEAN_7_OF_7_PASSED_PENDING_EXACT_HEAD_CI",
+        "sha256": "57772eb2b5340f8fff86f7f6d827498d115afc7adad7349c1d4016c7bffe4e22",
+        "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       }
     }
   ],

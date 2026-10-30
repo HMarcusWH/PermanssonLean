@@ -66,3 +66,7 @@ world that is not the reconstructed policy (`policy_rows`).
 Emission and source rechecks report `lean_status: NOT_EXECUTED`. A compiler
 pass is not an authenticated proof receipt, independent mathematical
 certification, empirical identification or release approval.
+
+When the cap cannot be met, the separate infeasibility route proves it with
+per-state risk floors; see
+[`RISK_INFEASIBILITY_LEAN_BRIDGE.md`](RISK_INFEASIBILITY_LEAN_BRIDGE.md).
