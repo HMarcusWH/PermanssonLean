@@ -146,6 +146,10 @@ No application release acceptance is claimed.
 
 The finite residence and nonlinear classwise stationary-policy engines have independent exact receipt checks and bounded, explicitly scoped examples. See [`docs/NUMERIC_RESIDENCE_NONLINEAR.md`](docs/NUMERIC_RESIDENCE_NONLINEAR.md). Neither profile provides Lean replay, mathematical CERT, empirical identification or application release acceptance.
 
+### One-stage private-control robust value — numeric profile
+
+`finite-private-stage` computes the exact private-control value of a finite payoff table when nature sees the controller's mixed strategy but not the realized control: an optimal rational controller mixture and a nature mixture forming a two-sided saddle certificate, the pure-control (revealed-control) value and the randomization gain. See [`docs/NUMERIC_PRIVATE_STAGE.md`](docs/NUMERIC_PRIVATE_STAGE.md). One stage only; no multi-stage private game or empirical identification.
+
 ### Finite two-player protocols — numeric profile
 
 `finite-multiagent` assembles an exact finite two-player protocol with product actions from per-player action and private-update tables, a common update and physical P, and computes the baseline, closed-loop (only the treated player's mechanism replaced) and open-loop (a declared anchor profile installed, then the same replacement) joint kernels and their row total variation; P is never changed. See [`docs/NUMERIC_MULTIAGENT.md`](docs/NUMERIC_MULTIAGENT.md). No asymmetric player types, mediated or correlated actions or empirical game identification.

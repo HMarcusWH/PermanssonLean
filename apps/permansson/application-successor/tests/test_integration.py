@@ -26,7 +26,7 @@ class PackagedResourceTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as temp:
    d=Path(temp)/'new'
    hashes=export_extended_resources(d)
-   self.assertEqual(len(hashes),50)
+   self.assertEqual(len(hashes),52)
    for k,v in hashes.items():
     self.assertEqual(hashlib.sha256((d/k).read_bytes()).hexdigest(),v)
  def test_schema_finite(self):

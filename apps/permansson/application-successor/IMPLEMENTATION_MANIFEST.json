@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 570,
+    "combined_inventory_rows": 577,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -1226,7 +1226,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "68f54d1d257b85cf6d58093925f0e26c637e2b75503f3679d68d95b481f20266",
+        "sha256": "fc6fb220ff44a46b51db1dbccb26a2e617d1254aec73eeaa0903ccbb5518a1e0",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2635,7 +2635,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "ad3678baf362a7abdcccbdc1409394753e42f40877c3bf7db726006111848536",
+        "sha256": "b860ff363b2b2d2fb7a4d355ccbde6f4809e22df1ccbd59c836969d5b1cab25d",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -2870,7 +2870,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "9b8fdee4fc0dc11767198d6f03a59d4fa735727b3217817b1f9080f281c9c862",
+        "sha256": "f52b6e2a92ae8bdd4e44371e2790e587c729fac6ee981090d3af97f48cb28e9e",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -3006,7 +3006,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "69b77c19728f99b5f9878b64d69a136f4468f975aa53c863776474e2af28d3c1",
+        "sha256": "36a723e090f7e9c3b1aa94c2a6ff7b43eb8fbea63e23d8ef608f97c697529d4f",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -6638,7 +6638,13 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/src/permansson_app/engines/robust_nature.py",
+          "apps/permansson/application-successor/src/permansson_app/engines/private_stage.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "python_engine",
       "conditional": false,
@@ -7287,7 +7293,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "20b7e7cfdf8f37b76cc97671318ae0f592e1b3e29324796fab04ca668b50f3d5",
+        "sha256": "45608828f697959785a6f9fc011f343483fe6b808609544b0e157dc57050a642",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8739,7 +8745,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "4c6295e1ee7a4702d1f59a3636fd9b8f580bd10bb91ffd64cb64db2e8733f0fa",
+        "sha256": "1e50e4a6eefb8100270441352e1d1b1cf602a5d0ef5634f4c8e951b5071e19f4",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8868,7 +8874,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "f72e0ea0cd434db2f1c2e77a6860193d0671ba389c3429cc3cc07df55b4dc7b4",
+        "sha256": "baacb4aa96e85375d8c6ce0d1423742b5319c0d0e6c744156b3ceaaef2bddeee",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -9376,7 +9382,13 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/tests/test_robust_nature.py",
+          "apps/permansson/application-successor/tests/test_private_stage.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "Positive/negative semantic and numerical fixtures for robust_control.py",
       "conditional": false,
@@ -12585,7 +12597,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "148db76a360803727df58802ad3406494b725e9bb3be1141393515257a22cff4",
+        "sha256": "0219c4a0ffd3eafff28ce0bffce56ef7979b3d8a2dcc338416b182cff19d66a4",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -12907,7 +12919,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "cea8011fa238f38c1deed0a39e2011efd484448c109eea290066e4d1eb902b96",
+        "sha256": "09bbd09ba055361e9194ecc1334ae2ac96c950f0230b7c9775b93245265cfe26",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -12987,7 +12999,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "21ca873a2faa67caaa1bc74bea20fe9f740703a4a1493c3010f90c15bbbc0828",
+        "sha256": "4a59de559d8cb04c3f0dedc95ccd4a51e6f52c3bb97d0d4105a0ba86db1f52c3",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -15711,6 +15723,139 @@
         "sha256": "c6bb5d50e47083b25abccfe2f8d954117058e13cd328f261ea3d3ef20b552099",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/engines/private_stage.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-06"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "32ea34697a9b2209bc6f2280359995d5682e3a05ff3e5541084d2fee17e90340",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/receipts/private_stage.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-06"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "5e2c7b4f0aa7e30a22e882103ece3bd314ebf746f9e59e42e3f5d8298d01f644",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/data/schemas/private_stage.v1.schema.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-06"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "75963e3395e69a726cf4624e047827fc5ee97c8a19d2f07e2d55cf0982137a1f",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/data/examples/private_stage.v1.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-06"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "7f49f300df064ae386394cc8bbdef7d728e47618a9f35f334948d4b2b2973e25",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_private_stage.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-06"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "f09449fb058d6637d0a15c76f846211839fac1579f6736abc861271da8dea51f",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_private_stage_cli.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-06"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
+        "sha256": "013f52479a301462742da0d775d41e722c9edf1fa2accfe17290e864a86f4d01",
+        "proof": "NOT_EXECUTED",
+        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/NUMERIC_PRIVATE_STAGE.md",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-06"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "DOCUMENTATION",
+        "sha256": "0e685c639d0bc49a358a79e7de0fb13d87da3496a6760e914b0b0c09327b7908",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       }
     }
   ],

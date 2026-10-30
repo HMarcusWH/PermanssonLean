@@ -63,6 +63,9 @@ def main(argv=None):
     risk=sub.add_parser('one-step-risk')
     risk.add_argument('request',type=Path)
     risk.add_argument('--output',type=Path,required=True)
+    private_stage=sub.add_parser('finite-private-stage')
+    private_stage.add_argument('request',type=Path)
+    private_stage.add_argument('--output',type=Path,required=True)
     multiagent=sub.add_parser('finite-multiagent')
     multiagent.add_argument('request',type=Path)
     multiagent.add_argument('--output',type=Path,required=True)
@@ -246,6 +249,24 @@ def main(argv=None):
                  computation_receipt=receipt,independent_check=checker)
             out=_new_output(args.output)
             for name,value in [('occupancy_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command=='finite-private-stage':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.private_stage import propose_private_stage
+            from .receipts.private_stage import check_private_stage
+            from .report import numeric_application_report
+            _,raw=strict_read(args.request)
+            validate_packaged_schema('schemas/private_stage.v1.schema.json',raw)
+            receipt=propose_private_stage(raw)
+            checker=check_private_stage(raw,receipt)
+            report=numeric_application_report(capability='finite.private_control_stage_saddle.numeric.v1',
+                 model_semantic_identity=receipt['request_identity'],
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('private_stage_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
                 _write_json(out/name,value)
             print(json.dumps({'ok':True,'numeric_status':checker['status'],
                               'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))

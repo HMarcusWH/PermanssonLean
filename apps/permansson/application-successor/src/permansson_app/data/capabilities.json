@@ -209,6 +209,14 @@
       "mode": "numeric",
       "scientific_claims_verified": false,
       "scope": "One to three transitions; <=2 strategic and <=3 hidden world states, <=3 observations/actions. Observation before action at each stage, P then U; exhaustive bounded finite observation-history deterministic policy class with exact Bayesian joint-state beliefs, common hidden-support feasibility and independent unnormalized-flow/replayed-path verification. No general POMDP, Lean replay or empirical GR/PR identification."
+    },
+    "finite.private_control_stage_saddle.numeric.v1": {
+      "checker": "permansson_app.receipts.private_stage.check_private_stage",
+      "cli": "finite-private-stage",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact one-stage private-control robust value: nature sees the controller's mixed strategy but not the realized control (at most 4 controls and 4 nature parameters, payoffs of any sign). Exhaustive exact vertex enumeration of both programs returns an optimal rational controller mixture and a nature mixture forming a two-sided saddle certificate; the pure-control (revealed-control) value and the randomization gain are reported. No multi-stage private game, committed nature, learning, Lean or empirical identification claim."
     }
   },
   "format": "Permansson.App.Registry.AdditiveNumerical.v2",
