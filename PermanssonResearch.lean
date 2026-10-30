@@ -6,6 +6,7 @@ import PermanssonResearch.ApplicationBridge.SafetyReceipt
 import PermanssonResearch.ApplicationBridge.ResidenceReceipt
 import PermanssonResearch.ApplicationBridge.MenuReceipt
 import PermanssonResearch.ApplicationBridge.OccupationReceipt
+import PermanssonResearch.ApplicationBridge.ExitReceipt
 import PermanssonResearch.ReverseSolver.ResidenceEvent
 import PermanssonResearch.ReverseSolver.ResidenceValue
 import PermanssonResearch.ReverseSolver.ResidenceContracts
