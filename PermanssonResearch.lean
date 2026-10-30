@@ -1,3 +1,4 @@
+import PermanssonResearch.ApplicationBridge.ControlTableReceipt
 import PermanssonResearch.ApplicationBridge.LinearProgramReceipt
 import PermanssonResearch.ApplicationBridge.FiniteWorldInput
 import PermanssonResearch.ApplicationBridge.BeliefReceipt
