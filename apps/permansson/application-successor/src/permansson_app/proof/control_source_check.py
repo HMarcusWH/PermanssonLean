@@ -3,7 +3,8 @@
 This re-derives a candidate from the original problem and receipt bytes and
 compares metadata and exact Lean bytes. It is NOT a compiler, trusted source
 signer, proof kernel or release attestation. It covers the Bellman control
-table and the almost-sure safety core emitters, which share one layout.
+table, almost-sure safety core and retryable residence emitters, which share
+one layout.
 """
 from __future__ import annotations
 import argparse
@@ -17,7 +18,7 @@ from ..engines.safety import parse_safety_problem
 from ..errors import AppError
 from ..identity import canonical_bytes
 from ..strict_json import strict_read
-from . import control_emit, safety_emit
+from . import control_emit, residence_emit, safety_emit
 
 # family -> (parser, emitter module, Lean file name, error-code prefix, recheck format)
 FAMILIES={
@@ -25,6 +26,9 @@ FAMILIES={
                      'Permansson.App.ControlTableSourceRecheck.v1'),
     'safety-core':(parse_safety_problem,safety_emit,'ReifiedSafetyCore.lean','SAFETY_REIFY',
                    'Permansson.App.SafetyCoreSourceRecheck.v1'),
+    # The residence emitter re-parses and rechecks the raw request itself.
+    'residence':(lambda raw:raw,residence_emit,'ReifiedResidence.lean','RESIDENCE_REIFY',
+                 'Permansson.App.ResidenceSourceRecheck.v1'),
 }
 
 
