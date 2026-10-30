@@ -43,3 +43,38 @@ Not provided: terminal or monitor scores other than prefix survival, kernel or
 output error budgets and their transport (`CertificateTransport`), Exact GR,
 Exact PR, QSD, empirical identification, independent mathematical
 certification or release acceptance. Scope: at most 12 joint states.
+
+## Certificate transport under exact TV budgets (`finite-cq1-transport`)
+
+```bash
+permansson-app finite-cq1-transport request.json --output <new-directory>
+```
+
+The request wraps a CQ-1 request (the certified baseline and intervention)
+and an `approximate` baseline and treated model. Both share the certified
+baseline's states, feasible actions and P, and differ from each other only
+in the declared target. The receipt embeds the CQ-1 receipt and reports four
+groups of values:
+
+- the exact row total variations (half L1) between the certified and
+  approximate induced kernels, and their maxima `δ₀` (baselines) and `δJ`
+  (treated models);
+- the envelopes `e = 1 − (1 − δ)^L`;
+- the transported persistence error `min(1, η + e₀)` and margin
+  `κ − e₀ − eJ` (status `TRANSPORTED_FINITE_CONSTITUTIVE_CERTIFICATE` only
+  when that margin is positive);
+- as a consistency check, the approximate pair's own exact minimum region
+  survival and margin, which must respect the transported bound.
+
+Research's `transportFiniteConstitutiveCertificate` is the theorem behind
+this; see [`CQ1_TRANSPORT_LEAN_BRIDGE.md`](CQ1_TRANSPORT_LEAN_BRIDGE.md). The
+budgets are exact distances between declared models, not empirical error
+estimates.
+
+`receipts.cq1_transport` sends the embedded receipt through the independent
+CQ-1 checker. It sums every induced kernel directly from α, P and U and
+recomputes every value.
+
+The packaged example perturbs one α row of each model by 1/20, giving
+`δ₀ = δJ = 1/50`. The transported margin is 301/1250 against the original
+8/25, while the approximate pair's own margin is 729/2500.

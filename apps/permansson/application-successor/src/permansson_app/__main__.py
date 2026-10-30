@@ -72,6 +72,9 @@ def main(argv=None):
         lean.add_argument('--region',type=Path)
         if name=='lean-emit':lean.add_argument('--output',type=Path,required=True)
         else:lean.add_argument('--candidate',type=Path,required=True)
+    transport=sub.add_parser('finite-cq1-transport')
+    transport.add_argument('request',type=Path)
+    transport.add_argument('--output',type=Path,required=True)
     infeasible=sub.add_parser('one-step-risk-infeasibility')
     infeasible.add_argument('request',type=Path)
     infeasible.add_argument('--output',type=Path,required=True)
@@ -274,6 +277,25 @@ def main(argv=None):
             else:
                 result=recheck(args.family,args.request,args.receipt,args.candidate,args.region)
             print(json.dumps({'ok':True,'family':args.family,'result':result},sort_keys=True))
+        elif args.command=='finite-cq1-transport':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.cq1_transport import propose_cq1_transport
+            from .receipts.cq1_transport import check_cq1_transport
+            from .report import numeric_application_report
+            _,raw=strict_read(args.request)
+            validate_packaged_schema('schemas/cq1_transport.v1.schema.json',raw)
+            receipt=propose_cq1_transport(raw)
+            checker=check_cq1_transport(raw,receipt)
+            report=numeric_application_report(capability='finite.cq1_certificate_transport.numeric.v1',
+                 model_semantic_identity=receipt['request_identity'],
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('cq1_transport_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                              'transport_status':receipt['transport_status'],
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
         elif args.command=='one-step-risk-infeasibility':
             from .strict_json import strict_read
             from .schema_validate import validate_packaged_schema

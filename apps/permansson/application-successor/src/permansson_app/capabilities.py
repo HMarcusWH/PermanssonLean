@@ -35,7 +35,8 @@ def registry():
         'finite.two_player_protocol.numeric.v1',
         'finite.private_control_stage_saddle.numeric.v1',
         'finite.adaptive_block_control.numeric.v1',
-        'finite.one_step_risk_infeasibility.numeric.v1'}):
+        'finite.one_step_risk_infeasibility.numeric.v1',
+        'finite.cq1_certificate_transport.numeric.v1'}):
         raise AppError('REGISTRY','unknown or missing additive numeric profile')
     for name,entry in extra.items():
         if type(entry) is not dict or entry.get('mode')!='numeric' or entry.get('scientific_claims_verified') is not False or entry.get('lean_status')!='NOT_EXECUTED':

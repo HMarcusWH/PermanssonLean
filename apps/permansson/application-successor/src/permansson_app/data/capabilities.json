@@ -233,6 +233,14 @@
       "mode": "numeric",
       "scientific_claims_verified": false,
       "scope": "Exact Farkas certificate that the one-step risk cap of a one-step-risk request cannot be met: per-state floors (the least next-step risk over the declared feasible actions of the actual P.U rows), every attaining action, the least risk mass of any fully observed randomized policy from the initial law, and its shortfall over the cap. Refuses when a policy meets the cap. One transition only; no multi-stage, private-information, Lean or empirical identification claim."
+    },
+    "finite.cq1_certificate_transport.numeric.v1": {
+      "checker": "permansson_app.receipts.cq1_transport.check_cq1_transport",
+      "cli": "finite-cq1-transport",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact transport of a finite CQ-1 certificate to a declared approximate baseline/treated pair sharing the states, feasible actions and P: one-step budgets are the exact maximal row total variations between the certified and approximate induced kernels, the geometric envelopes 1-(1-delta)^L give the transported persistence error min(1, eta+e0) and margin kappa-e0-eJ (transported only when positive), and the approximate pair's own exact values are reported as a consistency check. Budgets are exact distances between declared models, not empirical error estimates; no Exact GR/PR, QSD, Lean or empirical identification claim."
     }
   },
   "format": "Permansson.App.Registry.AdditiveNumerical.v2",

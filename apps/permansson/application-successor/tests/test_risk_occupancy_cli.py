@@ -28,7 +28,7 @@ class OneStepRiskCLI(unittest.TestCase):
         self.assertEqual(validate_packaged_schema('schemas/risk_occupancy.v1.schema.json',raw)['status'],'PASS')
         with tempfile.TemporaryDirectory() as td:
             names=export_extended_resources(Path(td)/'schemas')
-            self.assertEqual(len(names),55)
+            self.assertEqual(len(names),57)
             self.assertIn('schemas/risk_occupancy.v1.schema.json',names)
             self.assertIn('examples/risk_occupancy.v1.json',names)
 

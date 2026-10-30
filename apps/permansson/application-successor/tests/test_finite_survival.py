@@ -103,6 +103,6 @@ class AdvertisedScopeTests(unittest.TestCase):
   from permansson_app.capabilities import registry
   r=registry()
   self.assertEqual(len(r['capabilities']),2)
-  self.assertEqual(len(r['exact_profiles']),25)
+  self.assertEqual(len(r['exact_profiles']),26)
   self.assertTrue(all(v['lean_status']=='NOT_EXECUTED' and v['scientific_claims_verified'] is False
                       for v in r['exact_profiles'].values()))

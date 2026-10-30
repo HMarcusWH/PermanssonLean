@@ -168,7 +168,7 @@ The finite residence and nonlinear classwise stationary-policy engines have inde
 
 ### Finite CQ-1 constitutive certificate — numeric profile
 
-`finite-cq1` computes, for one declared strategic `α/U` intervention with P held fixed, the region-wide finite persistence gate (killed survival from every region state, not only the comparison set), prefix-survival effects on a comparison set of at least two states and their uniform margin, and reports a finite constitutive certificate only when the gate passes and the margin is positive. An independent rational checker recomputes every value. See [`docs/NUMERIC_CQ1.md`](docs/NUMERIC_CQ1.md). This is **not** an Exact GR/PR, QSD, error-budget or empirical certificate.
+`finite-cq1` computes, for one declared strategic `α/U` intervention with P held fixed, the region-wide finite persistence gate (killed survival from every region state, not only the comparison set), prefix-survival effects on a comparison set of at least two states and their uniform margin, and reports a finite constitutive certificate only when the gate passes and the margin is positive. An independent rational checker recomputes every value. See [`docs/NUMERIC_CQ1.md`](docs/NUMERIC_CQ1.md). This is **not** an Exact GR/PR, QSD, error-budget or empirical certificate. `finite-cq1-transport` transports a checked certificate to a declared approximate pair sharing P, under exact row-TV budgets (Research's `transportFiniteConstitutiveCertificate`).
 
 ### Exact finite robust nature chronology — numeric-only
 
