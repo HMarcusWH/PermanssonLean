@@ -107,28 +107,16 @@ def _terms(model: FiniteWorld):
     }
 
 
-def emit_source(model: FiniteWorld) -> tuple[str, dict]:
+def input_definition(model: FiniteWorld) -> tuple[list[str], tuple[int, int, int], list[dict]]:
+    """Lean `def input : FiniteWorldInput ...` lines with per-row proofs.
+
+    Shared by every emitter that binds a theorem to the same reflected source,
+    so the primitive rows and their extensions are never restated differently.
+    """
     if type(model) is not FiniteWorld:
         raise AppError('REIFICATION_TYPE', 'parsed finite strategic-world model required')
     ns, nx, na, extensions, terms = _terms(model)
-    semantic = model.semantic_id()
-    kernel = induced_kernel(model)
     lines = [
-        'import PermanssonResearch.ApplicationBridge.FiniteWorldInput',
-        'import Mathlib.Tactic',
-        '',
-        '/-! Exact finite application instance. Generated source only.',
-        f'    Source semantic SHA-256: {semantic["sha256"]}',
-        '    Infeasible P/U entries are normalized Dirac extensions.',
-        '    No empirical identification, external model correspondence,',
-        '    global control optimality, or release certification is asserted.',
-        '-/',
-        '',
-        'namespace PermanssonResearch.ApplicationBridge.ReifiedFiniteWorld',
-        'set_option autoImplicit false',
-        'set_option maxRecDepth 8192',
-        'set_option maxHeartbeats 0',
-        '',
         f'def input : FiniteWorldInput {ns} {nx} {na} where',
         f'  feasible := fun s x a => ({terms["feasible"]}) = true',
         f'  alpha := fun s x a => {terms["alpha"]}',
@@ -155,6 +143,31 @@ def emit_source(model: FiniteWorld) -> tuple[str, dict]:
         '  update_sum_one := by',
         '    intro s x a xp',
         '    fin_cases s <;> fin_cases x <;> fin_cases a <;> fin_cases xp <;> norm_num [Fin.sum_univ_succ]',
+    ]
+    return lines, (ns, nx, na), extensions
+
+
+def emit_source(model: FiniteWorld) -> tuple[str, dict]:
+    input_lines, (ns, nx, na), extensions = input_definition(model)
+    semantic = model.semantic_id()
+    kernel = induced_kernel(model)
+    lines = [
+        'import PermanssonResearch.ApplicationBridge.FiniteWorldInput',
+        'import Mathlib.Tactic',
+        '',
+        '/-! Exact finite application instance. Generated source only.',
+        f'    Source semantic SHA-256: {semantic["sha256"]}',
+        '    Infeasible P/U entries are normalized Dirac extensions.',
+        '    No empirical identification, external model correspondence,',
+        '    global control optimality, or release certification is asserted.',
+        '-/',
+        '',
+        'namespace PermanssonResearch.ApplicationBridge.ReifiedFiniteWorld',
+        'set_option autoImplicit false',
+        'set_option maxRecDepth 8192',
+        'set_option maxHeartbeats 0',
+        '',
+        *input_lines,
         '',
         '/-- Complete finite joint-state row normalization follows from',
         '    individually reflected stochastic alpha/P/U primitives. -/',

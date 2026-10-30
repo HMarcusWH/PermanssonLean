@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 457,
+    "combined_inventory_rows": 461,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -590,7 +590,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
+        "sha256": "f2c8aea377358fd97ab8cd88146d71dd40bae8e265b3a9baf49dea032b7be2cb",
+        "proof": "LOCAL_LEAN_4_34_0_COMPILED_AXIOMS_AUDITED",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
       "classification": "lean_bridge",
       "conditional": false,
@@ -7419,7 +7422,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI",
+        "sha256": "39e35c6f3e7a4bb564cc085c1cfcd57e1b9d0279f77318a83efdbe4413423531",
+        "proof": "NOT_EXECUTED_IN_APPLICATION_OUTPUT",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
       "classification": "python_proof_emitter",
       "conditional": false,
@@ -7464,12 +7470,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "LOCAL_TESTED_SOURCE_CANDIDATE",
-        "sha256": "a698c87a23cae552b5e483235c71197ba804ef140ab0bbc627f03970210c0952",
-        "git_blob_sha": "4179b0c6205dce1f695d021843200b4cd45b7c33",
+        "state": "LOCAL_TESTED_OUTPUT_BYTE_IDENTICAL_AFTER_REFACTOR_PENDING_EXACT_HEAD_CI",
+        "sha256": "77f915d3666095ee3be444df8b48c421e1301f333cc274959a9a7738949735ed",
         "proof": "NOT_EXECUTED",
-        "independent_security_review": false,
-        "release_authorized": false
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
       "classification": "python_proof_emitter",
       "conditional": false,
@@ -13293,6 +13297,89 @@
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/proof/control_source_check.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-01",
+        "OPT-02",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "15bf777b211ab1f45f84f17823eb5c042c45799381eadcc849865bc420701445",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_control_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-01",
+        "OPT-02",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "b5a96aa4fe364c618a1de1cf2e5a3931f3a263221a25724710248a56aaf90916",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/CONTROL_TABLE_LEAN_BRIDGE.md",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-01",
+        "OPT-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "DOCUMENTATION",
+        "sha256": "1d9569ecfb3aa4acbffa7f4a89bb362e03a77910d7f64f53e7996f66119725fa",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/test_application_control_table_live_lean.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-01",
+        "OPT-02",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_PINNED_LEAN_8_OF_8_PASSED_PENDING_EXACT_HEAD_CI",
+        "sha256": "a942f1c7be297a80205483963bca7cb9ca86eabbcb27dc8ed329dc6909d567c9",
+        "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
     }
   ],
   "format": "Permansson.App.AuthoritativeSourceReconciliation.v1",
@@ -13339,6 +13426,27 @@
     "real_farkas_theorem": "PENDING_PINNED_LEAN_COMPILATION",
     "real_negative_mutations": "PENDING_PINNED_LEAN_COMPILATION",
     "source_head_exact_installed_distribution": "NOT_QUALIFIED",
+    "independent_mathematical_certification": false,
+    "release_authorized": false,
+    "historic_archive_closure": "UNALTERED_FAIL_CLOSED_REVIEW_REQUIRED"
+  },
+  "round16_control_table_lean": {
+    "base_head": "6eda7e9482aff2277f4c94eff2fc077b397ed214",
+    "repair": "ControlTableReceipt Decidable instance (Research Lean build failed at base_head)",
+    "lean_toolchain": "leanprover/lean4:v4.34.0 with mathlib cache at lake-manifest revision",
+    "research_library_build": "LOCAL_PASS_4500_JOBS",
+    "bound_control_system": "boundControlSystem over FiniteWorldInput; AdmittedExactly feasible actions",
+    "live_lean_tests_passed": 8,
+    "semantic_negative_mutations": [
+      "false value",
+      "strictly suboptimal admitted action",
+      "infeasible selected action",
+      "false terminal event",
+      "reversed time direction",
+      "admitted infeasible action"
+    ],
+    "reflection_scope": "ns,nx,na <= 2; 1..6 transitions",
+    "github_ci_at_new_head": "PENDING",
     "independent_mathematical_certification": false,
     "release_authorized": false,
     "historic_archive_closure": "UNALTERED_FAIL_CLOSED_REVIEW_REQUIRED"
