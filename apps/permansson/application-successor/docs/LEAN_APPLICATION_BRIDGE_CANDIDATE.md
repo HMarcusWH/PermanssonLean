@@ -29,7 +29,10 @@ has been reified into Lean and replayed with authentic compiler evidence.
   common feasibility on all reachable positive-posterior states.
 - The existing `ReverseSolver.Belief` library uses the *different* chronology
   action → transition → observation. No unproved equivalence between these
-  models is introduced.
+  models is introduced. `BeliefTreeReceipt.lean` instead constructs an
+  explicit Research model with a one-step time shift (identity transition at
+  time 0, reflected α/P/U rows afterwards) and states its theorems for that
+  model's chronological law; see `BELIEF_LEAN_BRIDGE.md`.
 
 ## Proof boundaries
 

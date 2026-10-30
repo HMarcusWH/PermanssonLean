@@ -1,0 +1,362 @@
+{
+  "format": "Permansson.App.FiniteBeliefTreeRequest.v1",
+  "horizon": 3,
+  "likelihoods": [
+    {
+      "weights": {
+        "alarm": "1/4",
+        "quiet": "3/4",
+        "silent": "0"
+      },
+      "x": "ok"
+    },
+    {
+      "weights": {
+        "alarm": "1/2",
+        "quiet": "0",
+        "silent": "1/2"
+      },
+      "x": "bad"
+    }
+  ],
+  "model": {
+    "P": [
+      {
+        "a": "wait",
+        "s": "s0",
+        "weights": {
+          "bad": "1/4",
+          "ok": "3/4"
+        },
+        "x": "ok"
+      },
+      {
+        "a": "fix",
+        "s": "s0",
+        "weights": {
+          "bad": "1/2",
+          "ok": "1/2"
+        },
+        "x": "ok"
+      },
+      {
+        "a": "fix",
+        "s": "s0",
+        "weights": {
+          "bad": "1",
+          "ok": "0"
+        },
+        "x": "bad"
+      },
+      {
+        "a": "wait",
+        "s": "s1",
+        "weights": {
+          "bad": "1/2",
+          "ok": "1/2"
+        },
+        "x": "ok"
+      },
+      {
+        "a": "fix",
+        "s": "s1",
+        "weights": {
+          "bad": "0",
+          "ok": "1"
+        },
+        "x": "ok"
+      },
+      {
+        "a": "wait",
+        "s": "s1",
+        "weights": {
+          "bad": "1",
+          "ok": "0"
+        },
+        "x": "bad"
+      },
+      {
+        "a": "fix",
+        "s": "s1",
+        "weights": {
+          "bad": "0",
+          "ok": "1"
+        },
+        "x": "bad"
+      }
+    ],
+    "U": [
+      {
+        "a": "wait",
+        "s": "s0",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "ok",
+        "xp": "ok"
+      },
+      {
+        "a": "wait",
+        "s": "s0",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "ok",
+        "xp": "bad"
+      },
+      {
+        "a": "fix",
+        "s": "s0",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "ok",
+        "xp": "ok"
+      },
+      {
+        "a": "fix",
+        "s": "s0",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "ok",
+        "xp": "bad"
+      },
+      {
+        "a": "fix",
+        "s": "s0",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "bad",
+        "xp": "ok"
+      },
+      {
+        "a": "fix",
+        "s": "s0",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "bad",
+        "xp": "bad"
+      },
+      {
+        "a": "wait",
+        "s": "s1",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "ok",
+        "xp": "ok"
+      },
+      {
+        "a": "wait",
+        "s": "s1",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "ok",
+        "xp": "bad"
+      },
+      {
+        "a": "fix",
+        "s": "s1",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "ok",
+        "xp": "ok"
+      },
+      {
+        "a": "fix",
+        "s": "s1",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "ok",
+        "xp": "bad"
+      },
+      {
+        "a": "wait",
+        "s": "s1",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "bad",
+        "xp": "ok"
+      },
+      {
+        "a": "wait",
+        "s": "s1",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "bad",
+        "xp": "bad"
+      },
+      {
+        "a": "fix",
+        "s": "s1",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "bad",
+        "xp": "ok"
+      },
+      {
+        "a": "fix",
+        "s": "s1",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        },
+        "x": "bad",
+        "xp": "bad"
+      }
+    ],
+    "alpha": [
+      {
+        "s": "s0",
+        "weights": {
+          "fix": "0",
+          "wait": "1"
+        },
+        "x": "ok"
+      },
+      {
+        "s": "s0",
+        "weights": {
+          "fix": "1",
+          "wait": "0"
+        },
+        "x": "bad"
+      },
+      {
+        "s": "s1",
+        "weights": {
+          "fix": "0",
+          "wait": "1"
+        },
+        "x": "ok"
+      },
+      {
+        "s": "s1",
+        "weights": {
+          "fix": "0",
+          "wait": "1"
+        },
+        "x": "bad"
+      }
+    ],
+    "feasible": [
+      {
+        "actions": [
+          "wait",
+          "fix"
+        ],
+        "s": "s0",
+        "x": "ok"
+      },
+      {
+        "actions": [
+          "fix"
+        ],
+        "s": "s0",
+        "x": "bad"
+      },
+      {
+        "actions": [
+          "wait",
+          "fix"
+        ],
+        "s": "s1",
+        "x": "ok"
+      },
+      {
+        "actions": [
+          "wait",
+          "fix"
+        ],
+        "s": "s1",
+        "x": "bad"
+      }
+    ],
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "actions": [
+        "wait",
+        "fix"
+      ],
+      "strategic": [
+        "s0",
+        "s1"
+      ],
+      "world": [
+        "ok",
+        "bad"
+      ]
+    }
+  },
+  "observations": [
+    "quiet",
+    "alarm",
+    "silent"
+  ],
+  "prior": [
+    {
+      "mass": "1/2",
+      "s": "s0",
+      "x": "ok"
+    },
+    {
+      "mass": "1/4",
+      "s": "s0",
+      "x": "bad"
+    },
+    {
+      "mass": "1/4",
+      "s": "s1",
+      "x": "ok"
+    },
+    {
+      "mass": "0",
+      "s": "s1",
+      "x": "bad"
+    }
+  ],
+  "terminal_rewards": [
+    {
+      "s": "s0",
+      "value": "1",
+      "x": "ok"
+    },
+    {
+      "s": "s0",
+      "value": "0",
+      "x": "bad"
+    },
+    {
+      "s": "s1",
+      "value": "2",
+      "x": "ok"
+    },
+    {
+      "s": "s1",
+      "value": "0",
+      "x": "bad"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 525,
+    "combined_inventory_rows": 531,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -491,7 +491,7 @@
       "base_state": "EXISTED_ON_MAIN",
       "candidate": {
         "state": "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
-        "sha256": "bbe673c57e7d817ec69bb654028b1146b8cc40fdf628aaeaeb212c5181bdb4b1",
+        "sha256": "89bc17024d1426b2edf34eab4912a8830d93a3a8a4aea38c68c821cd10ab7076",
         "proof": "NOT_APPLICABLE",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       },
@@ -1918,7 +1918,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "8decce605aea1ef92c83df4a711bcbed157bc322c4667bbf488472a4ab911096",
+        "sha256": "9e3d9cc6cf7ad24f3f599f3e85b855390c78ef5d14aa42db27275f7a21243369",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -13014,10 +13014,10 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_STATIC_REVIEW_PENDING_PINNED_CI",
-        "sha256": "8fe78425ff50cac4743c7e3b2d068d924701de3d2a8118711250a2256abee971",
-        "proof": "NOT_EXECUTED",
-        "trust": "NO_CERTIFICATION_OR_RELEASE_PROMOTION"
+        "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
+        "sha256": "f10b7013ce1fa5d2f585389e33f3b667e5d0036adab9b5df6a9dfcb233a36385",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       }
     },
     {
@@ -13350,7 +13350,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "f1a673f90082763b730c174edffa46f3cee7efd0ce933f78bc8cfb6f14d1c7da",
+        "sha256": "103b990ed2b06a8847898f69c7b453b61cc6678a85b4e0540c57739d8a64d1fd",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -14681,6 +14681,126 @@
         "sha256": "033fed1e9135ecc3af154e3b629e26be55349a30eb49d80a3ae367bef921bf89",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "PermanssonResearch/ApplicationBridge/BeliefTreeReceipt.lean",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [
+        "PermanssonResearch/ApplicationBridge/ControlTableReceipt.lean",
+        "PermanssonResearch/ApplicationBridge/BeliefReceipt.lean",
+        "PermanssonResearch/ReverseSolver/BeliefHistory.lean"
+      ],
+      "work_items": [
+        "OPT-07"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI",
+        "sha256": "77fa39a8083535354a4cd5df5a8ef457a11a7e9eb3dc7a72871ea81839d97519",
+        "proof": "LOCAL_LEAN_4_34_0_COMPILED_AXIOMS_AUDITED",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/proof/belief_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-07",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI",
+        "sha256": "ad342cd5fdce0e0737863d8205bbec0b3a5523e06f774ca7660d765e09acc033",
+        "proof": "NOT_EXECUTED_IN_APPLICATION_OUTPUT",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_belief_emit.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-07"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "a0b225e5c1149f90050d591fedf4ced4663009c399e9fc8f7c7e5538ff876093",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/belief_tree_restricted.v1.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-07"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "TEST_FIXTURE",
+        "sha256": "fcfc962bafbea2d074e6aca2187548f5eca6907a9166286972ef69ba09c82f74",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/BELIEF_LEAN_BRIDGE.md",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-07"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "DOCUMENTATION",
+        "sha256": "37f42d2caf51207b33d7442daccba7e5c54ff3b51e372779785927c822629aba",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/test_application_belief_live_lean.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-07",
+        "APP-05"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_PINNED_LEAN_11_OF_11_PASSED_PENDING_EXACT_HEAD_CI",
+        "sha256": "6e66e7f922fc2a099982a1db8846af4d8e23963b17756c3b713fbb3254ea1708",
+        "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
+        "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       }
     }
   ],
