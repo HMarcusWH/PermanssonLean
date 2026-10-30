@@ -113,6 +113,54 @@ theorem checked_tied_exactly_listed_optima (members : Fin k → RationalMarkovMa
   rw [htied i]
   simp only [hval]
 
+/-- The exact objective of any fixed matrix is the actual canonical-law
+    probability of the declared event (or its complement for survival). -/
+theorem menuObjective_canonical (survival : Bool) (M : RationalMarkovMatrix n)
+    (region : Finset (Fin n)) (horizon : ℕ) (start : Fin n) :
+    (menuObjective survival M region horizon start : ℝ) =
+      if survival then
+        1 - hittingValue (rationalTargetAsFrozen (exitTarget region))
+          (rationalFiniteKernel M) start horizon
+      else
+        hittingValue (rationalTargetAsFrozen (exitTarget region))
+          (rationalFiniteKernel M) start horizon := by
+  rw [← rationalHittingValue_eq_canonical_all_horizons]
+  unfold menuObjective
+  cases survival <;> simp
+
+/-! ## Killed-kernel survival tables -/
+
+/-- A complete survival table: entry `t y` is the probability of staying in
+    `region` at observation times `0..t` from `y`, for every `t ≤ horizon`. -/
+def SurvivalTableChecks (M : RationalMarkovMatrix n) (region : Finset (Fin n))
+    (horizon : ℕ) (table : ℕ → Fin n → ℚ) : Prop :=
+  ∀ t : Fin (horizon + 1), ∀ y : Fin n,
+    table t.val y = menuObjective true M region t.val y
+
+instance (M : RationalMarkovMatrix n) (region : Finset (Fin n)) (horizon : ℕ)
+    (table : ℕ → Fin n → ℚ) : Decidable (SurvivalTableChecks M region horizon table) := by
+  unfold SurvivalTableChecks
+  infer_instance
+
+def checkSurvivalTable (M : RationalMarkovMatrix n) (region : Finset (Fin n))
+    (horizon : ℕ) (table : ℕ → Fin n → ℚ) : Bool :=
+  decide (SurvivalTableChecks M region horizon table)
+
+/-- Every checked entry is one minus the canonical-law probability of having
+    left `region` by that time. -/
+theorem checked_survival_table_canonical (M : RationalMarkovMatrix n)
+    (region : Finset (Fin n)) (horizon : ℕ) (table : ℕ → Fin n → ℚ)
+    (h : checkSurvivalTable M region horizon table = true)
+    (t : ℕ) (ht : t ≤ horizon) (y : Fin n) :
+    (table t y : ℝ) =
+      1 - hittingValue (rationalTargetAsFrozen (exitTarget region))
+        (rationalFiniteKernel M) y t := by
+  unfold checkSurvivalTable at h
+  have hentry := of_decide_eq_true h ⟨t, Nat.lt_succ_of_le ht⟩ y
+  simp only at hentry
+  rw [hentry, menuObjective_canonical]
+  simp
+
 /-- A listed member keeps the baseline's feasible-action relation and world
     kernel P; only α and U may differ. -/
 def HeldFixed {ns nx na : ℕ} (base w : FiniteWorldInput ns nx na) : Prop :=
