@@ -26,9 +26,11 @@ rectangular nature, and its value under each single committed model;
   strategy, and some nature strategy holds every behavioral controller to it,
   on the actual chronological product law.
 
-Not implemented from the planned spec: the private-stage certificate route
-and committed-game optimality (the committed comparison is for the declared
-fixed policy only).
+The private-stage certificate route, in which nature sees the mixture but not
+the realized control, is a separate profile and bridge; see
+[`PRIVATE_STAGE_LEAN_BRIDGE.md`](PRIVATE_STAGE_LEAN_BRIDGE.md). Not
+implemented: committed-game optimality (the committed comparison is for the
+declared fixed policy only).
 
 ## Source emission and replay
 
