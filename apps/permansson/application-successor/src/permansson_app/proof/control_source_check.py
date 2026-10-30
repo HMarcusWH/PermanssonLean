@@ -4,8 +4,8 @@ This re-derives a candidate from the original problem and receipt bytes and
 compares metadata and exact Lean bytes. It is NOT a compiler, trusted source
 signer, proof kernel or release attestation. It covers the Bellman control
 table, almost-sure safety core, residence, frozen-menu, killed-kernel
-survival, finite occupation and first-exit routing emitters, which share one
-layout. The exit family also binds the original region bytes.
+survival, finite occupation, first-exit routing and nonlinear classwise objective
+emitters, which share one layout. The exit family also binds the original region bytes.
 """
 from __future__ import annotations
 import argparse
@@ -19,8 +19,8 @@ from ..engines.safety import parse_safety_problem
 from ..errors import AppError
 from ..identity import canonical_bytes
 from ..strict_json import strict_read
-from . import (control_emit, exit_emit, menu_emit, occupation_emit, residence_emit,
-               safety_emit, survival_emit)
+from . import (control_emit, exit_emit, menu_emit, nonlinear_emit, occupation_emit,
+               residence_emit, safety_emit, survival_emit)
 
 # family -> (parser, emitter module, Lean file name, error-code prefix, recheck format)
 FAMILIES={
@@ -41,6 +41,8 @@ FAMILIES={
     # The exit emitter parses the raw model and region itself.
     'exit':(lambda raw:raw,exit_emit,'ReifiedExit.lean','EXIT_REIFY',
             'Permansson.App.ExitSourceRecheck.v1'),
+    'nonlinear':(lambda raw:raw,nonlinear_emit,'ReifiedNonlinear.lean','NONLINEAR_REIFY',
+                 'Permansson.App.NonlinearSourceRecheck.v1'),
 }
 # Families whose source also depends on a separate region file.
 REGION_FAMILIES={'exit'}

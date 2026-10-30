@@ -53,6 +53,28 @@ def _finset(indices,dimension:int)->str:
     return '({'+', '.join(str(i) for i in indices)+'} : Finset (Fin '+str(dimension)+'))'
 
 
+def bound_system_lines(feasible:list[list[int]],ns:int,nx:int,na:int)->list[str]:
+    """`options`, `options_exact`, `states_pos` and `sys := boundControlSystem input ...`.
+
+    Shared by emitters whose controls are the reflected feasible actions.
+    """
+    N=ns*nx
+    dim=f'({ns} * {nx})'
+    options=_fin_case('y',[_finset(indices,na) for indices in feasible],N)
+    return [
+        f'def options : Fin {dim} → Finset (Fin {na}) := fun y => {options}',
+        '',
+        '/-- Admitted controls are exactly the reflected feasible actions. -/',
+        'theorem options_exact : AdmittedExactly input options := by',
+        '  unfold AdmittedExactly',
+        '  simp only [input]',
+        '  decide',
+        f'theorem states_pos : 0 < {ns} * {nx} := by norm_num','',
+        f'def sys : FiniteControlSystem (Fin {na}) {dim} :=',
+        '  boundControlSystem input options options_exact states_pos','',
+    ]
+
+
 def emit_source(problem:HittingProblem,receipt:dict)->tuple[str,dict]:
     if type(problem) is not HittingProblem or type(receipt) is not dict:
         raise AppError('CONTROL_REIFY_INPUT','parsed hitting problem and raw Bellman receipt required')
@@ -79,7 +101,6 @@ def emit_source(problem:HittingProblem,receipt:dict)->tuple[str,dict]:
     value_rows=[state_row([rational_expr(v) for v in row]) for row in values]
     choice_rows=[state_row([f'({a} : Fin {na})' for a in row]) for row in chosen]
     fill_row=state_row([f'({a} : Fin {na})' for a in fill])
-    options=state_row([_finset(indices,na) for indices in feasible])
     soundness=('(checkBellmanReceipt_sound_of_finite_world input options options_exact states_pos\n'
                f'    target {H} values chosen receipt_checked)')
     lines=[
@@ -101,16 +122,7 @@ def emit_source(problem:HittingProblem,receipt:dict)->tuple[str,dict]:
         'set_option maxRecDepth 8192',
         'set_option maxHeartbeats 0','',
         *input_lines,'',
-        f'def options : Fin {dim} → Finset (Fin {na}) := fun y => {options}',
-        '',
-        '/-- Admitted controls are exactly the reflected feasible actions. -/',
-        'theorem options_exact : AdmittedExactly input options := by',
-        '  unfold AdmittedExactly',
-        '  simp only [input]',
-        '  decide',
-        f'theorem states_pos : 0 < {ns} * {nx} := by norm_num','',
-        f'def sys : FiniteControlSystem (Fin {na}) {dim} :=',
-        '  boundControlSystem input options options_exact states_pos','',
+        *bound_system_lines(feasible,ns,nx,na),
         f'def target : RationalHittingTarget {dim} where',
         f'  goal := {_finset(problem.goal,N)}',
         f'  forbidden := {_finset(problem.forbidden,N)}',
