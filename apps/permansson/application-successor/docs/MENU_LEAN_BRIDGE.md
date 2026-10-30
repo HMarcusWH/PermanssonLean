@@ -60,3 +60,22 @@ Emission and source rechecks report `lean_status: NOT_EXECUTED`. A compiler
 pass is not an authenticated proof receipt, independent mathematical
 certification, a claim about undeclared interventions, empirical
 identification or release approval.
+
+## Killed-kernel survival comparisons (`finite-survival`)
+
+The same module checks complete survival tables: `SurvivalTableChecks` /
+`checkSurvivalTable` decide that entry `t y` equals the probability of staying
+in the region at observation times `0..t` from `y` for every `t ≤ horizon`, and
+`checked_survival_table_canonical` (via the factored `menuObjective_canonical`)
+identifies each entry with one minus the canonical-law probability of having
+left the region by `t`.
+
+`proof.survival_emit` reflects the baseline and treated inputs, proves the
+treated model holds P, feasibility and the undeclared generator fixed, checks
+both complete tables, and states each comparison state's horizon effect
+(baseline minus treated) as a difference of canonical-law survival
+probabilities. This is a finite-horizon diagnostic only: no exact invariance,
+GR/PR classification, QSD or forecast. Source recheck family: `survival`.
+`verification/research/test_application_survival_live_lean.py` replays the
+packaged comparison and rejects a false table entry, a false region and a
+treated model whose undeclared U row differs from the baseline.

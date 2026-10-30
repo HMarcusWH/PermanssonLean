@@ -3,8 +3,8 @@
 This re-derives a candidate from the original problem and receipt bytes and
 compares metadata and exact Lean bytes. It is NOT a compiler, trusted source
 signer, proof kernel or release attestation. It covers the Bellman control
-table, almost-sure safety core, residence and frozen-menu emitters, which
-share one layout.
+table, almost-sure safety core, residence, frozen-menu and killed-kernel
+survival emitters, which share one layout.
 """
 from __future__ import annotations
 import argparse
@@ -18,7 +18,7 @@ from ..engines.safety import parse_safety_problem
 from ..errors import AppError
 from ..identity import canonical_bytes
 from ..strict_json import strict_read
-from . import control_emit, menu_emit, residence_emit, safety_emit
+from . import control_emit, menu_emit, residence_emit, safety_emit, survival_emit
 
 # family -> (parser, emitter module, Lean file name, error-code prefix, recheck format)
 FAMILIES={
@@ -31,6 +31,8 @@ FAMILIES={
                  'Permansson.App.ResidenceSourceRecheck.v1'),
     'menu':(lambda raw:raw,menu_emit,'ReifiedMenu.lean','MENU_REIFY',
             'Permansson.App.MenuSourceRecheck.v1'),
+    'survival':(lambda raw:raw,survival_emit,'ReifiedSurvival.lean','SURVIVAL_REIFY',
+                'Permansson.App.SurvivalSourceRecheck.v1'),
 }
 
 
