@@ -2,6 +2,7 @@ import PermanssonResearch.ApplicationBridge.ControlTableReceipt
 import PermanssonResearch.ApplicationBridge.LinearProgramReceipt
 import PermanssonResearch.ApplicationBridge.FiniteWorldInput
 import PermanssonResearch.ApplicationBridge.BeliefReceipt
+import PermanssonResearch.ApplicationBridge.SafetyReceipt
 import PermanssonResearch.ReverseSolver.ResidenceEvent
 import PermanssonResearch.ReverseSolver.ResidenceValue
 import PermanssonResearch.ReverseSolver.ResidenceContracts
