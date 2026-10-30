@@ -1,6 +1,6 @@
 {
   "candidate_counts": {
-    "combined_inventory_rows": 613,
+    "combined_inventory_rows": 614,
     "declared_leans_compiled": 2,
     "independent_mathematical_acceptances": 0,
     "local_test_methods_passed": 217,
@@ -1927,7 +1927,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "2b45dfd1a866d7056540fb50a1c3c6c5bc2a12cf16ff147e4c462cfe483836a6",
+        "sha256": "b94bd931a91b28dbaf26994b4475563b3ea71ce9e7fd6b7d5d3d396d68deb5dc",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2002,7 +2002,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "DOCUMENTATION",
+        "sha256": "119e7db62ff8f1b1c2437fadf680dd323068805a73c1427fbf6e6d5770d1dcaa",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       },
       "classification": "Document original v0.1.8, newer research and exact adapter scope",
       "conditional": false,
@@ -2080,7 +2083,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "DOCUMENTATION",
+        "sha256": "7d6685baa63d750a605c133a1830fb3e121ffff38919fcacaa7170970d529f85",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       },
       "classification": "Document original v0.1.8, newer research and exact adapter scope",
       "conditional": false,
@@ -2103,7 +2109,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "DOCUMENTATION",
+        "sha256": "0a3665ab26e9c6715f89c26ac1591244a93233b2bf4e9e6723f7a1aeda6899aa",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       },
       "classification": "Document original v0.1.8, newer research and exact adapter scope",
       "conditional": false,
@@ -2181,7 +2190,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "DOCUMENTATION",
+        "sha256": "9f19f95fefefec273bbf7b5a64cf4534741b6942b136057bf517aeed4c9ba7d6",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       },
       "classification": "Document original v0.1.8, newer research and exact adapter scope",
       "conditional": false,
@@ -2227,7 +2239,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "DOCUMENTATION",
+        "sha256": "a61bcd754e560b65e54a691f0812303c8421af97160a5b705f0a28af3258b5a6",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       },
       "classification": "Document original v0.1.8, newer research and exact adapter scope",
       "conditional": false,
@@ -2250,7 +2265,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "DOCUMENTATION",
+        "sha256": "bbe15b4f2a6be59cc2ddffe82a45186acf99b373ec319b7474f06f596f24065f",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       },
       "classification": "Document original v0.1.8, newer research and exact adapter scope",
       "conditional": false,
@@ -2301,7 +2319,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "9acc043dc81b545377ab17c3c32021f21d13437852e1082cbfd9a1a6b6e32c13",
+        "sha256": "8c83f08ce8c89a42a18210ab7a40730c7b1f7194c99480a366551ea70ae71f48",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -16566,6 +16584,25 @@
         "sha256": "0060ec1f5287edefb9caf122c265801a557bf7741f3ef513e6f95e0ed5f4b1af",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_docs_registry.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "REL-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "c35cae3ff8dea15d0a2e0649fb3b678bb485c7727d517d3ffe74fcda9af05f54",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
     }
   ],

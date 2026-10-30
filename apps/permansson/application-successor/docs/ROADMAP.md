@@ -48,7 +48,7 @@ or empirical identification.
 | P3 | OPT-09 | adaptive grammar control: admitted patch menus compiled into a shared-P control problem | done |
 | P4 | OPT-05 | risk-flow Farkas infeasibility route: no admissible policy meets the declared cap | done |
 | P5 | ANA-01 | CQ-1 certificate transport under exact TV error budgets | done |
-| P6 | REL-02 | remaining planned documentation set and a final local verification pass | planned |
+| P6 | REL-02 | remaining planned documentation set and a final local verification pass | done |
 
 Each step lands as its own commits: numeric profile and independent checker
 first, the Lean bridge second, then the emitter, the byte recheck family and
