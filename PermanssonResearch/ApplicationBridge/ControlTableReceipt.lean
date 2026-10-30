@@ -45,6 +45,15 @@ def TableChecks (sys : FiniteControlSystem (Fin m) n)
         actionScore sys (values t.val) y c ≤
           actionScore sys (values t.val) y (chosen t.val y))
 
+/-- Every obligation quantifies over Fin types, Finset membership and exact
+    rational (in)equalities, so the full table check is decidable. -/
+instance (sys : FiniteControlSystem (Fin m) n)
+    (target : RationalHittingTarget n) (N : ℕ)
+    (values : ℕ → Fin n → ℚ) (chosen : ℕ → Fin n → Fin m) :
+    Decidable (TableChecks sys target N values chosen) := by
+  unfold TableChecks
+  infer_instance
+
 /-- Executable on finite rational data. A false result is not evidence of
     infeasibility: it means the supplied table fails these obligations. -/
 def checkBellmanReceipt (sys : FiniteControlSystem (Fin m) n)
@@ -60,6 +69,7 @@ theorem checkBellmanReceipt_complete
     (values : ℕ → Fin n → ℚ) (chosen : ℕ → Fin n → Fin m)
     (h : checkBellmanReceipt sys target N values chosen = true) :
     TableChecks sys target N values chosen := by
+  unfold checkBellmanReceipt at h
   exact of_decide_eq_true h
 
 /-- Exact recurrence plus complete action comparison yields the original
@@ -83,10 +93,10 @@ theorem checked_table_eq_bellman
       rw [hstep (⟨t, ht⟩ : Fin N) y, bellmanValue_succ]
       by_cases hg : y ∈ target.goal
       · simp [hg]
-      · simp only [if_neg hg]
+      · simp only [hg, ↓reduceIte]
         by_cases hd : y ∈ target.forbidden
         · simp [hd]
-        · simp only [if_neg hd]
+        · simp only [hd, ↓reduceIte]
           have hprev : values t = bellmanValue sys target t := by
             funext z
             exact ih (Nat.le_of_lt ht) z
