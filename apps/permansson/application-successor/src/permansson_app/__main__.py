@@ -72,6 +72,9 @@ def main(argv=None):
         lean.add_argument('--region',type=Path)
         if name=='lean-emit':lean.add_argument('--output',type=Path,required=True)
         else:lean.add_argument('--candidate',type=Path,required=True)
+    adaptive=sub.add_parser('finite-adaptive-grammar')
+    adaptive.add_argument('request',type=Path)
+    adaptive.add_argument('--output',type=Path,required=True)
     private_stage=sub.add_parser('finite-private-stage')
     private_stage.add_argument('request',type=Path)
     private_stage.add_argument('--output',type=Path,required=True)
@@ -268,6 +271,24 @@ def main(argv=None):
             else:
                 result=recheck(args.family,args.request,args.receipt,args.candidate,args.region)
             print(json.dumps({'ok':True,'family':args.family,'result':result},sort_keys=True))
+        elif args.command=='finite-adaptive-grammar':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.adaptive import propose_adaptive
+            from .receipts.adaptive import check_adaptive
+            from .report import numeric_application_report
+            _,raw=strict_read(args.request)
+            validate_packaged_schema('schemas/adaptive.v1.schema.json',raw)
+            receipt=propose_adaptive(raw)
+            checker=check_adaptive(raw,receipt)
+            report=numeric_application_report(capability='finite.adaptive_block_control.numeric.v1',
+                 model_semantic_identity=receipt['request_identity'],
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('adaptive_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
         elif args.command=='finite-private-stage':
             from .strict_json import strict_read
             from .schema_validate import validate_packaged_schema

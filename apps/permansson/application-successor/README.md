@@ -146,6 +146,10 @@ No application release acceptance is claimed.
 
 The finite residence and nonlinear classwise stationary-policy engines have independent exact receipt checks and bounded, explicitly scoped examples. See [`docs/NUMERIC_RESIDENCE_NONLINEAR.md`](docs/NUMERIC_RESIDENCE_NONLINEAR.md). Neither profile provides Lean replay, mathematical CERT, empirical identification or application release acceptance.
 
+### Adaptive admitted-block control — numeric profile
+
+`finite-adaptive-grammar` lets the controller choose one whole admitted patch block before every α → P → U stage, possibly a different one each time, and computes the exact survival or exit optimum over every full-history behavioral block controller, with tied optimal blocks, each frozen block's value and the adaptivity gain. See [`docs/NUMERIC_ADAPTIVE.md`](docs/NUMERIC_ADAPTIVE.md). Only declared blocks are controls; P is never changed.
+
 ### One-stage private-control robust value — numeric profile
 
 `finite-private-stage` computes the exact private-control value of a finite payoff table when nature sees the controller's mixed strategy but not the realized control: an optimal rational controller mixture and a nature mixture forming a two-sided saddle certificate, the pure-control (revealed-control) value and the randomization gain. See [`docs/NUMERIC_PRIVATE_STAGE.md`](docs/NUMERIC_PRIVATE_STAGE.md). One stage only; no multi-stage private game or empirical identification.

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/adaptive.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "grammar"
+  ],
+  "properties": {
+    "format": {
+      "const": "Permansson.App.AdaptiveGrammarRequest.v1"
+    },
+    "grammar": {
+      "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/grammar.v1.schema.json"
+    }
+  }
+}

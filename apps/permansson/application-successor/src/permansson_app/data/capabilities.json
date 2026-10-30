@@ -217,6 +217,14 @@
       "mode": "numeric",
       "scientific_claims_verified": false,
       "scope": "Exact one-stage private-control robust value: nature sees the controller's mixed strategy but not the realized control (at most 4 controls and 4 nature parameters, payoffs of any sign). Exhaustive exact vertex enumeration of both programs returns an optimal rational controller mixture and a nature mixture forming a two-sided saddle certificate; the pure-control (revealed-control) value and the randomization gain are reported. No multi-stage private game, committed nature, learning, Lean or empirical identification claim."
+    },
+    "finite.adaptive_block_control.numeric.v1": {
+      "checker": "permansson_app.receipts.adaptive.check_adaptive",
+      "cli": "finite-adaptive-grammar",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact adaptive control over the declared admitted blocks of a finite patch grammar (at most 8 blocks, 12 joint states, 8 transitions): before every alpha/P/U stage the controller selects one whole admitted block and its history may select a different one next time; P is never changed. The exact Bellman table over (joint state, still-inside flag) gives the survival or exit optimum over every full-history behavioral block controller, with tied optimal blocks, every frozen block value and the adaptivity gain. No downward closure, unadmitted joint block, overlap-model certificate, Lean or empirical identification claim."
     }
   },
   "format": "Permansson.App.Registry.AdditiveNumerical.v2",
