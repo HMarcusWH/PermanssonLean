@@ -1,0 +1,28 @@
+{
+  "B": [
+    [
+      "1"
+    ],
+    [
+      "0"
+    ]
+  ],
+  "C": [
+    [
+      "1"
+    ]
+  ],
+  "H": [
+    [
+      "2",
+      "1"
+    ],
+    [
+      "1",
+      "2"
+    ]
+  ],
+  "ell": "-1",
+  "format": "Permansson.App.RationalAlgebraRequest.v1",
+  "profile": "schur"
+}

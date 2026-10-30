@@ -63,6 +63,9 @@ def main(argv=None):
     risk=sub.add_parser('one-step-risk')
     risk.add_argument('request',type=Path)
     risk.add_argument('--output',type=Path,required=True)
+    algebra=sub.add_parser('finite-algebra')
+    algebra.add_argument('request',type=Path)
+    algebra.add_argument('--output',type=Path,required=True)
     metric=sub.add_parser('finite-metric')
     metric.add_argument('request',type=Path)
     metric.add_argument('--output',type=Path,required=True)
@@ -240,6 +243,24 @@ def main(argv=None):
                  computation_receipt=receipt,independent_check=checker)
             out=_new_output(args.output)
             for name,value in [('occupancy_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
+                _write_json(out/name,value)
+            print(json.dumps({'ok':True,'numeric_status':checker['status'],
+                              'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))
+        elif args.command=='finite-algebra':
+            from .strict_json import strict_read
+            from .schema_validate import validate_packaged_schema
+            from .engines.algebra import propose_algebra
+            from .receipts.algebra import check_algebra
+            from .report import numeric_application_report
+            _,raw=strict_read(args.request)
+            validate_packaged_schema('schemas/algebra.v1.schema.json',raw)
+            receipt=propose_algebra(raw)
+            checker=check_algebra(raw,receipt)
+            report=numeric_application_report(capability='finite.rational_algebra_witness.numeric.v1',
+                 model_semantic_identity=receipt['request_identity'],
+                 computation_receipt=receipt,independent_check=checker)
+            out=_new_output(args.output)
+            for name,value in [('algebra_receipt.json',receipt),('independent_check.json',checker),('scientific_report.json',report)]:
                 _write_json(out/name,value)
             print(json.dumps({'ok':True,'numeric_status':checker['status'],
                               'lean_status':'NOT_EXECUTED','output':str(out)},sort_keys=True))

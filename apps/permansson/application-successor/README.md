@@ -146,6 +146,10 @@ No application release acceptance is claimed.
 
 The finite residence and nonlinear classwise stationary-policy engines have independent exact receipt checks and bounded, explicitly scoped examples. See [`docs/NUMERIC_RESIDENCE_NONLINEAR.md`](docs/NUMERIC_RESIDENCE_NONLINEAR.md). Neither profile provides Lean replay, mathematical CERT, empirical identification or application release acceptance.
 
+### Rational real-algebra witnesses — numeric profile
+
+`finite-algebra` checks exact rational witnesses for four specialized profiles: seam equations and common mode (rank at most two or one), an LDLᵀ positive-semidefinite witness with the shell Schur complement, singular compatibility (a preimage with the bordered-form gap, or a kernel vector ruling out every preimage), and the Gram gap, witness and exact perturbation threshold. See [`docs/NUMERIC_ALGEBRA.md`](docs/NUMERIC_ALGEBRA.md). The identification of a strategic source with these matrices is an explicit unmet premise.
+
 ### Finite metric contraction and invariant-law perturbation — numeric profile
 
 `finite-metric` computes exact Wasserstein-1 transport on a declared finite metric over the joint states: every baseline row-pair distance with an optimal coupling and an attaining 1-Lipschitz potential, the contraction factor ρ, per-row defects δ against a perturbed `α/P/U` model, both unique invariant laws and their exact distance, and the A3 bound `δ/(1−ρ)` only when ρ < 1. An independent checker validates every certificate. See [`docs/NUMERIC_METRIC.md`](docs/NUMERIC_METRIC.md). Not a Polish-space moment argument or an empirical metric.

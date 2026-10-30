@@ -138,6 +138,14 @@
       "scientific_claims_verified": false,
       "scope": "Finite rational multichain bottom classes, absorption and random limiting occupation; not empirical GR/PR"
     },
+    "finite.rational_algebra_witness.numeric.v1": {
+      "checker": "permansson_app.receipts.algebra.check_algebra",
+      "cli": "finite-algebra",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact rational witnesses for four specialized real-algebra profiles on <=4-dimensional matrices and vectors: seam equations and common mode, an LDL positive-semidefinite witness with the shell Schur complement, singular compatibility (preimage gap or incompatible kernel vector), and the Gram gap, witness and perturbation threshold. Feature or operator identification with a strategic source is an explicit unmet premise; no Lean or empirical identification claim."
+    },
     "finite.rectangular_vs_committed_nature.numeric.v1": {
       "checker": "permansson_app.receipts.robust_nature.check_nature",
       "cli": "finite-robust-nature",
