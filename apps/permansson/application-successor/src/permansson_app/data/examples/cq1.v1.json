@@ -1,0 +1,690 @@
+{
+  "baseline": {
+    "P": [
+      {
+        "a": "hold",
+        "s": "calm",
+        "weights": {
+          "bad": "1/10",
+          "ok": "9/10"
+        },
+        "x": "ok"
+      },
+      {
+        "a": "push",
+        "s": "calm",
+        "weights": {
+          "bad": "1/2",
+          "ok": "1/2"
+        },
+        "x": "ok"
+      },
+      {
+        "a": "hold",
+        "s": "calm",
+        "weights": {
+          "bad": "1",
+          "ok": "0"
+        },
+        "x": "bad"
+      },
+      {
+        "a": "push",
+        "s": "calm",
+        "weights": {
+          "bad": "1/2",
+          "ok": "1/2"
+        },
+        "x": "bad"
+      },
+      {
+        "a": "hold",
+        "s": "alert",
+        "weights": {
+          "bad": "1/10",
+          "ok": "9/10"
+        },
+        "x": "ok"
+      },
+      {
+        "a": "push",
+        "s": "alert",
+        "weights": {
+          "bad": "1/2",
+          "ok": "1/2"
+        },
+        "x": "ok"
+      },
+      {
+        "a": "hold",
+        "s": "alert",
+        "weights": {
+          "bad": "1",
+          "ok": "0"
+        },
+        "x": "bad"
+      },
+      {
+        "a": "push",
+        "s": "alert",
+        "weights": {
+          "bad": "1/2",
+          "ok": "1/2"
+        },
+        "x": "bad"
+      }
+    ],
+    "U": [
+      {
+        "a": "hold",
+        "s": "calm",
+        "weights": {
+          "alert": "0",
+          "calm": "1"
+        },
+        "x": "ok",
+        "xp": "ok"
+      },
+      {
+        "a": "hold",
+        "s": "calm",
+        "weights": {
+          "alert": "0",
+          "calm": "1"
+        },
+        "x": "ok",
+        "xp": "bad"
+      },
+      {
+        "a": "push",
+        "s": "calm",
+        "weights": {
+          "alert": "0",
+          "calm": "1"
+        },
+        "x": "ok",
+        "xp": "ok"
+      },
+      {
+        "a": "push",
+        "s": "calm",
+        "weights": {
+          "alert": "0",
+          "calm": "1"
+        },
+        "x": "ok",
+        "xp": "bad"
+      },
+      {
+        "a": "hold",
+        "s": "calm",
+        "weights": {
+          "alert": "1/2",
+          "calm": "1/2"
+        },
+        "x": "bad",
+        "xp": "ok"
+      },
+      {
+        "a": "hold",
+        "s": "calm",
+        "weights": {
+          "alert": "1/2",
+          "calm": "1/2"
+        },
+        "x": "bad",
+        "xp": "bad"
+      },
+      {
+        "a": "push",
+        "s": "calm",
+        "weights": {
+          "alert": "1/2",
+          "calm": "1/2"
+        },
+        "x": "bad",
+        "xp": "ok"
+      },
+      {
+        "a": "push",
+        "s": "calm",
+        "weights": {
+          "alert": "1/2",
+          "calm": "1/2"
+        },
+        "x": "bad",
+        "xp": "bad"
+      },
+      {
+        "a": "hold",
+        "s": "alert",
+        "weights": {
+          "alert": "1",
+          "calm": "0"
+        },
+        "x": "ok",
+        "xp": "ok"
+      },
+      {
+        "a": "hold",
+        "s": "alert",
+        "weights": {
+          "alert": "1",
+          "calm": "0"
+        },
+        "x": "ok",
+        "xp": "bad"
+      },
+      {
+        "a": "push",
+        "s": "alert",
+        "weights": {
+          "alert": "1",
+          "calm": "0"
+        },
+        "x": "ok",
+        "xp": "ok"
+      },
+      {
+        "a": "push",
+        "s": "alert",
+        "weights": {
+          "alert": "1",
+          "calm": "0"
+        },
+        "x": "ok",
+        "xp": "bad"
+      },
+      {
+        "a": "hold",
+        "s": "alert",
+        "weights": {
+          "alert": "1",
+          "calm": "0"
+        },
+        "x": "bad",
+        "xp": "ok"
+      },
+      {
+        "a": "hold",
+        "s": "alert",
+        "weights": {
+          "alert": "1",
+          "calm": "0"
+        },
+        "x": "bad",
+        "xp": "bad"
+      },
+      {
+        "a": "push",
+        "s": "alert",
+        "weights": {
+          "alert": "1",
+          "calm": "0"
+        },
+        "x": "bad",
+        "xp": "ok"
+      },
+      {
+        "a": "push",
+        "s": "alert",
+        "weights": {
+          "alert": "1",
+          "calm": "0"
+        },
+        "x": "bad",
+        "xp": "bad"
+      }
+    ],
+    "alpha": [
+      {
+        "s": "calm",
+        "weights": {
+          "hold": "1",
+          "push": "0"
+        },
+        "x": "ok"
+      },
+      {
+        "s": "calm",
+        "weights": {
+          "hold": "1",
+          "push": "0"
+        },
+        "x": "bad"
+      },
+      {
+        "s": "alert",
+        "weights": {
+          "hold": "3/4",
+          "push": "1/4"
+        },
+        "x": "ok"
+      },
+      {
+        "s": "alert",
+        "weights": {
+          "hold": "1",
+          "push": "0"
+        },
+        "x": "bad"
+      }
+    ],
+    "feasible": [
+      {
+        "actions": [
+          "hold",
+          "push"
+        ],
+        "s": "calm",
+        "x": "ok"
+      },
+      {
+        "actions": [
+          "hold",
+          "push"
+        ],
+        "s": "calm",
+        "x": "bad"
+      },
+      {
+        "actions": [
+          "hold",
+          "push"
+        ],
+        "s": "alert",
+        "x": "ok"
+      },
+      {
+        "actions": [
+          "hold",
+          "push"
+        ],
+        "s": "alert",
+        "x": "bad"
+      }
+    ],
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "actions": [
+        "hold",
+        "push"
+      ],
+      "strategic": [
+        "calm",
+        "alert"
+      ],
+      "world": [
+        "ok",
+        "bad"
+      ]
+    }
+  },
+  "basin": [
+    [
+      "calm",
+      "ok"
+    ],
+    [
+      "alert",
+      "ok"
+    ]
+  ],
+  "comparison": [
+    [
+      "calm",
+      "ok"
+    ],
+    [
+      "alert",
+      "ok"
+    ]
+  ],
+  "eta": "2/5",
+  "format": "Permansson.App.FiniteCQ1Request.v1",
+  "horizon": 2,
+  "intervention": {
+    "target": "alpha",
+    "treated": {
+      "P": [
+        {
+          "a": "hold",
+          "s": "calm",
+          "weights": {
+            "bad": "1/10",
+            "ok": "9/10"
+          },
+          "x": "ok"
+        },
+        {
+          "a": "push",
+          "s": "calm",
+          "weights": {
+            "bad": "1/2",
+            "ok": "1/2"
+          },
+          "x": "ok"
+        },
+        {
+          "a": "hold",
+          "s": "calm",
+          "weights": {
+            "bad": "1",
+            "ok": "0"
+          },
+          "x": "bad"
+        },
+        {
+          "a": "push",
+          "s": "calm",
+          "weights": {
+            "bad": "1/2",
+            "ok": "1/2"
+          },
+          "x": "bad"
+        },
+        {
+          "a": "hold",
+          "s": "alert",
+          "weights": {
+            "bad": "1/10",
+            "ok": "9/10"
+          },
+          "x": "ok"
+        },
+        {
+          "a": "push",
+          "s": "alert",
+          "weights": {
+            "bad": "1/2",
+            "ok": "1/2"
+          },
+          "x": "ok"
+        },
+        {
+          "a": "hold",
+          "s": "alert",
+          "weights": {
+            "bad": "1",
+            "ok": "0"
+          },
+          "x": "bad"
+        },
+        {
+          "a": "push",
+          "s": "alert",
+          "weights": {
+            "bad": "1/2",
+            "ok": "1/2"
+          },
+          "x": "bad"
+        }
+      ],
+      "U": [
+        {
+          "a": "hold",
+          "s": "calm",
+          "weights": {
+            "alert": "0",
+            "calm": "1"
+          },
+          "x": "ok",
+          "xp": "ok"
+        },
+        {
+          "a": "hold",
+          "s": "calm",
+          "weights": {
+            "alert": "0",
+            "calm": "1"
+          },
+          "x": "ok",
+          "xp": "bad"
+        },
+        {
+          "a": "push",
+          "s": "calm",
+          "weights": {
+            "alert": "0",
+            "calm": "1"
+          },
+          "x": "ok",
+          "xp": "ok"
+        },
+        {
+          "a": "push",
+          "s": "calm",
+          "weights": {
+            "alert": "0",
+            "calm": "1"
+          },
+          "x": "ok",
+          "xp": "bad"
+        },
+        {
+          "a": "hold",
+          "s": "calm",
+          "weights": {
+            "alert": "1/2",
+            "calm": "1/2"
+          },
+          "x": "bad",
+          "xp": "ok"
+        },
+        {
+          "a": "hold",
+          "s": "calm",
+          "weights": {
+            "alert": "1/2",
+            "calm": "1/2"
+          },
+          "x": "bad",
+          "xp": "bad"
+        },
+        {
+          "a": "push",
+          "s": "calm",
+          "weights": {
+            "alert": "1/2",
+            "calm": "1/2"
+          },
+          "x": "bad",
+          "xp": "ok"
+        },
+        {
+          "a": "push",
+          "s": "calm",
+          "weights": {
+            "alert": "1/2",
+            "calm": "1/2"
+          },
+          "x": "bad",
+          "xp": "bad"
+        },
+        {
+          "a": "hold",
+          "s": "alert",
+          "weights": {
+            "alert": "1",
+            "calm": "0"
+          },
+          "x": "ok",
+          "xp": "ok"
+        },
+        {
+          "a": "hold",
+          "s": "alert",
+          "weights": {
+            "alert": "1",
+            "calm": "0"
+          },
+          "x": "ok",
+          "xp": "bad"
+        },
+        {
+          "a": "push",
+          "s": "alert",
+          "weights": {
+            "alert": "1",
+            "calm": "0"
+          },
+          "x": "ok",
+          "xp": "ok"
+        },
+        {
+          "a": "push",
+          "s": "alert",
+          "weights": {
+            "alert": "1",
+            "calm": "0"
+          },
+          "x": "ok",
+          "xp": "bad"
+        },
+        {
+          "a": "hold",
+          "s": "alert",
+          "weights": {
+            "alert": "1",
+            "calm": "0"
+          },
+          "x": "bad",
+          "xp": "ok"
+        },
+        {
+          "a": "hold",
+          "s": "alert",
+          "weights": {
+            "alert": "1",
+            "calm": "0"
+          },
+          "x": "bad",
+          "xp": "bad"
+        },
+        {
+          "a": "push",
+          "s": "alert",
+          "weights": {
+            "alert": "1",
+            "calm": "0"
+          },
+          "x": "bad",
+          "xp": "ok"
+        },
+        {
+          "a": "push",
+          "s": "alert",
+          "weights": {
+            "alert": "1",
+            "calm": "0"
+          },
+          "x": "bad",
+          "xp": "bad"
+        }
+      ],
+      "alpha": [
+        {
+          "s": "calm",
+          "weights": {
+            "hold": "1/2",
+            "push": "1/2"
+          },
+          "x": "ok"
+        },
+        {
+          "s": "calm",
+          "weights": {
+            "hold": "1",
+            "push": "0"
+          },
+          "x": "bad"
+        },
+        {
+          "s": "alert",
+          "weights": {
+            "hold": "0",
+            "push": "1"
+          },
+          "x": "ok"
+        },
+        {
+          "s": "alert",
+          "weights": {
+            "hold": "1",
+            "push": "0"
+          },
+          "x": "bad"
+        }
+      ],
+      "feasible": [
+        {
+          "actions": [
+            "hold",
+            "push"
+          ],
+          "s": "calm",
+          "x": "ok"
+        },
+        {
+          "actions": [
+            "hold",
+            "push"
+          ],
+          "s": "calm",
+          "x": "bad"
+        },
+        {
+          "actions": [
+            "hold",
+            "push"
+          ],
+          "s": "alert",
+          "x": "ok"
+        },
+        {
+          "actions": [
+            "hold",
+            "push"
+          ],
+          "s": "alert",
+          "x": "bad"
+        }
+      ],
+      "format": "Permansson.App.FiniteStrategicWorld.v1",
+      "states": {
+        "actions": [
+          "hold",
+          "push"
+        ],
+        "strategic": [
+          "calm",
+          "alert"
+        ],
+        "world": [
+          "ok",
+          "bad"
+        ]
+      }
+    }
+  },
+  "property_set": [
+    [
+      "calm",
+      "ok"
+    ],
+    [
+      "alert",
+      "ok"
+    ]
+  ],
+  "region": [
+    [
+      "calm",
+      "ok"
+    ],
+    [
+      "alert",
+      "ok"
+    ]
+  ]
+}

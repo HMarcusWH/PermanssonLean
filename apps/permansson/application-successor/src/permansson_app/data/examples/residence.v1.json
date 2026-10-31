@@ -1,0 +1,317 @@
+{
+  "format": "Permansson.App.FiniteResidenceRequest.v1",
+  "model": {
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "strategic": [
+        "s"
+      ],
+      "world": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "actions": [
+        "go"
+      ]
+    },
+    "feasible": [
+      {
+        "s": "s",
+        "x": "A",
+        "actions": [
+          "go"
+        ]
+      },
+      {
+        "s": "s",
+        "x": "B",
+        "actions": [
+          "go"
+        ]
+      },
+      {
+        "s": "s",
+        "x": "C",
+        "actions": [
+          "go"
+        ]
+      },
+      {
+        "s": "s",
+        "x": "D",
+        "actions": [
+          "go"
+        ]
+      }
+    ],
+    "alpha": [
+      {
+        "s": "s",
+        "x": "A",
+        "weights": {
+          "go": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "B",
+        "weights": {
+          "go": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "C",
+        "weights": {
+          "go": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "D",
+        "weights": {
+          "go": "1"
+        }
+      }
+    ],
+    "P": [
+      {
+        "s": "s",
+        "x": "A",
+        "a": "go",
+        "weights": {
+          "A": "0",
+          "B": "1",
+          "C": "0",
+          "D": "0"
+        }
+      },
+      {
+        "s": "s",
+        "x": "B",
+        "a": "go",
+        "weights": {
+          "A": "0",
+          "B": "0",
+          "C": "1",
+          "D": "0"
+        }
+      },
+      {
+        "s": "s",
+        "x": "C",
+        "a": "go",
+        "weights": {
+          "A": "0",
+          "B": "0",
+          "C": "0",
+          "D": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "D",
+        "a": "go",
+        "weights": {
+          "A": "0",
+          "B": "0",
+          "C": "0",
+          "D": "1"
+        }
+      }
+    ],
+    "U": [
+      {
+        "s": "s",
+        "x": "A",
+        "a": "go",
+        "xp": "A",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "A",
+        "a": "go",
+        "xp": "B",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "A",
+        "a": "go",
+        "xp": "C",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "A",
+        "a": "go",
+        "xp": "D",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "B",
+        "a": "go",
+        "xp": "A",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "B",
+        "a": "go",
+        "xp": "B",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "B",
+        "a": "go",
+        "xp": "C",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "B",
+        "a": "go",
+        "xp": "D",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "C",
+        "a": "go",
+        "xp": "A",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "C",
+        "a": "go",
+        "xp": "B",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "C",
+        "a": "go",
+        "xp": "C",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "C",
+        "a": "go",
+        "xp": "D",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "D",
+        "a": "go",
+        "xp": "A",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "D",
+        "a": "go",
+        "xp": "B",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "D",
+        "a": "go",
+        "xp": "C",
+        "weights": {
+          "s": "1"
+        }
+      },
+      {
+        "s": "s",
+        "x": "D",
+        "a": "go",
+        "xp": "D",
+        "weights": {
+          "s": "1"
+        }
+      }
+    ]
+  },
+  "target": [
+    {
+      "strategic": "s",
+      "world": "B"
+    },
+    {
+      "strategic": "s",
+      "world": "D"
+    }
+  ],
+  "danger": [],
+  "mode": "retryable",
+  "deadline": 3,
+  "deadline_semantics": "entry_by",
+  "dwell_transitions": 1,
+  "initial_law": [
+    {
+      "state": [
+        "s",
+        "A"
+      ],
+      "mass": "1"
+    },
+    {
+      "state": [
+        "s",
+        "B"
+      ],
+      "mass": "0"
+    },
+    {
+      "state": [
+        "s",
+        "C"
+      ],
+      "mass": "0"
+    },
+    {
+      "state": [
+        "s",
+        "D"
+      ],
+      "mass": "0"
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/robust_nature.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "baseline": {
+      "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/finite_world.v1.schema.json"
+    },
+    "comparison_states": {
+      "items": {
+        "items": false,
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "type": "array"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "fixed_policy": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "s": {
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "x": {
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "s",
+          "x",
+          "action"
+        ],
+        "type": "object"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "type": "array"
+    },
+    "format": {
+      "const": "Permansson.App.FiniteNatureChronologyRequest.v1"
+    },
+    "horizon": {
+      "maximum": 12,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "nature_models": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "P": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "a": {
+                  "maxLength": 32,
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+                  "type": "string"
+                },
+                "s": {
+                  "maxLength": 32,
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+                  "type": "string"
+                },
+                "weights": {
+                  "additionalProperties": {
+                    "maxLength": 160,
+                    "minLength": 1,
+                    "pattern": "^(?:0|[1-9][0-9]*|-?[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+                    "type": "string"
+                  },
+                  "maxProperties": 6,
+                  "minProperties": 1,
+                  "propertyNames": {
+                    "maxLength": 32,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+                    "type": "string"
+                  },
+                  "type": "object"
+                },
+                "x": {
+                  "maxLength": 32,
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "s",
+                "x",
+                "a",
+                "weights"
+              ],
+              "type": "object"
+            },
+            "maxItems": 216,
+            "minItems": 1,
+            "type": "array"
+          },
+          "id": {
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "P"
+        ],
+        "type": "object"
+      },
+      "maxItems": 6,
+      "minItems": 1,
+      "type": "array"
+    },
+    "terminal_rewards": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "s": {
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "value": {
+            "maxLength": 160,
+            "pattern": "^(?:0|[1-9][0-9]*|-?[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+            "type": "string"
+          },
+          "x": {
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "s",
+          "x",
+          "value"
+        ],
+        "type": "object"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "format",
+    "baseline",
+    "nature_models",
+    "fixed_policy",
+    "horizon",
+    "terminal_rewards",
+    "comparison_states"
+  ],
+  "type": "object"
+}

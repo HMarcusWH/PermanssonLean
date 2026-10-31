@@ -1,0 +1,614 @@
+{
+  "alternative": {
+    "P": [
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "x0": "1",
+          "x1": "0",
+          "x2": "0"
+        },
+        "x": "x0"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "x0": "3/4",
+          "x1": "0",
+          "x2": "1/4"
+        },
+        "x": "x0"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "x0": "0",
+          "x1": "0",
+          "x2": "1"
+        },
+        "x": "x1"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "x0": "1/2",
+          "x1": "0",
+          "x2": "1/2"
+        },
+        "x": "x1"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "x0": "0",
+          "x1": "0",
+          "x2": "1"
+        },
+        "x": "x2"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "x0": "0",
+          "x1": "0",
+          "x2": "1"
+        },
+        "x": "x2"
+      }
+    ],
+    "U": [
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x0"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x1"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x2"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x0"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x1"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x2"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x0"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x1"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x2"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x0"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x1"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x2"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x0"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x1"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x2"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x0"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x1"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x2"
+      }
+    ],
+    "alpha": [
+      {
+        "s": "s0",
+        "weights": {
+          "leak": "0",
+          "stay": "1"
+        },
+        "x": "x0"
+      },
+      {
+        "s": "s0",
+        "weights": {
+          "leak": "0",
+          "stay": "1"
+        },
+        "x": "x1"
+      },
+      {
+        "s": "s0",
+        "weights": {
+          "leak": "0",
+          "stay": "1"
+        },
+        "x": "x2"
+      }
+    ],
+    "feasible": [
+      {
+        "actions": [
+          "stay",
+          "leak"
+        ],
+        "s": "s0",
+        "x": "x0"
+      },
+      {
+        "actions": [
+          "stay",
+          "leak"
+        ],
+        "s": "s0",
+        "x": "x1"
+      },
+      {
+        "actions": [
+          "stay",
+          "leak"
+        ],
+        "s": "s0",
+        "x": "x2"
+      }
+    ],
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "actions": [
+        "stay",
+        "leak"
+      ],
+      "strategic": [
+        "s0"
+      ],
+      "world": [
+        "x0",
+        "x1",
+        "x2"
+      ]
+    }
+  },
+  "baseline": {
+    "P": [
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "x0": "1",
+          "x1": "0",
+          "x2": "0"
+        },
+        "x": "x0"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "x0": "3/4",
+          "x1": "0",
+          "x2": "1/4"
+        },
+        "x": "x0"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "x0": "0",
+          "x1": "0",
+          "x2": "1"
+        },
+        "x": "x1"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "x0": "1/2",
+          "x1": "0",
+          "x2": "1/2"
+        },
+        "x": "x1"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "x0": "0",
+          "x1": "0",
+          "x2": "1"
+        },
+        "x": "x2"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "x0": "0",
+          "x1": "0",
+          "x2": "1"
+        },
+        "x": "x2"
+      }
+    ],
+    "U": [
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x0"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x1"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x2"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x0"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x1"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x2"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x0"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x1"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x2"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x0"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x1"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x2"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x0"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x1"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x2"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x0"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x1"
+      },
+      {
+        "a": "leak",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x2",
+        "xp": "x2"
+      }
+    ],
+    "alpha": [
+      {
+        "s": "s0",
+        "weights": {
+          "leak": "1",
+          "stay": "0"
+        },
+        "x": "x0"
+      },
+      {
+        "s": "s0",
+        "weights": {
+          "leak": "0",
+          "stay": "1"
+        },
+        "x": "x1"
+      },
+      {
+        "s": "s0",
+        "weights": {
+          "leak": "0",
+          "stay": "1"
+        },
+        "x": "x2"
+      }
+    ],
+    "feasible": [
+      {
+        "actions": [
+          "stay",
+          "leak"
+        ],
+        "s": "s0",
+        "x": "x0"
+      },
+      {
+        "actions": [
+          "stay",
+          "leak"
+        ],
+        "s": "s0",
+        "x": "x1"
+      },
+      {
+        "actions": [
+          "stay",
+          "leak"
+        ],
+        "s": "s0",
+        "x": "x2"
+      }
+    ],
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "actions": [
+        "stay",
+        "leak"
+      ],
+      "strategic": [
+        "s0"
+      ],
+      "world": [
+        "x0",
+        "x1",
+        "x2"
+      ]
+    }
+  },
+  "format": "Permansson.App.FinitePerturbation.v1",
+  "horizon": 2,
+  "initial_alternative": [
+    "1",
+    "0",
+    "0"
+  ],
+  "initial_baseline": [
+    "1",
+    "0",
+    "0"
+  ],
+  "region": [
+    [
+      "s0",
+      "x0"
+    ],
+    [
+      "s0",
+      "x1"
+    ]
+  ]
+}

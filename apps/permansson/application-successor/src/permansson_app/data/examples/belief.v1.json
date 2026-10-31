@@ -1,0 +1,210 @@
+{
+  "format": "Permansson.App.OneStepBeliefRequest.v1",
+  "likelihoods": [
+    {
+      "weights": {
+        "green": "3/4",
+        "red": "1/4",
+        "unseen": "0"
+      },
+      "x": "healthy"
+    },
+    {
+      "weights": {
+        "green": "1/4",
+        "red": "3/4",
+        "unseen": "0"
+      },
+      "x": "damaged"
+    }
+  ],
+  "model": {
+    "P": [
+      {
+        "a": "leave",
+        "s": "s",
+        "weights": {
+          "damaged": "0",
+          "healthy": "1"
+        },
+        "x": "healthy"
+      },
+      {
+        "a": "repair",
+        "s": "s",
+        "weights": {
+          "damaged": "1/2",
+          "healthy": "1/2"
+        },
+        "x": "healthy"
+      },
+      {
+        "a": "leave",
+        "s": "s",
+        "weights": {
+          "damaged": "1",
+          "healthy": "0"
+        },
+        "x": "damaged"
+      },
+      {
+        "a": "repair",
+        "s": "s",
+        "weights": {
+          "damaged": "0",
+          "healthy": "1"
+        },
+        "x": "damaged"
+      }
+    ],
+    "U": [
+      {
+        "a": "leave",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "healthy",
+        "xp": "healthy"
+      },
+      {
+        "a": "leave",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "healthy",
+        "xp": "damaged"
+      },
+      {
+        "a": "repair",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "healthy",
+        "xp": "healthy"
+      },
+      {
+        "a": "repair",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "healthy",
+        "xp": "damaged"
+      },
+      {
+        "a": "leave",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "damaged",
+        "xp": "healthy"
+      },
+      {
+        "a": "leave",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "damaged",
+        "xp": "damaged"
+      },
+      {
+        "a": "repair",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "damaged",
+        "xp": "healthy"
+      },
+      {
+        "a": "repair",
+        "s": "s",
+        "weights": {
+          "s": "1"
+        },
+        "x": "damaged",
+        "xp": "damaged"
+      }
+    ],
+    "alpha": [
+      {
+        "s": "s",
+        "weights": {
+          "leave": "1",
+          "repair": "0"
+        },
+        "x": "healthy"
+      },
+      {
+        "s": "s",
+        "weights": {
+          "leave": "1",
+          "repair": "0"
+        },
+        "x": "damaged"
+      }
+    ],
+    "feasible": [
+      {
+        "actions": [
+          "leave",
+          "repair"
+        ],
+        "s": "s",
+        "x": "healthy"
+      },
+      {
+        "actions": [
+          "leave",
+          "repair"
+        ],
+        "s": "s",
+        "x": "damaged"
+      }
+    ],
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "actions": [
+        "leave",
+        "repair"
+      ],
+      "strategic": [
+        "s"
+      ],
+      "world": [
+        "healthy",
+        "damaged"
+      ]
+    }
+  },
+  "observations": [
+    "green",
+    "red",
+    "unseen"
+  ],
+  "prior": [
+    {
+      "mass": "1/2",
+      "x": "healthy"
+    },
+    {
+      "mass": "1/2",
+      "x": "damaged"
+    }
+  ],
+  "terminal_rewards": [
+    {
+      "value": "1",
+      "x": "healthy"
+    },
+    {
+      "value": "0",
+      "x": "damaged"
+    }
+  ]
+}

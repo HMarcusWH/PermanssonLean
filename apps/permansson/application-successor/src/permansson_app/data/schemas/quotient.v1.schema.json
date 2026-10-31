@@ -1,0 +1,167 @@
+{
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/quotient.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "baseline": {
+      "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/finite_world.v1.schema.json"
+    },
+    "comparison_states": {
+      "items": {
+        "items": false,
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        ],
+        "type": "array"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "format": {
+      "const": "Permansson.App.FiniteTypedQuotientRequest.v1"
+    },
+    "horizon": {
+      "maximum": 16,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "interventions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "model": {
+            "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/finite_world.v1.schema.json"
+          },
+          "target": {
+            "enum": [
+              "alpha",
+              "U",
+              "alpha+U"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "target",
+          "model"
+        ],
+        "type": "object"
+      },
+      "maxItems": 8,
+      "minItems": 1,
+      "type": "array"
+    },
+    "quotient": {
+      "additionalProperties": false,
+      "properties": {
+        "strategic_map": {
+          "additionalProperties": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "maxProperties": 6,
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "strategic_states": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "maxItems": 6,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "world_map": {
+          "additionalProperties": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "maxProperties": 6,
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "world_states": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "maxItems": 6,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "strategic_states",
+        "world_states",
+        "strategic_map",
+        "world_map"
+      ],
+      "type": "object"
+    },
+    "region": {
+      "items": {
+        "items": false,
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        ],
+        "type": "array"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "value_type": {
+      "enum": [
+        "survival_horizon",
+        "exit_by_horizon"
+      ]
+    }
+  },
+  "required": [
+    "format",
+    "baseline",
+    "interventions",
+    "quotient",
+    "region",
+    "comparison_states",
+    "horizon",
+    "value_type"
+  ],
+  "type": "object"
+}

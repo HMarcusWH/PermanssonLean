@@ -1,0 +1,72 @@
+{
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/control_hitting.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "forbidden": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "strategic": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "world": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "strategic",
+          "world"
+        ],
+        "type": "object"
+      },
+      "maxItems": 12,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "format": {
+      "const": "Permansson.App.FiniteHittingControl.v1"
+    },
+    "goal": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "strategic": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          },
+          "world": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "strategic",
+          "world"
+        ],
+        "type": "object"
+      },
+      "maxItems": 12,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "horizon": {
+      "maximum": 24,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "model": {
+      "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/finite_world.v1.schema.json"
+    }
+  },
+  "required": [
+    "format",
+    "model",
+    "goal",
+    "forbidden",
+    "horizon"
+  ],
+  "type": "object"
+}

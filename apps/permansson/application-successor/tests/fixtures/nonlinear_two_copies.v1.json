@@ -1,0 +1,366 @@
+{
+  "format": "Permansson.App.NonlinearStationaryRequest.v1",
+  "model": {
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "strategic": [
+        "s0",
+        "s1"
+      ],
+      "world": [
+        "left",
+        "right"
+      ],
+      "actions": [
+        "stay",
+        "flip"
+      ]
+    },
+    "feasible": [
+      {
+        "s": "s0",
+        "x": "left",
+        "actions": [
+          "stay",
+          "flip"
+        ]
+      },
+      {
+        "s": "s0",
+        "x": "right",
+        "actions": [
+          "stay",
+          "flip"
+        ]
+      },
+      {
+        "s": "s1",
+        "x": "left",
+        "actions": [
+          "stay",
+          "flip"
+        ]
+      },
+      {
+        "s": "s1",
+        "x": "right",
+        "actions": [
+          "stay",
+          "flip"
+        ]
+      }
+    ],
+    "alpha": [
+      {
+        "s": "s0",
+        "x": "left",
+        "weights": {
+          "stay": "1",
+          "flip": "0"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "right",
+        "weights": {
+          "stay": "1",
+          "flip": "0"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "left",
+        "weights": {
+          "stay": "1",
+          "flip": "0"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "right",
+        "weights": {
+          "stay": "1",
+          "flip": "0"
+        }
+      }
+    ],
+    "P": [
+      {
+        "s": "s0",
+        "x": "left",
+        "a": "stay",
+        "weights": {
+          "left": "1",
+          "right": "0"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "left",
+        "a": "flip",
+        "weights": {
+          "left": "0",
+          "right": "1"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "right",
+        "a": "stay",
+        "weights": {
+          "left": "0",
+          "right": "1"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "right",
+        "a": "flip",
+        "weights": {
+          "left": "1",
+          "right": "0"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "left",
+        "a": "stay",
+        "weights": {
+          "left": "1",
+          "right": "0"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "left",
+        "a": "flip",
+        "weights": {
+          "left": "0",
+          "right": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "right",
+        "a": "stay",
+        "weights": {
+          "left": "0",
+          "right": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "right",
+        "a": "flip",
+        "weights": {
+          "left": "1",
+          "right": "0"
+        }
+      }
+    ],
+    "U": [
+      {
+        "s": "s0",
+        "x": "left",
+        "a": "stay",
+        "xp": "left",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "left",
+        "a": "stay",
+        "xp": "right",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "left",
+        "a": "flip",
+        "xp": "left",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "left",
+        "a": "flip",
+        "xp": "right",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "right",
+        "a": "stay",
+        "xp": "left",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "right",
+        "a": "stay",
+        "xp": "right",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "right",
+        "a": "flip",
+        "xp": "left",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        }
+      },
+      {
+        "s": "s0",
+        "x": "right",
+        "a": "flip",
+        "xp": "right",
+        "weights": {
+          "s0": "1",
+          "s1": "0"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "left",
+        "a": "stay",
+        "xp": "left",
+        "weights": {
+          "s0": "0",
+          "s1": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "left",
+        "a": "stay",
+        "xp": "right",
+        "weights": {
+          "s0": "0",
+          "s1": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "left",
+        "a": "flip",
+        "xp": "left",
+        "weights": {
+          "s0": "0",
+          "s1": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "left",
+        "a": "flip",
+        "xp": "right",
+        "weights": {
+          "s0": "0",
+          "s1": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "right",
+        "a": "stay",
+        "xp": "left",
+        "weights": {
+          "s0": "0",
+          "s1": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "right",
+        "a": "stay",
+        "xp": "right",
+        "weights": {
+          "s0": "0",
+          "s1": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "right",
+        "a": "flip",
+        "xp": "left",
+        "weights": {
+          "s0": "0",
+          "s1": "1"
+        }
+      },
+      {
+        "s": "s1",
+        "x": "right",
+        "a": "flip",
+        "xp": "right",
+        "weights": {
+          "s0": "0",
+          "s1": "1"
+        }
+      }
+    ]
+  },
+  "descriptor_true_states": [
+    [
+      "s0",
+      "right"
+    ],
+    [
+      "s1",
+      "right"
+    ]
+  ],
+  "initial_law": [
+    {
+      "state": [
+        "s0",
+        "left"
+      ],
+      "mass": "1/2"
+    },
+    {
+      "state": [
+        "s0",
+        "right"
+      ],
+      "mass": "0"
+    },
+    {
+      "state": [
+        "s1",
+        "left"
+      ],
+      "mass": "0"
+    },
+    {
+      "state": [
+        "s1",
+        "right"
+      ],
+      "mass": "1/2"
+    }
+  ],
+  "functional_id": "boolean_one_minus_abs_p_minus_two_thirds.v1",
+  "policy_class": "all_feasible_deterministic_stationary_selectors"
+}

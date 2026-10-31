@@ -1,0 +1,175 @@
+{
+  "forbidden": [],
+  "format": "Permansson.App.FiniteHittingControl.v1",
+  "goal": [
+    {
+      "strategic": "s0",
+      "world": "x1"
+    }
+  ],
+  "horizon": 3,
+  "model": {
+    "P": [
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "x0": "1",
+          "x1": "0"
+        },
+        "x": "x0"
+      },
+      {
+        "a": "move",
+        "s": "s0",
+        "weights": {
+          "x0": "0",
+          "x1": "1"
+        },
+        "x": "x0"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "x0": "0",
+          "x1": "1"
+        },
+        "x": "x1"
+      },
+      {
+        "a": "move",
+        "s": "s0",
+        "weights": {
+          "x0": "0",
+          "x1": "1"
+        },
+        "x": "x1"
+      }
+    ],
+    "U": [
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x0"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x1"
+      },
+      {
+        "a": "move",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x0"
+      },
+      {
+        "a": "move",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x0",
+        "xp": "x1"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x0"
+      },
+      {
+        "a": "stay",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x1"
+      },
+      {
+        "a": "move",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x0"
+      },
+      {
+        "a": "move",
+        "s": "s0",
+        "weights": {
+          "s0": "1"
+        },
+        "x": "x1",
+        "xp": "x1"
+      }
+    ],
+    "alpha": [
+      {
+        "s": "s0",
+        "weights": {
+          "move": "0",
+          "stay": "1"
+        },
+        "x": "x0"
+      },
+      {
+        "s": "s0",
+        "weights": {
+          "move": "0",
+          "stay": "1"
+        },
+        "x": "x1"
+      }
+    ],
+    "feasible": [
+      {
+        "actions": [
+          "stay",
+          "move"
+        ],
+        "s": "s0",
+        "x": "x0"
+      },
+      {
+        "actions": [
+          "stay",
+          "move"
+        ],
+        "s": "s0",
+        "x": "x1"
+      }
+    ],
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "actions": [
+        "stay",
+        "move"
+      ],
+      "strategic": [
+        "s0"
+      ],
+      "world": [
+        "x0",
+        "x1"
+      ]
+    }
+  }
+}

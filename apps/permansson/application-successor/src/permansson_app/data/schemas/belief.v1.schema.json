@@ -1,0 +1,113 @@
+{
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/belief.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "Permansson.App.OneStepBeliefRequest.v1"
+    },
+    "likelihoods": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "weights": {
+            "additionalProperties": {
+              "maxLength": 160,
+              "pattern": "^(?:0|[1-9][0-9]*|-?[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+              "type": "string"
+            },
+            "maxProperties": 3,
+            "minProperties": 1,
+            "propertyNames": {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "x": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "x",
+          "weights"
+        ],
+        "type": "object"
+      },
+      "maxItems": 3,
+      "minItems": 1,
+      "type": "array"
+    },
+    "model": {
+      "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/finite_world.v1.schema.json"
+    },
+    "observations": {
+      "items": {
+        "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+        "type": "string"
+      },
+      "maxItems": 3,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "prior": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "mass": {
+            "maxLength": 160,
+            "pattern": "^(?:0|[1-9][0-9]*|-?[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+            "type": "string"
+          },
+          "x": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "x",
+          "mass"
+        ],
+        "type": "object"
+      },
+      "maxItems": 3,
+      "minItems": 1,
+      "type": "array"
+    },
+    "terminal_rewards": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "value": {
+            "maxLength": 160,
+            "pattern": "^(?:0|[1-9][0-9]*|-?[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+            "type": "string"
+          },
+          "x": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "x",
+          "value"
+        ],
+        "type": "object"
+      },
+      "maxItems": 3,
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "format",
+    "model",
+    "prior",
+    "observations",
+    "likelihoods",
+    "terminal_rewards"
+  ],
+  "type": "object"
+}

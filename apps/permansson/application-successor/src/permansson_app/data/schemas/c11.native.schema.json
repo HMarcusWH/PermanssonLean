@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "descriptor": {
+      "items": {
+        "type": "boolean"
+      },
+      "maxItems": 6,
+      "minItems": 1,
+      "type": "array"
+    },
+    "matrix": {
+      "maxItems": 6,
+      "minItems": 1,
+      "type": "array"
+    },
+    "n": {
+      "maximum": 6,
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "n",
+    "matrix",
+    "descriptor"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/residence.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "model",
+    "target",
+    "danger",
+    "mode",
+    "deadline",
+    "deadline_semantics",
+    "dwell_transitions",
+    "initial_law"
+  ],
+  "properties": {
+    "format": {
+      "const": "Permansson.App.FiniteResidenceRequest.v1"
+    },
+    "model": {
+      "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/finite_world.v1.schema.json"
+    },
+    "target": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "strategic": {
+            "type": "string"
+          },
+          "world": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "strategic",
+          "world"
+        ]
+      }
+    },
+    "danger": {
+      "type": "array",
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "strategic": {
+            "type": "string"
+          },
+          "world": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "strategic",
+          "world"
+        ]
+      }
+    },
+    "mode": {
+      "enum": [
+        "retryable",
+        "first_entry",
+        "avoid"
+      ]
+    },
+    "deadline": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 8
+    },
+    "deadline_semantics": {
+      "enum": [
+        "entry_by",
+        "completion_by"
+      ]
+    },
+    "dwell_transitions": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "initial_law": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "state",
+          "mass"
+        ],
+        "properties": {
+          "state": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "minItems": 2,
+            "maxItems": 2,
+            "items": false
+          },
+          "mass": {
+            "type": "string",
+            "pattern": "^(?:0|[1-9][0-9]*|-?[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+            "maxLength": 160
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/risk_occupancy.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "Permansson.App.OneStepRiskOccupancyRequest.v1"
+    },
+    "initial_law": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "mass": {
+            "maxLength": 160,
+            "pattern": "^(?:0|[1-9][0-9]*|-?[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+            "type": "string"
+          },
+          "state": {
+            "items": false,
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        "required": [
+          "state",
+          "mass"
+        ],
+        "type": "object"
+      },
+      "maxItems": 4,
+      "minItems": 1,
+      "type": "array"
+    },
+    "model": {
+      "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/finite_world.v1.schema.json"
+    },
+    "risk_cap": {
+      "maxLength": 160,
+      "pattern": "^(?:0|[1-9][0-9]*|-?[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+      "type": "string"
+    },
+    "risk_states": {
+      "items": {
+        "items": false,
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "type": "array"
+      },
+      "maxItems": 4,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "terminal_rewards": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "items": false,
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "type": "array"
+          },
+          "value": {
+            "maxLength": 160,
+            "pattern": "^(?:0|[1-9][0-9]*|-?[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "type": "object"
+      },
+      "maxItems": 4,
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "format",
+    "model",
+    "initial_law",
+    "terminal_rewards",
+    "risk_states",
+    "risk_cap"
+  ],
+  "type": "object"
+}

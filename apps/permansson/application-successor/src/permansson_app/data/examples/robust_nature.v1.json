@@ -1,0 +1,712 @@
+{
+  "baseline": {
+    "P": [
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "bad": "0",
+          "good": "0",
+          "mid": "1",
+          "start": "0"
+        },
+        "x": "start"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "bad": "0",
+          "good": "1",
+          "mid": "0",
+          "start": "0"
+        },
+        "x": "start"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "bad": "0",
+          "good": "1",
+          "mid": "0",
+          "start": "0"
+        },
+        "x": "mid"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "bad": "0",
+          "good": "1",
+          "mid": "0",
+          "start": "0"
+        },
+        "x": "mid"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "bad": "0",
+          "good": "1",
+          "mid": "0",
+          "start": "0"
+        },
+        "x": "good"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "bad": "0",
+          "good": "1",
+          "mid": "0",
+          "start": "0"
+        },
+        "x": "good"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "bad": "1",
+          "good": "0",
+          "mid": "0",
+          "start": "0"
+        },
+        "x": "bad"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "bad": "1",
+          "good": "0",
+          "mid": "0",
+          "start": "0"
+        },
+        "x": "bad"
+      }
+    ],
+    "U": [
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "start",
+        "xp": "start"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "start",
+        "xp": "mid"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "start",
+        "xp": "good"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "start",
+        "xp": "bad"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "start",
+        "xp": "start"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "start",
+        "xp": "mid"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "start",
+        "xp": "good"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "start",
+        "xp": "bad"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "mid",
+        "xp": "start"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "mid",
+        "xp": "mid"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "mid",
+        "xp": "good"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "mid",
+        "xp": "bad"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "mid",
+        "xp": "start"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "mid",
+        "xp": "mid"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "mid",
+        "xp": "good"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "mid",
+        "xp": "bad"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "good",
+        "xp": "start"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "good",
+        "xp": "mid"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "good",
+        "xp": "good"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "good",
+        "xp": "bad"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "good",
+        "xp": "start"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "good",
+        "xp": "mid"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "good",
+        "xp": "good"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "good",
+        "xp": "bad"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "bad",
+        "xp": "start"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "bad",
+        "xp": "mid"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "bad",
+        "xp": "good"
+      },
+      {
+        "a": "go",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "bad",
+        "xp": "bad"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "bad",
+        "xp": "start"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "bad",
+        "xp": "mid"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "bad",
+        "xp": "good"
+      },
+      {
+        "a": "safe",
+        "s": "memory",
+        "weights": {
+          "memory": "1"
+        },
+        "x": "bad",
+        "xp": "bad"
+      }
+    ],
+    "alpha": [
+      {
+        "s": "memory",
+        "weights": {
+          "go": "1",
+          "safe": "0"
+        },
+        "x": "start"
+      },
+      {
+        "s": "memory",
+        "weights": {
+          "go": "1",
+          "safe": "0"
+        },
+        "x": "mid"
+      },
+      {
+        "s": "memory",
+        "weights": {
+          "go": "1",
+          "safe": "0"
+        },
+        "x": "good"
+      },
+      {
+        "s": "memory",
+        "weights": {
+          "go": "1",
+          "safe": "0"
+        },
+        "x": "bad"
+      }
+    ],
+    "feasible": [
+      {
+        "actions": [
+          "go",
+          "safe"
+        ],
+        "s": "memory",
+        "x": "start"
+      },
+      {
+        "actions": [
+          "go",
+          "safe"
+        ],
+        "s": "memory",
+        "x": "mid"
+      },
+      {
+        "actions": [
+          "go",
+          "safe"
+        ],
+        "s": "memory",
+        "x": "good"
+      },
+      {
+        "actions": [
+          "go",
+          "safe"
+        ],
+        "s": "memory",
+        "x": "bad"
+      }
+    ],
+    "format": "Permansson.App.FiniteStrategicWorld.v1",
+    "states": {
+      "actions": [
+        "go",
+        "safe"
+      ],
+      "strategic": [
+        "memory"
+      ],
+      "world": [
+        "start",
+        "mid",
+        "good",
+        "bad"
+      ]
+    }
+  },
+  "comparison_states": [
+    [
+      "memory",
+      "start"
+    ],
+    [
+      "memory",
+      "mid"
+    ]
+  ],
+  "fixed_policy": [
+    {
+      "action": "go",
+      "s": "memory",
+      "x": "start"
+    },
+    {
+      "action": "go",
+      "s": "memory",
+      "x": "mid"
+    },
+    {
+      "action": "go",
+      "s": "memory",
+      "x": "good"
+    },
+    {
+      "action": "go",
+      "s": "memory",
+      "x": "bad"
+    }
+  ],
+  "format": "Permansson.App.FiniteNatureChronologyRequest.v1",
+  "horizon": 2,
+  "nature_models": [
+    {
+      "P": [
+        {
+          "a": "go",
+          "s": "memory",
+          "weights": {
+            "bad": "0",
+            "good": "0",
+            "mid": "1",
+            "start": "0"
+          },
+          "x": "start"
+        },
+        {
+          "a": "safe",
+          "s": "memory",
+          "weights": {
+            "bad": "0",
+            "good": "1",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "start"
+        },
+        {
+          "a": "go",
+          "s": "memory",
+          "weights": {
+            "bad": "0",
+            "good": "1",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "mid"
+        },
+        {
+          "a": "safe",
+          "s": "memory",
+          "weights": {
+            "bad": "0",
+            "good": "1",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "mid"
+        },
+        {
+          "a": "go",
+          "s": "memory",
+          "weights": {
+            "bad": "0",
+            "good": "1",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "good"
+        },
+        {
+          "a": "safe",
+          "s": "memory",
+          "weights": {
+            "bad": "0",
+            "good": "1",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "good"
+        },
+        {
+          "a": "go",
+          "s": "memory",
+          "weights": {
+            "bad": "1",
+            "good": "0",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "bad"
+        },
+        {
+          "a": "safe",
+          "s": "memory",
+          "weights": {
+            "bad": "1",
+            "good": "0",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "bad"
+        }
+      ],
+      "id": "theta_good_first"
+    },
+    {
+      "P": [
+        {
+          "a": "go",
+          "s": "memory",
+          "weights": {
+            "bad": "0",
+            "good": "1",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "start"
+        },
+        {
+          "a": "safe",
+          "s": "memory",
+          "weights": {
+            "bad": "0",
+            "good": "1",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "start"
+        },
+        {
+          "a": "go",
+          "s": "memory",
+          "weights": {
+            "bad": "1",
+            "good": "0",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "mid"
+        },
+        {
+          "a": "safe",
+          "s": "memory",
+          "weights": {
+            "bad": "0",
+            "good": "1",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "mid"
+        },
+        {
+          "a": "go",
+          "s": "memory",
+          "weights": {
+            "bad": "0",
+            "good": "1",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "good"
+        },
+        {
+          "a": "safe",
+          "s": "memory",
+          "weights": {
+            "bad": "0",
+            "good": "1",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "good"
+        },
+        {
+          "a": "go",
+          "s": "memory",
+          "weights": {
+            "bad": "1",
+            "good": "0",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "bad"
+        },
+        {
+          "a": "safe",
+          "s": "memory",
+          "weights": {
+            "bad": "1",
+            "good": "0",
+            "mid": "0",
+            "start": "0"
+          },
+          "x": "bad"
+        }
+      ],
+      "id": "theta_good_second"
+    }
+  ],
+  "terminal_rewards": [
+    {
+      "s": "memory",
+      "value": "0",
+      "x": "start"
+    },
+    {
+      "s": "memory",
+      "value": "0",
+      "x": "mid"
+    },
+    {
+      "s": "memory",
+      "value": "1",
+      "x": "good"
+    },
+    {
+      "s": "memory",
+      "value": "0",
+      "x": "bad"
+    }
+  ]
+}

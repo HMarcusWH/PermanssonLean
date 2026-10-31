@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/cq1_transport.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "cq1",
+    "approximate"
+  ],
+  "properties": {
+    "format": {
+      "const": "Permansson.App.CQ1TransportRequest.v1"
+    },
+    "cq1": {
+      "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/cq1.v1.schema.json"
+    },
+    "approximate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline",
+        "treated"
+      ],
+      "properties": {
+        "baseline": {
+          "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/finite_world.v1.schema.json"
+        },
+        "treated": {
+          "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/finite_world.v1.schema.json"
+        }
+      }
+    }
+  }
+}

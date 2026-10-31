@@ -1,0 +1,248 @@
+{
+  "capabilities": {
+    "c10.fixed_six_state.numeric.v1": {
+      "allowed_numeric_status": [
+        "VERIFIED_EXACT_RATIONAL"
+      ],
+      "checker": "verification/research/c10_verify_receipt.py",
+      "native_cli": "apps/permansson/closure-successor/cli.py",
+      "scope": "Only frozen six-state C10 witness and complete comparison starts [1,2]",
+      "sha256_pins": {
+        "apps/permansson/closure-successor/cli.py": "c64be5accf4be470fcb0388c666e6ff7a8454774b513cddae78a06449883c8cb",
+        "verification/research/c10_emit_golden_bridge.py": "790223ae2289163619377626d2dd43e2512714da0cbb721eee4e5a09fac64a51",
+        "verification/research/c10_exact_execution.py": "f27a93626b31f6bfab3cff7cc1c584b023cf4f1bf946b1ef7eb78d23577b9be7",
+        "verification/research/c10_golden.py": "4c33cc52e1648c9e3a259d18093cf98460e13c71cb67826c0d4d88a896dc61a0",
+        "verification/research/c10_release_evidence.py": "cdf4088f1afb9e40a71817e7c1ad897ccfc2d9ae33c6862c51cb04c9ee05a26a",
+        "verification/research/c10_verify_receipt.py": "dd94134ebb715fd60c1516ce63e1265b53e39bed2f14c08126ec666e08bedebc"
+      },
+      "source_profile": "D0.C10.FROZEN_SIX_STATE"
+    },
+    "c11.stationary_1_to_6.numeric.v1": {
+      "allowed_numeric_status": [
+        "EXACT_RATIONAL_VERIFIED"
+      ],
+      "checker": "verification/research/c11_verify_stationary.py",
+      "native_cli": "apps/permansson/closure-successor-c11/cli.py",
+      "scope": "1..6-state rational stochastic matrices with Boolean descriptors",
+      "sha256_pins": {
+        "apps/permansson/closure-successor-c11/cli.py": "d5a49a552787c1b19beab4a6dd04ebfed97e1100677fb4d4bf81f0bb854c1c0f",
+        "verification/research/c11_emit_stationary_lean.py": "61e26c8ee253e909db9975d64cb3d6bd137c3f792abf8f7268112f65869be0e9",
+        "verification/research/c11_stationary_execution.py": "faa6b0f2fd0934a9adc8f9d6722b768f3a1df2d902d8be1a445db69088d717c6",
+        "verification/research/c11_verify_stationary.py": "731351061cf3cb7b45156e702885d735b2a1c45e8eecdeb5ed4f0f7a30396e70"
+      },
+      "source_profile": "REIFIED_FINITE_RATIONAL_C11"
+    }
+  },
+  "exact_profiles": {
+    "finite.almost_sure_safety_core.numeric.v1": {
+      "checker": "permansson_app.receipts.safety.check_safety_core",
+      "cli": "finite-safety",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite rational greatest almost-sure controlled invariant core <=12 joint states; not survival probability outside core; no Lean or empirical GR/PR qualification"
+    },
+    "finite.alpha_P_U.induced_kernel.numeric.v1": {
+      "checker": "permansson_app.receipts.finite_world.check_finite_receipt",
+      "cli": "finite-kernel",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite exact rational alpha/P/U model; held-fixed/causal identification not inferred"
+    },
+    "finite.cq1_constitutive_certificate.numeric.v1": {
+      "checker": "permansson_app.receipts.cq1.check_cq1",
+      "cli": "finite-cq1",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact finite CQ-1 certificate for one declared alpha/U intervention with P and feasibility held fixed: killed survival in the region from every region state (finite persistence gate), prefix survival in a property set under both models on a comparison set of at least two states, and the uniform margin. <=12 joint states, horizon <=16. No error-budget transport, Exact GR/PR, QSD, Lean or empirical identification claim."
+    },
+    "finite.first_exit_and_survival.numeric.v1": {
+      "checker": "permansson_app.receipts.exit.check_exit",
+      "cli": "finite-exit",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite region first-exit destination subprobability and never-exit mass; never normalize away nonexit"
+    },
+    "finite.frozen_menu.numeric.v1": {
+      "checker": "permansson_app.receipts.menu.check_menu",
+      "cli": "frozen-menu",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact finite-horizon objective over 1..8 fully enumerated declared interventions; includes all tied optimizers, not the universe of controls"
+    },
+    "finite.hitting_bellman.numeric.v1": {
+      "checker": "permansson_app.receipts.control.check_bellman",
+      "cli": "finite-bellman",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite <=12-state <=24-step fully observed rational hitting Bellman; deterministic remaining-horizon Markov; P/U held fixed; no Lean or GR/PR certification"
+    },
+    "finite.killed_kernel.survival.numeric.v1": {
+      "checker": "permansson_app.receipts.finite_survival.check_survival_receipt",
+      "cli": "finite-survival",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite horizon 0..32; <=12 joint states, full declared region and comparison set; not Exact GR/PR"
+    },
+    "finite.metric_contraction_perturbation.numeric.v1": {
+      "checker": "permansson_app.receipts.metric.check_metric",
+      "cli": "finite-metric",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact finite W1 transport on a declared metric over <=4 joint states: every baseline row-pair distance with an optimal coupling and an attaining 1-Lipschitz potential, contraction factor, per-row defects against a perturbed alpha/P/U model, unique invariant laws, their exact distance and the A3 bound delta/(1-rho) only under strict contraction. No Polish-space moment argument, Lean or empirical identification claim."
+    },
+    "finite.nonlinear_classwise_stationary.numeric.v1": {
+      "checker": "permansson_app.receipts.nonlinear.check_nonlinear",
+      "cli": "nonlinear-stationary",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "All feasible deterministic stationary policies, <=8 finite joint states and <=64 policies, Boolean F(p)=1-|p-2/3| applied to each recurrent-class law before expectation; numeric only"
+    },
+    "finite.one_step_risk_occupancy.numeric.v1": {
+      "mode": "numeric",
+      "cli": "one-step-risk",
+      "checker": "permansson_app.receipts.risk_occupancy.check_risk",
+      "lean_status": "NOT_EXECUTED",
+      "scientific_claims_verified": false,
+      "scope": "One-transition, fully observed, finite, exact rational randomized state-feedback optimum from a declared initial law, complete feasible action sets, and risk event; independent primal/dual LP certificate and actual P/U law reconstruction. At most four joint states and five occupancy variables. No multistage, private-information, unbounded-policy, Lean or empirical identification claim."
+    },
+    "finite.patch_grammar.numeric.v1": {
+      "mode": "numeric",
+      "cli": "finite-grammar",
+      "checker": "permansson_app.receipts.grammar.check_grammar",
+      "scope": "Exact finite alpha/U explicitly admitted block grammar and per-comparison finite survival/exit effects, all inclusion-minimal positive admitted blocks, four-corner interactions. Not a PR certificate.",
+      "lean_status": "NOT_EXECUTED",
+      "scientific_claims_verified": false
+    },
+    "finite.path_perturbation_tv.numeric.v1": {
+      "checker": "permansson_app.receipts.robustness.check_perturbation",
+      "cli": "finite-perturbation",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact finite-horizon path event survival and TV coupling bound, <=12 states, horizon <=32; never long-run GR/PR or causal identity"
+    },
+    "finite.random_occupation.numeric.v1": {
+      "checker": "permansson_app.receipts.occupation.check_occupation",
+      "cli": "finite-occupation",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite rational multichain bottom classes, absorption and random limiting occupation; not empirical GR/PR"
+    },
+    "finite.rational_algebra_witness.numeric.v1": {
+      "checker": "permansson_app.receipts.algebra.check_algebra",
+      "cli": "finite-algebra",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact rational witnesses for four specialized real-algebra profiles on <=4-dimensional matrices and vectors: seam equations and common mode, an LDL positive-semidefinite witness with the shell Schur complement, singular compatibility (preimage gap or incompatible kernel vector), and the Gram gap, witness and perturbation threshold. Feature or operator identification with a strategic source is an explicit unmet premise; no Lean or empirical identification claim."
+    },
+    "finite.rectangular_vs_committed_nature.numeric.v1": {
+      "checker": "permansson_app.receipts.robust_nature.check_nature",
+      "cli": "finite-robust-nature",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Finite rational max-min rectangular nature chooses a complete physical P row after each observed control; fixed deterministic Markov policy compared with one whole P model committed at t=0. Fully observed <=12 joint states, <=6 nature models, <=12 transitions. No committed-controller optimum or private-information claim; no Lean or empirical identification."
+    },
+    "finite.residence_monitor.numeric.v1": {
+      "checker": "permansson_app.receipts.residence.check_residence",
+      "cli": "finite-residence",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Fully observed <=8-state finite Bellman over explicit first-entry/retryable/avoid monitors, deadlines <=8 and dwell <=4; numeric only; no through-horizon risk certificate"
+    },
+    "finite.two_player_protocol.numeric.v1": {
+      "checker": "permansson_app.receipts.multiagent.check_multiagent",
+      "cli": "finite-multiagent",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact finite two-player protocol with product actions: per-player action and private-update tables, a common update and physical P (each dimension <=2, both players with the same private-state and action counts); baseline, closed-loop (treated player's mechanism replaced) and open-loop (declared anchor profile, then the replacement) joint kernels and their row total variation. P is never changed. No asymmetric types, mediated or correlated actions, private clocks, Lean or empirical game identification claim."
+    },
+    "finite.typed_quotient.numeric.v1": {
+      "mode": "numeric",
+      "cli": "finite-quotient",
+      "checker": "permansson_app.receipts.quotients.check_quotient",
+      "scope": "Exactly strongly lumpable typed strategic/world coordinate projection for baseline and each frozen alpha/U intervention, complete fibers and finite horizon survival/exit transport. Does not construct coarse alpha/P/U or certify Exact GR/PR.",
+      "lean_status": "NOT_EXECUTED",
+      "scientific_claims_verified": false
+    },
+    "lp.exact_rational.independent_verification.v1": {
+      "checker": "permansson_app.receipts.lp",
+      "cli": "lp-check",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Consumer-side exact rational primal/dual optimum or Farkas infeasibility; no provider equality"
+    },
+    "lp.exact_rational.optimality.numeric.v1": {
+      "checker": "permansson_app.receipts.lp.check_lp_certificate",
+      "cli": "lp-propose",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Bounded exact rational <=6-variable LP; failure to locate a certificate never means infeasible"
+    },
+    "finite.one_step_observation_belief.numeric.v1": {
+      "checker": "permansson_app.receipts.belief.check_belief",
+      "cli": "one-step-belief",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "One-transition, one strategic state, 1..3 hidden world states, observations and actions. Exact observation likelihoods and Bayesian posterior where reachable; one action shared across all hidden states in each observation support; bounded complete deterministic observation-policy enumeration. Unreachable observation never normalized. No multistage POMDP, independent Lean proof, empirical identification or GR/PR status."
+    },
+    "finite.observation_history_tree.numeric.v1": {
+      "checker": "permansson_app.receipts.belief_tree.check_belief_tree",
+      "cli": "finite-belief-tree",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "One to three transitions; <=2 strategic and <=3 hidden world states, <=3 observations/actions. Observation before action at each stage, P then U; exhaustive bounded finite observation-history deterministic policy class with exact Bayesian joint-state beliefs, common hidden-support feasibility and independent unnormalized-flow/replayed-path verification. No general POMDP, Lean replay or empirical GR/PR identification."
+    },
+    "finite.private_control_stage_saddle.numeric.v1": {
+      "checker": "permansson_app.receipts.private_stage.check_private_stage",
+      "cli": "finite-private-stage",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact one-stage private-control robust value: nature sees the controller's mixed strategy but not the realized control (at most 4 controls and 4 nature parameters, payoffs of any sign). Exhaustive exact vertex enumeration of both programs returns an optimal rational controller mixture and a nature mixture forming a two-sided saddle certificate; the pure-control (revealed-control) value and the randomization gain are reported. No multi-stage private game, committed nature, learning, Lean or empirical identification claim."
+    },
+    "finite.adaptive_block_control.numeric.v1": {
+      "checker": "permansson_app.receipts.adaptive.check_adaptive",
+      "cli": "finite-adaptive-grammar",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact adaptive control over the declared admitted blocks of a finite patch grammar (at most 8 blocks, 12 joint states, 8 transitions): before every alpha/P/U stage the controller selects one whole admitted block and its history may select a different one next time; P is never changed. The exact Bellman table over (joint state, still-inside flag) gives the survival or exit optimum over every full-history behavioral block controller, with tied optimal blocks, every frozen block value and the adaptivity gain. No downward closure, unadmitted joint block, overlap-model certificate, Lean or empirical identification claim."
+    },
+    "finite.one_step_risk_infeasibility.numeric.v1": {
+      "checker": "permansson_app.receipts.risk_infeasibility.check_risk_infeasibility",
+      "cli": "one-step-risk-infeasibility",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact Farkas certificate that the one-step risk cap of a one-step-risk request cannot be met: per-state floors (the least next-step risk over the declared feasible actions of the actual P.U rows), every attaining action, the least risk mass of any fully observed randomized policy from the initial law, and its shortfall over the cap. Refuses when a policy meets the cap. One transition only; no multi-stage, private-information, Lean or empirical identification claim."
+    },
+    "finite.cq1_certificate_transport.numeric.v1": {
+      "checker": "permansson_app.receipts.cq1_transport.check_cq1_transport",
+      "cli": "finite-cq1-transport",
+      "lean_status": "NOT_EXECUTED",
+      "mode": "numeric",
+      "scientific_claims_verified": false,
+      "scope": "Exact transport of a finite CQ-1 certificate to a declared approximate baseline/treated pair sharing the states, feasible actions and P: one-step budgets are the exact maximal row total variations between the certified and approximate induced kernels, the geometric envelopes 1-(1-delta)^L give the transported persistence error min(1, eta+e0) and margin kappa-e0-eJ (transported only when positive), and the approximate pair's own exact values are reported as a consistency check. Budgets are exact distances between declared models, not empirical error estimates; no Exact GR/PR, QSD, Lean or empirical identification claim."
+    }
+  },
+  "format": "Permansson.App.Registry.AdditiveNumerical.v2",
+  "source_baseline": "3492b26707788293ca88c66637b6ba021c7e478d"
+}
