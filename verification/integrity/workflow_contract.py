@@ -16,7 +16,11 @@ ACTION_PINS = {"actions/checkout": "11d5960a326750d5838078e36cf38b85af677262",
 # effective execution. A profile change requires a separately reviewed update
 # to this source constant. There is no runtime override. The candidate still
 # owns this checker, so the pin does not authenticate its own human review.
-APPROVED_WORKFLOW_SHA256 = "23bdb913dd2813dc9a3484bd40d142fa08ffb43da01efcda1f1b59284c1caed1"
+# The archive job runs the owner-engineering archive successor contract v1
+# (verification/research/archive_successor_gate_v1.py): the original T verifier
+# replays the historical bundle in its own clean checkout, and current C is
+# bound separately. That owner decision is not an independent security review.
+APPROVED_WORKFLOW_SHA256 = "38a656410a38e3931566846bc76237958080df06786448cd9145053f0302f38e"
 
 # Review the entire workflow set, not a grep of job names: another YAML file
 # can publish a colliding required context through quoted/flow/tagged or dynamic
@@ -209,7 +213,7 @@ def validate_workflow(text, workflows=None):
     if text.count("-m verification.integrity.ci_context") != 3:
         reject("Every job must validate source context")
     required = ["verification.integrity.preservation", "verification.integrity.tex_export",
-                "verification.archive.offline_smoke", "--suite reference", "--suite preservation",
+                "verification/research/archive_successor_gate_v1.py", "--suite reference", "--suite preservation",
                 "--suite context", "--suite workflow", "--suite tex", "--suite archive"]
     if any(item not in text for item in required):
         reject("A required verifier or test suite is absent")
@@ -227,7 +231,7 @@ def validate_workflow(text, workflows=None):
         "archive-reproducibility": [context_command,
             "python -m pip install -r verification/integrity/requirements.txt",
             'python -B -m verification.integrity.run_tests --suite archive --report "$RUNNER_TEMP/archive-tests.json"',
-            'python -B -m verification.archive.offline_smoke --repo . --candidate "$GITHUB_SHA" --supplement archival/v0.2.0/supplement-1 --scratch "$RUNNER_TEMP/archive-clean" --report "$RUNNER_TEMP/archive-replay.json"'],
+            'python -B verification/research/archive_successor_gate_v1.py --repo . --candidate "$GITHUB_SHA" --supplement archival/v0.2.0/supplement-1 --scratch "$RUNNER_TEMP/archive-clean" --evidence "$RUNNER_TEMP/archive-evidence" --report "$RUNNER_TEMP/archive-replay.json"'],
     }
     for index in range(1, len(blocks), 2):
         name, body = blocks[index:index + 2]

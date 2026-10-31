@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import subprocess
 import unittest
+import archive_successor_approval_v1 as approval
 from pr113_workflow_profile_v2 import PREACTIVATION_HEAD, audit as audit_v2
 
 ROOT=Path(__file__).resolve().parents[2]
@@ -36,8 +37,23 @@ class FullRequiredPreview(unittest.TestCase):
             source=audit_v2(ROOT,git("rev-parse","HEAD"),phase="active")
             self.assertEqual(source["current_reviewed_workflow_count"],30)
             self.assertFalse(source["independent_security_review"])
+        try:
+            owner_approved=approval.approved_workflow_changes(
+                subprocess.check_output(["git","show","HEAD:"+approval.POLICY_PATH],
+                                        cwd=ROOT,stderr=subprocess.DEVNULL,timeout=20))
+        except subprocess.CalledProcessError:
+            owner_approved={}
         for entry in self.m["old_workflows"]:
             origin=("HEAD" if len(active)==25 else PREACTIVATION_HEAD)
+            name=entry["path"].removeprefix(".github/workflows/")
+            if origin=="HEAD" and name in owner_approved:
+                # The owner-engineering archive successor change, from exactly
+                # this original blob; every other original stays byte-exact.
+                before,after=owner_approved[name]
+                self.assertEqual(entry["git_blob_oid"],before)
+                self.assertEqual(git("rev-parse",PREACTIVATION_HEAD+":"+entry["path"]),before)
+                self.assertEqual(git("rev-parse","HEAD:"+entry["path"]),after)
+                continue
             self.assertEqual(git("rev-parse",origin+":"+entry["path"]),
                              entry["git_blob_oid"])
         for entry in self.m["full_replacements"]:

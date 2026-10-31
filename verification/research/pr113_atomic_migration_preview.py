@@ -59,6 +59,19 @@ def raw(head, path, *, git=git):
     return git("show",head+":"+path).encode("utf-8")
 
 
+def _owner_approved_changes(head, git):
+    """The archive successor policy committed at head, if any (see its module)."""
+    import archive_successor_approval_v1 as approval
+    try:
+        policy=raw(head,approval.POLICY_PATH,git=git)
+    except Exception:  # noqa: BLE001 - absent policy: the strict original check applies
+        return {}
+    try:
+        return approval.approved_workflow_changes(policy)
+    except approval.ApprovalError as exc:
+        raise TransitionError(str(exc)) from exc
+
+
 def digest(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -83,6 +96,7 @@ def preview(head, *, git=git, old_audit=None):
          "virtual original 25-source preview cannot evaluate installed30")
     from pr113_successor_workflow_profile import (
         audit as authentic_old_audit, authenticated_historical_25,
+        HISTORICAL_25_HEAD,
     )
     if old_audit is None:
         old_audit=authentic_old_audit
@@ -97,9 +111,26 @@ def preview(head, *, git=git, old_audit=None):
     need(set(original_paths) ==
          {".github/workflows/"+name for name in historical_allowlist},
          "original 25-workflow membership diverged from frozen Git history")
+    owner_approved=_owner_approved_changes(head,git)
     for name,hash_value in sorted(historical_allowlist.items()):
         path=".github/workflows/"+name
         data=raw(head,path,git=git)
+        if name in owner_approved:
+            # The owner-engineering archive successor change: the original
+            # member keeps its preactivation identity (what a staged
+            # replacement would replace) and records the installed blob.
+            before,after=owner_approved[name]
+            original_data=raw(HISTORICAL_25_HEAD,path,git=git)
+            need(digest(original_data)==hash_value
+                 and git_blob_oid(original_data)==before
+                 and git("rev-parse",head+":"+path)==git_blob_oid(data)==after,
+                 "owner-approved archive workflow differs from its policy: "+path)
+            original_members[path]={
+                "path":path,"sha256":hash_value,"git_blob_oid":before,
+                "origin":"ORIGINAL_25_CHANGED_BY_OWNER_APPROVED_ARCHIVE_SUCCESSOR_V1",
+                "installed_git_blob_oid":after,
+            }
+            continue
         need(digest(data)==hash_value and
              git("rev-parse",head+":"+path)==git_blob_oid(data),
              "original workflow changed before review: "+path)

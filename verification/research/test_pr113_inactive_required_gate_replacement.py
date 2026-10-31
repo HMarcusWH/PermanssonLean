@@ -149,7 +149,17 @@ class InactiveHistoricalTransition(unittest.TestCase):
                              r"pr113_historical_runtime_v3\.py \s*\\\s*$")
             self.assertNotIn("--check-existing",producer)
             self.assertRegex(verifier,r"(?m)^\s+--check-existing\s*$")
-        self.assertIn("verification.archive.offline_smoke",original)
+        preactivation=subprocess.check_output(
+            ["git","show",PREACTIVATION_HEAD+":.github/workflows/research-integrity.yml"],
+            cwd=ROOT,text=True,timeout=20)
+        self.assertIn("verification.archive.offline_smoke",preactivation)
+        if not active30():
+            # Installed: the owner-engineering archive successor contract v1,
+            # which still executes the original, unchanged T verifier.
+            self.assertIn("verification/research/archive_successor_gate_v1.py",original)
+            self.assertNotIn("verification.archive.offline_smoke --repo",original)
+            gate_source=(ROOT/"verification/research/archive_successor_gate_v1.py").read_text()
+            self.assertIn('"verification.archive.offline_smoke"',gate_source)
         self.assertIn("Execute archive adversaries",original)
         replacement=(STAGED/"research_integrity_archive_step.yml.inc").read_text()
         self.assertIn("pr113_required_dual_gate_v2.py",replacement)

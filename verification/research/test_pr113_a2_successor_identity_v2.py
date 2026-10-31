@@ -4,6 +4,7 @@ import hashlib
 import json
 import subprocess
 import copy
+import archive_successor_approval_v1 as approval
 import pr113_workflow_profile_v2 as workflow_profile
 from unittest import mock
 from pathlib import Path
@@ -249,6 +250,11 @@ class SuccessorA2Active30Tests(unittest.TestCase):
                 if claim in manifest:
                     self.assertIs(manifest[claim],False,
                                   "candidate manifest cannot grant "+claim)
+        try:
+            owner_approved=approval.approved_workflow_changes(
+                git(root,"show",checked+":"+approval.POLICY_PATH))
+        except subprocess.CalledProcessError:
+            owner_approved={}
         replacements={r["target"]:r for r in full["full_replacements"]}
         self.assertEqual(set(replacements),{
             ".github/workflows/research-lean.yml",
@@ -275,7 +281,14 @@ class SuccessorA2Active30Tests(unittest.TestCase):
                 expected=stage_oid(stage["staged_source"],stage["git_blob_oid"])
                 self.assertEqual(expected,contract["expected_workflow_git_blobs"][name])
                 if phase=="staged":
-                    self.assertEqual(current[path],old25[path],
+                    installed=old25[path]
+                    if name in owner_approved:
+                        # The owner-engineering archive successor change, from
+                        # exactly the original blob; nothing else may differ.
+                        before,after=owner_approved[name]
+                        self.assertEqual(old25[path],("100644",before))
+                        installed=("100644",after)
+                    self.assertEqual(current[path],installed,
                         "original required workflow changed before activation")
                 else:
                     self.assertEqual(current[path],("100644",expected),
