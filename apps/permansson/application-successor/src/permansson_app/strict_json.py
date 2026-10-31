@@ -5,6 +5,10 @@ from pathlib import Path
 from .errors import AppError
 
 MAX_BYTES = 131072
+# Generated files (receipts, candidate metadata, native outputs) grow with the
+# result, not with the request. They are read back with the whole-run output
+# budget's per-file limit, so every file a budgeted run may write can be read.
+MAX_RESULT_BYTES = 32 * 1024 ** 2
 
 
 def _pairs(pairs):
@@ -52,3 +56,8 @@ def strict_read(path: Path, *, max_bytes: int = MAX_BYTES):
     except OSError as exc:
         raise AppError("INPUT_PATH", str(exc)) from exc
     return raw, strict_loads(raw, max_bytes=max_bytes)
+
+
+def read_result(path: Path):
+    """Read a generated JSON file (a receipt or candidate metadata), not a request."""
+    return strict_read(path, max_bytes=MAX_RESULT_BYTES)

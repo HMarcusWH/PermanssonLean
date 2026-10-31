@@ -23,7 +23,7 @@ from ..engines.hitting import parse_hitting_problem
 from ..engines.safety import parse_safety_problem
 from ..errors import AppError
 from ..identity import canonical_bytes
-from ..strict_json import strict_read
+from ..strict_json import strict_read, read_result
 from . import (adaptive_emit, algebra_emit, belief_emit, control_emit, cq1_emit, cq1_transport_emit, metric_emit, multiagent_emit, private_stage_emit, risk_infeasibility_emit, exit_emit, flow_emit, grammar_emit, menu_emit, nonlinear_emit,
                occupation_emit, perturbation_emit, quotient_emit, residence_emit,
                robust_emit, safety_emit, survival_emit)
@@ -98,7 +98,7 @@ def check_family(family:str,problem_path:Path,receipt_path:Path,directory:Path,
     if len(files)!=2 or {p.name for p in files}!=expected_set or any(not p.is_file() or p.is_symlink() for p in files):
         raise AppError(code+'_PATH','candidate directory has missing/extra/symlinked contents')
     problem_raw,problem=strict_read(problem_path)
-    receipt_raw,receipt=strict_read(receipt_path)
+    receipt_raw,receipt=read_result(receipt_path)
     if region_path is None:
         lean,expected=emitter.emit_source(parse(problem),receipt)
         expected['problem_bytes_sha256']=sha256(problem_raw).hexdigest()
@@ -108,7 +108,7 @@ def check_family(family:str,problem_path:Path,receipt_path:Path,directory:Path,
         expected['problem_bytes_sha256']=sha256(problem_raw).hexdigest()
         expected['region_bytes_sha256']=sha256(region_raw).hexdigest()
     expected['receipt_bytes_sha256']=sha256(receipt_raw).hexdigest()
-    actual_raw,actual=strict_read(root/'source_candidate.json')
+    actual_raw,actual=read_result(root/'source_candidate.json')
     if type(actual) is not dict or actual!=expected or actual_raw!=canonical_bytes(expected)+b'\n':
         raise AppError(code+'_RECEIPT','candidate metadata does not match original problem and receipt bytes')
     with (root/lean_name).open('rb') as stream:

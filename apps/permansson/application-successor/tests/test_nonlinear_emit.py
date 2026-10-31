@@ -18,6 +18,9 @@ from permansson_app.engines.nonlinear import propose_nonlinear
 from permansson_app.errors import AppError
 from permansson_app.proof.control_source_check import check_family
 from permansson_app.proof.nonlinear_emit import FORMAT,emit_files,emit_source
+from permansson_app.strict_json import MAX_BYTES
+from permansson_app.identity import rational_text
+from fractions import Fraction
 
 EXAMPLE=APP/'src/permansson_app/data/examples/nonlinear.v1.json'
 TWO_COPIES=APP/'tests/fixtures/nonlinear_two_copies.v1.json'
@@ -67,6 +70,37 @@ class NonlinearEmitTests(unittest.TestCase):
         source,meta=emit_source(raw,receipt)
         self.assertEqual(meta['scope']['policies'],4)
         self.assertGreater(max(int(n).bit_length() for n in re.findall(r'\((\d+) : ℚ\)',source)),256)
+
+    def test_receipts_larger_than_the_request_limit_are_read(self):
+        # Codex's case: 16 stationary selectors with ~200-bit P rows give a
+        # receipt far above the 128 KiB request limit; lean-emit and
+        # lean-recheck read it with the result limit.
+        raw=json.loads(TWO_COPIES.read_text())
+        for k,row in enumerate(raw['model']['P']):
+            dest=next(x for x,w in row['weights'].items() if w=='1')
+            other=next(x for x in row['weights'] if x!=dest)
+            e=Fraction(1,2**200-(2*k+1))
+            row['weights']={dest:rational_text(1-e),other:rational_text(e)}
+        for k,row in enumerate(raw['model']['U']):
+            dest=next(s for s,w in row['weights'].items() if w=='1')
+            other=next(s for s in row['weights'] if s!=dest)
+            e=Fraction(1,2**199-(2*k+1))
+            row['weights']={dest:rational_text(1-e),other:rational_text(e)}
+        receipt=propose_nonlinear(raw)
+        with tempfile.TemporaryDirectory() as td:
+            base=Path(td)
+            (base/'request.json').write_text(json.dumps(raw))
+            (base/'receipt.json').write_text(json.dumps(receipt))
+            self.assertLess((base/'request.json').stat().st_size,MAX_BYTES)
+            self.assertGreater((base/'receipt.json').stat().st_size,MAX_BYTES)
+            emit_files(base/'request.json',base/'receipt.json',base/'out')
+            result=check_family('nonlinear',base/'request.json',base/'receipt.json',base/'out')
+            self.assertEqual(result['format'],'Permansson.App.NonlinearSourceRecheck.v1')
+            # Requests keep the smaller limit.
+            (base/'big_request.json').write_bytes(b' '*MAX_BYTES+json.dumps(raw).encode())
+            with self.assertRaises(AppError) as raised:
+                emit_files(base/'big_request.json',base/'receipt.json',base/'out2')
+            self.assertEqual(raised.exception.code,'INPUT_SIZE')
 
     def test_tampered_receipts_never_emit(self):
         raw,receipt=fixture()

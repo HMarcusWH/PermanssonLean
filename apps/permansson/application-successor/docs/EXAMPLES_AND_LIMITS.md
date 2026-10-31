@@ -37,6 +37,10 @@ fixtures in their live replays.
   capped by a separate result bound of 14000 bits. Several engines also cap
   their intermediate values at 8192 bits. A value beyond a bound is refused
   with an error, never truncated or rounded.
+- **Two file-size limits.** Requests are read up to 128 KiB. Generated JSON
+  (receipts, candidate metadata, native outputs and LP certificates) is read
+  back up to 32 MiB, the whole-run output budget per file, so anything a
+  budgeted run writes can be checked, emitted and rechecked.
 - **One whole-run budget.** Every exact profile command runs in a child
   process under one budget for parsing, computation, the independent check
   and the outputs (`permansson_app.budget`). The limits are:

@@ -63,6 +63,17 @@ class ResultRationalTests(unittest.TestCase):
         offenders=[p.name for p in emitters if 'exact_ratio(' in p.read_text(encoding='utf-8')]
         self.assertEqual(offenders,[])
 
+    def test_generated_files_are_never_read_with_the_request_limit(self):
+        # Receipts and candidate metadata grow with the result; they are read
+        # with strict_json.read_result, requests with strict_read.
+        import re
+        from permansson_app.proof import nonlinear_emit
+        modules=sorted(Path(nonlinear_emit.__file__).parent.glob('*.py'))
+        pattern=re.compile(r"(receipt\w*|actual_raw)\s*,\s*\w+\s*=\s*strict_read\(")
+        offenders=[p.name for p in modules if pattern.search(p.read_text(encoding='utf-8'))]
+        self.assertEqual(offenders,[])
+        self.assertGreaterEqual(sum('read_result(' in p.read_text(encoding='utf-8') for p in modules),24)
+
     """exact_result: canonical reduced rationals with the result-sized bound."""
     def test_accepts_large_canonical_results(self):
         from permansson_app.finite_world import exact_result

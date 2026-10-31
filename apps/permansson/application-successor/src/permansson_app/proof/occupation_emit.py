@@ -23,7 +23,7 @@ from ..errors import AppError
 from ..finite_world import exact_result,parse_finite_world
 from ..identity import canonical_bytes
 from ..receipts.occupation import check_occupation
-from ..strict_json import strict_read
+from ..strict_json import strict_read, read_result
 from .control_emit import _fin_case, _finset, _new_dir
 from .finite_emit import input_definition, rational_expr
 
@@ -195,7 +195,7 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
 
 def emit_files(model_file:Path,receipt_file:Path,out_dir:Path)->dict:
     model_raw,model=strict_read(model_file)
-    receipt_raw,receipt=strict_read(receipt_file)
+    receipt_raw,receipt=read_result(receipt_file)
     lean,metadata=emit_source(model,receipt)
     metadata['problem_bytes_sha256']=sha256(model_raw).hexdigest()
     metadata['receipt_bytes_sha256']=sha256(receipt_raw).hexdigest()

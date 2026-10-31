@@ -19,7 +19,7 @@ from ..errors import AppError
 from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.control import check_bellman
-from ..strict_json import strict_read
+from ..strict_json import strict_read, read_result
 from .finite_emit import input_definition, rational_expr
 
 FORMAT='Permansson.App.ControlTableLeanSourceCandidate.v1'
@@ -196,7 +196,7 @@ def _new_dir(target:Path)->Path:
 
 def emit_files(problem_file:Path,receipt_file:Path,out_dir:Path)->dict:
     problem_raw,problem=strict_read(problem_file)
-    receipt_raw,receipt=strict_read(receipt_file)
+    receipt_raw,receipt=read_result(receipt_file)
     lean,metadata=emit_source(parse_hitting_problem(problem),receipt)
     metadata['problem_bytes_sha256']=sha256(problem_raw).hexdigest()
     metadata['receipt_bytes_sha256']=sha256(receipt_raw).hexdigest()

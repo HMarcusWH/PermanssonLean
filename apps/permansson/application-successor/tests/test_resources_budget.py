@@ -32,6 +32,11 @@ class LimitsTests(unittest.TestCase):
         self.assertEqual(receipt['wall_seconds'],300)
         self.assertEqual(receipt['memory_bytes'],2*1024**3)
 
+    def test_generated_files_can_be_read_back_up_to_the_output_budget(self):
+        from permansson_app import strict_json
+        self.assertEqual(strict_json.MAX_RESULT_BYTES,budget.DEFAULT.output_bytes)
+        self.assertLess(strict_json.MAX_BYTES,strict_json.MAX_RESULT_BYTES)
+
     def test_environment_may_only_lower_the_limits(self):
         lowered=budget.limits_from_env({budget.ENV_LIMITS:json.dumps({'cpu_seconds':5,'output_bytes':1000})})
         self.assertEqual((lowered.cpu_seconds,lowered.output_bytes,lowered.wall_seconds),(5,1000,300))

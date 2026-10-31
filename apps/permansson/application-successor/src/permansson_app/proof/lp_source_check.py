@@ -14,7 +14,7 @@ import sys
 from ..engines.lp_types import parse_lp
 from ..errors import AppError
 from ..identity import canonical_bytes
-from ..strict_json import strict_read
+from ..strict_json import strict_read, read_result
 from .lp_emit import emit_source,MAX_SOURCE_BYTES
 
 
@@ -27,11 +27,11 @@ def check_files(model_path:Path,receipt_path:Path,directory:Path)->dict:
     if len(files)!=2 or {p.name for p in files}!=expected_set or any(not p.is_file() or p.is_symlink() for p in files):
         raise AppError('LP_REIFY_PATH','candidate directory has missing/extra/symlinked contents')
     model_raw,model=strict_read(model_path)
-    receipt_raw,receipt=strict_read(receipt_path)
+    receipt_raw,receipt=read_result(receipt_path)
     lean,expected=emit_source(parse_lp(model),receipt)
     expected['model_bytes_sha256']=sha256(model_raw).hexdigest()
     expected['receipt_bytes_sha256']=sha256(receipt_raw).hexdigest()
-    actual_raw,actual=strict_read(root/'source_candidate.json')
+    actual_raw,actual=read_result(root/'source_candidate.json')
     if type(actual) is not dict or actual!=expected or actual_raw!=canonical_bytes(expected)+b'\n':
         raise AppError('LP_REIFY_RECEIPT','candidate metadata does not match original LP and certificate bytes')
     with (root/'ReifiedLP.lean').open('rb') as stream:

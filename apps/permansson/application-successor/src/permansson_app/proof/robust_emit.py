@@ -24,7 +24,7 @@ from ..errors import AppError
 from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.robust_nature import check_nature
-from ..strict_json import strict_read
+from ..strict_json import strict_read, read_result
 from .control_emit import _fin_case, _finset, _nat_case, _new_dir, bound_system_lines
 from .finite_emit import input_definition, rational_expr
 
@@ -206,7 +206,7 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
 
 def emit_files(request_file:Path,receipt_file:Path,out_dir:Path)->dict:
     request_raw,request=strict_read(request_file)
-    receipt_raw,receipt=strict_read(receipt_file)
+    receipt_raw,receipt=read_result(receipt_file)
     lean,metadata=emit_source(request,receipt)
     metadata['problem_bytes_sha256']=sha256(request_raw).hexdigest()
     metadata['receipt_bytes_sha256']=sha256(receipt_raw).hexdigest()

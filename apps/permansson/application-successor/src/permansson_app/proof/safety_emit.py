@@ -17,7 +17,7 @@ from ..engines.safety import SafetyProblem, parse_safety_problem
 from ..errors import AppError
 from ..identity import canonical_bytes
 from ..receipts.safety import check_safety_core
-from ..strict_json import strict_read
+from ..strict_json import strict_read, read_result
 from .control_emit import _fin_case, _finset, _new_dir
 from .finite_emit import input_definition
 
@@ -150,7 +150,7 @@ def emit_source(problem:SafetyProblem,receipt:dict)->tuple[str,dict]:
 
 def emit_files(problem_file:Path,receipt_file:Path,out_dir:Path)->dict:
     problem_raw,problem=strict_read(problem_file)
-    receipt_raw,receipt=strict_read(receipt_file)
+    receipt_raw,receipt=read_result(receipt_file)
     lean,metadata=emit_source(parse_safety_problem(problem),receipt)
     metadata['problem_bytes_sha256']=sha256(problem_raw).hexdigest()
     metadata['receipt_bytes_sha256']=sha256(receipt_raw).hexdigest()

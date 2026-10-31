@@ -658,7 +658,8 @@ def main(argv=None):
                     print(json.dumps({'ok':True,'status':result['status'],'output':str(out)},sort_keys=True))
                 else:
                     from .receipts.lp import check_lp_certificate,check_farkas_certificate,OPTIMAL,INFEASIBLE
-                    _,receipt=strict_read(args.receipt)
+                    from .strict_json import read_result
+                    _,receipt=read_result(args.receipt)
                     if type(receipt) is not dict:raise AppError('LP_CERT','certificate must be object')
                     if receipt.get('format')==OPTIMAL:
                         checker=check_lp_certificate(model,receipt)

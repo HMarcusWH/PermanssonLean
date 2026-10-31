@@ -15,7 +15,7 @@ import sys
 from ..errors import AppError
 from ..finite_world import parse_finite_world
 from ..identity import canonical_bytes
-from ..strict_json import strict_read
+from ..strict_json import strict_read, read_result
 from .finite_emit import emit_source, MAX_SOURCE_BYTES
 
 
@@ -35,7 +35,7 @@ def check_files(model_path: Path, candidate_dir: Path) -> dict:
         raise AppError('REIFICATION_PATH', 'cannot read Lean source') from exc
     if len(source_bytes) > MAX_SOURCE_BYTES:
         raise AppError('REIFICATION_SCOPE', 'candidate source exceeds byte bound')
-    receipt_bytes, supplied = strict_read(receipt_path)
+    receipt_bytes, supplied = read_result(receipt_path)
     if type(supplied) is not dict:
         raise AppError('REIFICATION_RECEIPT', 'candidate metadata must be object')
     model_raw, model_doc = strict_read(model_path)

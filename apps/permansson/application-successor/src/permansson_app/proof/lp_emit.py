@@ -18,7 +18,7 @@ from ..errors import AppError
 from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.lp import OPTIMAL, INFEASIBLE, check_lp_certificate, check_farkas_certificate
-from ..strict_json import strict_read
+from ..strict_json import strict_read, read_result
 from .finite_emit import rational_expr
 
 FORMAT='Permansson.App.LPLeanSourceCandidate.v1'
@@ -181,7 +181,7 @@ def _new_dir(target:Path)->Path:
 
 def emit_files(model_file:Path,receipt_file:Path,out_dir:Path)->dict:
     model_raw,model=strict_read(model_file)
-    receipt_raw,receipt=strict_read(receipt_file)
+    receipt_raw,receipt=read_result(receipt_file)
     lean,metadata=emit_source(parse_lp(model),receipt)
     metadata['model_bytes_sha256']=sha256(model_raw).hexdigest()
     metadata['receipt_bytes_sha256']=sha256(receipt_raw).hexdigest()

@@ -9,7 +9,7 @@ from .capabilities import selected
 from .errors import AppError
 from .process import run_bounded, RunBudget
 from .source import check_source
-from .strict_json import strict_read
+from .strict_json import strict_read, read_result
 
 
 def _json_bytes(value) -> bytes:
@@ -50,8 +50,8 @@ def execute(request_path: Path, source_root: Path, output: Path):
     result_file = native / "result.json"
     if not receipt.is_file() or not result_file.is_file():
         raise AppError("RECEIPT_MISSING", "native application did not provide both expected files")
-    _, report = strict_read(result_file)
-    raw_receipt, actual_receipt = strict_read(receipt)
+    _, report = read_result(result_file)
+    raw_receipt, actual_receipt = read_result(receipt)
     if type(report) is not dict or type(actual_receipt) is not dict:
         raise AppError("RECEIPT_INVALID", "native report must be a JSON object")
     if report.get("scientific_claims_verified") is not False or report.get("empirical_identification") != "NOT_IDENTIFIED":
