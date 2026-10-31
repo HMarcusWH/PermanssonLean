@@ -25,6 +25,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from release_target import B113, T
+import archive_successor_approval_v1 as approval
 # Do NOT import the current workflow contract: the independently staged v2
 # replacement intentionally removes the historical APPROVED_WORKFLOWS symbol.
 # The 25-source contract is instead parsed from its immutable actual Git blob.
@@ -76,7 +77,10 @@ def git_bytes(head, path=None, *, op=None):
                      re.fullmatch(r"[A-Za-z0-9_.-]+",staged_name) is not None)
         historical_contract_only=(
             head==HISTORICAL_25_HEAD and path==HISTORICAL_CONTRACT)
-        need(workflow_path or staged_path or historical_contract_only,
+        # The one owner-approved installed change is read at the same head.
+        successor_policy=path==approval.POLICY_PATH
+        need(workflow_path or staged_path or historical_contract_only
+             or successor_policy,
              "untrusted workflow source path")
         args=["show",head+":"+path]
     try:
@@ -215,12 +219,20 @@ def audit(head, *, read=None, tree=None, approved=None):
     active_paths={p.decode("utf-8") for p in tree().splitlines()}
     need(active_paths=={".github/workflows/"+name for name in approved},
          "approved active workflow set changed before security transition")
+    owner_approved=_owner_approved_changes(read)
     active=[]
     for name,expected_sha in sorted(approved.items()):
         path=".github/workflows/"+name
         raw=read(path)
-        need(digest(raw)==expected_sha,
-             "original approved workflow bytes drifted: "+name)
+        if name in owner_approved:
+            before,after=owner_approved[name]
+            original=git_bytes(HISTORICAL_25_HEAD,path)
+            need(digest(original)==expected_sha and git_blob_oid(original)==before
+                 and git_blob_oid(raw)==after,
+                 "owner-approved archive workflow differs from its policy: "+name)
+        else:
+            need(digest(raw)==expected_sha,
+                 "original approved workflow bytes drifted: "+name)
         active.append({"path":path,"sha256":digest(raw)})
     try:
         manifest=json.loads(read(MANIFEST))
@@ -317,6 +329,18 @@ def audit(head, *, read=None, tree=None, approved=None):
         "next_required_action":"Independent security review of exact combined "
                                "profile and separate owner activation decision.",
     }
+
+
+def _owner_approved_changes(read):
+    """The archive successor policy at the inspected head, if committed there."""
+    try:
+        raw=read(approval.POLICY_PATH)
+    except Exception:  # noqa: BLE001 - absent policy: the strict original check applies
+        return {}
+    try:
+        return approval.approved_workflow_changes(raw)
+    except approval.ApprovalError as exc:
+        raise ProfileError(str(exc)) from exc
 
 
 def git_blob_oid(raw):
