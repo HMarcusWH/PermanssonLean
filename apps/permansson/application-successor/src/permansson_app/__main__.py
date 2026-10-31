@@ -29,6 +29,7 @@ def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
     sub=p.add_subparsers(dest='command',required=True)
     sub.add_parser('capabilities')
+    sub.add_parser('about',help='where this permansson_app is imported from, its distribution version and Python')
     resources=sub.add_parser('resources')
     resources.add_argument('--output',type=Path)
     resources.add_argument('--full',action='store_true',help='include versioned finite/LP schemas')
@@ -145,6 +146,13 @@ def main(argv=None):
     try:
         if args.command=='capabilities':
             print(json.dumps(registry(),indent=2,sort_keys=True))
+        elif args.command=='about':
+            from importlib import metadata
+            try:version=metadata.version('permansson-application-successor-recovery')
+            except metadata.PackageNotFoundError:version=None
+            print(json.dumps({'package':'permansson_app','location':str(Path(__file__).resolve().parent),
+                              'distribution_version':version,'python':sys.version.split()[0],
+                              'lean_status':'NOT_EXECUTED'},sort_keys=True))
         elif args.command=='resources':
             result=(export_extended_resources if args.full else export_resources)(args.output) if args.output else list(NAMES)
             print(json.dumps(result,indent=2,sort_keys=True))

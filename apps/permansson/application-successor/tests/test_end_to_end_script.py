@@ -100,14 +100,40 @@ class EndToEndScriptTests(unittest.TestCase):
             wrapper=Path(td)/'permansson-app'
             wrapper.write_text(WRAPPER.format(python=sys.executable,src=str(APP/'src'),profile=PROFILE))
             wrapper.chmod(wrapper.stat().st_mode|stat.S_IXUSR)
-            p=_walk('--app',str(wrapper),'--only',PROFILE,env={'FORGE_MODE':'none'})
+            # The wrapper is a test double that runs the source tree, so the install check is skipped.
+            p=_walk('--app',str(wrapper),'--skip-install-check','--only',PROFILE,env={'FORGE_MODE':'none'})
             self.assertEqual(p.returncode,0,p.stdout[-2000:]+p.stderr[-2000:])
             for mode in ('status="FAIL"','status="SKIPPED"','status="ERROR"','status=null',
                          'status="anything at all"','status=1','drop-key','delete','cli=FAIL'):
                 with self.subTest(mode=mode):
-                    p=_walk('--app',str(wrapper),'--only',PROFILE,env={'FORGE_MODE':mode})
+                    p=_walk('--app',str(wrapper),'--skip-install-check','--only',PROFILE,env={'FORGE_MODE':mode})
                     self.assertEqual(p.returncode,1,p.stdout[-2000:])
                     self.assertIn('"status": "FAIL"',p.stdout.strip().splitlines()[-1])
+
+    def test_source_tree_app_is_not_accepted_as_installed(self):
+        """An --app that runs the checkout's source (here by its own sys.path or an inherited
+        PYTHONPATH) is refused as an installed-wheel run."""
+        with tempfile.TemporaryDirectory() as td:
+            app=Path(td)/'permansson-app'
+            app.write_text(f'#!{sys.executable}\nimport sys\nsys.path.insert(0, {str(APP/"src")!r})\n'
+                           'from permansson_app.__main__ import main\nraise SystemExit(main())\n')
+            app.chmod(app.stat().st_mode|stat.S_IXUSR)
+            p=_walk('--app',str(app),'--only',PROFILE,env={'PYTHONPATH':str(APP/'src')})
+            self.assertEqual(p.returncode,1,p.stdout[-2000:])
+            self.assertIn('resolves to the source tree',p.stdout)
+        # The installed app never sees an inherited module search path.
+        _,env=end_to_end._app_command('/some/installed/permansson-app')
+        self.assertNotIn('PYTHONPATH',env)
+        self.assertNotIn('PYTHONHOME',env)
+
+    def test_about_reports_the_import_location(self):
+        env=dict(os.environ,PYTHONPATH=str(APP/'src'),PYTHONDONTWRITEBYTECODE='1')
+        p=subprocess.run([sys.executable,'-B','-m','permansson_app','about'],cwd=APP,env=env,text=True,
+                         capture_output=True,timeout=60)
+        self.assertEqual(p.returncode,0,p.stderr)
+        about=json.loads(p.stdout)
+        self.assertEqual(Path(about['location']),(APP/'src/permansson_app').resolve())
+        self.assertEqual(about['lean_status'],'NOT_EXECUTED')
 
     def test_unknown_only_selection_is_refused(self):
         p=_walk('--only','no-such-profile')

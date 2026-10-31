@@ -10,7 +10,8 @@ family's reflection bound are reported as numeric-only, never as failures.
 
     python scripts/end_to_end.py                       # source tree, no Lean
     python scripts/end_to_end.py --lean                # also compile every candidate
-    python scripts/end_to_end.py --app /venv/bin/permansson-app --lean   # installed wheel
+    python scripts/end_to_end.py --app /venv/bin/permansson-app --lean   # installed wheel (PYTHONPATH removed;
+                                                                         # import location verified and reported)
     python scripts/end_to_end.py --only finite-private-stage --lean       # selected profiles
 
 Each profile must report its own expected success pair exactly: the CLI's
@@ -100,9 +101,27 @@ def _app_command(app: str | None) -> tuple[list[str], dict]:
     env = os.environ.copy()
     env['PYTHONDONTWRITEBYTECODE'] = '1'
     if app:
+        # An installed app must not see the checkout: no inherited module search path.
+        for name in ('PYTHONPATH', 'PYTHONHOME'):
+            env.pop(name, None)
         return [app], env
     env['PYTHONPATH'] = str(APP / 'src')
     return [sys.executable, '-B', '-m', 'permansson_app'], env
+
+
+def installed_location(app: str, env: dict) -> Path:
+    """Where the running app imports `permansson_app` from (`permansson-app about`).
+
+    Refuses an app whose package resolves into this checkout's source tree.
+    """
+    proc = _run([app, 'about'], env, Path(tempfile.gettempdir()), timeout=120)
+    if proc.returncode != 0:
+        raise Failure(f'--app {app}: `about` failed: {(proc.stderr or proc.stdout)[-300:]}')
+    location = Path(json.loads(proc.stdout)['location']).resolve()
+    source = (APP / 'src').resolve()
+    if location == source or source in location.parents:
+        raise Failure(f'--app {app}: permansson_app resolves to the source tree ({location}), not an installation')
+    return location
 
 
 def _run(cmd: list[str], env: dict, cwd: Path, timeout: int = 900) -> subprocess.CompletedProcess:
@@ -239,6 +258,8 @@ def main(argv=None) -> int:
     parser.add_argument('--app', help='installed permansson-app executable (default: run from the source tree)')
     parser.add_argument('--lean', action='store_true', help='compile every emitted candidate with the pinned toolchain')
     parser.add_argument('--report', type=Path, help='write a JSON summary here')
+    parser.add_argument('--skip-install-check', action='store_true',
+                        help='for test doubles of --app only: do not verify where the app imports the package from')
     parser.add_argument('--only', action='append', metavar='COMMAND',
                         help='run only these profile commands (repeatable); native runs are then skipped')
     parser.add_argument('--source-root', type=Path,
@@ -251,6 +272,17 @@ def main(argv=None) -> int:
     if args.only and not set(args.only) <= known:
         parser.error(f'unknown profile command(s): {sorted(set(args.only) - known)}')
     cmd, env = _app_command(args.app)
+    install = 'source tree'
+    if args.app:
+        if args.skip_install_check:
+            install = 'not verified (--skip-install-check)'
+        else:
+            try:
+                install = str(installed_location(args.app, env))
+            except (Failure, subprocess.TimeoutExpired, json.JSONDecodeError, KeyError) as exc:
+                print(json.dumps({'status': 'FAIL', 'error': str(exc)}))
+                return 1
+        print(json.dumps({'app': args.app, 'package_location': install}), flush=True)
     rows, failures = [], []
     with tempfile.TemporaryDirectory(prefix='permansson-e2e-') as td:
         work = Path(td)
@@ -285,6 +317,7 @@ def main(argv=None) -> int:
                 failures.append({'command': f'run {request}', 'error': str(exc)})
                 print(json.dumps(failures[-1]), flush=True)
     summary = {'format': 'Permansson.App.EndToEndWalkthrough.v1', 'app': args.app or 'source tree',
+               'package_location': install,
                'lean_compiled': args.lean, 'profiles': rows, 'failures': failures,
                'status': 'PASS' if not failures else 'FAIL',
                'note': 'reproducibility aid; application outputs keep lean_status=NOT_EXECUTED'}
