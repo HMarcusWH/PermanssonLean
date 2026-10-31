@@ -117,6 +117,17 @@ An external read-only audit of `a3df725` raised 33 work orders.
 - **CI-01.** Exact-head Research Lean completion, read per commit on the
   pull request.
 - **CI-02.** The historical T/T2 archive-restoration security migration.
+  The required `archive-reproducibility` job fails with
+  `E_TOOLING_CLOSURE`: two files under `verification/integrity/` changed
+  after the tooling snapshot T `71cc34fa` was taken. The same difference is
+  on `main`, and this branch adds none. The staged T2 candidate cannot simply
+  be activated. Its inherited verifier requires all twelve required checks
+  of PR #113's final head `117f4905` to have succeeded, and an `APPROVED`
+  review from an owner-authorized roster. On that head
+  `archive-reproducibility` failed, and the roster at the merge is
+  `UNCONFIGURED`. A repair therefore needs a separately authorized,
+  versioned current-source contract. It must not rewrite historical
+  approvals or relax `verification/archive/`.
 - **CI-03.** Independent source, security and mathematics review, and the
   owner's decision.
 - **PKG-03.** An authenticated Linux/Windows × Python 3.12/3.13 distribution

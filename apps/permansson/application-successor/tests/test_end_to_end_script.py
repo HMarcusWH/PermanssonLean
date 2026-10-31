@@ -24,10 +24,15 @@ sys.path.insert(0,str(APP/'scripts'))
 import end_to_end
 sys.path.pop(0)
 sys.path.insert(0,str(APP/'src'))
+import permansson_app
 from permansson_app.capabilities import registry
 from permansson_app.proof.lean_candidates import families
 
 REPO=end_to_end.find_repository()
+# The installed-distribution test runs this suite in a copy of the application
+# whose package code is removed, so `permansson_app` then comes from the wheel.
+IMPORTED=Path(permansson_app.__file__).resolve().parent
+HAS_SOURCE_PACKAGE=(APP/'src/permansson_app/__init__.py').is_file()
 PROFILE='finite-private-stage'
 
 # A stand-in `permansson-app`: runs the real CLI, then forges one output.
@@ -110,6 +115,7 @@ class EndToEndScriptTests(unittest.TestCase):
                     self.assertEqual(p.returncode,1,p.stdout[-2000:])
                     self.assertIn('"status": "FAIL"',p.stdout.strip().splitlines()[-1])
 
+    @unittest.skipUnless(HAS_SOURCE_PACKAGE,'no package source to fall back to in this copy')
     def test_source_tree_app_is_not_accepted_as_installed(self):
         """An --app that runs the checkout's source (here by its own sys.path or an inherited
         PYTHONPATH) is refused as an installed-wheel run."""
@@ -126,13 +132,36 @@ class EndToEndScriptTests(unittest.TestCase):
         self.assertNotIn('PYTHONPATH',env)
         self.assertNotIn('PYTHONHOME',env)
 
+    def test_install_check_refuses_reported_source_locations(self):
+        """The refusal itself, independent of whether this copy has package source: any `about`
+        location in or under src/ is refused, including through a symlink, and a failing
+        `about` is an error rather than a pass."""
+        with tempfile.TemporaryDirectory() as td:
+            app=Path(td)/'permansson-app'
+            app.write_text(f'#!{sys.executable}\nimport json, os, sys\n'
+                           "if os.environ['ABOUT'] == 'fail':\n    sys.exit(3)\n"
+                           "print(json.dumps({'location': os.environ['ABOUT']}))\n")
+            app.chmod(app.stat().st_mode|stat.S_IXUSR)
+            link=Path(td)/'looks-installed'
+            link.symlink_to(APP/'src',target_is_directory=True)
+            outside=Path(td)/'site-packages/permansson_app'
+            outside.mkdir(parents=True)
+            for location in (APP/'src',APP/'src/permansson_app',link/'permansson_app','fail'):
+                with self.subTest(location=str(location)):
+                    with self.assertRaises(end_to_end.Failure):
+                        end_to_end.installed_location(str(app),dict(os.environ,ABOUT=str(location)))
+            self.assertEqual(end_to_end.installed_location(str(app),dict(os.environ,ABOUT=str(outside))),
+                             outside.resolve())
+
     def test_about_reports_the_import_location(self):
         env=dict(os.environ,PYTHONPATH=str(APP/'src'),PYTHONDONTWRITEBYTECODE='1')
         p=subprocess.run([sys.executable,'-B','-m','permansson_app','about'],cwd=APP,env=env,text=True,
                          capture_output=True,timeout=60)
         self.assertEqual(p.returncode,0,p.stderr)
         about=json.loads(p.stdout)
-        self.assertEqual(Path(about['location']),(APP/'src/permansson_app').resolve())
+        self.assertEqual(Path(about['location']),IMPORTED)
+        if HAS_SOURCE_PACKAGE:
+            self.assertEqual(IMPORTED,(APP/'src/permansson_app').resolve())
         self.assertEqual(about['lean_status'],'NOT_EXECUTED')
 
     def test_unknown_only_selection_is_refused(self):

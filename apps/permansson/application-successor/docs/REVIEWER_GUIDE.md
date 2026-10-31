@@ -6,9 +6,9 @@ piece is supposed to establish, and how to re-run the evidence yourself.
 
 ## 1. Reproduce before reading
 
-From a checkout with the pinned toolchain
-([`docs/RESEARCH_BUILD.md`](../../../../docs/RESEARCH_BUILD.md) at the
-repository root):
+From a checkout with the pinned toolchain (see `docs/RESEARCH_BUILD.md` at
+the repository root; the application's own documents link only within the
+application so that they stay valid in a copied or installed tree):
 
 ```bash
 lake build PermanssonResearch                                    # every bridge module

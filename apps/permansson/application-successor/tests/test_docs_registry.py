@@ -52,10 +52,14 @@ class DocsRegistryTests(unittest.TestCase):
         for doc in sorted(DOCS.glob('*.md')):
             if doc.name!='README.md':
                 self.assertIn(f'({doc.name})',index,doc.name)
-        for doc in sorted(DOCS.glob('*.md')):
+        for doc in [APP/'README.md',*sorted(DOCS.glob('*.md'))]:
             for target in re.findall(r'\]\(([^)#:]+\.md)\)',doc.read_text(encoding='utf-8')):
                 with self.subTest(doc=doc.name,target=target):
-                    self.assertTrue((doc.parent/target).is_file())
+                    resolved=(doc.parent/target).resolve()
+                    # The installed-distribution test runs this suite in a copy of
+                    # the application alone, so a link out of it would dangle there.
+                    self.assertTrue(resolved.is_relative_to(APP.resolve()),target)
+                    self.assertTrue(resolved.is_file())
 
     def test_retracted_status_statements_do_not_return(self):
         for doc in [APP/'README.md',*sorted(DOCS.glob('*.md'))]:
