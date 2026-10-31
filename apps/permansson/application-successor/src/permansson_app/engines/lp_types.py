@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from fractions import Fraction
 import re
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_ratio, exact_result
 from ..identity import rational_text, semantic_identity
 
 _NAME=re.compile(r'^[A-Za-z][A-Za-z0-9_-]{0,31}$')
@@ -43,7 +43,13 @@ class LP:
         return semantic_identity('exact-rational-linear-program',self.normalized_payload())
 
 
-def parse_lp(raw:object)->LP:
+def parse_lp(raw:object,*,generated:bool=False)->LP:
+    """Parse an LP. `generated=True` is for an LP that an engine or checker built
+    itself from an already-validated request: its coefficients are computed
+    values (products and sums of input rationals), so they are read with the
+    result-sized bound instead of the input bound. External LP requests keep
+    the input bound."""
+    rational=exact_result if generated else exact_ratio
     if type(raw) is not dict or set(raw)!={'format','variables','objective','bounds','constraints'} or raw['format']!='Permansson.App.ExactLP.v1':
         raise AppError('LP_INPUT','wrong LP envelope')
     names=raw['variables']
@@ -55,7 +61,7 @@ def parse_lp(raw:object)->LP:
         raise AppError('LP_INPUT','objective malformed')
     if type(obj['coefficients']) is not dict or set(obj['coefficients'])!=set(names):
         raise AppError('LP_INPUT','objective coefficients incomplete')
-    coeffs=tuple(exact_ratio(obj['coefficients'][v]) for v in names)
+    coeffs=tuple(rational(obj['coefficients'][v]) for v in names)
     bounds=raw['bounds']
     if type(bounds) is not dict or set(bounds)!=set(names):
         raise AppError('LP_INPUT','bounds incomplete')
@@ -64,7 +70,7 @@ def parse_lp(raw:object)->LP:
         bound=bounds[v]
         if type(bound) is not dict or set(bound)!={'lower','upper'}:
             raise AppError('LP_INPUT','bound malformed')
-        lo=exact_ratio(bound['lower']);up=None if bound['upper'] is None else exact_ratio(bound['upper'])
+        lo=rational(bound['lower']);up=None if bound['upper'] is None else rational(bound['upper'])
         if up is not None and up<lo:
             raise AppError('LP_INPUT','upper bound less than lower')
         lower.append(lo);upper.append(up)
@@ -82,8 +88,8 @@ def parse_lp(raw:object)->LP:
         ids.add(label)
         if type(row['coefficients']) is not dict or set(row['coefficients'])!=set(names):
             raise AppError('LP_INPUT','constraint coefficients incomplete')
-        coeff=tuple(exact_ratio(row['coefficients'][v]) for v in names)
-        rhs=exact_ratio(row['rhs'])
+        coeff=tuple(rational(row['coefficients'][v]) for v in names)
+        rhs=rational(row['rhs'])
         original.append((label,coeff,sense,rhs))
         shifted=rhs-sum((a*l for a,l in zip(coeff,lower)),Fraction(0))
         for sign,which in ((1,'le'),(-1,'ge')):

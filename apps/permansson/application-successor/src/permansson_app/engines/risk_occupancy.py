@@ -97,10 +97,10 @@ def parse_risk(raw:object)->RiskProblem:
     constraints.append({'id':'risk_cap',
         'coefficients':{name:rational_text(c) for name,c in zip(names,kc)},
         'relation':'<=','rhs':rational_text(cap)})
-    lp=parse_lp({'format':'Permansson.App.ExactLP.v1','variables':names,
+    lp=parse_lp({'format':'Permansson.App.ExactLP.v1','variables':names,  # built here: computed coefficients
         'objective':{'sense':'maximize','coefficients':C},
         'bounds':{name:{'lower':'0','upper':rational_text(initial[i])} for name,(i,_) in zip(names,flow)},
-        'constraints':constraints})
+        'constraints':constraints},generated=True)
     return RiskProblem(m,states,initial,rewards,indices,cap,tuple(flow),tuple(controlled),tuple(rc),tuple(kc),lp,
                        semantic_identity('one-step-risk-occupancy',raw))
 

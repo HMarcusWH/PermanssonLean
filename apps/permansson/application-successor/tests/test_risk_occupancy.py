@@ -16,7 +16,31 @@ from permansson_app.identity import rational_text
 FIXTURE=Path(__file__).resolve().parents[1]/'src/permansson_app/data/examples/risk_occupancy.v1.json'
 def request():return json.loads(FIXTURE.read_text())
 
+def high_precision(req,cap=None):
+    """Codex's case: every transition's danger probability is 1/2^200 and the
+    danger reward 1/3^100. Each input is within the 256-bit input bound; the
+    generated objective coefficient has a 359-bit denominator."""
+    p=Fraction(1,2**200)
+    for row in req['model']['P']:
+        row['weights']={'danger':rational_text(p),'safe':rational_text(1-p)}
+    for row in req['terminal_rewards']:
+        row['value']='0' if row['state'][1]=='safe' else rational_text(Fraction(1,3**100))
+    if cap is not None:req['risk_cap']=cap
+    return req
+
 class RiskOccupancyTests(unittest.TestCase):
+    def test_generated_lp_coefficients_beyond_the_input_precision(self):
+        req=high_precision(request())
+        q=parse_risk(req)
+        self.assertGreater(max(c.denominator.bit_length() for c in q.lp.coeffs),256)
+        r=propose_risk(req)
+        self.assertEqual(check_risk(req,r)['status'],'PASS')
+        # An external LP request is still held to the input bound.
+        from permansson_app.engines.lp_types import parse_lp
+        with self.assertRaises(AppError) as raised:parse_lp(q.lp.normalized_payload())
+        self.assertIn(raised.exception.code,{'RATIONAL_SIZE','RATIONAL_FORMAT'})
+        self.assertEqual(parse_lp(q.lp.normalized_payload(),generated=True).coeffs,q.lp.coeffs)
+
     def test_true_fractional_optimum_not_deterministic_policy(self):
         req=request();r=propose_risk(req)
         self.assertEqual(check_risk(req,r)['status'],'PASS')

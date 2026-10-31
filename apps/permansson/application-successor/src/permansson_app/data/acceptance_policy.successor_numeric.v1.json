@@ -720,6 +720,7 @@
         "test_risk_infeasibility.RiskInfeasibilityTests.test_example_certificate",
         "test_risk_infeasibility.RiskInfeasibilityTests.test_false_rays_and_tampering_rejected",
         "test_risk_infeasibility.RiskInfeasibilityTests.test_feasible_caps_are_refused",
+        "test_risk_infeasibility.RiskInfeasibilityTests.test_generated_lp_coefficients_beyond_the_input_precision",
         "test_risk_infeasibility.RiskInfeasibilityTests.test_optimum_route_still_makes_no_infeasibility_claim",
         "test_risk_infeasibility.RiskInfeasibilityTests.test_real_cli",
         "test_risk_infeasibility.RiskInfeasibilityTests.test_receipt_for_a_looser_cap_rejected"
@@ -764,6 +765,7 @@
         "test_risk_occupancy.RiskOccupancyTests.test_duplicate_and_missing_input_support",
         "test_risk_occupancy.RiskOccupancyTests.test_float_boolean_and_negative_input_rejected",
         "test_risk_occupancy.RiskOccupancyTests.test_full_risk_budget_allows_risky_action",
+        "test_risk_occupancy.RiskOccupancyTests.test_generated_lp_coefficients_beyond_the_input_precision",
         "test_risk_occupancy.RiskOccupancyTests.test_infeasible_search_is_not_a_false_farkas_certificate",
         "test_risk_occupancy.RiskOccupancyTests.test_mutated_original_P_cannot_reuse_receipt",
         "test_risk_occupancy.RiskOccupancyTests.test_risk_cap_source_identity_bound",

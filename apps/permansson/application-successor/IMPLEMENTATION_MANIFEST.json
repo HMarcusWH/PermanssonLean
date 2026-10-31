@@ -6521,7 +6521,7 @@
       "candidate": {
         "git_blob_sha1": "46b57a283cd5d631128705b3147461e20e8dbcfb",
         "proof": "NOT_EXECUTED",
-        "sha256": "8724c76a9cef6c15eaec78ac88a991369f4aaa0d7c2df9300bc45bfe0598045f",
+        "sha256": "e80ff5d9977038859559addddd6ad1159ab014c11fd7ec655787451ee1fae823",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -13340,8 +13340,8 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "git_blob_sha": "d2ae5047df4171a94e54a968f49c1120df95aadc",
-        "sha256": "1b63260fca5dc13db9982f398af9c17f2ac562fc97f7e18075960e419c73dcad",
+        "git_blob_sha": "11a5af6fb32d930a78f47f0f3318ee0ccfb148b7",
+        "sha256": "6f91c6f046d3a966f953749872b59a1f594f5d9a229283ad0f245d684cdb4a84",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
         "scope": "bounded rational LP encoding"
@@ -13361,8 +13361,8 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "git_blob_sha": "e171a998bbdf07a54e69b4b0c444d2a410f2d29e",
-        "sha256": "075578475fef4506b4c17ce10d899d81bd29abb9b092490ee5e73f80dc479e00",
+        "git_blob_sha": "961b9becb9db310c79306c4b7257278778336d55",
+        "sha256": "3d383015fb9348702ac5b85d2baf8f7e89187d3d921a4466f411080929f954a2",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
         "scope": "independent original-law/LP checker"
@@ -13424,8 +13424,8 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "git_blob_sha": "ff4102156fc5fa34175a02c82c56d98f18883e43",
-        "sha256": "643802a1e3aa34fe252a04168f8f82db99619637a5abf0cbc43180704a312b7b",
+        "git_blob_sha": "8b529d03de98e60ae6a92f02c7e790a61967496b",
+        "sha256": "47064b1a5b25bd92a55169730907f568e8a8145e0fa7781ad94d2af0e9330c2e",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
         "scope": "13 numerical/rejection tests"
@@ -16783,7 +16783,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "209920a99aaa24a82176399fb167ceb56826f60d81e13b85dc784bc2f5308622",
+        "sha256": "4a888841dd14ee62a75ad274fe8ad1e609bddac7543027a016023c0f08663dc1",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -17706,7 +17706,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "f89a778e15f22e9d93c36bd482faeb6297bd434bbbd35cb591c4e8efdf1d9970",
+        "sha256": "f579649e32cbc0713269fb7d6cf3ef6424947a2f55ecd9d1c8b18b3ab6128500",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }

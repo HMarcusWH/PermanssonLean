@@ -43,6 +43,23 @@ class RiskInfeasibilityTests(unittest.TestCase):
         with self.assertRaises(AppError) as raised:propose_risk(request())
         self.assertEqual(raised.exception.code,'RISK_NO_CERTIFICATE')
 
+    def test_generated_lp_coefficients_beyond_the_input_precision(self):
+        # Every action keeps danger mass 1/2^200, so the least risk is 1/2^200;
+        # a cap of 1/2^201 is infeasible. The danger reward 1/3^100 makes the
+        # shared generated LP's objective coefficients exceed 256 bits.
+        from fractions import Fraction
+        from permansson_app.identity import rational_text
+        raw=request()
+        p=Fraction(1,2**200)
+        for row in raw['model']['P']:
+            row['weights']={'danger':rational_text(p),'safe':rational_text(1-p)}
+        for row in raw['terminal_rewards']:
+            row['value']='0' if row['state'][1]=='safe' else rational_text(Fraction(1,3**100))
+        raw['risk_cap']=rational_text(p/2)
+        receipt=propose_risk_infeasibility(raw)
+        self.assertEqual(check_risk_infeasibility(raw,receipt)['status'],'INFEASIBILITY_VERIFIED')
+        self.assertEqual(receipt['minimal_risk_probability'],rational_text(p))
+
     def test_feasible_caps_are_refused(self):
         raw=request();raw['risk_cap']='7/16'          # exactly the floor total: met by the floor policy
         with self.assertRaises(AppError) as raised:propose_risk_infeasibility(raw)

@@ -85,7 +85,7 @@ def check_risk(raw:object,receipt:object)->dict:
                         'relation':'=','rhs':rational_text(law[i])} for i in range(len(states))]+
                       [{'id':'risk_cap','coefficients':{v:rational_text(r) for v,r in zip(names,risks)},
                         'relation':'<=','rhs':rational_text(risk_cap)}]}
-    lp=parse_lp(lp_data)
+    lp=parse_lp(lp_data,generated=True)  # built here from the request: computed coefficients
     if type(receipt) is not dict or 'lp_certificate' not in receipt:
         raise AppError('RISK_RECEIPT','no checkable LP certificate supplied')
     lc=check_lp_certificate(lp,receipt['lp_certificate'])
