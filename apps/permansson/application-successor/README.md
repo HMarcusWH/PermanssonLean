@@ -26,6 +26,7 @@ Python ≥ 3.12. Install with offline Draft 2020-12 schema checking:
 ```bash
 python -m pip install './apps/permansson/application-successor[full-schema]'
 permansson-app capabilities                       # registered profiles and their exact scopes
+permansson-app about                              # where the package is imported from, version, Python
 permansson-app resources --full --output /tmp/permansson-resources
 ```
 
@@ -87,8 +88,12 @@ python -B -m unittest discover -s apps/permansson/application-successor/tests
 # lean-recheck, tamper rejection; --lean also compiles and audits each candidate
 python apps/permansson/application-successor/scripts/end_to_end.py --lean
 
-# the same against an installed wheel
+# the same against an installed wheel (PYTHONPATH is removed and the app's import
+# location is checked, so the run cannot fall back to the source tree)
 python apps/permansson/application-successor/scripts/end_to_end.py --app /path/to/venv/bin/permansson-app
+
+# the inventory matches the tracked tree (current counts, dispositions of planned paths)
+python apps/permansson/application-successor/scripts/inventory.py --check
 
 # pinned-Lean live replays with semantic mutations (needs `lake build PermanssonResearch`)
 cd verification/research && python -B -m unittest discover -p 'test_application_*'

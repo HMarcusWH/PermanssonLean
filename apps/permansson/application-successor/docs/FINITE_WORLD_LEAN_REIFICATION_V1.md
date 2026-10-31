@@ -1,6 +1,6 @@
 # Finite-world α/P/U literal Lean source — application implementation candidate
 
-Status: **source emitter + source binding checked, no current-source pinned-Lean compilation or axiom audit yet**. This is an implementation step toward `ApplicationBridge/FiniteWorldInput.lean` and not a mathematical release certificate.
+Status: **source emitter, byte recheck and pinned-Lean instance replay implemented** for bounded inputs. `verification/research/test_application_finite_world_live_lean.py` compiles literal instances of `ApplicationBridge/FiniteWorldInput.lean` with the pinned toolchain, audits each theorem's axioms and requires semantic mutations to fail. That replay is test evidence per commit; check the exact-head Research Lean CI for the current commit. Application outputs still report `lean_status=NOT_EXECUTED`, and nothing here is a mathematical release certificate. `permansson-app lean-emit --family finite-world` emits a candidate.
 
 ## Scope and mathematical boundaries
 

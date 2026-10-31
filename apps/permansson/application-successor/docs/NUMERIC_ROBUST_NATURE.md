@@ -2,9 +2,15 @@
 
 **Source:** `PermanssonResearch/ReverseSolver/RectangularFiniteGame.lean`,
 `RectangularGameLaw.lean`, and `CommittedVsRectangularPathFixture.lean`.
-This application module is a bounded exact-rational implementation **without**
-a new application-to-Lean correspondence theorem. Do not infer a theorem-backed
-receipt or independent certification from this document.
+This application module is a bounded exact-rational implementation. A bounded
+source-bound Lean bridge, `RobustReceipt` (family `robust-nature`; see
+[`ROBUST_LEAN_BRIDGE.md`](ROBUST_LEAN_BRIDGE.md)), identifies checked
+rectangular max-min tables with Research's `value` and the chronological
+saddle. The committed comparison stays a fixed-policy evaluation, and the
+private-stage saddle is a separate profile
+([`NUMERIC_PRIVATE_STAGE.md`](NUMERIC_PRIVATE_STAGE.md)). The numeric command
+never runs Lean and reports `lean_status=NOT_EXECUTED`; do not infer
+independent certification from this document.
 
 ## Actual model, timing, and decision scope
 

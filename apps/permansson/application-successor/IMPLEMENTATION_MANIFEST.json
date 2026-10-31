@@ -25,15 +25,15 @@
   },
   "current_inventory": {
     "computed_by": "scripts/inventory.py --write-current (recomputed from git ls-files; see --check)",
-    "manifest_rows": 633,
-    "unique_paths": 633,
+    "manifest_rows": 634,
+    "unique_paths": 634,
     "rows_by_candidate_state": {
       "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI": 1,
-      "DOCUMENTATION": 42,
+      "DOCUMENTATION": 48,
       "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES": 1,
       "EXISTING_MAIN_PRESERVED": 11,
       "HASH_PINNED_FROM_PYPI_DIGESTS_LOCAL_REQUIRE_HASHES_INSTALL_PASSED": 3,
-      "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN": 12,
+      "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN": 11,
       "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN": 2,
       "LOCAL_PINNED_LEAN_11_OF_11_PASSED_PENDING_EXACT_HEAD_CI": 2,
       "LOCAL_PINNED_LEAN_4_OF_4_PASSED_PENDING_EXACT_HEAD_CI": 1,
@@ -45,25 +45,24 @@
       "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_ALL_THREE_MODES_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI": 23,
       "LOCAL_TESTED_DEFAULT_OUTPUT_BYTE_IDENTICAL_PENDING_EXACT_HEAD_CI": 1,
-      "LOCAL_TESTED_IMPLEMENTATION": 107,
-      "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI": 66,
+      "LOCAL_TESTED_IMPLEMENTATION": 106,
+      "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI": 65,
       "LOCAL_TESTED_LINUX_CPYTHON_3_13_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
-      "LOCAL_TESTED_NUMERIC_IMPLEMENTATION": 7,
-      "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 73,
+      "LOCAL_TESTED_NUMERIC_IMPLEMENTATION": 6,
+      "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 75,
       "LOCAL_TESTED_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
-      "LOCAL_TESTED_SOURCE_CANDIDATE": 7,
+      "LOCAL_TESTED_SOURCE_CANDIDATE": 6,
       "NOT_ACTIVATED_REVIEW_GATED": 19,
-      "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI": 6,
+      "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI": 5,
       "PINNED_RESEARCH_BUILD_COMPILED_AT_PRIOR_HEAD": 1,
       "PLANNED_NOT_IMPLEMENTED": 148,
       "PUBLISHED_VECTORS_CROSS_CHECKED_BY_TWO_ENCODERS": 1,
       "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 30,
-      "SEMANTICS_EXTRA_RFC8785_0_1_4_PENDING_EXACT_HEAD_CI": 1,
       "TEST_FIXTURE": 8,
       "VENDORED_OFFICIAL_VECTORS_COMMIT_32a48195": 1,
       "VENDORED_THIRD_PARTY_TEST_FIXTURE": 12
     },
-    "tracked_rows": 432,
+    "tracked_rows": 433,
     "absent_rows": 201,
     "absent_rows_by_disposition": {
       "DEFERRED_ALTERNATE_LAYOUT": 41,
@@ -75,7 +74,7 @@
       "REVIEW_GATED": 20,
       "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 30
     },
-    "application_tracked_files": 347,
+    "application_tracked_files": 348,
     "application_tracked_files_without_row": 0,
     "registered_exact_profiles": 26,
     "registered_native_capabilities": 2,
@@ -1183,7 +1182,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "8c7b2e9685da902ee83152433f99ffa5d4d733f11c2a8159caa2a0f34a5809ae",
+        "sha256": "6f17db15772e151ccdf8ff7d95ebed8e4c6d8230ce4b84bd4114064170ff08b7",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2195,7 +2194,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "09682f68afb8475aa16eff0287b122f9be8440d515e9d02b0bc4692c4d748108",
+        "sha256": "3a340dd840718d431531e3de32437ee8f93ea276b88d64970a26e4efa3f5e7db",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2325,7 +2324,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "61ce9a02c58523bc816ed37964d49bbbfd198ff1b1441cfc7d601855bead214a",
+        "sha256": "93f996a2569d02c02a33f7441d7b4e36795d31d850e5001c8a1535ab942ac3f2",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2492,8 +2491,8 @@
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
-        "state": "SEMANTICS_EXTRA_RFC8785_0_1_4_PENDING_EXACT_HEAD_CI",
-        "sha256": "2ee3a0269be807a891d84db3672bbc457d2efd52b4e86babc622c2dab8cd3068",
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "447a702ace2d80e4314054666717ad30fecbb96f38dd8eb200f79f6e5a85e247",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
@@ -13016,10 +13015,10 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "sha256": "caef34d282d454a9eda642dca9cd21cbd560020efc8616bdb66fc03131ed6f69",
-        "proof": "NOT_EXECUTED",
-        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
+        "state": "DOCUMENTATION",
+        "sha256": "6c5999ba33001a53873b568030aa715c432323c98055f15358e9ccf81ce9a17c",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       }
     },
     {
@@ -13169,10 +13168,10 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN",
-        "sha256": "dabad4238364a8154065791eeb11c74e592b001ca8b2f6b91b308b5aa4169f67",
-        "proof": "NOT_EXECUTED",
-        "trust": "FOCUSED_NUMERIC_CHECKS_NOT_INDEPENDENT_ACCEPTANCE"
+        "state": "DOCUMENTATION",
+        "sha256": "1c26173e62ff83b0784837941667b0e0680a2da373c409852afda49e09f81104",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       }
     },
     {
@@ -13314,12 +13313,10 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "git_blob_sha": "d400181316410fc557687f0e134c0bdacb6aeb46",
-        "sha256": "53668c5ae27fb1d73ad9d0d301f12387e63076f83948776a658a1347d6bd281f",
-        "proof": "NOT_EXECUTED",
-        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
-        "scope": "scientific scope documentation"
+        "state": "DOCUMENTATION",
+        "sha256": "7e6c82d305e41d0987dac9022448770be2ee88c81c31cb0971e8ae705936d856",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       }
     },
     {
@@ -13460,7 +13457,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "172fdc5030c121e21b2886e9d62b3c8034d9b935283dfc724948079e665a342f",
+        "sha256": "09474ae1fce63337a75bfbd487bbc19e44a67fd860dfe06cbd55a484af4aedc0",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -13537,11 +13534,10 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI",
-        "git_blob_sha1": "e89a11bc8e449693b9e11b134d8f8c870dce5d49",
-        "proof": "NOT_EXECUTED",
-        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
-        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH"
+        "state": "DOCUMENTATION",
+        "sha256": "bc5e57ddb7ca4815913cbf8f54b8137cef72fca2842c75bd6a6ea17aef06f5da",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       }
     },
     {
@@ -13683,12 +13679,10 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_TESTED_NUMERIC_IMPLEMENTATION",
-        "sha256": "1b0d3fb088f1f94d524e1f4b86a4dea5f37857b9881452cdec94d72dc5f33d85",
-        "git_blob_sha1": "342c577f5c2b3adddf4cbedfabbeda03e0096676",
-        "proof": "NOT_EXECUTED",
-        "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
-        "source_ref": "BRANCH_COMMIT_TO_BE_BOUND_AFTER_PUSH"
+        "state": "DOCUMENTATION",
+        "sha256": "6638ec065cc7d60dad09de5640ed0e8406f66ee39857f7b2dd642c318e860e0d",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       }
     },
     {
@@ -13769,12 +13763,10 @@
       "generated": false,
       "protected_root": false,
       "candidate": {
-        "state": "LOCAL_TESTED_SOURCE_CANDIDATE",
-        "sha256": "96f23792ec07cc9f942665fd355514e7bdad04c2406c247a1c6db5b19c3e20b3",
-        "git_blob_sha": "00e1c25bc2147d12e5d95888287e219866b8b3d0",
-        "proof": "NOT_EXECUTED",
-        "independent_security_review": false,
-        "release_authorized": false
+        "state": "DOCUMENTATION",
+        "sha256": "07b122fb20c66f5d2541e8079706e347948c7bb70ee97b7472cf677ff6a1932a",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       }
     },
     {
@@ -17098,7 +17090,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "c35cae3ff8dea15d0a2e0649fb3b678bb485c7727d517d3ffe74fcda9af05f54",
+        "sha256": "ed75ff70d10af819d507cde221df9e145bb1f90f9f49f0e817f9bc4d7244619f",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17136,7 +17128,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "8331e2cfd1a27dd7a9fcac80a5d3f94dfd2505c24d67212e29badd4f20311d5b",
+        "sha256": "3012d87a55a7d7d6467d865ec6e3a3de3e5b188811e9380ebe036569a6aa0300",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -17569,6 +17561,25 @@
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
         "sha256": "50c1fcdeee93664e4c663764252562520b01cbe8fa798fda2c4452aaffd74fe6",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_packaging_metadata.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "REL-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "a107eb1212770ba860cfd7a021dee634f3fd49b5827354aab23fc981c57b7c19",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }

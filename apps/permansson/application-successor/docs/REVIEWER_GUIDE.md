@@ -14,14 +14,20 @@ repository root):
 lake build PermanssonResearch                                    # every bridge module
 python -B -m unittest discover -s apps/permansson/application-successor/tests
 python apps/permansson/application-successor/scripts/end_to_end.py --lean
+python apps/permansson/application-successor/scripts/inventory.py --check
 cd verification/research && python -B -m unittest test_application_private_stage_live_lean
 ```
 
 `scripts/end_to_end.py` runs every packaged example as a user would. It runs
 each command, requires the independent check and an unpromoted report, emits
 and byte-rechecks a Lean candidate and checks that a tampered copy is
-rejected. With `--lean` it compiles each candidate and audits axioms. Use
-`--app <venv>/bin/permansson-app` to run it against an installed wheel. The
+rejected. Each profile must report its exact expected checker and CLI
+status, so a forged or unexpected status fails the run. With `--lean` it
+compiles each candidate and audits axioms with the Research harness's
+parser. Use `--app <venv>/bin/permansson-app` to run it against an installed
+wheel; the app's import location is checked and reported.
+`scripts/inventory.py --check` verifies that the manifest matches the
+tracked tree. The
 live tests (`verification/research/test_application_*_live_lean.py`) add
 single-line semantic mutations that must fail inside the targeted theorem.
 

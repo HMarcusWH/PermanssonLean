@@ -42,8 +42,11 @@ different first-stage observations, confirming genuine history dependence.
 This is not a general unbounded or continuous-state POMDP solver, nor a
 certificate for stochastic history-dependent policies outside the declared
 finite deterministic policy class. No posterior is identified empirically.
-No Lean bridge has been compiled for these literal inputs. `lean_status`
-remains `NOT_EXECUTED`, `empirical_identification` is `NOT_IDENTIFIED`, and
+A bounded source-bound Lean bridge exists (`BeliefTreeReceipt`, family
+`belief`; see [`BELIEF_LEAN_BRIDGE.md`](BELIEF_LEAN_BRIDGE.md)). It covers
+observation-before-action histories up to horizon 3 within the reflection
+bounds, and its live replay compiles literal instances. The numeric command
+itself never runs Lean: `lean_status` remains `NOT_EXECUTED`, `empirical_identification` is `NOT_IDENTIFIED`, and
 `scientific_claims_verified` is `false`. A successful numeric computation or
 receipt check does not establish Exact GR, PR constitution, mathematical CERT,
 application release acceptance, or publication approval.

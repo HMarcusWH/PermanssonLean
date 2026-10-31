@@ -2,7 +2,7 @@
 
 ## Scope and source
 
-These two application-successor profiles are additive, fully exact-rational **numeric** calculations. They are not extensions of the frozen `PermanssonLean/` theory core, and there is **no new Lean correspondence theorem or imported mathematical certification receipt**. The underlying research source patterns are the finite monitor and nonlinear Boolean-class constructions (including `PermanssonResearch/ReverseSolver/FirstEntryMonitor.lean`, `AvoidResidenceMonitor.lean`, `NonlinearBooleanClassFunctional.lean`, and `NonlinearMultichainAggregationFixture.lean`).
+These two application-successor profiles are additive, fully exact-rational **numeric** calculations. They are not extensions of the frozen `PermanssonLean/` theory core. Bounded source-bound Lean bridges exist for both: `ResidenceReceipt` (family `residence`, all three modes; [`RESIDENCE_LEAN_BRIDGE.md`](RESIDENCE_LEAN_BRIDGE.md)) and `NonlinearReceipt` (family `nonlinear`; [`NONLINEAR_LEAN_BRIDGE.md`](NONLINEAR_LEAN_BRIDGE.md)). The numeric commands never run Lean, report `lean_status=NOT_EXECUTED`, and carry no imported mathematical certification; general nonlinear or control certificates are not claimed. The underlying research source patterns are the finite monitor and nonlinear Boolean-class constructions (including `PermanssonResearch/ReverseSolver/FirstEntryMonitor.lean`, `AvoidResidenceMonitor.lean`, `NonlinearBooleanClassFunctional.lean`, and `NonlinearMultichainAggregationFixture.lean`).
 
 ### `finite.residence_monitor.numeric.v1`
 
