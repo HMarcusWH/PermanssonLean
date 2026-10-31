@@ -242,8 +242,11 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
             '    blindSeq B receipt_checked blind_checked',
             f'  have hD : D = {Dl} := by decide +kernel',
             f'  have hB : B = {Bl} := by decide +kernel',
-            '  rw [hD, hB] at h',
-            '  exact h','',
+            # A calc chain, not `rw ... at h`: when B = D, rw's closing rfl
+            # would discharge the goal and leave `exact h` with no goal.
+            f'  calc ({Bl} : ℚ) = B := hB.symm',
+            '    _ ≤ D := h',
+            f'    _ = {Dl} := hD','',
         ]
         names+=['blind_checked','blind_baseline','value_of_observation']
     lines.append(f'end {MODULE}')

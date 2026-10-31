@@ -122,17 +122,24 @@ def _common(p:TreeProblem, posterior:tuple[Fraction,...]):
 
 
 def _solver(p:TreeProblem):
+    """Optimal value from a belief, or None when no complete legal policy exists.
+
+    An action that is legal now but leads to a reachable posterior with no
+    common legal action has no complete continuation; it is excluded from the
+    maximization instead of aborting it.
+    """
     @lru_cache(maxsize=8192)
-    def best(belief:tuple[Fraction,...], left:int)->Fraction:
+    def best(belief:tuple[Fraction,...], left:int)->Fraction|None:
         if left==0:
             return sum((v*r for v,r in zip(belief,p.terminal_rewards)),Fraction(0))
         result=Fraction(0)
         for j in range(len(p.observations)):
             mass,posterior=_observe(p,belief,j)
             if not mass:continue
-            actions=_common(p,posterior)
-            if not actions:raise AppError('BELIEF_TREE_COMMON_MENU','no common action for reachable observation')
-            result+=mass*max(best(_step(p,posterior,a),left-1) for a in actions)
+            values=[v for v in (best(_step(p,posterior,a),left-1) for a in _common(p,posterior)) if v is not None]
+            if not values:
+                return None
+            result+=mass*max(values)
         return result
     return best
 
@@ -160,15 +167,17 @@ def _make_tree(p:TreeProblem, belief:tuple[Fraction,...],h:int,best):
                 'next_tree':None,'terminal_joint_law':None,'unreachable':True})
             continue
         actions=_common(p,posterior)
-        if not actions:raise AppError('BELIEF_TREE_COMMON_MENU','no jointly legal action for observation')
-        scores={a:best(_step(p,posterior,a),h-1) for a in actions}
+        # available_actions: legal now; action_scores: only those with a complete
+        # legal continuation (the others are never part of an admitted policy).
+        scores={a:v for a in actions if (v:=best(_step(p,posterior,a),h-1)) is not None}
+        if not scores:raise AppError('BELIEF_TREE_INTERNAL','selected branch has no complete continuation')
         highest=max(scores.values())
-        ties=[a for a in actions if scores[a]==highest]
+        ties=[a for a in actions if a in scores and scores[a]==highest]
         selected=ties[0]
         after=_step(p,posterior,selected)
         rows.append({'observation':o,'observation_probability':_text(mass),
             'posterior':[_text(v) for v in posterior],
-            'available_actions':list(actions),'action_scores':{a:_text(scores[a]) for a in actions},
+            'available_actions':list(actions),'action_scores':{a:_text(scores[a]) for a in actions if a in scores},
             'tied_max_actions':ties,'selected_action':selected,
             'next_prior':[_text(v) for v in after],
             'next_tree':_make_tree(p,after,h-1,best) if h>1 else None,
@@ -193,6 +202,8 @@ def propose_belief_tree(raw:object)->dict:
     p=parse_belief_tree(raw)
     best=_solver(p)
     optimum=best(p.prior,p.horizon)
+    if optimum is None:
+        raise AppError('BELIEF_TREE_COMMON_MENU','no complete legal observation-history policy exists')
     tree=_make_tree(p,p.prior,p.horizon,best)
     law=_law(p,tree)
     realized=sum((b*r for b,r in zip(law,p.terminal_rewards)),Fraction(0))

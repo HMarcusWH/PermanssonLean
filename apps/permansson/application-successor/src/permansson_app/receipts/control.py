@@ -3,7 +3,7 @@ from __future__ import annotations
 from fractions import Fraction
 from hashlib import sha256
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..engines.hitting import HittingProblem,RECEIPT
 
@@ -45,7 +45,7 @@ def check_bellman(problem:HittingProblem,receipt:object)->dict:
         row=all_values[t];chosen=all_choices[t];args=all_argmax[t]
         if any(type(data) is not list or len(data)!=n for data in (row,chosen,args)):
             raise AppError('BELLMAN_RECEIPT','state dimension mismatch')
-        current=[exact_ratio(v,probability=True) for v in row]
+        current=[exact_result(v,probability=True) for v in row]
         for i,(s,x) in enumerate(pairs):
             if t==0 or i in goal or i in forbidden:
                 expected=Fraction(int(i in goal))

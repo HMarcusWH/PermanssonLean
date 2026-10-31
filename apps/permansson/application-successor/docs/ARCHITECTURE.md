@@ -23,8 +23,12 @@ The Lean bridges and the application emitters (`proof/*_emit.py`, dispatched
 by `permansson-app lean-emit`) produce candidate instances, not a proof merely
 by generating source. `replay.py` does not invoke arbitrary Lean
 source; it compares separately authenticated compile, axiom and negative-mutation
-evidence for one exact source/mode/platform/theorem identity. Only an isolated,
-independently reviewed compiler runner may produce those receipts.
+evidence for one exact source/mode/platform/theorem identity. Each of the three
+records must attest the exact replay transcript (its `artifact_sha256` is the
+SHA-256 of the transcript's canonical bytes), so the emitted source, theorem
+type, toolchain, exits and axiom set come from the authenticated evidence, not
+from the caller. Only an isolated, independently reviewed compiler runner may
+produce those receipts.
 
 External case-study packages enter through the bounded `domain/bundle.py` reader.
 Only explicitly declared data assets are inspected; ZIP-contained scripts are

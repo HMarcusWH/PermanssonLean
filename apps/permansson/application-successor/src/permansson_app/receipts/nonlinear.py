@@ -5,7 +5,7 @@ from hashlib import sha256
 from itertools import product
 from types import MappingProxyType
 from ..errors import AppError
-from ..finite_world import FiniteWorld,exact_ratio
+from ..finite_world import FiniteWorld,exact_result
 from ..identity import canonical_bytes,semantic_identity
 from ..engines.nonlinear import (parse_nonlinear,FUNCTIONAL,POLICY_CLASS,RECEIPT)
 from .occupation import check_occupation
@@ -61,22 +61,22 @@ def check_nonlinear(raw:object,receipt:object)->dict:
         if any(type(entry[k]) is not list or len(entry[k])!=len(c) for k in ('class_descriptor_masses','class_functional_values','initial_class_weights')):
             raise AppError('NONLINEAR_RECEIPT','classwise data incomplete')
         for j,group in enumerate(c):
-            w=sum((initial[i]*exact_ratio(row[j],probability=True) for i,row in enumerate(occ['absorption_weights'])),Fraction(0))
-            p=sum((exact_ratio(mass,probability=True) for idx,mass in zip(group,occ['stationary_laws'][j]) if pairs[idx] in truth),Fraction(0))
+            w=sum((initial[i]*exact_result(row[j],probability=True) for i,row in enumerate(occ['absorption_weights'])),Fraction(0))
+            p=sum((exact_result(mass,probability=True) for idx,mass in zip(group,occ['stationary_laws'][j]) if pairs[idx] in truth),Fraction(0))
             value=1-abs(p-Fraction(2,3))
-            if (exact_ratio(entry['initial_class_weights'][j],probability=True)!=w or
-                exact_ratio(entry['class_descriptor_masses'][j],probability=True)!=p or
-                exact_ratio(entry['class_functional_values'][j],probability=True)!=value):
+            if (exact_result(entry['initial_class_weights'][j],probability=True)!=w or
+                exact_result(entry['class_descriptor_masses'][j],probability=True)!=p or
+                exact_result(entry['class_functional_values'][j],probability=True)!=value):
                 raise AppError('NONLINEAR_RECEIPT','wrong absorption/classwise functional data')
             weights.append(w);ps.append(p);fs.append(value)
         total=sum((w*f for w,f in zip(weights,fs)),Fraction(0))
         bary=1-abs(sum((w*p for w,p in zip(weights,ps)),Fraction(0))-Fraction(2,3))
-        if exact_ratio(entry['expected_classwise_score'],probability=True)!=total or exact_ratio(entry['functional_of_expected_descriptor'],probability=True)!=bary:
+        if exact_result(entry['expected_classwise_score'],probability=True)!=total or exact_result(entry['functional_of_expected_descriptor'],probability=True)!=bary:
             raise AppError('NONLINEAR_RECEIPT','functional order or expected score mismatch')
         scores.append(total)
     best=max(scores)
     tied=[i for i,v in enumerate(scores) if v==best]
-    if (exact_ratio(receipt['optimum_value'],probability=True)!=best or receipt['attaining_policy_indices']!=tied or
+    if (exact_result(receipt['optimum_value'],probability=True)!=best or receipt['attaining_policy_indices']!=tied or
         type(receipt['representative_index']) is not int or receipt['representative_index']!=tied[0]):
         raise AppError('NONLINEAR_RECEIPT','optimizer/tied policy set not complete')
     return {'format':'Permansson.App.IndependentNonlinearCheck.v1','status':'PASS',

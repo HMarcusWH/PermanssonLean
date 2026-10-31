@@ -21,6 +21,12 @@ have no normalized posterior and no inferred action; there is no fabricated
 history support. Intermediate actions have no separate stage reward, and
 terminal rewards are applied only after the declared number of transitions.
 
+An action legal now can still lead to a posterior whose hidden joint states
+share no legal action. Such an action has no complete legal continuation: it
+is listed in `available_actions` but is not scored, so it never enters the
+maximum or the reported optimum. A request with no complete legal policy at
+all fails with `BELIEF_TREE_COMMON_MENU`.
+
 ## Independent verification
 
 The producer performs normalized Bayesian dynamic programming. The separate

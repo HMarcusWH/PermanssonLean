@@ -17,6 +17,10 @@ VALIDATOR_SHA256='55d2ad768c34edd613200de911d8d3894b607b42d0a7e8513cced3e49545c4
 
 def validate_legacy(bundle:Path,source_root:Path,output:Path)->dict:
     source_root=source_root.resolve()
+    # The validator runs with the source root as its working directory, so pass it
+    # the absolute path of the file checked and hashed here (not resolved: the
+    # symlink checks below still see the path as given).
+    bundle=bundle.absolute()
     validator=source_root/'application/validator/validate_application.py'
     version=source_root/'application/VERSION.json'
     if validator.is_symlink() or not validator.is_file() or sha256(validator.read_bytes()).hexdigest()!=VALIDATOR_SHA256:

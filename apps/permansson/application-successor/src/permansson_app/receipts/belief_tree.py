@@ -101,6 +101,8 @@ def check_belief_tree(raw:object,receipt:object)->dict:
 
     # Direct recursive maximization of UNNORMALIZED flow values. This is a
     # different representation from the producer's normalized Bayesian V recursion.
+    # None: no complete legal policy continues from these weights. A legal action
+    # without one is excluded from the maximization, as in the producer.
     @lru_cache(maxsize=8192)
     def exhaustive_value(weights,remaining):
         if remaining==0:
@@ -109,9 +111,10 @@ def check_belief_tree(raw:object,receipt:object)->dict:
         for j in range(len(obs)):
             joint=observe(weights,j)
             if not any(joint):continue
-            acts=allowed(joint)
-            if not acts:raise AppError('BELIEF_TREE_COMMON_MENU','reachable observation lacks shared action')
-            total+=max(exhaustive_value(flow(joint,a),remaining-1) for a in acts)
+            values=[v for v in (exhaustive_value(flow(joint,a),remaining-1) for a in allowed(joint)) if v is not None]
+            if not values:
+                return None
+            total+=max(values)
         return total
 
     if type(receipt) is not dict or type(receipt.get('optimal_policy_tree')) is not dict:
@@ -139,10 +142,10 @@ def check_belief_tree(raw:object,receipt:object)->dict:
                 continue
             posterior=tuple(x/mass for x in part)
             legal=allowed(part)
-            if not legal:raise AppError('BELIEF_TREE_COMMON_MENU','no valid observation-history action')
-            vals={a:exhaustive_value(flow(part,a),remaining-1)/mass for a in legal}
+            vals={a:v/mass for a in legal if (v:=exhaustive_value(flow(part,a),remaining-1)) is not None}
+            if not vals:raise AppError('BELIEF_TREE_COMMON_MENU','no complete legal continuation on the selected tree')
             branches_checked+=len(vals)
-            maximum=max(vals.values());ties=[a for a in legal if vals[a]==maximum]
+            maximum=max(vals.values());ties=[a for a in legal if a in vals and vals[a]==maximum]
             chosen=original_row.get('selected_action')
             if type(chosen) is not str or chosen not in ties:
                 raise AppError('BELIEF_TREE_RECEIPT','chosen action not maximizing or not legal')
@@ -177,6 +180,8 @@ def check_belief_tree(raw:object,receipt:object)->dict:
     terminal=verify_tree(receipt['optimal_policy_tree'],prior,h)
     expected_reward=sum((m0*r for m0,r in zip(terminal,rewards)),Fraction(0))
     optimal=exhaustive_value(prior,h)
+    if optimal is None:
+        raise AppError('BELIEF_TREE_COMMON_MENU','no complete legal observation-history policy exists')
     if expected_reward!=optimal:
         raise AppError('BELIEF_TREE_RECEIPT','selected policy is not globally optimal in declared class')
 

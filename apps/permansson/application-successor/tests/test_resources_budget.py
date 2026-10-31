@@ -62,6 +62,14 @@ class EnforcementTests(unittest.TestCase):
     def test_memory_exhaustion(self):
         self.exhausted('x=bytearray(400_000_000)','BUDGET_MEMORY')
 
+    def test_native_allocation_failures_count_as_memory(self):
+        # A native crash or abort under the address-space limit is memory exhaustion;
+        # any other signal is reported as an aborted run.
+        for sig in ('SIGSEGV','SIGBUS','SIGABRT'):
+            with self.subTest(signal=sig):
+                self.exhausted(f'import os,signal;os.kill(os.getpid(),signal.{sig})','BUDGET_MEMORY')
+        self.exhausted('import os,signal;os.kill(os.getpid(),signal.SIGTERM)','BUDGET_ABORTED')
+
     def test_output_file_exhaustion(self):
         with tempfile.TemporaryDirectory() as td:
             target=Path(td)/'big.bin'

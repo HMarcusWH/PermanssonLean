@@ -205,6 +205,64 @@ class ReplayTests(unittest.TestCase):
                     'compiler_evidence_id':'a','audit_evidence_id':'b','negative_evidence_id':'c'}
         with self.assertRaises(AppError):evaluate_replay(target,transcript,EvidenceSet((),()))
 
+class ReplayBindingTests(unittest.TestCase):
+    """Matched compiler evidence must attest the exact transcript bytes."""
+    FIELDS=('source_commit','source_tree','subject_sha256','emitted_sha256','theorem_type_sha256','declaration','toolchain')
+
+    def target(self,**changes):
+        raw={'source_commit':'a'*40,'source_tree':'b'*40,'subject_sha256':'c'*64,'emitted_sha256':'d'*64,
+             'theorem_type_sha256':'e'*64,'declaration':'Proof.theorem','toolchain':'lean4-v4.34.0'}
+        return ReplayTarget.parse({**raw,**changes})
+
+    def transcript(self,target,axioms=('propext',)):
+        return {'format':'Permansson.App.LeanReplayTranscript.v1',**{k:getattr(target,k) for k in self.FIELDS},
+                'compiler_exit':0,'axiom_audit_exit':0,'transitive_axioms':list(axioms),
+                'compiler_evidence_id':'compile','audit_evidence_id':'audit','negative_evidence_id':'mutations'}
+
+    def evidence(self,transcript,attested=None):
+        digest=attested or hashlib.sha256(canonical_bytes(transcript)).hexdigest()
+        records=[]
+        for eid,kind in (('compile','lean_compiler'),('audit','axiom_audit'),('mutations','negative_mutation')):
+            raw=record(eid,kind,method='Proof.theorem')
+            raw.update(source_commit='a'*40,source_tree='b'*40,artifact_sha256=digest)
+            records.append(raw)
+        return EvidenceSet.from_external_hashes(records,trusted_expected_digests={r['evidence_id']:record_digest(r) for r in records})
+
+    def test_evidence_attesting_the_transcript_matches(self):
+        target=self.target();transcript=self.transcript(target)
+        result=evaluate_replay(target,transcript,self.evidence(transcript))
+        self.assertEqual(result['status'],'INSTANCE_COMPILER_EVIDENCE_MATCHED_REVIEW_REQUIRED')
+        self.assertFalse(result['independent_math_certification'])
+        self.assertFalse(result['application_release_authorized'])
+
+    def test_pinned_evidence_cannot_be_reused_for_another_artifact(self):
+        # Codex's case: keep the externally pinned records, change the compiled
+        # artifact's fields in both the target and the caller-supplied transcript.
+        original=self.target();evidence=self.evidence(self.transcript(original))
+        for changes in ({'emitted_sha256':'1'*64},{'theorem_type_sha256':'2'*64},{'toolchain':'lean4-v4.35.0'},
+                        {'emitted_sha256':'1'*64,'theorem_type_sha256':'2'*64,'toolchain':'lean4-v4.35.0'}):
+            target=self.target(**changes)
+            with self.subTest(changes=changes),self.assertRaises(AppError) as raised:
+                evaluate_replay(target,self.transcript(target),evidence)
+            self.assertEqual(raised.exception.code,'REPLAY_EVIDENCE')
+
+    def test_transcript_exits_and_axioms_are_bound_too(self):
+        target=self.target();evidence=self.evidence(self.transcript(target))
+        with self.assertRaises(AppError) as raised:
+            evaluate_replay(target,self.transcript(target,axioms=()),evidence)
+        self.assertEqual(raised.exception.code,'REPLAY_EVIDENCE')
+
+    def test_one_record_attesting_another_transcript_is_refused(self):
+        target=self.target();transcript=self.transcript(target)
+        records=[r for r in self.evidence(transcript).records]
+        stale=self.evidence(transcript,attested='f'*64).records
+        for index,kind in enumerate(('lean_compiler','axiom_audit','negative_mutation')):
+            mixed=[stale[i] if i==index else records[i] for i in range(3)]
+            with self.subTest(kind=kind),self.assertRaises(AppError) as raised:
+                evaluate_replay(target,transcript,EvidenceSet(tuple(mixed),()))
+            self.assertEqual(raised.exception.code,'REPLAY_EVIDENCE')
+
+
 class FederationTests(unittest.TestCase):
     def contract(self):return ExchangeContract.parse({'format':'Permansson.App.FederationContract.v1',
             'source':SOURCE,'capability':'c10.fixed_six_state.numeric.v1','mode':'numeric',

@@ -2,7 +2,7 @@
 from __future__ import annotations
 from hashlib import sha256
 from fractions import Fraction
-from ..finite_world import FiniteWorld,exact_ratio
+from ..finite_world import FiniteWorld,exact_result
 from ..identity import canonical_bytes
 from ..errors import AppError
 
@@ -70,7 +70,7 @@ def check_occupation(model:FiniteWorld, receipt:object):
     laws=[]
     for group,raw in zip(classes,raw_laws):
         if type(raw) is not list or len(raw)!=len(group):raise AppError('OCCUPATION_RECEIPT','stationary length mismatch')
-        vals=[exact_ratio(v,probability=True) for v in raw]
+        vals=[exact_result(v,probability=True) for v in raw]
         if sum(vals)!=1 or any(v<=0 for v in vals):raise AppError('OCCUPATION_RECEIPT','stationary distribution invalid')
         if any(sum(vals[k]*K[group[k]][state] for k in range(len(group)))!=vals[j] for j,state in enumerate(group)):
             raise AppError('OCCUPATION_RECEIPT','stationarity fails')
@@ -78,7 +78,7 @@ def check_occupation(model:FiniteWorld, receipt:object):
     weights=[]
     for i,raw in enumerate(raw_weights):
         if type(raw) is not list or len(raw)!=c:raise AppError('OCCUPATION_RECEIPT','absorption length mismatch')
-        v=[exact_ratio(x,probability=True) for x in raw]
+        v=[exact_result(x,probability=True) for x in raw]
         if sum(v)!=1:raise AppError('OCCUPATION_RECEIPT','absorption not normalized')
         for j,group in enumerate(classes):
             if i in group and v[j]!=1:raise AppError('OCCUPATION_RECEIPT','closed class boundary wrong')
@@ -91,7 +91,7 @@ def check_occupation(model:FiniteWorld, receipt:object):
                 raise AppError('OCCUPATION_RECEIPT','absorption harmonic equation fails')
         raw=raw_mean[i]
         if type(raw) is not list or len(raw)!=n:raise AppError('OCCUPATION_RECEIPT','expected law dimensions wrong')
-        mean=[exact_ratio(v,probability=True) for v in raw]
+        mean=[exact_result(v,probability=True) for v in raw]
         if sum(mean)!=1:raise AppError('OCCUPATION_RECEIPT','expected law mass invalid')
         for k in range(n):
             expected_p=sum((weights[i][j]*laws[j][group.index(k)] for j,group in enumerate(classes) if k in group),Fraction(0))

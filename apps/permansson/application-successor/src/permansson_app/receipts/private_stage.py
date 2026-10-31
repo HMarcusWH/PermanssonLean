@@ -12,7 +12,7 @@ from __future__ import annotations
 from fractions import Fraction
 from hashlib import sha256
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_ratio,exact_result
 from ..identity import canonical_bytes, semantic_identity, rational_text
 
 REQUEST = 'Permansson.App.PrivateStageRequest.v1'
@@ -26,7 +26,7 @@ def _fail(msg):
 def _simplex(raw, n, label):
     if type(raw) is not list or len(raw) != n:
         _fail(label + ' has wrong length')
-    vals = [exact_ratio(v, probability=True) for v in raw]
+    vals = [exact_result(v, probability=True) for v in raw]
     if sum(vals, Fraction(0)) != 1:
         _fail(label + ' is not a probability vector')
     return vals
@@ -46,7 +46,7 @@ def check_private_stage(raw: object, receipt: object) -> dict:
     q = _simplex(receipt.get('nature_mixture'), nt, 'nature mixture')
     if type(receipt.get('value')) is not str:
         _fail('value missing')
-    v = exact_ratio(receipt['value'])
+    v = exact_result(receipt['value'])
     # Column sums by nature parameter, then row sums by control: the opposite loop order.
     guarantee = [Fraction(0)] * nt
     hold = [Fraction(0)] * nc

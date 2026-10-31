@@ -24,6 +24,7 @@ from permansson_app.proof.control_source_check import check_family
 
 EXAMPLES=APP/'src/permansson_app/data/examples'
 RESTRICTED=APP/'tests/fixtures/belief_tree_restricted.v1.json'
+DEAD_END=APP/'tests/fixtures/belief_tree_dead_end.v1.json'
 
 
 def one_step():
@@ -104,6 +105,17 @@ class BeliefEmitTests(unittest.TestCase):
         with self.assertRaises(AppError) as raised:
             emit_source(dict(raw,format='Permansson.App.Unknown.v1'),receipt)
         self.assertEqual(raised.exception.code,'BELIEF_REIFY_INPUT')
+
+    def test_equal_observed_and_blind_values_use_a_calc_chain(self):
+        # Observation does not help here (D = B = 2).  A rewrite of the checked
+        # inequality would let rw's closing rfl discharge the goal first, so the
+        # emitted proof is a calc chain through the checked definitions.
+        raw,receipt=tree(DEAD_END)
+        source,_=emit_source(raw,receipt)
+        self.assertIn('def D : ℚ := (2 : ℚ)',source)
+        self.assertIn('def B : ℚ := (2 : ℚ)',source)
+        self.assertIn('  calc ((2 : ℚ) : ℚ) = B := hB.symm\n    _ ≤ D := h\n    _ = (2 : ℚ) := hD\n',source)
+        self.assertNotIn('rw [hD, hB] at h',source)
 
     def test_source_recheck_binds_original_bytes(self):
         for raw,receipt,family_name in (one_step()+('one',),tree()+('tree',)):

@@ -7,7 +7,7 @@ from __future__ import annotations
 from fractions import Fraction
 from hashlib import sha256
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes,rational_text
 from ..engines.robustness import PerturbationProblem,RECEIPT
 
@@ -60,7 +60,7 @@ def check_perturbation(problem:PerturbationProblem,receipt:object)->dict:
         for h,record in enumerate(rows):
             if type(record) is not list or len(record)!=n or any(type(v) is not str for v in record):
                 raise AppError('PERTURBATION_RECEIPT','survival table width/type incorrect')
-            actual=[exact_ratio(x,probability=True) for x in record]
+            actual=[exact_result(x,probability=True) for x in record]
             if actual!=values:raise AppError('PERTURBATION_RECEIPT',f'{label}: false killed survival recurrence at {h}')
             if h!=problem.horizon:
                 values=[sum((matrix[i][j]*actual[j] for j in problem.region),Fraction(0)) if i in problem.region else Fraction(0) for i in range(n)]

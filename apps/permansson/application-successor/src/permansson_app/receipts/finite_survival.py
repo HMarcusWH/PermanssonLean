@@ -3,7 +3,7 @@ from __future__ import annotations
 from fractions import Fraction
 from hashlib import sha256
 from ..errors import AppError
-from ..finite_world import parse_finite_world,compare_strategic_intervention,exact_ratio
+from ..finite_world import parse_finite_world,compare_strategic_intervention,exact_result
 from ..identity import canonical_bytes,semantic_identity,rational_text
 
 
@@ -65,7 +65,7 @@ def check_survival_receipt(raw:object,receipt:object)->dict:
         for i,row in enumerate(rows):
             if type(row) is not list or len(row)!=n or any(type(x) is not str for x in row):
                 raise AppError('SURVIVAL_CERT','row count/shape mismatch')
-            candidate=tuple(exact_ratio(x,probability=True) for x in row)
+            candidate=tuple(exact_result(x,probability=True) for x in row)
             if candidate!=values:
                 raise AppError('SURVIVAL_CERT',f'{label} survival recurrence false at horizon {i}')
             if i<h:

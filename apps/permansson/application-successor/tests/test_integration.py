@@ -105,6 +105,21 @@ class LegacyTests(unittest.TestCase):
      self.assertEqual(actual,errors)
      self.assertEqual(result['original_result']['contract_valid'],not bool(errors))
      self.assertFalse(result['scientific_claims_verified'])
+ def test_relative_input_is_validated_where_it_was_read(self):
+  # The validator subprocess runs in the source root; a relative path given from
+  # another directory must still reach it as the file that was checked and hashed.
+  examples=ROOT/'application/examples'
+  expected=json.loads((examples/'expectations.json').read_text())['grounded_pr_minimal']
+  previous=os.getcwd()
+  with tempfile.TemporaryDirectory() as temp:
+   try:
+    os.chdir(examples)
+    result=validate_legacy(Path('grounded_pr_minimal/application.json'),ROOT,Path(temp)/'out')
+   finally:
+    os.chdir(previous)
+  self.assertEqual([e['code'] for e in result['original_result']['errors']],expected)
+  self.assertEqual(result['original_application_sha256'],
+                   hashlib.sha256((examples/'grounded_pr_minimal/application.json').read_bytes()).hexdigest())
  def test_source_pin_fails_closed(self):
   with tempfile.TemporaryDirectory() as temp:
    root=Path(temp);(root/'application/validator').mkdir(parents=True)

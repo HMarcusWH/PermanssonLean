@@ -3,7 +3,7 @@ from __future__ import annotations
 from fractions import Fraction
 from hashlib import sha256
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes,rational_text
 from ..engines.monitors import parse_residence
 
@@ -55,7 +55,7 @@ def check_residence(raw:object,receipt:object):
         for i in range(n):
             if any(type(line) is not list or len(line)!=k for line in (values[t][i],chosen[t][i],args[t][i])):
                 raise AppError('RESIDENCE_RECEIPT','monitor columns incomplete')
-            row.append([exact_ratio(v,probability=True) for v in values[t][i]])
+            row.append([exact_result(v,probability=True) for v in values[t][i]])
         tables.append(row)
     for t in range(H,-1,-1):
         for i,(s,x) in enumerate(pairs):
@@ -87,7 +87,7 @@ def check_residence(raw:object,receipt:object):
     total=sum((a*b for a,b in zip(p.initial_law,val)),Fraction(0))
     if (receipt['initial_monitor_states']!=expected_initial or
         receipt['probability_by_initial_state']!=[rational_text(v) for v in val] or
-        exact_ratio(receipt['optimal_success_probability'],probability=True)!=total):
+        exact_result(receipt['optimal_success_probability'],probability=True)!=total):
         raise AppError('RESIDENCE_RECEIPT','initial-time event or success probability mismatch')
     return {'format':'Permansson.App.IndependentResidenceCheck.v1','status':'PASS',
             'checked_states':n,'checked_monitor_states':k,'checked_times':H+1,

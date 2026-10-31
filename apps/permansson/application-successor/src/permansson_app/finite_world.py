@@ -31,6 +31,31 @@ def exact_ratio(text: object, *, probability: bool=False) -> Fraction:
     return value
 
 
+# Exact results grow with the horizon and the dimensions (products and sums of
+# input rationals), so a correctly computed receipt value can exceed the input
+# precision bound. Receipt values are parsed with this separate, still finite
+# bound; the whole-run budget bounds the work that produces them. 14000 bits
+# (at most 4215 decimal digits per side) stays inside CPython's default
+# 4300-digit integer/string conversion limit.
+MAX_RESULT_BITS=14000
+_RESULT_CHARS=2*(MAX_RESULT_BITS*30103//100000+1)+2
+
+
+def exact_result(text: object, *, probability: bool=False) -> Fraction:
+    """A computed receipt value: canonical reduced rational with a result-sized bound."""
+    if type(text) is not str or len(text)>_RESULT_CHARS or not _RAT.fullmatch(text):
+        raise AppError('RATIONAL_FORMAT','exact result must be a canonical rational')
+    try: value=Fraction(text)
+    except (ValueError,ZeroDivisionError) as exc: raise AppError('RATIONAL_FORMAT','malformed rational') from exc
+    if max(value.numerator.bit_length(),value.denominator.bit_length())>MAX_RESULT_BITS:
+        raise AppError('RATIONAL_SIZE','result precision exceeds supported bound')
+    if rational_text(value)!=text:
+        raise AppError('RATIONAL_FORMAT','exact result must be in reduced canonical form')
+    if probability and not (0 <= value <= 1):
+        raise AppError('PROBABILITY','probability outside [0,1]')
+    return value
+
+
 def _strict_map(value: object, names: tuple[str,...], scope: str) -> tuple[Fraction,...]:
     if type(value) is not dict or set(value)!=set(names):
         raise AppError('KERNEL_ROW',f'{scope}: must supply exactly the declared output support')

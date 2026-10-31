@@ -96,6 +96,19 @@ class ExitTests(unittest.TestCase):
         self.assertEqual(row['never_exit'],'0')
         self.assertEqual(row['first_exit_by_step_and_destination'],[['1/2'],['1/4'],['1/8'],['1/16']])
         self.assertEqual(check_exit(self.model,self.region,self.receipt)['status'],'PASS')
+    def test_results_beyond_the_input_precision_are_checked(self):
+        # 1/1024 survival over 26 steps is 1/2**260: a correct result larger than
+        # any admissible input rational. The checker parses results with the
+        # result-sized bound, so the engine's receipt passes and a forgery fails.
+        model=model_from_rows([['1/1024','1023/1024'],['0','1']])
+        deep=region(model,[0],26)
+        receipt=compute_exit(model,deep)
+        self.assertEqual(receipt['rows'][0]['survival_through'][-1],'1/'+str(2**260))
+        self.assertEqual(check_exit(model,deep,receipt)['status'],'PASS')
+        forged=copy.deepcopy(receipt)
+        forged['rows'][0]['survival_through'][-1]='1/'+str(2**260+1)
+        with self.assertRaises(AppError):
+            check_exit(model,deep,forged)
     def test_horizon_zero(self):
         r=region(self.model,[0],0);x=compute_exit(self.model,r)
         self.assertEqual(x['rows'][0]['survival_through'],['1'])

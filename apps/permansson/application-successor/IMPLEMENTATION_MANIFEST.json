@@ -25,8 +25,8 @@
   },
   "current_inventory": {
     "computed_by": "scripts/inventory.py --write-current (recomputed from git ls-files; see --check)",
-    "manifest_rows": 640,
-    "unique_paths": 640,
+    "manifest_rows": 641,
+    "unique_paths": 641,
     "rows_by_candidate_state": {
       "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI": 1,
       "DOCUMENTATION": 48,
@@ -58,11 +58,11 @@
       "PLANNED_NOT_IMPLEMENTED": 146,
       "PUBLISHED_VECTORS_CROSS_CHECKED_BY_TWO_ENCODERS": 1,
       "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 31,
-      "TEST_FIXTURE": 8,
+      "TEST_FIXTURE": 9,
       "VENDORED_OFFICIAL_VECTORS_COMMIT_32a48195": 1,
       "VENDORED_THIRD_PARTY_TEST_FIXTURE": 12
     },
-    "tracked_rows": 440,
+    "tracked_rows": 441,
     "absent_rows": 200,
     "absent_rows_by_disposition": {
       "DEFERRED_ALTERNATE_LAYOUT": 41,
@@ -74,13 +74,13 @@
       "REVIEW_GATED": 20,
       "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 31
     },
-    "application_tracked_files": 355,
+    "application_tracked_files": 356,
     "application_tracked_files_without_row": 0,
     "registered_exact_profiles": 26,
     "registered_native_capabilities": 2,
     "research_bridge_modules": 24,
     "live_lean_replay_files": 24,
-    "live_lean_replay_test_methods": 180
+    "live_lean_replay_test_methods": 182
   },
   "historical": {
     "note": "Recorded during earlier rounds and preserved verbatim. None of this is current-head evidence; current counts are in current_inventory and the head identity in a detached receipt.",
@@ -1925,7 +1925,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "38f2465ce62469bdeeafba286b8ffd5375a1fd63a1b3fdf1b7f3515db8160787",
+        "sha256": "514e95953b5e04684c0458781ed4ccf9700e511ce5f1435d991ccdc8eb022277",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1974,7 +1974,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "8f630b6760f3ff7040eb377e26517958b6b88516800cbe564f31726c6fa774a5",
+        "sha256": "ce081b7167184ed30d0b1661c2464e1aa4dc2396fa174c9de14bcc13946496f2",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -7361,7 +7361,7 @@
       "candidate": {
         "git_blob_sha1": "930b8ebaa3066ea749880024b32157e64163dcbe",
         "proof": "NOT_EXECUTED",
-        "sha256": "2d00c9b69de34ee5f4caad1beafdec79bd0d2060b6a5316bafdc790a393e55f2",
+        "sha256": "6e823d6964de705d2e50ae8504e67a3da78bf8013a15a0c7462e3f27c9414030",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -7411,7 +7411,7 @@
       "candidate": {
         "git_blob_sha1": "ac60cb0cec435cf8b14fd8e264641c6130a7726d",
         "proof": "NOT_EXECUTED",
-        "sha256": "89545100a3d3e968a9480a653eb178c2579a02ebebe33e81e2bf8f6ef2f71b8f",
+        "sha256": "b22ef236d194ba9f621ef482803125f628092fb567b882c16e1b2cfa0de9a41f",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -7995,7 +7995,7 @@
       "candidate": {
         "git_blob_sha1": "3882273d0c685ef242da3acfb04c69903b4879b0",
         "proof": "NOT_EXECUTED",
-        "sha256": "8f6184d700081257a794bd222a9dd3c6e60c2a505de912d410f33b2dc819efab",
+        "sha256": "c61c347ef4091473c1d24a3066f1140a857fa41d1b0e4b29f8bb3415a06d17e3",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8037,7 +8037,7 @@
       "candidate": {
         "git_blob_sha1": "a52b8b86ca5b1b80ce3095ecc3cf09bcf4ca1dfb",
         "proof": "NOT_EXECUTED",
-        "sha256": "4376fc7ae38b1d85198b687757f882239139b6cecb7c9b0ff3cf0cc9741d5e75",
+        "sha256": "98391a9a3fa32dddd900e3a5ecf1cdc2683acfe82dbebb774481c0a5cd544170",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8134,7 +8134,7 @@
       "candidate": {
         "git_blob_sha1": "19a6cbd2c8e38714a3f5ca9b1984e9f5e625f74f",
         "proof": "NOT_EXECUTED",
-        "sha256": "dbaf612d6c3661e5aa3e129fc5352ef721a6ed7bab4acb3092b6e0805347463a",
+        "sha256": "db232793edb29e3e07d360eb5165f5bcd76aeab8983b8db7b99e99144bd9ab22",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8159,7 +8159,7 @@
       "candidate": {
         "git_blob_sha1": "f0dfb6f99541fad8bf1af40a9c35236e1474dc38",
         "proof": "NOT_EXECUTED",
-        "sha256": "afc91d6762a295aacb38d6c797e57bb325aa26a275d3248f813f2f4391deb9f3",
+        "sha256": "814a7f8fc9bf3003050d2b238235e063cd41a4ada67ee53c84008df4aae8fbb3",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8184,7 +8184,7 @@
       "candidate": {
         "git_blob_sha1": "bbd99ec0b94d737f0ac26ee84e29e94cc3df511d",
         "proof": "NOT_EXECUTED",
-        "sha256": "0cefb9d4d0648625eeba6a452fa2724241c71bc657939cd4a9e54adc9722bac0",
+        "sha256": "9fbd4d3c2784873a408e49e91634e2f61c4f66179f8983725e3e105623929064",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8249,7 +8249,7 @@
       "candidate": {
         "git_blob_sha1": "0dc74b9f2fe8c17bc16ff8ffe4a3a97c95ad8825",
         "proof": "NOT_EXECUTED",
-        "sha256": "d3408f4fdc0a05eb8a87c3f3efe667b0364f503f17ffd84722cdf95f4310c157",
+        "sha256": "a77d9be477b27d4018574977ef2e101e48dcf71e4c6b45f48c410cf3428e8f61",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8274,7 +8274,7 @@
       "candidate": {
         "git_blob_sha1": "a238f5bec4336d9938c71b2e5c21b5d80ed4feb6",
         "proof": "NOT_EXECUTED",
-        "sha256": "c11f84bc4c98e8d2843c3b6c2dd9ef56fdb58356156d3572c18d73ebc3af8144",
+        "sha256": "82eb922de1bac0a24eb81e9f1d23fc03042d23dc798b5d18b655b6b2e7670605",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8323,8 +8323,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "c80a7923cde46edef470bed94b573fbca19eeaf1f09af6a4555acb3ae6674f06",
-        "git_blob_sha": "0009652df06875a23865b6e1b76f5fd136ea8f2d",
+        "sha256": "451b088be3c1abe8d65a700474f2aea2d61ec7ec1ef61fdf90928fa451ef27a6",
+        "git_blob_sha": "9579f1b27edd33d11042489abb2b35e6626566e2",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -9098,7 +9098,7 @@
       "candidate": {
         "git_blob_sha1": "e3a38db7e9a302fdd8adf6680fe4ebe940921652",
         "proof": "NOT_EXECUTED",
-        "sha256": "85339c401bc30bf0a995cabe1d4c011cf24a0fa86d73b951b346082478a93990",
+        "sha256": "908e0d31c96250bb4f4cf2435588451adc5dc43970e46036d93058a02a17c7a3",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -9204,7 +9204,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "ef3028baed08951e75c6e118d521ab01758e312cceae8113c62b3cde49a8f3a7",
+        "sha256": "f13ccfd3a886d26721ff102f6dbccf9394976fd942879f244ff698be514003c6",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -9533,7 +9533,7 @@
       "candidate": {
         "git_blob_sha1": "cb95dcd8dbf1bf5c485954a0e4c53c2d49fa971c",
         "proof": "NOT_EXECUTED",
-        "sha256": "14779c02eec279b347bece92d2c6b235fbb61e0f4cd4206415aa85259d5f9153",
+        "sha256": "723ea92121958c2821a08708299f2b839a70fcde0bdfe2417445bb3805884622",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -9713,7 +9713,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "939a8d2ec376b3c063eb6ac674615e9efaff7b2bdcba4f3122823371cb794249",
+        "sha256": "2f296d37e78cdf3c5dd2bb6040f6b24eda1df25fc669f6a5521a82534042363b",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
@@ -12921,7 +12921,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "sha256": "79c51a47acf78a904a48665643a1f0fd85438db8dff36f5b560d4d423345028a",
+        "sha256": "b021df17e3eeca4a5512dfea688597ff87d98ffb4948b9f854b2c522f24e7d16",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -12938,7 +12938,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION",
-        "sha256": "e9e5dc622a10ae13e9c0a1bf4656ac17396f194de489bda044a0fc87c158842d",
+        "sha256": "9ab27e995f79c142b4dc2c21da7640d2b79ca3c2575ca0a41dcb1e74162556c4",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -13361,8 +13361,8 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "git_blob_sha": "974e5efb765a1c54d5cfb6b88a239b67d166b377",
-        "sha256": "95013d35e58942163f8a39a970b41183fc7365126744275091be38b8f3bd2640",
+        "git_blob_sha": "e171a998bbdf07a54e69b4b0c444d2a410f2d29e",
+        "sha256": "075578475fef4506b4c17ce10d899d81bd29abb9b092490ee5e73f80dc479e00",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
         "scope": "independent original-law/LP checker"
@@ -13561,7 +13561,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_NUMERIC_IMPLEMENTATION",
-        "sha256": "a03f788292ad3f70345ae5df5bcad515165642b9e167ed59664997472d95b1e6",
+        "sha256": "e135b1038afc051e95fe775c9bc590d0dddbc731d9c342ea05e3bbc24bdf1627",
         "git_blob_sha1": "245819fae632e9880326fd6543b3dc2ad77628f6",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
@@ -13582,7 +13582,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_NUMERIC_IMPLEMENTATION",
-        "sha256": "d7d8c645a00689a8a6461c3d36597368973c3f36b23ddd9baece4947903b6a8c",
+        "sha256": "ad18507a3e3f243c819b397abd38115b50c519acb5872a45f7daefc9de29b8b1",
         "git_blob_sha1": "94dd8fbef81c958815a3123b245e83b56b69ad93",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
@@ -13645,7 +13645,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_NUMERIC_IMPLEMENTATION",
-        "sha256": "b8eac0b85ce6b71d1615bfea958685d9e62c13be76bb0eeca17dd430e7af4a47",
+        "sha256": "15326d2d4e97772163abe70fc4ede590d3e8ebf54aaf1153a36d0b67b8f3f97c",
         "git_blob_sha1": "7437390a257abfd625609f1bd326c4edbe289503",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE",
@@ -13687,7 +13687,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "6638ec065cc7d60dad09de5640ed0e8406f66ee39857f7b2dd642c318e860e0d",
+        "sha256": "09dbaa023c7249fc3fa737adb3f33cbc63818df8d24880ce5b1db2e249851857",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -13877,8 +13877,8 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "a2dfa5feacd29ddf820ac74e155f0e136e1a775527c5589d835a8df4f2cc7250",
-        "git_blob_sha": "4a100e5ca36ca07fac758768f74093fc361f6839",
+        "sha256": "2f6bc22feb755e51e310a3a1b1032f8c6fd418c5cf8040d0421a806243a78123",
+        "git_blob_sha": "23be7a64f5b2eee99046d94fd3e6f4753a59da82",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       }
@@ -15414,7 +15414,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI",
-        "sha256": "ad342cd5fdce0e0737863d8205bbec0b3a5523e06f774ca7660d765e09acc033",
+        "sha256": "0171ed55ecdad15ec020e09dfe6bbf321d2ce99975e3983d416446bf8ea63c5d",
         "proof": "NOT_EXECUTED_IN_APPLICATION_OUTPUT",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -15433,7 +15433,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "a0b225e5c1149f90050d591fedf4ced4663009c399e9fc8f7c7e5538ff876093",
+        "sha256": "c7df12966bcc20aaec5ce6554d5cd069d62d860bd4388688245a0615e669d5d2",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -15471,7 +15471,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "37f42d2caf51207b33d7442daccba7e5c54ff3b51e372779785927c822629aba",
+        "sha256": "c6c0cdd10ca8e0ba296476b298c7c418507807b9597e697c206f819deab29abe",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -15491,7 +15491,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_PINNED_LEAN_11_OF_11_PASSED_PENDING_EXACT_HEAD_CI",
-        "sha256": "6e66e7f922fc2a099982a1db8846af4d8e23963b17756c3b713fbb3254ea1708",
+        "sha256": "cd1ef0a027aa5340c199054f0fbf6a2ecbd3ab290fc6889dc3659e884e88f483",
         "proof": "LOCAL_INSTANCE_REPLAY_ONLY",
         "trust": "LOCAL_SOURCE_AND_PINNED_COMPILER_NOT_INDEPENDENT_CERTIFICATION"
       }
@@ -15702,7 +15702,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "485b7e8804a971714c50960091d266afd5b29ac056bbcf396e1af53949026dc4",
+        "sha256": "81434195255c59ee2159646f0db794c7992baf64f36386067d3707b78de6b640",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -15913,7 +15913,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "de4522cd9a2fcb13bd86f8cec8a145ff0e35df9dd2baac2a7c58c7b475b87477",
+        "sha256": "a42b66e419c0101ce4762375d81f504f36830638ffd9965d4fb15608b5c5a976",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -16277,7 +16277,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "5e2c7b4f0aa7e30a22e882103ece3bd314ebf746f9e59e42e3f5d8298d01f644",
+        "sha256": "85f01ddf0de1f387350e8fa5035bb4cf89ccfbfa33e91f8286854ff255e61655",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -16745,7 +16745,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "7aa0fbc2e5fd92ab58f127ca19d30fc8c9c9b857ed36bd2b3d98c85b77f9048a",
+        "sha256": "321f64cff7e3ef302f06eb5a76fe77982e67354a474b465930b31c11ca9ffae3",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       }
@@ -17666,7 +17666,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "7ad76741f0c2b1e1b52c33595a97f7ea2fe1aeb56e89d1144b4414eb8f6f142c",
+        "sha256": "03d688cb188b78c7a153854825d512bc2fb37feadef14ef211dfaf0985652f8a",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17706,8 +17706,27 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "09b8127e52e672298c0ace375cf44fafd8c36c77f2db4c81d35c4fae36dcb1cc",
+        "sha256": "667ce90cd0abd90d19345d4b99cddfbafaef93f5b566b9b448def536d95d6918",
         "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/belief_tree_dead_end.v1.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "OPT-07"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "TEST_FIXTURE",
+        "sha256": "284f346e3720e1444ee96ec1e70d3efd97424c7d9ff9d5e93309f3f29ec4ccc3",
+        "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
     }

@@ -74,13 +74,23 @@ lake env lean /tmp/permansson-belief-instance/ReifiedBelief.lean
 `verification/research/test_application_belief_live_lean.py` compiles the
 packaged one-step and two-step requests and a horizon-3 fixture with two
 strategic states where the admitted actions depend on the hidden support
-(`tests/fixtures/belief_tree_restricted.v1.json`), audits axioms, and requires
+(`tests/fixtures/belief_tree_restricted.v1.json`) and a dead-end fixture
+(`tests/fixtures/belief_tree_dead_end.v1.json`), audits axioms, and requires
 single-line mutations to fail at the falsified obligation: an overstated
 optimum, a strictly worse admitted action, an inadmissible action whose
 extension row equals the admitted one (same value and law; only admissibility
 rejects it), a swapped terminal law (all at `receipt_checked`), an overstated
 or inadmissible blind baseline (`blind_checked`), a non-stochastic observation
-row (`likelihood_sum_one`) and an unnormalized prior (`prior_sum_one`).
+row (`likelihood_sum_one`), an unnormalized prior (`prior_sum_one`) and a root
+action with no complete legal continuation (`receipt_checked`).
+
+An action is scored only if some complete admitted continuation follows it. In
+the dead-end fixture, `risk` splits the hidden support into joint states whose
+menus are disjoint. It is listed in `available_actions` but never appears in
+`action_scores`, and a request with no complete admitted policy at all is
+refused with `BELIEF_TREE_COMMON_MENU`. The same fixture has equal observed
+and blind values (2 = 2), which exercises the equality case of
+`value_of_observation`.
 
 ## Trust boundary
 

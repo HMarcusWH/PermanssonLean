@@ -128,6 +128,12 @@ def run_child(command: list[str], env: dict, limits: Limits) -> tuple[int, bytes
         raise AppError('BUDGET_OUTPUT', f'whole-run output budget of {limits.output_bytes} bytes exhausted')
     if code == MEMORY_EXIT or (code == 1 and b'MemoryError' in stderr):
         raise AppError('BUDGET_MEMORY', f'whole-run memory budget of {limits.memory_bytes} bytes exhausted')
+    if code in (-signal.SIGSEGV, -signal.SIGBUS, -signal.SIGABRT):
+        # Under the address-space limit, native code (CPython internals, Rust
+        # extensions) can crash or abort on a failed allocation instead of
+        # raising MemoryError.
+        raise AppError('BUDGET_MEMORY', f'whole-run memory budget of {limits.memory_bytes} bytes exhausted '
+                                        f'(native code ended by signal {-code})')
     if code < 0:
         raise AppError('BUDGET_ABORTED', f'budgeted run ended by signal {-code}')
     return code, stdout, stderr

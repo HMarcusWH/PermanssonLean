@@ -12,7 +12,7 @@ from __future__ import annotations
 from fractions import Fraction
 from hashlib import sha256
 from ..errors import AppError
-from ..finite_world import parse_finite_world, exact_ratio
+from ..finite_world import parse_finite_world, exact_ratio, exact_result
 from ..identity import canonical_bytes, semantic_identity, rational_text
 
 REQUEST = 'Permansson.App.FiniteMetricRequest.v1'
@@ -44,7 +44,7 @@ def _direct_kernel(model, states):
 def _rat(text):
     if type(text) is not str:
         _fail('rational fields must be strings')
-    return exact_ratio(text)
+    return exact_result(text)
 
 
 def _vector(raw, n):

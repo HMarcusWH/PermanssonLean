@@ -12,7 +12,7 @@ from __future__ import annotations
 from fractions import Fraction
 from hashlib import sha256
 from ..errors import AppError
-from ..finite_world import parse_finite_world, exact_ratio
+from ..finite_world import parse_finite_world, exact_ratio, exact_result
 from ..identity import canonical_bytes, semantic_identity, rational_text
 
 REQUEST = 'Permansson.App.OneStepRiskOccupancyRequest.v1'
@@ -41,7 +41,7 @@ def check_risk_infeasibility(raw: object, receipt: object) -> dict:
     mult = receipt.get('farkas_ray', {}).get('mass_multipliers')
     if type(mult) is not list or len(mult) != len(states) or receipt['farkas_ray'].get('risk_cap_multiplier') != '1':
         _fail('Farkas ray shape')
-    v = [exact_ratio(t) for t in mult]
+    v = [exact_result(t) for t in mult]
     coefficients, attaining = [], []
     for i, (s, x) in enumerate(states):
         hits = []

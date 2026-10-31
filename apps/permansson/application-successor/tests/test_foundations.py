@@ -53,6 +53,20 @@ class IdentityTests(unittest.TestCase):
         self.assertEqual(rational_text(Fraction(2,4)),'1/2')
 
 
+class ResultRationalTests(unittest.TestCase):
+    """exact_result: canonical reduced rationals with the result-sized bound."""
+    def test_accepts_large_canonical_results(self):
+        from permansson_app.finite_world import exact_result
+        self.assertEqual(exact_result('1/'+str(2**300),probability=True),Fraction(1,2**300))
+        self.assertEqual(exact_result('-7/3'),Fraction(-7,3))
+    def test_rejects_noncanonical_oversized_and_out_of_range(self):
+        from permansson_app.finite_world import MAX_RESULT_BITS,exact_result
+        for text,code in (('2/4','RATIONAL_FORMAT'),('1/1','RATIONAL_FORMAT'),('01','RATIONAL_FORMAT'),
+                          ('1/'+str(2**(MAX_RESULT_BITS+1)),'RATIONAL_SIZE'),('3/2','PROBABILITY'),
+                          (1,'RATIONAL_FORMAT'),('1.5','RATIONAL_FORMAT')):
+            with self.subTest(text=str(text)[:20]),self.assertRaises(AppError) as raised:
+                exact_result(text,probability=True)
+            self.assertEqual(raised.exception.code,code)
 class FiniteTests(unittest.TestCase):
     def setUp(self):
         self.raw=example_world()
@@ -64,6 +78,17 @@ class FiniteTests(unittest.TestCase):
     def test_receipt_check(self):
         r=emit_finite_receipt(self.model)
         self.assertEqual(check_finite_receipt(self.model,r)['checked_atoms'],16)
+    def test_kernel_atoms_beyond_the_input_precision_are_checked(self):
+        # alpha*P of two ~200-bit input rationals is a ~400-bit kernel atom.
+        raw=deepcopy(self.raw)
+        p,q=Fraction(1,2**200+1),Fraction(1,2**200+3)
+        raw['alpha'][0]['weights']={a:rational_text(w) for a,w in zip(raw['alpha'][0]['weights'],(p,1-p))}
+        first=next(row for row in raw['P'] if row['s']==raw['alpha'][0]['s'] and row['x']==raw['alpha'][0]['x'])
+        first['weights']={y:rational_text(w) for y,w in zip(first['weights'],(q,1-q))}
+        model=parse_finite_world(raw)
+        receipt=emit_finite_receipt(model)
+        self.assertGreater(max(Fraction(v).denominator.bit_length() for v in receipt['kernel'][0]),256)
+        self.assertEqual(check_finite_receipt(model,receipt)['checked_atoms'],16)
     def test_receipt_mutant(self):
         r=emit_finite_receipt(self.model)
         r['kernel'][0][0]='1/3'

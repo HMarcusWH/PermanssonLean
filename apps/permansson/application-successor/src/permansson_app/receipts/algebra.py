@@ -10,7 +10,7 @@ from __future__ import annotations
 from fractions import Fraction
 from hashlib import sha256
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_ratio,exact_result
 from ..identity import canonical_bytes, semantic_identity, rational_text
 
 REQUEST = 'Permansson.App.RationalAlgebraRequest.v1'
@@ -30,7 +30,7 @@ def _fail(msg):
 def _q(v):
     if type(v) is not str:
         _fail('rationals must be strings')
-    return exact_ratio(v)
+    return exact_result(v)
 
 
 def _m(rows):

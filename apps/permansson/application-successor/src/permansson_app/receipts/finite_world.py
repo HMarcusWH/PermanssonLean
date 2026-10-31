@@ -4,7 +4,7 @@ from hashlib import sha256
 from fractions import Fraction
 from ..errors import AppError
 from ..identity import canonical_bytes, rational_text
-from ..finite_world import FiniteWorld, exact_ratio
+from ..finite_world import FiniteWorld,exact_result
 
 FORMAT='Permansson.App.InducedKernelReceipt.v1'
 
@@ -36,7 +36,7 @@ def check_finite_receipt(model:FiniteWorld, receipt:object)->dict:
         raise AppError('FINITE_RECEIPT','matrix dimensions differ')
     for i,(s,x) in enumerate(states):
         for j,(sp,xp) in enumerate(states):
-            supplied=exact_ratio(rows[i][j],probability=True)
+            supplied=exact_result(rows[i][j],probability=True)
             # Completely separate nested index path from the producer's matrix builder.
             total=Fraction(0)
             for a in model.feasible[s,x]:
@@ -46,7 +46,7 @@ def check_finite_receipt(model:FiniteWorld, receipt:object)->dict:
                 total+=model.alpha[s,x][ai] * model.P[s,x,a][xi] * model.U[s,x,a,xp][si]
             if total != supplied:
                 raise AppError('FINITE_RECEIPT',f'false induced-kernel atom at [{i},{j}]')
-        if sum((exact_ratio(v,probability=True) for v in rows[i]),Fraction(0))!=1:
+        if sum((exact_result(v,probability=True) for v in rows[i]),Fraction(0))!=1:
             raise AppError('FINITE_RECEIPT',f'nonstochastic induced row {i}')
     return {'format':'Permansson.App.IndependentNumericCheck.v1',
             'status':'PASS','checked_atoms':n*n,

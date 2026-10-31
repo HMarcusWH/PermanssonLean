@@ -9,7 +9,7 @@ from __future__ import annotations
 from fractions import Fraction
 from hashlib import sha256
 from ..errors import AppError
-from ..finite_world import parse_finite_world,exact_ratio
+from ..finite_world import parse_finite_world,exact_ratio,exact_result
 from ..identity import canonical_bytes,semantic_identity,rational_text
 from ..engines.lp_types import parse_lp
 from .lp import check_lp_certificate
@@ -90,20 +90,20 @@ def check_risk(raw:object,receipt:object)->dict:
         raise AppError('RISK_RECEIPT','no checkable LP certificate supplied')
     lc=check_lp_certificate(lp,receipt['lp_certificate'])
     if lc['status']!='OPTIMAL_VERIFIED':raise AppError('RISK_RECEIPT','LP objective not independently optimal')
-    flow=tuple(exact_ratio(v) for v in receipt['lp_certificate']['primal'])
+    flow=tuple(exact_result(v) for v in receipt['lp_certificate']['primal'])
     if len(flow)!=len(variables):raise AppError('RISK_RECEIPT','wrong occupancy vector dimension')
     new_law=[sum((flow[i]*controlled[i][j] for i in range(len(variables))),Fraction(0)) for j in range(len(states))]
     if sum(new_law,Fraction(0))!=1:
         raise AppError('RISK_RECEIPT','reconstructed actual next-state law not normalized')
     risk_mass=sum((new_law[i] for i in risky),Fraction(0))
     reward_value=sum((p*r for p,r in zip(new_law,terminal)),Fraction(0))
-    if risk_mass>risk_cap or reward_value!=exact_ratio(receipt['lp_certificate']['objective_value']):
+    if risk_mass>risk_cap or reward_value!=exact_result(receipt['lp_certificate']['objective_value']):
         raise AppError('RISK_RECEIPT','LP objective or risk bound disagrees with original actual transition')
     policy=[]
     for i,(s,x) in enumerate(states):
         µ=law[i]; allowed=m.feasible[s,x]
         action_weights={a:rational_text(flow[variables.index((i,a))]/µ if µ else Fraction(int(a==allowed[0]))) for a in allowed}
-        probabilities=[exact_ratio(v,probability=True) for v in action_weights.values()]
+        probabilities=[exact_result(v,probability=True) for v in action_weights.values()]
         if sum(probabilities,Fraction(0))!=1:
             raise AppError('RISK_RECEIPT','reconstructed randomized policy not normalized')
         policy.append({'state':[s,x],'action_weights':action_weights,'zero_mass_default_used':µ==0})

@@ -14,6 +14,7 @@ from permansson_app.errors import AppError
 
 FIX=APP/'src/permansson_app/data/examples/belief_tree.v1.json'
 ONE=APP/'src/permansson_app/data/examples/belief.v1.json'
+DEAD_END=APP/'tests/fixtures/belief_tree_dead_end.v1.json'
 def sample():return json.loads(FIX.read_text())
 
 
@@ -178,5 +179,36 @@ class BeliefTreeTests(unittest.TestCase):
   self.assertEqual(r['optimal_expected_terminal_reward'],'-1')
   self.assertEqual(r['value_of_observation_history'],'0')
   self.assertEqual(check_belief_tree(q,r)['status'],'PASS')
+
+ def test_action_without_a_complete_legal_continuation_is_not_scored(self):
+  # (s0,x0) --risk--> (s0,x1) or (s1,x1) with probability 1/2 each; those two
+  # joint states admit disjoint menus, so no single observed action is legal
+  # after `risk`.  It is available at the root but never scored or selected.
+  q=json.loads(DEAD_END.read_text());r=propose_belief_tree(q)
+  self.assertEqual(check_belief_tree(q,r)['status'],'PASS')
+  root=r['optimal_policy_tree']['observations'][0]
+  self.assertEqual(root['available_actions'],['safe','risk'])
+  self.assertEqual(root['action_scores'],{'safe':'2'})
+  self.assertEqual((root['selected_action'],r['optimal_expected_terminal_reward']),('safe','2'))
+  self.assertEqual(r['best_blind_action_sequence_reward'],'2')
+  self.assertEqual(r['value_of_observation_history'],'0')
+  mutants=[
+   lambda r:r['optimal_policy_tree']['observations'][0]['action_scores'].__setitem__('risk','2'),
+   lambda r:r['optimal_policy_tree']['observations'][0].__setitem__('selected_action','risk'),
+   lambda r:r['optimal_policy_tree']['observations'][0].__setitem__('tied_max_actions',['safe','risk']),
+  ]
+  for mutation in mutants:
+   t=deepcopy(r);mutation(t)
+   with self.subTest(mutation=mutation),self.assertRaises(AppError):check_belief_tree(q,t)
+
+ def test_no_complete_legal_policy_is_refused(self):
+  # Both root actions now split into the disjoint menus.
+  q=json.loads(DEAD_END.read_text())
+  for row in q['model']['P']:
+   if (row['s'],row['x'],row['a'])==('s0','x0','safe'):row['weights']={'x0':'0','x1':'1'}
+  for row in q['model']['U']:
+   if (row['s'],row['x'],row['a'])==('s0','x0','safe'):row['weights']={'s0':'1/2','s1':'1/2'}
+  with self.assertRaises(AppError) as raised:propose_belief_tree(q)
+  self.assertEqual(raised.exception.code,'BELIEF_TREE_COMMON_MENU')
 
 if __name__=='__main__':unittest.main()

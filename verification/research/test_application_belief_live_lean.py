@@ -31,6 +31,7 @@ from application_bridge_replay import (assert_semantic_rejection, audited_axioms
 FILENAME = "ReifiedBelief.lean"
 EXAMPLES = APP / "src/permansson_app/data/examples"
 RESTRICTED = APP / "tests/fixtures/belief_tree_restricted.v1.json"
+DEAD_END = APP / "tests/fixtures/belief_tree_dead_end.v1.json"
 
 
 def _q(n: int, d: int) -> str:
@@ -67,6 +68,7 @@ class BeliefLeanReplay(unittest.TestCase):
                 "one": (EXAMPLES / "belief.v1.json", propose_belief),
                 "tree": (EXAMPLES / "belief_tree.v1.json", propose_belief_tree),
                 "restricted": (RESTRICTED, propose_belief_tree),
+                "dead_end": (DEAD_END, propose_belief_tree),
             }[name]
             BeliefLeanReplay._cache[name] = _replay(self, path, propose)
         return BeliefLeanReplay._cache[name]
@@ -87,6 +89,24 @@ class BeliefLeanReplay(unittest.TestCase):
         _, meta, receipt = self._positive("restricted")
         self.assertEqual(receipt["optimal_expected_terminal_reward"], "121/512")
         self.assertEqual((meta["scope"]["ns"], meta["scope"]["horizon"]), (2, 3))
+
+    def test_dead_end_action_with_equal_blind_value_replays(self):
+        # `risk` at the root has no complete legal continuation and is not
+        # scored; observation does not help (D = B = 2), so value_of_observation
+        # is the equality case.
+        _, meta, receipt = self._positive("dead_end")
+        root = receipt["optimal_policy_tree"]["observations"][0]
+        self.assertEqual(root["action_scores"], {"safe": "2"})
+        self.assertEqual((receipt["optimal_expected_terminal_reward"],
+                          receipt["best_blind_action_sequence_reward"]), ("2", "2"))
+        self.assertIn("value_of_observation", meta["theorem_names"])
+
+    def test_dead_end_action_selection_rejected(self):
+        # Selecting the dead-end action at the root leaves no admitted action
+        # for the second transition on the hidden support.
+        code, _, _ = self._positive("dead_end")
+        changed = _first(code, "def roots ", "fun o0 => ((0 : Fin 2)", "fun o0 => ((1 : Fin 2)")
+        assert_semantic_rejection(self, code, changed, "receipt_checked", FILENAME)
 
     def test_overstated_optimum_rejected(self):
         code, _, _ = self._positive("tree")

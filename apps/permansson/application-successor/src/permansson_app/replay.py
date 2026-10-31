@@ -2,11 +2,20 @@
 
 This is a consumer gate. The trusted builder must separately run pinned Lean
 inside reviewed isolation, then publish an independently authenticated log.
+
+The transcript is caller-supplied, so it is trusted only through the evidence:
+every referenced record (compiler, axiom audit, negative mutation) must attest
+this exact transcript, its `artifact_sha256` being the SHA-256 of the
+transcript's canonical bytes. The records are pinned by independent hashes, so
+the emitted source, theorem type, toolchain, exits and axiom set the
+transcript binds are the ones the authenticated builder recorded.
 """
 from __future__ import annotations
 from dataclasses import dataclass
+from hashlib import sha256 as _hash256
 from .errors import AppError
 from .evidence import EvidenceSet
+from .identity import canonical_bytes
 from .versioning import sha256,sha40
 
 _ALLOWED={'propext','Classical.choice','Quot.sound'}
@@ -49,6 +58,7 @@ def evaluate_replay(target:ReplayTarget,transcript:object,evidence:EvidenceSet)-
     axioms=transcript['transitive_axioms']
     if type(axioms) is not list or len(axioms)!=len(set(axioms)) or any(type(x) is not str or x not in _ALLOWED for x in axioms):
         raise AppError('REPLAY_AXIOMS','unauthorized or malformed transitive axiom set')
+    attested=_hash256(canonical_bytes(transcript)).hexdigest()
     for k,kind,method in [('compiler_evidence_id','lean_compiler',target.declaration),
                           ('audit_evidence_id','axiom_audit',target.declaration),
                           ('negative_evidence_id','negative_mutation',target.declaration)]:
@@ -56,8 +66,9 @@ def evaluate_replay(target:ReplayTarget,transcript:object,evidence:EvidenceSet)-
         if type(ref) is not str or not ref:raise AppError('REPLAY_EVIDENCE','missing evidence reference')
         found=[x for x in evidence.records if x.evidence_id==ref and x.kind==kind and x.status=='PASS'
                and x.source_commit==target.source_commit and x.source_tree==target.source_tree
-               and x.subject_sha256==target.subject_sha256 and method in x.method_ids]
-        if len(found)!=1:raise AppError('REPLAY_EVIDENCE','missing external pinned '+kind)
+               and x.subject_sha256==target.subject_sha256 and method in x.method_ids
+               and x.artifact_sha256==attested]
+        if len(found)!=1:raise AppError('REPLAY_EVIDENCE','missing external pinned '+kind+' attesting this transcript')
     # This gate intentionally DOES NOT infer that external independent review
     # and product release acceptance have been granted.
     return {'format':'Permansson.App.ReplayEvidenceAssessment.v1',
