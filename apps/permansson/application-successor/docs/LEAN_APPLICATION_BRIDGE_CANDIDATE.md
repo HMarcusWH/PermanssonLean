@@ -1,10 +1,13 @@
 # Lean ApplicationBridge — finite α/P/U and observation-first receipt (candidate)
 
-**Status:** Source candidate under PR #115, not an accepted scientific/Lean
-receipt and not a release claim. Existing numeric application receipts must
-continue to report `lean_status=NOT_EXECUTED` and
-`scientific_claims_verified=false` until a *specific caller-supplied instance*
-has been reified into Lean and replayed with authentic compiler evidence.
+**Status:** Part of draft PR #115; not an accepted scientific/Lean receipt
+and not a release claim. This page describes the first two bridge modules
+(`FiniteWorldInput`, `BeliefReceipt`) and the unified candidate CLI. All 24
+bridge families and their live replays are listed in
+[`ACCEPTANCE_STATUS.md`](ACCEPTANCE_STATUS.md) and
+[`CAPABILITY_SCOPES.md`](CAPABILITY_SCOPES.md). Application receipts keep
+`lean_status=NOT_EXECUTED` and `scientific_claims_verified=false`, because
+the application never runs or authenticates the compiler.
 
 ## Mathematical scope
 
@@ -64,22 +67,25 @@ permansson-app lean-recheck --family private-stage request.json receipt.json --c
 lake env lean cand/ReifiedPrivateStage.lean   # from the repository root, pinned toolchain
 ```
 
-## Evidence and remaining work
+## Evidence status
 
-1. Build `lake build PermanssonResearch` at an exact PR commit, with the
-   research axiom audit and the no-placeholder / root-import gates. Local
-   syntax inspection and Python tests are **not** substitutes for that build.
-2. Reify each externally supplied rational α/P/U row, observation matrix,
-   prior, legal action support and selected policy **as actual Lean constants**;
-   verify byte/semantic identity and source labels. Reject any mismatched
-   rational, missing/duplicated row or infeasible selected action.
-3. Emit instance-specific proof terms and replay actual receipt statements,
-   including the complete horizon-specific policy tree, not just the generic
-   one-step identity. Audit transitive axioms and bind theorem type to request
-   digest, compiler/toolchain identity and exact source H/S.
-4. Add positive and adversarial mutation evidence before marking an
-   individual receipt as `lean_status=VERIFIED`; the present application
-   explicitly does **not** do that.
+Done for bounded instances:
+
+1. `lake build PermanssonResearch` builds every bridge module at the PR
+   head. Exact-head Research Lean CI also runs the research axiom audit and
+   the no-placeholder and root-import gates. Local Python tests are not a
+   substitute.
+2. Externally supplied rational inputs are reified **as Lean constants**:
+   α/P/U rows, observation matrices, priors, legal action supports, policies,
+   payoff tables and certificates. `lean-recheck` binds the candidate bytes to
+   the original request and receipt bytes.
+3. Instance-specific theorems are emitted and replayed with a transitive
+   axiom audit (`verification/research/test_application_*_live_lean.py`).
+4. Single-line semantic mutations must fail inside the targeted theorem.
+
+Not done: authenticated compiler receipts that would allow an individual
+output to report `lean_status=VERIFIED`, and independent review of the
+bridges. The application explicitly does **not** promote any output.
 
 Historical archive-reproducibility `E_TOOLING_CLOSURE` is a separate existing
 trust-profile issue. No workflow changes or bypasses are part of this bridge.

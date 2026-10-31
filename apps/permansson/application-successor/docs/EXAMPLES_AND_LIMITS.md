@@ -16,7 +16,13 @@ make one effect visible. They are not data and say nothing empirical.
 | `cq1_transport.v1.json` | `finite-cq1-transport` | a CQ-1 certificate (margin 8/25) transported to an approximate pair at row distance 1/50: transported margin 301/1250; the pair's own margin 729/2500 respects it |
 
 The earlier examples are described in each profile's `NUMERIC_*.md`
-document and in the README.
+document, including [`NUMERIC_FOUNDATIONS.md`](NUMERIC_FOUNDATIONS.md).
+
+`scripts/end_to_end.py` runs every packaged example. Four of them exceed
+their family's Lean reflection bound and are reported as numeric-only:
+`finite_safety.v1.json`, `finite_perturbation.v1.json`, `residence.v1.json`
+and `robust_nature.v1.json`. Those bridges are exercised by in-bound
+fixtures in their live replays.
 
 ## Limits that apply everywhere
 

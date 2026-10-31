@@ -45,6 +45,7 @@ request.json ──► engine (propose_*) ──► receipt ──► independen
 | `src/permansson_app/proof/` | Lean emitters, byte rechecks and the family dispatcher |
 | `src/permansson_app/data/` | `capabilities.json`, Draft 2020-12 request schemas and packaged examples |
 | `tests/` | unit, CLI and emitter tests (no Lean needed) |
+| `scripts/end_to_end.py` | every packaged example through command, independent check, `lean-emit`, `lean-recheck`, tamper rejection and (`--lean`) pinned compile with axiom audit |
 | `../../../verification/research/test_application_*_live_lean.py` | pinned-Lean live replays with axiom audits and semantic mutations |
 | `../../../PermanssonResearch/ApplicationBridge/` | the Lean bridge modules the candidates import |
 

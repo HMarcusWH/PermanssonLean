@@ -20,6 +20,9 @@ permansson-app lean-recheck --family <family> request.json run/<receipt>.json --
 lake env lean cand/Reified<Family>.lean     # from the repository root
 ```
 
+`scripts/end_to_end.py --lean` performs these steps for every packaged
+example, including the axiom audit described below.
+
 `lean-recheck` re-derives the candidate from the original bytes and compares
 the metadata and the Lean bytes exactly. A tampered or regenerated file
 fails before any compiler is involved. The exit family also needs

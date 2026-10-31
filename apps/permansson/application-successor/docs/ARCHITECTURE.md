@@ -19,8 +19,9 @@ selected-scope acceptance ASSESSMENT (never owner approval)
 independent security review + owner decision (out of band)
 ```
 
-The Lean bridge and application `proof/finite_emit.py` produce candidate instances,
-not a proof merely by generating source. `replay.py` does not invoke arbitrary Lean
+The Lean bridges and the application emitters (`proof/*_emit.py`, dispatched
+by `permansson-app lean-emit`) produce candidate instances, not a proof merely
+by generating source. `replay.py` does not invoke arbitrary Lean
 source; it compares separately authenticated compile, axiom and negative-mutation
 evidence for one exact source/mode/platform/theorem identity. Only an isolated,
 independently reviewed compiler runner may produce those receipts.
@@ -36,7 +37,8 @@ without an independently authenticated source is only an integrity check.
 
 ## Deliberately limited scopes
 
-- All 20 existing numeric capabilities remain separately registered; this
+- All registered capabilities (26 exact profiles and the 2 native C10/C11
+  providers, see `CAPABILITY_SCOPES.md`) remain separately registered; this
   subsystem does not add a fake theorem-backed runtime mode.
 - The 56 legacy mathematical case/claim IDs are imported as **review items**
   directly from `research/paper_closures/post_merge_112/` source maps; none is

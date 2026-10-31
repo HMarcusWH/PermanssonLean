@@ -33,10 +33,18 @@ or empirical identification.
   risk-cap infeasibility and CQ-1 certificate transport.
   `permansson-app lean-emit` and `lean-recheck` reach every family through
   one command.
-* Local evidence at `6b9cf13`: application suite 673/673 (Python 3.13 and
-  3.12); full Research verification suite 2156/2156 including every live
-  replay; GitHub CI green at that head except the inherited
-  `archive-reproducibility` job. Later heads are tracked on the pull request.
+* Local evidence for the final round (exact-head CI is tracked on the pull
+  request):
+  * the application suite passes 731/731 on Python 3.13 and on 3.12.3;
+  * `lake build PermanssonResearch` completes;
+  * `scripts/end_to_end.py --lean` passes against a freshly built and
+    installed wheel: 25 profiles plus 3 native C10/C11 runs; 21 candidates
+    compiled with all 202 theorems axiom-audited; 4 examples numeric-only by
+    reflection bound;
+  * the repository and application gates pass.
+
+  The last full Research verification run that completed was 2156/2156 at
+  `6b9cf13`.
 
 ## Planned next (in order)
 

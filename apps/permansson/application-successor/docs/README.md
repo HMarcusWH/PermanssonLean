@@ -2,11 +2,13 @@
 
 Start with [`IMPLEMENTATION_OVERVIEW.md`](IMPLEMENTATION_OVERVIEW.md) for how
 a request becomes a checked numeric result and, optionally, a source-bound
-Lean candidate.
+Lean candidate. Reviewers should read
+[`REVIEWER_GUIDE.md`](REVIEWER_GUIDE.md) first.
 
 ## Orientation
 
 - [`IMPLEMENTATION_OVERVIEW.md`](IMPLEMENTATION_OVERVIEW.md) — pipeline, package layout, bridges
+- [`REVIEWER_GUIDE.md`](REVIEWER_GUIDE.md) — reproducing the evidence and reviewing one profile end to end
 - [`CAPABILITY_SCOPES.md`](CAPABILITY_SCOPES.md) — every profile, its command, checker and Lean family
 - [`EVIDENCE_AND_RECEIPTS.md`](EVIDENCE_AND_RECEIPTS.md) — receipt fields and the separate levels of evidence
 - [`NATIVE_PROOF_REPLAY.md`](NATIVE_PROOF_REPLAY.md) — replaying Lean candidates on the pinned toolchain
@@ -20,6 +22,7 @@ Lean candidate.
 
 ## Numeric profiles
 
+- [`NUMERIC_FOUNDATIONS.md`](NUMERIC_FOUNDATIONS.md) — kernels, LP certificates, survival, occupation, exit, menus, Bellman, safety, perturbation
 - [`NUMERIC_ADAPTIVE.md`](NUMERIC_ADAPTIVE.md) — adaptive admitted-block control
 - [`NUMERIC_ALGEBRA.md`](NUMERIC_ALGEBRA.md) — rational real-algebra witnesses
 - [`NUMERIC_BELIEF_CONTROL.md`](NUMERIC_BELIEF_CONTROL.md) — one-step observation-conditioned control
