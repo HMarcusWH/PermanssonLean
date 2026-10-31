@@ -15,6 +15,7 @@ from pathlib import Path
 import re
 import sys
 
+import archive_successor_approval_v1 as approval
 from pr113_boundary_io import strict_json_object
 from pr113_tooling_migration import (
     ROOT, git, exact_tree, require, ToolingMigrationError,
@@ -145,6 +146,28 @@ def _contract(root, head):
     return module, manifest
 
 
+def _owner_approved_installation(root, head, originals):
+    """The original 25 blobs, except the owner-approved archive workflow change.
+
+    See archive_successor_approval_v1: the change must start from exactly the
+    original preactivation blob. Without a committed policy nothing changes.
+    """
+    try:
+        raw = git(root, "show", head + ":" + approval.POLICY_PATH)
+    except ToolingMigrationError:
+        return dict(originals)
+    try:
+        changes = approval.approved_workflow_changes(raw)
+    except approval.ApprovalError as exc:
+        raise ToolingMigrationError(str(exc)) from exc
+    installed = dict(originals)
+    for name, (before, after) in changes.items():
+        require(originals.get(name) == before,
+                "owner-approved workflow change does not start from the original blob")
+        installed[name] = after
+    return installed
+
+
 def _historical(root, head):
     git(root, "merge-base", "--is-ancestor", PREACTIVATION_HEAD, head)
     old = exact_tree(root, PREACTIVATION_HEAD, ".github/workflows")
@@ -261,7 +284,8 @@ def audit(root, head, *, phase="staged"):
     if phase == "staged":
         require(len(tree) == 25 and
                 {p.removeprefix(".github/workflows/"): v[1]
-                 for p, v in tree.items()} == originals,
+                 for p, v in tree.items()} ==
+                    _owner_approved_installation(root, head, originals),
                 "preactivation source cannot silently alter original 25 files")
         source = {}
         for name in originals:
