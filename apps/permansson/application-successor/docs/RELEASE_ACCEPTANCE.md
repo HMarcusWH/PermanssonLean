@@ -3,6 +3,9 @@
 1. Pin the exact tested source commit, root tree, package and schema versions.
 2. Independently authenticate all test, wheel/sdist, ABI/platform, source and
    execution-profile receipts; show the selected-method matrix without skips.
+   The selected platform is Linux, with CPython 3.12 and 3.13. Other
+   platforms are refused, because the whole-run budget relies on Linux
+   process limits.
    `scripts/build_distributions.py` gives the wheel and sdist digests for a
    clean commit. It accepts only the hash-locked build tools, fixes all
    timestamps to the commit time and normalizes the sdist, so an independent

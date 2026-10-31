@@ -30,6 +30,30 @@ fixtures in their live replays.
   capped per profile (see each registry `scope` and
   [`CAPABILITY_SCOPES.md`](CAPABILITY_SCOPES.md)). Lean reflection often has
   a smaller horizon cap than the numeric profile.
+- **One whole-run budget.** Every exact profile command runs in a child
+  process under one budget for parsing, computation, the independent check
+  and the outputs (`permansson_app.budget`). The limits are:
+
+  | Limit | Default |
+  | --- | --- |
+  | Wall clock (the process group is killed) | 300 s |
+  | CPU | 240 s |
+  | Address space | 2 GiB |
+  | Output, per file and in total | 32 MiB |
+  | Captured stdout and stderr | 1 MiB |
+
+  Exhaustion fails with `BUDGET_TIMEOUT`, `BUDGET_CPU`, `BUDGET_MEMORY`,
+  `BUDGET_OUTPUT` or `BUDGET_STREAM` and exit status 2. The outputs are
+  written to private staging and published only after success, so an
+  exhausted run leaves no output directory or receipt.
+  `PERMANSSON_RUN_BUDGET` (a JSON object) may lower these limits but never
+  raise them. The packaged examples use under 1 s of CPU, 30 MiB of memory
+  and 11 KB of output. `lean-emit` and `lean-recheck` are development tools
+  outside the release scope and are not budgeted. Native C10/C11 `run` has
+  its own bounded runner.
+- **Linux only for this release.** The budget relies on Linux process limits.
+  Other platforms are refused with `PLATFORM_UNQUALIFIED`. Python 3.12 and
+  3.13 are qualified on Linux.
 - **Declared models only.** Inputs are taken as given; nothing is estimated
   or identified from observations.
 - **Finite statements.** Finite-horizon survival, one-step occupancy,

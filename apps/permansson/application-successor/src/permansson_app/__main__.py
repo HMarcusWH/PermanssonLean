@@ -18,11 +18,30 @@ def _write_json(path:Path,data):
 
 
 def _new_output(path:Path):
+    from .budget import child_output,in_child
+    if in_child():
+        # The budgeted child writes into its private staging directory; the
+        # parent publishes it at `path` only if every limit held.
+        out=child_output()
+        out.mkdir(parents=False,exist_ok=False)
+        return out
     out=path.absolute()
     if out.exists() or out.is_symlink() or any(p.is_symlink() for p in (out.parent,*out.parent.parents)):
         raise AppError('OUTPUT_SCOPE','output must be new and must not pass through a symlink')
     out.mkdir(parents=True,exist_ok=False)
     return out
+
+
+# Every exact additive profile command runs under one whole-run budget
+# (permansson_app.budget). Native C10/C11 `run` has its own bounded runner;
+# lean-emit/lean-recheck are development tools outside the release scope.
+BUDGETED_COMMANDS=frozenset({
+    'finite-kernel','finite-occupation','finite-exit','lp-propose','lp-check','finite-survival',
+    'finite-perturbation','finite-safety','finite-bellman','frozen-menu','finite-residence',
+    'nonlinear-stationary','finite-grammar','finite-quotient','finite-adaptive-grammar',
+    'finite-robust-nature','finite-private-stage','one-step-risk','one-step-risk-infeasibility',
+    'one-step-belief','finite-belief-tree','finite-cq1','finite-cq1-transport','finite-metric',
+    'finite-algebra','finite-multiagent'})
 
 
 def main(argv=None):
@@ -144,6 +163,10 @@ def main(argv=None):
     legacy.add_argument('--output',type=Path,required=True)
     args=p.parse_args(argv)
     try:
+        if args.command in BUDGETED_COMMANDS:
+            from .budget import in_child,run_budgeted
+            if not in_child():
+                return run_budgeted(list(sys.argv[1:] if argv is None else argv),args.output)
         if args.command=='capabilities':
             print(json.dumps(registry(),indent=2,sort_keys=True))
         elif args.command=='about':
@@ -652,5 +675,18 @@ def main(argv=None):
     except AppError as exc:
         print(json.dumps({'ok':False,'error':{'code':exc.code,'message':str(exc)}},sort_keys=True),file=sys.stderr)
         return 2
+    except OSError as exc:
+        import errno
+        if exc.errno!=errno.EFBIG:
+            raise
+        from .budget import OUTPUT_EXIT
+        print(json.dumps({'ok':False,'error':{'code':'BUDGET_OUTPUT','message':'output budget exhausted'}},
+                         sort_keys=True),file=sys.stderr)
+        return OUTPUT_EXIT
+    except MemoryError:
+        from .budget import MEMORY_EXIT
+        print(json.dumps({'ok':False,'error':{'code':'BUDGET_MEMORY','message':'memory budget exhausted'}},
+                         sort_keys=True),file=sys.stderr)
+        return MEMORY_EXIT
 
 if __name__=='__main__':raise SystemExit(main())

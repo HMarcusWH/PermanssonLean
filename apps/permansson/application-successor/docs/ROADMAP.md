@@ -45,7 +45,7 @@ here, so this page cannot go stale against the head.
 | Batch | Title | Status on this branch |
 | --- | --- | --- |
 | S00 | Numeric integration prototype | implemented (native C10/C11, strict envelopes, independent checks) |
-| S01 | Full contract, semantics, identity and legacy import | **partial**: legacy reader, semantic digests and per-profile strict schemas exist; the cross-profile versioned contract layer and a shared whole-run budget for additive routes do not |
+| S01 | Full contract, semantics, identity and legacy import | **partial**: legacy reader, semantic digests and per-profile strict schemas exist; each exact profile runs under a shared whole-run budget; the cross-profile versioned contract layer does not exist |
 | S02 | Evidence bridge, claims and genuine native replay | **partial**: evidence, claims and detached bundles exist; no authenticated proof-evidence consumer |
 | S03, S03L | Finite strategic-world realization; exact LP substrate | implemented, with `FiniteWorldInput` and `LinearProgramReceipt` bridges |
 | S04 | Exact finite analysis and frozen-menu control | implemented except FIX-01 (benchmarks/X1), which is deferred |
@@ -66,7 +66,7 @@ here, so this page cannot go stale against the head.
 | P4 Finite model and LP correspondence | done for bounded instances |
 | P5 Full mathematical engines | done for bounded finite scopes; FIX-01 and ADV-01 deferred |
 | P6 Domain integration | **envelope-only** |
-| P7 Packaging and release preparation | **partial**: wheel, installed-distribution test and locked backend exist; no selected release scope, platform matrix or authorization |
+| P7 Packaging and release preparation | **partial**: wheel, installed-distribution test, locked backend, reproducible builds, whole-run budget and a selected release scope (26 profiles, Linux CPython 3.12/3.13) exist. There is no authenticated platform-matrix evidence and no authorization. |
 
 ### Final engineering round (R0–R6)
 
@@ -105,8 +105,9 @@ An external read-only audit of `a3df725` raised 33 work orders.
   byte-reproducible wheel and sdist from a clean commit with the locked tools
   only.
 - **QA-01.** Regressions cover stale phrases, bridge and profile
-  documentation, and the release scope (C10/C11 only; every additive profile
-  blocked as undeclared).
+  documentation, and both release scopes: the default C10/C11 policy, against
+  which every additive profile is blocked as undeclared, and the successor
+  policy, whose method lists must equal the real tests.
 - **CI-04.** The evidence guide lists every explicit gate state a report
   carries (`NOT_ASSESSED`, `NOT_IDENTIFIED`, `NOT_EXECUTED`, nine `null`
   dimensions), and a test keeps it in step with the code.
@@ -116,8 +117,9 @@ An external read-only audit of `a3df725` raised 33 work orders.
 | Order | Decision |
 | --- | --- |
 | CON-02 | A first release is **numeric-only**. Outputs keep `lean_status=NOT_EXECUTED` until a separate, independently reviewed proof-evidence consumer authenticates compiler runs for a selected subset. |
-| CON-03 | `data/acceptance_policy.json` intentionally selects only C10/C11. The 26 additive profiles are not release capabilities until an owner authorizes a scope with an evidence matrix. |
-| PKG-04 | Additive routes rely on per-profile structural bounds: dimensions, horizons and rational bit sizes. A cumulative whole-run budget like the native `RunBudget` is **required before any release that includes them** (manifest disposition `REQUIRED_BEFORE_RELEASE`). |
+| CON-03 | The default `data/acceptance_policy.json` still selects only C10/C11. The owner selected a separate v2 scope, `acceptance_policy.successor_numeric.v1.json`, for the 26 exact profiles. It is numeric only, on Linux CPython 3.12 and 3.13, with each capability's real test-method IDs, budget tests, walkthrough row, installed run, source identity and wheel/sdist. An assessment against it is at most `EVIDENCE_COMPLETE_REVIEW_REQUIRED`; independent security review and owner activation stay external. |
+| PKG-04 | **Implemented.** Every exact profile command runs under one whole-run budget: wall clock, CPU, address space, output and stream limits in a limited child, with outputs published only after success (`permansson_app.budget`, `tests/test_resources_budget.py`, `tests/test_engine_resource_limits.py`). This is in addition to the per-profile structural bounds. |
+| Platform | **Linux first.** The first release supports Linux with Python 3.12 and 3.13; other platforms are refused with `PLATFORM_UNQUALIFIED`. A Windows bounded-process controller with equivalent guarantees would be a separate, later decision. |
 | CON-06 | FIX-01 (benchmarks/X1) and ADV-01 (nonfinite expert evidence) are deferred (`DEFERRED_SCOPE`); nothing nonfinite is computed or claimed. |
 | CON-01, CON-04, CON-05 | The cross-profile contract layer, source-grade domain importers and real federation providers are deferred. Federation stays read-only with no remote execution. |
 | CI-04 | Every output keeps `scientific_claims_verified=false`, `empirical_identification=NOT_IDENTIFIED` and nine unassessed certificate dimensions. |

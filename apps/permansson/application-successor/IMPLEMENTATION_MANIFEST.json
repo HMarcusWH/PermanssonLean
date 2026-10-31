@@ -25,8 +25,8 @@
   },
   "current_inventory": {
     "computed_by": "scripts/inventory.py --write-current (recomputed from git ls-files; see --check)",
-    "manifest_rows": 637,
-    "unique_paths": 637,
+    "manifest_rows": 640,
+    "unique_paths": 640,
     "rows_by_candidate_state": {
       "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI": 1,
       "DOCUMENTATION": 48,
@@ -49,32 +49,32 @@
       "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI": 65,
       "LOCAL_TESTED_LINUX_CPYTHON_3_13_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_NUMERIC_IMPLEMENTATION": 6,
-      "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 78,
+      "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 82,
       "LOCAL_TESTED_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_SOURCE_CANDIDATE": 6,
       "NOT_ACTIVATED_REVIEW_GATED": 19,
       "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI": 5,
       "PINNED_RESEARCH_BUILD_COMPILED_AT_PRIOR_HEAD": 1,
-      "PLANNED_NOT_IMPLEMENTED": 148,
+      "PLANNED_NOT_IMPLEMENTED": 146,
       "PUBLISHED_VECTORS_CROSS_CHECKED_BY_TWO_ENCODERS": 1,
-      "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 30,
+      "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 31,
       "TEST_FIXTURE": 8,
       "VENDORED_OFFICIAL_VECTORS_COMMIT_32a48195": 1,
       "VENDORED_THIRD_PARTY_TEST_FIXTURE": 12
     },
-    "tracked_rows": 436,
-    "absent_rows": 201,
+    "tracked_rows": 440,
+    "absent_rows": 200,
     "absent_rows_by_disposition": {
       "DEFERRED_ALTERNATE_LAYOUT": 41,
       "DEFERRED_CONTRACT_LAYER": 37,
       "DEFERRED_DOMAIN_INTEGRATION": 12,
       "DEFERRED_SCOPE": 8,
       "EXCLUDED_GENERATED_BUILD_PRODUCT": 21,
-      "REQUIRED_BEFORE_RELEASE": 32,
+      "REQUIRED_BEFORE_RELEASE": 30,
       "REVIEW_GATED": 20,
-      "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 30
+      "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 31
     },
-    "application_tracked_files": 351,
+    "application_tracked_files": 355,
     "application_tracked_files_without_row": 0,
     "registered_exact_profiles": 26,
     "registered_native_capabilities": 2,
@@ -1182,7 +1182,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "74562ee5a6ca9d8ab2390b56e9e716ed707565df0e345e8a5bb7bc6a7951667a",
+        "sha256": "665cfc05992ae5bf7c073af763f7980578560177d91ae1761dd3a0fd717580a2",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1892,8 +1892,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "90bb7a8cce9fa980f63935c660fc8e4e2eccaf0613d6b1297c37bb6f7074ffd0",
-        "git_blob_sha": "7c7c06aaec637c5b420faab5d1ac018e35b4a931",
+        "sha256": "8d6f7b09e9ae7b67095ee186f58ee07daf3762490b18d509897d087c230d6762",
+        "git_blob_sha": "dbb790c3f392a5e1dcf2a9c6cc84a7f326786e2b",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -2111,7 +2111,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "803b0a932e5863ed4d2e2a49833d4118056e317080f8cef664c5a3d2dc1d82f3",
+        "sha256": "510a082d0a003ec7773d7a610d5769991ed80766ab8733bb4ac4b0eb14fead1d",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2297,8 +2297,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "45912f805ff12cfd9a5ca64501257f19423403bc95d2eee60618a9bf450e08ea",
-        "git_blob_sha": "798de2df91092e010d7b29a583b2867c4c847fda",
+        "sha256": "865b6f47519afdda3a9f0816c229d77bb8810e82285efb3b4b6925a25691b1dc",
+        "git_blob_sha": "3de9400cd9952f7fbb039ffc39b82938e3007b77",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -2324,7 +2324,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "6c1204b4304315162d27895f03e415a30caf538895af5aa93776d4a211cbbb9b",
+        "sha256": "fe3086f969af0b97d76b11cc15aa5b0394ed2e1bfb7eb3802434673db8577f15",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2677,7 +2677,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "a1f88c1d8b4b75a51389f870a44ffdc34d5a1a0dc6bcaff578e0e6cf0cd4e7fc",
+        "sha256": "078878de238cc33c9a9e349c825762783e8a5f199b9ebdd81c10ba27dc6774a1",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -2712,8 +2712,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "156822801f499bee22ca3a0e43ded28985f1a4f8b8a1486a91084defa3620ac7",
-        "git_blob_sha": "91b7663f87c832bff6563513a2de6a20e7b6161d",
+        "sha256": "6e62c6d4a3df1d60cb4f3253cf5d99db7ca4d0b7282db9d6f69ba290543515d3",
+        "git_blob_sha": "a3912ad913e03f420b018de106bb7c187737e783",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -9712,7 +9712,10 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "939a8d2ec376b3c063eb6ac674615e9efaff7b2bdcba4f3122823371cb794249",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
       "classification": "Adversarial success/failure regression for selected contract interface",
       "conditional": false,
@@ -9731,9 +9734,7 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10767,7 +10768,13 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "apps/permansson/application-successor/tests/test_engine_resource_limits.py",
+          "apps/permansson/application-successor/tests/test_resources_budget.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "python_tests",
       "conditional": false,
@@ -10834,8 +10841,8 @@
         "ADV-02",
         "FIX-01"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "resource limits implemented once for every exact profile command (whole-run budget) and tested in the paths in superseded_by; the planned per-engine expensive-input fixtures (engine_semantics_cases.json) are not reproduced"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -17639,7 +17646,67 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "c77fcf4a564750901fb0dcfdb94a9bd4efd4438680e46a700dea2ad0e340ba82",
+        "sha256": "1120584e48d026c30671f2c735929b6320c75d48b2da554b43bb60269670968a",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/budget.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "PKG-04",
+        "APP-04"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "7ad76741f0c2b1e1b52c33595a97f7ea2fe1aeb56e89d1144b4414eb8f6f142c",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_engine_resource_limits.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "PKG-04",
+        "APP-04"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "5bc84e3ca2ceaf3c615c0bf55ed9130e004e18fe53aeb92b48c35931c5075ec6",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "CON-03",
+        "REL-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "09b8127e52e672298c0ace375cf44fafd8c36c77f2db4c81d35c4fae36dcb1cc",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }

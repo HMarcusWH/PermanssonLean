@@ -1,0 +1,1317 @@
+{
+  "format": "Permansson.App.AcceptancePolicy.v2",
+  "scope": "successor-finite-numeric.v1",
+  "description": "Owner-selected release scope for the 26 exact finite numeric profiles of the successor application. Every capability keeps its declared limits and its numeric-only meaning: outputs report lean_status=NOT_EXECUTED, scientific_claims_verified=false and empirical_identification=NOT_IDENTIFIED. Lean instance replay is not part of this scope; it needs a separate, separately authenticated policy. Selecting this file grants nothing by itself: external independent security review and owner activation stay required.",
+  "platforms": [
+    "linux-cpython-3.12",
+    "linux-cpython-3.13"
+  ],
+  "execution_profile": "numeric",
+  "security_review_required": true,
+  "owner_activation_required": true,
+  "required": {
+    "finite.adaptive_block_control.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-adaptive-grammar",
+        "test_adaptive.AdaptiveTests.test_adaptive_beats_every_admitted_frozen_block",
+        "test_adaptive.AdaptiveTests.test_admitting_the_joint_block_removes_the_gain",
+        "test_adaptive.AdaptiveTests.test_exit_objective_maximizes_exit",
+        "test_adaptive.AdaptiveTests.test_input_scope",
+        "test_adaptive.AdaptiveTests.test_receipt_for_different_dynamics_rejected",
+        "test_adaptive.AdaptiveTests.test_tampered_receipts_rejected",
+        "test_adaptive.AdaptiveTests.test_zero_horizon_and_single_block",
+        "test_adaptive_cli.AdaptiveCLI.test_failure_does_not_create_output_directory",
+        "test_adaptive_cli.AdaptiveCLI.test_real_cli",
+        "test_adaptive_cli.AdaptiveCLI.test_schema_accepts_example_and_checks_nested_grammar",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.almost_sure_safety_core.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-safety",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused",
+        "test_safety.SafetyCoreTests.test_all_states_safe_is_invariant",
+        "test_safety.SafetyCoreTests.test_bad_policy_witness",
+        "test_safety.SafetyCoreTests.test_baseline_alpha_not_mistaken_for_optimized_policy",
+        "test_safety.SafetyCoreTests.test_baseline_promotion",
+        "test_safety.SafetyCoreTests.test_cli_produces_independently_checked_report",
+        "test_safety.SafetyCoreTests.test_core_and_exact_pruning",
+        "test_safety.SafetyCoreTests.test_duplicate_policy_witness",
+        "test_safety.SafetyCoreTests.test_duplicate_safe_rejected",
+        "test_safety.SafetyCoreTests.test_empty_core_is_valid_and_not_false_zero",
+        "test_safety.SafetyCoreTests.test_empty_input_rejected",
+        "test_safety.SafetyCoreTests.test_external_schema_valid",
+        "test_safety.SafetyCoreTests.test_extra_safe_key_rejected",
+        "test_safety.SafetyCoreTests.test_extra_stable_steps",
+        "test_safety.SafetyCoreTests.test_false_scientific_promotion",
+        "test_safety.SafetyCoreTests.test_false_zero_inference",
+        "test_safety.SafetyCoreTests.test_foreign_metadata",
+        "test_safety.SafetyCoreTests.test_foreign_policy_witness",
+        "test_safety.SafetyCoreTests.test_foreign_state_rejected",
+        "test_safety.SafetyCoreTests.test_forged_core",
+        "test_safety.SafetyCoreTests.test_forged_initial_region",
+        "test_safety.SafetyCoreTests.test_forged_lean_status",
+        "test_safety.SafetyCoreTests.test_forged_physical_transition_not_same_receipt",
+        "test_safety.SafetyCoreTests.test_forged_prune_one",
+        "test_safety.SafetyCoreTests.test_forged_prune_without_proof",
+        "test_safety.SafetyCoreTests.test_missing_policy_witness",
+        "test_safety.SafetyCoreTests.test_missing_pruning_step",
+        "test_safety.SafetyCoreTests.test_modified_feasible_choices_receipt_not_reusable",
+        "test_safety.SafetyCoreTests.test_numeric_state_label_rejected",
+        "test_safety.SafetyCoreTests.test_outside_core_may_have_positive_infinite_survival_probability",
+        "test_safety.SafetyCoreTests.test_wrong_joint_index_order",
+        "test_safety.SafetyCoreTests.test_wrong_model_identity",
+        "test_safety.SafetyCoreTests.test_wrong_semantic_identity"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.alpha_P_U.induced_kernel.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-kernel",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_foundations.FiniteTests.test_P_mass",
+        "test_foundations.FiniteTests.test_U_row_missing",
+        "test_foundations.FiniteTests.test_alpha_infeasible",
+        "test_foundations.FiniteTests.test_alpha_mass",
+        "test_foundations.FiniteTests.test_duplicate_alpha_row",
+        "test_foundations.FiniteTests.test_exact_atom",
+        "test_foundations.FiniteTests.test_false_raw_K_cannot_pass",
+        "test_foundations.FiniteTests.test_foreign_semantic_identity",
+        "test_foundations.FiniteTests.test_forged_proof_flag",
+        "test_foundations.FiniteTests.test_held_fixed_P",
+        "test_foundations.FiniteTests.test_normalized_rational_identity",
+        "test_foundations.FiniteTests.test_receipt_check",
+        "test_foundations.FiniteTests.test_receipt_mutant",
+        "test_foundations.FiniteTests.test_valid_alpha_intervention",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.cq1_certificate_transport.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-cq1-transport",
+        "test_cq1_transport.CQ1TransportTests.test_example_transports_with_exact_budgets",
+        "test_cq1_transport.CQ1TransportTests.test_identical_pair_transports_with_zero_budget",
+        "test_cq1_transport.CQ1TransportTests.test_large_budget_is_not_transported",
+        "test_cq1_transport.CQ1TransportTests.test_schema_and_real_cli",
+        "test_cq1_transport.CQ1TransportTests.test_scope_requires_shared_P_and_declared_target",
+        "test_cq1_transport.CQ1TransportTests.test_tampered_receipts_rejected",
+        "test_cq1_transport.CQ1TransportTests.test_uncertified_cq1_is_refused",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.cq1_constitutive_certificate.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-cq1",
+        "test_cq1.CQ1Tests.test_comparison_needs_two_states_inside_basin",
+        "test_cq1.CQ1Tests.test_example_certificate_is_exact",
+        "test_cq1.CQ1Tests.test_persistence_is_checked_on_the_whole_region",
+        "test_cq1.CQ1Tests.test_tampered_receipts_rejected",
+        "test_cq1.CQ1Tests.test_undeclared_or_structural_changes_rejected",
+        "test_cq1.CQ1Tests.test_zero_horizon_has_no_path_effect",
+        "test_cq1_cli.CQ1CLI.test_failure_does_not_create_output_directory",
+        "test_cq1_cli.CQ1CLI.test_real_cli",
+        "test_cq1_cli.CQ1CLI.test_schema_accepts_complete_example",
+        "test_cq1_cli.CQ1CLI.test_schema_rejects_single_comparison_state",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.first_exit_and_survival.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-exit",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_occupation_exit.ExitTests.test_false_destination_rejected",
+        "test_occupation_exit.ExitTests.test_false_eventual_rejected",
+        "test_occupation_exit.ExitTests.test_false_survival_rejected",
+        "test_occupation_exit.ExitTests.test_forged_science_rejected",
+        "test_occupation_exit.ExitTests.test_full_region_no_exit",
+        "test_occupation_exit.ExitTests.test_geometric_first_exit_and_tail",
+        "test_occupation_exit.ExitTests.test_horizon_mismatch_rejected",
+        "test_occupation_exit.ExitTests.test_horizon_zero",
+        "test_occupation_exit.ExitTests.test_never_exit_closed_class",
+        "test_occupation_exit.ExitTests.test_partial_eventual_never_exit_mass",
+        "test_occupation_exit.ExitTests.test_region_negative_inputs",
+        "test_occupation_exit.ExitTests.test_region_subset_is_semantic",
+        "test_occupation_exit.ExitTests.test_wrong_region_identity_rejected",
+        "test_occupation_exit.InstalledCLIContracts.test_occupation_and_exit_cli",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.frozen_menu.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:frozen-menu",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_frozen_menu.FrozenMenuTests.test_action_type_target_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_duplicate_choice_id_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_empty_region_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_exact_optimum_and_independent_check",
+        "test_frozen_menu.FrozenMenuTests.test_exit_complement",
+        "test_frozen_menu.FrozenMenuTests.test_false_exact_gr_status_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_false_lean_status_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_false_optimum_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_false_value_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_fractional_denom_mutation_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_full_cli_and_scientific_status",
+        "test_frozen_menu.FrozenMenuTests.test_invalid_model_transition_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_menu_too_many_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_missing_tied_optimizer_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_model_identity_prevents_receipt_reuse",
+        "test_frozen_menu.FrozenMenuTests.test_start_outside_region_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_swapped_max",
+        "test_frozen_menu.FrozenMenuTests.test_ties_return_all_and_deterministic_representative",
+        "test_frozen_menu.FrozenMenuTests.test_unknown_key_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_wrong_choice_id_receipt_invalid",
+        "test_frozen_menu.FrozenMenuTests.test_zero_horizon_all_tied",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.hitting_bellman.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-bellman",
+        "test_bellman.BellmanCLITests.test_installed_style_bellman",
+        "test_bellman.BellmanCLITests.test_invalid_schema_failed_before_output",
+        "test_bellman.BellmanTests.test_admissibility_changes_attainable_value",
+        "test_bellman.BellmanTests.test_altered_target_identity_rejected",
+        "test_bellman.BellmanTests.test_baseline_alpha_not_optimized_result",
+        "test_bellman.BellmanTests.test_boolean_horizon_rejected",
+        "test_bellman.BellmanTests.test_claim_promotion_rejected",
+        "test_bellman.BellmanTests.test_duplicate_goal_rejected",
+        "test_bellman.BellmanTests.test_forbidden_terminal_even_if_action_escapes",
+        "test_bellman.BellmanTests.test_forged_argmax_rejected",
+        "test_bellman.BellmanTests.test_forged_value_rejected",
+        "test_bellman.BellmanTests.test_full_schema_without_external_fetch",
+        "test_bellman.BellmanTests.test_goal_terminal_but_P_not_absorbing",
+        "test_bellman.BellmanTests.test_horizon_zero",
+        "test_bellman.BellmanTests.test_missing_policy_rejected",
+        "test_bellman.BellmanTests.test_missing_table_rejected",
+        "test_bellman.BellmanTests.test_no_goal",
+        "test_bellman.BellmanTests.test_nonattaining_choice_rejected",
+        "test_bellman.BellmanTests.test_original_exact_recurrence",
+        "test_bellman.BellmanTests.test_overlap_goal_forbidden_rejected",
+        "test_bellman.BellmanTests.test_tied_optimum_different_controller_is_valid",
+        "test_bellman.BellmanTests.test_too_many_steps_rejected",
+        "test_bellman.BellmanTests.test_unknown_state_rejected",
+        "test_bellman.BellmanTests.test_wrong_goal_terminal_entry_rejected",
+        "test_bellman.BellmanTests.test_wrong_time_direction_rejected",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.killed_kernel.survival.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-survival",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_finite_survival.AdvertisedScopeTests.test_numeric_registry_profiles_are_explicitly_uncertified",
+        "test_finite_survival.SurvivalCLITests.test_installed_style_cli_roundtrip",
+        "test_finite_survival.SurvivalTests.test_changed_U_not_declared_fails",
+        "test_finite_survival.SurvivalTests.test_comparison_must_be_in_region",
+        "test_finite_survival.SurvivalTests.test_duplicate_comparison_fails",
+        "test_finite_survival.SurvivalTests.test_exact_positive_margin",
+        "test_finite_survival.SurvivalTests.test_false_gr_promotion_fails",
+        "test_finite_survival.SurvivalTests.test_float_horizon_fails",
+        "test_finite_survival.SurvivalTests.test_full_schema",
+        "test_finite_survival.SurvivalTests.test_horizon_zero_no_effect",
+        "test_finite_survival.SurvivalTests.test_invalid_region_fails",
+        "test_finite_survival.SurvivalTests.test_nonzero_effect_different_initials",
+        "test_finite_survival.SurvivalTests.test_one_step_margin",
+        "test_finite_survival.SurvivalTests.test_oversized_horizon_fails",
+        "test_finite_survival.SurvivalTests.test_physical_P_mutation_fails",
+        "test_finite_survival.SurvivalTests.test_tamper_entry_fails",
+        "test_finite_survival.SurvivalTests.test_tamper_margin_fails",
+        "test_finite_survival.SurvivalTests.test_treated_feasibility_change_fails",
+        "test_finite_survival.SurvivalTests.test_wrong_model_binding_fails",
+        "test_finite_survival.SurvivalTests.test_wrong_sign_fails",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.metric_contraction_perturbation.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-metric",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_metric.MetricTests.test_example_contraction_and_bound",
+        "test_metric.MetricTests.test_invalid_metrics_rejected",
+        "test_metric.MetricTests.test_reducible_or_noncontractive_kernels",
+        "test_metric.MetricTests.test_tampered_receipts_rejected",
+        "test_metric.MetricTests.test_transport_primal_equals_dual",
+        "test_metric_cli.MetricCLI.test_failure_does_not_create_output_directory",
+        "test_metric_cli.MetricCLI.test_real_cli",
+        "test_metric_cli.MetricCLI.test_schema_accepts_complete_example",
+        "test_metric_cli.MetricCLI.test_schema_rejects_zero_distance",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.nonlinear_classwise_stationary.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:nonlinear-stationary",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_nonlinear.NonlinearStationaryTest.test_changed_class_value_fails",
+        "test_nonlinear.NonlinearStationaryTest.test_degenerate_no_hidden_seven_state_scope",
+        "test_nonlinear.NonlinearStationaryTest.test_exhaustive_deterministic_policy_class",
+        "test_nonlinear.NonlinearStationaryTest.test_false_optimum_fails",
+        "test_nonlinear.NonlinearStationaryTest.test_illicit_barycenter_promotion_fails",
+        "test_nonlinear.NonlinearStationaryTest.test_invalid_descriptor_duplicate",
+        "test_nonlinear.NonlinearStationaryTest.test_multichain_noncommuting_functional",
+        "test_nonlinear.NonlinearStationaryTest.test_omitted_policy_fails",
+        "test_nonlinear.NonlinearStationaryTest.test_positive_probability_syntax_bound",
+        "test_nonlinear.NonlinearStationaryTest.test_unsupported_functional_is_error",
+        "test_nonlinear.NonlinearStationaryTest.test_wrong_initial_order",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.observation_history_tree.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-belief-tree",
+        "test_belief_tree.BeliefTreeTests.test_horizon_bool_zero_and_four_rejected",
+        "test_belief_tree.BeliefTreeTests.test_horizon_one_reproduces_one_step_exactly",
+        "test_belief_tree.BeliefTreeTests.test_independent_exhaustive_brute_force_64_policy_trees",
+        "test_belief_tree.BeliefTreeTests.test_missing_row_duplicate_bad_probability_and_noncanonical_json",
+        "test_belief_tree.BeliefTreeTests.test_reachable_perfect_signal_support_may_have_disjoint_actions",
+        "test_belief_tree.BeliefTreeTests.test_source_alpha_and_probability_preservation",
+        "test_belief_tree.BeliefTreeTests.test_tamper_nested_history_or_undeclared_authority_fails",
+        "test_belief_tree.BeliefTreeTests.test_three_stage_bounded_policy_and_terminal_law",
+        "test_belief_tree.BeliefTreeTests.test_tied_and_negative_rewards",
+        "test_belief_tree.BeliefTreeTests.test_two_stage_genuine_history_dependent_optimal_policy",
+        "test_belief_tree.BeliefTreeTests.test_two_strategic_states_actual_update_kernel_matters",
+        "test_belief_tree_cli.BeliefTreeCLI.test_cli_computation_and_no_scientific_promotion",
+        "test_belief_tree_cli.BeliefTreeCLI.test_foreign_field_and_future_knowledge_claim_fails_before_output",
+        "test_belief_tree_cli.BeliefTreeCLI.test_invalid_likelihood_and_horizon_fail_without_output",
+        "test_belief_tree_cli.BeliefTreeCLI.test_output_is_never_overwritten",
+        "test_belief_tree_cli.BeliefTreeCLI.test_schema_and_package_resources",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.one_step_observation_belief.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:one-step-belief",
+        "test_belief.OneStepBelief.test_alternative_tied_policy_accepts_when_result_law_matches",
+        "test_belief.OneStepBelief.test_false_unreachable_posterior_rejected",
+        "test_belief.OneStepBelief.test_invalid_float_boolean_negative_prior_and_size",
+        "test_belief.OneStepBelief.test_invalid_observation_likelihood_row_sum",
+        "test_belief.OneStepBelief.test_missing_and_duplicate_observation_and_prior_support",
+        "test_belief.OneStepBelief.test_non_singleton_strategic_state_rejected",
+        "test_belief.OneStepBelief.test_perfect_signal_allows_different_legal_action_for_each_hidden_support",
+        "test_belief.OneStepBelief.test_posterior_unreachable_and_observation_benefit",
+        "test_belief.OneStepBelief.test_receipt_must_not_launder_hidden_policy_into_observation_policy",
+        "test_belief.OneStepBelief.test_shared_action_menu_cannot_exploit_hidden_state",
+        "test_belief.OneStepBelief.test_source_alpha_identity_is_bound_but_not_treated_as_observation_policy",
+        "test_belief.OneStepBelief.test_stale_receipt_cannot_change_original_likelihood_or_transition",
+        "test_belief.OneStepBelief.test_tamper_all_material_calculation_fields",
+        "test_belief.OneStepBelief.test_zero_prior_hidden_state_does_not_restrict_reachable_action",
+        "test_belief.OneStepBelief.test_zero_reward_and_negative_reward_tied_optima_still_verified",
+        "test_belief_cli.BeliefCLI.test_cli_observation_policy_and_nine_unassessed_dimensions",
+        "test_belief_cli.BeliefCLI.test_existing_output_cannot_be_overwritten",
+        "test_belief_cli.BeliefCLI.test_false_approval_fails_schema_without_writing",
+        "test_belief_cli.BeliefCLI.test_installed_resources_and_strict_schema",
+        "test_belief_cli.BeliefCLI.test_invalid_kernel_stochasticity_fails_without_output",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.one_step_risk_infeasibility.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:one-step-risk-infeasibility",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused",
+        "test_risk_infeasibility.RiskInfeasibilityTests.test_example_certificate",
+        "test_risk_infeasibility.RiskInfeasibilityTests.test_false_rays_and_tampering_rejected",
+        "test_risk_infeasibility.RiskInfeasibilityTests.test_feasible_caps_are_refused",
+        "test_risk_infeasibility.RiskInfeasibilityTests.test_optimum_route_still_makes_no_infeasibility_claim",
+        "test_risk_infeasibility.RiskInfeasibilityTests.test_real_cli",
+        "test_risk_infeasibility.RiskInfeasibilityTests.test_receipt_for_a_looser_cap_rejected"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.one_step_risk_occupancy.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:one-step-risk",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused",
+        "test_risk_occupancy.RiskOccupancyTests.test_all_critical_receipt_tamper_rejected",
+        "test_risk_occupancy.RiskOccupancyTests.test_arbitrary_tied_optimum_not_equal_reference_primal",
+        "test_risk_occupancy.RiskOccupancyTests.test_duplicate_and_missing_input_support",
+        "test_risk_occupancy.RiskOccupancyTests.test_float_boolean_and_negative_input_rejected",
+        "test_risk_occupancy.RiskOccupancyTests.test_full_risk_budget_allows_risky_action",
+        "test_risk_occupancy.RiskOccupancyTests.test_infeasible_search_is_not_a_false_farkas_certificate",
+        "test_risk_occupancy.RiskOccupancyTests.test_mutated_original_P_cannot_reuse_receipt",
+        "test_risk_occupancy.RiskOccupancyTests.test_risk_cap_source_identity_bound",
+        "test_risk_occupancy.RiskOccupancyTests.test_true_fractional_optimum_not_deterministic_policy",
+        "test_risk_occupancy.RiskOccupancyTests.test_two_positive_initial_states",
+        "test_risk_occupancy.RiskOccupancyTests.test_unsupported_occupied_flow_dimensions",
+        "test_risk_occupancy.RiskOccupancyTests.test_wrong_receipt_fields_and_invented_approval_rejected",
+        "test_risk_occupancy.RiskOccupancyTests.test_zero_risk_cap_forces_safe_action",
+        "test_risk_occupancy_cli.OneStepRiskCLI.test_cli_stores_checkable_numeric_report_with_unassessed_claims",
+        "test_risk_occupancy_cli.OneStepRiskCLI.test_output_must_be_fresh",
+        "test_risk_occupancy_cli.OneStepRiskCLI.test_packaged_schema_resource_and_full_export",
+        "test_risk_occupancy_cli.OneStepRiskCLI.test_unknown_or_extra_input_field_fails_before_output",
+        "test_risk_occupancy_cli.OneStepRiskCLI.test_unprovable_infeasibility_is_not_called_proved"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.patch_grammar.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-grammar",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_grammar.GrammarTests.test_changed_interaction_rejected",
+        "test_grammar.GrammarTests.test_equal_patch_overlap_is_compatible",
+        "test_grammar.GrammarTests.test_fake_treated_value_rejected",
+        "test_grammar.GrammarTests.test_false_lean_status_rejected",
+        "test_grammar.GrammarTests.test_hidden_positive_block_rejected",
+        "test_grammar.GrammarTests.test_horizon_boolean_masquerade_rejected",
+        "test_grammar.GrammarTests.test_invalid_probabilities_rejected",
+        "test_grammar.GrammarTests.test_joint_admitted_without_either_singleton",
+        "test_grammar.GrammarTests.test_mismatched_patch_overlap_rejected",
+        "test_grammar.GrammarTests.test_missing_original_baseline_block_rejected",
+        "test_grammar.GrammarTests.test_missing_singleton_four_corner_rejected",
+        "test_grammar.GrammarTests.test_two_incomparable_minimal_positive_blocks",
+        "test_grammar.GrammarTests.test_unknown_physical_patch_target_rejected",
+        "test_grammar.GrammarTests.test_wrong_component_order_rejected",
+        "test_grammar_cli.GrammarCLI.test_cli_reports_independent_check_with_no_scientific_promotion",
+        "test_grammar_cli.GrammarCLI.test_existing_output_not_overwritten",
+        "test_grammar_cli.GrammarCLI.test_full_offline_schema_resource_and_export",
+        "test_grammar_cli.GrammarCLI.test_untrusted_extra_input_fails_before_output_creation",
+        "test_grammar_cli.GrammarCLI.test_wrong_patch_type_and_admitted_family_fail_closed",
+        "test_grammar_quotient_cli.GrammarQuotientCLI.test_both_engines_execute_and_keep_nine_dimensions_unverified",
+        "test_grammar_quotient_cli.GrammarQuotientCLI.test_installed_resourced_schemas_and_exact_export",
+        "test_grammar_quotient_cli.GrammarQuotientCLI.test_mutation_rejected_before_output",
+        "test_grammar_quotient_cli.GrammarQuotientCLI.test_output_path_not_overwritten",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.path_perturbation_tv.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-perturbation",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused",
+        "test_robustness.PerturbationTests.test_bool_initial_weight",
+        "test_robustness.PerturbationTests.test_boolean_horizon_rejected",
+        "test_robustness.PerturbationTests.test_changed_alternative_table",
+        "test_robustness.PerturbationTests.test_changed_baseline_table",
+        "test_robustness.PerturbationTests.test_changed_comparison_identity",
+        "test_robustness.PerturbationTests.test_changed_state_order",
+        "test_robustness.PerturbationTests.test_cli_and_no_scientific_promotion",
+        "test_robustness.PerturbationTests.test_duplicate_region",
+        "test_robustness.PerturbationTests.test_empty_region",
+        "test_robustness.PerturbationTests.test_exact_scoped_values",
+        "test_robustness.PerturbationTests.test_example_schema_offline",
+        "test_robustness.PerturbationTests.test_extra_result_field",
+        "test_robustness.PerturbationTests.test_false_baseline_probability",
+        "test_robustness.PerturbationTests.test_false_observed_difference",
+        "test_robustness.PerturbationTests.test_foreign_model_receipt",
+        "test_robustness.PerturbationTests.test_forged_bound",
+        "test_robustness.PerturbationTests.test_forged_empirical",
+        "test_robustness.PerturbationTests.test_forged_initial_tv",
+        "test_robustness.PerturbationTests.test_forged_lean",
+        "test_robustness.PerturbationTests.test_forged_max_tv",
+        "test_robustness.PerturbationTests.test_forged_no_long_run_claim",
+        "test_robustness.PerturbationTests.test_forged_row_tv",
+        "test_robustness.PerturbationTests.test_forged_science",
+        "test_robustness.PerturbationTests.test_horizon_zero_ignores_kernel_tv",
+        "test_robustness.PerturbationTests.test_identity_model_exact",
+        "test_robustness.PerturbationTests.test_invalid_initial_sum",
+        "test_robustness.PerturbationTests.test_large_horizon_rejected",
+        "test_robustness.PerturbationTests.test_max_horizon_accepted",
+        "test_robustness.PerturbationTests.test_missing_horizon_row",
+        "test_robustness.PerturbationTests.test_missing_initial_mass",
+        "test_robustness.PerturbationTests.test_negative_horizon_rejected",
+        "test_robustness.PerturbationTests.test_negative_initial_weight",
+        "test_robustness.PerturbationTests.test_one_step_values",
+        "test_robustness.PerturbationTests.test_only_initial_distribution_differs",
+        "test_robustness.PerturbationTests.test_unaligned_state_names",
+        "test_robustness.PerturbationTests.test_unknown_region_pair",
+        "test_robustness.PerturbationTests.test_unregistered_input_extra_key"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.private_control_stage_saddle.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-private-stage",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_private_stage.PrivateStageTests.test_example_saddle_and_randomization_gain",
+        "test_private_stage.PrivateStageTests.test_four_by_four_certificate",
+        "test_private_stage.PrivateStageTests.test_input_scope",
+        "test_private_stage.PrivateStageTests.test_matching_pennies_matches_research_fixture",
+        "test_private_stage.PrivateStageTests.test_negative_constant_payoff",
+        "test_private_stage.PrivateStageTests.test_receipt_for_a_different_payoff_rejected",
+        "test_private_stage.PrivateStageTests.test_rock_paper_scissors_and_single_parameter",
+        "test_private_stage.PrivateStageTests.test_suboptimal_or_false_certificates_rejected",
+        "test_private_stage_cli.PrivateStageCLI.test_failure_does_not_create_output_directory",
+        "test_private_stage_cli.PrivateStageCLI.test_real_cli",
+        "test_private_stage_cli.PrivateStageCLI.test_schema_accepts_example",
+        "test_private_stage_cli.PrivateStageCLI.test_schema_rejects_fifth_control_and_decimal",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.random_occupation.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-occupation",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_occupation_exit.InstalledCLIContracts.test_occupation_and_exit_cli",
+        "test_occupation_exit.OccupationTests.test_absorbing_fork_random_vs_mean",
+        "test_occupation_exit.OccupationTests.test_absorption_mutation_rejected",
+        "test_occupation_exit.OccupationTests.test_aperiodic_stationary",
+        "test_occupation_exit.OccupationTests.test_canonical_input_bound",
+        "test_occupation_exit.OccupationTests.test_completely_disconnected",
+        "test_occupation_exit.OccupationTests.test_false_stationary_rejected",
+        "test_occupation_exit.OccupationTests.test_mean_mutation_rejected",
+        "test_occupation_exit.OccupationTests.test_omitted_class_rejected",
+        "test_occupation_exit.OccupationTests.test_periodic_occupation_not_pointwise_convergence",
+        "test_occupation_exit.OccupationTests.test_unknown_zero_support_not_recurrent",
+        "test_occupation_exit.OccupationTests.test_wrong_scientific_status_rejected",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.rational_algebra_witness.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-algebra",
+        "test_algebra.AlgebraTests.test_every_profile_round_trips",
+        "test_algebra.AlgebraTests.test_exact_values",
+        "test_algebra.AlgebraTests.test_premise_failures",
+        "test_algebra.AlgebraTests.test_tampered_receipts_rejected",
+        "test_algebra_cli.AlgebraCLI.test_failure_does_not_create_output_directory",
+        "test_algebra_cli.AlgebraCLI.test_real_cli",
+        "test_algebra_cli.AlgebraCLI.test_schema_accepts_complete_example",
+        "test_algebra_cli.AlgebraCLI.test_schema_rejects_mixed_profile_fields",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.rectangular_vs_committed_nature.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-robust-nature",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused",
+        "test_robust_nature.NatureChronologyTests.test_actual_two_step_separation_and_action_optimum",
+        "test_robust_nature.NatureChronologyTests.test_all_critical_receipt_tampering_rejected",
+        "test_robust_nature.NatureChronologyTests.test_fake_boolean_certification_rejected",
+        "test_robust_nature.NatureChronologyTests.test_fixed_policy_per_model_direct_path_enumeration",
+        "test_robust_nature.NatureChronologyTests.test_horizon_one_requires_newer_control",
+        "test_robust_nature.NatureChronologyTests.test_horizon_zero_terminal_reward_is_exact",
+        "test_robust_nature.NatureChronologyTests.test_input_changed_P_probability_not_normalized",
+        "test_robust_nature.NatureChronologyTests.test_input_duplicate_P_row",
+        "test_robust_nature.NatureChronologyTests.test_input_duplicate_comparison_state",
+        "test_robust_nature.NatureChronologyTests.test_input_duplicate_model_id",
+        "test_robust_nature.NatureChronologyTests.test_input_duplicate_policy_state",
+        "test_robust_nature.NatureChronologyTests.test_input_extra_fields_rejected",
+        "test_robust_nature.NatureChronologyTests.test_input_float_or_bool_not_rational",
+        "test_robust_nature.NatureChronologyTests.test_input_foreign_P_row",
+        "test_robust_nature.NatureChronologyTests.test_input_illegal_policy_action",
+        "test_robust_nature.NatureChronologyTests.test_input_missing_P_row",
+        "test_robust_nature.NatureChronologyTests.test_input_missing_policy_state",
+        "test_robust_nature.NatureChronologyTests.test_input_reward_gap",
+        "test_robust_nature.NatureChronologyTests.test_input_unknown_comparison_state",
+        "test_robust_nature.NatureChronologyTests.test_negative_terminal_reward_not_probability",
+        "test_robust_nature.NatureChronologyTests.test_omitted_and_extra_receipt_fields_rejected",
+        "test_robust_nature.NatureChronologyTests.test_random_probabilities_against_second_checker",
+        "test_robust_nature.NatureChronologyTests.test_reordered_scenario_ids_are_bound",
+        "test_robust_nature.NatureChronologyTests.test_single_nature_model_equality_for_fixed_policy",
+        "test_robust_nature_cli.NatureCLI.test_failure_does_not_create_output_directory",
+        "test_robust_nature_cli.NatureCLI.test_real_cli",
+        "test_robust_nature_cli.NatureCLI.test_schema_accepts_complete_example",
+        "test_robust_nature_cli.NatureCLI.test_schema_rejects_bad_physical_payload"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.residence_monitor.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-residence",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_residence.MonitorSemantics.test_avoid_danger_precedes_simultaneous_success",
+        "test_residence.MonitorSemantics.test_bool_deadline_rejected",
+        "test_residence.MonitorSemantics.test_danger_after_success_does_not_retroactively_fail",
+        "test_residence.MonitorSemantics.test_entry_by_and_completion_by_differ",
+        "test_residence.MonitorSemantics.test_full_probability_boundary",
+        "test_residence.MonitorSemantics.test_impossible_completion_horizon_fails",
+        "test_residence.MonitorSemantics.test_removed_time_row_fails",
+        "test_residence.MonitorSemantics.test_retryable_differs_from_first_ever",
+        "test_residence.MonitorSemantics.test_time_zero_goal_requires_m_plus_one_observations",
+        "test_residence.MonitorSemantics.test_two_action_bellman_chooses_realized_control",
+        "test_residence.MonitorSemantics.test_two_action_tied_optimum_is_complete",
+        "test_residence.MonitorSemantics.test_unknown_claim_is_rejected",
+        "test_residence.MonitorSemantics.test_unknown_source_action_rejected",
+        "test_residence.MonitorSemantics.test_wrong_monitor_value_rejected",
+        "test_residence.MonitorSemantics.test_wrong_optimizer_rejected",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.two_player_protocol.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-multiagent",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_multiagent.MultiAgentTests.test_example_kernels",
+        "test_multiagent.MultiAgentTests.test_invalid_tables_rejected",
+        "test_multiagent.MultiAgentTests.test_matching_anchor_makes_protocols_coincide",
+        "test_multiagent.MultiAgentTests.test_tampered_receipts_rejected",
+        "test_multiagent.MultiAgentTests.test_treated_player_matters",
+        "test_multiagent_cli.MultiAgentCLI.test_failure_does_not_create_output_directory",
+        "test_multiagent_cli.MultiAgentCLI.test_real_cli",
+        "test_multiagent_cli.MultiAgentCLI.test_schema_accepts_complete_example",
+        "test_multiagent_cli.MultiAgentCLI.test_schema_rejects_third_player",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "finite.typed_quotient.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:finite-quotient",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_grammar_quotient_cli.GrammarQuotientCLI.test_both_engines_execute_and_keep_nine_dimensions_unverified",
+        "test_grammar_quotient_cli.GrammarQuotientCLI.test_installed_resourced_schemas_and_exact_export",
+        "test_grammar_quotient_cli.GrammarQuotientCLI.test_mutation_rejected_before_output",
+        "test_grammar_quotient_cli.GrammarQuotientCLI.test_output_path_not_overwritten",
+        "test_quotients.QuotientTests.test_comparison_full_fiber_required",
+        "test_quotients.QuotientTests.test_exit_complements_survival",
+        "test_quotients.QuotientTests.test_held_fixed_physical_transition_mutation_fails",
+        "test_quotients.QuotientTests.test_identity_quotient_rejected",
+        "test_quotients.QuotientTests.test_numeric_bool_impersonation_rejected",
+        "test_quotients.QuotientTests.test_ontological_projection_only_no_false_alpha_P_U_status",
+        "test_quotients.QuotientTests.test_projection_must_be_onto",
+        "test_quotients.QuotientTests.test_region_full_fiber_required",
+        "test_quotients.QuotientTests.test_request_boolean_horizon_rejected",
+        "test_quotients.QuotientTests.test_single_intervention_breaks_lumpability_even_when_baseline_lumpable",
+        "test_quotients.QuotientTests.test_source_swap_rejected",
+        "test_quotients.QuotientTests.test_status_impersonation_rejected",
+        "test_quotients.QuotientTests.test_true_nonidentity_projection_preserves_all_declared_laws",
+        "test_quotients.QuotientTests.test_unlumpable_baseline_rejected",
+        "test_quotients.QuotientTests.test_unreported_treated_model_mutation_rejected",
+        "test_quotients.QuotientTests.test_wrong_comparison_beyond_region",
+        "test_quotients.QuotientTests.test_wrong_effect_rejected",
+        "test_quotients.QuotientTests.test_wrong_quotient_kernel_rejected",
+        "test_quotients.QuotientTests.test_zero_horizon_both_values_one",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "lp.exact_rational.independent_verification.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:lp-propose",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_foundations.LPTests.test_affine_lower_and_minimize",
+        "test_foundations.LPTests.test_bounded_does_not_prove_infeasible",
+        "test_foundations.LPTests.test_declared_precision",
+        "test_foundations.LPTests.test_dual_violation",
+        "test_foundations.LPTests.test_equality_and_ge_translation",
+        "test_foundations.LPTests.test_exact_optimum",
+        "test_foundations.LPTests.test_farkas_exact",
+        "test_foundations.LPTests.test_farkas_false",
+        "test_foundations.LPTests.test_foreign_objective_identity",
+        "test_foundations.LPTests.test_forged_objective_rejected",
+        "test_foundations.LPTests.test_noncanonical_type",
+        "test_foundations.LPTests.test_primal_violation",
+        "test_foundations.LPTests.test_tied_fractional_not_solver_vector",
+        "test_foundations.LPTests.test_upper_below_lower",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "lp.exact_rational.optimality.numeric.v1": {
+      "numeric_test": [
+        "scripts/end_to_end.py:lp-propose",
+        "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
+        "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
+        "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_foundations.LPTests.test_affine_lower_and_minimize",
+        "test_foundations.LPTests.test_bounded_does_not_prove_infeasible",
+        "test_foundations.LPTests.test_declared_precision",
+        "test_foundations.LPTests.test_dual_violation",
+        "test_foundations.LPTests.test_equality_and_ge_translation",
+        "test_foundations.LPTests.test_exact_optimum",
+        "test_foundations.LPTests.test_farkas_exact",
+        "test_foundations.LPTests.test_farkas_false",
+        "test_foundations.LPTests.test_foreign_objective_identity",
+        "test_foundations.LPTests.test_forged_objective_rejected",
+        "test_foundations.LPTests.test_noncanonical_type",
+        "test_foundations.LPTests.test_primal_violation",
+        "test_foundations.LPTests.test_tied_fractional_not_solver_vector",
+        "test_foundations.LPTests.test_upper_below_lower",
+        "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
+        "test_resources_budget.EnforcementTests.test_memory_exhaustion",
+        "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
+        "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
+        "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
+        "test_resources_budget.LimitsTests.test_defaults_and_receipt",
+        "test_resources_budget.LimitsTests.test_environment_may_only_lower_the_limits",
+        "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
+      ],
+      "cross_platform": [
+        "installed-distribution:verification/research/test_application_successor_installed.py"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    }
+  },
+  "method_sources": {
+    "finite.adaptive_block_control.numeric.v1": [
+      "test_adaptive",
+      "test_adaptive_cli"
+    ],
+    "finite.almost_sure_safety_core.numeric.v1": [
+      "test_safety"
+    ],
+    "finite.alpha_P_U.induced_kernel.numeric.v1": [
+      "test_foundations.FiniteTests"
+    ],
+    "finite.cq1_certificate_transport.numeric.v1": [
+      "test_cq1_transport"
+    ],
+    "finite.cq1_constitutive_certificate.numeric.v1": [
+      "test_cq1",
+      "test_cq1_cli"
+    ],
+    "finite.first_exit_and_survival.numeric.v1": [
+      "test_occupation_exit.ExitTests",
+      "test_occupation_exit.InstalledCLIContracts"
+    ],
+    "finite.frozen_menu.numeric.v1": [
+      "test_frozen_menu"
+    ],
+    "finite.hitting_bellman.numeric.v1": [
+      "test_bellman"
+    ],
+    "finite.killed_kernel.survival.numeric.v1": [
+      "test_finite_survival"
+    ],
+    "finite.metric_contraction_perturbation.numeric.v1": [
+      "test_metric",
+      "test_metric_cli"
+    ],
+    "finite.nonlinear_classwise_stationary.numeric.v1": [
+      "test_nonlinear"
+    ],
+    "finite.observation_history_tree.numeric.v1": [
+      "test_belief_tree",
+      "test_belief_tree_cli"
+    ],
+    "finite.one_step_observation_belief.numeric.v1": [
+      "test_belief",
+      "test_belief_cli"
+    ],
+    "finite.one_step_risk_infeasibility.numeric.v1": [
+      "test_risk_infeasibility"
+    ],
+    "finite.one_step_risk_occupancy.numeric.v1": [
+      "test_risk_occupancy",
+      "test_risk_occupancy_cli"
+    ],
+    "finite.patch_grammar.numeric.v1": [
+      "test_grammar",
+      "test_grammar_cli",
+      "test_grammar_quotient_cli"
+    ],
+    "finite.path_perturbation_tv.numeric.v1": [
+      "test_robustness"
+    ],
+    "finite.private_control_stage_saddle.numeric.v1": [
+      "test_private_stage",
+      "test_private_stage_cli"
+    ],
+    "finite.random_occupation.numeric.v1": [
+      "test_occupation_exit.OccupationTests",
+      "test_occupation_exit.InstalledCLIContracts"
+    ],
+    "finite.rational_algebra_witness.numeric.v1": [
+      "test_algebra",
+      "test_algebra_cli"
+    ],
+    "finite.rectangular_vs_committed_nature.numeric.v1": [
+      "test_robust_nature",
+      "test_robust_nature_cli"
+    ],
+    "finite.residence_monitor.numeric.v1": [
+      "test_residence"
+    ],
+    "finite.two_player_protocol.numeric.v1": [
+      "test_multiagent",
+      "test_multiagent_cli"
+    ],
+    "finite.typed_quotient.numeric.v1": [
+      "test_quotients",
+      "test_grammar_quotient_cli"
+    ],
+    "lp.exact_rational.independent_verification.v1": [
+      "test_foundations.LPTests"
+    ],
+    "lp.exact_rational.optimality.numeric.v1": [
+      "test_foundations.LPTests"
+    ]
+  }
+}

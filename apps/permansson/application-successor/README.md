@@ -21,7 +21,9 @@ providers and `.github/workflows/` are unchanged.
 
 ## Quick start
 
-Python ≥ 3.12. Install with offline Draft 2020-12 schema checking:
+Linux with Python 3.12 or 3.13. Other platforms are unsupported for this
+release: the whole-run budget relies on Linux process limits. Install with
+offline Draft 2020-12 schema checking:
 
 ```bash
 python -m pip install './apps/permansson/application-successor[full-schema]'
@@ -66,7 +68,9 @@ candidate family. The full table is in
 | Native C10 / C11 replay | `run --source-root <checkout>` | below |
 
 Every profile is bounded: dimensions, horizons and rational sizes are capped,
-and Lean reflection often has a smaller cap than the numeric profile. See
+and Lean reflection often has a smaller cap than the numeric profile. Each
+command also runs under one whole-run budget for wall clock, CPU, memory and
+output. An exhausted run leaves no output. See
 [`docs/EXAMPLES_AND_LIMITS.md`](docs/EXAMPLES_AND_LIMITS.md).
 
 ## How results are checked

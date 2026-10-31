@@ -47,15 +47,37 @@ class AcceptancePolicy:
     """Explicit minimum selected method IDs, keyed by capability and platform.
 
     Assumed trusted by an independent consumer, NOT from the tested artifact.
+    A v2 policy also names its scope, the only selected platforms and the only
+    selected execution profile; anything else is reported missing, never covered.
     """
     required:dict
     require_security_review:bool=True
     require_owner_activation:bool=True
+    scope:str|None=None
+    platforms:tuple[str,...]|None=None
+    execution_profile:str|None=None
 
     @classmethod
     def parse(cls,raw:object)->'AcceptancePolicy':
-        if type(raw) is not dict or set(raw)!={'format','required','security_review_required','owner_activation_required'} or raw['format']!='Permansson.App.AcceptancePolicy.v1':
+        v1={'format','required','security_review_required','owner_activation_required'}
+        v2=v1|{'scope','description','platforms','execution_profile','method_sources'}
+        if type(raw) is not dict or not ((raw.get('format')=='Permansson.App.AcceptancePolicy.v1' and set(raw)==v1)
+                                         or (raw.get('format')=='Permansson.App.AcceptancePolicy.v2' and set(raw)==v2)):
             raise AppError('ACCEPTANCE_POLICY','unknown or incomplete selected release policy')
+        extra={}
+        if raw['format'].endswith('.v2'):
+            platforms=raw['platforms']
+            if (type(raw['scope']) is not str or not raw['scope'] or type(raw['description']) is not str
+                    or type(platforms) is not list or not platforms or len(set(platforms))!=len(platforms)
+                    or any(type(p) is not str or not p for p in platforms)
+                    or raw['execution_profile'] not in ('numeric','lean_replay','empirical')):
+                raise AppError('ACCEPTANCE_POLICY','invalid v2 scope, platforms or execution profile')
+            sources=raw['method_sources']
+            if (type(sources) is not dict or type(raw['required']) is not dict or set(sources)!=set(raw['required'])
+                    or any(type(v) is not list or not v or any(type(s) is not str or not s for s in v)
+                           for v in sources.values())):
+                raise AppError('ACCEPTANCE_POLICY','every selected capability needs its test-method sources')
+            extra={'scope':raw['scope'],'platforms':tuple(platforms),'execution_profile':raw['execution_profile']}
         if type(raw['required']) is not dict or not raw['required']:
             raise AppError('ACCEPTANCE_POLICY','missing selected capability contracts')
         if type(raw['security_review_required']) is not bool or type(raw['owner_activation_required']) is not bool:
@@ -69,7 +91,7 @@ class AcceptancePolicy:
                 if type(kind) is not str or type(methods) is not list or not methods or len(methods)>1000 or any(type(m) is not str or not m for m in methods) or len(set(methods))!=len(methods):
                     raise AppError('ACCEPTANCE_POLICY','required method list missing or duplicate')
                 verified[cap][kind]=tuple(methods)
-        return cls(verified,raw['security_review_required'],raw['owner_activation_required'])
+        return cls(verified,raw['security_review_required'],raw['owner_activation_required'],**extra)
 
 @dataclass(frozen=True)
 class AcceptanceAssessment:
@@ -95,11 +117,15 @@ def assess_acceptance(target:AcceptanceTarget,evidence:EvidenceSet,
     if type(target) is not AcceptanceTarget or type(evidence) is not EvidenceSet or type(policy) is not AcceptancePolicy:
         raise AppError('ACCEPTANCE_INPUT','independently pinned target/evidence/policy required')
     missing=[];failed=[];covered=[]
+    if policy.execution_profile is not None and target.execution_profile!=policy.execution_profile:
+        missing.append('execution-profile-not-selected:'+target.execution_profile)
     for cap in target.capabilities:
         requirements=policy.required.get(cap)
         if requirements is None:
             missing.append('capability-not-declared:'+cap);continue
         for platform in target.platforms:
+            if policy.platforms is not None and platform not in policy.platforms:
+                missing.append('platform-not-selected:'+platform);continue
             for kind,caseids in requirements.items():
                 # Strong modes require actual specific proof evidence even if
                 # a numeric policy happens to list fewer requirements.
