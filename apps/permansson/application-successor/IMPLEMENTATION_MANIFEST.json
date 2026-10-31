@@ -1,410 +1,362 @@
 {
-  "candidate_counts": {
-    "combined_inventory_rows": 618,
-    "declared_leans_compiled": 2,
-    "independent_mathematical_acceptances": 0,
-    "local_test_methods_passed": 217,
-    "local_tested_python_modules": 56,
-    "new_paths_not_in_original_union": 99,
-    "source_changes_in_branch": 193
+  "format": "Permansson.App.ImplementationManifest.v2",
+  "supersedes_format": "Permansson.App.AuthoritativeSourceReconciliation.v1",
+  "status": "DEVELOPMENT_BASELINE_NOT_RELEASE_ACCEPTANCE",
+  "scope": "v2 reviewed + v3 reconstructed + main-backed; never promote proposed files to available",
+  "base": {
+    "live_main": "3492b26707788293ca88c66637b6ba021c7e478d",
+    "source_tree": "9ef00ac4b2d4f928aa6551ef3f0dfeb2d4434452",
+    "note": "the immutable main commit and tree this branch is based on; not the candidate head"
   },
-  "candidate_engine_overlays": {
-    "exit_routing": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
-    "finite_frozen_menu": "NUMERIC_CHECKED_NOT_GLOBAL_OPTIMUM_NOT_LEAN_CERTIFIED",
-    "finite_hitting_bellman": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
-    "finite_survival": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
-    "occupation": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
-    "finite_intervention_grammar": "NUMERIC_CHECKED_NOT_CONSTITUTIVE_CERTIFIED",
-    "finite_typed_induced_quotient": "STRONG_LUMPABILITY_NUMERIC_ONLY_NOT_COARSE_ALPHA_P_U_PROOF",
-    "robust_nature": "NUMERIC_EXACT_CHECKED_NOT_COMMITTED_GAME_OPTIMUM_NOT_LEAN_CERTIFIED",
-    "one_step_risk_occupancy": "NUMERIC_EXACT_PRIMAL_DUAL_CHECKED_SINGLE_TRANSITION_ONLY_NOT_LEAN_CERTIFIED",
-    "one_step_observation_belief": "NUMERIC_CHECKED_ONE_TRANSITION_NOT_LEAN_CERTIFIED"
+  "head_identity": {
+    "policy": "DETACHED_POSTCOMMIT_RECEIPT",
+    "how": "python apps/permansson/application-successor/scripts/inventory.py --receipt <path> after committing",
+    "reason": "a tracked file cannot contain the commit that contains it; the synthetic merge and CI run identities are recorded by CI, outside this file"
   },
-  "candidate_head_sha": "EXACT_NEW_PR_HEAD_PENDING_COMMIT_AND_CI",
-  "candidate_revision": "v15-exact-lp-lean-real-soundness-source-candidate",
-  "candidate_source_base_sha": "3492b26707788293ca88c66637b6ba021c7e478d",
-  "candidate_verification": {
-    "0": "1",
-    "1": "8",
-    "2": "2",
-    "3": "/",
-    "4": "1",
-    "5": "8",
-    "6": "2",
-    "7": " ",
-    "8": "f",
-    "9": "o",
-    "10": "c",
-    "11": "u",
-    "12": "s",
-    "13": "e",
-    "14": "d",
-    "15": " ",
-    "16": "a",
-    "17": "n",
-    "18": "d",
-    "19": " ",
-    "20": "3",
-    "21": "5",
-    "22": "/",
-    "23": "3",
-    "24": "5",
-    "25": " ",
-    "26": "n",
-    "27": "a",
-    "28": "t",
-    "29": "i",
-    "30": "v",
-    "31": "e",
-    "32": " ",
-    "33": "C",
-    "34": "1",
-    "35": "0",
-    "36": "/",
-    "37": "C",
-    "38": "1",
-    "39": "1",
-    "40": " ",
-    "41": "t",
-    "42": "e",
-    "43": "s",
-    "44": "t",
-    "45": "s",
-    "46": " ",
-    "47": "P",
-    "48": "A",
-    "49": "S",
-    "50": "S",
-    "51": " ",
-    "52": "o",
-    "53": "n",
-    "54": " ",
-    "55": "L",
-    "56": "i",
-    "57": "n",
-    "58": "u",
-    "59": "x",
-    "60": " ",
-    "61": "P",
-    "62": "y",
-    "63": "t",
-    "64": "h",
-    "65": "o",
-    "66": "n",
-    "67": " ",
-    "68": "3",
-    "69": ".",
-    "70": "1",
-    "71": "3",
-    "72": ".",
-    "73": "5",
-    "74": ";",
-    "75": " ",
-    "76": "2",
-    "77": " ",
-    "78": "i",
-    "79": "n",
-    "80": "d",
-    "81": "e",
-    "82": "p",
-    "83": "e",
-    "84": "n",
-    "85": "d",
-    "86": "e",
-    "87": "n",
-    "88": "t",
-    "89": "l",
-    "90": "y",
-    "91": " ",
-    "92": "c",
-    "93": "h",
-    "94": "e",
-    "95": "c",
-    "96": "k",
-    "97": "e",
-    "98": "d",
-    "99": " ",
-    "100": "i",
-    "101": "n",
-    "102": "s",
-    "103": "t",
-    "104": "a",
-    "105": "l",
-    "106": "l",
-    "107": "e",
-    "108": "d",
-    "109": "-",
-    "110": "w",
-    "111": "h",
-    "112": "e",
-    "113": "e",
-    "114": "l",
-    "115": " ",
-    "116": "e",
-    "117": "x",
-    "118": "a",
-    "119": "m",
-    "120": "p",
-    "121": "l",
-    "122": "e",
-    "123": "s",
-    "124": " ",
-    "125": "P",
-    "126": "A",
-    "127": "S",
-    "128": "S",
-    "129": ".",
-    "130": " ",
-    "131": "E",
-    "132": "x",
-    "133": "p",
-    "134": "e",
-    "135": "n",
-    "136": "s",
-    "137": "i",
-    "138": "v",
-    "139": "e",
-    "140": " ",
-    "141": "f",
-    "142": "u",
-    "143": "l",
-    "144": "l",
-    "145": " ",
-    "146": "l",
-    "147": "e",
-    "148": "g",
-    "149": "a",
-    "150": "c",
-    "151": "y",
-    "152": " ",
-    "153": "f",
-    "154": "i",
-    "155": "x",
-    "156": "t",
-    "157": "u",
-    "158": "r",
-    "159": "e",
-    "160": " ",
-    "161": "r",
-    "162": "e",
-    "163": "r",
-    "164": "u",
-    "165": "n",
-    "166": " ",
-    "167": "o",
-    "168": "n",
-    "169": " ",
-    "170": "t",
-    "171": "h",
-    "172": "i",
-    "173": "s",
-    "174": " ",
-    "175": "e",
-    "176": "x",
-    "177": "a",
-    "178": "c",
-    "179": "t",
-    "180": " ",
-    "181": "c",
-    "182": "u",
-    "183": "t",
-    "184": " ",
-    "185": "i",
-    "186": "n",
-    "187": "c",
-    "188": "o",
-    "189": "m",
-    "190": "p",
-    "191": "l",
-    "192": "e",
-    "193": "t",
-    "194": "e",
-    "195": ";",
-    "196": " ",
-    "197": "l",
-    "198": "a",
-    "199": "t",
-    "200": "e",
-    "201": "s",
-    "202": "t",
-    "203": " ",
-    "204": "G",
-    "205": "i",
-    "206": "t",
-    "207": "H",
-    "208": "u",
-    "209": "b",
-    "210": " ",
-    "211": "C",
-    "212": "I",
-    "213": " ",
-    "214": "p",
-    "215": "e",
-    "216": "n",
-    "217": "d",
-    "218": "i",
-    "219": "n",
-    "220": "g",
-    "221": ".",
-    "222": " ",
-    "223": "N",
-    "224": "o",
-    "225": " ",
-    "226": "L",
-    "227": "e",
-    "228": "a",
-    "229": "n",
-    "230": "/",
-    "231": "C",
-    "232": "E",
-    "233": "R",
-    "234": "T",
-    "235": "/",
-    "236": "e",
-    "237": "m",
-    "238": "p",
-    "239": "i",
-    "240": "r",
-    "241": "i",
-    "242": "c",
-    "243": "a",
-    "244": "l",
-    "245": " ",
-    "246": "a",
-    "247": "c",
-    "248": "c",
-    "249": "e",
-    "250": "p",
-    "251": "t",
-    "252": "a",
-    "253": "n",
-    "254": "c",
-    "255": "e",
-    "256": ".",
-    "round8_robust_nature": {
-      "source_head_before_commit": "60390728c5ad447c9a028f84e330ef21b40b31a1",
-      "new_source_paths": 7,
-      "verified_focused_test_methods": 28,
-      "separate_native_regression_tests": 35,
-      "separate_exact_foundation_tests": 35,
-      "separate_residence_nonlinear_grammar_quotient_tests": 59,
-      "installed_wheel_example": "finite-robust-nature",
-      "packaged_resource_count": 36,
-      "local_installed_wheel_result": "PASS",
-      "historical_archive_gate": "NOT_REPAIRED_OR_WAIVED",
-      "full_repo_qa_status": "PENDING_CURRENT_HEAD_CI",
-      "lean_replay": "NOT_EXECUTED",
-      "scientific_claims_verified": false,
-      "release_authorized": false
+  "dispositions": {
+    "EXCLUDED_GENERATED_BUILD_PRODUCT": "generated build output (build/lib); never committed",
+    "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": "implemented under the paths in superseded_by (all tracked)",
+    "DEFERRED_ALTERNATE_LAYOUT": "the planned file was not created; related_implemented lists tracked files that cover part of its role, without asserting a full equivalent",
+    "DEFERRED_CONTRACT_LAYER": "part of the cross-profile versioned contract layer, not implemented; per-profile schemas and strict parsers are used instead",
+    "DEFERRED_SCOPE": "outside the current implementation scope; no computation is fabricated for it",
+    "DEFERRED_DOMAIN_INTEGRATION": "source-grade domain importers and federation providers; the current domain intake checks evidence envelopes only",
+    "REQUIRED_BEFORE_RELEASE": "needed for a release qualification that has not been selected or authorized",
+    "REVIEW_GATED": "CI trust-profile, workflow or release-gate surface that needs separate independent review"
+  },
+  "current_inventory": {
+    "computed_by": "scripts/inventory.py --write-current (recomputed from git ls-files; see --check)",
+    "manifest_rows": 633,
+    "unique_paths": 633,
+    "rows_by_candidate_state": {
+      "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI": 1,
+      "DOCUMENTATION": 42,
+      "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES": 1,
+      "EXISTING_MAIN_PRESERVED": 11,
+      "HASH_PINNED_FROM_PYPI_DIGESTS_LOCAL_REQUIRE_HASHES_INSTALL_PASSED": 3,
+      "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN": 12,
+      "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN": 2,
+      "LOCAL_PINNED_LEAN_11_OF_11_PASSED_PENDING_EXACT_HEAD_CI": 2,
+      "LOCAL_PINNED_LEAN_4_OF_4_PASSED_PENDING_EXACT_HEAD_CI": 1,
+      "LOCAL_PINNED_LEAN_6_OF_6_PASSED_PENDING_EXACT_HEAD_CI": 3,
+      "LOCAL_PINNED_LEAN_7_OF_7_PASSED_PENDING_EXACT_HEAD_CI": 9,
+      "LOCAL_PINNED_LEAN_8_OF_8_PASSED_PENDING_EXACT_HEAD_CI": 8,
+      "LOCAL_PINNED_LEAN_9_OF_9_PASSED_PENDING_EXACT_HEAD_CI": 1,
+      "LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI": 23,
+      "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_ALL_THREE_MODES_PENDING_EXACT_HEAD_CI": 1,
+      "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI": 23,
+      "LOCAL_TESTED_DEFAULT_OUTPUT_BYTE_IDENTICAL_PENDING_EXACT_HEAD_CI": 1,
+      "LOCAL_TESTED_IMPLEMENTATION": 107,
+      "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI": 66,
+      "LOCAL_TESTED_LINUX_CPYTHON_3_13_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
+      "LOCAL_TESTED_NUMERIC_IMPLEMENTATION": 7,
+      "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 73,
+      "LOCAL_TESTED_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
+      "LOCAL_TESTED_SOURCE_CANDIDATE": 7,
+      "NOT_ACTIVATED_REVIEW_GATED": 19,
+      "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI": 6,
+      "PINNED_RESEARCH_BUILD_COMPILED_AT_PRIOR_HEAD": 1,
+      "PLANNED_NOT_IMPLEMENTED": 148,
+      "PUBLISHED_VECTORS_CROSS_CHECKED_BY_TWO_ENCODERS": 1,
+      "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 30,
+      "SEMANTICS_EXTRA_RFC8785_0_1_4_PENDING_EXACT_HEAD_CI": 1,
+      "TEST_FIXTURE": 8,
+      "VENDORED_OFFICIAL_VECTORS_COMMIT_32a48195": 1,
+      "VENDORED_THIRD_PARTY_TEST_FIXTURE": 12
     },
-    "round9_risk_occupancy": {
-      "source_head_before_commit": "197c3b5d84f9dcf4e2e1dd6c70d19aee761aeef0",
-      "new_source_paths": 7,
-      "verified_focused_test_methods": 18,
-      "separate_native_tests": 35,
-      "separate_foundation_tests": 35,
-      "separate_bellman_tests": 25,
-      "separate_grammar_tests": 14,
-      "separate_quotient_tests": 19,
-      "separate_nonlinear_tests": 11,
-      "separate_residence_tests": 15,
-      "separate_robust_nature_tests": 24,
-      "installed_wheel_cli_result": "PASS",
-      "source_distribution_built": "PASS",
-      "packaged_resource_count_on_full_GitHub_branch": 38,
-      "proof_status": "NOT_EXECUTED",
-      "scientific_claims_verified": false,
-      "full_repo_ci_status": "PENDING_NEW_HEAD",
-      "current_code_not_in_merge_main": true,
-      "release_authorized": false,
-      "original_case_45_certification": "NOT_SUBSTITUTED_BY_NUMERIC_TESTS",
-      "later_claim_11_certification": "NOT_SUBSTITUTED_BY_NUMERIC_TESTS"
+    "tracked_rows": 432,
+    "absent_rows": 201,
+    "absent_rows_by_disposition": {
+      "DEFERRED_ALTERNATE_LAYOUT": 41,
+      "DEFERRED_CONTRACT_LAYER": 37,
+      "DEFERRED_DOMAIN_INTEGRATION": 12,
+      "DEFERRED_SCOPE": 8,
+      "EXCLUDED_GENERATED_BUILD_PRODUCT": 21,
+      "REQUIRED_BEFORE_RELEASE": 32,
+      "REVIEW_GATED": 20,
+      "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 30
     },
-    "round11_multistage_belief": {
-      "base_head_before_commit": "03a1b42b329776647db4ca49039b58391103d179",
-      "new_source_paths": 7,
-      "modified_previous_source_paths": 11,
-      "local_focused_test_methods": 16,
-      "additional_direct_bruteforce_tree_enumeration": 64,
-      "sample_two_stage_optimum": "55/64",
-      "sample_blind_reference": "3/4",
-      "sample_value_of_information": "7/64",
-      "current_git_branch_packaged_resources_expected": 42,
-      "local_installed_wheel": "PASS_ON_RECOVERED_OVERLAY_WITH_6_PRIOR_RESOURCES_UNAVAILABLE",
-      "local_full_current_source_ci": "NOT_RUN",
-      "github_exact_head_ci": "PENDING_NEW_HEAD",
-      "lean_bridge_compilation": "NOT_EXECUTED",
-      "scientific_claims_verified": false,
-      "independent_math_cert": false,
-      "accepted_45_case_11_claim": "NOT_SUBSTITUTED",
-      "inherited_archive_gate": "NOT_CHANGED",
-      "full_release_authorized": false
+    "application_tracked_files": 347,
+    "application_tracked_files_without_row": 0,
+    "registered_exact_profiles": 26,
+    "registered_native_capabilities": 2,
+    "research_bridge_modules": 24,
+    "live_lean_replay_files": 24,
+    "live_lean_replay_test_methods": 180
+  },
+  "historical": {
+    "note": "Recorded during earlier rounds and preserved verbatim. None of this is current-head evidence; current counts are in current_inventory and the head identity in a detached receipt.",
+    "planning_format": "Permansson.App.AuthoritativeSourceReconciliation.v1",
+    "planning_scope": "v2 reviewed + v3 reconstructed + main-backed; never promote proposed files to available",
+    "planning_counts": {
+      "excluded_generated": 21,
+      "existing_main": 30,
+      "overlap": 110,
+      "recovered_source": 27,
+      "union_entries": 358,
+      "v2": 217,
+      "v3": 251
     },
-    "round12_lean_bridge": {
-      "base_head": "f857f61da49fbe8c21700e17a8da3421c2450ab5",
-      "new_lean_sources": 2,
-      "research_root_additional_imports": 2,
-      "new_scope_doc": 1,
-      "static_imports_passed": 688,
-      "existing_belief_tree_python_tests_passed": 11,
-      "local_pinned_lean_compilation": "UNAVAILABLE_TOOLCHAIN_NOT_INSTALLED",
-      "github_pinned_lean_compilation": "PENDING_NEW_HEAD",
-      "generated_literal_instance_replay": "NOT_IMPLEMENTED",
-      "lean_receipt_promotion": false,
-      "scientific_claims_verified": false,
-      "independent_math_cert": false,
-      "release_authorized": false
+    "v15_candidate_snapshot": {
+      "candidate_revision": "v15-exact-lp-lean-real-soundness-source-candidate",
+      "candidate_head_sha": "EXACT_NEW_PR_HEAD_PENDING_COMMIT_AND_CI",
+      "candidate_source_base_sha": "3492b26707788293ca88c66637b6ba021c7e478d",
+      "candidate_counts": {
+        "combined_inventory_rows": 618,
+        "declared_leans_compiled": 2,
+        "independent_mathematical_acceptances": 0,
+        "local_test_methods_passed": 217,
+        "local_tested_python_modules": 56,
+        "new_paths_not_in_original_union": 99,
+        "source_changes_in_branch": 193
+      },
+      "candidate_engine_overlays": {
+        "exit_routing": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
+        "finite_frozen_menu": "NUMERIC_CHECKED_NOT_GLOBAL_OPTIMUM_NOT_LEAN_CERTIFIED",
+        "finite_hitting_bellman": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
+        "finite_survival": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
+        "occupation": "NUMERIC_CHECKED_NOT_LEAN_CERTIFIED",
+        "finite_intervention_grammar": "NUMERIC_CHECKED_NOT_CONSTITUTIVE_CERTIFIED",
+        "finite_typed_induced_quotient": "STRONG_LUMPABILITY_NUMERIC_ONLY_NOT_COARSE_ALPHA_P_U_PROOF",
+        "robust_nature": "NUMERIC_EXACT_CHECKED_NOT_COMMITTED_GAME_OPTIMUM_NOT_LEAN_CERTIFIED",
+        "one_step_risk_occupancy": "NUMERIC_EXACT_PRIMAL_DUAL_CHECKED_SINGLE_TRANSITION_ONLY_NOT_LEAN_CERTIFIED",
+        "one_step_observation_belief": "NUMERIC_CHECKED_ONE_TRANSITION_NOT_LEAN_CERTIFIED"
+      }
     },
-    "round13_reification_and_T2_candidate": {
-      "base_head_before_commit": "4f352cda7eb7f7014b1ee6a234acd642b33d29fd",
-      "source_paths_added": 8,
-      "prior_manifest_planned_paths_promoted": 2,
-      "focused_reification_tests_passed": 11,
-      "synthetic_archive_guard_tests_passed": 6,
-      "authentic_archive_guard_test": "EXACT_HEAD_CI_REQUIRED",
-      "installed_wheel_python_module": "PASS_LOCAL_EARLIER_HANDOFF_OVERLAY",
-      "local_genuine_lean_compilation": "NOT_EXECUTED",
-      "original_required_archive_gate": "STILL_FAIL_CLOSED",
-      "independent_security_review": false,
-      "full_release_authorized": false,
-      "mathematical_certification": false
-    },
-    "round14_governance_domain_federation": {
-      "previous_source_head": "0877c55264d7b5626bac311b2ad82d6f1609aa1a",
-      "source_files_changed": 40,
-      "new_source_paths": 39,
-      "existing_files_modified": 1,
-      "manifest_entries_new": 4,
-      "manifest_entries_updated": 36,
-      "local_new_test_methods_passed": 82,
-      "local_governance_test_methods_passed": 56,
-      "local_domain_test_methods_passed": 26,
-      "local_wheel_build": "PASS_LOCAL_RECOVERED_OVERLAY_NOT_FULL_CURRENT_HEAD",
-      "installed_governance_cli": "PASS_SELECTED_SOURCE_ROUTES",
-      "real_uploaded_companion_imports_checked": [
-        "russia_ukraine",
-        "hormuz",
-        "iran",
-        "midr",
-        "brown_mackay",
-        "cross_conflict"
-      ],
-      "domains_status": "DESCRIPTIVE_EVIDENCE_ONLY_NO_ALPHA_P_U_IDENTIFICATION",
-      "mathematical_acceptance": false,
-      "lean_instance_replay": "NOT_EXECUTED",
-      "historical_archive_T_T2": "UNRESOLVED_SEPARATE_TRUST_PROFILE_REVIEW",
-      "current_head_ci": "NOT_YET_EXECUTED",
-      "owner_release_approval": false
+    "round_records": {
+      "v15_candidate_summary": {
+        "text": "182/182 focused and 35/35 native C10/C11 tests PASS on Linux Python 3.13.5; 2 independently checked installed-wheel examples PASS. Expensive full legacy fixture rerun on this exact cut incomplete; latest GitHub CI pending. No Lean/CERT/empirical acceptance.",
+        "evidence_status": "HISTORICAL_NARRATIVE_NOT_EVIDENCE",
+        "repair_note": "stored until 2026-10-31 as one character per numeric key; reconstructed verbatim"
+      },
+      "round8_robust_nature": {
+        "record": {
+          "source_head_before_commit": "60390728c5ad447c9a028f84e330ef21b40b31a1",
+          "new_source_paths": 7,
+          "verified_focused_test_methods": 28,
+          "separate_native_regression_tests": 35,
+          "separate_exact_foundation_tests": 35,
+          "separate_residence_nonlinear_grammar_quotient_tests": 59,
+          "installed_wheel_example": "finite-robust-nature",
+          "packaged_resource_count": 36,
+          "local_installed_wheel_result": "PASS",
+          "historical_archive_gate": "NOT_REPAIRED_OR_WAIVED",
+          "full_repo_qa_status": "PENDING_CURRENT_HEAD_CI",
+          "lean_replay": "NOT_EXECUTED",
+          "scientific_claims_verified": false,
+          "release_authorized": false
+        },
+        "evidence_status": "HISTORICAL_SELF_REPORTED_NOT_EVIDENCE"
+      },
+      "round9_risk_occupancy": {
+        "record": {
+          "source_head_before_commit": "197c3b5d84f9dcf4e2e1dd6c70d19aee761aeef0",
+          "new_source_paths": 7,
+          "verified_focused_test_methods": 18,
+          "separate_native_tests": 35,
+          "separate_foundation_tests": 35,
+          "separate_bellman_tests": 25,
+          "separate_grammar_tests": 14,
+          "separate_quotient_tests": 19,
+          "separate_nonlinear_tests": 11,
+          "separate_residence_tests": 15,
+          "separate_robust_nature_tests": 24,
+          "installed_wheel_cli_result": "PASS",
+          "source_distribution_built": "PASS",
+          "packaged_resource_count_on_full_GitHub_branch": 38,
+          "proof_status": "NOT_EXECUTED",
+          "scientific_claims_verified": false,
+          "full_repo_ci_status": "PENDING_NEW_HEAD",
+          "current_code_not_in_merge_main": true,
+          "release_authorized": false,
+          "original_case_45_certification": "NOT_SUBSTITUTED_BY_NUMERIC_TESTS",
+          "later_claim_11_certification": "NOT_SUBSTITUTED_BY_NUMERIC_TESTS"
+        },
+        "evidence_status": "HISTORICAL_SELF_REPORTED_NOT_EVIDENCE"
+      },
+      "round11_multistage_belief": {
+        "record": {
+          "base_head_before_commit": "03a1b42b329776647db4ca49039b58391103d179",
+          "new_source_paths": 7,
+          "modified_previous_source_paths": 11,
+          "local_focused_test_methods": 16,
+          "additional_direct_bruteforce_tree_enumeration": 64,
+          "sample_two_stage_optimum": "55/64",
+          "sample_blind_reference": "3/4",
+          "sample_value_of_information": "7/64",
+          "current_git_branch_packaged_resources_expected": 42,
+          "local_installed_wheel": "PASS_ON_RECOVERED_OVERLAY_WITH_6_PRIOR_RESOURCES_UNAVAILABLE",
+          "local_full_current_source_ci": "NOT_RUN",
+          "github_exact_head_ci": "PENDING_NEW_HEAD",
+          "lean_bridge_compilation": "NOT_EXECUTED",
+          "scientific_claims_verified": false,
+          "independent_math_cert": false,
+          "accepted_45_case_11_claim": "NOT_SUBSTITUTED",
+          "inherited_archive_gate": "NOT_CHANGED",
+          "full_release_authorized": false
+        },
+        "evidence_status": "HISTORICAL_SELF_REPORTED_NOT_EVIDENCE"
+      },
+      "round12_lean_bridge": {
+        "record": {
+          "base_head": "f857f61da49fbe8c21700e17a8da3421c2450ab5",
+          "new_lean_sources": 2,
+          "research_root_additional_imports": 2,
+          "new_scope_doc": 1,
+          "static_imports_passed": 688,
+          "existing_belief_tree_python_tests_passed": 11,
+          "local_pinned_lean_compilation": "UNAVAILABLE_TOOLCHAIN_NOT_INSTALLED",
+          "github_pinned_lean_compilation": "PENDING_NEW_HEAD",
+          "generated_literal_instance_replay": "NOT_IMPLEMENTED",
+          "lean_receipt_promotion": false,
+          "scientific_claims_verified": false,
+          "independent_math_cert": false,
+          "release_authorized": false
+        },
+        "evidence_status": "HISTORICAL_SELF_REPORTED_NOT_EVIDENCE"
+      },
+      "round13_reification_and_T2_candidate": {
+        "record": {
+          "base_head_before_commit": "4f352cda7eb7f7014b1ee6a234acd642b33d29fd",
+          "source_paths_added": 8,
+          "prior_manifest_planned_paths_promoted": 2,
+          "focused_reification_tests_passed": 11,
+          "synthetic_archive_guard_tests_passed": 6,
+          "authentic_archive_guard_test": "EXACT_HEAD_CI_REQUIRED",
+          "installed_wheel_python_module": "PASS_LOCAL_EARLIER_HANDOFF_OVERLAY",
+          "local_genuine_lean_compilation": "NOT_EXECUTED",
+          "original_required_archive_gate": "STILL_FAIL_CLOSED",
+          "independent_security_review": false,
+          "full_release_authorized": false,
+          "mathematical_certification": false
+        },
+        "evidence_status": "HISTORICAL_SELF_REPORTED_NOT_EVIDENCE"
+      },
+      "round14_governance_domain_federation": {
+        "record": {
+          "previous_source_head": "0877c55264d7b5626bac311b2ad82d6f1609aa1a",
+          "source_files_changed": 40,
+          "new_source_paths": 39,
+          "existing_files_modified": 1,
+          "manifest_entries_new": 4,
+          "manifest_entries_updated": 36,
+          "local_new_test_methods_passed": 82,
+          "local_governance_test_methods_passed": 56,
+          "local_domain_test_methods_passed": 26,
+          "local_wheel_build": "PASS_LOCAL_RECOVERED_OVERLAY_NOT_FULL_CURRENT_HEAD",
+          "installed_governance_cli": "PASS_SELECTED_SOURCE_ROUTES",
+          "real_uploaded_companion_imports_checked": [
+            "russia_ukraine",
+            "hormuz",
+            "iran",
+            "midr",
+            "brown_mackay",
+            "cross_conflict"
+          ],
+          "domains_status": "DESCRIPTIVE_EVIDENCE_ONLY_NO_ALPHA_P_U_IDENTIFICATION",
+          "mathematical_acceptance": false,
+          "lean_instance_replay": "NOT_EXECUTED",
+          "historical_archive_T_T2": "UNRESOLVED_SEPARATE_TRUST_PROFILE_REVIEW",
+          "current_head_ci": "NOT_YET_EXECUTED",
+          "owner_release_approval": false
+        },
+        "evidence_status": "HISTORICAL_SELF_REPORTED_NOT_EVIDENCE"
+      },
+      "candidate_build_round3": {
+        "record": {
+          "parent_git_head": "a56e31185c6775558f01087a9e4fd64c7fe25102",
+          "scope": "GRAMMAR_AND_TYPED_INDUCED_QUOTIENT_NUMERIC_ONLY",
+          "new_source_paths": 13,
+          "existing_inventory_paths_updated": 4,
+          "inventory_paths_added": 9,
+          "verified_focused_test_methods": 42,
+          "installed_wheel_examples": [
+            "finite-grammar",
+            "finite-quotient"
+          ],
+          "verified_source_model": "Local additive source candidate, not exact latest GitHub merged head",
+          "lean_replay": "NOT_EXECUTED",
+          "scientific_claims_verified": false,
+          "full_repo_qa_status": "PENDING_CURRENT_HEAD_CI",
+          "release_authorized": false
+        },
+        "evidence_status": "HISTORICAL_SELF_REPORTED_NOT_EVIDENCE"
+      },
+      "belief_candidate_verification": {
+        "record": {
+          "base_head": "c82d04df1979ecd5f6251156c52593aea2f26793",
+          "scope": "1..3 hidden states/actions/observations; one observation before one action and one transition",
+          "new_capability": "finite.one_step_observation_belief.numeric.v1",
+          "local_focused_tests_passed": 20,
+          "local_test_status": "PASSED_ON_RECOVERED_OVERLAY; OVERLAY NOT EXACT_GITHUB_SOURCE_TREE",
+          "packaged_resource_count_after_live_head_merge": 40,
+          "source_exact_ci": "PENDING",
+          "independent_lean_proof": false,
+          "scientific_claims_verified": false,
+          "authorization": "DRAFT_ONLY"
+        },
+        "evidence_status": "HISTORICAL_SELF_REPORTED_NOT_EVIDENCE"
+      },
+      "round15_lp_lean": {
+        "record": {
+          "base_head": "2f0be61800b14dd0ac49db217e79e94d6a9ade05",
+          "source_files": 6,
+          "focused_lp_reification_test_methods_passed": 15,
+          "separate_foundation_test_methods_passed": 35,
+          "separate_finite_lean_source_test_methods_passed": 11,
+          "real_optimum_theorem": "PENDING_PINNED_LEAN_COMPILATION",
+          "real_farkas_theorem": "PENDING_PINNED_LEAN_COMPILATION",
+          "real_negative_mutations": "PENDING_PINNED_LEAN_COMPILATION",
+          "source_head_exact_installed_distribution": "NOT_QUALIFIED",
+          "independent_mathematical_certification": false,
+          "release_authorized": false,
+          "historic_archive_closure": "UNALTERED_FAIL_CLOSED_REVIEW_REQUIRED"
+        },
+        "evidence_status": "HISTORICAL_SELF_REPORTED_NOT_EVIDENCE"
+      },
+      "round16_control_table_lean": {
+        "record": {
+          "base_head": "6eda7e9482aff2277f4c94eff2fc077b397ed214",
+          "repair": "ControlTableReceipt Decidable instance (Research Lean build failed at base_head)",
+          "lean_toolchain": "leanprover/lean4:v4.34.0 with mathlib cache at lake-manifest revision",
+          "research_library_build": "LOCAL_PASS_4500_JOBS",
+          "bound_control_system": "boundControlSystem over FiniteWorldInput; AdmittedExactly feasible actions",
+          "live_lean_tests_passed": 8,
+          "semantic_negative_mutations": [
+            "false value",
+            "strictly suboptimal admitted action",
+            "infeasible selected action",
+            "false terminal event",
+            "reversed time direction",
+            "admitted infeasible action"
+          ],
+          "reflection_scope": "ns,nx,na <= 2; 1..6 transitions",
+          "github_ci_at_new_head": "PENDING",
+          "independent_mathematical_certification": false,
+          "release_authorized": false,
+          "historic_archive_closure": "UNALTERED_FAIL_CLOSED_REVIEW_REQUIRED"
+        },
+        "evidence_status": "HISTORICAL_SELF_REPORTED_NOT_EVIDENCE"
+      },
+      "round17_safety_core_lean": {
+        "record": {
+          "base_head": "c841d1f",
+          "bridge": "SafetyReceipt: invariantCore equality + witness closure; infinite-horizon almost-sure characterization reused",
+          "live_lean_tests_passed": 6,
+          "semantic_negative_mutations": [
+            "over-claimed core",
+            "under-claimed core",
+            "leaking witness",
+            "false safe region",
+            "admitted infeasible action"
+          ],
+          "reflection_scope": "ns,nx,na <= 2; packaged three-world example numeric-only",
+          "github_ci_at_new_head": "PENDING",
+          "independent_mathematical_certification": false,
+          "release_authorized": false
+        },
+        "evidence_status": "HISTORICAL_SELF_REPORTED_NOT_EVIDENCE"
+      }
     }
-  },
-  "counts": {
-    "excluded_generated": 21,
-    "existing_main": 30,
-    "overlap": 110,
-    "recovered_source": 27,
-    "union_entries": 358,
-    "v2": 217,
-    "v3": 251
   },
   "entries": [
     {
@@ -439,7 +391,9 @@
       "v3_id": "REC-049",
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "EXISTED_ON_MAIN",
@@ -1280,7 +1234,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1309,7 +1265,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1338,7 +1296,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1367,7 +1327,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1396,7 +1358,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1425,7 +1389,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1454,7 +1420,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1483,7 +1451,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1512,7 +1482,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1541,7 +1513,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1570,7 +1544,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1599,7 +1575,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1628,7 +1606,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1657,7 +1637,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1686,7 +1668,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1715,7 +1699,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1744,7 +1730,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1773,7 +1761,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1802,7 +1792,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1831,7 +1823,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "EXCLUDED_GENERATED_ARTIFACT",
@@ -1860,7 +1854,9 @@
         "APP-04",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "EXCLUDED_GENERATED_BUILD_PRODUCT",
+      "disposition_reason": "generated build/lib copy of a source module; never committed (QA-02)"
     },
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
@@ -1971,7 +1967,9 @@
       "v3_id": "REC-071",
       "work_items": [
         "REL-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -2048,7 +2046,9 @@
       "v3_id": "REC-073",
       "work_items": [
         "REL-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -2155,7 +2155,9 @@
       "v3_id": "REC-076",
       "work_items": [
         "REL-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -2236,7 +2238,9 @@
       "v3_id": "REC-078",
       "work_items": [
         "REL-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -2368,7 +2372,9 @@
       "v3_id": null,
       "work_items": [
         "INT-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -2395,7 +2401,9 @@
       "v3_id": null,
       "work_items": [
         "INT-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -2418,6 +2426,11 @@
       "v3_id": "REC-083",
       "work_items": [
         "REL-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/requirements-build.lock"
       ]
     },
     {
@@ -2441,6 +2454,11 @@
       "v3_id": "REC-084",
       "work_items": [
         "REL-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/requirements-runtime.lock"
       ]
     },
     {
@@ -2464,6 +2482,11 @@
       "v3_id": "REC-085",
       "work_items": [
         "REL-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/requirements-test.lock"
       ]
     },
     {
@@ -2747,6 +2770,11 @@
       "v3_id": null,
       "work_items": [
         "APP-04"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/runner.py"
       ]
     },
     {
@@ -2775,6 +2803,12 @@
       "work_items": [
         "EXE-01",
         "APP-05"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/runner.py",
+        "apps/permansson/application-successor/src/permansson_app/data/examples/c10.request.json"
       ]
     },
     {
@@ -2803,6 +2837,12 @@
       "work_items": [
         "EXE-02",
         "APP-05"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/runner.py",
+        "apps/permansson/application-successor/src/permansson_app/data/examples/c11.periodic.request.json"
       ]
     },
     {
@@ -2861,6 +2901,11 @@
         "APP-03",
         "APP-05",
         "INT-02"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/bundle.py"
       ]
     },
     {
@@ -2884,6 +2929,12 @@
       "v3_id": "REC-089",
       "work_items": [
         "APP-08"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/digest.py",
+        "apps/permansson/application-successor/src/permansson_app/identity.py"
       ]
     },
     {
@@ -3151,7 +3202,9 @@
       "v3_id": null,
       "work_items": [
         "INT-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
@@ -3236,6 +3289,11 @@
         "EXE-01",
         "EXE-02",
         "REL-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/examples/c10.model.json"
       ]
     },
     {
@@ -3263,6 +3321,11 @@
         "EXE-01",
         "EXE-02",
         "REL-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/examples/c10.request.json"
       ]
     },
     {
@@ -3406,6 +3469,11 @@
         "EXE-01",
         "EXE-02",
         "REL-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/examples/c11.multiclass.model.json"
       ]
     },
     {
@@ -3433,6 +3501,11 @@
         "EXE-01",
         "EXE-02",
         "REL-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/examples/c11.multiclass.request.json"
       ]
     },
     {
@@ -3460,6 +3533,11 @@
         "EXE-01",
         "EXE-02",
         "REL-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/examples/c11.periodic.model.json"
       ]
     },
     {
@@ -3487,6 +3565,11 @@
         "EXE-01",
         "EXE-02",
         "REL-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/examples/c11.periodic.request.json"
       ]
     },
     {
@@ -3714,6 +3797,11 @@
         "EXE-01",
         "EXE-02",
         "REL-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/provenance.py"
       ]
     },
     {
@@ -3751,6 +3839,11 @@
         "ROB-03",
         "GRAM-01",
         "MA-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/capabilities.json"
       ]
     },
     {
@@ -3779,7 +3872,9 @@
       "v3_id": null,
       "work_items": [
         "FIX-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_SCOPE",
+      "disposition_reason": "FIX-01 (benchmarks/X1, nonfinite expert evidence) is deferred; no nonfinite computation is fabricated (CON-06)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -3824,6 +3919,11 @@
         "OPT-08",
         "OPT-09",
         "OPT-10"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/capabilities.json"
       ]
     },
     {
@@ -3854,7 +3954,9 @@
       "work_items": [
         "ADV-01",
         "ADV-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_SCOPE",
+      "disposition_reason": "ADV-01 (benchmarks/X1, nonfinite expert evidence) is deferred; no nonfinite computation is fabricated (CON-06)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -3887,6 +3989,11 @@
         "ANA-02",
         "ANA-03",
         "ANA-04"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/capabilities.json"
       ]
     },
     {
@@ -3910,7 +4017,9 @@
       "v3_id": "REC-093",
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4025,7 +4134,9 @@
       "work_items": [
         "APP-01",
         "APP-09"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4048,7 +4159,9 @@
       "v3_id": "REC-095",
       "work_items": [
         "APP-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4071,7 +4184,9 @@
       "v3_id": "REC-096",
       "work_items": [
         "APP-03"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4101,7 +4216,9 @@
       "work_items": [
         "APP-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4124,7 +4241,9 @@
       "v3_id": "REC-097",
       "work_items": [
         "APP-07"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
@@ -4177,7 +4296,9 @@
       "v3_id": "REC-098",
       "work_items": [
         "INT-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4205,7 +4326,9 @@
       "v3_id": null,
       "work_items": [
         "INT-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4234,7 +4357,9 @@
       "work_items": [
         "INT-01",
         "INT-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4265,7 +4390,9 @@
       "work_items": [
         "APP-03",
         "APP-05"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4288,7 +4415,9 @@
       "v3_id": "REC-099",
       "work_items": [
         "APP-05"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4316,7 +4445,9 @@
       "v3_id": null,
       "work_items": [
         "INT-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4339,7 +4470,9 @@
       "v3_id": "REC-100",
       "work_items": [
         "APP-09"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4362,7 +4495,9 @@
       "v3_id": "REC-101",
       "work_items": [
         "INT-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
@@ -4535,7 +4670,9 @@
       "v3_id": "REC-102",
       "work_items": [
         "APP-06"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4558,7 +4695,9 @@
       "v3_id": "REC-103",
       "work_items": [
         "APP-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4587,7 +4726,9 @@
       "v3_id": null,
       "work_items": [
         "APP-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
@@ -4645,6 +4786,11 @@
         "OPT-06",
         "ROB-02",
         "APP-05"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/receipts/lp.py"
       ]
     },
     {
@@ -4674,6 +4820,11 @@
       "v3_id": null,
       "work_items": [
         "APP-06"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/schemas/finite_world.v1.schema.json"
       ]
     },
     {
@@ -4697,6 +4848,11 @@
       "v3_id": "REC-105",
       "work_items": [
         "APP-06"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/schemas/finite_world.v1.schema.json"
       ]
     },
     {
@@ -4720,6 +4876,11 @@
       "v3_id": "REC-106",
       "work_items": [
         "OPT-03"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/schemas/residence.v1.schema.json"
       ]
     },
     {
@@ -4778,7 +4939,9 @@
         "OPT-03",
         "OPT-04",
         "OPT-10"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4801,6 +4964,11 @@
       "v3_id": "REC-108",
       "work_items": [
         "OPT-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/schemas/control_hitting.v1.schema.json"
       ]
     },
     {
@@ -4830,7 +4998,9 @@
       "work_items": [
         "INT-01",
         "APP-07"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4864,7 +5034,9 @@
         "OPT-06",
         "OPT-07",
         "MA-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4887,6 +5059,11 @@
       "v3_id": "REC-109",
       "work_items": [
         "OPT-02"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/schemas/control_hitting.v1.schema.json"
       ]
     },
     {
@@ -4910,7 +5087,9 @@
       "v3_id": "REC-110",
       "work_items": [
         "APP-07"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4936,7 +5115,9 @@
       "work_items": [
         "APP-04",
         "REL-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4962,7 +5143,9 @@
       "work_items": [
         "APP-04",
         "REL-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -4988,7 +5171,9 @@
       "work_items": [
         "APP-04",
         "REL-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -5014,7 +5199,9 @@
       "work_items": [
         "APP-04",
         "REL-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -5043,7 +5230,9 @@
       "v3_id": null,
       "work_items": [
         "APP-05"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -5066,7 +5255,9 @@
       "v3_id": "REC-111",
       "work_items": [
         "APP-05"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -5097,7 +5288,9 @@
         "APP-04",
         "APP-06",
         "APP-07"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
@@ -5178,7 +5371,9 @@
       "v3_id": "REC-112",
       "work_items": [
         "APP-08"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -5203,7 +5398,9 @@
         "APP-01",
         "APP-03",
         "REL-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -5228,7 +5425,9 @@
         "APP-01",
         "APP-03",
         "REL-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -5415,7 +5614,9 @@
       "v3_id": null,
       "work_items": [
         "INT-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "REVIEW_GATED_UNIMPLEMENTED",
@@ -5444,7 +5645,9 @@
       "v3_id": "REC-118",
       "work_items": [
         "INT-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -5834,7 +6037,9 @@
       "work_items": [
         "APP-04",
         "APP-09"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -5969,7 +6174,9 @@
       "v3_id": "REC-132",
       "work_items": [
         "FIX-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_SCOPE",
+      "disposition_reason": "FIX-01 (benchmarks/X1, nonfinite expert evidence) is deferred; no nonfinite computation is fabricated (CON-06)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -6049,6 +6256,12 @@
         "OPT-08",
         "OPT-10",
         "ADV-02"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/engines/rational_linear.py",
+        "apps/permansson/application-successor/src/permansson_app/finite_world.py"
       ]
     },
     {
@@ -6116,7 +6329,9 @@
       "v3_id": "REC-136",
       "work_items": [
         "ADV-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_SCOPE",
+      "disposition_reason": "ADV-01 (benchmarks/X1, nonfinite expert evidence) is deferred; no nonfinite computation is fabricated (CON-06)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -6153,6 +6368,14 @@
         "OPT-04",
         "OPT-08",
         "OPT-10"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/engines/finite_survival.py",
+        "apps/permansson/application-successor/src/permansson_app/engines/occupation.py",
+        "apps/permansson/application-successor/src/permansson_app/engines/exit.py",
+        "apps/permansson/application-successor/src/permansson_app/engines/cq1.py"
       ]
     },
     {
@@ -6381,7 +6604,9 @@
       "v3_id": "REC-141",
       "work_items": [
         "ROB-02"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -6524,7 +6749,9 @@
         "OPT-05",
         "ROB-02",
         "OPT-06"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -6696,7 +6923,9 @@
       "v3_id": "REC-149",
       "work_items": [
         "OPT-06"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -6804,7 +7033,9 @@
       "v3_id": "REC-152",
       "work_items": [
         "ADV-02"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -6849,6 +7080,12 @@
         "OPT-08",
         "OPT-09",
         "OPT-10"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/finite_world.py",
+        "apps/permansson/application-successor/src/permansson_app/engines/lp_types.py"
       ]
     },
     {
@@ -6944,6 +7181,11 @@
       "work_items": [
         "APP-05",
         "INT-02"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/federation/exchange.py"
       ]
     },
     {
@@ -7223,6 +7465,11 @@
       "v3_id": null,
       "work_items": [
         "APP-06"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/finite_world.py"
       ]
     },
     {
@@ -7254,6 +7501,11 @@
       "v3_id": "REC-161",
       "work_items": [
         "APP-06"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/finite_world.py"
       ]
     },
     {
@@ -7286,6 +7538,12 @@
         "APP-06",
         "GRAM-01",
         "OPT-09"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/finite_world.py",
+        "apps/permansson/application-successor/src/permansson_app/engines/grammar.py"
       ]
     },
     {
@@ -7310,6 +7568,12 @@
       "work_items": [
         "OPT-07",
         "INT-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/engines/belief.py",
+        "apps/permansson/application-successor/src/permansson_app/engines/belief_tree.py"
       ]
     },
     {
@@ -7378,7 +7642,9 @@
       "work_items": [
         "REL-01",
         "INT-02"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
@@ -7520,7 +7786,9 @@
         "ROB-03",
         "GRAM-01",
         "MA-01"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -7719,7 +7987,9 @@
         "ROB-03",
         "GRAM-01",
         "MA-01"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -7817,7 +8087,9 @@
         "ADV-01",
         "ADV-02",
         "FIX-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_SCOPE",
+      "disposition_reason": "ADV-01 (benchmarks/X1, nonfinite expert evidence) is deferred; no nonfinite computation is fabricated (CON-06)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -7848,6 +8120,14 @@
         "ANA-02",
         "ANA-03",
         "ANA-04"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/receipts/finite_survival.py",
+        "apps/permansson/application-successor/src/permansson_app/receipts/occupation.py",
+        "apps/permansson/application-successor/src/permansson_app/receipts/exit.py",
+        "apps/permansson/application-successor/src/permansson_app/receipts/cq1.py"
       ]
     },
     {
@@ -8382,6 +8662,11 @@
       "v3_id": "REC-179",
       "work_items": [
         "APP-04"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/schema_validate.py"
       ]
     },
     {
@@ -8441,7 +8726,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8542,7 +8829,9 @@
       "v3_id": "REC-184",
       "work_items": [
         "FIX-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_SCOPE",
+      "disposition_reason": "FIX-01 (benchmarks/X1, nonfinite expert evidence) is deferred; no nonfinite computation is fabricated (CON-06)"
     },
     {
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
@@ -8591,7 +8880,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8615,7 +8906,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8639,7 +8932,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8689,7 +8984,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8713,7 +9010,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8742,7 +9041,9 @@
       "v3_id": "REC-191",
       "work_items": [
         "ANA-04"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8765,7 +9066,9 @@
       "v3_id": "REC-192",
       "work_items": [
         "ADV-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_SCOPE",
+      "disposition_reason": "ADV-01 (benchmarks/X1, nonfinite expert evidence) is deferred; no nonfinite computation is fabricated (CON-06)"
     },
     {
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
@@ -8894,7 +9197,9 @@
       "v3_id": "REC-194",
       "work_items": [
         "OPT-01"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
@@ -8942,7 +9247,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8966,7 +9273,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8995,7 +9304,9 @@
       "v3_id": "REC-197",
       "work_items": [
         "ROB-02"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9019,7 +9330,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9043,7 +9356,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9093,7 +9408,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9177,7 +9494,9 @@
       "v3_id": "REC-203",
       "work_items": [
         "OPT-05"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9206,7 +9525,9 @@
       "v3_id": "REC-204",
       "work_items": [
         "ANA-02"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
@@ -9255,7 +9576,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9279,7 +9602,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9329,7 +9654,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9353,7 +9680,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9403,7 +9732,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9432,7 +9763,9 @@
       "v3_id": "REC-212",
       "work_items": [
         "OPT-06"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9510,7 +9843,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9534,7 +9869,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9558,7 +9895,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9587,7 +9926,9 @@
       "v3_id": "REC-218",
       "work_items": [
         "ADV-02"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9611,7 +9952,9 @@
       "work_items": [
         "REL-01",
         "APP-04"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "EXISTED_ON_MAIN",
@@ -9723,7 +10066,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9753,7 +10098,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9787,7 +10134,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9814,7 +10163,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9842,7 +10193,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9870,7 +10223,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9905,7 +10260,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9937,7 +10294,9 @@
         "APP-09",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9963,7 +10322,9 @@
       "work_items": [
         "APP-08",
         "INT-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10011,6 +10372,11 @@
         "ADV-01",
         "ADV-02",
         "FIX-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/data/examples/finite_world.v1.model.json"
       ]
     },
     {
@@ -10040,7 +10406,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10068,7 +10436,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10104,7 +10474,9 @@
       "work_items": [
         "REL-01",
         "REL-02"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10133,7 +10505,9 @@
         "APP-09",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10162,7 +10536,9 @@
         "APP-09",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10192,7 +10568,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10232,6 +10610,13 @@
         "ROB-03",
         "GRAM-01",
         "MA-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/tests/test_robustness.py",
+        "apps/permansson/application-successor/tests/test_metric.py",
+        "apps/permansson/application-successor/tests/test_quotients.py"
       ]
     },
     {
@@ -10261,7 +10646,9 @@
         "APP-05",
         "INT-02",
         "REL-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10289,7 +10676,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10337,6 +10726,13 @@
         "OPT-08",
         "OPT-09",
         "OPT-10"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/tests/test_bellman.py",
+        "apps/permansson/application-successor/tests/test_frozen_menu.py",
+        "apps/permansson/application-successor/tests/test_safety.py"
       ]
     },
     {
@@ -10365,7 +10761,9 @@
       "v3_id": null,
       "work_items": [
         "INT-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10436,7 +10834,9 @@
         "ADV-01",
         "ADV-02",
         "FIX-01"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10468,7 +10868,9 @@
       "work_items": [
         "APP-03",
         "APP-05"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10503,7 +10905,9 @@
         "ADV-01",
         "ADV-02",
         "FIX-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_SCOPE",
+      "disposition_reason": "ADV-01 (benchmarks/X1, nonfinite expert evidence) is deferred; no nonfinite computation is fabricated (CON-06)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10533,7 +10937,9 @@
       "v3_id": null,
       "work_items": [
         "INT-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_DOMAIN_INTEGRATION",
+      "disposition_reason": "source-grade importer or federation provider; current intake is envelope-only and read-only (CON-04, CON-05)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10569,6 +10975,13 @@
         "ANA-02",
         "ANA-03",
         "ANA-04"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/tests/test_occupation_exit.py",
+        "apps/permansson/application-successor/tests/test_finite_survival.py",
+        "apps/permansson/application-successor/tests/test_cq1.py"
       ]
     },
     {
@@ -10596,7 +11009,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10623,7 +11038,9 @@
       "v3_id": null,
       "work_items": [
         "APP-02"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10661,6 +11078,11 @@
         "OPT-06",
         "ROB-02",
         "APP-05"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/tests/test_lp_reification.py"
       ]
     },
     {
@@ -10698,7 +11120,9 @@
         "APP-09",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10731,7 +11155,9 @@
         "APP-09",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10758,7 +11184,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10792,7 +11220,9 @@
         "APP-09",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10827,7 +11257,9 @@
         "APP-09",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10856,7 +11288,9 @@
       "work_items": [
         "REL-01",
         "REL-02"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10886,7 +11320,9 @@
         "EXE-01",
         "EXE-02",
         "REL-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10919,7 +11355,9 @@
         "APP-09",
         "EXE-01",
         "EXE-02"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10950,7 +11388,9 @@
         "APP-04",
         "APP-09",
         "REL-01"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10982,7 +11422,9 @@
       "work_items": [
         "APP-07",
         "APP-08"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11010,7 +11452,9 @@
       "v3_id": null,
       "work_items": [
         "APP-06"
-      ]
+      ],
+      "disposition_current": "DEFERRED_CONTRACT_LAYER",
+      "disposition_reason": "cross-profile versioned contract layer (schemas, registries, documents) not implemented; per-profile schemas and strict parsers are used (CON-01)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11039,7 +11483,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11066,7 +11512,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11094,7 +11542,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REVIEW_GATED",
+      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
       "base_state": "EXISTED_ON_MAIN",
@@ -11274,6 +11724,11 @@
         "ADV-01",
         "ADV-02",
         "FIX-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/proof/lean_candidates.py"
       ]
     },
     {
@@ -11302,7 +11757,9 @@
       "v3_id": "REC-226",
       "work_items": [
         "OPT-07"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11354,6 +11811,11 @@
         "ADV-01",
         "ADV-02",
         "FIX-01"
+      ],
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned file not created; related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "verification/research/application_bridge_replay.py"
       ]
     },
     {
@@ -11382,7 +11844,9 @@
       "v3_id": "REC-227",
       "work_items": [
         "OPT-02"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11410,7 +11874,9 @@
       "v3_id": "REC-228",
       "work_items": [
         "ANA-04"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11438,7 +11904,9 @@
       "v3_id": "REC-229",
       "work_items": [
         "ANA-01"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11466,7 +11934,9 @@
       "v3_id": "REC-230",
       "work_items": [
         "APP-06"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11494,7 +11964,9 @@
       "v3_id": "REC-231",
       "work_items": [
         "OPT-05"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11522,7 +11994,9 @@
       "v3_id": "REC-232",
       "work_items": [
         "GRAM-01"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11550,7 +12024,9 @@
       "v3_id": "REC-233",
       "work_items": [
         "OPT-05"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11578,7 +12054,9 @@
       "v3_id": "REC-234",
       "work_items": [
         "ROB-02"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11606,7 +12084,9 @@
       "v3_id": "REC-235",
       "work_items": [
         "MA-01"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11634,7 +12114,9 @@
       "v3_id": "REC-236",
       "work_items": [
         "OPT-10"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11662,7 +12144,9 @@
       "v3_id": "REC-237",
       "work_items": [
         "ANA-02"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11690,7 +12174,9 @@
       "v3_id": "REC-238",
       "work_items": [
         "ROB-01"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11718,7 +12204,9 @@
       "v3_id": "REC-239",
       "work_items": [
         "ROB-03"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11746,7 +12234,9 @@
       "v3_id": "REC-240",
       "work_items": [
         "ADV-02"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11774,7 +12264,9 @@
       "v3_id": "REC-241",
       "work_items": [
         "OPT-06"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11802,7 +12294,9 @@
       "v3_id": "REC-242",
       "work_items": [
         "OPT-08"
-      ]
+      ],
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py)"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11833,7 +12327,9 @@
       "v3_id": null,
       "work_items": [
         "REL-01"
-      ]
+      ],
+      "disposition_current": "REQUIRED_BEFORE_RELEASE",
+      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
     },
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
@@ -16683,91 +17179,399 @@
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/input/arrays.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/input/arrays.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "e503b6d71d1afa595b1c74b1016445c944cd89f90418066b23de1aeda7d17563",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/input/french.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/input/french.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "03676a951cd8753ac62589f72eb2105cc782c33425418cfe1d517c111f6e5d5a",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/input/structures.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/input/structures.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "d66893805be1784116af50af3110d08766c70a6b4aad93374723f72346e7aaa6",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/input/unicode.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/input/unicode.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "4621864e014d4a805a563f55b9ea20aba4a2d2dc09c7394f625496998c00702c",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/input/values.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/input/values.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "c4a041b503d6bc236036ef44db4dac499272f60fc22c40dc3b7a54870ba6f1c3",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/input/weird.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/input/weird.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "a3a905266bd4a49a969274ea69baa14ee0c4af0ead926d6fa2b7612b4af75387",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/output/arrays.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/output/arrays.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "099601b171cafed97c333f8878d68e7f8c8f795412adb34b2fdcf0e7c7beac42",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/output/french.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/output/french.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "d99d0ebdcb0033cb858cfa830ae46bc0fb3309413b271f1da828c89901a27ed5",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/output/structures.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/output/structures.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "605f65004ec2db7692522a0852c22f1c989e036d547e88963d1a3143cf3195d5",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/output/unicode.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/output/unicode.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "0d99aad92a125196ff887876643fd3206786a84ddce2cee52ba4ad256d2381d3",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/output/values.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/output/values.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "2d5e01a318d0f0879ab568c4be289c8b1f64ef8921a53c6277d5e069978baacb",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/rfc8785_official/output/weird.json",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "vendored third-party test fixture",
+      "disposition": "VENDORED_THIRD_PARTY_FIXTURE",
+      "conditional": false,
+      "dependency_paths": [
+        "apps/permansson/application-successor/tests/fixtures/rfc8785_official/PROVENANCE.json"
+      ],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "provenance": {
+        "source": "https://github.com/cyberphone/json-canonicalization",
+        "commit": "32a48195b9b20fe67b1795e39e4509f14d860b45",
+        "upstream_path": "testdata/output/weird.json",
+        "license": "Apache-2.0",
+        "copyright": "Copyright 2018 Anders Rundgren"
+      },
+      "candidate": {
+        "state": "VENDORED_THIRD_PARTY_TEST_FIXTURE",
+        "sha256": "6af595a9aa80110b964b4de3f82a05fa6ae7423005019bacfa2620dddc4e94d1",
+        "proof": "NOT_APPLICABLE",
+        "trust": "UPSTREAM_BYTES_PINNED_BY_PROVENANCE_SHA256"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/fixtures/.gitattributes",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "fixture byte-preservation rule",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "APP-08"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "65296ae61051c3852369e2d49720d3049a26da7d62a6301a0252dba1ff4d9a22",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/scripts/inventory.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "REL-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "e69cdec9a6b879a1ea14246c3e8de8824ee9b17ad4bc3af0dbc4e9a38aa0273f",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_inventory.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "REL-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "50c1fcdeee93664e4c663764252562520b01cbe8fa798fda2c4452aaffd74fe6",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
     }
-  ],
-  "format": "Permansson.App.AuthoritativeSourceReconciliation.v1",
-  "live_main": "3492b26707788293ca88c66637b6ba021c7e478d",
-  "scope": "v2 reviewed + v3 reconstructed + main-backed; never promote proposed files to available",
-  "source_tree": "9ef00ac4b2d4f928aa6551ef3f0dfeb2d4434452",
-  "status": "DEVELOPMENT_BASELINE_NOT_RELEASE_ACCEPTANCE",
-  "candidate_build_round3": {
-    "parent_git_head": "a56e31185c6775558f01087a9e4fd64c7fe25102",
-    "scope": "GRAMMAR_AND_TYPED_INDUCED_QUOTIENT_NUMERIC_ONLY",
-    "new_source_paths": 13,
-    "existing_inventory_paths_updated": 4,
-    "inventory_paths_added": 9,
-    "verified_focused_test_methods": 42,
-    "installed_wheel_examples": [
-      "finite-grammar",
-      "finite-quotient"
-    ],
-    "verified_source_model": "Local additive source candidate, not exact latest GitHub merged head",
-    "lean_replay": "NOT_EXECUTED",
-    "scientific_claims_verified": false,
-    "full_repo_qa_status": "PENDING_CURRENT_HEAD_CI",
-    "release_authorized": false
-  },
-  "belief_candidate_verification": {
-    "base_head": "c82d04df1979ecd5f6251156c52593aea2f26793",
-    "scope": "1..3 hidden states/actions/observations; one observation before one action and one transition",
-    "new_capability": "finite.one_step_observation_belief.numeric.v1",
-    "local_focused_tests_passed": 20,
-    "local_test_status": "PASSED_ON_RECOVERED_OVERLAY; OVERLAY NOT EXACT_GITHUB_SOURCE_TREE",
-    "packaged_resource_count_after_live_head_merge": 40,
-    "source_exact_ci": "PENDING",
-    "independent_lean_proof": false,
-    "scientific_claims_verified": false,
-    "authorization": "DRAFT_ONLY"
-  },
-  "round15_lp_lean": {
-    "base_head": "2f0be61800b14dd0ac49db217e79e94d6a9ade05",
-    "source_files": 6,
-    "focused_lp_reification_test_methods_passed": 15,
-    "separate_foundation_test_methods_passed": 35,
-    "separate_finite_lean_source_test_methods_passed": 11,
-    "real_optimum_theorem": "PENDING_PINNED_LEAN_COMPILATION",
-    "real_farkas_theorem": "PENDING_PINNED_LEAN_COMPILATION",
-    "real_negative_mutations": "PENDING_PINNED_LEAN_COMPILATION",
-    "source_head_exact_installed_distribution": "NOT_QUALIFIED",
-    "independent_mathematical_certification": false,
-    "release_authorized": false,
-    "historic_archive_closure": "UNALTERED_FAIL_CLOSED_REVIEW_REQUIRED"
-  },
-  "round16_control_table_lean": {
-    "base_head": "6eda7e9482aff2277f4c94eff2fc077b397ed214",
-    "repair": "ControlTableReceipt Decidable instance (Research Lean build failed at base_head)",
-    "lean_toolchain": "leanprover/lean4:v4.34.0 with mathlib cache at lake-manifest revision",
-    "research_library_build": "LOCAL_PASS_4500_JOBS",
-    "bound_control_system": "boundControlSystem over FiniteWorldInput; AdmittedExactly feasible actions",
-    "live_lean_tests_passed": 8,
-    "semantic_negative_mutations": [
-      "false value",
-      "strictly suboptimal admitted action",
-      "infeasible selected action",
-      "false terminal event",
-      "reversed time direction",
-      "admitted infeasible action"
-    ],
-    "reflection_scope": "ns,nx,na <= 2; 1..6 transitions",
-    "github_ci_at_new_head": "PENDING",
-    "independent_mathematical_certification": false,
-    "release_authorized": false,
-    "historic_archive_closure": "UNALTERED_FAIL_CLOSED_REVIEW_REQUIRED"
-  },
-  "round17_safety_core_lean": {
-    "base_head": "c841d1f",
-    "bridge": "SafetyReceipt: invariantCore equality + witness closure; infinite-horizon almost-sure characterization reused",
-    "live_lean_tests_passed": 6,
-    "semantic_negative_mutations": [
-      "over-claimed core",
-      "under-claimed core",
-      "leaking witness",
-      "false safe region",
-      "admitted infeasible action"
-    ],
-    "reflection_scope": "ns,nx,na <= 2; packaged three-world example numeric-only",
-    "github_ci_at_new_head": "PENDING",
-    "independent_mathematical_certification": false,
-    "release_authorized": false
-  }
+  ]
 }
