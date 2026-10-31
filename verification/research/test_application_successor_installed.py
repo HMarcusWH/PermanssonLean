@@ -7,7 +7,9 @@ virtual environment, and then exercises the installed package only:
 * the import resolves to site-packages, never to the source tree;
 * every packaged data file is byte-identical to its source;
 * the console entry points run C10/C11 from exported packaged requests;
-* the complete application test suite passes against the installed code.
+* the complete application test suite passes against the installed code;
+* `scripts/build_distributions.py` with the same locked tools gives
+  byte-identical wheel and sdist twice, with the same wheel members.
 
 Build and runtime environments are installed only from the hash-pinned
 requirements-build.lock and requirements-test.lock (`--require-hashes`);
@@ -85,6 +87,20 @@ class InstalledDistributionTest(unittest.TestCase):
             names = zipfile.ZipFile(wheels[0]).namelist()
             self.assertFalse([n for n in names if "/tests/" in n or n.startswith("tests/")])
             self.assertFalse([n for n in names if n.endswith((".pyc", ".pyo"))])
+
+            # PKG-02: the reproducible builder (the copy is not a Git checkout, so the
+            # epoch is explicit) gives the same bytes twice and the same wheel members.
+            records = []
+            for name in ("repro-one", "repro-two"):
+                code, log = _run([_bin(builder, "python"), "-B", source / "scripts/build_distributions.py",
+                                  "--output", work / name, "--python", _bin(builder, "python"),
+                                  "--epoch", "1793400000"], cwd=work, env=env, timeout=900)
+                self.assertEqual(code, 0, log[-4000:])
+                records.append(json.loads((work / name / "distributions.json").read_text(encoding="utf-8")))
+            self.assertEqual((records[0]["wheel"], records[0]["sdist"]), (records[1]["wheel"], records[1]["sdist"]))
+            self.assertIsNone(records[0]["source"])
+            self.assertEqual(sorted(zipfile.ZipFile(work / "repro-one" / records[0]["wheel"]["name"]).namelist()),
+                             sorted(names))
 
             target = work / "installed"
             venv.EnvBuilder(with_pip=True).create(target)

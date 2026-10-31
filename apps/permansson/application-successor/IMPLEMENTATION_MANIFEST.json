@@ -25,8 +25,8 @@
   },
   "current_inventory": {
     "computed_by": "scripts/inventory.py --write-current (recomputed from git ls-files; see --check)",
-    "manifest_rows": 634,
-    "unique_paths": 634,
+    "manifest_rows": 637,
+    "unique_paths": 637,
     "rows_by_candidate_state": {
       "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI": 1,
       "DOCUMENTATION": 48,
@@ -49,7 +49,7 @@
       "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI": 65,
       "LOCAL_TESTED_LINUX_CPYTHON_3_13_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_NUMERIC_IMPLEMENTATION": 6,
-      "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 75,
+      "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 78,
       "LOCAL_TESTED_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_SOURCE_CANDIDATE": 6,
       "NOT_ACTIVATED_REVIEW_GATED": 19,
@@ -62,7 +62,7 @@
       "VENDORED_OFFICIAL_VECTORS_COMMIT_32a48195": 1,
       "VENDORED_THIRD_PARTY_TEST_FIXTURE": 12
     },
-    "tracked_rows": 433,
+    "tracked_rows": 436,
     "absent_rows": 201,
     "absent_rows_by_disposition": {
       "DEFERRED_ALTERNATE_LAYOUT": 41,
@@ -74,7 +74,7 @@
       "REVIEW_GATED": 20,
       "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 30
     },
-    "application_tracked_files": 348,
+    "application_tracked_files": 351,
     "application_tracked_files_without_row": 0,
     "registered_exact_profiles": 26,
     "registered_native_capabilities": 2,
@@ -1182,7 +1182,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "6f17db15772e151ccdf8ff7d95ebed8e4c6d8230ce4b84bd4114064170ff08b7",
+        "sha256": "74562ee5a6ca9d8ab2390b56e9e716ed707565df0e345e8a5bb7bc6a7951667a",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2085,7 +2085,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "7d6685baa63d750a605c133a1830fb3e121ffff38919fcacaa7170970d529f85",
+        "sha256": "af2e60164eab60ccca95dd26d7b1da5737d6ab3b6da04b8b11a1f502d8f21475",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2297,8 +2297,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "c7ed29b164c5349609664297ecfec84a47e10eacfd153051af1f1ec65389c7df",
-        "git_blob_sha": "64665cf413743dbef26d965892bf30f70b1df407",
+        "sha256": "45912f805ff12cfd9a5ca64501257f19423403bc95d2eee60618a9bf450e08ea",
+        "git_blob_sha": "798de2df91092e010d7b29a583b2867c4c847fda",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -2324,7 +2324,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "2d361a5e7f520e4fcb2514bd6f000d53c577bc96052c52051fa90c264256ea0f",
+        "sha256": "6c1204b4304315162d27895f03e415a30caf538895af5aa93776d4a211cbbb9b",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -14177,7 +14177,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "35715ba7baf061d280f77aa5bed1c83c32ae4323fecbc90c627df78244e72b4e",
+        "sha256": "a2cfe294b4ee561b86d3bd2e3a030a66b33dd59d9e9af4453b29f636be0c3d13",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -14223,7 +14223,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI",
-        "sha256": "9fa16af0bc8b1a847b79c8888a6b4a0da62ad000d9fd4fee8d17cfe68203b812",
+        "sha256": "f80013bd2af4b01e82c750c5ec2baa11e3a83fdbd5be5467227334bb6d40f474",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -14427,7 +14427,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "efc0ac07f1823fd985c11df4598d8bf86dfff8aa99944d4c3e38191ef2d86341",
+        "sha256": "89d8cab16ad060410f7231a7157fbf9ec7975ba92bce607937b494891506496a",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17090,7 +17090,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "66ecaab55292cab6cccb491796e0ad9fcfb90a4e6d797449b7aef06a1df361f4",
+        "sha256": "8c7876635d64b67667d66f4652759754f4ed08b67ced1a9435fb9c9a673296b8",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17541,7 +17541,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "e69cdec9a6b879a1ea14246c3e8de8824ee9b17ad4bc3af0dbc4e9a38aa0273f",
+        "sha256": "da5bc32e7339541ed30fe4cec75b1ab594ab9cefac6051347c2346d243fd785d",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17560,7 +17560,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "50c1fcdeee93664e4c663764252562520b01cbe8fa798fda2c4452aaffd74fe6",
+        "sha256": "09e57aaaca8dfff00d9aa4a113c667d2cf48b05da01526a6bdc8e07c1910409e",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17580,6 +17580,66 @@
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
         "sha256": "a107eb1212770ba860cfd7a021dee634f3fd49b5827354aab23fc981c57b7c19",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/scripts/build_distributions.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "PKG-02",
+        "REL-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "40a9a51e3fb6c55603cc67567db4fcc1a81f5e3da43e7b5ad4bc52c245b6ee5d",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_build_distributions.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "PKG-02",
+        "REL-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "e6e0f43e6e0f66f619bec9a48a95cb09ca62a39fb41e6709eb0a09b1ea6c2759",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/tests/test_release_scope.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "CON-03",
+        "QA-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "c77fcf4a564750901fb0dcfdb94a9bd4efd4438680e46a700dea2ad0e340ba82",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }

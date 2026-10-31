@@ -133,6 +133,12 @@ def check(repo: Path, manifest: dict) -> list[str]:
         if not str(record.get('evidence_status', '')).startswith('HISTORICAL_') or \
                 not str(record.get('evidence_status', '')).endswith('_NOT_EVIDENCE'):
             problems.append(f'historical record {name} is not marked as non-evidence')
+    for entry in manifest.get('entries', []):
+        state = str((entry.get('candidate') or {}).get('state', ''))
+        # CI results are external (the pull request and the detached receipt); a
+        # tracked row can only say they are pending.
+        if re.search(r'(^|_)(CI|GITHUB)(_|$)', state) and 'PENDING' not in state:
+            problems.append(f"{entry.get('path')}: candidate state {state} claims CI evidence inside the tracked manifest")
     files = tracked(repo)
     paths = [e['path'] for e in manifest.get('entries', [])]
     if len(paths) != len(set(paths)):

@@ -51,5 +51,23 @@ opposite.
 ## Reports
 
 `scientific_report.json` binds the capability, request identity, receipt and
-independent check. All nine scientific certificate dimensions are `null`,
-and `kernel_checked_proof` is `NOT_EXECUTED`.
+independent check. The numeric result and the scientific, release and
+identification gates are separate fields. Each gate has an explicit state:
+
+| Field | Value | Meaning |
+| --- | --- | --- |
+| `mathematical_implementation` | `NUMERIC_ONLY` | exact rational computation, no proof object |
+| `numerical_verification` | the independent check's status | e.g. `PASS`, `OPTIMAL_VERIFIED`, `INFEASIBILITY_VERIFIED` |
+| `kernel_checked_proof` | `NOT_EXECUTED` | the application never runs Lean |
+| `independent_mathematical_certification` | `NOT_ASSESSED` | no independent reviewer has certified the mathematics |
+| `application_release_acceptance` | `NOT_ASSESSED` | no release scope is accepted |
+| `empirical_identification` | `NOT_IDENTIFIED` | declared models are not identified from data |
+| `publication_approval` | `NOT_ASSESSED` | nothing is approved for publication |
+| `scientific_claims_verified` | `false` | a numeric result certifies no scientific claim |
+
+All nine scientific certificate dimensions (`validity`, `epistemic_mode`,
+`selection_status`, `identification_status`, `statistical_status`,
+`provenance_status`, `substantive_pr_status`, `direction_status`,
+`uniform_gap_status`) are `null`, meaning not assessed. They are never
+`VALID`, `PR` or `CERTIFIED`. These states change only with external,
+independently reviewed evidence, never as a cleanup.

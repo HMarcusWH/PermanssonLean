@@ -95,6 +95,10 @@ python apps/permansson/application-successor/scripts/end_to_end.py --app /path/t
 # the inventory matches the tracked tree (current counts, dispositions of planned paths)
 python apps/permansson/application-successor/scripts/inventory.py --check
 
+# byte-reproducible wheel and sdist from a clean commit, built with the hash-locked tools
+# (an interpreter with `pip install --require-hashes -r requirements-build.lock`)
+python apps/permansson/application-successor/scripts/build_distributions.py --output /tmp/permansson-dist
+
 # pinned-Lean live replays with semantic mutations (needs `lake build PermanssonResearch`)
 cd verification/research && python -B -m unittest discover -p 'test_application_*'
 ```

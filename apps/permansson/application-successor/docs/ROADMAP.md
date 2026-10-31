@@ -89,17 +89,27 @@ An external read-only audit of `a3df725` raised 33 work orders.
 
 **Repaired on this branch:**
 
-- **E2E-01–03.** The walkthrough now fails closed on checker and CLI status,
-  uses the Research harness's axiom parser and process-group runner, and no
-  longer inherits `PYTHONPATH` for installed runs.
+- **E2E-01–03.** The walkthrough now fails closed on checker and CLI status.
+  It uses the Research harness's axiom parser and process-group runner. That
+  runner kills the whole process group on POSIX; its Windows fallback,
+  `taskkill /T`, is unit-tested here but not qualified on Windows. Installed
+  runs no longer inherit `PYTHONPATH`, and the import location is checked.
 - **INV-01–06.** The manifest is now v2, with the historical/current split,
   the spread-string repair, fixture rows, dispositions, a detached head
-  receipt and invariant tests.
+  receipt and invariant tests. No tracked row or record can claim a CI
+  result, with or without a run identity.
 - **DOC-03–09.** The stale Lean statements in the numeric guides are
   corrected, and this crosswalk was added.
 - **PKG-01–02.** The package metadata is corrected and the build backend
-  pinned to the lock.
-- **QA-01.** A stale-phrase and bridge-coverage regression was added.
+  pinned to the lock. `scripts/build_distributions.py` builds a
+  byte-reproducible wheel and sdist from a clean commit with the locked tools
+  only.
+- **QA-01.** Regressions cover stale phrases, bridge and profile
+  documentation, and the release scope (C10/C11 only; every additive profile
+  blocked as undeclared).
+- **CI-04.** The evidence guide lists every explicit gate state a report
+  carries (`NOT_ASSESSED`, `NOT_IDENTIFIED`, `NOT_EXECUTED`, nine `null`
+  dimensions), and a test keeps it in step with the code.
 
 **Decisions recorded here instead of code:**
 

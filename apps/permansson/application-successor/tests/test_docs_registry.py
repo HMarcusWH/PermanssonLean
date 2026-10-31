@@ -68,6 +68,25 @@ class DocsRegistryTests(unittest.TestCase):
                 with self.subTest(doc=doc.name,phrase=phrase):
                     self.assertNotIn(phrase,text)
 
+    def test_report_gate_states_are_documented(self):
+        """CI-04: every explicit gate state an actual report carries is listed in the evidence guide."""
+        from permansson_app.report import DIMENSIONS,numeric_application_report
+        report=numeric_application_report(capability='c',model_semantic_identity={},
+                                          computation_receipt={},independent_check={'status':'PASS'})
+        text=(DOCS/'EVIDENCE_AND_RECEIPTS.md').read_text(encoding='utf-8')
+        states={k:v for k,v in report.items() if type(v) is str and (v.startswith('NOT_') or v=='NUMERIC_ONLY')}
+        self.assertEqual(set(states),{'mathematical_implementation','kernel_checked_proof',
+                                      'independent_mathematical_certification','application_release_acceptance',
+                                      'empirical_identification','publication_approval'})
+        for field,value in states.items():
+            with self.subTest(field=field):
+                self.assertIn(f'| `{field}` | `{value}` |',text)
+        self.assertIs(report['scientific_claims_verified'],False)
+        self.assertIn('| `scientific_claims_verified` | `false` |',text)
+        self.assertEqual(report['scientific_certificate_dimensions'],{d:None for d in DIMENSIONS})
+        for dimension in DIMENSIONS:
+            self.assertIn(f'`{dimension}`',text)
+
     def test_every_profile_appears_in_the_acceptance_status(self):
         text=(DOCS/'ACCEPTANCE_STATUS.md').read_text(encoding='utf-8')
         for name in registry()['exact_profiles']:

@@ -38,16 +38,43 @@ def compile_source(code: str, filename: str, *, timeout: int = 450):
     return returncode, result
 
 
+# Windows has no process groups to signal; its own group flag (documented value)
+# lets `taskkill /T` end the whole tree instead.
+CREATE_NEW_PROCESS_GROUP = getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0x00000200)
+
+
+def spawn_options(posix: bool) -> dict:
+    """A new session on POSIX, a new process group elsewhere."""
+    return {"start_new_session": True} if posix else {"creationflags": CREATE_NEW_PROCESS_GROUP}
+
+
+def kill_tree(process, posix: bool) -> None:
+    """Kill the compiler and everything it forked."""
+    if posix:
+        try:
+            os.killpg(process.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass  # the group exited between the timeout and the kill
+        return
+    try:
+        subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"], stdout=subprocess.DEVNULL,
+                       stderr=subprocess.DEVNULL, timeout=60, check=False)
+    except (OSError, subprocess.TimeoutExpired):
+        pass
+    process.kill()
+
+
 def run_bounded(command: list[str], cwd: Path, timeout: int):
     """Run the compiler in its own session and kill the whole process group on
     timeout: `lake env lean` forks `lean`, which would otherwise outlive the
     killed `lake` and keep consuming the runner."""
+    posix = os.name == "posix"
     process = subprocess.Popen(command, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                               text=True, start_new_session=True)
+                               text=True, **spawn_options(posix))
     try:
         out, err = process.communicate(timeout=timeout)
     except subprocess.TimeoutExpired:
-        os.killpg(process.pid, signal.SIGKILL)
+        kill_tree(process, posix)
         process.communicate()
         raise AssertionError(f"Lean compilation exceeded {timeout}s; process group killed")
     return process.returncode, out + "\n" + err

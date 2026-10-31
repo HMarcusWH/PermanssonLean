@@ -4,7 +4,8 @@
 catch the corresponding stale or malformed state: numeric-key spread records,
 historical facts overwritten, tracked files without a row, untracked rows
 without a disposition, dangling supersessions or related files, stale current
-counts, and historical records not marked as non-evidence.
+counts, historical records not marked as non-evidence, and rows that claim
+CI results the tracked tree cannot hold.
 """
 from __future__ import annotations
 from copy import deepcopy
@@ -55,10 +56,22 @@ class InventoryTests(unittest.TestCase):
         self.assertTrue(any('historical planning counts' in p for p in self.problems(bad)))
 
     def test_historical_record_cannot_become_evidence(self):
-        bad=deepcopy(self.manifest)
-        name=next(iter(bad['historical']['round_records']))
-        bad['historical']['round_records'][name]['evidence_status']='PASS'
-        self.assertTrue(any('non-evidence' in p for p in self.problems(bad)))
+        name=next(iter(self.manifest['historical']['round_records']))
+        for forged in ({'evidence_status':'PASS'},{'evidence_status':'EXACT_HEAD_CI_SUCCESS'},
+                       {'evidence_status':'EXACT_HEAD_CI_SUCCESS','github_run_id':41166380739}):
+            bad=deepcopy(self.manifest)
+            bad['historical']['round_records'][name].update(forged)
+            with self.subTest(forged=forged):
+                self.assertTrue(any('non-evidence' in p for p in self.problems(bad)))
+
+    def test_tracked_row_cannot_claim_ci_evidence(self):
+        """INV-02/INV-05: CI results live outside the tracked manifest, with or without a run identity."""
+        for state in ('EXACT_HEAD_CI_PASSED','LOCAL_TESTED_GITHUB_LEAN_PASSED','CI_GREEN_RUN_41166380739'):
+            bad=deepcopy(self.manifest)
+            row=next(e for e in bad['entries'] if e.get('candidate'))
+            row['candidate']['state']=state
+            with self.subTest(state=state):
+                self.assertTrue(any('claims CI evidence' in p for p in self.problems(bad)))
 
     def test_tracked_file_without_row_detected(self):
         bad=deepcopy(self.manifest)
