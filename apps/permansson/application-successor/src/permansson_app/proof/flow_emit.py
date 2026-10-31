@@ -23,7 +23,7 @@ from types import MappingProxyType
 
 from ..engines.risk_occupancy import parse_risk
 from ..errors import AppError
-from ..finite_world import FiniteWorld, exact_ratio
+from ..finite_world import FiniteWorld,exact_result
 from ..identity import canonical_bytes
 from ..receipts.risk_occupancy import check_risk
 from ..strict_json import strict_read
@@ -48,8 +48,8 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
     actions=list(m.actions)
     feasible=[[actions.index(a) for a in m.feasible[pair]] for pair in states]
     cert=receipt['lp_certificate']
-    primal=[exact_ratio(v) for v in cert['primal']]
-    dual={label:exact_ratio(v) for label,v in zip(q.lp.row_labels,cert['dual'])}
+    primal=[exact_result(v) for v in cert['primal']]
+    dual={label:exact_result(v) for label,v in zip(q.lp.row_labels,cert['dual'])}
     zero=Fraction(0)
     flow=[[zero]*na for _ in range(N)];bound=[[zero]*na for _ in range(N)]
     for name,(i,a),value in zip(q.lp.variables,q.variables,primal):
@@ -57,17 +57,17 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
         bound[i][actions.index(a)]=dual.get('bound:'+name,zero)
     v=[dual[f'mass{y}:le']-dual[f'mass{y}:ge'] for y in range(N)]
     lam=dual['risk_cap:le']
-    D=exact_ratio(cert['objective_value'])+q.lp.offset
+    D=exact_result(cert['objective_value'])+q.lp.offset
     policy=[[zero]*na for _ in range(N)]
     alpha={}
     for y,row in enumerate(receipt['policy']):
-        weights=[exact_ratio(row['action_weights'].get(a,'0'),probability=True) for a in actions]
+        weights=[exact_result(row['action_weights'].get(a,'0'),probability=True) for a in actions]
         policy[y]=weights
         alpha[states[y]]=tuple(weights)
     policy_model=FiniteWorld(m.strategic,m.world,m.actions,m.feasible,MappingProxyType(alpha),m.P,m.U)
     policy_lines,dims,policy_ext=input_definition(policy_model,'policyWorld')
     if dims!=(ns,nx,na):raise AppError('FLOW_REIFY_SCOPE','policy world must share dimensions')
-    law=[exact_ratio(x,probability=True) for x in receipt['next_state_law']]
+    law=[exact_result(x,probability=True) for x in receipt['next_state_law']]
 
     dim=f'({ns} * {nx})'
     def vector(values,var='y'):return _fin_case(var,[rational_expr(x) for x in values],N)

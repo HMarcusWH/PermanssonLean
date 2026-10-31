@@ -17,7 +17,7 @@ from pathlib import Path
 import sys
 
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.algebra import check_algebra
 from ..strict_json import strict_read
@@ -30,7 +30,7 @@ MAX_SOURCE_BYTES = 256 * 1024
 
 
 def _q(text):
-    return rational_expr(exact_ratio(text))
+    return rational_expr(exact_result(text))
 
 
 def _mat(rows):
@@ -136,7 +136,7 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
                      '    ∀ y, op H y = ev b → ⟪ev b, y⟫_ℝ = ((c : ℚ) : ℝ) - ((g : ℚ) : ℝ) :=',
                      '  checked_compatible H L d b x c g compatible_checked', '']
             names += ['compatible_checked', 'bordered_form']
-            if exact_ratio(receipt['gap']) >= 0:
+            if exact_result(receipt['gap']) >= 0:
                 body += ['theorem bordered_sign : ∀ v t, 0 ≤ singularBlockForm (op H) (ev b) ((c : ℚ) : ℝ) v t :=',
                          '  bordered_form.1.mpr (by norm_num [g])', '']
             else:

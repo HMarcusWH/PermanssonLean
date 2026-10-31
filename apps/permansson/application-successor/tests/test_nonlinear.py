@@ -45,6 +45,20 @@ class NonlinearStationaryTest(unittest.TestCase):
         self.assertEqual(r['lean_status'],'NOT_EXECUTED')
         self.assertFalse(r['scientific_claims_verified'])
 
+    def test_stationary_laws_beyond_the_input_precision_are_accepted(self):
+        # Codex's case: every input rational is within the 256-bit input bound,
+        # but the stationary probabilities need 398 bits.
+        # left -> right with a = (2^199-1)/2^200, right -> left with b = (2^199-3)/(2^200-1).
+        rows={'left':{'left':'%d/%d'%(2**199+1,2**200),'right':'%d/%d'%(2**199-1,2**200)},
+              'right':{'left':'%d/%d'%(2**199-3,2**200-1),'right':'%d/%d'%(2**199+2,2**200-1)}}
+        req=request()
+        for row in req['model']['P']:row['weights']=rows[row['x']]
+        r=propose_nonlinear(req)
+        self.assertEqual(check_nonlinear(req,r)['status'],'PASS')
+        law=r['policies'][0]['occupation_receipt']['stationary_laws'][0]
+        bits=max(max(int(n).bit_length() for n in v.split('/')) for v in law)
+        self.assertGreater(bits,256)
+
     def test_exhaustive_deterministic_policy_class(self):
         req=request(('stay','flip'))
         r=propose_nonlinear(req)

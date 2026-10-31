@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from fractions import Fraction
 import re
 from ..errors import AppError
-from ..finite_world import parse_finite_world,FiniteWorld,exact_ratio,induced_kernel,compare_strategic_intervention
+from ..finite_world import parse_finite_world,FiniteWorld,exact_ratio,exact_result,induced_kernel,compare_strategic_intervention
 from ..identity import rational_text,semantic_identity
 
 FORMAT='Permansson.App.FiniteGrammarRequest.v1'
@@ -171,7 +171,7 @@ def propose_grammar(raw:object)->dict:
     ids=list(g.patch_targets)
     for a,u in g.four_corners:
         joint=tuple(x for x in ids if x in (a,u))
-        values=[tuple(exact_ratio(v) for v in lookup[key]['values_by_comparison_state'])
+        values=[tuple(exact_result(v) for v in lookup[key]['values_by_comparison_state'])
                 for key in ((),(a,),(u,),joint)]
         interactions=[values[3][i]-values[1][i]-values[2][i]+values[0][i] for i in range(len(g.comparison))]
         corners.append({'alpha_component':a,'U_component':u,'joint_component_ids':list(joint),

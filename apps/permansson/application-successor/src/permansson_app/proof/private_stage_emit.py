@@ -18,7 +18,7 @@ import sys
 
 from ..engines.private_stage import parse_private_stage
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.private_stage import check_private_stage
 from ..strict_json import strict_read
@@ -47,8 +47,8 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
             for row in Q]
     binders = ('t' if nt > 1 else '_t') + ' ' + ('c' if nc > 1 else '_c')
     table = rows[0] if nt == 1 else _fin_case('t', rows, nt)
-    p = [exact_ratio(v) for v in receipt['controller_mixture']]
-    q = [exact_ratio(v) for v in receipt['nature_mixture']]
+    p = [exact_result(v) for v in receipt['controller_mixture']]
+    q = [exact_result(v) for v in receipt['nature_mixture']]
     lines = [
         'import PermanssonResearch.ApplicationBridge.PrivateStageReceipt',
         'import Mathlib.Tactic', '',
@@ -66,8 +66,8 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
         f'def Q : Fin {nt} → Fin {nc} → ℚ := fun {binders} => {table}',
         f'def p : Fin {nc} → ℚ := {_vector("c", p)}',
         f'def q : Fin {nt} → ℚ := {_vector("t", q)}',
-        f'def v : ℚ := {rational_expr(exact_ratio(receipt["value"]))}',
-        f'def r : ℚ := {rational_expr(exact_ratio(receipt["pure_control_value"]))}', '',
+        f'def v : ℚ := {rational_expr(exact_result(receipt["value"]))}',
+        f'def r : ℚ := {rational_expr(exact_result(receipt["pure_control_value"]))}', '',
         '/-- Kernel evaluation: both saddle sides and the pure-control value. -/',
         'theorem receipt_checked : checkPrivateStage Q p q v r = true := by',
         '  decide +kernel', '',

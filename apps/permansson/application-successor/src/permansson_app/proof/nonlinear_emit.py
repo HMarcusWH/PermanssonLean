@@ -20,7 +20,7 @@ import sys
 
 from ..engines.nonlinear import parse_nonlinear
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.nonlinear import check_nonlinear
 from ..strict_json import strict_read
@@ -47,8 +47,8 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
     actions=list(model.actions)
     feasible=[[actions.index(a) for a in model.feasible[pair]] for pair in pairs]
     maps=[[actions.index(a) for a in p['selected_actions']] for p in policies]
-    values=[exact_ratio(p['expected_classwise_score'],probability=True) for p in policies]
-    optimum=exact_ratio(receipt['optimum_value'],probability=True)
+    values=[exact_result(p['expected_classwise_score'],probability=True) for p in policies]
+    optimum=exact_result(receipt['optimum_value'],probability=True)
     tied=[maps[i] for i in receipt['attaining_policy_indices']]
 
     dim=f'({ns} * {nx})'

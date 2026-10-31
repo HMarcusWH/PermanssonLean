@@ -20,7 +20,7 @@ import sys
 
 from ..engines.quotients import parse_quotient
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.quotients import check_quotient
 from ..strict_json import strict_read
@@ -110,11 +110,11 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
     ]
     for p,(name,_,_) in enumerate(definitions):
         profile=profiles[p]
-        coarse_rows=[[exact_ratio(v,probability=True) for v in row] for row in profile['coarse_kernel']]
-        fine_vals=[exact_ratio(v,probability=True) for v in profile['fine_values']]
-        coarse_vals=[exact_ratio(v,probability=True) for v in profile['coarse_values']]
-        fine_full=[fine_vals[q.comparison.index(x)] if x in q.comparison else exact_ratio('0') for x in range(N)]
-        coarse_full=[coarse_vals[q.coarse_comparison.index(c)] if c in q.coarse_comparison else exact_ratio('0')
+        coarse_rows=[[exact_result(v,probability=True) for v in row] for row in profile['coarse_kernel']]
+        fine_vals=[exact_result(v,probability=True) for v in profile['fine_values']]
+        coarse_vals=[exact_result(v,probability=True) for v in profile['coarse_values']]
+        fine_full=[fine_vals[q.comparison.index(x)] if x in q.comparison else exact_result('0') for x in range(N)]
+        coarse_full=[coarse_vals[q.coarse_comparison.index(c)] if c in q.coarse_comparison else exact_result('0')
                      for c in range(M)]
         entry=_fin_case('c',[_fin_case('d',[rational_expr(v) for v in row],M) for row in coarse_rows],M)
         lines+=[

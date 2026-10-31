@@ -55,6 +55,19 @@ class NonlinearEmitTests(unittest.TestCase):
         self.assertEqual(meta['scope']['policies'],16)
         self.assertEqual(receipt['attaining_policy_indices'],[15])
 
+    def test_results_beyond_the_input_precision_emit(self):
+        # Inputs within the 256-bit input bound whose stationary laws need 398
+        # bits: the emitter reads receipt values with the result-sized parser.
+        raw=json.loads(EXAMPLE.read_text())
+        stay={'left':{'left':'%d/%d'%(2**199+1,2**200),'right':'%d/%d'%(2**199-1,2**200)},
+              'right':{'left':'%d/%d'%(2**199-3,2**200-1),'right':'%d/%d'%(2**199+2,2**200-1)}}
+        for row in raw['model']['P']:
+            if row['a']=='stay':row['weights']=stay[row['x']]
+        receipt=propose_nonlinear(raw)
+        source,meta=emit_source(raw,receipt)
+        self.assertEqual(meta['scope']['policies'],4)
+        self.assertGreater(max(int(n).bit_length() for n in re.findall(r'\((\d+) : ℚ\)',source)),256)
+
     def test_tampered_receipts_never_emit(self):
         raw,receipt=fixture()
         mutations=[]

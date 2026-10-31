@@ -20,7 +20,7 @@ import sys
 
 from ..engines.cq1 import parse_cq1
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.cq1 import check_cq1
 from ..strict_json import strict_read
@@ -54,7 +54,7 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
         return _finset([states.index(y) for y in items], N)
     def idx(y):
         return f'({states.index(y)} : Fin {N})'
-    kappa = exact_ratio(receipt['uniform_margin'])
+    kappa = exact_result(receipt['uniform_margin'])
     y1, y2 = comparison[0], comparison[1]
     El, Kl = rational_expr(eta), rational_expr(kappa)
     target = check['target']
@@ -134,7 +134,7 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
     ]
     names += ['receipt_checked', 'finite_constitutive_certificate']
     for row in receipt['region_survival']:
-        y = tuple(row['state']); k = states.index(y); v = rational_expr(exact_ratio(row['survival']))
+        y = tuple(row['state']); k = states.index(y); v = rational_expr(exact_result(row['survival']))
         name = f'region_survival_{k}'
         names.append(name)
         lines += [f'theorem {name} :',
@@ -145,8 +145,8 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
                   '  rw [hv]', '']
     for row in receipt['comparison_effects']:
         y = tuple(row['state']); k = states.index(y)
-        b = rational_expr(exact_ratio(row['baseline_property']))
-        t = rational_expr(exact_ratio(row['intervened_property']))
+        b = rational_expr(exact_result(row['baseline_property']))
+        t = rational_expr(exact_result(row['intervened_property']))
         names += [f'baseline_property_{k}', f'intervened_property_{k}']
         lines += [f'theorem baseline_property_{k} :',
                   f'    baselinePropertyValue ((prefixScore Q {h}).toRegimeProperty {h}) (realizedModel K₀)',

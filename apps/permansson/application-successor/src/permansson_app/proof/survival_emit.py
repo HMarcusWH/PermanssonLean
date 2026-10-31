@@ -17,7 +17,7 @@ import sys
 
 from ..engines.finite_survival import parse_comparison
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.finite_survival import check_survival_receipt
 from ..strict_json import strict_read
@@ -46,7 +46,7 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
     target=raw['target']
     tables={}
     for key in ('baseline_survival','treated_survival'):
-        tables[key]=[[exact_ratio(v,probability=True) for v in row] for row in receipt[key]]
+        tables[key]=[[exact_result(v,probability=True) for v in row] for row in receipt[key]]
     region_idx=[states.index(r) for r in region]
     compare=[states.index(s) for s in selected]
 

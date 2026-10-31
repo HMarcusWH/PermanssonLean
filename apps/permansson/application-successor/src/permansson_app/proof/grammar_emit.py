@@ -20,7 +20,7 @@ import sys
 
 from ..engines.grammar import apply_block, parse_grammar
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.grammar import check_grammar
 from ..strict_json import strict_read
@@ -55,7 +55,7 @@ def block_definitions(g,ns:int,nx:int,na:int)->tuple[list[str],list[str],dict]:
         alpha_rows=[];update_rows=[]
         for name in block:
             for key,vals in g.patch_rows[name].items():
-                values=[rational_expr(exact_ratio(v)) for v in vals]
+                values=[rational_expr(exact_result(v)) for v in vals]
                 if key[0]=='alpha':
                     s,x=key[1],key[2]
                     alpha_rows.append(([f's = ({S.index(s)} : Fin {ns})',f'x = ({X.index(x)} : Fin {nx})'],
@@ -103,11 +103,11 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
     survival=g.value_type=='survival_horizon'
     k=len(g.blocks)
     results={tuple(r['component_ids']):r for r in receipt['block_results']}
-    zero=exact_ratio('0')
+    zero=exact_result('0')
 
     def vector(values):
         full=[zero]*N
-        for x,v in zip(g.comparison,values):full[x]=exact_ratio(v)
+        for x,v in zip(g.comparison,values):full[x]=exact_result(v)
         return _fin_case('y',[rational_expr(v) for v in full],N)
 
     dim=f'({ns} * {nx})'
@@ -187,9 +187,9 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
             names.append(name)
             lines+=[f'theorem {name} :',
                     f'    actualObjective (members {i}) region horizon survival ({x} : Fin {N}) =',
-                    f'      (({rational_expr(exact_ratio(v))} : ℚ) : ℝ) := by',
+                    f'      (({rational_expr(exact_result(v))} : ℚ) : ℝ) := by',
                     f'  rw [← checked_block_value_actual {args} {i} ({x} : Fin {N}) (by decide +kernel)]',
-                    f'  have hv : values {i} ({x} : Fin {N}) = {rational_expr(exact_ratio(v))} := by decide +kernel',
+                    f'  have hv : values {i} ({x} : Fin {N}) = {rational_expr(exact_result(v))} := by decide +kernel',
                     '  rw [hv]','']
     objective=lambda i,x:f'actualObjective (members {i}) region horizon survival ({x} : Fin {N})'
     for r,(corner,(a,u)) in enumerate(zip(receipt['four_corners'],g.four_corners)):
@@ -198,7 +198,7 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
         for x,v in zip(g.comparison,corner['interactions_by_comparison_state']):
             name=f'four_corner_{r}_{x}'
             names.append(name)
-            value=rational_expr(exact_ratio(v))
+            value=rational_expr(exact_result(v))
             lines+=[f'/-- Interaction of `{a}` and `{u}` from state {x}: actual probabilities. -/',
                     f'theorem {name} :',
                     f'    {objective(ij,x)} - {objective(ia,x)} -',

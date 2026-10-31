@@ -30,6 +30,13 @@ fixtures in their live replays.
   capped per profile (see each registry `scope` and
   [`CAPABILITY_SCOPES.md`](CAPABILITY_SCOPES.md)). Lean reflection often has
   a smaller horizon cap than the numeric profile.
+- **Two rational bounds.** Request inputs are capped at 256 bits per
+  numerator and denominator. Computed values grow with the horizon and the
+  dimensions. Wherever a computed value is read back (by an engine, a
+  checker or a Lean emitter), it must be in reduced canonical form and is
+  capped by a separate result bound of 14000 bits. Several engines also cap
+  their intermediate values at 8192 bits. A value beyond a bound is refused
+  with an error, never truncated or rounded.
 - **One whole-run budget.** Every exact profile command runs in a child
   process under one budget for parsing, computation, the independent check
   and the outputs (`permansson_app.budget`). The limits are:

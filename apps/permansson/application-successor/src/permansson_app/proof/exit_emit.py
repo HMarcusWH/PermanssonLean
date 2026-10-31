@@ -23,7 +23,7 @@ from ..engines.exit import parse_region
 from ..engines.occupation import bottom_classes
 from ..engines.rational_linear import solve_unique
 from ..errors import AppError
-from ..finite_world import exact_ratio, induced_kernel, parse_finite_world
+from ..finite_world import exact_result,induced_kernel,parse_finite_world
 from ..identity import canonical_bytes
 from ..receipts.exit import check_exit
 from ..strict_json import strict_read
@@ -80,12 +80,12 @@ def emit_source(raw_model:dict,raw_region:dict,receipt:dict)->tuple[str,dict]:
     for x in B:
         row=rows[x]
         for t,v in enumerate(row['survival_through']):
-            survival[t][x]=exact_ratio(v,probability=True)
+            survival[t][x]=exact_result(v,probability=True)
         for s,step in enumerate(row['first_exit_by_step_and_destination']):
-            for d,v in zip(outside,step):steps[s][x][d]=exact_ratio(v,probability=True)
+            for d,v in zip(outside,step):steps[s][x][d]=exact_result(v,probability=True)
         for d,v in zip(outside,row['eventual_exit_by_destination']):
-            eventual[x][d]=exact_ratio(v,probability=True)
-        never[x]=exact_ratio(row['never_exit'],probability=True)
+            eventual[x][d]=exact_result(v,probability=True)
+        never[x]=exact_result(row['never_exit'],probability=True)
     classes,weights=stopped_certificate(induced_kernel(model),B)
 
     dim=f'({ns} * {nx})'

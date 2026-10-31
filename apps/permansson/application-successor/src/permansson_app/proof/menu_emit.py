@@ -17,7 +17,7 @@ import sys
 
 from ..engines.menu import _get
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.menu import check_menu
 from ..strict_json import strict_read
@@ -48,14 +48,14 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
     N=ns*nx
     assert list(states)==[(s,x) for s in base.strategic for x in base.world]
     k=len(menu)
-    values=[exact_ratio(item['value'],probability=True) for item in receipt['menu_values']]
+    values=[exact_result(item['value'],probability=True) for item in receipt['menu_values']]
     ids=[ident for ident,_,_ in menu]
     tied=[ids.index(t) for t in receipt['attaining_ids']]
     survival=raw['value_type']=='survival_horizon'
     maximize=raw['direction']=='max'
     region_idx=[states.index(r) for r in region]
     start_idx=states.index(start)
-    baseline_survival=exact_ratio(receipt['baseline_survival'],probability=True)
+    baseline_survival=exact_result(receipt['baseline_survival'],probability=True)
 
     dim=f'({ns} * {nx})'
     members=_fin_case('i',[f'inducedMatrix member_{i}' for i in range(k)],k)

@@ -553,6 +553,7 @@
         "test_nonlinear.NonlinearStationaryTest.test_multichain_noncommuting_functional",
         "test_nonlinear.NonlinearStationaryTest.test_omitted_policy_fails",
         "test_nonlinear.NonlinearStationaryTest.test_positive_probability_syntax_bound",
+        "test_nonlinear.NonlinearStationaryTest.test_stationary_laws_beyond_the_input_precision_are_accepted",
         "test_nonlinear.NonlinearStationaryTest.test_unsupported_functional_is_error",
         "test_nonlinear.NonlinearStationaryTest.test_wrong_initial_order",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",

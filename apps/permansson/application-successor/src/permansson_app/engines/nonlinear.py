@@ -13,7 +13,7 @@ from itertools import product
 from math import prod
 from types import MappingProxyType
 from ..errors import AppError
-from ..finite_world import FiniteWorld,parse_finite_world,exact_ratio
+from ..finite_world import FiniteWorld,parse_finite_world,exact_ratio,exact_result
 from ..identity import rational_text,semantic_identity
 from .occupation import compute_occupation
 
@@ -79,10 +79,10 @@ def propose_nonlinear(raw:object)->dict:
         occ=compute_occupation(world)
         class_probs=[];class_scores=[]
         for c,law in zip(occ['bottom_classes'],occ['stationary_laws']):
-            p=sum((exact_ratio(mass) for idx,mass in zip(c,law) if pairs[idx] in truth),Fraction(0))
+            p=sum((exact_result(mass) for idx,mass in zip(c,law) if pairs[idx] in truth),Fraction(0))
             class_probs.append(p)
             class_scores.append(boolean_target_score(p))
-        weights=[sum((initial[i]*exact_ratio(row[j]) for i,row in enumerate(occ['absorption_weights'])),Fraction(0))
+        weights=[sum((initial[i]*exact_result(row[j]) for i,row in enumerate(occ['absorption_weights'])),Fraction(0))
                  for j in range(len(class_scores))]
         score=sum((w*v for w,v in zip(weights,class_scores)),Fraction(0))
         # For diagnostics only. Not the optimization functional.
@@ -95,8 +95,8 @@ def propose_nonlinear(raw:object)->dict:
                        'initial_class_weights':[rational_text(w) for w in weights],
                        'expected_classwise_score':rational_text(score),
                        'functional_of_expected_descriptor':rational_text(boolean_target_score(barycenter_p))})
-    best=max(exact_ratio(row['expected_classwise_score']) for row in output)
-    ties=[row['index'] for row in output if exact_ratio(row['expected_classwise_score'])==best]
+    best=max(exact_result(row['expected_classwise_score']) for row in output)
+    ties=[row['index'] for row in output if exact_result(row['expected_classwise_score'])==best]
     return {'format':RECEIPT,'request_identity':semantic_identity('finite-nonlinear-stationary',raw),
             'baseline_identity':m.semantic_id(),'functional_id':FUNCTIONAL,
             'policy_class':POLICY_CLASS,'initial_law':[rational_text(v) for v in initial],

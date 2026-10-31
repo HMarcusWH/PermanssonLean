@@ -19,7 +19,7 @@ import sys
 
 from ..engines.risk_occupancy import parse_risk
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.risk_infeasibility import check_risk_infeasibility
 from ..strict_json import strict_read
@@ -44,8 +44,8 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
         raise AppError('RISK_INFEASIBILITY_REIFY_SCOPE', 'joint states must follow the declared order')
     actions = list(m.actions)
     feasible = [[actions.index(a) for a in m.feasible[pair]] for pair in states]
-    floors = [exact_ratio(v) for v in receipt['farkas_ray']['mass_multipliers']]
-    total = exact_ratio(receipt['minimal_risk_probability'])
+    floors = [exact_result(v) for v in receipt['farkas_ray']['mass_multipliers']]
+    total = exact_result(receipt['minimal_risk_probability'])
     dim = f'({ns} * {nx})'
 
     def vector(values):

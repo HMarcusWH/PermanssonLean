@@ -23,7 +23,7 @@ import sys
 
 from ..engines.metric import parse_metric
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.metric import check_metric
 from ..strict_json import strict_read
@@ -36,7 +36,7 @@ MAX_SOURCE_BYTES = 768 * 1024
 
 
 def _matrix(rows):
-    return [[exact_ratio(v) for v in row] for row in rows]
+    return [[exact_result(v) for v in row] for row in rows]
 
 
 def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
@@ -65,11 +65,11 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
         pair[x, x] = [[K[x][i] if i == j else zero for j in range(N)] for i in range(N)]
     defect = [_matrix(c['coupling']) for c in receipt['row_defects']]
     inv = receipt['invariant_transport']
-    rho = exact_ratio(receipt['contraction_factor'])
-    delta = exact_ratio(receipt['defect'])
-    w = exact_ratio(inv['w1'])
-    pi = [exact_ratio(v) for v in receipt['invariant_law']]
-    pit = [exact_ratio(v) for v in receipt['perturbed_invariant_law']]
+    rho = exact_result(receipt['contraction_factor'])
+    delta = exact_result(receipt['defect'])
+    w = exact_result(inv['w1'])
+    pi = [exact_result(v) for v in receipt['invariant_law']]
+    pit = [exact_result(v) for v in receipt['perturbed_invariant_law']]
     dim = f'({ns} * {nx})'
 
     def vec(values, var):
@@ -119,7 +119,7 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
         f'def π : Fin {dim} → ℚ := fun i => {vec(pi, "i")}',
         f'def πt : Fin {dim} → ℚ := fun i => {vec(pit, "i")}',
         f'def Cinv : Fin {dim} → Fin {dim} → ℚ := fun i j => {mat(_matrix(inv["coupling"]), "i", "j")}',
-        f'def f : Fin {dim} → ℚ := fun i => {vec([exact_ratio(v) for v in inv["potential"]], "i")}', '',
+        f'def f : Fin {dim} → ℚ := fun i => {vec([exact_result(v) for v in inv["potential"]], "i")}', '',
         '/-- Kernel evaluation: metric, couplings, invariance, potential and contraction. -/',
         'theorem receipt_checked : checkMetricReceipt dm K Kt ρ δ w Cpair Cdef π πt Cinv f = true := by',
         '  decide +kernel', '',

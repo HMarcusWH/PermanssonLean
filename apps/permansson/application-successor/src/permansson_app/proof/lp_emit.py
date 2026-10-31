@@ -15,7 +15,7 @@ import sys
 
 from ..engines.lp_types import LP, parse_lp
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.lp import OPTIMAL, INFEASIBLE, check_lp_certificate, check_farkas_certificate
 from ..strict_json import strict_read
@@ -54,13 +54,13 @@ def emit_source(lp:LP,receipt:dict)->tuple[str,dict]:
     typ=receipt.get('format')
     if typ==OPTIMAL:
         checked=check_lp_certificate(lp,receipt)
-        x=tuple(exact_ratio(s)-lo for s,lo in zip(receipt['primal'],lp.lower))
-        y=tuple(exact_ratio(s) for s in receipt['dual'])
+        x=tuple(exact_result(s)-lo for s,lo in zip(receipt['primal'],lp.lower))
+        y=tuple(exact_result(s) for s in receipt['dual'])
         assert len(x)==n and len(y)==m
         family='PRIMAL_DUAL_OPTIMUM'
     elif typ==INFEASIBLE:
         checked=check_farkas_certificate(lp,receipt)
-        y=tuple(exact_ratio(s) for s in receipt['multiplier'])
+        y=tuple(exact_result(s) for s in receipt['multiplier'])
         x=None
         assert len(y)==m
         family='FARKAS_INFEASIBILITY'

@@ -20,7 +20,7 @@ from pathlib import Path
 import sys
 
 from ..errors import AppError
-from ..finite_world import exact_ratio, parse_finite_world
+from ..finite_world import exact_result,parse_finite_world
 from ..identity import canonical_bytes
 from ..receipts.occupation import check_occupation
 from ..strict_json import strict_read
@@ -47,14 +47,14 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
     input_lines,(ns,nx,na),extensions=input_definition(model)
     N=ns*nx
     classes=receipt['bottom_classes']
-    weights=[[exact_ratio(v,probability=True) for v in row] for row in receipt['absorption_weights']]
+    weights=[[exact_result(v,probability=True) for v in row] for row in receipt['absorption_weights']]
     laws=[]
     for group,raw_law in zip(classes,receipt['stationary_laws']):
         law=[Fraction(0)]*N
         for state,value in zip(group,raw_law):
-            law[state]=exact_ratio(value,probability=True)
+            law[state]=exact_result(value,probability=True)
         laws.append(law)
-    mean=[[exact_ratio(v,probability=True) for v in row] for row in receipt['expected_limit_laws']]
+    mean=[[exact_result(v,probability=True) for v in row] for row in receipt['expected_limit_laws']]
 
     dim=f'({ns} * {nx})'
     def column(values):return _fin_case('y',[rational_expr(v) for v in values],N)

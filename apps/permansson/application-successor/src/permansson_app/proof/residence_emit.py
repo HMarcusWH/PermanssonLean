@@ -17,7 +17,7 @@ import sys
 
 from ..engines.monitors import parse_residence
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.residence import check_residence
 from ..strict_json import strict_read
@@ -56,7 +56,7 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
     assert N==ns*nx
     actions=list(model.actions)
     feasible=[[actions.index(a) for a in model.feasible[s,x]] for s,x in pairs]
-    values=[exact_ratio(v,probability=True) for v in receipt['probability_by_initial_state']]
+    values=[exact_result(v,probability=True) for v in receipt['probability_by_initial_state']]
     dwell,latest=problem.dwell_transitions,problem.latest_entry
     # The Lean event spans latest + dwell transitions; this is the receipt horizon.
     assert latest+dwell==problem.horizon

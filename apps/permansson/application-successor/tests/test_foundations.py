@@ -54,6 +54,15 @@ class IdentityTests(unittest.TestCase):
 
 
 class ResultRationalTests(unittest.TestCase):
+    def test_lean_emitters_never_parse_receipts_with_the_input_bound(self):
+        # Emitters read computed receipt values (and engine-normalised text);
+        # the 256-bit input parser would reject correct large results.
+        from permansson_app.proof import nonlinear_emit
+        emitters=sorted(Path(nonlinear_emit.__file__).parent.glob('*_emit.py'))  # wherever it is imported from
+        self.assertGreaterEqual(len(emitters),20)
+        offenders=[p.name for p in emitters if 'exact_ratio(' in p.read_text(encoding='utf-8')]
+        self.assertEqual(offenders,[])
+
     """exact_result: canonical reduced rationals with the result-sized bound."""
     def test_accepts_large_canonical_results(self):
         from permansson_app.finite_world import exact_result

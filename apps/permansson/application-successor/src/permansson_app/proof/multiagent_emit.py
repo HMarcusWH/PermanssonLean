@@ -19,7 +19,7 @@ import sys
 
 from ..engines.multiagent import parse_multiagent
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.multiagent import check_multiagent
 from ..strict_json import strict_read
@@ -58,7 +58,7 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
                 f'   fun {_binders("yaxs", [N, M, nx, k])} => {_nest(upd, ["y", "a", "x", "s"], [N, M, nx, k])}⟩']
 
     def matrix(name, rows):
-        values = [[exact_ratio(v) for v in row] for row in rows]
+        values = [[exact_result(v) for v in row] for row in rows]
         return f'def {name} : Fin (NJ {k0} {k} {nx}) → Fin (NJ {k0} {k} {nx}) → ℚ := fun y z => ' + \
             _nest(values, ['y', 'z'], [N, N])
 

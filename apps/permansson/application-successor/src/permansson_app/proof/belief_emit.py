@@ -23,7 +23,7 @@ import sys
 from ..engines.belief import REQUEST as ONE_STEP_REQUEST, parse_belief
 from ..engines.belief_tree import REQUEST as TREE_REQUEST, parse_belief_tree
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.belief import check_belief
 from ..receipts.belief_tree import check_belief_tree
@@ -48,9 +48,9 @@ def _one_step(raw:dict,receipt:dict):
            for row in receipt['policy']]
     blind=receipt['best_blind_policy_reward']
     return (checked,p.model,1,list(p.prior),list(p.terminal_rewards),[list(r) for r in p.likelihood],
-            list(p.observations),nodes,[exact_ratio(v,probability=True) for v in receipt['next_world_law']],
-            exact_ratio(receipt['optimal_expected_terminal_reward']),
-            None if blind is None else exact_ratio(blind),'ONE_STEP')
+            list(p.observations),nodes,[exact_result(v,probability=True) for v in receipt['next_world_law']],
+            exact_result(receipt['optimal_expected_terminal_reward']),
+            None if blind is None else exact_result(blind),'ONE_STEP')
 
 
 def _tree_nodes(tree:dict,actions:list[str]):
@@ -71,9 +71,9 @@ def _belief_tree(raw:dict,receipt:dict):
     blind=receipt['best_blind_action_sequence_reward']
     return (checked,p.model,p.horizon,list(p.prior),list(p.terminal_rewards),[list(r) for r in p.likelihoods],
             list(p.observations),_tree_nodes(receipt['optimal_policy_tree'],actions),
-            [exact_ratio(v,probability=True) for v in receipt['terminal_joint_law']],
-            exact_ratio(receipt['optimal_expected_terminal_reward']),
-            None if blind is None else exact_ratio(blind),'TREE')
+            [exact_result(v,probability=True) for v in receipt['terminal_joint_law']],
+            exact_result(receipt['optimal_expected_terminal_reward']),
+            None if blind is None else exact_result(blind),'TREE')
 
 
 def _blind_mirror(model,states,feasible,rewards,prior,H):

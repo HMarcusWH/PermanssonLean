@@ -16,7 +16,7 @@ import sys
 
 from ..engines.hitting import HittingProblem, parse_hitting_problem
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.control import check_bellman
 from ..strict_json import strict_read
@@ -89,7 +89,7 @@ def emit_source(problem:HittingProblem,receipt:dict)->tuple[str,dict]:
     assert N==ns*nx
     actions=list(model.actions)
     feasible=[[actions.index(a) for a in model.feasible[s,x]] for s,x in pairs]
-    values=[[exact_ratio(v,probability=True) for v in row]
+    values=[[exact_result(v,probability=True) for v in row]
             for row in receipt['values_by_remaining_transitions']]
     selected=receipt['selected_actions_by_remaining_transitions']
     fill=[options[0] for options in feasible]

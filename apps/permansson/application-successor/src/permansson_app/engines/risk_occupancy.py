@@ -10,7 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from fractions import Fraction
 from ..errors import AppError
-from ..finite_world import FiniteWorld, parse_finite_world, exact_ratio
+from ..finite_world import FiniteWorld, parse_finite_world, exact_ratio, exact_result
 from ..identity import rational_text, semantic_identity
 from .lp_types import LP,parse_lp
 from .lp import propose_lp_optimum
@@ -133,11 +133,11 @@ def propose_risk(raw:object)->dict:
     cert=proposal['receipt']
     from ..receipts.lp import check_lp_certificate
     check_lp_certificate(q.lp,cert)
-    primal=tuple(exact_ratio(v) for v in cert['primal'])
+    primal=tuple(exact_result(v) for v in cert['primal'])
     policy,law=reconstruct_policy(q,primal)
     reward=sum((x*r for x,r in zip(law,q.rewards)),Fraction(0))
     exposure=sum((law[i] for i in q.risk_states),Fraction(0))
-    if exposure>q.risk_cap or reward!=exact_ratio(cert['objective_value']) or sum(law,Fraction(0))!=1:
+    if exposure>q.risk_cap or reward!=exact_result(cert['objective_value']) or sum(law,Fraction(0))!=1:
         raise AppError('RISK_INTERNAL','LP and actual next-state law disagree')
     return {'format':RECEIPT,'request_identity':q.identity,'source_model_identity':q.model.semantic_id(),
         'lp_model_identity':q.lp.semantic_id(),

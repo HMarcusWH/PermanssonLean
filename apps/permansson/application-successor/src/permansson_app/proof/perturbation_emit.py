@@ -19,7 +19,7 @@ import sys
 
 from ..engines.robustness import parse_perturbation
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.robustness import check_perturbation
 from ..strict_json import strict_read
@@ -45,10 +45,10 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
     if dims!=(ns,nx,na):
         raise AppError('PERTURBATION_REIFY_SCOPE','alternative must share the baseline dimensions')
     N=ns*nx
-    q=lambda key:exact_ratio(receipt[key],probability=True)
-    rows=[exact_ratio(v,probability=True) for v in receipt['row_total_variations']]
-    base=[[exact_ratio(v,probability=True) for v in row] for row in receipt['baseline_survival_rows']]
-    alt=[[exact_ratio(v,probability=True) for v in row] for row in receipt['alternative_survival_rows']]
+    q=lambda key:exact_result(receipt[key],probability=True)
+    rows=[exact_result(v,probability=True) for v in receipt['row_total_variations']]
+    base=[[exact_result(v,probability=True) for v in row] for row in receipt['baseline_survival_rows']]
+    alt=[[exact_result(v,probability=True) for v in row] for row in receipt['alternative_survival_rows']]
     delta,tv0,bound=q('maximum_row_tv'),q('initial_law_tv'),q('bound_at_horizon')
     pb,pa=q('baseline_event_probability'),q('alternative_event_probability')
 

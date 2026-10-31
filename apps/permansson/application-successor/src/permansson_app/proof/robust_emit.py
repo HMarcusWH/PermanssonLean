@@ -21,7 +21,7 @@ import sys
 
 from ..engines.robust_nature import parse_nature
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.robust_nature import check_nature
 from ..strict_json import strict_read
@@ -50,7 +50,7 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
     policy=[actions.index(a) for a in q.policy]
 
     dim=f'({ns} * {nx})'
-    def exact(v):return v if type(v) is Fraction else exact_ratio(v)
+    def exact(v):return v if type(v) is Fraction else exact_result(v)
     def vector(values):return _fin_case('y',[rational_expr(exact(v)) for v in values],N)
     def table(rows):return _nat_case('r',[vector(row) for row in rows],'(0 : ℚ)')
     lines=[
@@ -143,7 +143,7 @@ def emit_source(raw:dict,receipt:dict)->tuple[str,dict]:
 
     def saddle(name,game,checked_name,tab,value,y,doc):
         names.append(name)
-        v=rational_expr(exact_ratio(value))
+        v=rational_expr(exact_result(value))
         return [f'/-- {doc} from state {y}: saddle value on the actual chronological law. -/',
                 f'theorem {name} :',
                 f'    (∃ σ : Controller {game}, ∀ η : Nature {game},',

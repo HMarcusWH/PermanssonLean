@@ -20,7 +20,7 @@ import sys
 
 from ..engines.adaptive import parse_adaptive
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.adaptive import check_adaptive
 from ..strict_json import strict_read
@@ -47,8 +47,8 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
     dim = f'({ns} * {nx})'
 
     def layer(cells):
-        return _fin_case('y', [f'(if s then {rational_expr(exact_ratio(alive))} else '
-                               f'{rational_expr(exact_ratio(dead))})' for dead, alive in cells], N)
+        return _fin_case('y', [f'(if s then {rational_expr(exact_result(alive))} else '
+                               f'{rational_expr(exact_result(dead))})' for dead, alive in cells], N)
 
     table = ''.join(f'(if r = {r} then {layer(cells)} else ' for r, cells in enumerate(receipt['monitor_table'])) \
         + '(0 : ℚ)' + ')' * (H + 1)
@@ -90,7 +90,7 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
     for y, value in zip(g.comparison, receipt['adaptive_values']):
         name = f'adaptive_optimal_{y}'
         names.append(name)
-        v = rational_expr(exact_ratio(value))
+        v = rational_expr(exact_result(value))
         lines += [
             f'/-- From joint state {y}: no full-history behavioral block controller exceeds the',
             '    adaptive value on the actual trace law, and one attains it. -/',

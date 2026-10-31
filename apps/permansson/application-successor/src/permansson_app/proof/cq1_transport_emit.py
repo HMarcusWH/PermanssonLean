@@ -20,7 +20,7 @@ import sys
 
 from ..engines.cq1_transport import parse_transport
 from ..errors import AppError
-from ..finite_world import exact_ratio
+from ..finite_world import exact_result
 from ..identity import canonical_bytes
 from ..receipts.cq1_transport import check_cq1_transport
 from ..strict_json import strict_read
@@ -58,10 +58,10 @@ def emit_source(raw: dict, receipt: dict) -> tuple[str, dict]:
         return f'({states.index(y)} : Fin {N})'
 
     cq1 = receipt['cq1_receipt']
-    El, Kl = rational_expr(eta), rational_expr(exact_ratio(cq1['uniform_margin']))
-    D0, DJ = rational_expr(exact_ratio(receipt['delta_baseline'])), rational_expr(exact_ratio(receipt['delta_intervention']))
-    E0 = rational_expr(exact_ratio(receipt['envelope_baseline']))
-    Ml = rational_expr(exact_ratio(receipt['transported_margin']))
+    El, Kl = rational_expr(eta), rational_expr(exact_result(cq1['uniform_margin']))
+    D0, DJ = rational_expr(exact_result(receipt['delta_baseline'])), rational_expr(exact_result(receipt['delta_intervention']))
+    E0 = rational_expr(exact_result(receipt['envelope_baseline']))
+    Ml = rational_expr(exact_result(receipt['transported_margin']))
     y1, y2 = comparison[0], comparison[1]
     lines = [
         'import PermanssonResearch.ApplicationBridge.CQ1TransportReceipt',
