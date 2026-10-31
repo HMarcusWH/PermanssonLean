@@ -73,4 +73,4 @@ infeasible action.
 Emission and source rechecks report `lean_status: NOT_EXECUTED`. A local or
 CI compiler pass is not an authenticated proof receipt, independent
 mathematical certification, empirical identification or release approval;
-the historical `E_TOOLING_CLOSURE` archive gate is unchanged.
+this bridge does not touch the archive gate or its successor contract.

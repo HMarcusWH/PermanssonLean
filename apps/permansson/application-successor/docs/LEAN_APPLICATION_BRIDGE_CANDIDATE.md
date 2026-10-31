@@ -1,6 +1,6 @@
 # Lean ApplicationBridge — finite α/P/U and observation-first receipt (candidate)
 
-**Status:** Part of draft PR #115; not an accepted scientific/Lean receipt
+**Status:** Developed in PR #115; not an accepted scientific/Lean receipt
 and not a release claim. This page describes the first two bridge modules
 (`FiniteWorldInput`, `BeliefReceipt`) and the unified candidate CLI. All 24
 bridge families and their live replays are listed in
@@ -87,5 +87,5 @@ Not done: authenticated compiler receipts that would allow an individual
 output to report `lean_status=VERIFIED`, and independent review of the
 bridges. The application explicitly does **not** promote any output.
 
-Historical archive-reproducibility `E_TOOLING_CLOSURE` is a separate existing
-trust-profile issue. No workflow changes or bypasses are part of this bridge.
+The archive-reproducibility repair (pull request #116, owner-engineering
+archive successor contract v1) is a separate trust-profile matter. No workflow changes or bypasses are part of this bridge.

@@ -19,7 +19,7 @@ The repository now contains two deliberately separate Lean libraries, an accepte
 | Study or extend the Lean mathematics | [Research build guide](docs/RESEARCH_BUILD.md), [implementation index](docs/V020_IMPLEMENTATION_INDEX.md) | Pinned Lean 4.34.0 and Git |
 | Validate an application report | [Application Standard](application/README.md) and [getting started](docs/GETTING_STARTED.md) | Python 3.13 |
 | Replay supported finite proofs | [C10 six-state](apps/permansson/closure-successor/README.md) or [C11 stationary-family](apps/permansson/closure-successor-c11/README.md) | Python 3.13, clean Git checkout, pinned Lean |
-| Try the draft successor application (exact finite profiles with independent checkers and source-bound Lean candidates; draft PR #115, not released) | [Application successor](apps/permansson/application-successor/README.md) and its [reviewer guide](apps/permansson/application-successor/docs/REVIEWER_GUIDE.md) | Python 3.12+; pinned Lean for candidate replay |
+| Try the draft successor application (exact finite profiles with independent checkers and source-bound Lean candidates; not released) | [Application successor](apps/permansson/application-successor/README.md) and its [reviewer guide](apps/permansson/application-successor/docs/REVIEWER_GUIDE.md) | Python 3.12+; pinned Lean for candidate replay |
 | Reproduce validation and integrity checks | [Verification guide](verification/README.md) | Depends on the check |
 | Contribute | [Contribution guide](CONTRIBUTING.md) | Depends on the change |
 

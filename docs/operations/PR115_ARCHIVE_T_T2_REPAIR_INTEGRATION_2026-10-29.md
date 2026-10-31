@@ -1,5 +1,15 @@
 # PR #115: T/T2 archive closure repair integration — **not activated**
 
+> **Status update, 2026-10-31.** `archive-reproducibility` has since been
+> repaired for the existing 25 workflows by pull request #116, under the
+> owner-engineering archive successor contract v1
+> ([`ARCHIVE_SUCCESSOR_CONTRACT_V1.md`](ARCHIVE_SUCCESSOR_CONTRACT_V1.md)).
+> That contract is an owner decision, not an independent security review. The
+> diagnosis below records the state before that repair. The guard it
+> describes still reads only the original candidate-bound gate, which still
+> differs between T and C, and it still never reports a required-check pass.
+> The staged 30-workflow T2 candidate remains unactivated.
+
 The required `archive-reproducibility` check fails its actual restoration because the immutable tooling T snapshot `71cc34fa0bc4b639c05d2ec5f39f0b88afd56388` is no longer identical to current C. The frozen source manifest contains **35 files**. The two named changes between T and current 25-workflow source are:
 
 - `verification/integrity/workflow_contract.py`

@@ -12,6 +12,11 @@ def _validators():
         from referencing import Registry, Resource
         from referencing.exceptions import NoSuchResource
     except ImportError as exc:
+        from .budget import is_memory_failure
+        if is_memory_failure(exc):
+            # Installed, but its native extension could not be mapped within
+            # the run's memory budget: that is exhaustion, not a missing extra.
+            raise MemoryError('schema validator could not be loaded within the memory budget') from exc
         raise AppError('SCHEMA_DEPENDENCY', 'Install validated jsonschema extra for full Draft 2020-12 checking') from exc
     def deny(uri): raise NoSuchResource(ref=uri)
     registry=Registry(retrieve=deny)

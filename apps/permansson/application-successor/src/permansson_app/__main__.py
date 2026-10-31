@@ -164,9 +164,10 @@ def main(argv=None):
     args=p.parse_args(argv)
     try:
         if args.command in BUDGETED_COMMANDS:
-            from .budget import in_child,run_budgeted
+            from .budget import enter_child,in_child,run_budgeted
             if not in_child():
                 return run_budgeted(list(sys.argv[1:] if argv is None else argv),args.output)
+            enter_child()
         if args.command=='capabilities':
             print(json.dumps(registry(),indent=2,sort_keys=True))
         elif args.command=='about':
@@ -677,14 +678,21 @@ def main(argv=None):
         return 2
     except OSError as exc:
         import errno
+        if exc.errno==errno.ENOMEM:
+            from .budget import MEMORY_EXIT
+            print(json.dumps({'ok':False,'error':{'code':'BUDGET_MEMORY','message':'memory budget exhausted'}},
+                             sort_keys=True),file=sys.stderr)
+            return MEMORY_EXIT
         if exc.errno!=errno.EFBIG:
             raise
         from .budget import OUTPUT_EXIT
         print(json.dumps({'ok':False,'error':{'code':'BUDGET_OUTPUT','message':'output budget exhausted'}},
                          sort_keys=True),file=sys.stderr)
         return OUTPUT_EXIT
-    except MemoryError:
-        from .budget import MEMORY_EXIT
+    except (MemoryError,ImportError) as exc:
+        from .budget import MEMORY_EXIT,is_memory_failure
+        if not is_memory_failure(exc):
+            raise
         print(json.dumps({'ok':False,'error':{'code':'BUDGET_MEMORY','message':'memory budget exhausted'}},
                          sort_keys=True),file=sys.stderr)
         return MEMORY_EXIT

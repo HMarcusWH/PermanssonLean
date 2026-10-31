@@ -42,6 +42,12 @@ fixtures in their live replays.
   | Output, per file and in total | 32 MiB |
   | Captured stdout and stderr | 1 MiB |
 
+  The child starts under the 2 GiB default and lowers its own address-space
+  limit to the configured value once the interpreter and the application's
+  code are loaded, before it reads the request. The limit is on total address
+  space, so all request work stays within it, and a low limit cannot break
+  interpreter startup in ways that would not report as memory exhaustion.
+
   Exhaustion fails with `BUDGET_TIMEOUT`, `BUDGET_CPU`, `BUDGET_MEMORY`,
   `BUDGET_OUTPUT` or `BUDGET_STREAM` and exit status 2. The outputs are
   written to private staging and published only after success, so an

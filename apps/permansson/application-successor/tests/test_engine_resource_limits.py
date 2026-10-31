@@ -26,6 +26,7 @@ REQUEST=EX/'private_stage.v1.json'
 def run(args,limits=None,tmp=None):
     env=dict(os.environ,PYTHONPATH=str(APP/'src'),PYTHONDONTWRITEBYTECODE='1')
     env.pop(budget.CHILD_ENV,None)
+    env.pop(budget.CHILD_MEMORY_ENV,None)
     env.pop(budget.ENV_LIMITS,None)
     if limits is not None:
         env[budget.ENV_LIMITS]=json.dumps(limits)
@@ -77,9 +78,14 @@ class CommandBudgetTests(unittest.TestCase):
                                   out,'BUDGET_OUTPUT')
 
     def test_memory_exhaustion_leaves_nothing(self):
-        out=self.td/'out'
-        self.assert_failed_closed(run(['finite-private-stage',REQUEST,'--output',out],{'memory_bytes':20_000_000},
-                                      self.tmp),out,'BUDGET_MEMORY')
+        # Low limits used to fail inside interpreter startup or while mapping a
+        # shared library, which surfaced as APP_INTERNAL or SCHEMA_DEPENDENCY.
+        # The child now lowers its limit after its code is loaded.
+        for megabytes in (6,12,20,28):
+            out=self.td/f'out{megabytes}'
+            with self.subTest(megabytes=megabytes):
+                self.assert_failed_closed(run(['finite-private-stage',REQUEST,'--output',out],
+                                              {'memory_bytes':megabytes*1_000_000},self.tmp),out,'BUDGET_MEMORY')
 
     def test_stream_exhaustion_leaves_nothing(self):
         out=self.td/'out'

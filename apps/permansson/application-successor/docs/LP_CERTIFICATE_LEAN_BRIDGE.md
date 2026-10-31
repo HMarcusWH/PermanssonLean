@@ -66,8 +66,9 @@ merge or change a research certificate status.
    match. Changing any one rejects source binding.
 2. P/U source identification, policies, mathematical CERT, scientific review,
    external provenance and release approval remain **distinct**.
-3. The historical `E_TOOLING_CLOSURE` failure and T/T2 migration remain
-   separate and are not relaxed by these numerical/proof changes.
+3. The archive gate (repaired separately in pull request #116) and the T2
+   migration remain separate and are not relaxed by these numerical/proof
+   changes.
 4. All advertised Lean status remains `NOT_EXECUTED` in ordinary numeric
    application outputs. A future trusted proof-evidence consumer must verify
    exact Git source H/S, expected theorem type, compiler and axiom audit,

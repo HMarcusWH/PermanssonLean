@@ -1097,7 +1097,7 @@
       "base_state": "EXISTED_ON_MAIN",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "29f240909893c94ba87675d78849109fb7d07869b72e177fb4cdf4b5c450c7cf",
+        "sha256": "5e9fac7c70c214dbd9e492a3b33edf65dd5e68c54484a97acf56a5c79ea9e1e8",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1182,7 +1182,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "665cfc05992ae5bf7c073af763f7980578560177d91ae1761dd3a0fd717580a2",
+        "sha256": "d26f11f6efc33c293aa6cdca310c9c2b97dae039f2d7ef2e5d2fa49fba6da20e",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1925,7 +1925,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "514e95953b5e04684c0458781ed4ccf9700e511ce5f1435d991ccdc8eb022277",
+        "sha256": "df06ded133392ae7bbdc6c65238f13ef5d4507bd5d4de28615d8daf4d375e3d7",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2111,7 +2111,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "510a082d0a003ec7773d7a610d5769991ed80766ab8733bb4ac4b0eb14fead1d",
+        "sha256": "59424c46dfefc224926d535de6fd11e2c55f11d11e7b7879ee4f39c634f95829",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2324,7 +2324,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "fe3086f969af0b97d76b11cc15aa5b0394ed2e1bfb7eb3802434673db8577f15",
+        "sha256": "dc6424a16b05312b4a701d65d0d539c23daa6eb0b6bf9f5417020c1cc653af78",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2677,7 +2677,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "078878de238cc33c9a9e349c825762783e8a5f199b9ebdd81c10ba27dc6774a1",
+        "sha256": "1b8e82ec9e409365908b614160c2d533cde311e12d99c5312fafc10ed0e54cb5",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -8511,7 +8511,7 @@
       "candidate": {
         "git_blob_sha1": "a08ae36969e87038ff30845fa8bec31ec41f28db",
         "proof": "NOT_EXECUTED",
-        "sha256": "59129c585c1b6cb301588b4d4fa987e16e31aab8c5abb12f09b9d5b52c86f974",
+        "sha256": "30ca7ca7a1bdb5fc09eed4e116565d91ed9fa4c4009cfd1c469314368d0810cc",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -9713,7 +9713,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "2f296d37e78cdf3c5dd2bb6040f6b24eda1df25fc669f6a5521a82534042363b",
+        "sha256": "6dffee8defb7c0e2e6ff295b1e93e59bfdfb9dd7d48034bf125895f9a9ee612a",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
@@ -13710,7 +13710,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "1d5e546f8262e744d9bd25251b2f3a4dcfad321d80fb47b4e1d231b2f4e2d583",
+        "sha256": "1f48cf7920bd3db4f5bae9342218aadf5f7c5339cd977e02581ad84d3d6fe7f9",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -13832,8 +13832,8 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_SOURCE_CANDIDATE",
-        "sha256": "cab3df9ea77dd6a93aea8825d426e9365ff9a2a26095be213037833be3bd0ee9",
-        "git_blob_sha": "11f13d52eab518f110fb63c16a6ec4f803b1e521",
+        "sha256": "f207ed4122e19b763593951de3a3b0acacefa9a734d56fdaa54e0ccc6ad1de68",
+        "git_blob_sha": "59e2d204b602353b5d1ac898feb807f5686c6716",
         "proof": "NOT_EXECUTED",
         "independent_security_review": false,
         "release_authorized": false
@@ -14002,7 +14002,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN",
-        "sha256": "4f32aa0b27da5f0545e29beab4383733c3c82e24b6aa704b75c1b58165dc99c2",
+        "sha256": "5337d2cf14cae7e41dad12da7f31aa67cea38e8ca7d8a24b82f15ee3bbba1c58",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -14084,7 +14084,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "1d9569ecfb3aa4acbffa7f4a89bb362e03a77910d7f64f53e7996f66119725fa",
+        "sha256": "1bea11ae69f0d889ef2d12a1d88780a5815ce6ed72f27fc2a11f3d6fbd487595",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -17666,7 +17666,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "03d688cb188b78c7a153854825d512bc2fb37feadef14ef211dfaf0985652f8a",
+        "sha256": "b16456fadc48aa658f760e17315147de6377aeda6c60212ab87d7a56aa091354",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17686,7 +17686,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "5bc84e3ca2ceaf3c615c0bf55ed9130e004e18fe53aeb92b48c35931c5075ec6",
+        "sha256": "5a3748bcd6bda4d5e02780c1e6dcbdce0043445db5a19b9e40b72513b6e5bcaf",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17706,7 +17706,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "667ce90cd0abd90d19345d4b99cddfbafaef93f5b566b9b448def536d95d6918",
+        "sha256": "0e27241e0fa8346cd3da1539cecc4a82f73825a96329b657eba04b64fd2fee47",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }

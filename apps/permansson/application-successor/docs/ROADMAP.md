@@ -1,6 +1,6 @@
 # Successor application — roadmap and execution status
 
-Branch `feature/application-successor-full`; `main` is untouched. This page
+Developed on branch `feature/application-successor-full` (pull request #115). This page
 records what has been built against the original plans, what was decided,
 and what is deliberately out of scope for an implementation branch.
 
@@ -128,18 +128,20 @@ An external read-only audit of `a3df725` raised 33 work orders.
 
 - **CI-01.** Exact-head Research Lean completion, read per commit on the
   pull request.
-- **CI-02.** The historical T/T2 archive-restoration security migration.
-  The required `archive-reproducibility` job fails with
-  `E_TOOLING_CLOSURE`: two files under `verification/integrity/` changed
-  after the tooling snapshot T `71cc34fa` was taken. The same difference is
-  on `main`, and this branch adds none. The staged T2 candidate cannot simply
-  be activated. Its inherited verifier requires all twelve required checks
-  of PR #113's final head `117f4905` to have succeeded, and an `APPROVED`
-  review from an owner-authorized roster. On that head
-  `archive-reproducibility` failed, and the roster at the merge is
-  `UNCONFIGURED`. A repair therefore needs a separately authorized,
-  versioned current-source contract. It must not rewrite historical
-  approvals or relax `verification/archive/`.
+- **CI-02.** *Resolved separately, by owner decision.* The required
+  `archive-reproducibility` job failed with `E_TOOLING_CLOSURE` because two
+  files under `verification/integrity/` changed after the tooling snapshot
+  T `71cc34fa` was taken; this branch added none. The staged T2 candidate
+  could not be activated (it requires PR #113's final head to be fully green
+  and an approval from a roster that is `UNCONFIGURED`). The owner chose a
+  narrow repair for the existing 25 workflows, pull request #116: T's own
+  verifier replays the historical bundle in a clean T checkout, and the
+  current source is bound to the approved closure delta. It is approved by
+  an owner-engineering policy, which is not an independent security review
+  (`docs/operations/ARCHIVE_SUCCESSOR_CONTRACT_V1.md` at the repository
+  root).
+  It relaxes nothing in `verification/archive/` and rewrites no historical
+  approval. The 30-workflow T2 migration stays review-gated.
 - **CI-03.** Independent source, security and mathematics review, and the
   owner's decision.
 - **PKG-03.** An authenticated Linux/Windows × Python 3.12/3.13 distribution
@@ -147,8 +149,8 @@ An external read-only audit of `a3df725` raised 33 work orders.
 
 ## Out of scope for this branch
 
-* Activating or relaxing any GitHub Actions workflow or guard; the inherited
-  `archive-reproducibility` failure is reported, not relaxed.
+* Activating or relaxing any GitHub Actions workflow or guard. The archive
+  repair is a separate, owner-approved pull request (#116).
 * Running or claiming independent research CERT for the original 45 or the
   later 11 claims.
 * Empirical identification, publication, merging to `main` or publishing a

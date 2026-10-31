@@ -1,6 +1,6 @@
 # Successor application — source-bound acceptance status
 
-Base: `main@3492b26707788293ca88c66637b6ba021c7e478d`, tree `9ef00ac4b2d4f928aa6551ef3f0dfeb2d4434452` (unchanged). Status updated 2026-10-30; the exact head and its CI results are recorded in pull request #115.
+Developed against `main@3492b26707788293ca88c66637b6ba021c7e478d` (tree `9ef00ac4b2d4f928aa6551ef3f0dfeb2d4434452`) and brought up to date with `main@0800556e284aeeee30780ca79ba38010de1d58f8`, which adds the archive repair of pull request #116. Status updated 2026-10-31; the exact head and its CI results are recorded in pull request #115.
 
 ## Distinct gates
 
@@ -53,8 +53,9 @@ never committed. Still open:
 - **Evidence promotion.** Authenticated compiler receipts (outputs keep
   `lean_status=NOT_EXECUTED`) and Windows qualification of the bridges.
 - **Trust and release gates.** The GitHub Actions trust-profile migration
-  (the inherited `archive-reproducibility` failure is reported, not
-  relaxed), independent 45-case/11-claim CERT, empirical identification,
+  beyond the narrow 25-workflow archive repair of pull request #116, which
+  is approved by an owner-engineering policy, not an independent security
+  review, independent 45-case/11-claim CERT, empirical identification,
   application release acceptance and publication.
 
 A green local test is not a substitute for any of these. Per-round history

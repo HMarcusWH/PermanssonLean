@@ -7,9 +7,8 @@ recomputes that result. Optionally, it then produces a **source-bound Lean
 candidate**, in which the request's numbers appear as literal rationals in
 theorems that transfer results of the `PermanssonResearch` library.
 
-> **Status: draft implementation candidate (pull request #115, branch
-> `feature/application-successor-full`). Not released, not merged, not
-> independently certified.** Every output reports `lean_status=NOT_EXECUTED`,
+> **Status: implementation candidate, developed in pull request #115. Not
+> released and not independently certified.** Every output reports `lean_status=NOT_EXECUTED`,
 > `scientific_claims_verified=false` and `empirical_identification=NOT_IDENTIFIED`.
 > A checked numeric result or a compiled Lean candidate is a statement about
 > the declared finite model, not about a real-world regime.
@@ -168,8 +167,11 @@ completion. The following are outside this application and are not claimed:
   later 11 claims;
 - empirical identification;
 - application release acceptance;
-- the GitHub Actions trust-profile migration, including the inherited
-  `archive-reproducibility` failure.
+- the 30-workflow GitHub Actions trust-profile migration (T2). The
+  `archive-reproducibility` check itself was repaired separately, in pull
+  request #116, under an owner-engineering policy that is not an independent
+  security review (`docs/operations/ARCHIVE_SUCCESSOR_CONTRACT_V1.md` at the
+  repository root).
 
 The original Application Standard 0.1.0 and its digest profile are **not**
 reinterpreted as the newer typed-rational identity profile
