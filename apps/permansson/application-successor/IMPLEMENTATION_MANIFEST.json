@@ -16660,7 +16660,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_AND_LOCAL_LEAN_REPLAYED_PENDING_EXACT_HEAD_CI",
-        "sha256": "79b9573afca3e4c0109b9cd1bcb11aeb6a32003fdfb163ccfbb2c951a858f784",
+        "sha256": "6b797bb528824e1a50cb6976738051350896629a6375a162277a2b4d465a95f4",
         "proof": "NOT_EXECUTED_IN_APPLICATION_OUTPUT",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -16679,7 +16679,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "d9160f6f3abe172cafb83c9d29e2902841f7ef515518f00dc2dc0aa281a0d055",
+        "sha256": "f65e239da178a9cf5ffa25db0991107e648278e86fc7c1807eea980717bf4e01",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
