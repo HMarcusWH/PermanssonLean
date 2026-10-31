@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/algebra.v1.schema.json",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "profile",
+        "H",
+        "pivot"
+      ],
+      "properties": {
+        "format": {
+          "const": "Permansson.App.RationalAlgebraRequest.v1"
+        },
+        "profile": {
+          "const": "seam"
+        },
+        "H": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "maxLength": 160,
+              "pattern": "^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+              "type": "string"
+            }
+          }
+        },
+        "pivot": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "profile",
+        "H",
+        "B",
+        "C",
+        "ell"
+      ],
+      "properties": {
+        "format": {
+          "const": "Permansson.App.RationalAlgebraRequest.v1"
+        },
+        "profile": {
+          "const": "schur"
+        },
+        "H": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "maxLength": 160,
+              "pattern": "^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+              "type": "string"
+            }
+          }
+        },
+        "B": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "maxLength": 160,
+              "pattern": "^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+              "type": "string"
+            }
+          }
+        },
+        "C": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "maxLength": 160,
+              "pattern": "^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+              "type": "string"
+            }
+          }
+        },
+        "ell": {
+          "maxLength": 160,
+          "pattern": "^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "profile",
+        "H",
+        "b",
+        "c"
+      ],
+      "properties": {
+        "format": {
+          "const": "Permansson.App.RationalAlgebraRequest.v1"
+        },
+        "profile": {
+          "const": "singular"
+        },
+        "H": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "maxLength": 160,
+              "pattern": "^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+              "type": "string"
+            }
+          }
+        },
+        "b": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "maxLength": 160,
+            "pattern": "^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+            "type": "string"
+          }
+        },
+        "c": {
+          "maxLength": 160,
+          "pattern": "^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "profile",
+        "x",
+        "y",
+        "c"
+      ],
+      "properties": {
+        "format": {
+          "const": "Permansson.App.RationalAlgebraRequest.v1"
+        },
+        "profile": {
+          "const": "gram"
+        },
+        "x": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "maxLength": 160,
+            "pattern": "^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+            "type": "string"
+          }
+        },
+        "y": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "maxLength": 160,
+            "pattern": "^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+            "type": "string"
+          }
+        },
+        "c": {
+          "maxLength": 160,
+          "pattern": "^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hmwh.se/schemas/permansson/application-successor/1/nonlinear.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "model",
+    "descriptor_true_states",
+    "initial_law",
+    "functional_id",
+    "policy_class"
+  ],
+  "properties": {
+    "format": {
+      "const": "Permansson.App.NonlinearStationaryRequest.v1"
+    },
+    "model": {
+      "$ref": "https://hmwh.se/schemas/permansson/application-successor/1/finite_world.v1.schema.json"
+    },
+    "descriptor_true_states": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "minItems": 2,
+        "maxItems": 2,
+        "items": false
+      }
+    },
+    "initial_law": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "state",
+          "mass"
+        ],
+        "properties": {
+          "state": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "minItems": 2,
+            "maxItems": 2,
+            "items": false
+          },
+          "mass": {
+            "type": "string",
+            "pattern": "^(?:0|[1-9][0-9]*|-?[1-9][0-9]*)(?:/[1-9][0-9]*)?$",
+            "maxLength": 160
+          }
+        }
+      }
+    },
+    "functional_id": {
+      "const": "boolean_one_minus_abs_p_minus_two_thirds.v1"
+    },
+    "policy_class": {
+      "const": "all_feasible_deterministic_stationary_selectors"
+    }
+  }
+}

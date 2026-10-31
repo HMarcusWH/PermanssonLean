@@ -1,0 +1,26 @@
+{
+  "format": "Permansson.App.PrivateStageRequest.v1",
+  "labels": {
+    "controls": [
+      "calm",
+      "boost",
+      "hold"
+    ],
+    "nature": [
+      "dry",
+      "wet"
+    ]
+  },
+  "payoff": [
+    [
+      "3",
+      "-1",
+      "1/2"
+    ],
+    [
+      "-2",
+      "4",
+      "1/2"
+    ]
+  ]
+}

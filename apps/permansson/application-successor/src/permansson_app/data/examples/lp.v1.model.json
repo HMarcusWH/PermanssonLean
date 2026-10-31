@@ -1,0 +1,35 @@
+{
+  "format": "Permansson.App.ExactLP.v1",
+  "variables": [
+    "x",
+    "y"
+  ],
+  "objective": {
+    "sense": "maximize",
+    "coefficients": {
+      "x": "1",
+      "y": "1"
+    }
+  },
+  "bounds": {
+    "x": {
+      "lower": "0",
+      "upper": null
+    },
+    "y": {
+      "lower": "0",
+      "upper": null
+    }
+  },
+  "constraints": [
+    {
+      "id": "cap",
+      "coefficients": {
+        "x": "1",
+        "y": "1"
+      },
+      "relation": "<=",
+      "rhs": "1"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "$id": "https://hmwh.se/permansson/recovery/result.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "artifacts": {
+      "type": "object"
+    },
+    "capability": {
+      "enum": [
+        "c10.fixed_six_state.numeric.v1",
+        "c11.stationary_1_to_6.numeric.v1"
+      ]
+    },
+    "empirical_identification": {
+      "const": "NOT_IDENTIFIED"
+    },
+    "format": {
+      "const": "Permansson.App.NumericResult.Reconstructed.v1"
+    },
+    "lean_status": {
+      "const": "NOT_EXECUTED"
+    },
+    "numeric_status": {
+      "const": "EXACT_RATIONAL_VERIFIED"
+    },
+    "scientific_claims_verified": {
+      "const": false
+    }
+  },
+  "required": [
+    "format",
+    "capability",
+    "numeric_status",
+    "lean_status",
+    "scientific_claims_verified",
+    "empirical_identification",
+    "artifacts"
+  ],
+  "type": "object"
+}

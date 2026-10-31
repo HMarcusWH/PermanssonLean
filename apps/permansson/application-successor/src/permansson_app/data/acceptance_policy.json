@@ -1,0 +1,31 @@
+{
+  "format": "Permansson.App.AcceptancePolicy.v1",
+  "required": {
+    "c10.fixed_six_state.numeric.v1": {
+      "numeric_test": [
+        "c10-native-numeric",
+        "c10-independent-check"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    },
+    "c11.stationary_1_to_6.numeric.v1": {
+      "numeric_test": [
+        "c11-periodic",
+        "c11-multichain"
+      ],
+      "source_build": [
+        "source-identity"
+      ],
+      "package": [
+        "wheel-and-sdist"
+      ]
+    }
+  },
+  "security_review_required": true,
+  "owner_activation_required": true
+}

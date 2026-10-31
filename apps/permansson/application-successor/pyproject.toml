@@ -1,0 +1,32 @@
+[build-system]
+# The backend is pinned to the hash-locked version in requirements-build.lock
+# (tests/test_packaging_metadata.py keeps the two in step).
+requires = ["setuptools==84.2.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "permansson-application-successor-recovery"
+version = "0.1.0.dev0"
+description = "Draft Permansson successor application: bounded exact-rational finite profiles with independent checkers and source-bound Lean candidates, plus native C10/C11 replay"
+requires-python = ">=3.12"
+dependencies = ["jsonschema==4.26.0", "referencing==0.37.0"]
+
+[project.optional-dependencies]
+# Kept as a compatibility alias for documented `[full-schema]` installs; the
+# same pins are already mandatory dependencies, so it installs nothing extra.
+full-schema = ["jsonschema==4.26.0", "referencing==0.37.0"]
+semantics = ["rfc8785==0.1.4"]
+
+[project.scripts]
+permansson-app = "permansson_app.__main__:main"
+permansson-governance = "permansson_app.governance_cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+permansson_app = ["data/*.json", "data/schemas/*.json", "data/examples/*.json"]

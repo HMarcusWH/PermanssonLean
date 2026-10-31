@@ -1,0 +1,144 @@
+{
+  "format": "Permansson.App.SemanticDigestVectors.v1",
+  "profile": "Permansson.App.SemanticsJCS.v1",
+  "semantic_tag": "PERMANSSON_APP_SEMANTICS_JCS_V1",
+  "note": "Generated with pinned rfc8785==0.1.4; each canonical byte string is independently re-derived by the restricted encoder in permansson_app.identity and by hashlib in tests. Historical TypedRationalJCS.v1 identities are not affected.",
+  "accept": [
+    {
+      "name": "empty_object",
+      "value": {},
+      "canonical_utf8_hex": "7b7d",
+      "canonical_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "semantic_digest": "f27e147aeb73c220d3f26facaf6119d6df1917e907fcf4f1514cc0d40b883034"
+    },
+    {
+      "name": "safe_integer_bounds",
+      "value": {
+        "counters": [
+          9007199254740991,
+          -9007199254740991,
+          0
+        ]
+      },
+      "canonical_utf8_hex": "7b22636f756e74657273223a5b393030373139393235343734303939312c2d393030373139393235343734303939312c305d7d",
+      "canonical_sha256": "82417bde05e74db3f546330bc6d2e5c7e5ffefb9d59791fdedc41ab705471e30",
+      "semantic_digest": "98545736ac8e8de7e4ec98be34c6ec8c2c988edf2efff0f85c983dec35812eb1"
+    },
+    {
+      "name": "utf16_key_order",
+      "value": {
+        "\ufb33": "dalet",
+        "\ud83d\ude00": "grinning",
+        "\u00f6": "o-umlaut",
+        "\r": "cr",
+        "1": "one"
+      },
+      "canonical_utf8_hex": "7b225c72223a226372222c2231223a226f6e65222c22c3b6223a226f2d756d6c617574222c22f09f9880223a226772696e6e696e67222c22efacb3223a2264616c6574227d",
+      "canonical_sha256": "f7fbd4270357c7f03339015f2dd24e93142f5b82a40c57a60b11874a84fcad11",
+      "semantic_digest": "72c614ae8df8e6304caa7547cd1e053602a5e9e55eb35a56c73a649deed7df39"
+    },
+    {
+      "name": "escapes_and_literals",
+      "value": {
+        "s": "\u20ac$\u000f\nA'B\"\\/\u2028",
+        "l": [
+          null,
+          true,
+          false
+        ]
+      },
+      "canonical_utf8_hex": "7b226c223a5b6e756c6c2c747275652c66616c73655d2c2273223a22e282ac245c75303030665c6e4127425c225c5c2fe280a8227d",
+      "canonical_sha256": "1dc34a7d5ce97b10aed46fb5e96de91ba03f7c0feb5c9565bc22b437b9ae48e7",
+      "semantic_digest": "da746a1532784fbd9713244adc33b88d68803c5286d81079ca0fba3afc972358"
+    },
+    {
+      "name": "ordered_arrays_are_semantic",
+      "value": {
+        "comparison": [
+          "baseline",
+          "menu:1",
+          "menu:2"
+        ],
+        "nature_order": [
+          "committed",
+          "rectangular"
+        ]
+      },
+      "canonical_utf8_hex": "7b22636f6d70617269736f6e223a5b22626173656c696e65222c226d656e753a31222c226d656e753a32225d2c226e61747572655f6f72646572223a5b22636f6d6d6974746564222c2272656374616e67756c6172225d7d",
+      "canonical_sha256": "a32608a05f2118cd76c4e63187b06c91b3535017bc2a991cc69d4d5a4968b020",
+      "semantic_digest": "fb8278963b9ccb360bfdfda7daefdca6c92a7625f136b005cb9df0472bb36a9e"
+    },
+    {
+      "name": "finite_world_rows",
+      "value": {
+        "alpha": [
+          {
+            "s": "s0",
+            "x": "x0",
+            "weights": {
+              "stay": "1/2",
+              "switch": "1/2"
+            }
+          }
+        ],
+        "feasible": [
+          {
+            "s": "s0",
+            "x": "x0",
+            "actions": [
+              "stay",
+              "switch"
+            ]
+          }
+        ],
+        "format": "Permansson.App.FiniteStrategicWorld.v1"
+      },
+      "canonical_utf8_hex": "7b22616c706861223a5b7b2273223a227330222c2277656967687473223a7b2273746179223a22312f32222c22737769746368223a22312f32227d2c2278223a227830227d5d2c226665617369626c65223a5b7b22616374696f6e73223a5b2273746179222c22737769746368225d2c2273223a227330222c2278223a227830227d5d2c22666f726d6174223a225065726d616e73736f6e2e4170702e46696e697465537472617465676963576f726c642e7631227d",
+      "canonical_sha256": "a2b62ce38db0a1ce74235f97d93c4b2511b6d9f9a6508b3d212ec9c992082c69",
+      "semantic_digest": "fe831e7617a460884dbc73dc635dcd77dd711c982dafc55fce660a1c1925f7f5"
+    },
+    {
+      "name": "residence_semantics",
+      "value": {
+        "mode": "retryable",
+        "deadline_semantics": "entry_by",
+        "deadline": 3,
+        "dwell_transitions": 1,
+        "target": [
+          1
+        ],
+        "danger": [],
+        "initial_law": [
+          "1/2",
+          "1/2",
+          "0"
+        ]
+      },
+      "canonical_utf8_hex": "7b2264616e676572223a5b5d2c22646561646c696e65223a332c22646561646c696e655f73656d616e74696373223a22656e7472795f6279222c226477656c6c5f7472616e736974696f6e73223a312c22696e697469616c5f6c6177223a5b22312f32222c22312f32222c2230225d2c226d6f6465223a22726574727961626c65222c22746172676574223a5b315d7d",
+      "canonical_sha256": "2d1c0e054463c7b0c185987c082e19cabb32519cbeeaba0eb5f9ffee8889f594",
+      "semantic_digest": "5b517c5a3ac24be0b8a23396629b510592b2803cdde997e90ff69e3469c58617"
+    }
+  ],
+  "reject": [
+    {
+      "name": "binary_float",
+      "json": "{\"p\":0.5}"
+    },
+    {
+      "name": "exponent_float",
+      "json": "[1e3]"
+    },
+    {
+      "name": "infinity_constant",
+      "json": "[Infinity]"
+    },
+    {
+      "name": "unsafe_integer",
+      "integer": "9007199254740992"
+    },
+    {
+      "name": "negative_unsafe_integer",
+      "integer": "-9007199254740992"
+    }
+  ]
+}
