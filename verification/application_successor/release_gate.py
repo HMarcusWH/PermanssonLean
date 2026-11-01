@@ -338,7 +338,26 @@ def gate(repo: Path, api, run_id: int, attempt: int, inputs: dict, output: Path)
     sums = [(built['wheel']['sha256'], built['wheel']['name']), (built['sdist']['sha256'], built['sdist']['name']),
             (digest(text.encode('utf-8')), 'release-manifest.json')]
     (output / 'SHA256SUMS').write_text(''.join(f'{h}  {n}\n' for h, n in sums), encoding='utf-8')
+    (output / 'release-notes.md').write_text(release_notes(manifest), encoding='utf-8')
     return manifest
+
+
+def release_notes(manifest: dict) -> str:
+    """The release description; generated from the manifest, not an asset."""
+    wheel, sdist = manifest['distributions']['wheel'], manifest['distributions']['sdist']
+    return (f"Permansson application {manifest['version']}: the 26 exact finite profiles of scope "
+            f"`{manifest['scope']}`, numeric only, on Linux CPython 3.12 and 3.13.\n\n"
+            f"- Source: `{manifest['source']['commit']}` (tree `{manifest['source']['tree']}`).\n"
+            f"- Wheel `{wheel['name']}`: `{wheel['sha256']}`.\n"
+            f"- Sdist `{sdist['name']}`: `{sdist['sha256']}`.\n"
+            f"- Qualified on both platforms against the installed wheel; evidence records: "
+            f"{manifest['evidence']['records']} (see `release-manifest.json`).\n"
+            f"- Release authority: owner-engineering policy, activated by {manifest['activation']['actor']} "
+            f"(run {manifest['activation']['run_id']}). **No independent security review is claimed.**\n\n"
+            "Every output still reports `lean_status=NOT_EXECUTED`, `scientific_claims_verified=false` and "
+            "`empirical_identification=NOT_IDENTIFIED`. This release is not mathematical certification, "
+            "empirical identification or publication of results. Check the files with "
+            "`sha256sum -c SHA256SUMS`.\n")
 
 
 def verify_published(api, tag: str, manifest_path: Path) -> dict:

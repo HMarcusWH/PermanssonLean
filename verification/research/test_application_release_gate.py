@@ -206,6 +206,10 @@ class ReleaseGateTests(unittest.TestCase):
         self.assertIs(manifest['assessment']['authorized_release'], False)
         self.assertEqual(manifest['evidence']['records'], 2 * 26 * 5)
         out = self.td / 'out'
+        notes = (out / 'release-notes.md').read_text(encoding='utf-8')
+        self.assertIn('No independent security review is claimed', notes)
+        self.assertIn('lean_status=NOT_EXECUTED', notes)
+        self.assertIn(manifest['distributions']['wheel']['sha256'], notes)
         sums = (out / 'SHA256SUMS').read_text(encoding='utf-8').splitlines()
         self.assertEqual(len(sums), 3)
         for line in sums:

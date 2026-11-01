@@ -10454,7 +10454,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI",
-        "sha256": "fc50c565d350f2e0c1e21b8b6c100f1d6f9f29ff1f6f128f400ce94c277d2e49",
+        "sha256": "261a8fee75fe5ebd5698373ea982ec31b40b5b6651272413a38514982896107a",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17753,7 +17753,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI",
-        "sha256": "73c4ec8027b077d82b5fb610b288d33cec55db181897fb2830a0ab12a60aca7d",
+        "sha256": "94b2d070f787d08c01a99b30c853201321ede62af205878c91fa9062481ccc3d",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
