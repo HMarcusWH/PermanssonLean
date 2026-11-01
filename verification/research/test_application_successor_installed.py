@@ -79,9 +79,11 @@ class InstalledQualificationTest(unittest.TestCase):
 
             key = gate.QUALIFY_JOBS[platform][0]
             out = work / 'qualification'
+            # Relative --build and --output, from another working directory:
+            # the runner must resolve them before its subprocesses change directory.
             proc = subprocess.run([sys.executable, '-B', BASE / 'verification/application_successor/'
-                                   'check_installed_package.py', '--repo', repo, '--build', build,
-                                   '--output', out, '--platform', platform],
+                                   'check_installed_package.py', '--repo', repo, '--build', 'build',
+                                   '--output', 'qualification', '--platform', platform], cwd=work,
                                   env={**env, 'GITHUB_RUN_ID': str(RUN), 'GITHUB_RUN_ATTEMPT':
                                        str(ATTEMPT), 'GITHUB_JOB': key},
                                   capture_output=True, text=True, timeout=3600)

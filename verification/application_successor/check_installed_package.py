@@ -158,7 +158,8 @@ json.dump({'ran': result.testsRun, 'loader_errors': [str(e)[:400] for e in loade
 def qualify(repo: Path, build: Path, output: Path, *, python: str = sys.executable,
             platform: str | None = None) -> dict:
     """Qualify the built wheel on `python`; write results.json, evidence_records.json, qualification.json."""
-    repo = repo.resolve()
+    # Subprocesses run in a temporary directory: resolve every path first.
+    repo, build, output = repo.resolve(), build.resolve(), output.absolute()
     app = repo / APP_REL
     if output.exists():
         raise QualificationError(f'{output} exists; choose a new directory')
