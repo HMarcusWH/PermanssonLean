@@ -72,6 +72,24 @@ def _owner_approved_changes(head, git):
         raise TransitionError(str(exc)) from exc
 
 
+def _owner_approved_additions(head, paths, git):
+    """Paths of the owner-approved added workflows (archive successor policy
+    v2 committed at head) installed at exactly their approved blob; they are
+    not part of the original 25 and are set aside."""
+    import archive_successor_approval_v1 as approval
+    try:
+        policy=raw(head,approval.POLICY_V2_PATH,git=git)
+    except Exception:  # noqa: BLE001 - absent policy v2: nothing is set aside
+        return set()
+    try:
+        added=approval.approved_added_workflows(policy)
+    except approval.ApprovalError as exc:
+        raise TransitionError(str(exc)) from exc
+    return {".github/workflows/"+name for name,blob in added.items()
+            if ".github/workflows/"+name in paths
+            and git("rev-parse",head+":.github/workflows/"+name)==blob}
+
+
 def digest(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -89,6 +107,8 @@ def preview(head, *, git=git, old_audit=None):
     # installed-30 tree, even if an injected old audit would claim otherwise.
     active=git("ls-tree","-r","--name-only",head,"--",".github/workflows")
     original_paths=active.splitlines()
+    added=_owner_approved_additions(head,set(original_paths),git)
+    original_paths=[p for p in original_paths if p not in added]
     need(len(original_paths)==25
          and len(set(original_paths))==25
          and all(re.fullmatch(r"\.github/workflows/[A-Za-z0-9_.-]+\.ya?ml",p)

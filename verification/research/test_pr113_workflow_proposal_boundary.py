@@ -15,10 +15,18 @@ PROPOSALS = ROOT / "docs/operations/pr113_unapproved_workflows"
 ACTIVE = ".github/workflows/"
 
 
+def owner_added():
+    # Owner-approved added workflows (archive successor policy v2, at exactly
+    # their approved blobs) are outside both PR113 profiles.
+    from pr113_tooling_migration import owner_added_workflow_names
+    return {ACTIVE+name for name in owner_added_workflow_names(ROOT)}
+
+
 def active30():
     sources=[name for name in git("ls-tree","-r","--name-only","HEAD","--",
                                   ".github/workflows").splitlines()
-             if name.startswith(ACTIVE) and name.endswith((".yml",".yaml"))]
+             if name.startswith(ACTIVE) and name.endswith((".yml",".yaml"))
+             and name not in owner_added()]
     if len(sources)==25:
         return None
     if len(sources)!=30:
@@ -51,11 +59,13 @@ class WorkflowProposalBoundary(unittest.TestCase):
             self.assertFalse(profile["independent_security_review"])
             return
         from verification.integrity.workflow_contract import APPROVED_WORKFLOWS
+        added = owner_added()
         active = [x for x in git("ls-tree", "-r", "--name-only", "HEAD",
                                   "--", ".github/workflows").splitlines()
-                  if x.startswith(ACTIVE)]
+                  if x.startswith(ACTIVE) and x not in added]
         self.assertEqual(len(active), 25)
-        self.assertEqual({x.removeprefix(ACTIVE) for x in active},
+        self.assertEqual({x.removeprefix(ACTIVE) for x in active} |
+                         {x.removeprefix(ACTIVE) for x in added},
                          set(APPROVED_WORKFLOWS))
 
     def test_all_five_staged_proposals_unapproved_and_byte_identical(self):

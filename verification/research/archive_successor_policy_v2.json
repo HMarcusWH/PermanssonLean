@@ -1,0 +1,48 @@
+{
+  "format": "Permansson.ArchiveSuccessor.OwnerEngineeringPolicy.v2",
+  "authority": "OWNER_ENGINEERING_POLICY",
+  "owner": "HMarcusWH",
+  "independent_security_review": false,
+  "effective_by": "the owner's merge into main of the change that adds or edits this file",
+  "statement": "The repository owner adopts this narrow successor contract for the archive-reproducibility check. It keeps the contract of policy v1 for the existing 25 workflows and approves exactly one added workflow, .github/workflows/application-release.yml, at exactly its approved blob; the two integrity files are re-pinned at the blobs that add that workflow to the reviewed workflow contract. It is an owner engineering decision. It is not an independent security review, not an approval of PR #113, not mathematical certification and not release acceptance.",
+  "scope": "archive-reproducibility, existing 25-workflow profile plus the owner-approved application release workflow",
+  "historical_T": "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388",
+  "accepted_base_B": "17c315f7df7abf457eb94d393bd526d46da6f6f4",
+  "archival_tree_at_B": "69425e17917f8d20ed77fea07d2ec18815a4d1a5",
+  "workflow_count": 26,
+  "approved_tooling_changes": [
+    {
+      "path": "verification/integrity/tests/test_workflow.py",
+      "T_blob": "66ba674710cae286605baf3eee570ee1d7fcf282",
+      "approved_blob": "e25c8bbf9c0df4563ffd9484529fa4b213378897"
+    },
+    {
+      "path": "verification/integrity/workflow_contract.py",
+      "T_blob": "7c1b26559dc30c2f37e8165983ce71094b205cde",
+      "approved_blob": "308becfb09f22112dc3db9ee4a8991237ff1551e"
+    }
+  ],
+  "preactivation_25_head": "5189f0c4a0db7535d57a9ff2a7aef6a3e76191b6",
+  "approved_workflow_changes": [
+    {
+      "path": ".github/workflows/research-integrity.yml",
+      "preactivation_blob": "19bab92285ab2c981b0a1200c03024f7d022e31c",
+      "approved_blob": "beb8155b2dfe1187e2e9f5501afe59cbc18a72f1"
+    }
+  ],
+  "approved_added_workflows": [
+    {
+      "path": ".github/workflows/application-release.yml",
+      "approved_blob": "7bf1988292bc6d54b585b21b18c613638079dd6d"
+    }
+  ],
+  "historical_record": {
+    "accepted_base_B_research_integrity_run": 39513915824,
+    "accepted_base_B_research_integrity_conclusion": "success",
+    "pr113_final_head": "117f4905f31525a1c094dc1f3862847c67423a63",
+    "pr113_final_archive_reproducibility_run": 40778332081,
+    "pr113_final_archive_reproducibility_conclusion": "failure",
+    "pr113_final_archive_reproducibility_error": "E_TOOLING_CLOSURE",
+    "note": "Recorded as it happened. This contract neither rewrites nor depends on these results."
+  }
+}

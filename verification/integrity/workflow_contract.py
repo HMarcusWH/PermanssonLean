@@ -31,9 +31,17 @@ APPROVED_WORKFLOW_SHA256 = "38a656410a38e3931566846bc76237958080df06786448cd9145
 # from required contexts; only the approved application profile expands a name
 # matrix to the two required application contexts. This is candidate-owned
 # reviewed configuration, not independent authentication of its own review.
+# The application release workflow (owner-engineering archive successor
+# contract v1, policy v2) is the one added workflow: it runs only on the
+# owner's manual dispatch, never on pull requests or pushes, so it cannot
+# produce a required context; its job names avoid every required context,
+# and only its publish job may write repository contents.
+RELEASE_WORKFLOW = "application-release.yml"
+RELEASE_JOBS = {"release-build", "release-qualify-py312", "release-qualify-py313", "release-gate", "release-publish"}
 APPROVED_WORKFLOWS = {
     "a2-smoke.yml": "9ac3460a79cf861b43d5329d06a03650cc8c4de09d24cd677849eb1772c73a19",
     "a3-contractive-smoke.yml": "b7e3b723bb25e5287bdd60ee1470fabeeaac318617cca4f9ed1931c5a01c7931",
+    RELEASE_WORKFLOW: "dbaf5bd0318311899e6ede98de32acc9ed3319e706d30ce6159e9ef5e90d1ac8",
     "application.yml": "1abb20c60b1eeb7fd7eae51048aa7e3729a64a652772760bc4f272f57d3d5da4",
     "b2-smoke.yml": "3204afca3fb58bc72f6c90bfe6ca2b17e06b9b6c2b500b6087ee4c66ca7baebc",
     "c-exit-random-entry-smoke.yml": "499a5c76ecff1ab3b891df24477b249f9809b13201e9cee6b0a84250b3087536",
@@ -130,6 +138,7 @@ def validate_workflow_set(workflows):
             reject("Legacy source binding must propagate its real exit status")
         if "      - name: Preserve required-check source context\n        if: always()\n" not in text:
             reject("Legacy required contexts must retain their actual source-binding report")
+    validate_release_workflow(workflows[RELEASE_WORKFLOW], reject)
     for name in sorted(n for n in workflows if n.startswith("pr113-")):
         optional = workflows[name]
         if (optional.count("\npermissions:\n  contents: read\n") != 1 or
@@ -142,6 +151,39 @@ def validate_workflow_set(workflows):
             reject("Complete reviewed workflow set digest differs: " + name)
     return {"workflows": len(workflows), "legacy_contexts": sorted(LEGACY_CONTEXTS),
             "required_context_names_unique": "reviewed complete payload/set pins; not a YAML grep"}
+
+
+def validate_release_workflow(text, reject):
+    """The added release workflow: owner dispatch only, no required context, one writer."""
+    if not isinstance(text, str):
+        reject("Workflow profile must be canonical text")
+    head = text.split("\njobs:\n", 1)[0]
+    if ("\non:\n  workflow_dispatch:\n" not in head
+            or re.search(r"^  (?:pull_request|pull_request_target|push|schedule|workflow_run|workflow_call|"
+                         r"repository_dispatch|release|issue_comment)\s*:", head, re.M)
+            or "pull_request_target" in text):
+        reject("The release workflow runs only on a manual dispatch")
+    if head.count("\npermissions:\n  contents: read\n") != 1 or "self-hosted" in text:
+        reject("The release workflow token is read-only by default and runs on hosted runners")
+    if "\njobs:\n" not in text:
+        reject("Missing jobs")
+    jobs = text.split("\njobs:\n", 1)[1]
+    names = re.findall(r"^  ([a-z0-9-]+):$", jobs, re.M)
+    contexts = set(JOBS) | set(LEGACY_CONTEXTS) | {"application-contract"}
+    display = set(re.findall(r"^    name: (.+)$", jobs, re.M))
+    if (len(names) != len(set(names)) or set(names) != RELEASE_JOBS or (set(names) | display) & contexts
+            or len(display) != len(RELEASE_JOBS)):
+        reject("Release job identifiers or names differ from the reviewed set or reuse a required context")
+    bodies = re.split(r"^  ([a-z0-9-]+):\n", jobs, flags=re.M)
+    writers = [bodies[i] for i in range(1, len(bodies), 2) if "contents: write" in bodies[i + 1]]
+    if writers != ["release-publish"] or text.count("contents: write") != 1:
+        reject("Only the release publish job may write repository contents")
+    if re.search(r"\$\{\{\s*secrets[.\[]", text) or "id-token" in text or "actions: write" in text:
+        reject("The release workflow receives no repository secrets and no further token grants")
+    for name, pin in re.findall(r"uses:\s*([^@\s]+)@([^\s]+)", text):
+        if ACTION_PINS.get(name) != pin:
+            reject("Unreviewed action or mutable action reference")
+    return {"release_jobs": sorted(names)}
 
 
 def validate_workflow(text, workflows=None):

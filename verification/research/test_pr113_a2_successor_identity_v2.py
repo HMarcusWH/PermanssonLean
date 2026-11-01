@@ -6,6 +6,7 @@ import subprocess
 import copy
 import archive_successor_approval_v1 as approval
 import pr113_workflow_profile_v2 as workflow_profile
+from pr113_tooling_migration import owner_added_workflow_names
 from unittest import mock
 from pathlib import Path
 import localized_prefix_support as frozen
@@ -263,7 +264,11 @@ class SuccessorA2Active30Tests(unittest.TestCase):
         self.assertEqual(len(contract["expected_workflow_git_blobs"]),30)
         self.assertEqual(len(successor.PINNED_MODIFIED_PROVIDERS),12)
         intended={}
-        future=dict(current)
+        # Owner-approved added workflows (archive successor policy v2, at
+        # exactly their approved blobs) are outside PR113's reviewed 30.
+        owner_added={".github/workflows/"+name
+                     for name in owner_added_workflow_names(root,checked)}
+        future={p:v for p,v in current.items() if p not in owner_added}
         def stage_oid(path,recorded):
             raw=git(root,"show",checked+":"+path)
             git_oid=git(root,"rev-parse",checked+":"+path).decode().strip()
@@ -349,7 +354,7 @@ class SuccessorA2Active30Tests(unittest.TestCase):
             if p.startswith(".github/workflows/") and p.endswith((".yml",".yaml"))]),
             30)
         if phase=="active":
-            self.assertEqual(current,future,
+            self.assertEqual({p:v for p,v in current.items() if p not in owner_added},future,
                 "actual active 30-tree differs from reviewed virtual 30-tree")
         audited=successor.reconcile(baseline,future)
         self.assertEqual(len(audited["pinned_successor_provider_paths"]),12)

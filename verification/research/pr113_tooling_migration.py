@@ -16,6 +16,8 @@ import re
 import subprocess
 import sys
 
+import archive_successor_approval_v1 as approval
+
 ROOT = Path(__file__).resolve().parents[2]
 T = "71cc34fa0bc4b639c05d2ec5f39f0b88afd56388"
 B = "17c315f7df7abf457eb94d393bd526d46da6f6f4"
@@ -73,6 +75,45 @@ def exact_tree(root: Path, rev: str, *prefixes: str) -> dict[str, tuple[str, str
     return result
 
 
+def owner_added_workflows(root: Path, rev: str,
+                          tree: dict[str, tuple[str, str]]) -> dict[str, tuple[str, str]]:
+    """The owner-approved added workflows installed in `tree`, as {path: (mode, blob)}.
+
+    The archive successor policy v2 committed at `rev` approves added
+    workflows, each at exactly one blob (the application release workflow).
+    The PR #113 checks reason about the original 25 workflows and the 30 that
+    PR #113 would install; an approved addition belongs to neither, so they
+    set aside exactly the additions present at their approved blob. Any other
+    extra, renamed or changed workflow is not set aside and still fails them.
+    Without a committed policy v2 nothing is set aside. Whether every
+    approved addition is installed is the archive successor gate's check.
+    """
+    if not exact_tree(root, rev, approval.POLICY_V2_PATH):
+        return {}
+    try:
+        approved = approval.approved_added_workflows(
+            git(root, "show", f"{rev}:{approval.POLICY_V2_PATH}"))
+    except approval.ApprovalError as exc:
+        raise ToolingMigrationError(str(exc)) from exc
+    paths = {".github/workflows/" + name: blob for name, blob in approved.items()}
+    return {path: tree[path] for path, blob in paths.items()
+            if tree.get(path) == ("100644", blob)}
+
+
+def without_owner_added_workflows(root: Path, rev: str,
+                                  tree: dict[str, tuple[str, str]]) -> dict[str, tuple[str, str]]:
+    """`tree` without the owner-approved added workflows (see owner_added_workflows)."""
+    added = owner_added_workflows(root, rev, tree)
+    return {path: entry for path, entry in tree.items() if path not in added}
+
+
+def owner_added_workflow_names(root: Path, rev: str = "HEAD") -> frozenset[str]:
+    """File names of the owner-approved added workflows installed at `rev`."""
+    tree = exact_tree(root, rev, ".github/workflows")
+    return frozenset(path.removeprefix(".github/workflows/")
+                     for path in owner_added_workflows(root, rev, tree))
+
+
 def audit(root: Path, head: str, *,
           historical_t: str = T, release_base: str = B) -> dict:
     root = Path(root).resolve()
@@ -126,7 +167,9 @@ def audit(root: Path, head: str, *,
                      if current[path] != original[path])
     require(set(changed) == EXPECTED_CHANGES,
             "Unexpected canonical T-to-H tooling divergence: " + repr(changed))
-    workflows = exact_tree(root, head, ".github/workflows")
+    installed = exact_tree(root, head, ".github/workflows")
+    added = owner_added_workflows(root, head, installed)
+    workflows = {path: entry for path, entry in installed.items() if path not in added}
     require(len(workflows) == 25 and
             all(path.endswith((".yml", ".yaml"))
                 and path.startswith(".github/workflows/")
@@ -142,6 +185,9 @@ def audit(root: Path, head: str, *,
         "historical_manifest_sha256": sha(manifest_raw),
         "historical_packaged_tooling_files_verified": len(rows),
         "current_workflow_file_count": len(workflows),
+        "owner_approved_added_workflows": [
+            {"path": path, "blob": blob} for path, (mode, blob) in sorted(added.items())
+        ],
         "changed_canonical_tooling": [
             {"path": path,
              "T_blob": original[path][1], "H_blob": current[path][1]}

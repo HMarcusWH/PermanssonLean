@@ -1,5 +1,8 @@
 """Owner-engineering archive successor contract v1: every boundary fails closed.
 
+The gate reads policy v2 (the 25-workflow contract plus the owner-approved
+application release workflow); the v1 record stays as history and still parses.
+
 Real-repository tests audit the committed T/B/C objects, the policy and the
 installed research-integrity workflow. Report, policy and orchestration tests
 use SYNTHETIC reports shaped like the original verifier's output (see the
@@ -92,7 +95,15 @@ class PolicyTests(unittest.TestCase):
             "other owner": lambda p: p.update(owner="someone-else"),
             "wrong T": lambda p: p.update(historical_T="0" * 40),
             "wrong B": lambda p: p.update(accepted_base_B="0" * 40),
-            "26 workflows": lambda p: p.update(workflow_count=26),
+            "25 workflows": lambda p: p.update(workflow_count=25),
+            "27 workflows": lambda p: p.update(workflow_count=27),
+            "no additions": lambda p: p.update(approved_added_workflows=[]),
+            "addition is the archive workflow": lambda p: p["approved_added_workflows"][0].update(
+                path=".github/workflows/research-integrity.yml"),
+            "addition outside workflows": lambda p: p["approved_added_workflows"][0].update(path="release.yml"),
+            "duplicate addition": lambda p: p["approved_added_workflows"].append(dict(p["approved_added_workflows"][0])),
+            "short addition blob": lambda p: p["approved_added_workflows"][0].update(approved_blob="abc"),
+            "v1 format with additions": lambda p: p.update(format=gate.POLICY_FORMAT),
             "extra field": lambda p: p.update(approved_by_reviewer="x"),
             "missing field": lambda p: p.pop("effective_by"),
             "third change": lambda p: p["approved_tooling_changes"].append(
@@ -117,6 +128,15 @@ class PolicyTests(unittest.TestCase):
                 gate.check_policy(policy)
             self.assertEqual(raised.exception.code, "E_SUCCESSOR_POLICY")
 
+    def test_the_v1_record_stays_a_valid_history(self):
+        policy, _ = gate.load_policy(gate.POLICY.with_name("archive_successor_policy_v1.json"))
+        self.assertEqual((policy["format"], policy["workflow_count"]), (gate.POLICY_FORMAT, 25))
+        self.assertEqual(gate.added_workflows(policy), {})
+        self.assertEqual(self.policy["format"], gate.POLICY_FORMAT_V2)
+        self.assertEqual(self.policy["approved_workflow_changes"], policy["approved_workflow_changes"])
+        self.assertEqual(self.policy["historical_record"], policy["historical_record"])
+        self.assertEqual(set(gate.added_workflows(self.policy)), {".github/workflows/application-release.yml"})
+
     def test_duplicate_keys_are_rejected(self):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "policy.json"
@@ -139,7 +159,9 @@ class RealSourceTests(unittest.TestCase):
     def test_committed_head_satisfies_the_source_audit(self):
         self.require_committed()
         source = gate.source_audit(ROOT, self.head, self.policy)
-        self.assertEqual(source["workflow_count"], 25)
+        self.assertEqual(source["workflow_count"], 26)
+        self.assertEqual([row["path"] for row in source["approved_added_workflows"]],
+                         [".github/workflows/application-release.yml"])
         self.assertEqual(source["historical_packaged_tooling_files_verified"], 35)
         self.assertEqual(source["archival_tree"], self.policy["archival_tree_at_B"])
         self.assertEqual({row["path"] for row in source["approved_closure_delta"]}, set(tooling.EXPECTED_CHANGES))
@@ -158,6 +180,15 @@ class RealSourceTests(unittest.TestCase):
             with self.subTest(workflow_field=field), self.assertRaises(HardeningError) as raised:
                 gate.source_audit(ROOT, self.head, policy)
             self.assertEqual(raised.exception.code, "E_SUCCESSOR_DELTA")
+        policy = deepcopy(self.policy)
+        policy["approved_added_workflows"][0]["approved_blob"] = "d" * 40
+        with self.subTest("added workflow blob"), self.assertRaises(HardeningError) as raised:
+            gate.source_audit(ROOT, self.head, policy)
+        self.assertEqual(raised.exception.code, "E_SUCCESSOR_DELTA")
+        # The superseded v1 record cannot approve the current source.
+        v1, _ = gate.load_policy(gate.POLICY.with_name("archive_successor_policy_v1.json"))
+        with self.subTest("v1 record"), self.assertRaises(HardeningError):
+            gate.source_audit(ROOT, self.head, v1)
 
     def test_wrong_candidate_or_archival_tree_is_rejected(self):
         with self.assertRaises(HardeningError) as raised:
@@ -184,7 +215,7 @@ class RealSourceTests(unittest.TestCase):
         workflows = {p.name: p.read_text(encoding="utf-8") for p in (ROOT / ".github/workflows").iterdir()
                      if p.suffix in {".yml", ".yaml"}}
         self.assertEqual(text.count("        run: " + COMMAND + "\n"), 1)
-        self.assertEqual(validate_workflow(text, workflows)["workflows"], 25)
+        self.assertEqual(validate_workflow(text, workflows)["workflows"], 26)
         old = ('python -B -m verification.archive.offline_smoke --repo . --candidate "$GITHUB_SHA" '
                '--supplement archival/v0.2.0/supplement-1 --scratch "$RUNNER_TEMP/archive-clean" '
                '--report "$RUNNER_TEMP/archive-replay.json"')

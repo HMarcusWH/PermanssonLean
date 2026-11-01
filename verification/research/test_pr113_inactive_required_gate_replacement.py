@@ -8,10 +8,14 @@ import unittest
 ROOT=Path(__file__).resolve().parents[2]
 STAGED=ROOT/"docs/operations/pr113_required_gate_replacement_unapproved"
 from pr113_workflow_profile_v2 import PREACTIVATION_HEAD, audit as audit_v2
+from pr113_tooling_migration import owner_added_workflow_names
 
 
 def active30():
-    count=len(list((ROOT/".github/workflows").glob("*.yml")))
+    # Owner-approved added workflows (archive successor policy v2, at exactly
+    # their approved blobs) are outside both PR113 profiles.
+    count=(len(list((ROOT/".github/workflows").glob("*.yml")))
+           -len(owner_added_workflow_names(ROOT)))
     if count not in (25,30):
         raise AssertionError("unexpected workflow count")
     return count==30

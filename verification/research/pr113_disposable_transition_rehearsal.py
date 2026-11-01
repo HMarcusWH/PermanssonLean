@@ -27,6 +27,7 @@ from pr113_workflow_profile_v2 import (
     FULL_MANIFEST, PROPOSAL_MANIFEST, CONTRACT,
 )
 from pr113_tooling_migration_v2 import audit as tooling_audit
+from pr113_tooling_migration import owner_added_workflow_names
 from pr113_a2_successor_identity_v2 import audit as a2_audit, PR113_BASE
 
 # Executable checkouts must remain free of untracked import bytecode.
@@ -525,8 +526,13 @@ def execute(head,output):
         need(not worktree.exists(),"temporary checkout destination occupied")
         run(ROOT,"worktree","add","--detach",str(worktree),head,seconds=180)
         try:
+            # Owner-approved added workflows (archive successor policy v2,
+            # each at exactly its approved blob, such as the application
+            # release workflow) are not part of PR113's reviewed 25 or 30.
+            added=sorted(owner_added_workflow_names(worktree,head))
             if phase=="staged":
-                need(len(list((worktree/".github/workflows").glob("*.yml")))==25,
+                need(len(list((worktree/".github/workflows").glob("*.yml")))
+                         -len(added)==25,
                      "historical staged checkout must contain exactly 25 workflows")
                 for path,(stage,oid) in sorted(sources.items()):
                     _,raw=object_bytes(ROOT,head,stage)
@@ -539,13 +545,21 @@ def execute(head,output):
                         ).hexdigest()==oid,
                         "disposable source write not exactly staged Git blob")
                 run(worktree,"add","--",*sorted(sources))
+                # The rehearsal is of PR113's own reviewed transition, whose
+                # staged 30-workflow contract does not name the owner-approved
+                # additions; the disposable checkout leaves them out. A real
+                # activation must carry them into its contract.
+                if added:
+                    run(worktree,"rm","-q","--",
+                        *(".github/workflows/"+name for name in added))
                 run(worktree,"commit","--no-gpg-sign",
                     "-m","PR113 DISPOSABLE 30-source review rehearsal only",
                     author=True,seconds=180)
                 C=scalar(worktree,"rev-parse","HEAD")
                 need(C!=head,"25-to-30 rehearsal did not produce a new Git tree")
             else:
-                need(len(list((worktree/".github/workflows").glob("*.yml")))==30,
+                need(len(list((worktree/".github/workflows").glob("*.yml")))
+                         -len(added)==30,
                      "activated disposable worktree must contain 30 workflows")
                 C=scalar(worktree,"rev-parse","HEAD")
                 need(C==head,"active30 direct source checkout must be exact H")

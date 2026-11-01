@@ -6,8 +6,9 @@ import unittest
 from verification.integrity.reports import HardeningError
 from verification.integrity.run_tests import RecordedResult, validate_mapping, _validate_mapping, validate_result
 from verification.integrity.tests._fixtures import GitFixture
-from verification.integrity.workflow_contract import (LEGACY_COMMAND, LEGACY_FIRST_WORK,
-                                                     load_workflows, validate_workflow)
+from verification.integrity.workflow_contract import (LEGACY_COMMAND, LEGACY_FIRST_WORK, RELEASE_WORKFLOW,
+                                                     load_workflows, validate_release_workflow,
+                                                     validate_workflow)
 
 
 class WorkflowTests(unittest.TestCase):
@@ -32,7 +33,7 @@ class WorkflowTests(unittest.TestCase):
     def test_ci_06_filters_and_skip_paths_forbidden(self):
         # This is the production gate, bound to canonical HEAD. A changed
         # profile must be committed before a full suite can certify it.
-        self.assertEqual(25, validate_workflow(self.text)["workflows"])
+        self.assertEqual(26, validate_workflow(self.text)["workflows"])
         self.assertEqual(3, len(self.checked(self.text)["contexts"]))
         for snippet in ("    paths: ['docs/**']\n", "    paths-ignore: ['release/**']\n",
                         "    if: false\n", "    needs: absent\n", "    continue-on-error: true\n"):
@@ -48,6 +49,35 @@ class WorkflowTests(unittest.TestCase):
                     self.checked(candidate)
                 self.assertEqual("E_WORKFLOW_CONTRACT", raised.exception.code)
                 self.assertIn("complete reviewed workflow digest", str(raised.exception))
+
+    def check_release_workflow_is_dispatch_only_with_one_writer(self):
+        # The added application release workflow can never produce a required
+        # context, and only its publish job may write repository contents.
+        # Called from the registered permission control below, so the
+        # archived test-coverage registry stays unchanged.
+        text = self.workflows[RELEASE_WORKFLOW]
+        def reject(message):
+            raise HardeningError("E_WORKFLOW_CONTRACT", message)
+        self.assertEqual(5, len(validate_release_workflow(text, reject)["release_jobs"]))
+        dispatch = "on:\n  workflow_dispatch:\n"
+        mutations = {
+            "push trigger": text.replace(dispatch, "on:\n  push:\n    branches: [main]\n  workflow_dispatch:\n"),
+            "required job id": text.replace("  release-build:\n", "  build:\n"),
+            "required job name": text.replace("name: release gate", "name: research"),
+            "second writer": text.replace("    permissions:\n      contents: read\n      actions: read\n",
+                                          "    permissions:\n      contents: write\n      actions: read\n", 1),
+            "repository secret": text.replace("${{ github.token }}", "${{ secrets.TOKEN }}", 1),
+            "mutable action": text.replace("actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+                                           "actions/checkout@v4", 1),
+            "writable default token": text.replace("permissions:\n  contents: read\n\njobs:",
+                                                   "permissions:\n  contents: write\n\njobs:"),
+        }
+        for name, mutated in mutations.items():
+            with self.subTest(name):
+                self.assertNotEqual(text, mutated)
+                self.rejected(lambda: validate_release_workflow(mutated, reject), "E_WORKFLOW_CONTRACT")
+                changed = dict(self.workflows, **{RELEASE_WORKFLOW: mutated})
+                self.rejected(lambda: self.checked(self.text, changed), "E_WORKFLOW_CONTRACT")
 
     def test_ci_07_discovery_reports_and_skips_fail_closed(self):
         registry = {"cases": [{"id": "CI-07", "suite": "workflow", "level": "unit", "methods": ["x.test"]}]}
@@ -109,6 +139,7 @@ class WorkflowTests(unittest.TestCase):
                 candidate = self.text.replace("permissions:\n  contents: read\n",
                                               "permissions:\n  contents: read\n" + grant, 1)
                 self.rejected(lambda: self.checked(candidate), "E_WORKFLOW_CONTRACT")
+        self.check_release_workflow_is_dispatch_only_with_one_writer()
 
     def test_shell_background_and_redirection_rejected(self):
         self.checked(self.text)
@@ -177,7 +208,7 @@ class WorkflowTests(unittest.TestCase):
 
     def test_required_workflow_rejects_dispatch(self):
         checked = self.checked(self.text)
-        self.assertEqual(25, checked["workflows"])
+        self.assertEqual(26, checked["workflows"])
         self.assertEqual(5, len(checked["legacy_contexts"]))
         candidate = self.text.replace("on:\n", "on:\n  workflow_dispatch:\n", 1)
         self.rejected(lambda: self.checked(candidate), "E_WORKFLOW_CONTRACT")
@@ -234,7 +265,7 @@ class WorkflowTests(unittest.TestCase):
         (checkout / "duplicate-required.yaml").write_bytes(b"jobs: {build: {}}\n")
         canonical = load_workflows(fixture.root)
         self.assertEqual(self.workflows, canonical)
-        self.assertEqual(25, self.checked(self.text, canonical)["workflows"])
+        self.assertEqual(26, self.checked(self.text, canonical)["workflows"])
         path = b".github/workflows/lean.yml"
         variants = (
             {path: ("100644", self.workflows["lean.yml"].replace("\n", "\r\n").encode())},
