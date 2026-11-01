@@ -1,0 +1,182 @@
+name: Application release
+
+# Releases the successor application's numeric scope (26 exact profiles,
+# Linux CPython 3.12 and 3.13). Only the owner dispatches it, on main, with the
+# version to release; under the owner-engineering release policy that dispatch
+# is the release activation (no independent security review is claimed). The
+# release gate checks the dispatch, the jobs and every artifact through the
+# GitHub API. See apps/permansson/application-successor/docs/RELEASE_ACCEPTANCE.md.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release; must equal the package version'
+        required: true
+        type: string
+      publish:
+        description: 'Publish the GitHub release after the gate passes'
+        required: true
+        type: boolean
+        default: false
+
+concurrency:
+  group: application-release
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  release-build:
+    name: release build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Install the hash-locked build tools
+        run: |
+          python -m venv "$RUNNER_TEMP/build-tools"
+          "$RUNNER_TEMP/build-tools/bin/python" -m pip install --disable-pip-version-check --no-input --require-hashes -r apps/permansson/application-successor/requirements-build.lock
+      - name: Build the wheel and sdist twice
+        run: |
+          for build in one two; do
+            python -B apps/permansson/application-successor/scripts/build_distributions.py --output "$RUNNER_TEMP/release-build/$build" --python "$RUNNER_TEMP/build-tools/bin/python"
+          done
+      - name: Keep the builds
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-build
+          path: ${{ runner.temp }}/release-build/
+          if-no-files-found: error
+          retention-days: 90
+
+  release-qualify-py312:
+    name: release qualify linux-cpython-3.12
+    needs: release-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Fetch the build through the GitHub API
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -B verification/application_successor/release_gate.py fetch --run-id "$GITHUB_RUN_ID" --name release-build --output "$RUNNER_TEMP/release-build"
+      - name: Qualify the installed wheel
+        run: python -B verification/application_successor/check_installed_package.py --repo . --build "$RUNNER_TEMP/release-build" --output "$RUNNER_TEMP/qualification" --platform linux-cpython-3.12
+      - name: Keep the qualification
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: qualification-linux-cpython-3.12
+          path: ${{ runner.temp }}/qualification/
+          if-no-files-found: error
+          retention-days: 90
+
+  release-qualify-py313:
+    name: release qualify linux-cpython-3.13
+    needs: release-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Fetch the build through the GitHub API
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -B verification/application_successor/release_gate.py fetch --run-id "$GITHUB_RUN_ID" --name release-build --output "$RUNNER_TEMP/release-build"
+      - name: Qualify the installed wheel
+        run: python -B verification/application_successor/check_installed_package.py --repo . --build "$RUNNER_TEMP/release-build" --output "$RUNNER_TEMP/qualification" --platform linux-cpython-3.13
+      - name: Keep the qualification
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: qualification-linux-cpython-3.13
+          path: ${{ runner.temp }}/qualification/
+          if-no-files-found: error
+          retention-days: 90
+
+  release-gate:
+    name: release gate
+    needs: [release-build, release-qualify-py312, release-qualify-py313]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Gate the release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -B verification/application_successor/release_gate.py gate --repo . --run-id "$GITHUB_RUN_ID" --attempt "$GITHUB_RUN_ATTEMPT" --event-file "$GITHUB_EVENT_PATH" --output "$RUNNER_TEMP/release"
+      - name: Keep the gated release
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-gated
+          path: ${{ runner.temp }}/release/
+          if-no-files-found: error
+          retention-days: 90
+
+  release-publish:
+    name: release publish
+    needs: release-gate
+    if: inputs.publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Fetch the gated release through the GitHub API
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -B verification/application_successor/release_gate.py fetch --run-id "$GITHUB_RUN_ID" --name release-gated --output "$RUNNER_TEMP/release"
+      - name: Publish exactly the gated files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          cd "$RUNNER_TEMP/release"
+          gh release create "permansson-app-v$VERSION" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Permansson application $VERSION (numeric scope)" --notes-file release-notes.md dist/*.whl dist/*.tar.gz SHA256SUMS release-manifest.json
+      - name: Verify the published release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          VERSION: ${{ inputs.version }}
+        run: python -B verification/application_successor/release_gate.py verify-published --tag "permansson-app-v$VERSION" --manifest "$RUNNER_TEMP/release/release-manifest.json"

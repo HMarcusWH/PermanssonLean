@@ -77,8 +77,9 @@ def git_bytes(head, path=None, *, op=None):
                      re.fullmatch(r"[A-Za-z0-9_.-]+",staged_name) is not None)
         historical_contract_only=(
             head==HISTORICAL_25_HEAD and path==HISTORICAL_CONTRACT)
-        # The one owner-approved installed change is read at the same head.
-        successor_policy=path==approval.POLICY_PATH
+        # The owner-approved installed change and added workflows are read
+        # at the same head.
+        successor_policy=path in (approval.POLICY_PATH,approval.POLICY_V2_PATH)
         need(workflow_path or staged_path or historical_contract_only
              or successor_policy,
              "untrusted workflow source path")
@@ -217,6 +218,7 @@ def audit(head, *, read=None, tree=None, approved=None):
     need(isinstance(approved,dict) and len(approved)==25,
          "original 25 required workflow hash contract missing")
     active_paths={p.decode("utf-8") for p in tree().splitlines()}
+    active_paths-=_owner_approved_additions(read,active_paths)
     need(active_paths=={".github/workflows/"+name for name in approved},
          "approved active workflow set changed before security transition")
     owner_approved=_owner_approved_changes(read)
@@ -341,6 +343,26 @@ def _owner_approved_changes(read):
         return approval.approved_workflow_changes(raw)
     except approval.ApprovalError as exc:
         raise ProfileError(str(exc)) from exc
+
+
+def _owner_approved_additions(read,active_paths):
+    """Paths of the owner-approved added workflows (archive successor policy
+    v2 at the inspected head) installed at exactly their approved blob.
+
+    They are not part of the original 25 and are set aside; any other extra
+    or changed workflow still fails the original-set check.
+    """
+    try:
+        raw=read(approval.POLICY_V2_PATH)
+    except Exception:  # noqa: BLE001 - absent policy v2: nothing is set aside
+        return set()
+    try:
+        added=approval.approved_added_workflows(raw)
+    except approval.ApprovalError as exc:
+        raise ProfileError(str(exc)) from exc
+    return {".github/workflows/"+name for name,blob in added.items()
+            if ".github/workflows/"+name in active_paths
+            and git_blob_oid(read(".github/workflows/"+name))==blob}
 
 
 def git_blob_oid(raw):

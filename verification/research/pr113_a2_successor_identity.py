@@ -24,8 +24,9 @@ FORMAT = "Permansson.PR113.A2SuccessorIdentityCandidate.v1"
 SHA = re.compile(r"^[0-9a-f]{40}$")
 # The exact twelve already-changed former baseline files. No wildcard grants.
 # research-integrity.yml and workflow_contract.py carry the owner-engineering
-# archive successor contract v1 (verification/research/archive_successor_policy_v1.json),
-# an owner decision that is not an independent security review.
+# archive successor contract v1 (verification/research/archive_successor_policy_v1.json;
+# policy v2 adds the application release workflow and re-pins the two
+# integrity files), an owner decision that is not an independent security review.
 PINNED_MODIFIED_PROVIDERS = {
     ".github/workflows/application.yml": "bdd02d48265e08f8cb94b7402da56da9c8e3ec9d",
     ".github/workflows/e1-approx-quotient-smoke.yml": "11bba31567059d968133a513c78b9103e43418fc",
@@ -36,8 +37,8 @@ PINNED_MODIFIED_PROVIDERS = {
     ".github/workflows/research-lean.yml": "06842a2da34d6ff06434f202a7630edd57e8cb20",
     ".github/workflows/research-release-verification.yml": "46ea7ebeae142f794394179154385cf1762b78d3",
     ".github/workflows/verification.yml": "c016aa6efcc42e19d81cb148f5db6bc6a439d7d3",
-    "verification/integrity/tests/test_workflow.py": "1fa90e0dce90518b8052e42199867f11c77e1010",
-    "verification/integrity/workflow_contract.py": "fd195a22f1773d218ff7d4b4351c8fc7a56e20ad",
+    "verification/integrity/tests/test_workflow.py": "e25c8bbf9c0df4563ffd9484529fa4b213378897",
+    "verification/integrity/workflow_contract.py": "308becfb09f22112dc3db9ee4a8991237ff1551e",
     "verification/research/test_paper_x1_lean_closure.py": "2ee078c86c58b5e577597acfc3ae950e4028ebac",
 }
 # Exact current callable surface: two unchanged historical executors and

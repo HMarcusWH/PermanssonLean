@@ -6,6 +6,11 @@ effect only through the owner's merge into `main`. It is **not** an
 independent security review, not an approval of PR #113, not mathematical
 certification and not release acceptance.
 
+> **Policy v2.** [`ARCHIVE_SUCCESSOR_CONTRACT_V2.md`](ARCHIVE_SUCCESSOR_CONTRACT_V2.md)
+> adds one owner-approved workflow, the application release workflow, and
+> re-pins the two integrity files. The gate now reads policy v2; this page
+> describes everything v2 keeps.
+
 ## Why the original check can no longer pass
 
 The v0.2.0 verifier (`verification/archive/verify_bundle.py`) binds the

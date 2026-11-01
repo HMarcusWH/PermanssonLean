@@ -8,6 +8,11 @@ head they inspect, to accept exactly that change: from exactly its original
 preactivation blob to exactly the approved blob. Any other difference is still
 a silent alteration.
 
+Policy v2 (`archive_successor_policy_v2.json`) keeps that change and adds
+workflows the owner approved, each at exactly one blob (the application
+release workflow). `approved_added_workflows` reads them for the staged
+checks, which accept those files, and only those, as installed additions.
+
 Standard library only, so it can be imported wherever the staged checks run.
 This is an owner engineering decision, not an independent security review.
 """
@@ -17,7 +22,10 @@ import json
 import re
 
 POLICY_PATH = "verification/research/archive_successor_policy_v1.json"
+POLICY_V2_PATH = "verification/research/archive_successor_policy_v2.json"
 FORMAT = "Permansson.ArchiveSuccessor.OwnerEngineeringPolicy.v1"
+FORMAT_V2 = "Permansson.ArchiveSuccessor.OwnerEngineeringPolicy.v2"
+ADDED = re.compile(r"^\.github/workflows/[a-z0-9-]+\.yml$")
 PREACTIVATION_25_HEAD = "5189f0c4a0db7535d57a9ff2a7aef6a3e76191b6"
 WORKFLOW = ".github/workflows/research-integrity.yml"
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
@@ -36,14 +44,18 @@ def _unique(pairs):
     return result
 
 
-def approved_workflow_changes(raw: bytes) -> dict[str, tuple[str, str]]:
-    """{workflow file name: (preactivation blob, approved blob)}; exactly one entry."""
+def _load(raw: bytes) -> object:
     try:
-        policy = json.loads(raw.decode("utf-8"), object_pairs_hook=_unique)
+        return json.loads(raw.decode("utf-8"), object_pairs_hook=_unique)
     except (UnicodeError, ValueError) as exc:
         raise ApprovalError("archive successor policy is not strict JSON") from exc
+
+
+def approved_workflow_changes(raw: bytes) -> dict[str, tuple[str, str]]:
+    """{workflow file name: (preactivation blob, approved blob)}; exactly one entry."""
+    policy = _load(raw)
     rows = policy.get("approved_workflow_changes") if isinstance(policy, dict) else None
-    if not (isinstance(policy, dict) and policy.get("format") == FORMAT
+    if not (isinstance(policy, dict) and policy.get("format") in (FORMAT, FORMAT_V2)
             and policy.get("authority") == "OWNER_ENGINEERING_POLICY"
             and policy.get("independent_security_review") is False
             and policy.get("preactivation_25_head") == PREACTIVATION_25_HEAD
@@ -55,3 +67,21 @@ def approved_workflow_changes(raw: bytes) -> dict[str, tuple[str, str]]:
             and rows[0]["preactivation_blob"] != rows[0]["approved_blob"]):
         raise ApprovalError("archive successor policy does not describe one owner-approved workflow change")
     return {WORKFLOW.removeprefix(".github/workflows/"): (rows[0]["preactivation_blob"], rows[0]["approved_blob"])}
+
+
+def approved_added_workflows(raw: bytes) -> dict[str, str]:
+    """{workflow file name: approved blob} of a v2 policy; at least one entry."""
+    policy = _load(raw)
+    rows = policy.get("approved_added_workflows") if isinstance(policy, dict) else None
+    if not (isinstance(policy, dict) and policy.get("format") == FORMAT_V2
+            and policy.get("authority") == "OWNER_ENGINEERING_POLICY"
+            and policy.get("independent_security_review") is False
+            and isinstance(rows, list) and rows
+            and all(isinstance(row, dict) and set(row) == {"path", "approved_blob"}
+                    and isinstance(row["path"], str) and ADDED.fullmatch(row["path"]) and row["path"] != WORKFLOW
+                    and isinstance(row["approved_blob"], str) and SHA40.fullmatch(row["approved_blob"])
+                    for row in rows)
+            and len({row["path"] for row in rows}) == len(rows)
+            and policy.get("workflow_count") == 25 + len(rows)):
+        raise ApprovalError("archive successor policy v2 does not describe owner-approved added workflows")
+    return {row["path"].removeprefix(".github/workflows/"): row["approved_blob"] for row in rows}

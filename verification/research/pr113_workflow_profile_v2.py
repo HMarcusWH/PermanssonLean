@@ -19,6 +19,7 @@ import archive_successor_approval_v1 as approval
 from pr113_boundary_io import strict_json_object
 from pr113_tooling_migration import (
     ROOT, git, exact_tree, require, ToolingMigrationError,
+    without_owner_added_workflows,
 )
 
 FORMAT = "Permansson.PR113.VersionedWorkflowEvidence.v2"
@@ -189,7 +190,10 @@ def source_phase(root, head):
     require(isinstance(head, str) and SHA.fullmatch(head) is not None
             and git(root, "rev-parse", "HEAD").decode().strip() == head,
             "phase classification requires exact checked Git HEAD")
-    tree = exact_tree(root, head, ".github/workflows")
+    # Owner-approved added workflows (archive successor policy v2, each at
+    # exactly its approved blob) are not part of either PR #113 phase.
+    tree = without_owner_added_workflows(
+        root, head, exact_tree(root, head, ".github/workflows"))
     require(len(tree) in (25, 30)
             and all(mode == "100644" and
                     path.startswith(".github/workflows/") and
@@ -280,7 +284,8 @@ def audit(root, head, *, phase="staged"):
             and set(originals) - set(replaced) ==
                 set(module.RETAINED_HISTORICAL_WORKFLOWS),
             "original/replacement/addition partition is not exactly 23+2+5")
-    tree = exact_tree(root, head, ".github/workflows")
+    tree = without_owner_added_workflows(
+        root, head, exact_tree(root, head, ".github/workflows"))
     if phase == "staged":
         require(len(tree) == 25 and
                 {p.removeprefix(".github/workflows/"): v[1]

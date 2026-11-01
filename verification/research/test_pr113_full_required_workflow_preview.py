@@ -5,6 +5,7 @@ import subprocess
 import unittest
 import archive_successor_approval_v1 as approval
 from pr113_workflow_profile_v2 import PREACTIVATION_HEAD, audit as audit_v2
+from pr113_tooling_migration import owner_added_workflow_names
 
 ROOT=Path(__file__).resolve().parents[2]
 STAGE=ROOT/"docs/operations/pr113_required_gate_replacement_unapproved"
@@ -27,11 +28,14 @@ class FullRequiredPreview(unittest.TestCase):
                   "mathematical_acceptance","merge_authorized",
                   "publication_authorized"):
             self.assertFalse(self.m[k])
+        # Owner-approved added workflows (archive successor policy v2, at
+        # exactly their approved blobs) are outside both PR113 profiles.
+        added=owner_added_workflow_names(ROOT)
         active={p.name for p in (ROOT/".github/workflows").iterdir()
-                if p.suffix in (".yml",".yaml")}
+                if p.suffix in (".yml",".yaml")}-added
         if len(active)==25:
             from verification.integrity.workflow_contract import APPROVED_WORKFLOWS
-            self.assertEqual(active,set(APPROVED_WORKFLOWS))
+            self.assertEqual(active|added,set(APPROVED_WORKFLOWS))
         else:
             self.assertEqual(len(active),30)
             source=audit_v2(ROOT,git("rev-parse","HEAD"),phase="active")
@@ -67,7 +71,8 @@ class FullRequiredPreview(unittest.TestCase):
 
     def test_archive_original_other_jobs_unchanged_and_research_stages_preserved(self):
         count=len([p for p in (ROOT/".github/workflows").iterdir()
-                   if p.suffix in (".yml",".yaml")])
+                   if p.suffix in (".yml",".yaml")
+                   and p.name not in owner_added_workflow_names(ROOT)])
         old=(
             (ROOT/".github/workflows/research-integrity.yml").read_text()
             if count==25 else subprocess.check_output(

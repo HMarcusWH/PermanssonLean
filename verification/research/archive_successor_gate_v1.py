@@ -18,11 +18,18 @@ the archive, any recorded hash or the staged 30-workflow candidate.
    differs from T in exactly the two approved files, at exactly the approved
    blobs; the workflow set is the reviewed 25 (`pr113_tooling_migration`); and
    C's own workflow integrity suite passes.
-3. Approval: `archive_successor_policy_v1.json` records an owner engineering
-   policy that takes effect only through the owner's merge into main. Nothing
-   in it is an independent security review, a PR #113 approval or a
-   certification. The PR #113 final-head archive failure stays recorded and is
-   not required to have succeeded.
+3. Approval: the committed policy records an owner engineering policy that
+   takes effect only through the owner's merge into main. Nothing in it is an
+   independent security review, a PR #113 approval or a certification. The
+   PR #113 final-head archive failure stays recorded and is not required to
+   have succeeded.
+
+Policy versions. `archive_successor_policy_v1.json` approved the 25-workflow
+profile. `archive_successor_policy_v2.json`, read by default since the
+application release workflow was added, approves the same historical
+contract plus exactly the added workflows it names, each at exactly its
+approved blob: the workflow set is then the preactivation 25 plus those, and
+nothing else. The v1 record stays in the repository as history.
 
 Every other difference fails closed.
 """
@@ -47,8 +54,9 @@ import pr113_tooling_migration as tooling  # noqa: E402
 from verification.integrity.reports import (  # noqa: E402
     HardeningError, check_report, strict_json, write_report)
 
-POLICY = Path(__file__).with_name("archive_successor_policy_v1.json")
+POLICY = Path(__file__).with_name("archive_successor_policy_v2.json")
 POLICY_FORMAT = "Permansson.ArchiveSuccessor.OwnerEngineeringPolicy.v1"
+POLICY_FORMAT_V2 = "Permansson.ArchiveSuccessor.OwnerEngineeringPolicy.v2"
 CONTRACT = "Permansson.ArchiveSuccessor.Contract.v1"
 ARCHIVAL = "archival/v0.2.0"
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
@@ -81,17 +89,35 @@ def need(condition: bool, code: str, message: str) -> None:
         fail(code, message)
 
 
+def added_workflows(policy: dict) -> dict[str, str]:
+    """{workflow path: approved blob} for a v2 policy; empty for v1."""
+    if policy.get("format") != POLICY_FORMAT_V2:
+        return {}
+    return {row["path"]: row["approved_blob"] for row in policy["approved_added_workflows"]}
+
+
 def check_policy(policy: object) -> dict:
     """The owner-engineering record: exact shape, never an independent review."""
-    need(isinstance(policy, dict) and set(policy) == POLICY_KEYS, "E_SUCCESSOR_POLICY",
+    v2 = isinstance(policy, dict) and policy.get("format") == POLICY_FORMAT_V2
+    need(isinstance(policy, dict) and set(policy) == (POLICY_KEYS | {"approved_added_workflows"} if v2
+                                                      else POLICY_KEYS), "E_SUCCESSOR_POLICY",
          "policy has missing or unknown fields")
-    need(policy["format"] == POLICY_FORMAT and policy["authority"] == "OWNER_ENGINEERING_POLICY"
+    need(policy["format"] in (POLICY_FORMAT, POLICY_FORMAT_V2) and policy["authority"] == "OWNER_ENGINEERING_POLICY"
          and policy["owner"] == "HMarcusWH", "E_SUCCESSOR_POLICY", "policy format, authority or owner differs")
+    added = policy.get("approved_added_workflows", []) if v2 else []
+    need(isinstance(added, list) and (not v2 or len(added) >= 1) and all(
+        isinstance(row, dict) and set(row) == {"path", "approved_blob"}
+        and isinstance(row["path"], str) and re.fullmatch(r"\.github/workflows/[a-z0-9-]+\.yml", row["path"])
+        and row["path"] != ARCHIVE_WORKFLOW
+        and isinstance(row["approved_blob"], str) and SHA40.fullmatch(row["approved_blob"]) for row in added)
+         and len({row["path"] for row in added}) == len(added), "E_SUCCESSOR_POLICY",
+         "approved added workflows are malformed")
     need(policy["independent_security_review"] is False, "E_SUCCESSOR_POLICY",
          "an owner engineering policy cannot claim an independent security review")
     need(policy["historical_T"] == tooling.T and policy["accepted_base_B"] == tooling.B
          and isinstance(policy["archival_tree_at_B"], str) and SHA40.fullmatch(policy["archival_tree_at_B"])
-         and policy["workflow_count"] == 25, "E_SUCCESSOR_POLICY", "policy T, B, archival tree or workflow count differs")
+         and policy["workflow_count"] == 25 + len(added), "E_SUCCESSOR_POLICY",
+         "policy T, B, archival tree or workflow count differs")
     changes = policy["approved_tooling_changes"]
     need(isinstance(changes, list) and all(
         isinstance(row, dict) and set(row) == {"path", "T_blob", "approved_blob"}
@@ -154,8 +180,19 @@ def source_audit(repo: Path, candidate: str, policy: dict) -> dict:
     delta = {row["path"]: (row["T_blob"], row["H_blob"]) for row in audit["changed_canonical_tooling"]}
     need(delta == approved, "E_SUCCESSOR_DELTA",
          "closure delta differs from the owner-approved blobs: " + json.dumps(sorted(delta)))
-    need(audit["current_workflow_file_count"] == policy["workflow_count"], "E_SUCCESSOR_SOURCE",
-         "workflow inventory differs from the reviewed 25")
+    added = added_workflows(policy)
+    need(audit["current_workflow_file_count"] == 25 and 25 + len(added) == policy["workflow_count"],
+         "E_SUCCESSOR_SOURCE", "workflow inventory differs from the reviewed count")
+    original = set(git(repo, "ls-tree", "--name-only", PREACTIVATION_25_HEAD + ":.github/workflows").splitlines())
+    current = set(git(repo, "ls-tree", "--name-only", candidate + ":.github/workflows").splitlines())
+    need(len(original) == 25 and not ({p.rsplit("/", 1)[1] for p in added} & original)
+         and current == original | {p.rsplit("/", 1)[1] for p in added}, "E_SUCCESSOR_DELTA",
+         "the workflow set is not the preactivation 25 plus exactly the approved additions")
+    for path, blob in sorted(added.items()):
+        need(git(repo, "rev-parse", candidate + ":" + path) == blob, "E_SUCCESSOR_DELTA",
+             path + " is not the owner-approved blob")
+    need(audit["owner_approved_added_workflows"] == [{"path": p, "blob": b} for p, b in sorted(added.items())],
+         "E_SUCCESSOR_DELTA", "the source audit set aside other workflows than the approved additions")
     workflow = policy["approved_workflow_changes"][0]
     need(git(repo, "rev-parse", PREACTIVATION_25_HEAD + ":" + ARCHIVE_WORKFLOW) == workflow["preactivation_blob"]
          and git(repo, "rev-parse", candidate + ":" + ARCHIVE_WORKFLOW) == workflow["approved_blob"],
@@ -166,7 +203,8 @@ def source_audit(repo: Path, candidate: str, policy: dict) -> dict:
             "historical_manifest_sha256": audit["historical_manifest_sha256"],
             "historical_packaged_tooling_files_verified": audit["historical_packaged_tooling_files_verified"],
             "approved_closure_delta": [{"path": p, "T_blob": t, "C_blob": c} for p, (t, c) in sorted(delta.items())],
-            "workflow_count": audit["current_workflow_file_count"]}
+            "workflow_count": audit["current_workflow_file_count"] + len(audit["owner_approved_added_workflows"]),
+            "approved_added_workflows": [{"path": p, "blob": b} for p, b in sorted(added.items())]}
 
 
 def historical_environment(base: dict | None = None) -> dict:

@@ -6,9 +6,13 @@ from unittest import mock
 
 import pr113_atomic_migration_preview as preview
 import pr113_workflow_profile_v2 as v2
+from pr113_tooling_migration import owner_added_workflow_names
 
 def active30(root):
-    count=len(list((root/".github/workflows").glob("*.yml")))
+    # Owner-approved added workflows (archive successor policy v2, at exactly
+    # their approved blobs) are outside both PR113 profiles.
+    count=(len(list((root/".github/workflows").glob("*.yml")))
+           -len(owner_added_workflow_names(root)))
     if count not in (25,30):
         raise AssertionError("only exact 25 or exact 30 profile is valid")
     return count==30
