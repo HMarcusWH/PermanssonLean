@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Release gate for the Permansson finite numeric application (REL-D).
 
+    python release_gate.py fetch --run-id ID --name ARTIFACT --output NEW_DIR
     python release_gate.py gate --repo . --run-id ID --attempt N --event-file PATH --output NEW_DIR
     python release_gate.py verify-published --tag TAG --manifest PATH
+
+`fetch` lets the qualification jobs take the build job's artifact through the
+same authenticated, digest-checked path the gate uses.
 
 `gate` runs inside the release workflow's gate job, after the build and the
 two qualification jobs. It passes only if all of the following hold, and then
@@ -48,6 +52,7 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import re
+import shutil
 import sys
 import tempfile
 import urllib.error
@@ -71,9 +76,12 @@ WORKFLOW_PATH = '.github/workflows/application-release.yml'
 RELEASE_BRANCH = 'main'
 RESEARCH_VERSION = '0.2.0'
 PAPER_VERSION = '0.1.8'
-BUILD_JOB = ('build', 'build')  # (job key, job name)
-QUALIFY_JOBS = {'linux-cpython-3.12': ('qualify-py312', 'qualify linux-cpython-3.12'),
-                'linux-cpython-3.13': ('qualify-py313', 'qualify linux-cpython-3.13')}
+# (job key, job name). None of them may equal a required check context
+# (`build`, `research`, `executable-verification`, the application and
+# integrity contexts): a release job must never publish a colliding success.
+BUILD_JOB = ('release-build', 'release build')
+QUALIFY_JOBS = {'linux-cpython-3.12': ('release-qualify-py312', 'release qualify linux-cpython-3.12'),
+                'linux-cpython-3.13': ('release-qualify-py313', 'release qualify linux-cpython-3.13')}
 BUILD_ARTIFACT = 'release-build'
 QUALIFY_ARTIFACT = 'qualification-{platform}'
 FINAL_VERSION = re.compile(r'^\d+\.\d+\.\d+$')
@@ -224,6 +232,15 @@ def fetch_artifacts(api, run_id: int, names: list[str], destination: Path) -> di
     return fetched
 
 
+def fetch_one(api, run_id: int, name: str, output: Path) -> dict:
+    """One authenticated, digest-checked artifact of this run, unpacked at `output`."""
+    _require(not output.exists(), f'{output} exists; choose a new directory')
+    with tempfile.TemporaryDirectory(prefix='permansson-fetch-') as td:
+        fetched = fetch_artifacts(api, run_id, [name], Path(td))
+        shutil.move(str(fetched[name]['path']), str(output))
+    return {'artifact': name, 'id': fetched[name]['id'], 'digest': fetched[name]['digest']}
+
+
 def derived_records(qualification: Path, policy_data: dict, platform: str, source: dict, subject: dict,
                     producer: str) -> tuple[list[dict], str]:
     """Re-derive the platform's records from its raw results; refuse any difference."""
@@ -368,13 +385,19 @@ def main(argv=None) -> int:
     g.add_argument('--attempt', type=int, required=True)
     g.add_argument('--event-file', type=Path, required=True, help="the workflow's GITHUB_EVENT_PATH")
     g.add_argument('--output', type=Path, required=True)
+    f = sub.add_parser('fetch')
+    f.add_argument('--run-id', type=int, required=True)
+    f.add_argument('--name', required=True)
+    f.add_argument('--output', type=Path, required=True)
     v = sub.add_parser('verify-published')
     v.add_argument('--tag', required=True)
     v.add_argument('--manifest', type=Path, required=True)
     args = parser.parse_args(argv)
     try:
         api = _api_from_env()
-        if args.command == 'gate':
+        if args.command == 'fetch':
+            result = fetch_one(api, args.run_id, args.name, args.output)
+        elif args.command == 'gate':
             event = json.loads(args.event_file.read_text(encoding='utf-8'))
             result = gate(args.repo, api, args.run_id, args.attempt, event.get('inputs') or {}, args.output)
             result = {k: result[k] for k in ('status', 'package', 'version', 'tag', 'source', 'subject_sha256')}

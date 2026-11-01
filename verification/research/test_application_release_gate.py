@@ -264,6 +264,19 @@ class ReleaseGateTests(unittest.TestCase):
                 self.refused()
         self.fx.refresh_artifacts()
 
+    def test_qualification_jobs_fetch_the_build_through_the_same_check(self):
+        out = self.td / 'fetched'
+        result = gate.fetch_one(self.fx.api(), RUN, gate.BUILD_ARTIFACT, out)
+        self.assertEqual(result['artifact'], gate.BUILD_ARTIFACT)
+        self.assertEqual(sorted(p.name for p in out.iterdir()), ['one', 'two'])
+        with self.assertRaises(gate.GateError):
+            gate.fetch_one(self.fx.api(), RUN, gate.BUILD_ARTIFACT, out)  # exists
+        build = next(a for a in self.fx.artifacts if a['name'] == gate.BUILD_ARTIFACT)
+        self.fx.blobs[f'/actions/artifacts/{build["id"]}/zip'] += b'x'
+        with self.assertRaises(gate.GateError):
+            gate.fetch_one(self.fx.api(), RUN, gate.BUILD_ARTIFACT, self.td / 'tampered')
+        self.assertFalse((self.td / 'tampered').exists())
+
     def test_unsafe_artifact_members_are_refused(self):
         buffer = io.BytesIO()
         with zipfile.ZipFile(buffer, 'w') as archive:
@@ -279,7 +292,7 @@ class ReleaseGateTests(unittest.TestCase):
         results = self.fx.results(platform)
         raw = json.dumps(results, indent=1, sort_keys=True).encode('utf-8') + b'\n'
         records = runner.evidence_records(self.fx.policy, results, sha256(raw).hexdigest(),
-                                          producer=f'github-actions:run/{RUN}/attempt/{ATTEMPT}/job/qualify-py313')
+                                          producer=f'github-actions:run/{RUN}/attempt/{ATTEMPT}/job/{gate.QUALIFY_JOBS[platform][0]}')
         doctored = deepcopy(records)
         doctored[0]['method_ids'] = doctored[0]['method_ids'][1:]
         for name, value in (('dropped method', doctored), ('local producer', runner.evidence_records(
@@ -354,6 +367,14 @@ class ReleaseGateTests(unittest.TestCase):
         path.write_text(json.dumps(policy), encoding='utf-8')
         git(self.fx.repo, 'commit', '-qam', 'claim review')
         self.refused('release policy rejected')
+
+
+class JobNameTests(unittest.TestCase):
+    def test_release_jobs_never_reuse_a_required_check_context(self):
+        sys.path.insert(0, str(BASE))
+        from verification.integrity.workflow_contract import JOBS, LEGACY_CONTEXTS
+        names = {gate.BUILD_JOB[0], gate.BUILD_JOB[1]} | {n for pair in gate.QUALIFY_JOBS.values() for n in pair}
+        self.assertFalse(names & (set(JOBS) | set(LEGACY_CONTEXTS) | {'application-contract'}))
 
 
 class FullScopeTests(unittest.TestCase):
