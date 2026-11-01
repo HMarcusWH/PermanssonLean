@@ -2298,8 +2298,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "4d258082d671f2ef9d33176b9c5063441482f5e26a83ff5ba0fdf0079b23e2f2",
-        "git_blob_sha": "697165ae5d228208dcfc358bcd7408292728fcd9",
+        "sha256": "6ab8146398934789d3552a7c3842983a6162cf2705903c6a6b5e24ce3ca2c365",
+        "git_blob_sha": "c8a1b4e98181077791e5e381d91812500798be93",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },

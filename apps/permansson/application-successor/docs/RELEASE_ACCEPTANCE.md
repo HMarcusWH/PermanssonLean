@@ -19,7 +19,8 @@ output claims (see "What a release does not mean" below).
 ## How a release is made
 
 The release workflow `.github/workflows/application-release.yml` carries out
-the whole procedure. It is added to the repository's reviewed workflow
+the whole procedure. Every job name starts with `release`, so none can stand
+in for a required check. It is added to the repository's reviewed workflow
 contract by a separate, owner-approved change; until it is installed, no
 release can be activated.
 
@@ -29,11 +30,11 @@ release can be activated.
    page and types the version. Under the owner-engineering policy this
    dispatch *is* the release approval. Nobody else, and no automation, may
    dispatch it.
-3. **Build** (job `build`). `scripts/build_distributions.py` builds the
+3. **Build** (job `release build`). `scripts/build_distributions.py` builds the
    wheel and sdist twice from the clean commit with the hash-locked tools and
    the commit time, and the two builds must be byte-identical.
-4. **Qualify** (jobs `qualify linux-cpython-3.12` and `qualify
-   linux-cpython-3.13`). On each platform,
+4. **Qualify** (jobs `release qualify linux-cpython-3.12` and `release
+   qualify linux-cpython-3.13`). On each platform,
    `verification/application_successor/check_installed_package.py`:
    - installs the hash-locked test dependencies and the wheel into a fresh
      environment, and checks `pip check`;
@@ -46,7 +47,7 @@ release can be activated.
      installed CLI;
    - writes evidence records for every capability, derived only from the raw
      results.
-5. **Gate** (job `gate`). `verification/application_successor/release_gate.py`
+5. **Gate** (job `release gate`). `verification/application_successor/release_gate.py`
    passes only if every check below holds, and then writes
    `release-manifest.json` and `SHA256SUMS`:
    - the policy is the v3 owner-engineering policy, and it selects exactly
@@ -61,7 +62,8 @@ release can be activated.
    - every evidence record equals the one re-derived from its raw results,
      and the assessment is complete: nothing failing, and nothing missing
      except the owner activation, which the dispatch provides.
-6. **Publish** (job `publish`, only after the gate). The workflow creates the
+6. **Publish** (job `release publish`, only after the gate, and only when the
+   owner set `publish` on the dispatch). The workflow creates the
    tag `permansson-app-v<version>` at the commit and a GitHub release with
    exactly four assets: the wheel, the sdist, `SHA256SUMS` and
    `release-manifest.json`. It then runs `release_gate.py verify-published`,
