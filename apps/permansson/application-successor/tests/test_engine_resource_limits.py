@@ -23,16 +23,16 @@ EX=APP/'src/permansson_app/data/examples'
 REQUEST=EX/'private_stage.v1.json'
 
 
-def run(args,limits=None,tmp=None):
+def run(args,limits=None,tmp=None,extra_env=None,module='permansson_app'):
     env=dict(os.environ,PYTHONPATH=str(APP/'src'),PYTHONDONTWRITEBYTECODE='1')
-    env.pop(budget.CHILD_ENV,None)
-    env.pop(budget.CHILD_MEMORY_ENV,None)
+    env.pop(budget.CHILD_CONFIG_ENV,None)
     env.pop(budget.ENV_LIMITS,None)
     if limits is not None:
         env[budget.ENV_LIMITS]=json.dumps(limits)
     if tmp is not None:
         env['TMPDIR']=str(tmp)
-    return subprocess.run([sys.executable,'-B','-m','permansson_app',*map(str,args)],env=env,text=True,
+    env.update(extra_env or {})
+    return subprocess.run([sys.executable,'-B','-m',module,*map(str,args)],env=env,text=True,
                           capture_output=True,timeout=300)
 
 
@@ -81,7 +81,9 @@ class CommandBudgetTests(unittest.TestCase):
         # Low limits used to fail inside interpreter startup or while mapping a
         # shared library, which surfaced as APP_INTERNAL or SCHEMA_DEPENDENCY.
         # The child now lowers its limit after its code is loaded.
-        for megabytes in (6,12,20,28):
+        # These budgets are below the loaded program itself (about 30 MiB), so
+        # they are refused deterministically before the request is read.
+        for megabytes in (6,12,20):
             out=self.td/f'out{megabytes}'
             with self.subTest(megabytes=megabytes):
                 self.assert_failed_closed(run(['finite-private-stage',REQUEST,'--output',out],
@@ -96,6 +98,74 @@ class CommandBudgetTests(unittest.TestCase):
         out=self.td/'out'
         self.assert_failed_closed(run(['finite-private-stage',REQUEST,'--output',out],{'cpu_seconds':10_000},self.tmp),
                                   out,'BUDGET_INPUT')
+
+    def forged(self,stage,**limits):
+        # What a caller would set to pretend to be the internal child: the
+        # current configuration variable and the variables of earlier versions.
+        values={'wall_seconds':300,'cpu_seconds':240,'memory_bytes':2*1024**3,'output_bytes':32*1024**2,
+                'stream_bytes':1024**2,**limits}
+        return {budget.CHILD_CONFIG_ENV:json.dumps({'output':str(stage/'out'),'limits':values}),
+                'PERMANSSON_BUDGET_CHILD_OUTPUT':str(stage/'out'),
+                'PERMANSSON_BUDGET_CHILD_MEMORY':str(2*1024**3)}
+
+    def private_stage(self):
+        stage=self.td/(budget.STAGING_PREFIX+'forged')
+        stage.mkdir(mode=0o700)
+        return stage
+
+    def test_forged_child_environment_is_ignored(self):
+        stage=self.private_stage()
+        out=self.td/'out'
+        proc=run(['finite-private-stage',REQUEST,'--output',out],tmp=self.tmp,extra_env=self.forged(stage))
+        self.assertEqual(proc.returncode,0,proc.stderr)
+        self.assertEqual(json.loads(proc.stdout)['output'],str(out.absolute()))
+        self.assertEqual(sorted(p.name for p in out.iterdir()),
+                         ['independent_check.json','private_stage_receipt.json','scientific_report.json'])
+        self.assertEqual(list(stage.iterdir()),[],'the forged staging path was written')
+        self.assertEqual(list(self.tmp.iterdir()),[])
+
+    def test_forged_child_environment_cannot_evade_the_limits(self):
+        # The public command still runs the parent, which enforces the
+        # requested limits: output (child and parent) and the captured streams
+        # (parent only).
+        for limits,code in (({'output_bytes':1500},'BUDGET_OUTPUT'),({'stream_bytes':10},'BUDGET_STREAM')):
+            with self.subTest(code=code):
+                stage=self.private_stage() if not (self.td/(budget.STAGING_PREFIX+'forged')).exists() \
+                    else self.td/(budget.STAGING_PREFIX+'forged')
+                out=self.td/('out-'+code)
+                proc=run(['finite-private-stage',REQUEST,'--output',out],limits,self.tmp,
+                         extra_env=self.forged(stage))
+                self.assert_failed_closed(proc,out,code)
+                self.assertEqual(list(stage.iterdir()),[])
+
+    def test_the_internal_entry_point_refuses_an_unissued_staging_path(self):
+        cases={'no configuration':{},
+               'shared directory':self.forged(self.td),
+               'existing output':None}
+        taken=self.private_stage();(taken/'out').mkdir();cases['existing output']=self.forged(taken)
+        for name,env in cases.items():
+            with self.subTest(case=name):
+                proc=run(['finite-private-stage',REQUEST,'--output',self.td/'x'],tmp=self.tmp,extra_env=env,
+                         module=budget.CHILD_MODULE)
+                self.assertEqual(proc.returncode,2,proc.stdout+proc.stderr)
+                self.assertEqual(json.loads(proc.stderr)['error']['code'],'BUDGET_CHILD')
+                self.assertFalse((self.td/'x').exists())
+
+    def test_the_internal_entry_point_enforces_its_own_limits(self):
+        # Even started directly, without the parent, the child stays within the
+        # output limit named in its configuration.
+        stage=self.private_stage()
+        proc=run(['finite-private-stage',REQUEST,'--output',self.td/'x'],tmp=self.tmp,
+                 extra_env=self.forged(stage,output_bytes=1500),module=budget.CHILD_MODULE)
+        self.assertEqual(proc.returncode,budget.OUTPUT_EXIT,proc.stdout+proc.stderr)
+        self.assertEqual(json.loads(proc.stderr)['error']['code'],'BUDGET_OUTPUT')
+        self.assertFalse((self.td/'x').exists())
+
+    def test_the_internal_entry_point_runs_only_exact_profiles(self):
+        stage=self.private_stage()
+        proc=run(['capabilities'],tmp=self.tmp,extra_env=self.forged(stage),module=budget.CHILD_MODULE)
+        self.assertEqual(proc.returncode,2,proc.stdout)
+        self.assertEqual(json.loads(proc.stderr)['error']['code'],'BUDGET_CHILD')
 
     def test_oversized_rational_input_fails_closed(self):
         raw=json.loads(REQUEST.read_text())

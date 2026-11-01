@@ -25,8 +25,8 @@
   },
   "current_inventory": {
     "computed_by": "scripts/inventory.py --write-current (recomputed from git ls-files; see --check)",
-    "manifest_rows": 641,
-    "unique_paths": 641,
+    "manifest_rows": 642,
+    "unique_paths": 642,
     "rows_by_candidate_state": {
       "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI": 1,
       "DOCUMENTATION": 48,
@@ -49,7 +49,7 @@
       "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI": 65,
       "LOCAL_TESTED_LINUX_CPYTHON_3_13_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_NUMERIC_IMPLEMENTATION": 6,
-      "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 82,
+      "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 83,
       "LOCAL_TESTED_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_SOURCE_CANDIDATE": 6,
       "NOT_ACTIVATED_REVIEW_GATED": 19,
@@ -62,7 +62,7 @@
       "VENDORED_OFFICIAL_VECTORS_COMMIT_32a48195": 1,
       "VENDORED_THIRD_PARTY_TEST_FIXTURE": 12
     },
-    "tracked_rows": 441,
+    "tracked_rows": 442,
     "absent_rows": 200,
     "absent_rows_by_disposition": {
       "DEFERRED_ALTERNATE_LAYOUT": 41,
@@ -74,7 +74,7 @@
       "REVIEW_GATED": 20,
       "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 31
     },
-    "application_tracked_files": 356,
+    "application_tracked_files": 357,
     "application_tracked_files_without_row": 0,
     "registered_exact_profiles": 26,
     "registered_native_capabilities": 2,
@@ -2111,7 +2111,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "1a2723d2f5530960925f725a56151a0f7f2e206e8248193719963247045e77b0",
+        "sha256": "f183ed7264f03fd07cec2ad26ded06903b0f0ea836ad64c46c3f586cf11d49fc",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2492,7 +2492,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "447a702ace2d80e4314054666717ad30fecbb96f38dd8eb200f79f6e5a85e247",
+        "sha256": "5dbbcea66202124d4ed7614adc217ae6bcee80bbd9d8cbc530c1fbc2eff1f134",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
@@ -2645,7 +2645,7 @@
       "candidate": {
         "git_blob_sha1": "13f3853b12ce802888ce3010da2b6bfc6fee1837",
         "proof": "NOT_EXECUTED",
-        "sha256": "765957f2cb520f48b0dd8c6f02ea8ebf44f722b4ec8a7cadbb5aaea7d9c473f1",
+        "sha256": "71c4ca36f2835e22cefb09df6717d6d51fac5892bbd5af99f67b896e7183301c",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -2677,7 +2677,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "c812cdeb35b2e9e2c79d7f5452248237bc17483c1beab376edbea8abcb77887c",
+        "sha256": "8bb96d914d18ffd1176ed7de447e3ba82fb91bd42966eac4b7a4a4f6ea70289f",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -2712,8 +2712,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "6e62c6d4a3df1d60cb4f3253cf5d99db7ca4d0b7282db9d6f69ba290543515d3",
-        "git_blob_sha": "a3912ad913e03f420b018de106bb7c187737e783",
+        "sha256": "399b20a136fdc123bbd0278d7c37862e74ce02151a222de08828a9204eb952cd",
+        "git_blob_sha": "d32d422ecae0104243a1ebbb5b3198d1f89a6844",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -9713,7 +9713,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "a49efad06cf2f8e49e44a3ea313e5baa76757bac05f8df4cd84a4f67acfaba0a",
+        "sha256": "ded7189e8ffe68394920182cf658cd77d763c04699c79c4d28b8d52768afea35",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
@@ -17586,7 +17586,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "a107eb1212770ba860cfd7a021dee634f3fd49b5827354aab23fc981c57b7c19",
+        "sha256": "307d172c36561c85c8dd1afa61b49a6964ce28f16f1158c383a8edf92e3b5474",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17646,7 +17646,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "1120584e48d026c30671f2c735929b6320c75d48b2da554b43bb60269670968a",
+        "sha256": "48525122715abbd550412852b5b90e60e2dc26e9e4dec4d341c1ebe227b8e2af",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17666,7 +17666,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "b16456fadc48aa658f760e17315147de6377aeda6c60212ab87d7a56aa091354",
+        "sha256": "4ddfae70c4a28ee78d0d40df86ed73323c4fc4b61b85b8fbdeba5cecb743e403",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17686,7 +17686,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "5a3748bcd6bda4d5e02780c1e6dcbdce0043445db5a19b9e40b72513b6e5bcaf",
+        "sha256": "5635632a6896558a2c4b745f3e41ef9c79bb8a4086986cf7a32c0c913de817cd",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17706,7 +17706,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "f963e081d4308626fcaed6ea777759c51bb201d7f1598cd07f2c010187e526a9",
+        "sha256": "3f6ec7befd8fa7993b562343d228b6cc975d412523f82d27b82ba8d37db4b551",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17727,6 +17727,26 @@
         "state": "TEST_FIXTURE",
         "sha256": "284f346e3720e1444ee96ec1e70d3efd97424c7d9ff9d5e93309f3f29ec4ccc3",
         "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/_budget_child.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "PKG-04",
+        "REL-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "c161e9b9d7cb8828113bd7db1631e52de0949c7e5860461663d295059ce185c4",
+        "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
     }

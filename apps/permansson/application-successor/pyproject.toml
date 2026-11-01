@@ -6,9 +6,18 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "permansson-application-successor-recovery"
-version = "0.1.0.dev0"
-description = "Draft Permansson successor application: bounded exact-rational finite profiles with independent checkers and source-bound Lean candidates, plus native C10/C11 replay"
-requires-python = ">=3.12"
+version = "0.2.0"
+description = "Permansson successor application: 26 bounded exact-rational finite profiles with independent checkers (numeric release scope, Linux CPython 3.12/3.13), source-bound Lean candidates for development, and native C10/C11 replay"
+requires-python = ">=3.12,<3.14"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
 dependencies = ["jsonschema==4.26.0", "referencing==0.37.0"]
 
 [project.optional-dependencies]

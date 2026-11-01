@@ -8,6 +8,8 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+import shutil
+import subprocess
 import sys
 import tempfile
 import time
@@ -99,6 +101,9 @@ class EnforcementTests(unittest.TestCase):
             budget.run_child([PY,'-c',program],ENV,SMALL,startup_address_space=budget.DEFAULT.memory_bytes)
         self.assertEqual(raised.exception.code,'BUDGET_MEMORY')
 
+    def test_the_childs_own_wall_clock_counts_as_a_timeout(self):
+        self.exhausted('import os,signal;os.kill(os.getpid(),signal.SIGALRM)','BUDGET_TIMEOUT')
+
     def test_output_file_exhaustion(self):
         with tempfile.TemporaryDirectory() as td:
             target=Path(td)/'big.bin'
@@ -161,15 +166,72 @@ class MemoryClassificationTests(unittest.TestCase):
                 if code:self.assertEqual(raised.exception.code,code)
         schema_validate._validators.cache_clear()
 
-    def test_the_child_requires_a_valid_memory_limit(self):
-        for raw in (None,'','abc','0',str(budget.DEFAULT.memory_bytes+1)):
-            env={} if raw is None else {budget.CHILD_MEMORY_ENV:raw}
-            with self.subTest(raw=raw),mock.patch.dict(os.environ,env,clear=False):
-                if raw is None:os.environ.pop(budget.CHILD_MEMORY_ENV,None)
-                with mock.patch('resource.setrlimit') as setrlimit,self.assertRaises(AppError) as raised:
-                    budget.enter_child()
-                self.assertEqual(raised.exception.code,'BUDGET_INPUT')
-                setrlimit.assert_not_called()
+class ChildBoundaryTests(unittest.TestCase):
+    """The child configuration is validated, and the child applies its limits itself."""
+    LIMITS={'wall_seconds':300,'cpu_seconds':240,'memory_bytes':2*1024**3,'output_bytes':32*1024**2,'stream_bytes':1024**2}
+
+    def staging(self,mode=0o700,prefix=budget.STAGING_PREFIX):
+        root=Path(tempfile.mkdtemp());self.addCleanup(shutil.rmtree,root,True)
+        stage=root/(prefix+'x');stage.mkdir();os.chmod(stage,mode)
+        return stage
+
+    def config(self,output,**limits):
+        return json.dumps({'output':str(output),'limits':{**self.LIMITS,**limits}})
+
+    def test_only_an_issued_private_staging_path_is_accepted(self):
+        stage=self.staging()
+        out,limits=budget.child_config(self.config(stage/'out',cpu_seconds=5))
+        self.assertEqual((out,limits.cpu_seconds),(stage/'out',5))
+        link=stage.parent/(budget.STAGING_PREFIX+'link');link.symlink_to(stage)
+        cases={
+            'missing':None,
+            'not json':'{',
+            'extra key':json.dumps({'output':str(stage/'out'),'limits':self.LIMITS,'x':1}),
+            'partial limits':json.dumps({'output':str(stage/'out'),'limits':{'cpu_seconds':1}}),
+            'raised limit':self.config(stage/'out',cpu_seconds=241),
+            'relative':self.config('rel/out'),
+            'wrong name':self.config(stage/'other'),
+            'wrong prefix':self.config(self.staging(prefix='other-')/'out'),
+            'shared mode':self.config(self.staging(mode=0o755)/'out'),
+            'symlinked staging':self.config(link/'out'),
+            'missing staging':self.config(stage.parent/(budget.STAGING_PREFIX+'gone')/'out'),
+        }
+        taken=self.staging();(taken/'out').mkdir();cases['output exists']=self.config(taken/'out')
+        for name,raw in cases.items():
+            with self.subTest(case=name),self.assertRaises(AppError) as raised:
+                budget.child_config(raw)
+            self.assertIn(raised.exception.code,{'BUDGET_CHILD','BUDGET_INPUT'})
+
+    @unittest.skipUnless(sys.platform=='linux','the budget is qualified on Linux only')
+    def test_the_child_applies_every_limit_to_itself(self):
+        # Run enter_child in a fresh process without any parent-imposed limit.
+        stage=self.staging()
+        program=('import json,resource,signal,sys;from pathlib import Path;'
+                 'from permansson_app import budget;'
+                 'out,limits=budget.child_config(sys.argv[1]);budget.enter_child(out,limits);'
+                 'print(json.dumps([resource.getrlimit(resource.RLIMIT_CPU),resource.getrlimit(resource.RLIMIT_FSIZE),'
+                 'resource.getrlimit(resource.RLIMIT_AS),resource.getrlimit(resource.RLIMIT_CORE),'
+                 'round(signal.getitimer(signal.ITIMER_REAL)[0]),budget.in_child()]))')
+        env={'PATH':os.environ.get('PATH','/usr/bin'),'PYTHONPATH':str(APP/'src')}
+        proc=subprocess.run([PY,'-c',program,self.config(stage/'out',cpu_seconds=7,output_bytes=5000,
+                             memory_bytes=900_000_000,wall_seconds=11)],env=env,capture_output=True,text=True,timeout=60)
+        self.assertEqual(proc.returncode,0,proc.stderr)
+        cpu,fsize,mem,core,timer,child=json.loads(proc.stdout)
+        self.assertEqual((cpu,fsize,mem,core),([7,8],[5000,5000],[900_000_000,900_000_000],[0,0]))
+        self.assertTrue(9<=timer<=11)
+        self.assertTrue(child)
+
+    def test_the_child_never_raises_a_tighter_limit(self):
+        import resource
+        calls=[]
+        with mock.patch('resource.getrlimit',return_value=(3,4)),\
+             mock.patch('resource.setrlimit',side_effect=lambda r,v:calls.append(v)):
+            budget._lower(resource.RLIMIT_CPU,240,241)
+        self.assertEqual(calls,[(3,4)])
+
+    def test_the_public_command_ignores_the_child_state_of_the_environment(self):
+        self.assertFalse(budget.in_child())
+        with self.assertRaises(AppError):budget.child_output()
 
 
 class PlatformTests(unittest.TestCase):

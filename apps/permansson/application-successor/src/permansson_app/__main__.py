@@ -14,7 +14,10 @@ from .runner import execute
 
 
 def _write_json(path:Path,data):
-    path.write_bytes((json.dumps(data,sort_keys=True,indent=2,ensure_ascii=False,allow_nan=False)+'\n').encode('utf-8'))
+    from .budget import charge_output
+    raw=(json.dumps(data,sort_keys=True,indent=2,ensure_ascii=False,allow_nan=False)+'\n').encode('utf-8')
+    charge_output(len(raw))  # in the budgeted child: total output stays within the budget
+    path.write_bytes(raw)
 
 
 def _new_output(path:Path):
@@ -45,7 +48,14 @@ BUDGETED_COMMANDS=frozenset({
 
 
 def main(argv=None):
-    p=argparse.ArgumentParser(description=__doc__)
+    """The public `permansson-app` command."""
+    return _main(argv,None)
+
+
+def _main(argv,child):
+    """`child` is (staging output, limits) only when called from the internal
+    budgeted-child entry point (`permansson_app._budget_child`)."""
+    p=argparse.ArgumentParser(prog='permansson-app',description=__doc__)
     sub=p.add_subparsers(dest='command',required=True)
     sub.add_parser('capabilities')
     sub.add_parser('about',help='where this permansson_app is imported from, its distribution version and Python')
@@ -164,10 +174,14 @@ def main(argv=None):
     args=p.parse_args(argv)
     try:
         if args.command in BUDGETED_COMMANDS:
-            from .budget import enter_child,in_child,run_budgeted
-            if not in_child():
+            from .budget import enter_child,run_budgeted
+            if child is None:
+                # The public command always runs the budgeted parent; nothing in
+                # the environment can make it skip the budget.
                 return run_budgeted(list(sys.argv[1:] if argv is None else argv),args.output)
-            enter_child()
+            enter_child(*child)
+        elif child is not None:
+            raise AppError('BUDGET_CHILD','the budgeted child runs only exact profile commands')
         if args.command=='capabilities':
             print(json.dumps(registry(),indent=2,sort_keys=True))
         elif args.command=='about':
