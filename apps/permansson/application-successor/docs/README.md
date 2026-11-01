@@ -16,7 +16,7 @@ Lean candidate. Reviewers should read
 - [`ROADMAP.md`](ROADMAP.md) — execution plan, status and what is out of scope
 - [`ACCEPTANCE_STATUS.md`](ACCEPTANCE_STATUS.md) — gate-by-gate status and the bridge table
 - [`ARCHITECTURE.md`](ARCHITECTURE.md) — trust boundary and deliberately limited scopes
-- [`ACCEPTANCE.md`](ACCEPTANCE.md), [`RELEASE_ACCEPTANCE.md`](RELEASE_ACCEPTANCE.md) — release-side criteria (not met by this branch)
+- [`ACCEPTANCE.md`](ACCEPTANCE.md), [`RELEASE_ACCEPTANCE.md`](RELEASE_ACCEPTANCE.md) — release-side criteria, the release procedure and the record of released versions (0.2.0)
 - [`SEMANTIC_DIGEST_PROFILE.md`](SEMANTIC_DIGEST_PROFILE.md) — request identity hashing
 - [`DOMAIN_IMPORTS.md`](DOMAIN_IMPORTS.md), [`FEDERATION_CONTRACT.md`](FEDERATION_CONTRACT.md) — envelopes for external data
 

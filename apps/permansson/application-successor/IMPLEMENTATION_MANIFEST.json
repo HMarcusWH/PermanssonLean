@@ -66,12 +66,11 @@
     "tracked_rows": 445,
     "absent_rows": 198,
     "absent_rows_by_disposition": {
-      "DEFERRED_ALTERNATE_LAYOUT": 41,
+      "DEFERRED_ALTERNATE_LAYOUT": 70,
       "DEFERRED_CONTRACT_LAYER": 37,
       "DEFERRED_DOMAIN_INTEGRATION": 12,
       "DEFERRED_SCOPE": 8,
       "EXCLUDED_GENERATED_BUILD_PRODUCT": 21,
-      "REQUIRED_BEFORE_RELEASE": 29,
       "REVIEW_GATED": 18,
       "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 32
     },
@@ -1183,7 +1182,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "cf6bb7ad7759acdb69addb6cc17f5b8aa7f699adb766e5b3fb1027825f68af0f",
+        "sha256": "744ef54fe255d5a8dcd153fdad8fb019dba6dd7b5f7456bdc13b54939d431558",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1893,8 +1892,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "ff742c072955ef2d47e03ed29a11080aa15830c09bb49f133a0af8e44d1494e5",
-        "git_blob_sha": "6ee5d9d1f9b21e887b9ad9e7f94c7c9974d6ca2e",
+        "sha256": "cf4c839541f8b2c48fe406f92b272cfec4d9c272acc7a517d6ad193fa1eeebf5",
+        "git_blob_sha": "664f6220de2e3e1cdc3bdce819f777a44b063235",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -1926,7 +1925,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "7a37a9ce7523375bc052285ae4b0debe2f955d236e59baf0f84427489ac57119",
+        "sha256": "38b3c1efb293ff72ecdf48d821f59803e01a94f7a81404301dc657a108a6380c",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1975,7 +1974,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "a11a25231327304480b726e60c3e5b9518da70f36e990a9a5cf6b8889d0c7ce4",
+        "sha256": "4dbbdee8865866856e0698ec4023962b3471367a4068fcc62a2a200e0b522a70",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2195,7 +2194,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "3a340dd840718d431531e3de32437ee8f93ea276b88d64970a26e4efa3f5e7db",
+        "sha256": "e70691d0c5adac28aa4fe24f98424660f9c08f89bf3731038d0e44f9ff1ed3d4",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2272,7 +2271,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "f1a5e1be3f65a927ddd941a117ee60e6608340de1f2e201ff7eb899d08e24af4",
+        "sha256": "0701a0a5db3422728b144146d0c138b5ebcbc0c56528e7af987aa8a44e3709ae",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2298,8 +2297,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "6ab8146398934789d3552a7c3842983a6162cf2705903c6a6b5e24ce3ca2c365",
-        "git_blob_sha": "c8a1b4e98181077791e5e381d91812500798be93",
+        "sha256": "d1506b6844a95e6a2c61e0512849121c10f760686f7ba54b1464c384f2cec6ff",
+        "git_blob_sha": "3f908d56ebd94288cfbfa5d1c25f81fc48c343de",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -2325,7 +2324,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "5d68b4e58a647abc5dc4bee876ceec9fd24c17ea8bf04383bf7b731a0c49ef63",
+        "sha256": "1ce7bd187d2489b84241e1f6b7f288eeb1f58bf9e3f6119c75d0233e7ff45f56",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -4018,8 +4017,16 @@
       "work_items": [
         "REL-01"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -7643,8 +7650,16 @@
         "REL-01",
         "INT-02"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
@@ -8727,8 +8742,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8881,8 +8904,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8907,8 +8938,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8933,8 +8972,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -8985,8 +9032,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9011,8 +9066,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9248,8 +9311,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9274,8 +9345,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9331,8 +9410,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9357,8 +9444,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9409,8 +9504,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9577,8 +9680,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9603,8 +9714,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9655,8 +9774,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9681,8 +9808,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9845,8 +9980,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9871,8 +10014,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9897,8 +10048,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -9954,8 +10113,16 @@
         "REL-01",
         "APP-04"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "EXISTED_ON_MAIN",
@@ -10487,8 +10654,16 @@
         "EXE-01",
         "EXE-02"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10518,8 +10693,16 @@
         "EXE-01",
         "EXE-02"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11108,8 +11291,16 @@
         "EXE-01",
         "EXE-02"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11143,8 +11334,16 @@
         "EXE-01",
         "EXE-02"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11208,8 +11407,16 @@
         "EXE-01",
         "EXE-02"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11245,8 +11452,16 @@
         "EXE-01",
         "EXE-02"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11348,8 +11563,16 @@
         "EXE-01",
         "EXE-02"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -12320,8 +12543,16 @@
       "work_items": [
         "REL-01"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "disposition_current": "DEFERRED_ALTERNATE_LAYOUT",
+      "disposition_reason": "planned release-qualification file, not created under this path. Release 0.2.0 (permansson-app-v0.2.0) was qualified without it: the installed-distribution runner runs the whole application suite against the installed wheel on both platforms, and the release gate authenticates the run and assesses the evidence (CON-03, PKG-03, PKG-04 done). related_implemented covers part of its role, not asserted as a full equivalent",
+      "related_implemented": [
+        "apps/permansson/application-successor/src/permansson_app/acceptance.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json",
+        "verification/application_successor/check_installed_package.py",
+        "verification/application_successor/release_gate.py",
+        "verification/research/test_application_release_gate.py",
+        "verification/research/test_application_successor_installed.py"
+      ]
     },
     {
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",

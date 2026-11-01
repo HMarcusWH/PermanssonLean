@@ -1,12 +1,14 @@
 # Successor application — roadmap and execution status
 
-Developed on branch `feature/application-successor-full` (pull request #115). This page
-records what has been built against the original plans, what was decided,
-and what is deliberately out of scope for an implementation branch.
+Developed on branch `feature/application-successor-full` (pull requests #115 and
+#117, both merged). Version 0.2.0 was released on 2026-11-01 as
+`permansson-app-v0.2.0`; [`RELEASE_ACCEPTANCE.md`](RELEASE_ACCEPTANCE.md) is
+the release record. This page records what has been built against the
+original plans, what was decided, and what is deliberately out of scope.
 
 It is not an acceptance record. The distinct gates in
 [`ACCEPTANCE_STATUS.md`](ACCEPTANCE_STATUS.md) stay authoritative, and nothing
-here asserts independent certification, release or empirical identification.
+here asserts independent certification or empirical identification.
 **A completed engineering step is not application acceptance.**
 
 ## Evidence tiers kept separate
@@ -16,8 +18,9 @@ here asserts independent certification, release or empirical identification.
 | Numeric | exact rational computation plus an independent checker that does not import the producer | `permansson_app` CLIs; every receipt says `lean_status=NOT_EXECUTED` |
 | Source binding | a Lean source candidate re-derived byte-for-byte from the original request and receipt bytes | `proof/*_emit.py` and `proof/control_source_check.py` |
 | Instance replay | the pinned Lean v4.34.0 compiler elaborates the candidate; `#print axioms` shows only `propext`, `Classical.choice`, `Quot.sound`; semantic mutations fail inside the targeted theorem | `verification/research/test_application_*_live_lean.py`, `scripts/end_to_end.py --lean` |
-| Exact-head CI | GitHub workflows on one commit; results never transfer to a later commit | pull request #115 |
-| Independent acceptance, release, empirical identification | outside this branch | owner-authorized review only |
+| Exact-head CI | GitHub workflows on one commit; results never transfer to a later commit | pull requests #115 and #117 |
+| Release | the owner-dispatched release workflow and its gate, under the owner-engineering policy | 0.2.0, see [`RELEASE_ACCEPTANCE.md`](RELEASE_ACCEPTANCE.md) |
+| Independent acceptance, empirical identification | outside this work | independent review only |
 
 ## Built so far
 
@@ -52,7 +55,7 @@ here, so this page cannot go stale against the head.
 | S05–S10 | Exit/grammar/quantitative; feedback and residence; constrained, robust and adaptive control; belief and safety; metric, quotient and nonlinear; multi-agent | implemented for bounded finite scopes, each with a bridge |
 | S11 | Expert nonfinite and specialized profiles | ADV-02 implemented (rational algebra); ADV-01 deferred |
 | S12 | Domain imports and local federation | **envelope-only, read-only**; source-grade importers deferred |
-| S13 | Application acceptance and current release documentation | documentation done; acceptance **not** done (owner-gated) |
+| S13 | Application acceptance and current release documentation | documentation done; numeric release 0.2.0 made under the owner-engineering policy; independent acceptance **not** done |
 | S14 | Optional dedicated CI profile transition | **not performed** (review-gated) |
 
 ### Deployment phases (implementation and deployment instructions, P0–P7)
@@ -66,7 +69,7 @@ here, so this page cannot go stale against the head.
 | P4 Finite model and LP correspondence | done for bounded instances |
 | P5 Full mathematical engines | done for bounded finite scopes; FIX-01 and ADV-01 deferred |
 | P6 Domain integration | **envelope-only** |
-| P7 Packaging and release preparation | **implemented, awaiting the release workflow**: version 0.2.0, locked reproducible builds, whole-run budget, the selected release scope (26 profiles, Linux CPython 3.12/3.13), the installed-distribution qualification runner and the release gate exist ([`RELEASE_ACCEPTANCE.md`](RELEASE_ACCEPTANCE.md)). Authenticated platform-matrix evidence comes from the release workflow, which is added by a separate owner-approved workflow-contract change; no release has been activated. |
+| P7 Packaging and release preparation | **done**: 0.2.0 released on 2026-11-01 as `permansson-app-v0.2.0` for the selected scope (26 profiles, Linux CPython 3.12/3.13). It has locked reproducible builds, the whole-run budget, installed-distribution qualification on both platforms and the authenticated release gate ([`RELEASE_ACCEPTANCE.md`](RELEASE_ACCEPTANCE.md)). The release workflow came with pull request #118. |
 
 ### Final engineering round (R0–R6)
 
@@ -127,7 +130,7 @@ An external read-only audit of `a3df725` raised 33 work orders.
 | CON-01, CON-04, CON-05 | The cross-profile contract layer, source-grade domain importers and real federation providers are deferred. Federation stays read-only with no remote execution. |
 | CI-04 | Every output keeps `scientific_claims_verified=false`, `empirical_identification=NOT_IDENTIFIED` and nine unassessed certificate dimensions. |
 
-**Not actionable on this branch (owner or independent review):**
+**Not actionable in this work (owner or independent review):**
 
 - **CI-01.** Exact-head Research Lean completion, read per commit on the
   pull request.
@@ -148,14 +151,15 @@ An external read-only audit of `a3df725` raised 33 work orders.
 - **CI-03.** Independent mathematics review and research CERT. Independent
   security review is not part of the numeric release: its release authority
   is an owner-engineering policy, named as such.
-- **PKG-03.** The authenticated Linux × CPython 3.12/3.13 distribution
-  matrix runs in the release workflow, which needs the separate
-  workflow-contract change. Windows is out of scope.
+- **PKG-03.** *Done for 0.2.0.* The authenticated Linux × CPython
+  3.12/3.13 distribution matrix ran in the release workflow, added by pull
+  request #118. Windows is out of scope.
 
-## Out of scope for this branch
+## Out of scope
 
-* Activating or relaxing any GitHub Actions workflow or guard. The archive
-  repair is a separate, owner-approved pull request (#116).
+* Activating or relaxing a GitHub Actions workflow or guard, other than by
+  a separate owner-approved pull request: the archive repair (#116) and the
+  release workflow (#118) were made that way.
 * Running or claiming independent research CERT for the original 45 or the
   later 11 claims.
 * Empirical identification, publication of results, merging to `main`, or
@@ -173,9 +177,10 @@ section):
 - excluded generated build products;
 - supersessions to implemented paths, with the targets checked;
 - deferred alternate layouts naming related implemented files, without
-  claiming full equivalence;
+  claiming full equivalence. These include the planned release-qualification
+  files: release 0.2.0 was qualified without them, by the installed-distribution
+  runner and the release gate;
 - deferred contract-layer, domain or scope items;
-- items required before release;
 - review-gated CI and release surfaces.
 
 `python scripts/inventory.py --check` verifies these dispositions and that

@@ -17,8 +17,10 @@ independent mathematical acceptance.
 **Important limitation:** Even a completely covered test matrix is
 `EVIDENCE_COMPLETE_REVIEW_REQUIRED`, **not** a release. The decisions the
 policy requires (a review, an activation) are always listed as missing; they
-are established outside the tested artifact. Two release scopes are packaged,
-and neither is an activated release profile:
+are established outside the tested artifact. Two release scopes are packaged.
+No assessment is itself a release: the successor numeric scope was released as
+0.2.0 only through the owner-dispatched release workflow and its gate, which
+supply the activation.
 
 - `data/acceptance_policy.json` (v1, the default) is the *proposed minimum* for
   C10/C11 numerical selection.

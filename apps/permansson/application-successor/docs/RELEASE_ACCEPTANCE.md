@@ -9,7 +9,7 @@ output claims (see "What a release does not mean" below).
 | Field | Value |
 | --- | --- |
 | Distribution | `permansson-application-successor-recovery` |
-| Version | `0.2.0` (owner decision, 2026-11-01) |
+| Version | `0.2.0` (owner decision, 2026-11-01); released 2026-11-01, see [Released versions](#released-versions) |
 | Scope | `successor-finite-numeric.v1`: the 26 exact finite profiles of `data/capabilities.json`, numeric only |
 | Platforms | `linux-cpython-3.12` and `linux-cpython-3.13`; other platforms are refused with `PLATFORM_UNQUALIFIED` |
 | Policy | `data/acceptance_policy.successor_numeric.v1.json`, format `Permansson.App.AcceptancePolicy.v3` |
@@ -20,9 +20,10 @@ output claims (see "What a release does not mean" below).
 
 The release workflow `.github/workflows/application-release.yml` carries out
 the whole procedure. Every job name starts with `release`, so none can stand
-in for a required check. It is added to the repository's reviewed workflow
-contract by a separate, owner-approved change; until it is installed, no
-release can be activated.
+in for a required check. It was added to the repository's reviewed workflow
+contract by its own owner-approved change (pull request #118; archive
+successor policy v2, `docs/operations/ARCHIVE_SUCCESSOR_CONTRACT_V2.md` at the
+repository root).
 
 1. **Freeze the source.** The commit to release is on `main`, with the
    version above in `pyproject.toml` and `permansson_app.__version__`.
@@ -71,7 +72,43 @@ release can be activated.
    hash against the manifest.
 
 Any later change to the source is a different candidate: the procedure
-starts again at that commit.
+starts again at that commit. A version is released once. Its tag already
+exists, so a later candidate needs a new version number.
+
+## Released versions
+
+| Version | Date | Commit | Activation | Wheel SHA-256 | Sdist SHA-256 |
+| --- | --- | --- | --- | --- | --- |
+| [`0.2.0`](https://github.com/HMarcusWH/PermanssonLean/releases/tag/permansson-app-v0.2.0) | 2026-11-01 | `63a66c82a9ece4361f646ee13b6711192f831406` | run [41313849870](https://github.com/HMarcusWH/PermanssonLean/actions/runs/41313849870), dispatched by `HMarcusWH` | `c119d66a1459535d17e2d688757ab06258d28654a86da4767df87d98783954dd` | `873af692897d6bf4de2cbf6bc728057685fb98a0236649f9693f6721d3e8268d` |
+
+For 0.2.0, `release-manifest.json` has SHA-256
+`d556cee5c1ea5e6f4f2cc61f37aaed3bfde83045e70e1e4d015b9ba1b804d0b3` and records
+260 evidence records (26 capabilities, five evidence kinds, two platforms).
+
+After publication, 0.2.0 was checked again locally on 2026-11-01. This was
+an engineering check made at the owner's request, not an authenticated or
+independent review:
+
+- `sha256sum -c SHA256SUMS` passes, and the hashes equal the digests GitHub
+  recorded for the assets.
+- The tag points at the manifest's commit, and the manifest agrees with that
+  source: policy hash, the 26 profiles, both platforms and the recomputed
+  release subject.
+- Two builds from a clean checkout of the tag, and a wheel built from the
+  published sdist, are byte-identical to the published files.
+- The qualification runner passes against the published wheel on CPython
+  3.12 and 3.13. The 3.13 raw results are byte-identical to the release
+  run's; the 3.12 results differ only in the recorded patch version.
+- The 260 evidence records, re-derived from the release run's qualification
+  artifacts, reproduce the manifest's evidence hash and its assessment
+  exactly.
+- The end-to-end walkthrough passes against the installed wheel on both
+  versions. With `--lean`, all 21 emitted candidates compile with the pinned
+  toolchain, and their 202 theorems pass the axiom audit.
+- The whole-run budget refuses an undersized memory budget, a raised limit
+  and an undersized output budget, and leaves no output. A forged
+  child environment is ignored, and the internal child entry point refuses a
+  direct start.
 
 ## What the manifest records
 
@@ -93,14 +130,35 @@ starts again at that commit.
 
 ## Checking a published release yourself
 
+Check the downloaded files (the application README shows how to download
+them):
+
 ```bash
 sha256sum -c SHA256SUMS
 ```
 
-`release-manifest.json` names the commit; a clean checkout of that commit
-rebuilds the same wheel and sdist bytes with `scripts/build_distributions.py`
-and the hash-locked tools. `release_gate.py verify-published` repeats the
-workflow's post-publication check (it needs a GitHub token).
+Rebuild them from the commit that `release-manifest.json` names. Keep the
+downloaded files outside the checkout (here in `$DL`), because the build
+requires a clean checkout. At the root of a clean checkout of the repository:
+
+```bash
+DL=/path/to/the/downloaded/files
+git checkout permansson-app-v0.2.0
+python3 -m venv /tmp/permansson-build-tools
+/tmp/permansson-build-tools/bin/python -m pip install --require-hashes \
+  -r apps/permansson/application-successor/requirements-build.lock
+python3 apps/permansson/application-successor/scripts/build_distributions.py \
+  --output /tmp/permansson-rebuild --python /tmp/permansson-build-tools/bin/python
+for f in permansson_application_successor_recovery-0.2.0-py3-none-any.whl \
+         permansson_application_successor_recovery-0.2.0.tar.gz; do
+  cmp "/tmp/permansson-rebuild/$f" "$DL/$f" && echo "$f: identical"
+done
+```
+
+The build uses the commit time, so both files are byte-identical to the
+published ones. `release_gate.py verify-published` repeats the workflow's
+post-publication check, which downloads the release assets again through the
+GitHub API (its command line needs a GitHub token).
 
 ## What a release does not mean
 

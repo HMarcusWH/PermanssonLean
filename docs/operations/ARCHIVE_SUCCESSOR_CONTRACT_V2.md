@@ -1,7 +1,7 @@
 # Archive successor contract, policy v2: the application release workflow
 
-**Status:** an owner engineering policy. It takes effect only through the
-owner's merge into `main` of the change that adds it. It is **not** an
+**Status:** an owner engineering policy, in effect since the owner merged
+pull request #118 into `main` on 2026-11-01. It is **not** an
 independent security review, not an approval of PR #113, not mathematical
 certification and not release acceptance. It extends
 [contract v1](ARCHIVE_SUCCESSOR_CONTRACT_V1.md); everything v1 says still holds
