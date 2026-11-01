@@ -3,9 +3,11 @@
 The packaged default `acceptance_policy.json` still selects only the native
 C10/C11 capabilities; a target naming an additive profile is blocked against
 it as undeclared. The owner-selected successor scope is a separate, versioned
-v2 policy (`acceptance_policy.successor_numeric.v1.json`) for exactly the 26
-exact profiles, numeric only, on Linux CPython 3.12 and 3.13, naming the real
-test-method IDs each capability needs. No policy and no assessment authorizes
+policy (`acceptance_policy.successor_numeric.v1.json`, format v3) for exactly
+the 26 exact profiles, numeric only, on Linux CPython 3.12 and 3.13, naming the
+real test-method IDs each capability needs. Its release authority is an
+owner-engineering policy: the owner's activation is required and no
+independent security review is claimed. No policy and no assessment authorizes
 a release, a scientific claim or an identification on its own.
 """
 from __future__ import annotations
@@ -104,8 +106,16 @@ class SuccessorPolicyTests(unittest.TestCase):
         self.assertFalse(set(self.policy.required)&NATIVE)
         self.assertEqual(list(self.policy.platforms),PLATFORMS)
         self.assertEqual(self.policy.execution_profile,'numeric')
-        self.assertTrue(self.policy.require_security_review and self.policy.require_owner_activation)
         self.assertIn('lean_status=NOT_EXECUTED',self.raw['description'])
+
+    def test_release_authority_is_owner_engineering_without_an_independent_review_claim(self):
+        authority=self.policy.release_authority
+        self.assertEqual((authority.kind,authority.owner),('OWNER_ENGINEERING_POLICY','HMarcusWH'))
+        self.assertIs(authority.independent_security_review,False)
+        self.assertIn('application-release.yml',authority.activation)
+        self.assertFalse(self.policy.require_security_review)
+        self.assertTrue(self.policy.require_owner_activation)
+        self.assertIn('no independent security review is claimed',self.raw['description'])
 
     def test_every_capability_names_exactly_its_real_test_methods(self):
         budget=set(discovered(['test_resources_budget','test_engine_resource_limits']))
@@ -152,8 +162,9 @@ class SuccessorPolicyTests(unittest.TestCase):
         cap='finite.private_control_stage_saddle.numeric.v1'
         result=assess_acceptance(self.target_for(cap,PLATFORMS[1]),self.evidence(cap,PLATFORMS[1]),
                                  self.policy).to_dict()
-        self.assertEqual(sorted(result['missing']),['EXTERNAL_INDEPENDENT_SECURITY_REVIEW',
-                                                    'EXTERNAL_OWNER_RELEASE_ACTIVATION'])
+        self.assertEqual(result['missing'],['EXTERNAL_OWNER_RELEASE_ACTIVATION'])
+        # Complete evidence is complete; the external decision is still listed.
+        self.assertEqual(result['status'],'EVIDENCE_COMPLETE_REVIEW_REQUIRED')
         self.assertEqual(result['failing'],[])
         self.assertTrue(result['covered'])
         self.assertIs(result['authorized_release'],False)
@@ -186,7 +197,15 @@ class SuccessorPolicyTests(unittest.TestCase):
             'duplicate platform':lambda p:p.update(platforms=PLATFORMS+PLATFORMS[:1]),
             'unknown profile':lambda p:p.update(execution_profile='certified'),
             'v1 tag with v2 fields':lambda p:p.update(format='Permansson.App.AcceptancePolicy.v1'),
-            'review flag dropped':lambda p:p.update(security_review_required='false'),
+            'review flag not a boolean':lambda p:p.update(security_review_required='false'),
+            'owner activation dropped':lambda p:p.update(owner_activation_required=False),
+            'independent review claimed':lambda p:p['release_authority'].update(independent_security_review=True),
+            'review required under owner policy':lambda p:p.update(security_review_required=True),
+            'unknown authority kind':lambda p:p['release_authority'].update(kind='INDEPENDENT_REVIEW'),
+            'owner is not a login':lambda p:p['release_authority'].update(owner='HMarcusWH; anyone'),
+            'activation not stated':lambda p:p['release_authority'].update(activation=''),
+            'authority missing':lambda p:p.pop('release_authority'),
+            'v2 tag with an authority':lambda p:p.update(format='Permansson.App.AcceptancePolicy.v2'),
         }
         for name,mutate in mutations.items():
             raw=json.loads(SUCCESSOR.read_text(encoding='utf-8'))

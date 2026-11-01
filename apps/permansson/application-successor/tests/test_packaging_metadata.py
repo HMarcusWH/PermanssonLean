@@ -1,8 +1,9 @@
 """Package metadata stays truthful and reproducible.
 
 The declared build backend is the hash-locked one, the runtime pins agree with
-the runtime lock, the version stays a development pre-release until a release
-is authorized, and the description no longer calls the package numeric-only.
+the runtime lock, the version is the owner-selected release version, and the
+description and classifiers state the qualified Linux CPython 3.12/3.13 scope
+without calling the package numeric-only.
 """
 from __future__ import annotations
 from pathlib import Path
@@ -55,11 +56,20 @@ class PackagingMetadataTests(unittest.TestCase):
                          sorted(self.pyproject['project']['dependencies']))
 
     def test_version_and_description_do_not_overstate(self):
+        # The owner selected 0.2.0 for the first numeric release (2026-11-01).
+        # Choosing a version authorizes nothing: release activation is the
+        # owner's dispatch of the release workflow, checked by the release gate.
         project=self.pyproject['project']
-        self.assertIn('.dev',project['version'])
+        self.assertEqual(project['version'],'0.2.0')
+        # Wherever the package is imported from (source tree or installed wheel).
+        import sys
+        sys.path.insert(0,str(APP/'src'))
+        import permansson_app
+        self.assertEqual(permansson_app.__version__,project['version'])
         self.assertNotIn('numeric-only',project['description'].lower())
-        self.assertIn('Draft',project['description'])
-
-
-if __name__=='__main__':
-    unittest.main()
+        self.assertNotIn('draft',project['description'].lower())
+        self.assertEqual(project['requires-python'],'>=3.12,<3.14')
+        classifiers=set(project['classifiers'])
+        self.assertTrue({'Operating System :: POSIX :: Linux','Programming Language :: Python :: 3.12',
+                         'Programming Language :: Python :: 3.13'}<=classifiers)
+        self.assertFalse([c for c in classifiers if 'Windows' in c or 'MacOS' in c or ':: 3.11' in c])

@@ -1,9 +1,20 @@
 """Selected-scope evidence completeness, not self-issued release authorization.
 
-The result is eligible-for-independent-review at most. Independent reviewer
-identity and owner activation cannot be obtained from a supplied JSON flag.
+The result is eligible-for-review-and-activation at most. A reviewer identity
+or an owner activation cannot be obtained from a supplied JSON flag.
+
+Policy formats:
+
+- v1: required evidence per capability, plus review and activation flags.
+- v2: adds the selected scope, platforms and execution profile, and the test
+  sources each capability's method list is checked against.
+- v3: adds `release_authority`, which names who approves a release. Its only
+  kind so far is `OWNER_ENGINEERING_POLICY`: the owner approves and activates
+  the release; no independent security review is claimed, so
+  `security_review_required` must be false.
 """
 from __future__ import annotations
+import re
 from dataclasses import dataclass
 from .errors import AppError
 from .versioning import SourcePin,sha256
@@ -42,6 +53,34 @@ class AcceptanceTarget:
               'capabilities':list(self.capabilities),'platforms':list(self.platforms),
               'execution_profile':self.execution_profile})
 
+_LOGIN=re.compile(r'^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$')
+
+
+@dataclass(frozen=True)
+class ReleaseAuthority:
+    kind: str
+    owner: str
+    independent_security_review: bool
+    activation: str
+
+    @classmethod
+    def parse(cls, raw: object) -> 'ReleaseAuthority':
+        keys = {'kind', 'owner', 'independent_security_review', 'activation'}
+        if type(raw) is not dict or set(raw) != keys:
+            raise AppError('ACCEPTANCE_POLICY', 'release authority needs kind, owner, independent_security_review and activation')
+        if raw['kind'] != 'OWNER_ENGINEERING_POLICY' or raw['independent_security_review'] is not False:
+            raise AppError('ACCEPTANCE_POLICY', 'an owner-engineering authority never claims independent security review')
+        if type(raw['owner']) is not str or not _LOGIN.fullmatch(raw['owner']):
+            raise AppError('ACCEPTANCE_POLICY', 'release authority owner must be a GitHub login')
+        if type(raw['activation']) is not str or not raw['activation']:
+            raise AppError('ACCEPTANCE_POLICY', 'release authority must say how the owner activates a release')
+        return cls(raw['kind'], raw['owner'], False, raw['activation'])
+
+    def to_dict(self) -> dict:
+        return {'kind': self.kind, 'owner': self.owner, 'independent_security_review': False,
+                'activation': self.activation}
+
+
 @dataclass(frozen=True)
 class AcceptancePolicy:
     """Explicit minimum selected method IDs, keyed by capability and platform.
@@ -56,16 +95,19 @@ class AcceptancePolicy:
     scope:str|None=None
     platforms:tuple[str,...]|None=None
     execution_profile:str|None=None
+    release_authority:ReleaseAuthority|None=None
 
     @classmethod
     def parse(cls,raw:object)->'AcceptancePolicy':
         v1={'format','required','security_review_required','owner_activation_required'}
         v2=v1|{'scope','description','platforms','execution_profile','method_sources'}
+        v3=v2|{'release_authority'}
         if type(raw) is not dict or not ((raw.get('format')=='Permansson.App.AcceptancePolicy.v1' and set(raw)==v1)
-                                         or (raw.get('format')=='Permansson.App.AcceptancePolicy.v2' and set(raw)==v2)):
+                                         or (raw.get('format')=='Permansson.App.AcceptancePolicy.v2' and set(raw)==v2)
+                                         or (raw.get('format')=='Permansson.App.AcceptancePolicy.v3' and set(raw)==v3)):
             raise AppError('ACCEPTANCE_POLICY','unknown or incomplete selected release policy')
         extra={}
-        if raw['format'].endswith('.v2'):
+        if not raw['format'].endswith('.v1'):
             platforms=raw['platforms']
             if (type(raw['scope']) is not str or not raw['scope'] or type(raw['description']) is not str
                     or type(platforms) is not list or not platforms or len(set(platforms))!=len(platforms)
@@ -78,6 +120,10 @@ class AcceptancePolicy:
                            for v in sources.values())):
                 raise AppError('ACCEPTANCE_POLICY','every selected capability needs its test-method sources')
             extra={'scope':raw['scope'],'platforms':tuple(platforms),'execution_profile':raw['execution_profile']}
+        if raw['format'].endswith('.v3'):
+            extra['release_authority']=ReleaseAuthority.parse(raw['release_authority'])
+            if raw['security_review_required'] is not False or raw['owner_activation_required'] is not True:
+                raise AppError('ACCEPTANCE_POLICY','an owner-engineering policy requires owner activation and no independent review')
         if type(raw['required']) is not dict or not raw['required']:
             raise AppError('ACCEPTANCE_POLICY','missing selected capability contracts')
         if type(raw['security_review_required']) is not bool or type(raw['owner_activation_required']) is not bool:
@@ -156,6 +202,12 @@ def assess_acceptance(target:AcceptanceTarget,evidence:EvidenceSet,
     # A receipt or flag in a tested source archive never creates authority.
     if policy.require_security_review:missing.append('EXTERNAL_INDEPENDENT_SECURITY_REVIEW')
     if policy.require_owner_activation:missing.append('EXTERNAL_OWNER_RELEASE_ACTIVATION')
-    status='BLOCKED_FAILED_EVIDENCE' if failed else ('BLOCKED_MISSING_EVIDENCE' if missing else 'EVIDENCE_COMPLETE_REVIEW_REQUIRED')
+    # Under an owner-engineering authority the owner's activation is also the
+    # release approval; it is checked outside this function (release gate).
+    # The external decisions are always listed as missing; they never make the
+    # evidence itself incomplete.
+    evidence_missing=[m for m in missing if not m.startswith('EXTERNAL_')]
+    status='BLOCKED_FAILED_EVIDENCE' if failed else ('BLOCKED_MISSING_EVIDENCE' if evidence_missing
+                                                      else 'EVIDENCE_COMPLETE_REVIEW_REQUIRED')
     return AcceptanceAssessment(status,target.identity(),tuple(sorted(set(missing))),
                                   tuple(sorted(set(failed))),tuple(sorted(set(covered))))

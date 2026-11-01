@@ -15,23 +15,30 @@ independent mathematical acceptance.
 `python -m permansson_app.governance_cli release-assess TARGET EVIDENCE EXTERNAL_PINS POLICY --output NEW_DIR`
 
 **Important limitation:** Even a completely covered test matrix is
-`EVIDENCE_COMPLETE_REVIEW_REQUIRED`, **not** a release. Independent reviewer
-identity, authority and owner activation must be established in a separate
-nonself-issued trust process. Two release scopes are packaged, and neither is an
-activated or independently reviewed release profile:
+`EVIDENCE_COMPLETE_REVIEW_REQUIRED`, **not** a release. The decisions the
+policy requires (a review, an activation) are always listed as missing; they
+are established outside the tested artifact. Two release scopes are packaged,
+and neither is an activated release profile:
 
 - `data/acceptance_policy.json` (v1, the default) is the *proposed minimum* for
   C10/C11 numerical selection.
-- `data/acceptance_policy.successor_numeric.v1.json` (v2) is the owner-selected
-  scope for the 26 exact finite profiles. It covers numeric results only, on
-  Linux CPython 3.12 and 3.13. For each capability it names:
+- `data/acceptance_policy.successor_numeric.v1.json` (format v3) is the
+  owner-selected scope for the 26 exact finite profiles. It covers numeric
+  results only, on Linux CPython 3.12 and 3.13. For each capability it names:
   - the exact unittest method IDs of its tests, the whole-run budget tests
     and its end-to-end walkthrough row (`numeric_test`);
-  - the installed-distribution run on each platform (`cross_platform`);
+  - the installed-distribution qualification on each platform
+    (`cross_platform`, `verification/application_successor/check_installed_package.py`);
   - source identity, and the wheel and sdist (`package`).
 
-  Any other platform or execution profile is reported missing. Lean instance
-  replay would need its own, separately authenticated policy.
+  Its `release_authority` is an owner-engineering policy: the owner approves
+  and activates a release, and no independent security review is claimed, so
+  only `EXTERNAL_OWNER_RELEASE_ACTIVATION` is listed as missing. The release
+  gate (`verification/application_successor/release_gate.py`) checks that
+  activation through the GitHub API; see
+  [`RELEASE_ACCEPTANCE.md`](RELEASE_ACCEPTANCE.md). Any other platform or
+  execution profile is reported missing. Lean instance replay would need its
+  own, separately authenticated policy.
 
 Neither policy can waive the historical archive gate.
 

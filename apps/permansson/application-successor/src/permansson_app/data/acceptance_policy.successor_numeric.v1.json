@@ -1,14 +1,20 @@
 {
-  "format": "Permansson.App.AcceptancePolicy.v2",
+  "format": "Permansson.App.AcceptancePolicy.v3",
   "scope": "successor-finite-numeric.v1",
-  "description": "Owner-selected release scope for the 26 exact finite numeric profiles of the successor application. Every capability keeps its declared limits and its numeric-only meaning: outputs report lean_status=NOT_EXECUTED, scientific_claims_verified=false and empirical_identification=NOT_IDENTIFIED. Lean instance replay is not part of this scope; it needs a separate, separately authenticated policy. Selecting this file grants nothing by itself: external independent security review and owner activation stay required.",
+  "description": "Owner-selected release scope for the 26 exact finite numeric profiles of the successor application. Every capability keeps its declared limits and its numeric-only meaning: outputs report lean_status=NOT_EXECUTED, scientific_claims_verified=false and empirical_identification=NOT_IDENTIFIED. Lean instance replay is not part of this scope; it needs a separate, separately authenticated policy. Release authority is an owner-engineering policy (decided by the owner on 2026-11-01): the owner approves and activates a release; no independent security review is claimed or implied. Selecting this file grants nothing by itself: the owner activation stays required and is checked outside the tested artifact.",
   "platforms": [
     "linux-cpython-3.12",
     "linux-cpython-3.13"
   ],
   "execution_profile": "numeric",
-  "security_review_required": true,
+  "security_review_required": false,
   "owner_activation_required": true,
+  "release_authority": {
+    "kind": "OWNER_ENGINEERING_POLICY",
+    "owner": "HMarcusWH",
+    "independent_security_review": false,
+    "activation": "workflow_dispatch of .github/workflows/application-release.yml by the owner at the exact release commit; the release gate checks the run, its trigger and its jobs through the GitHub API"
+  },
   "required": {
     "finite.adaptive_block_control.numeric.v1": {
       "numeric_test": [
@@ -24,12 +30,21 @@
         "test_adaptive_cli.AdaptiveCLI.test_real_cli",
         "test_adaptive_cli.AdaptiveCLI.test_schema_accepts_example_and_checks_nested_grammar",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -37,6 +52,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -44,11 +60,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -61,12 +76,21 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-safety",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -74,6 +98,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -81,7 +106,6 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused",
         "test_safety.SafetyCoreTests.test_all_states_safe_is_invariant",
         "test_safety.SafetyCoreTests.test_bad_policy_witness",
@@ -117,7 +141,7 @@
         "test_safety.SafetyCoreTests.test_wrong_semantic_identity"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -130,11 +154,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-kernel",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_foundations.FiniteTests.test_P_mass",
         "test_foundations.FiniteTests.test_U_row_missing",
@@ -151,6 +180,10 @@
         "test_foundations.FiniteTests.test_receipt_check",
         "test_foundations.FiniteTests.test_receipt_mutant",
         "test_foundations.FiniteTests.test_valid_alpha_intervention",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -158,6 +191,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -165,11 +199,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -189,12 +222,21 @@
         "test_cq1_transport.CQ1TransportTests.test_tampered_receipts_rejected",
         "test_cq1_transport.CQ1TransportTests.test_uncertified_cq1_is_refused",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -202,6 +244,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -209,11 +252,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -236,12 +278,21 @@
         "test_cq1_cli.CQ1CLI.test_schema_accepts_complete_example",
         "test_cq1_cli.CQ1CLI.test_schema_rejects_single_comparison_state",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -249,6 +300,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -256,11 +308,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -273,11 +324,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-exit",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_occupation_exit.ExitTests.test_false_destination_rejected",
         "test_occupation_exit.ExitTests.test_false_eventual_rejected",
@@ -294,6 +350,10 @@
         "test_occupation_exit.ExitTests.test_results_beyond_the_input_precision_are_checked",
         "test_occupation_exit.ExitTests.test_wrong_region_identity_rejected",
         "test_occupation_exit.InstalledCLIContracts.test_occupation_and_exit_cli",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -301,6 +361,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -308,11 +369,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -325,11 +385,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:frozen-menu",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_frozen_menu.FrozenMenuTests.test_action_type_target_invalid",
         "test_frozen_menu.FrozenMenuTests.test_duplicate_choice_id_invalid",
@@ -352,6 +417,10 @@
         "test_frozen_menu.FrozenMenuTests.test_unknown_key_invalid",
         "test_frozen_menu.FrozenMenuTests.test_wrong_choice_id_receipt_invalid",
         "test_frozen_menu.FrozenMenuTests.test_zero_horizon_all_tied",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -359,6 +428,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -366,11 +436,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -408,12 +477,21 @@
         "test_bellman.BellmanTests.test_wrong_goal_terminal_entry_rejected",
         "test_bellman.BellmanTests.test_wrong_time_direction_rejected",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -421,6 +499,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -428,11 +507,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -445,11 +523,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-survival",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_finite_survival.AdvertisedScopeTests.test_numeric_registry_profiles_are_explicitly_uncertified",
         "test_finite_survival.SurvivalCLITests.test_installed_style_cli_roundtrip",
@@ -471,6 +554,10 @@
         "test_finite_survival.SurvivalTests.test_treated_feasibility_change_fails",
         "test_finite_survival.SurvivalTests.test_wrong_model_binding_fails",
         "test_finite_survival.SurvivalTests.test_wrong_sign_fails",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -478,6 +565,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -485,11 +573,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -502,11 +589,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-metric",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_metric.MetricTests.test_example_contraction_and_bound",
         "test_metric.MetricTests.test_invalid_metrics_rejected",
@@ -517,6 +609,10 @@
         "test_metric_cli.MetricCLI.test_real_cli",
         "test_metric_cli.MetricCLI.test_schema_accepts_complete_example",
         "test_metric_cli.MetricCLI.test_schema_rejects_zero_distance",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -524,6 +620,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -531,11 +628,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -548,11 +644,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:nonlinear-stationary",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_nonlinear.NonlinearStationaryTest.test_changed_class_value_fails",
         "test_nonlinear.NonlinearStationaryTest.test_degenerate_no_hidden_seven_state_scope",
@@ -566,6 +667,10 @@
         "test_nonlinear.NonlinearStationaryTest.test_stationary_laws_beyond_the_input_precision_are_accepted",
         "test_nonlinear.NonlinearStationaryTest.test_unsupported_functional_is_error",
         "test_nonlinear.NonlinearStationaryTest.test_wrong_initial_order",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -573,6 +678,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -580,11 +686,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -615,12 +720,21 @@
         "test_belief_tree_cli.BeliefTreeCLI.test_output_is_never_overwritten",
         "test_belief_tree_cli.BeliefTreeCLI.test_schema_and_package_resources",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -628,6 +742,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -635,11 +750,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -672,12 +786,21 @@
         "test_belief_cli.BeliefCLI.test_installed_resources_and_strict_schema",
         "test_belief_cli.BeliefCLI.test_invalid_kernel_stochasticity_fails_without_output",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -685,6 +808,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -692,11 +816,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -709,12 +832,21 @@
       "numeric_test": [
         "scripts/end_to_end.py:one-step-risk-infeasibility",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -722,6 +854,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -729,7 +862,6 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused",
         "test_risk_infeasibility.RiskInfeasibilityTests.test_example_certificate",
         "test_risk_infeasibility.RiskInfeasibilityTests.test_false_rays_and_tampering_rejected",
@@ -740,7 +872,7 @@
         "test_risk_infeasibility.RiskInfeasibilityTests.test_receipt_for_a_looser_cap_rejected"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -753,12 +885,21 @@
       "numeric_test": [
         "scripts/end_to_end.py:one-step-risk",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -766,6 +907,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -773,7 +915,6 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused",
         "test_risk_occupancy.RiskOccupancyTests.test_all_critical_receipt_tamper_rejected",
         "test_risk_occupancy.RiskOccupancyTests.test_arbitrary_tied_optimum_not_equal_reference_primal",
@@ -796,7 +937,7 @@
         "test_risk_occupancy_cli.OneStepRiskCLI.test_unprovable_infeasibility_is_not_called_proved"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -809,11 +950,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-grammar",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_grammar.GrammarTests.test_changed_interaction_rejected",
         "test_grammar.GrammarTests.test_equal_patch_overlap_is_compatible",
@@ -838,6 +984,10 @@
         "test_grammar_quotient_cli.GrammarQuotientCLI.test_installed_resourced_schemas_and_exact_export",
         "test_grammar_quotient_cli.GrammarQuotientCLI.test_mutation_rejected_before_output",
         "test_grammar_quotient_cli.GrammarQuotientCLI.test_output_path_not_overwritten",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -845,6 +995,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -852,11 +1003,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -869,12 +1019,21 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-perturbation",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -882,6 +1041,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -889,7 +1049,6 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused",
         "test_robustness.PerturbationTests.test_bool_initial_weight",
         "test_robustness.PerturbationTests.test_boolean_horizon_rejected",
@@ -930,7 +1089,7 @@
         "test_robustness.PerturbationTests.test_unregistered_input_extra_key"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -943,11 +1102,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-private-stage",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_private_stage.PrivateStageTests.test_example_saddle_and_randomization_gain",
         "test_private_stage.PrivateStageTests.test_four_by_four_certificate",
@@ -961,6 +1125,10 @@
         "test_private_stage_cli.PrivateStageCLI.test_real_cli",
         "test_private_stage_cli.PrivateStageCLI.test_schema_accepts_example",
         "test_private_stage_cli.PrivateStageCLI.test_schema_rejects_fifth_control_and_decimal",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -968,6 +1136,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -975,11 +1144,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -992,11 +1160,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-occupation",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_occupation_exit.InstalledCLIContracts.test_occupation_and_exit_cli",
         "test_occupation_exit.OccupationTests.test_absorbing_fork_random_vs_mean",
@@ -1010,6 +1183,10 @@
         "test_occupation_exit.OccupationTests.test_periodic_occupation_not_pointwise_convergence",
         "test_occupation_exit.OccupationTests.test_unknown_zero_support_not_recurrent",
         "test_occupation_exit.OccupationTests.test_wrong_scientific_status_rejected",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -1017,6 +1194,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -1024,11 +1202,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1049,12 +1226,21 @@
         "test_algebra_cli.AlgebraCLI.test_schema_accepts_complete_example",
         "test_algebra_cli.AlgebraCLI.test_schema_rejects_mixed_profile_fields",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -1062,6 +1248,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -1069,11 +1256,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1086,12 +1272,21 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-robust-nature",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -1099,6 +1294,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -1106,7 +1302,6 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused",
         "test_robust_nature.NatureChronologyTests.test_actual_two_step_separation_and_action_optimum",
         "test_robust_nature.NatureChronologyTests.test_all_critical_receipt_tampering_rejected",
@@ -1138,7 +1333,7 @@
         "test_robust_nature_cli.NatureCLI.test_schema_rejects_bad_physical_payload"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1151,11 +1346,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-residence",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_residence.MonitorSemantics.test_avoid_danger_precedes_simultaneous_success",
         "test_residence.MonitorSemantics.test_bool_deadline_rejected",
@@ -1172,6 +1372,10 @@
         "test_residence.MonitorSemantics.test_unknown_source_action_rejected",
         "test_residence.MonitorSemantics.test_wrong_monitor_value_rejected",
         "test_residence.MonitorSemantics.test_wrong_optimizer_rejected",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -1179,6 +1383,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -1186,11 +1391,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1203,11 +1407,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-multiagent",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_multiagent.MultiAgentTests.test_example_kernels",
         "test_multiagent.MultiAgentTests.test_invalid_tables_rejected",
@@ -1218,6 +1427,10 @@
         "test_multiagent_cli.MultiAgentCLI.test_real_cli",
         "test_multiagent_cli.MultiAgentCLI.test_schema_accepts_complete_example",
         "test_multiagent_cli.MultiAgentCLI.test_schema_rejects_third_player",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -1225,6 +1438,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -1232,11 +1446,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1249,11 +1462,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:finite-quotient",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_grammar_quotient_cli.GrammarQuotientCLI.test_both_engines_execute_and_keep_nine_dimensions_unverified",
         "test_grammar_quotient_cli.GrammarQuotientCLI.test_installed_resourced_schemas_and_exact_export",
@@ -1278,6 +1496,10 @@
         "test_quotients.QuotientTests.test_wrong_effect_rejected",
         "test_quotients.QuotientTests.test_wrong_quotient_kernel_rejected",
         "test_quotients.QuotientTests.test_zero_horizon_both_values_one",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -1285,6 +1507,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -1292,11 +1515,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1309,11 +1531,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:lp-propose",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_foundations.LPTests.test_affine_lower_and_minimize",
         "test_foundations.LPTests.test_bounded_does_not_prove_infeasible",
@@ -1329,6 +1556,10 @@
         "test_foundations.LPTests.test_primal_violation",
         "test_foundations.LPTests.test_tied_fractional_not_solver_vector",
         "test_foundations.LPTests.test_upper_below_lower",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -1336,6 +1567,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -1343,11 +1575,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1360,11 +1591,16 @@
       "numeric_test": [
         "scripts/end_to_end.py:lp-propose",
         "test_engine_resource_limits.CommandBudgetTests.test_budgeted_run_publishes_exactly_the_child_outputs",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_cannot_evade_the_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_forged_child_environment_is_ignored",
         "test_engine_resource_limits.CommandBudgetTests.test_memory_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_output_exhaustion_leaves_nothing",
         "test_engine_resource_limits.CommandBudgetTests.test_oversized_rational_input_fails_closed",
         "test_engine_resource_limits.CommandBudgetTests.test_raising_a_limit_is_refused_before_any_work",
         "test_engine_resource_limits.CommandBudgetTests.test_stream_exhaustion_leaves_nothing",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_enforces_its_own_limits",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_refuses_an_unissued_staging_path",
+        "test_engine_resource_limits.CommandBudgetTests.test_the_internal_entry_point_runs_only_exact_profiles",
         "test_engine_resource_limits.CoverageTests.test_every_exact_profile_command_is_budgeted",
         "test_foundations.LPTests.test_affine_lower_and_minimize",
         "test_foundations.LPTests.test_bounded_does_not_prove_infeasible",
@@ -1380,6 +1616,10 @@
         "test_foundations.LPTests.test_primal_violation",
         "test_foundations.LPTests.test_tied_fractional_not_solver_vector",
         "test_foundations.LPTests.test_upper_below_lower",
+        "test_resources_budget.ChildBoundaryTests.test_only_an_issued_private_staging_path_is_accepted",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_applies_every_limit_to_itself",
+        "test_resources_budget.ChildBoundaryTests.test_the_child_never_raises_a_tighter_limit",
+        "test_resources_budget.ChildBoundaryTests.test_the_public_command_ignores_the_child_state_of_the_environment",
         "test_resources_budget.EnforcementTests.test_cpu_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_exhaustion",
         "test_resources_budget.EnforcementTests.test_memory_failures_outside_python_count_as_memory",
@@ -1387,6 +1627,7 @@
         "test_resources_budget.EnforcementTests.test_output_file_exhaustion",
         "test_resources_budget.EnforcementTests.test_startup_ceiling_lies_between_the_limit_and_the_default",
         "test_resources_budget.EnforcementTests.test_stream_exhaustion",
+        "test_resources_budget.EnforcementTests.test_the_childs_own_wall_clock_counts_as_a_timeout",
         "test_resources_budget.EnforcementTests.test_wall_clock_kills_the_whole_process_group",
         "test_resources_budget.EnforcementTests.test_within_limits_returns_the_streams",
         "test_resources_budget.LimitsTests.test_defaults_and_receipt",
@@ -1394,11 +1635,10 @@
         "test_resources_budget.LimitsTests.test_generated_files_can_be_read_back_up_to_the_output_budget",
         "test_resources_budget.MemoryClassificationTests.test_a_validator_that_cannot_be_mapped_is_memory_not_a_missing_extra",
         "test_resources_budget.MemoryClassificationTests.test_memory_failures_are_recognised_through_the_exception_chain",
-        "test_resources_budget.MemoryClassificationTests.test_the_child_requires_a_valid_memory_limit",
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"

@@ -16,7 +16,7 @@ provenance DAG + claim registry + externally pinned evidence set
        ↓
 selected-scope acceptance ASSESSMENT (never owner approval)
        ↓
-independent security review + owner decision (out of band)
+owner-engineering release activation (release gate; no independent review claimed)
 ```
 
 The Lean bridges and the application emitters (`proof/*_emit.py`, dispatched

@@ -20,6 +20,14 @@ The child writes into a private staging directory. Its files reach the
 requested output directory only after the child finished within every limit.
 An exhausted budget therefore never leaves a receipt or a partial output.
 
+The public command never runs as the child. The parent starts the child
+through a separate internal entry point (`permansson_app._budget_child`) and
+hands it its staging path and limits. The environment alone can never switch
+the public command into child mode, so a caller cannot skip the parent's
+limits by setting internal variables. The child also applies the CPU,
+address-space, file-size and wall-clock limits to itself, so even a direct
+invocation of the internal entry point stays within them.
+
 `PERMANSSON_RUN_BUDGET` may lower the limits (a JSON object with a subset of
 the field names below) but never raise them. Linux is the only qualified
 platform for this release; other platforms are refused.
@@ -40,10 +48,11 @@ import tempfile
 from .errors import AppError
 
 ENV_LIMITS = 'PERMANSSON_RUN_BUDGET'
-# Internal: set only for the budgeted child, naming its staging output directory.
-CHILD_ENV = 'PERMANSSON_BUDGET_CHILD_OUTPUT'
-# Internal: the address-space limit the budgeted child applies to itself.
-CHILD_MEMORY_ENV = 'PERMANSSON_BUDGET_CHILD_MEMORY'
+# Internal: the staging path and limits the parent hands its child. Read only
+# by the internal child entry point, never by the public command.
+CHILD_CONFIG_ENV = 'PERMANSSON_BUDGET_CHILD'
+CHILD_MODULE = 'permansson_app._budget_child'
+STAGING_PREFIX = 'permansson-run-'
 MEMORY_EXIT = 3
 # CPython ignores SIGXFSZ, so an oversize write raises OSError(EFBIG) in the child.
 OUTPUT_EXIT = 4
@@ -82,6 +91,16 @@ class Limits:
 DEFAULT = Limits()
 
 
+def _limits(values: object, source: str, *, partial: bool) -> Limits:
+    names = {f.name for f in fields(Limits)}
+    if type(values) is not dict or not (set(values) <= names if partial else set(values) == names):
+        raise AppError('BUDGET_INPUT', f'{source} may only name {sorted(names)}')
+    for name, value in values.items():
+        if type(value) is not int or not 1 <= value <= getattr(DEFAULT, name):
+            raise AppError('BUDGET_INPUT', f'{name} must be an integer between 1 and the default {getattr(DEFAULT, name)}')
+    return Limits(**{**DEFAULT.__dict__, **values})
+
+
 def limits_from_env(env=None) -> Limits:
     raw = (os.environ if env is None else env).get(ENV_LIMITS)
     if raw is None:
@@ -90,37 +109,113 @@ def limits_from_env(env=None) -> Limits:
         values = json.loads(raw)
     except ValueError as exc:
         raise AppError('BUDGET_INPUT', f'{ENV_LIMITS} must be a JSON object') from exc
-    names = {f.name for f in fields(Limits)}
-    if type(values) is not dict or not set(values) <= names:
-        raise AppError('BUDGET_INPUT', f'{ENV_LIMITS} may only name {sorted(names)}')
-    for name, value in values.items():
-        if type(value) is not int or not 1 <= value <= getattr(DEFAULT, name):
-            raise AppError('BUDGET_INPUT', f'{name} must be an integer between 1 and the default {getattr(DEFAULT, name)}')
-    return Limits(**{**DEFAULT.__dict__, **values})
+    return _limits(values, ENV_LIMITS, partial=True)
+
+
+# Set only by `enter_child`, which only the internal child entry point calls.
+_child_output: Path | None = None
+_child_limits: Limits | None = None
+_child_written = 0
 
 
 def in_child() -> bool:
-    return bool(os.environ.get(CHILD_ENV))
+    """True only inside the internal child entry point; never derived from the environment."""
+    return _child_output is not None
 
 
 def child_output() -> Path:
-    return Path(os.environ[CHILD_ENV])
+    if _child_output is None:
+        raise AppError('BUDGET_INTERNAL', 'not running as a budgeted child')
+    return _child_output
 
 
-def enter_child() -> None:
-    """In the budgeted child, before the request is read: load the code, then lower RLIMIT_AS."""
+def child_config(raw: str | None) -> tuple[Path, Limits]:
+    """Validate the configuration the parent handed the child.
+
+    The staging directory must be one the parent could have issued: a private
+    (mode 0700) directory owned by this user, named with the staging prefix,
+    not a symlink, and the output inside it must not exist yet.
+    """
+    import stat
+    if raw is None:
+        raise AppError('BUDGET_CHILD', 'the internal child entry point is started only by the budgeted parent')
+    try:
+        value = json.loads(raw)
+    except ValueError as exc:
+        raise AppError('BUDGET_CHILD', 'malformed child configuration') from exc
+    if type(value) is not dict or set(value) != {'output', 'limits'} or type(value['output']) is not str:
+        raise AppError('BUDGET_CHILD', 'malformed child configuration')
+    limits = _limits(value['limits'], 'child limits', partial=False)
+    out = Path(value['output'])
+    if not out.is_absolute() or out.name != 'out' or not out.parent.name.startswith(STAGING_PREFIX):
+        raise AppError('BUDGET_CHILD', 'child output is not an issued staging path')
+    try:
+        info = os.lstat(out.parent)
+    except OSError as exc:
+        raise AppError('BUDGET_CHILD', 'staging directory is missing') from exc
+    if (not stat.S_ISDIR(info.st_mode) or info.st_uid != os.getuid() or stat.S_IMODE(info.st_mode) != 0o700
+            or os.path.lexists(out)):
+        raise AppError('BUDGET_CHILD', 'staging directory is not private, or its output already exists')
+    return out, limits
+
+
+def _address_space_in_use() -> int:
+    with open('/proc/self/status', encoding='ascii') as status:
+        for line in status:
+            if line.startswith('VmSize:'):
+                return int(line.split()[1]) * 1024
+    raise AppError('PLATFORM_UNQUALIFIED', 'cannot read the address space in use')
+
+
+def charge_output(size: int) -> None:
+    """In the child, count bytes written; the total may not exceed the output budget."""
+    global _child_written
+    if _child_limits is not None:
+        _child_written += size
+        if _child_written > _child_limits.output_bytes:
+            raise OSError(errno.EFBIG, 'whole-run output budget exhausted')
+
+
+def _lower(resource_id: int, soft: int, hard: int) -> None:
+    """Lower a resource limit; never raise one that is already tighter."""
+    import resource
+    cur_soft, cur_hard = resource.getrlimit(resource_id)
+    new_hard = hard if cur_hard == resource.RLIM_INFINITY else min(cur_hard, hard)
+    new_soft = min(soft, new_hard) if cur_soft == resource.RLIM_INFINITY else min(cur_soft, soft, new_hard)
+    resource.setrlimit(resource_id, (new_soft, new_hard))
+
+
+def enter_child(output: Path, limits: Limits) -> None:
+    """In the budgeted child, before the request is read: apply every limit to this process.
+
+    The code (including the schema validator's native extension) is loaded
+    first under the parent's address-space ceiling; then RLIMIT_AS is lowered
+    to the configured value. CPU, file size, core dumps and a wall-clock timer
+    are applied here as well, so the limits hold even without the parent.
+
+    RLIMIT_AS stops new mappings; it does not shrink what is already mapped.
+    A memory budget at or below the loaded program's own address space (about
+    30 MiB) therefore cannot be honoured and is refused as exhausted here,
+    before the request is read.
+    """
+    global _child_output, _child_limits, _child_written
     import resource
     try:
-        # The schema validator's native extension is program code, not request
-        # work; load it under the ceiling. A missing extra is reported later.
         import jsonschema  # noqa: F401
         import referencing  # noqa: F401
     except ImportError:
         pass
-    raw = os.environ.get(CHILD_MEMORY_ENV, '')
-    if not raw.isdigit() or not 1 <= int(raw) <= DEFAULT.memory_bytes:
-        raise AppError('BUDGET_INPUT', 'budgeted child started without a valid memory limit')
-    resource.setrlimit(resource.RLIMIT_AS, (int(raw), int(raw)))
+    _lower(resource.RLIMIT_CPU, limits.cpu_seconds, limits.cpu_seconds + 1)
+    _lower(resource.RLIMIT_FSIZE, limits.output_bytes, limits.output_bytes)
+    _lower(resource.RLIMIT_CORE, 0, 0)
+    remaining = signal.getitimer(signal.ITIMER_REAL)[0]
+    signal.setitimer(signal.ITIMER_REAL, limits.wall_seconds if remaining == 0 else min(remaining, limits.wall_seconds))
+    in_use = _address_space_in_use()
+    if in_use >= limits.memory_bytes:
+        raise MemoryError(f'memory budget of {limits.memory_bytes} bytes is below the loaded program '
+                          f'({in_use} bytes)')
+    _lower(resource.RLIMIT_AS, limits.memory_bytes, limits.memory_bytes)
+    _child_output, _child_limits, _child_written = output, limits, 0
 
 
 def _require_new(path: Path) -> Path:
@@ -174,6 +269,9 @@ def run_child(command: list[str], env: dict, limits: Limits, *,
         err.seek(0)
         stdout, stderr = out.read(), err.read()
     code = process.returncode
+    if code == -signal.SIGALRM:
+        # The child's own wall-clock timer fired before the parent's.
+        raise AppError('BUDGET_TIMEOUT', f'whole-run wall-clock budget of {limits.wall_seconds} s exhausted')
     if code == -signal.SIGXCPU or code == -signal.SIGKILL:
         raise AppError('BUDGET_CPU', f'whole-run CPU budget of {limits.cpu_seconds} s exhausted')
     if code in (-signal.SIGXFSZ, OUTPUT_EXIT) or (code == 1 and b'File too large' in stderr):
@@ -200,13 +298,14 @@ def run_budgeted(argv: list[str], output: Path | None, limits: Limits | None = N
     limits = limits_from_env() if limits is None else limits
     final = _require_new(output) if output is not None else None
     package_root = str(Path(__file__).resolve().parents[1])
-    staging = Path(tempfile.mkdtemp(prefix='permansson-run-'))
+    staging = Path(tempfile.mkdtemp(prefix=STAGING_PREFIX)).absolute()  # mode 0700
     try:
         child_out = staging / 'out'
-        env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1',
-                   **{CHILD_ENV: str(child_out), CHILD_MEMORY_ENV: str(limits.memory_bytes)})
+        config = json.dumps({'output': str(child_out),
+                             'limits': {f.name: getattr(limits, f.name) for f in fields(Limits)}})
+        env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1', **{CHILD_CONFIG_ENV: config})
         env['PYTHONPATH'] = os.pathsep.join(p for p in (package_root, env.get('PYTHONPATH', '')) if p)
-        code, stdout, stderr = run_child([sys.executable, '-m', 'permansson_app', *argv], env, limits,
+        code, stdout, stderr = run_child([sys.executable, '-m', CHILD_MODULE, *argv], env, limits,
                                          startup_address_space=DEFAULT.memory_bytes)
         if code != 0:
             if code == 2:

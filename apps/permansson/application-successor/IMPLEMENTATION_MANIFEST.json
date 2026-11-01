@@ -25,8 +25,8 @@
   },
   "current_inventory": {
     "computed_by": "scripts/inventory.py --write-current (recomputed from git ls-files; see --check)",
-    "manifest_rows": 641,
-    "unique_paths": 641,
+    "manifest_rows": 643,
+    "unique_paths": 643,
     "rows_by_candidate_state": {
       "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI": 1,
       "DOCUMENTATION": 48,
@@ -47,34 +47,35 @@
       "LOCAL_TESTED_DEFAULT_OUTPUT_BYTE_IDENTICAL_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_IMPLEMENTATION": 106,
       "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI": 65,
+      "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI": 3,
       "LOCAL_TESTED_LINUX_CPYTHON_3_13_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_NUMERIC_IMPLEMENTATION": 6,
-      "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 82,
+      "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 83,
       "LOCAL_TESTED_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_SOURCE_CANDIDATE": 6,
       "NOT_ACTIVATED_REVIEW_GATED": 19,
       "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI": 5,
       "PINNED_RESEARCH_BUILD_COMPILED_AT_PRIOR_HEAD": 1,
-      "PLANNED_NOT_IMPLEMENTED": 146,
+      "PLANNED_NOT_IMPLEMENTED": 143,
       "PUBLISHED_VECTORS_CROSS_CHECKED_BY_TWO_ENCODERS": 1,
-      "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 31,
+      "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 32,
       "TEST_FIXTURE": 9,
       "VENDORED_OFFICIAL_VECTORS_COMMIT_32a48195": 1,
       "VENDORED_THIRD_PARTY_TEST_FIXTURE": 12
     },
-    "tracked_rows": 441,
-    "absent_rows": 200,
+    "tracked_rows": 445,
+    "absent_rows": 198,
     "absent_rows_by_disposition": {
       "DEFERRED_ALTERNATE_LAYOUT": 41,
       "DEFERRED_CONTRACT_LAYER": 37,
       "DEFERRED_DOMAIN_INTEGRATION": 12,
       "DEFERRED_SCOPE": 8,
       "EXCLUDED_GENERATED_BUILD_PRODUCT": 21,
-      "REQUIRED_BEFORE_RELEASE": 30,
-      "REVIEW_GATED": 20,
-      "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 31
+      "REQUIRED_BEFORE_RELEASE": 29,
+      "REVIEW_GATED": 18,
+      "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 32
     },
-    "application_tracked_files": 356,
+    "application_tracked_files": 357,
     "application_tracked_files_without_row": 0,
     "registered_exact_profiles": 26,
     "registered_native_capabilities": 2,
@@ -1182,7 +1183,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "d26f11f6efc33c293aa6cdca310c9c2b97dae039f2d7ef2e5d2fa49fba6da20e",
+        "sha256": "cf6bb7ad7759acdb69addb6cc17f5b8aa7f699adb766e5b3fb1027825f68af0f",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1892,8 +1893,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "8d6f7b09e9ae7b67095ee186f58ee07daf3762490b18d509897d087c230d6762",
-        "git_blob_sha": "dbb790c3f392a5e1dcf2a9c6cc84a7f326786e2b",
+        "sha256": "ff742c072955ef2d47e03ed29a11080aa15830c09bb49f133a0af8e44d1494e5",
+        "git_blob_sha": "6ee5d9d1f9b21e887b9ad9e7f94c7c9974d6ca2e",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -1925,7 +1926,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "df06ded133392ae7bbdc6c65238f13ef5d4507bd5d4de28615d8daf4d375e3d7",
+        "sha256": "7a37a9ce7523375bc052285ae4b0debe2f955d236e59baf0f84427489ac57119",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1974,7 +1975,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "ce081b7167184ed30d0b1661c2464e1aa4dc2396fa174c9de14bcc13946496f2",
+        "sha256": "a11a25231327304480b726e60c3e5b9518da70f36e990a9a5cf6b8889d0c7ce4",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2111,7 +2112,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "1a2723d2f5530960925f725a56151a0f7f2e206e8248193719963247045e77b0",
+        "sha256": "f183ed7264f03fd07cec2ad26ded06903b0f0ea836ad64c46c3f586cf11d49fc",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2297,8 +2298,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "865b6f47519afdda3a9f0816c229d77bb8810e82285efb3b4b6925a25691b1dc",
-        "git_blob_sha": "3de9400cd9952f7fbb039ffc39b82938e3007b77",
+        "sha256": "6ab8146398934789d3552a7c3842983a6162cf2705903c6a6b5e24ce3ca2c365",
+        "git_blob_sha": "c8a1b4e98181077791e5e381d91812500798be93",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -2324,7 +2325,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "dc6424a16b05312b4a701d65d0d539c23daa6eb0b6bf9f5417020c1cc653af78",
+        "sha256": "5d68b4e58a647abc5dc4bee876ceec9fd24c17ea8bf04383bf7b731a0c49ef63",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2492,7 +2493,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "447a702ace2d80e4314054666717ad30fecbb96f38dd8eb200f79f6e5a85e247",
+        "sha256": "5dbbcea66202124d4ed7614adc217ae6bcee80bbd9d8cbc530c1fbc2eff1f134",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
@@ -2645,7 +2646,7 @@
       "candidate": {
         "git_blob_sha1": "13f3853b12ce802888ce3010da2b6bfc6fee1837",
         "proof": "NOT_EXECUTED",
-        "sha256": "765957f2cb520f48b0dd8c6f02ea8ebf44f722b4ec8a7cadbb5aaea7d9c473f1",
+        "sha256": "71c4ca36f2835e22cefb09df6717d6d51fac5892bbd5af99f67b896e7183301c",
         "state": "LOCAL_TESTED_IMPLEMENTATION",
         "trust": "LOCAL_SOURCE_ONLY_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -2677,7 +2678,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI",
-        "sha256": "c812cdeb35b2e9e2c79d7f5452248237bc17483c1beab376edbea8abcb77887c",
+        "sha256": "8bb96d914d18ffd1176ed7de447e3ba82fb91bd42966eac4b7a4a4f6ea70289f",
         "proof": "NOT_EXECUTED",
         "trust": "LOCAL_NUMERIC_TESTS_NOT_INDEPENDENT_ACCEPTANCE"
       },
@@ -2712,8 +2713,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "6e62c6d4a3df1d60cb4f3253cf5d99db7ca4d0b7282db9d6f69ba290543515d3",
-        "git_blob_sha": "a3912ad913e03f420b018de106bb7c187737e783",
+        "sha256": "d6afc3bb0608d50336846e988a5ce2a39228e28fafb9c47f87900af79d416715",
+        "git_blob_sha": "503478b4cb0263beff31b340c442ad0dc01389f4",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -9713,7 +9714,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "a49efad06cf2f8e49e44a3ea313e5baa76757bac05f8df4cd84a4f67acfaba0a",
+        "sha256": "ded7189e8ffe68394920182cf658cd77d763c04699c79c4d28b8d52768afea35",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       },
@@ -10265,38 +10266,32 @@
       "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
-      "base_state": "NOT_IMPLEMENTED",
-      "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
-      },
-      "classification": "implemented test/support",
+      "path": "verification/application_successor/check_installed_package.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
       "conditional": false,
       "dependency_paths": [
-        "apps/permansson/application-successor/src/permansson_app/__init__.py",
-        "apps/permansson/application-successor/src/permansson_app/package_data.py"
+        "apps/permansson/application-successor/scripts/build_distributions.py",
+        "apps/permansson/application-successor/scripts/end_to_end.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json"
       ],
-      "disposition": "IMPLEMENT_FROM_V2_SPEC",
-      "gate": "Delivered numeric prototype only; broader application modes and scientific claims require their separate planned gates.",
-      "generated": false,
-      "original_main_git_blob": null,
-      "path": "verification/application_successor/check_installed_package.py",
-      "protected_root": false,
-      "recovery_sha256": null,
-      "tests": [
-        "See the delivered prototype regression suite and validation/verification_record.json for actual execution evidence."
-      ],
-      "v2_action": "CREATE",
-      "v2_id": "FILE-212",
-      "v3_id": null,
       "work_items": [
         "REL-01",
+        "REL-02",
         "APP-04",
         "APP-09",
         "EXE-01",
         "EXE-02"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI",
+        "sha256": "e3840f69ae573f9c13f2962c3c2da271a66e9870156bb8329d774b7a39efa86d",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10441,42 +10436,28 @@
       "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
-      "base_state": "NOT_IMPLEMENTED",
-      "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
-      },
-      "classification": "Python acceptance gate",
+      "path": "verification/application_successor/release_gate.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
       "conditional": false,
       "dependency_paths": [
-        "verification/application_successor/acceptance_cases.json",
-        "apps/permansson/application-successor/IMPLEMENTATION_MANIFEST.json",
-        "apps/permansson/application-successor/src/permansson_app/capabilities.py",
-        "apps/permansson/application-successor/requirements-build.lock",
-        "apps/permansson/application-successor/requirements-runtime.lock",
-        "apps/permansson/application-successor/requirements-test.lock",
+        "verification/application_successor/check_installed_package.py",
         "apps/permansson/application-successor/src/permansson_app/acceptance.py",
-        "apps/permansson/application-successor/src/permansson_app/resources.py"
+        "apps/permansson/application-successor/src/permansson_app/evidence.py"
       ],
-      "disposition": "IMPLEMENT_FROM_V2_SPEC",
-      "gate": "Reject fabricated acceptance, stale source, unsupported capability and numeric-only evidence presented as Lean/full release",
-      "generated": false,
-      "original_main_git_blob": null,
-      "path": "verification/application_successor/release_gate.py",
-      "protected_root": false,
-      "recovery_sha256": null,
-      "tests": [
-        "verification/application_successor/test_release_gate.py",
-        "A selected numeric-only release can pass without planned domain/advanced modules, but missing shared prerequisites or any required skipped test rejects it; an advertised replay mode requires actual replay evidence."
-      ],
-      "v2_action": "CREATE",
-      "v2_id": "FILE-158",
-      "v3_id": null,
       "work_items": [
         "REL-01",
         "REL-02"
       ],
-      "disposition_current": "REVIEW_GATED",
-      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI",
+        "sha256": "261a8fee75fe5ebd5698373ea982ec31b40b5b6651272413a38514982896107a",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11270,7 +11251,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_release_gate.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "unittest suite",
       "conditional": false,
@@ -11295,8 +11281,8 @@
         "REL-01",
         "REL-02"
       ],
-      "disposition_current": "REVIEW_GATED",
-      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py); placed with the research tests that CI discovers"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -14230,7 +14216,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI",
-        "sha256": "f80013bd2af4b01e82c750c5ec2baa11e3a83fdbd5be5467227334bb6d40f474",
+        "sha256": "6617a7801431378b89089048c6c5aaed8596555075bc50f56cedbedccd64ad1e",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17586,7 +17572,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "a107eb1212770ba860cfd7a021dee634f3fd49b5827354aab23fc981c57b7c19",
+        "sha256": "0d8e99504f75d6e291de0887ce4e7bf2255e6184e1a340d798a72456bc577040",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17646,7 +17632,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "1120584e48d026c30671f2c735929b6320c75d48b2da554b43bb60269670968a",
+        "sha256": "de4da0b45cb7846c0126fe216eb450a46eef46fb8ff6b8ab935fdcddd238fc03",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17666,7 +17652,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "b16456fadc48aa658f760e17315147de6377aeda6c60212ab87d7a56aa091354",
+        "sha256": "4ddfae70c4a28ee78d0d40df86ed73323c4fc4b61b85b8fbdeba5cecb743e403",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17686,7 +17672,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "5a3748bcd6bda4d5e02780c1e6dcbdce0043445db5a19b9e40b72513b6e5bcaf",
+        "sha256": "5635632a6896558a2c4b745f3e41ef9c79bb8a4086986cf7a32c0c913de817cd",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17706,7 +17692,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "f963e081d4308626fcaed6ea777759c51bb201d7f1598cd07f2c010187e526a9",
+        "sha256": "ab06addb98a2c5808597b1f306b4b601c6cff091e27815b0aa6cf28ccd037229",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17726,6 +17712,48 @@
       "candidate": {
         "state": "TEST_FIXTURE",
         "sha256": "284f346e3720e1444ee96ec1e70d3efd97424c7d9ff9d5e93309f3f29ec4ccc3",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/src/permansson_app/_budget_child.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [],
+      "work_items": [
+        "PKG-04",
+        "REL-01"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
+        "sha256": "c161e9b9d7cb8828113bd7db1631e52de0949c7e5860461663d295059ce185c4",
+        "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/test_application_release_gate.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [
+        "verification/application_successor/release_gate.py"
+      ],
+      "work_items": [
+        "REL-01",
+        "REL-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI",
+        "sha256": "94b2d070f787d08c01a99b30c853201321ede62af205878c91fa9062481ccc3d",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }

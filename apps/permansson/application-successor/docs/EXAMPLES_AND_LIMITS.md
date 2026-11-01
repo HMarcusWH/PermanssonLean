@@ -57,7 +57,18 @@ fixtures in their live replays.
   limit to the configured value once the interpreter and the application's
   code are loaded, before it reads the request. The limit is on total address
   space, so all request work stays within it, and a low limit cannot break
-  interpreter startup in ways that would not report as memory exhaustion.
+  interpreter startup in ways that would not report as memory exhaustion. A
+  memory budget at or below the loaded program's own address space (about
+  32 MiB) cannot be honoured and is refused with `BUDGET_MEMORY` before the
+  request is read.
+
+  The public command always runs the budgeted parent. It starts the child
+  through an internal entry point and hands it its private staging directory
+  and limits. Setting internal environment variables cannot switch the public
+  command into child mode, and the child applies the CPU, address-space,
+  file-size, total-output and wall-clock limits to itself. An internal entry
+  point started directly refuses any staging directory that is not a private
+  one the parent could have issued.
 
   Exhaustion fails with `BUDGET_TIMEOUT`, `BUDGET_CPU`, `BUDGET_MEMORY`,
   `BUDGET_OUTPUT` or `BUDGET_STREAM` and exit status 2. The outputs are

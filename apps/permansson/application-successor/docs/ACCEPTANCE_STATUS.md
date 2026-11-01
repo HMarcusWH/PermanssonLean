@@ -26,8 +26,8 @@ Developed against `main@3492b26707788293ca88c66637b6ba021c7e478d` (tree `9ef00ac
 | Full planned engine suite | **incomplete** (benchmarks FIX-01 and expert ADV-01 not implemented) | no false registry activation |
 | Original 45 acceptance cases | **not newly certified** | independent research CERT remains separate |
 | Later 11 mathematical claims | **not newly certified** | independent research CERT remains separate |
-| New application release on Linux/Windows | **not accepted** | installed numeric examples alone are insufficient |
-| Active CI workflow/profile change | **not performed** | distinct future trust-surface review |
+| Numeric release 0.2.0 on Linux CPython 3.12/3.13 | **not yet released**; installed qualification runner and release gate implemented, both platforms qualified locally | released only by the owner-dispatched release workflow and its gate; owner-engineering authority, no independent security review claimed; Windows out of scope |
+| Release workflow (workflow-contract change) | **separate owner-approved change** | the reviewed workflow contract and archive gate must be moved to include it |
 | Independent scholarly/empirical acceptance | **not assessed** | no reviewer/identification approval |
 
 Scientific `numeric verified`, `Lean kernel proof`, `independent mathematical certification`, `release acceptance`, `empirical identification` and `publication` are distinct states. The application does not merge these into a single certified bit.
@@ -52,11 +52,12 @@ never committed. Still open:
   statements.
 - **Evidence promotion.** Authenticated compiler receipts (outputs keep
   `lean_status=NOT_EXECUTED`) and Windows qualification of the bridges.
-- **Trust and release gates.** The GitHub Actions trust-profile migration
-  beyond the narrow 25-workflow archive repair of pull request #116, which
-  is approved by an owner-engineering policy, not an independent security
-  review, independent 45-case/11-claim CERT, empirical identification,
-  application release acceptance and publication.
+- **Trust and release gates.** Installing the release workflow (a separate,
+  owner-approved workflow-contract change), the owner's activation of a
+  release, the 30-workflow T2 migration, independent 45-case/11-claim CERT,
+  empirical identification and publication of results. Neither the archive
+  repair of pull request #116 nor the numeric release claims an independent
+  security review: both are owner-engineering decisions, named as such.
 
 A green local test is not a substitute for any of these. Per-round history
 (commit by commit, with the CI results of each head) is in pull request

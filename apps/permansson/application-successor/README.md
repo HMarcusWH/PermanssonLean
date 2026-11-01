@@ -7,8 +7,12 @@ recomputes that result. Optionally, it then produces a **source-bound Lean
 candidate**, in which the request's numbers appear as literal rationals in
 theorems that transfer results of the `PermanssonResearch` library.
 
-> **Status: implementation candidate, developed in pull request #115. Not
-> released and not independently certified.** Every output reports `lean_status=NOT_EXECUTED`,
+> **Status: version 0.2.0, release candidate for the 26-profile numeric scope
+> on Linux CPython 3.12 and 3.13. Not yet released and not independently
+> certified.** A release is made only through the release workflow and its
+> gate, activated by the owner under an owner-engineering policy that claims
+> no independent security review ([`docs/RELEASE_ACCEPTANCE.md`](docs/RELEASE_ACCEPTANCE.md)).
+> Every output reports `lean_status=NOT_EXECUTED`,
 > `scientific_claims_verified=false` and `empirical_identification=NOT_IDENTIFIED`.
 > A checked numeric result or a compiled Lean candidate is a statement about
 > the declared finite model, not about a real-world regime.
