@@ -7,10 +7,11 @@ recomputes that result. Optionally, it then produces a **source-bound Lean
 candidate**, in which the request's numbers appear as literal rationals in
 theorems that transfer results of the `PermanssonResearch` library.
 
-> **Status: version 0.2.0, release candidate for the 26-profile numeric scope
-> on Linux CPython 3.12 and 3.13. Not yet released and not independently
-> certified.** A release is made only through the release workflow and its
-> gate, activated by the owner under an owner-engineering policy that claims
+> **Status: version 0.2.0, released on 2026-11-01 as
+> [`permansson-app-v0.2.0`](https://github.com/HMarcusWH/PermanssonLean/releases/tag/permansson-app-v0.2.0)
+> for the 26-profile numeric scope on Linux CPython 3.12 and 3.13. Not
+> independently certified.** The release was made by the owner-dispatched
+> release workflow and its gate, under an owner-engineering policy that claims
 > no independent security review ([`docs/RELEASE_ACCEPTANCE.md`](docs/RELEASE_ACCEPTANCE.md)).
 > Every output reports `lean_status=NOT_EXECUTED`,
 > `scientific_claims_verified=false` and `empirical_identification=NOT_IDENTIFIED`.
@@ -19,14 +20,43 @@ theorems that transfer results of the `PermanssonResearch` library.
 
 The package is additive under `apps/permansson/application-successor/`. The
 frozen `PermanssonLean/` core, the historical `application/` standard,
-accepted release artifacts, the pinned Lean toolchain, the native C10/C11
-providers and `.github/workflows/` are unchanged.
+accepted release artifacts, the pinned Lean toolchain and the native C10/C11
+providers are unchanged. Its one workflow, the owner-dispatched
+`.github/workflows/application-release.yml`, was added by its own
+owner-approved change to the reviewed workflow contract.
 
 ## Quick start
 
 Linux with Python 3.12 or 3.13. Other platforms are unsupported for this
-release: the whole-run budget relies on Linux process limits. Install with
-offline Draft 2020-12 schema checking:
+release: the whole-run budget relies on Linux process limits.
+
+### Install the published release
+
+Download the release files, check them and install the wheel:
+
+```bash
+V=0.2.0
+URL=https://github.com/HMarcusWH/PermanssonLean/releases/download/permansson-app-v$V
+for f in permansson_application_successor_recovery-$V-py3-none-any.whl \
+         permansson_application_successor_recovery-$V.tar.gz SHA256SUMS release-manifest.json; do
+  curl -fsSLO "$URL/$f"
+done
+sha256sum -c SHA256SUMS
+python -m pip install permansson_application_successor_recovery-$V-py3-none-any.whl
+permansson-app about                              # version 0.2.0, imported from your environment
+```
+
+The wheel pins its two dependencies (`jsonschema` and `referencing`) to
+exact versions. For hash-checked dependencies too, install
+`requirements-runtime.lock` from a checkout of the tag with
+`python -m pip install --require-hashes -r requirements-runtime.lock`, then
+the wheel with `--no-deps`. `release-manifest.json` names the commit, and
+that commit rebuilds the same wheel and sdist bytes
+([`docs/RELEASE_ACCEPTANCE.md`](docs/RELEASE_ACCEPTANCE.md)).
+
+### Install from a source checkout
+
+With offline Draft 2020-12 schema checking:
 
 ```bash
 python -m pip install './apps/permansson/application-successor[full-schema]'

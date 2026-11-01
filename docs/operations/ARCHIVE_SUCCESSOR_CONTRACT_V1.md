@@ -1,8 +1,8 @@
 # Archive successor contract v1 (owner engineering policy)
 
 **Status:** the owner-adopted replacement for one comparison in the required
-`archive-reproducibility` check, for the existing 25-workflow profile. It takes
-effect only through the owner's merge into `main`. It is **not** an
+`archive-reproducibility` check, for the existing 25-workflow profile. It took
+effect when the owner merged pull request #116 into `main`. It is **not** an
 independent security review, not an approval of PR #113, not mathematical
 certification and not release acceptance.
 

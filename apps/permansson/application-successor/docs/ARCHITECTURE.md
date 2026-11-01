@@ -1,7 +1,8 @@
 # Application successor — governance and evidence architecture
 
 This module set extends the numeric application without changing `PermanssonLean/`,
-`application/`, accepted release artifacts, pinned Lean/mathlib or any active workflow.
+`application/`, accepted release artifacts or pinned Lean/mathlib. Its only workflow is the
+owner-dispatched release workflow, added by its own owner-approved change (pull request #118).
 
 ## Directed trust boundary
 

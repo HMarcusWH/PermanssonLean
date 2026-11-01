@@ -68,7 +68,9 @@ bridge is in [`ACCEPTANCE_STATUS.md`](ACCEPTANCE_STATUS.md).
 
 ## What is deliberately not here
 
-No active CI workflow change, no independent research CERT, no empirical
-identification, and no release or merge. The protected theory core, the
+No independent research CERT and no empirical identification. The only
+workflow change is the owner-dispatched release workflow (pull request #118),
+and the only release is 0.2.0, made by that workflow
+([`RELEASE_ACCEPTANCE.md`](RELEASE_ACCEPTANCE.md)). The protected theory core, the
 legacy `application/` root, the pinned toolchain and the C10/C11 providers
 are not modified. See [`ROADMAP.md`](ROADMAP.md).

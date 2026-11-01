@@ -1,6 +1,6 @@
 # Successor application — source-bound acceptance status
 
-Developed against `main@3492b26707788293ca88c66637b6ba021c7e478d` (tree `9ef00ac4b2d4f928aa6551ef3f0dfeb2d4434452`) and brought up to date with `main@0800556e284aeeee30780ca79ba38010de1d58f8`, which adds the archive repair of pull request #116. Status updated 2026-10-31; the exact head and its CI results are recorded in pull request #115.
+Developed against `main@3492b26707788293ca88c66637b6ba021c7e478d` (tree `9ef00ac4b2d4f928aa6551ef3f0dfeb2d4434452`) in pull requests #115 and #117. The release workflow came with pull request #118, and the archive repair with #116. Status updated 2026-11-01, after version 0.2.0 was released from `main@63a66c82a9ece4361f646ee13b6711192f831406` (tree `3b5e742ef1ee0cf3e1c27cc14500f3a33cfc01bb`) as `permansson-app-v0.2.0`.
 
 ## Distinct gates
 
@@ -26,8 +26,8 @@ Developed against `main@3492b26707788293ca88c66637b6ba021c7e478d` (tree `9ef00ac
 | Full planned engine suite | **incomplete** (benchmarks FIX-01 and expert ADV-01 not implemented) | no false registry activation |
 | Original 45 acceptance cases | **not newly certified** | independent research CERT remains separate |
 | Later 11 mathematical claims | **not newly certified** | independent research CERT remains separate |
-| Numeric release 0.2.0 on Linux CPython 3.12/3.13 | **not yet released**; installed qualification runner and release gate implemented, both platforms qualified locally | released only by the owner-dispatched release workflow and its gate; owner-engineering authority, no independent security review claimed; Windows out of scope |
-| Release workflow (workflow-contract change) | **separate owner-approved change** | the reviewed workflow contract and archive gate must be moved to include it |
+| Numeric release 0.2.0 on Linux CPython 3.12/3.13 | **released** 2026-11-01 as `permansson-app-v0.2.0` (see `RELEASE_ACCEPTANCE.md`) | owner-dispatched release workflow run 41313849870 and its gate: the run, its jobs and every artifact authenticated through the GitHub API, 260 evidence records re-derived from raw results; owner-engineering authority, no independent security review claimed; Windows out of scope |
+| Release workflow (workflow-contract change) | **installed** (pull request #118) | dispatch-only workflow in the reviewed workflow contract and archive successor policy v2; an owner-approved change, not independently reviewed |
 | Independent scholarly/empirical acceptance | **not assessed** | no reviewer/identification approval |
 
 Scientific `numeric verified`, `Lean kernel proof`, `independent mathematical certification`, `release acceptance`, `empirical identification` and `publication` are distinct states. The application does not merge these into a single certified bit.
@@ -52,12 +52,11 @@ never committed. Still open:
   statements.
 - **Evidence promotion.** Authenticated compiler receipts (outputs keep
   `lean_status=NOT_EXECUTED`) and Windows qualification of the bridges.
-- **Trust and release gates.** Installing the release workflow (a separate,
-  owner-approved workflow-contract change), the owner's activation of a
-  release, the 30-workflow T2 migration, independent 45-case/11-claim CERT,
-  empirical identification and publication of results. Neither the archive
-  repair of pull request #116 nor the numeric release claims an independent
-  security review: both are owner-engineering decisions, named as such.
+- **Trust and review gates.** The 30-workflow T2 migration, independent
+  45-case/11-claim CERT, empirical identification and publication of
+  results. None of the archive repair (pull request #116), the release
+  workflow (#118) or the numeric release 0.2.0 claims an independent
+  security review. Each is an owner-engineering decision, named as such.
 
 A green local test is not a substitute for any of these. Per-round history
 (commit by commit, with the CI results of each head) is in pull request
