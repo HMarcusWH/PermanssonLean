@@ -66,7 +66,7 @@ here, so this page cannot go stale against the head.
 | P4 Finite model and LP correspondence | done for bounded instances |
 | P5 Full mathematical engines | done for bounded finite scopes; FIX-01 and ADV-01 deferred |
 | P6 Domain integration | **envelope-only** |
-| P7 Packaging and release preparation | **partial**: wheel, installed-distribution test, locked backend, reproducible builds, whole-run budget and a selected release scope (26 profiles, Linux CPython 3.12/3.13) exist. There is no authenticated platform-matrix evidence and no authorization. |
+| P7 Packaging and release preparation | **implemented, awaiting the release workflow**: version 0.2.0, locked reproducible builds, whole-run budget, the selected release scope (26 profiles, Linux CPython 3.12/3.13), the installed-distribution qualification runner and the release gate exist ([`RELEASE_ACCEPTANCE.md`](RELEASE_ACCEPTANCE.md)). Authenticated platform-matrix evidence comes from the release workflow, which is added by a separate owner-approved workflow-contract change; no release has been activated. |
 
 ### Final engineering round (R0–R6)
 
@@ -117,7 +117,10 @@ An external read-only audit of `a3df725` raised 33 work orders.
 | Order | Decision |
 | --- | --- |
 | CON-02 | A first release is **numeric-only**. Outputs keep `lean_status=NOT_EXECUTED` until a separate, independently reviewed proof-evidence consumer authenticates compiler runs for a selected subset. |
-| CON-03 | The default `data/acceptance_policy.json` still selects only C10/C11. The owner selected a separate v2 scope, `acceptance_policy.successor_numeric.v1.json`, for the 26 exact profiles. It is numeric only, on Linux CPython 3.12 and 3.13, with each capability's real test-method IDs, budget tests, walkthrough row, installed run, source identity and wheel/sdist. An assessment against it is at most `EVIDENCE_COMPLETE_REVIEW_REQUIRED`; independent security review and owner activation stay external. |
+| CON-03 | The default `data/acceptance_policy.json` still selects only C10/C11. The owner selected a separate scope, `acceptance_policy.successor_numeric.v1.json`, for the 26 exact profiles. It is numeric only, on Linux CPython 3.12 and 3.13, with each capability's real test-method IDs, budget tests, walkthrough row, installed qualification, source identity and wheel/sdist. An assessment against it is at most `EVIDENCE_COMPLETE_REVIEW_REQUIRED`. |
+| Release authority | **Owner-engineering policy** (owner decision, 2026-11-01). The policy (format v3) names `OWNER_ENGINEERING_POLICY`: the owner approves and activates a release by dispatching the release workflow; no independent security review is claimed, and the policy cannot be parsed if it claims one. |
+| Version | **0.2.0** (owner decision, 2026-11-01). Choosing the version authorizes nothing. |
+| Release audit 2026-11-01 | HARD-01 (forged budget-child environment) repaired: the public command always runs the budgeted parent, and the child applies its limits itself. HARD-02 (exact 26-profile, two-platform target) and HARD-03 (authenticated evidence origin) are enforced by the release gate. HARD-04: metadata and documentation describe the released scope. |
 | PKG-04 | **Implemented.** Every exact profile command runs under one whole-run budget: wall clock, CPU, address space, output and stream limits in a limited child, with outputs published only after success (`permansson_app.budget`, `tests/test_resources_budget.py`, `tests/test_engine_resource_limits.py`). This is in addition to the per-profile structural bounds. |
 | Platform | **Linux first.** The first release supports Linux with Python 3.12 and 3.13; other platforms are refused with `PLATFORM_UNQUALIFIED`. A Windows bounded-process controller with equivalent guarantees would be a separate, later decision. |
 | CON-06 | FIX-01 (benchmarks/X1) and ADV-01 (nonfinite expert evidence) are deferred (`DEFERRED_SCOPE`); nothing nonfinite is computed or claimed. |
@@ -142,10 +145,12 @@ An external read-only audit of `a3df725` raised 33 work orders.
   root).
   It relaxes nothing in `verification/archive/` and rewrites no historical
   approval. The 30-workflow T2 migration stays review-gated.
-- **CI-03.** Independent source, security and mathematics review, and the
-  owner's decision.
-- **PKG-03.** An authenticated Linux/Windows × Python 3.12/3.13 distribution
-  matrix.
+- **CI-03.** Independent mathematics review and research CERT. Independent
+  security review is not part of the numeric release: its release authority
+  is an owner-engineering policy, named as such.
+- **PKG-03.** The authenticated Linux × CPython 3.12/3.13 distribution
+  matrix runs in the release workflow, which needs the separate
+  workflow-contract change. Windows is out of scope.
 
 ## Out of scope for this branch
 
@@ -153,8 +158,9 @@ An external read-only audit of `a3df725` raised 33 work orders.
   repair is a separate, owner-approved pull request (#116).
 * Running or claiming independent research CERT for the original 45 or the
   later 11 claims.
-* Empirical identification, publication, merging to `main` or publishing a
-  release without explicit owner authorization.
+* Empirical identification, publication of results, merging to `main`, or
+  activating a release other than by the owner's dispatch of the release
+  workflow.
 * Editing the protected theory core, the legacy `application/` root, the
   pinned toolchain or Lake configuration, or the existing C10/C11 providers.
 

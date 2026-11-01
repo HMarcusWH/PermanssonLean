@@ -1183,7 +1183,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "d26f11f6efc33c293aa6cdca310c9c2b97dae039f2d7ef2e5d2fa49fba6da20e",
+        "sha256": "cf6bb7ad7759acdb69addb6cc17f5b8aa7f699adb766e5b3fb1027825f68af0f",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1893,8 +1893,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "8d6f7b09e9ae7b67095ee186f58ee07daf3762490b18d509897d087c230d6762",
-        "git_blob_sha": "dbb790c3f392a5e1dcf2a9c6cc84a7f326786e2b",
+        "sha256": "ff742c072955ef2d47e03ed29a11080aa15830c09bb49f133a0af8e44d1494e5",
+        "git_blob_sha": "6ee5d9d1f9b21e887b9ad9e7f94c7c9974d6ca2e",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -1926,7 +1926,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "df06ded133392ae7bbdc6c65238f13ef5d4507bd5d4de28615d8daf4d375e3d7",
+        "sha256": "7a37a9ce7523375bc052285ae4b0debe2f955d236e59baf0f84427489ac57119",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1975,7 +1975,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "ce081b7167184ed30d0b1661c2464e1aa4dc2396fa174c9de14bcc13946496f2",
+        "sha256": "a11a25231327304480b726e60c3e5b9518da70f36e990a9a5cf6b8889d0c7ce4",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2298,8 +2298,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "865b6f47519afdda3a9f0816c229d77bb8810e82285efb3b4b6925a25691b1dc",
-        "git_blob_sha": "3de9400cd9952f7fbb039ffc39b82938e3007b77",
+        "sha256": "4d258082d671f2ef9d33176b9c5063441482f5e26a83ff5ba0fdf0079b23e2f2",
+        "git_blob_sha": "697165ae5d228208dcfc358bcd7408292728fcd9",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -2325,7 +2325,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "dc6424a16b05312b4a701d65d0d539c23daa6eb0b6bf9f5417020c1cc653af78",
+        "sha256": "5d68b4e58a647abc5dc4bee876ceec9fd24c17ea8bf04383bf7b731a0c49ef63",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
