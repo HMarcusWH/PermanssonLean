@@ -204,6 +204,10 @@ def assess_acceptance(target:AcceptanceTarget,evidence:EvidenceSet,
     if policy.require_owner_activation:missing.append('EXTERNAL_OWNER_RELEASE_ACTIVATION')
     # Under an owner-engineering authority the owner's activation is also the
     # release approval; it is checked outside this function (release gate).
-    status='BLOCKED_FAILED_EVIDENCE' if failed else ('BLOCKED_MISSING_EVIDENCE' if missing else 'EVIDENCE_COMPLETE_REVIEW_REQUIRED')
+    # The external decisions are always listed as missing; they never make the
+    # evidence itself incomplete.
+    evidence_missing=[m for m in missing if not m.startswith('EXTERNAL_')]
+    status='BLOCKED_FAILED_EVIDENCE' if failed else ('BLOCKED_MISSING_EVIDENCE' if evidence_missing
+                                                      else 'EVIDENCE_COMPLETE_REVIEW_REQUIRED')
     return AcceptanceAssessment(status,target.identity(),tuple(sorted(set(missing))),
                                   tuple(sorted(set(failed))),tuple(sorted(set(covered))))

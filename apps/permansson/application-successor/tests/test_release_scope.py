@@ -163,6 +163,8 @@ class SuccessorPolicyTests(unittest.TestCase):
         result=assess_acceptance(self.target_for(cap,PLATFORMS[1]),self.evidence(cap,PLATFORMS[1]),
                                  self.policy).to_dict()
         self.assertEqual(result['missing'],['EXTERNAL_OWNER_RELEASE_ACTIVATION'])
+        # Complete evidence is complete; the external decision is still listed.
+        self.assertEqual(result['status'],'EVIDENCE_COMPLETE_REVIEW_REQUIRED')
         self.assertEqual(result['failing'],[])
         self.assertTrue(result['covered'])
         self.assertIs(result['authorized_release'],False)

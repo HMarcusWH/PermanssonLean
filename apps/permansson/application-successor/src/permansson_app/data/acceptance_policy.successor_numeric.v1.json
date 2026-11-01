@@ -63,7 +63,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -141,7 +141,7 @@
         "test_safety.SafetyCoreTests.test_wrong_semantic_identity"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -202,7 +202,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -255,7 +255,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -311,7 +311,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -372,7 +372,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -439,7 +439,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -510,7 +510,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -576,7 +576,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -631,7 +631,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -689,7 +689,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -753,7 +753,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -819,7 +819,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -872,7 +872,7 @@
         "test_risk_infeasibility.RiskInfeasibilityTests.test_receipt_for_a_looser_cap_rejected"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -937,7 +937,7 @@
         "test_risk_occupancy_cli.OneStepRiskCLI.test_unprovable_infeasibility_is_not_called_proved"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1006,7 +1006,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1089,7 +1089,7 @@
         "test_robustness.PerturbationTests.test_unregistered_input_extra_key"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1147,7 +1147,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1205,7 +1205,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1259,7 +1259,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1333,7 +1333,7 @@
         "test_robust_nature_cli.NatureCLI.test_schema_rejects_bad_physical_payload"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1394,7 +1394,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1449,7 +1449,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1518,7 +1518,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1578,7 +1578,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"
@@ -1638,7 +1638,7 @@
         "test_resources_budget.PlatformTests.test_other_platforms_are_refused"
       ],
       "cross_platform": [
-        "installed-distribution:verification/research/test_application_successor_installed.py"
+        "installed-distribution:verification/application_successor/check_installed_package.py"
       ],
       "source_build": [
         "source-identity"

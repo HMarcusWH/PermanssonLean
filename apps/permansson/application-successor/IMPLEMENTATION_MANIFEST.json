@@ -25,8 +25,8 @@
   },
   "current_inventory": {
     "computed_by": "scripts/inventory.py --write-current (recomputed from git ls-files; see --check)",
-    "manifest_rows": 642,
-    "unique_paths": 642,
+    "manifest_rows": 643,
+    "unique_paths": 643,
     "rows_by_candidate_state": {
       "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI": 1,
       "DOCUMENTATION": 48,
@@ -47,6 +47,7 @@
       "LOCAL_TESTED_DEFAULT_OUTPUT_BYTE_IDENTICAL_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_IMPLEMENTATION": 106,
       "LOCAL_TESTED_IMPLEMENTATION_PENDING_GITHUB_HEAD_CI": 65,
+      "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI": 3,
       "LOCAL_TESTED_LINUX_CPYTHON_3_13_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI": 1,
       "LOCAL_TESTED_NUMERIC_IMPLEMENTATION": 6,
       "LOCAL_TESTED_PENDING_EXACT_HEAD_CI": 83,
@@ -55,24 +56,24 @@
       "NOT_ACTIVATED_REVIEW_GATED": 19,
       "NUMERIC_IMPLEMENTATION_CANDIDATE_PENDING_CURRENT_HEAD_CI": 5,
       "PINNED_RESEARCH_BUILD_COMPILED_AT_PRIOR_HEAD": 1,
-      "PLANNED_NOT_IMPLEMENTED": 146,
+      "PLANNED_NOT_IMPLEMENTED": 143,
       "PUBLISHED_VECTORS_CROSS_CHECKED_BY_TWO_ENCODERS": 1,
-      "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 31,
+      "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 32,
       "TEST_FIXTURE": 9,
       "VENDORED_OFFICIAL_VECTORS_COMMIT_32a48195": 1,
       "VENDORED_THIRD_PARTY_TEST_FIXTURE": 12
     },
-    "tracked_rows": 442,
-    "absent_rows": 200,
+    "tracked_rows": 445,
+    "absent_rows": 198,
     "absent_rows_by_disposition": {
       "DEFERRED_ALTERNATE_LAYOUT": 41,
       "DEFERRED_CONTRACT_LAYER": 37,
       "DEFERRED_DOMAIN_INTEGRATION": 12,
       "DEFERRED_SCOPE": 8,
       "EXCLUDED_GENERATED_BUILD_PRODUCT": 21,
-      "REQUIRED_BEFORE_RELEASE": 30,
-      "REVIEW_GATED": 20,
-      "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 31
+      "REQUIRED_BEFORE_RELEASE": 29,
+      "REVIEW_GATED": 18,
+      "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 32
     },
     "application_tracked_files": 357,
     "application_tracked_files_without_row": 0,
@@ -2712,8 +2713,8 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "399b20a136fdc123bbd0278d7c37862e74ce02151a222de08828a9204eb952cd",
-        "git_blob_sha": "d32d422ecae0104243a1ebbb5b3198d1f89a6844",
+        "sha256": "d6afc3bb0608d50336846e988a5ce2a39228e28fafb9c47f87900af79d416715",
+        "git_blob_sha": "503478b4cb0263beff31b340c442ad0dc01389f4",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
       },
@@ -10265,38 +10266,32 @@
       "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
-      "base_state": "NOT_IMPLEMENTED",
-      "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
-      },
-      "classification": "implemented test/support",
+      "path": "verification/application_successor/check_installed_package.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
       "conditional": false,
       "dependency_paths": [
-        "apps/permansson/application-successor/src/permansson_app/__init__.py",
-        "apps/permansson/application-successor/src/permansson_app/package_data.py"
+        "apps/permansson/application-successor/scripts/build_distributions.py",
+        "apps/permansson/application-successor/scripts/end_to_end.py",
+        "apps/permansson/application-successor/src/permansson_app/data/acceptance_policy.successor_numeric.v1.json"
       ],
-      "disposition": "IMPLEMENT_FROM_V2_SPEC",
-      "gate": "Delivered numeric prototype only; broader application modes and scientific claims require their separate planned gates.",
-      "generated": false,
-      "original_main_git_blob": null,
-      "path": "verification/application_successor/check_installed_package.py",
-      "protected_root": false,
-      "recovery_sha256": null,
-      "tests": [
-        "See the delivered prototype regression suite and validation/verification_record.json for actual execution evidence."
-      ],
-      "v2_action": "CREATE",
-      "v2_id": "FILE-212",
-      "v3_id": null,
       "work_items": [
         "REL-01",
+        "REL-02",
         "APP-04",
         "APP-09",
         "EXE-01",
         "EXE-02"
       ],
-      "disposition_current": "REQUIRED_BEFORE_RELEASE",
-      "disposition_reason": "part of release qualification (selected scope, platform matrix, whole-run budgets), not yet selected or authorized (CON-03, PKG-03, PKG-04)"
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI",
+        "sha256": "996f2579b3b99be57cb8708098f12a98b55202a5d4724a59f0a72d06359038ac",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -10441,42 +10436,28 @@
       "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
     },
     {
-      "base_state": "NOT_IMPLEMENTED",
-      "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
-      },
-      "classification": "Python acceptance gate",
+      "path": "verification/application_successor/release_gate.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
       "conditional": false,
       "dependency_paths": [
-        "verification/application_successor/acceptance_cases.json",
-        "apps/permansson/application-successor/IMPLEMENTATION_MANIFEST.json",
-        "apps/permansson/application-successor/src/permansson_app/capabilities.py",
-        "apps/permansson/application-successor/requirements-build.lock",
-        "apps/permansson/application-successor/requirements-runtime.lock",
-        "apps/permansson/application-successor/requirements-test.lock",
+        "verification/application_successor/check_installed_package.py",
         "apps/permansson/application-successor/src/permansson_app/acceptance.py",
-        "apps/permansson/application-successor/src/permansson_app/resources.py"
+        "apps/permansson/application-successor/src/permansson_app/evidence.py"
       ],
-      "disposition": "IMPLEMENT_FROM_V2_SPEC",
-      "gate": "Reject fabricated acceptance, stale source, unsupported capability and numeric-only evidence presented as Lean/full release",
-      "generated": false,
-      "original_main_git_blob": null,
-      "path": "verification/application_successor/release_gate.py",
-      "protected_root": false,
-      "recovery_sha256": null,
-      "tests": [
-        "verification/application_successor/test_release_gate.py",
-        "A selected numeric-only release can pass without planned domain/advanced modules, but missing shared prerequisites or any required skipped test rejects it; an advertised replay mode requires actual replay evidence."
-      ],
-      "v2_action": "CREATE",
-      "v2_id": "FILE-158",
-      "v3_id": null,
       "work_items": [
         "REL-01",
         "REL-02"
       ],
-      "disposition_current": "REVIEW_GATED",
-      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI",
+        "sha256": "4dedeed76ada267604ca93c2b14afc10847824c59eebf1ed691ab2e77b55c5f0",
+        "proof": "NOT_APPLICABLE",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -11270,7 +11251,12 @@
     {
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
-        "state": "PLANNED_NOT_IMPLEMENTED"
+        "state": "RECONCILED_SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+        "superseded_by": [
+          "verification/research/test_application_release_gate.py"
+        ],
+        "proof": "NOT_APPLICABLE",
+        "trust": "INVENTORY_RECONCILIATION_ONLY"
       },
       "classification": "unittest suite",
       "conditional": false,
@@ -11295,8 +11281,8 @@
         "REL-01",
         "REL-02"
       ],
-      "disposition_current": "REVIEW_GATED",
-      "disposition_reason": "CI trust-profile, workflow or release-gate surface; needs independent review and owner activation (CI-02, CI-03)"
+      "disposition_current": "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT",
+      "disposition_reason": "implemented under superseded_by (tracked targets checked by inventory.py); placed with the research tests that CI discovers"
     },
     {
       "base_state": "NOT_IMPLEMENTED",
@@ -14230,7 +14216,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_REQUIRE_HASHES_PENDING_EXACT_HEAD_CI",
-        "sha256": "f80013bd2af4b01e82c750c5ec2baa11e3a83fdbd5be5467227334bb6d40f474",
+        "sha256": "444a56805c853d30b85cbdc9a1af8baacbf1d92eb1edbcb7067c22be13ff2d25",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17586,7 +17572,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "307d172c36561c85c8dd1afa61b49a6964ce28f16f1158c383a8edf92e3b5474",
+        "sha256": "0d8e99504f75d6e291de0887ce4e7bf2255e6184e1a340d798a72456bc577040",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17646,7 +17632,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "48525122715abbd550412852b5b90e60e2dc26e9e4dec4d341c1ebe227b8e2af",
+        "sha256": "de4da0b45cb7846c0126fe216eb450a46eef46fb8ff6b8ab935fdcddd238fc03",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17706,7 +17692,7 @@
       "protected_root": false,
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "3f6ec7befd8fa7993b562343d228b6cc975d412523f82d27b82ba8d37db4b551",
+        "sha256": "ab06addb98a2c5808597b1f306b4b601c6cff091e27815b0aa6cf28ccd037229",
         "proof": "NOT_EXECUTED",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
@@ -17747,6 +17733,28 @@
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
         "sha256": "c161e9b9d7cb8828113bd7db1631e52de0949c7e5860461663d295059ce185c4",
         "proof": "NOT_EXECUTED",
+        "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "verification/research/test_application_release_gate.py",
+      "base_state": "NOT_PRESENT_ON_MAIN",
+      "classification": "application-successor-additive",
+      "disposition": "NEW_TESTED_SOURCE_CANDIDATE",
+      "conditional": false,
+      "dependency_paths": [
+        "verification/application_successor/release_gate.py"
+      ],
+      "work_items": [
+        "REL-01",
+        "REL-02"
+      ],
+      "generated": false,
+      "protected_root": false,
+      "candidate": {
+        "state": "LOCAL_TESTED_LINUX_CPYTHON_3_13_PENDING_EXACT_HEAD_CI",
+        "sha256": "c20fc9a0ee416a46e4c715b0a2f595175048a1a45cf8b599e399ff20fb211f85",
+        "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
       }
     }

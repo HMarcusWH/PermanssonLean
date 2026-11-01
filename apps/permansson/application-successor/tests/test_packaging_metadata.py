@@ -61,8 +61,11 @@ class PackagingMetadataTests(unittest.TestCase):
         # owner's dispatch of the release workflow, checked by the release gate.
         project=self.pyproject['project']
         self.assertEqual(project['version'],'0.2.0')
-        init=(APP/'src/permansson_app/__init__.py').read_text(encoding='utf-8')
-        self.assertIn(f'__version__ = "{project["version"]}"',init)
+        # Wherever the package is imported from (source tree or installed wheel).
+        import sys
+        sys.path.insert(0,str(APP/'src'))
+        import permansson_app
+        self.assertEqual(permansson_app.__version__,project['version'])
         self.assertNotIn('numeric-only',project['description'].lower())
         self.assertNotIn('draft',project['description'].lower())
         self.assertEqual(project['requires-python'],'>=3.12,<3.14')
