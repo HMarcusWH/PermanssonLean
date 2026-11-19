@@ -8,6 +8,8 @@ No production, mathematical, workflow, or acceptance files are modified.
 from __future__ import annotations
 
 import hashlib
+import json
+from collections import Counter
 import re
 import shutil
 import subprocess
@@ -28,41 +30,112 @@ EXPECTED_SHA256 = {
 }
 
 
+def parse_axiom_receipt(output: str, expected_names: list[str]) -> dict[str, list[str]]:
+    """Require a distinct transitive-axiom result for every requested declaration."""
+    found = re.findall(r"'([^']+)' depends on axioms:\s*\[([^\]]*)\]", output, re.S)
+    clean = re.findall(r"'([^']+)' does not depend on any axioms", output)
+    entries = [(name, [a.strip() for a in axioms.replace("\n", " ").split(",") if a.strip()])
+               for name, axioms in found]
+    entries.extend((name, []) for name in clean)
+    observed = [name for name, _ in entries]
+    duplicates = sorted(name for name, count in Counter(observed).items() if count != 1)
+    missing = sorted(set(expected_names) - set(observed))
+    extra = sorted(set(observed) - set(expected_names))
+    if duplicates or missing or extra or len(entries) != len(expected_names):
+        raise AssertionError(
+            f"Incomplete Lean axiom audit: missing={missing} extra={extra} "
+            f"duplicates={duplicates} observed={len(entries)} "
+            f"expected={len(expected_names)}"
+        )
+    records = {name: axioms for name, axioms in entries}
+    for name, axioms in entries:
+        unexpected = set(axioms) - ALLOWLIST
+        if unexpected:
+            raise AssertionError(f"Unexpected axiom(s) for {name}: {sorted(unexpected)}")
+    return records
+
+
+class Tranche3ParserTests(unittest.TestCase):
+    """Fast, compiler-independent regression tests for receipt completeness."""
+
+    def test_complete_with_and_without_axioms(self):
+        sample = ("'A' depends on axioms: [propext, Quot.sound]\n"
+                  "'B' does not depend on any axioms\n")
+        self.assertEqual(parse_axiom_receipt(sample, ["A", "B"]),
+                         {"A": ["propext", "Quot.sound"], "B": []})
+
+    def test_missing_duplicate_and_extra_results_rejected(self):
+        for output in (
+            "'A' depends on axioms: [propext]\n",
+            "'A' depends on axioms: [propext]\n'A' depends on axioms: [propext]\n"
+            "'B' does not depend on any axioms\n",
+            "'A' depends on axioms: [propext]\n'B' depends on axioms: [propext]\n"
+            "'C' depends on axioms: [propext]\n",
+        ):
+            with self.subTest(output=output), self.assertRaises(AssertionError):
+                parse_axiom_receipt(output, ["A", "B"])
+
+    def test_unapproved_axiom_rejected(self):
+        with self.assertRaisesRegex(AssertionError, "Unexpected axiom"):
+            parse_axiom_receipt("'A' depends on axioms: [sorryAx]\n", ["A"])
+
+
 class Tranche3PinnedReplay(unittest.TestCase):
+    def test_probe_structure_and_import_order(self):
+        contents = PROBE.read_text(encoding="utf-8")
+        self.assertTrue(contents.startswith("import "),
+                        "Lean import section must precede executable module comments")
+        names = re.findall(r"^#check\s+(\S+)", contents, flags=re.M)
+        axiom_names = re.findall(r"^#print axioms\s+(\S+)", contents, flags=re.M)
+        self.assertEqual(len(names), 30)
+        self.assertEqual(names, axiom_names)
+
     def test_frozen_sources_and_lean_pin_unchanged(self):
-        self.assertEqual((ROOT / "lean-toolchain").read_text().strip(), "leanprover/lean4:v4.34.0")
+        self.assertEqual((ROOT / "lean-toolchain").read_text().strip(),
+                         "leanprover/lean4:v4.34.0")
         for relative, digest in EXPECTED_SHA256.items():
             source = ROOT / relative
             self.assertTrue(source.is_file(), relative)
-            self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(), digest, relative)
+            self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(),
+                             digest, relative)
 
     def test_30_declaration_lean_probe(self):
         self.assertTrue(PROBE.is_file(), str(PROBE))
         contents = PROBE.read_text(encoding="utf-8")
+        self.assertTrue(contents.startswith("import "),
+                        "Lean imports must precede module commands")
         names = re.findall(r"^#check\s+(\S+)", contents, flags=re.M)
         axiom_names = re.findall(r"^#print axioms\s+(\S+)", contents, flags=re.M)
         self.assertEqual(len(names), 30)
         self.assertEqual(names, axiom_names)
         self.assertIsNotNone(shutil.which("lake"), "Pinned Lean compiler is required")
         result = subprocess.run(
-            ["lake", "env", "lean", str(PROBE)],
-            cwd=ROOT,
-            capture_output=True,
-            text=True,
-            timeout=900,
-            check=False,
+            ["lake", "env", "lean", str(PROBE)], cwd=ROOT,
+            capture_output=True, text=True, timeout=900, check=False,
         )
         output = result.stdout + "\n" + result.stderr
+        # Preserve full compiler output for reviewer diagnostics, including failures.
+        print("TRANCHE3_LEAN_COMPILER_TRANSCRIPT_BEGIN", flush=True)
+        print(output, flush=True)
+        print("TRANCHE3_LEAN_COMPILER_TRANSCRIPT_END", flush=True)
         self.assertEqual(result.returncode, 0, output[-8000:])
         self.assertNotIn("error:", output.lower(), output[-8000:])
         self.assertNotIn("sorryAx", output, output[-8000:])
         for name in names:
             self.assertIn(name, output, name)
-        groups = re.findall(r"depends on axioms:\s*\[([^\]]*)\]", output)
-        self.assertTrue(groups, "Compiler produced no machine-auditable axiom output")
-        for group in groups:
-            observed = {name.strip() for name in group.split(",") if name.strip()}
-            self.assertLessEqual(observed, ALLOWLIST, f"Unexpected axioms: {observed - ALLOWLIST}")
+        records = parse_axiom_receipt(output, names)
+        receipt = {
+            "format": "Permansson.CERT.Tranche3.LeanAxiomEvidence.v1",
+            "scope": "SOURCE_CANDIDATE_NOT_INDEPENDENT_ACCEPTANCE",
+            "probe_sha256": hashlib.sha256(contents.encode("utf-8")).hexdigest(),
+            "compiler_output_sha256": hashlib.sha256(output.encode("utf-8")).hexdigest(),
+            "compiler_exit_code": result.returncode,
+            "declaration_count": len(records),
+            "declarations": [{"name": n, "axioms": records[n]} for n in names],
+        }
+        print("TRANCHE3_LEAN_AXIOM_RECEIPT_BEGIN", flush=True)
+        print(json.dumps(receipt, sort_keys=True), flush=True)
+        print("TRANCHE3_LEAN_AXIOM_RECEIPT_END", flush=True)
 
 
 if __name__ == "__main__":
