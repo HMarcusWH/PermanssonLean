@@ -1,6 +1,3 @@
-/-! Source-checked declarations. This file is a PROBE, not a proof or accepted certificate.
-Run under the pinned Lean/mathlib environment at the frozen source commit. -/
-
 import PermanssonResearch.MultiAgent.AsymmetricCommonSwapFixture
 import PermanssonResearch.MultiAgent.MeasurableProductTwoMatchedProtocols
 import PermanssonResearch.MultiAgent.MeasurableProductTwoOriginalMarginClosure
@@ -8,6 +5,9 @@ import PermanssonResearch.Quotient.Q05ActualAtomClosure
 import PermanssonResearch.Quotient.Q05ActualOriginalMarginWitnessFixture
 import PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture
 import PermanssonResearch.ReverseSolver.NonlinearPhaseBlindClassGeometry
+
+/-! Source-checked declarations. This file is a PROBE, not a proof or accepted certificate.
+Run under the pinned Lean/mathlib environment at the frozen source commit. -/
 
 set_option autoImplicit false
 
