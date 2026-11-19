@@ -1,0 +1,339 @@
+{
+  "format": "Permansson.CERT.Tranche9SourceScope.v1",
+  "baseline_git_commit": "4655c60b59716385fd1c87772b87912a3550840c",
+  "interpretation": "Additive source-bound evidence for the exact original D-08 and D-06 criteria; local proof, CI, merge and independent case acceptance are separately recorded.",
+  "acceptance_changes": 0,
+  "frozen_source_sha256": {
+    "PermanssonResearch/GrammarRobust/AdversarialAdmission.lean": "e6cdd11bf636e6c6165bea6e6736154cc4dbc173b761026aef71afe3abe4641a",
+    "PermanssonResearch/GrammarRobust/AtomicBank.lean": "1f2fa28b2477b7089ad8ba67d8065213d62801854a849fad5367e1d8f5cb415d",
+    "PermanssonResearch/GrammarRobust/BooleanDynamics.lean": "0f6db0d286d696752bf8b680410d9bb817d889a8d36a05275b1dfc376775b7c8",
+    "PermanssonResearch/GrammarRobust/BooleanEffects.lean": "5ecb403b50414cf5f3b96820ce82e367d9a07a9abaec4b96338ecf21e671bc45",
+    "PermanssonResearch/GrammarRobust/BooleanModel.lean": "0ada78b7e98e7b8fca59b0df0e66e858a2a8cd0c716b21eb0e7cb3880fcfaadf",
+    "PermanssonResearch/GrammarRobust/BooleanOverlapFixture.lean": "047c83a1517af74a943d445c419d59d00302d18680d0310e64c09a79912a323d",
+    "PermanssonResearch/GrammarRobust/CompatibleOverlap.lean": "c90bc6bf020f01f2bd515f458b0fdcf8c48a5acaa608003fae2ac11401e0fde6",
+    "PermanssonResearch/GrammarRobust/JointOnlyCertifiedFixture.lean": "8351a5d0da4104be7b9d834d520c3156292e48a00622481f4c9a6d73603754eb",
+    "PermanssonResearch/GrammarRobust/OverlapCanonicalBridge.lean": "5961213b9e2744b0aa2f9d6103db579a4e7e46beb56a9012f1c8c831c6857ebe",
+    "PermanssonResearch/GrammarRobust/OverlapKernelAssembly.lean": "b0a2a95b83a945eae4e7fb7d37a9110351c44256feb377eac7e861c357138e9e",
+    "PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean": "4fc8d749a9bbf4cdd45adeb3f9872766a7d6822ec457f90be9458d4fc545e4c7",
+    "PermanssonResearch/ReverseSolver/AdaptiveGrammarControl.lean": "d16f5693027488555038686aabfd1c548e6dbe8665e8f19768a33eb60a403e5c",
+    "PermanssonResearch/ReverseSolver/BeliefAlpha.lean": "06cebf53aba94f9958a40dbbd8166c8172c4b6ac02831fba3de31072c3d7e469",
+    "PermanssonResearch/ReverseSolver/BeliefChronology.lean": "cc5ab3d5ed778995dfd610b3d2f5b94225e0569747f6d4b79d3606ab5d558d95",
+    "PermanssonResearch/ReverseSolver/BeliefFilter.lean": "c8cc5f1f254b2116a909ca558cd83eaabaf186add380350cab7ee214ca4ce0cf",
+    "PermanssonResearch/ReverseSolver/BeliefHistory.lean": "3620313d0d0d7f8cd7b50b29081a88e3f56db0188bad8dfd5033c4971da14830",
+    "PermanssonResearch/ReverseSolver/BeliefKernel.lean": "996f4cc294dae5807494cbbbb733ae246f4e79dcdba4febc8b1048e21a8cd946",
+    "PermanssonResearch/ReverseSolver/BeliefMonitor.lean": "25a111ad8566c6dda4967c165279d9d1949808f079908114f891baa06acf3eb1",
+    "PermanssonResearch/ReverseSolver/ReachableCompletionBeliefFixture.lean": "8dac9b2b92f8d6e70a8953bbfebf4cb99d6708bcb9a3615e6956583213c7d2d6",
+    "lake-manifest.json": "974d255f7eced6a5f90a046ce6e5cdd5a49e86463caaca2453a6e40d9b26ea9a",
+    "lakefile.toml": "24e753d2b2e1ef6baee936e85a312ba8515548f5fbb3180398da5aca0ac38193",
+    "lean-toolchain": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632",
+    "research/paper_closures/post_merge_112/acceptance_decisions.json": "00c9248845e42e0d1417ebbdcf26d2119cde699f6d3d99cbe2a7157539536b13",
+    "research/paper_closures/spec/registries/acceptance_tests.json": "c7da0f37d10c6a837f9592ac6c9919e64902248982c6d8dd6027f4d6321442d1",
+    "verification/research/BeliefObservationWitness.lean": "87df5fee54bb7c9f41a4a0c0e9e5986c4fadb2efca9865f1907f996369c09d85",
+    "verification/research/PAPER_CLOSURE_BELIEF.md": "091c523d99fb184170a28fbe2aff6e5361811f91b19a4669176ff3e4746ca565",
+    "verification/research/paper_closure_acceptance_cases.py": "f0e306841a9d2518ba6760aeadf450c701542db4a37b26226109a9b7be7ddd33",
+    "verification/research/paper_closure_status.py": "425d27ffc20d876081a0d0308af917807c59e699d5ba30756789fb64b3af49a8",
+    "verification/research/test_cert_q05_whole_path_addendum.py": "5e137dec7b791e825d19222c580c543d249edf4dd438a016e09c4d6594dbf71a",
+    "verification/research/test_cert_tranche3_source_bound_replay.py": "d231f510d3b161b94f39a581b90e78ec566acafdb0ee6749041f797d3eaa1959",
+    "verification/research/test_final_d08_admission.py": "705e5806b3a5b1f66f5bf8909e0323d6c23125dc61805f072d042f2810faf11f",
+    "verification/research/test_final_original_risk_belief_false_lean.py": "e07609f193bd72526f14637ca4b4dbfcb0f06f03b35718edfcc7e2f644b96a00",
+    "verification/research/test_next06_d08_joint_only_compiler.py": "c706979b2b0f6062dd97ddc2bbe2f366d948dc622ca646e6e4f3e81dfce65e32",
+    "verification/research/test_next06_reachable_completion_belief.py": "d008a45c1d4daca4dfa5607ae0ca3d3b613368a56285ae418a165763574aaf08"
+  },
+  "cases": [
+    {
+      "id": "D-08",
+      "probe": "verification/research/tranche9_d08_scope_receipt_addendum.lean",
+      "probe_sha256": "2a4da94fb88e7b7511ec282b7fab625d5ae04247334b5ca20d76f0840cfda808",
+      "scope": "Original D-08: frozen-grammar admission and actual typed CertifiedMenu compatibility; new distinct overlapping compatible action patches on the original Bool/Bool source; conflicting pair excluded from any certified choice. Raw conflicting folds may still exist. Separate OR joint-only margin uses fine grammar. No acceptance promotion and no identification of original D-08 with later D8.",
+      "compile_prerequisites": [],
+      "library_targets": [
+        "PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture",
+        "PermanssonResearch.GrammarRobust.JointOnlyCertifiedFixture",
+        "PermanssonResearch.GrammarRobust.BooleanOverlapFixture"
+      ],
+      "expected_declarations": [
+        "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu",
+        "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.block_preserves_world",
+        "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedRow_eq",
+        "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedChronologicalLaw_eq",
+        "PermanssonResearch.GrammarRobust.AdversarialAdmission.restricted_action_allowed",
+        "PermanssonResearch.GrammarRobust.AdversarialAdmission.restricted_update_allowed",
+        "PermanssonResearch.GrammarRobust.AdversarialAdmission.restricted_joint_rejected",
+        "PermanssonResearch.GrammarRobust.AdversarialAdmission.forbidden_block_has_no_certificate",
+        "PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_admits_both_components",
+        "PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_rejects_joint",
+        "PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_row_normalized",
+        "PermanssonResearch.Certification.Tranche9D08.localized_and_wide_patches_distinct",
+        "PermanssonResearch.Certification.Tranche9D08.original_input_has_genuine_overlap",
+        "PermanssonResearch.Certification.Tranche9D08.compatible_action_patch_pair",
+        "PermanssonResearch.Certification.Tranche9D08.compatible_original_action_row",
+        "PermanssonResearch.Certification.Tranche9D08.compatible_original_induced_row",
+        "PermanssonResearch.Certification.Tranche9D08.compatibleOverlapMenu",
+        "PermanssonResearch.Certification.Tranche9D08.actual_menu_contains_two_compatible_patches",
+        "PermanssonResearch.Certification.Tranche9D08.actual_compatible_menu_admits_both_choices",
+        "PermanssonResearch.Certification.Tranche9D08.actual_compatible_menu_world_frozen",
+        "PermanssonResearch.Certification.Tranche9D08.actual_compatible_menu_typed_row_exact",
+        "PermanssonResearch.Certification.Tranche9D08.actual_compatible_menu_typed_row_normalized",
+        "PermanssonResearch.Certification.Tranche9D08.actual_compatible_menu_rejects_joint",
+        "PermanssonResearch.Certification.Tranche9D08.localized_action_patches_conflict",
+        "PermanssonResearch.Certification.Tranche9D08.no_certified_choice_with_conflicting_pair",
+        "PermanssonResearch.Certification.Tranche9D08.raw_conflicting_orders_differ",
+        "PermanssonResearch.GrammarRobust.JointOnlyCertified.original_or_joint_only",
+        "PermanssonResearch.GrammarRobust.JointOnlyCertified.original_or_joint_is_minimal",
+        "PermanssonResearch.GrammarRobust.JointOnlyCertified.original_and_has_two_distinct_minimal_singletons",
+        "PermanssonResearch.GrammarRobust.JointOnlyCertified.original_or_action_not_positive"
+      ],
+      "declaration_groups": [
+        {
+          "id": "ORIGINAL_TYPED_ADMISSION_CONTRACT",
+          "declarations": [
+            "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.CertifiedMenu",
+            "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.block_preserves_world",
+            "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedRow_eq",
+            "PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.typedChronologicalLaw_eq",
+            "PermanssonResearch.GrammarRobust.AdversarialAdmission.restricted_action_allowed",
+            "PermanssonResearch.GrammarRobust.AdversarialAdmission.restricted_update_allowed",
+            "PermanssonResearch.GrammarRobust.AdversarialAdmission.restricted_joint_rejected",
+            "PermanssonResearch.GrammarRobust.AdversarialAdmission.forbidden_block_has_no_certificate"
+          ]
+        },
+        {
+          "id": "HISTORICAL_RESTRICTED_MENU",
+          "declarations": [
+            "PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_admits_both_components",
+            "PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_rejects_joint",
+            "PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_row_normalized"
+          ]
+        },
+        {
+          "id": "NEW_NONVACUOUS_COMPATIBLE_OVERLAP",
+          "declarations": [
+            "PermanssonResearch.Certification.Tranche9D08.localized_and_wide_patches_distinct",
+            "PermanssonResearch.Certification.Tranche9D08.original_input_has_genuine_overlap",
+            "PermanssonResearch.Certification.Tranche9D08.compatible_action_patch_pair",
+            "PermanssonResearch.Certification.Tranche9D08.compatible_original_action_row",
+            "PermanssonResearch.Certification.Tranche9D08.compatible_original_induced_row",
+            "PermanssonResearch.Certification.Tranche9D08.compatibleOverlapMenu",
+            "PermanssonResearch.Certification.Tranche9D08.actual_menu_contains_two_compatible_patches",
+            "PermanssonResearch.Certification.Tranche9D08.actual_compatible_menu_admits_both_choices",
+            "PermanssonResearch.Certification.Tranche9D08.actual_compatible_menu_world_frozen",
+            "PermanssonResearch.Certification.Tranche9D08.actual_compatible_menu_typed_row_exact",
+            "PermanssonResearch.Certification.Tranche9D08.actual_compatible_menu_typed_row_normalized",
+            "PermanssonResearch.Certification.Tranche9D08.actual_compatible_menu_rejects_joint",
+            "PermanssonResearch.Certification.Tranche9D08.localized_action_patches_conflict",
+            "PermanssonResearch.Certification.Tranche9D08.no_certified_choice_with_conflicting_pair",
+            "PermanssonResearch.Certification.Tranche9D08.raw_conflicting_orders_differ"
+          ]
+        },
+        {
+          "id": "SEPARATE_FINE_GRAMMAR_JOINT_ONLY_EFFECT",
+          "declarations": [
+            "PermanssonResearch.GrammarRobust.JointOnlyCertified.original_or_joint_only",
+            "PermanssonResearch.GrammarRobust.JointOnlyCertified.original_or_joint_is_minimal",
+            "PermanssonResearch.GrammarRobust.JointOnlyCertified.original_and_has_two_distinct_minimal_singletons",
+            "PermanssonResearch.GrammarRobust.JointOnlyCertified.original_or_action_not_positive"
+          ]
+        }
+      ],
+      "semantic_controls": [
+        {
+          "id": "d08_forbidden_joint_cannot_be_admitted",
+          "code": "import verification.research.tranche9_d08_scope_receipt_addendum\nopen PermanssonLean\nopen PermanssonLean.RegimeSpecification\nopen PermanssonResearch.GrammarRobust\nopen PermanssonResearch.GrammarRobust.BooleanModel\nopen PermanssonResearch.GrammarRobust.BooleanBaseline\nopen PermanssonResearch.GrammarRobust.BooleanDynamics\nopen PermanssonResearch.GrammarRobust.BooleanPersistence\nopen PermanssonResearch.GrammarRobust.BooleanOneStepEvents\nopen PermanssonResearch.GrammarRobust.BooleanEffects\nopen PermanssonResearch.GrammarRobust.AdversarialAdmission\nopen PermanssonResearch.Certification.Tranche9D08\n\nexample : restricted.allowed joint := by\n  exact restricted_action_allowed\n",
+          "source_sha256": "f7ddad7fef70ec2314de663cd635515541bc00343ad28012ae8f3b4a29baab2d",
+          "validation": {
+            "status": "EXPECTED_MATHEMATICAL_REJECTION",
+            "exit_code": 1,
+            "compiler_output_sha256": "00faf8add64ceed8578ccd779272e357d55a44853f88c74acad111dbcc46af90",
+            "diagnostic": "type mismatch"
+          }
+        },
+        {
+          "id": "d08_conflicting_action_pair_cannot_be_compatible",
+          "code": "import verification.research.tranche9_d08_scope_receipt_addendum\nopen PermanssonLean\nopen PermanssonLean.RegimeSpecification\nopen PermanssonResearch.GrammarRobust\nopen PermanssonResearch.GrammarRobust.BooleanModel\nopen PermanssonResearch.GrammarRobust.BooleanBaseline\nopen PermanssonResearch.GrammarRobust.BooleanDynamics\nopen PermanssonResearch.GrammarRobust.BooleanPersistence\nopen PermanssonResearch.GrammarRobust.BooleanOneStepEvents\nopen PermanssonResearch.GrammarRobust.BooleanEffects\nopen PermanssonResearch.GrammarRobust.AdversarialAdmission\nopen PermanssonResearch.Certification.Tranche9D08\n\nexample : localFalsePatch.Compatible localTruePatch := by\n  exact compatible_action_patch_pair\n    localFalsePatch (by simp) (bank.action (0 : Fin 1)) (by simp)\n",
+          "source_sha256": "4f37ba87080adc89122bdaa33e7ddbc342def7b738d0b9f44518f41c8553cf66",
+          "validation": {
+            "status": "EXPECTED_MATHEMATICAL_REJECTION",
+            "exit_code": 1,
+            "compiler_output_sha256": "a06fa12423608d6539ff50976182e3f81e84e668a97dd74ffad9926d9921bef0",
+            "diagnostic": "type mismatch"
+          }
+        },
+        {
+          "id": "d08_or_singleton_margin_cannot_be_one",
+          "code": "import verification.research.tranche9_d08_scope_receipt_addendum\nopen PermanssonLean\nopen PermanssonLean.RegimeSpecification\nopen PermanssonResearch.GrammarRobust\nopen PermanssonResearch.GrammarRobust.BooleanModel\nopen PermanssonResearch.GrammarRobust.BooleanBaseline\nopen PermanssonResearch.GrammarRobust.BooleanDynamics\nopen PermanssonResearch.GrammarRobust.BooleanPersistence\nopen PermanssonResearch.GrammarRobust.BooleanOneStepEvents\nopen PermanssonResearch.GrammarRobust.BooleanEffects\nopen PermanssonResearch.GrammarRobust.AdversarialAdmission\nopen PermanssonResearch.Certification.Tranche9D08\n\nexample :\n    blockMargin baseline bank fine actionBlock spec\n      (propertyAtOne orP) comparison = (1 : ℝ) := by\n  rw [or_singleton_margins_zero.1]\n  norm_num\n",
+          "source_sha256": "a0e2b013508d09236e0449b89c4617d667d7e8f1ec47517d5e9efeda59f1fcfc",
+          "validation": {
+            "status": "EXPECTED_MATHEMATICAL_REJECTION",
+            "exit_code": 1,
+            "compiler_output_sha256": "e0b63849238117906cc398059fcba2127d2d97af6c11aa8800febe45432c4a11",
+            "diagnostic": "unsolved goals"
+          }
+        }
+      ],
+      "family": "original_45",
+      "original_registry_criterion": {
+        "id": "D-08",
+        "atlas_ids": [
+          "D2-P08"
+        ],
+        "purpose": "Illegal/conflicting grammar block selected by controller",
+        "required_expected_result": "No admissible typed controlled row",
+        "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+      },
+      "frozen_decision": "PENDING"
+    },
+    {
+      "id": "D-06",
+      "probe": "verification/research/tranche9_d06_scope_receipt_addendum.lean",
+      "probe_sha256": "01307224d72b430b60518f506b00e245e26c9592d99a72d571c4ce195f742479",
+      "scope": "Finite hidden/control/observation spaces and finite horizons; real behavioral observation histories over own past controls/readouts; common legal menu in original monitor adapter; one fixed prior for the reachable-history value witness; no hidden-state controller or general infinite-horizon claim; no independent acceptance.",
+      "compile_prerequisites": [
+        "verification/research/BeliefObservationWitness.lean"
+      ],
+      "library_targets": [
+        "PermanssonResearch.ReverseSolver.ReachableCompletionBeliefFixture",
+        "PermanssonResearch.ReverseSolver.BeliefMonitor"
+      ],
+      "expected_declarations": [
+        "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_remembered_same_physical_observation",
+        "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_remembered_completion_values",
+        "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_observation_policy_dominated",
+        "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_observation_tree_attained",
+        "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_illegal_hidden_peek_gap",
+        "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_zero_likelihood_default",
+        "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_zero_branch_contribution",
+        "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_successor_readout_order",
+        "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.one_prior_reachable_completion_values",
+        "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.no_readout_only_reachable_completion_value",
+        "PermanssonResearch.ReverseSolver.Belief.Model.posterior_formula",
+        "PermanssonResearch.ReverseSolver.Belief.Model.posterior_zero",
+        "PermanssonResearch.ReverseSolver.Belief.Model.posterior_cancel",
+        "PermanssonResearch.ReverseSolver.Belief.Model.filtered_conditional",
+        "PermanssonResearch.ReverseSolver.Belief.Model.observed_filter_law",
+        "PermanssonResearch.ReverseSolver.Belief.Model.chronological_filtered_endpoint",
+        "PermanssonResearch.ReverseSolver.Belief.Model.chronological_word_integral",
+        "PermanssonResearch.ReverseSolver.Belief.Model.actual_history_conditional",
+        "PermanssonResearch.ReverseSolver.Belief.Model.alpha_envelope",
+        "PermanssonResearch.ReverseSolver.Belief.Model.expected_le_value",
+        "PermanssonResearch.ReverseSolver.Belief.Model.chronologicalIntegral_eq_expected",
+        "PermanssonResearch.ReverseSolver.Belief.Model.behavioralChronological_dominated",
+        "PermanssonResearch.ReverseSolver.Belief.Model.observationTree_attains",
+        "PermanssonResearch.ReverseSolver.Belief.monitored_physical_atom",
+        "PermanssonResearch.ReverseSolver.Belief.monitored_control_permitted",
+        "PermanssonResearch.ReverseSolver.Belief.monitored_control_world_fixed",
+        "PermanssonResearch.ReverseSolver.Belief.monitored_control_update_fixed",
+        "PermanssonResearch.ReverseSolver.Belief.monitoredInitial_support",
+        "PermanssonResearch.ReverseSolver.Belief.monitor_run_on_support",
+        "PermanssonResearch.ReverseSolver.Belief.monitored_initial_integral_eq_history",
+        "PermanssonResearch.ReverseSolver.Belief.monitored_history_dominated",
+        "PermanssonResearch.ReverseSolver.Belief.monitored_history_attained",
+        "PermanssonResearch.ReverseSolver.ReachableCompletionBelief.both_observable_words_positive",
+        "PermanssonResearch.ReverseSolver.ReachableCompletionBelief.both_histories_reachable_in_one_law",
+        "PermanssonResearch.ReverseSolver.ReachableCompletionBelief.reachable_posteriors_disagree",
+        "PermanssonResearch.ReverseSolver.ReachableCompletionBelief.readout_cannot_reveal_completion",
+        "PermanssonResearch.ReverseSolver.BeliefTests.action_value",
+        "PermanssonResearch.ReverseSolver.BeliefTests.observation_optimum",
+        "PermanssonResearch.ReverseSolver.BeliefTests.impossible_observation"
+      ],
+      "declaration_groups": [
+        {
+          "id": "new_original_fixture_and_reachable_value_facts",
+          "declarations": [
+            "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_remembered_same_physical_observation",
+            "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_remembered_completion_values",
+            "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_observation_policy_dominated",
+            "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_observation_tree_attained",
+            "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_illegal_hidden_peek_gap",
+            "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_zero_likelihood_default",
+            "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_zero_branch_contribution",
+            "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.original_successor_readout_order",
+            "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.one_prior_reachable_completion_values",
+            "PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum.no_readout_only_reachable_completion_value"
+          ]
+        },
+        {
+          "id": "bayes_and_actual_observable_history",
+          "declarations": [
+            "PermanssonResearch.ReverseSolver.Belief.Model.posterior_formula",
+            "PermanssonResearch.ReverseSolver.Belief.Model.posterior_zero",
+            "PermanssonResearch.ReverseSolver.Belief.Model.posterior_cancel",
+            "PermanssonResearch.ReverseSolver.Belief.Model.filtered_conditional",
+            "PermanssonResearch.ReverseSolver.Belief.Model.observed_filter_law",
+            "PermanssonResearch.ReverseSolver.Belief.Model.chronological_filtered_endpoint",
+            "PermanssonResearch.ReverseSolver.Belief.Model.chronological_word_integral",
+            "PermanssonResearch.ReverseSolver.Belief.Model.actual_history_conditional"
+          ]
+        },
+        {
+          "id": "finite_observation_policy_sufficiency",
+          "declarations": [
+            "PermanssonResearch.ReverseSolver.Belief.Model.alpha_envelope",
+            "PermanssonResearch.ReverseSolver.Belief.Model.expected_le_value",
+            "PermanssonResearch.ReverseSolver.Belief.Model.chronologicalIntegral_eq_expected",
+            "PermanssonResearch.ReverseSolver.Belief.Model.behavioralChronological_dominated",
+            "PermanssonResearch.ReverseSolver.Belief.Model.observationTree_attains"
+          ]
+        },
+        {
+          "id": "actual_monitored_original_control_adapter",
+          "declarations": [
+            "PermanssonResearch.ReverseSolver.Belief.monitored_physical_atom",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_control_permitted",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_control_world_fixed",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_control_update_fixed",
+            "PermanssonResearch.ReverseSolver.Belief.monitoredInitial_support",
+            "PermanssonResearch.ReverseSolver.Belief.monitor_run_on_support",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_initial_integral_eq_history",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_history_dominated",
+            "PermanssonResearch.ReverseSolver.Belief.monitored_history_attained"
+          ]
+        },
+        {
+          "id": "one_prior_positive_history_fixture",
+          "declarations": [
+            "PermanssonResearch.ReverseSolver.ReachableCompletionBelief.both_observable_words_positive",
+            "PermanssonResearch.ReverseSolver.ReachableCompletionBelief.both_histories_reachable_in_one_law",
+            "PermanssonResearch.ReverseSolver.ReachableCompletionBelief.reachable_posteriors_disagree",
+            "PermanssonResearch.ReverseSolver.ReachableCompletionBelief.readout_cannot_reveal_completion"
+          ]
+        },
+        {
+          "id": "original_observation_information_gap_fixture",
+          "declarations": [
+            "PermanssonResearch.ReverseSolver.BeliefTests.action_value",
+            "PermanssonResearch.ReverseSolver.BeliefTests.observation_optimum",
+            "PermanssonResearch.ReverseSolver.BeliefTests.impossible_observation"
+          ]
+        }
+      ],
+      "semantic_controls": [
+        {
+          "id": "d06_same_readout_does_not_identify_reachable_completion",
+          "code": "import verification.research.tranche9_d06_scope_receipt_addendum\nopen PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum\nexample : reachableCompletionValue false = reachableCompletionValue true := by\n  rw [one_prior_reachable_completion_values.2]\n  exact one_prior_reachable_completion_values.1\n",
+          "source_sha256": "26e865601299e1c9ce92c9c0a111cb8c3478a82f6c87583ff1d8463c4d94bc54"
+        },
+        {
+          "id": "d06_hidden_peek_value_is_not_observation_admissible_value",
+          "code": "import verification.research.tranche9_d06_scope_receipt_addendum\nopen PermanssonResearch.ReverseSolver.BeliefTests\nexample : guessing.value reward 1 0 prior = 1 := by\n  exact observation_optimum\n",
+          "source_sha256": "8aa4a247b7f34d4e3bcf255c6d77c0b9e2b84c3bd76ba7421f1f85bb4213a48f"
+        },
+        {
+          "id": "d06_zero_likelihood_cannot_create_expected_reward",
+          "code": "import verification.research.tranche9_d06_scope_receipt_addendum\nopen PermanssonResearch.ReverseSolver.BeliefTests\nopen PermanssonResearch.ReverseSolver.D06ScopeReceiptAddendum\nexample : guessing.branchMass 0 prior false true *\n    (guessing.posterior 0 prior false true).dot reward = 1 := by\n  exact original_zero_branch_contribution\n",
+          "source_sha256": "b8c70f202bee18f7ba54fb361a106b7006e8072fbec64656f88e48be4a2cefb6"
+        }
+      ],
+      "family": "original_45",
+      "original_registry_criterion": {
+        "id": "D-06",
+        "atlas_ids": [
+          "D2-P06"
+        ],
+        "purpose": "Same physical belief but different hidden completed flags",
+        "required_expected_result": "Full augmented belief required",
+        "status": "REQUIRED_NOT_AN_EXECUTED_LEAN_TEST"
+      },
+      "frozen_decision": "PENDING"
+    }
+  ]
+}
