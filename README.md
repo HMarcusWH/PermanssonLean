@@ -10,10 +10,19 @@ The repository now contains two deliberately separate Lean libraries, an accepte
 
 > **Verified source checkpoint — 19 October 2026.** At [`main@3931e4dccafb`](https://github.com/HMarcusWH/PermanssonLean/commit/3931e4dccafb47b3cdf70177c0cf337102c90731), the [Research Lean workflow](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39330505589) passed its pinned compiler and axiom checks, **1,093 research test methods**, and direct-import coverage for **646 research Lean modules**. The separately configured Original Lean, Application contract, Executable verification, Research integrity and Integrity portability workflows also passed at that exact commit. These are date- and source-bound software-verification counts, **not counts of theorems or independent scholarly reviews**.
 
+## Current reference guide and module crosswalk — v1.1.1
+
+The [proofread Mathematical and Executable Reference Guide (PDF)](docs/reference/Permansson_Mathematical_Reference_Guide_v1.1.1.pdf) is now included in this repository alongside its [editable Markdown](docs/reference/Permansson_Mathematical_Reference_Guide_v1.1.1.md). It spans **46 chapters and 126 pages** and preserves each historical theorem/source pin.
+
+Use the [reference hub](docs/reference/README.md), [chapter ↔ source crosswalk](docs/reference/CHAPTER_SOURCE_CROSSWALK.md), [56-case source routes](docs/reference/CASE_SOURCE_CROSSWALK.md), and [complete tracked-file/module manifest](docs/reference/MODULE_MANIFEST_v1.1.1.json) to navigate the guide against the actual repository. The manifest pins the source tree at `c5a36cd6189e2a249d5f4bc11f31698917dc8b10`, including **710 research Lean modules, 64 frozen-core Lean modules, 793 Python files**, and the remaining tracked support files.
+
+**Traceability is not certification:** the guide explicitly cites 409 existing paths; the full manifest also lists uncited modules with directory-based *navigation suggestions*, distinguished from explicit citations. The 166-entry Appendix J catalog joins to all 56 case records. Independent acceptance remains **15 PENDING / 30 PARTIAL_SCOPE / 11 later SOURCE_PRESENT_REVIEW_PENDING**. Historical CI figures below are checkpoint-specific, not today's module totals.
+
 ## Start here
 
 | Goal | Read this | Required tools |
 |---|---|---|
+| Read the complete reference | [v1.1.1 PDF](docs/reference/Permansson_Mathematical_Reference_Guide_v1.1.1.pdf) and [module mapping](docs/reference/README.md) | None |
 | Understand the theory | [Paper guide](paper/README.md) and [glossary](docs/GLOSSARY.md) | None |
 | Read the accepted research companion | [v0.2.0 research companion](release/v0.2.0/README.md) | None for its PDF |
 | Study or extend the Lean mathematics | [Research build guide](docs/RESEARCH_BUILD.md), [implementation index](docs/V020_IMPLEMENTATION_INDEX.md) | Pinned Lean 4.34.0 and Git |
