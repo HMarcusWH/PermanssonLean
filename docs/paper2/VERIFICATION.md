@@ -74,11 +74,29 @@ The three supplementary result records have different reproduction scope:
 | `review/quantitative_exact_checks.json` | 43 | No standalone replay program included |
 | `review/specialized_exact_checks.json` | 20 | No standalone replay program included |
 
-The latter two are retained result records. Their presence supports inspection
-of the recorded checks; it does not supply a command to rerun them. A later
-reconstruction would be new reproduction work with its own source and receipt.
-The [review verification index](../../paper2/v2.0.1/indices/revision_verification.json)
-states the original review scope.
+The latter two remain retained records in the original ZIP. A separately
+identified [new reproduction addendum](../../paper2/reproduction/v2.0.1/README.md)
+now provides commands for all 63 outputs. From the **repository root**, run:
+
+```bash
+python3 -B paper2/reproduction/v2.0.1/replay.py
+```
+
+Use `--full` for all computed values and source references, or
+`--output /absolute/path/to/new-replay-results.json` to create a new result file.
+The runner checks the immutable ZIP/member identities, computes the values
+without passing archived answers to either arithmetic module, and compares exact
+names, ordering, actual and expected strings. It also runs twelve additional
+arithmetic controls and five runner controls, counted separately from the 63
+retained outputs. The [new manifest](../../paper2/reproduction/v2.0.1/REPLAY_MANIFEST.json)
+and [observed results](../../paper2/reproduction/v2.0.1/REPLAY_RESULTS.json) identify
+this later work.
+
+These are newly authored programs. Unrecorded endpoint, shell and Gram inputs
+use explicitly declared new fixtures; matching outputs do not recover the
+missing original programs or authenticate their original execution. The
+[review verification index](../../paper2/v2.0.1/indices/revision_verification.json)
+continues to state the original review scope. The original archive is unchanged.
 
 Archived empirical/application workpacks retain their own specifications, input cutoffs and reproduction requirements. A compact repository fixture is not a reconstruction of unavailable historical raw data. The [earlier-paper concordance](EARLIER_PAPER_CONCORDANCE.md) identifies those roles and remaining gaps.
 
@@ -107,10 +125,11 @@ For application documentation changes, run from the full repository root:
 ```bash
 python -B -m unittest discover -s apps/permansson/application-successor/tests -p 'test_docs_registry.py' -v
 python -B -m unittest discover -s apps/permansson/application-successor/tests -p 'test_inventory.py' -v
+python -B -m unittest discover -s apps/permansson/application-successor/tests -p 'test_root_portability.py' -v
 python apps/permansson/application-successor/scripts/inventory.py --check
 ```
 
-The documentation test checks profile/family/report-field coverage, indexing and local links that remain inside a standalone application tree. The inventory checker checks its shape, tracked paths and counts. It does not verify every candidate document hash. When documentation bytes change, compare those SHA-256 values directly and refresh truthful current documentation entries while preserving historical fields. `--write-current` recomputes counts only; stage new tracked application files before using it.
+The documentation test checks profile/family/report-field coverage, indexing and local links that remain inside a standalone application tree. The portability regression imports the four real affected test modules in shallow, overridden and ordinary repository layouts and exercises existing CLI/documentation checks; it does not require Lean. The inventory checker checks its shape, tracked paths and counts. It does not verify every candidate file hash. When documentation or test bytes change, compare their candidate SHA-256 values directly, refresh any existing candidate Git blob identity, and preserve recovery hashes, proof/trust states and historical fields. `--write-current` recomputes counts only; stage new tracked application files before using it.
 
 ## 6. Preserve repository and source identity
 

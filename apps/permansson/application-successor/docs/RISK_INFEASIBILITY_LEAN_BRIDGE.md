@@ -38,6 +38,13 @@ the admitted actions are exactly the feasible ones (`options_exact`). It
 emits `μ`, the risk set, the cap and the floors `v` as literals, with
 `receipt_checked` (`decide +kernel`), `min_risk` and `cap_infeasible`.
 
+The reflected model obeys the shared
+[finite-world reflection bound](FINITE_WORLD_LEAN_REIFICATION_V1.md):
+1–2 strategic states, 1–2 world states and 1–2 actions, hence at most four
+joint states. The one-transition request also remains limited to at most
+5 occupancy variables; a bound on total joint states alone does not replace
+the per-dimension reflection limits.
+
 ```bash
 permansson-app one-step-risk-infeasibility request.json --output /tmp/ri
 permansson-app lean-emit --family risk-infeasibility request.json \

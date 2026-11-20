@@ -23,7 +23,9 @@ from permansson_app.runner import execute
 from permansson_app.source import check_source
 from permansson_app.strict_json import strict_loads
 
-ROOT = Path(os.environ.get("PERMANSSON_SOURCE_ROOT", APP.parents[2])).resolve()
+# A standalone application may have fewer than three parent directories.
+DEFAULT_ROOT = APP.parents[2] if len(APP.parents) > 2 else APP
+ROOT = Path(os.environ.get("PERMANSSON_SOURCE_ROOT", DEFAULT_ROOT)).resolve()
 
 class StrictJSONTests(unittest.TestCase):
     def test_empty(self):

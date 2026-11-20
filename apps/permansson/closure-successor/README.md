@@ -8,9 +8,9 @@ The sole supported input in this release is the exact frozen six-state D0/C10 ra
 
 Manuscript v2.0.1 **§29.4, “Native C10 and C11 replay”** (`sub:C29:04`; printed
 page 114, PDF page 124) explains this route's place in the evidence chain. Read
-the [reviewed PDF](https://github.com/HMarcusWH/PermanssonLean/blob/8630e80b604223aa0fadff92d6a7c2749cd8be5b/paper2/v2.0.1/Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf#page=124),
-the [versioned publication hub](https://github.com/HMarcusWH/PermanssonLean/blob/8630e80b604223aa0fadff92d6a7c2749cd8be5b/paper2/README.md),
-and the [current native-route comparison](https://github.com/HMarcusWH/PermanssonLean/blob/a44c504a81df4c102d15c4de8013e5d41c855443/docs/paper2/APPLICATION_COMPATIBILITY.md#native-c10-and-c11).
+the [reviewed PDF](https://github.com/HMarcusWH/PermanssonLean/blob/39f97d409e2731d286bbf5b835a8ae6acc038667/paper2/v2.0.1/Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf#page=124),
+the [versioned publication hub](https://github.com/HMarcusWH/PermanssonLean/blob/39f97d409e2731d286bbf5b835a8ae6acc038667/paper2/README.md),
+and the [current native-route comparison](https://github.com/HMarcusWH/PermanssonLean/blob/8e07982a34e76f02591f97afbc70d2e8967e22e5/docs/paper2/APPLICATION_COMPATIBILITY.md#native-c10-and-c11).
 The paper's algorithms and semantic proofs are in §20, §29 and Appendix K.
 
 The manuscript does not enlarge the fixed six-state input, change the ordered
@@ -19,13 +19,16 @@ field. The numeric and explicit replay modes retain the contracts below.
 
 ## Run
 
-Requires Python 3.13, git, and for proof replay the repository's **pinned Lean 4.34.0** environment and unchanged mathlib checkout. Invoke from any current working directory; the input and fresh output folder are explicit:
+Requires Python 3.13, git, and for proof replay the repository's **pinned Lean 4.34.0** environment and unchanged mathlib checkout. From the repository root, run:
 
 ```bash
 python apps/permansson/closure-successor/cli.py \
   apps/permansson/closure-successor/examples/frozen_six_state.json \
   --mode replay --output /tmp/c10-replay-fresh
 ```
+
+From another working directory, use absolute paths for the CLI, input file and
+fresh output directory.
 
 `--mode numeric` independently validates the exact input, computes the exact rational C10 receipt and verifies it again, **without** running Lean. This is never a proof claim. `--mode replay` requires a clean Git repository, verifies the original trusted C10 source blobs and immutable specification, regenerates the numerical receipt and Lean proof source from the external input, invokes `lake env lean`, checks the compiler result and transitive axiom reports, and records source identity, generated proof digest and statuses. A missing compiler is an error, not a skipped pass. Outputs must be in a new or empty folder **outside the source tree**.
 

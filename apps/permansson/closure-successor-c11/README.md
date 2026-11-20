@@ -12,9 +12,9 @@ application release: its current `VERSION.json` still records
 
 Manuscript v2.0.1 **§29.4, “Native C10 and C11 replay”** (`sub:C29:04`; printed
 page 114, PDF page 124) explains this route's place in the evidence chain. Read
-the [reviewed PDF](https://github.com/HMarcusWH/PermanssonLean/blob/8630e80b604223aa0fadff92d6a7c2749cd8be5b/paper2/v2.0.1/Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf#page=124),
-the [versioned publication hub](https://github.com/HMarcusWH/PermanssonLean/blob/8630e80b604223aa0fadff92d6a7c2749cd8be5b/paper2/README.md),
-and the [current native-route comparison](https://github.com/HMarcusWH/PermanssonLean/blob/a44c504a81df4c102d15c4de8013e5d41c855443/docs/paper2/APPLICATION_COMPATIBILITY.md#native-c10-and-c11).
+the [reviewed PDF](https://github.com/HMarcusWH/PermanssonLean/blob/39f97d409e2731d286bbf5b835a8ae6acc038667/paper2/v2.0.1/Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf#page=124),
+the [versioned publication hub](https://github.com/HMarcusWH/PermanssonLean/blob/39f97d409e2731d286bbf5b835a8ae6acc038667/paper2/README.md),
+and the [current native-route comparison](https://github.com/HMarcusWH/PermanssonLean/blob/8e07982a34e76f02591f97afbc70d2e8967e22e5/docs/paper2/APPLICATION_COMPATIBILITY.md#native-c10-and-c11).
 The paper's algorithms and semantic proofs are in §20, §29 and Appendix K.
 
 The native input remains a 1–6-state rational stochastic matrix with a Boolean
@@ -24,6 +24,8 @@ meaning of a reified stationary-family replay.
 ## Supported inputs
 
 Strict JSON with exactly `n`, `matrix` and `descriptor` keys. `n` is 1..6, rows are finite exact rational strings summing to 1, descriptor is a Boolean per state. Per-entry bit budgets and duplicate-key constraints are enforced by the original C11 producer. Both periodic and multichain examples are provided.
+
+From the repository root, run:
 
 ```
 python apps/permansson/closure-successor-c11/cli.py \

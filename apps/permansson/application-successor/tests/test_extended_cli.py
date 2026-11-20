@@ -8,7 +8,9 @@ sys.path.insert(0,str(APP/'src'))
 from permansson_app.package_data import resource_bytes,export_extended_resources
 from permansson_app.schema_validate import validate_packaged_schema
 from permansson_app.strict_json import strict_loads
-ROOT=Path(os.environ.get('PERMANSSON_SOURCE_ROOT',APP.parents[2])).resolve()
+# A standalone application may have fewer than three parent directories.
+DEFAULT_ROOT=APP.parents[2] if len(APP.parents)>2 else APP
+ROOT=Path(os.environ.get('PERMANSSON_SOURCE_ROOT',DEFAULT_ROOT)).resolve()
 
 def cli(*args):
  env=dict(os.environ)

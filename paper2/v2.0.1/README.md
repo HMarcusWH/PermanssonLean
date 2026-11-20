@@ -24,6 +24,14 @@ sha256sum -c SHA256SUMS
 
 This checks byte identity against the published list. It does not establish a theorem, authenticate an external origin or replace independent review.
 
+## Later reproduction addendum
+
+The [separate exact reproduction addendum](../reproduction/v2.0.1/README.md)
+provides newly authored runnable programs for the 43 quantitative and 20
+specialized outputs retained in this edition's source ZIP. Its manifest and
+execution record distinguish new fixture choices from the unavailable original
+programs. The ten published artifact/index identities above are unchanged.
+
 ## Source identities
 
 | Role | Commit |

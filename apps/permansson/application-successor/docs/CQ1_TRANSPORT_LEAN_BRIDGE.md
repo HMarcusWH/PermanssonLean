@@ -44,6 +44,12 @@ baseline's feasible actions and P are kept). It emits the matrices, the
 CQ-1 data and the budgets, with `receipt_checked`, `transport_checked` and
 `transported_certificate` (literal error and margin).
 
+Lean emission is limited to horizon 0..6. All four reflected models share the
+[finite-world reflection bound](FINITE_WORLD_LEAN_REIFICATION_V1.md):
+1–2 strategic states, 1–2 world states and 1–2 actions, hence at most four
+joint states. The numeric profile's 12-joint-state bound does not enlarge
+this emitted-instance scope.
+
 ```bash
 permansson-app finite-cq1-transport request.json --output /tmp/tr
 permansson-app lean-emit --family cq1-transport request.json /tmp/tr/cq1_transport_receipt.json \
