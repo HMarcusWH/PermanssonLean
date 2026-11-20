@@ -2,6 +2,16 @@
 
 Developed against `main@3492b26707788293ca88c66637b6ba021c7e478d` (tree `9ef00ac4b2d4f928aa6551ef3f0dfeb2d4434452`) in pull requests #115 and #117. The release workflow came with pull request #118, and the archive repair with #116. Status updated 2026-11-01, after version 0.2.0 was released from `main@63a66c82a9ece4361f646ee13b6711192f831406` (tree `3b5e742ef1ee0cf3e1c27cc14500f3a33cfc01bb`) as `permansson-app-v0.2.0`.
 
+## Related manuscript — 20 November 2026
+
+[`PAPER2_MAPPING.md`](PAPER2_MAPPING.md) now connects the implemented profiles and
+native routes to the reviewed manuscript v2.0.1. It links the exact publication
+package and the current mathematical residual ledger. This is a dated reading
+update; the November 1 numeric release record above, the source-bound bridge
+evidence below and the original 45-case/later 11-claim decisions retain their
+separate identities. Application report fields, including
+`publication_approval=NOT_ASSESSED`, are unchanged by manuscript availability.
+
 ## Distinct gates
 
 | Object | This candidate | Evidence type |
@@ -80,6 +90,11 @@ Every bridge does three things:
 
 The 24 live replay files contain 182 test methods.
 
+For bridges using `FiniteWorldInput`, **≤2 per dimension** means 1–2
+strategic states, 1–2 world states and 1–2 actions, hence at most four joint
+states. The shared literal-data emitter enforces this before source emission;
+see [finite-world reflection](FINITE_WORLD_LEAN_REIFICATION_V1.md).
+
 | Profile | Lean module | Instance theorems | Live tests | Scope |
 | --- | --- | --- | --- | --- |
 | `finite.alpha_P_U.induced_kernel` | `FiniteWorldInput` | reflected rational α/P/U rows with feasibility, normalization and every induced joint atom of the realized Markov kernel | 7 | ≤2 per dimension |
@@ -103,9 +118,9 @@ The 24 live replay files contain 182 test methods.
 | `finite.rational_algebra_witness` | `RationalAlgebraReceipt` | rational witnesses decided exactly and cast to ℝ: seam rank ≤ 2 and common mode (rank ≤ 1, quadratic `δ (Σv)²`); LDLᵀ positive semidefiniteness with the shell complement equal to the declared `S`, the block-determinant factorization and shell equations; singular compatibility (bordered-form nonnegativity ⇔ `0 ≤ c − ⟨b,x⟩`, response independence) or incompatibility (no preimage, negative direction); Gram witness negativity under every operator perturbation below the exact threshold | 11 methods (7 positive instances, 10 mutations) | dimension ≤ 4 (shell ≤ 3); feature or operator identification with a strategic source is an explicit unmet premise |
 | `finite.two_player_protocol` | `MultiAgentReceipt` | rational tables assemble Research's `FiniteProduct.Generator` (product action kernel, common × private updates) with physical P; the induced kernels of the baseline, closed-loop and open-loop protocols have exactly the declared joint rows (`Generator.actual_atom`); binary reduction of path laws and atoms; Research's matched closed/open-loop margin closures instantiated for the protocol | 8 methods (1 positive, 7 mutations) | each dimension ≤ 2, symmetric player state/action counts; no asymmetric types, mediated or correlated actions, private clocks or empirical game identification |
 | `finite.private_control_stage_saddle` | `PrivateStageReceipt` | rational controller and nature mixtures form a two-sided saddle certificate; the value is the greatest `privateValue` over all real mixed controllers, the actual `stageLaw` saddle holds against every real nature row and controller, Research's `solvePrivateStage` returns exactly the value (solver not evaluated), and pure / revealed-control values equal the declared `r` | 8 methods (2 positive over four shapes, 6 mutations) | one stage, at most 4 controls and 4 parameters; no multi-stage private games, committed nature, learning or empirical identification |
-| `finite.adaptive_block_control` | `AdaptiveBlockReceipt` | admitted blocks are the controls of `blockSystem` (each block's rows are `inducedMatrix` of a reflected input with feasibility and P held fixed and exactly its patch rows); the region-flag monitor table is Research's `FiniteMonitor.value`, and every full-history behavioral block controller is bounded by it on the actual trace law, with attainment (`monitor_optimal_and_attained`) | 8 methods (2 positive, 6 mutations) | at most 8 blocks, horizon ≤ 6 for Lean; no frozen-block comparison, overlap-model certificate, downward closure or empirical identification |
-| `finite.one_step_risk_infeasibility` | `FlowInfeasibilityReceipt` | per-state risk floors (normalized Farkas ray) over the reflected fixed-action P·U rows and exactly-feasible actions; their initial-law total is the least risk mass of every admissible real randomized one-step policy, attained, and every such policy exceeds the cap | 7 methods (2 positive, 5 mutations) | one transition, at most 4 joint states and 5 occupancy variables; no multi-stage occupancy, private information or empirical identification |
-| `finite.cq1_certificate_transport` | `CQ1TransportReceipt` | row budgets between the certified and approximate realized pairs (sharing P) and the remaining-margin condition; through `transportFiniteConstitutiveCertificate` the approximate pair carries a genuine `FiniteConstitutiveCertificate` with error `min 1 (η + env δ₀ L)` and margin `κ − env δ₀ L − env δJ L` | 7 methods (2 positive, 5 mutations) | horizon ≤ 6 for Lean, joint states ≤ 12; budgets are exact model distances, not empirical errors; no Exact GR/PR or QSD |
+| `finite.adaptive_block_control` | `AdaptiveBlockReceipt` | admitted blocks are the controls of `blockSystem` (each block's rows are `inducedMatrix` of a reflected input with feasibility and P held fixed and exactly its patch rows); the region-flag monitor table is Research's `FiniteMonitor.value`, and every full-history behavioral block controller is bounded by it on the actual trace law, with attainment (`monitor_optimal_and_attained`) | 8 methods (2 positive, 6 mutations) | ≤2 per dimension (≤4 joint states), at most 8 blocks, horizon 0..6; no frozen-block comparison, overlap-model certificate, downward closure or empirical identification |
+| `finite.one_step_risk_infeasibility` | `FlowInfeasibilityReceipt` | per-state risk floors (normalized Farkas ray) over the reflected fixed-action P·U rows and exactly-feasible actions; their initial-law total is the least risk mass of every admissible real randomized one-step policy, attained, and every such policy exceeds the cap | 7 methods (2 positive, 5 mutations) | ≤2 per dimension (≤4 joint states), one transition and at most 5 occupancy variables; no multi-stage occupancy, private information or empirical identification |
+| `finite.cq1_certificate_transport` | `CQ1TransportReceipt` | row budgets between the certified and approximate realized pairs (sharing P) and the remaining-margin condition; through `transportFiniteConstitutiveCertificate` the approximate pair carries a genuine `FiniteConstitutiveCertificate` with error `min 1 (η + env δ₀ L)` and margin `κ − env δ₀ L − env δJ L` | 7 methods (2 positive, 5 mutations) | ≤2 per dimension (≤4 joint states), horizon 0..6; budgets are exact model distances, not empirical errors; no Exact GR/PR or QSD |
 
 `ControlTableReceipt` failed to compile at `6eda7e9` (missing `Decidable`
 instance); it is repaired and the full Research library builds. These are

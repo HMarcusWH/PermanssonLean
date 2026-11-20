@@ -40,8 +40,12 @@ downward closure and empirical identification are not claimed.
 `proof.adaptive_emit` runs the independent checker and emits the block inputs
 with their theorems, `members`, `sys`, `region`, `M`, `horizon` and the
 literal table. The theorems are `receipt_checked` (`decide +kernel`) and, for
-every start state `y`, `adaptive_optimal_y`. Lean emission is limited to
-horizon 0..6.
+every start state `y`, `adaptive_optimal_y`. Lean emission supports at most
+8 admitted blocks and horizon 0..6. Every reflected baseline and block obeys
+the shared [finite-world reflection bound](FINITE_WORLD_LEAN_REIFICATION_V1.md):
+1–2 strategic states, 1–2 world states and 1–2 actions, hence at most four
+joint states. The numeric profile's larger joint-state bound does not enlarge
+this emitted-instance scope.
 
 ```bash
 python3 -B -m permansson_app finite-adaptive-grammar request.json --output /tmp/ad

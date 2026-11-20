@@ -16,7 +16,8 @@ from permansson_app.capabilities import registry
 from permansson_app.proof.lean_candidates import families
 
 DOCS=APP/'docs'
-REPO=APP.parents[2]
+# A standalone application may have fewer than three parent directories.
+REPO=APP.parents[2] if len(APP.parents)>2 else APP
 
 # Statements that were true of earlier rounds and are now false. They must not
 # come back into any current document (QA-01, DOC-08).

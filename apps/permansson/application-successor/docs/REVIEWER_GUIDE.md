@@ -4,6 +4,22 @@ This page is for someone reviewing the successor application or one of its
 Lean bridges without having written it. It says where to look, what each
 piece is supposed to establish, and how to re-run the evidence yourself.
 
+## Connect a manuscript claim to its evidence
+
+Start with [`PAPER2_MAPPING.md`](PAPER2_MAPPING.md) for the reviewed v2.0.1 paper
+and the authoritative compatibility table. For a particular claim, record:
+
+1. The exact paper label and hypotheses.
+2. The actual source declaration or algorithm and any narrower instance scope.
+3. The registered profile, parsed input and independent receipt equations.
+4. The reflected literal data, transferred Lean theorem and source-binding check.
+5. The actual compiler/axiom/mutation evidence and its checked source identity.
+6. The current residual, historical acceptance and empirical-identification states.
+
+This connects the exposition to a reviewable implementation without treating a
+topic link as statement equivalence. The steps below remain the reproduction
+route; reading or uploading the paper does not record a new run.
+
 ## 1. Reproduce before reading
 
 From a checkout with the pinned toolchain (see `docs/RESEARCH_BUILD.md` at

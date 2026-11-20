@@ -7,6 +7,13 @@ import the producer. Every profile reports `lean_status=NOT_EXECUTED` and
 dimensions, horizons and what is *not* claimed — is the `scope` string of its
 registry entry. `permansson-app capabilities` prints those strings.
 
+## Reading the paper
+
+Use [`PAPER2_MAPPING.md`](PAPER2_MAPPING.md) to locate each of these 26 profiles in
+the reviewed v2.0.1 manuscript. That page links the complete paper-to-application
+map and current residuals. The exact registry strings and bridge documents below
+remain the contracts for command behavior, numeric limits and reflection bounds.
+
 ## Closed native providers
 
 | Capability | Route |
