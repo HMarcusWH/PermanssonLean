@@ -1,0 +1,159 @@
+{
+  "format": "Permansson.Paper2.PublicationManifest.v1",
+  "title": "Permansson Regimes: Structure, Intervention, and Computation Beyond Equilibrium",
+  "author": "Marcus Hermansson",
+  "version": "2.0.1",
+  "manuscript_date": "2026-11-20",
+  "status": "REVIEWED_MANUSCRIPT_DRAFT",
+  "repository": "https://github.com/HMarcusWH/PermanssonLean",
+  "mathematical_source_commit": "c5a36cd6189e2a249d5f4bc11f31698917dc8b10",
+  "documented_repository_snapshot": "f0dee1c11a20f96c9a11b380e942b9252e6ebe44",
+  "artifact_upload_commit": "5160a32eecec9d5f17713416f7f58ec2df67e744",
+  "artifact_upload_commit_role": "First commit containing the exact reviewed PDF, source ZIP, review PDF and seven copied indexes. This is distinct from the mathematical source and pre-upload repository snapshot.",
+  "citation": "CITATION.bib",
+  "immutable_manuscript_url": "https://github.com/HMarcusWH/PermanssonLean/blob/5160a32eecec9d5f17713416f7f58ec2df67e744/paper2/v2.0.1/Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf",
+  "checksum_file": "SHA256SUMS",
+  "checksum_file_scope": "The three reviewed assets and seven exact index copies; metadata and this manifest are not self-hashed.",
+  "counts": {
+    "physical_pdf_pages": 218,
+    "main_sections": 31,
+    "appendices": 16,
+    "numbered_mathematical_items": 147,
+    "manuscript_labels": 603,
+    "source_anchor_occurrences": 538,
+    "lean_files": 798,
+    "lean_file_partition": {
+      "core": 64,
+      "research": 710,
+      "other": 24
+    },
+    "lexical_declaration_example_units": 7690,
+    "python_files_in_source_inventory": 793,
+    "earlier_paper_obligations": 51,
+    "earlier_paper_required_content_entries": 201
+  },
+  "count_scope": "Source and manuscript inventories at their pinned identities. Lexical units, module routing and printed citations are not individually certified theorem-equivalence counts.",
+  "assets": [
+    {
+      "path": "Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf",
+      "role": "Reviewed manuscript PDF",
+      "bytes": 1591865,
+      "sha256": "56a6ea1538e0a31f8555f4457b706e96d159ed96d3e1add7bba7b6847e4b3d17"
+    },
+    {
+      "path": "Permansson_Regimes_v2_0_1_Source_and_Concordance_2026-11-20.zip",
+      "role": "Editable source, computations, concordance and review records",
+      "bytes": 7406118,
+      "sha256": "d66d9ac3a8e8dac1a15ecc5e7703569f5cbe3c29121a97d9cfe6d148546e8a18"
+    },
+    {
+      "path": "Permansson_Regimes_v2_0_1_Review_Report_2026-11-20.pdf",
+      "role": "Mathematical and editorial review report",
+      "bytes": 85525,
+      "sha256": "df19f6656e1a5ef3e1f66c9b6c28e9f60620f04a5dd86aa1c64030b55d217f71"
+    },
+    {
+      "path": "indices/all_lean_written_connections.json",
+      "role": "Exact reviewed archive member",
+      "archive_member": "Permansson_Regimes_v2_0_1/coverage/all_lean_written_connections.json",
+      "bytes": 1359818,
+      "sha256": "bfc221481c68e1ee72c4086a1c583410b2c2d96b75567583066d644a6a241226"
+    },
+    {
+      "path": "indices/earlier_paper_written_obligations.json",
+      "role": "Exact reviewed archive member",
+      "archive_member": "Permansson_Regimes_v2_0_1/coverage/earlier_paper_written_obligations.json",
+      "bytes": 338464,
+      "sha256": "5c381d7a2ad523becbfb067e3eafa82e5095f9173c0389c2bd4d59b0e35a3b59"
+    },
+    {
+      "path": "indices/manuscript_label_index.json",
+      "role": "Exact reviewed archive member",
+      "archive_member": "Permansson_Regimes_v2_0_1/coverage/manuscript_label_index.json",
+      "bytes": 47027,
+      "sha256": "058787bfbfceeea8912aa28301e6533619cdadae48bcd36156a76ad80e5c15bb"
+    },
+    {
+      "path": "indices/source_citation_index.json",
+      "role": "Exact reviewed archive member",
+      "archive_member": "Permansson_Regimes_v2_0_1/coverage/source_citation_index.json",
+      "bytes": 157172,
+      "sha256": "98c16609ab7d5439d648a7bf858e6277c89d9f17336082c140ec85bd3cf750af"
+    },
+    {
+      "path": "indices/statement_index.json",
+      "role": "Exact reviewed archive member",
+      "archive_member": "Permansson_Regimes_v2_0_1/coverage/statement_index.json",
+      "bytes": 22824,
+      "sha256": "f2633dd077cc5ca333ddfcc23b7d058c8b23fd972ccdf8ea64235adf436d5573"
+    },
+    {
+      "path": "indices/review_findings.json",
+      "role": "Exact reviewed archive member",
+      "archive_member": "Permansson_Regimes_v2_0_1/review/review_findings.json",
+      "bytes": 113380,
+      "sha256": "e85b57964ac3941118fbc3ac61816b44f7cbbce980e465ee207ab1fc3ba6c21b"
+    },
+    {
+      "path": "indices/revision_verification.json",
+      "role": "Exact reviewed archive member",
+      "archive_member": "Permansson_Regimes_v2_0_1/review/revision_verification.json",
+      "bytes": 3546,
+      "sha256": "4fc04f47a8a48e6dace68fd3bc659540f62fb72eddfedeb11be1bb23b37fc8a1"
+    }
+  ],
+  "review": {
+    "report": "Permansson_Regimes_v2_0_1_Review_Report_2026-11-20.pdf",
+    "findings": "indices/review_findings.json",
+    "verification": "indices/revision_verification.json",
+    "correction_count": 58,
+    "correction_scope": "Internal manuscript draft 2.0 to reviewed 2.0.1; not a count of errors in all prior papers or Lean declarations.",
+    "supplementary_exact_checks": {
+      "foundations": 326,
+      "quantitative": 43,
+      "specialized": 20,
+      "total": 389
+    },
+    "separate_x1_checks": 272,
+    "separate_pricing_grid_pairs": 361201,
+    "fresh_complete_lean_build_performed_by_manuscript_review": false,
+    "individual_declaration_semantic_certification": false,
+    "independent_scholarly_acceptance_asserted": false,
+    "empirical_identification_asserted_by_upload": false
+  },
+  "remaining_scope": {
+    "appendix_p_named_obligations": [
+      "X-01",
+      "F-02",
+      "A-01",
+      "A-04",
+      "E-05",
+      "Later Q1",
+      "M-02"
+    ],
+    "earlier_paper_requirement_dispositions": {
+      "substantive_written_treatment": 192,
+      "written_current_family_historical_delta_pending": 5,
+      "written_with_source_wording_clarification": 1,
+      "required_historical_reconciliation_not_complete": 3
+    },
+    "case_dispositions_preserved": {
+      "PENDING": 15,
+      "PARTIAL_SCOPE": 30,
+      "SOURCE_PRESENT_REVIEW_PENDING": 11
+    }
+  },
+  "edition_boundaries": {
+    "original_paper": "0.1.8",
+    "original_citation_path": "CITATION.cff",
+    "frozen_lean_package_metadata": "0.1.0",
+    "technical_reference_guide": "1.1.1",
+    "accepted_research_companion": "0.2.0",
+    "accepted_research_companion_release_commit": "d8a4ffb5b63eb9359a4c0af9134b4f9a3c529618",
+    "accepted_research_exporter_source_argument": "5822cdff0fc360d9e368e10ff5f7576c3141a1b3",
+    "legacy_application_standard": "draft 0.1.0",
+    "successor_application_release": "permansson-app-v0.2.0",
+    "separate_mathematical_closure_candidate": "release/mathematical-closure-1; DRAFT - NOT ACCEPTED - NOT PUBLISHED"
+  },
+  "identity_receipts": "Later documentation commits and CI executions are recorded in their own PR/check records or detached receipts; this file does not claim its own containing commit or authenticate a future run."
+}
