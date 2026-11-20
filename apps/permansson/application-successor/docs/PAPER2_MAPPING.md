@@ -8,7 +8,7 @@ mathematics behind the finite computation and reflection routes. Use the
 [versioned publication hub](https://github.com/HMarcusWH/PermanssonLean/blob/8630e80b604223aa0fadff92d6a7c2749cd8be5b/paper2/README.md)
 for its PDF, source/concordance package, review record and citation.
 
-The [complete paper-to-application compatibility map](https://github.com/HMarcusWH/PermanssonLean/blob/2f20d86e42a8b0ed15f59d5a480a2b61efc80f7a/docs/paper2/APPLICATION_COMPATIBILITY.md)
+The [complete paper-to-application compatibility map](https://github.com/HMarcusWH/PermanssonLean/blob/a44c504a81df4c102d15c4de8013e5d41c855443/docs/paper2/APPLICATION_COMPATIBILITY.md)
 is authoritative for the reading correspondence. This page is its concise
 application-local projection. It gives topic routes, while the existing
 [capability scopes](CAPABILITY_SCOPES.md), linked bridge documents and actual
@@ -23,11 +23,11 @@ independent equivalence proof for every mapped paper statement.
 4. **§29.5 and §30:** legacy contracts, release evidence, negative controls and
    source concordance.
 5. **Appendix P:** the precise residual obligations; use the
-   [current residual ledger](https://github.com/HMarcusWH/PermanssonLean/blob/2f20d86e42a8b0ed15f59d5a480a2b61efc80f7a/docs/paper2/RESIDUAL_STATUS.md)
+   [current residual ledger](https://github.com/HMarcusWH/PermanssonLean/blob/a44c504a81df4c102d15c4de8013e5d41c855443/docs/paper2/RESIDUAL_STATUS.md)
    for their source/evidence distinctions.
 
 Paper labels are resolved through the
-[mathematical crosswalk](https://github.com/HMarcusWH/PermanssonLean/blob/2f20d86e42a8b0ed15f59d5a480a2b61efc80f7a/docs/paper2/MATHEMATICAL_CROSSWALK.md).
+[mathematical crosswalk](https://github.com/HMarcusWH/PermanssonLean/blob/a44c504a81df4c102d15c4de8013e5d41c855443/docs/paper2/MATHEMATICAL_CROSSWALK.md).
 The section numbers below refer to paper v2.0.1, not reference-guide chapters.
 
 ## All 26 profile reading routes

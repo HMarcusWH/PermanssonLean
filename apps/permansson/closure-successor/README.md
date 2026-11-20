@@ -10,7 +10,7 @@ Manuscript v2.0.1 **§29.4, “Native C10 and C11 replay”** (`sub:C29:04`; pri
 page 114, PDF page 124) explains this route's place in the evidence chain. Read
 the [reviewed PDF](https://github.com/HMarcusWH/PermanssonLean/blob/8630e80b604223aa0fadff92d6a7c2749cd8be5b/paper2/v2.0.1/Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf#page=124),
 the [versioned publication hub](https://github.com/HMarcusWH/PermanssonLean/blob/8630e80b604223aa0fadff92d6a7c2749cd8be5b/paper2/README.md),
-and the [current native-route comparison](https://github.com/HMarcusWH/PermanssonLean/blob/2f20d86e42a8b0ed15f59d5a480a2b61efc80f7a/docs/paper2/APPLICATION_COMPATIBILITY.md#native-c10-and-c11).
+and the [current native-route comparison](https://github.com/HMarcusWH/PermanssonLean/blob/a44c504a81df4c102d15c4de8013e5d41c855443/docs/paper2/APPLICATION_COMPATIBILITY.md#native-c10-and-c11).
 The paper's algorithms and semantic proofs are in §20, §29 and Appendix K.
 
 The manuscript does not enlarge the fixed six-state input, change the ordered
