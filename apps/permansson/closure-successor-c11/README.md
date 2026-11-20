@@ -8,6 +8,19 @@ proof generator. This statement does **not** promote C10 to a formally accepted
 application release: its current `VERSION.json` still records
 `DRAFT__COMPILER_CI_PENDING`, requiring separate reconciliation.
 
+## Reading the reviewed second-edition paper
+
+Manuscript v2.0.1 **§29.4, “Native C10 and C11 replay”** (`sub:C29:04`; printed
+page 114, PDF page 124) explains this route's place in the evidence chain. Read
+the [reviewed PDF](https://github.com/HMarcusWH/PermanssonLean/blob/8630e80b604223aa0fadff92d6a7c2749cd8be5b/paper2/v2.0.1/Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf#page=124),
+the [versioned publication hub](https://github.com/HMarcusWH/PermanssonLean/blob/8630e80b604223aa0fadff92d6a7c2749cd8be5b/paper2/README.md),
+and the [current native-route comparison](https://github.com/HMarcusWH/PermanssonLean/blob/2f20d86e42a8b0ed15f59d5a480a2b61efc80f7a/docs/paper2/APPLICATION_COMPATIBILITY.md#native-c10-and-c11).
+The paper's algorithms and semantic proofs are in §20, §29 and Appendix K.
+
+The native input remains a 1–6-state rational stochastic matrix with a Boolean
+descriptor. The manuscript does not enlarge that bound or change the evidence
+meaning of a reified stationary-family replay.
+
 ## Supported inputs
 
 Strict JSON with exactly `n`, `matrix` and `descriptor` keys. `n` is 1..6, rows are finite exact rational strings summing to 1, descriptor is a Boolean per state. Per-entry bit budgets and duplicate-key constraints are enforced by the original C11 producer. Both periodic and multichain examples are provided.

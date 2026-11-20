@@ -27,6 +27,19 @@ The checker rejects a receipt that changes any of these.
 | Exact-head CI | GitHub Research Lean / application workflows | the library and tests at that commit |
 | Independent mathematical certification, release acceptance, empirical identification | outside this application | not produced or claimed here |
 
+## Manuscript publication and report evidence
+
+The reviewed v2.0.1 paper provides an exposition and source concordance for these
+routes; [`PAPER2_MAPPING.md`](PAPER2_MAPPING.md) links the exact edition and review
+record. Its availability is a publication event for that manuscript, not a
+runtime action by this application. The report's `publication_approval` therefore
+remains `NOT_ASSESSED`, alongside its other literal gate values below.
+
+When reviewing a paper claim, keep its hypotheses, numeric receipt, source-bound
+candidate, actual compiler receipt, independent research acceptance and empirical
+identification as separate evidence. The paper's review does not fill the nine
+scientific reporting coordinates or alter historical release/case decisions.
+
 ## Certificates instead of trust in solvers
 
 Where an optimum or an impossibility is claimed, the receipt carries a

@@ -25,13 +25,13 @@
   },
   "current_inventory": {
     "computed_by": "scripts/inventory.py --write-current (recomputed from git ls-files; see --check)",
-    "manifest_rows": 643,
-    "unique_paths": 643,
+    "manifest_rows": 644,
+    "unique_paths": 644,
     "rows_by_candidate_state": {
       "ADDITIVE_IMPORTS_LOCAL_PINNED_LEAN_BUILD_PENDING_EXACT_HEAD_CI": 1,
-      "DOCUMENTATION": 48,
+      "DOCUMENTATION": 50,
       "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES": 1,
-      "EXISTING_MAIN_PRESERVED": 11,
+      "EXISTING_MAIN_PRESERVED": 10,
       "HASH_PINNED_FROM_PYPI_DIGESTS_LOCAL_REQUIRE_HASHES_INSTALL_PASSED": 3,
       "LOCAL_FOCUSED_TESTED_NUMERIC_NO_LEAN": 11,
       "LOCAL_FOCUSED_TESTED_PENDING_GITHUB_LEAN": 2,
@@ -63,7 +63,7 @@
       "VENDORED_OFFICIAL_VECTORS_COMMIT_32a48195": 1,
       "VENDORED_THIRD_PARTY_TEST_FIXTURE": 12
     },
-    "tracked_rows": 445,
+    "tracked_rows": 446,
     "absent_rows": 198,
     "absent_rows_by_disposition": {
       "DEFERRED_ALTERNATE_LAYOUT": 70,
@@ -74,7 +74,7 @@
       "REVIEW_GATED": 18,
       "SUPERSEDED_BY_IMPLEMENTED_EQUIVALENT": 32
     },
-    "application_tracked_files": 357,
+    "application_tracked_files": 358,
     "application_tracked_files_without_row": 0,
     "registered_exact_profiles": 26,
     "registered_native_capabilities": 2,
@@ -1097,7 +1097,7 @@
       "base_state": "EXISTED_ON_MAIN",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "5e9fac7c70c214dbd9e492a3b33edf65dd5e68c54484a97acf56a5c79ea9e1e8",
+        "sha256": "4c0290d2b23298ded138a54de9fce2eeb1658f49382db735563075ff21e4b77b",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1182,7 +1182,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "744ef54fe255d5a8dcd153fdad8fb019dba6dd7b5f7456bdc13b54939d431558",
+        "sha256": "4ac4a669cd14bc856435db3aeeadfe95b306ecb8155b46e2baf519700fae5fc2",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1925,7 +1925,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "38b3c1efb293ff72ecdf48d821f59803e01a94f7a81404301dc657a108a6380c",
+        "sha256": "6da19f8f8d06d7c1403bd4724eb4d2297685e40e4c168dc4e7d552ce6e372458",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2002,7 +2002,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "119e7db62ff8f1b1c2437fadf680dd323068805a73c1427fbf6e6d5770d1dcaa",
+        "sha256": "458693e5f145450c7be6c3351a8971c0dbc3f2bac5c084ab41c552be1c5d2093",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2085,7 +2085,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "af2e60164eab60ccca95dd26d7b1da5737d6ab3b6da04b8b11a1f502d8f21475",
+        "sha256": "dc19106ce6ad2a3d4def293efb192fa65ed55d22b2f6fd5053a5a9452da6ac3d",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2271,7 +2271,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "0701a0a5db3422728b144146d0c138b5ebcbc0c56528e7af987aa8a44e3709ae",
+        "sha256": "00acc82ee2c302fad24ff637541b2b62543f01abf162d93add05aa910311787c",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -10155,7 +10155,10 @@
     {
       "base_state": "EXISTED_ON_MAIN",
       "candidate": {
-        "state": "EXISTING_MAIN_PRESERVED"
+        "state": "DOCUMENTATION",
+        "sha256": "2013d95dcf5da0176eb0661d1f17c3394c9fb42cf94524a64cbf10f6c4d969b2",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       },
       "classification": "existing documentation",
       "conditional": false,
@@ -17352,7 +17355,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "684b07282f7371162ecb2968efe5d5c2b6e4518b42ee94ed328a462f4afed421",
+        "sha256": "c781d0f6c8afd1c8e6da7e5e8906b0ae43fcb925344b2c0343ffbc14aea70969",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -17987,6 +17990,30 @@
         "sha256": "94b2d070f787d08c01a99b30c853201321ede62af205878c91fa9062481ccc3d",
         "proof": "NOT_APPLICABLE",
         "trust": "SOURCE_BYTES_AND_LOCAL_TESTS_ONLY"
+      }
+    },
+    {
+      "path": "apps/permansson/application-successor/docs/PAPER2_MAPPING.md",
+      "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
+      "classification": "implementation documentation",
+      "disposition": "NEW_DOCUMENTATION_ADDENDUM",
+      "conditional": false,
+      "dependency_paths": [],
+      "gate": "Documentation navigation only; no proof, scientific acceptance, or release promotion.",
+      "generated": false,
+      "original_main_git_blob": null,
+      "protected_root": false,
+      "recovery_sha256": null,
+      "tests": [],
+      "v2_action": null,
+      "v2_id": null,
+      "v3_id": null,
+      "work_items": [],
+      "candidate": {
+        "state": "DOCUMENTATION",
+        "sha256": "1ced1c3b5093d61865737f7e58cc2e412bf287c3a32a9dcf5712d2fb9cde405a",
+        "proof": "NOT_APPLICABLE",
+        "trust": "DOCUMENTATION_ONLY"
       }
     }
   ]

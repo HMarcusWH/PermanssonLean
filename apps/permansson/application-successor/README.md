@@ -25,6 +25,15 @@ providers are unchanged. Its one workflow, the owner-dispatched
 `.github/workflows/application-release.yml`, was added by its own
 owner-approved change to the reviewed workflow contract.
 
+## Read the mathematics
+
+The [paper reading map](docs/PAPER2_MAPPING.md) connects every registered profile
+to the reviewed v2.0.1 manuscript, including exact arithmetic, independent
+receipts, reflected Lean instances and the separate native C10/C11 routes.
+It also links the versioned PDF, source package and current residual ledger.
+The new manuscript has its own edition; application version 0.2.0 and the
+November 1 release evidence retain their existing scope.
+
 ## Quick start
 
 Linux with Python 3.12 or 3.13. Other platforms are unsupported for this

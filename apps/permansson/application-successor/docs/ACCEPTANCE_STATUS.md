@@ -2,6 +2,16 @@
 
 Developed against `main@3492b26707788293ca88c66637b6ba021c7e478d` (tree `9ef00ac4b2d4f928aa6551ef3f0dfeb2d4434452`) in pull requests #115 and #117. The release workflow came with pull request #118, and the archive repair with #116. Status updated 2026-11-01, after version 0.2.0 was released from `main@63a66c82a9ece4361f646ee13b6711192f831406` (tree `3b5e742ef1ee0cf3e1c27cc14500f3a33cfc01bb`) as `permansson-app-v0.2.0`.
 
+## Related manuscript — 20 November 2026
+
+[`PAPER2_MAPPING.md`](PAPER2_MAPPING.md) now connects the implemented profiles and
+native routes to the reviewed manuscript v2.0.1. It links the exact publication
+package and the current mathematical residual ledger. This is a dated reading
+update; the November 1 numeric release record above, the source-bound bridge
+evidence below and the original 45-case/later 11-claim decisions retain their
+separate identities. Application report fields, including
+`publication_approval=NOT_ASSESSED`, are unchanged by manuscript availability.
+
 ## Distinct gates
 
 | Object | This candidate | Evidence type |

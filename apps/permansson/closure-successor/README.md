@@ -4,6 +4,19 @@ This is a **new** versioned application, entirely outside the frozen `applicatio
 
 The sole supported input in this release is the exact frozen six-state D0/C10 rational model of the already-proved original `C10SixStateBridge` with the six legal named interventions and **complete original comparison set `[1,2]`**. The CLI reads *external JSON* but does not claim a theorem about arbitrary JSON, arbitary stochastic matrices, or empirical models. Arbitrary well-formed finite rational models **fail closed as unsupported** until a typed Lean adapter is separately established. It is not an optimizer for unrestricted learning, continuous policies or nonlinear history-dependent objectives.
 
+## Reading the reviewed second-edition paper
+
+Manuscript v2.0.1 **§29.4, “Native C10 and C11 replay”** (`sub:C29:04`; printed
+page 114, PDF page 124) explains this route's place in the evidence chain. Read
+the [reviewed PDF](https://github.com/HMarcusWH/PermanssonLean/blob/8630e80b604223aa0fadff92d6a7c2749cd8be5b/paper2/v2.0.1/Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf#page=124),
+the [versioned publication hub](https://github.com/HMarcusWH/PermanssonLean/blob/8630e80b604223aa0fadff92d6a7c2749cd8be5b/paper2/README.md),
+and the [current native-route comparison](https://github.com/HMarcusWH/PermanssonLean/blob/2f20d86e42a8b0ed15f59d5a480a2b61efc80f7a/docs/paper2/APPLICATION_COMPATIBILITY.md#native-c10-and-c11).
+The paper's algorithms and semantic proofs are in §20, §29 and Appendix K.
+
+The manuscript does not enlarge the fixed six-state input, change the ordered
+intervention menu or reconcile this CLI's existing `VERSION.json` acceptance
+field. The numeric and explicit replay modes retain the contracts below.
+
 ## Run
 
 Requires Python 3.13, git, and for proof replay the repository's **pinned Lean 4.34.0** environment and unchanged mathlib checkout. Invoke from any current working directory; the input and fresh output folder are explicit:

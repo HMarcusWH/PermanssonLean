@@ -7,6 +7,7 @@ Lean candidate. Reviewers should read
 
 ## Orientation
 
+- [`PAPER2_MAPPING.md`](PAPER2_MAPPING.md) — all 26 profile reading routes into the reviewed v2.0.1 paper, with pinned publication and current-documentation links
 - [`IMPLEMENTATION_OVERVIEW.md`](IMPLEMENTATION_OVERVIEW.md) — pipeline, package layout, bridges
 - [`REVIEWER_GUIDE.md`](REVIEWER_GUIDE.md) — reproducing the evidence and reviewing one profile end to end
 - [`CAPABILITY_SCOPES.md`](CAPABILITY_SCOPES.md) — every profile, its command, checker and Lean family
