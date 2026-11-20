@@ -1,0 +1,500 @@
+import PermanssonResearch.X1.InterventionNumericalBridge
+import PermanssonResearch.X1.ExactMatrixTables
+import PermanssonResearch.X1.ExactTerminalTables
+import PermanssonResearch.X1.ExactMargins
+import PermanssonResearch.X1.Comparison
+import PermanssonResearch.Games.DiscountedVerification
+import PermanssonResearch.X1.FullStrategyCertificate
+import PermanssonResearch.X1.StrategyRegression
+import PermanssonResearch.StrategicWorld.ActionTrace
+import PermanssonResearch.StrategicWorld.InformationBoundary
+import PermanssonResearch.MultiAgent.StrictMA2Obstruction
+import PermanssonResearch.MultiAgent.AutonomousAEMechanisms
+import PermanssonResearch.MultiAgent.AutonomousAEContinuumFixture
+import PermanssonResearch.MultiAgent.PlayerSwapTransport
+import PermanssonResearch.MultiAgent.FiniteProductTwo
+import PermanssonResearch.MultiAgent.PrivateClockTransport
+import PermanssonResearch.MultiAgent.NatPrivateClockTransport
+import PermanssonResearch.MultiAgent.MeasurableNatPrivateClock
+import PermanssonResearch.MultiAgent.MeasurableNatClockTransport
+import PermanssonResearch.MultiAgent.MeasurableNatClockFixture
+import PermanssonResearch.MultiAgent.FeasibleAnchors
+import PermanssonResearch.MultiAgent.CorrelatedMediator
+import PermanssonResearch.MultiAgent.FiniteMediation
+import PermanssonResearch.Quotient.GeometricQuotient
+import PermanssonResearch.Probability.DiscountedInitialBudget
+import PermanssonResearch.Perturbation.PrimitiveProductTV
+import PermanssonResearch.Probability.FullPathProductTV
+import PermanssonResearch.Probability.LocalizedHistoryTV
+import PermanssonResearch.Quotient.GeometricMargin
+import PermanssonResearch.ReverseSolver.InfiniteSafetyLeakage
+import PermanssonResearch.Probability.FiniteKantorovichDuality
+import PermanssonResearch.Probability.FiniteTransportRegression
+import PermanssonResearch.Perturbation.FirstMomentInvariant
+import PermanssonResearch.Probability.KantorovichTV
+import PermanssonResearch.Perturbation.RegenerativeOccupationFactorization
+import PermanssonResearch.Perturbation.RegenerativeFirstMomentFactorization
+import PermanssonResearch.Perturbation.ContractiveAdversaries
+import PermanssonResearch.ReverseSolver.MonitorEventOptimality
+import PermanssonResearch.ReverseSolver.MonitorHistoryBridge
+import PermanssonResearch.ReverseSolver.FirstEntryMonitor
+import PermanssonResearch.ReverseSolver.AvoidResidenceMonitor
+import PermanssonResearch.ReverseSolver.ResidenceSpecializationOptimality
+import PermanssonResearch.ReverseSolver.ThroughHorizonRiskMonitor
+import PermanssonResearch.ReverseSolver.ThroughHorizonRiskFixture
+import PermanssonResearch.ReverseSolver.FlowRiskWitness
+import PermanssonResearch.ReverseSolver.SolverBoundaryWitnesses
+import PermanssonResearch.ReverseSolver.BeliefMonitor
+import PermanssonResearch.ReverseSolver.InfiniteSafetyOptimality
+import PermanssonResearch.ReverseSolver.AdaptiveGrammarControl
+import PermanssonResearch.ReverseSolver.C11ReferenceExamples
+import PermanssonResearch.ReverseSolver.StationaryOccupationObjective
+import PermanssonResearch.ReverseSolver.StationaryMenuOptimization
+import PermanssonResearch.ReverseSolver.C11ReferenceStationaryFamily
+import PermanssonResearch.MultipleLimit.NonfiniteClock
+import PermanssonResearch.MultipleLimit.GrowingBlockCounterexample
+import PermanssonResearch.GrammarRobust.CompatibleOverlap
+import PermanssonResearch.GrammarRobust.LowerSetTransport
+import PermanssonResearch.EconomicWitness.ExactRegime
+import PermanssonResearch.EconomicWitness.Constitution
+import PermanssonResearch.EconomicWitness.Regression
+import PermanssonResearch.Specialized.SeamReduction
+import PermanssonResearch.Specialized.BoundaryWitnesses
+import PermanssonResearch.Specialized.SingularCompatibility
+import PermanssonResearch.Specialized.GramSeparation
+import PermanssonResearch.Quotient.DiscountedCanonicalSourceWitness
+import PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure
+import PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples
+import PermanssonResearch.MultiAgent.MeasurableProductTwoMatchedProtocols
+import PermanssonResearch.MultiAgent.MeasurableProductTwoOriginalMarginClosure
+import PermanssonResearch.MultiAgent.MeasurableProductTwoMatchedExamples
+import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeStationary
+import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeClassGeometry
+import PermanssonResearch.ReverseSolver.NonlinearPeriodThreeExpectedScore
+import PermanssonResearch.ReverseSolver.NonlinearPhaseBlindClassGeometry
+import PermanssonResearch.ReverseSolver.NonlinearBooleanClassEvaluator
+import PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture
+import PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture
+
+/-!
+# Tranche 10: complete selected-name source receipt for the frozen 56 cases
+
+This additive probe preserves every original/later case identity. It audits
+exactly the selected 104 original route occurrences and 35 later occurrences,
+deduplicated only for compiler execution; the companion specification retains
+all case ownership. The original route can be narrower than its literal
+criterion. Named declaration availability and trusted transitive axioms do not
+supply a complete criterion review, semantic-negative execution, or independent
+case acceptance. Stronger new case packets are recorded separately.
+-/
+
+set_option pp.fullNames true
+
+-- Case owners: original_45/X-01, original_45/X-05
+#check PermanssonResearch.X1.protocol_atom_eq
+#print axioms PermanssonResearch.X1.protocol_atom_eq
+-- Case owners: original_45/X-01
+#check PermanssonResearch.X1.InterventionNumerics.matrix_atom_eq
+#print axioms PermanssonResearch.X1.InterventionNumerics.matrix_atom_eq
+-- Case owners: original_45/X-02
+#check PermanssonResearch.X1.InterventionNumerics.table_zero
+#print axioms PermanssonResearch.X1.InterventionNumerics.table_zero
+-- Case owners: original_45/X-02
+#check PermanssonResearch.X1.InterventionNumerics.table_step
+#print axioms PermanssonResearch.X1.InterventionNumerics.table_step
+-- Case owners: original_45/X-02
+#check PermanssonResearch.X1.original_property_eq_table
+#print axioms PermanssonResearch.X1.original_property_eq_table
+-- Case owners: original_45/X-03
+#check PermanssonResearch.X1.effects_eq_candidates
+#print axioms PermanssonResearch.X1.effects_eq_candidates
+-- Case owners: original_45/X-03
+#check PermanssonResearch.X1.exactEffect_lower
+#print axioms PermanssonResearch.X1.exactEffect_lower
+-- Case owners: original_45/X-03
+#check PermanssonResearch.X1.exactEffect_attained
+#print axioms PermanssonResearch.X1.exactEffect_attained
+-- Case owners: original_45/X-03
+#check PermanssonResearch.X1.component_original_margin
+#print axioms PermanssonResearch.X1.component_original_margin
+-- Case owners: original_45/X-04
+#check PermanssonResearch.X1.attainingStart_mem
+#print axioms PermanssonResearch.X1.attainingStart_mem
+-- Case owners: original_45/X-06
+#check PermanssonResearch.X1.replete_not_exactGR
+#print axioms PermanssonResearch.X1.replete_not_exactGR
+-- Case owners: original_45/S-01
+#check PermanssonResearch.DiscountedVerification.finite_performance_difference
+#print axioms PermanssonResearch.DiscountedVerification.finite_performance_difference
+-- Case owners: original_45/S-01
+#check PermanssonResearch.X1.strategy_exact_advantage
+#print axioms PermanssonResearch.X1.strategy_exact_advantage
+-- Case owners: original_45/S-01
+#check PermanssonResearch.X1.StrategyRegression.nonstationary_terminal_identity
+#print axioms PermanssonResearch.X1.StrategyRegression.nonstationary_terminal_identity
+-- Case owners: original_45/S-02
+#check PermanssonResearch.ActionTrace.BehavioralPolicy
+#print axioms PermanssonResearch.ActionTrace.BehavioralPolicy
+-- Case owners: original_45/S-02
+#check PermanssonResearch.ActionTrace.InformationBoundary.actual_step_fair_matching
+#print axioms PermanssonResearch.ActionTrace.InformationBoundary.actual_step_fair_matching
+-- Case owners: original_45/S-02
+#check PermanssonResearch.ActionTrace.InformationBoundary.peeked_fair_matching
+#print axioms PermanssonResearch.ActionTrace.InformationBoundary.peeked_fair_matching
+-- Case owners: original_45/S-02
+#check PermanssonResearch.ActionTrace.InformationBoundary.no_unobserved_draw_copy
+#print axioms PermanssonResearch.ActionTrace.InformationBoundary.no_unobserved_draw_copy
+-- Case owners: original_45/S-02
+#check PermanssonResearch.ActionTrace.InformationBoundary.observed_history_cannot_copy_next_state
+#print axioms PermanssonResearch.ActionTrace.InformationBoundary.observed_history_cannot_copy_next_state
+-- Case owners: original_45/M-01
+#check PermanssonResearch.MultiAgent.Autonomous.strict_anchors_pathLaw_eq
+#print axioms PermanssonResearch.MultiAgent.Autonomous.strict_anchors_pathLaw_eq
+-- Case owners: original_45/M-01
+#check PermanssonResearch.MultiAgent.Autonomous.ae_anchors_pathLaw_eq
+#print axioms PermanssonResearch.MultiAgent.Autonomous.ae_anchors_pathLaw_eq
+-- Case owners: original_45/M-02
+#check PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_violates_premise
+#print axioms PermanssonResearch.MultiAgent.Autonomous.ContinuumFixture.point_start_violates_premise
+-- Case owners: original_45/F-01
+#check PermanssonResearch.MultiAgent.PlayerSwap.actual_pathLaw
+#print axioms PermanssonResearch.MultiAgent.PlayerSwap.actual_pathLaw
+-- Case owners: original_45/F-01
+#check PermanssonResearch.MultiAgent.FiniteProduct.Two.actual_pathLaw
+#print axioms PermanssonResearch.MultiAgent.FiniteProduct.Two.actual_pathLaw
+-- Case owners: original_45/F-02
+#check PermanssonResearch.MultiAgent.PrivateClock.actual_projection
+#print axioms PermanssonResearch.MultiAgent.PrivateClock.actual_projection
+-- Case owners: original_45/F-02
+#check PermanssonResearch.MultiAgent.NatPrivateClock.natural_projection
+#print axioms PermanssonResearch.MultiAgent.NatPrivateClock.natural_projection
+-- Case owners: original_45/F-02
+#check PermanssonResearch.MultiAgent.NatPrivateClock.natural_scheduled_row
+#print axioms PermanssonResearch.MultiAgent.NatPrivateClock.natural_scheduled_row
+-- Case owners: original_45/F-02
+#check PermanssonResearch.MultiAgent.NatPrivateClock.inherited_strictness
+#print axioms PermanssonResearch.MultiAgent.NatPrivateClock.inherited_strictness
+-- Case owners: original_45/F-02
+#check PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.advancing_update
+#print axioms PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.advancing_update
+-- Case owners: original_45/F-02
+#check PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_strictness
+#print axioms PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.inherited_strictness
+-- Case owners: original_45/F-02
+#check PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_projection
+#print axioms PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_projection
+-- Case owners: original_45/F-02
+#check PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_scheduled_row
+#print axioms PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.natural_scheduled_row
+-- Case owners: original_45/F-02
+#check PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.stalled_clock_rejected
+#print axioms PermanssonResearch.MultiAgent.MeasurableNatPrivateClock.RealFixture.stalled_clock_rejected
+-- Case owners: original_45/F-03
+#check PermanssonResearch.MultiAgent.exists_feasible_strictAnchor_iff
+#print axioms PermanssonResearch.MultiAgent.exists_feasible_strictAnchor_iff
+-- Case owners: original_45/F-04
+#check PermanssonResearch.MultiAgent.mediator_mixture_eq
+#print axioms PermanssonResearch.MultiAgent.mediator_mixture_eq
+-- Case owners: original_45/F-05
+#check PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_same_observational_law
+#print axioms PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_same_observational_law
+-- Case owners: original_45/F-05
+#check PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_different_joint_do
+#print axioms PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_different_joint_do
+-- Case owners: original_45/F-05
+#check PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_positivity_failure
+#print axioms PermanssonResearch.MultiAgent.FiniteMediation.two_SCMs_positivity_failure
+-- Case owners: original_45/Q-01, original_45/Q-02
+#check PermanssonResearch.Quotient.approxQuotient_prefix_tv_le_geometric
+#print axioms PermanssonResearch.Quotient.approxQuotient_prefix_tv_le_geometric
+-- Case owners: original_45/Q-02
+#check PermanssonResearch.Probability.discounted_geometric_budget_initial
+#print axioms PermanssonResearch.Probability.discounted_geometric_budget_initial
+-- Case owners: original_45/Q-02
+#check PermanssonResearch.Probability.zero_row_defect_retains_initial_budget
+#print axioms PermanssonResearch.Probability.zero_row_defect_retains_initial_budget
+-- Case owners: original_45/Q-03
+#check PermanssonResearch.Perturbation.primitiveCommon_mass_ge_product
+#print axioms PermanssonResearch.Perturbation.primitiveCommon_mass_ge_product
+-- Case owners: original_45/Q-03
+#check PermanssonResearch.Perturbation.inducedKernel_tv_le_primitive_product
+#print axioms PermanssonResearch.Perturbation.inducedKernel_tv_le_primitive_product
+-- Case owners: original_45/Q-03
+#check PermanssonResearch.Probability.FullPathProduct.path_tv_le_product
+#print axioms PermanssonResearch.Probability.FullPathProduct.path_tv_le_product
+-- Case owners: original_45/Q-04
+#check PermanssonResearch.Probability.historyEvolution_tv_le_sum
+#print axioms PermanssonResearch.Probability.historyEvolution_tv_le_sum
+-- Case owners: original_45/Q-04
+#check PermanssonResearch.Quotient.geometricQuotient_margin_abs_le
+#print axioms PermanssonResearch.Quotient.geometricQuotient_margin_abs_le
+-- Case owners: original_45/Q-05, original_45/D-07
+#check PermanssonResearch.ReverseSolver.InfiniteSafety.high_actual_finite_survival_zero_infinite
+#print axioms PermanssonResearch.ReverseSolver.InfiniteSafety.high_actual_finite_survival_zero_infinite
+-- Case owners: original_45/A-01
+#check PermanssonResearch.Probability.finite_couplingW1_eq_dual_supremum
+#print axioms PermanssonResearch.Probability.finite_couplingW1_eq_dual_supremum
+-- Case owners: original_45/A-01
+#check PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_exact
+#print axioms PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_exact
+-- Case owners: original_45/A-01
+#check PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_bound_two_rejected
+#print axioms PermanssonResearch.Probability.FiniteTransportRegression.scaled_two_point_bound_two_rejected
+-- Case owners: original_45/A-02
+#check PermanssonResearch.Perturbation.FirstMomentInvariant.exists_unique_invariant
+#print axioms PermanssonResearch.Perturbation.FirstMomentInvariant.exists_unique_invariant
+-- Case owners: original_45/A-03
+#check PermanssonResearch.Probability.tv_does_not_control_w1_on_real
+#print axioms PermanssonResearch.Probability.tv_does_not_control_w1_on_real
+-- Case owners: original_45/A-04
+#check PermanssonResearch.Perturbation.RegenerativeFactorization.four_actual_factorizations
+#print axioms PermanssonResearch.Perturbation.RegenerativeFactorization.four_actual_factorizations
+-- Case owners: original_45/A-04
+#check PermanssonResearch.Perturbation.RegenerativeMomentFactorization.four_actual_factorizations
+#print axioms PermanssonResearch.Perturbation.RegenerativeMomentFactorization.four_actual_factorizations
+-- Case owners: original_45/A-05
+#check PermanssonResearch.Perturbation.ContractiveLeak.contraction_does_not_transfer_survival
+#print axioms PermanssonResearch.Perturbation.ContractiveLeak.contraction_does_not_transfer_survival
+-- Case owners: original_45/D-01
+#check PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralResidence_optimal_and_attained
+#print axioms PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralResidence_optimal_and_attained
+-- Case owners: original_45/D-01
+#check PermanssonResearch.ReverseSolver.FiniteMonitor.monitor_history_probability_optimal_and_attained
+#print axioms PermanssonResearch.ReverseSolver.FiniteMonitor.monitor_history_probability_optimal_and_attained
+-- Case owners: original_45/D-02
+#check PermanssonResearch.ReverseSolver.FiniteMonitor.first_entry_retry_counterexample
+#print axioms PermanssonResearch.ReverseSolver.FiniteMonitor.first_entry_retry_counterexample
+-- Case owners: original_45/D-02
+#check PermanssonResearch.ReverseSolver.FiniteMonitor.firstEntry_event_eq
+#print axioms PermanssonResearch.ReverseSolver.FiniteMonitor.firstEntry_event_eq
+-- Case owners: original_45/D-03
+#check PermanssonResearch.ReverseSolver.FiniteMonitor.danger_precedes_simultaneous_success
+#print axioms PermanssonResearch.ReverseSolver.FiniteMonitor.danger_precedes_simultaneous_success
+-- Case owners: original_45/D-03
+#check PermanssonResearch.ReverseSolver.FiniteMonitor.danger_after_success_does_not_undo
+#print axioms PermanssonResearch.ReverseSolver.FiniteMonitor.danger_after_success_does_not_undo
+-- Case owners: original_45/D-03
+#check PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralAvoidResidence_optimal_and_attained
+#print axioms PermanssonResearch.ReverseSolver.FiniteMonitor.behavioralAvoidResidence_optimal_and_attained
+-- Case owners: original_45/D-03
+#check PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_time
+#print axioms PermanssonResearch.ReverseSolver.ThroughHorizonRisk.initial_risk_iff_time
+-- Case owners: original_45/D-03
+#check PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_probability_eq_occupancy
+#print axioms PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_risk_probability_eq_occupancy
+-- Case owners: original_45/D-03
+#check PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_success_integral_eq_original
+#print axioms PermanssonResearch.ReverseSolver.ThroughHorizonRisk.actual_success_integral_eq_original
+-- Case owners: original_45/D-03
+#check PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_at_zero_counts
+#print axioms PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_at_zero_counts
+-- Case owners: original_45/D-03
+#check PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_after_completed_success_counts
+#print axioms PermanssonResearch.ReverseSolver.ThroughHorizonRisk.danger_after_completed_success_counts
+-- Case owners: original_45/D-03
+#check PermanssonResearch.ReverseSolver.ThroughHorizonRisk.simultaneous_target_danger_counts
+#print axioms PermanssonResearch.ReverseSolver.ThroughHorizonRisk.simultaneous_target_danger_counts
+-- Case owners: original_45/D-03
+#check PermanssonResearch.ReverseSolver.ThroughHorizonRisk.failure_and_danger_are_not_complements
+#print axioms PermanssonResearch.ReverseSolver.ThroughHorizonRisk.failure_and_danger_are_not_complements
+-- Case owners: original_45/D-04
+#check PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_half_attains
+#print axioms PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.actual_half_attains
+-- Case owners: original_45/D-04
+#check PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.all_actual_feasible_success_le
+#print axioms PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.all_actual_feasible_success_le
+-- Case owners: original_45/D-04
+#check PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.full_risky_choice_is_infeasible
+#print axioms PermanssonResearch.ReverseSolver.Occupancy.RiskWitness.full_risky_choice_is_infeasible
+-- Case owners: original_45/D-05
+#check PermanssonResearch.ReverseSolver.SolverBoundaryWitnesses.whole_model_commitment_strictly_exceeds_rectangular
+#print axioms PermanssonResearch.ReverseSolver.SolverBoundaryWitnesses.whole_model_commitment_strictly_exceeds_rectangular
+-- Case owners: original_45/D-06
+#check PermanssonResearch.ReverseSolver.Belief.monitored_history_attained
+#print axioms PermanssonResearch.ReverseSolver.Belief.monitored_history_attained
+-- Case owners: original_45/D-07
+#check PermanssonResearch.ReverseSolver.InfiniteSafety.deterministic_stationary_infinite_optimum
+#print axioms PermanssonResearch.ReverseSolver.InfiniteSafety.deterministic_stationary_infinite_optimum
+-- Case owners: original_45/D-08
+#check PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.adaptive_block_optimal_and_attained
+#print axioms PermanssonResearch.ReverseSolver.AdaptiveGrammarControl.adaptive_block_optimal_and_attained
+-- Case owners: original_45/D-09
+#check PermanssonResearch.ReverseSolver.C11.ReferenceExamples.physical_classes_remain_distinct
+#print axioms PermanssonResearch.ReverseSolver.C11.ReferenceExamples.physical_classes_remain_distinct
+-- Case owners: original_45/D-09
+#check PermanssonResearch.ReverseSolver.StationaryOccupation.equal_descriptor_laws_equal_values
+#print axioms PermanssonResearch.ReverseSolver.StationaryOccupation.equal_descriptor_laws_equal_values
+-- Case owners: original_45/D-09
+#check PermanssonResearch.ReverseSolver.StationaryOccupation.stationary_menu_actual_optimal_and_attained
+#print axioms PermanssonResearch.ReverseSolver.StationaryOccupation.stationary_menu_actual_optimal_and_attained
+-- Case owners: original_45/C11-01
+#check PermanssonResearch.ReverseSolver.C11.ReferenceExamples.periodic_family_accepted
+#print axioms PermanssonResearch.ReverseSolver.C11.ReferenceExamples.periodic_family_accepted
+-- Case owners: original_45/C11-01
+#check PermanssonResearch.ReverseSolver.C11.ReferenceExamples.zero_dimension_reference_rejected
+#print axioms PermanssonResearch.ReverseSolver.C11.ReferenceExamples.zero_dimension_reference_rejected
+-- Case owners: original_45/C11-01
+#check PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily_check
+#print axioms PermanssonResearch.ReverseSolver.C11.referenceStationaryFamily_check
+-- Case owners: original_45/C11-02
+#check PermanssonResearch.ReverseSolver.C11.ReferenceExamples.corrupted_stationary_receipt_rejected
+#print axioms PermanssonResearch.ReverseSolver.C11.ReferenceExamples.corrupted_stationary_receipt_rejected
+-- Case owners: original_45/C-01
+#check PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_clock_no_weak_limit
+#print axioms PermanssonResearch.MultipleLimit.NonfiniteClock.canonical_clock_no_weak_limit
+-- Case owners: original_45/C-01
+#check PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_occupations_fail
+#print axioms PermanssonResearch.MultipleLimit.GrowingBlock.canonical_growing_block_occupations_fail
+-- Case owners: original_45/B-01
+#check PermanssonResearch.GrammarRobust.applyCompatiblePatches_perm
+#print axioms PermanssonResearch.GrammarRobust.applyCompatiblePatches_perm
+-- Case owners: original_45/B-02
+#check PermanssonResearch.GrammarRobust.exists_least_positive_of_finite_meet_closed
+#print axioms PermanssonResearch.GrammarRobust.exists_least_positive_of_finite_meet_closed
+-- Case owners: original_45/XPLUS-01
+#check PermanssonResearch.EconomicWitness.original_exactGR
+#print axioms PermanssonResearch.EconomicWitness.original_exactGR
+-- Case owners: original_45/XPLUS-01
+#check PermanssonResearch.EconomicWitness.original_confirmatoryGR
+#print axioms PermanssonResearch.EconomicWitness.original_confirmatoryGR
+-- Case owners: original_45/XPLUS-01
+#check PermanssonResearch.EconomicWitness.original_grounded_confirmatory_uniformPR
+#print axioms PermanssonResearch.EconomicWitness.original_grounded_confirmatory_uniformPR
+-- Case owners: original_45/XPLUS-01
+#check PermanssonResearch.EconomicWitness.Regression.baseline_leak_not_original_exactGR
+#print axioms PermanssonResearch.EconomicWitness.Regression.baseline_leak_not_original_exactGR
+-- Case owners: original_45/E-01
+#check PermanssonResearch.Specialized.seam_rank_le_two
+#print axioms PermanssonResearch.Specialized.seam_rank_le_two
+-- Case owners: original_45/E-01
+#check PermanssonResearch.Specialized.seam_constant_diagonal
+#print axioms PermanssonResearch.Specialized.seam_constant_diagonal
+-- Case owners: original_45/E-02
+#check PermanssonResearch.Specialized.BoundaryWitnesses.changed_embedding_loses_negativity
+#print axioms PermanssonResearch.Specialized.BoundaryWitnesses.changed_embedding_loses_negativity
+-- Case owners: original_45/E-02
+#check PermanssonResearch.Specialized.BoundaryWitnesses.exact_but_illegal_approximant
+#print axioms PermanssonResearch.Specialized.BoundaryWitnesses.exact_but_illegal_approximant
+-- Case owners: original_45/E-03
+#check PermanssonResearch.Specialized.BoundaryWitnesses.dimension_two_retains_second_equation
+#print axioms PermanssonResearch.Specialized.BoundaryWitnesses.dimension_two_retains_second_equation
+-- Case owners: original_45/E-03
+#check PermanssonResearch.Specialized.BoundaryWitnesses.zero_shift_does_not_supply_inverse
+#print axioms PermanssonResearch.Specialized.BoundaryWitnesses.zero_shift_does_not_supply_inverse
+-- Case owners: original_45/E-04
+#check PermanssonResearch.Specialized.incompatible_kernel_negative
+#print axioms PermanssonResearch.Specialized.incompatible_kernel_negative
+-- Case owners: original_45/E-04
+#check PermanssonResearch.Specialized.source_vanishes_of_nonexceptional
+#print axioms PermanssonResearch.Specialized.source_vanishes_of_nonexceptional
+-- Case owners: original_45/E-05
+#check PermanssonResearch.Specialized.signedGram_witness_negative
+#print axioms PermanssonResearch.Specialized.signedGram_witness_negative
+-- Case owners: original_45/E-05
+#check PermanssonResearch.Specialized.gram_additional_component_negative
+#print axioms PermanssonResearch.Specialized.gram_additional_component_negative
+-- Case owners: later_11/Q1
+#check PermanssonResearch.Quotient.DiscountedCanonicalSourceWitness.canonical_discounted_output_error
+#print axioms PermanssonResearch.Quotient.DiscountedCanonicalSourceWitness.canonical_discounted_output_error
+-- Case owners: later_11/Q2
+#check PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure.actual_canonical_discounted_original_margin
+#print axioms PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure.actual_canonical_discounted_original_margin
+-- Case owners: later_11/Q2
+#check PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure.point_witness_output
+#print axioms PermanssonResearch.Quotient.DiscountedCanonicalMarginClosure.point_witness_output
+-- Case owners: later_11/Q3
+#check PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.SourceBoundExactWitness.exactKernelPointWitness
+#print axioms PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.SourceBoundExactWitness.exactKernelPointWitness
+-- Case owners: later_11/Q3
+#check PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.correct_frozen_discounted_budget
+#print axioms PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.correct_frozen_discounted_budget
+-- Case owners: later_11/Q3
+#check PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.wrong_frozen_discounted_budget
+#print axioms PermanssonResearch.Quotient.DiscountedCanonicalWitnessExamples.wrong_frozen_discounted_budget
+-- Case owners: later_11/M1
+#check PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_kernel_two
+#print axioms PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_kernel_two
+-- Case owners: later_11/M1
+#check PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_kernel_two
+#print axioms PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_kernel_two
+-- Case owners: later_11/M2
+#check PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_loop_original_margin
+#print axioms PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_loop_original_margin
+-- Case owners: later_11/M2
+#check PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_loop_original_margin
+#print axioms PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_loop_original_margin
+-- Case owners: later_11/M2
+#check PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_loop_all_initial_paths
+#print axioms PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_loop_all_initial_paths
+-- Case owners: later_11/M2
+#check PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_loop_all_initial_paths
+#print axioms PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_loop_all_initial_paths
+-- Case owners: later_11/M3
+#check PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_worlds_both_frozen
+#print axioms PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_closed_worlds_both_frozen
+-- Case owners: later_11/M3
+#check PermanssonResearch.MultiAgent.FinalMatchedAsymmetry.wrong_asymmetric_input_change_is_detectable
+#print axioms PermanssonResearch.MultiAgent.FinalMatchedAsymmetry.wrong_asymmetric_input_change_is_detectable
+-- Case owners: later_11/M3
+#check PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_worlds_both_frozen
+#print axioms PermanssonResearch.MultiAgent.MeasurableProduct.Two.matched_open_worlds_both_frozen
+-- Case owners: later_11/N1
+#check PermanssonResearch.ReverseSolver.NonlinearPeriodThree.phase_aware_invariant_weights
+#print axioms PermanssonResearch.ReverseSolver.NonlinearPeriodThree.phase_aware_invariant_weights
+-- Case owners: later_11/N1
+#check PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_aware_actual_true_mass
+#print axioms PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_aware_actual_true_mass
+-- Case owners: later_11/N2
+#check PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_aware_actual_score_one
+#print axioms PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_aware_actual_score_one
+-- Case owners: later_11/N2
+#check PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_blind_actual_le_five_sixths
+#print axioms PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_blind_actual_le_five_sixths
+-- Case owners: later_11/N2
+#check PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_blind_actual_attained
+#print axioms PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_phase_blind_actual_attained
+-- Case owners: later_11/N2
+#check PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_actual_phase_aware_strictly_beats_phase_blind
+#print axioms PermanssonResearch.ReverseSolver.NonlinearPeriodThree.native_actual_phase_aware_strictly_beats_phase_blind
+-- Case owners: later_11/N2
+#check PermanssonResearch.ReverseSolver.NonlinearPeriodThree.actual_restricted_gap_of_identified_classes
+#print axioms PermanssonResearch.ReverseSolver.NonlinearPeriodThree.actual_restricted_gap_of_identified_classes
+-- Case owners: later_11/N3
+#check PermanssonResearch.ReverseSolver.NonlinearPeriodThree.booleanClassFunctional
+#print axioms PermanssonResearch.ReverseSolver.NonlinearPeriodThree.booleanClassFunctional
+-- Case owners: later_11/N3
+#check PermanssonResearch.ReverseSolver.NonlinearPeriodThree.boolean_rational_objective_eq_actual
+#print axioms PermanssonResearch.ReverseSolver.NonlinearPeriodThree.boolean_rational_objective_eq_actual
+-- Case owners: later_11/N3
+#check PermanssonResearch.ReverseSolver.NonlinearPeriodThree.certified_boolean_score_exact
+#print axioms PermanssonResearch.ReverseSolver.NonlinearPeriodThree.certified_boolean_score_exact
+-- Case owners: later_11/N3
+#check PermanssonResearch.ReverseSolver.NonlinearPeriodThree.boolean_score_bounded
+#print axioms PermanssonResearch.ReverseSolver.NonlinearPeriodThree.boolean_score_bounded
+-- Case owners: later_11/D8
+#check PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_admits_both_components
+#print axioms PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_admits_both_components
+-- Case owners: later_11/D8
+#check PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_rejects_joint
+#print axioms PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_rejects_joint
+-- Case owners: later_11/D8
+#check PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_row_normalized
+#print axioms PermanssonResearch.ReverseSolver.AdaptiveGrammarAdmissionFixture.ConcreteRestrictedBoolean.actual_restricted_menu_row_normalized
+-- Case owners: later_11/D9
+#check PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_two_absorbing_full_path_mixture
+#print axioms PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_two_absorbing_full_path_mixture
+-- Case owners: later_11/D9
+#check PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_multichain_classwise_differs_from_barycenter
+#print axioms PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_multichain_classwise_differs_from_barycenter
+-- Case owners: later_11/D9
+#check PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_mixed_nonlinear_half_not_barycenter
+#print axioms PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_mixed_nonlinear_half_not_barycenter
+-- Case owners: later_11/D9
+#check PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.physically_distinct_classes_with_shared_descriptor
+#print axioms PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.physically_distinct_classes_with_shared_descriptor
+-- Case owners: later_11/D9
+#check PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_mixed_initial_nonlinear_expectation
+#print axioms PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.actual_mixed_initial_nonlinear_expectation
+-- Case owners: later_11/D9
+#check PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.exact_two_absorbing_rational_scores
+#print axioms PermanssonResearch.ReverseSolver.NonlinearMultichainAggregationFixture.exact_two_absorbing_rational_scores
