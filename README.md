@@ -22,7 +22,8 @@ Use the [reference hub](docs/reference/README.md), [chapter ↔ source crosswalk
 
 | Goal | Read this | Required tools |
 |---|---|---|
-| Read the complete reference | [v1.1.1 PDF](docs/reference/Permansson_Mathematical_Reference_Guide_v1.1.1.pdf) and [module mapping](docs/reference/README.md) | None |\n| Understand the theory | [Paper guide](paper/README.md) and [glossary](docs/GLOSSARY.md) | None |
+| Read the complete reference | [v1.1.1 PDF](docs/reference/Permansson_Mathematical_Reference_Guide_v1.1.1.pdf) and [module mapping](docs/reference/README.md) | None |
+| Understand the theory | [Paper guide](paper/README.md) and [glossary](docs/GLOSSARY.md) | None |
 | Read the accepted research companion | [v0.2.0 research companion](release/v0.2.0/README.md) | None for its PDF |
 | Study or extend the Lean mathematics | [Research build guide](docs/RESEARCH_BUILD.md), [implementation index](docs/V020_IMPLEMENTATION_INDEX.md) | Pinned Lean 4.34.0 and Git |
 | Validate an application report | [Application Standard](application/README.md) and [getting started](docs/GETTING_STARTED.md) | Python 3.13 |
