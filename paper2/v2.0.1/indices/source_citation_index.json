@@ -1,0 +1,4306 @@
+[
+  {
+    "source_path": "PermanssonLean/Regime/Occupation.lean",
+    "source_name": "empiricalOccupation",
+    "file": "sections/C02.tex",
+    "line": 33,
+    "nearest_preceding_label": "lem:C02-empirical",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/OccupationPrefixDeletion.lean",
+    "source_name": "tendsto_empiricalOccupation_of_tailShift",
+    "file": "sections/C02.tex",
+    "line": 34,
+    "nearest_preceding_label": "lem:C02-empirical",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/ConvergenceMode.lean",
+    "source_name": "almostSureWeak",
+    "file": "sections/C02.tex",
+    "line": 46,
+    "nearest_preceding_label": "lem:C02-empirical",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Probability/TotalVariation.lean",
+    "source_name": "eventTotalVariation",
+    "file": "sections/C02.tex",
+    "line": 70,
+    "nearest_preceding_label": "lem:C02-commonmass",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Probability/CommonPartKernel.lean",
+    "source_name": "commonPartKernel",
+    "file": "sections/C02.tex",
+    "line": 71,
+    "nearest_preceding_label": "lem:C02-commonmass",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/StrategicWorld/InducedKernel.lean",
+    "source_name": "inducedKernel_isMarkov",
+    "file": "sections/C03.tex",
+    "line": 36,
+    "nearest_preceding_label": "eq:C03-induced",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/StrategicWorld/InducedKernel.lean",
+    "source_name": "inducedKernel_apply_indicator",
+    "file": "sections/C03.tex",
+    "line": 37,
+    "nearest_preceding_label": "eq:C03-induced",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/StrategicWorld/WellPosedness.lean",
+    "source_name": "pathLaw_existsUnique",
+    "file": "sections/C03.tex",
+    "line": 64,
+    "nearest_preceding_label": "eq:C03-initial-mixture",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/RandomEntryOccupation.lean",
+    "source_name": "pathLaw_eq_bind",
+    "file": "sections/C03.tex",
+    "line": 65,
+    "nearest_preceding_label": "eq:C03-initial-mixture",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/Assumption41.lean",
+    "source_name": "Assumption41",
+    "file": "sections/C04.tex",
+    "line": 16,
+    "nearest_preceding_label": "eq:C04-spec",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/Assumption41.lean",
+    "source_name": "basinHasTwoStates_iff_pathLawNontrivial",
+    "file": "sections/C04.tex",
+    "line": 17,
+    "nearest_preceding_label": "eq:C04-spec",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/GeneratedRegime.lean",
+    "source_name": "IsExactGeneratedRegime",
+    "file": "sections/C04.tex",
+    "line": 30,
+    "nearest_preceding_label": "eq:C04-occ",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/KilledKernel.lean",
+    "source_name": "killedKernel",
+    "file": "sections/C04.tex",
+    "line": 68,
+    "nearest_preceding_label": "eq:C04-Green",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/ExitTimeExpectation.lean",
+    "source_name": "expectedExitTime_eq_greenSeries",
+    "file": "sections/C04.tex",
+    "line": 69,
+    "nearest_preceding_label": "eq:C04-Green",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/SurvivalBridge.lean",
+    "source_name": "survivingEndpointMeasure_eq_killedPow",
+    "file": "sections/C04.tex",
+    "line": 70,
+    "nearest_preceding_label": "eq:C04-Green",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/QuasiStationary.lean",
+    "source_name": "qsd_killedMeasureIterate_eq_smul",
+    "file": "sections/C04.tex",
+    "line": 116,
+    "nearest_preceding_label": "thm:C04-QSD",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/QuasiStationary.lean",
+    "source_name": "qsd_survivalProbability",
+    "file": "sections/C04.tex",
+    "line": 117,
+    "nearest_preceding_label": "thm:C04-QSD",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Examples/QSDCounterexample.lean",
+    "source_name": "qsd_does_not_imply_uniform_finitePersistence",
+    "file": "sections/C04.tex",
+    "line": 120,
+    "nearest_preceding_label": "thm:C04-QSD",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/Constitution.lean",
+    "source_name": "IsStrategicallyConstitutive",
+    "file": "sections/C05.tex",
+    "line": 22,
+    "nearest_preceding_label": "def:C05-PR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/UniformPermansson.lean",
+    "source_name": "IsUniformGeneralizedPermanssonRegimeRelative",
+    "file": "sections/C05.tex",
+    "line": 23,
+    "nearest_preceding_label": "def:C05-PR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/GroundedProperty.lean",
+    "source_name": "IsGroundedPropertyRelative",
+    "file": "sections/C05.tex",
+    "line": 50,
+    "nearest_preceding_label": "prop:C05-nuisance",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/NuisancePadding.lean",
+    "source_name": "nuisancePadding_cannot_create_grounded_change",
+    "file": "sections/C05.tex",
+    "line": 51,
+    "nearest_preceding_label": "prop:C05-nuisance",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/RepresentationEquivalence.lean",
+    "source_name": "exactGR_iff_of_inducedKernel_eq",
+    "file": "sections/C05.tex",
+    "line": 69,
+    "nearest_preceding_label": "thm:C05-representation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/FamilyEquivalence.lean",
+    "source_name": "frozenFamilyPR_iff_of_signature_match",
+    "file": "sections/C05.tex",
+    "line": 70,
+    "nearest_preceding_label": "thm:C05-representation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/GroundedFamilyEquivalence.lean",
+    "source_name": "groundedFrozenFamilyUniformPR_iff_of_signature_match",
+    "file": "sections/C05.tex",
+    "line": 71,
+    "nearest_preceding_label": "thm:C05-representation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Examples/ConstitutiveNoninvariance.lean",
+    "source_name": "constitutive_noninvariance_under_baseline_equivalence",
+    "file": "sections/C05.tex",
+    "line": 84,
+    "nearest_preceding_label": "subsec:C05-witness",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/EconomicWitness/Constitution.lean",
+    "source_name": "original_grounded_confirmatory_uniformPR",
+    "file": "sections/C05.tex",
+    "line": 85,
+    "nearest_preceding_label": "subsec:C05-witness",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/EGR/RegimeEmbedding.lean",
+    "source_name": "paperIEGR_iff_embeddedExactGR",
+    "file": "sections/C06.tex",
+    "line": 308,
+    "nearest_preceding_label": "thm:C06-embedding",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/EGR/PermanssonTransport.lean",
+    "source_name": "paperIUniformPermansson_iff_embeddedRelativePR",
+    "file": "sections/C06.tex",
+    "line": 309,
+    "nearest_preceding_label": "thm:C06-embedding",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/EGR/RecordedPropertyTransport.lean",
+    "source_name": "paperIRecordedUniformPermansson_iff_embeddedRelativePR",
+    "file": "sections/C06.tex",
+    "line": 310,
+    "nearest_preceding_label": "thm:C06-embedding",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/EGR/GroundedTransport.lean",
+    "source_name": "paperIGroundedUniformPermansson_iff_embeddedGroundedUniformPR",
+    "file": "sections/C06.tex",
+    "line": 311,
+    "nearest_preceding_label": "thm:C06-embedding",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/EGR/RecordedGroundedTransport.lean",
+    "source_name": "paperIRecordedGroundedUniformPermansson_iff_embeddedGroundedUniformPR",
+    "file": "sections/C06.tex",
+    "line": 312,
+    "nearest_preceding_label": "thm:C06-embedding",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteOccupationRandomLaw.lean",
+    "source_name": "physicalOccupationLimit_ae_correct",
+    "file": "sections/C07.tex",
+    "line": 67,
+    "nearest_preceding_label": "eq:C07-observed-law",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteOccupationRandomLaw.lean",
+    "source_name": "physicalOccupationLimit_full_law",
+    "file": "sections/C07.tex",
+    "line": 68,
+    "nearest_preceding_label": "eq:C07-observed-law",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteOccupationRandomLaw.lean",
+    "source_name": "observedOccupationLimit_ae_correct",
+    "file": "sections/C07.tex",
+    "line": 69,
+    "nearest_preceding_label": "eq:C07-observed-law",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteOccupationRandomLaw.lean",
+    "source_name": "observedOccupationLimit_full_law",
+    "file": "sections/C07.tex",
+    "line": 70,
+    "nearest_preceding_label": "eq:C07-observed-law",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteExactGRCharacterization.lean",
+    "source_name": "exactGR_iff_common_reachable_target",
+    "file": "sections/C08.tex",
+    "line": 21,
+    "nearest_preceding_label": "eq:C08-exactGR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteExactGRCharacterization.lean",
+    "source_name": "exactGR_iff_exists_gates_common_reachable_target",
+    "file": "sections/C08.tex",
+    "line": 22,
+    "nearest_preceding_label": "eq:C08-exactGR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/SharpFamilyExactGRBridge.lean",
+    "source_name": "exactGR_iff_sharp_singleton",
+    "file": "sections/C08.tex",
+    "line": 23,
+    "nearest_preceding_label": "eq:C08-exactGR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/OppositeClassConstitutiveMargin.lean",
+    "source_name": "opposingMass_eq_event_probability",
+    "file": "sections/C08.tex",
+    "line": 70,
+    "nearest_preceding_label": "eq:C08-margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/OppositeClassConstitutiveMargin.lean",
+    "source_name": "effect_eq_opposingMass",
+    "file": "sections/C08.tex",
+    "line": 71,
+    "nearest_preceding_label": "eq:C08-margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/OppositeClassConstitutiveMargin.lean",
+    "source_name": "finite_opposingMargin_attained",
+    "file": "sections/C08.tex",
+    "line": 72,
+    "nearest_preceding_label": "eq:C08-margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/OppositeClassConstitutiveMargin.lean",
+    "source_name": "original_uniformRelativePR_iff_opposingReachability",
+    "file": "sections/C08.tex",
+    "line": 73,
+    "nearest_preceding_label": "eq:C08-margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ObservedSupportInvariance.lean",
+    "source_name": "SamePositiveSupport",
+    "file": "sections/C08.tex",
+    "line": 91,
+    "nearest_preceding_label": "prop:C08-support",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ObservedSupportInvariance.lean",
+    "source_name": "recurrentClasses_eq",
+    "file": "sections/C08.tex",
+    "line": 92,
+    "nearest_preceding_label": "prop:C08-support",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ObservedSupportInvariance.lean",
+    "source_name": "goodReachability_iff",
+    "file": "sections/C08.tex",
+    "line": 93,
+    "nearest_preceding_label": "prop:C08-support",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ObservedSupportInvariance.lean",
+    "source_name": "badReachability_iff",
+    "file": "sections/C08.tex",
+    "line": 94,
+    "nearest_preceding_label": "prop:C08-support",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/PolishStationaryRandomOccupation.lean",
+    "source_name": "empirical_tendsto_randomLaw",
+    "file": "sections/C09.tex",
+    "line": 41,
+    "nearest_preceding_label": "eq:C09-path-density",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/PolishStationaryRandomOccupation.lean",
+    "source_name": "exists_measurable_random_limit",
+    "file": "sections/C09.tex",
+    "line": 42,
+    "nearest_preceding_label": "eq:C09-path-density",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/PolishStationaryRandomOccupation.lean",
+    "source_name": "descriptor_random_family",
+    "file": "sections/C09.tex",
+    "line": 43,
+    "nearest_preceding_label": "eq:C09-path-density",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/CompactFellerKernel.lean",
+    "source_name": "cluster_invariant",
+    "file": "sections/C09.tex",
+    "line": 87,
+    "nearest_preceding_label": "eq:C09-residual",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/CompactFellerEmpirical.lean",
+    "source_name": "empirical_clusters_invariant_ae",
+    "file": "sections/C09.tex",
+    "line": 88,
+    "nearest_preceding_label": "eq:C09-residual",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/CompactFellerEmpirical.lean",
+    "source_name": "empirical_descriptor_unique_ae",
+    "file": "sections/C09.tex",
+    "line": 89,
+    "nearest_preceding_label": "eq:C09-residual",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/CompactFellerDistance.lean",
+    "source_name": "empirical_invariant_distance_ae",
+    "file": "sections/C09.tex",
+    "line": 90,
+    "nearest_preceding_label": "eq:C09-residual",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/CompactFellerEmpirical.lean",
+    "source_name": "original_occupation_of_invariant_descriptor",
+    "file": "sections/C09.tex",
+    "line": 93,
+    "nearest_preceding_label": "eq:C09-residual",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/RegenerativeFirstMomentOccupation.lean",
+    "source_name": "canonical_descriptor_empirical_tendsto",
+    "file": "sections/C09.tex",
+    "line": 159,
+    "nearest_preceding_label": "eq:C09-W1",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/RegenerativeFirstMomentOccupation.lean",
+    "source_name": "canonical_descriptor_weak_tendsto",
+    "file": "sections/C09.tex",
+    "line": 161,
+    "nearest_preceding_label": "eq:C09-W1",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/RegenerativeFirstMomentOccupation.lean",
+    "source_name": "canonical_property_factor",
+    "file": "sections/C09.tex",
+    "line": 181,
+    "nearest_preceding_label": "cor:C09-factor",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean",
+    "source_name": "four_actual_factorizations",
+    "file": "sections/C09.tex",
+    "line": 182,
+    "nearest_preceding_label": "cor:C09-factor",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/ExitRouting.lean",
+    "source_name": "exitRoutingInfiniteMeasure",
+    "file": "sections/C10.tex",
+    "line": 38,
+    "nearest_preceding_label": "eq:C10-conservation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/ExitConservation.lean",
+    "source_name": "exitRoutingInfinite_eq_prob_exit_in",
+    "file": "sections/C10.tex",
+    "line": 39,
+    "nearest_preceding_label": "eq:C10-conservation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/StoppedFutureRestart.lean",
+    "source_name": "firstExitStepMeasure_restrict_diff_region",
+    "file": "sections/C10.tex",
+    "line": 40,
+    "nearest_preceding_label": "eq:C10-conservation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/QSDDestination.lean",
+    "source_name": "qsdRoutingInfinite_eq_fraction",
+    "file": "sections/C10.tex",
+    "line": 60,
+    "nearest_preceding_label": "eq:C10-QSD-destination",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/QSDExitBoundary.lean",
+    "source_name": "qsdThetaOne_no_exit",
+    "file": "sections/C10.tex",
+    "line": 61,
+    "nearest_preceding_label": "eq:C10-QSD-destination",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/ShiftedPrefixStationarity.lean",
+    "source_name": "hasCanonicalLastStateRestart",
+    "file": "sections/C10.tex",
+    "line": 91,
+    "nearest_preceding_label": "eq:C10-infinite-restart",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/StoppedFutureRestart.lean",
+    "source_name": "firstExit_shift_event_restart",
+    "file": "sections/C10.tex",
+    "line": 92,
+    "nearest_preceding_label": "eq:C10-infinite-restart",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/StoppedFutureRestart.lean",
+    "source_name": "infiniteStoppedFutureMeasure_eq_bind",
+    "file": "sections/C10.tex",
+    "line": 93,
+    "nearest_preceding_label": "eq:C10-infinite-restart",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/RandomEntryOccupation.lean",
+    "source_name": "randomEntry_occupation_ae",
+    "file": "sections/C10.tex",
+    "line": 121,
+    "nearest_preceding_label": "eq:C10-inprob",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/InProbabilityOccupation.lean",
+    "source_name": "randomEntry_occupation_inProbability",
+    "file": "sections/C10.tex",
+    "line": 122,
+    "nearest_preceding_label": "eq:C10-inprob",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/InProbabilityOccupation.lean",
+    "source_name": "inProbability_deviation_eventually_le",
+    "file": "sections/C10.tex",
+    "line": 123,
+    "nearest_preceding_label": "eq:C10-inprob",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/Proposition42f.lean",
+    "source_name": "proposition_4_2f_almostSure",
+    "file": "sections/C10.tex",
+    "line": 153,
+    "nearest_preceding_label": "eq:C10-switch-margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/Proposition42f.lean",
+    "source_name": "proposition_4_2f_inProbability",
+    "file": "sections/C10.tex",
+    "line": 154,
+    "nearest_preceding_label": "eq:C10-switch-margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/SwitchGrounded.lean",
+    "source_name": "switch_grounded_confirmatory_uniformPR",
+    "file": "sections/C10.tex",
+    "line": 155,
+    "nearest_preceding_label": "eq:C10-switch-margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/SwitchWitnessModels.lean",
+    "source_name": "full_world_fixed",
+    "file": "sections/C10.tex",
+    "line": 172,
+    "nearest_preceding_label": "ex:C10-switch",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/SwitchWitnessExactGR.lean",
+    "source_name": "source_exactGR",
+    "file": "sections/C10.tex",
+    "line": 173,
+    "nearest_preceding_label": "ex:C10-switch",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/SwitchWitnessExactGR.lean",
+    "source_name": "target_exactGR",
+    "file": "sections/C10.tex",
+    "line": 174,
+    "nearest_preceding_label": "ex:C10-switch",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/SwitchWitnessMargin.lean",
+    "source_name": "full_constitutive_margin_ge_half",
+    "file": "sections/C10.tex",
+    "line": 175,
+    "nearest_preceding_label": "ex:C10-switch",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/SwitchWitnessOccupation.lean",
+    "source_name": "actual_successful_switch_occupation_ae",
+    "file": "sections/C10.tex",
+    "line": 176,
+    "nearest_preceding_label": "ex:C10-switch",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/ExitModels.lean",
+    "source_name": "f2Matrix",
+    "file": "sections/C10.tex",
+    "line": 198,
+    "nearest_preceding_label": "ex:C10-exit-boundaries",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/ExitFiniteWitness.lean",
+    "source_name": "f1_two_step_to_a",
+    "file": "sections/C10.tex",
+    "line": 199,
+    "nearest_preceding_label": "ex:C10-exit-boundaries",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/ExitAdversaries.lean",
+    "source_name": "f4_destination_arrival_not_exact_persistence",
+    "file": "sections/C10.tex",
+    "line": 200,
+    "nearest_preceding_label": "ex:C10-exit-boundaries",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/ExitLongHorizonWitness.lean",
+    "source_name": "actual_typed_thetaOne_QSD_and_leaking_other_state",
+    "file": "sections/C10.tex",
+    "line": 201,
+    "nearest_preceding_label": "ex:C10-exit-boundaries",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/AtomicBank.lean",
+    "source_name": "AtomicBank",
+    "file": "sections/C11.tex",
+    "line": 22,
+    "nearest_preceding_label": "def:C11:grammar",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/PartitionGrammar.lean",
+    "source_name": "PartitionGrammar",
+    "file": "sections/C11.tex",
+    "line": 22,
+    "nearest_preceding_label": "def:C11:grammar",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/CompatibleOverlap.lean",
+    "source_name": "applyCompatiblePatches_eq_of_membership",
+    "file": "sections/C11.tex",
+    "line": 39,
+    "nearest_preceding_label": "prop:C11:assembly",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/OverlapKernelAssembly.lean",
+    "source_name": "overlapModel_pathLaw_eq_of_membership",
+    "file": "sections/C11.tex",
+    "line": 39,
+    "nearest_preceding_label": "prop:C11:assembly",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/OverlapCanonicalBridge.lean",
+    "source_name": "overlapIntervention_margin_eq",
+    "file": "sections/C11.tex",
+    "line": 39,
+    "nearest_preceding_label": "prop:C11:assembly",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/OriginalInterventionBridge.lean",
+    "source_name": "admittedBlockIntervention_apply",
+    "file": "sections/C11.tex",
+    "line": 58,
+    "nearest_preceding_label": "prop:C11:effecttransport",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/EffectTransport.lean",
+    "source_name": "Coarsening.blockMargin_lift_eq",
+    "file": "sections/C11.tex",
+    "line": 58,
+    "nearest_preceding_label": "prop:C11:effecttransport",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/PRStatusTransport.lean",
+    "source_name": "Coarsening.uniformRelativePR_lift_iff",
+    "file": "sections/C11.tex",
+    "line": 58,
+    "nearest_preceding_label": "prop:C11:effecttransport",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/ConditionalMargins.lean",
+    "source_name": "jointOnly_conditionalMargins_eq_jointMargin",
+    "file": "sections/C11.tex",
+    "line": 81,
+    "nearest_preceding_label": "prop:C11:conditional",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/InteractionVector.lean",
+    "source_name": "interactionVector_norm_le_condUpdate_add_update",
+    "file": "sections/C11.tex",
+    "line": 92,
+    "nearest_preceding_label": "eq:C11:interaction",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/Minimality.lean",
+    "source_name": "exists_minimal_allowed_subblock",
+    "file": "sections/C11.tex",
+    "line": 113,
+    "nearest_preceding_label": "thm:C11:minimality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/LowerSetTransport.lean",
+    "source_name": "minimalPositive_iff_of_lowerSet_lifting",
+    "file": "sections/C11.tex",
+    "line": 113,
+    "nearest_preceding_label": "thm:C11:minimality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/B02ActualOriginalMarginFixture.lean",
+    "source_name": "actual_coarsening_does_not_preserve_minimality",
+    "file": "sections/C11.tex",
+    "line": 117,
+    "nearest_preceding_label": "C11:boundaries",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/B02LocalOriginalMarginClosure.lean",
+    "source_name": "original_local_minimality_without_global_isomorphism",
+    "file": "sections/C11.tex",
+    "line": 117,
+    "nearest_preceding_label": "C11:boundaries",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ConstitutiveQuasi/Certificate.lean",
+    "source_name": "FiniteConstitutiveCertificate.uniformConstitution",
+    "file": "sections/C12.tex",
+    "line": 21,
+    "nearest_preceding_label": "eq:C12:certificate",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ConstitutiveQuasi/CertificateTransport.lean",
+    "source_name": "transportFiniteConstitutiveCertificate",
+    "file": "sections/C12.tex",
+    "line": 46,
+    "nearest_preceding_label": "eq:C12:transport",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/PrimitiveMargin.lean",
+    "source_name": "transportPrimitiveFiniteConstitutiveCertificate",
+    "file": "sections/C12.tex",
+    "line": 46,
+    "nearest_preceding_label": "eq:C12:transport",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/PrimitiveMargin.lean",
+    "source_name": "PrimitiveErrorBounds.kernelBudget",
+    "file": "sections/C12.tex",
+    "line": 77,
+    "nearest_preceding_label": "eq:C12:prefixbudget",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/PrimitiveProductTV.lean",
+    "source_name": "inducedKernel_tv_le_primitive_product",
+    "file": "sections/C12.tex",
+    "line": 77,
+    "nearest_preceding_label": "eq:C12:prefixbudget",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/PrimitiveLipschitz.lean",
+    "source_name": "primitiveLipschitz_constitutiveMargin_abs_le",
+    "file": "sections/C12.tex",
+    "line": 90,
+    "nearest_preceding_label": "eq:C12:lipschitzmargin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/PrimitiveMargin.lean",
+    "source_name": "reportedPrimitiveMargin_abs_le",
+    "file": "sections/C12.tex",
+    "line": 90,
+    "nearest_preceding_label": "eq:C12:lipschitzmargin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/FinitePrimitiveMetric.lean",
+    "source_name": "PrimitiveMetricBounds.exists_weighted_coupling",
+    "file": "sections/C12.tex",
+    "line": 111,
+    "nearest_preceding_label": "eq:C12:metricbudget",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ConstitutiveQuasi/AdversarialExamples.lean",
+    "source_name": "noZeroHorizonFiniteConstitutiveCertificate",
+    "file": "sections/C12.tex",
+    "line": 123,
+    "nearest_preceding_label": "prop:C12:horizons",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ConstitutiveQuasi/CertificateExamples.lean",
+    "source_name": "positiveFiniteCertificate",
+    "file": "sections/C12.tex",
+    "line": 123,
+    "nearest_preceding_label": "prop:C12:horizons",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ConstitutiveQuasi/NonzeroErrorExample.lean",
+    "source_name": "randomizedPair",
+    "file": "sections/C12.tex",
+    "line": 125,
+    "nearest_preceding_label": "prop:C12:horizons",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ConstitutiveQuasi/AdversarialExamples.lean",
+    "source_name": "noStrategicApproximationPair_of_world_ne",
+    "file": "sections/C12.tex",
+    "line": 125,
+    "nearest_preceding_label": "prop:C12:horizons",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/PrimitiveAdversaries.lean",
+    "source_name": "qsd_is_not_uniform_persistence_witness",
+    "file": "sections/C12.tex",
+    "line": 127,
+    "nearest_preceding_label": "prop:C12:horizons",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/DependentHistoryCommonMass.lean",
+    "source_name": "prefix_tv_le_product",
+    "file": "sections/C13.tex",
+    "line": 41,
+    "nearest_preceding_label": "eq:C13:product",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/LocalizedHistoryTV.lean",
+    "source_name": "historyEvolution_tv_le_sum",
+    "file": "sections/C13.tex",
+    "line": 66,
+    "nearest_preceding_label": "eq:C13:localized",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/GoodHistoryVisit.lean",
+    "source_name": "historyEvolution_tv_le_goodVisits",
+    "file": "sections/C13.tex",
+    "line": 66,
+    "nearest_preceding_label": "eq:C13:localized",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FullPathProductTV.lean",
+    "source_name": "path_tv_le_product",
+    "file": "sections/C13.tex",
+    "line": 74,
+    "nearest_preceding_label": "eq:C13:wholepath",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/DiscountedInitialBudget.lean",
+    "source_name": "discounted_output_score_error_initial",
+    "file": "sections/C13.tex",
+    "line": 86,
+    "nearest_preceding_label": "eq:C13:discountbudget",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/DependentThreeStageSaturation.lean",
+    "source_name": "dependent_three_stage_halfL1_exact",
+    "file": "sections/C13.tex",
+    "line": 97,
+    "nearest_preceding_label": "C13:witnesses",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche10_q04_scope_receipt_addendum.lean",
+    "source_name": "original_margin_error_equals_charged_budget",
+    "file": "sections/C13.tex",
+    "line": 99,
+    "nearest_preceding_label": "C13:witnesses",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche7_q05_original_margin_addendum.lean",
+    "source_name": "fine_original_margin",
+    "file": "sections/C13.tex",
+    "line": 101,
+    "nearest_preceding_label": "C13:witnesses",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FiniteKantorovichDuality.lean",
+    "source_name": "exists_plan_of_w1DualLE",
+    "file": "sections/C14.tex",
+    "line": 31,
+    "nearest_preceding_label": "eq:C14:KR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FirstMomentKantorovichDuality.lean",
+    "source_name": "firstMoment_couplingW1_le_of_w1DualLE",
+    "file": "sections/C14.tex",
+    "line": 31,
+    "nearest_preceding_label": "eq:C14:KR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FirstMomentCompleteness.lean",
+    "source_name": "cauchySeq_has_limit",
+    "file": "sections/C14.tex",
+    "line": 37,
+    "nearest_preceding_label": "eq:C14:KR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/DirectDualContraction.lean",
+    "source_name": "isW1Contraction_of_test_images",
+    "file": "sections/C14.tex",
+    "line": 55,
+    "nearest_preceding_label": "eq:C14:testimages",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/DobrushinContraction.lean",
+    "source_name": "isW1Contraction_dobrushin",
+    "file": "sections/C14.tex",
+    "line": 61,
+    "nearest_preceding_label": "eq:C14:testimages",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/DobrushinContraction.lean",
+    "source_name": "isW1Contraction_doeblin",
+    "file": "sections/C14.tex",
+    "line": 61,
+    "nearest_preceding_label": "eq:C14:testimages",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/FiniteStateMetricContraction.lean",
+    "source_name": "StateMetricBounds.weighted_isW1Contraction",
+    "file": "sections/C14.tex",
+    "line": 68,
+    "nearest_preceding_label": "eq:C14:primitivefactor",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/FirstMomentKernel.lean",
+    "source_name": "preservesFirstMoment_of_drift",
+    "file": "sections/C14.tex",
+    "line": 87,
+    "nearest_preceding_label": "eq:C14:geometric",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/FirstMomentInvariant.lean",
+    "source_name": "automatic_invariant_and_convergence",
+    "file": "sections/C14.tex",
+    "line": 87,
+    "nearest_preceding_label": "eq:C14:geometric",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/ContractiveOccupation.lean",
+    "source_name": "invariantLaw_wasserstein_le",
+    "file": "sections/C14.tex",
+    "line": 105,
+    "nearest_preceding_label": "eq:C14:invariantperturb",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/GeneratedInvariantPerturbation.lean",
+    "source_name": "generated_coupling_bound",
+    "file": "sections/C14.tex",
+    "line": 105,
+    "nearest_preceding_label": "eq:C14:invariantperturb",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/ContractiveAdversaries.lean",
+    "source_name": "contraction_does_not_transfer_survival",
+    "file": "sections/C14.tex",
+    "line": 107,
+    "nearest_preceding_label": "eq:C14:invariantperturb",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/FiniteOccupationProperty.lean",
+    "source_name": "property_factor_unique_class",
+    "file": "sections/C15.tex",
+    "line": 33,
+    "nearest_preceding_label": "lem:C15:factor",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/FirstMomentOccupationProperty.lean",
+    "source_name": "property_factor_of_ae_empirical_limit",
+    "file": "sections/C15.tex",
+    "line": 33,
+    "nearest_preceding_label": "lem:C15:factor",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/FiniteOccupationFactorization.lean",
+    "source_name": "recurrentClass_unique_of_contraction",
+    "file": "sections/C15.tex",
+    "line": 37,
+    "nearest_preceding_label": "C15:profiles",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/RegenerativeData.lean",
+    "source_name": "Data.stationary_invariant",
+    "file": "sections/C15.tex",
+    "line": 47,
+    "nearest_preceding_label": "eq:C15:stationary",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/RegenerativeOccupationProperty.lean",
+    "source_name": "property_factor_regenerative",
+    "file": "sections/C15.tex",
+    "line": 49,
+    "nearest_preceding_label": "eq:C15:stationary",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/RegenerativeCompactOccupation.lean",
+    "source_name": "numericLimit_eq_functional_lawLimit",
+    "file": "sections/C15.tex",
+    "line": 51,
+    "nearest_preceding_label": "eq:C15:stationary",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/RegenerativeFirstMomentOccupation.lean",
+    "source_name": "canonical_descriptor_empirical_tendsto",
+    "file": "sections/C15.tex",
+    "line": 57,
+    "nearest_preceding_label": "eq:C15:reward",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean",
+    "source_name": "StateBudget",
+    "file": "sections/C15.tex",
+    "line": 63,
+    "nearest_preceding_label": "eq:C15:reward",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean",
+    "source_name": "DescriptorBudget",
+    "file": "sections/C15.tex",
+    "line": 63,
+    "nearest_preceding_label": "eq:C15:reward",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/FiniteOccupationFactorization.lean",
+    "source_name": "four_actual_factorizations",
+    "file": "sections/C15.tex",
+    "line": 75,
+    "nearest_preceding_label": "eq:C15:fourb",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/RegenerativeOccupationFactorization.lean",
+    "source_name": "four_actual_factorizations",
+    "file": "sections/C15.tex",
+    "line": 75,
+    "nearest_preceding_label": "eq:C15:fourb",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/RegenerativeCompactFactorization.lean",
+    "source_name": "four_actual_factorizations",
+    "file": "sections/C15.tex",
+    "line": 75,
+    "nearest_preceding_label": "eq:C15:fourb",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean",
+    "source_name": "four_actual_factorizations",
+    "file": "sections/C15.tex",
+    "line": 75,
+    "nearest_preceding_label": "eq:C15:fourb",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean",
+    "source_name": "generated_occupationMargin_robust",
+    "file": "sections/C15.tex",
+    "line": 91,
+    "nearest_preceding_label": "eq:C15:margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/FiniteMetricProtocol.lean",
+    "source_name": "MetricProtocolBounds.original_occupationMargin",
+    "file": "sections/C15.tex",
+    "line": 91,
+    "nearest_preceding_label": "eq:C15:margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/A04FourOutputNecessityCountermodel.lean",
+    "source_name": "no_general_three_output_margin_formula",
+    "file": "sections/C15.tex",
+    "line": 97,
+    "nearest_preceding_label": "C15:boundaries",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/A05SurvivalOccupationCountermodel.lean",
+    "source_name": "cannot_replace_full_path_survival_by_stationary_mass",
+    "file": "sections/C15.tex",
+    "line": 99,
+    "nearest_preceding_label": "C15:boundaries",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Quotient/PathLaw.lean",
+    "source_name": "pathLaw_map_eq_of_kernelIntertwines",
+    "file": "sections/C16.tex",
+    "line": 21,
+    "nearest_preceding_label": "eq:C16:path",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Quotient/Preservation.lean",
+    "source_name": "InterventionCompatibleStateQuotient",
+    "file": "sections/C16.tex",
+    "line": 48,
+    "nearest_preceding_label": "thm:C16:exact",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Quotient/Preservation.lean",
+    "source_name": "quotient_frozenFamilyUniformPR_iff",
+    "file": "sections/C16.tex",
+    "line": 48,
+    "nearest_preceding_label": "thm:C16:exact",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Quotient/GroundedPreservation.lean",
+    "source_name": "quotient_groundedFrozenFamilyUniformPR_iff",
+    "file": "sections/C16.tex",
+    "line": 48,
+    "nearest_preceding_label": "thm:C16:exact",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Quotient/GeometricQuotient.lean",
+    "source_name": "approxQuotient_prefix_tv_le_geometric",
+    "file": "sections/C16.tex",
+    "line": 78,
+    "nearest_preceding_label": "eq:C16:prefix",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Quotient/GeometricMargin.lean",
+    "source_name": "geometricQuotient_margin_abs_le",
+    "file": "sections/C16.tex",
+    "line": 85,
+    "nearest_preceding_label": "eq:C16:margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Quotient/NonstationaryProjectedTransport.lean",
+    "source_name": "projected_evolution_tv_le_product",
+    "file": "sections/C16.tex",
+    "line": 115,
+    "nearest_preceding_label": "eq:C16:nonstationary",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Quotient/DiscountedCanonicalMarginClosure.lean",
+    "source_name": "actual_canonical_discounted_original_margin",
+    "file": "sections/C16.tex",
+    "line": 115,
+    "nearest_preceding_label": "eq:C16:nonstationary",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Quotient/Q01NonLumpableProjectionCountermodel.lean",
+    "source_name": "no_autonomous_coarse_transition",
+    "file": "sections/C16.tex",
+    "line": 119,
+    "nearest_preceding_label": "C16:boundaries",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Quotient/ApproxAdversaries.lean",
+    "source_name": "small_defect_does_not_preserve_invariance",
+    "file": "sections/C16.tex",
+    "line": 121,
+    "nearest_preceding_label": "C16:boundaries",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ControlledKernel.lean",
+    "source_name": "feedback_preserves_world",
+    "file": "sections/C17.tex",
+    "line": 29,
+    "nearest_preceding_label": "eq:C17-feedback-row",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ControlledKernel.lean",
+    "source_name": "feedback_preserves_update",
+    "file": "sections/C17.tex",
+    "line": 29,
+    "nearest_preceding_label": "eq:C17-feedback-row",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ControlledKernel.lean",
+    "source_name": "feedbackMatrix_constant",
+    "file": "sections/C17.tex",
+    "line": 29,
+    "nearest_preceding_label": "eq:C17-feedback-row",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/MonitorOptimality.lean",
+    "source_name": "monitor_optimal_and_attained",
+    "file": "sections/C17.tex",
+    "line": 67,
+    "nearest_preceding_label": "thm:C17-monitor-optimality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/MonitorOptimality.lean",
+    "source_name": "monitor_trace_value_dominates_behavioral_history",
+    "file": "sections/C17.tex",
+    "line": 67,
+    "nearest_preceding_label": "thm:C17-monitor-optimality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/MonitorHistoryBridge.lean",
+    "source_name": "monitor_history_probability_optimal_and_attained",
+    "file": "sections/C17.tex",
+    "line": 67,
+    "nearest_preceding_label": "thm:C17-monitor-optimality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ResidenceEvent.lean",
+    "source_name": "hit_does_not_imply_stay",
+    "file": "sections/C17.tex",
+    "line": 82,
+    "nearest_preceding_label": "eq:C17-retry-event",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/AvoidResidenceMonitor.lean",
+    "source_name": "avoidScan_success_iff_block",
+    "file": "sections/C17.tex",
+    "line": 84,
+    "nearest_preceding_label": "eq:C17-retry-event",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/AvoidResidenceMonitor.lean",
+    "source_name": "danger_precedes_simultaneous_success",
+    "file": "sections/C17.tex",
+    "line": 84,
+    "nearest_preceding_label": "eq:C17-retry-event",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/AvoidResidenceMonitor.lean",
+    "source_name": "danger_after_success_does_not_undo",
+    "file": "sections/C17.tex",
+    "line": 84,
+    "nearest_preceding_label": "eq:C17-retry-event",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/MonitorEventOptimality.lean",
+    "source_name": "behavioralResidence_optimal_and_attained",
+    "file": "sections/C17.tex",
+    "line": 86,
+    "nearest_preceding_label": "eq:C17-retry-event",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/AdaptiveGrammarControl.lean",
+    "source_name": "typedChronologicalLaw_eq",
+    "file": "sections/C17.tex",
+    "line": 92,
+    "nearest_preceding_label": "eq:C17-retry-event",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/AdaptiveGrammarControl.lean",
+    "source_name": "adaptive_block_optimal_and_attained",
+    "file": "sections/C17.tex",
+    "line": 92,
+    "nearest_preceding_label": "eq:C17-retry-event",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/BeliefFilter.lean",
+    "source_name": "forward_belief",
+    "file": "sections/C18.tex",
+    "line": 46,
+    "nearest_preceding_label": "prop:C18-filter",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/BeliefFilter.lean",
+    "source_name": "observed_filter_law",
+    "file": "sections/C18.tex",
+    "line": 46,
+    "nearest_preceding_label": "prop:C18-filter",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/BeliefFilter.lean",
+    "source_name": "zero_word_mass",
+    "file": "sections/C18.tex",
+    "line": 46,
+    "nearest_preceding_label": "prop:C18-filter",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/BeliefAlpha.lean",
+    "source_name": "alpha_envelope",
+    "file": "sections/C18.tex",
+    "line": 85,
+    "nearest_preceding_label": "eq:C18-envelope",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/BeliefAlpha.lean",
+    "source_name": "optimalTree_attains",
+    "file": "sections/C18.tex",
+    "line": 85,
+    "nearest_preceding_label": "eq:C18-envelope",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/BeliefAlpha.lean",
+    "source_name": "value_convex",
+    "file": "sections/C18.tex",
+    "line": 85,
+    "nearest_preceding_label": "eq:C18-envelope",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/BeliefMonitor.lean",
+    "source_name": "monitored_history_dominated",
+    "file": "sections/C18.tex",
+    "line": 100,
+    "nearest_preceding_label": "eq:C18-common-menu",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/BeliefMonitor.lean",
+    "source_name": "monitored_history_attained",
+    "file": "sections/C18.tex",
+    "line": 100,
+    "nearest_preceding_label": "eq:C18-common-menu",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche9_d06_scope_receipt_addendum.lean",
+    "source_name": "one_prior_reachable_completion_values",
+    "file": "sections/C18.tex",
+    "line": 102,
+    "nearest_preceding_label": "eq:C18-common-menu",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche9_d06_scope_receipt_addendum.lean",
+    "source_name": "no_readout_only_reachable_completion_value",
+    "file": "sections/C18.tex",
+    "line": 102,
+    "nearest_preceding_label": "eq:C18-common-menu",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonstationaryOptimality.lean",
+    "source_name": "successProbability_eq_policyValue",
+    "file": "sections/C18.tex",
+    "line": 116,
+    "nearest_preceding_label": "eq:C18-nonstationary-atom",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonstationaryOptimality.lean",
+    "source_name": "successProbability_le_bellman",
+    "file": "sections/C18.tex",
+    "line": 116,
+    "nearest_preceding_label": "eq:C18-nonstationary-atom",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonstationaryOptimality.lean",
+    "source_name": "maximizingSchedule_actual_probability",
+    "file": "sections/C18.tex",
+    "line": 116,
+    "nearest_preceding_label": "eq:C18-nonstationary-atom",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonstationaryTypedTransport.lean",
+    "source_name": "typed_prefix_atom_transport",
+    "file": "sections/C18.tex",
+    "line": 116,
+    "nearest_preceding_label": "eq:C18-nonstationary-atom",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonstationaryTypedTransport.lean",
+    "source_name": "typed_prefixLaw_map",
+    "file": "sections/C18.tex",
+    "line": 116,
+    "nearest_preceding_label": "eq:C18-nonstationary-atom",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FlowPolicyOptimality.lean",
+    "source_name": "solveRiskFlow_none_iff_no_behavioral_policy",
+    "file": "sections/C19.tex",
+    "line": 59,
+    "nearest_preceding_label": "thm:C19-risk-optimality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FlowPolicyOptimality.lean",
+    "source_name": "solveRiskFlow_some_actual_optimal",
+    "file": "sections/C19.tex",
+    "line": 59,
+    "nearest_preceding_label": "thm:C19-risk-optimality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FlowPolicyOptimality.lean",
+    "source_name": "actualTerminalScore_eq_flowValue",
+    "file": "sections/C19.tex",
+    "line": 59,
+    "nearest_preceding_label": "thm:C19-risk-optimality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FlowRiskWitness.lean",
+    "source_name": "actual_half_attains",
+    "file": "sections/C19.tex",
+    "line": 68,
+    "nearest_preceding_label": "ex:C19-mixed-risk",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FlowRiskWitness.lean",
+    "source_name": "all_actual_feasible_success_le",
+    "file": "sections/C19.tex",
+    "line": 68,
+    "nearest_preceding_label": "ex:C19-mixed-risk",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FlowRiskWitness.lean",
+    "source_name": "full_risky_choice_is_infeasible",
+    "file": "sections/C19.tex",
+    "line": 68,
+    "nearest_preceding_label": "ex:C19-mixed-risk",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ThroughHorizonRiskMonitor.lean",
+    "source_name": "actual_risk_integral_eq_literal",
+    "file": "sections/C19.tex",
+    "line": 83,
+    "nearest_preceding_label": "eq:C19-full-risk",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ThroughHorizonRiskMonitor.lean",
+    "source_name": "actual_risk_probability_eq_occupancy",
+    "file": "sections/C19.tex",
+    "line": 83,
+    "nearest_preceding_label": "eq:C19-full-risk",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ThroughHorizonRiskMonitor.lean",
+    "source_name": "actual_success_integral_eq_original",
+    "file": "sections/C19.tex",
+    "line": 83,
+    "nearest_preceding_label": "eq:C19-full-risk",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/InfiniteSafetyOptimality.lean",
+    "source_name": "deterministic_stationary_infinite_optimum",
+    "file": "sections/C19.tex",
+    "line": 114,
+    "nearest_preceding_label": "eq:C19-infinite-optimum",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/InfiniteSafetyOptimality.lean",
+    "source_name": "infiniteSafety_isGreatest",
+    "file": "sections/C19.tex",
+    "line": 114,
+    "nearest_preceding_label": "eq:C19-infinite-optimum",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/InfiniteSafetyOptimality.lean",
+    "source_name": "invariantCore_iff_almostSureSafety",
+    "file": "sections/C19.tex",
+    "line": 127,
+    "nearest_preceding_label": "eq:C19-invariant-core",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/InfiniteSafetyLeakage.lean",
+    "source_name": "high_actual_finite_survival_zero_infinite",
+    "file": "sections/C19.tex",
+    "line": 129,
+    "nearest_preceding_label": "eq:C19-invariant-core",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/RationalGraphCompleteness.lean",
+    "source_name": "reachesB_iff_rationalReachable",
+    "file": "sections/C20.tex",
+    "line": 9,
+    "nearest_preceding_label": "sec:C20",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/RationalCramerCertification.lean",
+    "source_name": "referenceDirichlet_check_true",
+    "file": "sections/C20.tex",
+    "line": 42,
+    "nearest_preceding_label": "thm:C20-absorption",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ReferenceStationaryFamily.lean",
+    "source_name": "referenceStationaryFamily_check",
+    "file": "sections/C20.tex",
+    "line": 58,
+    "nearest_preceding_label": "thm:C20-stationary",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ReferenceTypedBridge.lean",
+    "source_name": "referenceClassCandidate_eq_native",
+    "file": "sections/C20.tex",
+    "line": 58,
+    "nearest_preceding_label": "thm:C20-stationary",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ReferenceProbability.lean",
+    "source_name": "referenceWeights_probability",
+    "file": "sections/C20.tex",
+    "line": 58,
+    "nearest_preceding_label": "thm:C20-stationary",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/TypedOriginalMenuMargin.lean",
+    "source_name": "typed_numericMargin_eq_original",
+    "file": "sections/C20.tex",
+    "line": 88,
+    "nearest_preceding_label": "thm:C20-original-margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/TypedOriginalMenuMargin.lean",
+    "source_name": "realized_numeric_menu_selected_dominates",
+    "file": "sections/C20.tex",
+    "line": 88,
+    "nearest_preceding_label": "thm:C20-original-margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C10ReleaseRegimeEquivalences.lean",
+    "source_name": "checkedFullReceipt_positive_iff_original_uniformPR_of_exactGR",
+    "file": "sections/C20.tex",
+    "line": 94,
+    "nearest_preceding_label": "thm:C20-original-margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C10ReleaseRegimeEquivalences.lean",
+    "source_name": "checkedFullReceipt_originalPR_iff_exactGR_and_support_of_literalMode",
+    "file": "sections/C20.tex",
+    "line": 94,
+    "nearest_preceding_label": "thm:C20-original-margin",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/StationaryOccupationObjective.lean",
+    "source_name": "rationalObjective_eq_actual",
+    "file": "sections/C21.tex",
+    "line": 42,
+    "nearest_preceding_label": "eq:C21-rational-objective",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/StationaryOccupationObjective.lean",
+    "source_name": "occupation_functional_integrable",
+    "file": "sections/C21.tex",
+    "line": 42,
+    "nearest_preceding_label": "eq:C21-rational-objective",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/StationaryMenuOptimization.lean",
+    "source_name": "stationary_menu_actual_optimal_and_attained",
+    "file": "sections/C21.tex",
+    "line": 64,
+    "nearest_preceding_label": "thm:C21-stationary-optimum",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/StationaryMenuOptimization.lean",
+    "source_name": "computedStationaryChoice_attains",
+    "file": "sections/C21.tex",
+    "line": 64,
+    "nearest_preceding_label": "thm:C21-stationary-optimum",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean",
+    "source_name": "certified_boolean_score_exact",
+    "file": "sections/C21.tex",
+    "line": 77,
+    "nearest_preceding_label": "eq:C21-boolean-score",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearBooleanClassEvaluator.lean",
+    "source_name": "boolean_rational_objective_eq_actual",
+    "file": "sections/C21.tex",
+    "line": 77,
+    "nearest_preceding_label": "eq:C21-boolean-score",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+    "source_name": "actual_two_absorbing_full_path_mixture",
+    "file": "sections/C21.tex",
+    "line": 91,
+    "nearest_preceding_label": "ex:C21-nonlinear-mixture",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+    "source_name": "actual_equal_mixture_original_nonlinear_score",
+    "file": "sections/C21.tex",
+    "line": 91,
+    "nearest_preceding_label": "ex:C21-nonlinear-mixture",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearMultichainAggregationFixture.lean",
+    "source_name": "actual_mixed_nonlinear_half_not_barycenter",
+    "file": "sections/C21.tex",
+    "line": 91,
+    "nearest_preceding_label": "ex:C21-nonlinear-mixture",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearPhaseBlindClassGeometry.lean",
+    "source_name": "native_phase_blind_actual_le_five_sixths",
+    "file": "sections/C21.tex",
+    "line": 111,
+    "nearest_preceding_label": "eq:C21-native-phase-row",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearPhaseBlindClassGeometry.lean",
+    "source_name": "native_phase_blind_actual_attained",
+    "file": "sections/C21.tex",
+    "line": 111,
+    "nearest_preceding_label": "eq:C21-native-phase-row",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearPhaseBlindClassGeometry.lean",
+    "source_name": "native_actual_phase_aware_strictly_beats_phase_blind",
+    "file": "sections/C21.tex",
+    "line": 111,
+    "nearest_preceding_label": "eq:C21-native-phase-row",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/RectangularGameLaw.lean",
+    "source_name": "rectangular_game_law_saddle",
+    "file": "sections/C22.tex",
+    "line": 45,
+    "nearest_preceding_label": "eq:C22-saddle",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/CommittedVsRectangularPathFixture.lean",
+    "source_name": "committed_vs_rectangular_separate_on_path_laws",
+    "file": "sections/C22.tex",
+    "line": 57,
+    "nearest_preceding_label": "ex:C22-commitment",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche10_d05_scope_receipt_addendum.lean",
+    "source_name": "rectangular_actual_minimum",
+    "file": "sections/C22.tex",
+    "line": 57,
+    "nearest_preceding_label": "ex:C22-commitment",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche10_d05_scope_receipt_addendum.lean",
+    "source_name": "committed_game_minimum",
+    "file": "sections/C22.tex",
+    "line": 57,
+    "nearest_preceding_label": "ex:C22-commitment",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/PrivateControlStageOptimizer.lean",
+    "source_name": "solvePrivateStage_returns",
+    "file": "sections/C22.tex",
+    "line": 93,
+    "nearest_preceding_label": "thm:C22-private",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/PrivateControlStageOptimizer.lean",
+    "source_name": "returned_isGreatest",
+    "file": "sections/C22.tex",
+    "line": 93,
+    "nearest_preceding_label": "thm:C22-private",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/PrivateControlStageOptimizer.lean",
+    "source_name": "returned_value_attained",
+    "file": "sections/C22.tex",
+    "line": 93,
+    "nearest_preceding_label": "thm:C22-private",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/PrivateControlStageOptimizer.lean",
+    "source_name": "returned_actual_strategic_value",
+    "file": "sections/C22.tex",
+    "line": 93,
+    "nearest_preceding_label": "thm:C22-private",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/PrivateControlStageFixture.lean",
+    "source_name": "timing_and_randomization_boundary",
+    "file": "sections/C22.tex",
+    "line": 99,
+    "nearest_preceding_label": "ex:C22-private-matching",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ResidenceContracts.lean",
+    "source_name": "robust_quantifier_order_separation",
+    "file": "sections/C22.tex",
+    "line": 99,
+    "nearest_preceding_label": "ex:C22-private-matching",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Games/DiscountedVerification.lean",
+    "source_name": "infinite_performance_difference",
+    "file": "sections/C23.tex",
+    "line": 39,
+    "nearest_preceding_label": "eq:C23-performance",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Games/DiscountedVerification.lean",
+    "source_name": "discounted_verification",
+    "file": "sections/C23.tex",
+    "line": 39,
+    "nearest_preceding_label": "eq:C23-performance",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Games/DiscountedVerification.lean",
+    "source_name": "discounted_attainment",
+    "file": "sections/C23.tex",
+    "line": 39,
+    "nearest_preceding_label": "eq:C23-performance",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Games/DiscountedTraceExpectation.lean",
+    "source_name": "payoff_eq_expected_path_sum",
+    "file": "sections/C23.tex",
+    "line": 39,
+    "nearest_preceding_label": "eq:C23-performance",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/StrategicWorld/InformationBoundary.lean",
+    "source_name": "actual_step_fair_matching",
+    "file": "sections/C23.tex",
+    "line": 41,
+    "nearest_preceding_label": "eq:C23-performance",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/StrategicWorld/InformationBoundary.lean",
+    "source_name": "no_unobserved_draw_copy",
+    "file": "sections/C23.tex",
+    "line": 41,
+    "nearest_preceding_label": "eq:C23-performance",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/OccupationTargets.lean",
+    "source_name": "transitionEntry_eq_numerical",
+    "file": "sections/C23.tex",
+    "line": 82,
+    "nearest_preceding_label": "eq:C23-X1-matrix",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/InterventionNumerics.lean",
+    "source_name": "elementaryUpdate_eq_updateL",
+    "file": "sections/C23.tex",
+    "line": 82,
+    "nearest_preceding_label": "eq:C23-X1-matrix",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/FullStrategyCertificate.lean",
+    "source_name": "exact_behavioral_performance_difference",
+    "file": "sections/C23.tex",
+    "line": 107,
+    "nearest_preceding_label": "eq:C23-X1-full-history",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/FullStrategyTrace.lean",
+    "source_name": "expected_exact_behavioral_performance_difference",
+    "file": "sections/C23.tex",
+    "line": 107,
+    "nearest_preceding_label": "eq:C23-X1-full-history",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/StrategyOriginalBridge.lean",
+    "source_name": "baseline_trace_stateLaw_eq_original",
+    "file": "sections/C23.tex",
+    "line": 107,
+    "nearest_preceding_label": "eq:C23-X1-full-history",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/ExactMargins.lean",
+    "source_name": "exactEffect_attainers",
+    "file": "sections/C23.tex",
+    "line": 146,
+    "nearest_preceding_label": "eq:C23-X1-full-history",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/ExactMargins.lean",
+    "source_name": "component_original_margin",
+    "file": "sections/C23.tex",
+    "line": 146,
+    "nearest_preceding_label": "eq:C23-X1-full-history",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/TiedStartDomainFixture.lean",
+    "source_name": "omitted_domain_same_numeric_inf",
+    "file": "sections/C23.tex",
+    "line": 148,
+    "nearest_preceding_label": "eq:C23-X1-full-history",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/TiedStartDomainFixture.lean",
+    "source_name": "omitted_domain_not_original",
+    "file": "sections/C23.tex",
+    "line": 148,
+    "nearest_preceding_label": "eq:C23-X1-full-history",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/OccupationTargets.lean",
+    "source_name": "actual_poisson_identity",
+    "file": "sections/C23.tex",
+    "line": 161,
+    "nearest_preceding_label": "eq:C23-X1-poisson",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/OccupationTargets.lean",
+    "source_name": "canonical_occupation_target_ae",
+    "file": "sections/C23.tex",
+    "line": 161,
+    "nearest_preceding_label": "eq:C23-X1-poisson",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/Comparison.lean",
+    "source_name": "replete_not_exactGR",
+    "file": "sections/C23.tex",
+    "line": 163,
+    "nearest_preceding_label": "eq:C23-X1-poisson",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/Assumption41.lean",
+    "source_name": "DescriptorHasTwoValues",
+    "file": "sections/C23.tex",
+    "line": 163,
+    "nearest_preceding_label": "eq:C23-X1-poisson",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/Occupation.lean",
+    "source_name": "IsDescriptorNondegenerate",
+    "file": "sections/C23.tex",
+    "line": 163,
+    "nearest_preceding_label": "eq:C23-X1-poisson",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableFiniteProduct.lean",
+    "source_name": "actual_transition",
+    "file": "sections/C24.tex",
+    "line": 34,
+    "nearest_preceding_label": "prop:C24-product",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+    "source_name": "matched_closed_loop_all_initial_paths",
+    "file": "sections/C24.tex",
+    "line": 50,
+    "nearest_preceding_label": "thm:C24-matched",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+    "source_name": "matched_open_loop_all_initial_paths",
+    "file": "sections/C24.tex",
+    "line": 50,
+    "nearest_preceding_label": "thm:C24-matched",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+    "source_name": "matched_closed_loop_original_margin",
+    "file": "sections/C24.tex",
+    "line": 50,
+    "nearest_preceding_label": "thm:C24-matched",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableProductTwoOriginalMarginClosure.lean",
+    "source_name": "matched_open_loop_original_margin",
+    "file": "sections/C24.tex",
+    "line": 50,
+    "nearest_preceding_label": "thm:C24-matched",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/AdaptationBound.lean",
+    "source_name": "abs_closedLoop_sub_openLoop_le_adapt",
+    "file": "sections/C24.tex",
+    "line": 58,
+    "nearest_preceding_label": "eq:C24-protocol-gap",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableProductProtocols.lean",
+    "source_name": "original_margin_comparison",
+    "file": "sections/C24.tex",
+    "line": 58,
+    "nearest_preceding_label": "eq:C24-protocol-gap",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/BehavioralAutonomy.lean",
+    "source_name": "row_iff_all_histories",
+    "file": "sections/C24.tex",
+    "line": 75,
+    "nearest_preceding_label": "prop:C24-row-history",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/BehavioralAutonomy.lean",
+    "source_name": "exists_row_iff_all_histories",
+    "file": "sections/C24.tex",
+    "line": 75,
+    "nearest_preceding_label": "prop:C24-row-history",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/StrictMA2Obstruction.lean",
+    "source_name": "strict_anchors_pathLaw_eq",
+    "file": "sections/C24.tex",
+    "line": 106,
+    "nearest_preceding_label": "thm:C24-autonomy",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/AutonomousAEMechanisms.lean",
+    "source_name": "ae_anchors_pathLaw_eq",
+    "file": "sections/C24.tex",
+    "line": 106,
+    "nearest_preceding_label": "thm:C24-autonomy",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/M02ActualMarkedHistoryFixture.lean",
+    "source_name": "actual_marked_diagonal_separation",
+    "file": "sections/C24.tex",
+    "line": 115,
+    "nearest_preceding_label": "thm:C24-autonomy",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MarkedStrategicPathCountermodel.lean",
+    "source_name": "original_strict_anchor_premise_rejected",
+    "file": "sections/C24.tex",
+    "line": 117,
+    "nearest_preceding_label": "thm:C24-autonomy",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/FeasibleAnchors.lean",
+    "source_name": "keyLaw_feasible_iff",
+    "file": "sections/C24.tex",
+    "line": 135,
+    "nearest_preceding_label": "prop:C24-legal-fibre",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/FeasibleAnchors.lean",
+    "source_name": "exists_feasible_keyKernel_iff",
+    "file": "sections/C24.tex",
+    "line": 135,
+    "nearest_preceding_label": "prop:C24-legal-fibre",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/FeasibleAnchors.lean",
+    "source_name": "exists_feasible_strictAnchor_iff",
+    "file": "sections/C24.tex",
+    "line": 135,
+    "nearest_preceding_label": "prop:C24-legal-fibre",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/F03ActualInfeasibleAnchor.lean",
+    "source_name": "all_pointwise_menus_nonempty_but_global_anchor_impossible",
+    "file": "sections/C24.tex",
+    "line": 137,
+    "nearest_preceding_label": "prop:C24-legal-fibre",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableNatClockTransport.lean",
+    "source_name": "natural_scheduled_row",
+    "file": "sections/C24.tex",
+    "line": 147,
+    "nearest_preceding_label": "prop:C24-legal-fibre",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableNatClockTransport.lean",
+    "source_name": "natural_projection",
+    "file": "sections/C24.tex",
+    "line": 147,
+    "nearest_preceding_label": "prop:C24-legal-fibre",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableNatClockTransport.lean",
+    "source_name": "protocol_world_eq",
+    "file": "sections/C24.tex",
+    "line": 147,
+    "nearest_preceding_label": "prop:C24-legal-fibre",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/CorrelatedMediator.lean",
+    "source_name": "mediator_mixture_eq",
+    "file": "sections/C24.tex",
+    "line": 159,
+    "nearest_preceding_label": "eq:C24-mediator",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/CorrelatedMediator.lean",
+    "source_name": "withMediatedActions_action",
+    "file": "sections/C24.tex",
+    "line": 159,
+    "nearest_preceding_label": "eq:C24-mediator",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/FiniteMediation.lean",
+    "source_name": "mediation_identification_on_support",
+    "file": "sections/C25.tex",
+    "line": 70,
+    "nearest_preceding_label": "eq:C25-identification",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/FiniteMediation.lean",
+    "source_name": "mediation_identification",
+    "file": "sections/C25.tex",
+    "line": 70,
+    "nearest_preceding_label": "eq:C25-identification",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/FiniteMediation.lean",
+    "source_name": "signed_effect_decomposition",
+    "file": "sections/C25.tex",
+    "line": 80,
+    "nearest_preceding_label": "eq:C25-decomposition",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/PositiveMediationWitness.lean",
+    "source_name": "observationalMass_pos",
+    "file": "sections/C25.tex",
+    "line": 104,
+    "nearest_preceding_label": "eq:C25-positive-values",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/PositiveMediationWitness.lean",
+    "source_name": "identified_for_every_treatment",
+    "file": "sections/C25.tex",
+    "line": 104,
+    "nearest_preceding_label": "eq:C25-positive-values",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/PositiveMediationWitness.lean",
+    "source_name": "four_intervention_values",
+    "file": "sections/C25.tex",
+    "line": 104,
+    "nearest_preceding_label": "eq:C25-positive-values",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/FiniteMediation.lean",
+    "source_name": "two_SCMs_same_observational_law",
+    "file": "sections/C25.tex",
+    "line": 123,
+    "nearest_preceding_label": "prop:C25-nonidentification",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/FiniteMediation.lean",
+    "source_name": "two_SCMs_different_joint_do",
+    "file": "sections/C25.tex",
+    "line": 123,
+    "nearest_preceding_label": "prop:C25-nonidentification",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/FiniteMediation.lean",
+    "source_name": "two_SCMs_positivity_failure",
+    "file": "sections/C25.tex",
+    "line": 123,
+    "nearest_preceding_label": "prop:C25-nonidentification",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/SeamReduction.lean",
+    "source_name": "seam_rank_le_two",
+    "file": "sections/C26.tex",
+    "line": 20,
+    "nearest_preceding_label": "eq:C26:commonmode",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/SeamReduction.lean",
+    "source_name": "seam_constant_diagonal",
+    "file": "sections/C26.tex",
+    "line": 20,
+    "nearest_preceding_label": "eq:C26:commonmode",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/FiniteDetection.lean",
+    "source_name": "exists_legal_negative_of_approximation",
+    "file": "sections/C26.tex",
+    "line": 67,
+    "nearest_preceding_label": "thm:C26:detection",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/ShellSchur.lean",
+    "source_name": "shell_equations_iff",
+    "file": "sections/C26.tex",
+    "line": 96,
+    "nearest_preceding_label": "eq:C26:derivative",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/ShellResolvent.lean",
+    "source_name": "scalarShellSecular_hasDerivAt",
+    "file": "sections/C26.tex",
+    "line": 96,
+    "nearest_preceding_label": "eq:C26:derivative",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/SingularCompatibility.lean",
+    "source_name": "negative_resolvent_kernel_projection",
+    "file": "sections/C26.tex",
+    "line": 119,
+    "nearest_preceding_label": "eq:C26:pole",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/SingularCompatibility.lean",
+    "source_name": "denominator_free_kernel_rigidity",
+    "file": "sections/C26.tex",
+    "line": 131,
+    "nearest_preceding_label": "eq:C26:zerotransfer",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/GramSeparation.lean",
+    "source_name": "gram_operator_perturbation_negative",
+    "file": "sections/C26.tex",
+    "line": 146,
+    "nearest_preceding_label": "eq:C26:Gram",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/E05FullGramMaskingCountermodel.lean",
+    "source_name": "original_signed_negative_but_total_positive",
+    "file": "sections/C26.tex",
+    "line": 146,
+    "nearest_preceding_label": "eq:C26:Gram",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/SeamReduction.lean",
+    "source_name": "constitutiveMargin_commonMode",
+    "file": "sections/C26.tex",
+    "line": 152,
+    "nearest_preceding_label": "eq:C26:Gram",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/GramSeparation.lean",
+    "source_name": "constitutiveEffect_gram_witness",
+    "file": "sections/C26.tex",
+    "line": 152,
+    "nearest_preceding_label": "eq:C26:Gram",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/FiniteDetection.lean",
+    "source_name": "actual_effect_pos_of_legal_approximation",
+    "file": "sections/C26.tex",
+    "line": 152,
+    "nearest_preceding_label": "eq:C26:Gram",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Examples/PeriodicExactGR.lean",
+    "source_name": "proposition_8_1",
+    "file": "sections/C27.tex",
+    "line": 21,
+    "nearest_preceding_label": "ex:periodic-original",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Examples/FactorizationCounterexample.lean",
+    "source_name": "factorization_nonidentification",
+    "file": "sections/C27.tex",
+    "line": 39,
+    "nearest_preceding_label": "ex:bernoulli-factorization",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Examples/ConstitutiveNoninvariance.lean",
+    "source_name": "witnessConvergenceMode",
+    "file": "sections/C27.tex",
+    "line": 39,
+    "nearest_preceding_label": "ex:bernoulli-factorization",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Examples/QSDCounterexample.lean",
+    "source_name": "not_uniformly_finitePersistent",
+    "file": "sections/C27.tex",
+    "line": 48,
+    "nearest_preceding_label": "ex:qsd-uniform",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/EconomicWitness/Model.lean",
+    "source_name": "model",
+    "file": "sections/C27.tex",
+    "line": 79,
+    "nearest_preceding_label": "thm:economic-full",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/EconomicWitness/Incentives.lean",
+    "source_name": "expected_behavioral_optimality",
+    "file": "sections/C27.tex",
+    "line": 79,
+    "nearest_preceding_label": "thm:economic-full",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/EconomicWitness/ExactRegime.lean",
+    "source_name": "original_confirmatoryGR",
+    "file": "sections/C27.tex",
+    "line": 79,
+    "nearest_preceding_label": "thm:economic-full",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/EconomicWitness/Constitution.lean",
+    "source_name": "original_grounded_confirmatory_uniformPR",
+    "file": "sections/C27.tex",
+    "line": 79,
+    "nearest_preceding_label": "thm:economic-full",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/EconomicWitness/Regression.lean",
+    "source_name": "baseline_leak_not_original_exactGR",
+    "file": "sections/C27.tex",
+    "line": 83,
+    "nearest_preceding_label": "thm:economic-full",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "apps/permansson/application-successor/src/permansson_app/data/capabilities.json",
+    "source_name": "exact_profiles",
+    "file": "sections/C29.tex",
+    "line": 76,
+    "nearest_preceding_label": "tab:profiles",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "apps/permansson/application-successor/docs/RELEASE_ACCEPTANCE.md",
+    "source_name": "successor-finite-numeric.v1",
+    "file": "sections/C29.tex",
+    "line": 76,
+    "nearest_preceding_label": "tab:profiles",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "apps/permansson/closure-successor/cli.py",
+    "source_name": "replay",
+    "file": "sections/C29.tex",
+    "line": 86,
+    "nearest_preceding_label": "sub:C29:04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "apps/permansson/closure-successor-c11/cli.py",
+    "source_name": "replay",
+    "file": "sections/C29.tex",
+    "line": 86,
+    "nearest_preceding_label": "sub:C29:04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/c10_emit_golden_bridge.py",
+    "source_name": "emit_golden_bridge",
+    "file": "sections/C29.tex",
+    "line": 86,
+    "nearest_preceding_label": "sub:C29:04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/c11_emit_stationary_lean.py",
+    "source_name": "emit_source",
+    "file": "sections/C29.tex",
+    "line": 86,
+    "nearest_preceding_label": "sub:C29:04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/PolishDescriptor.lean",
+    "source_name": "boundedCompatibleMetric",
+    "file": "appendices/A_foundations.tex",
+    "line": 44,
+    "nearest_preceding_label": "eq:A-BL-criterion",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/PolishDescriptor.lean",
+    "source_name": "hasBoundedLipschitzWeakCriterion",
+    "file": "appendices/A_foundations.tex",
+    "line": 45,
+    "nearest_preceding_label": "eq:A-BL-criterion",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/PolishDescriptor.lean",
+    "source_name": "Proposition41aCertificate",
+    "file": "appendices/A_foundations.tex",
+    "line": 46,
+    "nearest_preceding_label": "eq:A-BL-criterion",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/PolishDescriptor.lean",
+    "source_name": "natDiracProba_not_tight",
+    "file": "appendices/A_foundations.tex",
+    "line": 51,
+    "nearest_preceding_label": "ex:A-escaping-Dirac",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/PolishDescriptor.lean",
+    "source_name": "natDiracProba_no_weak_limit",
+    "file": "appendices/A_foundations.tex",
+    "line": 52,
+    "nearest_preceding_label": "ex:A-escaping-Dirac",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/A01SupnormClassCountermodel.lean",
+    "source_name": "legitimate_bounded_lipschitz_witness_not_unit_supnorm",
+    "file": "appendices/A_foundations.tex",
+    "line": 59,
+    "nearest_preceding_label": "ex:A-dual-class",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/CountableEmpiricalWeak.lean",
+    "source_name": "weak_of_all_bounded_averages",
+    "file": "appendices/A_foundations.tex",
+    "line": 74,
+    "nearest_preceding_label": "lem:A-countable-tests",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/CanonicalInitialDensity.lean",
+    "source_name": "pathLaw_eq_withDensity",
+    "file": "appendices/A_foundations.tex",
+    "line": 86,
+    "nearest_preceding_label": "lem:A-initial-mixture",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/RegimeExit/RandomEntryOccupation.lean",
+    "source_name": "pathLaw_eq_bind",
+    "file": "appendices/A_foundations.tex",
+    "line": 87,
+    "nearest_preceding_label": "lem:A-initial-mixture",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/StrategicWorld/InducedKernel.lean",
+    "source_name": "inducedKernel_apply",
+    "file": "appendices/C_foundations.tex",
+    "line": 19,
+    "nearest_preceding_label": "eq:C-app-kernel",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/StrategicWorld/WellPosedness.lean",
+    "source_name": "pathLaw_existsUnique",
+    "file": "appendices/C_foundations.tex",
+    "line": 20,
+    "nearest_preceding_label": "eq:C-app-kernel",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/CompProdPushforward.lean",
+    "source_name": "compProd_map_left_eq_map_compProd_comap",
+    "file": "appendices/C_foundations.tex",
+    "line": 36,
+    "nearest_preceding_label": "lem:C-compProd",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/StrategicWorld/DeterministicOrbit.lean",
+    "source_name": "pathLaw_dirac_of_deterministic",
+    "file": "appendices/C_foundations.tex",
+    "line": 47,
+    "nearest_preceding_label": "lem:C-deterministic",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/StrategicWorld/InformationBoundary.lean",
+    "source_name": "actual_step_fair_matching",
+    "file": "appendices/C_foundations.tex",
+    "line": 62,
+    "nearest_preceding_label": "prop:C-information",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/StrategicWorld/InformationBoundary.lean",
+    "source_name": "no_unobserved_draw_copy",
+    "file": "appendices/C_foundations.tex",
+    "line": 63,
+    "nearest_preceding_label": "prop:C-information",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/ExitTimeExpectation.lean",
+    "source_name": "expectedExitTime_eq_greenSeries",
+    "file": "appendices/C_foundations.tex",
+    "line": 83,
+    "nearest_preceding_label": "eq:C-app-Green",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/Persistence.lean",
+    "source_name": "finitePersistence_iff_killed",
+    "file": "appendices/C_foundations.tex",
+    "line": 84,
+    "nearest_preceding_label": "eq:C-app-Green",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/Persistence.lean",
+    "source_name": "oneStepRetention_pow_lowerBound",
+    "file": "appendices/C_foundations.tex",
+    "line": 85,
+    "nearest_preceding_label": "eq:C-app-Green",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/RepresentationEquivalence.lean",
+    "source_name": "exactGR_iff_of_inducedKernel_eq",
+    "file": "appendices/C_foundations.tex",
+    "line": 101,
+    "nearest_preceding_label": "thm:C-signature",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/GroundedRepresentationEquivalence.lean",
+    "source_name": "groundedPropertyRelative_iff_of_kernel_eq",
+    "file": "appendices/C_foundations.tex",
+    "line": 102,
+    "nearest_preceding_label": "thm:C-signature",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/FamilyEquivalence.lean",
+    "source_name": "hasConstitutiveWitness_iff_of_familyEquivalence",
+    "file": "appendices/C_foundations.tex",
+    "line": 103,
+    "nearest_preceding_label": "thm:C-signature",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/FamilyEquivalence.lean",
+    "source_name": "noConstitutiveWitness_iff_of_familyEquivalence",
+    "file": "appendices/C_foundations.tex",
+    "line": 104,
+    "nearest_preceding_label": "thm:C-signature",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/GroundedFamilyEquivalence.lean",
+    "source_name": "groundedFrozenFamilyUniformPR_iff_of_signature_match",
+    "file": "appendices/C_foundations.tex",
+    "line": 105,
+    "nearest_preceding_label": "thm:C-signature",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/Perturbation.lean",
+    "source_name": "constitutiveEffect_perturbation_abs_le",
+    "file": "appendices/C_foundations.tex",
+    "line": 124,
+    "nearest_preceding_label": "lem:C-output-errors",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/Perturbation.lean",
+    "source_name": "constitutiveMargin_perturbation_abs_le",
+    "file": "appendices/C_foundations.tex",
+    "line": 125,
+    "nearest_preceding_label": "lem:C-output-errors",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/Perturbation.lean",
+    "source_name": "robustUniformConstitution",
+    "file": "appendices/C_foundations.tex",
+    "line": 126,
+    "nearest_preceding_label": "lem:C-output-errors",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteMarkovMartingaleOrthogonality.lean",
+    "source_name": "increment_pairwise_orthogonal",
+    "file": "appendices/D_occupation.tex",
+    "line": 23,
+    "nearest_preceding_label": "lem:D-innovation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteMarkovMartingaleVariance.lean",
+    "source_name": "canonical_martingale_second_moment_le_time",
+    "file": "appendices/D_occupation.tex",
+    "line": 24,
+    "nearest_preceding_label": "lem:D-innovation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteMarkovMartingaleSquareLaw.lean",
+    "source_name": "square_normalized_ae_tendsto_zero",
+    "file": "appendices/D_occupation.tex",
+    "line": 25,
+    "nearest_preceding_label": "lem:D-innovation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteMarkovInterpolation.lean",
+    "source_name": "partialSum_time_lipschitz",
+    "file": "appendices/D_occupation.tex",
+    "line": 26,
+    "nearest_preceding_label": "lem:D-innovation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteOccupationTelescoping.lean",
+    "source_name": "occupationDrift_telescope",
+    "file": "appendices/D_occupation.tex",
+    "line": 34,
+    "nearest_preceding_label": "eq:D-residual",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteOccupationLimitFromResidual.lean",
+    "source_name": "tendsto_unique_stationary_of_residual",
+    "file": "appendices/D_occupation.tex",
+    "line": 35,
+    "nearest_preceding_label": "eq:D-residual",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteOccupationMeasureBridge.lean",
+    "source_name": "canonical_physical_occupation_ae_limit",
+    "file": "appendices/D_occupation.tex",
+    "line": 36,
+    "nearest_preceding_label": "eq:D-residual",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/AbsorbingFamily.lean",
+    "source_name": "HasAlmostSureAbsorption",
+    "file": "appendices/D_occupation.tex",
+    "line": 51,
+    "nearest_preceding_label": "lem:D-block",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/KernelBlockSurvival.lean",
+    "source_name": "geometric_endpoint_power_of_absorbing_block",
+    "file": "appendices/D_occupation.tex",
+    "line": 52,
+    "nearest_preceding_label": "lem:D-block",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/TypedAlmostSureAbsorption.lean",
+    "source_name": "canonical_almostSureAbsorption",
+    "file": "appendices/D_occupation.tex",
+    "line": 53,
+    "nearest_preceding_label": "lem:D-block",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/TypedStrategicWitness.lean",
+    "source_name": "inducedKernel_atom_entry",
+    "file": "appendices/D_occupation.tex",
+    "line": 94,
+    "nearest_preceding_label": "eq:D-endpoints",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/TypedStrategicWitness.lean",
+    "source_name": "inducedKernel_eq_rational_transport",
+    "file": "appendices/D_occupation.tex",
+    "line": 95,
+    "nearest_preceding_label": "eq:D-endpoints",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ExactRationalAbsorption.lean",
+    "source_name": "hitting_u_closed",
+    "file": "appendices/D_occupation.tex",
+    "line": 96,
+    "nearest_preceding_label": "eq:D-endpoints",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ExactRationalAbsorption.lean",
+    "source_name": "hitting_t_closed",
+    "file": "appendices/D_occupation.tex",
+    "line": 97,
+    "nearest_preceding_label": "eq:D-endpoints",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/TypedRandomLimitDistribution.lean",
+    "source_name": "complete_random_limit_law_closed",
+    "file": "appendices/D_occupation.tex",
+    "line": 98,
+    "nearest_preceding_label": "eq:D-endpoints",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ExactSixStateFullRandomLaw.lean",
+    "source_name": "full_random_occupation_law_u",
+    "file": "appendices/D_occupation.tex",
+    "line": 139,
+    "nearest_preceding_label": "eq:D-six-random",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ExactSixStateFullRandomLaw.lean",
+    "source_name": "full_random_occupation_law_t",
+    "file": "appendices/D_occupation.tex",
+    "line": 140,
+    "nearest_preceding_label": "eq:D-six-random",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ExactSixStateObservedGR.lean",
+    "source_name": "observedExactGeneratedRegime",
+    "file": "appendices/D_occupation.tex",
+    "line": 141,
+    "nearest_preceding_label": "eq:D-six-random",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ExactSixStateC3Witness.lean",
+    "source_name": "identity_no_exactGR_for_any_target",
+    "file": "appendices/D_occupation.tex",
+    "line": 142,
+    "nearest_preceding_label": "eq:D-six-random",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ExactSixStateMarginalOscillation.lean",
+    "source_name": "a0_empirical_converges_piA",
+    "file": "appendices/D_occupation.tex",
+    "line": 143,
+    "nearest_preceding_label": "eq:D-six-random",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ExactSixStateQuotient.lean",
+    "source_name": "class_quotient_exact",
+    "file": "appendices/D_occupation.tex",
+    "line": 148,
+    "nearest_preceding_label": "eq:D-six-random",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ExactSixStateUnreachable.lean",
+    "source_name": "A_cannot_reach_B",
+    "file": "appendices/D_occupation.tex",
+    "line": 149,
+    "nearest_preceding_label": "eq:D-six-random",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteBasinClassification.lean",
+    "source_name": "unreachable_class_mass_zero",
+    "file": "appendices/D_occupation.tex",
+    "line": 150,
+    "nearest_preceding_label": "eq:D-six-random",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ExactSixStateTargetDisruption.lean",
+    "source_name": "intervention_world_fixed",
+    "file": "appendices/D_occupation.tex",
+    "line": 170,
+    "nearest_preceding_label": "eq:D-soft",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/SharpFamilyResponseWitness.lean",
+    "source_name": "disrupted_sharp_eq_false",
+    "file": "appendices/D_occupation.tex",
+    "line": 171,
+    "nearest_preceding_label": "eq:D-soft",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/ExactSixStateC8SupportWitness.lean",
+    "source_name": "same_intervened_positive_support",
+    "file": "appendices/D_occupation.tex",
+    "line": 172,
+    "nearest_preceding_label": "eq:D-soft",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/FiniteSupportCounterexamples.lean",
+    "source_name": "support_equal_but_actual_kernels_distinct",
+    "file": "appendices/D_occupation.tex",
+    "line": 173,
+    "nearest_preceding_label": "eq:D-soft",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/GroundedC6Response.lean",
+    "source_name": "frozen_event_factors",
+    "file": "appendices/D_occupation.tex",
+    "line": 180,
+    "nearest_preceding_label": "eq:D-soft",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/GroundedC6Response.lean",
+    "source_name": "groundedRelativePR",
+    "file": "appendices/D_occupation.tex",
+    "line": 181,
+    "nearest_preceding_label": "eq:D-soft",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/RecurrentCounterexamples.lean",
+    "source_name": "no_original_assumption41_of_subsingleton",
+    "file": "appendices/D_occupation.tex",
+    "line": 188,
+    "nearest_preceding_label": "eq:D-soft",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/Counterexamples.lean",
+    "source_name": "no_universal_terminal_limit",
+    "file": "appendices/D_occupation.tex",
+    "line": 189,
+    "nearest_preceding_label": "eq:D-soft",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/HopfMaximal.lean",
+    "source_name": "finite_maximal_integral_nonneg",
+    "file": "appendices/E_ergodic.tex",
+    "line": 32,
+    "nearest_preceding_label": "eq:E-maximal",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/HopfMaximal.lean",
+    "source_name": "integral_nonneg_of_positive_partial_sums",
+    "file": "appendices/E_ergodic.tex",
+    "line": 33,
+    "nearest_preceding_label": "eq:E-maximal",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/L1Maximal.lean",
+    "source_name": "maximalEvent_measure_bound",
+    "file": "appendices/E_ergodic.tex",
+    "line": 34,
+    "nearest_preceding_label": "eq:E-maximal",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/BoundedOrbitAverages.lean",
+    "source_name": "upperAverage_invariant",
+    "file": "appendices/E_ergodic.tex",
+    "line": 53,
+    "nearest_preceding_label": "thm:E-bounded-Birkhoff",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/BoundedBirkhoff.lean",
+    "source_name": "bounded_birkhoff",
+    "file": "appendices/E_ergodic.tex",
+    "line": 54,
+    "nearest_preceding_label": "thm:E-bounded-Birkhoff",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/BoundedBirkhoffConditional.lean",
+    "source_name": "bounded_birkhoff_condExp",
+    "file": "appendices/E_ergodic.tex",
+    "line": 55,
+    "nearest_preceding_label": "thm:E-bounded-Birkhoff",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/BoundedBirkhoffRegression.lean",
+    "source_name": "identity_limits_distinct",
+    "file": "appendices/E_ergodic.tex",
+    "line": 58,
+    "nearest_preceding_label": "thm:E-bounded-Birkhoff",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/BoundedBirkhoffRegression.lean",
+    "source_name": "reset_conditional_time_average",
+    "file": "appendices/E_ergodic.tex",
+    "line": 59,
+    "nearest_preceding_label": "thm:E-bounded-Birkhoff",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/L1Truncation.lean",
+    "source_name": "positiveTruncation_L1",
+    "file": "appendices/E_ergodic.tex",
+    "line": 72,
+    "nearest_preceding_label": "eq:E-L1-approx",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/L1AverageApproximation.lean",
+    "source_name": "ae_average_limit_of_L1_approximation",
+    "file": "appendices/E_ergodic.tex",
+    "line": 73,
+    "nearest_preceding_label": "eq:E-L1-approx",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/BoundedInnovations.lean",
+    "source_name": "ae_strong_law",
+    "file": "appendices/E_ergodic.tex",
+    "line": 88,
+    "nearest_preceding_label": "eq:E-L1-approx",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/StandardBorelKernelEquality.lean",
+    "source_name": "kernel_ae_eq_of_determining",
+    "file": "appendices/E_ergodic.tex",
+    "line": 89,
+    "nearest_preceding_label": "eq:E-L1-approx",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/StationaryConditionalInvariant.lean",
+    "source_name": "randomLaw_invariant_ae",
+    "file": "appendices/E_ergodic.tex",
+    "line": 90,
+    "nearest_preceding_label": "eq:E-L1-approx",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/StationaryRandomWitness.lean",
+    "source_name": "identity_randomLaw",
+    "file": "appendices/E_ergodic.tex",
+    "line": 93,
+    "nearest_preceding_label": "eq:E-L1-approx",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/CompactFellerWitness.lean",
+    "source_name": "reset_comp",
+    "file": "appendices/E_ergodic.tex",
+    "line": 94,
+    "nearest_preceding_label": "eq:E-L1-approx",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/RegenerativeOperator.lean",
+    "source_name": "resolvent_equation",
+    "file": "appendices/E_ergodic.tex",
+    "line": 123,
+    "nearest_preceding_label": "prop:E-regenerative-bounded",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/RegenerativePoisson.lean",
+    "source_name": "poisson_equation",
+    "file": "appendices/E_ergodic.tex",
+    "line": 124,
+    "nearest_preceding_label": "prop:E-regenerative-bounded",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/RegenerativeAverages.lean",
+    "source_name": "canonical_regenerative_averages",
+    "file": "appendices/E_ergodic.tex",
+    "line": 125,
+    "nearest_preceding_label": "prop:E-regenerative-bounded",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/RegenerativeRenewalMass.lean",
+    "source_name": "orbit_tv_le_pow",
+    "file": "appendices/E_ergodic.tex",
+    "line": 145,
+    "nearest_preceding_label": "lem:E-regenerative-transfer",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/RegenerativeInitialTransfer.lean",
+    "source_name": "ae_shiftInvariant_transfer",
+    "file": "appendices/E_ergodic.tex",
+    "line": 146,
+    "nearest_preceding_label": "lem:E-regenerative-transfer",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/RegenerativeDescriptorTails.lean",
+    "source_name": "canonical_excess_tail_uniform",
+    "file": "appendices/E_ergodic.tex",
+    "line": 176,
+    "nearest_preceding_label": "eq:E-uniform-tail",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/RegenerativeMomentRegression.lean",
+    "source_name": "invariant_unbounded_support",
+    "file": "appendices/E_ergodic.tex",
+    "line": 197,
+    "nearest_preceding_label": "ex:E-reset-increment",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/RegenerativeMomentRegression.lean",
+    "source_name": "all_initial_actual_empirical_W1",
+    "file": "appendices/E_ergodic.tex",
+    "line": 198,
+    "nearest_preceding_label": "ex:E-reset-increment",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/RegenerativeRegression.lean",
+    "source_name": "halfReset_all_bounded_measurable_averages",
+    "file": "appendices/E_ergodic.tex",
+    "line": 201,
+    "nearest_preceding_label": "ex:E-reset-increment",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/RegenerativeRegression.lean",
+    "source_name": "false_reset_decomposition_rejected",
+    "file": "appendices/E_ergodic.tex",
+    "line": 202,
+    "nearest_preceding_label": "ex:E-reset-increment",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/GrowingBlockAverages.lean",
+    "source_name": "last_block_error",
+    "file": "appendices/E_ergodic.tex",
+    "line": 218,
+    "nearest_preceding_label": "eq:E-factorial",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/GrowingBlockAverages.lean",
+    "source_name": "averages_do_not_converge",
+    "file": "appendices/E_ergodic.tex",
+    "line": 219,
+    "nearest_preceding_label": "eq:E-factorial",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/GrowingBlockCounterexample.lean",
+    "source_name": "canonical_growing_block_occupations_fail",
+    "file": "appendices/E_ergodic.tex",
+    "line": 220,
+    "nearest_preceding_label": "eq:E-factorial",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultipleLimit/NonfiniteClock.lean",
+    "source_name": "canonical_clock_no_weak_limit",
+    "file": "appendices/E_ergodic.tex",
+    "line": 221,
+    "nearest_preceding_label": "eq:E-factorial",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/AtomicLocality.lean",
+    "source_name": "patchedAction_unaffected",
+    "file": "appendices/F_grammar.tex",
+    "line": 9,
+    "nearest_preceding_label": "F:assembly",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/BlockModels.lean",
+    "source_name": "blockModel_eq_of_expand_eq",
+    "file": "appendices/F_grammar.tex",
+    "line": 9,
+    "nearest_preceding_label": "F:assembly",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/OriginalInterventionBridge.lean",
+    "source_name": "admittedBlockIntervention_apply",
+    "file": "appendices/F_grammar.tex",
+    "line": 9,
+    "nearest_preceding_label": "F:assembly",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonLean/Regime/Occupation.lean",
+    "source_name": "IsDescriptorNondegenerate",
+    "file": "appendices/F_grammar.tex",
+    "line": 29,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/BooleanOccupation.lean",
+    "source_name": "exactGR",
+    "file": "appendices/F_grammar.tex",
+    "line": 29,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/BooleanPersistence.lean",
+    "source_name": "uniformRelativePR",
+    "file": "appendices/F_grammar.tex",
+    "line": 29,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/BooleanOneStepEvents.lean",
+    "source_name": "or_pathlaw_table",
+    "file": "appendices/F_grammar.tex",
+    "line": 49,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/BooleanOneStepEvents.lean",
+    "source_name": "and_pathlaw_table",
+    "file": "appendices/F_grammar.tex",
+    "line": 49,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/BooleanOneStepEvents.lean",
+    "source_name": "xor_pathlaw_table",
+    "file": "appendices/F_grammar.tex",
+    "line": 49,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/JointOnlyCertifiedFixture.lean",
+    "source_name": "original_or_joint_only",
+    "file": "appendices/F_grammar.tex",
+    "line": 49,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/BooleanMinimalityCases.lean",
+    "source_name": "B7_minimality_not_preserved_by_refinement",
+    "file": "appendices/F_grammar.tex",
+    "line": 51,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/BooleanMinimalityCases.lean",
+    "source_name": "B8_coarse_hides_positive_fine_singleton",
+    "file": "appendices/F_grammar.tex",
+    "line": 51,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/SequentialAdversaries.lean",
+    "source_name": "zeroInf_strong_false_promotion",
+    "file": "appendices/F_grammar.tex",
+    "line": 70,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/SequentialAdversaries.lean",
+    "source_name": "vector_interaction_not_scalar_distance",
+    "file": "appendices/F_grammar.tex",
+    "line": 72,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/SequentialAdversaries.lean",
+    "source_name": "vector_conditional_legs_unequal",
+    "file": "appendices/F_grammar.tex",
+    "line": 72,
+    "nearest_preceding_label": "prop:F:booleanPR",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/AdversarialAdmission.lean",
+    "source_name": "forbidden_block_has_no_certificate",
+    "file": "appendices/F_grammar.tex",
+    "line": 80,
+    "nearest_preceding_label": "ex:F:admission",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/B02LocalOriginalMarginClosure.lean",
+    "source_name": "fullOrEmptyFine_rejects_singleton_zero",
+    "file": "appendices/F_grammar.tex",
+    "line": 80,
+    "nearest_preceding_label": "ex:F:admission",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/AdaptiveGrammarAdmissionFixture.lean",
+    "source_name": "restrictedCertifiedMenu",
+    "file": "appendices/F_grammar.tex",
+    "line": 80,
+    "nearest_preceding_label": "ex:F:admission",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/InvalidBijectionWitness.lean",
+    "source_name": "AND_margin_invariant_under_invalid_swap",
+    "file": "appendices/F_grammar.tex",
+    "line": 86,
+    "nearest_preceding_label": "ex:F:invalidbijection",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/InvalidBijectionWitness.lean",
+    "source_name": "invalid_swap_does_not_preserve_proper_inclusion",
+    "file": "appendices/F_grammar.tex",
+    "line": 86,
+    "nearest_preceding_label": "ex:F:invalidbijection",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/AlternativeBankWitness.lean",
+    "source_name": "B4_distinct_frozen_constitutive_margins",
+    "file": "appendices/F_grammar.tex",
+    "line": 92,
+    "nearest_preceding_label": "ex:F:banks",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/BooleanOverlapFixture.lean",
+    "source_name": "compatible_order_independent",
+    "file": "appendices/F_grammar.tex",
+    "line": 94,
+    "nearest_preceding_label": "ex:F:banks",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/BooleanOverlapFixture.lean",
+    "source_name": "incompatible_order_changes_actual_kernel",
+    "file": "appendices/F_grammar.tex",
+    "line": 94,
+    "nearest_preceding_label": "ex:F:banks",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/AdversarialAdmission.lean",
+    "source_name": "overlapping_action_rows_rejected",
+    "file": "appendices/F_grammar.tex",
+    "line": 94,
+    "nearest_preceding_label": "ex:F:banks",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/LocalOrderPositiveFixture.lean",
+    "source_name": "local_minimality_without_global_isomorphism",
+    "file": "appendices/F_grammar.tex",
+    "line": 108,
+    "nearest_preceding_label": "F:orders",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/GrammarRobust/B02LocalOriginalMarginClosure.lean",
+    "source_name": "original_local_minimality_without_global_isomorphism",
+    "file": "appendices/F_grammar.tex",
+    "line": 108,
+    "nearest_preceding_label": "F:orders",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ConstitutiveQuasi/ComparisonTransport.lean",
+    "source_name": "transportComparisonSet",
+    "file": "appendices/F_grammar.tex",
+    "line": 124,
+    "nearest_preceding_label": "F:finite",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ConstitutiveQuasi/PersistencePromotion.lean",
+    "source_name": "clampedPersistenceError",
+    "file": "appendices/F_grammar.tex",
+    "line": 124,
+    "nearest_preceding_label": "F:finite",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/SummablePathScores.lean",
+    "source_name": "summable_output_score_error",
+    "file": "appendices/G_path_transport.tex",
+    "line": 53,
+    "nearest_preceding_label": "thm:G:summable",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche10_q04_scope_receipt_addendum.lean",
+    "source_name": "treated_bad_row_defect_one",
+    "file": "appendices/G_path_transport.tex",
+    "line": 83,
+    "nearest_preceding_label": "G:q04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche10_q04_scope_receipt_addendum.lean",
+    "source_name": "original_margin_error_equals_charged_budget",
+    "file": "appendices/G_path_transport.tex",
+    "line": 83,
+    "nearest_preceding_label": "G:q04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Quotient/Q05ActualAtomClosure.lean",
+    "source_name": "actual_original_B1_margin_bound",
+    "file": "appendices/G_path_transport.tex",
+    "line": 96,
+    "nearest_preceding_label": "G:q04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche7_q05_original_margin_addendum.lean",
+    "source_name": "fine_original_margin",
+    "file": "appendices/G_path_transport.tex",
+    "line": 96,
+    "nearest_preceding_label": "G:q04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FiniteTransportSeparation.lean",
+    "source_name": "exists_plan_of_dual",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 21,
+    "nearest_preceding_label": "eq:H:dualpotentials",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FiniteKantorovichDuality.lean",
+    "source_name": "envelope_lipschitz",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 21,
+    "nearest_preceding_label": "eq:H:dualpotentials",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FiniteLipschitzExtension.lean",
+    "source_name": "extension_error",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 53,
+    "nearest_preceding_label": "lem:H:extension",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FirstMomentKantorovichDuality.lean",
+    "source_name": "firstMoment_couplingW1_le_of_w1DualLE",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 76,
+    "nearest_preceding_label": "eq:H:lift",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FinitePartitionMeasure.lean",
+    "source_name": "cell_mass_smul",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 78,
+    "nearest_preceding_label": "eq:H:lift",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FinitePartitionMeasure.lean",
+    "source_name": "liftLaw_first",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 78,
+    "nearest_preceding_label": "eq:H:lift",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FiniteQuantizationBound.lean",
+    "source_name": "distance_le_quantization",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 94,
+    "nearest_preceding_label": "prop:H:cells",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/KRDualSeparation.lean",
+    "source_name": "measure_eq_of_w1DualLE_zero",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 104,
+    "nearest_preceding_label": "lem:H:separation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/SummableStepLimit.lean",
+    "source_name": "integral_dist_limit_le",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 118,
+    "nearest_preceding_label": "H:completeness",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/GluedCouplingSequence.lean",
+    "source_name": "law",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 120,
+    "nearest_preceding_label": "H:completeness",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/SummableTransportLimit.lean",
+    "source_name": "exists_limit_of_summable_couplings",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 120,
+    "nearest_preceding_label": "H:completeness",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Perturbation/FiniteInvariantConstructor.lean",
+    "source_name": "exists_unique_invariant",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 124,
+    "nearest_preceding_label": "H:invariants",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/RegenerativeMomentCondition.lean",
+    "source_name": "integrable_law_of_rewardCondition",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 149,
+    "nearest_preceding_label": "H:regeneration",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/FirstMomentEmpiricalConvergence.lean",
+    "source_name": "empirical_tendsto_of_quantized_averages",
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 149,
+    "nearest_preceding_label": "H:regeneration",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Probability/ProjectedCommonSubkernel.lean",
+    "source_name": "map_liftProjectedDensity",
+    "file": "appendices/I_quotients.tex",
+    "line": 30,
+    "nearest_preceding_label": "eq:I:lift",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Quotient/GeometricQuotient.lean",
+    "source_name": "map_projectedCommonKernel",
+    "file": "appendices/I_quotients.tex",
+    "line": 30,
+    "nearest_preceding_label": "eq:I:lift",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/InitialLawMonitor.lean",
+    "source_name": "initialChronologicalLaw_monitor_expectation",
+    "file": "appendices/J_control.tex",
+    "line": 26,
+    "nearest_preceding_label": "eq:J-word-expectation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/InitialLawMonitor.lean",
+    "source_name": "monitor_initialLaw_optimal_and_attained",
+    "file": "appendices/J_control.tex",
+    "line": 26,
+    "nearest_preceding_label": "eq:J-word-expectation",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FiniteOccupancyMonitor.lean",
+    "source_name": "actual_monitor_consistent",
+    "file": "appendices/J_control.tex",
+    "line": 55,
+    "nearest_preceding_label": "lem:J-monitor-consistency",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FiniteOccupancyMonitor.lean",
+    "source_name": "consistent_eq_literal_run",
+    "file": "appendices/J_control.tex",
+    "line": 55,
+    "nearest_preceding_label": "lem:J-monitor-consistency",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FiniteOccupancyMonitor.lean",
+    "source_name": "actual_monitor_literal_integral",
+    "file": "appendices/J_control.tex",
+    "line": 55,
+    "nearest_preceding_label": "lem:J-monitor-consistency",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/RollingMonitorTable.lean",
+    "source_name": "rollingMonitorTable_eq_value",
+    "file": "appendices/J_control.tex",
+    "line": 92,
+    "nearest_preceding_label": "lem:J-table",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ComputableFiniteMonitor.lean",
+    "source_name": "computedMaximizer_attains",
+    "file": "appendices/J_control.tex",
+    "line": 92,
+    "nearest_preceding_label": "lem:J-table",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ControlledKernelExamples.lean",
+    "source_name": "typed_feedback_strictly_improves",
+    "file": "appendices/J_control.tex",
+    "line": 130,
+    "nearest_preceding_label": "proof:J-07",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/HistoryTypedExamples.lean",
+    "source_name": "typed_history_deadline_optimum_five_eighths",
+    "file": "appendices/J_control.tex",
+    "line": 136,
+    "nearest_preceding_label": "proof:J-07",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonstationaryExamples.lean",
+    "source_name": "false_cross_deadline_projectivity",
+    "file": "appendices/J_control.tex",
+    "line": 138,
+    "nearest_preceding_label": "proof:J-07",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/HistoryPolicyExamples.lean",
+    "source_name": "reconverge_history_sensitive",
+    "file": "appendices/J_control.tex",
+    "line": 140,
+    "nearest_preceding_label": "proof:J-07",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/HistoryPolicyExamples.lean",
+    "source_name": "reconverge_left_mass",
+    "file": "appendices/J_control.tex",
+    "line": 140,
+    "nearest_preceding_label": "proof:J-07",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/HistoryPolicyExamples.lean",
+    "source_name": "reconverge_right_mass",
+    "file": "appendices/J_control.tex",
+    "line": 140,
+    "nearest_preceding_label": "proof:J-07",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/BeliefObservationWitness.lean",
+    "source_name": "observation_optimum",
+    "file": "appendices/J_control.tex",
+    "line": 162,
+    "nearest_preceding_label": "proof:J-09",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/BeliefObservationWitness.lean",
+    "source_name": "impossible_observation",
+    "file": "appendices/J_control.tex",
+    "line": 162,
+    "nearest_preceding_label": "proof:J-09",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FiniteOccupancyRiskFixture.lean",
+    "source_name": "actual_success",
+    "file": "appendices/J_control.tex",
+    "line": 164,
+    "nearest_preceding_label": "proof:J-09",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FiniteOccupancyRiskFixture.lean",
+    "source_name": "actual_danger",
+    "file": "appendices/J_control.tex",
+    "line": 164,
+    "nearest_preceding_label": "proof:J-09",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/FiniteOccupancyRiskFixture.lean",
+    "source_name": "reconstructed_mixing_scores",
+    "file": "appendices/J_control.tex",
+    "line": 164,
+    "nearest_preceding_label": "proof:J-09",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ThroughHorizonRiskFixture.lean",
+    "source_name": "failure_and_danger_are_not_complements",
+    "file": "appendices/J_control.tex",
+    "line": 166,
+    "nearest_preceding_label": "proof:J-09",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ThroughHorizonRiskFixture.lean",
+    "source_name": "danger_after_completed_success_counts",
+    "file": "appendices/J_control.tex",
+    "line": 166,
+    "nearest_preceding_label": "proof:J-09",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/RationalCertificateUniqueness.lean",
+    "source_name": "checked_dirichlet_tables_unique",
+    "file": "appendices/K_algorithms.tex",
+    "line": 22,
+    "nearest_preceding_label": "proof:K-02",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/TypedStoppedClassAbsorption.lean",
+    "source_name": "cramerWeight_eq_typedStoppedClass_probability",
+    "file": "appendices/K_algorithms.tex",
+    "line": 24,
+    "nearest_preceding_label": "proof:K-02",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/TypedObservedCramerCorrespondence.lean",
+    "source_name": "cramer_eventValue_eq_canonical_probability",
+    "file": "appendices/K_algorithms.tex",
+    "line": 26,
+    "nearest_preceding_label": "proof:K-02",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C10RationalInitialMixture.lean",
+    "source_name": "checked_rationalMixedEventValue_eq_actual_path",
+    "file": "appendices/K_algorithms.tex",
+    "line": 28,
+    "nearest_preceding_label": "proof:K-02",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ReferenceMatrix.lean",
+    "source_name": "referenceMatrix_det_ne_zero",
+    "file": "appendices/K_algorithms.tex",
+    "line": 52,
+    "nearest_preceding_label": "eq:K-stationary-cramer",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ReferenceProbability.lean",
+    "source_name": "referenceWeights_probability",
+    "file": "appendices/K_algorithms.tex",
+    "line": 52,
+    "nearest_preceding_label": "eq:K-stationary-cramer",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11SixStateWitness.lean",
+    "source_name": "sixClassA_eq_C4",
+    "file": "appendices/K_algorithms.tex",
+    "line": 56,
+    "nearest_preceding_label": "eq:K-stationary-cramer",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11SixStateWitness.lean",
+    "source_name": "sixClassB_eq_C4",
+    "file": "appendices/K_algorithms.tex",
+    "line": 56,
+    "nearest_preceding_label": "eq:K-stationary-cramer",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11SixStateWitness.lean",
+    "source_name": "sixFullFalseClass_typed",
+    "file": "appendices/K_algorithms.tex",
+    "line": 56,
+    "nearest_preceding_label": "eq:K-stationary-cramer",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/PolytopeActive.lean",
+    "source_name": "extreme_active_kernel_zero",
+    "file": "appendices/K_algorithms.tex",
+    "line": 70,
+    "nearest_preceding_label": "proof:K-04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/PolytopeRational.lean",
+    "source_name": "extreme_active_gram_det_ne_zero",
+    "file": "appendices/K_algorithms.tex",
+    "line": 70,
+    "nearest_preceding_label": "proof:K-04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/PolytopeCompleteness.lean",
+    "source_name": "every_vertex_is_enumerated",
+    "file": "appendices/K_algorithms.tex",
+    "line": 70,
+    "nearest_preceding_label": "proof:K-04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/PolytopeCompleteness.lean",
+    "source_name": "exists_rational_optimal_candidate",
+    "file": "appendices/K_algorithms.tex",
+    "line": 70,
+    "nearest_preceding_label": "proof:K-04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ApplicationBridge/LinearProgramReceipt.lean",
+    "source_name": "optimum_over_reals",
+    "file": "appendices/K_algorithms.tex",
+    "line": 85,
+    "nearest_preceding_label": "eq:K-weak-duality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ApplicationBridge/LinearProgramReceipt.lean",
+    "source_name": "infeasible_over_reals",
+    "file": "appendices/K_algorithms.tex",
+    "line": 91,
+    "nearest_preceding_label": "eq:K-weak-duality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ApplicationBridge/FlowInfeasibilityReceipt.lean",
+    "source_name": "checked_min_risk",
+    "file": "appendices/K_algorithms.tex",
+    "line": 98,
+    "nearest_preceding_label": "eq:K-weak-duality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ApplicationBridge/FlowInfeasibilityReceipt.lean",
+    "source_name": "checked_cap_infeasible",
+    "file": "appendices/K_algorithms.tex",
+    "line": 98,
+    "nearest_preceding_label": "eq:K-weak-duality",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearOccupationBoundaryFixture.lean",
+    "source_name": "period_three_beats_all_stationary",
+    "file": "appendices/K_algorithms.tex",
+    "line": 102,
+    "nearest_preceding_label": "proof:K-06",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreePathLaw.lean",
+    "source_name": "native_pathLaw_dirac",
+    "file": "appendices/K_algorithms.tex",
+    "line": 106,
+    "nearest_preceding_label": "proof:K-06",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeCanonical.lean",
+    "source_name": "native_actual_occupation_ae_limit",
+    "file": "appendices/K_algorithms.tex",
+    "line": 106,
+    "nearest_preceding_label": "proof:K-06",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/NonlinearPeriodThreeExpectedScore.lean",
+    "source_name": "native_phase_aware_actual_score_one",
+    "file": "appendices/K_algorithms.tex",
+    "line": 106,
+    "nearest_preceding_label": "proof:K-06",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ObservedStationary.lean",
+    "source_name": "trueShare_one_iff_all_true",
+    "file": "appendices/K_algorithms.tex",
+    "line": 126,
+    "nearest_preceding_label": "prop:K-share-trichotomy",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ObservedStationary.lean",
+    "source_name": "trueShare_zero_iff_all_false",
+    "file": "appendices/K_algorithms.tex",
+    "line": 126,
+    "nearest_preceding_label": "prop:K-share-trichotomy",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ObservedStationary.lean",
+    "source_name": "trueShare_mixed_iff",
+    "file": "appendices/K_algorithms.tex",
+    "line": 126,
+    "nearest_preceding_label": "prop:K-share-trichotomy",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ReferenceExamples.lean",
+    "source_name": "periodic_reference_exact",
+    "file": "appendices/K_algorithms.tex",
+    "line": 133,
+    "nearest_preceding_label": "prop:K-share-trichotomy",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ReferenceExamples.lean",
+    "source_name": "nearly_reducible_reference_exact",
+    "file": "appendices/K_algorithms.tex",
+    "line": 133,
+    "nearest_preceding_label": "prop:K-share-trichotomy",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ReferenceExamples.lean",
+    "source_name": "physical_classes_remain_distinct",
+    "file": "appendices/K_algorithms.tex",
+    "line": 133,
+    "nearest_preceding_label": "prop:K-share-trichotomy",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C11ReferenceExamples.lean",
+    "source_name": "corrupted_stationary_receipt_rejected",
+    "file": "appendices/K_algorithms.tex",
+    "line": 133,
+    "nearest_preceding_label": "prop:K-share-trichotomy",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/CertifiedSelection.lean",
+    "source_name": "selectRationalMember_dominates",
+    "file": "appendices/K_algorithms.tex",
+    "line": 137,
+    "nearest_preceding_label": "proof:K-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/TypedMenuCertification.lean",
+    "source_name": "certifiedSelected_exactValue",
+    "file": "appendices/K_algorithms.tex",
+    "line": 137,
+    "nearest_preceding_label": "proof:K-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/TypedMenuCertificationExamples.lean",
+    "source_name": "selected_typed_value_one",
+    "file": "appendices/K_algorithms.tex",
+    "line": 137,
+    "nearest_preceding_label": "proof:K-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/CanonicalCertificationExamples.lean",
+    "source_name": "half_goal_two_steps",
+    "file": "appendices/K_algorithms.tex",
+    "line": 139,
+    "nearest_preceding_label": "proof:K-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ExactSixStateC9MenuWitness.lean",
+    "source_name": "identityOnlyMenu_not_family_obstruction",
+    "file": "appendices/K_algorithms.tex",
+    "line": 141,
+    "nearest_preceding_label": "proof:K-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ExactSixStateC9MenuWitness.lean",
+    "source_name": "negativeMenu_not_family_obstruction",
+    "file": "appendices/K_algorithms.tex",
+    "line": 141,
+    "nearest_preceding_label": "proof:K-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/ExactSixStateBOnly.lean",
+    "source_name": "bOnly_original_margin_zero",
+    "file": "appendices/K_algorithms.tex",
+    "line": 143,
+    "nearest_preceding_label": "proof:K-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/ReverseSolver/C10FullReceipt.lean",
+    "source_name": "checkedFullReceipt_worstStart",
+    "file": "appendices/K_algorithms.tex",
+    "line": 145,
+    "nearest_preceding_label": "proof:K-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/StrategicWorld/ActionTraceStatePrefix.lean",
+    "source_name": "canonical_coherent",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 27,
+    "nearest_preceding_label": "proof:L-02",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/StrategicWorld/ActionTraceOriginalBridge.lean",
+    "source_name": "canonical_state_erasure_eq_original",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 33,
+    "nearest_preceding_label": "proof:L-02",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/StrategicWorld/ActionTraceInitialLaw.lean",
+    "source_name": "expected_verification_initial_measure",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 35,
+    "nearest_preceding_label": "proof:L-02",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Games/DiscountedVerification.lean",
+    "source_name": "finite_performance_difference",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 49,
+    "nearest_preceding_label": "eq:L-finite-performance",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/FullStrategyCertificate.lean",
+    "source_name": "exact_advantage_table",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 62,
+    "nearest_preceding_label": "proof:L-03",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/FiniteOutputs.lean",
+    "source_name": "survivalProbability_eq_kernelTerminal_killed",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 79,
+    "nearest_preceding_label": "proof:L-03",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/ExactMargins.lean",
+    "source_name": "effects_eq_candidates",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 100,
+    "nearest_preceding_label": "proof:L-04",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/X1/OccupationNumerics.lean",
+    "source_name": "poisson_identity",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 123,
+    "nearest_preceding_label": "proof:L-05",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/AutonomousInputMarginal.lean",
+    "source_name": "Profile.actual_input_marginal",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 137,
+    "nearest_preceding_label": "eq:L-input-marginal",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/AutonomousMarkedKernel.lean",
+    "source_name": "autonomous_marked_atom",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 143,
+    "nearest_preceding_label": "eq:L-marked-key",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/AutonomousSupportClosure.lean",
+    "source_name": "supported_update_eq",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 145,
+    "nearest_preceding_label": "eq:L-marked-key",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/AutonomousSupportClosure.lean",
+    "source_name": "supported_full_kernel_eq",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 145,
+    "nearest_preceding_label": "eq:L-marked-key",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/AutonomousAETransport.lean",
+    "source_name": "primitive_factor_agreement",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 147,
+    "nearest_preceding_label": "eq:L-marked-key",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/AutonomousAEContinuumFixture.lean",
+    "source_name": "nonatomic_treated_pathLaw_eq",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 150,
+    "nearest_preceding_label": "ex:L-null-key",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/AutonomousAEContinuumFixture.lean",
+    "source_name": "point_start_treated_pathLaw_ne",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 152,
+    "nearest_preceding_label": "ex:L-null-key",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/PlayerSwapConstitution.lean",
+    "source_name": "original_effect",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 163,
+    "nearest_preceding_label": "proof:L-07",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/PlayerSwapConstitution.lean",
+    "source_name": "original_margin",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 163,
+    "nearest_preceding_label": "proof:L-07",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/AsymmetricCommonSwapFixture.lean",
+    "source_name": "asymmetric_mixed_original_path_law_transport",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 165,
+    "nearest_preceding_label": "proof:L-07",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/ProtocolWitnesses.lean",
+    "source_name": "closedLoop_ne_openLoop",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 178,
+    "nearest_preceding_label": "proof:L-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/ProtocolWitnesses.lean",
+    "source_name": "closedLoop_eq_openLoopExtract",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 178,
+    "nearest_preceding_label": "proof:L-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/ProtocolWitnesses.lean",
+    "source_name": "declared_anchors_agree_on_support_but_openLoop_differs",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 180,
+    "nearest_preceding_label": "proof:L-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/ProtocolWitnesses.lean",
+    "source_name": "correlated_generator_not_product",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 182,
+    "nearest_preceding_label": "proof:L-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableNatClockFixture.lean",
+    "source_name": "full_actual_real_projection",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 184,
+    "nearest_preceding_label": "proof:L-08",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/MultiAgentFiniteProduct.lean",
+    "source_name": "clActions",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 206,
+    "nearest_preceding_label": "proof:L-10",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche8_f01_scope_receipt_addendum.lean",
+    "source_name": "three_player_original_protocol_action_rows",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 206,
+    "nearest_preceding_label": "proof:L-10",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche8_f01_scope_receipt_addendum.lean",
+    "source_name": "three_player_original_asymmetric_physics",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 206,
+    "nearest_preceding_label": "proof:L-10",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/tranche8_f01_scope_receipt_addendum.lean",
+    "source_name": "private_update_inputs_are_reindexed",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 208,
+    "nearest_preceding_label": "proof:L-10",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableProductRegression.lean",
+    "source_name": "actual_action_laws_distinct",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 210,
+    "nearest_preceding_label": "proof:L-10",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/MultiAgent/MeasurableProductRegression.lean",
+    "source_name": "replacement_update",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 210,
+    "nearest_preceding_label": "proof:L-10",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/MultiAgentNatPrivateClock.lean",
+    "source_name": "schedule_nonperiodic",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 212,
+    "nearest_preceding_label": "proof:L-10",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "verification/research/MultiAgentNatPrivateClock.lean",
+    "source_name": "treated_clock_not_strict",
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 212,
+    "nearest_preceding_label": "proof:L-10",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/FiniteDetection.lean",
+    "source_name": "quadratic_two_control_bound",
+    "file": "appendices/M_specialized.tex",
+    "line": 120,
+    "nearest_preceding_label": "eq:M:bilinear",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/FiniteDetection.lean",
+    "source_name": "negative_persists_under_embedding",
+    "file": "appendices/M_specialized.tex",
+    "line": 120,
+    "nearest_preceding_label": "eq:M:bilinear",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/BoundaryWitnesses.lean",
+    "source_name": "exact_but_illegal_approximant",
+    "file": "appendices/M_specialized.tex",
+    "line": 122,
+    "nearest_preceding_label": "eq:M:bilinear",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/BoundaryWitnesses.lean",
+    "source_name": "changed_embedding_loses_negativity",
+    "file": "appendices/M_specialized.tex",
+    "line": 122,
+    "nearest_preceding_label": "eq:M:bilinear",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/BoundaryWitnesses.lean",
+    "source_name": "dimension_two_retains_second_equation",
+    "file": "appendices/M_specialized.tex",
+    "line": 153,
+    "nearest_preceding_label": "M:firstbad",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/BoundaryWitnesses.lean",
+    "source_name": "zero_shift_does_not_supply_inverse",
+    "file": "appendices/M_specialized.tex",
+    "line": 153,
+    "nearest_preceding_label": "M:firstbad",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/SingularCompatibility.lean",
+    "source_name": "singular_block_nonnegative_iff",
+    "file": "appendices/M_specialized.tex",
+    "line": 203,
+    "nearest_preceding_label": "eq:M:complete",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/SingularCompatibility.lean",
+    "source_name": "incompatible_kernel_negative",
+    "file": "appendices/M_specialized.tex",
+    "line": 203,
+    "nearest_preceding_label": "eq:M:complete",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/SingularCompatibility.lean",
+    "source_name": "denominator_free_kernel_rigidity",
+    "file": "appendices/M_specialized.tex",
+    "line": 274,
+    "nearest_preceding_label": "eq:M:production",
+    "semantic_correspondence_inferred": false
+  },
+  {
+    "source_path": "PermanssonResearch/Specialized/E05FullGramMaskingCountermodel.lean",
+    "source_name": "added_component_masks_actual_negative_gram",
+    "file": "appendices/M_specialized.tex",
+    "line": 307,
+    "nearest_preceding_label": "M:gram",
+    "semantic_correspondence_inferred": false
+  }
+]

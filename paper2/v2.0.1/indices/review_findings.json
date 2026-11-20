@@ -1,0 +1,2159 @@
+{
+  "format": "Permansson.ReviewFindings.v1",
+  "date": "2026-11-20",
+  "generated_utc": "2026-11-20T19:20:06.819694+00:00",
+  "reviewed_version": "v2.0.1",
+  "mathematical_source_snapshot": "c5a36cd6189e2a249d5f4bc11f31698917dc8b10",
+  "summary": {
+    "original_primary_finding_counts": {
+      "foundations.json": 13,
+      "quantitative.json": 13,
+      "control.json": 14,
+      "root.json": 16
+    },
+    "original_primary_findings": 56,
+    "additional_root_editorial_findings": 2,
+    "unique_recorded_corrections": 58,
+    "duplicate_primary_ids": [],
+    "supplementary_findings_and_recommendations_added_to_count": 0,
+    "recorded_disposition": "All 58 corrections are recorded as applied. Final integrated PDF identity was verified at consolidation; root reports final post-edit visual confirmation.",
+    "severity_caveat": "Original reviewers use different severity vocabularies. The 58 are corrections and clarifications of mixed significance, not 58 equally serious mathematical errors."
+  },
+  "document_identity": {
+    "baseline_pdf": {
+      "path": "review_2026-11-20/baseline.pdf",
+      "physical_pages": 217,
+      "sha256": "daecb38b40f2daf299c5c5d354ae038b4950cdf52277538cdbb1201e0c58f1a1",
+      "included_in_corrected_package": false,
+      "availability": "Retained with the prior version/history; baseline manifest and source patch are included in the corrected package"
+    },
+    "visually_reviewed_candidate_pdf": {
+      "path": "build/review_candidate_219.pdf",
+      "physical_pages": 219,
+      "sha256": "fb8ee9e1a09475f1ce5fa351d04862bcd5b76e3830b0435ad4adf5c42b5b4023"
+    },
+    "final_pdf": {
+      "path": "build/main.pdf",
+      "physical_pages": 218,
+      "sha256": "56a6ea1538e0a31f8555f4457b706e96d159ed96d3e1add7bba7b6847e4b3d17",
+      "status": "Final identity verified by consolidation; final visual QA reported by root"
+    }
+  },
+  "primary_sources": [
+    {
+      "path": "review_2026-11-20/foundations.json",
+      "packaged_record_path": "review/foundations.json",
+      "sha256": "12a11d58056b29c72114a23be8204d01b38d2d2f5bb665a1fd725a6ef8cc39b0",
+      "finding_count": 13
+    },
+    {
+      "path": "review_2026-11-20/quantitative.json",
+      "packaged_record_path": "review/quantitative.json",
+      "sha256": "14956a4be444ab69efe5663e276549d8ebe485674e9d000e952c225b7a37ff01",
+      "finding_count": 13
+    },
+    {
+      "path": "review_2026-11-20/control.json",
+      "packaged_record_path": "review/control.json",
+      "sha256": "92fd1b9f7cf2a409786e1ba8262b7feab8e79153becdb6b311a89972bf79a259",
+      "finding_count": 14
+    },
+    {
+      "path": "review_2026-11-20/root.json",
+      "packaged_record_path": "review/root.json",
+      "sha256": "4c4c87e203222d838e02f3da697fed5d140a064f8c05b3459c84f6962f86a513",
+      "finding_count": 16
+    }
+  ],
+  "findings": [
+    {
+      "id": "FND-001",
+      "severity": "medium",
+      "file": "sections/C05.tex",
+      "label_or_location": "eq:C05-groundingmaps",
+      "problem": "The relevance-map setup did not explicitly require measurability of B_G and h_G, although the original GroundedRelevanceMap does.",
+      "correction": "Added measurable G, B_G and h_G to the setup, preserving the original grounded definition.",
+      "evidence": "PermanssonLean/Regime/Relevance.lean::GroundedRelevanceMap",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 1,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-002",
+      "severity": "medium",
+      "file": "sections/C06.tex",
+      "label_or_location": "thm:C06-embedding",
+      "problem": "The embedding proof checked reference-measure mass but omitted the alternative nonempty-interior branch of Assumption 4.1.",
+      "correction": "Added int(S_E x B)=S_E x int(B) and the nonempty S_E argument in both directions.",
+      "evidence": "PermanssonLean/EGR/RegimeEmbedding.lean::paperI_nontriviality_iff_embedded_assumption41",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 2,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-003",
+      "severity": "medium",
+      "file": "appendices/D_occupation.tex",
+      "label_or_location": "eq:D-dirac-law",
+      "problem": "The generic endpoint measurability argument referred to individual eventual-constancy events. For an uncountable endpoint set these events alone do not establish measurability of a selected endpoint.",
+      "correction": "Constructed Z directly as the measurable stopped coordinate Y_{T_C} with a fixed fallback in the nonempty ambient space Y; gave the countable inverse-image formula and lambda(C)=1 from almost-sure absorption. The finite source case remains unchanged.",
+      "evidence": "PermanssonResearch/MultipleLimit/AbsorbingFamily.lean; direct countable stopped-coordinate proof",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 3,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-004",
+      "severity": "medium",
+      "file": "appendices/E_ergodic.tex",
+      "label_or_location": "lem:E-regenerative-transfer",
+      "problem": "The discussion of shift invariance for integrable, unbounded rewards could be read as assuming that a moving endpoint divided by T vanishes without justification.",
+      "correction": "Replaced the shortcut with the exact forward and reverse average-reindexing identities. Only the fixed initial reward is divided by T.",
+      "evidence": "PermanssonResearch/MultipleLimit/RegenerativeInitialTransfer.lean::ae_shiftInvariant_transfer; direct scalar identities",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 4,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-005",
+      "severity": "medium",
+      "file": "sections/C05.tex",
+      "label_or_location": "thm:C05-representation",
+      "problem": "The paper states and proves transport under a measurable state isomorphism, while the immediately cited formal endpoints are same-space kernel/signature results.",
+      "correction": "Explicitly distinguished the paper coordinate-change proof from the same-space formal source results.",
+      "evidence": "PermanssonLean/Regime/RepresentationEquivalence.lean::exactGR_iff_of_inducedKernel_eq; FamilyEquivalence.lean",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 5,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-006",
+      "severity": "medium",
+      "file": "appendices/E_ergodic.tex",
+      "label_or_location": "cor:E-L1",
+      "problem": "The general L1 Birkhoff conditional-expectation extension is proved in the paper, but the cited formal L1 approximation endpoint uses constant limiting approximants.",
+      "correction": "Added an explicit scope sentence identifying that formal specialization and its regenerative use.",
+      "evidence": "PermanssonResearch/Probability/L1AverageApproximation.lean::ae_average_limit_of_L1_approximation",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 6,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-007",
+      "severity": "low",
+      "file": "appendices/D_occupation.tex",
+      "label_or_location": "lem:D-block",
+      "problem": "The generic absorption lemma used closed set ambiguously and left the state-space/equality-event scope implicit.",
+      "correction": "Specified a nonempty standard Borel state space, measurable K-invariant C, the hitting-time definition, 0<p<=1, and the explicit quantifier over the stated starting states.",
+      "evidence": "Direct proof; source finite absorption boundary has measurable singleton hypotheses",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 7,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-008",
+      "severity": "low",
+      "file": "appendices/C_foundations.tex",
+      "label_or_location": "prop:C-Green",
+      "problem": "The minimal Green solution was compared to nonnegative extended functions without explicitly requiring measurability for their kernel integrals.",
+      "correction": "Added extended-valued measurable functions.",
+      "evidence": "Direct kernel-integration requirement",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 8,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-009",
+      "severity": "low",
+      "file": "appendices/D_occupation.tex",
+      "label_or_location": "lem:D-innovation",
+      "problem": "Calling D_t adapted before saying it is F_{t+1}-measurable obscured the intended one-step shifted filtration.",
+      "correction": "Introduced the filtration explicitly and retained F_{t+1}-measurability with zero F_t conditional mean.",
+      "evidence": "PermanssonResearch/Probability/BoundedInnovations.lean",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 9,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-010",
+      "severity": "low",
+      "file": "sections/C04.tex",
+      "label_or_location": "def:C04-quasi",
+      "problem": "The geometric lower-bound paragraph left the leakage parameter range implicit.",
+      "correction": "Stated 0<=epsilon<=1 before using (1-epsilon)^H.",
+      "evidence": "PermanssonLean/Regime/Persistence.lean::oneStepRetention_pow_lowerBound",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 10,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-011",
+      "severity": "low",
+      "file": "sections/C10.tex",
+      "label_or_location": "thm:C10-occupation",
+      "problem": "The in-probability proof mentioned an appropriately reindexed sample length even though the stated prefix bound compares the same length T.",
+      "correction": "Specified the same sample length T on the shifted path.",
+      "evidence": "lem:C02-empirical",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 11,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-012",
+      "severity": "low",
+      "file": "appendices/A_foundations.tex",
+      "label_or_location": "ex:A-escaping-Dirac",
+      "problem": "The weak-versus-W1 sequence uses 1/n without explicitly excluding n=0.",
+      "correction": "Added n>=1.",
+      "evidence": "Direct example convention",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 12,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "FND-013",
+      "severity": "low",
+      "file": "appendices/D_occupation.tex",
+      "label_or_location": "final subsection: Two elementary original-gate obstructions",
+      "problem": "One-state physical space could be mistaken for singleton world space X despite nontrivial strategic state S. The formal obstruction is on the joint space Y=S x X.",
+      "correction": "Replaced physical space by joint state space.",
+      "evidence": "PermanssonResearch/MultipleLimit/RecurrentCounterexamples.lean::no_original_assumption41_of_subsingleton",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/foundations.json",
+        "packaged_record_path": "review/foundations.json",
+        "source_ordinal": 13,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q01",
+      "severity": "medium",
+      "kind": "definition",
+      "location": "sections/C11.tex, def:C11:minimal",
+      "problem": "The least-positive definition stated only containment in every positive admitted block. Without an explicit positivity requirement it also describes nonpositive lower bounds, including the empty block.",
+      "correction": "Required P(D) as well as containment in every positive admitted block.",
+      "rationale": "A least element must belong to the family for which it is least.",
+      "sources": [
+        "PermanssonResearch/GrammarRobust/LowerSetTransport.lean::exists_least_positive_of_finite_meet_closed"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 1,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q02",
+      "severity": "low",
+      "kind": "proof completeness",
+      "location": "sections/C11.tex, thm:C11:minimality proof",
+      "problem": "The proof checked absence of smaller positive elements but left matching positivity of the two selected elements implicit.",
+      "correction": "Explicitly invoked the first transport hypothesis at b=a.",
+      "rationale": "Minimal positivity is the conjunction of positivity and no smaller positive member.",
+      "sources": [
+        "PermanssonResearch/GrammarRobust/LowerSetTransport.lean::minimalPositive_iff_of_lowerSet_lifting"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 2,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q03",
+      "severity": "low",
+      "kind": "source premise visibility",
+      "location": "sections/C12.tex, C12:primitiveTV",
+      "problem": "The three primitive common-kernel conditions were visible, but the separately requested joint-state (Y,Y) condition of the bundled finite-prefix interface was not stated. The direct common-subkernel argument can avoid requesting a new common part; the bundled formal interface still explicitly requests this instance.",
+      "correction": "Recorded the (Y,Y) instance and its automatic availability under countably generated primitive output sigma-algebras.",
+      "rationale": "Distinguish sufficient mathematical construction from literal formal-provider hypotheses.",
+      "sources": [
+        "PermanssonResearch/Perturbation/PrimitiveMargin.lean::PrimitiveErrorBounds.finitePrefix_tv",
+        "PermanssonResearch/Perturbation/PrimitiveLipschitz.lean::primitiveLipschitz_constitutiveMargin_abs_le"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 3,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q04",
+      "severity": "low",
+      "kind": "hypothesis visibility",
+      "location": "sections/C13.tex, C13:commonmass",
+      "problem": "The evolving measures were called laws but their probability normalization was implicit, although the common-mass TV conclusion uses mass one.",
+      "correction": "Explicitly specified probability initial laws.",
+      "rationale": "The retained-mass estimate 1-xi(H) is normalized to probability laws.",
+      "sources": [
+        "PermanssonResearch/Probability/DependentHistoryCommonMass.lean::prefix_tv_le_product"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 4,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q05",
+      "severity": "medium",
+      "kind": "overstatement correction",
+      "location": "sections/C13.tex, C13:wholepath",
+      "problem": "The prose called summability a route to a nontrivial product bound without restating that a single eta_n=1 or epsilon=1 makes the bound trivial. Appendix G already had the unit-defect qualification.",
+      "correction": "Added epsilon<1 and eta_n<1 for every n as requirements for nontrivial retained mass.",
+      "rationale": "A summable sequence can include a unit defect; its retained product then equals zero.",
+      "sources": [
+        "appendices/G_path_transport.tex, G:fullpath",
+        "PermanssonResearch/Probability/FullPathProductTV.lean::path_tv_le_product"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 5,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q06",
+      "severity": "low",
+      "kind": "hypothesis visibility",
+      "location": "sections/C14.tex, thm:C14:invariant",
+      "problem": "Nonemptiness of the state space was implicit through the earlier anchor convention. The fixed-point constructor needs a nonempty probability-law space.",
+      "correction": "Made nonempty Y explicit in the theorem statement.",
+      "rationale": "On the empty state space the self-map and contraction statements can be vacuous, but no invariant probability exists. The formal source supplies an anchor y0.",
+      "sources": [
+        "PermanssonResearch/Perturbation/FirstMomentInvariant.lean::exists_unique_invariant",
+        "PermanssonResearch/Perturbation/FirstMomentInvariant.lean::automatic_invariant_and_convergence"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 6,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q07",
+      "severity": "medium",
+      "kind": "measurability hypotheses",
+      "location": "sections/C15.tex, C15:frozenproperty; appendices/H_metric_occupation.tex, H:fixedproperty",
+      "problem": "The generic selector paragraph asserted measurable empirical maps, a measurable convergence set and a measurable limit from completeness/metrizability alone. It did not state the measurable empirical-map premise or separability needed by the elementary Borel argument.",
+      "correction": "Specified a complete separable metric law space, its Borel sigma-algebra and measurability of each empirical-law map; made Phi explicitly real-valued. Mirrored the corrected hypotheses in Appendix H.",
+      "rationale": "This provides a valid sufficient general setup and matches the finite/compact/first-moment constructions actually used.",
+      "sources": [
+        "PermanssonResearch/Perturbation/FiniteOccupationProperty.lean::occupationLimit_stronglyMeasurable",
+        "PermanssonResearch/Perturbation/FirstMomentOccupationProperty.lean::occupationLimit_stronglyMeasurable"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 7,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q08",
+      "severity": "medium",
+      "kind": "missing metric separation",
+      "location": "sections/C15.tex, C15:profiles",
+      "problem": "Strict-contraction uniqueness of a finite recurrent class was stated without distinguishing a genuine metric from the pseudometric scope used earlier. For the zero pseudometric, an identity chain can satisfy a zero dual contraction while retaining multiple recurrent classes.",
+      "correction": "Required a genuine metric for this uniqueness implication and explained why a pseudometric identifying distinct states is insufficient.",
+      "rationale": "The proof separates distinct invariant probability laws; the formal source assumes MetricSpace, not merely PseudoMetricSpace.",
+      "sources": [
+        "PermanssonResearch/Perturbation/FiniteOccupationFactorization.lean::recurrentClass_unique_of_contraction"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 8,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q09",
+      "severity": "medium",
+      "kind": "source hypothesis reconciliation",
+      "location": "sections/C15.tex, C15:profiles",
+      "problem": "The scalar regenerative profile was described beneath a merely measurable descriptor convention, but the cited source uses continuous h between separable Borel metric spaces and a standard Borel state space.",
+      "correction": "Stated these source assumptions before the scalar/compact weak-topology profiles, keeping the distinct measurable-descriptor first-moment profile separate.",
+      "rationale": "The cited scalar proof transports weak empirical convergence by a continuous descriptor.",
+      "sources": [
+        "PermanssonResearch/Perturbation/RegenerativeOccupationProperty.lean::property_factor_regenerative"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 9,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q10",
+      "severity": "low",
+      "kind": "metric scope precision",
+      "location": "sections/C15.tex, thm:C15:margin",
+      "problem": "The margin theorem left its state/descriptor metric hypotheses and the metric used for row defects implicit in the preceding section.",
+      "correction": "Specified separable Borel metric spaces and row defects in the dual sense of equation C14:dual.",
+      "rationale": "The finite first-moment duality and invariant-law bounds need the stated metric framework; a TV bound is a different premise.",
+      "sources": [
+        "PermanssonResearch/Probability/FirstMomentKantorovichDuality.lean::firstMoment_w1DualLE_iff_couplingW1_le",
+        "PermanssonResearch/Perturbation/RegenerativeFirstMomentFactorization.lean::generated_occupationMargin_robust"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 10,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q11",
+      "severity": "low",
+      "kind": "table typesetting",
+      "location": "appendices/F_grammar.tex, F:boolean",
+      "problem": "The effect table declared four columns but placed an entire three-number tuple in one numeric column, leaving unused columns and an unclear header.",
+      "correction": "Gave e_alpha, e_U and e_alphaU separate headed columns and individual entries.",
+      "rationale": "All arithmetic is unchanged; the alignment now matches the table structure.",
+      "sources": [
+        "PermanssonResearch/GrammarRobust/BooleanOneStepEvents.lean"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 11,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q12",
+      "severity": "medium",
+      "kind": "order-theoretic wording",
+      "location": "appendices/F_grammar.tex, F:orders",
+      "problem": "The paragraph attributed possible loss of strict inverse-image inclusion to an incomplete admitted carrier. Restricting the carrier does not itself destroy strict inclusion of two subsets; it can remove alternatives needed for lower-set lifting.",
+      "correction": "Separated nonempty-fiber/surjectivity requirements for strictness from absence of lower alternatives in a restricted admitted carrier.",
+      "rationale": "Inverse image preserves strict inclusion when added labels have nonempty fibers. Admission restrictions concern lifting coverage.",
+      "sources": [
+        "PermanssonResearch/GrammarRobust/LowerSetTransport.lean::minimalPositive_iff_of_lowerSet_lifting"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 12,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "Q13",
+      "severity": "low",
+      "kind": "scope wording",
+      "location": "appendices/G_path_transport.tex, G:discount",
+      "problem": "The statement that survival forever is not a continuous discounted score was not qualified by topology or score class. One can tautologically repeat an infinite-horizon indicator as every score; the issue is that finite-prefix error premises then do not apply.",
+      "correction": "Replaced that categorical sentence with the exact limitation: the bound controls the declared score sequence under its marginal-error premises, which do not automatically cover survival forever.",
+      "rationale": "The limitation belongs to the information and approximation hypotheses, rather than to an undefined universal notion of continuous discounted score.",
+      "sources": [
+        "PermanssonResearch/Probability/SummablePathScores.lean::summable_output_score_error"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/quantitative.json",
+        "packaged_record_path": "review/quantitative.json",
+        "source_ordinal": 13,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-01",
+      "severity": "minor mathematical hypothesis",
+      "file": "sections/C18.tex",
+      "problem": "The default posterior is introduced without an explicit nonempty hidden-state assumption.",
+      "original": "Let $Z,C,O$ be finite hidden-state, control, and observation sets, with $C$ nonempty.",
+      "corrected": "Let $Z,C,O$ be finite nonempty hidden-state, control, and observation sets.",
+      "rationale": "A probability row and a fixed default belief require a nonempty state space; normalized observation rows also require a nonempty observation space. This makes already intended existence assumptions explicit.",
+      "evidence": [
+        "PermanssonResearch/ReverseSolver/BeliefKernel.lean::Model",
+        "sections/C18.tex: eq:C18-posterior"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 1,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-02",
+      "severity": "mathematical typesetting",
+      "file": "sections/C18.tex",
+      "problem": "A comma separates the branch weight from its continuation score in the belief-tree proof.",
+      "original": " =\\sum_o p_t(o\\mid b,c),\n   \\Phi_t(b,c,o)\\cdot\\alpha^{\\tau_o}_{k,t+1}.",
+      "corrected": " =\\sum_o p_t(o\\mid b,c)\\,\n   \\bigl[\\Phi_t(b,c,o)\\cdot\\alpha^{\\tau_o}_{k,t+1}\\bigr].",
+      "rationale": "The equality is a weighted sum of scalar continuation scores. Replace punctuation by multiplication and group the inner product.",
+      "evidence": [
+        "PermanssonResearch/ReverseSolver/BeliefAlpha.lean::alpha_envelope",
+        "appendices/J_control.tex: eq:J-alpha-dot"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 2,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-03",
+      "severity": "mathematical hypothesis",
+      "file": "sections/C18.tex",
+      "problem": "The hidden-monitor decision menu was not required to be nonempty although the maximizing-tree theorem needs an available root decision.",
+      "original": "A finite set $D$ of decision labels is equipped with a selection",
+      "corrected": "A finite nonempty set $D$ of decision labels is equipped with a selection",
+      "rationale": "Both cited monitored-history theorems have [Nonempty D]. Empty D has no behavioral control probability row and no maximizing tree at positive horizon.",
+      "evidence": [
+        "PermanssonResearch/ReverseSolver/BeliefMonitor.lean::monitored_history_dominated",
+        "PermanssonResearch/ReverseSolver/BeliefMonitor.lean::monitored_history_attained"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 3,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-04",
+      "severity": "mathematical typesetting",
+      "file": "sections/C20.tex",
+      "problem": "The event-value formula inserts a comma between a class absorption probability and its indicator.",
+      "original": " e_Q(y)=\\sum_{C\\in\\mathcal C(Q)}a_C(y),\n                 \\ind{h|_C\\equiv1}.",
+      "corrected": " e_Q(y)=\\sum_{C\\in\\mathcal C(Q)}a_C(y)\\,\n                 \\ind{h|_C\\equiv1}.",
+      "rationale": "The class contributes its absorption weight multiplied by the all-true indicator.",
+      "evidence": [
+        "PermanssonResearch/ReverseSolver/TypedObservedCramerCorrespondence.lean::cramer_eventValue_eq_canonical_probability"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 4,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-05",
+      "severity": "mathematical hypothesis",
+      "file": "sections/C20.tex",
+      "problem": "The finite minimization and maximizing-menu statement left nonemptiness and the typed comparison-set gate implicit.",
+      "original": "Suppose the baseline and every member $Q^j$ of a finite frozen intervention menu are realized as original typed models with the same world and update mechanisms. Let $B_1$ be the complete declared constitutive comparison set, represented exactly by a finite state set $B_1^{\\rm fin}$.",
+      "corrected": "Suppose the baseline and every member $Q^j$ of a finite nonempty frozen intervention menu are realized as original typed models with the same world and update mechanisms. Let $B_1$ be the complete declared constitutive comparison set, including its original path-law nontriviality requirement, represented exactly by a finite nonempty state set $B_1^{\\rm fin}$.",
+      "rationale": "The original comparison-set object supplies two distinct initial path laws, hence nonemptiness, and the checked input supplies a positive menu size. State those premises where the finite extrema are introduced.",
+      "evidence": [
+        "PermanssonResearch/ReverseSolver/TypedOriginalMenuMargin.lean::realizedNumericMenu",
+        "PermanssonResearch/ReverseSolver/TypedOriginalMenuMargin.lean::typed_numericMargin_eq_original"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 5,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-06",
+      "severity": "mathematical typesetting",
+      "file": "sections/C22.tex",
+      "problem": "The chronological game probability atom separates its factors with commas.",
+      "original": " \\sigma_t(c_t\\mid h_t),\n \\eta_t(\\theta_t\\mid h_t,c_t),\n Q_t^{c_t,\\theta_t}(y_t,y_{t+1}).",
+      "corrected": " \\sigma_t(c_t\\mid h_t)\\,\n \\eta_t(\\theta_t\\mid h_t,c_t)\\,\n Q_t^{c_t,\\theta_t}(y_t,y_{t+1}).",
+      "rationale": "A probability atom is the product of controller, Nature, and transition probabilities; use multiplication spacing.",
+      "evidence": [
+        "PermanssonResearch/ReverseSolver/RectangularGameLaw.lean::rectangular_game_law_saddle"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 6,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-07",
+      "severity": "conceptual clarity",
+      "file": "sections/C23.tex",
+      "problem": "The text calls strategic-memory classes physical classes and appears to claim agreement between the two modes immediately before displaying unequal targets.",
+      "original": "Physical limits may depend on the selected recurrent class; the equilibrium model retains its memory and therefore has distinct physical memory classes. Their observed world limits nevertheless agree.",
+      "corrected": "Joint-state occupation limits may depend on the selected recurrent class; the equilibrium model retains its strategic memory and therefore has distinct closed classes indexed by that memory. Within each mode, all class-specific observed world limits nevertheless agree. The two modes have different observed targets.",
+      "rationale": "Distinguish joint-state occupation laws from their physical-world pushforwards, and distinguish within-mode class agreement from between-mode target differences.",
+      "evidence": [
+        "PermanssonResearch/X1/OccupationTargets.lean::canonical_occupation_target_ae",
+        "PermanssonResearch/X1/Comparison.lean::targetReplete_ne"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 7,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-08",
+      "severity": "substantive predicate conflation",
+      "file": "sections/C23.tex",
+      "problem": "The paragraph incorrectly equates failure of descriptor nonconstancy on B with failure of the different basin-reachable descriptor-law nondegeneracy predicate.",
+      "original": "There is also the independent descriptor gate recorded in the accepted companion: $h(q,x)=x$ is constant on $B$, so this declared region and descriptor cannot supply two distinct descriptor values within the region. Passing from a singleton comparison to all nine starts repairs the comparison-set path-law nontriviality gate alone. It repairs neither descriptor nondegeneracy nor region invariance. This second observation follows directly from the displayed definitions and is not presented as an additional compiled declaration. Positive finite-horizon constitutive margins and proved occupation targets therefore do not repair the failed regime gates.",
+      "corrected": "There is also an independent failure of the original region-descriptor condition: $h(q,x)=x$ is constant on $B$, so this region does not satisfy \\src{PermanssonLean/Regime/Assumption41.lean}{DescriptorHasTwoValues}. This condition must be distinguished from basin-reachable descriptor-law nondegeneracy, \\src{PermanssonLean/Regime/Occupation.lean}{IsDescriptorNondegenerate}. The latter does hold here: from the same basin start $y_0$, the descriptor has true mass $1$ at time zero and $13/20$ at time one, giving two distinct finite-time descriptor laws. Passing from a singleton comparison to all nine starts repairs the comparison-set path-law nontriviality gate; it changes neither the constant descriptor on $B$ nor the leakage from $B$. These descriptor conclusions follow directly from the displayed laws and the two different predicates; they are not asserted as additional compiled X1 declarations. Positive finite-horizon constitutive margins and proved occupation targets therefore do not repair the failed region-descriptor and invariance gates.",
+      "rationale": "Retain the two valid Exact-GR objections: DescriptorHasTwoValues fails and invariance fails. Explain that IsDescriptorNondegenerate holds using the same basin start at times 0 and 1. These are distinct predicates, so the original claim that expansion repairs neither descriptor nondegeneracy nor invariance needed correction.",
+      "evidence": [
+        "PermanssonLean/Regime/Assumption41.lean::DescriptorHasTwoValues",
+        "PermanssonLean/Regime/Occupation.lean::IsDescriptorNondegenerate",
+        "PermanssonResearch/X1/Comparison.lean::replete_one_step_leaks",
+        "PermanssonResearch/X1/Comparison.lean::replete_not_exactGR"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 8,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-09",
+      "severity": "mathematical typesetting",
+      "file": "sections/C24.tex",
+      "problem": "A comma separates the update-event probability and world integration measure.",
+      "original": "       \\{s':(s',x')\\in E\\},P(y,a,\\dd x')",
+      "corrected": "       \\bigl(\\{s':(s',x')\\in E\\}\\bigr)\\,P(y,a,\\dd x')",
+      "rationale": "Use explicit measure evaluation parentheses and integration spacing.",
+      "evidence": [
+        "PermanssonResearch/MultiAgent/MeasurableFiniteProduct.lean::actual_transition"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 9,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-10",
+      "severity": "scope clarification",
+      "file": "sections/C24.tex",
+      "problem": "An all-histories assertion described its value only as a conditional law, including null histories where probability theory does not uniquely specify a conditional version.",
+      "original": "Equation~\\eqref{eq:C24-row-autonomy} holds if and only if, at every finite observed state history and for every measurable behavioral control kernel whose row there is supported on the current legal menu, the actual next-key conditional law equals $L$ of the current key. The same single $L$ is used at every state and time.",
+      "corrected": "Equation~\\eqref{eq:C24-row-autonomy} holds if and only if, at every finite observed state history and for every measurable behavioral control kernel whose row there is supported on the current legal menu, the model-specified next-key row equals $L$ of the current key. This row is defined by integrating $K$ against the control row even at a history of probability zero; it is not an arbitrary version of a conditional distribution on such a history. The same single $L$ is used at every state and time.",
+      "rationale": "The source defines the next-key row by kernel composition at every history. Make this pointwise object explicit; no stronger observational implication follows.",
+      "evidence": [
+        "PermanssonResearch/MultiAgent/BehavioralAutonomy.lean::row_iff_all_histories"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 10,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-11",
+      "severity": "notation error",
+      "file": "sections/C24.tex",
+      "problem": "The clock equation reverses the established pushforward notation by placing the measure before the pushforward marker and the mapping after it.",
+      "original": "The measurable natural-clock construction permits arbitrary original measurable coordinate spaces and establishes the whole-row identity\n\\[\n (\\text{scheduled original row at }n)_\\#\\text{attach}(n+1)\n   =\\text{augmented row at }\\text{attach}(n).\n\\]",
+      "corrected": "The measurable natural-clock construction permits arbitrary original measurable coordinate spaces. Write $e_n(y)$ for the state obtained by attaching clock $n$, $K_n$ for the scheduled original row, and $\\widetilde K$ for the augmented stationary row. The whole-row identity is\n\\[\n \\widetilde K(e_n(y),\\cdot)=(e_{n+1})_\\#K_n(y,\\cdot).\n\\]",
+      "rationale": "Use the explicit attachment map and write map-pushforward-measure, matching the paper definition and Appendix L.",
+      "evidence": [
+        "PermanssonResearch/MultiAgent/MeasurableNatClockTransport.lean::natural_scheduled_row",
+        "appendices/L_games_multiagent.tex: proof:L-07"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 11,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-12",
+      "severity": "indexing clarification",
+      "file": "appendices/J_control.tex",
+      "problem": "The residence invariant uses t-m despite natural-number horizons, leaving subtraction underflow ambiguous for t<m.",
+      "original": " \\exists j\\leq t-m:\\ x_j,\\ldots,x_{j+m}\\in G.",
+      "corrected": " \\exists j\\in\\N,\\ j+m\\leq t:\\ x_j,\\ldots,x_{j+m}\\in G.",
+      "rationale": "Use j+m<=t so early horizons automatically have no complete block and every index stays in the observed word.",
+      "evidence": [
+        "PermanssonResearch/ReverseSolver/CompactResidenceMonitor.lean::residenceScan_success_iff_block",
+        "sections/C17.tex: eq:C17-retry-event"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 12,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-13",
+      "severity": "notation error",
+      "file": "appendices/J_control.tex",
+      "problem": "The nonstationary intertwining equation reverses the map and measure in pushforward notation.",
+      "original": " Q_t^c(y,\\cdot)_\\#\\phi_{t+1}\n   =\\bar Q_t^c(\\phi_t(y),\\cdot).",
+      "corrected": " (\\phi_{t+1})_\\#Q_t^c(y,\\cdot)\n   =\\bar Q_t^c(\\phi_t(y),\\cdot).",
+      "rationale": "Place the coordinate map before the pushforward marker, as elsewhere in the manuscript.",
+      "evidence": [
+        "PermanssonResearch/ReverseSolver/NonstationaryTypedTransport.lean::typed_prefixLaw_map"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 13,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "CTRL-14",
+      "severity": "notation ambiguity",
+      "file": "appendices/K_algorithms.tex",
+      "problem": "The worst-start set uses an undefined e_i that can be confused with the event-probability e_Q.",
+      "original": "$W_i=\\{y\\in B_1:e_i(y)=\\min_{z\\in B_1}e_i(z)\\}$.",
+      "corrected": "$W_i=\\{y\\in B_1:\\Delta_i(y)=\\min_{z\\in B_1}\\Delta_i(z)\\}$.",
+      "rationale": "Use Delta_i, the pointwise absolute effect already defined in C20, because the receipt minimizes effects rather than treated event probabilities.",
+      "evidence": [
+        "PermanssonResearch/ReverseSolver/C10FullReceipt.lean::checkedFullReceipt_worstStart",
+        "sections/C20.tex: eq:C20-original-margin"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/control.json",
+        "packaged_record_path": "review/control.json",
+        "source_ordinal": 14,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-01",
+      "severity": "source navigation",
+      "location": "sections/C29.tex: native replay source note",
+      "problem": "Two source notes named generated output files rather than identifiers present in the cited producer files.",
+      "correction": "Replaced them with emit_golden_bridge and emit_source; all printed source labels now pass a literal-presence check.",
+      "evidence": [
+        "verification/research/c10_emit_golden_bridge.py",
+        "verification/research/c11_emit_stationary_lean.py"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 1,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-02",
+      "severity": "hypothesis precision",
+      "location": "sections/C28.tex: thm:outer-certificate",
+      "problem": "The uncertainty-set theorem left nonemptiness, alpha range and measurability of the coverage event implicit.",
+      "correction": "Stated a nonempty random set, 0 <= alpha <= 1, and a measurable coverage event explicitly. The theorem remains conditional on actual joint coverage.",
+      "evidence": [],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 2,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-03",
+      "severity": "definition precision",
+      "location": "sections/C28.tex: measurement windows",
+      "problem": "Coverage and normalized observation ranges were not declared at the formulas using deterministic completion bounds.",
+      "correction": "Specified coverage and observed normalized values in [0,1], with zero weighted contribution at zero coverage and no imputed observation value.",
+      "evidence": [],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 3,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-04",
+      "severity": "hypothesis precision",
+      "location": "appendices/N_cases.tex: prop:poisson-thinning",
+      "problem": "The product-identification statement left fixed exposure and nonnegative rate implicit.",
+      "correction": "Specified a fixed known positive exposure and a nonnegative latent rate.",
+      "evidence": [],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 4,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-05",
+      "severity": "quantifier precision",
+      "location": "appendices/N_cases.tex: prop:inactive-channel",
+      "problem": "The inactive-channel result did not explicitly bind the zero input and equality of path laws to one declared observation window.",
+      "correction": "Fixed a finite observation horizon and a common zero-input protocol, and proved equality of observed path laws only on that window.",
+      "evidence": [],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 5,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-06",
+      "severity": "notation convention",
+      "location": "sections/C26.tex: opening",
+      "problem": "The complex inner-product convention was first made explicit late in the appendix.",
+      "correction": "Stated conjugate-linearity in the first argument at the start of the specialized track.",
+      "evidence": [],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 6,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-07",
+      "severity": "substantive normalization correction",
+      "location": "sections/C26.tex: eq:C26:derivative; appendices/M_specialized.tex: M:firstbad",
+      "problem": "The derivative paragraph reused a nonunit shell vector/coupling in the source unit-shell scalar formula, and reused c as a scalar.",
+      "correction": "Introduced e=c/||c||, b_e=b/||c|| and theta=<e,Te>; the derivative is -1-||R b_e||^2 = -1-||R b||^2/||c||^2. The strict negative sign is unchanged. An exact nonunit-shell counterexample detects the omitted factor.",
+      "evidence": [
+        "PermanssonResearch/Specialized/ShellResolvent.lean::scalarShellSecular_hasDerivAt",
+        "review/specialized_supplementary_review.json"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 7,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-08",
+      "severity": "definition completeness",
+      "location": "appendices/M_specialized.tex: M:firstbad",
+      "problem": "The cubic shell projections were named without their explicit projection formulas.",
+      "correction": "Defined c_- as the odd shell projection of g and c_+ as the even shell projection of D^{-1}g, making coefficient-one normalization in the transfer identities explicit.",
+      "evidence": [],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 8,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-09",
+      "severity": "proof premise clarity",
+      "location": "sections/C26.tex: C26:detection",
+      "problem": "The sign comparison for the complete Weil self-form preceded an explicit statement that its value is real.",
+      "correction": "Used conjugation symmetry of the complete spectral multiset and absolute convergence to state Hermitian symmetry and real self-values.",
+      "evidence": [],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 9,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-10",
+      "severity": "quantifier precision",
+      "location": "sections/C28.tex: pricing descriptor paragraph",
+      "problem": "One-transition descriptor stabilization was phrased without the basin-root qualifier; a general initial response state can require two transitions.",
+      "correction": "Restricted the one-transition statement explicitly to every basin root. All-basin occupation and invariance conclusions remain unchanged.",
+      "evidence": [],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 10,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-11",
+      "severity": "terminology precision",
+      "location": "sections/C28.tex: outer-set interpretation and certificate coordinates",
+      "problem": "Family-wide could refer either to structural models or intervention labels; orthogonal suggested more than separate evidence fields.",
+      "correction": "Specified uniformity over the model family and comparison set, and changed nine orthogonal coordinates to nine distinct coordinates.",
+      "evidence": [],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 11,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-12",
+      "severity": "source interpretation",
+      "location": "sections/C28.tex: GSCRD predicate P3",
+      "problem": "The registered TRUE-both/FALSE-both threshold rule could be confused with ordinary two-valued conjunction.",
+      "correction": "Clarified that the source uses a consensus rule, leaving disagreement between the two calibrations unknown. The archived rule itself is preserved.",
+      "evidence": [
+        "project_sources/10-GSCRD_MASTER_THEORY_VERSION_HISTORY_AND_OPERATING_GUIDE_2026-08-16-1-.md: P3"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 12,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-13",
+      "severity": "bibliographic error",
+      "location": "references.bib: RudolfWang2025",
+      "problem": "The second author was listed as Wang, A.-D., which does not match the primary author record.",
+      "correction": "Corrected the authors to Daniel Rudolf and Andi Q. Wang.",
+      "evidence": [
+        "https://wrap.warwick.ac.uk/id/eprint/189191/"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 13,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-14",
+      "severity": "citation completeness",
+      "location": "sections/C28.tex; references.bib: BrownMacKay2025",
+      "problem": "The pricing model cited the project certification archive but omitted a direct bibliography entry for the underlying Brown–MacKay research paper.",
+      "correction": "Added the NBER working paper citation and retained the January 2026 revision identity used by the frozen workpack. The current later revision is not silently substituted.",
+      "evidence": [
+        "https://www.nber.org/papers/w34070",
+        "09-PRT_Brown_MacKay_Certification_v0.4_E2E_AUDITED-1-.zip::FROZEN_SPEC.json"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 14,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-15",
+      "severity": "verification coverage",
+      "location": "build_index.py",
+      "problem": "The structural checker did not inspect main.tex and abstract.tex, detect unlabeled mathematical items, or check whether source labels appeared in their cited files.",
+      "correction": "Expanded the checker to all 49 content inputs, input-file existence, unlabeled numbered items, and literal source-label presence. The check explicitly remains separate from semantic equivalence.",
+      "evidence": [],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 15,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-16",
+      "severity": "editorial and versioning",
+      "location": "sections/C01.tex; main.tex; preamble.tex; README.txt",
+      "problem": "The reading guide allowed line breaks inside Part V, and delivered-draft identifiers did not distinguish the revision.",
+      "correction": "Added nonbreaking part references, improved the reading-guide wording, and marked the corrected source and PDF as reviewed draft v2.0.1. The baseline and source diff are preserved.",
+      "evidence": [],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "review_2026-11-20/root.json",
+        "packaged_record_path": "review/root.json",
+        "source_ordinal": 16,
+        "recorded_disposition": "corrected",
+        "original_fields_preserved": true
+      }
+    },
+    {
+      "id": "ROOT-17",
+      "severity": "cosmetic layout",
+      "location": "appendices/D_occupation.tex: final paragraph",
+      "problem": "The 219-page review candidate left a source-only physical page 149 after the final paragraph of Appendix D.",
+      "correction": "Shortened the final paragraph without changing its two obstruction claims, to remove the source-only page.",
+      "evidence": [
+        "build/review_candidate_219.pdf: physical page 149",
+        "Parent root review instruction, 2026-11-20"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "Parent root instruction; intentionally not added to root.json",
+        "recorded_disposition": "corrected_by_root",
+        "final_render_verification": "Root reports full-size final physical page 148 checked; source-only page removed"
+      }
+    },
+    {
+      "id": "ROOT-18",
+      "severity": "cosmetic layout",
+      "location": "sections/C06.tex: source-result wording",
+      "problem": "The words distinct source theorems produced an unattractive theorem-/s split on physical page 33 of the 219-page review candidate.",
+      "original": "distinct source theorems",
+      "correction": "Changed the wording to distinct source results to remove the split without altering the mathematical assertion.",
+      "evidence": [
+        "build/review_candidate_219.pdf: physical page 33",
+        "Parent root review instruction, 2026-11-20"
+      ],
+      "status": "corrected",
+      "_consolidation": {
+        "source_ledger": "Parent root instruction; intentionally not added to root.json",
+        "recorded_disposition": "corrected_by_root",
+        "final_render_verification": "Root reports full-size final physical page 33 checked; word break fixed"
+      }
+    }
+  ],
+  "supplementary_review_crosswalk": [
+    {
+      "source": "review_2026-11-20/specialized_supplementary_review.json",
+      "supplementary_id": "S01",
+      "primary_finding_id": "ROOT-07",
+      "counted_as_new_fix": false,
+      "original_supplementary_finding": {
+        "id": "S01",
+        "severity": "medium",
+        "kind": "normalization and symbol collision",
+        "location": "sections/C26.tex, eq:C26:derivative; appendices/M_specialized.tex, M:firstbad",
+        "problem": "The derivative paragraph used c as a scalar diagonal entry after c denoted a generally nonunit canonical shell vector, and reused the unnormalized coupling b=P_WTc in a unit-shell formula. The unit-shell source theorem is valid, but its normalization was not connected to the preceding canonical F.",
+        "counterexample": "For T=[[0,2],[2,3]], H=0, canonical c=2e2 and b=4e1, the preceding F is 3-lambda+4/lambda, with derivative -5 at lambda=-1. Reusing b in -1-||R b||^2 would give -17.",
+        "correction": "Root explicitly introduced e=c/||c||, b_e=b/||c|| and theta=<e,Te>, and wrote F'(lambda)=-1-||R b_e||^2=-1-||R b||^2/||c||^2. Appendix M now carries the same normalization.",
+        "status": "corrected_by_root_and_rechecked",
+        "sources": [
+          "PermanssonResearch/Specialized/ShellResolvent.lean::scalarShellSecular",
+          "PermanssonResearch/Specialized/ShellResolvent.lean::scalarShellSecular_hasDerivAt",
+          "tmp_quantitative/First_Bad_Cubic_Rigidity_Weil_CCM_2026-09-08_v0_2.txt, Sections 5–6"
+        ]
+      }
+    },
+    {
+      "source": "review_2026-11-20/specialized_supplementary_review.json",
+      "supplementary_id": "S02",
+      "primary_finding_id": "ROOT-08",
+      "counted_as_new_fix": false,
+      "original_supplementary_finding": {
+        "id": "S02",
+        "severity": "low",
+        "kind": "definition visibility",
+        "location": "appendices/M_specialized.tex, M:firstbad",
+        "problem": "The nonzero cubic shell vectors were called shell projections without writing both defining formulas. Those definitions are what make the shell coefficients in Dc_+=d+c_- and g=a+c_- equal exactly one.",
+        "correction": "Root explicitly defined c_-=P_{S_-}g and c_+=P_{S_+}D^{-1}g.",
+        "status": "corrected_by_root_and_rechecked",
+        "sources": [
+          "tmp_quantitative/First_Bad_Cubic_Rigidity_Weil_CCM_2026-09-08_v0_2.txt, equations (33)–(34), (82)–(83)"
+        ]
+      }
+    },
+    {
+      "source": "review_2026-11-20/specialized_supplementary_review.json",
+      "supplementary_id": "S03",
+      "primary_finding_id": "ROOT-09",
+      "counted_as_new_fix": false,
+      "original_supplementary_finding": {
+        "id": "S03",
+        "severity": "low",
+        "kind": "complex sign convention",
+        "location": "sections/C26.tex, C26:detection",
+        "problem": "The displayed Weil form was explicitly sesquilinear, but realness of self-values was left implicit before their signs were used.",
+        "correction": "Root stated conjugation invariance of the complete spectral multiset and absolute convergence, hence Hermitian symmetry and real self-values.",
+        "status": "corrected_by_root_and_rechecked",
+        "sources": [
+          "tmp_quantitative/Persistent_Finite_Detection_Off_Critical_Zeros_Weil_CCM_2026-09-03_v0_2.txt, Section 2"
+        ]
+      }
+    },
+    {
+      "source": "review_2026-11-20/control_supplement_pricing_inference.json",
+      "recommendation_ordinal": 1,
+      "primary_finding_id": "ROOT-10",
+      "counted_as_new_fix": false,
+      "original_supplementary_recommendation": {
+        "location": "sections/C28.tex: pricing paragraph after prop:bm-exact",
+        "priority": "minor scope clarification",
+        "original": "Under the equilibrium, after the first transition this descriptor is always ...",
+        "recommendation": "Qualify as From every basin root, under the equilibrium, after the first transition ...",
+        "reason": "The basin is B0=B_root. An arbitrary initial response state in B can take two transitions; e.g. the (2,2) trigger response state first settles at root (2,2), then moves to the equilibrium trigger response. The stated basin result is correct."
+      }
+    },
+    {
+      "source": "review_2026-11-20/control_supplement_pricing_inference.json",
+      "recommendation_ordinal": 2,
+      "primary_finding_id": "ROOT-11",
+      "counted_as_new_fix": false,
+      "original_supplementary_recommendation": {
+        "location": "sections/C28.tex: paragraph after thm:outer-certificate",
+        "priority": "minor quantifier clarification",
+        "recommendation": "Call the all-model/all-start coverage requirement a uniform claim over a model family and comparison set, reserving intervention-family-wide for claims that quantify over all interventions.",
+        "reason": "The bound is correct; consistent terminology prevents confusing the model family with the separate intervention family."
+      }
+    },
+    {
+      "source": "review_2026-11-20/control_supplement_pricing_inference.json",
+      "recommendation_ordinal": 3,
+      "primary_finding_id": "ROOT-11",
+      "counted_as_new_fix": false,
+      "original_supplementary_recommendation": {
+        "location": "sections/C28.tex: nine-coordinate certificate paragraph",
+        "priority": "editorial precision",
+        "recommendation": "Prefer distinct coordinates to orthogonal coordinates.",
+        "reason": "No statistical or algebraic orthogonality of the statuses is proved or needed."
+      }
+    }
+  ],
+  "read_scope": {
+    "reported_full_read_file_count": 51,
+    "reported_full_read_files": [
+      "abstract.tex",
+      "appendices/A_foundations.tex",
+      "appendices/B_lineage.tex",
+      "appendices/C_foundations.tex",
+      "appendices/D_occupation.tex",
+      "appendices/E_ergodic.tex",
+      "appendices/F_grammar.tex",
+      "appendices/G_path_transport.tex",
+      "appendices/H_metric_occupation.tex",
+      "appendices/I_quotients.tex",
+      "appendices/J_control.tex",
+      "appendices/K_algorithms.tex",
+      "appendices/L_games_multiagent.tex",
+      "appendices/M_specialized.tex",
+      "appendices/N_cases.tex",
+      "appendices/O_concordance.tex",
+      "appendices/P_open.tex",
+      "main.tex",
+      "preamble.tex",
+      "references.bib",
+      "sections/C01.tex",
+      "sections/C02.tex",
+      "sections/C03.tex",
+      "sections/C04.tex",
+      "sections/C05.tex",
+      "sections/C06.tex",
+      "sections/C07.tex",
+      "sections/C08.tex",
+      "sections/C09.tex",
+      "sections/C10.tex",
+      "sections/C11.tex",
+      "sections/C12.tex",
+      "sections/C13.tex",
+      "sections/C14.tex",
+      "sections/C15.tex",
+      "sections/C16.tex",
+      "sections/C17.tex",
+      "sections/C18.tex",
+      "sections/C19.tex",
+      "sections/C20.tex",
+      "sections/C21.tex",
+      "sections/C22.tex",
+      "sections/C23.tex",
+      "sections/C24.tex",
+      "sections/C25.tex",
+      "sections/C26.tex",
+      "sections/C27.tex",
+      "sections/C28.tex",
+      "sections/C29.tex",
+      "sections/C30.tex",
+      "sections/C31.tex"
+    ],
+    "structural_content_input_count": 49,
+    "main_sections": 31,
+    "integral_appendices": 16
+  },
+  "verification": {
+    "claim_scope": "This consolidation checks the consistency of saved evidence and counts. It does not represent a new execution of the mathematical scripts or a new Lean compilation.",
+    "supplementary_exact_arithmetic": {
+      "total": 389,
+      "all_recorded_passed": true,
+      "components": [
+        {
+          "count": 326,
+          "source": "review_2026-11-20/foundations_exact_results.json"
+        },
+        {
+          "count": 43,
+          "source": "review_2026-11-20/quantitative_exact_checks.json"
+        },
+        {
+          "count": 20,
+          "source": "review_2026-11-20/specialized_exact_checks.json"
+        }
+      ]
+    },
+    "x1_exact_arithmetic": {
+      "total": 272,
+      "all_recorded_passed": true,
+      "breakdown": {
+        "row_normalization_checks": 144,
+        "horizon_value_checks": 24,
+        "survival_checks": 6,
+        "effect_table_checks": 54,
+        "poisson_row_checks": 36,
+        "player_advantage_checks": 8
+      },
+      "source": "coverage/control_x1_arithmetic_validation.json",
+      "counted_in_supplementary_389": false
+    },
+    "pricing_enumeration": {
+      "trigger_pairs": 361201,
+      "source": "computations/brown_mackay_exact_certificate.json",
+      "counted_as_test_assertions": false,
+      "counted_in_supplementary_389": false,
+      "scope": "Exact arithmetic and structural calculations in the declared finite deterministic game; not independent theorem-prover replay or an empirical certificate."
+    },
+    "saved_noninvariance_counterexample": {
+      "source": "computations/noninvariance_exact_certificate.json",
+      "record": {
+        "source": "Breaking Persistence v0.2; seed 26100301, position 0, legacy draw 13823",
+        "arithmetic": "fractions.Fraction",
+        "next_q": "242722894340328248277853994894105127/405648192073033408478945025720320000",
+        "threshold": "3/5",
+        "positive_exit_gap": "666020903491796809513020538086873/405648192073033408478945025720320000",
+        "clipping_active": false,
+        "conclusion": "The declared diagnostic region is not invariant for this saved deterministic model.",
+        "empirical_status": "No real-world transition or causal effect inferred."
+      },
+      "counted_in_supplementary_389": false
+    },
+    "structural_audit": {
+      "source": "coverage/manuscript_structural_audit.json",
+      "sha256": "b1b65f3568ba53a135f7f878c765a0346e90f4573e11c3dca4e32e66656ed3f5",
+      "record": {
+        "required_main_sections_present": true,
+        "integral_appendix_count": 16,
+        "duplicate_labels": {},
+        "missing_references": [],
+        "missing_bibliography_keys": [],
+        "missing_input_files": [],
+        "unlabeled_numbered_items": [],
+        "content_files_inspected": 49,
+        "numbered_statement_count": 147,
+        "all_label_count": 603,
+        "source_citation_count": 538,
+        "mathematical_semantic_completeness_certified": false,
+        "missing_source_paths": [],
+        "missing_literal_source_labels": [],
+        "source_label_check_scope": "Literal presence only; not elaborated type or semantic equivalence."
+      },
+      "citation_count_unit": "Printed source-citation occurrences, not distinct theorems or semantically certified source correspondences."
+    },
+    "label_preservation": {
+      "baseline_label_count": 603,
+      "reviewed_label_count": 603,
+      "same_label_multiset": true
+    },
+    "bibliography": {
+      "database_entries": 58,
+      "printed_bibliography_entries": 38,
+      "unique_external_entries_checked": 37,
+      "counts_have_different_scopes": true,
+      "entries": [
+        {
+          "key": "Akin2009",
+          "status": "verified_current_entry",
+          "metadata": "Ethan Akin, Topological Dynamics, Encyclopedia of Complexity and Systems Science, R. A. Meyers (ed.), Springer, 2009, pp. 9224–9246; DOI 10.1007/978-0-387-30440-3_555.",
+          "primary_urls": [
+            "https://link.springer.com/rwe/10.1007/978-0-387-30440-3_555"
+          ],
+          "web_refs": [
+            "turn318937377view0"
+          ],
+          "notes": "Page range and DOI both verified. Root had already corrected/checked the range before this bibliography assignment.",
+          "_consolidation_source": "review_2026-11-20/foundations_bibliography.json",
+          "_consolidation_packaged_record_path": "review/foundations_bibliography.json"
+        },
+        {
+          "key": "Aubin1990",
+          "status": "verified_current_entry",
+          "metadata": "Jean-Pierre Aubin, A Survey of Viability Theory, SIAM Journal on Control and Optimization 28(4), 749–788 (1990); DOI 10.1137/0328044.",
+          "primary_urls": [
+            "https://epubs.siam.org/doi/10.1137/0328044"
+          ],
+          "web_refs": [
+            "turn187664075search0"
+          ],
+          "notes": "Use print year 1990. Publisher also lists later online publication in 2006; that does not change the article citation year.",
+          "_consolidation_source": "review_2026-11-20/foundations_bibliography.json",
+          "_consolidation_packaged_record_path": "review/foundations_bibliography.json"
+        },
+        {
+          "key": "BenaimHirsch1996",
+          "status": "verified_current_entry",
+          "metadata": "Michel Benaïm and Morris W. Hirsch, Asymptotic pseudotrajectories and chain recurrent flows, with applications, Journal of Dynamics and Differential Equations 8(1), 141–176 (1996); DOI 10.1007/BF02218617.",
+          "primary_urls": [
+            "https://link.springer.com/article/10.1007/BF02218617",
+            "https://escholarship.org/content/qt5171963n/qt5171963n.pdf"
+          ],
+          "web_refs": [
+            "turn969171099view0",
+            "turn187664075search7"
+          ],
+          "notes": "Publisher confirms title/authors/year/volume/pages/DOI; author-institution manuscript metadata confirms issue 1.",
+          "_consolidation_source": "review_2026-11-20/foundations_bibliography.json",
+          "_consolidation_packaged_record_path": "review/foundations_bibliography.json"
+        },
+        {
+          "key": "BenaimHofbauerSorin2005",
+          "status": "verified_current_entry",
+          "metadata": "Michel Benaïm, Josef Hofbauer and Sylvain Sorin, Stochastic Approximations and Differential Inclusions, SIAM Journal on Control and Optimization 44(1), 328–348 (2005); DOI 10.1137/S0363012904439301.",
+          "primary_urls": [
+            "https://epubs.siam.org/doi/10.1137/S0363012904439301"
+          ],
+          "web_refs": [
+            "turn187664075search1",
+            "turn187664075search2"
+          ],
+          "notes": "Use print year 2005 despite later online record.",
+          "_consolidation_source": "review_2026-11-20/foundations_bibliography.json",
+          "_consolidation_packaged_record_path": "review/foundations_bibliography.json"
+        },
+        {
+          "key": "Conley1978",
+          "status": "verified_current_entry",
+          "metadata": "Charles Conley, Isolated Invariant Sets and the Morse Index, American Mathematical Society, 1978. CBMS Regional Conference Series in Mathematics, vol. 38.",
+          "primary_urls": [
+            "https://doi.org/10.1090/cbms/038",
+            "https://www.ams.org/journals/notices/197810/197810FullIssue.pdf",
+            "https://www.ams.org/books/cbms/038/cbms038-endmatter.pdf"
+          ],
+          "web_refs": [
+            "turn318937377search1",
+            "turn531578448search3",
+            "turn318937377search10"
+          ],
+          "notes": "No current metadata error. Optional enrichment: series/volume and DOI 10.1090/cbms/038. Original AMS announcement gives publication 31 August 1978.",
+          "_consolidation_source": "review_2026-11-20/foundations_bibliography.json",
+          "_consolidation_packaged_record_path": "review/foundations_bibliography.json"
+        },
+        {
+          "key": "Dudley2002",
+          "status": "verified_current_entry",
+          "metadata": "R. M. Dudley, Real Analysis and Probability, 2nd edition, Cambridge University Press, 2002; Cambridge Studies in Advanced Mathematics 74.",
+          "primary_urls": [
+            "https://www.cambridge.org/core/books/real-analysis-and-probability/26DDF2D09E526185F2347AA5658B96F6"
+          ],
+          "web_refs": [
+            "turn983569479view2"
+          ],
+          "notes": "Publisher explicitly labels 2nd edition and print publication 14 October 2002. Optional DOI: 10.1017/CBO9780511755347. The 2010 date is digital publication, not the edition year.",
+          "_consolidation_source": "review_2026-11-20/foundations_bibliography.json",
+          "_consolidation_packaged_record_path": "review/foundations_bibliography.json"
+        },
+        {
+          "key": "KloedenRasmussen2011",
+          "status": "verified_current_entry",
+          "metadata": "Peter E. Kloeden and Martin Rasmussen, Nonautonomous Dynamical Systems, American Mathematical Society, 2011; Mathematical Surveys and Monographs 176; DOI 10.1090/surv/176.",
+          "primary_urls": [
+            "https://doi.org/10.1090/surv/176",
+            "https://www.ams.org/books/surv/176/surv176-endmatter.pdf",
+            "https://www.ams.org/journals/notices/201108/201108-full-issue.pdf"
+          ],
+          "web_refs": [
+            "turn693912655search0",
+            "turn318937377search8",
+            "turn318937377search9"
+          ],
+          "notes": "AMS search results expose official copyright/catalog text, including 2011 and author/title/series. Direct publisher opens returned 403/redirect errors; no content access circumvention was attempted.",
+          "_consolidation_source": "review_2026-11-20/foundations_bibliography.json",
+          "_consolidation_packaged_record_path": "review/foundations_bibliography.json"
+        },
+        {
+          "key": "VanDoornPollett2009",
+          "status": "verified_current_entry",
+          "metadata": "Erik A. van Doorn and P. K. Pollett, Quasi-stationary distributions for reducible absorbing Markov chains in discrete time, Markov Processes and Related Fields 15(2), 191–204 (2009).",
+          "primary_urls": [
+            "https://research.utwente.nl/en/publications/quasi-stationary-distributions-for-reducible-absorbing-markov-cha/"
+          ],
+          "web_refs": [
+            "turn983569479view3"
+          ],
+          "notes": "Author-institution record provides full citation and BibTeX. Its separate Number of pages field says 16, inconsistent with the 191–204 range; the manuscript uses the explicit citation range, which is correct to this source.",
+          "_consolidation_source": "review_2026-11-20/foundations_bibliography.json",
+          "_consolidation_packaged_record_path": "review/foundations_bibliography.json"
+        },
+        {
+          "key": "Mitrophanov2005",
+          "status": "matches",
+          "primary_sources": [
+            {
+              "url": "https://www.cambridge.org/core/journals/journal-of-applied-probability/article/sensitivity-and-convergence-of-uniformly-ergodic-markov-chains/26A9854BCB8D103B3A63A9B272616EC0",
+              "ref": "turn767915920view0",
+              "basis": "Publisher title, author initials, 42(4), December 2005, 1003–1014, DOI 10.1239/jap/1134587812."
+            }
+          ],
+          "note": "Publisher page also displays a 2016 online hosting date; the article publication year remains 2005. No correction needed.",
+          "_consolidation_source": "review_2026-11-20/quantitative_bibliography.json",
+          "_consolidation_packaged_record_path": "review/quantitative_bibliography.json"
+        },
+        {
+          "key": "Ferns2004",
+          "status": "matches",
+          "primary_sources": [
+            {
+              "url": "https://www.cs.mcgill.ca/~prakash/Pubs/Ferns_MetricsForMDPs.pdf",
+              "ref": "turn767915920view1",
+              "basis": "Author-hosted full published paper: title and all three names; UAI 2004 pages 162 through 169."
+            },
+            {
+              "url": "https://www.cs.mcgill.ca/~prakash/selected.html",
+              "ref": "turn397695239view3",
+              "basis": "Author bibliography confirms 2004 venue and pages."
+            }
+          ],
+          "note": "Do not confuse with an AAAI paper carrying the same title. The supplied reference URL is the UAI version and matches the manuscript venue/pages.",
+          "_consolidation_source": "review_2026-11-20/quantitative_bibliography.json",
+          "_consolidation_packaged_record_path": "review/quantitative_bibliography.json"
+        },
+        {
+          "key": "BhattBorkar1996",
+          "status": "metadata_matches_DOI_primary_fetch_incomplete",
+          "primary_sources": [
+            {
+              "url": "https://repository.ias.ac.in/81435/",
+              "ref": "turn990501389search0",
+              "basis": "Indian Academy of Sciences publication record confirms Abhay G. Bhatt, Vivek S. Borkar, title, Annals of Probability 24(3), 1531–1562, 1996."
+            },
+            {
+              "url": "https://www.jstor.org/stable/i313036",
+              "ref": "turn825891003search3",
+              "basis": "Archived original journal issue contents confirm title, authors and page range."
+            }
+          ],
+          "note": "No metadata error found. DOI and Project Euclid landing pages could not be fetched by the web tool. DOI 10.1214/aop/1065725192 is consistently indexed elsewhere, but this review does not claim its primary landing page was inspected.",
+          "_consolidation_source": "review_2026-11-20/quantitative_bibliography.json",
+          "_consolidation_packaged_record_path": "review/quantitative_bibliography.json"
+        },
+        {
+          "key": "Shapley1953",
+          "status": "matches",
+          "primary_sources": [
+            {
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1063912/",
+              "ref": "turn990501389view0",
+              "basis": "Original article in the National Academy of Sciences archive: title, L. S. Shapley, PNAS 39(10), 1095–1100, October 1953, DOI 10.1073/pnas.39.10.1095."
+            }
+          ],
+          "note": "No correction needed.",
+          "_consolidation_source": "review_2026-11-20/quantitative_bibliography.json",
+          "_consolidation_packaged_record_path": "review/quantitative_bibliography.json"
+        },
+        {
+          "key": "Iyengar2005",
+          "status": "matches",
+          "primary_sources": [
+            {
+              "url": "https://pubsonline.informs.org/doi/abs/10.1287/moor.1040.0129",
+              "ref": "turn990501389view1",
+              "basis": "Publisher citation explicitly gives Garud N. Iyengar, title, Mathematics of Operations Research 30(2):257–280, 2005, DOI 10.1287/moor.1040.0129."
+            }
+          ],
+          "note": "Page header 257–544 is the whole issue range; the article range in the citation is 257–280 and already correct.",
+          "_consolidation_source": "review_2026-11-20/quantitative_bibliography.json",
+          "_consolidation_packaged_record_path": "review/quantitative_bibliography.json"
+        },
+        {
+          "key": "SmallwoodSondik1973",
+          "status": "matches",
+          "primary_sources": [
+            {
+              "url": "https://pubsonline.informs.org/doi/10.1287/opre.21.5.1071",
+              "ref": "turn990501389view2",
+              "basis": "Publisher citation confirms both authors, exact title, Operations Research 21(5):1071–1088, 1973, DOI 10.1287/opre.21.5.1071."
+            }
+          ],
+          "note": "Do not confuse with Sondik alone, 1978, infinite-horizon discounted-cost paper. Current reference is correct.",
+          "_consolidation_source": "review_2026-11-20/quantitative_bibliography.json",
+          "_consolidation_packaged_record_path": "review/quantitative_bibliography.json"
+        },
+        {
+          "key": "PRISM2011",
+          "status": "matches",
+          "primary_sources": [
+            {
+              "url": "https://www.prismmodelchecker.org/bibitem/KNP11/",
+              "ref": "turn990501389view3",
+              "basis": "Official PRISM citation: Marta Kwiatkowska, Gethin Norman, David Parker; PRISM 4.0; CAV 2011; LNCS 6806; 585–591."
+            }
+          ],
+          "note": "Capitalization Real-Time versus official Real-time is style, not a metadata error. Current abbreviated booktitle Computer Aided Verification is acceptable.",
+          "_consolidation_source": "review_2026-11-20/quantitative_bibliography.json",
+          "_consolidation_packaged_record_path": "review/quantitative_bibliography.json"
+        },
+        {
+          "key": "CoolenVanDoorn2006",
+          "status": "matches",
+          "primary_sources": [
+            {
+              "url": "https://research.utwente.nl/en/publications/quasi-stationary-distributions-for-a-class-of-discrete-time-marko/",
+              "ref": "turn397695239view1",
+              "basis": "Author-institution publication metadata confirms full title, both names, journal, 8(4):449–465, 2006 and DOI 10.1007/s11009-006-0424-y."
+            }
+          ],
+          "note": "The related institutional preprint is dated October 2004; the published article year remains 2006. No correction needed.",
+          "_consolidation_source": "review_2026-11-20/quantitative_bibliography.json",
+          "_consolidation_packaged_record_path": "review/quantitative_bibliography.json"
+        },
+        {
+          "key": "Desharnais2004",
+          "status": "matches",
+          "primary_sources": [
+            {
+              "url": "https://www.cs.mcgill.ca/~prakash/selected.html",
+              "ref": "turn397695239view3",
+              "basis": "Author publication list confirms title, four authors and Theoretical Computer Science 318(3):323–354, June 2004."
+            },
+            {
+              "url": "https://scholars.depaul.edu/en/publications/metrics-for-labelled-markov-processes/",
+              "ref": "turn990501389search3",
+              "basis": "Coauthor institution confirms same article metadata and DOI 10.1016/j.tcs.2003.09.013."
+            },
+            {
+              "url": "https://www.sciencedirect.com/science/article/pii/S0304397503006042",
+              "ref": "turn990501389search2",
+              "basis": "Indexed publisher record confirms title, journal, volume, issue, page range, publication date and DOI; direct open returned 403."
+            }
+          ],
+          "note": "Initial R. is correct; author sources vary between Radhakrishnan and Radha. No correction needed.",
+          "_consolidation_source": "review_2026-11-20/quantitative_bibliography.json",
+          "_consolidation_packaged_record_path": "review/quantitative_bibliography.json"
+        },
+        {
+          "key": "Pearl2010",
+          "verified_metadata": "Judea Pearl, Causal Inference, Proceedings of Workshop on Causality: Objectives and Assessment at NIPS 2008, PMLR 6:39–58, 2010.",
+          "primary_url": "https://proceedings.mlr.press/v6/pearl10a.html",
+          "retrieval_ref": "turn956587170view0",
+          "result": "matches",
+          "_consolidation_source": "review_2026-11-20/control_bibliography_review.json",
+          "_consolidation_packaged_record_path": "review/control_bibliography_review.json"
+        },
+        {
+          "key": "BeckersHalpern2019",
+          "verified_metadata": "Sander Beckers and Joseph Y. Halpern, Abstracting Causal Models, Proceedings of the AAAI Conference on Artificial Intelligence 33(01):2678–2685, 2019. DOI 10.1609/aaai.v33i01.33012678.",
+          "primary_url": "https://ojs.aaai.org/index.php/AAAI/article/view/4117",
+          "retrieval_ref": "turn763190368search0",
+          "result": "matches",
+          "access_note": "Primary publisher search result supplied full metadata; direct open was blocked by publisher bot protection.",
+          "_consolidation_source": "review_2026-11-20/control_bibliography_review.json",
+          "_consolidation_packaged_record_path": "review/control_bibliography_review.json"
+        },
+        {
+          "key": "Hammond2023",
+          "verified_metadata": "Lewis Hammond, James Fox, Tom Everitt, Ryan Carey, Alessandro Abate and Michael Wooldridge, Reasoning about causality in games, Artificial Intelligence 320:103919, 2023. DOI 10.1016/j.artint.2023.103919.",
+          "primary_url": "https://www.sciencedirect.com/science/article/pii/S0004370223000656",
+          "retrieval_ref": "turn763190368search1",
+          "result": "matches",
+          "access_note": "Primary publisher search result supplied full metadata; direct open returned 403.",
+          "_consolidation_source": "review_2026-11-20/control_bibliography_review.json",
+          "_consolidation_packaged_record_path": "review/control_bibliography_review.json"
+        },
+        {
+          "key": "Mishra2024",
+          "verified_metadata": "Manuj Mishra, James Fox and Michael Wooldridge, Characterising Interventions in Causal Games, Proceedings of the Fortieth Conference on Uncertainty in Artificial Intelligence, PMLR 244:2560–2572, 2024.",
+          "primary_url": "https://proceedings.mlr.press/v244/mishra24a.html",
+          "retrieval_ref": "turn956587170view3",
+          "result": "matches",
+          "_consolidation_source": "review_2026-11-20/control_bibliography_review.json",
+          "_consolidation_packaged_record_path": "review/control_bibliography_review.json"
+        },
+        {
+          "key": "OtsukaSaigo2022",
+          "verified_metadata": "Jun Otsuka and Hayato Saigo, On the Equivalence of Causal Models: A Category-Theoretic Approach, Proceedings of the First Conference on Causal Learning and Reasoning, PMLR 177:634–646, 2022.",
+          "primary_url": "https://proceedings.mlr.press/v177/otsuka22a.html",
+          "retrieval_ref": "turn482720192view0",
+          "result": "matches",
+          "_consolidation_source": "review_2026-11-20/control_bibliography_review.json",
+          "_consolidation_packaged_record_path": "review/control_bibliography_review.json"
+        },
+        {
+          "key": "Rubenstein2017",
+          "verified_metadata": "Paul K. Rubenstein, Sebastian Weichwald, Stephan Bongers, Joris M. Mooij, Dominik Janzing, Moritz Grosse-Wentrup and Bernhard Schölkopf, Causal Consistency of Structural Equation Models, UAI 2017, paper 11.",
+          "primary_url": "https://auai.org/uai2017/proceedings/papers/11.pdf",
+          "retrieval_ref": "turn482720192view1",
+          "result": "matches",
+          "_consolidation_source": "review_2026-11-20/control_bibliography_review.json",
+          "_consolidation_packaged_record_path": "review/control_bibliography_review.json"
+        },
+        {
+          "key": "Mertikopoulos2024",
+          "verified_metadata": "Panayotis Mertikopoulos, Ya-Ping Hsieh and Volkan Cevher, A unified stochastic approximation framework for learning in games, Mathematical Programming 203:559–609, 2024. DOI 10.1007/s10107-023-02001-y.",
+          "primary_url": "https://link.springer.com/article/10.1007/s10107-023-02001-y",
+          "retrieval_ref": "turn416974589view0",
+          "result": "matches",
+          "note": "Publisher gives online publication 4 August 2023 but final volume 203 is 2024; existing 2024 citation is correct.",
+          "_consolidation_source": "review_2026-11-20/control_bibliography_review.json",
+          "_consolidation_packaged_record_path": "review/control_bibliography_review.json"
+        },
+        {
+          "key": "Milionis2023",
+          "verified_metadata": "Jason Milionis, Christos Papadimitriou, Georgios Piliouras and Kelly Spendlove, An impossibility theorem in game dynamics, PNAS 120(41):e2305349120, 2023. DOI 10.1073/pnas.2305349120.",
+          "primary_url": "https://www.pnas.org/doi/10.1073/pnas.2305349120",
+          "retrieval_ref": "turn416974589view3",
+          "result": "matches; optional completeness improvement",
+          "recommended_metadata_addition": {
+            "number": "41"
+          },
+          "scope_note": "The impossibility result concerns the declared continuous/discrete game-dynamics class with Nash stationarity and the stated convergence conditions; do not generalize to every arbitrary learning rule.",
+          "_consolidation_source": "review_2026-11-20/control_bibliography_review.json",
+          "_consolidation_packaged_record_path": "review/control_bibliography_review.json"
+        },
+        {
+          "key": "GallaFarmer2013",
+          "verified_metadata": "Tobias Galla and J. Doyne Farmer, Complex dynamics in learning complicated games, PNAS 110(4):1232–1236, 2013. DOI 10.1073/pnas.1109672110.",
+          "primary_url": "https://www.pnas.org/doi/10.1073/pnas.1109672110",
+          "retrieval_ref": "turn482720192view4",
+          "result": "matches",
+          "_consolidation_source": "review_2026-11-20/control_bibliography_review.json",
+          "_consolidation_packaged_record_path": "review/control_bibliography_review.json"
+        },
+        {
+          "key": "Danos2006",
+          "primary_urls": [
+            "https://www.sciencedirect.com/science/article/pii/S0890540105001951",
+            "https://www.research.ed.ac.uk/en/publications/bisimulation-and-cocongruence-for-probabilistic-systems/"
+          ],
+          "status": "metadata_matches",
+          "_consolidation_source": "review_2026-11-20/root_bibliography.json",
+          "_consolidation_packaged_record_path": "review/root_bibliography.json"
+        },
+        {
+          "key": "BenaimCloezPanloup2018",
+          "primary_urls": [
+            "https://imstat.org/publications/aap/aap_28_4/aap_28_4.pdf"
+          ],
+          "status": "metadata_matches",
+          "_consolidation_source": "review_2026-11-20/root_bibliography.json",
+          "_consolidation_packaged_record_path": "review/root_bibliography.json"
+        },
+        {
+          "key": "RudolfWang2025",
+          "primary_urls": [
+            "https://wrap.warwick.ac.uk/id/eprint/189191/"
+          ],
+          "status": "corrected_author",
+          "_consolidation_source": "review_2026-11-20/root_bibliography.json",
+          "_consolidation_packaged_record_path": "review/root_bibliography.json"
+        },
+        {
+          "key": "Geiger2025",
+          "primary_urls": [
+            "https://jmlr.org/papers/v26/23-0058.html"
+          ],
+          "status": "metadata_matches",
+          "_consolidation_source": "review_2026-11-20/root_bibliography.json",
+          "_consolidation_packaged_record_path": "review/root_bibliography.json"
+        },
+        {
+          "key": "ArcakMartins2021",
+          "primary_urls": [
+            "https://user.eng.umd.edu/~nmartins/publications.html",
+            "https://ieeecss.org/sites/ieeecss/files/documents/pcd/CSS_Publications_Content_Digest_072021.pdf"
+          ],
+          "status": "metadata_matches",
+          "_consolidation_source": "review_2026-11-20/root_bibliography.json",
+          "_consolidation_packaged_record_path": "review/root_bibliography.json"
+        },
+        {
+          "key": "GreifLaitin2004",
+          "primary_urls": [
+            "https://www.cambridge.org/core/journals/american-political-science-review/article/abs/theory-of-endogenous-institutional-change/161BF12CD6B8AA93F80EDA25CCDE12A9"
+          ],
+          "status": "metadata_matches",
+          "_consolidation_source": "review_2026-11-20/root_bibliography.json",
+          "_consolidation_packaged_record_path": "review/root_bibliography.json"
+        },
+        {
+          "key": "Sandholm2015",
+          "primary_urls": [
+            "https://www.sciencedirect.com/science/article/abs/pii/B9780444537669000136",
+            "https://users.ssc.wisc.edu/~whs/research/index.html"
+          ],
+          "status": "metadata_matches",
+          "_consolidation_source": "review_2026-11-20/root_bibliography.json",
+          "_consolidation_packaged_record_path": "review/root_bibliography.json"
+        },
+        {
+          "key": "ItoYamamichi2024",
+          "primary_urls": [
+            "https://academic.oup.com/pnasnexus/article/3/11/pgae455/7817389"
+          ],
+          "status": "metadata_matches",
+          "_consolidation_source": "review_2026-11-20/root_bibliography.json",
+          "_consolidation_packaged_record_path": "review/root_bibliography.json"
+        },
+        {
+          "key": "Tilman2020",
+          "primary_urls": [
+            "https://www.nature.com/articles/s41467-020-14531-6"
+          ],
+          "status": "metadata_matches",
+          "_consolidation_source": "review_2026-11-20/root_bibliography.json",
+          "_consolidation_packaged_record_path": "review/root_bibliography.json"
+        },
+        {
+          "key": "Weitz2016",
+          "primary_urls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC5127343/"
+          ],
+          "status": "metadata_matches",
+          "_consolidation_source": "review_2026-11-20/root_bibliography.json",
+          "_consolidation_packaged_record_path": "review/root_bibliography.json"
+        },
+        {
+          "key": "BrownMacKay2025",
+          "primary_urls": [
+            "https://www.nber.org/papers/w34070"
+          ],
+          "status": "added_primary_citation",
+          "_consolidation_source": "review_2026-11-20/root_bibliography.json",
+          "_consolidation_packaged_record_path": "review/root_bibliography.json"
+        }
+      ],
+      "limitations": [
+        "Metadata audit, not a full substantive reading of every cited external article.",
+        "BhattBorkar1996 identifying metadata was checked against the IAS record and original issue contents. Its DOI/Project Euclid primary landing page could not be inspected.",
+        "Some publisher metadata was available through indexed publisher results or author/institution records when direct pages were blocked; those cases are not represented as full-text inspection."
+      ]
+    },
+    "final_visual_review": {
+      "source": "review_2026-11-20/final_visual_comparison.json",
+      "packaged_record_path": "review/final_visual_comparison.json",
+      "source_sha256": "5da041b46eb8a3c9e546bf941899cacd2cb3f7317df1a2de55aac5b1e93c5a52",
+      "final_pages_transferred_by_exact_cropped_body_pixel_match": 213,
+      "final_pages_opened_at_full_size_by_root": [
+        8,
+        9,
+        10,
+        33,
+        148
+      ],
+      "page_coverage_total": 218,
+      "footer_numbers_sequential": true,
+      "replacement_character_U_FFFD_count": 0,
+      "final_cosmetic_corrections_checked": [
+        "ROOT-17",
+        "ROOT-18"
+      ],
+      "scope_note": "Visual coverage uses inspected candidate pages where body pixels match exactly, plus direct inspection of the five changed final pages; it is not a claim that every final page was separately reopened at full size."
+    }
+  },
+  "baseline_source_comparison": {
+    "compared_utc": "2026-11-20T19:20:06.819694+00:00",
+    "baseline_manifest": "review_2026-11-20/baseline_manifest.json",
+    "packaged_baseline_manifest": "review/baseline_manifest.json",
+    "all_baseline_hashes_matched": true,
+    "baseline_tracked_files_compared": 55,
+    "modified_file_count": 34,
+    "unchanged_file_count": 21,
+    "modified_files": [
+      {
+        "path": "README.txt",
+        "baseline_sha256": "0b306412475cc7d339ad335c5ba2db0b8f280778cc4ec52ae69d8d855195c062",
+        "reviewed_source_sha256_at_consolidation": "d3d4203067278bfe2f1cab5054ea060b44a5445d55d20d9ed6e188059d38ac64",
+        "lines_added": 23,
+        "lines_removed": 4
+      },
+      {
+        "path": "appendices/A_foundations.tex",
+        "baseline_sha256": "67ae45ceeaafc9c2df9e5fb703e8aa9c78240e69eaf697ea14ef0aa6c657d307",
+        "reviewed_source_sha256_at_consolidation": "1e9a6860581f5c766d81eca6cac6160e25a33946d05d40e8bc33c9b006f0e21b",
+        "lines_added": 1,
+        "lines_removed": 1
+      },
+      {
+        "path": "appendices/C_foundations.tex",
+        "baseline_sha256": "254cbc1751a8b29f03533a316c44e13539fa7b8896597e368c9126128852fef1",
+        "reviewed_source_sha256_at_consolidation": "82a936def042ed931f3a46d277251fc570cb1390cdd05f786dacc383715dd1e1",
+        "lines_added": 1,
+        "lines_removed": 1
+      },
+      {
+        "path": "appendices/D_occupation.tex",
+        "baseline_sha256": "3a272f56399b364409fedbbb4914c3d36e10bd262d8ae9f824485b45797ea466",
+        "reviewed_source_sha256_at_consolidation": "98735aca9dee1c0b59dec6be2c5b13f1a85fc58821ecda5c4997f29ec10bd917",
+        "lines_added": 5,
+        "lines_removed": 5
+      },
+      {
+        "path": "appendices/E_ergodic.tex",
+        "baseline_sha256": "96533df2e434b351cd3f96248cb77bd43d2004d556a38e8fd94306990f3f8527",
+        "reviewed_source_sha256_at_consolidation": "20850978c85520162d8fd22e14d9b478fa90b47cc5e8d2e2578f468271f73927",
+        "lines_added": 8,
+        "lines_removed": 1
+      },
+      {
+        "path": "appendices/F_grammar.tex",
+        "baseline_sha256": "ee02094eb0cfbe6c371bb947380d238f281fb516692211da5fc915b3464533c1",
+        "reviewed_source_sha256_at_consolidation": "e3b670e409c153734bc266d908b96a7d011ff6ea7c5affd772d6a506fd4a3972",
+        "lines_added": 5,
+        "lines_removed": 5
+      },
+      {
+        "path": "appendices/G_path_transport.tex",
+        "baseline_sha256": "c11781dbabf8f5f58a2e1ba01b639cc8c692917ec42bc18ddc0b52cec546f29c",
+        "reviewed_source_sha256_at_consolidation": "7a2aefe9fb1523f124fd302d72d333a7ac64a2ff5d72c38db3a6e283c9303222",
+        "lines_added": 1,
+        "lines_removed": 1
+      },
+      {
+        "path": "appendices/H_metric_occupation.tex",
+        "baseline_sha256": "ea0f51bc01bb571cc4774290ce1024a73faf94ef924ae65c644cb5bd7e9679a1",
+        "reviewed_source_sha256_at_consolidation": "94d44e57e8a96f511bf10a8382d85cf7602b41b485dc8574078f349b69adb4d9",
+        "lines_added": 1,
+        "lines_removed": 1
+      },
+      {
+        "path": "appendices/J_control.tex",
+        "baseline_sha256": "7c414e7a3b9ee4fc62f1a2f9c6dfe00f87db8d5d29a67cd2ff623b686be736de",
+        "reviewed_source_sha256_at_consolidation": "e45c7f5543ae4daa92da88dd955ce98d43ec00332a295954f9c3401269e7b6e2",
+        "lines_added": 2,
+        "lines_removed": 2
+      },
+      {
+        "path": "appendices/K_algorithms.tex",
+        "baseline_sha256": "5b38a9b0382724f1c02cca11e72393043a91d5ec92c43b11accccc63cdb25740",
+        "reviewed_source_sha256_at_consolidation": "f7378eee040563b22806f48e9a140c65743428394bb2719e4b695fc359173b6a",
+        "lines_added": 1,
+        "lines_removed": 1
+      },
+      {
+        "path": "appendices/M_specialized.tex",
+        "baseline_sha256": "5ac0c6f697c35bc93d79a1295b9e7bba93643162baa6139614d7169f989f38b3",
+        "reviewed_source_sha256_at_consolidation": "a6f01b4c5799bfb535d37eae0ebf5eb6430678aa9648b3291578fbe346367ccc",
+        "lines_added": 2,
+        "lines_removed": 2
+      },
+      {
+        "path": "appendices/N_cases.tex",
+        "baseline_sha256": "5d10939908ff72127483ae1fada63e9d062f143ae1c3388474c638e9c2632da3",
+        "reviewed_source_sha256_at_consolidation": "c79a011a719413400696227f4c54c4735682d459830b8931daef046209eaa8ae",
+        "lines_added": 4,
+        "lines_removed": 4
+      },
+      {
+        "path": "build_index.py",
+        "baseline_sha256": "27d1857e68708ccfa4a3448d25be91881cee62e5193beb68f46c4ea6faf02c6c",
+        "reviewed_source_sha256_at_consolidation": "84b43a68c96fd2ae9af884cdf1d74a19a2db756534a1258014483e1149d0466c",
+        "lines_added": 24,
+        "lines_removed": 1
+      },
+      {
+        "path": "main.tex",
+        "baseline_sha256": "f3026af868a7dee6869b1d360507acebfc3de946a8f1f90a76dccbdc88516509",
+        "reviewed_source_sha256_at_consolidation": "8ad5cdafc113922687aa5066be2949d3777acda9473f06b0e4ec6739f7ee5f3e",
+        "lines_added": 3,
+        "lines_removed": 3
+      },
+      {
+        "path": "preamble.tex",
+        "baseline_sha256": "89d2cbd441a78cf7037a9c820960525fad622d798df1308f71bac493e003aafc",
+        "reviewed_source_sha256_at_consolidation": "0f677be8ad84a0cb8de4cad21953209bc1116d34c538a7596adfbcdb7d741a0a",
+        "lines_added": 2,
+        "lines_removed": 2
+      },
+      {
+        "path": "references.bib",
+        "baseline_sha256": "0065f1ce99f87cdf85eefbcdd9ecd2f5d9c4adf0add03561fb0ffc87bd162cd4",
+        "reviewed_source_sha256_at_consolidation": "de2ee016dcfa916ebce7ec2ddb1c176016235ce31d111f5deabb1beaad43bea4",
+        "lines_added": 2,
+        "lines_removed": 1
+      },
+      {
+        "path": "sections/C01.tex",
+        "baseline_sha256": "87c1e3eb87d71109ae512ded40ee716e2e27f3b0571b24e7e06cd3c881e6ffa3",
+        "reviewed_source_sha256_at_consolidation": "633e0574ff16885dd17c7cffd1386aa510b8ffb0f7fdebee6e8e8c79c952cc88",
+        "lines_added": 1,
+        "lines_removed": 1
+      },
+      {
+        "path": "sections/C04.tex",
+        "baseline_sha256": "48b138d5f84d76337dc4aa7d8456c829ff25cfc1e146d434c013668d873c1b9b",
+        "reviewed_source_sha256_at_consolidation": "ffb6a73fd662794558ae41f901f3d041129bb752c638b19db6d69fe51bad63a3",
+        "lines_added": 1,
+        "lines_removed": 1
+      },
+      {
+        "path": "sections/C05.tex",
+        "baseline_sha256": "b8fcb831b0c7202c20e331b821e916c941f941deaa86881835fb34419e7e5d9c",
+        "reviewed_source_sha256_at_consolidation": "f19811b3f7c2bf3743a4bd217032f90d7d39cb755c5daeb29de99c7358bf17eb",
+        "lines_added": 2,
+        "lines_removed": 1
+      },
+      {
+        "path": "sections/C06.tex",
+        "baseline_sha256": "750715eae60a0e8c1c7b1c040a4b1387f70e2604139f4254996f53f5b74567d7",
+        "reviewed_source_sha256_at_consolidation": "b36351729d7912208074d2dba226bfc68c3d834703dd6a5b427ca24febbc48b9",
+        "lines_added": 2,
+        "lines_removed": 2
+      },
+      {
+        "path": "sections/C10.tex",
+        "baseline_sha256": "c9408f24e321bee039fe6d4cf0a302be4643b1474dbe9dbdb1bea2d3f9eeb58d",
+        "reviewed_source_sha256_at_consolidation": "8e33fa8d24ef4b558270f5b5623761ad463b1124134722e4822e1cfe3510c863",
+        "lines_added": 1,
+        "lines_removed": 1
+      },
+      {
+        "path": "sections/C11.tex",
+        "baseline_sha256": "dabc4d1b42db95d1fe9ad3d9617a128b4c807bb80105d36ba0ce451f281756f1",
+        "reviewed_source_sha256_at_consolidation": "789acd6906548c0f1b4e755db495c588a6520996f2fc010f310815fa054aa563",
+        "lines_added": 2,
+        "lines_removed": 2
+      },
+      {
+        "path": "sections/C12.tex",
+        "baseline_sha256": "b7186db92ecdd30c79dcc8a19d391be05a417c681359e126a4ae6e1ffac2c38e",
+        "reviewed_source_sha256_at_consolidation": "8806b866254d4f2467c77317af0e51ec08e97a996123725dfea840a2b610be1c",
+        "lines_added": 1,
+        "lines_removed": 1
+      },
+      {
+        "path": "sections/C13.tex",
+        "baseline_sha256": "7ad56b5c322739582355a3c060c38180465666a43e3612e62a06bbdf7377f8e8",
+        "reviewed_source_sha256_at_consolidation": "d2af28ae845a9b3d911d96ce2d53fdc437d957a14c13e9dd706be2a6dda0671a",
+        "lines_added": 2,
+        "lines_removed": 2
+      },
+      {
+        "path": "sections/C14.tex",
+        "baseline_sha256": "f3146de4e9496b21123f3e699a907908d642bb1cb72f0bc0924ece0cb575b33b",
+        "reviewed_source_sha256_at_consolidation": "92c736a174808085ac1e12e2679217ffd0695fa0ede652ace611f21968e98122",
+        "lines_added": 1,
+        "lines_removed": 1
+      },
+      {
+        "path": "sections/C15.tex",
+        "baseline_sha256": "87fb66deb2b5a0d2cb08b06611e02f16a9ab2c51989699f451610a9b1edf46ca",
+        "reviewed_source_sha256_at_consolidation": "4d09892ac4fd7597209dc51f97a8fc6f358468e77b4e4acb522abba5ca431825",
+        "lines_added": 5,
+        "lines_removed": 5
+      },
+      {
+        "path": "sections/C18.tex",
+        "baseline_sha256": "15ba94ace9d205d70fc897512c678eae402130c8592436ffe957333b87dbadb4",
+        "reviewed_source_sha256_at_consolidation": "24a673d186849f9f748ccfdda639fd3feea9afce612684252889e3524f1003a3",
+        "lines_added": 4,
+        "lines_removed": 4
+      },
+      {
+        "path": "sections/C20.tex",
+        "baseline_sha256": "28b37b93de729b4c24241240376a93581ac635052c758b289e5769a7b34ad8e3",
+        "reviewed_source_sha256_at_consolidation": "86368c36c48a224a6f4e4d7e3ddc4b12ac5b68af2f99d29e2ad9f1af95c22581",
+        "lines_added": 2,
+        "lines_removed": 2
+      },
+      {
+        "path": "sections/C22.tex",
+        "baseline_sha256": "4df6180a94e5a59e4d602067082e2edf46a34a10946b26e7f3c8ba2cb6883a7e",
+        "reviewed_source_sha256_at_consolidation": "870fc9a4368ed93f28ead9bd7d701e33ef8c50c016b880960f0dbf0d8fe50863",
+        "lines_added": 2,
+        "lines_removed": 2
+      },
+      {
+        "path": "sections/C23.tex",
+        "baseline_sha256": "4745197cbba41c2e3c52d1d0244f2b1ff8969f7a6c4519e54d9ee5ce31fec94e",
+        "reviewed_source_sha256_at_consolidation": "c575395f89b683dc5209041458fe48bdea8724a61c95e5f42bf5c3f9fe66d7cb",
+        "lines_added": 2,
+        "lines_removed": 2
+      },
+      {
+        "path": "sections/C24.tex",
+        "baseline_sha256": "adae92c9456dd34dc2e48ac9b9c60200e6a876dc44cabc90d4d89ebf8d71be3e",
+        "reviewed_source_sha256_at_consolidation": "bdcc72668985c34f2f1591848a2b31cc2bf693b62c092a3d3ff9be56606c16f3",
+        "lines_added": 4,
+        "lines_removed": 5
+      },
+      {
+        "path": "sections/C26.tex",
+        "baseline_sha256": "41a4ceda957c56656475d9c54fac9a362a6e372281a03ab84f624b2bc475cf3d",
+        "reviewed_source_sha256_at_consolidation": "f74ba3951d951495e1ab6985c53dda2068ef7acd0873f24ad7b379977be485a0",
+        "lines_added": 5,
+        "lines_removed": 6
+      },
+      {
+        "path": "sections/C28.tex",
+        "baseline_sha256": "be9560903c180ac0a168ad3f2f9867cd7c56452b8452ddefdb4bae3eeff067f6",
+        "reviewed_source_sha256_at_consolidation": "bdf97d94c57c91379f495e353be5d7f921472e2983092606b24d654484760f71",
+        "lines_added": 7,
+        "lines_removed": 7
+      },
+      {
+        "path": "sections/C29.tex",
+        "baseline_sha256": "1f92f4402ee8a3d4ee0b7e8e231086434f5f2a86fbfd8d6c29f5a164393126b7",
+        "reviewed_source_sha256_at_consolidation": "9c9962fd3e67850188678332f9087b111260cd2cadda569e36e399de6db4eb84",
+        "lines_added": 1,
+        "lines_removed": 1
+      }
+    ],
+    "unchanged_files": [
+      "abstract.tex",
+      "appendices/B_lineage.tex",
+      "appendices/I_quotients.tex",
+      "appendices/L_games_multiagent.tex",
+      "appendices/O_concordance.tex",
+      "appendices/P_open.tex",
+      "appendices/generated_statement_index.tex",
+      "build.sh",
+      "sections/C02.tex",
+      "sections/C03.tex",
+      "sections/C07.tex",
+      "sections/C08.tex",
+      "sections/C09.tex",
+      "sections/C16.tex",
+      "sections/C17.tex",
+      "sections/C19.tex",
+      "sections/C21.tex",
+      "sections/C25.tex",
+      "sections/C27.tex",
+      "sections/C30.tex",
+      "sections/C31.tex"
+    ],
+    "total_lines_added": 130,
+    "total_lines_removed": 81,
+    "line_count_method": "difflib.SequenceMatcher, autojunk=False; changed lines counted as removed plus added. Counts cover baseline-tracked manuscript/build files only, not new review artifacts or generated PDF binaries."
+  },
+  "record_reconciliation_notes": [
+    "review_2026-11-20/source_anchor_screen.json preserves the earlier 536-citation snapshot. The refreshed coverage/manuscript_structural_audit.json and coverage/integrated_draft_verification.json report 538 occurrences, including the added X1 predicate references.",
+    "ROOT-07 retains its original evidence string review/specialized_supplementary_review.json verbatim. The actual record is review_2026-11-20/specialized_supplementary_review.json, as resolved by the supplementary crosswalk.",
+    "Individual reviewer file hashes are historical review snapshots; the modified-file manifest records current source hashes at consolidation. Final PDF hashes are intentionally not inferred from those source snapshots."
+  ],
+  "limitations": [
+    "No fresh full-repository Lean build was performed for this manuscript review.",
+    "No independent semantic reconciliation of all 7,690 inventoried Lean declaration/example units is claimed; the inventory includes definitions and other units, not only theorems.",
+    "Literal source-label presence, numerical agreement and module coverage do not establish semantic equivalence between every source declaration and manuscript claim.",
+    "Exact finite calculations supplement proofs and cannot replace infinite-horizon, measurability or analytic arguments.",
+    "The specialized arithmetic source and complete-detector inputs retain their stated source assumptions and were not reproved as a complete upstream package.",
+    "Historical empirical applications were checked for attribution and claim scope; no new observational or empirical causal certification is issued.",
+    "Historical-clause reconciliation and open obligations already recorded in Appendix P and the existing ledgers remain open unless specifically closed by these findings.",
+    "The work is an internal AI-assisted mathematical, source, editorial and visual review; it is not external peer review or an independent proof-assistant certification."
+  ]
+}
