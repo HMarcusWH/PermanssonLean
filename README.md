@@ -8,9 +8,17 @@ The research starts from a typed strategic-world process: action selection and s
 
 The repository now contains two deliberately separate Lean libraries, an accepted research companion, a draft application-reporting standard, and bounded executable proof-replay interfaces. **A Lean-checked constructed model does not, by itself, certify a real-world regime.**
 
-> **Verified source checkpoint — 19 October 2026.** At [`main@3931e4dccafb`](https://github.com/HMarcusWH/PermanssonLean/commit/3931e4dccafb47b3cdf70177c0cf337102c90731), the [Research Lean workflow](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39330505589) passed its pinned compiler and axiom checks, **1,093 research test methods**, and direct-import coverage for **646 research Lean modules**. The separately configured Original Lean, Application contract, Executable verification, Research integrity and Integrity portability workflows also passed at that exact commit. These are date- and source-bound software-verification counts, **not counts of theorems or independent scholarly reviews**.
+## Current manuscript — reviewed second edition v2.0.1
 
-## Current reference guide and module crosswalk — v1.1.1
+[**Permansson Regimes: Structure, Intervention, and Computation Beyond Equilibrium**](paper2/README.md), by Marcus Hermansson, is the reviewed second-edition manuscript draft dated 20 November 2026: **218 pages, 31 main sections and 16 integral appendices**. Its mathematical source is pinned to `c5a36cd6189e2a249d5f4bc11f31698917dc8b10`.
+
+Read the [PDF](paper2/v2.0.1/Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf), [source and concordance package](paper2/v2.0.1/Permansson_Regimes_v2_0_1_Source_and_Concordance_2026-11-20.zip), [review report](paper2/v2.0.1/Permansson_Regimes_v2_0_1_Review_Report_2026-11-20.pdf), and [edition citation](paper2/v2.0.1/CITATION.bib). The [current documentation](docs/paper2/README.md) connects every paper section and appendix to its source, earlier-paper lineage, applications and [remaining obligations](docs/paper2/RESIDUAL_STATUS.md).
+
+The paper contains 147 numbered mathematical items. Its 798-file Lean inventory and 7,690 lexical declaration/example units have grouped written routes; these counts do not assert individual semantic certification or a fresh full Lean build. The [source crosswalk](docs/paper2/MATHEMATICAL_CROSSWALK.md) keeps those evidence dimensions explicit.
+
+<a id="current-reference-guide-and-module-crosswalk--v111"></a>
+
+## Technical reference guide and module crosswalk — v1.1.1
 
 The [proofread Mathematical and Executable Reference Guide (PDF)](docs/reference/Permansson_Mathematical_Reference_Guide_v1.1.1.pdf) is now included in this repository alongside its [editable Markdown](docs/reference/Permansson_Mathematical_Reference_Guide_v1.1.1.md). It spans **46 chapters and 126 pages** and preserves each historical theorem/source pin.
 
@@ -22,32 +30,40 @@ Use the [reference hub](docs/reference/README.md), [chapter ↔ source crosswalk
 
 | Goal | Read this | Required tools |
 |---|---|---|
+| Read the current manuscript | [Reviewed v2.0.1 paper](paper2/README.md), [reading routes](docs/paper2/GETTING_STARTED.md) and [current glossary](docs/paper2/GLOSSARY.md) | None |
 | Read the complete reference | [v1.1.1 PDF](docs/reference/Permansson_Mathematical_Reference_Guide_v1.1.1.pdf) and [module mapping](docs/reference/README.md) | None |
-| Understand the theory | [Paper guide](paper/README.md) and [glossary](docs/GLOSSARY.md) | None |
+| Trace the current mathematics | [Paper-to-source map](docs/paper2/MATHEMATICAL_CROSSWALK.md) and [earlier-paper concordance](docs/paper2/EARLIER_PAPER_CONCORDANCE.md) | None for reading |
+| Read the frozen original theory | [v0.1.8 paper guide](paper/README.md) and [historical glossary](docs/GLOSSARY.md) | None |
 | Read the accepted research companion | [v0.2.0 research companion](release/v0.2.0/README.md) | None for its PDF |
-| Study or extend the Lean mathematics | [Research build guide](docs/RESEARCH_BUILD.md), [implementation index](docs/V020_IMPLEMENTATION_INDEX.md) | Pinned Lean 4.34.0 and Git |
+| Study or extend the Lean mathematics | [Research build guide](docs/RESEARCH_BUILD.md), [current source map](docs/paper2/MATHEMATICAL_CROSSWALK.md) | Pinned Lean 4.34.0 and Git |
 | Validate an application report | [Application Standard](application/README.md) and [getting started](docs/GETTING_STARTED.md) | Python 3.13 |
 | Replay supported finite proofs | [C10 six-state](apps/permansson/closure-successor/README.md) or [C11 stationary-family](apps/permansson/closure-successor-c11/README.md) | Python 3.13, clean Git checkout, pinned Lean |
 | Use the successor application (26 exact finite profiles with independent checkers and source-bound Lean candidates; numeric scope released as [0.2.0](https://github.com/HMarcusWH/PermanssonLean/releases/tag/permansson-app-v0.2.0), not independently certified) | [Application successor](apps/permansson/application-successor/README.md) and its [reviewer guide](apps/permansson/application-successor/docs/REVIEWER_GUIDE.md) | Python 3.12+; pinned Lean for candidate replay |
-| Reproduce validation and integrity checks | [Verification guide](verification/README.md) | Depends on the check |
-| Contribute | [Contribution guide](CONTRIBUTING.md) | Depends on the change |
+| Reproduce validation and integrity checks | [Current verification routes](docs/paper2/VERIFICATION.md) and [historical package guide](verification/README.md) | Depends on the check |
+| Contribute | [Current contribution routes](docs/paper2/GETTING_STARTED.md#contribute-to-the-current-documentation) and [preserved contribution rules](CONTRIBUTING.md) | Depends on the change |
 
 The [documentation index](docs/README.md) links the complete reference material.
 
 ## Repository architecture and version boundaries
 
-The frozen source manuscript is **Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium v0.1.8**. The Lean package version remains `0.1.0` because this metadata belongs to the immutable original formalization snapshot; it is not the paper or research-library release version.
+The frozen original source manuscript is **Permansson Regimes: A General Framework for Strategic Dynamics Beyond Equilibrium v0.1.8**. The Lean package version remains `0.1.0` because this metadata belongs to the immutable original formalization snapshot; it is not the paper or research-library release version.
 
 | Component | Role and scope |
 |---|---|
+| [`paper2/`](paper2/README.md) | **Reviewed manuscript v2.0.1**, with its own publication identity, citation, source/concordance and review record. |
+| [`docs/paper2/`](docs/paper2/README.md) | **Current paper navigation**, mathematical/earlier-paper/guide maps, application compatibility and explicit residual status. |
 | [`PermanssonLean/`](PermanssonLean/) | **Frozen v0.1.8 discrete formal core**, 64 Lean source modules at the checkpoint. Default Lake target. Its completed formalization claim reaches Proposition 8.1 within the [original theorem ledger](docs/FORMALIZATION_MAP.md); it does not cover every manuscript claim. |
-| [`PermanssonResearch/`](PermanssonResearch/) | **Separate, evolving research Lean library**, 646 source modules at the checkpoint, directly imported from `PermanssonResearch.lean`. Its results retain each theorem's actual finite, measurable, moment, information and intervention hypotheses. |
+| [`PermanssonResearch/`](PermanssonResearch/) | **Separate research Lean library**, 710 source modules at the manuscript source `c5a36cd…`, directly imported from `PermanssonResearch.lean`. The 646-module figure below belongs to the earlier October 19 checkpoint. Its results retain each theorem's actual finite, measurable, moment, information and intervention hypotheses. |
 | [`release/v0.2.0/`](release/v0.2.0/) | **Accepted v0.2.0 research companion** with its own theorem map and acceptance evidence. It is based on an earlier accepted research source, **not** the full post-PR79 October 18–19 additions. |
 | [`application/`](application/) | **Draft v0.1.0 reporting and validation standard**, compatible with paper v0.1.8; structural contract checking, **not** mathematical or empirical certification. |
 | [`apps/permansson/`](apps/permansson/) | Separately versioned, supported **C10 and C11 numerical/Lean proof-replay interfaces**. Each proves only the reified finite mathematical object in its documented supported input class. The [`application-successor/`](apps/permansson/application-successor/README.md) adds 26 exact finite profiles with independent checkers and source-bound Lean candidates. Its numeric scope is released as [`permansson-app-v0.2.0`](https://github.com/HMarcusWH/PermanssonLean/releases/tag/permansson-app-v0.2.0) (Linux CPython 3.12/3.13) under an owner-engineering policy; it is not independently certified. |
 | [`verification/`](verification/) | Original Lean checks, research checks, numerical regression, preservation/integrity, application-contract gates, and historical release replays, each with distinct evidentiary meaning. |
 
-**Versions are not interchangeable.** The paper is v0.1.8, the original Lake package metadata remains `0.1.0`, the Application Standard is **draft v0.1.0**, the accepted research companion is **v0.2.0**, the C10 successor CLI is **v0.1.0**, and the C11 successor CLI is **v0.2.0**. These identifiers refer to different deliverables and are not a single synchronized release number.
+**Versions name separate deliverables.** The current manuscript is **reviewed draft v2.0.1**; the original paper remains **v0.1.8**; the original Lake metadata remains `0.1.0`; the guide is **v1.1.1**; the Application Standard is **draft v0.1.0**; and research/software/native tool releases retain their own identities. The [version-lineage table](docs/paper2/VERSION_LINEAGE.md) distinguishes all of them, including the separate unpublished mathematical-closure candidate.
+
+## Historical verified source checkpoint
+
+> **Verified source checkpoint — 19 October 2026.** At [`main@3931e4dccafb`](https://github.com/HMarcusWH/PermanssonLean/commit/3931e4dccafb47b3cdf70177c0cf337102c90731), the [Research Lean workflow](https://github.com/HMarcusWH/PermanssonLean/actions/runs/39330505589) passed its pinned compiler and axiom checks, **1,093 research test methods**, and direct-import coverage for **646 research Lean modules**. The separately configured Original Lean, Application contract, Executable verification, Research integrity and Integrity portability workflows also passed at that exact commit. These are date- and source-bound software-verification counts, **not counts of theorems or independent scholarly reviews**.
 
 ## Build the Lean libraries
 
@@ -61,7 +77,7 @@ lake build PermanssonResearch
 
 `lake build` checks the **default frozen core**. `lake build PermanssonResearch` checks the **separate research root**; one is not a substitute for the other. The [original Lean workflow](.github/workflows/lean.yml) and [Research Lean workflow](.github/workflows/research-lean.yml) independently test their respective scopes and audit permitted axioms. Routine builds must **not** run `lake update` or change the dependency pins.
 
-For setup and current source-bound CI expectations, see the [research build guide](docs/RESEARCH_BUILD.md) and [verification guide](verification/README.md).
+For setup and current source-bound CI expectations, see the [research build guide](docs/RESEARCH_BUILD.md) and [current verification guide](docs/paper2/VERIFICATION.md).
 
 ## Two supported proof-replay applications
 
@@ -105,19 +121,16 @@ The synthetic example should report `contract_valid=true` and `scientific_claims
 
 ## Mathematical scope and open boundaries
 
-The accepted v0.2.0 companion and subsequent Research library contain scoped work on recurrent classes and occupation laws, killed-process persistence and first-exit routing, constitutive margins and intervention grammars, total-variation and metric perturbation bounds, multi-agent protocols, finite monitor/robust/hidden-state optimization and exact economic/game witnesses. The [v0.2.0 implementation index](docs/V020_IMPLEMENTATION_INDEX.md) is a **dated pre-PR79 anchor map**; the [PR79 source/CI index](research/paper_closures/post_merge_79/source_ci_index.json) documents the October 18 closure checkpoint. Neither automatically certifies PRs #80–102, whose exact scopes and acceptance evidence remain in their own merged PRs and CI runs.
+The reviewed manuscript integrates the original GR/PR and equilibrium predecessor, finite and nonfinite occupation laws, exit and restart, admitted grammars, constitutive certificates, total-variation/common-mass and metric bounds, exact and approximate quotients, finite history and belief control, risk/occupancy and robust games, X1, measurable multi-agent mechanisms, causal models, specialized finite algebra and the earlier casebook. The [mathematical crosswalk](docs/paper2/MATHEMATICAL_CROSSWALK.md) maps all 31 sections and appendices A–P to source roles and hypotheses.
 
-Some boundaries are deliberately **negative** or **conditional**:
+Use [residual status](docs/paper2/RESIDUAL_STATUS.md) for the current stronger or separately evidenced obligations. Source presence, paper derivation, a reflected finite instance, compiler execution, independent case acceptance and empirical identification remain separate. In particular, the X1 replete region still leaks; a constructed positive witness or finite numerical margin alone does not establish a real-world Exact GR/PR. [Compatibility and corrections](docs/paper2/COMPATIBILITY_AND_CORRECTIONS.md) explains the reviewed predicate and hypothesis distinctions.
 
-- In X1, all six scoped original finite constitutive margins have exact proofs, but the declared replete region **leaks**; this does **not** establish an Exact GR for that region.
-- The separate economic model is a **constructed mathematical positive witness**, not a certificate for any external historical case.
-- Some broader measurable two-player, projected-output and solver transfers still need additional typed adapters or hypotheses. In particular, PR #102 is a first stage of the general measurable two-player recovery, not its complete full-path-law extension.
-- Finite numerical replay and a positive constitutive margin do not by themselves establish exact invariance, independent causal identification, authentic preregistration or a real-world Permansson regime.
-
-The [research build guide](docs/RESEARCH_BUILD.md) distinguishes current verified results from historical PR snapshots; the [closure acceptance ledger](research/paper_closures/post_merge_79/acceptance_decisions.json) is a dated evidence record, not an automatically updated universal completion certificate.
+The [v0.2.0 implementation index](docs/V020_IMPLEMENTATION_INDEX.md), [PR79 source/CI index](research/paper_closures/post_merge_79/source_ci_index.json) and [historical acceptance decisions](research/paper_closures/post_merge_79/acceptance_decisions.json) retain their original checkpoint roles. Later selected source results and stronger historical acceptance requirements are reconciled in the current maps without changing those evidence records.
 
 ## Papers, provenance and verification
 
+The [current publication hub](paper2/README.md) provides the reviewed v2.0.1 manuscript, exact source package, review record, checksums and [paper citation](paper2/v2.0.1/CITATION.bib). Its [manifest](paper2/v2.0.1/PUBLICATION_MANIFEST.json) distinguishes mathematical source, pre-upload repository snapshot and actual artifact-upload identity.
+
 Read the [editorial-clean v0.1.8 manuscript](paper/Permansson_Regimes_Strategic_Dynamics_Beyond_Equilibrium_v0.1.8_SUBMISSION_FINAL_EDITORIAL_CLEAN_2026-09-23.pdf), with [TeX and supporting papers](paper/README.md). The paper's immutable mathematical snapshot is `c018f79ea4ce46f4f679ad5bca254509778fc53c`, separately documented by the [paper verification manifest](docs/PAPER_VERIFICATION_MANIFEST.md), [release metadata](docs/releases/v0.1.8.json) and [provenance guide](provenance/README.md). Later Research PRs do not retroactively alter this snapshot or the accepted v0.2.0 companion's source identity.
 
-Use [CITATION.cff](CITATION.cff) for the scholarly companion. When citing later research or executable software behavior, **include the exact Git commit** and the relevant compiler/verification evidence. The repository's acceptance and CI records are not equivalent to external peer review or a validated empirical forecast.
+Use [CITATION.cff](CITATION.cff) for the frozen original scholarly companion and the edition-specific [BibTeX citation](paper2/v2.0.1/CITATION.bib) for the reviewed second-edition manuscript. When citing later research or executable software behavior, **include the exact Git commit** and the relevant compiler/verification evidence. The repository's acceptance and CI records are not equivalent to external peer review or a validated empirical forecast.

@@ -27,6 +27,21 @@ The second edition brings the original generated-regime and constitution framewo
 | Examples, earlier applications and inference | Sections 27-28; Appendix N |
 | Algorithms, formalization and remaining obligations | Sections 29-31; Appendices K, O and P |
 
+## Current documentation
+
+The [current documentation index](../docs/paper2/README.md) connects this edition to the repository and its earlier papers.
+
+| Reader task | Current guide |
+| --- | --- |
+| Follow every section, statement and source family | [Mathematical crosswalk](../docs/paper2/MATHEMATICAL_CROSSWALK.md) |
+| Trace the earlier papers into this edition | [Earlier-paper concordance](../docs/paper2/EARLIER_PAPER_CONCORDANCE.md) |
+| Move from the preserved 46-chapter guide | [Guide-to-paper map](../docs/paper2/GUIDE_TO_PAPER.md) |
+| Check what remains unresolved | [Residual and evidence status](../docs/paper2/RESIDUAL_STATUS.md) |
+| Understand the reviewed changes | [Compatibility and corrections](../docs/paper2/COMPATIBILITY_AND_CORRECTIONS.md) |
+| Read, reproduce or contribute | [Getting started](../docs/paper2/GETTING_STARTED.md) and [verification](../docs/paper2/VERIFICATION.md) |
+| Connect a computation to the manuscript | [Application compatibility](../docs/paper2/APPLICATION_COMPATIBILITY.md) |
+| Distinguish editions and historical records | [Version lineage](../docs/paper2/VERSION_LINEAGE.md) |
+
 ## Citation
 
 Hermansson, Marcus (2026). *Permansson Regimes: Structure, Intervention, and Computation Beyond Equilibrium*. Reviewed manuscript draft, second edition, version 2.0.1, 20 November 2026. [Immutable manuscript](https://github.com/HMarcusWH/PermanssonLean/blob/5160a32eecec9d5f17713416f7f58ec2df67e744/paper2/v2.0.1/Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf).

@@ -2,10 +2,10 @@
 
 [Second-edition publication hub](../README.md) · [Publication manifest](PUBLICATION_MANIFEST.json) · [Citation](CITATION.bib)
 
-**Title:** Permansson Regimes: Structure, Intervention, and Computation Beyond Equilibrium  
-**Author:** Marcus Hermansson  
-**Status:** reviewed manuscript draft, second edition  
-**Manuscript date:** 20 November 2026  
+**Title:** Permansson Regimes: Structure, Intervention, and Computation Beyond Equilibrium\
+**Author:** Marcus Hermansson\
+**Status:** reviewed manuscript draft, second edition\
+**Manuscript date:** 20 November 2026\
 **Extent:** 218 physical PDF pages, 31 main sections, 16 appendices.
 
 ## Exact assets
@@ -61,6 +61,17 @@ Each copy has the same bytes as its named member inside the source ZIP. The publ
 Extract the [source ZIP](Permansson_Regimes_v2_0_1_Source_and_Concordance_2026-11-20.zip) into a fresh directory and read its `README.txt`. Its top-level directory is `Permansson_Regimes_v2_0_1/`. The packaged `build.sh` runs the manuscript index checks, included exact computations and TeX build; `python3 build_index.py` runs the index checks alone. The TeX toolchain and Python requirements are described in the package.
 
 Run reproduction in that extracted directory and retain the result separately from the published PDF. A successful TeX build is not a full Lean build, and a different TeX environment is not guaranteed to produce byte-identical PDFs. The source ZIP's `MANIFEST.json` records the packaged files.
+
+## Current repository reading maps
+
+Use the [current documentation index](../../docs/paper2/README.md) for the complete
+[mathematical crosswalk](../../docs/paper2/MATHEMATICAL_CROSSWALK.md),
+[earlier-paper concordance](../../docs/paper2/EARLIER_PAPER_CONCORDANCE.md),
+[guide-to-paper routes](../../docs/paper2/GUIDE_TO_PAPER.md),
+[application compatibility](../../docs/paper2/APPLICATION_COMPATIBILITY.md) and
+[current residual status](../../docs/paper2/RESIDUAL_STATUS.md).
+These explanatory pages can develop around the preserved edition assets; their
+review record is [separate](../../docs/paper2/DOCUMENTATION_REVIEW.md).
 
 ## Review and remaining obligations
 
