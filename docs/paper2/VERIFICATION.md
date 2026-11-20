@@ -55,7 +55,30 @@ python3 computations/noninvariance_exact.py
 python3 computations/x1_exact.py
 ```
 
-The pricing script checks the frozen 601×601 grid, **361,201 pairs**, using exact arithmetic. The X1 record contains **272 checks**. The manuscript revision review separately records **389 exact checks**: 326 foundational, 43 quantitative and 20 specialized. These are different calculation sets and should not be added to a theorem count or described as a fresh complete Lean build. Their exact records and scripts are in the source package; the [review verification index](../../paper2/v2.0.1/indices/revision_verification.json) states the review scope.
+The pricing script checks the frozen 601×601 grid, **361,201 pairs**, using exact arithmetic. The X1 record contains **272 checks**. The manuscript revision review separately records **389 exact checks**: 326 foundational, 43 quantitative and 20 specialized. These are different calculation sets and should not be added to a theorem count or described as a fresh complete Lean build.
+
+The package includes a replay program for the 326 foundation checks. From the
+same **fresh extracted source directory**, run:
+
+```bash
+python3 review/foundations_exact_checks.py
+```
+
+The script writes `review/foundations_exact_results.json` beside itself, so run
+it in the extracted working copy and retain the original archive unchanged.
+The three supplementary result records have different reproduction scope:
+
+| Archive member, relative to the extracted source root | Recorded checks | Packaged replay program |
+| --- | ---: | --- |
+| `review/foundations_exact_results.json` | 326 | `review/foundations_exact_checks.py` |
+| `review/quantitative_exact_checks.json` | 43 | No standalone replay program included |
+| `review/specialized_exact_checks.json` | 20 | No standalone replay program included |
+
+The latter two are retained result records. Their presence supports inspection
+of the recorded checks; it does not supply a command to rerun them. A later
+reconstruction would be new reproduction work with its own source and receipt.
+The [review verification index](../../paper2/v2.0.1/indices/revision_verification.json)
+states the original review scope.
 
 Archived empirical/application workpacks retain their own specifications, input cutoffs and reproduction requirements. A compact repository fixture is not a reconstruction of unavailable historical raw data. The [earlier-paper concordance](EARLIER_PAPER_CONCORDANCE.md) identifies those roles and remaining gaps.
 

@@ -89,13 +89,19 @@ describes supported instances, not a theorem over all JSON requests or an
 empirically identified mechanism. The bridge documents give the detailed
 premises and mutation checks. No fresh compiler run is asserted by this map.
 
+Where a profile uses the shared `FiniteWorldInput` reflection, **≤2 per dimension**
+means 1–2 strategic states, 1–2 world states and 1–2 actions, hence at most four
+joint states. [`finite_emit.input_definition`](../../apps/permansson/application-successor/src/permansson_app/proof/finite_emit.py)
+applies this check through `_terms` before emission; a larger numeric bound does
+not enlarge the reflected domain.
+
 ### `finite-adaptive-grammar`
 
 **Profile:** `finite.adaptive_block_control.numeric.v1`. **Paper:** [§11](MATHEMATICAL_CROSSWALK.md#c11), [§17](MATHEMATICAL_CROSSWALK.md#c17), [§29](MATHEMATICAL_CROSSWALK.md#c29), [Appendix F](MATHEMATICAL_CROSSWALK.md#appendix-f), [Appendix J](MATHEMATICAL_CROSSWALK.md#appendix-j).
 
 **Numeric scope:** Exact adaptive control over the declared admitted blocks of a finite patch grammar (at most 8 blocks, 12 joint states, 8 transitions): before every alpha/P/U stage the controller selects one whole admitted block and its history may select a different one next time; P is never changed. The exact Bellman table over (joint state, still-inside flag) gives the survival or exit optimum over every full-history behavioral block controller, with tied optimal blocks, every frozen block value and the adaptivity gain. No downward closure, unadmitted joint block, overlap-model certificate, Lean or empirical identification claim.
 
-**Reflection scope:** at most 8 blocks, horizon ≤ 6 for Lean; no frozen-block comparison, overlap-model certificate, downward closure or empirical identification. The corresponding module is `AdaptiveBlockReceipt`; see the [`adaptive` bridge](../../apps/permansson/application-successor/docs/ADAPTIVE_LEAN_BRIDGE.md).
+**Reflection scope:** ≤2 per dimension (≤4 joint states), at most 8 blocks, horizon 0..6; no frozen-block comparison, overlap-model certificate, downward closure or empirical identification. The corresponding module is `AdaptiveBlockReceipt`; see the [`adaptive` bridge](../../apps/permansson/application-successor/docs/ADAPTIVE_LEAN_BRIDGE.md).
 
 ### `finite-safety`
 
@@ -119,7 +125,7 @@ premises and mutation checks. No fresh compiler run is asserted by this map.
 
 **Numeric scope:** Exact transport of a finite CQ-1 certificate to a declared approximate baseline/treated pair sharing the states, feasible actions and P: one-step budgets are the exact maximal row total variations between the certified and approximate induced kernels, the geometric envelopes 1-(1-delta)^L give the transported persistence error min(1, eta+e0) and margin kappa-e0-eJ (transported only when positive), and the approximate pair's own exact values are reported as a consistency check. Budgets are exact distances between declared models, not empirical error estimates; no Exact GR/PR, QSD, Lean or empirical identification claim.
 
-**Reflection scope:** horizon ≤ 6 for Lean, joint states ≤ 12; budgets are exact model distances, not empirical errors; no Exact GR/PR or QSD. The corresponding module is `CQ1TransportReceipt`; see the [`cq1-transport` bridge](../../apps/permansson/application-successor/docs/CQ1_TRANSPORT_LEAN_BRIDGE.md).
+**Reflection scope:** ≤2 per dimension (≤4 joint states), horizon 0..6; budgets are exact model distances, not empirical errors; no Exact GR/PR or QSD. The corresponding module is `CQ1TransportReceipt`; see the [`cq1-transport` bridge](../../apps/permansson/application-successor/docs/CQ1_TRANSPORT_LEAN_BRIDGE.md).
 
 ### `finite-cq1`
 
@@ -199,7 +205,7 @@ premises and mutation checks. No fresh compiler run is asserted by this map.
 
 **Numeric scope:** Exact Farkas certificate that the one-step risk cap of a one-step-risk request cannot be met: per-state floors (the least next-step risk over the declared feasible actions of the actual P.U rows), every attaining action, the least risk mass of any fully observed randomized policy from the initial law, and its shortfall over the cap. Refuses when a policy meets the cap. One transition only; no multi-stage, private-information, Lean or empirical identification claim.
 
-**Reflection scope:** one transition, at most 4 joint states and 5 occupancy variables; no multi-stage occupancy, private information or empirical identification. The corresponding module is `FlowInfeasibilityReceipt`; see the [`risk-infeasibility` bridge](../../apps/permansson/application-successor/docs/RISK_INFEASIBILITY_LEAN_BRIDGE.md).
+**Reflection scope:** ≤2 per dimension (≤4 joint states), one transition and at most 5 occupancy variables; no multi-stage occupancy, private information or empirical identification. The corresponding module is `FlowInfeasibilityReceipt`; see the [`risk-infeasibility` bridge](../../apps/permansson/application-successor/docs/RISK_INFEASIBILITY_LEAN_BRIDGE.md).
 
 ### `one-step-risk`
 
