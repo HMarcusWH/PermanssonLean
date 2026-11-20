@@ -33,6 +33,16 @@ Hermansson, Marcus (2026). *Permansson Regimes: Structure, Intervention, and Com
 
 Use the [edition BibTeX](v2.0.1/CITATION.bib) for this paper. The repository-root [CITATION.cff](../CITATION.cff) remains the preserved citation for the original v0.1.8 formalization companion. No DOI, journal acceptance or independent scholarly review is asserted by this upload.
 
+## New exact reproduction addendum
+
+The [separate reproduction addendum](reproduction/v2.0.1/README.md) supplies new
+programs for the 43 quantitative and 20 specialized outputs retained in the
+reviewed ZIP. It includes exact arithmetic, source references, declared new
+fixtures where original inputs were not recorded, twelve added arithmetic
+controls and five runner controls. Its code, manifest and observed results
+have their own identities; the reviewed assets and original result records
+retain their exact bytes.
+
 ## Source and evidence scope
 
 The mathematical source is pinned to [`c5a36cd6189e2a249d5f4bc11f31698917dc8b10`](https://github.com/HMarcusWH/PermanssonLean/commit/c5a36cd6189e2a249d5f4bc11f31698917dc8b10). The documented repository snapshot is [`f0dee1c11a20f96c9a11b380e942b9252e6ebe44`](https://github.com/HMarcusWH/PermanssonLean/commit/f0dee1c11a20f96c9a11b380e942b9252e6ebe44), after the guide publication in PR #127 and before this manuscript upload. The exact reviewed assets first occur in commit [`5160a32eecec9d5f17713416f7f58ec2df67e744`](https://github.com/HMarcusWH/PermanssonLean/commit/5160a32eecec9d5f17713416f7f58ec2df67e744); that is the artifact identity used by the citation.
