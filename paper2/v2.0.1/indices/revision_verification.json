@@ -1,0 +1,89 @@
+{
+  "format": "Permansson.Paper2.RevisionVerification.v1",
+  "version": "2.0.1",
+  "date": "2026-11-20",
+  "baseline": {
+    "version": "2.0",
+    "pages": 217,
+    "pdf_sha256": "daecb38b40f2daf299c5c5d354ae038b4950cdf52277538cdbb1201e0c58f1a1"
+  },
+  "revised": {
+    "version": "2.0.1",
+    "pages": 218,
+    "pdf_sha256": "56a6ea1538e0a31f8555f4457b706e96d159ed96d3e1add7bba7b6847e4b3d17",
+    "bytes": 1591865
+  },
+  "mathematical_source_sha": "c5a36cd6189e2a249d5f4bc11f31698917dc8b10",
+  "publication_source_sha": "f0dee1c11a20f96c9a11b380e942b9252e6ebe44",
+  "reviewed_scope": {
+    "main_sections": 31,
+    "integral_appendices": 16,
+    "abstract_and_editorial_source_reviewed": true,
+    "numbered_mathematical_items": 147,
+    "distinct_recorded_corrections": 58,
+    "changed_baseline_files": 34
+  },
+  "structural_audit": {
+    "required_main_sections_present": true,
+    "integral_appendix_count": 16,
+    "duplicate_labels": {},
+    "missing_references": [],
+    "missing_bibliography_keys": [],
+    "missing_input_files": [],
+    "unlabeled_numbered_items": [],
+    "content_files_inspected": 49,
+    "numbered_statement_count": 147,
+    "all_label_count": 603,
+    "source_citation_count": 538,
+    "mathematical_semantic_completeness_certified": false,
+    "missing_source_paths": [],
+    "missing_literal_source_labels": [],
+    "source_label_check_scope": "Literal presence only; not elaborated type or semantic equivalence."
+  },
+  "exact_calculation_checks": {
+    "foundations": 326,
+    "quantitative": 43,
+    "specialized": 20,
+    "revision_check_total": 389,
+    "all_passed": true,
+    "separate_x1_checks": 272,
+    "separate_pricing_trigger_pairs_exhausted": 361201,
+    "separate_saved_noninvariance_rational_witness_recomputed": true,
+    "counting_note": "Checks, grid points and source declarations are different units and are not added together."
+  },
+  "bibliography": {
+    "database_entries": 58,
+    "printed_references": 38,
+    "external_research_entries_metadata_reviewed": 37,
+    "scope": "Metadata and relevance review; not a full-text proof audit of all cited publications.",
+    "retrieval_limit": "Bhatt and Borkar primary journal/DOI landing page was unavailable; metadata was corroborated from other primary author/institutional records."
+  },
+  "build_checks": {
+    "successful_final_pdf_latex_passes": 3,
+    "unresolved_references_or_citations": 0,
+    "overfull_boxes": 0,
+    "underfull_boxes": 1,
+    "missing_glyph_warnings": 0,
+    "replacement_glyphs_in_pdf_text": 0,
+    "reference_passes_converged": true,
+    "pdf_bookmarks": 299
+  },
+  "visual_review_record": "review/pdf_visual_qa.json",
+  "changes_record": "review/review_findings.json",
+  "source_patch": "review/source_changes.patch",
+  "residual_limits": {
+    "fresh_whole_repository_Lean_build": false,
+    "independent_semantic_reconciliation_of_all_7690_lexical_units": false,
+    "complete_historical_unique_clause_audit": false,
+    "external_peer_review_or_certification": false,
+    "empirical_certification": false
+  },
+  "new_unresolved_blocking_findings_detected": [],
+  "interpretation": "A substantive internal review of the complete written manuscript with selected source and exact-arithmetic checks. Absence of further detected errors is not a correctness proof for the full repository.",
+  "review_report": {
+    "path": "review/REVIEW_REPORT.pdf",
+    "pages": 8,
+    "sha256": "df19f6656e1a5ef3e1f66c9b6c28e9f60620f04a5dd86aa1c64030b55d217f71",
+    "visual_qa": "review/review_report_visual_qa.json"
+  }
+}

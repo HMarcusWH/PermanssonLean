@@ -1,0 +1,884 @@
+[
+  {
+    "file": "sections/C02.tex",
+    "kind": "lemma",
+    "title": "Empirical pushforward and finite-prefix deletion",
+    "label": "lem:C02-empirical"
+  },
+  {
+    "file": "sections/C02.tex",
+    "kind": "lemma",
+    "title": "Common-mass estimate and measurable processing",
+    "label": "lem:C02-commonmass"
+  },
+  {
+    "file": "sections/C03.tex",
+    "kind": "theorem",
+    "title": "Typed composition",
+    "label": "thm:C03-composition"
+  },
+  {
+    "file": "sections/C03.tex",
+    "kind": "theorem",
+    "title": "Existence, uniqueness, and Markov property",
+    "label": "thm:C03-path"
+  },
+  {
+    "file": "sections/C03.tex",
+    "kind": "proposition",
+    "title": "Erasure and observable properties",
+    "label": "prop:C03-erasure"
+  },
+  {
+    "file": "sections/C04.tex",
+    "kind": "definition",
+    "title": "Exact generated regime",
+    "label": "def:C04-GR"
+  },
+  {
+    "file": "sections/C04.tex",
+    "kind": "definition",
+    "title": "Confirmatory subclass",
+    "label": "def:C04-confirmatory"
+  },
+  {
+    "file": "sections/C04.tex",
+    "kind": "theorem",
+    "title": "Killed-kernel calculus",
+    "label": "thm:C04-killed"
+  },
+  {
+    "file": "sections/C04.tex",
+    "kind": "corollary",
+    "title": "Equivalent exact-persistence statements",
+    "label": "cor:C04-exact"
+  },
+  {
+    "file": "sections/C04.tex",
+    "kind": "definition",
+    "title": "Finite persistence and quasi-regimes",
+    "label": "def:C04-quasi"
+  },
+  {
+    "file": "sections/C04.tex",
+    "kind": "definition",
+    "title": "Quasi-stationary distribution",
+    "label": "def:C04-QSD"
+  },
+  {
+    "file": "sections/C04.tex",
+    "kind": "theorem",
+    "title": "QSD survival and conditional stationarity",
+    "label": "thm:C04-QSD"
+  },
+  {
+    "file": "sections/C05.tex",
+    "kind": "definition",
+    "title": "Relative and family Permansson predicates",
+    "label": "def:C05-PR"
+  },
+  {
+    "file": "sections/C05.tex",
+    "kind": "definition",
+    "title": "Protocol-relative grounded property",
+    "label": "def:C05-grounded"
+  },
+  {
+    "file": "sections/C05.tex",
+    "kind": "proposition",
+    "title": "Nuisance exclusion",
+    "label": "prop:C05-nuisance"
+  },
+  {
+    "file": "sections/C05.tex",
+    "kind": "theorem",
+    "title": "Intervention-compatible representation invariance",
+    "label": "thm:C05-representation"
+  },
+  {
+    "file": "sections/C06.tex",
+    "kind": "proposition",
+    "title": "One-shot verification",
+    "label": "prop:C06-one-shot"
+  },
+  {
+    "file": "sections/C06.tex",
+    "kind": "definition",
+    "title": "Policy and mechanism constitution in the EGR model",
+    "label": "def:C06-policy-PR"
+  },
+  {
+    "file": "sections/C06.tex",
+    "kind": "proposition",
+    "title": "Scale-free resistance and stationary drift",
+    "label": "prop:C06-resistance"
+  },
+  {
+    "file": "sections/C06.tex",
+    "kind": "theorem",
+    "title": "Equilibrium and exact region closure",
+    "label": "thm:C06-engagement"
+  },
+  {
+    "file": "sections/C06.tex",
+    "kind": "theorem",
+    "title": "Spectral growth and the EGR",
+    "label": "thm:C06-Perron"
+  },
+  {
+    "file": "sections/C06.tex",
+    "kind": "proposition",
+    "title": "Constitutive growth and material cross-generation",
+    "label": "prop:C06-constitutive-growth"
+  },
+  {
+    "file": "sections/C06.tex",
+    "kind": "proposition",
+    "title": "State preservation and exact nesting",
+    "label": "prop:C06-nonlinear"
+  },
+  {
+    "file": "sections/C06.tex",
+    "kind": "theorem",
+    "title": "Complete claim-or-wait equilibrium correspondence",
+    "label": "thm:C06-claim-equilibrium"
+  },
+  {
+    "file": "sections/C06.tex",
+    "kind": "theorem",
+    "title": "Exact EGR and property recovery",
+    "label": "thm:C06-embedding"
+  },
+  {
+    "file": "sections/C07.tex",
+    "kind": "theorem",
+    "title": "Eventual class selection",
+    "label": "thm:C07-class-selection"
+  },
+  {
+    "file": "sections/C07.tex",
+    "kind": "theorem",
+    "title": "Actual random empirical limit and its whole law",
+    "label": "thm:C07-random-limit"
+  },
+  {
+    "file": "sections/C07.tex",
+    "kind": "example",
+    "title": "Branching and a periodic class",
+    "label": "ex:C07-branching"
+  },
+  {
+    "file": "sections/C08.tex",
+    "kind": "theorem",
+    "title": "Original exact GR if and only if the reachable target is common",
+    "label": "thm:C08-exactGR"
+  },
+  {
+    "file": "sections/C08.tex",
+    "kind": "theorem",
+    "title": "Exact opposing-mass effect and finite uniform margin",
+    "label": "thm:C08-opposing"
+  },
+  {
+    "file": "sections/C08.tex",
+    "kind": "proposition",
+    "title": "Exact support transport",
+    "label": "prop:C08-support"
+  },
+  {
+    "file": "sections/C09.tex",
+    "kind": "theorem",
+    "title": "Stationary random-law occupation",
+    "label": "thm:C09-stationary"
+  },
+  {
+    "file": "sections/C09.tex",
+    "kind": "theorem",
+    "title": "Compact Feller occupation family",
+    "label": "thm:C09-Feller"
+  },
+  {
+    "file": "sections/C09.tex",
+    "kind": "proposition",
+    "title": "Invariant law and integrable renewal rewards",
+    "label": "prop:C09-renewal"
+  },
+  {
+    "file": "sections/C09.tex",
+    "kind": "theorem",
+    "title": "Regenerative empirical Wasserstein limit",
+    "label": "thm:C09-regenerative-W1"
+  },
+  {
+    "file": "sections/C09.tex",
+    "kind": "corollary",
+    "title": "Genuine occupation-property factorization",
+    "label": "cor:C09-factor"
+  },
+  {
+    "file": "sections/C09.tex",
+    "kind": "example",
+    "title": "Escape and descriptor oscillation",
+    "label": "ex:C09-failure"
+  },
+  {
+    "file": "sections/C10.tex",
+    "kind": "theorem",
+    "title": "First-exit law, masks and conservation",
+    "label": "thm:C10-routing"
+  },
+  {
+    "file": "sections/C10.tex",
+    "kind": "corollary",
+    "title": "QSD destination law",
+    "label": "cor:C10-QSD-destination"
+  },
+  {
+    "file": "sections/C10.tex",
+    "kind": "theorem",
+    "title": "Unconditional full-future first-exit restart",
+    "label": "thm:C10-restart"
+  },
+  {
+    "file": "sections/C10.tex",
+    "kind": "theorem",
+    "title": "Occupation after a random entrance",
+    "label": "thm:C10-occupation"
+  },
+  {
+    "file": "sections/C10.tex",
+    "kind": "theorem",
+    "title": "Scoped intervention-driven switching",
+    "label": "thm:C10-switch"
+  },
+  {
+    "file": "sections/C10.tex",
+    "kind": "example",
+    "title": "Five-state strategic switching",
+    "label": "ex:C10-switch"
+  },
+  {
+    "file": "sections/C10.tex",
+    "kind": "example",
+    "title": "Routing, nonexit mass and failure of destination retention",
+    "label": "ex:C10-exit-boundaries"
+  },
+  {
+    "file": "sections/C11.tex",
+    "kind": "definition",
+    "title": "Frozen atomic bank and partition grammar",
+    "label": "def:C11:grammar"
+  },
+  {
+    "file": "sections/C11.tex",
+    "kind": "proposition",
+    "title": "Assembly of overlapping patches",
+    "label": "prop:C11:assembly"
+  },
+  {
+    "file": "sections/C11.tex",
+    "kind": "proposition",
+    "title": "Effect transport under exact realization",
+    "label": "prop:C11:effecttransport"
+  },
+  {
+    "file": "sections/C11.tex",
+    "kind": "proposition",
+    "title": "Conditional-margin inequalities",
+    "label": "prop:C11:conditional"
+  },
+  {
+    "file": "sections/C11.tex",
+    "kind": "definition",
+    "title": "Admitted minimality",
+    "label": "def:C11:minimal"
+  },
+  {
+    "file": "sections/C11.tex",
+    "kind": "theorem",
+    "title": "Existence and transport of minimal blocks",
+    "label": "thm:C11:minimality"
+  },
+  {
+    "file": "sections/C12.tex",
+    "kind": "theorem",
+    "title": "Transport of a finite certificate",
+    "label": "thm:C12:finitecertificate"
+  },
+  {
+    "file": "sections/C12.tex",
+    "kind": "proposition",
+    "title": "Additive and product primitive bounds",
+    "label": "prop:C12:primitiveTV"
+  },
+  {
+    "file": "sections/C12.tex",
+    "kind": "proposition",
+    "title": "Weighted sequential metric budget",
+    "label": "prop:C12:metric"
+  },
+  {
+    "file": "sections/C12.tex",
+    "kind": "proposition",
+    "title": "Zero horizon and a positive one-step certificate",
+    "label": "prop:C12:horizons"
+  },
+  {
+    "file": "sections/C13.tex",
+    "kind": "theorem",
+    "title": "Dependent-history product bound",
+    "label": "thm:C13:product"
+  },
+  {
+    "file": "sections/C13.tex",
+    "kind": "theorem",
+    "title": "Localized chronological bound",
+    "label": "thm:C13:localized"
+  },
+  {
+    "file": "sections/C14.tex",
+    "kind": "theorem",
+    "title": "Finite and first-moment duality",
+    "label": "thm:C14:duality"
+  },
+  {
+    "file": "sections/C14.tex",
+    "kind": "theorem",
+    "title": "Invariant law and geometric convergence",
+    "label": "thm:C14:invariant"
+  },
+  {
+    "file": "sections/C15.tex",
+    "kind": "lemma",
+    "title": "Occupation factorization",
+    "label": "lem:C15:factor"
+  },
+  {
+    "file": "sections/C15.tex",
+    "kind": "theorem",
+    "title": "Occupation-margin robustness",
+    "label": "thm:C15:margin"
+  },
+  {
+    "file": "sections/C16.tex",
+    "kind": "theorem",
+    "title": "Exact quotient preservation",
+    "label": "thm:C16:exact"
+  },
+  {
+    "file": "sections/C16.tex",
+    "kind": "theorem",
+    "title": "Projected-prefix bound",
+    "label": "thm:C16:geometric"
+  },
+  {
+    "file": "sections/C16.tex",
+    "kind": "theorem",
+    "title": "Nonstationary projected-history transport",
+    "label": "thm:C16:nonstationary"
+  },
+  {
+    "file": "sections/C17.tex",
+    "kind": "definition",
+    "title": "Legal behavioral history policy",
+    "label": "def:C17-policy"
+  },
+  {
+    "file": "sections/C17.tex",
+    "kind": "theorem",
+    "title": "Actual-law finite-horizon optimality",
+    "label": "thm:C17-monitor-optimality"
+  },
+  {
+    "file": "sections/C18.tex",
+    "kind": "proposition",
+    "title": "Filtering identity including null words",
+    "label": "prop:C18-filter"
+  },
+  {
+    "file": "sections/C18.tex",
+    "kind": "theorem",
+    "title": "Belief sufficiency and exact finite envelope",
+    "label": "thm:C18-alpha"
+  },
+  {
+    "file": "sections/C19.tex",
+    "kind": "theorem",
+    "title": "Flow realization",
+    "label": "thm:C19-flow"
+  },
+  {
+    "file": "sections/C19.tex",
+    "kind": "theorem",
+    "title": "Risk-constrained actual-policy optimization",
+    "label": "thm:C19-risk-optimality"
+  },
+  {
+    "file": "sections/C19.tex",
+    "kind": "example",
+    "title": "A genuinely mixed risk optimum",
+    "label": "ex:C19-mixed-risk"
+  },
+  {
+    "file": "sections/C19.tex",
+    "kind": "theorem",
+    "title": "Optimal infinite safety",
+    "label": "thm:C19-infinite-safety"
+  },
+  {
+    "file": "sections/C20.tex",
+    "kind": "theorem",
+    "title": "Total exact absorption certificate",
+    "label": "thm:C20-absorption"
+  },
+  {
+    "file": "sections/C20.tex",
+    "kind": "theorem",
+    "title": "Total stationary family and native equality",
+    "label": "thm:C20-stationary"
+  },
+  {
+    "file": "sections/C20.tex",
+    "kind": "theorem",
+    "title": "Computed frozen-menu margin equals the original margin",
+    "label": "thm:C20-original-margin"
+  },
+  {
+    "file": "sections/C21.tex",
+    "kind": "proposition",
+    "title": "Exact nonlinear expectation",
+    "label": "prop:C21-exact-objective"
+  },
+  {
+    "file": "sections/C21.tex",
+    "kind": "theorem",
+    "title": "Attained deterministic stationary optimum",
+    "label": "thm:C21-stationary-optimum"
+  },
+  {
+    "file": "sections/C21.tex",
+    "kind": "example",
+    "title": "Expectation of a score is not score of an average law",
+    "label": "ex:C21-nonlinear-mixture"
+  },
+  {
+    "file": "sections/C22.tex",
+    "kind": "theorem",
+    "title": "Actual rectangular saddle bounds",
+    "label": "thm:C22-rectangular"
+  },
+  {
+    "file": "sections/C22.tex",
+    "kind": "example",
+    "title": "Two-stage commitment changes survival",
+    "label": "ex:C22-commitment"
+  },
+  {
+    "file": "sections/C22.tex",
+    "kind": "theorem",
+    "title": "Exact private randomized optimum",
+    "label": "thm:C22-private"
+  },
+  {
+    "file": "sections/C22.tex",
+    "kind": "example",
+    "title": "Private matching and observed-control response",
+    "label": "ex:C22-private-matching"
+  },
+  {
+    "file": "sections/C23.tex",
+    "kind": "theorem",
+    "title": "Full-history discounted performance identity",
+    "label": "thm:C23-performance"
+  },
+  {
+    "file": "sections/C23.tex",
+    "kind": "corollary",
+    "title": "X1 exact full-history identity",
+    "label": "cor:C23-X1-full-history"
+  },
+  {
+    "file": "sections/C24.tex",
+    "kind": "proposition",
+    "title": "Measurable finite-product realization",
+    "label": "prop:C24-product"
+  },
+  {
+    "file": "sections/C24.tex",
+    "kind": "theorem",
+    "title": "Matched measurable two-player path and margin recovery",
+    "label": "thm:C24-matched"
+  },
+  {
+    "file": "sections/C24.tex",
+    "kind": "proposition",
+    "title": "Row autonomy if and only if history autonomy",
+    "label": "prop:C24-row-history"
+  },
+  {
+    "file": "sections/C24.tex",
+    "kind": "theorem",
+    "title": "Autonomous anchor path-law equality",
+    "label": "thm:C24-autonomy"
+  },
+  {
+    "file": "sections/C24.tex",
+    "kind": "proposition",
+    "title": "Finite legal-fibre criterion",
+    "label": "prop:C24-legal-fibre"
+  },
+  {
+    "file": "sections/C25.tex",
+    "kind": "theorem",
+    "title": "Finite mediation identification on used support",
+    "label": "thm:C25-identification"
+  },
+  {
+    "file": "sections/C25.tex",
+    "kind": "proposition",
+    "title": "Finite observational nonidentification",
+    "label": "prop:C25-nonidentification"
+  },
+  {
+    "file": "sections/C26.tex",
+    "kind": "theorem",
+    "title": "Source-scoped finite detection and nesting",
+    "label": "thm:C26:detection"
+  },
+  {
+    "file": "sections/C27.tex",
+    "kind": "example",
+    "title": "Periodic Exact GR",
+    "label": "ex:periodic-original"
+  },
+  {
+    "file": "sections/C27.tex",
+    "kind": "example",
+    "title": "The original stochastic factorization witness",
+    "label": "ex:bernoulli-factorization"
+  },
+  {
+    "file": "sections/C27.tex",
+    "kind": "counterexample",
+    "title": "An eigenmeasure does not give uniform persistence",
+    "label": "ex:qsd-uniform"
+  },
+  {
+    "file": "sections/C27.tex",
+    "kind": "construction",
+    "title": "Three-world restraint model",
+    "label": "con:economic-witness"
+  },
+  {
+    "file": "sections/C27.tex",
+    "kind": "theorem",
+    "title": "Incentives, occupation, and original uniform constitution",
+    "label": "thm:economic-full"
+  },
+  {
+    "file": "sections/C28.tex",
+    "kind": "definition",
+    "title": "A frozen confirmatory pipeline",
+    "label": "def:confirmatory-pipeline"
+  },
+  {
+    "file": "sections/C28.tex",
+    "kind": "definition",
+    "title": "Identified-set constitution",
+    "label": "def:identified-constitution"
+  },
+  {
+    "file": "sections/C28.tex",
+    "kind": "proposition",
+    "title": "Three distinct model-set conclusions",
+    "label": "prop:modelset-distinction"
+  },
+  {
+    "file": "sections/C28.tex",
+    "kind": "theorem",
+    "title": "A simultaneous outer-set certificate",
+    "label": "thm:outer-certificate"
+  },
+  {
+    "file": "sections/C28.tex",
+    "kind": "proposition",
+    "title": "Sharp completion bounds",
+    "label": "prop:completion-bounds"
+  },
+  {
+    "file": "sections/C28.tex",
+    "kind": "proposition",
+    "title": "Exact arithmetic and equilibrium of the frozen grid",
+    "label": "prop:bm-exact"
+  },
+  {
+    "file": "sections/C29.tex",
+    "kind": "proposition",
+    "title": "Correctness of finite primitive evaluation",
+    "label": "prop:finite-kernel-algorithm"
+  },
+  {
+    "file": "sections/C29.tex",
+    "kind": "definition",
+    "title": "A numerical receipt contract",
+    "label": "def:receipt-contract"
+  },
+  {
+    "file": "sections/C29.tex",
+    "kind": "proposition",
+    "title": "Reflection requires literal-data equality",
+    "label": "prop:reflection-chain"
+  },
+  {
+    "file": "sections/C30.tex",
+    "kind": "definition",
+    "title": "Evidence coordinates",
+    "label": "def:evidence-coordinates"
+  },
+  {
+    "file": "sections/C30.tex",
+    "kind": "definition",
+    "title": "Coverage dispositions",
+    "label": "def:coverage-disposition"
+  },
+  {
+    "file": "appendices/A_foundations.tex",
+    "kind": "proposition",
+    "title": "Polish descriptor extension",
+    "label": "prop:A-Polish"
+  },
+  {
+    "file": "appendices/A_foundations.tex",
+    "kind": "example",
+    "title": "Polishness supplies no compactness of all laws",
+    "label": "ex:A-escaping-Dirac"
+  },
+  {
+    "file": "appendices/A_foundations.tex",
+    "kind": "example",
+    "title": "Correct dual test class",
+    "label": "ex:A-dual-class"
+  },
+  {
+    "file": "appendices/A_foundations.tex",
+    "kind": "lemma",
+    "title": "A countable open-lattice criterion",
+    "label": "lem:A-countable-tests"
+  },
+  {
+    "file": "appendices/A_foundations.tex",
+    "kind": "lemma",
+    "title": "Initial mixtures and null-event transfer",
+    "label": "lem:A-initial-mixture"
+  },
+  {
+    "file": "appendices/C_foundations.tex",
+    "kind": "lemma",
+    "title": "Pushforward of the first composition factor",
+    "label": "lem:C-compProd"
+  },
+  {
+    "file": "appendices/C_foundations.tex",
+    "kind": "lemma",
+    "title": "Deterministic orbit law",
+    "label": "lem:C-deterministic"
+  },
+  {
+    "file": "appendices/C_foundations.tex",
+    "kind": "proposition",
+    "title": "Unobserved-draw boundary",
+    "label": "prop:C-information"
+  },
+  {
+    "file": "appendices/C_foundations.tex",
+    "kind": "proposition",
+    "title": "Minimal nonnegative exit-time solution",
+    "label": "prop:C-Green"
+  },
+  {
+    "file": "appendices/C_foundations.tex",
+    "kind": "theorem",
+    "title": "Complete same-space signature transport",
+    "label": "thm:C-signature"
+  },
+  {
+    "file": "appendices/C_foundations.tex",
+    "kind": "lemma",
+    "title": "Two-sided property errors and the infimum",
+    "label": "lem:C-output-errors"
+  },
+  {
+    "file": "appendices/D_occupation.tex",
+    "kind": "lemma",
+    "title": "Orthogonality, square times and interpolation",
+    "label": "lem:D-innovation"
+  },
+  {
+    "file": "appendices/D_occupation.tex",
+    "kind": "lemma",
+    "title": "Uniform block hitting",
+    "label": "lem:D-block"
+  },
+  {
+    "file": "appendices/D_occupation.tex",
+    "kind": "proposition",
+    "title": "Typed four-state absorption",
+    "label": "prop:D-fourstate"
+  },
+  {
+    "file": "appendices/D_occupation.tex",
+    "kind": "proposition",
+    "title": "The exact six-state integration",
+    "label": "prop:D-sixstate"
+  },
+  {
+    "file": "appendices/D_occupation.tex",
+    "kind": "proposition",
+    "title": "Full and soft six-state constitutive responses",
+    "label": "prop:D-response"
+  },
+  {
+    "file": "appendices/E_ergodic.tex",
+    "kind": "lemma",
+    "title": "Finite and infinite Hopf inequalities",
+    "label": "lem:E-Hopf"
+  },
+  {
+    "file": "appendices/E_ergodic.tex",
+    "kind": "theorem",
+    "title": "Bounded pointwise ergodic convergence",
+    "label": "thm:E-bounded-Birkhoff"
+  },
+  {
+    "file": "appendices/E_ergodic.tex",
+    "kind": "corollary",
+    "title": "Integrable extension and uniform average approximation",
+    "label": "cor:E-L1"
+  },
+  {
+    "file": "appendices/E_ergodic.tex",
+    "kind": "proposition",
+    "title": "Actual bounded regenerative averages",
+    "label": "prop:E-regenerative-bounded"
+  },
+  {
+    "file": "appendices/E_ergodic.tex",
+    "kind": "lemma",
+    "title": "Shift-invariant good-event transfer",
+    "label": "lem:E-regenerative-transfer"
+  },
+  {
+    "file": "appendices/E_ergodic.tex",
+    "kind": "example",
+    "title": "Noncompact reset-and-increment witness",
+    "label": "ex:E-reset-increment"
+  },
+  {
+    "file": "appendices/F_grammar.tex",
+    "kind": "proposition",
+    "title": "An actual joint-only persistent PR",
+    "label": "prop:F:booleanPR"
+  },
+  {
+    "file": "appendices/F_grammar.tex",
+    "kind": "example",
+    "title": "Admitted does not mean every syntactic subset",
+    "label": "ex:F:admission"
+  },
+  {
+    "file": "appendices/F_grammar.tex",
+    "kind": "example",
+    "title": "Equal margin profiles under an invalid label bijection",
+    "label": "ex:F:invalidbijection"
+  },
+  {
+    "file": "appendices/F_grammar.tex",
+    "kind": "example",
+    "title": "A fixed baseline does not determine its replacement bank",
+    "label": "ex:F:banks"
+  },
+  {
+    "file": "appendices/G_path_transport.tex",
+    "kind": "theorem",
+    "title": "Summable whole-path score transport",
+    "label": "thm:G:summable"
+  },
+  {
+    "file": "appendices/H_metric_occupation.tex",
+    "kind": "corollary",
+    "title": "Finite attainment as a mathematical consequence",
+    "label": "cor:H:finiteattainment"
+  },
+  {
+    "file": "appendices/H_metric_occupation.tex",
+    "kind": "lemma",
+    "title": "Bounded finite Lipschitz extension",
+    "label": "lem:H:extension"
+  },
+  {
+    "file": "appendices/H_metric_occupation.tex",
+    "kind": "proposition",
+    "title": "Finite-cell transport estimate",
+    "label": "prop:H:cells"
+  },
+  {
+    "file": "appendices/H_metric_occupation.tex",
+    "kind": "lemma",
+    "title": "Zero dual distance separates probability laws",
+    "label": "lem:H:separation"
+  },
+  {
+    "file": "appendices/J_control.tex",
+    "kind": "lemma",
+    "title": "Stored summary equals the literal scan",
+    "label": "lem:J-monitor-consistency"
+  },
+  {
+    "file": "appendices/J_control.tex",
+    "kind": "lemma",
+    "title": "Rolling-table equality",
+    "label": "lem:J-table"
+  },
+  {
+    "file": "appendices/K_algorithms.tex",
+    "kind": "proposition",
+    "title": "Boolean class-share trichotomy",
+    "label": "prop:K-share-trichotomy"
+  },
+  {
+    "file": "appendices/L_games_multiagent.tex",
+    "kind": "example",
+    "title": "A null key and a changed initial law",
+    "label": "ex:L-null-key"
+  },
+  {
+    "file": "appendices/N_cases.tex",
+    "kind": "proposition",
+    "title": "Deterministic-mixture construction",
+    "label": "prop:clipped-wellposed"
+  },
+  {
+    "file": "appendices/N_cases.tex",
+    "kind": "proposition",
+    "title": "Reported counts identify a product",
+    "label": "prop:poisson-thinning"
+  },
+  {
+    "file": "appendices/N_cases.tex",
+    "kind": "proposition",
+    "title": "An inactive input cannot identify its coefficient",
+    "label": "prop:inactive-channel"
+  },
+  {
+    "file": "appendices/N_cases.tex",
+    "kind": "proposition",
+    "title": "Stock decay and the first-step lag",
+    "label": "prop:reserve-lag"
+  },
+  {
+    "file": "appendices/N_cases.tex",
+    "kind": "proposition",
+    "title": "Projected-path null",
+    "label": "prop:projected-null"
+  }
+]

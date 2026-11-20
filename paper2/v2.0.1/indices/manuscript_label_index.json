@@ -1,0 +1,2414 @@
+{
+  "sec:C01": {
+    "file": "sections/C01.tex",
+    "line": 1
+  },
+  "sub:C01:01": {
+    "file": "sections/C01.tex",
+    "line": 3
+  },
+  "sub:C01:02": {
+    "file": "sections/C01.tex",
+    "line": 14
+  },
+  "sub:C01:03": {
+    "file": "sections/C01.tex",
+    "line": 21
+  },
+  "sub:C01:04": {
+    "file": "sections/C01.tex",
+    "line": 30
+  },
+  "sub:C01:05": {
+    "file": "sections/C01.tex",
+    "line": 39
+  },
+  "eq:C01-effect": {
+    "file": "sections/C01.tex",
+    "line": 43
+  },
+  "fig:chronology": {
+    "file": "sections/C01.tex",
+    "line": 65
+  },
+  "sec:C02": {
+    "file": "sections/C02.tex",
+    "line": 1
+  },
+  "eq:C02-empirical": {
+    "file": "sections/C02.tex",
+    "line": 16
+  },
+  "lem:C02-empirical": {
+    "file": "sections/C02.tex",
+    "line": 21
+  },
+  "eq:C02-TV": {
+    "file": "sections/C02.tex",
+    "line": 50
+  },
+  "lem:C02-commonmass": {
+    "file": "sections/C02.tex",
+    "line": 59
+  },
+  "sec:C03": {
+    "file": "sections/C03.tex",
+    "line": 1
+  },
+  "eq:C03-chronology": {
+    "file": "sections/C03.tex",
+    "line": 12
+  },
+  "eq:C03-feasibility": {
+    "file": "sections/C03.tex",
+    "line": 19
+  },
+  "thm:C03-composition": {
+    "file": "sections/C03.tex",
+    "line": 24
+  },
+  "eq:C03-induced": {
+    "file": "sections/C03.tex",
+    "line": 26
+  },
+  "eq:C03-cylinder": {
+    "file": "sections/C03.tex",
+    "line": 41
+  },
+  "thm:C03-path": {
+    "file": "sections/C03.tex",
+    "line": 48
+  },
+  "eq:C03-initial-mixture": {
+    "file": "sections/C03.tex",
+    "line": 56
+  },
+  "prop:C03-erasure": {
+    "file": "sections/C03.tex",
+    "line": 81
+  },
+  "eq:C03-timezero": {
+    "file": "sections/C03.tex",
+    "line": 95
+  },
+  "sec:C04": {
+    "file": "sections/C04.tex",
+    "line": 1
+  },
+  "eq:C04-spec": {
+    "file": "sections/C04.tex",
+    "line": 5
+  },
+  "def:C04-GR": {
+    "file": "sections/C04.tex",
+    "line": 19
+  },
+  "eq:C04-inv": {
+    "file": "sections/C04.tex",
+    "line": 21
+  },
+  "eq:C04-occ": {
+    "file": "sections/C04.tex",
+    "line": 25
+  },
+  "def:C04-confirmatory": {
+    "file": "sections/C04.tex",
+    "line": 34
+  },
+  "thm:C04-killed": {
+    "file": "sections/C04.tex",
+    "line": 51
+  },
+  "eq:C04-endpoint": {
+    "file": "sections/C04.tex",
+    "line": 54
+  },
+  "eq:C04-survival": {
+    "file": "sections/C04.tex",
+    "line": 55
+  },
+  "eq:C04-Green": {
+    "file": "sections/C04.tex",
+    "line": 56
+  },
+  "cor:C04-exact": {
+    "file": "sections/C04.tex",
+    "line": 72
+  },
+  "def:C04-quasi": {
+    "file": "sections/C04.tex",
+    "line": 79
+  },
+  "eq:C04-metastability": {
+    "file": "sections/C04.tex",
+    "line": 89
+  },
+  "def:C04-QSD": {
+    "file": "sections/C04.tex",
+    "line": 96
+  },
+  "eq:C04-QSD": {
+    "file": "sections/C04.tex",
+    "line": 98
+  },
+  "thm:C04-QSD": {
+    "file": "sections/C04.tex",
+    "line": 104
+  },
+  "sec:C05": {
+    "file": "sections/C05.tex",
+    "line": 1
+  },
+  "eq:C05-values": {
+    "file": "sections/C05.tex",
+    "line": 11
+  },
+  "eq:C05-margin": {
+    "file": "sections/C05.tex",
+    "line": 13
+  },
+  "def:C05-PR": {
+    "file": "sections/C05.tex",
+    "line": 17
+  },
+  "eq:C05-groundingmaps": {
+    "file": "sections/C05.tex",
+    "line": 29
+  },
+  "def:C05-grounded": {
+    "file": "sections/C05.tex",
+    "line": 34
+  },
+  "prop:C05-nuisance": {
+    "file": "sections/C05.tex",
+    "line": 44
+  },
+  "eq:C05-intertwining": {
+    "file": "sections/C05.tex",
+    "line": 57
+  },
+  "thm:C05-representation": {
+    "file": "sections/C05.tex",
+    "line": 62
+  },
+  "subsec:C05-witness": {
+    "file": "sections/C05.tex",
+    "line": 80
+  },
+  "sec:C06": {
+    "file": "sections/C06.tex",
+    "line": 1
+  },
+  "eq:C06-value": {
+    "file": "sections/C06.tex",
+    "line": 16
+  },
+  "prop:C06-one-shot": {
+    "file": "sections/C06.tex",
+    "line": 22
+  },
+  "eq:C06-lumping": {
+    "file": "sections/C06.tex",
+    "line": 39
+  },
+  "def:C06-policy-PR": {
+    "file": "sections/C06.tex",
+    "line": 46
+  },
+  "eq:C06-resistance": {
+    "file": "sections/C06.tex",
+    "line": 63
+  },
+  "prop:C06-resistance": {
+    "file": "sections/C06.tex",
+    "line": 70
+  },
+  "eq:C06-cross": {
+    "file": "sections/C06.tex",
+    "line": 88
+  },
+  "eq:C06-growth": {
+    "file": "sections/C06.tex",
+    "line": 109
+  },
+  "eq:C06-matrices": {
+    "file": "sections/C06.tex",
+    "line": 123
+  },
+  "eq:C06-payoff": {
+    "file": "sections/C06.tex",
+    "line": 128
+  },
+  "eq:C06-threshold": {
+    "file": "sections/C06.tex",
+    "line": 133
+  },
+  "thm:C06-engagement": {
+    "file": "sections/C06.tex",
+    "line": 140
+  },
+  "eq:C06-closure": {
+    "file": "sections/C06.tex",
+    "line": 142
+  },
+  "thm:C06-Perron": {
+    "file": "sections/C06.tex",
+    "line": 156
+  },
+  "eq:C06-perron": {
+    "file": "sections/C06.tex",
+    "line": 158
+  },
+  "prop:C06-constitutive-growth": {
+    "file": "sections/C06.tex",
+    "line": 178
+  },
+  "eq:C06-nonlinear": {
+    "file": "sections/C06.tex",
+    "line": 195
+  },
+  "prop:C06-nonlinear": {
+    "file": "sections/C06.tex",
+    "line": 200
+  },
+  "eq:C06-claim-matrix": {
+    "file": "sections/C06.tex",
+    "line": 219
+  },
+  "eq:C06-claim-increments": {
+    "file": "sections/C06.tex",
+    "line": 230
+  },
+  "eq:C06-claim-response": {
+    "file": "sections/C06.tex",
+    "line": 234
+  },
+  "thm:C06-claim-equilibrium": {
+    "file": "sections/C06.tex",
+    "line": 238
+  },
+  "eq:C06-order-premium": {
+    "file": "sections/C06.tex",
+    "line": 267
+  },
+  "eq:C06-record": {
+    "file": "sections/C06.tex",
+    "line": 283
+  },
+  "thm:C06-embedding": {
+    "file": "sections/C06.tex",
+    "line": 296
+  },
+  "sec:C07": {
+    "file": "sections/C07.tex",
+    "line": 1
+  },
+  "thm:C07-class-selection": {
+    "file": "sections/C07.tex",
+    "line": 7
+  },
+  "eq:C07-weights": {
+    "file": "sections/C07.tex",
+    "line": 9
+  },
+  "eq:C07-fundamental": {
+    "file": "sections/C07.tex",
+    "line": 27
+  },
+  "thm:C07-random-limit": {
+    "file": "sections/C07.tex",
+    "line": 33
+  },
+  "eq:C07-physical-limit": {
+    "file": "sections/C07.tex",
+    "line": 35
+  },
+  "eq:C07-physical-law": {
+    "file": "sections/C07.tex",
+    "line": 41
+  },
+  "eq:C07-observed-law": {
+    "file": "sections/C07.tex",
+    "line": 45
+  },
+  "eq:C07-barycenter": {
+    "file": "sections/C07.tex",
+    "line": 76
+  },
+  "ex:C07-branching": {
+    "file": "sections/C07.tex",
+    "line": 81
+  },
+  "eq:C07-sharp-family": {
+    "file": "sections/C07.tex",
+    "line": 92
+  },
+  "sec:C08": {
+    "file": "sections/C08.tex",
+    "line": 1
+  },
+  "thm:C08-exactGR": {
+    "file": "sections/C08.tex",
+    "line": 5
+  },
+  "eq:C08-exactGR": {
+    "file": "sections/C08.tex",
+    "line": 7
+  },
+  "eq:C08-event": {
+    "file": "sections/C08.tex",
+    "line": 28
+  },
+  "eq:C08-true-mass": {
+    "file": "sections/C08.tex",
+    "line": 34
+  },
+  "eq:C08-baseline-dichotomy": {
+    "file": "sections/C08.tex",
+    "line": 38
+  },
+  "eq:C08-opposing": {
+    "file": "sections/C08.tex",
+    "line": 45
+  },
+  "thm:C08-opposing": {
+    "file": "sections/C08.tex",
+    "line": 54
+  },
+  "eq:C08-effect": {
+    "file": "sections/C08.tex",
+    "line": 56
+  },
+  "eq:C08-margin": {
+    "file": "sections/C08.tex",
+    "line": 60
+  },
+  "prop:C08-support": {
+    "file": "sections/C08.tex",
+    "line": 78
+  },
+  "sec:C09": {
+    "file": "sections/C09.tex",
+    "line": 1
+  },
+  "eq:C09-conditional-law": {
+    "file": "sections/C09.tex",
+    "line": 8
+  },
+  "thm:C09-stationary": {
+    "file": "sections/C09.tex",
+    "line": 13
+  },
+  "eq:C09-path-density": {
+    "file": "sections/C09.tex",
+    "line": 34
+  },
+  "thm:C09-Feller": {
+    "file": "sections/C09.tex",
+    "line": 55
+  },
+  "eq:C09-family-distance": {
+    "file": "sections/C09.tex",
+    "line": 57
+  },
+  "eq:C09-residual": {
+    "file": "sections/C09.tex",
+    "line": 72
+  },
+  "eq:C09-mixture": {
+    "file": "sections/C09.tex",
+    "line": 98
+  },
+  "eq:C09-regenerative-law": {
+    "file": "sections/C09.tex",
+    "line": 102
+  },
+  "eq:C09-budget": {
+    "file": "sections/C09.tex",
+    "line": 106
+  },
+  "prop:C09-renewal": {
+    "file": "sections/C09.tex",
+    "line": 111
+  },
+  "eq:C09-reward-SLLN": {
+    "file": "sections/C09.tex",
+    "line": 113
+  },
+  "eq:C09-descriptor-budget": {
+    "file": "sections/C09.tex",
+    "line": 130
+  },
+  "thm:C09-regenerative-W1": {
+    "file": "sections/C09.tex",
+    "line": 135
+  },
+  "eq:C09-W1": {
+    "file": "sections/C09.tex",
+    "line": 137
+  },
+  "eq:C09-occupation-property": {
+    "file": "sections/C09.tex",
+    "line": 164
+  },
+  "cor:C09-factor": {
+    "file": "sections/C09.tex",
+    "line": 168
+  },
+  "ex:C09-failure": {
+    "file": "sections/C09.tex",
+    "line": 187
+  },
+  "sec:C10": {
+    "file": "sections/C10.tex",
+    "line": 1
+  },
+  "eq:C10-routing": {
+    "file": "sections/C10.tex",
+    "line": 12
+  },
+  "thm:C10-routing": {
+    "file": "sections/C10.tex",
+    "line": 19
+  },
+  "eq:C10-first-exit": {
+    "file": "sections/C10.tex",
+    "line": 22
+  },
+  "eq:C10-conservation": {
+    "file": "sections/C10.tex",
+    "line": 28
+  },
+  "cor:C10-QSD-destination": {
+    "file": "sections/C10.tex",
+    "line": 42
+  },
+  "eq:C10-QSD-destination": {
+    "file": "sections/C10.tex",
+    "line": 49
+  },
+  "eq:C10-last-state": {
+    "file": "sections/C10.tex",
+    "line": 66
+  },
+  "thm:C10-restart": {
+    "file": "sections/C10.tex",
+    "line": 73
+  },
+  "eq:C10-restart": {
+    "file": "sections/C10.tex",
+    "line": 75
+  },
+  "eq:C10-infinite-restart": {
+    "file": "sections/C10.tex",
+    "line": 80
+  },
+  "thm:C10-occupation": {
+    "file": "sections/C10.tex",
+    "line": 103
+  },
+  "eq:C10-inprob": {
+    "file": "sections/C10.tex",
+    "line": 105
+  },
+  "eq:C10-switch-route": {
+    "file": "sections/C10.tex",
+    "line": 128
+  },
+  "eq:C10-survival-property": {
+    "file": "sections/C10.tex",
+    "line": 132
+  },
+  "thm:C10-switch": {
+    "file": "sections/C10.tex",
+    "line": 137
+  },
+  "eq:C10-switch-margin": {
+    "file": "sections/C10.tex",
+    "line": 139
+  },
+  "ex:C10-switch": {
+    "file": "sections/C10.tex",
+    "line": 160
+  },
+  "ex:C10-exit-boundaries": {
+    "file": "sections/C10.tex",
+    "line": 178
+  },
+  "sec:C11": {
+    "file": "sections/C11.tex",
+    "line": 1
+  },
+  "C11:patches": {
+    "file": "sections/C11.tex",
+    "line": 5
+  },
+  "eq:C11:rowpatch": {
+    "file": "sections/C11.tex",
+    "line": 8
+  },
+  "def:C11:grammar": {
+    "file": "sections/C11.tex",
+    "line": 14
+  },
+  "C11:overlap": {
+    "file": "sections/C11.tex",
+    "line": 24
+  },
+  "eq:C11:compatible": {
+    "file": "sections/C11.tex",
+    "line": 27
+  },
+  "prop:C11:assembly": {
+    "file": "sections/C11.tex",
+    "line": 32
+  },
+  "C11:blockeffects": {
+    "file": "sections/C11.tex",
+    "line": 41
+  },
+  "eq:C11:blockmargin": {
+    "file": "sections/C11.tex",
+    "line": 44
+  },
+  "prop:C11:effecttransport": {
+    "file": "sections/C11.tex",
+    "line": 51
+  },
+  "C11:fourcorners": {
+    "file": "sections/C11.tex",
+    "line": 60
+  },
+  "prop:C11:conditional": {
+    "file": "sections/C11.tex",
+    "line": 70
+  },
+  "eq:C11:interaction": {
+    "file": "sections/C11.tex",
+    "line": 84
+  },
+  "C11:minimality": {
+    "file": "sections/C11.tex",
+    "line": 94
+  },
+  "def:C11:minimal": {
+    "file": "sections/C11.tex",
+    "line": 96
+  },
+  "thm:C11:minimality": {
+    "file": "sections/C11.tex",
+    "line": 100
+  },
+  "C11:boundaries": {
+    "file": "sections/C11.tex",
+    "line": 115
+  },
+  "sec:C12": {
+    "file": "sections/C12.tex",
+    "line": 1
+  },
+  "C12:certificate": {
+    "file": "sections/C12.tex",
+    "line": 5
+  },
+  "eq:C12:finiteproperty": {
+    "file": "sections/C12.tex",
+    "line": 8
+  },
+  "eq:C12:certificate": {
+    "file": "sections/C12.tex",
+    "line": 17
+  },
+  "thm:C12:finitecertificate": {
+    "file": "sections/C12.tex",
+    "line": 23
+  },
+  "eq:C12:transport": {
+    "file": "sections/C12.tex",
+    "line": 31
+  },
+  "C12:primitiveTV": {
+    "file": "sections/C12.tex",
+    "line": 48
+  },
+  "prop:C12:primitiveTV": {
+    "file": "sections/C12.tex",
+    "line": 58
+  },
+  "eq:C12:add": {
+    "file": "sections/C12.tex",
+    "line": 62
+  },
+  "eq:C12:prod": {
+    "file": "sections/C12.tex",
+    "line": 65
+  },
+  "eq:C12:prefixbudget": {
+    "file": "sections/C12.tex",
+    "line": 68
+  },
+  "eq:C12:lipschitzmargin": {
+    "file": "sections/C12.tex",
+    "line": 86
+  },
+  "C12:metric": {
+    "file": "sections/C12.tex",
+    "line": 92
+  },
+  "prop:C12:metric": {
+    "file": "sections/C12.tex",
+    "line": 96
+  },
+  "eq:C12:metricbudget": {
+    "file": "sections/C12.tex",
+    "line": 98
+  },
+  "C12:boundaries": {
+    "file": "sections/C12.tex",
+    "line": 113
+  },
+  "prop:C12:horizons": {
+    "file": "sections/C12.tex",
+    "line": 115
+  },
+  "sec:C13": {
+    "file": "sections/C13.tex",
+    "line": 1
+  },
+  "eq:C13:TV": {
+    "file": "sections/C13.tex",
+    "line": 4
+  },
+  "C13:commonmass": {
+    "file": "sections/C13.tex",
+    "line": 9
+  },
+  "eq:C13:commonsub": {
+    "file": "sections/C13.tex",
+    "line": 17
+  },
+  "thm:C13:product": {
+    "file": "sections/C13.tex",
+    "line": 24
+  },
+  "eq:C13:product": {
+    "file": "sections/C13.tex",
+    "line": 26
+  },
+  "C13:localized": {
+    "file": "sections/C13.tex",
+    "line": 45
+  },
+  "thm:C13:localized": {
+    "file": "sections/C13.tex",
+    "line": 53
+  },
+  "eq:C13:localized": {
+    "file": "sections/C13.tex",
+    "line": 55
+  },
+  "C13:wholepath": {
+    "file": "sections/C13.tex",
+    "line": 68
+  },
+  "eq:C13:wholepath": {
+    "file": "sections/C13.tex",
+    "line": 71
+  },
+  "eq:C13:discounted": {
+    "file": "sections/C13.tex",
+    "line": 77
+  },
+  "eq:C13:discountbudget": {
+    "file": "sections/C13.tex",
+    "line": 81
+  },
+  "C13:witnesses": {
+    "file": "sections/C13.tex",
+    "line": 95
+  },
+  "sec:C14": {
+    "file": "sections/C14.tex",
+    "line": 1
+  },
+  "C14:duality": {
+    "file": "sections/C14.tex",
+    "line": 5
+  },
+  "eq:C14:dual": {
+    "file": "sections/C14.tex",
+    "line": 8
+  },
+  "eq:C14:primal": {
+    "file": "sections/C14.tex",
+    "line": 15
+  },
+  "thm:C14:duality": {
+    "file": "sections/C14.tex",
+    "line": 21
+  },
+  "eq:C14:KR": {
+    "file": "sections/C14.tex",
+    "line": 23
+  },
+  "C14:contraction": {
+    "file": "sections/C14.tex",
+    "line": 39
+  },
+  "eq:C14:alllaws": {
+    "file": "sections/C14.tex",
+    "line": 42
+  },
+  "eq:C14:testimages": {
+    "file": "sections/C14.tex",
+    "line": 51
+  },
+  "eq:C14:primitivefactor": {
+    "file": "sections/C14.tex",
+    "line": 64
+  },
+  "C14:invariant": {
+    "file": "sections/C14.tex",
+    "line": 70
+  },
+  "thm:C14:invariant": {
+    "file": "sections/C14.tex",
+    "line": 72
+  },
+  "eq:C14:geometric": {
+    "file": "sections/C14.tex",
+    "line": 74
+  },
+  "C14:perturbation": {
+    "file": "sections/C14.tex",
+    "line": 89
+  },
+  "eq:C14:invariantperturb": {
+    "file": "sections/C14.tex",
+    "line": 102
+  },
+  "sec:C15": {
+    "file": "sections/C15.tex",
+    "line": 1
+  },
+  "C15:frozenproperty": {
+    "file": "sections/C15.tex",
+    "line": 5
+  },
+  "eq:C15:empirical": {
+    "file": "sections/C15.tex",
+    "line": 8
+  },
+  "eq:C15:selector": {
+    "file": "sections/C15.tex",
+    "line": 12
+  },
+  "eq:C15:property": {
+    "file": "sections/C15.tex",
+    "line": 20
+  },
+  "lem:C15:factor": {
+    "file": "sections/C15.tex",
+    "line": 25
+  },
+  "C15:profiles": {
+    "file": "sections/C15.tex",
+    "line": 35
+  },
+  "eq:C15:mixture": {
+    "file": "sections/C15.tex",
+    "line": 40
+  },
+  "eq:C15:stationary": {
+    "file": "sections/C15.tex",
+    "line": 44
+  },
+  "eq:C15:reward": {
+    "file": "sections/C15.tex",
+    "line": 54
+  },
+  "C15:four": {
+    "file": "sections/C15.tex",
+    "line": 65
+  },
+  "eq:C15:foura": {
+    "file": "sections/C15.tex",
+    "line": 70
+  },
+  "eq:C15:fourb": {
+    "file": "sections/C15.tex",
+    "line": 73
+  },
+  "thm:C15:margin": {
+    "file": "sections/C15.tex",
+    "line": 77
+  },
+  "eq:C15:margin": {
+    "file": "sections/C15.tex",
+    "line": 79
+  },
+  "C15:boundaries": {
+    "file": "sections/C15.tex",
+    "line": 95
+  },
+  "sec:C16": {
+    "file": "sections/C16.tex",
+    "line": 1
+  },
+  "C16:exact": {
+    "file": "sections/C16.tex",
+    "line": 5
+  },
+  "eq:C16:intertwine": {
+    "file": "sections/C16.tex",
+    "line": 13
+  },
+  "eq:C16:path": {
+    "file": "sections/C16.tex",
+    "line": 18
+  },
+  "eq:C16:spec": {
+    "file": "sections/C16.tex",
+    "line": 24
+  },
+  "eq:C16:property": {
+    "file": "sections/C16.tex",
+    "line": 29
+  },
+  "thm:C16:exact": {
+    "file": "sections/C16.tex",
+    "line": 35
+  },
+  "C16:geometric": {
+    "file": "sections/C16.tex",
+    "line": 50
+  },
+  "eq:C16:defect": {
+    "file": "sections/C16.tex",
+    "line": 53
+  },
+  "eq:C16:subkernel": {
+    "file": "sections/C16.tex",
+    "line": 58
+  },
+  "thm:C16:geometric": {
+    "file": "sections/C16.tex",
+    "line": 65
+  },
+  "eq:C16:prefix": {
+    "file": "sections/C16.tex",
+    "line": 67
+  },
+  "eq:C16:margin": {
+    "file": "sections/C16.tex",
+    "line": 81
+  },
+  "C16:nonstationary": {
+    "file": "sections/C16.tex",
+    "line": 87
+  },
+  "thm:C16:nonstationary": {
+    "file": "sections/C16.tex",
+    "line": 97
+  },
+  "eq:C16:nonstationary": {
+    "file": "sections/C16.tex",
+    "line": 99
+  },
+  "C16:boundaries": {
+    "file": "sections/C16.tex",
+    "line": 117
+  },
+  "sec:C17": {
+    "file": "sections/C17.tex",
+    "line": 1
+  },
+  "def:C17-policy": {
+    "file": "sections/C17.tex",
+    "line": 9
+  },
+  "eq:C17-history-atom": {
+    "file": "sections/C17.tex",
+    "line": 18
+  },
+  "eq:C17-feedback-row": {
+    "file": "sections/C17.tex",
+    "line": 26
+  },
+  "eq:C17-monitor-base": {
+    "file": "sections/C17.tex",
+    "line": 43
+  },
+  "eq:C17-monitor-bellman": {
+    "file": "sections/C17.tex",
+    "line": 46
+  },
+  "thm:C17-monitor-optimality": {
+    "file": "sections/C17.tex",
+    "line": 50
+  },
+  "eq:C17-retry-event": {
+    "file": "sections/C17.tex",
+    "line": 72
+  },
+  "sec:C18": {
+    "file": "sections/C18.tex",
+    "line": 1
+  },
+  "eq:C18-prediction": {
+    "file": "sections/C18.tex",
+    "line": 15
+  },
+  "eq:C18-branch": {
+    "file": "sections/C18.tex",
+    "line": 16
+  },
+  "eq:C18-posterior": {
+    "file": "sections/C18.tex",
+    "line": 19
+  },
+  "eq:C18-forward": {
+    "file": "sections/C18.tex",
+    "line": 24
+  },
+  "prop:C18-filter": {
+    "file": "sections/C18.tex",
+    "line": 29
+  },
+  "eq:C18-value-base": {
+    "file": "sections/C18.tex",
+    "line": 52
+  },
+  "eq:C18-value": {
+    "file": "sections/C18.tex",
+    "line": 54
+  },
+  "eq:C18-alpha": {
+    "file": "sections/C18.tex",
+    "line": 63
+  },
+  "thm:C18-alpha": {
+    "file": "sections/C18.tex",
+    "line": 67
+  },
+  "eq:C18-envelope": {
+    "file": "sections/C18.tex",
+    "line": 69
+  },
+  "eq:C18-augmented-transition": {
+    "file": "sections/C18.tex",
+    "line": 90
+  },
+  "eq:C18-common-menu": {
+    "file": "sections/C18.tex",
+    "line": 95
+  },
+  "eq:C18-nonstationary-atom": {
+    "file": "sections/C18.tex",
+    "line": 107
+  },
+  "sec:C19": {
+    "file": "sections/C19.tex",
+    "line": 1
+  },
+  "eq:C19-flow-initial": {
+    "file": "sections/C19.tex",
+    "line": 14
+  },
+  "eq:C19-flow-action": {
+    "file": "sections/C19.tex",
+    "line": 15
+  },
+  "eq:C19-flow-next": {
+    "file": "sections/C19.tex",
+    "line": 16
+  },
+  "eq:C19-flow-legal": {
+    "file": "sections/C19.tex",
+    "line": 17
+  },
+  "thm:C19-flow": {
+    "file": "sections/C19.tex",
+    "line": 21
+  },
+  "eq:C19-reconstructed-policy": {
+    "file": "sections/C19.tex",
+    "line": 27
+  },
+  "eq:C19-risk-lp": {
+    "file": "sections/C19.tex",
+    "line": 46
+  },
+  "thm:C19-risk-optimality": {
+    "file": "sections/C19.tex",
+    "line": 55
+  },
+  "ex:C19-mixed-risk": {
+    "file": "sections/C19.tex",
+    "line": 63
+  },
+  "eq:C19-full-risk": {
+    "file": "sections/C19.tex",
+    "line": 74
+  },
+  "eq:C19-safety-bellman": {
+    "file": "sections/C19.tex",
+    "line": 96
+  },
+  "thm:C19-infinite-safety": {
+    "file": "sections/C19.tex",
+    "line": 100
+  },
+  "eq:C19-infinite-optimum": {
+    "file": "sections/C19.tex",
+    "line": 102
+  },
+  "eq:C19-invariant-core": {
+    "file": "sections/C19.tex",
+    "line": 124
+  },
+  "sec:C20": {
+    "file": "sections/C20.tex",
+    "line": 1
+  },
+  "eq:C20-stopping-tail": {
+    "file": "sections/C20.tex",
+    "line": 12
+  },
+  "eq:C20-dirichlet": {
+    "file": "sections/C20.tex",
+    "line": 21
+  },
+  "thm:C20-absorption": {
+    "file": "sections/C20.tex",
+    "line": 34
+  },
+  "eq:C20-reference-matrix": {
+    "file": "sections/C20.tex",
+    "line": 47
+  },
+  "thm:C20-stationary": {
+    "file": "sections/C20.tex",
+    "line": 54
+  },
+  "eq:C20-event-value": {
+    "file": "sections/C20.tex",
+    "line": 67
+  },
+  "eq:C20-original-margin": {
+    "file": "sections/C20.tex",
+    "line": 74
+  },
+  "thm:C20-original-margin": {
+    "file": "sections/C20.tex",
+    "line": 80
+  },
+  "sec:C21": {
+    "file": "sections/C21.tex",
+    "line": 1
+  },
+  "eq:C21-random-limit": {
+    "file": "sections/C21.tex",
+    "line": 8
+  },
+  "eq:C21-actual-objective": {
+    "file": "sections/C21.tex",
+    "line": 14
+  },
+  "prop:C21-exact-objective": {
+    "file": "sections/C21.tex",
+    "line": 26
+  },
+  "eq:C21-rational-objective": {
+    "file": "sections/C21.tex",
+    "line": 28
+  },
+  "thm:C21-stationary-optimum": {
+    "file": "sections/C21.tex",
+    "line": 52
+  },
+  "eq:C21-boolean-score": {
+    "file": "sections/C21.tex",
+    "line": 69
+  },
+  "ex:C21-nonlinear-mixture": {
+    "file": "sections/C21.tex",
+    "line": 79
+  },
+  "eq:C21-native-phase-row": {
+    "file": "sections/C21.tex",
+    "line": 96
+  },
+  "sec:C22": {
+    "file": "sections/C22.tex",
+    "line": 1
+  },
+  "eq:C22-game-atom": {
+    "file": "sections/C22.tex",
+    "line": 14
+  },
+  "eq:C22-rectangular-bellman": {
+    "file": "sections/C22.tex",
+    "line": 27
+  },
+  "thm:C22-rectangular": {
+    "file": "sections/C22.tex",
+    "line": 31
+  },
+  "eq:C22-saddle": {
+    "file": "sections/C22.tex",
+    "line": 33
+  },
+  "ex:C22-commitment": {
+    "file": "sections/C22.tex",
+    "line": 47
+  },
+  "eq:C22-private-value": {
+    "file": "sections/C22.tex",
+    "line": 62
+  },
+  "eq:C22-private-lp": {
+    "file": "sections/C22.tex",
+    "line": 72
+  },
+  "thm:C22-private": {
+    "file": "sections/C22.tex",
+    "line": 81
+  },
+  "ex:C22-private-matching": {
+    "file": "sections/C22.tex",
+    "line": 95
+  },
+  "sec:C23": {
+    "file": "sections/C23.tex",
+    "line": 1
+  },
+  "eq:C23-trace-atom": {
+    "file": "sections/C23.tex",
+    "line": 10
+  },
+  "eq:C23-Qvalue": {
+    "file": "sections/C23.tex",
+    "line": 15
+  },
+  "thm:C23-performance": {
+    "file": "sections/C23.tex",
+    "line": 21
+  },
+  "eq:C23-performance": {
+    "file": "sections/C23.tex",
+    "line": 23
+  },
+  "eq:C23-X1-world": {
+    "file": "sections/C23.tex",
+    "line": 50
+  },
+  "eq:C23-X1-reward": {
+    "file": "sections/C23.tex",
+    "line": 56
+  },
+  "eq:C23-learner-rate": {
+    "file": "sections/C23.tex",
+    "line": 67
+  },
+  "eq:C23-learner-update": {
+    "file": "sections/C23.tex",
+    "line": 71
+  },
+  "eq:C23-X1-matrix": {
+    "file": "sections/C23.tex",
+    "line": 77
+  },
+  "eq:C23-X1-loss": {
+    "file": "sections/C23.tex",
+    "line": 91
+  },
+  "cor:C23-X1-full-history": {
+    "file": "sections/C23.tex",
+    "line": 97
+  },
+  "eq:C23-X1-full-history": {
+    "file": "sections/C23.tex",
+    "line": 99
+  },
+  "eq:C23-X1-targets": {
+    "file": "sections/C23.tex",
+    "line": 153
+  },
+  "eq:C23-X1-poisson": {
+    "file": "sections/C23.tex",
+    "line": 158
+  },
+  "sec:C24": {
+    "file": "sections/C24.tex",
+    "line": 1
+  },
+  "eq:C24-products": {
+    "file": "sections/C24.tex",
+    "line": 14
+  },
+  "eq:C24-induced": {
+    "file": "sections/C24.tex",
+    "line": 19
+  },
+  "prop:C24-product": {
+    "file": "sections/C24.tex",
+    "line": 26
+  },
+  "thm:C24-matched": {
+    "file": "sections/C24.tex",
+    "line": 42
+  },
+  "eq:C24-protocol-gap": {
+    "file": "sections/C24.tex",
+    "line": 55
+  },
+  "eq:C24-row-autonomy": {
+    "file": "sections/C24.tex",
+    "line": 63
+  },
+  "prop:C24-row-history": {
+    "file": "sections/C24.tex",
+    "line": 67
+  },
+  "eq:C24-strict": {
+    "file": "sections/C24.tex",
+    "line": 80
+  },
+  "eq:C24-key-kernel": {
+    "file": "sections/C24.tex",
+    "line": 89
+  },
+  "thm:C24-autonomy": {
+    "file": "sections/C24.tex",
+    "line": 98
+  },
+  "eq:C24-fibre": {
+    "file": "sections/C24.tex",
+    "line": 122
+  },
+  "prop:C24-legal-fibre": {
+    "file": "sections/C24.tex",
+    "line": 127
+  },
+  "eq:C24-mediator": {
+    "file": "sections/C24.tex",
+    "line": 154
+  },
+  "sec:C25": {
+    "file": "sections/C25.tex",
+    "line": 1
+  },
+  "eq:C25-product-atom": {
+    "file": "sections/C25.tex",
+    "line": 8
+  },
+  "eq:C25-nested": {
+    "file": "sections/C25.tex",
+    "line": 22
+  },
+  "eq:C25-response": {
+    "file": "sections/C25.tex",
+    "line": 30
+  },
+  "eq:C25-grouped": {
+    "file": "sections/C25.tex",
+    "line": 35
+  },
+  "eq:C25-cell": {
+    "file": "sections/C25.tex",
+    "line": 40
+  },
+  "eq:C25-numerator": {
+    "file": "sections/C25.tex",
+    "line": 42
+  },
+  "eq:C25-assignment-support": {
+    "file": "sections/C25.tex",
+    "line": 50
+  },
+  "eq:C25-outcome-support": {
+    "file": "sections/C25.tex",
+    "line": 52
+  },
+  "thm:C25-identification": {
+    "file": "sections/C25.tex",
+    "line": 56
+  },
+  "eq:C25-identification": {
+    "file": "sections/C25.tex",
+    "line": 58
+  },
+  "eq:C25-decomposition": {
+    "file": "sections/C25.tex",
+    "line": 73
+  },
+  "eq:C25-positive-values": {
+    "file": "sections/C25.tex",
+    "line": 98
+  },
+  "prop:C25-nonidentification": {
+    "file": "sections/C25.tex",
+    "line": 115
+  },
+  "sec:C26": {
+    "file": "sections/C26.tex",
+    "line": 1
+  },
+  "C26:scalar": {
+    "file": "sections/C26.tex",
+    "line": 5
+  },
+  "eq:C26:seam": {
+    "file": "sections/C26.tex",
+    "line": 12
+  },
+  "eq:C26:commonmode": {
+    "file": "sections/C26.tex",
+    "line": 16
+  },
+  "eq:C26:scalardefect": {
+    "file": "sections/C26.tex",
+    "line": 28
+  },
+  "C26:detection": {
+    "file": "sections/C26.tex",
+    "line": 35
+  },
+  "eq:C26:Weil": {
+    "file": "sections/C26.tex",
+    "line": 38
+  },
+  "eq:C26:Weilbound": {
+    "file": "sections/C26.tex",
+    "line": 44
+  },
+  "thm:C26:detection": {
+    "file": "sections/C26.tex",
+    "line": 63
+  },
+  "C26:firstbad": {
+    "file": "sections/C26.tex",
+    "line": 69
+  },
+  "eq:C26:trial": {
+    "file": "sections/C26.tex",
+    "line": 74
+  },
+  "eq:C26:secular": {
+    "file": "sections/C26.tex",
+    "line": 78
+  },
+  "eq:C26:Schur": {
+    "file": "sections/C26.tex",
+    "line": 88
+  },
+  "eq:C26:derivative": {
+    "file": "sections/C26.tex",
+    "line": 92
+  },
+  "C26:zerosource": {
+    "file": "sections/C26.tex",
+    "line": 98
+  },
+  "eq:C26:cubicdefect": {
+    "file": "sections/C26.tex",
+    "line": 101
+  },
+  "eq:C26:transfer": {
+    "file": "sections/C26.tex",
+    "line": 107
+  },
+  "eq:C26:pole": {
+    "file": "sections/C26.tex",
+    "line": 116
+  },
+  "eq:C26:zerotransfer": {
+    "file": "sections/C26.tex",
+    "line": 127
+  },
+  "C26:gram": {
+    "file": "sections/C26.tex",
+    "line": 133
+  },
+  "eq:C26:Gram": {
+    "file": "sections/C26.tex",
+    "line": 142
+  },
+  "sec:C27": {
+    "file": "sections/C27.tex",
+    "line": 1
+  },
+  "sub:C27:01": {
+    "file": "sections/C27.tex",
+    "line": 5
+  },
+  "ex:periodic-original": {
+    "file": "sections/C27.tex",
+    "line": 6
+  },
+  "sub:C27:02": {
+    "file": "sections/C27.tex",
+    "line": 25
+  },
+  "ex:bernoulli-factorization": {
+    "file": "sections/C27.tex",
+    "line": 26
+  },
+  "sub:C27:03": {
+    "file": "sections/C27.tex",
+    "line": 41
+  },
+  "ex:qsd-uniform": {
+    "file": "sections/C27.tex",
+    "line": 42
+  },
+  "sub:C27:04": {
+    "file": "sections/C27.tex",
+    "line": 52
+  },
+  "con:economic-witness": {
+    "file": "sections/C27.tex",
+    "line": 55
+  },
+  "thm:economic-full": {
+    "file": "sections/C27.tex",
+    "line": 64
+  },
+  "sub:C27:05": {
+    "file": "sections/C27.tex",
+    "line": 85
+  },
+  "tab:example-atlas": {
+    "file": "sections/C27.tex",
+    "line": 89
+  },
+  "sec:C28": {
+    "file": "sections/C28.tex",
+    "line": 1
+  },
+  "sub:C28:01": {
+    "file": "sections/C28.tex",
+    "line": 5
+  },
+  "def:confirmatory-pipeline": {
+    "file": "sections/C28.tex",
+    "line": 6
+  },
+  "def:identified-constitution": {
+    "file": "sections/C28.tex",
+    "line": 20
+  },
+  "prop:modelset-distinction": {
+    "file": "sections/C28.tex",
+    "line": 30
+  },
+  "thm:outer-certificate": {
+    "file": "sections/C28.tex",
+    "line": 39
+  },
+  "sub:C28:02": {
+    "file": "sections/C28.tex",
+    "line": 55
+  },
+  "eq:normalizers": {
+    "file": "sections/C28.tex",
+    "line": 63
+  },
+  "eq:missingness-interval": {
+    "file": "sections/C28.tex",
+    "line": 82
+  },
+  "prop:completion-bounds": {
+    "file": "sections/C28.tex",
+    "line": 86
+  },
+  "sub:C28:03": {
+    "file": "sections/C28.tex",
+    "line": 98
+  },
+  "eq:signed-network": {
+    "file": "sections/C28.tex",
+    "line": 111
+  },
+  "sub:C28:04": {
+    "file": "sections/C28.tex",
+    "line": 119
+  },
+  "prop:bm-exact": {
+    "file": "sections/C28.tex",
+    "line": 127
+  },
+  "par:C28:bm-repair": {
+    "file": "sections/C28.tex",
+    "line": 148
+  },
+  "sub:C28:05": {
+    "file": "sections/C28.tex",
+    "line": 151
+  },
+  "eq:midr-property": {
+    "file": "sections/C28.tex",
+    "line": 158
+  },
+  "par:C28:midr-lineage": {
+    "file": "sections/C28.tex",
+    "line": 176
+  },
+  "sub:C28:06": {
+    "file": "sections/C28.tex",
+    "line": 179
+  },
+  "par:C28:hormuz-repair": {
+    "file": "sections/C28.tex",
+    "line": 191
+  },
+  "par:C28:case-diagnostics": {
+    "file": "sections/C28.tex",
+    "line": 194
+  },
+  "par:C28:case-memory": {
+    "file": "sections/C28.tex",
+    "line": 197
+  },
+  "par:C28:january-measurement": {
+    "file": "sections/C28.tex",
+    "line": 206
+  },
+  "sub:C28:07": {
+    "file": "sections/C28.tex",
+    "line": 211
+  },
+  "sec:C29": {
+    "file": "sections/C29.tex",
+    "line": 1
+  },
+  "sub:C29:01": {
+    "file": "sections/C29.tex",
+    "line": 5
+  },
+  "eq:exact-induced-algorithm": {
+    "file": "sections/C29.tex",
+    "line": 10
+  },
+  "prop:finite-kernel-algorithm": {
+    "file": "sections/C29.tex",
+    "line": 14
+  },
+  "sub:C29:02": {
+    "file": "sections/C29.tex",
+    "line": 25
+  },
+  "def:receipt-contract": {
+    "file": "sections/C29.tex",
+    "line": 26
+  },
+  "prop:reflection-chain": {
+    "file": "sections/C29.tex",
+    "line": 32
+  },
+  "sub:C29:03": {
+    "file": "sections/C29.tex",
+    "line": 41
+  },
+  "tab:profiles": {
+    "file": "sections/C29.tex",
+    "line": 45
+  },
+  "sub:C29:04": {
+    "file": "sections/C29.tex",
+    "line": 80
+  },
+  "sub:C29:05": {
+    "file": "sections/C29.tex",
+    "line": 88
+  },
+  "sec:C30": {
+    "file": "sections/C30.tex",
+    "line": 1
+  },
+  "sub:C30:01": {
+    "file": "sections/C30.tex",
+    "line": 5
+  },
+  "tab:inventory": {
+    "file": "sections/C30.tex",
+    "line": 27
+  },
+  "sub:C30:02": {
+    "file": "sections/C30.tex",
+    "line": 34
+  },
+  "def:evidence-coordinates": {
+    "file": "sections/C30.tex",
+    "line": 37
+  },
+  "sub:C30:03": {
+    "file": "sections/C30.tex",
+    "line": 45
+  },
+  "def:coverage-disposition": {
+    "file": "sections/C30.tex",
+    "line": 50
+  },
+  "sub:C30:04": {
+    "file": "sections/C30.tex",
+    "line": 56
+  },
+  "sub:C30:05": {
+    "file": "sections/C30.tex",
+    "line": 63
+  },
+  "sec:C31": {
+    "file": "sections/C31.tex",
+    "line": 1
+  },
+  "sub:C31:01": {
+    "file": "sections/C31.tex",
+    "line": 5
+  },
+  "sub:C31:02": {
+    "file": "sections/C31.tex",
+    "line": 10
+  },
+  "sub:C31:03": {
+    "file": "sections/C31.tex",
+    "line": 17
+  },
+  "sub:C31:04": {
+    "file": "sections/C31.tex",
+    "line": 24
+  },
+  "sub:C31:05": {
+    "file": "sections/C31.tex",
+    "line": 31
+  },
+  "sub:C31:06": {
+    "file": "sections/C31.tex",
+    "line": 36
+  },
+  "sub:C31:07": {
+    "file": "sections/C31.tex",
+    "line": 41
+  },
+  "app:A": {
+    "file": "appendices/A_foundations.tex",
+    "line": 1
+  },
+  "prop:A-Polish": {
+    "file": "appendices/A_foundations.tex",
+    "line": 25
+  },
+  "eq:A-BL-criterion": {
+    "file": "appendices/A_foundations.tex",
+    "line": 27
+  },
+  "ex:A-escaping-Dirac": {
+    "file": "appendices/A_foundations.tex",
+    "line": 48
+  },
+  "ex:A-dual-class": {
+    "file": "appendices/A_foundations.tex",
+    "line": 56
+  },
+  "lem:A-countable-tests": {
+    "file": "appendices/A_foundations.tex",
+    "line": 63
+  },
+  "lem:A-initial-mixture": {
+    "file": "appendices/A_foundations.tex",
+    "line": 76
+  },
+  "app:B": {
+    "file": "appendices/B_lineage.tex",
+    "line": 1
+  },
+  "sub:B:01": {
+    "file": "appendices/B_lineage.tex",
+    "line": 5
+  },
+  "sub:B:02": {
+    "file": "appendices/B_lineage.tex",
+    "line": 44
+  },
+  "tab:profile-axes": {
+    "file": "appendices/B_lineage.tex",
+    "line": 56
+  },
+  "sub:B:03": {
+    "file": "appendices/B_lineage.tex",
+    "line": 61
+  },
+  "sub:B:04": {
+    "file": "appendices/B_lineage.tex",
+    "line": 83
+  },
+  "app:C": {
+    "file": "appendices/C_foundations.tex",
+    "line": 1
+  },
+  "eq:C-app-kernel": {
+    "file": "appendices/C_foundations.tex",
+    "line": 6
+  },
+  "lem:C-compProd": {
+    "file": "appendices/C_foundations.tex",
+    "line": 22
+  },
+  "lem:C-deterministic": {
+    "file": "appendices/C_foundations.tex",
+    "line": 41
+  },
+  "prop:C-information": {
+    "file": "appendices/C_foundations.tex",
+    "line": 56
+  },
+  "prop:C-Green": {
+    "file": "appendices/C_foundations.tex",
+    "line": 67
+  },
+  "eq:C-app-Green": {
+    "file": "appendices/C_foundations.tex",
+    "line": 69
+  },
+  "eq:C-app-signature": {
+    "file": "appendices/C_foundations.tex",
+    "line": 90
+  },
+  "thm:C-signature": {
+    "file": "appendices/C_foundations.tex",
+    "line": 95
+  },
+  "lem:C-output-errors": {
+    "file": "appendices/C_foundations.tex",
+    "line": 111
+  },
+  "app:D": {
+    "file": "appendices/D_occupation.tex",
+    "line": 1
+  },
+  "lem:D-innovation": {
+    "file": "appendices/D_occupation.tex",
+    "line": 5
+  },
+  "eq:D-residual": {
+    "file": "appendices/D_occupation.tex",
+    "line": 30
+  },
+  "lem:D-block": {
+    "file": "appendices/D_occupation.tex",
+    "line": 40
+  },
+  "eq:D-dirac-law": {
+    "file": "appendices/D_occupation.tex",
+    "line": 56
+  },
+  "prop:D-fourstate": {
+    "file": "appendices/D_occupation.tex",
+    "line": 63
+  },
+  "eq:D-four-matrix": {
+    "file": "appendices/D_occupation.tex",
+    "line": 69
+  },
+  "eq:D-endpoints": {
+    "file": "appendices/D_occupation.tex",
+    "line": 78
+  },
+  "prop:D-sixstate": {
+    "file": "appendices/D_occupation.tex",
+    "line": 107
+  },
+  "eq:D-six-matrix": {
+    "file": "appendices/D_occupation.tex",
+    "line": 109
+  },
+  "eq:D-six-stationary": {
+    "file": "appendices/D_occupation.tex",
+    "line": 120
+  },
+  "eq:D-six-random": {
+    "file": "appendices/D_occupation.tex",
+    "line": 125
+  },
+  "prop:D-response": {
+    "file": "appendices/D_occupation.tex",
+    "line": 154
+  },
+  "eq:D-soft": {
+    "file": "appendices/D_occupation.tex",
+    "line": 158
+  },
+  "app:E": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 1
+  },
+  "lem:E-Hopf": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 12
+  },
+  "eq:E-finite-Hopf": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 14
+  },
+  "eq:E-maximal": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 18
+  },
+  "thm:E-bounded-Birkhoff": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 38
+  },
+  "cor:E-L1": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 61
+  },
+  "eq:E-L1-approx": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 63
+  },
+  "eq:E-resolvent": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 99
+  },
+  "eq:E-Poisson": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 107
+  },
+  "prop:E-regenerative-bounded": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 111
+  },
+  "eq:E-renewal-marginal": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 128
+  },
+  "eq:E-renewal-TV": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 132
+  },
+  "lem:E-regenerative-transfer": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 137
+  },
+  "eq:E-excess-tail": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 166
+  },
+  "eq:E-uniform-tail": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 171
+  },
+  "ex:E-reset-increment": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 187
+  },
+  "eq:E-factorial": {
+    "file": "appendices/E_ergodic.tex",
+    "line": 213
+  },
+  "app:F": {
+    "file": "appendices/F_grammar.tex",
+    "line": 1
+  },
+  "F:assembly": {
+    "file": "appendices/F_grammar.tex",
+    "line": 3
+  },
+  "F:boolean": {
+    "file": "appendices/F_grammar.tex",
+    "line": 11
+  },
+  "prop:F:booleanPR": {
+    "file": "appendices/F_grammar.tex",
+    "line": 13
+  },
+  "F:grammarcounterexamples": {
+    "file": "appendices/F_grammar.tex",
+    "line": 74
+  },
+  "ex:F:admission": {
+    "file": "appendices/F_grammar.tex",
+    "line": 76
+  },
+  "ex:F:invalidbijection": {
+    "file": "appendices/F_grammar.tex",
+    "line": 82
+  },
+  "ex:F:banks": {
+    "file": "appendices/F_grammar.tex",
+    "line": 88
+  },
+  "F:orders": {
+    "file": "appendices/F_grammar.tex",
+    "line": 96
+  },
+  "F:finite": {
+    "file": "appendices/F_grammar.tex",
+    "line": 110
+  },
+  "app:G": {
+    "file": "appendices/G_path_transport.tex",
+    "line": 1
+  },
+  "G:commonmass": {
+    "file": "appendices/G_path_transport.tex",
+    "line": 3
+  },
+  "G:fullpath": {
+    "file": "appendices/G_path_transport.tex",
+    "line": 18
+  },
+  "G:discount": {
+    "file": "appendices/G_path_transport.tex",
+    "line": 35
+  },
+  "thm:G:summable": {
+    "file": "appendices/G_path_transport.tex",
+    "line": 37
+  },
+  "G:fixtures": {
+    "file": "appendices/G_path_transport.tex",
+    "line": 69
+  },
+  "G:q04": {
+    "file": "appendices/G_path_transport.tex",
+    "line": 80
+  },
+  "app:H": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 1
+  },
+  "H:finiteKR": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 3
+  },
+  "eq:H:dualpotentials": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 6
+  },
+  "cor:H:finiteattainment": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 23
+  },
+  "H:quantization": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 38
+  },
+  "lem:H:extension": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 40
+  },
+  "eq:H:lift": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 67
+  },
+  "prop:H:cells": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 80
+  },
+  "lem:H:separation": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 96
+  },
+  "H:completeness": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 106
+  },
+  "H:invariants": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 122
+  },
+  "H:regeneration": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 133
+  },
+  "H:fixedproperty": {
+    "file": "appendices/H_metric_occupation.tex",
+    "line": 151
+  },
+  "app:I": {
+    "file": "appendices/I_quotients.tex",
+    "line": 1
+  },
+  "I:exactpath": {
+    "file": "appendices/I_quotients.tex",
+    "line": 3
+  },
+  "I:RN": {
+    "file": "appendices/I_quotients.tex",
+    "line": 18
+  },
+  "eq:I:lift": {
+    "file": "appendices/I_quotients.tex",
+    "line": 21
+  },
+  "I:margins": {
+    "file": "appendices/I_quotients.tex",
+    "line": 34
+  },
+  "I:semantics": {
+    "file": "appendices/I_quotients.tex",
+    "line": 47
+  },
+  "app:J": {
+    "file": "appendices/J_control.tex",
+    "line": 1
+  },
+  "proof:J-01": {
+    "file": "appendices/J_control.tex",
+    "line": 5
+  },
+  "eq:J-word-expectation": {
+    "file": "appendices/J_control.tex",
+    "line": 16
+  },
+  "proof:J-02": {
+    "file": "appendices/J_control.tex",
+    "line": 30
+  },
+  "eq:J-run-concatenation": {
+    "file": "appendices/J_control.tex",
+    "line": 33
+  },
+  "lem:J-monitor-consistency": {
+    "file": "appendices/J_control.tex",
+    "line": 47
+  },
+  "proof:J-03": {
+    "file": "appendices/J_control.tex",
+    "line": 57
+  },
+  "proof:J-04": {
+    "file": "appendices/J_control.tex",
+    "line": 80
+  },
+  "lem:J-table": {
+    "file": "appendices/J_control.tex",
+    "line": 84
+  },
+  "proof:J-05": {
+    "file": "appendices/J_control.tex",
+    "line": 94
+  },
+  "eq:J-alpha-dot": {
+    "file": "appendices/J_control.tex",
+    "line": 104
+  },
+  "proof:J-06": {
+    "file": "appendices/J_control.tex",
+    "line": 112
+  },
+  "proof:J-07": {
+    "file": "appendices/J_control.tex",
+    "line": 128
+  },
+  "proof:J-08": {
+    "file": "appendices/J_control.tex",
+    "line": 142
+  },
+  "proof:J-09": {
+    "file": "appendices/J_control.tex",
+    "line": 160
+  },
+  "app:K": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 1
+  },
+  "proof:K-01": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 5
+  },
+  "proof:K-02": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 15
+  },
+  "proof:K-03": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 36
+  },
+  "eq:K-stationary-cramer": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 49
+  },
+  "proof:K-04": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 58
+  },
+  "proof:K-05": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 74
+  },
+  "eq:K-weak-duality": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 81
+  },
+  "proof:K-06": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 100
+  },
+  "proof:K-07": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 114
+  },
+  "prop:K-share-trichotomy": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 116
+  },
+  "proof:K-08": {
+    "file": "appendices/K_algorithms.tex",
+    "line": 135
+  },
+  "app:L": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 1
+  },
+  "proof:L-01": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 3
+  },
+  "proof:L-02": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 25
+  },
+  "eq:L-finite-performance": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 38
+  },
+  "proof:L-03": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 51
+  },
+  "proof:L-04": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 81
+  },
+  "proof:L-05": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 102
+  },
+  "proof:L-06": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 131
+  },
+  "eq:L-input-marginal": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 134
+  },
+  "eq:L-marked-key": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 140
+  },
+  "ex:L-null-key": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 149
+  },
+  "proof:L-07": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 155
+  },
+  "proof:L-08": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 174
+  },
+  "proof:L-09": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 186
+  },
+  "proof:L-10": {
+    "file": "appendices/L_games_multiagent.tex",
+    "line": 200
+  },
+  "app:M": {
+    "file": "appendices/M_specialized.tex",
+    "line": 1
+  },
+  "M:tent": {
+    "file": "appendices/M_specialized.tex",
+    "line": 5
+  },
+  "eq:M:basis": {
+    "file": "appendices/M_specialized.tex",
+    "line": 12
+  },
+  "eq:M:tenttransform": {
+    "file": "appendices/M_specialized.tex",
+    "line": 41
+  },
+  "M:detection": {
+    "file": "appendices/M_specialized.tex",
+    "line": 54
+  },
+  "eq:M:Weilerror": {
+    "file": "appendices/M_specialized.tex",
+    "line": 66
+  },
+  "eq:M:correction": {
+    "file": "appendices/M_specialized.tex",
+    "line": 82
+  },
+  "M:abstractdetection": {
+    "file": "appendices/M_specialized.tex",
+    "line": 110
+  },
+  "eq:M:bilinear": {
+    "file": "appendices/M_specialized.tex",
+    "line": 113
+  },
+  "M:firstbad": {
+    "file": "appendices/M_specialized.tex",
+    "line": 124
+  },
+  "M:parity": {
+    "file": "appendices/M_specialized.tex",
+    "line": 155
+  },
+  "M:zero": {
+    "file": "appendices/M_specialized.tex",
+    "line": 190
+  },
+  "eq:M:complete": {
+    "file": "appendices/M_specialized.tex",
+    "line": 199
+  },
+  "eq:M:kerneltransport": {
+    "file": "appendices/M_specialized.tex",
+    "line": 220
+  },
+  "M:production": {
+    "file": "appendices/M_specialized.tex",
+    "line": 251
+  },
+  "eq:M:production": {
+    "file": "appendices/M_specialized.tex",
+    "line": 260
+  },
+  "M:gram": {
+    "file": "appendices/M_specialized.tex",
+    "line": 276
+  },
+  "M:interfaces": {
+    "file": "appendices/M_specialized.tex",
+    "line": 309
+  },
+  "app:N": {
+    "file": "appendices/N_cases.tex",
+    "line": 1
+  },
+  "sub:N:01": {
+    "file": "appendices/N_cases.tex",
+    "line": 3
+  },
+  "eq:clipped-architecture": {
+    "file": "appendices/N_cases.tex",
+    "line": 9
+  },
+  "prop:clipped-wellposed": {
+    "file": "appendices/N_cases.tex",
+    "line": 13
+  },
+  "sub:N:02": {
+    "file": "appendices/N_cases.tex",
+    "line": 22
+  },
+  "prop:poisson-thinning": {
+    "file": "appendices/N_cases.tex",
+    "line": 23
+  },
+  "prop:inactive-channel": {
+    "file": "appendices/N_cases.tex",
+    "line": 42
+  },
+  "sub:N:03": {
+    "file": "appendices/N_cases.tex",
+    "line": 51
+  },
+  "eq:reserve-abstract": {
+    "file": "appendices/N_cases.tex",
+    "line": 56
+  },
+  "prop:reserve-lag": {
+    "file": "appendices/N_cases.tex",
+    "line": 60
+  },
+  "prop:projected-null": {
+    "file": "appendices/N_cases.tex",
+    "line": 67
+  },
+  "sub:N:04": {
+    "file": "appendices/N_cases.tex",
+    "line": 82
+  },
+  "eq:exact-noninvariance": {
+    "file": "appendices/N_cases.tex",
+    "line": 112
+  },
+  "sub:N:05": {
+    "file": "appendices/N_cases.tex",
+    "line": 124
+  },
+  "sub:N:06": {
+    "file": "appendices/N_cases.tex",
+    "line": 149
+  },
+  "sub:N:07": {
+    "file": "appendices/N_cases.tex",
+    "line": 177
+  },
+  "sub:N:08": {
+    "file": "appendices/N_cases.tex",
+    "line": 201
+  },
+  "app:O": {
+    "file": "appendices/O_concordance.tex",
+    "line": 1
+  },
+  "sub:O:01": {
+    "file": "appendices/O_concordance.tex",
+    "line": 5
+  },
+  "sub:O:02": {
+    "file": "appendices/O_concordance.tex",
+    "line": 31
+  },
+  "sub:O:03": {
+    "file": "appendices/O_concordance.tex",
+    "line": 38
+  },
+  "sub:O:04": {
+    "file": "appendices/O_concordance.tex",
+    "line": 42
+  },
+  "app:P": {
+    "file": "appendices/P_open.tex",
+    "line": 1
+  },
+  "sub:P:01": {
+    "file": "appendices/P_open.tex",
+    "line": 5
+  },
+  "sub:P:02": {
+    "file": "appendices/P_open.tex",
+    "line": 21
+  },
+  "sub:P:03": {
+    "file": "appendices/P_open.tex",
+    "line": 31
+  },
+  "sub:P:04": {
+    "file": "appendices/P_open.tex",
+    "line": 39
+  },
+  "sub:P:05": {
+    "file": "appendices/P_open.tex",
+    "line": 44
+  },
+  "sub:P:06": {
+    "file": "appendices/P_open.tex",
+    "line": 49
+  },
+  "sub:P:07": {
+    "file": "appendices/P_open.tex",
+    "line": 54
+  }
+}
