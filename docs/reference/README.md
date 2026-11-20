@@ -8,6 +8,12 @@
 - [Navigate all 56 certification cases through their 166 source catalog entries](CASE_SOURCE_CROSSWALK.md)
 - [Inspect every tracked source/module, with Git blob SHAs and suggested reading paths](MODULE_MANIFEST_v1.1.1.json)
 
+## Related second-edition manuscript
+
+The [reviewed manuscript v2.0.1](../../paper2/README.md) is the current integrated scientific exposition. This v1.1.1 guide remains the preserved 46-chapter technical reference with its original hashes, source pins and case dispositions. Use the [new guide-to-paper map](../paper2/GUIDE_TO_PAPER.md) to navigate all 46 chapters, all 56 literal cases and the 166 source-catalog identifiers into the manuscript's actual section/appendix structure.
+
+The paper's section IDs and the guide's chapter IDs are separate namespaces. Editorial topic routes, source correspondence and independent acceptance remain separate. The guide's 2,332-file inventory stays pinned to c5a; the later f0 repository snapshot has 2,338 tracked paths because it includes this guide publication. Neither count is a fresh compiler result. See [version lineage](../paper2/VERSION_LINEAGE.md) and [current residual status](../paper2/RESIDUAL_STATUS.md).
+
 ## Pinned edition and source
 
 - **Markdown SHA-256:** `2ce83a40d69a9ab4122749dd47cc07546ded2882ceaaaeea24552d0380b7fd13`.

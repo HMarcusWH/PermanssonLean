@@ -2,8 +2,27 @@
 
 [Documentation index](README.md) ·
 [Next-generation architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md) ·
-[Current formalization map](FORMALIZATION_MAP.md) ·
+[Frozen v0.1.8 formalization map](FORMALIZATION_MAP.md) ·
 [Research CI](../.github/workflows/research-lean.yml)
+
+## Current manuscript source and navigation — 20 November 2026
+
+The [reviewed second-edition paper v2.0.1](../paper2/README.md) uses mathematical source `c5a36cd6189e2a249d5f4bc11f31698917dc8b10`. Its [current mathematical crosswalk](paper2/MATHEMATICAL_CROSSWALK.md) routes all 31 sections and 16 appendices; [verification](paper2/VERIFICATION.md) distinguishes manuscript build, exact calculations, Lean compilation, source identity and independent acceptance.
+
+| Inventory at the manuscript source | Count and interpretation |
+|---|---|
+| Frozen-core Lean files | 64; default root directly lists 63, with `PermanssonLean/Regime/SurvivalBridge.lean` explicitly not directly listed |
+| Research Lean files | 710; directly listed by `PermanssonResearch.lean` |
+| Other Lean files | 24; verification/other roles rather than additional default-root modules |
+| Total Lean files | 798 |
+| Lexical declaration/example units | 7,690 extracted source units; not a theorem or individual semantic-certification count |
+| Python files in the broader inventory | 793; algorithms, independent checks, fixtures and supporting tools have distinct roles |
+
+These are source inventory facts, not a newly executed compiler run. The preserved [guide manifest](reference/MODULE_MANIFEST_v1.1.1.json) records c5a's 2,332 tracked paths; the later PR #127 documentation snapshot `f0dee1c11a20f96c9a11b380e942b9252e6ebe44` has 2,338. The original toolchain/dependency pins remain unchanged.
+
+From the repository root, `lake build` selects the default frozen core and `lake build PermanssonResearch` selects the separate research root. Use the declared source commit and record actual execution results. The [current residual-status page](paper2/RESIDUAL_STATUS.md) reconciles selected source contracts with the stronger or separately evidenced requirements retained in Appendix P.
+
+The sections below remain dated historical checkpoints. Their module/test counts, conditional/open descriptions and PR labels belong to their named commits; they do not overwrite the current manuscript's source map or promote historical acceptance states.
 
 ## Verified integrated checkpoint — 19 October 2026
 
