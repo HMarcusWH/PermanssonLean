@@ -2,6 +2,10 @@
 
 [Repository home](../README.md) · [Getting started](GETTING_STARTED.md) · [Glossary](GLOSSARY.md)
 
+## Complete mathematical reference (proofread v1.1.1)
+
+The [full PDF](reference/Permansson_Mathematical_Reference_Guide_v1.1.1.pdf), [editable source](reference/Permansson_Mathematical_Reference_Guide_v1.1.1.md), [module guide](reference/README.md), [46-chapter source map](reference/CHAPTER_SOURCE_CROSSWALK.md), [56-case routes](reference/CASE_SOURCE_CROSSWALK.md) and [all tracked-file/module manifest](reference/MODULE_MANIFEST_v1.1.1.json) provide an integrated, source-pinned reading path. Exact citations and suggested family navigation are deliberately distinct. The guide does not change the independent certification decisions.
+
 ## Choose a reading path
 
 **Reader:** start with the [paper guide](../paper/README.md), then use the
