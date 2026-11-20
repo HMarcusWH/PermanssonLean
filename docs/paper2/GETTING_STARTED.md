@@ -38,6 +38,13 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build main.tex
 
 Typesetting is possible without a repository checkout. If the index builder finds a sibling `PermanssonLean` checkout, it also checks cited source paths. A successful TeX build is a manuscript-build result; it does not execute the complete Lean repository. PDF bytes may differ across TeX environments, so compare the recorded environment and content before making a byte-reproducibility claim.
 
+The later [exact reproduction addendum](../../paper2/reproduction/v2.0.1/README.md)
+supplies new programs for the 43 quantitative and 20 specialized outputs whose
+original replay scripts were absent from the reviewed ZIP. From the repository
+root, run `python3 -B paper2/reproduction/v2.0.1/replay.py`. Its manifest,
+new fixture disclosures and result record are separate from the preserved
+manuscript package.
+
 ## Review or build the Lean source
 
 For the manuscript's mathematical source, use a clean checkout of `c5a36cd6189e2a249d5f4bc11f31698917dc8b10` and the checked-in toolchain/dependency files. From the repository root:
@@ -60,7 +67,7 @@ For the frozen draft Application Standard v0.1.0, use the original [reporting wa
 
 Start with the repository's preserved [contribution rules](../../CONTRIBUTING.md) and the [version-lineage explanation](VERSION_LINEAGE.md). Current publication assets live under `paper2/`; current paper reading and source maps live under `docs/paper2/`. Original `paper/`, `provenance/`, `application/` and accepted historical release material have preservation contracts. The inherited A2 source-identity contract also preserves older documentation outside its five named exceptions.
 
-Keep a change's scope explicit. A Markdown-only documentation PR follows the existing contributor rule. Publication PDF/ZIP/checksum/index additions are publication-artifact work. Application documentation changes may also require the package's existing inventory metadata to be reconciled. Its relative links must work when the application is copied or installed alone.
+Keep a change's scope explicit. A Markdown-only documentation PR follows the existing contributor rule. Publication PDF/ZIP/checksum/index additions are publication-artifact work. The separately identified reproduction addendum and application test-portability fixes contain Python source and have their own validation scope. Application documentation changes may also require the package's existing inventory metadata to be reconciled. Its relative links must work when the application is copied or installed alone.
 
 Before changing a mathematical claim, compare the paper statement, source declaration and all hypotheses. Document any semantic change through the appropriate mathematical review process. A renamed section or new link is not new proof or acceptance evidence. Changes to an edition's reviewed PDF/source need a new version and review record; preserve the preceding edition.
 

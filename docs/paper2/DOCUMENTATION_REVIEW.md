@@ -3,7 +3,8 @@
 [Current documentation](README.md) · [Manuscript review](../../paper2/v2.0.1/Permansson_Regimes_v2_0_1_Review_Report_2026-11-20.pdf) · [Verification guide](VERIFICATION.md)
 
 **Review date:** 20 November 2026. This record concerns publication metadata and
-repository documentation. The mathematical/editorial manuscript review is a
+repository documentation, plus the later reproduction and test-portability
+follow-up. The mathematical/editorial manuscript review is a
 separate record with its own computations, source checks and limitations.
 
 ## Source identities and change scope
@@ -13,20 +14,26 @@ separate record with its own computations, source checks and limitations.
 | Mathematical source | `c5a36cd6189e2a249d5f4bc11f31698917dc8b10` |
 | Pre-upload documentation baseline | `f0dee1c11a20f96c9a11b380e942b9252e6ebe44` |
 | First exact manuscript-asset commit | `5160a32eecec9d5f17713416f7f58ec2df67e744` |
-| Publication package review head | `8630e80b604223aa0fadff92d6a7c2749cd8be5b` in [PR #128](https://github.com/HMarcusWH/PermanssonLean/pull/128) |
+| Initial publication package review head | `8630e80b604223aa0fadff92d6a7c2749cd8be5b` in [PR #128](https://github.com/HMarcusWH/PermanssonLean/pull/128) |
+| New reproduction addendum head | `39f97d409e2731d286bbf5b835a8ae6acc038667` in [PR #128](https://github.com/HMarcusWH/PermanssonLean/pull/128) |
 
 The current-documentation change adds twelve `docs/paper2/` pages, updates the
 four permitted repository entry points, and completes reading links in the two
 new publication hubs. The exact PDF, source ZIP, review PDF and seven copied
-indexes remain unchanged. The first publication phase has fifteen new paths;
-this Markdown phase adds twelve more.
+indexes remain unchanged. The initial publication phase had fifteen new paths;
+the later reproduction addendum adds six. This Markdown phase adds twelve
+current-documentation pages.
 
-The approved final change set updates twelve preexisting Markdown documents and
-one application inventory JSON, and adds twenty-eight paths including the PDF.
-Application-local reading maps, two native README links and the manifest
-reconciliation are a separate dependent phase. This central-documentation
-record does not assert that its app-manifest candidate hashes have already been
-reconciled by that later phase.
+The original 41-path plan updated twelve preexisting Markdown documents and
+one application inventory JSON, and added twenty-eight paths including the PDF.
+The subsequent request to investigate and implement the remaining fixes extends
+that scope to **55 paths: 35 additions and 20 updates**. The fourteen added
+scope entries are six new reproduction files, one new application regression,
+four existing test modules and three additional bridge documents. The twenty
+updates comprise fifteen Markdown files, four test modules and one inventory.
+Application-local fixes and manifest reconciliation belong to the dependent
+application phase; this central-documentation record does not assert that its
+later candidate hashes have already been reconciled.
 
 ## Coverage inspected
 
@@ -44,7 +51,7 @@ reconciled by that later phase.
 
 ## Publication checks already observed
 
-At the publication package head shown above:
+At the initial publication package head `8630e80b604223aa0fadff92d6a7c2749cd8be5b`:
 
 - All ten asset/index SHA-256 checks passed; the seven public indexes match their
   named reviewed ZIP members byte-for-byte.
@@ -76,7 +83,7 @@ assumptions before the derivative. No unresolved findings remained in these
 focused document reviews; they are not external peer review or formal proof
 certification.
 
-The integrated current-documentation check inspected 3,644 inline links,
+The initial integrated current-documentation check inspected 3,644 inline links,
 2,045 local Markdown anchors and 167 distinct pinned GitHub objects, with no
 missing targets or preservation discrepancies. These counts describe the
 current-documentation phase and will grow when the application map is added.
@@ -111,8 +118,9 @@ when interpreting the publication.
 
 ## Scope and workorder completion audit
 
-A follow-up completeness audit compared all 25 workorders against the actual
-files and open PRs. The three PRs contain all 41 planned paths. This section
+The initial completeness audit compared all 25 workorders against the actual
+files and open PRs. It accounted for all 41 originally planned paths. The later
+remaining-fix scope extends that set to the 55 paths listed below. This section
 records their implementation destinations and the remaining post-merge condition;
 it does not replace CI or claim that an open PR is merged.
 
@@ -154,7 +162,8 @@ profile or candidate family. It identified the following documentation repairs:
   states. All numeric registry scope strings remain exact.
 - The verification guide now gives the packaged 326-check foundation replay
   command. It distinguishes the 43 quantitative and 20 specialized retained
-  result records, whose standalone replay programs are not included.
+  result records, whose original standalone replay programs are not included
+  in the reviewed ZIP.
 - The current review now includes the explicit path scope, workorder
   reconciliation and reproducible preservation comparison below.
 
@@ -163,6 +172,45 @@ fresh external extraction during the follow-up audit: exit status 0, **326/326
 checks passed**. This verifies that packaged calculation program at the reviewed
 ZIP identity; it is separate from Lean compilation and from the original
 63 retained quantitative/specialized review results.
+
+### Later reproduction and usability fixes
+
+The [new reproduction addendum](../../paper2/reproduction/v2.0.1/README.md)
+recomputes all **63 retained outputs** with exact rational arithmetic and
+reports **12 additional arithmetic controls** and **five comparison controls**.
+All passed in the observed run. Seven file/path-handling probes checked the
+normal command, an unrelated working directory, copied programs with an explicit
+archive, two altered-archive failures, refusal to overwrite a file and creation
+of a new result file. All eighteen unique literal manuscript references in the
+two modules resolve to labels in the reviewed archive. The
+[manifest](../../paper2/reproduction/v2.0.1/REPLAY_MANIFEST.json) and
+[result record](../../paper2/reproduction/v2.0.1/REPLAY_RESULTS.json) retain the
+new code identities and fixture boundaries. The original archive/result bytes
+are unchanged; this does not recover the original review execution.
+
+Four application test modules previously evaluated `APP.parents[2]` at import,
+which failed in a shallow standalone extraction even with a source-root
+override. Their new depth-checked default preserves ordinary repository and
+explicit-override behavior. The permanent `test_root_portability.py` runs four
+layout/override cases against the actual affected modules. Before the fix,
+three shallow cases failed and the ordinary-layout case passed; after the fix,
+all four passed, exercising sixteen selected existing tests in subprocesses.
+These are application-test portability changes, with no numerical runtime or
+Lean theorem change.
+
+The application acceptance table and the adaptive, CQ-1 transport and
+risk-infeasibility bridge pages now agree on the reflected `FiniteWorldInput`
+domain: 1–2 strategic states, 1–2 world states and 1–2 actions, hence at most
+four joint states. Numeric profile bounds and evidence statuses retain their
+own meanings. Both native CLI README examples now specify the repository
+working directory. The application phase refreshes current candidate hashes
+and inventory membership without changing recovery identities or proof/trust
+states.
+
+The three additional bridge documents were among the original preserved text
+candidates. Their explicit correction changes the current preserved-text count
+from the historical **341** to **338 of 353** baseline text documents. All
+other baseline objects outside the expanded allowlist remain unchanged.
 
 ### Workorder dispositions
 
@@ -193,14 +241,16 @@ ZIP identity; it is separate from Lean compilation and from the original
 | CHECK-01 | Phase A/B/C local checks have separate observed source identities. Existing CI is reported in the corresponding PR; main-target CI for dependent PRs awaits retargeting. |
 | CHECK-02 | Final merged-head review remains pending. Candidate checks and the complete application hash reconciliation are recorded in [PR #130](https://github.com/HMarcusWH/PermanssonLean/pull/130). |
 | RELEASE-01 | Optional paper-specific tag/release was not performed; its prerequisite is the completed post-merge CHECK-02 gate. |
+| FOLLOWUP-REPRO | [PR #128](https://github.com/HMarcusWH/PermanssonLean/pull/128): six separately identified reproduction files, exact archive/member checks and a retained new execution record. |
+| FOLLOWUP-USABILITY | [PR #130](https://github.com/HMarcusWH/PermanssonLean/pull/130): four test-root fixes, a four-case permanent regression, four reflection-scope corrections, two native command clarifications and refreshed candidate metadata. |
 
 ### Exact cumulative changed-path allowlist
 
 This list is relative to pre-upload baseline
 `f0dee1c11a20f96c9a11b380e942b9252e6ebe44`.
 `A` means a new path and `M` an existing path updated by the complete stack:
-28 additions and 13 updates, comprising twelve Markdown files and one JSON
-inventory. The two publication hubs occur in both publication and navigation
+35 additions and 20 updates, comprising fifteen existing Markdown files,
+four existing test modules and one JSON inventory. The two publication hubs occur in both publication and navigation
 PRs but count only once in this cumulative list.
 
 <!-- PAPER2_SCOPE_BEGIN -->
@@ -209,11 +259,19 @@ M	README.md
 M	apps/permansson/application-successor/IMPLEMENTATION_MANIFEST.json
 M	apps/permansson/application-successor/README.md
 M	apps/permansson/application-successor/docs/ACCEPTANCE_STATUS.md
+M	apps/permansson/application-successor/docs/ADAPTIVE_LEAN_BRIDGE.md
 M	apps/permansson/application-successor/docs/CAPABILITY_SCOPES.md
+M	apps/permansson/application-successor/docs/CQ1_TRANSPORT_LEAN_BRIDGE.md
 M	apps/permansson/application-successor/docs/EVIDENCE_AND_RECEIPTS.md
 A	apps/permansson/application-successor/docs/PAPER2_MAPPING.md
 M	apps/permansson/application-successor/docs/README.md
 M	apps/permansson/application-successor/docs/REVIEWER_GUIDE.md
+M	apps/permansson/application-successor/docs/RISK_INFEASIBILITY_LEAN_BRIDGE.md
+M	apps/permansson/application-successor/tests/test_docs_registry.py
+M	apps/permansson/application-successor/tests/test_extended_cli.py
+M	apps/permansson/application-successor/tests/test_integration.py
+M	apps/permansson/application-successor/tests/test_numeric.py
+A	apps/permansson/application-successor/tests/test_root_portability.py
 M	apps/permansson/closure-successor-c11/README.md
 M	apps/permansson/closure-successor/README.md
 M	docs/README.md
@@ -232,6 +290,12 @@ A	docs/paper2/VERIFICATION.md
 A	docs/paper2/VERSION_LINEAGE.md
 M	docs/reference/README.md
 A	paper2/README.md
+A	paper2/reproduction/v2.0.1/README.md
+A	paper2/reproduction/v2.0.1/REPLAY_MANIFEST.json
+A	paper2/reproduction/v2.0.1/REPLAY_RESULTS.json
+A	paper2/reproduction/v2.0.1/quantitative_replay.py
+A	paper2/reproduction/v2.0.1/replay.py
+A	paper2/reproduction/v2.0.1/specialized_replay.py
 A	paper2/v2.0.1/CITATION.bib
 A	paper2/v2.0.1/PUBLICATION_MANIFEST.json
 A	paper2/v2.0.1/Permansson_Regimes_v2_0_1_Review_Report_2026-11-20.pdf
@@ -259,7 +323,7 @@ it does not require the original planning workspace.
 
 It compares full tree entries, including object type and file mode. It also
 reconstructs all 353 baseline Markdown/text/CFF candidates and explicitly
-checks the 341 designated unchanged text documents. The complete changed-path
+checks the 338 currently designated unchanged text documents. The complete changed-path
 comparison preserves all other baseline objects outside the listed updates,
 including the guide edition artifacts.
 
@@ -301,8 +365,8 @@ for path in before.keys() | after.keys():
         actual[path] = "A" if path not in before else (
             "D" if path not in after else "M")
 assert actual == allowed, "Changed paths differ from the declared scope."
-assert len(allowed) == 41
-assert sum(s == "A" for s in allowed.values()) == 28
+assert len(allowed) == 55
+assert sum(s == "A" for s in allowed.values()) == 35
 for path, status in allowed.items():
     if status == "M":
         assert before[path][:2] == after[path][:2], path
@@ -312,7 +376,7 @@ text_paths = {
     p for p in before if PurePosixPath(p).suffix in {".md", ".txt", ".cff"}
 }
 preserved = text_paths - allowed.keys()
-assert len(text_paths) == 353 and len(preserved) == 341
+assert len(text_paths) == 353 and len(preserved) == 338
 assert all(before[p] == after.get(p) for p in preserved)
 print(json.dumps({
     "status": "PASS",
