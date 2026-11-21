@@ -242,7 +242,7 @@ other baseline objects outside the expanded allowlist remain unchanged.
 | APP-04 | [PR #130](https://github.com/HMarcusWH/PermanssonLean/pull/130): both native CLI reading routes with immutable external links. |
 | APP-05 | [PR #130](https://github.com/HMarcusWH/PermanssonLean/pull/130): nine explicit documentation-hash comparisons, one new mapping row, current counts and detached receipt. |
 | CHECK-01 | Phase A/B/C local checks retain their separate source identities. PRs #128–130 are merged; their main-target workflow observations and the actual merged head are recorded [below](#merged-head-verification-and-21-november-follow-up). Retargeting is complete. |
-| CHECK-02 | Reader-route, preservation, source-identity and inventory checks passed at merged head `09c4341c22dfb22c750bfb02d4eaa4486782b77d`. The gate remains open while that head's Research Lean run is in progress in the dated observation [below](#merged-head-verification-and-21-november-follow-up); predecessor CI is not substituted. |
+| CHECK-02 | Complete for the original publication stack at merged head `09c4341c22dfb22c750bfb02d4eaa4486782b77d`: reader-route, preservation, source-identity and inventory checks passed, and all six observed main workflows succeeded in the dated observation [below](#merged-head-verification-and-21-november-follow-up). The later documentation follow-up has its own candidate checks. |
 | RELEASE-01 | Optional paper-specific tag/release was not performed; its prerequisite is the completed post-merge CHECK-02 gate. |
 | FOLLOWUP-REPRO | [PR #128](https://github.com/HMarcusWH/PermanssonLean/pull/128): six separately identified reproduction files, exact archive/member checks and a retained new execution record. |
 | FOLLOWUP-USABILITY | [PR #130](https://github.com/HMarcusWH/PermanssonLean/pull/130): four test-root fixes, a four-case permanent regression, four reflection-scope corrections, two native command clarifications and refreshed candidate metadata. |
@@ -446,7 +446,9 @@ of the **merged commit itself** observed:
   or anchor discrepancy. External availability and mathematical validity have
   separate evidence requirements.
 
-The main-branch workflow observation at **00:54:12 CET on 21 November 2026** was:
+At the earlier **00:54:12 CET** observation, Research Lean was still in progress.
+The later main-branch observation at **01:04:53 CET on 21 November 2026** confirms
+that all six workflows at the same merged head completed successfully:
 
 | Workflow at merged head `09c4341c` | Observed result |
 | --- | --- |
@@ -455,13 +457,14 @@ The main-branch workflow observation at **00:54:12 CET on 21 November 2026** was
 | [Research integrity](https://github.com/HMarcusWH/PermanssonLean/actions/runs/44834661690) | Completed: success |
 | [Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/44834661687) | Completed: success |
 | [Integrity portability](https://github.com/HMarcusWH/PermanssonLean/actions/runs/44834661742) | Completed: success |
-| [Research Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/44834661756) | In progress; no completed result claimed |
+| [Research Lean](https://github.com/HMarcusWH/PermanssonLean/actions/runs/44834661756) | Completed: success |
 
 **CHECK-01:** the retargeting and merge steps are complete. **CHECK-02:** the
-merged-head local checks above are complete, but the combined gate remains open
-at this observation because Research Lean has not completed. The linked run
-provides any later state. An installed workflow, a successful run and a live
-required-check rule are different evidence; see the
+original publication stack's merged-head local checks and all six observed main
+workflows are complete at this observation. This closes that post-merge
+documentation gate; it does not supply CI for the later documentation candidate.
+An installed workflow, a successful run and a live required-check rule are
+different evidence; see the
 [current operations index](../operations/README.md). No release or independent
 acceptance follows from these documentation checks.
 
@@ -575,7 +578,8 @@ print(json.dumps({"status": "PASS", "baseline": baseline, "candidate": candidate
 PY_FOLLOWUP
 ```
 
-The follow-up PR records its actual committed head, detached preservation/A2 and
+The [follow-up PR #131](https://github.com/HMarcusWH/PermanssonLean/pull/131)
+records its actual committed head, detached preservation/A2 and
 inventory receipts, link and command checks, and that head's own workflow runs.
 This file does not self-report its containing commit or substitute the merged
 baseline's successful checks for the follow-up candidate's checks. Existing
