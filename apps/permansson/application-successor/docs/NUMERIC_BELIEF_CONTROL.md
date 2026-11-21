@@ -10,4 +10,11 @@ The independent checker does not import the numerical belief producer. It recons
 
 The sample contains two hidden states (healthy/damaged), observations (green/red/unseen) and actions (leave/repair). The observation-conditioned policy chooses **leave after green** and **repair after red**. It achieves exact expected reward **13/16**, versus **3/4** for the best unobserved control, giving an exact one-step value of information **1/16**. The `unseen` signal is unreachable and intentionally has no posterior. A separating test restricts legal actions to distinct hidden supports and confirms that perfectly revealing observations are permitted while a mixed observation without a common feasible action is rejected.
 
-**Scope and scientific limits:** one strategic state; up to three physical states, three actions and three observations; one observed choice and one transition; fully declared rational inputs; no inference about reality, endogenous observation model, repeated Bayesian filtering, hidden memory, infinite-horizon value, causal identification, Exact GR/PR status, independent mathematical CERT or publication approval. A bounded source-bound Lean candidate is available separately (`permansson-app lean-emit --family belief`; see [`BELIEF_LEAN_BRIDGE.md`](BELIEF_LEAN_BRIDGE.md)); the numeric command does not run it. Every output retains `lean_status=NOT_EXECUTED` and `scientific_claims_verified=false`, and the separate nine scientific-report dimensions remain unassessed.
+**Scope and scientific limits:** one strategic state; up to three physical states, three actions and three observations; one observed choice and one transition; fully declared rational inputs; no inference about reality, endogenous observation model, repeated Bayesian filtering, hidden memory, infinite-horizon value, causal identification, Exact GR/PR status, independent mathematical CERT or publication approval. A bounded source-bound Lean candidate is available separately (`permansson-app lean-emit --family belief`; see [`BELIEF_LEAN_BRIDGE.md`](BELIEF_LEAN_BRIDGE.md)); the numeric command does not run it.
+
+The raw belief receipt retains `lean_status=NOT_EXECUTED`, its independent
+checker records `proof_status=NOT_EXECUTED`, and the scientific report uses
+`kernel_checked_proof=NOT_EXECUTED`. These three records retain
+`scientific_claims_verified=false`; the report's nine scientific dimensions
+remain unassessed. See [evidence and receipts](EVIDENCE_AND_RECEIPTS.md) for
+the distinction between these record shapes.

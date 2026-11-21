@@ -8,7 +8,7 @@ mathematics behind the finite computation and reflection routes. Use the
 [versioned publication hub](https://github.com/HMarcusWH/PermanssonLean/blob/39f97d409e2731d286bbf5b835a8ae6acc038667/paper2/README.md)
 for its PDF, source/concordance package, review record and citation.
 
-The [complete paper-to-application compatibility map](https://github.com/HMarcusWH/PermanssonLean/blob/8e07982a34e76f02591f97afbc70d2e8967e22e5/docs/paper2/APPLICATION_COMPATIBILITY.md)
+The [complete paper-to-application compatibility map](https://github.com/HMarcusWH/PermanssonLean/blob/40f52036f7f65a08318c9aa7553dacd582029a60/docs/paper2/APPLICATION_COMPATIBILITY.md)
 is authoritative for the reading correspondence. This page is its concise
 application-local projection. It gives topic routes, while the existing
 [capability scopes](CAPABILITY_SCOPES.md), linked bridge documents and actual
@@ -23,11 +23,11 @@ independent equivalence proof for every mapped paper statement.
 4. **§29.5 and §30:** legacy contracts, release evidence, negative controls and
    source concordance.
 5. **Appendix P:** the precise residual obligations; use the
-   [current residual ledger](https://github.com/HMarcusWH/PermanssonLean/blob/8e07982a34e76f02591f97afbc70d2e8967e22e5/docs/paper2/RESIDUAL_STATUS.md)
+   [current residual ledger](https://github.com/HMarcusWH/PermanssonLean/blob/40f52036f7f65a08318c9aa7553dacd582029a60/docs/paper2/RESIDUAL_STATUS.md)
    for their source/evidence distinctions.
 
 Paper labels are resolved through the
-[mathematical crosswalk](https://github.com/HMarcusWH/PermanssonLean/blob/8e07982a34e76f02591f97afbc70d2e8967e22e5/docs/paper2/MATHEMATICAL_CROSSWALK.md).
+[mathematical crosswalk](https://github.com/HMarcusWH/PermanssonLean/blob/40f52036f7f65a08318c9aa7553dacd582029a60/docs/paper2/MATHEMATICAL_CROSSWALK.md).
 The section numbers below refer to paper v2.0.1, not reference-guide chapters.
 
 ## All 26 profile reading routes
@@ -83,11 +83,16 @@ change application version 0.2.0, its released wheel or its platform scope.
 The current source tree can contain new reading documentation that was not part
 of the November 1 release. See [release acceptance](RELEASE_ACCEPTANCE.md).
 
-Application reports still carry `lean_status=NOT_EXECUTED`,
-`scientific_claims_verified=false`, `empirical_identification=NOT_IDENTIFIED`
-and `publication_approval=NOT_ASSESSED`. Source-bound Lean families and the
-separate native replay routes keep their existing evidence meanings. A paper
-link does not update a report or grant independent research-case acceptance.
+Checked numeric-profile `scientific_report.json` files retain
+`kernel_checked_proof=NOT_EXECUTED`, `scientific_claims_verified=false`,
+`empirical_identification=NOT_IDENTIFIED` and
+`publication_approval=NOT_ASSESSED`. The native wrapper instead writes
+`application_result.json` with `lean_status=NOT_EXECUTED` and its own gate
+fields; raw receipts also have profile-specific shapes. See the
+[evidence guide](EVIDENCE_AND_RECEIPTS.md) for the exact records. Source-bound
+Lean families and the separate native replay routes keep their existing
+evidence meanings. A paper link does not update a report or grant independent
+research-case acceptance.
 
 All external links on this page are pinned GitHub URLs so this documentation
 continues to work when the application is copied or installed without the rest

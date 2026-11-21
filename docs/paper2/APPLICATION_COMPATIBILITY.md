@@ -32,6 +32,18 @@ distribution predates it. See the preserved
 [release acceptance record](../../apps/permansson/application-successor/docs/RELEASE_ACCEPTANCE.md)
 and [version lineage](VERSION_LINEAGE.md).
 
+### Historical fixture caveat
+
+The preserved `unresolved_identification` example contains a narrative mismatch:
+its specification declares a singleton model set without sampling uncertainty,
+while its argument describes multiple compatible completions and its JSON marks
+sampling as applicable. The [fixture erratum](HISTORICAL_DOCUMENTATION_ERRATA.md#unresolved-identification-fixture)
+identifies all three source records and their exact hashes. Its structural
+validation remains valid within the Application Standard contract; that validator
+does not establish agreement among opaque scientific narratives. The fixture,
+its hashes and the original [application boundary](../APPLICATION_BOUNDARY.md)
+remain unchanged. A corrected specimen needs a separate version and identities.
+
 ## All 26 exact profiles
 
 The table joins the literal registry identifiers to commands, independent checkers,

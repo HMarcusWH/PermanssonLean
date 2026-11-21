@@ -31,7 +31,7 @@ separate identities. Application report fields, including
 | Fully observed finite hitting Bellman | implemented | full recurrence, admissible selected policy and all tied optimum actions |
 | Finite almost-sure safety core | implemented | maximal descending pruning, independent stationary-witness check; excluded states may have positive survival probability |
 | Finite-horizon TV perturbation | implemented | separate exact initial-law/kernel error, complete finite killed-survival table; not long-run stability |
-| Source-bound Lean correspondence (finite α/P/U, LP, Bellman control table, safety core, residence monitors, frozen menu, killed-kernel survival, recurrent-class occupation, first-exit routing, nonlinear classwise objective, finite-horizon perturbation, typed quotient, patch grammar, risk flow, robust nature, observe-then-act belief, CQ-1 finite certificate, finite metric contraction, rational algebra witnesses, two-player protocols, private-stage saddles, adaptive block control, risk-cap infeasibility, CQ-1 transport) | implemented for bounded reflected instances; library built and instances replayed with pinned Lean v4.34.0 locally | instance theorems + transitive axiom audit + semantic mutations; application outputs still report `lean_status=NOT_EXECUTED` |
+| Source-bound Lean correspondence (finite α/P/U, LP, Bellman control table, safety core, residence monitors, frozen menu, killed-kernel survival, recurrent-class occupation, first-exit routing, nonlinear classwise objective, finite-horizon perturbation, typed quotient, patch grammar, risk flow, robust nature, observe-then-act belief, CQ-1 finite certificate, finite metric contraction, rational algebra witnesses, two-player protocols, private-stage saddles, adaptive block control, risk-cap infeasibility, CQ-1 transport) | implemented for bounded reflected instances; library built and instances replayed with pinned Lean v4.34.0 locally | instance theorems + transitive axiom audit + semantic mutations; candidate metadata retains `lean_status=NOT_EXECUTED`, while scientific reports retain `kernel_checked_proof=NOT_EXECUTED` |
 | Lean correspondence for every exact numeric profile | implemented for bounded reflected instances | every registered profile has a source-bound candidate family (see `CAPABILITY_SCOPES.md`); reflection bounds per family are in the bridge table below and the bridge documents; instances beyond them stay numeric-only |
 | Full planned engine suite | **incomplete** (benchmarks FIX-01 and expert ADV-01 not implemented) | no false registry activation |
 | Original 45 acceptance cases | **not newly certified** | independent research CERT remains separate |
@@ -60,8 +60,11 @@ never committed. Still open:
   Multi-stage private games and occupancy, committed-game optimality,
   overlap-model (`CertifiedMenu`) atom certificates, and Exact GR/PR or QSD
   statements.
-- **Evidence promotion.** Authenticated compiler receipts (outputs keep
-  `lean_status=NOT_EXECUTED`) and Windows qualification of the bridges.
+- **Evidence promotion.** Authenticated compiler receipts (candidate metadata
+  keeps `lean_status=NOT_EXECUTED`; scientific reports keep
+  `kernel_checked_proof=NOT_EXECUTED`) and Windows qualification of the
+  bridges. Raw receipts and independent checks retain their
+  [profile-specific fields](EVIDENCE_AND_RECEIPTS.md).
 - **Trust and review gates.** The 30-workflow T2 migration, independent
   45-case/11-claim CERT, empirical identification and publication of
   results. None of the archive repair (pull request #116), the release
@@ -86,7 +89,8 @@ Every bridge does three things:
 - It has a Research-route live test (`verification/research/test_application_*_live_lean.py`).
   The test compiles real instances, audits every theorem's transitive axioms
   against `propext`, `Classical.choice` and `Quot.sound`, and requires
-  single-line semantic mutations to fail at the falsified obligation.
+  single-line semantic mutations to fail at the falsified obligation, using
+  the [family-specific diagnostic requirements](NATIVE_PROOF_REPLAY.md#what-a-passing-compile-shows).
 
 The 24 live replay files contain 182 test methods.
 

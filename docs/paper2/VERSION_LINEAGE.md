@@ -51,6 +51,7 @@ New current explanations therefore live here. Historical source, guide editions,
 | CQ1, D0/D1/D2 and mathematical lane documents | Hypotheses, constructions and evidence at the stated lane checkpoint; later source can extend a route without rewriting that record | [Mathematical crosswalk's legacy routes](MATHEMATICAL_CROSSWALK.md) |
 | [Closure specification](../../research/paper_closures/spec/README.md) and [selected-scope review](../../research/paper_closures/SELECTED_SCOPE_REVIEW.md) | Original requirements and selected contracts present at their source; stronger paper obligations may remain | [Residual status](RESIDUAL_STATUS.md) |
 | [Original verification guide](../../verification/README.md) and archived run reports | Commands and receipts for their original packages, environments and source pins | [Current verification](VERIFICATION.md) |
+| [PR #113 operational handoffs](../operations/closure_readiness.md), unapproved workflow proposals and historical archive diagnoses | Dated pre-merge implementation records; original 25-workflow and proposed 30-workflow statements are not the present installed inventory | [Current operations index](../operations/README.md): merged PR #113, owner-engineering policy v2 with 26 installed workflow definitions, exact-run evidence and separate enforcement/review boundaries |
 | [September documentation review](../DOCUMENTATION_REVIEW.md) | Historical usability/review record | [Current documentation review](DOCUMENTATION_REVIEW.md) |
 
 ## Citation and evidence changes
