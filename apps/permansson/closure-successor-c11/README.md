@@ -14,7 +14,7 @@ Manuscript v2.0.1 **§29.4, “Native C10 and C11 replay”** (`sub:C29:04`; pri
 page 114, PDF page 124) explains this route's place in the evidence chain. Read
 the [reviewed PDF](https://github.com/HMarcusWH/PermanssonLean/blob/39f97d409e2731d286bbf5b835a8ae6acc038667/paper2/v2.0.1/Permansson_Regimes_v2_0_1_Reviewed_Manuscript_2026-11-20.pdf#page=124),
 the [versioned publication hub](https://github.com/HMarcusWH/PermanssonLean/blob/39f97d409e2731d286bbf5b835a8ae6acc038667/paper2/README.md),
-and the [current native-route comparison](https://github.com/HMarcusWH/PermanssonLean/blob/8e07982a34e76f02591f97afbc70d2e8967e22e5/docs/paper2/APPLICATION_COMPATIBILITY.md#native-c10-and-c11).
+and the [current native-route comparison](https://github.com/HMarcusWH/PermanssonLean/blob/f7e969f027f166068a050a91c92ebda6296f412a/docs/paper2/APPLICATION_COMPATIBILITY.md#native-c10-and-c11).
 The paper's algorithms and semantic proofs are in §20, §29 and Appendix K.
 
 The native input remains a 1–6-state rational stochastic matrix with a Boolean
