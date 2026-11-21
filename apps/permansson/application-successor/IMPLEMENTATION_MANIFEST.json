@@ -1182,7 +1182,7 @@
       "base_state": "RECOVERED_SOURCE_REVIEW_PENDING",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "4ac4a669cd14bc856435db3aeeadfe95b306ecb8155b46e2baf519700fae5fc2",
+        "sha256": "1815ff4d143e18870bdd21918331f72ec35c7678b44b43eef1bbeebddddb90bc",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1925,7 +1925,7 @@
       "base_state": "NOT_IN_V2_OR_V3_RECONCILIATION",
       "candidate": {
         "state": "DOCUMENTATION_UPDATED_FOR_LEAN_BRIDGES",
-        "sha256": "0ac7c4980a5a7e98603e161cbe7e4bcec2d603ecac1196c5ae975176db0c45fb",
+        "sha256": "aa24a21650f6cb3320cfbbc019cd5b579e8b9811958412203efc72ab7f916853",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -1974,7 +1974,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "4dbbdee8865866856e0698ec4023962b3471367a4068fcc62a2a200e0b522a70",
+        "sha256": "1165ce2f333cf4a2bd624464771d78139d1efa2ba43df4c1a7b2a760f1e1a17b",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2002,7 +2002,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "458693e5f145450c7be6c3351a8971c0dbc3f2bac5c084ab41c552be1c5d2093",
+        "sha256": "1b9bd8fda8ca9b7968c96c98ec31a8376c67add0cfacda598cba050a15c2167d",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2085,7 +2085,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "dc19106ce6ad2a3d4def293efb192fa65ed55d22b2f6fd5053a5a9452da6ac3d",
+        "sha256": "f754f0ca00cc2c13f891cd8b9c33198c974eb4c8df265d6d64c9e1b9d8b15e91",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2245,7 +2245,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "094d8b9c16ee60414e44c6250272183ca419271bb303301ae0a170586af99651",
+        "sha256": "d2558f70cf332c9468ee45f5fc6dc80b46d7b59e83d037311e4003ce57f6327d",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -2297,7 +2297,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "LOCAL_TESTED_PENDING_EXACT_HEAD_CI",
-        "sha256": "d1506b6844a95e6a2c61e0512849121c10f760686f7ba54b1464c384f2cec6ff",
+        "sha256": "37f7a75436aa940baac0938f6f936883b2a83f1a9e197cea554589a546f9077b",
         "git_blob_sha": "3f908d56ebd94288cfbfa5d1c25f81fc48c343de",
         "proof": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
         "trust": "LOCAL_NUMERIC_AND_GOVERNANCE_TESTS_NO_RELEASE_ACCEPTANCE"
@@ -2324,7 +2324,7 @@
       "base_state": "NOT_IMPLEMENTED",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "1ce7bd187d2489b84241e1f6b7f288eeb1f58bf9e3f6119c75d0233e7ff45f56",
+        "sha256": "c2b5a26b545e7072c963fef9d82fdcc6f6d86d7713a16391de7e985050eb3077",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -10156,7 +10156,7 @@
       "base_state": "EXISTED_ON_MAIN",
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "2013d95dcf5da0176eb0661d1f17c3394c9fb42cf94524a64cbf10f6c4d969b2",
+        "sha256": "810288e83a98d9434e3cac972af066be49950e29f65b561bd354f8f4a8aaec63",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       },
@@ -13396,7 +13396,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "1c26173e62ff83b0784837941667b0e0680a2da373c409852afda49e09f81104",
+        "sha256": "938c6c05738ddc02c9cf653cf8ed31836e89ef930981040df43f6d38ab6948fe",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -13762,7 +13762,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "bc5e57ddb7ca4815913cbf8f54b8137cef72fca2842c75bd6a6ea17aef06f5da",
+        "sha256": "19eae6b3b2ba53f9e85548924572a9c88f37848d706036c03f9cfad21c676657",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -13930,7 +13930,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "1f48cf7920bd3db4f5bae9342218aadf5f7c5339cd977e02581ad84d3d6fe7f9",
+        "sha256": "a398ad025154674284415374c31c17cbc2d7c0041a283babb2cf5ee030c7b85e",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -17355,7 +17355,7 @@
       "protected_root": false,
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "c781d0f6c8afd1c8e6da7e5e8906b0ae43fcb925344b2c0343ffbc14aea70969",
+        "sha256": "de12447b0cb28aa1bb3826a42e4679f3f0d152fc3dc1ba7cdcb369634303e06f",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }
@@ -18011,7 +18011,7 @@
       "work_items": [],
       "candidate": {
         "state": "DOCUMENTATION",
-        "sha256": "4d4f93efed55fb37e7a668b89030bad1f3f9f5c322d33b77d14b8a1a627aafaa",
+        "sha256": "1fb492d03d8484895e74428de7dae2673ff80dd7de1e3ffae4a53ea6c1107edc",
         "proof": "NOT_APPLICABLE",
         "trust": "DOCUMENTATION_ONLY"
       }

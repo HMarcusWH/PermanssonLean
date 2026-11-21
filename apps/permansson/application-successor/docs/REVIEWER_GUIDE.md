@@ -23,8 +23,8 @@ route; reading or uploading the paper does not record a new run.
 ## 1. Reproduce before reading
 
 From a checkout with the pinned toolchain (see `docs/RESEARCH_BUILD.md` at
-the repository root; the application's own documents link only within the
-application so that they stay valid in a copied or installed tree):
+the repository root; relative application-document links stay within the
+package, while repository sources use pinned GitHub links):
 
 ```bash
 lake build PermanssonResearch                                    # every bridge module
@@ -35,9 +35,11 @@ cd verification/research && python -B -m unittest test_application_private_stage
 ```
 
 `scripts/end_to_end.py` runs every packaged example as a user would. It runs
-each command, requires the independent check and an unpromoted report, emits
-and byte-rechecks a Lean candidate and checks that a tampered copy is
-rejected. Each profile must report its exact expected checker and CLI
+each command and requires the independent check and an unpromoted report.
+Within a family's reflection bounds it emits and byte-rechecks a Lean
+candidate and checks that a tampered copy is rejected.
+Out-of-reflection examples and native wrapper runs remain numeric-only.
+Each profile must report its exact expected checker and CLI
 status, so a forged or unexpected status fails the run. With `--lean` it
 compiles each candidate and audits axioms with the Research harness's
 parser. Use `--app <venv>/bin/permansson-app` to run it against an installed
@@ -45,7 +47,8 @@ wheel; the app's import location is checked and reported.
 `scripts/inventory.py --check` verifies that the manifest matches the
 tracked tree. The
 live tests (`verification/research/test_application_*_live_lean.py`) add
-single-line semantic mutations that must fail inside the targeted theorem.
+single-line semantic mutations that must fail at the targeted proof
+obligation under the [family-specific diagnostic requirements](NATIVE_PROOF_REPLAY.md#what-a-passing-compile-shows).
 
 ## 2. Anatomy of one profile
 
@@ -78,8 +81,12 @@ instead of it.
   trust in a solver.
 - **What is explicitly not claimed?** Each module docstring and bridge
   document lists it. Check that the application output does not overstate
-  it: `lean_status` stays `NOT_EXECUTED`, `scientific_claims_verified` stays
-  `false`, and empirical identification is `NOT_IDENTIFIED`.
+  it: candidate metadata retains `lean_status=NOT_EXECUTED`; scientific
+  reports retain `kernel_checked_proof=NOT_EXECUTED`,
+  `scientific_claims_verified=false` and
+  `empirical_identification=NOT_IDENTIFIED`. Check raw receipts and
+  independent checks against their [profile-specific schemas and fields](EVIDENCE_AND_RECEIPTS.md),
+  rather than requiring every record to repeat the report fields.
 
 ## 4. Boundaries a change must respect
 

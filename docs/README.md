@@ -24,6 +24,8 @@ The [full PDF](reference/Permansson_Mathematical_Reference_Guide_v1.1.1.pdf), [e
 
 **Reproducer or contributor:** follow [current reproduction](paper2/VERIFICATION.md) and [contribution routes](paper2/GETTING_STARTED.md#contribute-to-the-current-documentation), alongside the preserved [contribution requirements](../CONTRIBUTING.md). Choose the operation corresponding to the claim being checked and record its actual source and result.
 
+**Repository operator:** use the [current operations index](operations/README.md) for the owner-engineering archive policy, installed workflow profile and the distinction between executed CI, live branch enforcement and independent acceptance. It routes older PR #113 instructions to their dated source and current successors.
+
 ## Reference map
 
 | Reference | What it answers |
@@ -39,6 +41,7 @@ The [full PDF](reference/Permansson_Mathematical_Reference_Guide_v1.1.1.pdf), [e
 | [v0.2.0 mathematical integration contract](PERMANSSON_V020_MATHEMATICAL_INTEGRATION_SPEC.md) | Full new equations, hypotheses, proofs-to-build, Lean targets, counterexamples and release conditions |
 | [Next-generation research architecture](PERMANSSON_RESEARCH_ARCHITECTURE.md) | How are lanes A/B/C/D specified, wired, proved and independently tested? |
 | [Research library build guide](RESEARCH_BUILD.md) | Current manuscript source inventory and separate build routes, followed by preserved October 19 and earlier compiler/CI checkpoints |
+| [Current operations index](operations/README.md) | Current 26-workflow owner-engineering profile, historical 25-workflow handoffs, inactive 30-workflow proposal, observed CI and separate enforcement/review boundaries |
 | [C10 v0.1.0 proof-replay application](../apps/permansson/closure-successor/README.md) | Frozen six-state model only; exact arithmetic and real Lean replay, with unreconciled draft status metadata |
 | [C11 v0.2.0 proof-replay application](../apps/permansson/closure-successor-c11/README.md) | Reified 1–6-state rational stationary families; not a strategic or empirical certificate |
 | [Post-PR79 source/CI evidence index](../research/paper_closures/post_merge_79/source_ci_index.json) | Merged proof source, CI and reviewer-receipt provenance for the October 18 closure build |

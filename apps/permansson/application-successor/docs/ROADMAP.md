@@ -15,9 +15,9 @@ here asserts independent certification or empirical identification.
 
 | Tier | Meaning | How it is produced here |
 | --- | --- | --- |
-| Numeric | exact rational computation plus an independent checker that does not import the producer | `permansson_app` CLIs; every receipt says `lean_status=NOT_EXECUTED` |
+| Numeric | exact rational computation plus an independent checker that does not import the producer | `permansson_app` CLIs; profile-specific receipts and checker records, with scientific reports retaining `kernel_checked_proof=NOT_EXECUTED` ([record shapes](EVIDENCE_AND_RECEIPTS.md)) |
 | Source binding | a Lean source candidate re-derived byte-for-byte from the original request and receipt bytes | `proof/*_emit.py` and `proof/control_source_check.py` |
-| Instance replay | the pinned Lean v4.34.0 compiler elaborates the candidate; `#print axioms` shows only `propext`, `Classical.choice`, `Quot.sound`; semantic mutations fail inside the targeted theorem | `verification/research/test_application_*_live_lean.py`, `scripts/end_to_end.py --lean` |
+| Instance replay | the pinned Lean v4.34.0 compiler elaborates the candidate; `#print axioms` shows only `propext`, `Classical.choice`, `Quot.sound`; live-test semantic mutations fail at the family's targeted proof obligation | `verification/research/test_application_*_live_lean.py`, `scripts/end_to_end.py --lean` (positive compilation and axiom audit) |
 | Exact-head CI | GitHub workflows on one commit; results never transfer to a later commit | pull requests #115 and #117 |
 | Release | the owner-dispatched release workflow and its gate, under the owner-engineering policy | 0.2.0, see [`RELEASE_ACCEPTANCE.md`](RELEASE_ACCEPTANCE.md) |
 | Independent acceptance, empirical identification | outside this work | independent review only |
@@ -119,7 +119,7 @@ An external read-only audit of `a3df725` raised 33 work orders.
 
 | Order | Decision |
 | --- | --- |
-| CON-02 | A first release is **numeric-only**. Outputs keep `lean_status=NOT_EXECUTED` until a separate, independently reviewed proof-evidence consumer authenticates compiler runs for a selected subset. |
+| CON-02 | A first release is **numeric-only**. Scientific reports keep `kernel_checked_proof=NOT_EXECUTED`; candidate metadata and native wrapper results keep `lean_status=NOT_EXECUTED`. Promotion requires a separate, independently reviewed proof-evidence consumer that authenticates compiler runs for a selected subset. |
 | CON-03 | The default `data/acceptance_policy.json` still selects only C10/C11. The owner selected a separate scope, `acceptance_policy.successor_numeric.v1.json`, for the 26 exact profiles. It is numeric only, on Linux CPython 3.12 and 3.13, with each capability's real test-method IDs, budget tests, walkthrough row, installed qualification, source identity and wheel/sdist. An assessment against it is at most `EVIDENCE_COMPLETE_REVIEW_REQUIRED`. |
 | Release authority | **Owner-engineering policy** (owner decision, 2026-11-01). The policy (format v3) names `OWNER_ENGINEERING_POLICY`: the owner approves and activates a release by dispatching the release workflow; no independent security review is claimed, and the policy cannot be parsed if it claims one. |
 | Version | **0.2.0** (owner decision, 2026-11-01). Choosing the version authorizes nothing. |
@@ -128,7 +128,7 @@ An external read-only audit of `a3df725` raised 33 work orders.
 | Platform | **Linux first.** The first release supports Linux with Python 3.12 and 3.13; other platforms are refused with `PLATFORM_UNQUALIFIED`. A Windows bounded-process controller with equivalent guarantees would be a separate, later decision. |
 | CON-06 | FIX-01 (benchmarks/X1) and ADV-01 (nonfinite expert evidence) are deferred (`DEFERRED_SCOPE`); nothing nonfinite is computed or claimed. |
 | CON-01, CON-04, CON-05 | The cross-profile contract layer, source-grade domain importers and real federation providers are deferred. Federation stays read-only with no remote execution. |
-| CI-04 | Every output keeps `scientific_claims_verified=false`, `empirical_identification=NOT_IDENTIFIED` and nine unassessed certificate dimensions. |
+| CI-04 | Every numeric `scientific_report.json` keeps `scientific_claims_verified=false`, `empirical_identification=NOT_IDENTIFIED` and nine unassessed certificate dimensions. Raw receipts and native wrapper results have their own [record shapes](EVIDENCE_AND_RECEIPTS.md). |
 
 **Not actionable in this work (owner or independent review):**
 
@@ -183,5 +183,11 @@ section):
 - deferred contract-layer, domain or scope items;
 - review-gated CI and release surfaces.
 
-`python scripts/inventory.py --check` verifies these dispositions and that
-the current counts match the tracked tree.
+From the repository root, run:
+
+```bash
+python apps/permansson/application-successor/scripts/inventory.py --check
+```
+
+This verifies these dispositions and that the current counts match the
+tracked tree.

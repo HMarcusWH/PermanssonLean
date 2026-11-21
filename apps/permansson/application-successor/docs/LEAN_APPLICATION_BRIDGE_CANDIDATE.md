@@ -5,8 +5,9 @@ and not a release claim. This page describes the first two bridge modules
 (`FiniteWorldInput`, `BeliefReceipt`) and the unified candidate CLI. All 24
 bridge families and their live replays are listed in
 [`ACCEPTANCE_STATUS.md`](ACCEPTANCE_STATUS.md) and
-[`CAPABILITY_SCOPES.md`](CAPABILITY_SCOPES.md). Application receipts keep
-`lean_status=NOT_EXECUTED` and `scientific_claims_verified=false`, because
+[`CAPABILITY_SCOPES.md`](CAPABILITY_SCOPES.md). Application candidate metadata keeps
+`lean_status=NOT_EXECUTED` and numeric scientific reports keep
+`scientific_claims_verified=false`, because
 the application never runs or authenticates the compiler.
 
 ## Mathematical scope
@@ -46,10 +47,14 @@ policy-tree optimality theorem, complete intervention admissibility, the
 original-regime predicates, global PR/GR constitution, empirical identification,
 independent mathematical CERT or an authorized application release.
 
-The existing frozen `PermanssonLean/` implementation, previously accepted
-artifacts, paper version, 25 active workflow definitions, and Lean toolchain
-pin remain unchanged. The additions are under a new `PermanssonResearch`
-submodule and its explicit root imports only. The pinned toolchain is Lean
+During the original PR #115 development of these first two bridge modules,
+the frozen `PermanssonLean/` implementation, previously accepted artifacts,
+paper version, then-active 25 workflow definitions and Lean toolchain pin
+were unchanged. Those Lean additions were under a new `PermanssonResearch`
+submodule and its explicit root imports. The current 26-workflow inventory,
+including the separately added application release workflow, is described in
+the [owner-engineering archive successor contract v2](https://github.com/HMarcusWH/PermanssonLean/blob/09c4341c22dfb22c750bfb02d4eaa4486782b77d/docs/operations/ARCHIVE_SUCCESSOR_CONTRACT_V2.md).
+The pinned toolchain is Lean
 v4.34.0 with mathlib v4.34.0 (see `lean-toolchain` and `lakefile.toml`).
 
 ## One CLI for every family
@@ -81,11 +86,16 @@ Done for bounded instances:
    the original request and receipt bytes.
 3. Instance-specific theorems are emitted and replayed with a transitive
    axiom audit (`verification/research/test_application_*_live_lean.py`).
-4. Single-line semantic mutations must fail inside the targeted theorem.
+4. Single-line semantic mutations must fail at the family's targeted proof
+   obligation: a reflected-input structure proof or an instance theorem,
+   under the [documented diagnostic requirements](NATIVE_PROOF_REPLAY.md#what-a-passing-compile-shows).
 
 Not done: authenticated compiler receipts that would allow an individual
 output to report `lean_status=VERIFIED`, and independent review of the
 bridges. The application explicitly does **not** promote any output.
 
 The archive-reproducibility repair (pull request #116, owner-engineering
-archive successor contract v1) is a separate trust-profile matter. No workflow changes or bypasses are part of this bridge.
+archive successor contract v1) was a separate trust-profile matter; current
+policy v2 includes the later release workflow. Neither that policy nor a
+bridge replay supplies independent review. No workflow changes or bypasses
+are part of this bridge.

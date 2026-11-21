@@ -2,8 +2,12 @@
 
 Every profile below is registered in `src/permansson_app/data/capabilities.json`,
 has its own command line, and has an independent exact checker that does not
-import the producer. Every profile reports `lean_status=NOT_EXECUTED` and
-`scientific_claims_verified=false`. The exact numeric scope of each profile —
+import the producer. Checked numeric-profile scientific reports retain
+`kernel_checked_proof=NOT_EXECUTED` and `scientific_claims_verified=false`.
+Raw receipts and independent checks have profile-specific fields, including
+the LP certificate exception; the native wrapper reports
+`lean_status=NOT_EXECUTED` in `application_result.json`. See the
+[record shapes](EVIDENCE_AND_RECEIPTS.md). The exact numeric scope of each profile —
 dimensions, horizons and what is *not* claimed — is the `scope` string of its
 registry entry. `permansson-app capabilities` prints those strings.
 
@@ -65,8 +69,9 @@ semantic mutations its live replay rejects.
 - A *numeric* result is exact rational arithmetic with an independent
   recomputation. It is not a Lean proof.
 - A *Lean family* means a candidate can be emitted and compiled with the
-  pinned toolchain. Application outputs still say `NOT_EXECUTED`, because the
-  application does not run or authenticate the compiler; see
+  pinned toolchain. Candidate metadata and scientific reports retain their
+  respective `NOT_EXECUTED` fields because the application does not run or
+  authenticate the compiler; see
   [`NATIVE_PROOF_REPLAY.md`](NATIVE_PROOF_REPLAY.md).
 - No profile claims empirical identification, Exact GR/PR, independent
   mathematical certification or release acceptance. See

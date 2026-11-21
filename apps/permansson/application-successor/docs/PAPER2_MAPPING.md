@@ -83,11 +83,16 @@ change application version 0.2.0, its released wheel or its platform scope.
 The current source tree can contain new reading documentation that was not part
 of the November 1 release. See [release acceptance](RELEASE_ACCEPTANCE.md).
 
-Application reports still carry `lean_status=NOT_EXECUTED`,
-`scientific_claims_verified=false`, `empirical_identification=NOT_IDENTIFIED`
-and `publication_approval=NOT_ASSESSED`. Source-bound Lean families and the
-separate native replay routes keep their existing evidence meanings. A paper
-link does not update a report or grant independent research-case acceptance.
+Checked numeric-profile `scientific_report.json` files retain
+`kernel_checked_proof=NOT_EXECUTED`, `scientific_claims_verified=false`,
+`empirical_identification=NOT_IDENTIFIED` and
+`publication_approval=NOT_ASSESSED`. The native wrapper instead writes
+`application_result.json` with `lean_status=NOT_EXECUTED` and its own gate
+fields; raw receipts also have profile-specific shapes. See the
+[evidence guide](EVIDENCE_AND_RECEIPTS.md) for the exact records. Source-bound
+Lean families and the separate native replay routes keep their existing
+evidence meanings. A paper link does not update a report or grant independent
+research-case acceptance.
 
 All external links on this page are pinned GitHub URLs so this documentation
 continues to work when the application is copied or installed without the rest

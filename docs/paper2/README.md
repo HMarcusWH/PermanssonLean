@@ -17,6 +17,7 @@ The mathematical source is `c5a36cd6189e2a249d5f4bc11f31698917dc8b10`. The repos
 | Move between the 46-chapter guide and the paper | [Guide-to-paper map](GUIDE_TO_PAPER.md) |
 | Assess remaining mathematical or evidence obligations | [Residual status](RESIDUAL_STATUS.md) |
 | Understand the reviewed draft corrections | [Compatibility and corrections](COMPATIBILITY_AND_CORRECTIONS.md) |
+| Read corrections to preserved historical documentation | [Historical documentation errata](HISTORICAL_DOCUMENTATION_ERRATA.md) |
 | Distinguish versions and historical documents | [Version lineage](VERSION_LINEAGE.md) |
 | Run the check appropriate to a claim | [Verification and reproduction](VERIFICATION.md) |
 | Connect a paper section to an application profile | [Application compatibility](APPLICATION_COMPATIBILITY.md) |

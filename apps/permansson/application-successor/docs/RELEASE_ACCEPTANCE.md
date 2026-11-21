@@ -167,10 +167,13 @@ GitHub API (its command line needs a GitHub token).
   gate is as strong as GitHub's own records and as control of the owner's
   GitHub account: anyone able to act as that account could also dispatch the
   workflow.
-- **Numeric only.** Every output still reports `lean_status=NOT_EXECUTED`,
-  `scientific_claims_verified=false` and
-  `empirical_identification=NOT_IDENTIFIED`. Lean candidates remain
-  development tools; a release does not authenticate any compiler run.
+- **Numeric only.** Scientific reports retain
+  `kernel_checked_proof=NOT_EXECUTED`, `scientific_claims_verified=false` and
+  `empirical_identification=NOT_IDENTIFIED`. Raw receipts and checker results
+  have [profile-specific record shapes](EVIDENCE_AND_RECEIPTS.md), including
+  LP certificates without these status fields. Lean candidate metadata keeps
+  `lean_status=NOT_EXECUTED`; a release does not authenticate any compiler
+  run. The literal release-manifest claims listed above remain unchanged.
 - **No mathematical certification.** The 45-case and 11-claim research CERT,
   empirical identification and publication of results are separate.
 - **Historical archive unchanged.** The release does not relax the archive

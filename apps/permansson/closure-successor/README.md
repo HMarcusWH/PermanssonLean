@@ -2,7 +2,7 @@
 
 This is a **new** versioned application, entirely outside the frozen `application/` tree.
 
-The sole supported input in this release is the exact frozen six-state D0/C10 rational model of the already-proved original `C10SixStateBridge` with the six legal named interventions and **complete original comparison set `[1,2]`**. The CLI reads *external JSON* but does not claim a theorem about arbitrary JSON, arbitary stochastic matrices, or empirical models. Arbitrary well-formed finite rational models **fail closed as unsupported** until a typed Lean adapter is separately established. It is not an optimizer for unrestricted learning, continuous policies or nonlinear history-dependent objectives.
+The sole supported input in this release is the exact frozen six-state D0/C10 rational model of the already-proved original `C10SixStateBridge` with the six legal named interventions and **complete original comparison set `[1,2]`**. The CLI reads *external JSON* but does not claim a theorem about arbitrary JSON, arbitrary stochastic matrices, or empirical models. Arbitrary well-formed finite rational models **fail closed as unsupported** until a typed Lean adapter is separately established. It is not an optimizer for unrestricted learning, continuous policies or nonlinear history-dependent objectives.
 
 ## Reading the reviewed second-edition paper
 

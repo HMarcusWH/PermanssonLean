@@ -13,8 +13,10 @@ theorems that transfer results of the `PermanssonResearch` library.
 > independently certified.** The release was made by the owner-dispatched
 > release workflow and its gate, under an owner-engineering policy that claims
 > no independent security review ([`docs/RELEASE_ACCEPTANCE.md`](docs/RELEASE_ACCEPTANCE.md)).
-> Every output reports `lean_status=NOT_EXECUTED`,
+> Checked numeric-profile reports retain `kernel_checked_proof=NOT_EXECUTED`,
 > `scientific_claims_verified=false` and `empirical_identification=NOT_IDENTIFIED`.
+> Raw receipts and checker results have profile-specific fields; the native
+> wrapper reports `lean_status=NOT_EXECUTED` in `application_result.json`.
 > A checked numeric result or a compiled Lean candidate is a statement about
 > the declared finite model, not about a real-world regime.
 
@@ -41,7 +43,8 @@ release: the whole-run budget relies on Linux process limits.
 
 ### Install the published release
 
-Download the release files, check them and install the wheel:
+In a fresh download directory outside the source checkout, download the
+release files, check them and install the wheel:
 
 ```bash
 V=0.2.0
@@ -56,16 +59,24 @@ permansson-app about                              # version 0.2.0, imported from
 ```
 
 The wheel pins its two dependencies (`jsonschema` and `referencing`) to
-exact versions. For hash-checked dependencies too, install
-`requirements-runtime.lock` from a checkout of the tag with
-`python -m pip install --require-hashes -r requirements-runtime.lock`, then
-the wheel with `--no-deps`. `release-manifest.json` names the commit, and
-that commit rebuilds the same wheel and sdist bytes
+exact versions. To hash-check the dependencies too, run the following from
+the repository root of a checkout of `permansson-app-v0.2.0`, with the
+downloaded wheel outside that checkout:
+
+```bash
+python -m pip install --require-hashes \
+  -r apps/permansson/application-successor/requirements-runtime.lock
+python -m pip install --no-deps \
+  /path/to/downloads/permansson_application_successor_recovery-0.2.0-py3-none-any.whl
+```
+
+`release-manifest.json` names the commit, and a clean checkout of that
+commit rebuilds the same wheel and sdist bytes
 ([`docs/RELEASE_ACCEPTANCE.md`](docs/RELEASE_ACCEPTANCE.md)).
 
 ### Install from a source checkout
 
-With offline Draft 2020-12 schema checking:
+From the repository root, with offline Draft 2020-12 schema checking:
 
 ```bash
 python -m pip install './apps/permansson/application-successor[full-schema]'
@@ -74,7 +85,9 @@ permansson-app about                              # where the package is importe
 permansson-app resources --full --output /tmp/permansson-resources
 ```
 
-Run one profile, then emit and recheck its Lean candidate:
+Run one profile, then emit and recheck its Lean candidate. The final compiler
+command additionally requires the pinned Research library build described in
+[`NATIVE_PROOF_REPLAY.md`](docs/NATIVE_PROOF_REPLAY.md#requirements).
 
 ```bash
 EX=/tmp/permansson-resources/examples
@@ -87,9 +100,16 @@ permansson-app lean-recheck --family private-stage $EX/private_stage.v1.json \
 lake env lean /tmp/ps-lean/ReifiedPrivateStage.lean   # from the repository root, pinned toolchain
 ```
 
-Every command writes a **new** output directory containing the receipt,
-`independent_check.json` and `scientific_report.json`. A failing input leaves
-no output directory and exits with status 2 and a JSON error on stderr.
+Successful checked numeric-profile runs write a **new** output directory
+with a profile-specific receipt, `independent_check.json` and
+`scientific_report.json`. `lp-propose` stores its certificate inside
+`proposal.json`; if no certificate is found, it writes only that proposal
+and makes no verification claim. `lp-check` consumes a supplied certificate
+and writes the independent check and scientific report. Lean candidate
+commands and the native `run` wrapper have their own output shapes; see
+[`docs/EVIDENCE_AND_RECEIPTS.md`](docs/EVIDENCE_AND_RECEIPTS.md).
+Rejected numeric-profile inputs leave no published output directory;
+ordinary input/contract errors exit with status 2 and a JSON error on stderr.
 
 ## What it computes
 
@@ -107,7 +127,7 @@ candidate family. The full table is in
 | Partial observation | `one-step-belief`, `finite-belief-tree` | [`NUMERIC_BELIEF_CONTROL.md`](docs/NUMERIC_BELIEF_CONTROL.md), [`NUMERIC_MULTISTAGE_BELIEF.md`](docs/NUMERIC_MULTISTAGE_BELIEF.md) |
 | CQ-1 finite constitutive certificates and their transport | `finite-cq1`, `finite-cq1-transport` | [`NUMERIC_CQ1.md`](docs/NUMERIC_CQ1.md) |
 | W1 contraction, rational algebra witnesses, two-player protocols | `finite-metric`, `finite-algebra`, `finite-multiagent` | [`NUMERIC_METRIC.md`](docs/NUMERIC_METRIC.md), [`NUMERIC_ALGEBRA.md`](docs/NUMERIC_ALGEBRA.md), [`NUMERIC_MULTIAGENT.md`](docs/NUMERIC_MULTIAGENT.md) |
-| Native C10 / C11 replay | `run --source-root <checkout>` | below |
+| Native C10 / C11 numeric execution | `run --source-root <checkout>` | below |
 
 Every profile is bounded: dimensions, horizons and rational sizes are capped,
 and Lean reflection often has a smaller cap than the numeric profile. Each
@@ -126,12 +146,17 @@ byte recheck, then pinned compile. Each stage is separate evidence:
 
 ## Verify it yourself
 
+Run these commands from the repository root. The distribution builder
+requires a clean checkout; reproducing the published 0.2.0 bytes specifically
+requires the release tag's commit, as described in
+[`RELEASE_ACCEPTANCE.md`](docs/RELEASE_ACCEPTANCE.md#checking-a-published-release-yourself).
+
 ```bash
 # unit, CLI and emitter tests (no Lean needed)
 python -B -m unittest discover -s apps/permansson/application-successor/tests
 
-# every packaged example end to end: command, independent check, lean-emit,
-# lean-recheck, tamper rejection; --lean also compiles and audits each candidate
+# packaged examples end to end, including numeric-only reflection exclusions;
+# --lean compiles and audits each emitted candidate, not the native numeric runs
 python apps/permansson/application-successor/scripts/end_to_end.py --lean
 
 # the same against an installed wheel (PYTHONPATH is removed and the app's import
@@ -142,7 +167,8 @@ python apps/permansson/application-successor/scripts/end_to_end.py --app /path/t
 python apps/permansson/application-successor/scripts/inventory.py --check
 
 # byte-reproducible wheel and sdist from a clean commit, built with the hash-locked tools
-# (an interpreter with `pip install --require-hashes -r requirements-build.lock`)
+# install the locked build tools into the interpreter used by the builder
+python -m pip install --require-hashes -r apps/permansson/application-successor/requirements-build.lock
 python apps/permansson/application-successor/scripts/build_distributions.py --output /tmp/permansson-dist
 
 # pinned-Lean live replays with semantic mutations (needs `lake build PermanssonResearch`)
@@ -156,9 +182,10 @@ out-of-scope items are in [`docs/ROADMAP.md`](docs/ROADMAP.md).
 `IMPLEMENTATION_MANIFEST.json` records every inventory path with its state
 and digest.
 
-## Native C10 / C11 replay
+## Native C10 / C11 numeric execution
 
-The C10 and C11 routes run the existing native providers. They need an exact
+`permansson-app run` invokes the existing C10 or C11 provider with
+`--mode numeric`; it never invokes Lean. These routes need an exact
 repository source tree, which is checked against the providers' stored SHA-256
 pins:
 
@@ -170,7 +197,16 @@ permansson-app run /tmp/permansson-resources/examples/c10.request.json \
 The same command accepts the C11 periodic and multiclass example requests.
 Each output directory must be new and **outside the source root**. A source
 ZIP can supply byte-identical providers for local inspection, but does not
-authenticate a Git commit or enable Lean replay.
+authenticate a Git commit or enable Lean replay. The wrapper writes
+`application_result.json`, with `numeric_status=EXACT_RATIONAL_VERIFIED` and
+`lean_status=NOT_EXECUTED`, plus the native receipts and logs.
+
+For compiler replay, invoke the native CLI directly with `--mode replay`:
+the [C10 instructions](https://github.com/HMarcusWH/PermanssonLean/blob/09c4341c22dfb22c750bfb02d4eaa4486782b77d/apps/permansson/closure-successor/README.md#run)
+and [C11 instructions](https://github.com/HMarcusWH/PermanssonLean/blob/09c4341c22dfb22c750bfb02d4eaa4486782b77d/apps/permansson/closure-successor-c11/README.md#supported-inputs)
+specify the clean Git checkout, pinned compiler and provider checks, and fresh
+output directory outside the repository. A separate successful compiler run
+does not change an earlier numeric wrapper result.
 
 ## Evidence import, legacy validation and detached bundles
 
@@ -209,7 +245,8 @@ completion. The following are outside this application and are not claimed:
 - independent mathematical certification of the original 45 cases and the
   later 11 claims;
 - empirical identification;
-- application release acceptance;
+- a release decision by a numeric run; the separate owner-activated 0.2.0
+  release is recorded in [`RELEASE_ACCEPTANCE.md`](docs/RELEASE_ACCEPTANCE.md);
 - the 30-workflow GitHub Actions trust-profile migration (T2). The
   `archive-reproducibility` check itself was repaired separately, in pull
   request #116, under an owner-engineering policy that is not an independent

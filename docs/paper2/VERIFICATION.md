@@ -155,4 +155,131 @@ That receipt records the actual head, trees and manifest digest; it is self-prod
 
 For each claim, read the paper statement, its source endpoint, the allowed input/initial/comparison domains, execution record and negative controls. Review the [seven named residuals and broader limits](RESIDUAL_STATUS.md). Historical 45-case decisions and 11 later claim records stay at their recorded statuses until their own independent criteria are met. Neither a new index nor a successful publication check changes them.
 
-Use the [original verification guide](../../verification/README.md) for historical package-specific commands and the [version lineage](VERSION_LINEAGE.md) to distinguish their authorities. Report the exact source, environment, command, exit status and observed evidence whenever claiming a new execution.
+Read the [original verification guide](../../verification/README.md) together with
+the current recipes below and the [version lineage](VERSION_LINEAGE.md).
+Historical commands retain their original context; several produce new artifacts
+or now discover a broader test suite. Report the exact source, environment,
+command, exit status and observed evidence whenever claiming a new execution.
+
+## 8. Use current recipes for historical material
+
+These instructions clarify commands in the preserved verification, closure and
+release guides. They leave the original guides and evidence unchanged. The
+[historical documentation errata](HISTORICAL_DOCUMENTATION_ERRATA.md) identify the
+associated editorial and fixture caveats. Start each command below at the
+**repository root** unless another directory is stated.
+
+### Python-only D0 finite-menu checks
+
+With the historical D0 environment, CPython 3.13, limit discovery to D0 tests:
+
+```bash
+python3 -B -m unittest discover -s verification/research -p 'test_d0_*.py' -v
+```
+
+This selects the 36 D0 Python tests present at the documentation-audit baseline;
+it does not invoke Lean. To generate new golden certificates and independently
+recheck one, choose a fresh external scratch directory:
+
+```bash
+d0_output_dir=$(mktemp -d /tmp/permansson-d0-XXXXXX)
+python3 -B verification/research/d0_golden.py "$d0_output_dir"
+python3 -B verification/research/d0_recheck_certificate.py "$d0_output_dir/python_three_state.json"
+```
+
+The independent rechecker uses forward probability flow. Its `VALID` result
+means consistency with the supplied finite problem, under the
+`EXACT_FINITE_MENU_CALCULATION` scope. To check a trusted input identity, supply
+`--expected-problem-sha256` with an independently trusted digest. A digest inside
+the same certificate does not authenticate that input.
+
+By contrast, discovery with `-p 'test_*.py'` is the **full research suite**.
+It includes mandatory compiler fixtures and declaration audits. Run it only
+after the pinned compiler, dependencies and both build targets in the
+[research build guide](../RESEARCH_BUILD.md#reproduce-locally) are available.
+The closure audits also retain their per-module diagnostic requirements under
+`.lake/closure-build`; inspect each driver's requirements as explained in the
+[historical closure guide](../../research/paper_closures/README.md).
+Unavailable imports, compiler artifacts or diagnostic records are failures or
+invalid evidence, not successful negative controls.
+
+### Read-only checks and artifact producers
+
+| Operation | What it writes | Current invocation rule |
+| --- | --- | --- |
+| `paper_closure_imports.py` without `--write` | No source changes | Omit `--write` for an import-coverage check |
+| `paper_closure_source_audit.py` | A new canonical-source identity report | Supply the explicit scratch `--output` below |
+| `paper_closure_strategy_audit.py`, `paper_closure_analytic_audit.py` and their closure-audit wrappers | New compiler/audit records; some default receipt paths are tracked historical evidence | Use an explicit, distinct `--output` under `.lake/closure-build` |
+| `paper_closure_acceptance_evidence.py` | A new ledger; `--refresh` also executes exact and Lean evidence checks | Supply `--output-dir .lake/acceptance-evidence-report`, including for refresh |
+| `release/v0.2.0/verify_release.py` | No shipped-kit changes | Verify the accepted kit without `--allow-draft`; historical Git objects are required |
+| `release/v0.2.0/build_release.py` | Rewrites its kit's PDF, TeX, maps and manifest in place | Use only an isolated disposable historical worktree or copy |
+| `release/mathematical-closure-1/build.py` | A new detached draft, source archive and build receipt | Use a fresh output directory outside the repository, as below |
+
+After the pinned Lean research build and required module diagnostics, these
+examples keep generated reports separate from retained evidence:
+
+```bash
+mkdir -p .lake/closure-build
+python3 -B verification/research/paper_closure_source_audit.py --output .lake/closure-build/source-audit.json
+python3 -B verification/research/paper_closure_strategy_audit.py --output .lake/closure-build/strategy-audit.json
+python3 -B verification/research/paper_closure_analytic_audit.py --output .lake/closure-build/analytic-audit.json
+python3 -B verification/research/paper_closure_risk_lp_audit.py --output .lake/closure-build/risk-lp-audit.json
+python3 -B verification/research/paper_closure_acceptance_evidence.py --refresh --output-dir .lake/acceptance-evidence-report
+```
+
+The other `paper_closure_*_audit.py` wrappers in the historical closure recipe
+delegate to the strategy or analytic auditor and accept the same `--output`
+option. Give each a distinct filename. Their `.lake` diagnostics and compiled
+artifacts remain necessary; an output option does not remove those prerequisites.
+The analytic auditor records its signatures path relative to the repository,
+so an arbitrary external `/tmp` output is not a substitute for this ignored
+in-repository destination. The separate `audit_*` drivers in that recipe use
+their declared `.lake` scratch locations. Inspect any other producer's output
+contract before execution; if it cannot redirect writes away from retained
+artifacts, run it in an isolated disposable historical worktree or copy.
+
+Fresh output means a new execution record. Preserve any earlier scratch report
+you intend to cite before rerunning a producer into the same destination.
+Generating a valid partial acceptance ledger can return success; its individual
+case dispositions remain authoritative. Do not copy the generated ledger over
+the published ledger or interpret its process exit status as independent
+mathematical acceptance.
+
+For the shipped accepted companion, use the read-only verifier:
+
+```bash
+python3 -B release/v0.2.0/verify_release.py
+```
+
+Install the kit's pinned [requirements](../../release/v0.2.0/requirements.txt)
+and fetch its referenced source, base and synthetic-merge Git objects first, as
+specified in the [release guide](../../release/v0.2.0/README.md#final-acceptance-evidence).
+The verifier checks the captured release records; it does not independently
+obtain new GitHub review or CI evidence. For any regeneration, check
+`git diff --name-only` before and after: none of the preserved tracked artifacts
+should change in the working checkout.
+
+### Detached original closure-draft build
+
+The original draft records starting main
+`17c315f7df7abf457eb94d393bd526d46da6f6f4`. That is its historical starting point,
+not the current branch head or a new release identity. Its README's escaped
+Markdown fences are corrected here for readability; the thirteen original
+manuscript source files remain unchanged.
+
+With the draft's TeX dependencies, BibTeX and Poppler installed, select a fresh
+external directory (the example below must not already contain evidence to
+preserve), then run the original two commands from the repository root:
+
+```bash
+python3 release/mathematical-closure-1/build.py --mode draft --render --out /tmp/permansson-closure
+python3 release/mathematical-closure-1/verify_release.py --manifest /tmp/permansson-closure/manifest.lock.json
+```
+
+The builder binds the new receipt to the actual checkout head and copies all
+thirteen original source members into the new archive. The verifier checks
+archive/source integrity and returns `accepted: false` for this draft.
+**DRAFT / NOT ACCEPTED / NOT PUBLISHED** remains the applicable status.
+Rendering pages does not itself perform visual inspection or independent review.
+See the [closure-draft erratum](HISTORICAL_DOCUMENTATION_ERRATA.md#original-closure-draft-formatting-and-abstract)
+for the abstract copyedit reserved for a separately identified successor edition.

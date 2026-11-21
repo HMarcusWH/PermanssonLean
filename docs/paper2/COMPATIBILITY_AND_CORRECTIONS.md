@@ -6,6 +6,13 @@ The reviewed manuscript **v2.0.1** incorporates **58 recorded corrections and cl
 
 The revision does not constitute 58 alleged defects in the earlier published papers or the repository's Lean proofs. Several changes make an existing formal source premise explicit in the manuscript; some correct a manuscript argument, predicate conflation or notation; others repair bibliography and layout. Historical source/specification files and acceptance dispositions retain their identities.
 
+The separately dated [historical documentation errata](HISTORICAL_DOCUMENTATION_ERRATA.md)
+record corrections found after this manuscript review. They include the
+[Q-05 baseline/intervention sentence](HISTORICAL_DOCUMENTATION_ERRATA.md#q05-baseline-and-intervention-sentence),
+the original closure draft's editorial defects and a legacy fixture's narrative
+inconsistency. These current explanations leave the historical source bytes and
+the 58-item manuscript revision register unchanged.
+
 The final reviewed PDF has **218 pages** and SHA-256 `56a6ea1538e0a31f8555f4457b706e96d159ed96d3e1add7bba7b6847e4b3d17`. The earlier 217-page draft and 219-page review candidate are distinct artifacts retained in the review history, not interchangeable names for the delivered PDF. See the [publication manifest](../../paper2/v2.0.1/PUBLICATION_MANIFEST.json).
 
 ## Consequential mathematical distinctions

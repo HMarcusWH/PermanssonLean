@@ -51,5 +51,11 @@ without an independently authenticated source is only an integrity check.
 - Application acceptance is **eligible for external review at most**. The
   `AcceptanceAssessment.authorized_release` field cannot be set by a caller's
   JSON flag, a self-issued review, or the PR merge state.
-- Historical archival reproduction remains red pending genuine T/T2 security
-  review. The new code does not edit `verification/archive/`.
+- Archival reproduction uses the current
+  [owner-engineering archive successor contract v2](https://github.com/HMarcusWH/PermanssonLean/blob/09c4341c22dfb22c750bfb02d4eaa4486782b77d/docs/operations/ARCHIVE_SUCCESSOR_CONTRACT_V2.md),
+  whose policy accounts for the 26 installed workflows. This is the active
+  successor route after the separate PR #116 repair and PR #118 release
+  workflow addition. The proposed 30-workflow T2 migration and independent
+  security review remain separate, uncompleted gates. The successor route
+  does not rewrite historical archive evidence or edit `verification/archive/`;
+  a CI result must be read at the commit and run that produced it.
