@@ -121,6 +121,21 @@ theorem same_update (e f e' f' : ℚ) (he : 0 ≤ e ∧ e ≤ 1)
       (model e' f' he' hf').generator.update := rfl
 
 /-- Actual typed kernel evaluation, not a postulated matrix correspondence. -/
+private theorem action_lintegral (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1)
+    (hf : 0 ≤ f ∧ f ≤ 1) (y : State) (g : Moves → ℝ≥0∞) :
+    (∫⁻ a, g a ∂action e f y) =
+      ∑ a : Moves, ENNReal.ofReal (coinRow e a.1 : ℝ) *
+        ENNReal.ofReal (coinRow f a.2 : ℝ) * g a := by
+  haveI := PermanssonResearch.X1.coin_probability e he
+  haveI := PermanssonResearch.X1.coin_probability f hf
+  change (∫⁻ a, g a ∂(PermanssonResearch.X1.coin e).prod
+    (PermanssonResearch.X1.coin f)) = _
+  rw [MeasureTheory.lintegral_prod _ (Measurable.of_discrete.aemeasurable)]
+  simp only [PermanssonResearch.X1.coin_lintegral]
+  simp [Fintype.sum_prod_type, PermanssonResearch.X1.sum_bool, coinRow,
+    mul_add, mul_assoc, add_comm, add_left_comm]
+
+/-- Every atom is computed from the same ordered action/world/update law. -/
 theorem actual_atom (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1) (hf : 0 ≤ f ∧ f ≤ 1)
     (y z : State) :
     (model e f he hf).inducedKernel y {z} =
@@ -131,16 +146,12 @@ theorem actual_atom (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1) (hf : 0 ≤ f ∧ f �
   rw [StrategicWorldModel.inducedKernel_apply _ _ (measurableSet_singleton z)]
   change (∫⁻ a, ∫⁻ x, update ((y,a),x) {s | (s,x) ∈ ({z} : Set State)}
     ∂Measure.dirac (nextWorld y.2 a) ∂action e f y) = _
-  haveI := PermanssonResearch.X1.coin_probability e he
-  haveI := PermanssonResearch.X1.coin_probability f hf
-  change (∫⁻ a, ∫⁻ x, update ((y,a),x) {s | (s,x) ∈ ({z} : Set State)}
-    ∂Measure.dirac (nextWorld y.2 a) ∂(PermanssonResearch.X1.coin e).prod
-      (PermanssonResearch.X1.coin f)) = _
-  rw [MeasureTheory.lintegral_prod _ (Measurable.of_discrete.aemeasurable)]
-  simp [PermanssonResearch.X1.coin_lintegral, coinRow, update,
-    Kernel.deterministic_apply, Measure.dirac_apply, lintegral_dirac,
-    Fintype.sum_prod_type, PermanssonResearch.X1.sum_bool, Set.indicator,
-    mul_add, mul_assoc, add_comm, add_left_comm]
+  rw [action_lintegral e f he hf]
+  apply Finset.sum_congr rfl
+  intro a _
+  congr 1
+  rw [lintegral_dirac]
+  simp [update, Kernel.deterministic_apply, Measure.dirac_apply, Set.indicator]
 
 def region : Set State := {y | y.2 ≠ 2}
 
@@ -238,14 +249,10 @@ theorem actual_retention (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1) (hf : 0 ≤ f �
   rw [StrategicWorldModel.inducedKernel_apply _ _ specification.region_measurable]
   change (∫⁻ a, ∫⁻ x, update ((y,a),x) {s | (s,x) ∈ specification.region}
     ∂Measure.dirac (nextWorld y.2 a) ∂action e f y) = _
-  haveI := PermanssonResearch.X1.coin_probability e he
-  haveI := PermanssonResearch.X1.coin_probability f hf
-  change (∫⁻ a, ∫⁻ x, update ((y,a),x) {s | (s,x) ∈ specification.region}
-    ∂Measure.dirac (nextWorld y.2 a) ∂(PermanssonResearch.X1.coin e).prod
-      (PermanssonResearch.X1.coin f)) = _
-  rw [MeasureTheory.lintegral_prod _ (Measurable.of_discrete.aemeasurable)]
-  simp [PermanssonResearch.X1.coin_lintegral, update, Kernel.deterministic_apply,
-    Measure.dirac_apply, lintegral_dirac, specification, region, nextWorld, hy']
+  rw [action_lintegral e f he hf]
+  simp [Fintype.sum_prod_type, PermanssonResearch.X1.sum_bool, coinRow,
+    update, Kernel.deterministic_apply, Measure.dirac_apply, lintegral_dirac,
+    specification, region, nextWorld, hy', Set.indicator]
 
 /-- Retention recurrence on the actual original killed kernel, not merely a
 matrix recurrence. Both safe starts and every horizon are quantified. -/
@@ -270,7 +277,13 @@ theorem actual_survival (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1) (hf : 0 ≤ f ∧
           ((killedKernel M specification)^n) y specification.region :=
         (ae_mem_iff_measure_eq specification.region_measurable.nullMeasurableSet).mp
           (killedKernel_pow_ae_mem_region M specification n hy) |>.symm
-      rw [hmass, ← killedSurvivalMass, ih, pow_succ, mul_comm]
+      calc
+        r * ((killedKernel M specification)^n) y Set.univ =
+            r * killedSurvivalMass M specification n y := by
+          rw [hmass]
+          rfl
+        _ = r * r^n := by rw [ih]
+        _ = r^(n+1) := by rw [pow_succ, mul_comm]
 
 /-- Exact equilibrium selects a retaining law; the other strict equilibrium
 of the coordination game selects the absorbing exit law. -/
@@ -499,26 +512,51 @@ noncomputable def protocolErrorsAt (e r e' r' : ℚ)
     exact fixedWorldUpdateBudget _ _ |(r:ℝ)-(r':ℝ)| (abs_nonneg _)
       (rate_error_le_one r r' hr hr') (action_error r r' hr hr') rfl rfl
 
-/-- The concrete comparison set is the original two-state domain transported
-unchanged. The actual prefix-score property and both primitive budgets are
-passed to the GENERAL product-margin theorem. -/
-theorem transport_instance (e r e' r' : ℚ)
+/-- Read only the numeric fields of the constructed baseline budget. -/
+theorem baseline_budget_at (e r e' r' : ℚ)
     (he : 0 ≤ e ∧ e ≤ 1) (hr : 0 ≤ r ∧ r ≤ 1)
     (he' : 0 ≤ e' ∧ e' ≤ 1) (hr' : 0 ≤ r' ∧ r' ≤ 1) (T : ℕ) :
-    | |(1-(e':ℝ))^T-(1-(r':ℝ))^T| -
-        |(1-(e:ℝ))^T-(1-(r:ℝ))^T| | ≤
-      geometricTVEnvelope |(e:ℝ)-(e':ℝ)| T +
+    (protocolErrorsAt e r e' r' he hr he' hr').baselineProductPrefixBudget T =
+      geometricTVEnvelope |(e:ℝ)-(e':ℝ)| T := by
+  change geometricTVEnvelope
+    (1-(1-|(e:ℝ)-(e':ℝ)|)*(1-0)*(1-0)) T = _
+  congr 1
+  ring
+
+/-- Read only the numeric fields of the separately constructed intervention budget. -/
+theorem intervention_budget_at (e r e' r' : ℚ)
+    (he : 0 ≤ e ∧ e ≤ 1) (hr : 0 ≤ r ∧ r ≤ 1)
+    (he' : 0 ≤ e' ∧ e' ≤ 1) (hr' : 0 ≤ r' ∧ r' ≤ 1) (T : ℕ) :
+    (protocolErrorsAt e r e' r' he hr he' hr').interventionProductPrefixBudget T =
       geometricTVEnvelope |(r:ℝ)-(r':ℝ)| T := by
+  change geometricTVEnvelope
+    (1-(1-|(r:ℝ)-(r':ℝ)|)*(1-0)*(1-0)) T = _
+  congr 1
+  ring
+
+/-- A typed original-margin theorem, before evaluating either margin to a
+scalar. The proof consumes the actual primitive records and the general
+product-error theorem on the unchanged comparison domain. -/
+theorem original_margin_transport (e r e' r' : ℚ)
+    (he : 0 ≤ e ∧ e ≤ 1) (hr : 0 ≤ r ∧ r ≤ 1)
+    (he' : 0 ≤ e' ∧ e' ≤ 1) (hr' : 0 ≤ r' ∧ r' ≤ 1) (T : ℕ) :
+    |constitutiveMargin (model e' 0 he' (by norm_num)) specification
+        (familyAt e' 0 r' he' (by norm_num)) (survivalPropertyAt T)
+        (comparison e' 0 he' (by norm_num))
+        (interventionAt e' 0 r' he' (by norm_num) hr') -
+      constitutiveMargin (model e 0 he (by norm_num)) specification
+        (familyAt e 0 r he (by norm_num)) (survivalPropertyAt T)
+        (comparison e 0 he (by norm_num))
+        (interventionAt e 0 r he (by norm_num) hr)| ≤
+      geometricTVEnvelope |(e:ℝ)-(e':ℝ)| T +
+        geometricTVEnvelope |(r:ℝ)-(r':ℝ)| T := by
   let pair := pairAt e r e' r' he hr he' hr'
   let bounds := protocolErrorsAt e r e' r' he hr he' hr'
   have h := primitive_product_constitutiveMargin_abs_le
     (spec := specification) (B₁ := comparison e 0 he (by norm_num)) bounds T (survivalScore T)
   rw [survivalScore_property_eq] at h
   have hset : pair.comparisonSet specification (comparison e 0 he (by norm_num)) =
-      comparison e' 0 he' (by norm_num) := by
-    rfl
-  -- Both comparison structures have the same state set; all remaining
-  -- fields are proofs, including the actual-model path-law witness.
+      comparison e' 0 he' (by norm_num) := rfl
   change |constitutiveMargin (model e' 0 he' (by norm_num)) specification
       (familyAt e' 0 r' he' (by norm_num)) (survivalPropertyAt T)
       (pair.comparisonSet specification (comparison e 0 he (by norm_num)))
@@ -526,13 +564,52 @@ theorem transport_instance (e r e' r' : ℚ)
       constitutiveMargin (model e 0 he (by norm_num)) specification
       (familyAt e 0 r he (by norm_num)) (survivalPropertyAt T)
       (comparison e 0 he (by norm_num))
-      (interventionAt e 0 r he (by norm_num) hr)| ≤ _ at h
-  rw [hset, margin_at, margin_at] at h
-  -- Use the actual budget records; no assumed scalar error enters h.
-  simpa [bounds, protocolErrorsAt, PrimitiveProtocolErrors.baselineProductPrefixBudget,
-    PrimitiveProtocolErrors.interventionProductPrefixBudget,
-    PrimitiveErrorBounds.productBudget, fixedWorldUpdateBudget,
-    sub_sub_cancel] using h
+      (interventionAt e 0 r he (by norm_num) hr)| ≤
+    (protocolErrorsAt e r e' r' he hr he' hr').baselineProductPrefixBudget T +
+    (protocolErrorsAt e r e' r' he hr he' hr').interventionProductPrefixBudget T at h
+  rw [hset, baseline_budget_at, intervention_budget_at] at h
+  exact h
+
+/-- Scalar specialization of the actual original-margin theorem. -/
+theorem transport_instance (e r e' r' : ℚ)
+    (he : 0 ≤ e ∧ e ≤ 1) (hr : 0 ≤ r ∧ r ≤ 1)
+    (he' : 0 ≤ e' ∧ e' ≤ 1) (hr' : 0 ≤ r' ∧ r' ≤ 1) (T : ℕ) :
+    | |(1-(e':ℝ))^T-(1-(r':ℝ))^T| -
+        |(1-(e:ℝ))^T-(1-(r:ℝ))^T| | ≤
+      geometricTVEnvelope |(e:ℝ)-(e':ℝ)| T +
+      geometricTVEnvelope |(r:ℝ)-(r':ℝ)| T := by
+  have h := original_margin_transport e r e' r' he hr he' hr' T
+  rw [margin_at, margin_at] at h
+  exact h
+
+/-- For the strictly dominant candidate the attaining pure-action gain is
+exactly e. Its actual action kernel is within that amount of the exact
+equilibrium's action kernel. This conclusion is specific to the declared
+family and does not assert a general regret-to-joint-equilibrium bound. -/
+theorem dominant_regret_action_error (e : ℚ) (he : 0 ≤ e ∧ e ≤ 1) :
+    HasUniformEventTVBound (action 0 0) (action e 0)
+      (rationalGain dominant (coinRow e) (coinRow 0) false : ℝ) := by
+  rw [(dominant_regret_attained e).1]
+  have h := action_error 0 e (by norm_num) he
+  have he0 : 0 ≤ (e:ℝ) := by exact_mod_cast he.1
+  simpa [abs_of_nonneg he0] using h
+
+/-- The actual margin at the registered equilibrium and approximate
+dominant profile is transported using the attained regret itself. The
+intervention is literally identical, so its error is zero. -/
+theorem dominant_original_margin_transport (e : ℚ) (he : 0 ≤ e ∧ e ≤ 1) :
+    |constitutiveMargin (model e 0 he (by norm_num)) specification
+        (family e 0 he (by norm_num)) survivalProperty
+        (comparison e 0 he (by norm_num)) (intervention e 0 he (by norm_num)) -
+      constitutiveMargin (model 0 0 (by norm_num) (by norm_num)) specification
+        (family 0 0 (by norm_num) (by norm_num)) survivalProperty
+        (comparison 0 0 (by norm_num) (by norm_num)) (intervention 0 0 (by norm_num) (by norm_num))| ≤
+      geometricTVEnvelope (rationalGain dominant (coinRow e) (coinRow 0) false : ℝ) 3 := by
+  have h := original_margin_transport 0 1 e 1 (by norm_num) (by norm_num) he (by norm_num) 3
+  have he0 : 0 ≤ (e:ℝ) := by exact_mod_cast he.1
+  rw [(dominant_regret_attained e).1]
+  simpa [family, intervention, survivalProperty, abs_of_nonneg he0,
+    geometricTVEnvelope] using h
 
 theorem sharp_transport_from_general :
     | |(1-(1/10:ℝ))^3-(1-(1:ℝ))^3| -
@@ -555,9 +632,16 @@ theorem both_budgets_necessary :
     norm_num at h ⊢ <;> exact h
   · norm_num
 
-/-- The reward on the actual chronological trace is independent of the
-world state, but its controlled transition is the SAME physical law used in
-the persistence example. Own action is the first coordinate. -/
+/-- The exit rule is symmetric in the two action coordinates. -/
+theorem nextWorld_swap (x : Fin 3) (a b : Bool) :
+    nextWorld x (a,b) = nextWorld x (b,a) := by
+  cases a <;> cases b <;> rfl
+
+/-- State-independent rewards on the chronological own-action-first trace.
+The symmetric exit rule agrees with the global physical law also for
+player two. This identifies the erased state law, not a globally ordered
+action-retaining trace. Rates e and f below are in own/opponent order;
+for player two the corresponding global rates are f and e. -/
 noncomputable def traceGame (u : Bool → Bool → ℝ) (i : Fin 2)
     (op : Row Bool) (β : ℝ) (hβ0 : 0 ≤ β) (hβ1 : β < 1) : Game State Bool where
   player := i
@@ -676,7 +760,7 @@ theorem dominant_discounted_exact (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1)
   · refine ⟨markovBehavior (fun _ : State => PermanssonResearch.X1.booleanRow 0 (by norm_num)), ?_⟩
     change payoff G (markovBehavior (fun _ : State => PermanssonResearch.X1.booleanRow 0 (by norm_num))) μ -
       payoff G (markovBehavior (fun _ : State => PermanssonResearch.X1.booleanRow e he)) μ = _
-    rw [hvalue, hbase]
+    rw [hvalue 0 (by norm_num), hbase]
     push_cast
     ring
 
