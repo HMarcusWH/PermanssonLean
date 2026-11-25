@@ -281,7 +281,6 @@ theorem actual_survival (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1) (hf : 0 ≤ f ∧
         r * ((killedKernel M specification)^n) y Set.univ =
             r * killedSurvivalMass M specification n y := by
           rw [hmass]
-          rfl
         _ = r * r^n := by rw [ih]
         _ = r^(n+1) := by rw [pow_succ, mul_comm]
 
@@ -608,8 +607,13 @@ theorem dominant_original_margin_transport (e : ℚ) (he : 0 ≤ e ∧ e ≤ 1) 
   have h := original_margin_transport 0 1 e 1 (by norm_num) (by norm_num) he (by norm_num) 3
   have he0 : 0 ≤ (e:ℝ) := by exact_mod_cast he.1
   rw [(dominant_regret_attained e).1]
-  simpa [family, intervention, survivalProperty, abs_of_nonneg he0,
-    geometricTVEnvelope] using h
+  have hbudget :
+      geometricTVEnvelope |((0:ℚ):ℝ)-(e:ℝ)| 3 +
+        geometricTVEnvelope |((1:ℚ):ℝ)-((1:ℚ):ℝ)| 3 =
+        geometricTVEnvelope (e:ℝ) 3 := by
+    simp [geometricTVEnvelope, abs_of_nonneg he0]
+  rw [hbudget] at h
+  exact h
 
 theorem sharp_transport_from_general :
     | |(1-(1/10:ℝ))^3-(1-(1:ℝ))^3| -

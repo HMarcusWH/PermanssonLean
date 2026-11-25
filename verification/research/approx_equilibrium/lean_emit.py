@@ -226,11 +226,14 @@ def emit_transport_fixture(raw,receipt):
             f"def yt : Fin 3 → Fin 2 → ℚ := {nested(d['y_tilde'])}",
             f"def regionMask : Fin 3 → Bool := {mask(3,d['region'])}",
             f"def comparisonMask : Fin 3 → Bool := {mask(3,d['comparison'])}",
+            f"def horizon : ℕ := {d['horizon']}",
+            f"def replacementAction : Fin 2 × Fin 2 := ({d['intervention'][0]}, {d['intervention'][1]})",
             """def LiteralInputs : Prop :=
   (∀ s a b z, P s a b z = if z=nextWorld s (x1Bool a,x1Bool b) then 1 else 0) ∧
   (∀ s a, x s a = coinRow 0 (x1Bool a) ∧ y s a = coinRow 0 (x1Bool a) ∧
     xt s a = coinRow (1/10) (x1Bool a) ∧ yt s a = coinRow 0 (x1Bool a)) ∧
-  (∀ s, regionMask s = decide (s≠2) ∧ comparisonMask s = decide (s≠2))
+  (∀ s, regionMask s = decide (s≠2) ∧ comparisonMask s = decide (s≠2)) ∧
+  horizon = 3 ∧ replacementAction = (1,0)
 
 instance : Decidable LiteralInputs := by
   unfold LiteralInputs
@@ -251,13 +254,42 @@ theorem literal_inputs : LiteralInputs := by
   refine ⟨literal_inputs, ?_⟩
   simpa using actual_sharp_margins""",
             f"""theorem actual_bound : LiteralInputs ∧
-    |({rat(e['approximate_finite_margin'])}:ℝ)-({rat(e['finite_margin'])}:ℝ)| ≤
+    |constitutiveMargin (model (1/10) 0 (by norm_num) (by norm_num)) specification
+      (family (1/10) 0 (by norm_num) (by norm_num)) survivalProperty
+      (comparison (1/10) 0 (by norm_num) (by norm_num))
+      (intervention (1/10) 0 (by norm_num) (by norm_num)) -
+      constitutiveMargin (model 0 0 (by norm_num) (by norm_num)) specification
+      (family 0 0 (by norm_num) (by norm_num)) survivalProperty
+      (comparison 0 0 (by norm_num) (by norm_num))
+      (intervention 0 0 (by norm_num) (by norm_num))| ≤
       ({rat(e['baseline_path_budget'])}:ℝ)+({rat(e['intervention_path_budget'])}:ℝ) := by
   refine ⟨literal_inputs, ?_⟩
-  have h := sharp_transport_from_general
-  norm_num [geometricTVEnvelope] at h ⊢ <;> exact h""",
+  have h := dominant_original_margin_transport (1/10) (by norm_num)
+  have hbudget :
+      geometricTVEnvelope
+        (PermanssonResearch.ApproxEquilibrium.rationalGain
+          dominant (coinRow (1/10)) (coinRow 0) false : ℝ) 3 =
+      ({rat(e['baseline_path_budget'])}:ℝ)+({rat(e['intervention_path_budget'])}:ℝ) := by
+    rw [(dominant_regret_attained (1/10)).1]
+    norm_num [geometricTVEnvelope]
+  rw [hbudget] at h
+  exact h""",
+            f"""theorem numeric_bound :
+    |({rat(e['approximate_finite_margin'])}:ℝ)-({rat(e['finite_margin'])}:ℝ)| ≤
+      ({rat(e['baseline_path_budget'])}:ℝ)+({rat(e['intervention_path_budget'])}:ℝ) := by
+  have h := actual_bound.2
+  rw [actual_margin.2.1, actual_margin.2.2] at h
+  exact h""",
+            "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.original_margin_transport",
+            "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.transport_instance",
+            "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.dominant_regret_action_error",
+            "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.dominant_original_margin_transport",
             "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.both_budgets_necessary",
+            "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.actual_survival",
+            "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.forever_zero_zero",
+            "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.forever_leak_zero",
+            "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.forever_coordination_exit",
             "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.no_vanishing_regret_modulus",
             "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.dominant_discounted_exact",
             "#print axioms PermanssonResearch.ApproxEquilibrium.Examples.trace_stateLaw_actual"]
-    return render(ns,blocks,["literal_inputs","actual_margin","actual_bound"])
+    return render(ns,blocks,["literal_inputs","actual_margin","actual_bound","numeric_bound"])
