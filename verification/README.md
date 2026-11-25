@@ -20,9 +20,6 @@ The repository includes the final PDF but does not duplicate the frozen ZIP rele
 The paper and its Lean snapshot, the repository adaptations, and later application
 checks have separate provenance. See the [provenance guide](../provenance/README.md).
 
-**Subsequent research candidate:** [Approximate equilibrium and regime transport v0.1.0](../paper2/addenda/approximate-equilibrium-v0.1.0/README.md) adds research-only regret, discounted-residual and finite-prefix transport certificates. It does not revise the pinned v2.0.1 manuscript, v1.1.1 guide or application release; its proof candidates require exact-revision verification.
-
-
 <a id="application-contract-layer-separate-from-frozen-verification"></a>
 
 ## Application contract checks
