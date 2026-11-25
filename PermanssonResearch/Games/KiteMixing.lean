@@ -87,7 +87,7 @@ theorem kite_repair_row [DecidableEq I] [DecidableEq J]
         ((1-t)*r₂+t)*r₁ = ((1-t)*r₁)*r₂ + r₁ - (1-t)*r₁ := by ring
         _ = s*r₂+r₁-s := by rw [ht]
         _ ≤ s*r₁ := by linarith
-    exact (le_of_mul_le_mul_right hineq hr0)
+    exact (mul_le_mul_right₀ hr0).1 hineq
 
 /-- Entire kite: either the input works or one unilateral mixing branch does.
 The returned strategies are real rows; the receipt layer checks rational
