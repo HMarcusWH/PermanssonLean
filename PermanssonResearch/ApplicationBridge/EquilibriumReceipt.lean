@@ -1,5 +1,6 @@
 import PermanssonResearch.Games.KiteMixing
 import PermanssonResearch.Games.ApproximateDiscounted
+import PermanssonResearch.X1.FullStrategyCertificate
 
 /-! A literal rational receipt checks every action before it is interpreted as
 a real mixed-deviation bound. No external solver flag is a theorem premise. -/
@@ -156,5 +157,52 @@ theorem JointDiscountedInput.same_physical (d : JointDiscountedInput n)
 theorem JointDiscountedInput.same_profile (d : JointDiscountedInput n) :
     d.first.own = d.second.opponent ∧ d.first.opponent = d.second.own :=
   ⟨rfl, rfl⟩
+
+
+/-- Source-derived two-world-state reduction of X1. The frozen 18-state
+game remains authoritative; its continuation score ignores memory. -/
+def x1Bool (a : Fin 2) : Bool := decide (a = 1)
+def x1Fin (a : Bool) : Fin 2 := if a then 1 else 0
+
+@[simp] theorem x1Bool_x1Fin (a : Bool) : x1Bool (x1Fin a) = a := by
+  cases a <;> decide
+
+def x1Reduced : JointDiscountedInput 2 where
+  reward i s a b := PermanssonResearch.X1.reward i (x1Bool s) (x1Bool a,x1Bool b)
+  physical s a b z := PermanssonResearch.X1.boolMass
+    (PermanssonResearch.X1.pRep (x1Bool s) (x1Bool a,x1Bool b)) (x1Bool z)
+  policy _ s a := PermanssonResearch.X1.piAction (x1Bool s) (x1Bool a)
+  discount _ := PermanssonResearch.X1.discount
+  value i s := PermanssonResearch.X1.value i (x1Bool s)
+  physical_ok := by decide +kernel
+  policy_ok := by decide +kernel
+  discount_ok := by decide +kernel
+
+theorem x1_reduced_qval :
+    ∀ y a : Fin 2,
+      x1Reduced.first.qval y a =
+        PermanssonResearch.X1.deviationValue 0 (x1Bool y) (x1Bool a) ∧
+      x1Reduced.second.qval y a =
+        PermanssonResearch.X1.deviationValue 1 (x1Bool y) (x1Bool a) := by
+  decide +kernel
+
+theorem x1_reduced_actual_Q_first (m : PermanssonResearch.X1.Mode)
+    (y : PermanssonResearch.X1.Y) (a : Bool) :
+    Q (PermanssonResearch.X1.strategyGame m 0) (PermanssonResearch.X1.strategyValue 0) y a =
+      (x1Reduced.first.qval (x1Fin y.2) (x1Fin a) : ℝ) := by
+  rw [PermanssonResearch.X1.strategy_Q_eq, (x1_reduced_qval (x1Fin y.2) (x1Fin a)).1]
+  simp
+
+theorem x1_reduced_actual_Q_second (m : PermanssonResearch.X1.Mode)
+    (y : PermanssonResearch.X1.Y) (a : Bool) :
+    Q (PermanssonResearch.X1.strategyGame m 1) (PermanssonResearch.X1.strategyValue 1) y a =
+      (x1Reduced.second.qval (x1Fin y.2) (x1Fin a) : ℝ) := by
+  rw [PermanssonResearch.X1.strategy_Q_eq, (x1_reduced_qval (x1Fin y.2) (x1Fin a)).2]
+  simp
+
+theorem x1_reduced_depletion_gap :
+    x1Reduced.first.qval 0 0 - x1Reduced.first.qval 0 1 = 9/211 ∧
+    x1Reduced.second.qval 0 0 - x1Reduced.second.qval 0 1 = 9/211 := by
+  decide +kernel
 
 end PermanssonResearch.ApplicationBridge.EquilibriumReceipt

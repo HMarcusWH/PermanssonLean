@@ -44,7 +44,7 @@ theorem coordination_strict_gaps :
 theorem dominant_regret_attained (e : ℚ) :
     rationalGain dominant (coinRow e) (coinRow 0) false = e ∧
     rationalGain dominant (coinRow 0) (coinRow e) false = 0 := by
-  simp [rationalGain, rationalScore, dominant, coinRow, PermanssonResearch.X1.sum_bool]
+  simp [rationalGain, rationalScore, dominant, coinRow, PermanssonResearch.X1.sum_bool] <;> ring
 
 theorem dominant_approx (e : ℚ) (h : 0 ≤ e ∧ e ≤ 1) :
     NashChecks dominant dominant (coinRow e) (coinRow 0) e := by
@@ -494,10 +494,8 @@ noncomputable def protocolErrorsAt (e r e' r' : ℚ)
   baseline := fixedWorldUpdateBudget _ _ |(e:ℝ)-(e':ℝ)| (abs_nonneg _)
     (rate_error_le_one e e' he he') (action_error e e' he he') rfl rfl
   intervention := by
-    change PrimitiveErrorBounds
-      (interventionAt e 0 r he (by norm_num) hr).intervention.apply
-      (interventionAt e' 0 r' he' (by norm_num) hr').intervention.apply
-    rw [intervened_eq_modelAt, intervened_eq_modelAt]
+    change PrimitiveErrorBounds (model r 0 hr (by norm_num))
+      (model r' 0 hr' (by norm_num))
     exact fixedWorldUpdateBudget _ _ |(r:ℝ)-(r':ℝ)| (abs_nonneg _)
       (rate_error_le_one r r' hr hr') (action_error r r' hr hr') rfl rfl
 
@@ -556,5 +554,170 @@ theorem both_budgets_necessary :
       (by norm_num) (by norm_num) 1
     norm_num at h ⊢ <;> exact h
   · norm_num
+
+/-- The reward on the actual chronological trace is independent of the
+world state, but its controlled transition is the SAME physical law used in
+the persistence example. Own action is the first coordinate. -/
+noncomputable def traceGame (u : Bool → Bool → ℝ) (i : Fin 2)
+    (op : Row Bool) (β : ℝ) (hβ0 : 0 ≤ β) (hβ1 : β < 1) : Game State Bool where
+  player := i
+  physical y a b := Row.pure ((), nextWorld y.2 (a,b))
+  opponent _ := op
+  reward _ a b := u a b
+  discount := β
+  discount_nonneg := hβ0
+  discount_lt_one := hβ1
+
+/-- Exact atom correspondence of the controlled trace to the actual alpha,
+P and U. This is not an independently postulated transition matrix. -/
+theorem trace_stateStep_actual (u : Bool → Bool → ℝ) (i : Fin 2)
+    (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1) (hf : 0 ≤ f ∧ f ≤ 1)
+    (β : ℝ) (hβ0 : 0 ≤ β) (hβ1 : β < 1) (y : State) :
+    (stateStep (traceGame u i (PermanssonResearch.X1.booleanRow f hf) β hβ0 hβ1)
+      (fun _ => PermanssonResearch.X1.booleanRow e he) y).measure =
+      (model e f he hf).inducedKernel y := by
+  classical
+  apply Measure.ext_of_singleton
+  intro z
+  rw [Row.measure_singleton, actual_atom]
+  have hm : (stateStep (traceGame u i (PermanssonResearch.X1.booleanRow f hf) β hβ0 hβ1)
+      (fun _ => PermanssonResearch.X1.booleanRow e he) y).mass z =
+      ∑ a : Moves, (coinRow e a.1 : ℝ)*(coinRow f a.2 : ℝ)*
+        (if ((),nextWorld y.2 a)=z then 1 else 0) := by
+    simp only [stateStep, traceGame, PermanssonResearch.X1.strategy_bind_mass,
+      PermanssonResearch.X1.booleanRow, Row.pure, Fintype.sum_prod_type,
+      coinRow, PermanssonResearch.X1.boolMass, Finset.mul_sum, mul_assoc]
+  rw [hm, ENNReal.ofReal_sum_of_nonneg]
+  · apply Finset.sum_congr rfl
+    intro a _
+    have h₁ : 0 ≤ (coinRow e a.1 : ℝ) :=
+      (PermanssonResearch.X1.booleanRow e he).nonneg a.1
+    have h₂ : 0 ≤ (coinRow f a.2 : ℝ) :=
+      (PermanssonResearch.X1.booleanRow f hf).nonneg a.2
+    rw [ENNReal.ofReal_mul (mul_nonneg h₁ h₂), ENNReal.ofReal_mul h₁]
+    split_ifs <;> simp
+  · intro a _
+    have h₁ : 0 ≤ (coinRow e a.1 : ℝ) :=
+      (PermanssonResearch.X1.booleanRow e he).nonneg a.1
+    have h₂ : 0 ≤ (coinRow f a.2 : ℝ) :=
+      (PermanssonResearch.X1.booleanRow f hf).nonneg a.2
+    exact mul_nonneg (mul_nonneg h₁ h₂) (by split_ifs <;> norm_num)
+
+theorem trace_stateLaw_actual (u : Bool → Bool → ℝ) (i : Fin 2)
+    (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1) (hf : 0 ≤ f ∧ f ≤ 1)
+    (β : ℝ) (hβ0 : 0 ≤ β) (hβ1 : β < 1) (μ : Row State) :
+    (canonicalLaw (traceGame u i (PermanssonResearch.X1.booleanRow f hf) β hβ0 hβ1)
+      (markovBehavior (fun _ => PermanssonResearch.X1.booleanRow e he)) μ).map statePath =
+      (model e f he hf).pathLaw μ.measure :=
+  canonical_state_erasure_eq_original _ _ _ _
+    (trace_stateStep_actual u i e f he hf β hβ0 hβ1)
+
+/-- Dominant-action game: exact discounted loss, including every
+nonanticipating behavioral deviation in the same fixed-opponent game. -/
+theorem dominant_discounted_exact (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1)
+    (hf : 0 ≤ f ∧ f ≤ 1) (β : ℝ) (hβ0 : 0 ≤ β) (hβ1 : β < 1)
+    (i : Fin 2) (μ : Row State) :
+    let G := traceGame (fun a b => (dominant a b : ℝ)) i
+      (PermanssonResearch.X1.booleanRow f hf) β hβ0 hβ1
+    let π := markovBehavior (fun _ : State => PermanssonResearch.X1.booleanRow e he)
+    (∀ σ : BehavioralPolicy State Bool,
+      payoff G σ μ - payoff G π μ ≤ (e:ℝ)/(1-β)) ∧
+      (∃ σ : BehavioralPolicy State Bool,
+        payoff G σ μ - payoff G π μ = (e:ℝ)/(1-β)) := by
+  dsimp only
+  let G := traceGame (fun a b => (dominant a b : ℝ)) i
+    (PermanssonResearch.X1.booleanRow f hf) β hβ0 hβ1
+  have hd : 1-β ≠ 0 := ne_of_gt (sub_pos.mpr hβ1)
+  have hR : ∀ y a b, |G.reward y a b| ≤ (1:ℝ) := by
+    intro y a b
+    cases a <;> norm_num [G, traceGame, dominant]
+  have hQ (c : ℝ) (y : State) (a : Bool) :
+      Q G (fun _ => c) y a = (if a then 0 else 1)+β*c := by
+    cases a <;> simp [Q, G, traceGame, dominant]
+  have hfix (p : ℚ) :
+      1-(p:ℝ)+β*((1-(p:ℝ))/(1-β)) = (1-(p:ℝ))/(1-β) := by
+    field_simp [hd] <;> ring
+  have hvalue (p : ℚ) (hp : 0 ≤ p ∧ p ≤ 1) :
+      payoff G (markovBehavior (fun _ : State => PermanssonResearch.X1.booleanRow p hp)) μ =
+        (1-(p:ℝ))/(1-β) := by
+    let c : ℝ := (1-(p:ℝ))/(1-β)
+    have hc : ∀ _ : State, |c| ≤ |c| := fun _ => le_rfl
+    have hπ : ∀ n hist,
+        ((markovBehavior (fun _ : State => PermanssonResearch.X1.booleanRow p hp)) n hist).expect
+          (fun a => Q G (fun _ => c) (last n hist) a) = c := by
+      intro n hist
+      simp only [markovBehavior, hQ, PermanssonResearch.X1.booleanRow_expect]
+      dsimp [c]
+      nlinarith only [hfix p]
+    simpa [c] using discounted_attainment G _ μ (fun _ => c) hR hc hπ
+  have hb : ∀ σ : BehavioralPolicy State Bool, payoff G σ μ ≤ 1/(1-β) := by
+    intro σ
+    let c : ℝ := 1/(1-β)
+    have hc : ∀ _ : State, |c| ≤ |c| := fun _ => le_rfl
+    have hv : ∀ y a, Q G (fun _ => c) y a ≤ c := by
+      intro y a
+      rw [hQ]
+      have hh : 1+β*c=c := by
+        dsimp [c]
+        simpa using hfix 0
+      cases a <;> simp <;> linarith
+    simpa [c] using discounted_verification G σ μ (fun _ => c) hR hc hv
+  have hbase := hvalue e he
+  constructor
+  · intro σ
+    change payoff G σ μ -
+      payoff G (markovBehavior (fun _ : State => PermanssonResearch.X1.booleanRow e he)) μ ≤ _
+    rw [hbase]
+    calc
+      _ ≤ 1/(1-β)-(1-(e:ℝ))/(1-β) := sub_le_sub_right (hb σ) _
+      _ = _ := by ring
+  · refine ⟨markovBehavior (fun _ : State => PermanssonResearch.X1.booleanRow 0 (by norm_num)), ?_⟩
+    change payoff G (markovBehavior (fun _ : State => PermanssonResearch.X1.booleanRow 0 (by norm_num))) μ -
+      payoff G (markovBehavior (fun _ : State => PermanssonResearch.X1.booleanRow e he)) μ = _
+    rw [hvalue, hbase]
+    push_cast
+    ring
+
+/-- Arbitrarily small strictly positive rational regret still gives a
+unit discrepancy of the original infinite survival probabilities. -/
+theorem arbitrarily_small_regret_unit_survival_gap (δ : ℚ) (hδ : 0 < δ) :
+    ∃ e : ℚ, ∃ he : 0 < e ∧ e ≤ 1,
+      e < δ ∧ NashChecks dominant dominant (coinRow e) (coinRow 0) e ∧
+      rationalGain dominant (coinRow e) (coinRow 0) false = e ∧
+      |(survivalForeverProbability (model 0 0 (by norm_num) (by norm_num))
+          specification ((),0)).toReal -
+        (survivalForeverProbability (model e 0 ⟨he.1.le,he.2⟩ (by norm_num))
+          specification ((),0)).toReal| = 1 := by
+  let e := min δ 1 / 2
+  have hm : 0 < min δ (1:ℚ) := lt_min hδ (by norm_num)
+  have he0 : 0 < e := by dsimp [e]; positivity
+  have he1 : e ≤ 1 := by
+    dsimp [e]
+    linarith [min_le_right δ (1:ℚ)]
+  have hlt : e < δ := by
+    dsimp [e]
+    linarith [min_le_left δ (1:ℚ)]
+  have hy : ((),(0:Fin 3)) ∈ specification.region := by
+    change (0:Fin 3) ≠ 2
+    decide
+  refine ⟨e,⟨he0,he1⟩,hlt,dominant_approx e ⟨he0.le,he1⟩,
+    (dominant_regret_attained e).1,?_⟩
+  rw [forever_zero_zero _ hy, forever_leak_zero e ⟨he0,he1⟩ _ hy]
+  norm_num
+
+/-- A modulus vanishing at zero would eventually be less than 1/2 on
+positive rational inputs. The actual unit-gap family rules this out. -/
+theorem no_vanishing_regret_modulus (f : ℚ → ℝ)
+    (hsmall : ∃ δ : ℚ, 0 < δ ∧ ∀ e : ℚ, 0 < e → e < δ → f e < 1/2)
+    (hbound : ∀ e : ℚ, ∀ he : 0 < e ∧ e ≤ 1,
+      |(survivalForeverProbability (model 0 0 (by norm_num) (by norm_num))
+        specification ((),0)).toReal -
+        (survivalForeverProbability (model e 0 ⟨he.1.le,he.2⟩ (by norm_num))
+          specification ((),0)).toReal| ≤ f e) : False := by
+  obtain ⟨δ,hδ,hs⟩ := hsmall
+  obtain ⟨e,he,heδ,_,_,hgap⟩ := arbitrarily_small_regret_unit_survival_gap δ hδ
+  have hb := hbound e he
+  rw [hgap] at hb
+  linarith [hs e he.1 heδ]
 
 end PermanssonResearch.ApproxEquilibrium.Examples
