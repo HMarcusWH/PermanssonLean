@@ -23,11 +23,12 @@ def main(argv=None):
     p.add_argument("receipt",nargs="?",type=Path)
     args=p.parse_args(argv)
     try:
-        raw=strict_read(args.input)
+        _,raw=strict_read(args.input)
         if args.command=="check":
             require(args.receipt is not None,"receipt required")
             require(args.receipt.stat().st_size <= MAX_RECEIPT_BYTES, "receipt byte budget exceeded")
-            out=checker.check(raw,read_result(args.receipt))
+            _,receipt=read_result(args.receipt)
+            out=checker.check(raw,receipt)
         else:
             require(args.receipt is None and type(raw) is dict and raw.get("kind")==args.command,"command/input mismatch")
             receipt=candidate(raw)
