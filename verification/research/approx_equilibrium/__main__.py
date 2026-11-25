@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 from .contract import (parse, pack, identity, RECEIPT, require, strict_read,
-                       read_result, MAX_RECEIPT_BYTES, canonical)
+                       read_result, MAX_RECEIPT_BYTES)
 from permansson_app.errors import AppError
 from . import regret, kite, discounted, transport, checker
 

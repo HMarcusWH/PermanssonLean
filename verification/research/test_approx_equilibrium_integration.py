@@ -20,7 +20,7 @@ class ExactEquilibriumIntegrationTests(unittest.TestCase):
         expected={".".join(p.relative_to(ROOT).with_suffix("").parts)
                   for p in (ROOT/"PermanssonResearch").rglob("*.lean")}
         self.assertTrue(expected<=set(imports),sorted(expected-set(imports)))
-        # Keep the pre-extension root byte-identical apart from the new header lines.
+        # Verify the seven registered additions are explicitly present.
         added={"PermanssonResearch.Games.BimatrixRegret",
                "PermanssonResearch.Games.KiteMixing",
                "PermanssonResearch.Games.ApproximateDiscounted",

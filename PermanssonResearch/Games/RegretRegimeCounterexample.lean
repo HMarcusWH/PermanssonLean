@@ -646,9 +646,11 @@ theorem dominant_discounted_exact (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1)
         ((markovBehavior (fun _ : State => PermanssonResearch.X1.booleanRow p hp)) n hist).expect
           (fun a => Q G (fun _ => c) (last n hist) a) = c := by
       intro n hist
-      simp only [markovBehavior, hQ, PermanssonResearch.X1.booleanRow_expect]
-      dsimp [c]
-      nlinarith only [hfix p]
+      simp only [markovBehavior, hQ, PermanssonResearch.X1.booleanRow_expect,
+        Bool.false_eq_true, ↓reduceIte]
+      calc
+        _ = 1-(p:ℝ)+β*c := by ring
+        _ = c := hfix p
     simpa [c] using discounted_attainment G _ μ (fun _ => c) hR hc hπ
   have hb : ∀ σ : BehavioralPolicy State Bool, payoff G σ μ ≤ 1/(1-β) := by
     intro σ
