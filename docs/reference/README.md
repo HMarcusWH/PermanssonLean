@@ -14,6 +14,9 @@ The [reviewed manuscript v2.0.1](../../paper2/README.md) is the current integrat
 
 The paper's section IDs and the guide's chapter IDs are separate namespaces. Editorial topic routes, source correspondence and independent acceptance remain separate. The guide's 2,332-file inventory stays pinned to c5a; the later f0 repository snapshot has 2,338 tracked paths because it includes this guide publication. Neither count is a fresh compiler result. See [version lineage](../paper2/VERSION_LINEAGE.md) and [current residual status](../paper2/RESIDUAL_STATUS.md).
 
+**Subsequent research candidate:** [Approximate equilibrium and regime transport v0.1.0](../../paper2/addenda/approximate-equilibrium-v0.1.0/README.md) adds research-only regret, discounted-residual and finite-prefix transport certificates. It does not revise the pinned v2.0.1 manuscript, v1.1.1 guide or application release; its proof candidates require exact-revision verification.
+
+
 ## Pinned edition and source
 
 - **Markdown SHA-256:** `2ce83a40d69a9ab4122749dd47cc07546ded2882ceaaaeea24552d0380b7fd13`.

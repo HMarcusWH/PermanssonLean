@@ -149,7 +149,10 @@ theorem projectBest_good_mass (p : Row I) (v : I → ℝ) (iStar j : I)
   change p.mass j ≤ ∑ i, if redirect v iStar i = j then p.mass i else 0
   have h := Finset.single_le_sum
     (f := fun i : I => if redirect v iStar i = j then p.mass i else 0)
-    (fun i _ => by split_ifs; exact p.nonneg i; exact le_rfl)
+    (fun i _ => by
+      split_ifs
+      · exact p.nonneg i
+      · exact le_rfl)
     (Finset.mem_univ j)
   simpa [redirect, hj] using h
 

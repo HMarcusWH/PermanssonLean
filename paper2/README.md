@@ -16,6 +16,9 @@ The second edition brings the original generated-regime and constitution framewo
 | [Checksums](v2.0.1/SHA256SUMS) | SHA-256 of the three assets and seven reviewed index copies |
 | [BibTeX citation](v2.0.1/CITATION.bib) | Edition-specific citation |
 
+**Subsequent research candidate:** [Approximate equilibrium and regime transport v0.1.0](addenda/approximate-equilibrium-v0.1.0/README.md) adds research-only regret, discounted-residual and finite-prefix transport certificates. It does not revise the pinned v2.0.1 manuscript, v1.1.1 guide or application release; its proof candidates require exact-revision verification.
+
+
 ## Reading routes
 
 | Interest | Start with |
