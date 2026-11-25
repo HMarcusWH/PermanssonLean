@@ -113,7 +113,7 @@ def PrimitiveProtocolErrors.baselineProductPrefixBudget
     (b : PrimitiveProtocolErrors M F J pair) (T : ℕ) : ℝ :=
   PermanssonLean.ProbabilitySupport.geometricTVEnvelope b.baseline.productBudget T
 
-def PrimitiveProtocolErrors.interventionProductPrefixBudget
+noncomputable def PrimitiveProtocolErrors.interventionProductPrefixBudget
     {M : PermanssonLean.StrategicWorldModel S X A}
     {Component : Type uC} {F : PermanssonLean.InterventionFamily M Component}
     {J : PermanssonLean.AdmissibleStrategicIntervention F}

@@ -173,8 +173,13 @@ noncomputable def comparison (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1)
   states_measurable := MeasurableSet.of_discrete
   states_subset_basin := fun _ h => h
   pathLawNontrivial := by
-    refine ⟨((),0), by decide, ((),1), by decide, ?_⟩
-    exact PermanssonResearch.ConstitutiveQuasi.pointStarted_pathLaw_ne_of_ne _ (by decide)
+    refine ⟨((),0), ?_, ((),1), ?_, ?_⟩
+    · change (0 : Fin 3) ≠ 2
+      decide
+    · change (1 : Fin 3) ≠ 2
+      decide
+    · exact PermanssonResearch.ConstitutiveQuasi.pointStarted_pathLaw_ne_of_ne
+        (model e f he hf) (by decide)
 
 noncomputable def forcedExit : Kernel State Moves :=
   action 1 0
@@ -225,7 +230,10 @@ theorem survival_eq_power (e : ℝ) (n : ℕ) : survival e n = (1-e)^n := by
 
 theorem survival_limit (e : ℝ) (h0 : 0 < e) (h1 : e ≤ 1) :
     Filter.Tendsto (survival e) Filter.atTop (nhds 0) := by
-  simp only [survival_eq_power]
+  have hfun : survival e = (fun n : ℕ => (1-e)^n) := by
+    funext n
+    exact survival_eq_power e n
+  rw [hfun]
   exact PermanssonResearch.ReverseSolver.InfiniteSafety.fixed_leakage_tends_to_zero e h0 h1
 
 theorem sharp_finite_scalar :

@@ -104,7 +104,8 @@ theorem kite_repair_row [DecidableEq I] [DecidableEq J]
         _ = s*r₂+r₁-s := by rw [ht]
         _ ≤ s*r₁ := by nlinarith only [hk']
     calc
-      (1-t)*r₂+t = (((1-t)*r₂+t)*r₁)/r₁ := by
+      (1-t)*r₂+t*1 = (1-t)*r₂+t := by rw [mul_one]
+      _ = (((1-t)*r₂+t)*r₁)/r₁ := by
         field_simp [ne_of_gt hr0] <;> ring
       _ ≤ s := (div_le_iff₀ hr0).2 hineq
 
