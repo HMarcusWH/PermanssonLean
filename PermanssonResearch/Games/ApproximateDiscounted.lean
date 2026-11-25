@@ -54,12 +54,12 @@ theorem discounted_two_residual_bound (G : Game Y A) (σ π : BehavioralPolicy Y
   have hp := summable_losses G π μ V hR hC
   have hlow := (hasSum_geometric_of_lt_one G.discount_nonneg G.discount_lt_one).mul_right (-ηplus)
   have hhigh := (hasSum_geometric_of_lt_one G.discount_nonneg G.discount_lt_one).mul_right ηminus
-  have hl := hlow.summable.tsum_le_tsum
+  have hl := Summable.tsum_le_tsum
     (fun n => mul_le_mul_of_nonneg_left (stageLoss_lower G σ μ V ηplus hplus n)
-      (pow_nonneg G.discount_nonneg n)) hs
-  have hu := hp.tsum_le_tsum
+      (pow_nonneg G.discount_nonneg n)) hlow.summable hs
+  have hu := Summable.tsum_le_tsum
     (fun n => mul_le_mul_of_nonneg_left (stageLoss_upper G π μ V ηminus hminus n)
-      (pow_nonneg G.discount_nonneg n)) hhigh.summable
+      (pow_nonneg G.discount_nonneg n)) hp hhigh.summable
   rw [hlow.tsum_eq] at hl
   rw [hhigh.tsum_eq] at hu
   have e1 := infinite_performance_difference G σ μ V hR hC

@@ -781,3 +781,7 @@ Importing this library does not strengthen the frozen v0.1.8 core.
 import PermanssonResearch.Games.BimatrixRegret
 import PermanssonResearch.Games.KiteMixing
 import PermanssonResearch.Games.ApproximateDiscounted
+import PermanssonResearch.Games.EquilibriumRegimeTransport
+import PermanssonResearch.Perturbation.ProductActionError
+import PermanssonResearch.Games.RegretRegimeCounterexample
+import PermanssonResearch.ApplicationBridge.EquilibriumReceipt

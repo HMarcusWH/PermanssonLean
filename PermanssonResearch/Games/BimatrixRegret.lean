@@ -91,7 +91,7 @@ theorem rationalChecks_iff_real [DecidableEq I] [DecidableEq J]
       ApproxNash (fun i j => (R i j : ℝ)) (fun j i => (C j i : ℝ))
         (realRow p hp) (realRow q hq) (ε : ℝ) := by
   unfold NashChecks ApproxNash
-  rw [approxBestResponse_iff_pure, approxBestResponse_iff_pure]
+  simp only [approxBestResponse_iff_pure]
   simp only [hp, hq, true_and]
   constructor
   · rintro ⟨he, hR, hC⟩

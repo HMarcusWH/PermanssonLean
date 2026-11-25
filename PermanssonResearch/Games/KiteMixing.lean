@@ -83,8 +83,11 @@ theorem kite_repair_row [DecidableEq I] [DecidableEq J]
     apply h.trans
     have hineq : ((1-t)*r₂+t) * r₁ ≤ s*r₁ := by
       have hk' := hk.2.2.1
-      nlinarith [ht]
-    exact le_of_mul_le_mul_right hineq hr0
+      calc
+        ((1-t)*r₂+t)*r₁ = ((1-t)*r₁)*r₂ + r₁ - (1-t)*r₁ := by ring
+        _ = s*r₂+r₁-s := by rw [ht]
+        _ ≤ s*r₁ := by linarith
+    exact (le_of_mul_le_mul_right hineq hr0)
 
 /-- Entire kite: either the input works or one unilateral mixing branch does.
 The returned strategies are real rows; the receipt layer checks rational
