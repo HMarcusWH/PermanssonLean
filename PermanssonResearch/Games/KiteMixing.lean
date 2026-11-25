@@ -27,8 +27,15 @@ theorem gain_mix_opponent (C : J → I → ℝ) (p : Row J) (q q' : Row I)
     (t : ℝ) (h0 : 0 ≤ t) (h1 : t ≤ 1) (j : J) :
     gain C p (mix q q' t h0 h1) j =
       (1-t)*gain C p q j + t*gain C p q' j := by
-  simp only [gain, score, expect_mix, Row.expect_add, Row.expect_mul]
-  ring
+  have hscore :
+      score C (mix q q' t h0 h1) =
+        fun k => (1-t)*score C q k + t*score C q' k := by
+    funext k
+    unfold score
+    exact expect_mix q q' t h0 h1 (C k)
+  unfold gain
+  simp only [hscore, Row.expect_add, Row.expect_mul]
+  <;> ring
 
 theorem gain_le_one (C : J → I → ℝ) (p : Row J) (q : Row I)
     (hC : ∀ j i, 0 ≤ C j i ∧ C j i ≤ 1) (j : J) :
@@ -96,7 +103,10 @@ theorem kite_repair_row [DecidableEq I] [DecidableEq J]
         ((1-t)*r₂+t)*r₁ = ((1-t)*r₁)*r₂ + r₁ - (1-t)*r₁ := by ring
         _ = s*r₂+r₁-s := by rw [ht]
         _ ≤ s*r₁ := by nlinarith only [hk']
-    exact (mul_le_mul_right₀ hr0).1 hineq
+    calc
+      (1-t)*r₂+t = (((1-t)*r₂+t)*r₁)/r₁ := by
+        field_simp [ne_of_gt hr0] <;> ring
+      _ ≤ s := (div_le_iff₀ hr0).2 hineq
 
 /-- Entire kite: either the input works or one unilateral mixing branch does.
 The returned strategies are real rows; the receipt layer checks rational

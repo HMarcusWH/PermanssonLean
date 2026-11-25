@@ -64,11 +64,15 @@ theorem discounted_two_residual_bound (G : Game Y A) (σ π : BehavioralPolicy Y
   rw [hhigh.tsum_eq] at hu
   have e1 := infinite_performance_difference G σ μ V hR hC
   have e2 := infinite_performance_difference G π μ V hR hC
-  simp only [one_div, div_eq_mul_inv] at hl hu
+  have hdiff :
+      payoff G σ μ - payoff G π μ =
+        (∑' n, G.discount^n * stageLoss G π μ V n) -
+        (∑' n, G.discount^n * stageLoss G σ μ V n) := by
+    linarith only [e1, e2]
   calc
-    payoff G σ μ - payoff G π μ ≤
-        (1-G.discount)⁻¹ * ηminus - (1-G.discount)⁻¹ * (-ηplus) := by
-      linarith only [hl, hu, e1, e2]
+    payoff G σ μ - payoff G π μ = _ := hdiff
+    _ ≤ (1-G.discount)⁻¹ * ηminus - (1-G.discount)⁻¹ * (-ηplus) :=
+      sub_le_sub hu hl
     _ = (ηplus+ηminus)/(1-G.discount) := by
       rw [div_eq_mul_inv]
       ring

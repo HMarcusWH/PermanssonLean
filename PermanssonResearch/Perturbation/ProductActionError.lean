@@ -92,16 +92,26 @@ theorem commonRowMeasure_le_left (p q : Row I) : commonRowMeasure p q ≤ p.meas
   apply Measure.le_iff.2
   intro s hs
   simp only [commonRowMeasure, Row.measure, Measure.finsetSum_apply, Measure.smul_apply, smul_eq_mul]
-  exact Finset.sum_le_sum fun i _ =>
-    mul_le_mul_right' (ENNReal.ofReal_le_ofReal (min_le_left _ _)) _
+  apply Finset.sum_le_sum
+  intro i _
+  have hm : ENNReal.ofReal (min (p.mass i) (q.mass i)) ≤
+      ENNReal.ofReal (p.mass i) :=
+    ENNReal.ofReal_le_ofReal (min_le_left _ _)
+  have hd : (0 : ℝ≥0∞) ≤ Measure.dirac i s := bot_le
+  simpa only [mul_comm] using mul_le_mul_of_nonneg_left hm hd
 
 theorem commonRowMeasure_le_right (p q : Row I) : commonRowMeasure p q ≤ q.measure := by
   classical
   apply Measure.le_iff.2
   intro s hs
   simp only [commonRowMeasure, Row.measure, Measure.finsetSum_apply, Measure.smul_apply, smul_eq_mul]
-  exact Finset.sum_le_sum fun i _ =>
-    mul_le_mul_right' (ENNReal.ofReal_le_ofReal (min_le_right _ _)) _
+  apply Finset.sum_le_sum
+  intro i _
+  have hm : ENNReal.ofReal (min (p.mass i) (q.mass i)) ≤
+      ENNReal.ofReal (q.mass i) :=
+    ENNReal.ofReal_le_ofReal (min_le_right _ _)
+  have hd : (0 : ℝ≥0∞) ≤ Measure.dirac i s := bot_le
+  simpa only [mul_comm] using mul_le_mul_of_nonneg_left hm hd
 
 theorem commonRowMeasure_mass (p q : Row I) :
     (commonRowMeasure p q).real Set.univ = overlap p q := by
