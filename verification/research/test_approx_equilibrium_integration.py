@@ -8,6 +8,28 @@ import unittest
 from test_approx_equilibrium import ROOT,fixture
 
 class ExactEquilibriumIntegrationTests(unittest.TestCase):
+    def test_AE_T31_T32_research_import_header(self):
+        # Module documentation is a Lean command, not part of the import header.
+        source=(ROOT/"PermanssonResearch.lean").read_text(encoding="utf-8")
+        header,marker,tail=source.partition("/-!\n# PermanssonResearch")
+        self.assertTrue(marker,"research root documentation missing")
+        self.assertFalse(any(line.strip().startswith("import ") for line in tail.splitlines()))
+        imports=[name for line in header.splitlines() if line.strip().startswith("import ")
+                 for name in line.strip().split()[1:]]
+        self.assertEqual(len(imports),len(set(imports)))
+        expected={".".join(p.relative_to(ROOT).with_suffix("").parts)
+                  for p in (ROOT/"PermanssonResearch").rglob("*.lean")}
+        self.assertTrue(expected<=set(imports),sorted(expected-set(imports)))
+        # Keep the pre-extension root byte-identical apart from the new header lines.
+        added={"PermanssonResearch.Games.BimatrixRegret",
+               "PermanssonResearch.Games.KiteMixing",
+               "PermanssonResearch.Games.ApproximateDiscounted",
+               "PermanssonResearch.Games.EquilibriumRegimeTransport",
+               "PermanssonResearch.Perturbation.ProductActionError",
+               "PermanssonResearch.Games.RegretRegimeCounterexample",
+               "PermanssonResearch.ApplicationBridge.EquilibriumReceipt"}
+        self.assertTrue(added<=set(imports))
+
     def test_cli_roundtrip(self):
         with tempfile.TemporaryDirectory() as td:
             folder=Path(td)

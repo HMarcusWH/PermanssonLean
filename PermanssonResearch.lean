@@ -771,13 +771,6 @@ import PermanssonResearch.Probability.A01SupnormClassCountermodel
 import PermanssonResearch.Perturbation.A04FourOutputNecessityCountermodel
 import PermanssonResearch.Perturbation.A05SurvivalOccupationCountermodel
 
-/-!
-# PermanssonResearch
-
-Research-only library root. New mathematical extensions belong in this separate
-import tree and require independently reviewed theorem and counterexample gates.
-Importing this library does not strengthen the frozen v0.1.8 core.
--/
 import PermanssonResearch.Games.BimatrixRegret
 import PermanssonResearch.Games.KiteMixing
 import PermanssonResearch.Games.ApproximateDiscounted
@@ -785,3 +778,11 @@ import PermanssonResearch.Games.EquilibriumRegimeTransport
 import PermanssonResearch.Perturbation.ProductActionError
 import PermanssonResearch.Games.RegretRegimeCounterexample
 import PermanssonResearch.ApplicationBridge.EquilibriumReceipt
+
+/-!
+# PermanssonResearch
+
+Research-only library root. New mathematical extensions belong in this separate
+import tree and require independently reviewed theorem and counterexample gates.
+Importing this library does not strengthen the frozen v0.1.8 core.
+-/
