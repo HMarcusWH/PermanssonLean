@@ -1,4 +1,4 @@
-import PermanssonResearch.Games.BimatrixRegret
+import PermanssonResearch.Games.KiteMixing
 import PermanssonResearch.Games.ApproximateDiscounted
 
 /-! A literal rational receipt checks every action before it is interpreted as
@@ -92,7 +92,9 @@ theorem checked_discounted (d : DiscountedInput n) (ε ρ R C : ℚ)
     (σ : BehavioralPolicy (Fin n) (Fin 2)) (μ : Row (Fin n)) :
     payoff d.game σ μ - payoff d.game d.policy μ ≤
       ((ε:ℝ)+2*(ρ:ℝ))/(1-d.game.discount) := by
-  have hc : DiscountedChecks d ε ρ R C := of_decide_eq_true h
+  have hc : DiscountedChecks d ε ρ R C := by
+    unfold checkDiscounted at h
+    exact of_decide_eq_true h
   rcases hc with ⟨he,hr,hR,hC,hreg,hres⟩
   apply continuation_regret_bound d.game σ d.policy μ (fun y => (d.value y : ℝ))
     (R := (R:ℝ)) (C := (C:ℝ))
@@ -107,5 +109,52 @@ theorem checked_discounted (d : DiscountedInput n) (ε ρ R C : ℚ)
   · intro t hist
     rw [d.mean_cast]
     exact_mod_cast hres (last t hist)
+
+/-- One literal joint input defines both player-indexed games. Matrices
+use global (row, column) action order; the second player's reward AND
+controlled physical law are transposed together. -/
+structure JointDiscountedInput (n : ℕ) where
+  reward : Fin 2 → Fin n → Fin 2 → Fin 2 → ℚ
+  physical : Fin n → Fin 2 → Fin 2 → Fin n → ℚ
+  policy : Fin 2 → Fin n → Fin 2 → ℚ
+  discount : Fin 2 → ℚ
+  value : Fin 2 → Fin n → ℚ
+  physical_ok : ∀ y a b, Simplex (physical y a b)
+  policy_ok : ∀ i y, Simplex (policy i y)
+  discount_ok : ∀ i, 0 ≤ discount i ∧ discount i < 1
+
+def JointDiscountedInput.first (d : JointDiscountedInput n) : DiscountedInput n where
+  player := 0
+  reward := d.reward 0
+  physical := d.physical
+  own := d.policy 0
+  opponent := d.policy 1
+  discount := d.discount 0
+  value := d.value 0
+  physical_ok := d.physical_ok
+  own_ok := d.policy_ok 0
+  opponent_ok := d.policy_ok 1
+  discount_ok := d.discount_ok 0
+
+def JointDiscountedInput.second (d : JointDiscountedInput n) : DiscountedInput n where
+  player := 1
+  reward y a b := d.reward 1 y b a
+  physical y a b := d.physical y b a
+  own := d.policy 1
+  opponent := d.policy 0
+  discount := d.discount 1
+  value := d.value 1
+  physical_ok y a b := d.physical_ok y b a
+  own_ok := d.policy_ok 1
+  opponent_ok := d.policy_ok 0
+  discount_ok := d.discount_ok 1
+
+theorem JointDiscountedInput.same_physical (d : JointDiscountedInput n)
+    (y : Fin n) (a b : Fin 2) :
+    d.first.physical y a b = d.second.physical y b a := rfl
+
+theorem JointDiscountedInput.same_profile (d : JointDiscountedInput n) :
+    d.first.own = d.second.opponent ∧ d.first.opponent = d.second.own :=
+  ⟨rfl, rfl⟩
 
 end PermanssonResearch.ApplicationBridge.EquilibriumReceipt

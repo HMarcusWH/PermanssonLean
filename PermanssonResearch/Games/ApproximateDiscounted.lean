@@ -27,7 +27,7 @@ theorem stageLoss_lower (G : Game Y A) (σ : BehavioralPolicy Y A)
       (f := fun _ => -η) (g := fun a => V (last n hist) - Q G V (last n hist) a)
       (fun a => by linarith [h (last n hist) a])
     simpa using hb
-  simpa using (law G σ μ n).expect_mono hinner
+  simpa using (law G σ μ n).expect_mono (f := fun _ => -η) hinner
 
 theorem stageLoss_upper (G : Game Y A) (π : BehavioralPolicy Y A)
     (μ : Row Y) (V : Y → ℝ) (η : ℝ)
@@ -39,7 +39,7 @@ theorem stageLoss_upper (G : Game Y A) (π : BehavioralPolicy Y A)
       (π n hist).expect (fun a => V (last n hist) - Q G V (last n hist) a) ≤ η := by
     intro hist
     simpa only [Row.expect_sub, Row.expect_const] using h n hist
-  simpa using (law G π μ n).expect_mono hinner
+  simpa using (law G π μ n).expect_mono (g := fun _ => η) hinner
 
 /-- One-sided residuals suffice; the same initial law and opponent are used. -/
 theorem discounted_two_residual_bound (G : Game Y A) (σ π : BehavioralPolicy Y A)
@@ -64,8 +64,14 @@ theorem discounted_two_residual_bound (G : Game Y A) (σ π : BehavioralPolicy Y
   rw [hhigh.tsum_eq] at hu
   have e1 := infinite_performance_difference G σ μ V hR hC
   have e2 := infinite_performance_difference G π μ V hR hC
-  rw [div_eq_mul_inv]
-  nlinarith
+  simp only [one_div, div_eq_mul_inv] at hl hu
+  calc
+    payoff G σ μ - payoff G π μ ≤
+        (1-G.discount)⁻¹ * ηminus - (1-G.discount)⁻¹ * (-ηplus) := by
+      linarith only [hl, hu, e1, e2]
+    _ = (ηplus+ηminus)/(1-G.discount) := by
+      rw [div_eq_mul_inv]
+      ring
 
 noncomputable def continuationPayoff (G : Game Y A) (V : Y → ℝ)
     (y : Y) (a b : A) : ℝ :=
@@ -102,6 +108,14 @@ theorem continuation_regret_bound (G : Game Y A) (σ π : BehavioralPolicy Y A)
       change -ρ ≤ V y - (π 0 y).expect (fun b => Q G V y b) at he
       linarith)
     (fun n hist => (abs_le.mp (hres n hist)).2)
-  convert h using 1 <;> ring
+  simpa only [show ε + ρ + ρ = ε + 2*ρ by ring] using h
+
+/-- Normalized continuation regret is transported only in its original
+payoff units. Width zero gives exactly zero gain, without a division. -/
+theorem affine_gain_le (p : Row A) (v : A → ℝ) (a : A)
+    (l w ε : ℝ) (hw : 0 ≤ w) (h : v a - p.expect v ≤ ε) :
+    (l+w*v a) - p.expect (fun b => l+w*v b) ≤ w*ε := by
+  rw [score_regret_affine]
+  exact mul_le_mul_of_nonneg_left h hw
 
 end PermanssonResearch.ApproxEquilibrium

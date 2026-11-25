@@ -35,11 +35,11 @@ theorem gain_le_one (C : J → I → ℝ) (p : Row J) (q : Row I)
     gain C p q j ≤ 1 := by
   have hi : ∀ k, 0 ≤ score C q k := by
     intro k
-    simpa [score] using q.expect_mono (fun i => (hC k i).1)
+    simpa [score] using q.expect_mono (f := fun _ => (0:ℝ)) (fun i => (hC k i).1)
   have hj : score C q j ≤ 1 := by
-    simpa [score] using q.expect_mono (fun i => (hC j i).2)
+    simpa [score] using q.expect_mono (g := fun _ => (1:ℝ)) (fun i => (hC j i).2)
   have hmean : 0 ≤ p.expect (score C q) := by
-    simpa using p.expect_mono hi
+    simpa using p.expect_mono (f := fun _ => (0:ℝ)) hi
   unfold gain
   linarith
 
@@ -70,10 +70,19 @@ theorem kite_repair_row [DecidableEq I] [DecidableEq J]
   refine ⟨t, ht0, ht1, rfl, hs.le, ?_, ?_⟩
   · rw [approxBestResponse_iff_pure]
     intro i
-    have h := hR i
-    unfold gain at hbest h ⊢
-    rw [expect_mix, Row.expect_pure]
-    nlinarith [ht]
+    have heq : gain R (mix p (Row.pure iStar) t ht0 ht1) q i =
+        gain R p q i - t*r₁ := by
+      unfold gain at hbest ⊢
+      rw [expect_mix, Row.expect_pure]
+      calc
+        _ = score R q i - p.expect (score R q) -
+            t*(score R q iStar - p.expect (score R q)) := by ring
+        _ = _ := by rw [hbest]
+    rw [heq]
+    calc
+      gain R p q i - t*r₁ ≤ r₁-t*r₁ := sub_le_sub_right (hR i) _
+      _ = (1-t)*r₁ := by ring
+      _ = s := ht
   · rw [approxBestResponse_iff_pure]
     intro j
     rw [gain_mix_opponent]
@@ -86,7 +95,7 @@ theorem kite_repair_row [DecidableEq I] [DecidableEq J]
       calc
         ((1-t)*r₂+t)*r₁ = ((1-t)*r₁)*r₂ + r₁ - (1-t)*r₁ := by ring
         _ = s*r₂+r₁-s := by rw [ht]
-        _ ≤ s*r₁ := by linarith
+        _ ≤ s*r₁ := by nlinarith only [hk']
     exact (mul_le_mul_right₀ hr0).1 hineq
 
 /-- Entire kite: either the input works or one unilateral mixing branch does.
@@ -119,5 +128,69 @@ theorem kite_exists [DecidableEq I] [DecidableEq J]
       kite_repair_row R C p q iStar s r₁ r₂ hs (lt_of_not_ge h1)
         hk hR hRi hC hCb
     exact ⟨mix p (Row.pure iStar) t ht0 ht1, q, h⟩
+
+/-- Exact rational kite domain. Threshold zero is handled by checkNash,
+not by a mixing operation. -/
+def RationalKite (s r₁ r₂ : ℚ) : Prop :=
+  0 < s ∧ s < 1/2 ∧ 0 ≤ r₁ ∧ 0 ≤ r₂ ∧
+    (1-s)*r₁+s*r₂ ≤ s ∧ s*r₁+(1-s)*r₂ ≤ s
+
+instance (s r₁ r₂ : ℚ) : Decidable (RationalKite s r₁ r₂) := by
+  unfold RationalKite
+  infer_instance
+
+/-- Independent finite certificate for the literal rational output.
+Branch 0 retains the input, 1 repairs the row, 2 repairs the column.
+Exact regret masks are checked separately by checkExactRegret. -/
+def KiteConversionChecks [DecidableEq I] [DecidableEq J]
+    (R : I → J → ℚ) (C : J → I → ℚ)
+    (p p' : I → ℚ) (q q' : J → ℚ) (s r₁ r₂ t : ℚ)
+    (iStar : I) (jStar : J) (branch : Fin 3) : Prop :=
+  Simplex p ∧ Simplex q ∧
+  (∀ i j, 0 ≤ R i j ∧ R i j ≤ 1) ∧
+  (∀ j i, 0 ≤ C j i ∧ C j i ≤ 1) ∧
+  (∀ i, rationalGain R p q i ≤ r₁) ∧ rationalGain R p q iStar = r₁ ∧
+  (∀ j, rationalGain C q p j ≤ r₂) ∧ rationalGain C q p jStar = r₂ ∧
+  RationalKite s r₁ r₂ ∧ 0 ≤ t ∧ t ≤ 1 ∧
+  (if branch = 0 then
+    r₁ ≤ s ∧ r₂ ≤ s ∧ t = 0 ∧ (∀ i, p' i = p i) ∧ (∀ j, q' j = q j)
+   else if branch = 1 then
+    s < r₁ ∧ t = 1-s/r₁ ∧
+      (∀ i, p' i = (1-t)*p i + t*(if i=iStar then 1 else 0)) ∧
+      (∀ j, q' j = q j)
+   else
+    r₁ ≤ s ∧ s < r₂ ∧ t = 1-s/r₂ ∧
+      (∀ j, q' j = (1-t)*q j + t*(if j=jStar then 1 else 0)) ∧
+      (∀ i, p' i = p i)) ∧
+  NashChecks R C p' q' s
+
+instance [DecidableEq I] [DecidableEq J]
+    (R : I → J → ℚ) (C : J → I → ℚ)
+    (p p' : I → ℚ) (q q' : J → ℚ) (s r₁ r₂ t : ℚ)
+    (iStar : I) (jStar : J) (branch : Fin 3) :
+    Decidable (KiteConversionChecks R C p p' q q' s r₁ r₂ t iStar jStar branch) := by
+  unfold KiteConversionChecks
+  infer_instance
+
+def checkKiteConversion [DecidableEq I] [DecidableEq J]
+    (R : I → J → ℚ) (C : J → I → ℚ)
+    (p p' : I → ℚ) (q q' : J → ℚ) (s r₁ r₂ t : ℚ)
+    (iStar : I) (jStar : J) (branch : Fin 3) : Bool :=
+  decide (KiteConversionChecks R C p p' q q' s r₁ r₂ t iStar jStar branch)
+
+theorem checked_kite_conversion [DecidableEq I] [DecidableEq J]
+    (R : I → J → ℚ) (C : J → I → ℚ)
+    (p p' : I → ℚ) (q q' : J → ℚ) (s r₁ r₂ t : ℚ)
+    (iStar : I) (jStar : J) (branch : Fin 3)
+    (h : checkKiteConversion R C p p' q q' s r₁ r₂ t iStar jStar branch = true) :
+    ∃ hp : Simplex p', ∃ hq : Simplex q',
+      ApproxNash (fun i j => (R i j : ℝ)) (fun j i => (C j i : ℝ))
+        (realRow p' hp) (realRow q' hq) (s : ℝ) := by
+  have hc : KiteConversionChecks R C p p' q q' s r₁ r₂ t iStar jStar branch := by
+    unfold checkKiteConversion at h
+    exact of_decide_eq_true h
+  unfold KiteConversionChecks at hc
+  obtain ⟨_, _, _, _, _, _, _, _, _, _, _, _, hn⟩ := hc
+  exact ⟨hn.1, hn.2.1, (rationalChecks_iff_real R C p' q' hn.1 hn.2.1 s).1 hn⟩
 
 end PermanssonResearch.ApproxEquilibrium

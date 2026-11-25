@@ -33,7 +33,7 @@ theorem approxBestResponse_iff_pure [DecidableEq I]
     simpa [gain] using h (Row.pure i)
   · intro h p'
     have hmean : p'.expect (fun i => gain R p q i) ≤ ε := by
-      simpa using p'.expect_mono h
+      simpa using p'.expect_mono (g := fun _ => ε) h
     simpa [gain, Row.expect_sub] using hmean
 
 def ApproxNash (R : I → J → ℝ) (C : J → I → ℝ)
@@ -48,7 +48,7 @@ def rationalGain (R : I → J → ℚ) (p : I → ℚ) (q : J → ℚ) (i : I) :
 
 def Simplex (p : I → ℚ) : Prop := (∀ i, 0 ≤ p i) ∧ ∑ i, p i = 1
 
-instance (p : I → ℚ) : Decidable (Simplex p) := by
+instance [DecidableEq I] (p : I → ℚ) : Decidable (Simplex p) := by
   unfold Simplex
   infer_instance
 
@@ -69,17 +69,17 @@ def NashChecks (R : I → J → ℚ) (C : J → I → ℚ)
     (∀ i, rationalGain R p q i ≤ ε) ∧
     (∀ j, rationalGain C q p j ≤ ε)
 
-instance (R : I → J → ℚ) (C : J → I → ℚ)
+instance [DecidableEq I] [DecidableEq J] (R : I → J → ℚ) (C : J → I → ℚ)
     (p : I → ℚ) (q : J → ℚ) (ε : ℚ) :
     Decidable (NashChecks R C p q ε) := by
   unfold NashChecks
   infer_instance
 
-def checkNash (R : I → J → ℚ) (C : J → I → ℚ)
+def checkNash [DecidableEq I] [DecidableEq J] (R : I → J → ℚ) (C : J → I → ℚ)
     (p : I → ℚ) (q : J → ℚ) (ε : ℚ) : Bool :=
   decide (NashChecks R C p q ε)
 
-theorem checkNash_iff (R : I → J → ℚ) (C : J → I → ℚ)
+theorem checkNash_iff [DecidableEq I] [DecidableEq J] (R : I → J → ℚ) (C : J → I → ℚ)
     (p : I → ℚ) (q : J → ℚ) (ε : ℚ) :
     checkNash R C p q ε = true ↔ NashChecks R C p q ε := by
   simp [checkNash]
@@ -131,5 +131,57 @@ theorem nonbest_mass_le (p : Row I) (v : I → ℝ) (iStar : I)
   rw [Row.expect_mul, Row.expect_sub, Row.expect_const] at hmean
   apply (le_div_iff₀ hg).2
   linarith
+
+/-- An exact maximum is witnessed by an attaining action. The mask is
+complete, including ties. The rational domain includes both simplex checks. -/
+def ExactRegretChecks (R : I → J → ℚ) (p : I → ℚ) (q : J → ℚ)
+    (r : ℚ) (best : I → Bool) : Prop :=
+  Simplex p ∧ Simplex q ∧
+    (∀ i, rationalGain R p q i ≤ r) ∧
+    (∃ i, rationalGain R p q i = r) ∧
+    (∀ i, best i = true ↔ rationalGain R p q i = r)
+
+instance [DecidableEq I] [DecidableEq J]
+    (R : I → J → ℚ) (p : I → ℚ) (q : J → ℚ) (r : ℚ) (best : I → Bool) :
+    Decidable (ExactRegretChecks R p q r best) := by
+  unfold ExactRegretChecks
+  infer_instance
+
+def checkExactRegret [DecidableEq I] [DecidableEq J]
+    (R : I → J → ℚ) (p : I → ℚ) (q : J → ℚ) (r : ℚ) (best : I → Bool) : Bool :=
+  decide (ExactRegretChecks R p q r best)
+
+/-- The literal reported maximum is attained and bounds EVERY real mixed
+deviation; the reported maximizing mask is exact in the same real game. -/
+theorem checked_exact_regret [DecidableEq I] [DecidableEq J]
+    (R : I → J → ℚ) (p : I → ℚ) (q : J → ℚ) (r : ℚ) (best : I → Bool)
+    (h : checkExactRegret R p q r best = true) :
+    ∃ hp : Simplex p, ∃ hq : Simplex q,
+      ApproxBestResponse (fun i j => (R i j : ℝ)) (realRow p hp) (realRow q hq) (r : ℝ) ∧
+      (∃ p' : Row I,
+        p'.expect (score (fun i j => (R i j : ℝ)) (realRow q hq)) -
+          (realRow p hp).expect (score (fun i j => (R i j : ℝ)) (realRow q hq)) = (r : ℝ)) ∧
+      (∀ i, best i = true ↔
+        gain (fun k j => (R k j : ℝ)) (realRow p hp) (realRow q hq) i = (r : ℝ)) := by
+  have hc : ExactRegretChecks R p q r best := by
+    unfold checkExactRegret at h
+    exact of_decide_eq_true h
+  rcases hc with ⟨hp, hq, hb, ⟨i, hi⟩, hm⟩
+  refine ⟨hp, hq, ?_, ?_, ?_⟩
+  · rw [approxBestResponse_iff_pure]
+    intro k
+    rw [gain_eq_cast]
+    exact_mod_cast hb k
+  · refine ⟨Row.pure i, ?_⟩
+    rw [Row.expect_pure, ← gain]
+    rw [gain_eq_cast]
+    exact_mod_cast hi
+  · intro k
+    rw [gain_eq_cast, hm]
+    constructor
+    · intro h'
+      exact_mod_cast h'
+    · intro h'
+      exact_mod_cast h'
 
 end PermanssonResearch.ApproxEquilibrium
