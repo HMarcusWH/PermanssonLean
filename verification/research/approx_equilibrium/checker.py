@@ -129,5 +129,13 @@ def check(raw,receipt):
     # Canonical comparison, not Python's bool/int equality.
     from .contract import canonical
     require(canonical(receipt["result"])==canonical(pack(expected)),"incorrect or incomplete receipt")
-    return {"numeric_status":"VERIFIED_EXACT_RATIONAL","lean_status":"NOT_EXECUTED",
-            "original_regime_certificate":False,"empirical_identification":"NOT_IDENTIFIED"}
+    result=receipt["result"]
+    if d["kind"]=="regret":
+        disposition="THRESHOLD_MET" if result["threshold_met"] else "THRESHOLD_NOT_MET"
+    elif d["kind"]=="kite":
+        disposition="CONVERTED_OR_RETAINED" if result["in_kite"] else "OUTSIDE_KITE"
+    else:
+        disposition="BOUNDS_RECONSTRUCTED"
+    return {"numeric_status":"VERIFIED_EXACT_RATIONAL","disposition":disposition,
+            "lean_status":"NOT_EXECUTED","original_regime_certificate":False,
+            "empirical_identification":"NOT_IDENTIFIED"}

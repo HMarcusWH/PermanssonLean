@@ -151,18 +151,24 @@ def checkExactRegret [DecidableEq I] [DecidableEq J]
     (R : I → J → ℚ) (p : I → ℚ) (q : J → ℚ) (r : ℚ) (best : I → Bool) : Bool :=
   decide (ExactRegretChecks R p q r best)
 
+/-- Exact maximum and complete maximizing mask in the real game. -/
+def ExactRegretConclusion (R : I → J → ℚ) (p : I → ℚ) (q : J → ℚ)
+    (r : ℚ) (best : I → Bool) : Prop :=
+  ∃ hp : Simplex p, ∃ hq : Simplex q,
+    ApproxBestResponse (fun i j => (R i j : ℝ)) (realRow p hp) (realRow q hq) (r : ℝ) ∧
+    (∃ p' : Row I,
+      p'.expect (score (fun i j => (R i j : ℝ)) (realRow q hq)) -
+        (realRow p hp).expect (score (fun i j => (R i j : ℝ)) (realRow q hq)) = (r : ℝ)) ∧
+    (∀ i, best i = true ↔
+      gain (fun k j => (R k j : ℝ)) (realRow p hp) (realRow q hq) i = (r : ℝ))
+
 /-- The literal reported maximum is attained and bounds EVERY real mixed
 deviation; the reported maximizing mask is exact in the same real game. -/
 theorem checked_exact_regret [DecidableEq I] [DecidableEq J]
     (R : I → J → ℚ) (p : I → ℚ) (q : J → ℚ) (r : ℚ) (best : I → Bool)
     (h : checkExactRegret R p q r best = true) :
-    ∃ hp : Simplex p, ∃ hq : Simplex q,
-      ApproxBestResponse (fun i j => (R i j : ℝ)) (realRow p hp) (realRow q hq) (r : ℝ) ∧
-      (∃ p' : Row I,
-        p'.expect (score (fun i j => (R i j : ℝ)) (realRow q hq)) -
-          (realRow p hp).expect (score (fun i j => (R i j : ℝ)) (realRow q hq)) = (r : ℝ)) ∧
-      (∀ i, best i = true ↔
-        gain (fun k j => (R k j : ℝ)) (realRow p hp) (realRow q hq) i = (r : ℝ)) := by
+    ExactRegretConclusion R p q r best := by
+  unfold ExactRegretConclusion
   have hc : ExactRegretChecks R p q r best := by
     unfold checkExactRegret at h
     exact of_decide_eq_true h
@@ -184,5 +190,16 @@ theorem checked_exact_regret [DecidableEq I] [DecidableEq J]
       exact_mod_cast h'
     · intro h'
       exact_mod_cast h'
+
+theorem checked_threshold_failure [DecidableEq I] [DecidableEq J]
+    (R : I → J → ℚ) (C : J → I → ℚ) (p : I → ℚ) (q : J → ℚ)
+    (ε : ℚ) (h : checkNash R C p q ε = false) (hp : Simplex p) (hq : Simplex q) :
+    ¬ ApproxNash (fun i j => (R i j : ℝ)) (fun j i => (C j i : ℝ))
+      (realRow p hp) (realRow q hq) (ε : ℝ) := by
+  intro hn
+  have ht := (checkNash_iff R C p q ε).2
+    ((rationalChecks_iff_real R C p q hp hq ε).2 hn)
+  rw [h] at ht
+  contradiction
 
 end PermanssonResearch.ApproxEquilibrium

@@ -50,16 +50,18 @@ noncomputable def DiscountedInput.policy (d : DiscountedInput n) :
     BehavioralPolicy (Fin n) (Fin 2) :=
   fun t hist => realRow (d.own (last t hist)) (d.own_ok (last t hist))
 
+def DiscountedInput.continuation (d : DiscountedInput n) (y : Fin n) (a b : Fin 2) : ℚ :=
+  d.reward y a b + d.discount * ∑ z, d.physical y a b z * d.value z
+
 def DiscountedInput.qval (d : DiscountedInput n) (y : Fin n) (a : Fin 2) : ℚ :=
-  ∑ b, d.opponent y b * (d.reward y a b +
-    d.discount * ∑ z, d.physical y a b z * d.value z)
+  ∑ b, d.opponent y b * d.continuation y a b
 
 def DiscountedInput.mean (d : DiscountedInput n) (y : Fin n) : ℚ :=
   ∑ a, d.own y a * d.qval y a
 
 theorem DiscountedInput.Q_cast (d : DiscountedInput n) (y : Fin n) (a : Fin 2) :
     Q d.game (fun z => (d.value z : ℝ)) y a = (d.qval y a : ℝ) := by
-  simp [Q, DiscountedInput.game, DiscountedInput.qval, realRow,
+  simp [Q, DiscountedInput.game, DiscountedInput.qval, DiscountedInput.continuation, realRow,
     ApplicationBridge.PrivateStageReceipt.ratRow, Row.expect]
 
 theorem DiscountedInput.mean_cast (d : DiscountedInput n) (t : ℕ)
