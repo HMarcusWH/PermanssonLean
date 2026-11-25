@@ -288,7 +288,7 @@ theorem actual_survival (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1) (hf : 0 ≤ f ∧
       calc
         r * ((killedKernel M specification)^n) y Set.univ =
             r * killedSurvivalMass M specification n y := by
-          rw [hmass]
+          rw [hmass, killedSurvivalMass]
         _ = r * r^n := by rw [ih]
         _ = r^(n+1) := by rw [pow_succ, mul_comm]
 
@@ -311,7 +311,9 @@ theorem forever_leak_zero (e : ℚ) (he : 0 < e ∧ e ≤ 1)
       measure_mono (survivesForeverSet_subset_survivesThroughSet specification n)
     have hr := ENNReal.toReal_mono (by unfold survivalProbability; finiteness) h
     rw [actual_survival e 0 ⟨he.1.le,he.2⟩ (by norm_num) y hy n] at hr
-    have hn : 0 ≤ ((1-e : ℚ) : ℝ) := by exact_mod_cast sub_nonneg.mpr he.2
+    have he1 : (e : ℝ) ≤ 1 := by
+      exact_mod_cast he.2
+    have hn : 0 ≤ 1-(e:ℝ) := sub_nonneg.mpr he1
     simpa [ENNReal.toReal_pow, ENNReal.toReal_mul, ENNReal.toReal_ofReal hn] using hr
   have ht := PermanssonResearch.ReverseSolver.InfiniteSafety.fixed_leakage_tends_to_zero
     (e:ℝ) (by exact_mod_cast he.1) (by exact_mod_cast he.2)
@@ -379,9 +381,8 @@ theorem effect_survival (e : ℚ) (he : 0 ≤ e ∧ e ≤ 1)
     (survivalProbability (intervention e 0 he (by norm_num)).intervention.apply specification y 3).toReal = _
   rw [intervened_eq_exit, actual_survival e 0 he (by norm_num) y hy 3,
     actual_survival 1 0 (by norm_num) (by norm_num) y hy 3, Real.dist_eq]
-  have hn : 0 ≤ ((1-e : ℚ) : ℝ) := by exact_mod_cast sub_nonneg.mpr he.2
   have hn' : 0 ≤ 1-(e:ℝ) := by exact_mod_cast sub_nonneg.mpr he.2
-  simp [ENNReal.toReal_pow, ENNReal.toReal_mul, ENNReal.toReal_ofReal hn,
+  simp [ENNReal.toReal_pow, ENNReal.toReal_mul, ENNReal.toReal_ofReal hn',
     abs_of_nonneg (pow_nonneg hn' 3)]
 
 theorem actual_margin (e : ℚ) (he : 0 ≤ e ∧ e ≤ 1) :
@@ -428,8 +429,10 @@ theorem effect_at (e r : ℚ) (he : 0 ≤ e ∧ e ≤ 1) (hr : 0 ≤ r ∧ r ≤
       specification y T).toReal = _
   rw [intervened_eq_modelAt, actual_survival e 0 he (by norm_num) y hy T,
     actual_survival r 0 hr (by norm_num) y hy T, Real.dist_eq]
-  have he' : 0 ≤ ((1-e : ℚ) : ℝ) := by exact_mod_cast sub_nonneg.mpr he.2
-  have hr' : 0 ≤ ((1-r : ℚ) : ℝ) := by exact_mod_cast sub_nonneg.mpr hr.2
+  have he1 : (e:ℝ) ≤ 1 := by exact_mod_cast he.2
+  have hr1 : (r:ℝ) ≤ 1 := by exact_mod_cast hr.2
+  have he' : 0 ≤ 1-(e:ℝ) := sub_nonneg.mpr he1
+  have hr' : 0 ≤ 1-(r:ℝ) := sub_nonneg.mpr hr1
   simp [ENNReal.toReal_pow, ENNReal.toReal_mul, ENNReal.toReal_ofReal he',
     ENNReal.toReal_ofReal hr']
 
@@ -581,12 +584,12 @@ theorem original_margin_transport (e r e' r' : ℚ)
 theorem transport_instance (e r e' r' : ℚ)
     (he : 0 ≤ e ∧ e ≤ 1) (hr : 0 ≤ r ∧ r ≤ 1)
     (he' : 0 ≤ e' ∧ e' ≤ 1) (hr' : 0 ≤ r' ∧ r' ≤ 1) (T : ℕ) :
-    | |(1-(e':ℝ))^T-(1-(r':ℝ))^T| -
-        |(1-(e:ℝ))^T-(1-(r:ℝ))^T| | ≤
-      geometricTVEnvelope |(e:ℝ)-(e':ℝ)| T +
-      geometricTVEnvelope |(r:ℝ)-(r':ℝ)| T := by
+    abs (abs ((1-(e':ℝ))^T-(1-(r':ℝ))^T) -
+      abs ((1-(e:ℝ))^T-(1-(r:ℝ))^T)) ≤
+      geometricTVEnvelope (abs ((e:ℝ)-(e':ℝ))) T +
+      geometricTVEnvelope (abs ((r:ℝ)-(r':ℝ))) T := by
   have h := original_margin_transport e r e' r' he hr he' hr' T
-  rw [margin_at, margin_at] at h
+  rw [margin_at e' r' he' hr' T, margin_at e r he hr T] at h
   exact h
 
 /-- For the strictly dominant candidate the attaining pure-action gain is
@@ -624,25 +627,26 @@ theorem dominant_original_margin_transport (e : ℚ) (he : 0 ≤ e ∧ e ≤ 1) 
   exact h
 
 theorem sharp_transport_from_general :
-    | |(1-(1/10:ℝ))^3-(1-(1:ℝ))^3| -
-        |(1-(0:ℝ))^3-(1-(1:ℝ))^3| | ≤
+    abs (abs ((1-(1/10:ℝ))^3-(1-(1:ℝ))^3) -
+      abs ((1-(0:ℝ))^3-(1-(1:ℝ))^3)) ≤
       geometricTVEnvelope (1/10) 3 + geometricTVEnvelope 0 3 := by
   have h := transport_instance 0 1 (1/10) 1 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) 3
-  norm_num at h ⊢ <;> exact h
+  convert h using 1 <;> norm_num [geometricTVEnvelope]
 
 /-- Both actual protocol errors can be nonzero. At one transition the
 margin loss is 1/5, with budgets 1/10 on each side; either alone is false. -/
 theorem both_budgets_necessary :
-    | |(1-(1/10:ℝ))-(1-(9/10:ℝ))| - |(1-(0:ℝ))-(1-(1:ℝ))| | ≤
+    abs (abs ((1-(1/10:ℝ))-(1-(9/10:ℝ))) -
+      abs ((1-(0:ℝ))-(1-(1:ℝ)))) ≤
       geometricTVEnvelope (1/10) 1 + geometricTVEnvelope (1/10) 1 ∧
-    ¬ (| |(1-(1/10:ℝ))-(1-(9/10:ℝ))| - |(1-(0:ℝ))-(1-(1:ℝ))| | ≤
-      geometricTVEnvelope (1/10) 1) := by
+    ¬ (abs (abs ((1-(1/10:ℝ))-(1-(9/10:ℝ))) -
+      abs ((1-(0:ℝ))-(1-(1:ℝ)))) ≤ geometricTVEnvelope (1/10) 1) := by
   constructor
   · have h := transport_instance 0 1 (1/10) (9/10) (by norm_num) (by norm_num)
       (by norm_num) (by norm_num) 1
-    norm_num at h ⊢ <;> exact h
-  · norm_num
+    convert h using 1 <;> norm_num [geometricTVEnvelope]
+  · norm_num [geometricTVEnvelope]
 
 /-- The exit rule is symmetric in the two action coordinates. -/
 theorem nextWorld_swap (x : Fin 3) (a b : Bool) :
