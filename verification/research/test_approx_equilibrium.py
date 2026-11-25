@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT))
 from verification.research.approx_equilibrium.__main__ import candidate
 from verification.research.approx_equilibrium.checker import check
-from verification.research.approx_equilibrium.contract import FORMAT, Invalid, parse
+from verification.research.approx_equilibrium.contract import FORMAT, Invalid, parse, pack
 from permansson_app.errors import AppError
 
 FIXTURES=json.loads((Path(__file__).parent/"approx_equilibrium/fixtures.json").read_text())
@@ -26,6 +26,16 @@ def verified(raw):
 def dominant(e="0"):
     return dict(format=FORMAT,kind="regret",R=[["1","1"],["0","0"]],
                 C=[["1","0"],["1","0"]],x=[str(1-Q(e)),e],y=["1","0"],epsilon=e)
+
+def asymmetric():
+    # Player two's OWN action controls the next state. If its P is not
+    # transposed along with C, the first state's second score is wrong.
+    return dict(format=FORMAT,kind="discounted",states=2,
+                R=[[["0","0"],["0","0"]]]*2,
+                C=[[["0","0"],["0","0"]]]*2,
+                P=[[[["1","0"],["0","1"]],[["1","0"],["0","1"]]]]*2,
+                x=[["1","0"]]*2,y=[["1","0"]]*2,
+                discount=["1/2","1/2"],values=[["0","0"],["0","1"]])
 
 class ExactEquilibriumTests(unittest.TestCase):
     def test_AE_T01_matching_pennies(self):
@@ -152,5 +162,69 @@ class ExactEquilibriumTests(unittest.TestCase):
     def test_invalid_number_wire_type(self):
         d=fixture("matching");d["x"]=[0.5,0.5]
         with self.assertRaises(AppError):parse(d)
+
+    def test_AE_T33_asymmetric_player_two(self):
+        r=verified(asymmetric())
+        self.assertEqual(r["evaluations"][0]["column_scores"],["0","1/2"])
+        self.assertEqual(r["epsilon"],["0","1/2"])
+        self.assertEqual(r["rho"],["0","1"])
+    def test_AE_T34_normalization_units(self):
+        r=verified(asymmetric())
+        self.assertEqual(r["normalized"][0]["widths"],["0","1/2"])
+        self.assertEqual(r["normalized"][0]["regret"],["0","1"])
+        self.assertEqual(r["full_history_bound"][1],"5")
+    def test_AE_T35_constant_continuation(self):
+        d=asymmetric();d["values"]=[["0","0"],["0","0"]]
+        r=verified(d)
+        self.assertEqual(r["normalized"],[{"widths":["0","0"],"regret":["0","0"]}]*2)
+    def test_AE_T36_all_tied_projection_is_identity(self):
+        d=fixture("matching");r=verified(d)
+        for i,k in enumerate(("x","y")):
+            self.assertEqual(r["fixed_opponent_projection"][i]["projection"],d[k])
+    def test_AE_T37_equal_marginals_different_correlations(self):
+        p=(Q(1,2),Q(0),Q(0),Q(1,2));q=(Q(0),Q(1,2),Q(1,2),Q(0))
+        self.assertEqual((p[0]+p[1],p[0]+p[2]),(q[0]+q[1],q[0]+q[2]))
+        self.assertEqual(sum(abs(a-b) for a,b in zip(p,q))/2,1)
+        d=fixture("transport");d["joint_action"]=[str(a) for a in p]
+        with self.assertRaises(Invalid):parse(d)
+    def test_AE_T38_two_nonzero_budget_arithmetic(self):
+        # General two-budget theorem regression; the narrow CLI deliberately
+        # does not allow a different replacement on the two sides.
+        baseline=abs(Q(1)-Q(0));approx=abs(Q(9,10)-Q(1,10))
+        self.assertEqual(baseline-approx,Q(1,5))
+        self.assertGreater(baseline-approx,Q(1,10))
+        self.assertEqual(baseline-approx,Q(1,10)+Q(1,10))
+    def test_AE_T39_omitted_tied_start(self):
+        d=fixture("transport");d["region"]=[0,1,2];d["comparison"]=[0,1,2]
+        r=candidate(d);short=copy.deepcopy(d);short["comparison"]=[0,1]
+        self.assertEqual(verified(short)["finite_margin"],r["result"]["finite_margin"])
+        with self.assertRaises(Invalid):check(short,r)
+    def test_AE_T40_verified_but_threshold_not_met(self):
+        d=dominant("1/4");d["epsilon"]="1/5"
+        r=candidate(d);v=check(d,r)
+        self.assertEqual(v["numeric_status"],"VERIFIED_EXACT_RATIONAL")
+        self.assertEqual(v["disposition"],"THRESHOLD_NOT_MET")
+    def test_AE_T41_tampered_kite_weight(self):
+        d=fixture("kite");r=candidate(d);r["result"]["weight"]="1/10"
+        with self.assertRaises(Invalid):check(d,r)
+    def test_AE_T42_tampered_projection(self):
+        d=dominant("1/10");r=candidate(d)
+        r["result"]["fixed_opponent_projection"][0]["projection"]=["0","1"]
+        with self.assertRaises(Invalid):check(d,r)
+    def test_AE_T43_tampered_scale(self):
+        d=asymmetric();r=candidate(d);r["result"]["normalized"][0]["widths"][1]="1"
+        with self.assertRaises(Invalid):check(d,r)
+    def test_AE_T44_changed_physical_transition(self):
+        d=fixture("transport");r=candidate(d);d["P"][0][0][0]=["0","1","0"]
+        with self.assertRaises(Invalid):check(d,r)
+    def test_AE_T45_arithmetic_preflight_and_result_limit(self):
+        d=fixture("matching")
+        d["R"][0][0]=str(Q(1,(1<<191)-1))
+        d["R"][0][1]=str(Q(1,(1<<191)-3))
+        with self.assertRaises(Invalid):parse(d)
+        with self.assertRaises(Invalid):pack(Q(1<<14001))
+    def test_noncanonical_rational(self):
+        d=fixture("matching");d["x"]=["2/4","1/2"]
+        with self.assertRaises(Invalid):parse(d)
 
 if __name__=="__main__":unittest.main()
