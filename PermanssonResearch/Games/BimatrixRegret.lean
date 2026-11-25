@@ -173,7 +173,8 @@ theorem checked_exact_regret [DecidableEq I] [DecidableEq J]
     rw [gain_eq_cast]
     exact_mod_cast hb k
   · refine ⟨Row.pure i, ?_⟩
-    rw [Row.expect_pure, ← gain]
+    rw [Row.expect_pure]
+    change gain (fun k j => (R k j : ℝ)) (realRow p hp) (realRow q hq) i = (r : ℝ)
     rw [gain_eq_cast]
     exact_mod_cast hi
   · intro k

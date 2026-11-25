@@ -32,6 +32,29 @@ noncomputable def productRow (p : Row I) (q : Row J) : Row (I × J) where
   total := by
     simp [Fintype.sum_prod_type, ← Finset.mul_sum, q.total, p.total]
 
+theorem rowTV_nonneg (p q : Row I) : 0 ≤ rowTV p q :=
+  sub_nonneg.mpr (overlap_le_one p q)
+
+theorem rowTV_le_one (p q : Row I) : rowTV p q ≤ 1 :=
+  sub_le_self _ (overlap_nonneg p q)
+
+theorem rowTV_half_l1 (p q : Row I) :
+    rowTV p q = (∑ i, |p.mass i-q.mass i|)/2 := by
+  have h : (∑ i, |p.mass i-q.mass i|) =
+      ∑ i, (p.mass i+q.mass i-2*min (p.mass i) (q.mass i)) := by
+    apply Finset.sum_congr rfl
+    intro i _
+    by_cases hi : p.mass i ≤ q.mass i
+    · rw [min_eq_left hi, abs_of_nonpos (sub_nonpos.mpr hi)]
+      ring
+    · have hj := le_of_lt (lt_of_not_ge hi)
+      rw [min_eq_right hj, abs_of_nonneg (sub_nonneg.mpr hj)]
+      ring
+  rw [Finset.sum_sub_distrib, Finset.sum_add_distrib, ← Finset.mul_sum,
+    p.total, q.total] at h
+  unfold rowTV overlap
+  linarith
+
 theorem overlap_product_ge (p p' : Row I) (q q' : Row J) :
     overlap p p' * overlap q q' ≤ overlap (productRow p q) (productRow p' q') := by
   unfold overlap
@@ -97,13 +120,39 @@ theorem eventTV_le_rowTV (p q : Row I) :
     (commonRowMeasure_le_left p q) (commonRowMeasure_le_right p q)
   rwa [commonRowMeasure_mass] at h
 
+/-- The positive-difference event attains the finite common-mass bound.
+Thus the executable half-L1 convention is the original event-TV exactly. -/
+theorem eventTV_eq_rowTV (p q : Row I) :
+    eventTotalVariation p.measure q.measure = rowTV p q := by
+  classical
+  let E : Set I := {i | q.mass i ≤ p.mass i}
+  have hE : MeasurableSet E := (Set.toFinite E).measurableSet
+  have hreal (r : Row I) :
+      r.measure.real E = ∑ i, if q.mass i ≤ p.mass i then r.mass i else 0 := by
+    rw [← integral_indicator_one (μ := r.measure) hE, ← Row.expect_eq_integral]
+    simp [Row.expect, Set.indicator, E, mul_ite]
+  have hdiff : p.measure.real E - q.measure.real E = rowTV p q := by
+    rw [hreal, hreal, ← Finset.sum_sub_distrib]
+    have heq : (∑ i, ((if q.mass i ≤ p.mass i then p.mass i else 0) -
+        (if q.mass i ≤ p.mass i then q.mass i else 0))) =
+        ∑ i, (p.mass i-min (p.mass i) (q.mass i)) := by
+      apply Finset.sum_congr rfl
+      intro i _
+      by_cases hi : q.mass i ≤ p.mass i
+      · simp [hi, min_eq_right hi]
+      · simp [hi, min_eq_left (le_of_lt (lt_of_not_ge hi))]
+    rw [heq, Finset.sum_sub_distrib, p.total]
+    rfl
+  apply le_antisymm (eventTV_le_rowTV p q)
+  have h := abs_measureReal_sub_le_eventTotalVariation p.measure q.measure hE
+  rw [hdiff, abs_of_nonneg (rowTV_nonneg p q)] at h
+  exact h
+
 theorem productRow_measure (p : Row I) (q : Row J) :
     (productRow p q).measure = p.measure.prod q.measure := by
   classical
-  apply Measure.ext_of_measureReal_singleton
+  apply Measure.ext_of_singleton
   rintro ⟨i,j⟩
-  change ((productRow p q).measure {(i,j)}).toReal =
-    ((p.measure.prod q.measure) {(i,j)}).toReal
   rw [Row.measure_singleton, ← Set.singleton_prod_singleton, Measure.prod_prod,
     Row.measure_singleton, Row.measure_singleton,
     ← ENNReal.ofReal_mul (p.nonneg i)]
@@ -114,6 +163,20 @@ theorem product_measure_tv_le (p p' : Row I) (q q' : Row J) :
       1-(1-rowTV p p')*(1-rowTV q q') := by
   rw [← productRow_measure, ← productRow_measure]
   exact (eventTV_le_rowTV _ _).trans (product_rowTV_le p p' q q')
+
+/-- Literal product-row identities on ALL source states convert marginal
+bounds to the original uniform action-kernel bound. No statement is made
+about correlated kernels which do not satisfy the identities. -/
+theorem uniform_product_action_tv {Y : Type*} [MeasurableSpace Y]
+    (K L : Kernel Y (I × J)) (p p' : Y → Row I) (q q' : Y → Row J)
+    (hK : ∀ y, K y = (p y).measure.prod (q y).measure)
+    (hL : ∀ y, L y = (p' y).measure.prod (q' y).measure)
+    (δ : ℝ)
+    (hδ : ∀ y, 1-(1-rowTV (p y) (p' y))*(1-rowTV (q y) (q' y)) ≤ δ) :
+    HasUniformEventTVBound K L δ := by
+  intro y
+  rw [hK y, hL y]
+  exact (product_measure_tv_le _ _ _ _).trans (hδ y)
 
 end Measures
 
@@ -172,6 +235,47 @@ theorem projectBest_tv_le (p : Row I) (v : I → ℝ) (iStar : I) :
   rw [Row.expect_sub, Row.expect_const] at h
   unfold rowTV
   linarith
+
+theorem projectBest_attains (p : Row I) (v : I → ℝ) (iStar : I)
+    (hmax : ∀ i, v i ≤ v iStar) :
+    (projectBest p v iStar).expect v = v iStar := by
+  classical
+  unfold projectBest
+  rw [Row.expect_map]
+  have h : (fun i => v (redirect v iStar i)) = fun _ => v iStar := by
+    funext i
+    by_cases hi : v i < v iStar
+    · simp [redirect, hi]
+    · have he := le_antisymm (hmax i) (le_of_not_gt hi)
+      simp [redirect, hi, he]
+  rw [h, Row.expect_const]
+
+theorem projectBest_tv_eq (p : Row I) (v : I → ℝ) (iStar : I) :
+    rowTV p (projectBest p v iStar) =
+      p.expect (fun i => if v i < v iStar then 1 else 0) := by
+  classical
+  have h : overlap p (projectBest p v iStar) =
+      p.expect (fun i => 1-(if v i < v iStar then 1 else 0)) := by
+    unfold overlap Row.expect
+    apply Finset.sum_congr rfl
+    intro i _
+    by_cases hi : v i < v iStar
+    · rw [projectBest_nonbest_zero p v iStar i hi, min_eq_right (p.nonneg i)]
+      simp [hi]
+    · rw [min_eq_left (projectBest_good_mass p v iStar i hi)]
+      simp [hi]
+  rw [Row.expect_sub, Row.expect_const] at h
+  unfold rowTV
+  linarith
+
+theorem projectBest_all_tied (p : Row I) (v : I → ℝ) (iStar : I)
+    (h : ∀ i, v i = v iStar) :
+    ∀ j, (projectBest p v iStar).mass j = p.mass j := by
+  classical
+  intro j
+  change (∑ i, if redirect v iStar i = j then p.mass i else 0) = p.mass j
+  have hred (i : I) : redirect v iStar i = i := by simp [redirect, h i]
+  simp [hred]
 
 theorem projectBest_gap_bound (p : Row I) (v : I → ℝ) (iStar : I)
     (g ε : ℝ) (hg : 0 < g) (hmax : ∀ i, v i ≤ v iStar)

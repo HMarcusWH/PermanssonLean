@@ -1,4 +1,5 @@
 import PermanssonResearch.Perturbation.PrimitiveProductTV
+import PermanssonResearch.Perturbation.ProductActionError
 import PermanssonResearch.Perturbation.PrimitiveMargin
 import PermanssonResearch.ConstitutiveQuasi.CertificateTransport
 import Mathlib.Tactic
@@ -31,6 +32,38 @@ variable [MeasurableSpace.CountableOrCountablyGenerated
   (PermanssonLean.JointState S X) (PermanssonLean.JointState S X)]
 
 attribute [local instance] PermanssonLean.StrategicWorldModel.inducedKernel_isMarkov
+
+/-- A checked action-kernel discrepancy and literal equalities of P and U
+construct the existing primitive record, rather than postulating a joint
+kernel error or editing the original additive interface. -/
+def fixedWorldUpdateBudget
+    (M N : PermanssonLean.StrategicWorldModel S X A)
+    (δ : ℝ) (h0 : 0 ≤ δ) (h1 : δ ≤ 1)
+    (ha : PermanssonLean.ProbabilitySupport.HasUniformEventTVBound
+      M.generator.action N.generator.action δ)
+    (hp : M.world = N.world)
+    (hu : M.generator.update = N.generator.update) :
+    PrimitiveErrorBounds M N where
+  actionError := δ
+  worldError := 0
+  updateError := 0
+  action_nonneg := h0
+  action_le_one := h1
+  world_nonneg := le_rfl
+  world_le_one := by norm_num
+  update_nonneg := le_rfl
+  update_le_one := by norm_num
+  action_tv := ha
+  world_tv := by
+    intro y
+    rw [← hp]
+    letI : IsMarkovKernel M.world := M.world_isMarkov
+    rw [PermanssonLean.ProbabilitySupport.eventTotalVariation_self]
+  update_tv := by
+    intro y
+    rw [← hu]
+    letI : IsMarkovKernel M.generator.update := M.generator.update_isMarkov
+    rw [PermanssonLean.ProbabilitySupport.eventTotalVariation_self]
 
 /-- Retained primitive mass, with no independence assumption on the errors. -/
 def PrimitiveErrorBounds.productBudget
@@ -170,6 +203,31 @@ theorem primitive_product_constitutiveMargin_abs_le
       (bounds.baselineProductPrefixBudget T) (bounds.interventionProductPrefixBudget T)
       (bounds.toProductOutputErrors T f)
   rwa [exactApproximateProfile_margin_eq] at h
+
+/-- Lower-margin conclusion in the actual approximate model, without
+changing the declared comparison domain or dropping either budget. -/
+theorem primitive_product_constitutiveMargin_lower
+    [MeasurableSpace.SeparatesPoints (PermanssonLean.JointState S X)]
+    {M : PermanssonLean.StrategicWorldModel S X A}
+    {spec : PermanssonLean.RegimeSpecification (PermanssonLean.JointState S X) H}
+    {Component : Type uC}
+    {F : PermanssonLean.InterventionFamily M Component}
+    {B₁ : PermanssonLean.RegimeSpecification.ConstitutiveComparisonSet M spec}
+    {J : PermanssonLean.AdmissibleStrategicIntervention F}
+    {pair : PrimitiveModelPair M F J}
+    (bounds : PrimitiveProtocolErrors M F J pair)
+    (T : ℕ)
+    (f : PermanssonResearch.ConstitutiveQuasi.FinitePathProperty
+      (PermanssonLean.JointState S X) T) :
+    PermanssonLean.RegimeSpecification.constitutiveMargin M spec F
+        (f.toRegimeProperty T) B₁ J -
+        (bounds.baselineProductPrefixBudget T + bounds.interventionProductPrefixBudget T) ≤
+      PermanssonLean.RegimeSpecification.constitutiveMargin pair.approximate spec
+        pair.approximateFamily (f.toRegimeProperty T) (pair.comparisonSet spec B₁)
+        pair.approximateIntervention := by
+  have h := primitive_product_constitutiveMargin_abs_le
+    (spec := spec) (B₁ := B₁) bounds T f
+  linarith only [(abs_le.mp h).1]
 
 end Perturbation
 end PermanssonResearch
