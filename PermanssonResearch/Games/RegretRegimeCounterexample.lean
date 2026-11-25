@@ -7,7 +7,7 @@ import PermanssonLean.Regime.Persistence
 import PermanssonLean.Regime.ConstitutiveMargin
 
 /-! Two strategic counterexamples with fixed physical primitives. The
-numerical survival recurrence is separated from the typed one-step laws.
+numerical survival recurrence and original typed path-law proofs are distinct.
 No general GR or PR classification is asserted. -/
 namespace PermanssonResearch.ApproxEquilibrium.Examples
 
@@ -169,8 +169,8 @@ theorem intervention_world_fixed (e f : ℚ) (he : 0 ≤ e ∧ e ≤ 1)
   (intervention e f he hf).world_eq
 
 /-- Separate scalar recurrence for the declared independent leaking policy.
-The actual atom theorem above identifies the one-step rows; all-horizon
-canonical correspondence is a separate proof obligation. -/
+The actual atom theorem above identifies the one-step rows; the
+all-horizon correspondence is given below by the killed-kernel recurrence. -/
 def survival (e : ℝ) : ℕ → ℝ
   | 0 => 1
   | n+1 => (1-e)*survival e n

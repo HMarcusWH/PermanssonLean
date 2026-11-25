@@ -58,8 +58,7 @@ theorem product_rowTV_le (p p' : Row I) (q q' : Row J) :
 
 section Measures
 
-variable {I J : Type*} [Fintype I] [Fintype J]
-  [MeasurableSpace I] [MeasurableSpace J]
+variable [MeasurableSpace I] [MeasurableSpace J]
   [MeasurableSingletonClass I] [MeasurableSingletonClass J]
 
 noncomputable def commonRowMeasure (p q : Row I) : Measure I :=
