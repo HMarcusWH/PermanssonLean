@@ -25,7 +25,7 @@ def main(argv=None):
             require(args.receipt is not None,"receipt required")
             out=checker.check(raw,read_result(args.receipt))
         else:
-            require(args.receipt is None and raw.get("kind")==args.command,"command/input mismatch")
+            require(args.receipt is None and type(raw) is dict and raw.get("kind")==args.command,"command/input mismatch")
             receipt=candidate(raw)
             out={"receipt":receipt,"verification":checker.check(raw,receipt)}
         print(json.dumps(out,sort_keys=True,indent=2))
