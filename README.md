@@ -1,3 +1,11 @@
+**Acknowledgements**
+
+The author gratefully acknowledges Luetin09, whose systems-level analysis of the Warhammer 40,000 fictional universe provided creative inspiration for the development of this framework.
+
+The initial conceptual precursor, *The Octarius Equilibrium*, emerged from an analysis of Ork–Tyranid co-escalation and asymmetric endogenous self-limitation. This speculative exercise subsequently motivated the broader mathematical investigation of equilibrium-generated regimes and constitutive regime formation.
+
+The acknowledgement concerns intellectual inspiration; responsibility for the mathematical formulation, derivations, and conclusions remains with the author.
+
 # PermanssonLean
 
 **Formal mathematics, verification, and executable research tools for strategic regime dynamics.**
