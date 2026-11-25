@@ -13,7 +13,9 @@ class ExactEquilibriumIntegrationTests(unittest.TestCase):
         source=(ROOT/"PermanssonResearch.lean").read_text(encoding="utf-8")
         header,marker,tail=source.partition("/-!\n# PermanssonResearch")
         self.assertTrue(marker,"research root documentation missing")
-        self.assertFalse(any(line.strip().startswith("import ") for line in tail.splitlines()))
+        documentation,end,commands=tail.partition("-/")
+        self.assertTrue(end,"module documentation must terminate")
+        self.assertFalse(any(line.strip().startswith("import ") for line in commands.splitlines()))
         imports=[name for line in header.splitlines() if line.strip().startswith("import ")
                  for name in line.strip().split()[1:]]
         self.assertEqual(len(imports),len(set(imports)))
