@@ -26,6 +26,9 @@ The paper contains 147 numbered mathematical items. Its 798-file Lean inventory 
 
 <a id="current-reference-guide-and-module-crosswalk--v111"></a>
 
+**Subsequent research candidate:** [Approximate equilibrium and regime transport v0.1.0](paper2/addenda/approximate-equilibrium-v0.1.0/README.md) adds research-only regret, discounted-residual and finite-prefix transport certificates. It does not revise the pinned v2.0.1 manuscript, v1.1.1 guide or application release; its proof candidates require exact-revision verification.
+
+
 ## Technical reference guide and module crosswalk — v1.1.1
 
 The [proofread Mathematical and Executable Reference Guide (PDF)](docs/reference/Permansson_Mathematical_Reference_Guide_v1.1.1.pdf) is now included in this repository alongside its [editable Markdown](docs/reference/Permansson_Mathematical_Reference_Guide_v1.1.1.md). It spans **46 chapters and 126 pages** and preserves each historical theorem/source pin.

@@ -99,3 +99,23 @@ archive successor contract v1) was a separate trust-profile matter; current
 policy v2 includes the later release workflow. Neither that policy nor a
 bridge replay supplies independent review. No workflow changes or bypasses
 are part of this bridge.
+
+## Research-only equilibrium receipt bridge
+
+The research source tree additionally contains `EquilibriumReceipt`, introduced
+in PR #132 for exact rational approximate-equilibrium verification. Its Lean
+correspondence results connect checked bimatrix profiles to real mixed-deviation
+bounds and checked finite discounted-game receipts to continuation-regret and
+Bellman-residual guarantees. The module also contains the two-player X1
+correspondence and explicit player-orientation checks.
+
+This is a research-only bridge, not an additional registered application
+capability or application replay family. Its generated Lean replay tests belong
+to the approximate-equilibrium research suite.
+
+The repository therefore contains 25 research bridge modules, while the existing
+24 application bridge families and 26 registered exact application profiles
+remain unchanged. The published application release retains its existing scope.
+Research compilation and receipt replay do not by themselves establish
+authenticated application-output certification, independent mathematical
+acceptance, empirical identification, or a new application release.

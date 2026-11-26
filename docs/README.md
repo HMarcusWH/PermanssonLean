@@ -8,6 +8,9 @@ The [reviewed second-edition manuscript](../paper2/README.md) is the current int
 
 Use the [publication manifest](../paper2/v2.0.1/PUBLICATION_MANIFEST.json) for the exact assets and identity, [version lineage](paper2/VERSION_LINEAGE.md) for historical document roles, and [documentation review](paper2/DOCUMENTATION_REVIEW.md) for checks performed on this documentation change. All source and acceptance qualifications remain explicit.
 
+**Subsequent research candidate:** [Approximate equilibrium and regime transport v0.1.0](../paper2/addenda/approximate-equilibrium-v0.1.0/README.md) adds research-only regret, discounted-residual and finite-prefix transport certificates. It does not revise the pinned v2.0.1 manuscript, v1.1.1 guide or application release; its proof candidates require exact-revision verification.
+
+
 ## Complete mathematical reference (proofread v1.1.1)
 
 The [full PDF](reference/Permansson_Mathematical_Reference_Guide_v1.1.1.pdf), [editable source](reference/Permansson_Mathematical_Reference_Guide_v1.1.1.md), [module guide](reference/README.md), [46-chapter source map](reference/CHAPTER_SOURCE_CROSSWALK.md), [56-case routes](reference/CASE_SOURCE_CROSSWALK.md) and [all tracked-file/module manifest](reference/MODULE_MANIFEST_v1.1.1.json) provide an integrated, source-pinned reading path. Exact citations and suggested family navigation are deliberately distinct. The guide does not change the independent certification decisions.

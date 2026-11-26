@@ -6,6 +6,9 @@ This is the current reading and source-navigation layer for **Permansson Regimes
 
 The mathematical source is `c5a36cd6189e2a249d5f4bc11f31698917dc8b10`. The repository snapshot documented in the manuscript is `f0dee1c11a20f96c9a11b380e942b9252e6ebe44`; it predates the new PDF upload. The edition's [publication manifest](../../paper2/v2.0.1/PUBLICATION_MANIFEST.json) records the actual artifact identity separately.
 
+**Subsequent research candidate:** [Approximate equilibrium and regime transport v0.1.0](../../paper2/addenda/approximate-equilibrium-v0.1.0/README.md) adds research-only regret, discounted-residual and finite-prefix transport certificates. It does not revise the pinned v2.0.1 manuscript, v1.1.1 guide or application release; its proof candidates require exact-revision verification.
+
+
 ## Choose a route
 
 | Reader's task | Current guide |

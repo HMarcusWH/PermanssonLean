@@ -1,0 +1,5 @@
+N=8 processed=40009 certified_leaves=20007 monotone=0 maxdepth=21 remaining=0 max_certified_bound=-366815683/1099511627776 target_floor=-366503876 time=0.910335
+N=16 processed=39787 certified_leaves=19896 monotone=0 maxdepth=21 remaining=0 max_certified_bound=-367371220/1099511627776 target_floor=-366503876 time=1.09704
+Reduction error rational upper bound: 37034214368369412115671478698659/1993841993677373809355710590420516864 1.8574297504921528e-05
+Final table sums verified: 46
+Boundary derivative counterexample: 949/100000 > -39/6400
